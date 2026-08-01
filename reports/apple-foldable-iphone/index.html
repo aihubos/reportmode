@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Apple 폴더블 iPhone의 예상 사양, 장점, 단점, 출시 리스크를 정리한 보고서">
+  <meta name="color-scheme" content="light dark">
+  <title>Apple 폴더블 iPhone — 사양·장단점 보고서</title>
+  <style>
+    :root{--ink:#1d1d1f;--muted:#6e6e73;--bg:#fff;--soft:#f5f5f7;--dark:#000;--blue:#0066cc;--line:#d2d2d7;--warning:#9a6700;--warning-bg:#fff7d6;--max:1040px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;overflow-x:hidden;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color:var(--ink);background:var(--bg);letter-spacing:-.02em;line-height:1.58}
+    a{color:var(--blue);text-underline-offset:3px}a:hover{text-decoration-thickness:2px}a:focus-visible,button:focus-visible{outline:3px solid #0071e3;outline-offset:3px;border-radius:4px}
+    .nav{position:sticky;top:0;z-index:20;height:48px;background:rgba(0,0,0,.82);backdrop-filter:saturate(180%) blur(20px);color:#fff}.nav-inner{max-width:var(--max);height:100%;margin:auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;font-size:13px}.nav a{color:#f5f5f7;text-decoration:none;min-height:44px;display:flex;align-items:center}.nav-links{display:flex;gap:22px}
+    .hero{min-height:720px;background:#000;color:#fff;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:88px 24px 74px;text-align:center;overflow:hidden}.hero-inner{width:100%;min-width:0;max-width:980px;margin-inline:auto}.eyebrow{font-size:15px;font-weight:650;color:#a1a1a6;letter-spacing:.08em;text-transform:uppercase;overflow-wrap:anywhere}.hero h1{font-size:clamp(48px,8vw,92px);line-height:.98;letter-spacing:-.06em;margin:20px 0 22px}.lede{max-width:760px;margin:0 auto;font-size:clamp(20px,3vw,30px);line-height:1.22;color:#d2d2d7;font-weight:500}.status{display:inline-flex;align-items:center;gap:9px;margin-top:28px;padding:9px 14px;border:1px solid #4b4b4f;border-radius:999px;color:#f5f5f7;font-size:14px}.dot{width:8px;height:8px;border-radius:50%;background:#ffcc00;box-shadow:0 0 0 4px rgba(255,204,0,.13)}
+    .device{width:min(530px,92vw);height:250px;margin:58px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:8px;perspective:1100px;filter:drop-shadow(0 28px 50px rgba(41,151,255,.16))}.half{position:relative;border:2px solid #3a3a3c;background:linear-gradient(145deg,#202024,#08080a 70%);overflow:hidden}.half:first-child{border-radius:28px 7px 7px 28px;transform:rotateY(4deg);transform-origin:right}.half:last-child{border-radius:7px 28px 28px 7px;transform:rotateY(-4deg);transform-origin:left}.screen-glow{position:absolute;inset:18px;border-radius:17px;background:radial-gradient(circle at 48% 30%,rgba(41,151,255,.34),transparent 34%),linear-gradient(140deg,#0c1420,#050505 60%)}.crease{position:absolute;right:-5px;top:16px;bottom:16px;width:10px;background:linear-gradient(90deg,transparent,#6e6e73,transparent);opacity:.45}
+    section{padding:92px 24px}.wrap{max-width:var(--max);margin:auto}.section-head{max-width:760px;margin-bottom:42px}.kicker{color:var(--blue);font-size:16px;font-weight:700}.section-head h2{font-size:clamp(34px,5vw,56px);line-height:1.05;letter-spacing:-.045em;margin:8px 0 14px}.section-head p{font-size:20px;color:var(--muted);margin:0}.light{background:var(--soft)}.dark{background:#000;color:#fff}.dark .section-head p,.dark .muted{color:#a1a1a6}
+    .verdict{display:grid;grid-template-columns:1.35fr .65fr;gap:18px}.verdict-main,.verdict-side{background:#fff;border-radius:18px;padding:34px}.verdict-main h3{font-size:30px;line-height:1.15;margin:0 0 18px}.verdict-main p{font-size:19px;margin:0;color:#424245}.verdict-side{background:#1d1d1f;color:#fff}.verdict-side .big{font-size:48px;font-weight:700;line-height:1}.verdict-side p{color:#d2d2d7;margin:14px 0 0}
+    .notice{background:var(--warning-bg);color:#5b4500;border-radius:12px;padding:18px 20px;margin-bottom:28px;font-size:15px}.notice strong{color:#3d2f00}
+    .specs{width:100%;border-collapse:collapse;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 0 0 1px rgba(0,0,0,.04)}.specs th,.specs td{text-align:left;padding:19px 22px;border-bottom:1px solid #e5e5e7;vertical-align:top}.specs th{width:25%;font-size:14px;color:#6e6e73;font-weight:650}.specs td{font-size:17px}.specs tr:last-child th,.specs tr:last-child td{border-bottom:0}.confidence{display:inline-block;margin-left:8px;padding:3px 8px;border-radius:999px;background:#e8f2ff;color:#0055a4;font-size:12px;font-weight:700;white-space:nowrap}
+    .duo{display:grid;grid-template-columns:1fr 1fr;gap:22px}.panel{padding:32px;border-radius:18px;background:#272729}.panel h3{font-size:28px;margin:0 0 22px}.panel ul{list-style:none;padding:0;margin:0}.panel li{position:relative;padding:15px 0 15px 34px;border-top:1px solid #3a3a3c;color:#e8e8ed}.panel li:first-child{border-top:0}.panel li::before{position:absolute;left:0;top:15px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:13px}.pros li::before{content:"+";background:#143d25;color:#5ee28a}.cons li::before{content:"−";background:#4a2020;color:#ff8a8a}
+    .checks{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.check{padding:26px;background:#fff;border-radius:16px}.check .num{font-variant-numeric:tabular-nums;color:#86868b;font-size:13px;font-weight:700}.check h3{font-size:21px;margin:12px 0 8px}.check p{margin:0;color:#6e6e73}
+    .sources{margin:0;padding:0;list-style:none}.sources li{padding:20px 0;border-top:1px solid #3a3a3c}.sources li:first-child{border-top:0}.sources a{color:#2997ff;font-weight:650}.sources span{display:block;margin-top:5px;color:#a1a1a6;font-size:14px}
+    footer{padding:32px 24px;background:#000;color:#86868b;font-size:13px}.footer-inner{max-width:var(--max);margin:auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    @media(max-width:760px){.nav-links a:not(:last-child){display:none}.hero{min-height:640px;padding:72px 20px 64px}.hero-inner{width:100%;max-width:100%}.eyebrow{font-size:11px;letter-spacing:.055em;line-height:1.35}.hero h1{font-size:clamp(42px,13vw,58px)}.lede{max-width:100%;font-size:19px;line-height:1.28}.status{font-size:13px;padding:8px 12px}.device{width:100%;max-width:350px;height:190px;margin-top:42px}.verdict,.duo,.checks{grid-template-columns:1fr}.specs,.specs tbody,.specs tr,.specs th,.specs td{display:block}.specs tr{padding:17px 19px;border-bottom:1px solid #e5e5e7}.specs th,.specs td{width:auto;padding:2px 0;border:0}.specs th{margin-bottom:4px}section{padding:70px 20px}.panel,.verdict-main,.verdict-side{padding:26px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+    @media print{.nav{display:none}.hero{min-height:auto}.device{display:none}section{break-inside:avoid}.dark{background:#fff;color:#000}.dark .panel{background:#f5f5f7;color:#000}.dark .panel li{color:#1d1d1f}}
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="보고서 탐색"><div class="nav-inner"><a href="../../">Report Mode</a><div class="nav-links"><a href="#specs">예상 사양</a><a href="#tradeoffs">장단점</a><a href="#decision">구매 판단</a></div></div></nav>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">Product Intelligence Report · 2026</div>
+      <h1>iPhone,<br>펼쳐질 준비.</h1>
+      <p class="lede">애플의 첫 폴더블 아이폰은 휴대폰과 작은 태블릿의 경계를 지울 수 있습니다. 다만 지금 확인되는 것은 제품이 아니라, 서로 다른 신뢰도의 보도와 공급망 정보입니다.</p>
+      <div class="status"><span class="dot" aria-hidden="true"></span> 공식 발표 전 · 루머 기반 보고서</div>
+      <div class="device" aria-label="책처럼 펼쳐지는 폴더블 기기를 추상화한 도형"><div class="half"><div class="screen-glow"></div><div class="crease"></div></div><div class="half"><div class="screen-glow"></div></div></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="light">
+      <div class="wrap">
+        <div class="section-head"><div class="kicker">한 문장 판단</div><h2>1세대 혁신성은 높지만,<br>구매는 실측 검증 뒤가 맞습니다.</h2><p>큰 화면과 애플 생태계의 결합은 매력적입니다. 반면 가격, 힌지 내구성, 접었을 때의 무게와 두께, 수리비는 발표 자료보다 실사용 검증이 더 중요합니다.</p></div>
+        <div class="verdict"><article class="verdict-main"><h3>가장 큰 변화는 “화면 크기”가 아니라 사용 방식입니다.</h3><p>외부 화면에서는 일반 아이폰처럼 쓰고, 펼치면 7인치 후반대 화면에서 두 앱을 나란히 사용하는 형태가 예상됩니다. 문서 검토·독서·영상·원격 업무는 좋아질 수 있지만, iOS 27의 앱 전환과 멀티태스킹 완성도가 하드웨어보다 중요한 평가 항목입니다.</p></article><aside class="verdict-side"><div class="big">5</div><p>구매 전 확인할 핵심: 무게, 배터리, 주름, 수리비, 앱 최적화</p></aside></div>
+      </div>
+    </section>
+
+    <section id="specs">
+      <div class="wrap">
+        <div class="section-head"><div class="kicker">예상 사양</div><h2>현재까지 겹치는 보도</h2><p>명칭은 ‘iPhone Ultra’ 또는 ‘iPhone Fold’로 불리지만 공식 제품명은 아닙니다. 수치가 충돌하는 항목은 하나로 합치지 않았습니다.</p></div>
+        <div class="notice"><strong>주의:</strong> 아래 내용은 애플 공식 사양이 아닙니다. 2026년 7월까지 공개된 보도와 공급망 루머를 정리했습니다.</div>
+        <table class="specs">
+          <tbody>
+            <tr><th scope="row">형태</th><td>책처럼 가로로 펼치는 북 스타일, 외부 화면＋내부 대화면 <span class="confidence">다수 보도</span></td></tr>
+            <tr><th scope="row">화면</th><td>외부 5.3~5.5인치 · 내부 7.6~7.8인치 · 내부 화면은 4:3에 가까운 비율 예상</td></tr>
+            <tr><th scope="row">두께·소재</th><td>펼쳤을 때 5mm 미만, 접으면 약 9~9.5mm. 티타늄 프레임과 액체금속·스테인리스 기반 힌지 보도</td></tr>
+            <tr><th scope="row">디스플레이</th><td>주름을 거의 보이지 않게 줄인 초박형 유리 패널이 목표. 실제 시야각·촉감은 미검증</td></tr>
+            <tr><th scope="row">칩·메모리</th><td>2nm 공정 A20 Pro · 12GB RAM · 애플 C2 5G 모뎀 · 베이퍼 챔버 냉각 예상</td></tr>
+            <tr><th scope="row">카메라</th><td>후면 48MP 메인＋48MP 초광각, 내부·외부 전면 카메라. 망원 렌즈는 빠질 가능성</td></tr>
+            <tr><th scope="row">인증</th><td>얇은 구조 때문에 Face ID 대신 측면 전원 버튼 Touch ID 채택 가능성</td></tr>
+            <tr><th scope="row">배터리</th><td>규제 자료 기반 보도: 듀얼 셀 합계 4,883mAh. 별도 루머: 5,400~5,800mAh로 상충</td></tr>
+            <tr><th scope="row">저장공간</th><td>256GB · 512GB · 1TB 예상</td></tr>
+            <tr><th scope="row">가격·일정</th><td>예상 시작가 약 1,999~2,500달러. 2026년 가을 공개설, 초기 출하는 1~2개월 늦어질 가능성</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="tradeoffs" class="dark">
+      <div class="wrap">
+        <div class="section-head"><div class="kicker">Trade-offs</div><h2>얻게 되는 것과<br>감수해야 하는 것</h2><p>폴더블의 가치는 단순히 화면이 커지는 데 있지 않습니다. 두 기기를 하나로 줄이는 이점이 물리적 복잡성을 이길 수 있는지가 핵심입니다.</p></div>
+        <div class="duo">
+          <article class="panel pros"><h3>장점</h3><ul><li>아이폰의 휴대성과 아이패드 미니급 작업 공간을 한 기기에 결합</li><li>문서 비교, 메일＋일정, 영상＋메모 등 나란히 앱 실행에 유리</li><li>주름 억제 기술이 보도대로 구현되면 기존 폴더블의 약점 개선</li><li>애플 생태계·앱 품질·기기간 연속성을 그대로 활용</li><li>접은 상태에서도 외부 화면으로 빠른 작업 가능</li></ul></article>
+          <article class="panel cons"><h3>단점</h3><ul><li>2,000달러 이상이 예상되는 높은 진입 가격과 수리비 부담</li><li>접었을 때 두께·무게, 한 손 사용성과 주머니 휴대성 저하 가능성</li><li>힌지·내부 화면·방진 성능 등 1세대 장기 내구성 불확실</li><li>망원 카메라와 Face ID가 빠질 가능성</li><li>앱이 넓은 화면을 제대로 활용하지 못하면 하드웨어 장점이 축소</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="decision" class="light">
+      <div class="wrap">
+        <div class="section-head"><div class="kicker">Jeremy의 구매 판단 기준</div><h2>발표보다 리뷰에서<br>봐야 할 다섯 가지</h2><p>사전예약 속도보다 실제 사용 데이터가 중요한 제품입니다.</p></div>
+        <div class="checks">
+          <article class="check"><div class="num">01</div><h3>실측 무게와 균형</h3><p>펼쳤을 때 손목 부담, 접었을 때 한 손 조작성을 확인합니다.</p></article>
+          <article class="check"><div class="num">02</div><h3>화면 켠 실제 사용 시간</h3><p>배터리 용량보다 외부·내부 화면별 실사용 시간을 봅니다.</p></article>
+          <article class="check"><div class="num">03</div><h3>주름과 반사</h3><p>정면 사진이 아닌 측면 조명과 손가락 촉감 평가가 중요합니다.</p></article>
+          <article class="check"><div class="num">04</div><h3>AppleCare＋와 수리비</h3><p>내부 화면·힌지 교체 비용과 보증 범위를 먼저 확인합니다.</p></article>
+          <article class="check"><div class="num">05</div><h3>멀티태스킹 완성도</h3><p>앱 전환, 화면 비율 대응, 키보드 입력까지 실제 작업으로 검수합니다.</p></article>
+          <article class="check"><div class="num">결론</div><h3>초기 구매보다 검증 구매</h3><p>혁신성은 충분하지만 1세대 프리미엄을 감수할지는 장기 리뷰 뒤 결정하는 편이 안전합니다.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="dark">
+      <div class="wrap">
+        <div class="section-head"><div class="kicker">Sources</div><h2>원문과 확인 범위</h2><p>모든 예상 정보는 아래 매체가 인용한 분석가·공급망·유출 자료에 기반합니다. 애플의 공식 발표로 확정된 내용은 아닙니다.</p></div>
+        <ul class="sources">
+          <li><a href="https://www.macrumors.com/guide/foldable-iphone/" rel="noopener">MacRumors — 2026 iPhone Fold 루머 종합</a><span>형태, 화면, 칩, 카메라, 배터리 범위, 가격, 출시 시점 종합</span></li>
+          <li><a href="https://9to5mac.com/2026/07/24/iphone-ultra-is-coming-six-new-features-in-apples-top-tier-model/" rel="noopener">9to5Mac — iPhone Ultra 예상 핵심 기능 6가지</a><span>디스플레이, 카메라, A20 Pro, 12GB RAM, Touch ID, 예상 시작가</span></li>
+          <li><a href="https://9to5mac.com/2026/07/10/iphone-ultra-battery-details-allegedly-revealed-in-new-leak/" rel="noopener">9to5Mac — 4,883mAh 듀얼 셀 배터리 보도</a><span>규제 자료에 등장한 두 셀의 합산 용량 보도</span></li>
+          <li><a href="https://9to5mac.com/2026/07/05/iphone-fold-low-supply-at-launch-delayed-release/" rel="noopener">9to5Mac — 초기 물량 부족 및 출하 지연 가능성</a><span>초기 생산량, 배송 지연, 2,300~2,500달러 가격 전망</span></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="footer-inner"><span>Report Mode · 작성 2026-08-02 KST</span><span>최종 판단과 검수는 사용자에게 있습니다.</span></div></footer>
+</body>
+</html>
