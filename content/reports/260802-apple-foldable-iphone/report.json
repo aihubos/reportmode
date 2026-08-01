@@ -8,8 +8,8 @@
   "language": "ko",
   "author": "Jeremy",
   "createdAt": "2026-08-02T00:00:00+09:00",
-  "updatedAt": "2026-08-02T00:00:00+09:00",
-  "status": "generated",
+  "updatedAt": "2026-08-02T08:26:08+09:00",
+  "status": "published",
   "summary": "1세대 혁신성은 높지만, 구매는 실측 검증 뒤가 맞습니다.",
   "verdict": "가장 큰 변화는 “화면 크기”가 아니라 사용 방식입니다. 외부 화면에서는 일반 아이폰처럼 쓰고, 펼치면 7인치 후반대 화면에서 두 앱을 나란히 사용하는 형태가 예상됩니다.",
   "heroEyebrow": "Product Intelligence Report · 260802",
@@ -170,6 +170,7 @@
   "sources": [
     {
       "id": "s1",
+      "kind": "web",
       "title": "MacRumors — 2026 iPhone Fold 루머 종합",
       "publisher": "MacRumors",
       "url": "https://www.macrumors.com/guide/foldable-iphone/",
@@ -178,6 +179,7 @@
     },
     {
       "id": "s2",
+      "kind": "web",
       "title": "9to5Mac — iPhone Ultra 예상 핵심 기능 6가지",
       "publisher": "9to5Mac",
       "url": "https://9to5mac.com/2026/07/24/iphone-ultra-is-coming-six-new-features-in-apples-top-tier-model/",
@@ -187,6 +189,7 @@
     },
     {
       "id": "s3",
+      "kind": "web",
       "title": "9to5Mac — 4,883mAh 듀얼 셀 배터리 보도",
       "publisher": "9to5Mac",
       "url": "https://9to5mac.com/2026/07/10/iphone-ultra-battery-details-allegedly-revealed-in-new-leak/",
@@ -196,6 +199,7 @@
     },
     {
       "id": "s4",
+      "kind": "web",
       "title": "9to5Mac — 초기 물량 부족 및 출하 지연 가능성",
       "publisher": "9to5Mac",
       "url": "https://9to5mac.com/2026/07/05/iphone-fold-low-supply-at-launch-delayed-release/",
