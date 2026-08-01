@@ -31,9 +31,10 @@ function renderSections(doc: ReportDocument): string {
       const refs = section.sourceIds
         .map((id) => map.get(id))
         .filter(Boolean)
-        .map(
-          (s) =>
-            `<a href="${escapeHtml(s!.url)}" rel="noopener">${escapeHtml(s!.title)}</a>`,
+        .map((s) =>
+          s!.url
+            ? `<a href="${escapeHtml(s!.url)}" rel="noopener">${escapeHtml(s!.title)}</a>`
+            : `<strong>${escapeHtml(s!.title)}</strong>`,
         )
         .join(" · ");
       const bullets =
@@ -152,7 +153,11 @@ function renderSources(doc: ReportDocument): string {
           .map(
             (s) => `
           <li>
-            <a href="${escapeHtml(s.url)}" rel="noopener">${escapeHtml(s.title)}</a>
+            ${
+              s.url
+                ? `<a href="${escapeHtml(s.url)}" rel="noopener">${escapeHtml(s.title)}</a>`
+                : `<strong>${escapeHtml(s.title)}</strong>`
+            }
             <span>${escapeHtml(s.publisher)}${s.publishedAt ? ` · 발행 ${escapeHtml(s.publishedAt)}` : ""} · 확인 ${escapeHtml(prettyDateFromIso(s.accessedAt))}${s.note ? ` · ${escapeHtml(s.note)}` : ""}</span>
           </li>`,
           )
@@ -320,4 +325,3 @@ export function renderRedirectHtml(targetPath: string, title: string): string {
 </html>
 `;
 }
-

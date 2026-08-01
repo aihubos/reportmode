@@ -240,6 +240,8 @@ function printResult(result: {
   publicUrl?: string;
   commitSha?: string;
   pagesStatus?: string;
+  localPreviewPath?: string;
+  localPreviewUrl?: string;
   published: boolean;
   draft: boolean;
 }) {
@@ -255,7 +257,9 @@ function printResult(result: {
         createdAt: result.document.createdAt,
         displayDate: item.displayDate,
         sourceCount: result.document.sources.length,
-        publicUrl: result.publicUrl || item.url,
+        publicUrl: result.publicUrl,
+        localPreviewPath: result.localPreviewPath,
+        localPreviewUrl: result.localPreviewUrl,
         commitSha: result.commitSha,
         pagesStatus: result.pagesStatus,
       },
@@ -280,4 +284,3 @@ function fail(err: unknown): never {
 }
 
 program.parseAsync(process.argv);
-

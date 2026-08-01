@@ -30,6 +30,7 @@ export function normalizeDocument(args: {
     args.sources.length > 0
       ? args.sources.map((s) => ({
           id: s.id,
+          kind: s.kind,
           title: s.title,
           publisher: s.publisher,
           url: s.url,
@@ -64,4 +65,3 @@ export function normalizeDocument(args: {
 
   return ReportDocumentSchema.parse(doc);
 }
-

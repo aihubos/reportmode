@@ -16,9 +16,10 @@ export const SectionKindSchema = z.enum([
 
 export const SourceSchema = z.object({
   id: z.string().min(1),
+  kind: z.enum(["web", "local", "note"]).default("web"),
   title: z.string().min(1),
   publisher: z.string().min(1),
-  url: z.string().url(),
+  url: z.string().url().optional(),
   publishedAt: z.string().optional(),
   accessedAt: z.string().min(1),
   note: z.string().optional(),
@@ -121,4 +122,3 @@ export const ManifestItemSchema = z.object({
 });
 
 export type ManifestItem = z.infer<typeof ManifestItemSchema>;
-

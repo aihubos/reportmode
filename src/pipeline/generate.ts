@@ -1,10 +1,10 @@
 import type { GenerateRequest, ReportDocument } from "../schema/report.js";
 import { GenerateRequestSchema } from "../schema/report.js";
-import { collectFiles, collectUrls } from "../lib/sources.js";
+import { collectFiles, collectNote, collectUrls } from "../lib/sources.js";
 import { getProvider } from "../providers/index.js";
 import { normalizeDocument } from "./normalize.js";
 import { saveReport, loadReport } from "../lib/store.js";
-import { buildSite } from "../lib/build.js";
+import { buildDraftPreview } from "../lib/build.js";
 import { publishReport } from "./publish.js";
 import { writeText } from "../lib/fs.js";
 import { runtimeDir } from "../lib/paths.js";
@@ -15,6 +15,8 @@ export type PipelineResult = {
   publicUrl?: string;
   commitSha?: string;
   pagesStatus?: string;
+  localPreviewPath?: string;
+  localPreviewUrl?: string;
   published: boolean;
   draft: boolean;
 };
@@ -24,8 +26,20 @@ export async function runGenerate(
   options?: { preserveId?: string; preserveCreatedAt?: string },
 ): Promise<PipelineResult> {
   const request = GenerateRequestSchema.parse(input);
-  const sources = request.urls.length ? await collectUrls(request.urls) : [];
-  const fileNotes = request.files.length ? collectFiles(request.files) : "";
+  const urlSources = request.urls.length ? await collectUrls(request.urls) : [];
+  const fileCollection = request.files.length
+    ? collectFiles(request.files, urlSources.length)
+    : { sources: [], text: "" };
+  const noteSource = collectNote(
+    request.notes,
+    urlSources.length + fileCollection.sources.length,
+  );
+  const sources = [
+    ...urlSources,
+    ...fileCollection.sources,
+    ...(noteSource ? [noteSource] : []),
+  ];
+  const fileNotes = fileCollection.text;
 
   writeText(
     runtimeDir("logs", `${Date.now()}-request.json`),
@@ -49,20 +63,18 @@ export async function runGenerate(
   });
 
   saveReport(document);
-  buildSite({
-    legacyRedirects: [
-      {
-        from: "apple-foldable-iphone",
-        toId: "260802-apple-foldable-iphone",
-        title: "Apple 폴더블 iPhone",
-      },
-    ],
-  });
 
   if (request.draft) {
     document.status = "draft";
     saveReport(document);
-    return { document, published: false, draft: true };
+    const localPreviewPath = buildDraftPreview(document);
+    return {
+      document,
+      localPreviewPath,
+      localPreviewUrl: `/previews/${document.id}/`,
+      published: false,
+      draft: true,
+    };
   }
 
   try {
@@ -117,4 +129,3 @@ export async function runImport(
     },
   );
 }
-

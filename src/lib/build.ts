@@ -12,6 +12,7 @@ import {
   renderReportHtml,
 } from "./render.js";
 import { publicReportPath, repoRoot } from "./paths.js";
+import { runtimeDir } from "./paths.js";
 import type { ReportDocument } from "../schema/report.js";
 
 export function buildReport(doc: ReportDocument): string {
@@ -20,10 +21,18 @@ export function buildReport(doc: ReportDocument): string {
   return publicReportPath(doc.id);
 }
 
+export function buildDraftPreview(doc: ReportDocument): string {
+  const previewPath = path.join(runtimeDir("previews"), doc.id, "index.html");
+  writeText(previewPath, renderReportHtml(doc));
+  return previewPath;
+}
+
 export function buildSite(options?: {
   legacyRedirects?: Array<{ from: string; toId: string; title: string }>;
 }) {
-  const docs = listReportsNewestFirst();
+  const docs = listReportsNewestFirst().filter(
+    (doc) => doc.status !== "draft" && doc.status !== "publish_failed",
+  );
   const config = loadConfig();
   const items = docs.map(toManifestItem);
 
@@ -59,4 +68,3 @@ export function buildSite(options?: {
     published: docs.filter((d) => reportPublicExists(d.id)).map((d) => d.id),
   };
 }
-

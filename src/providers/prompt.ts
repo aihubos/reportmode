@@ -13,7 +13,7 @@ export function buildUserPrompt(ctx: ProviderContext): string {
   const sourceBlock = ctx.sources
     .map(
       (s) =>
-        `[${s.id}] ${s.title} | ${s.publisher} | ${s.url}\nexcerpt: ${s.excerpt.slice(0, 1800)}`,
+        `[${s.id}] ${s.kind} | ${s.title} | ${s.publisher} | ${s.url || "(no public URL)"}\nexcerpt: ${s.excerpt.slice(0, 1800)}`,
     )
     .join("\n\n");
 
@@ -40,7 +40,7 @@ export function buildUserPrompt(ctx: ProviderContext): string {
   "decisions": [{"id": string, "title": string, "body": string}],
   "timeline": [{"date": string, "title": string, "body": string}],
   "quotes": string[],
-  "sources": [{"id": string, "title": string, "publisher": string, "url": string, "accessedAt": string, "publishedAt"?: string, "note"?: string}],
+  "sources": [{"id": string, "kind": "web"|"local"|"note", "title": string, "publisher": string, "url"?: string, "accessedAt": string, "publishedAt"?: string, "note"?: string}],
   "tags": string[]
 }
 
@@ -80,4 +80,3 @@ export function extractJsonObject(text: string): unknown {
     throw new Error("AI 응답에서 JSON을 찾지 못했습니다.");
   }
 }
-

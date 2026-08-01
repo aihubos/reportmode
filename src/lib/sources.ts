@@ -6,9 +6,10 @@ import { runtimeDir } from "./paths.js";
 
 export type CollectedSource = {
   id: string;
+  kind: "web" | "local" | "note";
   title: string;
   publisher: string;
-  url: string;
+  url?: string;
   accessedAt: string;
   excerpt: string;
   note?: string;
@@ -69,6 +70,7 @@ export async function collectUrls(urls: string[]): Promise<CollectedSource[]> {
     const text = stripHtml(html).slice(0, 6000);
     const source: CollectedSource = {
       id: `s${i + 1}`,
+      kind: "web",
       title: guessTitle(html, url),
       publisher: guessPublisher(url),
       url,
@@ -84,15 +86,48 @@ export async function collectUrls(urls: string[]): Promise<CollectedSource[]> {
   return out;
 }
 
-export function collectFiles(files: string[]): string {
-  return files
-    .map((f) => {
+export function collectFiles(
+  files: string[],
+  startIndex = 0,
+): { sources: CollectedSource[]; text: string } {
+  const sources = files.map((f, index) => {
       const abs = path.resolve(f);
       if (!fs.existsSync(abs)) {
         throw new Error(`로컬 파일이 없습니다: ${f}`);
       }
-      return `# FILE: ${abs}\n${fs.readFileSync(abs, "utf8")}`;
-    })
-    .join("\n\n");
+      const title = path.basename(abs);
+      const excerpt = fs.readFileSync(abs, "utf8").slice(0, 6000);
+      return {
+        id: `s${startIndex + index + 1}`,
+        kind: "local" as const,
+        title,
+        publisher: "Local file",
+        accessedAt: nowIsoKst(),
+        excerpt,
+        note: "사용자가 제공한 로컬 자료",
+      };
+    });
+  return {
+    sources,
+    text: sources
+      .map((source) => `# FILE: ${source.title}\n${source.excerpt}`)
+      .join("\n\n"),
+  };
 }
 
+export function collectNote(
+  notes: string,
+  startIndex: number,
+): CollectedSource | undefined {
+  const excerpt = notes.trim();
+  if (!excerpt) return undefined;
+  return {
+    id: `s${startIndex + 1}`,
+    kind: "note",
+    title: "사용자 제공 메모",
+    publisher: "User-provided",
+    accessedAt: nowIsoKst(),
+    excerpt: excerpt.slice(0, 6000),
+    note: "사용자가 직접 제공한 메모",
+  };
+}

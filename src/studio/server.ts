@@ -75,7 +75,8 @@ function studioHtml(): string {
     "  const res=await fetch('/api/list');",
     "  const data=await res.json();",
     "  listEl.innerHTML=(data.reports||[]).map(function(r){",
-    "    return '<div style=\"padding:8px 0;border-top:1px solid #eee\"><a href=\"' + r.url + '\" target=\"_blank\">' + r.displayDate + ' · ' + r.title + '</a></div>';",
+    "    var href=r.status==='draft' ? r.localPreviewUrl : r.url;",
+    "    return '<div style=\"padding:8px 0;border-top:1px solid #eee\"><a href=\"' + href + '\" target=\"_blank\">' + r.displayDate + ' · ' + r.title + '</a></div>';",
     "  }).join('') || '보고서 없음';",
     "  if(data.reports && data.reports[0]) preview.src='/' + data.reports[0].path;",
     "}",
@@ -102,7 +103,7 @@ function studioHtml(): string {
     "    var res=await fetch('/api/generate',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)});",
     "    var data=await res.json();",
     "    statusEl.textContent=JSON.stringify(data,null,2);",
-    "    if(data.publicUrl) preview.src=data.publicUrl;",
+    "    if(data.publicUrl || data.localPreviewUrl) preview.src=data.publicUrl || data.localPreviewUrl;",
     "    await refresh();",
     "  }catch(e){ statusEl.textContent='오류: '+e.message; }",
     "};",
@@ -123,7 +124,11 @@ export async function startStudio(port: number) {
         return;
       }
       if (req.method === "GET" && url.pathname === "/api/list") {
-        const reports = listReportsNewestFirst().map(toManifestItem);
+        const reports = listReportsNewestFirst().map((doc) => ({
+          ...toManifestItem(doc),
+          localPreviewUrl:
+            doc.status === "draft" ? `/previews/${doc.id}/` : undefined,
+        }));
         res.writeHead(200, { "content-type": "application/json" });
         res.end(JSON.stringify({ reports, siteBase: config.siteBase }));
         return;
@@ -159,7 +164,8 @@ export async function startStudio(port: number) {
             title: result.document.title,
             createdAt: result.document.createdAt,
             sourceCount: result.document.sources.length,
-            publicUrl: result.publicUrl || toManifestItem(result.document).url,
+            publicUrl: result.publicUrl,
+            localPreviewUrl: result.localPreviewUrl,
             commitSha: result.commitSha,
             pagesStatus: result.pagesStatus,
             published: result.published,
@@ -169,14 +175,18 @@ export async function startStudio(port: number) {
         return;
       }
 
+      const isPreview = url.pathname.startsWith("/previews/");
       const rel = decodeURIComponent(url.pathname).replace(/^\//, "");
       const root = path.resolve(
         path.dirname(fileURLToPath(import.meta.url)),
         "../..",
       );
-      const filePath = path.resolve(root, rel || "index.html");
+      const previewRoot = path.join(root, ".reportmode");
+      const baseRoot = isPreview ? previewRoot : root;
+      const previewRel = isPreview ? rel.replace(/^previews\//, "previews/") : rel;
+      const filePath = path.resolve(baseRoot, previewRel || "index.html");
       if (
-        !filePath.startsWith(root) ||
+        !filePath.startsWith(baseRoot) ||
         !fs.existsSync(filePath) ||
         fs.statSync(filePath).isDirectory()
       ) {
