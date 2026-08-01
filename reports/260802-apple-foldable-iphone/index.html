@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="1세대 혁신성은 높지만, 구매는 실측 검증 뒤가 맞습니다.">
+  <meta name="color-scheme" content="light">
+  <title>260802 · Apple 폴더블 iPhone — Report Mode</title>
+  <style>:root {
+  --ink: #171717;
+  --muted: #5f5f66;
+  --bg: #f4f1ea;
+  --paper: #fffdf8;
+  --line: #ddd4c5;
+  --accent: #0b3d91;
+  --soft: #efe8db;
+  --dark: #111111;
+  --warn: #8a5a00;
+  --warn-bg: #fff4d8;
+  --fact: #0b6e4f;
+  --analysis: #0b3d91;
+  --forecast: #6b3fa0;
+  --rumor: #9a6700;
+  --max: 1080px;
+  --serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, "Noto Serif KR", serif;
+  --sans: "Avenir Next", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--bg);
+  font-family: var(--sans);
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 3px solid #2f6fed; outline-offset: 3px; }
+.nav {
+  position: sticky; top: 0; z-index: 20; height: 52px;
+  background: rgba(17,17,17,.9); color: #fff; backdrop-filter: blur(14px);
+}
+.nav-inner, .wrap, .footer-inner {
+  width: min(var(--max), calc(100% - 40px));
+  margin: 0 auto;
+}
+.nav-inner {
+  height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.nav a { color: #f5f5f7; text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+.nav-links { display: flex; gap: 18px; font-size: 13px; }
+.hero {
+  background: radial-gradient(circle at top right, #243b55, #0b1020 55%, #05070d);
+  color: #fff; padding: 88px 0 72px;
+}
+.hero-inner { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+.eyebrow {
+  font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: #b8c0cc; font-weight: 700;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(42px, 8vw, 78px);
+  line-height: 1.02;
+  letter-spacing: -.04em;
+  margin: 18px 0 18px;
+  max-width: 16ch;
+}
+.lede {
+  max-width: 48rem; font-size: clamp(18px, 2.4vw, 24px); line-height: 1.35; color: #d7dde7; font-weight: 500;
+}
+.meta-row {
+  display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px;
+}
+.chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 999px; padding: 8px 12px; font-size: 13px; color: #f0f3f8;
+}
+.dot { width: 8px; height: 8px; border-radius: 50%; background: #ffd166; box-shadow: 0 0 0 4px rgba(255,209,102,.15); }
+section { padding: 78px 0; }
+.section-head { max-width: 46rem; margin-bottom: 34px; }
+.kicker { color: var(--accent); font-size: 14px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+.section-head h2 {
+  font-family: var(--serif);
+  font-size: clamp(30px, 4.5vw, 48px);
+  line-height: 1.1; letter-spacing: -.03em; margin: 10px 0 12px;
+}
+.section-head p { margin: 0; color: var(--muted); font-size: 18px; }
+.paper {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 28px;
+  box-shadow: 0 18px 40px rgba(40, 28, 8, .05);
+}
+.verdict-grid {
+  display: grid; grid-template-columns: 1.4fr .8fr; gap: 18px;
+}
+.verdict-main h3 { font-family: var(--serif); font-size: 28px; margin: 0 0 14px; }
+.verdict-side {
+  background: var(--dark); color: #fff; border-radius: 18px; padding: 24px;
+}
+.verdict-side .big { font-size: 42px; font-weight: 800; line-height: 1; }
+.metrics {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 22px;
+}
+.metric {
+  background: var(--soft); border-radius: 16px; padding: 18px;
+}
+.metric .value { font-family: var(--serif); font-size: 28px; font-weight: 700; }
+.metric .label { color: var(--muted); font-size: 13px; margin-top: 6px; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; }
+.badge {
+  display: inline-flex; align-items: center; border-radius: 999px;
+  padding: 4px 10px; font-size: 12px; font-weight: 800;
+}
+.badge.fact { background: #e5f6ef; color: var(--fact); }
+.badge.analysis { background: #e8effc; color: var(--analysis); }
+.badge.forecast { background: #f1e9fb; color: var(--forecast); }
+.badge.rumor { background: #fff3d9; color: var(--rumor); }
+.section-card { margin-top: 18px; }
+.section-card h3 {
+  font-family: var(--serif); font-size: 28px; margin: 0 0 12px;
+}
+.section-card .body p { margin: 0 0 12px; font-size: 17px; }
+.section-card ul { margin: 0; padding-left: 1.1rem; }
+.section-card li { margin: 6px 0; }
+.hl { background: #fff2a8; padding: 0 .12em; }
+.quote {
+  border-left: 4px solid var(--accent);
+  padding: 8px 0 8px 18px;
+  margin: 18px 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.35;
+  color: #2a2a2e;
+}
+.duo { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.panel {
+  border-radius: 18px; padding: 24px; background: #171717; color: #f2f2f2;
+}
+.panel h3 { margin: 0 0 14px; font-family: var(--serif); font-size: 26px; }
+.panel ul { list-style: none; margin: 0; padding: 0; }
+.panel li {
+  position: relative; padding: 12px 0 12px 30px; border-top: 1px solid #333;
+}
+.panel li:first-child { border-top: 0; }
+.panel.pros li::before, .panel.cons li::before {
+  position: absolute; left: 0; top: 12px; width: 20px; height: 20px;
+  border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 800;
+}
+.panel.pros li::before { content: "+"; background: #174a2d; color: #7dffb2; }
+.panel.cons li::before { content: "−"; background: #4a1d1d; color: #ff9b9b; }
+.checks {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+}
+.check {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 20px;
+}
+.check .num { color: #888; font-size: 12px; font-weight: 800; letter-spacing: .08em; }
+.check h3 { font-size: 18px; margin: 10px 0 8px; }
+.check p { margin: 0; color: var(--muted); }
+.timeline { display: grid; gap: 12px; }
+.t-item {
+  display: grid; grid-template-columns: 120px 1fr; gap: 14px;
+  background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px;
+}
+.t-item .date { font-weight: 800; color: var(--accent); }
+.sources { list-style: none; margin: 0; padding: 0; }
+.sources li {
+  padding: 16px 0; border-top: 1px solid var(--line);
+}
+.sources li:first-child { border-top: 0; }
+.sources a { font-weight: 700; }
+.sources span { display: block; margin-top: 4px; color: var(--muted); font-size: 14px; }
+.notice {
+  background: var(--warn-bg); color: #5b4300; border-radius: 12px; padding: 14px 16px; margin-bottom: 18px;
+}
+footer {
+  background: #111; color: #a0a0a0; padding: 28px 0; font-size: 13px;
+}
+.footer-inner { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.home body, body.home { background: #f5f5f7; }
+.home-wrap { width: min(980px, calc(100% - 40px)); margin: 0 auto; padding: 88px 0 64px; }
+.home h1 {
+  font-family: var(--serif);
+  font-size: clamp(48px, 9vw, 84px);
+  line-height: .95; letter-spacing: -.05em; margin: 14px 0 18px;
+}
+.home .intro { max-width: 40rem; color: var(--muted); font-size: 20px; }
+.cards { display: grid; gap: 16px; margin-top: 48px; }
+.card {
+  display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: center;
+  text-decoration: none; color: inherit; background: #fff; border-radius: 18px;
+  padding: 28px; box-shadow: 0 12px 40px rgba(0,0,0,.05);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 18px 46px rgba(0,0,0,.08); }
+.card .tag { color: #8a5a00; font-size: 13px; font-weight: 800; }
+.card h2 { margin: 8px 0; font-size: 28px; font-family: var(--serif); }
+.card p { margin: 0; color: var(--muted); }
+.card .arrow { font-size: 30px; color: var(--accent); }
+@media (max-width: 860px) {
+  .verdict-grid, .duo, .checks, .metrics { grid-template-columns: 1fr 1fr; }
+  .metrics { grid-template-columns: 1fr 1fr; }
+  .t-item { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .nav-links a:not(:last-child) { display: none; }
+  .verdict-grid, .duo, .checks, .metrics { grid-template-columns: 1fr; }
+  section { padding: 56px 0; }
+  .hero { padding: 72px 0 56px; }
+  .card { grid-template-columns: 1fr; }
+  .card .arrow { display: none; }
+}
+@media print {
+  .nav { display: none; }
+  body { background: #fff; }
+  .hero { break-inside: avoid; }
+  section { break-inside: avoid; }
+}
+
+</style>
+</head>
+<body>
+  <nav class="nav" aria-label="보고서 탐색">
+    <div class="nav-inner">
+      <a href="../../">Report Mode</a>
+      <div class="nav-links">
+        <a href="#summary">요약</a>
+        <a href="#body">본문</a>
+        <a href="#sources">출처</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">Product Intelligence Report · 260802</div>
+      <h1>Apple 폴더블 iPhone</h1>
+      <p class="lede">예상 사양, 장점과 단점, 구매 전 확인해야 할 다섯 가지 기준</p>
+      <div class="meta-row">
+        <div class="chip"><span class="dot" aria-hidden="true"></span>260802 · 미발표 제품 · 루머 분석</div>
+        <div class="chip">작성 2026.08.02 KST</div>
+        <div class="chip">수정 2026.08.02 KST</div>
+        <div class="chip">출처 4개</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="summary">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Executive Summary</div>
+          <h2>한 문장 판단</h2>
+          <p>1세대 혁신성은 높지만, 구매는 실측 검증 뒤가 맞습니다.</p>
+        </div>
+        <div class="verdict-grid">
+          <article class="paper verdict-main">
+            <h3>가장 큰 변화는 “화면 크기”가 아니라 사용 방식입니다. 외부 화면에서는 일반 아이폰처럼 쓰고, 펼치면 7인치 후반대 화면에서 두 앱을 나란히 사용하는 형태가 예상됩니다.</h3>
+            <blockquote class="quote">지금 확인되는 것은 제품이 아니라, 서로 다른 신뢰도의 보도와 공급망 정보입니다.</blockquote>
+          </article>
+          <aside class="verdict-side">
+            <div class="big">5</div>
+            <p>핵심 기준·지표와 출처를 함께 확인하세요. 최종 판단과 검수는 사용자에게 있습니다.</p>
+          </aside>
+        </div>
+        <div class="metrics"><div class="metric"><div class="value">$1,999+</div><div class="label">예상 시작가 · 루머 범위</div></div><div class="metric"><div class="value">7.6–7.8&quot;</div><div class="label">내부 화면 · 다수 보도</div></div><div class="metric"><div class="value">4,883mAh</div><div class="label">배터리 보도 · 상충 있음</div></div><div class="metric"><div class="value">5</div><div class="label">확인 기준 · 구매 전 체크</div></div></div>
+        <div class="legend">
+          <span class="badge fact">사실</span>
+          <span class="badge analysis">분석</span>
+          <span class="badge forecast">전망</span>
+          <span class="badge rumor">루머</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="body">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Body</div>
+          <h2>본문</h2>
+          <p>사실·분석·전망·루머를 분리해 정리했습니다.</p>
+        </div>
+        
+<article class="paper section-card" id="form">
+  <div class="badge rumor">루머</div>
+  <h3>현재까지 겹치는 형태 보도</h3>
+  <div class="body"><p>명칭은 ‘iPhone Ultra’ 또는 ‘iPhone Fold’로 불리지만 공식 제품명은 아닙니다. 책처럼 가로로 펼치는 북 스타일, 외부 화면과 내부 대화면 조합이 다수 보도에서 겹칩니다. 수치가 충돌하는 항목은 하나로 합치지 않았습니다.</p></div>
+  <ul><li>외부 5.3~5.5인치 · 내부 7.6~7.8인치</li><li>펼쳤을 때 5mm 미만, 접으면 약 9~9.5mm 두께 보도</li><li>티타늄 프레임과 액체금속·스테인리스 기반 힌지 보도</li></ul>
+  <p class="muted" style="margin-top:14px;color:var(--muted);font-size:14px;">출처: <a href="https://www.macrumors.com/guide/foldable-iphone/" rel="noopener">MacRumors — 2026 iPhone Fold 루머 종합</a> · <a href="https://9to5mac.com/2026/07/24/iphone-ultra-is-coming-six-new-features-in-apples-top-tier-model/" rel="noopener">9to5Mac — iPhone Ultra 예상 핵심 기능 6가지</a></p>
+</article>
+
+<article class="paper section-card" id="hardware">
+  <div class="badge rumor">루머</div>
+  <h3>칩·카메라·인증 예상</h3>
+  <div class="body"><p>2nm 공정 A20 Pro, 12GB RAM, 애플 C2 5G 모뎀, 베이퍼 챔버 냉각이 거론됩니다. 후면 48MP 메인과 초광각 중심 구성, 망원 렌즈 제외 가능성, Face ID 대신 측면 Touch ID 가능성이 함께 보도됩니다.</p></div>
+  <ul><li>저장공간 256GB · 512GB · 1TB 예상</li><li>얇은 구조로 생체인증 방식 변경 가능성</li><li>카메라 구성은 아직 확정되지 않음</li></ul>
+  <p class="muted" style="margin-top:14px;color:var(--muted);font-size:14px;">출처: <a href="https://www.macrumors.com/guide/foldable-iphone/" rel="noopener">MacRumors — 2026 iPhone Fold 루머 종합</a> · <a href="https://9to5mac.com/2026/07/24/iphone-ultra-is-coming-six-new-features-in-apples-top-tier-model/" rel="noopener">9to5Mac — iPhone Ultra 예상 핵심 기능 6가지</a></p>
+</article>
+
+<article class="paper section-card" id="battery-conflict">
+  <div class="badge fact">사실</div>
+  <h3>배터리 수치는 상충한다</h3>
+  <div class="body"><p>규제 자료 기반 보도는 듀얼 셀 합계 4,883mAh를 제시하지만, 별도 루머는 5,400~5,800mAh 범위를 거론합니다. 용량보다 외부·내부 화면별 실사용 시간이 더 중요합니다.</p></div>
+  <ul><li>4,883mAh 듀얼 셀 보도</li><li>더 높은 용량 루머와 충돌</li><li>공식 사양 아님</li></ul>
+  <p class="muted" style="margin-top:14px;color:var(--muted);font-size:14px;">출처: <a href="https://9to5mac.com/2026/07/10/iphone-ultra-battery-details-allegedly-revealed-in-new-leak/" rel="noopener">9to5Mac — 4,883mAh 듀얼 셀 배터리 보도</a></p>
+</article>
+
+<article class="paper section-card" id="supply">
+  <div class="badge forecast">전망</div>
+  <h3>초기 물량과 일정 리스크</h3>
+  <div class="body"><p>2026년 가을 공개설과 함께, 초기 출하가 1~2개월 늦어질 가능성과 초기 물량 부족 가능성이 제기됩니다. 가격은 약 1,999~2,500달러 시작가 범위로 거론됩니다.</p></div>
+  <ul><li>초기 생산량 제약 가능성</li><li>프리미엄 가격대 예상</li><li>1세대 장기 내구성은 미검증</li></ul>
+  <p class="muted" style="margin-top:14px;color:var(--muted);font-size:14px;">출처: <a href="https://9to5mac.com/2026/07/24/iphone-ultra-is-coming-six-new-features-in-apples-top-tier-model/" rel="noopener">9to5Mac — iPhone Ultra 예상 핵심 기능 6가지</a> · <a href="https://9to5mac.com/2026/07/05/iphone-fold-low-supply-at-launch-delayed-release/" rel="noopener">9to5Mac — 초기 물량 부족 및 출하 지연 가능성</a></p>
+</article>
+
+<article class="paper section-card" id="usage">
+  <div class="badge analysis">분석</div>
+  <h3>하드웨어보다 멀티태스킹 완성도</h3>
+  <div class="body"><p>문서 검토·독서·영상·원격 업무는 좋아질 수 있지만, iOS의 앱 전환과 멀티태스킹 완성도가 하드웨어보다 중요한 평가 항목입니다. 앱이 넓은 화면을 제대로 활용하지 못하면 하드웨어 장점이 축소됩니다.</p></div>
+  <ul><li>외부 화면 빠른 작업 + 내부 화면 병행 작업</li><li>앱 최적화 수준이 체감 가치를 좌우</li><li>1세대 프리미엄을 감수할지 별도 판단 필요</li></ul>
+  <p class="muted" style="margin-top:14px;color:var(--muted);font-size:14px;">출처: <a href="https://www.macrumors.com/guide/foldable-iphone/" rel="noopener">MacRumors — 2026 iPhone Fold 루머 종합</a> · <a href="https://9to5mac.com/2026/07/24/iphone-ultra-is-coming-six-new-features-in-apples-top-tier-model/" rel="noopener">9to5Mac — iPhone Ultra 예상 핵심 기능 6가지</a></p>
+</article>
+      </div>
+    </section>
+
+    
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Trade-offs</div>
+      <h2>얻게 되는 것과<br>감수해야 하는 것</h2>
+    </div>
+    <div class="duo">
+      <article class="panel pros"><h3>장점</h3><ul><li>아이폰 휴대성과 아이패드 미니급 작업 공간 결합</li><li>문서 비교, 메일+일정, 영상+메모 병행에 유리</li><li>주름 억제 기술이 구현되면 기존 폴더블 약점 개선</li><li>애플 생태계·앱 품질·기기간 연속성 활용</li><li>접은 상태에서도 외부 화면으로 빠른 작업 가능</li></ul></article>
+      <article class="panel cons"><h3>단점</h3><ul><li>2,000달러 이상 진입 가격과 수리비 부담</li><li>접었을 때 두께·무게, 한 손 사용성 저하 가능성</li><li>힌지·내부 화면·방진 성능 등 1세대 내구성 불확실</li><li>망원 카메라와 Face ID 제외 가능성</li><li>앱 최적화 부족 시 하드웨어 장점 축소</li></ul></article>
+    </div>
+  </div>
+</section>
+    
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Decision Criteria</div>
+      <h2>판단 기준</h2>
+    </div>
+    <div class="checks">
+      
+        <article class="check">
+          <div class="num">01</div>
+          <h3>실측 무게와 균형</h3>
+          <p>펼쳤을 때 손목 부담, 접었을 때 한 손 조작성을 확인합니다.</p>
+        </article>
+        <article class="check">
+          <div class="num">02</div>
+          <h3>화면 켠 실제 사용 시간</h3>
+          <p>배터리 용량보다 외부·내부 화면별 실사용 시간을 봅니다.</p>
+        </article>
+        <article class="check">
+          <div class="num">03</div>
+          <h3>주름과 반사</h3>
+          <p>정면 사진이 아닌 측면 조명과 손가락 촉감 평가가 중요합니다.</p>
+        </article>
+        <article class="check">
+          <div class="num">04</div>
+          <h3>AppleCare+와 수리비</h3>
+          <p>내부 화면·힌지 교체 비용과 보증 범위를 먼저 확인합니다.</p>
+        </article>
+        <article class="check">
+          <div class="num">05</div>
+          <h3>멀티태스킹 완성도</h3>
+          <p>앱 전환, 화면 비율 대응, 키보드 입력까지 실제 작업으로 검수합니다.</p>
+        </article>
+    </div>
+  </div>
+</section>
+    
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Timeline</div>
+      <h2>타임라인</h2>
+    </div>
+    <div class="timeline">
+      
+        <div class="t-item">
+          <div class="date">2026-07</div>
+          <div>
+            <strong>배터리·가격 루머 재점화</strong>
+            <div style="color:var(--muted);margin-top:4px;">규제 자료 기반 배터리 수치와 고가 포지셔닝 보도가 이어짐</div>
+          </div>
+        </div>
+        <div class="t-item">
+          <div class="date">2026 가을설</div>
+          <div>
+            <strong>공개 시점 관측</strong>
+            <div style="color:var(--muted);margin-top:4px;">공식 발표 전 단계이며 초기 출하 지연 가능성도 함께 거론</div>
+          </div>
+        </div>
+    </div>
+  </div>
+</section>
+    <div id="sources">
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Sources</div>
+      <h2>원문과 확인 범위</h2>
+      <p>기사 전문은 저장하지 않습니다. 제목·발행처·URL·확인일만 남깁니다.</p>
+    </div>
+    <div class="paper">
+      <ul class="sources">
+        
+          <li>
+            <a href="https://www.macrumors.com/guide/foldable-iphone/" rel="noopener">MacRumors — 2026 iPhone Fold 루머 종합</a>
+            <span>MacRumors · 확인 2026.08.02 KST · 형태, 화면, 칩, 카메라, 배터리 범위, 가격, 출시 시점 종합</span>
+          </li>
+          <li>
+            <a href="https://9to5mac.com/2026/07/24/iphone-ultra-is-coming-six-new-features-in-apples-top-tier-model/" rel="noopener">9to5Mac — iPhone Ultra 예상 핵심 기능 6가지</a>
+            <span>9to5Mac · 발행 2026-07-24 · 확인 2026.08.02 KST · 디스플레이, 카메라, A20 Pro, 12GB RAM, Touch ID, 예상 시작가</span>
+          </li>
+          <li>
+            <a href="https://9to5mac.com/2026/07/10/iphone-ultra-battery-details-allegedly-revealed-in-new-leak/" rel="noopener">9to5Mac — 4,883mAh 듀얼 셀 배터리 보도</a>
+            <span>9to5Mac · 발행 2026-07-10 · 확인 2026.08.02 KST · 규제 자료에 등장한 두 셀의 합산 용량 보도</span>
+          </li>
+          <li>
+            <a href="https://9to5mac.com/2026/07/05/iphone-fold-low-supply-at-launch-delayed-release/" rel="noopener">9to5Mac — 초기 물량 부족 및 출하 지연 가능성</a>
+            <span>9to5Mac · 발행 2026-07-05 · 확인 2026.08.02 KST · 초기 생산량, 배송 지연, 2,300~2,500달러 가격 전망</span>
+          </li>
+      </ul>
+    </div>
+  </div>
+</section></div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>Report Mode · 260802 · Jeremy</span>
+      <span>최종 판단과 검수는 사용자에게 있습니다.</span>
+    </div>
+  </footer>
+</body>
+</html>

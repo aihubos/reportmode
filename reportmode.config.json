@@ -1,0 +1,33 @@
+{
+  "siteBase": "https://aihubos.github.io/reportmode",
+  "author": "Jeremy",
+  "language": "ko",
+  "timezone": "Asia/Seoul",
+  "defaultProvider": "agent",
+  "providers": {
+    "openai": {
+      "defaultModel": "gpt-4.1-mini",
+      "envKey": "OPENAI_API_KEY"
+    },
+    "anthropic": {
+      "defaultModel": "claude-sonnet-4-20250514",
+      "envKey": "ANTHROPIC_API_KEY"
+    },
+    "gemini": {
+      "defaultModel": "gemini-2.5-flash",
+      "envKey": "GEMINI_API_KEY"
+    },
+    "openai-compatible": {
+      "defaultModel": "gpt-4.1-mini",
+      "envKey": "OPENAI_COMPATIBLE_API_KEY",
+      "baseUrlEnv": "OPENAI_COMPATIBLE_BASE_URL",
+      "modelEnv": "OPENAI_COMPATIBLE_MODEL"
+    }
+  },
+  "publish": {
+    "branch": "main",
+    "remote": "origin",
+    "pagesPollSeconds": 90,
+    "pagesPollIntervalMs": 3000
+  }
+}

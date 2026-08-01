@@ -1,2 +1,9 @@
-.verify/
+node_modules/
+dist/
+.reportmode/
+.env
+.env.*
+!.env.example
 .DS_Store
+.verify/
+*.log

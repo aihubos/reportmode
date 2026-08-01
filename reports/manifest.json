@@ -1,0 +1,27 @@
+{
+  "generatedAt": "2026-08-01T23:07:41.986Z",
+  "siteBase": "https://aihubos.github.io/reportmode",
+  "reports": [
+    {
+      "id": "260802-apple-foldable-iphone",
+      "slug": "apple-foldable-iphone",
+      "title": "Apple 폴더블 iPhone",
+      "subtitle": "예상 사양, 장점과 단점, 구매 전 확인해야 할 다섯 가지 기준",
+      "category": "미발표 제품 · 루머 분석",
+      "summary": "1세대 혁신성은 높지만, 구매는 실측 검증 뒤가 맞습니다.",
+      "createdAt": "2026-08-02T00:00:00+09:00",
+      "updatedAt": "2026-08-02T00:00:00+09:00",
+      "status": "generated",
+      "path": "reports/260802-apple-foldable-iphone/",
+      "url": "https://aihubos.github.io/reportmode/reports/260802-apple-foldable-iphone/",
+      "displayDate": "260802",
+      "sourceCount": 4,
+      "tags": [
+        "apple",
+        "foldable",
+        "iphone",
+        "rumor"
+      ]
+    }
+  ]
+}

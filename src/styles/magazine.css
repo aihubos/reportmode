@@ -1,11 +1,4 @@
-<!doctype html>
-<html lang="ko">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Jeremy를 위한 검증 가능한 웹 보고서 아카이브">
-  <title>Report Mode — Web Reports</title>
-  <style>:root {
+:root {
   --ink: #171717;
   --muted: #5f5f66;
   --bg: #f4f1ea;
@@ -221,25 +214,3 @@ footer {
   section { break-inside: avoid; }
 }
 
-</style>
-</head>
-<body class="home">
-  <main class="home-wrap">
-    <div class="eyebrow">GitHub Pages Report Archive</div>
-    <h1>Report<br>Mode.</h1>
-    <p class="intro">원자료를 조사하고, 사실과 해석을 분리해, 공유 가능한 웹페이지로 발행한 보고서 모음입니다. 생성은 Hermes·로컬 Codex·회사 API에서, 공개는 GitHub Pages에서 합니다.</p>
-    <section class="cards" aria-label="보고서 목록">
-      
-    <a class="card" href="reports/260802-apple-foldable-iphone/">
-      <div>
-        <div class="tag">260802 · 미발표 제품 · 루머 분석</div>
-        <h2>260802 · Apple 폴더블 iPhone</h2>
-        <p>1세대 혁신성은 높지만, 구매는 실측 검증 뒤가 맞습니다.</p>
-      </div>
-      <span class="arrow" aria-hidden="true">→</span>
-    </a>
-    </section>
-    <footer style="margin-top:48px;color:var(--muted);font-size:13px;">Report Mode · 최종 판단과 검수는 사용자에게 있습니다.</footer>
-  </main>
-</body>
-</html>
