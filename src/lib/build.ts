@@ -1,6 +1,7 @@
 import path from "node:path";
+import fs from "node:fs";
 import { loadConfig } from "./config.js";
-import { writeText } from "./fs.js";
+import { readText, writeText } from "./fs.js";
 import {
   listReportsNewestFirst,
   reportPublicExists,
@@ -40,7 +41,16 @@ export function buildSite(options?: {
     buildReport(doc);
   }
 
-  writeText(path.join(repoRoot(), "index.html"), renderHomeHtml(items));
+  const root = repoRoot();
+  writeText(
+    path.join(root, "index.html"),
+    readText(path.join(root, "src", "site", "index.html")),
+  );
+  fs.cpSync(path.join(root, "src", "site", "assets"), path.join(root, "assets"), {
+    recursive: true,
+    force: true,
+  });
+  writeText(path.join(root, "archive", "index.html"), renderHomeHtml(items, "../"));
   writeText(
     path.join(repoRoot(), "reports", "manifest.json"),
     JSON.stringify(
@@ -63,7 +73,8 @@ export function buildSite(options?: {
 
   return {
     reportCount: docs.length,
-    home: path.join(repoRoot(), "index.html"),
+    home: path.join(root, "index.html"),
+    archive: path.join(root, "archive", "index.html"),
     manifest: path.join(repoRoot(), "reports", "manifest.json"),
     published: docs.filter((d) => reportPublicExists(d.id)).map((d) => d.id),
   };

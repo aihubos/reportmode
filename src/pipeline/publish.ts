@@ -115,7 +115,10 @@ function syncPublishedFilesFromClone(tmp: string, id: string) {
     path.join(tmp, "reports", id),
     path.join(root, "reports", id),
   );
-  copyTree(path.join(tmp, "index.html"), path.join(root, "index.html"));
+  copyTree(
+    path.join(tmp, "archive", "index.html"),
+    path.join(root, "archive", "index.html"),
+  );
   copyTree(
     path.join(tmp, "reports", "manifest.json"),
     path.join(root, "reports", "manifest.json"),
@@ -166,7 +169,7 @@ export async function publishReport(id: string): Promise<{
     const stagedPaths = [
       path.join("content", "reports", id, "report.json"),
       path.join("reports", id, "index.html"),
-      "index.html",
+      path.join("archive", "index.html"),
       path.join("reports", "manifest.json"),
     ];
     runGit(["add", "--", ...stagedPaths], tmp);

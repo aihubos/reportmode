@@ -1,105 +1,61 @@
-# Report Mode
+# Report Mode Skill Builder
 
-Jeremy를 위한 source-grounded 매거진 보고서 시스템입니다.
+Hermes가 사용할 보고서 스킬의 디자인과 작성 규칙을 화면에서 만드는 도구입니다.
 
-- Public site: https://aihubos.github.io/reportmode/
-- Repo: https://github.com/aihubos/reportmode
-- 생성: Hermes · 로컬 Codex · 회사 API
-- 공개: GitHub Pages (`main` 루트, 자동)
+- 공개 제작기: https://aihubos.github.io/reportmode/
+- GitHub: https://github.com/aihubos/reportmode
+- 기존 보고서: https://aihubos.github.io/reportmode/archive/
 
-## 한 줄 이해
+## 사용 순서
 
-1. AI는 **ReportDocument JSON**을 만듭니다.
-2. Report Mode가 **매거진 HTML**로 렌더링합니다.
-3. 정상 생성이면 **자동으로 GitHub Pages에 공개**합니다.
-4. `--draft`를 켠 경우만 로컬에 남깁니다.
+1. 왼쪽에서 레포트 타입, 레이아웃, 하이라이트, 글꼴, 크기, 필수 섹션을 정합니다.
+2. 오른쪽 Apple 폴더블 사양·장단점 예시로 결과를 바로 확인합니다.
+3. `완료 · Hermes 스킬 생성`을 누릅니다.
+4. 공개 사이트에서는 `SKILL.md`를 내려받습니다.
+5. 로컬 사이트에서는 `Hermes에 바로 적용`을 누를 수 있습니다.
 
-## 준비
+## 로컬에서 실행
 
 ```bash
 cd /Users/JeremyLee/Projects/reportmode
 npm install
-cp .env.example .env   # 필요 시 API 키 입력
-```
-
-환경변수 예:
-
-- `OPENAI_API_KEY`
-- `ANTHROPIC_API_KEY`
-- `GEMINI_API_KEY`
-- `OPENAI_COMPATIBLE_API_KEY` / `OPENAI_COMPATIBLE_BASE_URL`
-
-## 비개발자용 사용 순서
-
-### 1) 로컬 Studio
-
-```bash
+npm run build
 npm run studio
 ```
 
-브라우저에서 `http://127.0.0.1:8787` 을 엽니다.  
-주제·출처·공급자를 넣고 생성하면, 완료 시 즉시 공개됩니다.
+브라우저에서 http://127.0.0.1:8787 을 엽니다.
 
-### 2) Hermes / 로컬 Codex
+로컬의 `Hermes에 바로 적용` 버튼은 생성된 스킬을 다음 위치에 설치합니다.
 
-```bash
-npm run skill:install -- both
+```text
+~/.hermes/skills/reporting/<만든-스킬-이름>/SKILL.md
 ```
 
-이후 에이전트에게:
-
-> Report Mode로 OO 주제 보고서 만들어 공개해줘
-
-에이전트는 JSON을 만든 뒤:
+## 기본 Report Mode 스킬 설치
 
 ```bash
-npm run report -- import .reportmode/imports/<id>.json
+npm run skill:install -- hermes
 ```
 
-### 3) 회사 API 직접 생성
+기본 스킬 위치는 `~/.hermes/skills/reporting/report-mode/SKILL.md`입니다.
 
-```bash
-npm run report -- create \
-  --topic "주제" \
-  --provider openai \
-  --url https://example.com/source-1 \
-  --notes "핵심 메모"
-```
+## 만들 수 있는 설정
 
-지원 공급자: `agent` | `openai` | `anthropic` | `gemini` | `openai-compatible`
-
-### 4) 목록 / 재공개 / 수정
-
-```bash
-npm run report -- list
-npm run report -- retry-publish <id>
-npm run report -- update <id> --document path/to/report.json
-npm run build
-```
-
-## 날짜 규칙
-
-- 기준 시zone: Asia/Seoul
-- id: `YYMMDD-english-slug` 예) `260702-market-brief`
-- 화면: `260702 · 제목`
-- 본문: `2026.07.02 KST`
-
-## 폴더 구조
-
-- `src/` 생성 엔진, 렌더러, CLI, Studio
-- `content/reports/<id>/report.json` 편집 가능한 원본
-- `reports/<id>/index.html` 공개 HTML
-- `reports/manifest.json` 목록 API성 파일
-- `skills/report-mode/` Hermes·Codex 공용 스킬
-- `.reportmode/` 로컬 임시 로그/추출물 (Git 제외)
+- 제품 분석, 경영진 브리핑, 시장 분석, 기술 분석, 리서치 타입
+- 매거진, 백서, 에디토리얼, 미니멀, 다크 레이아웃
+- 하이라이트 색상, 표현 방식, 강도, 적극 사용 여부
+- 제목·본문 폰트와 크기, 줄 간격
+- 본문 폭, 카드 모서리, 표면 색감
+- 요약, 사양, 장단점, 판단 기준, 출처 섹션 포함 여부
 
 ## 기존 보고서
 
-- 신주소: [260802 · Apple 폴더블 iPhone](https://aihubos.github.io/reportmode/reports/260802-apple-foldable-iphone/)
-- 구주소 안내: [/reports/apple-foldable-iphone/](https://aihubos.github.io/reportmode/reports/apple-foldable-iphone/)
+- [260802 · Apple 폴더블 iPhone](https://aihubos.github.io/reportmode/reports/260802-apple-foldable-iphone/)
+- [기존 주소 이동 안내](https://aihubos.github.io/reportmode/reports/apple-foldable-iphone/)
+
+기존 보고서 생성 엔진과 원본은 호환을 위해 저장소에 유지하지만, 사용자 화면의 중심 기능은 Hermes용 스킬 제작기입니다.
 
 ## 참고
 
-- 매거진 레이아웃 영감: [Artifex](https://github.com/chojondocho/artifex) (MIT, 아이디어만 재구현)
+- 매거진 레이아웃 영감: [Artifex](https://github.com/chojondocho/artifex) (MIT, 아이디어를 새 구조로 구현)
 - 상세 고지: [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md)
-

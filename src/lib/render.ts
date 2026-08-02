@@ -266,11 +266,11 @@ export function renderReportHtml(doc: ReportDocument): string {
 `;
 }
 
-export function renderHomeHtml(items: ManifestItem[]): string {
+export function renderHomeHtml(items: ManifestItem[], linkPrefix = ""): string {
   const cards = items
     .map(
       (item) => `
-    <a class="card" href="${escapeHtml(item.path)}">
+    <a class="card" href="${escapeHtml(linkPrefix + item.path)}">
       <div>
         <div class="tag">${escapeHtml(item.displayDate)} · ${escapeHtml(item.category)}</div>
         <h2>${escapeHtml(item.displayDate)} · ${escapeHtml(item.title)}</h2>
@@ -294,9 +294,9 @@ export function renderHomeHtml(items: ManifestItem[]): string {
   <main class="home-wrap">
     <div class="eyebrow">GitHub Pages Report Archive</div>
     <h1>Report<br>Mode.</h1>
-    <p class="intro">원자료를 조사하고, 사실과 해석을 분리해, 공유 가능한 웹페이지로 발행한 보고서 모음입니다. 생성은 Hermes·로컬 Codex·회사 API에서, 공개는 GitHub Pages에서 합니다.</p>
+    <p class="intro">원자료를 조사하고, 사실과 해석을 분리해 만든 기존 웹 보고서 모음입니다. 새 보고서 디자인은 <a href="../">Report Mode Skill Builder</a>에서 스킬로 생성할 수 있습니다.</p>
     <section class="cards" aria-label="보고서 목록">
-      ${cards || "<p>아직 공개된 보고서가 없습니다.</p>"}
+${cards || "      <p>아직 공개된 보고서가 없습니다.</p>"}
     </section>
     <footer style="margin-top:48px;color:var(--muted);font-size:13px;">Report Mode · 최종 판단과 검수는 사용자에게 있습니다.</footer>
   </main>
