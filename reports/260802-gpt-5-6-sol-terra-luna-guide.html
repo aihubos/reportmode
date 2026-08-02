@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="GPT-5.6 Sol, Terra, Luna의 특성, 토큰 한도, 가격 인하, Codex 사용량과 모델 라우팅 실전 가이드">
+  <meta name="color-scheme" content="light">
+  <title>260802 · GPT-5.6 Sol·Terra·Luna 실사용 가이드 — Report Mode</title>
+  <style>
+    :root{--page:#f5f7fa;--paper:#fff;--text:#191f28;--muted:#6b7684;--accent:#3182f6;--highlight:#ffe066;--line:#e5e8eb;--max:1120px;--radius:18px;--shadow:0 18px 54px rgba(25,31,40,.07);--sans:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,-apple-system,sans-serif}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--page);color:var(--text);font:18px/1.72 var(--sans);word-break:keep-all}a{color:var(--accent);text-underline-offset:3px}img{display:block;max-width:100%}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto}.nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}.nav-inner{min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{font-weight:900;color:var(--text);text-decoration:none}.nav-links{display:flex;gap:18px}.nav-links a{font-size:14px;color:var(--muted);text-decoration:none}.hero{background:#fff;padding:82px 0 70px}.kicker{font-size:13px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}h1,h2,h3,p{margin-top:0}.hero h1{max-width:17ch;margin:16px 0 24px;font-size:clamp(48px,6.2vw,78px);line-height:1.05;letter-spacing:-.055em}.hero h1 span{overflow-wrap:anywhere}.hero .lede{max-width:850px;font-size:26px;line-height:1.5;color:#3d4956}.marker{background:linear-gradient(transparent 62%,rgba(255,224,102,.72) 62%)}.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}.chip{border:1px solid var(--line);border-radius:999px;padding:7px 13px;font-size:14px;color:var(--muted)}main section{padding:62px 0}.section-head{margin-bottom:24px}.section-head h2{font-size:clamp(31px,4vw,47px);line-height:1.18;letter-spacing:-.04em;word-break:normal;overflow-wrap:anywhere}.section-head p{max-width:820px;color:var(--muted);word-break:normal;overflow-wrap:anywhere}.visual-hero{overflow:hidden;margin:0;border:1px solid var(--line);border-radius:22px;background:#fff;box-shadow:var(--shadow)}.visual-hero img{width:100%;height:auto}.visual-hero figcaption{display:flex;justify-content:space-between;gap:16px;padding:15px 20px;font-size:13px;color:var(--muted)}.paper,.callout{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow)}.callout{border-left:5px solid var(--accent);box-shadow:none}.table-wrap{width:100%;overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:#fff}table{width:100%;min-width:820px;border-collapse:collapse;font-size:15px;line-height:1.55}th,td{padding:15px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}thead th{background:#f2f6fc;font-size:13px}tbody th{background:#fbfcfe}.source-section{padding-bottom:80px}.sources{display:block;overflow-x:auto;min-width:0}.sources thead,.sources tbody{display:table;width:100%;min-width:1200px;table-layout:fixed}.sources th:nth-child(1),.sources td:nth-child(1){width:8%}.sources th:nth-child(2),.sources td:nth-child(2){width:19%}.sources th:nth-child(3),.sources td:nth-child(3){width:13%}.sources th:nth-child(4),.sources td:nth-child(4){width:25%}.sources th:nth-child(5),.sources td:nth-child(5){width:9%}.sources th:nth-child(6),.sources td:nth-child(6){width:14%}.sources th:nth-child(7),.sources td:nth-child(7){width:12%}
+    @media(max-width:860px){.nav-links a:nth-child(-n+2){display:none}.hero{padding-top:62px}}
+    @media(max-width:520px){body{font-size:17px}.wrap{width:min(calc(100% - 48px),var(--max))}.kicker{font-size:11px;letter-spacing:.045em;line-height:1.5}.hero h1{font-size:clamp(38px,10.5vw,48px);overflow-wrap:normal}.hero h1 span{display:block}.hero .lede{font-size:20px;word-break:normal;overflow-wrap:anywhere}.visual-hero figcaption{display:block}.visual-hero figcaption span{display:block;margin-top:4px}.paper,.callout{padding:22px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+    @media print{.nav{display:none}body{background:#fff;font-size:11pt}.hero{padding:30px 0}.hero h1{font-size:38pt}.wrap{width:100%;max-width:none}.paper,.callout,.visual-hero{box-shadow:none;break-inside:avoid}main section{padding:28px 0}.table-wrap{overflow:visible}.sources{overflow:visible;border:0}.sources thead,.sources tbody{min-width:0;font-size:7.5pt}.source-section{break-before:page}.source-section a{color:#000;text-decoration:none}}
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="보고서 탐색"><div class="wrap nav-inner"><a class="brand" href="../archive/">RM · Report Mode</a><div class="nav-links"><a href="#summary">요약</a><a href="#comparison">비교</a><a href="#decision">판단</a><a href="#sources">출처</a></div></div></nav>
+  <header class="hero"><div class="wrap"><div class="kicker">AI Model Field Guide · Cost & Workflow</div><h1><span>GPT-5.6&nbsp;</span><span>Sol · Terra · Luna&nbsp;</span><span>실사용 가이드</span></h1><p class="lede">세 모델의 <span class="marker">품질·속도·비용 역할</span>을 분리하고, 최근 Luna 가격 인하와 Sol max 계획 → Luna 구현 전략을 실제 토큰 계산으로 검증했습니다.</p><div class="meta"><span class="chip"><strong>260802</strong> · 표준 심층</span><span class="chip">2026.08.02 KST</span><span class="chip">공식 문서·가격표 우선 · API와 구독 분리 · 계산 검증</span></div></div></header>
+  <main>
+    <section aria-labelledby="visual-title"><div class="wrap"><figure class="visual-hero"><img src="../assets/260802-gpt-5-6-guide/sol-terra-luna-workflow.png" alt="GPT-5.6 Sol, Terra, Luna의 역할과 계획, 구현, 검수 흐름을 표현한 다크 테크 인포그래픽"><figcaption id="visual-title"><b>AI 생성 인포그래픽 · 공식 제품 이미지 아님</b><span>Sol은 전략, Terra는 균형, Luna는 빠른 실행 · 마지막 결정은 사람 검수</span></figcaption></figure></div></section>
+    <section id="summary"><div class="wrap"><div class="section-head"><h2>한 문장 판단: Terra를 기본으로, Sol은 결정에, Luna는 반복 실행에 쓰세요</h2><p>최고 모델을 계속 쓰는 대신 오류 비용이 큰 구간에만 지능을 집중하면 품질을 지키면서 사용량을 크게 줄일 수 있습니다.</p></div><div class="paper"><div class="highlight-box">
+    <p><strong>가장 효율적인 기본 라우팅은 ‘Terra medium → 필요할 때 Sol high/max → 명세가 굳으면 Luna low~max’입니다.</strong> 사용자가 제안한 <span class="marker">Sol max로 계획하고 Luna max로 구현</span>하는 방식은 충분히 실용적입니다. 다만 Luna가 다시 설계 판단까지 해야 하는 순간에는 절감 효과가 반복 수정으로 사라지므로, 계획서·완료 조건·테스트가 명확한 작업에 한정해야 합니다.</p>
+  </div>
+  <div class="decision-grid cols-3">
+    <div class="decision-card accent-gold"><span class="card-label">SOL</span><h3>어려운 결정을 먼저</h3><p>모호한 문제 정의, 아키텍처, 복합 디버깅, 고위험 리뷰, 긴 연구처럼 오류 비용이 큰 구간에 씁니다.</p></div>
+    <div class="decision-card accent-teal"><span class="card-label">TERRA</span><h3>일상의 기본 모델</h3><p>보고서, 문서 분석, 일반 코딩, 에이전트 실행처럼 품질·속도·비용의 균형이 필요한 업무에 적합합니다.</p></div>
+    <div class="decision-card accent-violet"><span class="card-label">LUNA</span><h3>명확한 일을 많이</h3><p>분류·추출·라우팅·백그라운드 자동화·범위가 좁은 구현을 빠르고 싸게 반복합니다.</p></div>
+  </div>
+</div></div></section>
+    <section id="comparison"><div class="wrap"><div class="section-head"><h2>모델 역할과 현재 가격을 한 번에 비교</h2><p>기능 한도는 거의 같지만 권장 업무와 단가가 크게 다릅니다. 2026년 7월 30일 Terra·Luna 가격이 인하됐습니다.</p></div><div class="table-wrap">
+    <table>
+      <thead><tr><th>비교 항목</th><th>GPT-5.6 Sol</th><th>GPT-5.6 Terra</th><th>GPT-5.6 Luna</th></tr></thead>
+      <tbody>
+        <tr><td><strong>공식 포지션</strong></td><td>복잡한 전문 업무용 프런티어 모델</td><td>지능과 비용의 균형</td><td>비용 민감·대량 업무 최적화</td></tr>
+        <tr><td><strong>이전 계열 대응</strong></td><td>기존 무접미 flagship</td><td>기존 mini</td><td>기존 nano</td></tr>
+        <tr><td><strong>잘 맞는 일</strong></td><td>모호한 문제, 설계, 장기 추론, 고난도 코딩·리뷰</td><td>일상 코딩, 보고서, 문서 분석, 판단이 필요한 실행</td><td>분류, 추출, 지원, 자동화, 좁은 범위의 코딩</td></tr>
+        <tr><td><strong>운영 역할</strong></td><td>계획자·최종 심사자</td><td>기본 작업자·조정자</td><td>대량 실행자·서브에이전트</td></tr>
+        <tr><td><strong>실패 패턴</strong></td><td>쉬운 일에도 과도한 비용·대기</td><td>최상 난제에서 추가 검증 필요</td><td>명세가 모호하면 재작업이 늘어남</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="fine-print">OpenAI는 <code>gpt-5.6</code> 별칭을 Sol로 라우팅합니다. 모든 사용처를 별칭으로 통일하면 비용 민감 경로까지 Sol이 될 수 있으므로 역할별 명시적 모델 ID가 안전합니다.</p>
+<div class="table-wrap">
+    <table>
+      <thead><tr><th>모델</th><th>입력 / 1M</th><th>캐시 입력 / 1M</th><th>출력 / 1M</th><th>캐시 쓰기 / 1M</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Sol</strong></td><td>$5.00</td><td>$0.50</td><td>$30.00</td><td>$6.25</td></tr>
+        <tr><td><strong>Terra</strong></td><td>$2.00</td><td>$0.20</td><td>$12.00</td><td>$2.50</td></tr>
+        <tr><td><strong>Luna</strong></td><td>$0.20</td><td>$0.02</td><td>$1.20</td><td>$0.25</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout-grid cols-2">
+    <div class="callout"><h3>7월 30일 공식 인하</h3><p>OpenAI RSS는 2026년 7월 30일 19:00 KST(10:00 UTC)에 Terra·Luna의 가격 인하 글을 게시했습니다. 현재 공식 문서는 Terra $2/$12, Luna $0.20/$1.20을 표시합니다.</p></div>
+    <div class="callout"><h3>확인되지 않은 부분</h3><p>현재 공개된 공식 RSS 요약에는 <strong>변경 전 단가, 인하율, 실제 청구 적용 시각</strong>이 없습니다. 발표 본문도 조사 시점에 직접 열리지 않아, 이 보고서는 인하 전 숫자나 인하율을 추정하지 않고 현재 공식 단가만 확정값으로 사용합니다.</p></div>
+  </div>
+  <div class="highlight-box warning">
+    <p><strong>OpenRouter는 별도의 한시 할인도 제공합니다.</strong> 현재 Terra $1/$6, Luna $0.10/$0.60으로 표시되며 50% off 배지가 붙어 있습니다. 종료일은 공개되지 않았으므로 장기 예산에는 OpenAI 직접 API 단가를 기준으로 잡고, OpenRouter 할인은 가변 보너스로 보는 편이 안전합니다.</p>
+  </div></div></section>
+    <section id="decision"><div class="wrap"><div class="section-head"><h2>Sol max 계획 → Luna max 구현은 언제 효과적인가</h2><p>계획이 실행 계약으로 고정되고 검증 명령이 있을 때 강합니다. Luna가 다시 설계해야 하면 Terra나 Sol로 판단을 올려야 합니다.</p></div><div class="callout"><div class="step-flow">
+    <div class="step"><span class="step-no">1</span><div><h3>Sol high/max: 불확실성 제거</h3><p>목표·비목표, 현재 상태, 파일과 인터페이스, 실패 모드, 완료 조건, 테스트, 롤백을 결정합니다. 단순 작업이면 max 대신 high 또는 medium으로 낮춥니다.</p></div></div>
+    <div class="step"><span class="step-no">2</span><div><h3>고정된 인계 문서 작성</h3><p>Luna가 다시 설계하지 않도록 변경 목록, 금지 사항, 명령, 기대 출력, 승인 경계를 짧은 실행 계약으로 남깁니다.</p></div></div>
+    <div class="step"><span class="step-no">3</span><div><h3>Luna low~max: 작은 단위로 구현</h3><p>기계적 수정은 low/medium, 여러 파일과 도구 사용은 high, 어려운 구현만 max로 올립니다. 각 단계 후 테스트를 실제 실행합니다.</p></div></div>
+    <div class="step"><span class="step-no">4</span><div><h3>Terra 또는 Sol로 에스컬레이션</h3><p>명세 충돌, 원인 불명 실패, 아키텍처 변경 필요, 같은 실패가 반복되면 Luna에게 더 오래 고민시키기보다 Terra/Sol로 판단을 올립니다.</p></div></div>
+    <div class="step"><span class="step-no">5</span><div><h3>Sol/사람: 최종 검수</h3><p>보안·데이터 손실·회귀·완료 조건을 재검토합니다. AI의 통과 보고가 아니라 실제 diff·테스트·배포 상태를 사용자가 확인합니다.</p></div></div>
+  </div>
+  <div class="two-col">
+    <div><h3>Luna 구현에 적합</h3><ul class="check-list"><li>파일과 인터페이스가 지정됨</li><li>테스트 또는 검증 명령이 존재함</li><li>범위가 작고 롤백 가능함</li><li>출력 형식이 기계적으로 판정 가능함</li></ul></div>
+    <div><h3>Terra/Sol을 유지할 일</h3><ul class="risk-list"><li>근본 원인이 불명확한 장애</li><li>데이터 마이그레이션·보안·권한</li><li>여러 서비스의 계약 변경</li><li>제품 방향이나 아키텍처 결정</li></ul></div>
+  </div></div></div></section>
+
+<style>
+.decision-grid,.callout-grid,.metric-grid,.two-col{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:20px 0}.visual-hero{width:100%;max-width:100%;overflow:hidden}.visual-hero img{display:block;width:100%!important;max-width:100%!important;min-width:0!important;height:auto!important;object-fit:contain}.callout-grid,.two-col{grid-template-columns:repeat(2,minmax(0,1fr))}.metric-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.decision-card,.metric{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px}.card-label,.section-kicker{font-size:12px;font-weight:900;letter-spacing:.08em;color:var(--accent);text-transform:uppercase}.metric-value{display:block;font-size:28px;font-weight:900;letter-spacing:-.04em}.metric-label,.fine-print{font-size:14px;color:var(--muted)}.report-figure{margin:28px 0;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:#fff;box-shadow:var(--shadow)}.report-figure img{width:100%}.report-figure figcaption{padding:14px 18px;font-size:13px;color:var(--muted)}.step{display:grid;grid-template-columns:44px 1fr;gap:14px;margin:14px 0}.step-no{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--accent);color:#fff;font-weight:900}.check-list li,.risk-list li,.number-list li{margin:.55em 0}.highlight-box{margin:20px 0;padding:22px 24px;border-radius:var(--radius);background:#eef6ff;border:1px solid #cfe3ff}.highlight-box.warning{background:#fff8e7;border-color:#ffe19a}code{font-size:.9em;background:#f1f3f5;border-radius:6px;padding:.1em .35em}
+@media(max-width:760px){.decision-grid,.callout-grid,.metric-grid,.two-col{grid-template-columns:1fr}.metric-value{font-size:25px}}
+</style>
+<section id="context-and-tokens" class="section"><div class="wrap">
+  <div class="section-kicker">Tokens</div>
+  <h2>1.05M 컨텍스트가 ‘항상 1.05M을 싸게 쓴다’는 뜻은 아닙니다</h2>
+  <div class="metric-grid cols-4">
+    <div class="metric"><span class="metric-value">1,050,000</span><span class="metric-label">전체 컨텍스트</span></div>
+    <div class="metric"><span class="metric-value">922,000</span><span class="metric-label">최대 입력 토큰</span></div>
+    <div class="metric"><span class="metric-value">128,000</span><span class="metric-label">최대 출력 토큰</span></div>
+    <div class="metric"><span class="metric-value">272K</span><span class="metric-label">가격 경계</span></div>
+  </div>
+  <ul class="check-list">
+    <li><strong>세 모델 모두</strong> 텍스트·이미지 입력, 텍스트 출력, 1.05M 컨텍스트, 922K 최대 입력, 128K 최대 출력을 지원하며 지식 컷오프는 2026년 2월 16일입니다.</li>
+    <li><strong>272K를 초과한 입력</strong>은 해당 요청 전체가 입력 2배·출력 1.5배 단가로 계산됩니다. 캐시 읽기와 캐시 쓰기도 장문 입력 배율의 영향을 받습니다. 긴 문서를 무조건 한 번에 넣기보다 검색·요약·작업 단위 분할을 먼저 검토해야 합니다.</li>
+    <li><strong>추론 토큰</strong>은 화면에 보이지 않아도 컨텍스트를 차지하고 출력 단가로 청구됩니다. <code>max</code>와 <code>pro</code>는 토큰 상한이 아니라 더 많은 모델 작업을 허용하는 품질 설정입니다.</li>
+    <li><strong>Hermes의 ChatGPT Codex OAuth 경로</strong>는 현재 GPT-5.6 세 모델을 272K 컨텍스트로 해석합니다. 직접 API의 1.05M 한도와 동일하다고 가정하면 안 됩니다.</li>
+  </ul>
+</div></section>
+
+<section id="cost-examples" class="section"><div class="wrap">
+  <div class="section-kicker">Cost examples</div>
+  <h2>같은 토큰이라면 Luna는 Sol의 1/25 비용입니다</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>가정</th><th>Sol</th><th>Terra</th><th>Luna</th></tr></thead>
+      <tbody>
+        <tr><td>입력 100K + 출력 20K</td><td>$1.10</td><td>$0.44</td><td>$0.044</td></tr>
+        <tr><td>입력 100K 중 80K 캐시 + 출력 20K</td><td>$0.740</td><td>$0.296</td><td>$0.0296</td></tr>
+        <tr><td>입력 500K + 출력 20K, 272K 초과 프리미엄</td><td>$5.90</td><td>$2.36</td><td>$0.236</td></tr>
+        <tr><td>동일 토큰을 272K 이하 요청으로 분할*</td><td>$3.10</td><td>$1.24</td><td>$0.124</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="fine-print">*분할 후 총 입력·출력 토큰이 같다는 계산 가정입니다. 실제로는 반복 프롬프트·추가 요약·맥락 손실로 토큰과 품질이 달라질 수 있습니다. 표는 추론 토큰, 도구 호출, 이미지 토큰을 제외한 기본 산술입니다.</p>
+  <div class="highlight-box">
+    <p><strong>예시 워크플로 비용:</strong> Sol로 50K 입력·5K 출력 계획을 만들고, 200K 입력(80% 캐시)·30K 출력 구현을 Luna에 맡기면 약 <strong>$0.4472</strong>입니다. 같은 구현을 Sol로 계속하면 약 <strong>$1.58</strong>로, 명세가 충분히 좋아 재작업이 없다는 가정에서 약 <strong>71.7% 절감</strong>됩니다.</p>
+  </div>
+</div></section>
+
+<section id="codex-limits" class="section"><div class="wrap">
+  <div class="section-kicker">Subscription vs API</div>
+  <h2>Codex 구독 한도와 API 토큰 과금은 다른 체계입니다</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>플랜</th><th>Sol 로컬 메시지 / 5h</th><th>Terra / 5h</th><th>Luna / 5h</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Plus $20/월</strong></td><td>10–100</td><td>25–200</td><td>250–2,000</td></tr>
+        <tr><td><strong>Pro 5x $100/월</strong></td><td>50–500</td><td>125–1,000</td><td>1,250–10,000</td></tr>
+        <tr><td><strong>Pro 20x $200/월</strong></td><td>200–2,000</td><td>500–4,000</td><td>5,000–40,000</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>범위가 넓은 이유는 메시지 길이·복잡도·추론 설정에 따라 소모량이 달라지기 때문입니다. 세 모델은 5시간 창을 공유하고 추가 주간 한도가 적용될 수 있습니다. 구독에서 ‘Luna가 더 많이 쓸 수 있다’는 사실을 API의 토큰 단가와 직접 환산해서는 안 됩니다.</p>
+</div></section>
+<section id="task-router" class="section"><div class="wrap">
+  <div class="section-kicker">Task router</div>
+  <h2>업무별 추천 시작점</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>업무</th><th>추천 시작점</th><th>상향 조건</th></tr></thead>
+      <tbody>
+        <tr><td>짧은 분류·추출·포맷 변환</td><td>Luna none/low</td><td>판단 기준이 모호하면 Terra low</td></tr>
+        <tr><td>명확한 버그 수정·작은 기능</td><td>Luna medium/high</td><td>원인이 불명확하거나 범위가 커지면 Terra</td></tr>
+        <tr><td>일반 코딩·보고서·문서 분석</td><td>Terra medium</td><td>긴 도구 실행·복합 판단은 high</td></tr>
+        <tr><td>계획·아키텍처·심층 조사</td><td>Terra high 또는 Sol high</td><td>고위험·모호성·장기 작업은 Sol max</td></tr>
+        <tr><td>복합 디버깅·보안·최종 리뷰</td><td>Sol high/xhigh</td><td>평가에서 실제 이득이 있을 때 max/pro</td></tr>
+        <tr><td>대량 병렬 서브에이전트</td><td>Luna low/medium</td><td>종합·상충 판정은 Terra/Sol 한 개가 담당</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div></section>
+
+<section id="effort-mode" class="section"><div class="wrap">
+  <div class="section-kicker">Reasoning controls</div>
+  <h2>모델보다 먼저 effort를 낮추는 것이 더 좋은 경우도 많습니다</h2>
+  <div class="decision-grid cols-3">
+    <div class="decision-card"><span class="card-label">STANDARD + MEDIUM</span><h3>기본값</h3><p>대부분의 코딩·조사·에이전트 업무에서 품질과 속도의 기준선입니다.</p></div>
+    <div class="decision-card"><span class="card-label">HIGH / XHIGH / MAX</span><h3>측정 후 상향</h3><p>hard reasoning과 긴 실행에서 명확한 품질 상승이 확인될 때만 올립니다.</p></div>
+    <div class="decision-card"><span class="card-label">PRO MODE</span><h3>독립된 두 번째 축</h3><p>모델 내부 작업을 더 수행해 신뢰도를 높이지만 지연과 청구 토큰이 증가합니다. effort와 별개입니다.</p></div>
+  </div>
+  <div class="highlight-box warning"><p><strong>‘Luna max + pro’가 자동으로 ‘Terra medium’보다 효율적인 것은 아닙니다.</strong> 토큰 단가는 낮아도 더 많은 추론과 반복 호출을 쓰면 총비용·시간이 커질 수 있습니다. 같은 대표 작업으로 성공률, 총 토큰, 대기 시간, 재작업 횟수를 비교해야 합니다.</p></div>
+</div></section>
+
+<section id="practical-tips" class="section"><div class="wrap">
+  <div class="section-kicker">Field guide</div>
+  <h2>실사용에서 바로 효과가 나는 10가지</h2>
+  <ol class="number-list">
+    <li><strong>Terra medium을 기본값</strong>으로 두고, 실패 원인이 지능 부족인지 먼저 확인한 뒤 Sol로 올립니다.</li>
+    <li><strong>Sol max는 계획·리뷰처럼 한 번의 판단이 여러 실행을 좌우할 때</strong> 사용합니다.</li>
+    <li><strong>Luna에는 목표보다 완료 조건을 더 구체적으로</strong> 줍니다. 실행 결과를 테스트로 판정할 수 있게 합니다.</li>
+    <li><strong>max와 pro를 동시에 켜기 전에 한 축씩 실험</strong>합니다. 어느 설정이 품질을 올렸는지 분리해야 합니다.</li>
+    <li><strong>272K 입력 경계 전에 압축·검색·분할</strong>을 검토합니다. 넘으면 요청 전체 단가가 상승합니다.</li>
+    <li><strong>안정된 지침과 도구 설명은 앞쪽에 고정</strong>해 캐시 읽기를 늘리고, 매번 바뀌는 데이터는 뒤로 보냅니다.</li>
+    <li><strong>캐시는 공짜가 아닙니다.</strong> 쓰기는 입력의 1.25배, 읽기는 0.1배이므로 한 번만 쓸 긴 프롬프트는 명시적 캐시가 손해일 수 있습니다.</li>
+    <li><strong>장기 대화는 과거 전체를 계속 실어 나르지 말고</strong> 결정·제약·현재 상태를 체크포인트로 압축합니다.</li>
+    <li><strong>병렬 조사·분류는 Luna/Terra로 확장</strong>하고, 상충 근거의 종합은 한 개의 Terra/Sol이 맡습니다.</li>
+    <li><strong>비용은 토큰 단가가 아니라 성공한 작업 1건당</strong> 봅니다. 재시도·수정·검수까지 포함해 비교합니다.</li>
+  </ol>
+</div></section>
+    <section id="limitations"><div class="wrap"><div class="section-head"><h2>한계와 최종 판단</h2><p>공개 수치와 권장 워크플로의 경계를 분리했습니다.</p></div><div class="paper"><ul class="risk-list">
+    <li>모델 설명과 가격·한도는 2026년 8월 2일 공개 문서 기준이며 바뀔 수 있습니다.</li>
+    <li>OpenRouter 벤치마크는 max 설정과 특정 공급자·평가 조건의 제3자 수치입니다. 실제 코드베이스의 성공률을 보장하지 않습니다.</li>
+    <li>OpenAI의 7월 30일 공식 게시물은 Terra·Luna의 인하 사실을 확인하지만 현재 RSS 설명에는 변경 전 숫자와 인하율이 포함되지 않습니다. 따라서 그 수치는 보고서에서 확정하지 않았습니다.</li>
+    <li>모델 선택 규칙은 출발점입니다. 중요 업무는 대표 과제 10–30개로 품질·시간·비용을 직접 평가해야 합니다.</li>
+  </ul></div></div></section>
+  </main>
+  <section id="sources" class="source-section"><div class="wrap"><div class="section-head"><h2>전체 출처</h2><p>사실·분석·전망·루머, 시각자료와 생성 이미지의 상태를 함께 기록했습니다.</p></div><table class="sources"><thead><tr><th>유형</th><th>자료명</th><th>제공자·저작자</th><th>URL</th><th>날짜</th><th>라이선스·상태</th><th>사용 범위</th></tr></thead><tbody>
+<tr><td>공식 모델 문서</td><td>GPT-5.6 Sol</td><td>OpenAI</td><td><a href="https://developers.openai.com/api/docs/models/gpt-5.6-sol">Model page</a></td><td>2026-08-02 확인</td><td>공식 공개 문서</td><td>역할, 컨텍스트, 현재 단가, 272K 프리미엄</td></tr>
+<tr><td>공식 모델 문서</td><td>GPT-5.6 Terra</td><td>OpenAI</td><td><a href="https://developers.openai.com/api/docs/models/gpt-5.6-terra">Model page</a></td><td>2026-08-02 확인</td><td>공식 공개 문서</td><td>mini 대응, 현재 $2/$0.2/$12</td></tr>
+<tr><td>공식 모델 문서</td><td>GPT-5.6 Luna</td><td>OpenAI</td><td><a href="https://developers.openai.com/api/docs/models/gpt-5.6-luna">Model page</a></td><td>2026-08-02 확인</td><td>공식 공개 문서</td><td>nano 대응, 현재 $0.2/$0.02/$1.2</td></tr>
+<tr><td>공식 사용 가이드</td><td>Using GPT-5.6</td><td>OpenAI</td><td><a href="https://developers.openai.com/api/docs/guides/latest-model/gpt-5.6">Guide</a></td><td>2026-08-02 확인</td><td>공식 공개 문서</td><td>모델 라우팅, effort, pro, 캐시, lean prompt</td></tr>
+<tr><td>공식 추론 가이드</td><td>Reasoning models</td><td>OpenAI</td><td><a href="https://developers.openai.com/api/docs/guides/reasoning">Guide</a></td><td>2026-08-02 확인</td><td>공식 공개 문서</td><td>effort 단계, 추론 토큰, standard/pro</td></tr>
+<tr><td>공식 가격 문서</td><td>Codex pricing</td><td>OpenAI</td><td><a href="https://developers.openai.com/codex/pricing">Pricing</a></td><td>2026-08-02 확인</td><td>공식 공개 문서</td><td>Plus/Pro 가격과 5시간 메시지 범위</td></tr>
+<tr><td>공식 뉴스 피드</td><td>Advancing the price-performance frontier with GPT-5.6</td><td>OpenAI</td><td><a href="https://openai.com/news/rss.xml">RSS</a></td><td>2026-07-30 10:00 UTC</td><td>공식 RSS</td><td>Terra·Luna 가격 인하 발표일과 설명</td></tr>
+<tr><td>공급 플랫폼</td><td>Discounted AI Models</td><td>OpenRouter</td><td><a href="https://openrouter.ai/collections/discounted-models">Collection</a></td><td>2026-08-02 확인</td><td>한시 프로모션 · 종료일 미공개</td><td>Terra/Luna 50% 할인 단가</td></tr>
+<tr><td>제3자 집계</td><td>GPT-5.6 model pages</td><td>OpenRouter / Artificial Analysis</td><td><a href="https://openrouter.ai/openai/gpt-5.6-sol">Sol page</a></td><td>2026-08-02 확인</td><td>제3자 벤치마크·공급자 집계</td><td>max 성능지표, 지연·처리량 보조 확인</td></tr>
+<tr><td>구현 자료</td><td>Hermes Agent source</td><td>Nous Research</td><td><a href="https://github.com/NousResearch/hermes-agent">GitHub</a></td><td>2026-08-02 확인</td><td>공개 소스</td><td>Codex OAuth 경로의 272K 컨텍스트 처리</td></tr>
+<tr><td>AI 생성 이미지</td><td>Sol·Terra·Luna workflow infographic</td><td>OpenAI gpt-image-2-high</td><td>로컬 자산: sol-terra-luna-workflow.png</td><td>2026-08-02</td><td>AI 생성 · 시각 검수 완료</td><td>상단 개념 시각화 · 공식 제품 이미지 아님</td></tr>
+</tbody></table></div></section>
+</body>
+</html>
