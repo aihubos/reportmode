@@ -1,7 +1,23 @@
 {
-  "generatedAt": "2026-08-02T00:45:36.284Z",
+  "generatedAt": "2026-08-02T01:34:50Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260802-galaxy-z-fold8-deep-dive",
+      "slug": "galaxy-z-fold8-deep-dive",
+      "title": "갤럭시 Z Fold8 심층분석",
+      "subtitle": "공식 사양, Fold7·Ultra·경쟁 제품 비교, 시장 전망과 구매 판단 기준",
+      "category": "공식 발표 제품 · 심층분석",
+      "summary": "더 가볍고 오래 가는 소형 폴드. 화면·카메라·S Pen의 양보까지 감수할 가치는 사용 목적이 결정합니다.",
+      "createdAt": "2026-08-02T10:34:50+09:00",
+      "updatedAt": "2026-08-02T10:34:50+09:00",
+      "status": "published",
+      "path": "reports/260802-galaxy-z-fold8-deep-dive.html",
+      "url": "https://aihubos.github.io/reportmode/reports/260802-galaxy-z-fold8-deep-dive.html",
+      "displayDate": "260802",
+      "sourceCount": 16,
+      "tags": ["samsung", "galaxy-z-fold8", "foldable", "deep-dive", "official"]
+    },
     {
       "id": "260802-apple-foldable-iphone",
       "slug": "apple-foldable-iphone",
@@ -16,12 +32,7 @@
       "url": "https://aihubos.github.io/reportmode/reports/260802-apple-foldable-iphone/",
       "displayDate": "260802",
       "sourceCount": 4,
-      "tags": [
-        "apple",
-        "foldable",
-        "iphone",
-        "rumor"
-      ]
+      "tags": ["apple", "foldable", "iphone", "rumor"]
     }
   ]
 }
