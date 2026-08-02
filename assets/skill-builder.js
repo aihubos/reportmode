@@ -1,26 +1,33 @@
 (function () {
   "use strict";
 
-  var storageKey = "reportmode-skill-builder-v1";
+  var storageKey = "reportmode-skill-builder-v2";
   var defaults = {
-    skillTitle: "Jeremy Magazine Report",
-    skillSlug: "jeremy-magazine-report",
-    skillDescription: "검증 가능한 출처를 바탕으로 사양, 장단점, 판단 기준을 매거진형 HTML 보고서로 만듭니다.",
+    skillTitle: "Jeremy Research Report",
+    skillSlug: "jeremy-research-report",
+    skillDescription: "웹 리서치와 실제 시각자료를 바탕으로 표, 이모티콘, 인포그래픽이 포함된 출처 중심 HTML 보고서를 만듭니다.",
+    depthMode: "simple",
+    documentStyle: "toss",
+    palette: "toss-lemon",
     reportType: "product",
-    layoutType: "magazine",
+    layoutType: "minimal",
     align: "left",
-    accentColor: "#ff5c35",
+    visualStyle: "whiteboard",
+    generateInfographic: true,
+    useRealPhotos: true,
+    useOfficialLogos: true,
+    useSubagents: true,
+    researchModel: "openai/gpt-5.6-terra",
     highlightStyle: "marker",
     intensity: "standard",
     aggressiveHighlight: true,
-    titleFont: "Noto Serif KR",
+    titleFont: "Noto Sans KR",
     bodyFont: "Noto Sans KR",
     titleSize: 72,
     bodySize: 17,
     lineHeight: 172,
     contentWidth: 960,
     cardRadius: 18,
-    surfaceTheme: "warm",
     sections: { summary: true, specs: true, tradeoffs: true, decisions: true, sources: true }
   };
 
@@ -34,10 +41,23 @@
 
   var typeRules = {
     product: "제품의 공식 사양과 미확정 정보를 분리하고, 사용자가 얻게 되는 가치와 감수할 단점을 같은 비중으로 비교한다.",
-    executive: "경영진이 5분 안에 결정할 수 있도록 결론, 핵심 수치, 위험, 권고 행동을 먼저 제시한다.",
+    executive: "경영진이 빠르게 결정할 수 있도록 결론, 핵심 수치, 위험, 권고 행동을 먼저 제시한다.",
     market: "시장 규모, 경쟁 구도, 고객 변화, 기회와 위협을 비교하고 모든 수치의 기준 시점과 출처를 표시한다.",
     technical: "구조, 작동 원리, 구현 선택지, 한계와 운영 영향을 기술하되 비전문가도 이해할 수 있는 설명을 함께 쓴다.",
     research: "여러 원문의 공통점과 충돌점을 묶고 사실, 분석, 전망을 명확히 구분한 리서치 다이제스트를 만든다."
+  };
+
+  var depthRules = {
+    simple: {
+      label: "일반 보고서",
+      preview: "일반 보고서 · 5분 읽기",
+      rule: "심플한 5분 읽기 분량으로 작성한다. 한 문장 결론, 핵심 요약, 핵심 표 1~2개, 장단점, 판단 기준, 전체 출처만 남기고 반복 설명과 긴 배경 설명은 덜어낸다."
+    },
+    deep: {
+      label: "심층보고서모드",
+      preview: "심층보고서모드 · 상세 분석",
+      rule: "매우 상세하게 작성한다. 조사 질문과 방법, 산업·기업 배경, 핵심 데이터, 경쟁 비교, 근거별 찬반 논리, 반대 관점, 세 가지 이상 시나리오, 리스크, 실행 조건, 한계, 상세 결론, 출처 신뢰도까지 포함한다. 임의로 분량을 부풀리지 말고 추가 근거로 깊이를 만든다."
+    }
   };
 
   var layoutLabels = {
@@ -48,11 +68,80 @@
     dark: "프리미엄 다크"
   };
 
-  var themeMap = {
-    warm: { bg: "#f4efe4", paper: "#fffdf7", ink: "#1c1b17", muted: "#716d63" },
-    clean: { bg: "#f2f5f7", paper: "#ffffff", ink: "#15181b", muted: "#667078" },
-    stone: { bg: "#e8e7e2", paper: "#f8f7f3", ink: "#25241f", muted: "#74716a" },
-    night: { bg: "#16171b", paper: "#202126", ink: "#f2f0e9", muted: "#aaa9a3" }
+  var documentStyles = {
+    toss: {
+      label: "Toss Clean",
+      bg: "#f5f7fa",
+      paper: "#ffffff",
+      ink: "#191f28",
+      muted: "#6b7684",
+      palette: "toss-lemon",
+      layout: "minimal",
+      titleFont: "Noto Sans KR",
+      bodyFont: "Noto Sans KR"
+    },
+    ultraviolet: {
+      label: "Ultra Violet",
+      bg: "#f7f5ff",
+      paper: "#ffffff",
+      ink: "#1d1830",
+      muted: "#746d86",
+      palette: "violet-lavender",
+      layout: "whitepaper",
+      titleFont: "Noto Serif KR",
+      bodyFont: "IBM Plex Sans KR"
+    },
+    dark: {
+      label: "Dark Mode",
+      bg: "#0f1115",
+      paper: "#171a21",
+      ink: "#f7f7f2",
+      muted: "#a2a7b2",
+      palette: "coral-peach",
+      layout: "dark",
+      titleFont: "Noto Serif KR",
+      bodyFont: "IBM Plex Sans KR"
+    },
+    neon: {
+      label: "Neon Signal",
+      bg: "#060908",
+      paper: "#0c1210",
+      ink: "#eafff5",
+      muted: "#88a99a",
+      palette: "neon-pink",
+      layout: "editorial",
+      titleFont: "IBM Plex Sans KR",
+      bodyFont: "IBM Plex Sans KR"
+    },
+    editorial: {
+      label: "Editorial Paper",
+      bg: "#f4efe4",
+      paper: "#fffdf7",
+      ink: "#1c1b17",
+      muted: "#716d63",
+      palette: "coral-peach",
+      layout: "magazine",
+      titleFont: "Noto Serif KR",
+      bodyFont: "Noto Sans KR"
+    }
+  };
+
+  var palettes = {
+    "toss-lemon": { label: "블루 · 레몬", accent: "#3182f6", mark: "#ffe066" },
+    "violet-lavender": { label: "보라 · 라벤더", accent: "#6d28d9", mark: "#e9d5ff" },
+    "coral-peach": { label: "코랄 · 피치", accent: "#ff5c35", mark: "#ffd8cc" },
+    "forest-lime": { label: "포레스트 · 라임", accent: "#146c43", mark: "#b7f36b" },
+    "navy-cyan": { label: "네이비 · 시안", accent: "#0b3d91", mark: "#6de8ff" },
+    "neon-pink": { label: "네온 · 핑크", accent: "#2cff9a", mark: "#ff2bd6" }
+  };
+
+  var visualStyleLabels = {
+    whiteboard: "순백색 한글 화이트보드 두들"
+  };
+
+  var researchModelLabels = {
+    "openai/gpt-5.6-terra": "Terra",
+    "openai/gpt-5.6-luna": "Luna"
   };
 
   var state = loadState();
@@ -102,7 +191,7 @@
       specs: "사양 또는 핵심 데이터 표",
       tradeoffs: "장점과 단점 병렬 비교",
       decisions: "사용자 판단 기준과 체크리스트",
-      sources: "출처 목록과 확인 범위"
+      sources: "문서 최하단의 전체 자료 출처"
     };
     return Object.keys(state.sections).filter(function (key) {
       return state.sections[key];
@@ -115,7 +204,7 @@
     var styles = {
       marker: "핵심 문장 뒤에 불규칙한 마커 띠를 깐다",
       underline: "핵심어 아래에 굵은 컬러 밑줄을 긋는다",
-      band: "핵심어 배경 전체를 컬러 밴드로 채우고 대비되는 글자색을 쓴다",
+      band: "핵심어 배경 전체를 컬러 밴드로 채운다",
       leftbar: "핵심 문장 왼쪽에 굵은 세로 강조선을 둔다"
     };
     var intensities = {
@@ -125,129 +214,193 @@
     };
     return styles[state.highlightStyle] + ". " + intensities[state.intensity] + ". " +
       (state.aggressiveHighlight
-        ? "적극 사용: 핵심 수치, 최종 판단, 위험 경고, 섹션별 핵심어에 반복 적용하되 한 문단에 두 번을 넘기지 않는다."
-        : "절제 사용: 표지나 최종 판단 등 문서 전체에서 3~5곳에만 적용한다.");
+        ? "핵심 수치, 최종 판단, 위험 경고, 섹션별 핵심어에 적극 적용하되 한 문단에 두 번을 넘기지 않는다."
+        : "표지나 최종 판단 등 문서 전체에서 3~5곳에만 절제해 적용한다.");
+  }
+
+  function visualRules() {
+    var rules = [];
+    if (state.generateInfographic) {
+      rules.push("보고서 작성 후 핵심 내용을 바탕으로 " + visualStyleLabels[state.visualStyle] + " 인포그래픽을 실제 이미지 생성 도구로 만든다. 프롬프트만 작성하고 끝내지 않는다.");
+      rules.push("이미지는 순백색 배경, 깔끔한 검은 손그림, 제한된 포인트색, 짧고 큰 한글, 왼쪽 위 RM 원형 로고와 리포트 모드 표기를 사용한다. 보고서 내용에 맞춰 두들 배치와 정보 구조만 바꾼다.");
+    } else {
+      rules.push("사용자가 이미지 생성을 요청한 경우에만 인포그래픽을 실제 생성한다.");
+    }
+    if (state.useRealPhotos) {
+      rules.push("기업·제품의 실제 사진을 웹 검색한다. 공식 미디어 자료 또는 재사용 허용 라이선스 사진을 우선하고 출처·저작자·라이선스를 기록한다.");
+    }
+    if (state.useOfficialLogos) {
+      rules.push("기업·제품 로고는 AI로 비슷하게 그리지 말고 공식 브랜드 사이트나 미디어킷에서 확보한다. 해당 브랜드의 사용 지침이 허용하는 경우에만 실제 로고를 사용한다.");
+    }
+    return rules;
   }
 
   function buildSkillMarkdown() {
     var tick = String.fromCharCode(96);
     var dateExample = "YYMMDD-english-slug.html";
     var sections = selectedSections();
-    if (!sections.length) sections = ["제목, 본문, 출처"];
+    var style = documentStyles[state.documentStyle];
+    var palette = palettes[state.palette];
+    var visuals = visualRules();
+    if (!sections.length) sections = ["제목, 본문, 문서 최하단의 전체 출처"];
+
     var lines = [
       "---",
       "name: " + slugify(state.skillSlug),
       "description: " + yamlText(state.skillDescription),
-      "version: 1.0.0",
-      "metadata:",
-      "  hermes:",
-      "    category: reporting",
-      "    tags:",
-      "      - report",
-      "      - html",
-      "      - " + state.reportType,
       "---",
       "",
       "# " + (state.skillTitle || "Custom Report Skill"),
       "",
-      "## 언제 이 스킬을 사용하는가",
-      "",
-      "사용자가 조사 보고서, 비교 분석, 사양 정리, 장단점 분석 또는 의사결정 문서를 요청할 때 사용한다.",
-      "사용자가 주제, 독자, 목적, 참고 URL 또는 원문을 주면 아래 규칙으로 하나의 완결된 HTML 보고서를 만든다.",
+      "검증 가능한 웹 자료와 실제 시각자료를 사용해 독립형 HTML 보고서를 완성하라.",
       "",
       "## 결과물",
       "",
-      "- 최종 산출물은 브라우저에서 바로 열 수 있는 독립형 HTML 파일 1개다.",
-      "- 파일명은 한국시간 생성일을 기준으로 " + tick + dateExample + tick + " 형식을 쓴다.",
+      "- 브라우저에서 바로 열 수 있는 독립형 HTML 파일 1개를 만든다.",
+      "- 파일명은 한국시간 생성일 기준 " + tick + dateExample + tick + "로 만든다.",
       "- 화면에는 " + tick + "YYMMDD · 보고서 제목" + tick + ", 본문에는 " + tick + "YYYY.MM.DD KST" + tick + "를 표시한다.",
-      "- HTML 안에 CSS를 포함한다. 외부 빌드 도구나 별도 서버를 요구하지 않는다.",
-      "- PC, 390px 모바일, 인쇄 화면에서 읽을 수 있어야 한다.",
+      "- CSS를 HTML 안에 포함하고 PC, 390px 모바일, 인쇄 화면을 지원한다.",
+      "- 조사에 사용한 기사, 데이터, 로고, 사진, 생성 이미지를 문서 최하단 출처 표에 모두 기록한다.",
       "",
-      "## 이 스킬의 보고서 타입",
+      "## 보고서 깊이",
+      "",
+      "- 선택 모드: " + depthRules[state.depthMode].label,
+      "- " + depthRules[state.depthMode].rule,
+      "- 사용자가 요청에서 일반 보고서 또는 심층보고서모드를 명시하면 이 기본값보다 사용자 요청을 우선한다.",
+      "",
+      "## 분석 타입",
       "",
       "- 타입: " + typeLabels[state.reportType],
-      "- 목적 규칙: " + typeRules[state.reportType],
+      "- " + typeRules[state.reportType],
+      "",
+      "## Hermes 서브에이전트 오케스트레이션",
+      "",
+      state.useSubagents
+        ? "- 자료조사에 delegate_task 서브에이전트를 반드시 적극 사용한다."
+        : "- 사용자가 명시적으로 요청한 경우에만 delegate_task를 사용한다.",
+      "- 최종 취합과 보고서 작성은 openai/gpt-5.6-sol을 사용하는 부모 에이전트가 맡는다.",
+      "- 조사 자식 권장 모델: " + state.researchModel + " (" + researchModelLabels[state.researchModel] + "). Hermes config.yaml의 delegation.model이 이 값과 일치해야 실제 적용된다.",
+      "- Hermes의 delegate_task는 작업마다 model 인자를 받지 않는다. 실제 자식 모델은 config.yaml의 delegation.model을 사용하므로 지원하지 않는 model 인자를 만들지 않는다.",
+      "- 일반 보고서는 두 자식을 한 batch로 실행한다: (1) 공식 자료·핵심 사실, (2) 시장·경쟁·시각자료·라이선스.",
+      "- 심층보고서모드는 기본 동시 한도 3개를 지킨다. 1차 3개는 공식·재무/시장·제품/기술을 조사하고, 2차 2개는 경쟁/반대근거·사진/로고/라이선스를 조사한다.",
+      "- 각 자식에게 주제, 기간, 독자, 담당 범위, 금지 추측, 필요한 출력 형식을 context에 완전하게 전달한다. 자식은 부모 대화 내용을 알지 못한다고 가정한다.",
+      "- 각 자식의 결과는 주장, 근거 URL, 발행일, 확인일, 출처 유형, 사실/분석/전망/루머, 상충 내용, 시각자료 URL과 라이선스를 담은 evidence pack으로 받는다.",
+      "- 서브에이전트에게 최종 보고서 작성이나 서로의 결과 리뷰를 맡기지 않는다. Sol 부모가 중복 제거, 충돌 표시, 최종 판단, HTML 작성과 이미지 생성을 책임진다.",
+      "- 일부 자식이 실패하면 해당 범위를 한 번 재시도한다. 끝내 실패하면 누락 범위를 최종 보고서에 명시한다.",
+      "",
+      "## 이미지 생성 의무",
+      ""
+    ];
+    visuals.forEach(function (rule) {
+      lines.push("- " + rule);
+    });
+    lines = lines.concat([
+      "- 인포그래픽 목적, 독자, 화면 비율, 핵심 피사체, 구성, 스타일, 색감, 정확한 문구, 금지 조건을 구조화해 이미지 생성 도구에 전달한다.",
+      "- 이미지에는 확인된 숫자와 짧은 문구만 넣고 가짜 수치, 깨진 한글, 임의 문구를 금지한다.",
+      "- 모든 이미지 문구는 한글을 기본으로 하고 readable Korean typography, no garbled Hangul, large clean Korean text를 프롬프트에 포함한다.",
+      "- 생성 뒤 텍스트, 숫자, 고유명사, 잘림, 중복 오브젝트를 확인하고 문제가 있으면 최소 한 번 다시 생성하거나 보정한다.",
+      "- 실제 이미지 파일을 HTML 상단에 넣고 " + tick + "AI 생성 인포그래픽 · 공식 제품 이미지 아님" + tick + "을 표시한다.",
+      "- 이미지 생성 도구가 없거나 호출에 실패하면 생성한 척하지 말고 실제 오류를 알린다.",
+      "",
+      "## 실제 사진과 로고",
+      "",
+      "- 기업 또는 제품 리서치에서는 웹 검색으로 공식 로고와 실제 제품 사진을 적극 찾는다.",
+      "- 로고는 공식 브랜드 사이트 또는 공식 미디어킷을 우선한다. 공식 사용 지침을 확인하고 허용 범위 안에서만 사용한다.",
+      "- 상표 지침이 로고 사용을 허용하지 않으면 그래픽 로고를 넣지 말고 회사명 워드마크와 독립 보고서 고지를 사용한다.",
+      "- 실제 제품이 공식 발표되지 않았다면 렌더, 콘셉트, 유출 주장, 더미 모델을 실제 제품 사진이라고 부르지 않는다.",
+      "- 다른 회사의 실제 제품 사진을 비교 자료로 쓸 때는 제품명을 명확히 밝히고 연구 대상 제품처럼 보이지 않게 한다.",
+      "- 재사용 권한을 확인할 수 없는 사진은 다운로드해 재배포하지 말고 원문 링크 카드만 제공한다.",
       "",
       "## 디자인 계약",
       "",
-      "아래 값은 취향 제안이 아니라 반드시 지켜야 하는 고정 레이아웃 토큰이다.",
-      "",
-      "- 레이아웃: " + layoutLabels[state.layoutType] + " (" + state.layoutType + ")",
+      "- 전체 문서 스타일: " + style.label + " (" + state.documentStyle + ")",
+      "- 사용자가 요청에서 다른 시각 스타일을 명시하면 선택된 기본 모드보다 사용자 요청을 우선한다.",
+      "- 편집 레이아웃: " + layoutLabels[state.layoutType] + " (" + state.layoutType + ")",
       "- 표지 정렬: " + state.align,
-      "- 강조색: " + state.accentColor,
       "- 제목 폰트: " + state.titleFont + ", 대체 글꼴 serif",
       "- 본문 폰트: " + state.bodyFont + ", 대체 글꼴 sans-serif",
-      "- 표지 제목 크기: 데스크톱 " + state.titleSize + "px, 모바일 clamp로 축소",
+      "- 표지 제목 크기: 데스크톱 " + state.titleSize + "px, 모바일에서는 clamp로 축소",
       "- 본문 크기: " + state.bodySize + "px",
       "- 본문 줄 간격: " + (state.lineHeight / 100).toFixed(2),
       "- 콘텐츠 최대 폭: " + state.contentWidth + "px",
       "- 카드 모서리: " + state.cardRadius + "px",
-      "- 배경색: " + themeMap[state.surfaceTheme].bg,
-      "- 문서색: " + themeMap[state.surfaceTheme].paper,
-      "- 본문색: " + themeMap[state.surfaceTheme].ink,
-      "- 보조색: " + themeMap[state.surfaceTheme].muted,
-      "- 제목은 넓은 여백과 강한 크기 대비를 사용하고, 본문은 긴 글을 편하게 읽는 행간을 유지한다.",
-      "- 표, 카드, 인용문은 장식보다 정보의 위계를 분명하게 만드는 데 사용한다.",
+      "- 페이지 배경색: " + style.bg,
+      "- 문서 배경색: " + style.paper,
+      "- 본문 글자색: " + style.ink,
+      "- 보조 글자색: " + style.muted,
+      "- 포인트색: " + palette.accent,
+      "- 밑줄·마커 하이라이트색: " + palette.mark,
+      "- 본문 글자색과 밑줄·마커색을 같은 값으로 쓰지 않는다.",
       "",
-      "## 하이라이트 계약",
+      "## 하이라이트·표·이모티콘",
       "",
+      "- 팔레트: " + palette.label,
       "- " + highlightRule(),
-      "- 강조색은 " + state.accentColor + " 하나를 중심으로 사용한다.",
-      "- 출처가 없는 주장이나 단순 수식어를 강조하지 않는다.",
-      "- 강조 때문에 문장 가독성이나 인쇄 가독성이 떨어지면 투명도만 낮춘다.",
+      "- 포인트색 " + palette.accent + "은 제목, 표 헤더, 아이콘에 쓰고 하이라이트색 " + palette.mark + "은 밑줄과 마커에만 쓴다.",
+      "- 사양, 수치 비교, 경쟁사 비교, 시나리오, 출처는 가능한 한 실제 HTML 표로 구성한다.",
+      "- 섹션 제목과 상태 표시에 🧭 📱 📊 ✅ ⚠️ 🔎 🧾 같은 이모티콘을 적극 사용한다.",
+      "- 이모티콘은 정보 탐색을 돕는 용도로만 쓰고 문장마다 반복하거나 장식처럼 남발하지 않는다.",
       "",
       "## 필수 섹션",
       ""
-    ];
+    ]);
     sections.forEach(function (section) {
       lines.push("- " + section);
     });
+    if (state.depthMode === "deep") {
+      lines = lines.concat([
+        "- 조사 질문과 조사 방법",
+        "- 산업·기업·제품 배경",
+        "- 경쟁사 및 대안 비교표",
+        "- 낙관·기준·보수 시나리오 표",
+        "- 반대 논리와 실패 가능성",
+        "- 리스크, 실행 조건, 한계, 추가 확인 과제",
+        "- 출처별 신뢰도와 상충 지점"
+      ]);
+    }
     lines = lines.concat([
       "",
-      "필수 섹션 외에도 주제에 필요하면 타임라인, 비교표, 인용문, 위험 요소를 추가할 수 있다.",
+      "## 근거 규칙",
       "",
-      "## 근거와 작성 규칙",
-      "",
-      "1. 사용자가 제공한 URL은 모두 확인한다. 하나라도 열리지 않으면 어떤 출처가 실패했는지 알리고 추측으로 채우지 않는다.",
-      "2. 중요한 문장에는 사실, 분석, 전망, 루머 중 하나의 성격이 드러나게 쓴다.",
-      "3. 공식 발표와 언론 보도, 공급망 정보, 개인 의견을 섞지 않는다.",
-      "4. 상충하는 수치는 임의로 하나로 합치지 말고 범위와 충돌 사실을 함께 적는다.",
-      "5. 기사 전문을 복제하지 않는다. 제목, 발행처, URL, 발행일 또는 확인일만 출처에 남긴다.",
+      "1. 사용자가 제공한 URL과 검색으로 선택한 핵심 URL을 직접 확인한다.",
+      "2. 공식 발표, 언론 보도, 공급망 정보, 개인 의견을 섞지 않는다.",
+      "3. 중요한 문장은 사실, 분석, 전망, 루머 중 성격이 드러나게 쓴다.",
+      "4. 상충하는 수치는 임의로 합치지 말고 범위와 충돌 사실을 함께 적는다.",
+      "5. 기사 전문을 복제하지 않고 제목, 발행처, URL, 발행일, 확인일만 남긴다.",
       "6. 원문에 없는 내용을 사실처럼 만들지 않는다. 불확실하면 불확실하다고 쓴다.",
-      "7. 한국어 보고서는 짧고 명확한 문장으로 쓰고 불필요한 전문용어는 풀어서 설명한다.",
+      "7. 한국어는 짧고 명확하게 쓰고 필요한 전문용어는 바로 풀어서 설명한다.",
       "",
       "## 제작 순서",
       "",
-      "1. 요청에서 주제, 목적, 독자, 언어, 출처를 추출한다.",
-      "2. 출처를 확인하고 핵심 사실, 충돌 지점, 미확정 정보를 분리한다.",
-      "3. 먼저 한 문장 결론과 전체 목차를 만든다.",
-      "4. 필수 섹션에 근거를 배치하고 각 주장에 출처 링크를 연결한다.",
-      "5. 디자인 계약의 색상, 글꼴, 크기, 여백, 카드, 하이라이트를 CSS 변수로 구현한다.",
-      "6. 모바일과 인쇄용 미디어 쿼리를 포함한다.",
-      "7. 파일을 저장한 뒤 제목, 날짜, 출처 링크, 모바일 폭에서의 넘침을 직접 확인한다.",
+      "1. 주제, 목적, 독자, 언어, 보고서 깊이, 사용자 지정 스타일을 정리한다.",
+      "2. 웹 검색으로 공식 자료, 기사, 실제 사진, 로고 사용 지침을 수집한다.",
+      "3. 사실, 분석, 전망, 루머와 상충 지점을 분리한다.",
+      "4. 선택한 깊이 규칙에 맞춰 결론, 목차, 표 구조를 만든다.",
+      "5. 보고서 내용을 요약한 상단 인포그래픽을 실제 생성하고 검수한다.",
+      "6. 허용되는 실제 로고와 제품 사진을 출처 고지와 함께 배치한다.",
+      "7. 디자인 토큰, 표, 이모티콘, 하이라이트를 적용해 HTML을 만든다.",
+      "8. 문서 최하단에 전체 자료 출처 표를 넣는다.",
+      "9. 모바일, 인쇄, 링크, 이미지 경로, 출처 누락을 확인한다.",
       "",
-      "## 레이아웃 구현 지침",
+      "## 최하단 전체 출처 표",
       "",
-      "- CSS 변수 이름은 " + tick + "--accent" + tick + ", " + tick + "--paper" + tick + ", " + tick + "--ink" + tick + ", " + tick + "--muted" + tick + ", " + tick + "--title-font" + tick + ", " + tick + "--body-font" + tick + "를 쓴다.",
-      "- 표지는 유형명, 생성일, 큰 제목, 한 줄 설명, 출처 수를 포함한다.",
-      "- 핵심 수치는 2~4개의 카드로 묶고 수치 아래에 의미를 한 줄로 설명한다.",
-      "- 장점과 단점은 같은 폭과 비슷한 정보량으로 나란히 배치하고 모바일에서는 세로로 쌓는다.",
-      "- 출처 링크는 실제 URL을 사용하며 새 탭에서 안전하게 열리게 한다.",
-      "- 공개 HTML 안에는 API 키 입력, 생성 버튼, 관리자 기능을 넣지 않는다.",
+      "문서의 마지막 요소는 반드시 전체 출처 표로 끝내라. 열은 " + tick + "유형 | 자료명 | 제공자·저작자 | URL | 날짜 | 라이선스·상태 | 사용 범위" + tick + "로 구성하라.",
+      "기사·논문·공식 문서뿐 아니라 로고, 실제 사진, 더미 사진 링크, AI 생성 이미지와 생성일도 모두 포함하라.",
       "",
-      "## 예시 방향",
+      "## Apple 폴더블 예시",
       "",
-      "Apple 폴더블 iPhone을 다룬다면 공식 발표 전이라는 상태를 표지에 표시하고, 예상 화면 크기와 가격 같은 수치는 출처별 차이를 보존한다.",
-      "장점은 대화면 멀티태스킹과 Apple 생태계 연속성, 단점은 1세대 내구성, 무게, 가격, 수리비를 다룬다.",
-      "최종 판단은 실측 무게, 실제 배터리 시간, 화면 주름, 앱 최적화, 보증 정책을 확인한 뒤 구매하도록 정리한다.",
+      "- Apple이 공식 발표하지 않은 동안에는 " + tick + "공식 발표 전" + tick + "을 표시한다.",
+      "- 유출 주장이나 물리 더미 사진은 " + tick + "더미 모델" + tick + "로 표시하고 실제 판매 제품 사진으로 부르지 않는다.",
+      "- 실제 Galaxy Z Fold 사진을 쓰면 Apple 제품이 아니라 폴더블 폼팩터 비교 자료임을 크게 밝힌다.",
+      "- Apple의 상표 지침이 그래픽 로고 사용을 허용하지 않는 독립 보고서에서는 Apple 로고 대신 회사명과 비후원 고지를 쓴다.",
       "",
       "## 완료 응답",
       "",
-      "보고서를 만든 뒤 사용자에게 다음 항목만 명확히 전달한다.",
-      "",
       "- 생성일",
+      "- 보고서 깊이",
       "- 보고서 제목",
-      "- 사용한 출처 수",
+      "- 사용한 텍스트 출처 수와 시각자료 수",
+      "- 생성된 이미지 파일 경로",
       "- 저장된 HTML 절대 경로",
       "- 확인하지 못한 내용 또는 남은 불확실성",
       ""
@@ -260,33 +413,41 @@
     if (element) element.value = value;
   }
 
-  function hydrateControls() {
-    ["skillTitle", "skillSlug", "skillDescription", "reportType", "layoutType", "accentColor", "highlightStyle", "titleFont", "bodyFont", "titleSize", "bodySize", "lineHeight", "contentWidth", "cardRadius", "surfaceTheme"].forEach(function (key) {
-      setField(key, state[key]);
-    });
-    setField("accentHex", state.accentColor);
-    document.getElementById("aggressiveHighlight").checked = state.aggressiveHighlight;
-    document.querySelectorAll("[data-section]").forEach(function (input) {
-      input.checked = state.sections[input.dataset.section] !== false;
-    });
-    setActive("alignButtons", state.align);
-    setActive("intensityButtons", state.intensity);
-  }
-
   function setActive(groupId, value) {
     document.querySelectorAll("#" + groupId + " button").forEach(function (button) {
       button.classList.toggle("is-active", button.dataset.value === value);
     });
   }
 
+  function hydrateControls() {
+    ["skillTitle", "skillSlug", "skillDescription", "reportType", "layoutType", "visualStyle", "researchModel", "highlightStyle", "titleFont", "bodyFont", "titleSize", "bodySize", "lineHeight", "contentWidth", "cardRadius"].forEach(function (key) {
+      setField(key, state[key]);
+    });
+    document.getElementById("aggressiveHighlight").checked = state.aggressiveHighlight;
+    document.getElementById("generateInfographic").checked = state.generateInfographic;
+    document.getElementById("useRealPhotos").checked = state.useRealPhotos;
+    document.getElementById("useOfficialLogos").checked = state.useOfficialLogos;
+    document.getElementById("useSubagents").checked = state.useSubagents;
+    document.querySelectorAll("[data-section]").forEach(function (input) {
+      input.checked = state.sections[input.dataset.section] !== false;
+    });
+    setActive("depthButtons", state.depthMode);
+    setActive("documentStyleButtons", state.documentStyle);
+    setActive("paletteButtons", state.palette);
+    setActive("alignButtons", state.align);
+    setActive("intensityButtons", state.intensity);
+  }
+
   function updatePreview() {
-    var theme = themeMap[state.surfaceTheme];
-    document.documentElement.style.setProperty("--accent", state.accentColor);
-    report.style.setProperty("--report-accent", state.accentColor);
-    report.style.setProperty("--report-bg", theme.bg);
-    report.style.setProperty("--report-paper", theme.paper);
-    report.style.setProperty("--report-ink", theme.ink);
-    report.style.setProperty("--report-muted", theme.muted);
+    var style = documentStyles[state.documentStyle];
+    var palette = palettes[state.palette];
+    document.documentElement.style.setProperty("--accent", palette.accent);
+    report.style.setProperty("--report-accent", palette.accent);
+    report.style.setProperty("--report-mark", palette.mark);
+    report.style.setProperty("--report-bg", style.bg);
+    report.style.setProperty("--report-paper", style.paper);
+    report.style.setProperty("--report-ink", style.ink);
+    report.style.setProperty("--report-muted", style.muted);
     report.style.setProperty("--title-font", JSON.stringify(state.titleFont) + ", serif");
     report.style.setProperty("--body-font", JSON.stringify(state.bodyFont) + ", sans-serif");
     report.style.setProperty("--title-size", state.titleSize + "px");
@@ -297,21 +458,52 @@
     report.dataset.layout = state.layoutType;
     report.dataset.align = state.align;
     report.dataset.highlight = state.highlightStyle;
+    report.dataset.documentStyle = state.documentStyle;
+    report.dataset.depth = state.depthMode;
     report.classList.toggle("is-aggressive", state.aggressiveHighlight);
     report.classList.remove("highlight-subtle", "highlight-standard", "highlight-active");
     report.classList.add("highlight-" + state.intensity);
     document.getElementById("previewType").textContent = typeLabels[state.reportType];
+    document.getElementById("previewDepth").textContent = depthRules[state.depthMode].preview;
     document.querySelectorAll("[data-preview-section]").forEach(function (section) {
       section.hidden = state.sections[section.dataset.previewSection] === false;
+    });
+    document.querySelectorAll("[data-depth-only]").forEach(function (section) {
+      section.hidden = state.depthMode !== section.dataset.depthOnly;
+    });
+    document.querySelectorAll("[data-preview-visual='infographic']").forEach(function (element) {
+      element.hidden = !state.generateInfographic;
+    });
+    document.querySelectorAll("[data-preview-visual='realPhoto']").forEach(function (element) {
+      element.hidden = !state.useRealPhotos;
+    });
+    document.querySelectorAll("[data-preview-visual='officialLogo']").forEach(function (element) {
+      element.hidden = !state.useOfficialLogos;
     });
     document.getElementById("titleSizeValue").textContent = state.titleSize + "px";
     document.getElementById("bodySizeValue").textContent = state.bodySize + "px";
     document.getElementById("lineHeightValue").textContent = (state.lineHeight / 100).toFixed(2);
     document.getElementById("contentWidthValue").textContent = state.contentWidth + "px";
     document.getElementById("cardRadiusValue").textContent = state.cardRadius + "px";
+    setActive("depthButtons", state.depthMode);
+    setActive("documentStyleButtons", state.documentStyle);
+    setActive("paletteButtons", state.palette);
     setActive("alignButtons", state.align);
     setActive("intensityButtons", state.intensity);
     saveState();
+  }
+
+  function applyDocumentStyle(value) {
+    var style = documentStyles[value];
+    state.documentStyle = value;
+    state.palette = style.palette;
+    state.layoutType = style.layout;
+    state.titleFont = style.titleFont;
+    state.bodyFont = style.bodyFont;
+    setField("layoutType", state.layoutType);
+    setField("titleFont", state.titleFont);
+    setField("bodyFont", state.bodyFont);
+    updatePreview();
   }
 
   function bindInput(id, key, convert) {
@@ -323,6 +515,25 @@
         setField("skillSlug", state.skillSlug);
       }
       updatePreview();
+    });
+  }
+
+  function bindToggle(id, key) {
+    document.getElementById(id).addEventListener("change", function () {
+      state[key] = this.checked;
+      updatePreview();
+    });
+  }
+
+  function bindButtonGroup(groupId, key, callback) {
+    document.querySelectorAll("#" + groupId + " button").forEach(function (button) {
+      button.addEventListener("click", function () {
+        if (callback) callback(button.dataset.value);
+        else {
+          state[key] = button.dataset.value;
+          updatePreview();
+        }
+      });
     });
   }
 
@@ -353,6 +564,7 @@
     var local = location.hostname === "127.0.0.1" || location.hostname === "localhost";
     var button = document.getElementById("installHermesBtn");
     button.disabled = !local;
+    button.textContent = "Hermes에 바로 적용";
     document.getElementById("installHelp").textContent = local
       ? "설치 위치: ~/.hermes/skills/reporting/" + state.skillSlug + "/SKILL.md"
       : "공개 사이트에서는 SKILL.md를 내려받을 수 있습니다. Hermes에 바로 적용하려면 로컬 Studio에서 접속하세요.";
@@ -405,7 +617,7 @@
     }
   }
 
-  ["skillTitle", "skillDescription", "reportType", "layoutType", "accentColor", "highlightStyle", "titleFont", "bodyFont", "surfaceTheme"].forEach(function (key) {
+  ["skillTitle", "skillDescription", "reportType", "layoutType", "visualStyle", "researchModel", "highlightStyle", "titleFont", "bodyFont"].forEach(function (key) {
     bindInput(key, key);
   });
   ["titleSize", "bodySize", "lineHeight", "contentWidth", "cardRadius"].forEach(function (key) {
@@ -415,49 +627,26 @@
   document.getElementById("skillSlug").addEventListener("input", function () {
     this.dataset.edited = "true";
   });
-  document.getElementById("accentColor").addEventListener("input", function () {
-    setField("accentHex", this.value);
-  });
-  document.getElementById("accentHex").addEventListener("input", function () {
-    var value = this.value.trim();
-    if (/^#[0-9a-f]{6}$/i.test(value)) {
-      state.accentColor = value;
-      setField("accentColor", value);
-      updatePreview();
-    }
-  });
-  document.getElementById("accentHex").addEventListener("change", function () {
-    if (!/^#[0-9a-f]{6}$/i.test(this.value.trim())) {
-      setField("accentHex", state.accentColor);
-      showToast("색상은 #ff5c35 같은 6자리 형식으로 입력하세요.");
-    }
-  });
-  document.getElementById("layoutType").addEventListener("change", function () {
-    if (this.value === "dark") {
-      state.surfaceTheme = "night";
-      setField("surfaceTheme", "night");
-      updatePreview();
-    }
-  });
-  document.getElementById("aggressiveHighlight").addEventListener("change", function () {
-    state.aggressiveHighlight = this.checked;
-    updatePreview();
-  });
-  document.querySelectorAll("#alignButtons button").forEach(function (button) {
-    button.addEventListener("click", function () {
-      state.align = button.dataset.value;
-      updatePreview();
-    });
-  });
-  document.querySelectorAll("#intensityButtons button").forEach(function (button) {
-    button.addEventListener("click", function () {
-      state.intensity = button.dataset.value;
-      updatePreview();
-    });
-  });
+  bindToggle("aggressiveHighlight", "aggressiveHighlight");
+  bindToggle("generateInfographic", "generateInfographic");
+  bindToggle("useRealPhotos", "useRealPhotos");
+  bindToggle("useOfficialLogos", "useOfficialLogos");
+  bindToggle("useSubagents", "useSubagents");
+  bindButtonGroup("depthButtons", "depthMode");
+  bindButtonGroup("documentStyleButtons", "documentStyle", applyDocumentStyle);
+  bindButtonGroup("paletteButtons", "palette");
+  bindButtonGroup("alignButtons", "align");
+  bindButtonGroup("intensityButtons", "intensity");
+
   document.querySelectorAll("[data-section]").forEach(function (input) {
     input.addEventListener("change", function () {
-      state.sections[input.dataset.section] = input.checked;
+      if (input.dataset.section === "sources") {
+        input.checked = true;
+        state.sections.sources = true;
+        showToast("전체 출처는 모든 보고서에 필수입니다.");
+      } else {
+        state.sections[input.dataset.section] = input.checked;
+      }
       updatePreview();
     });
   });
