@@ -1,7 +1,23 @@
 {
-  "generatedAt": "2026-08-02T01:34:50Z",
+  "generatedAt": "2026-08-02T02:50:14Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260802-iphone-fold-vs-galaxy-fold7-fold8-ultra",
+      "slug": "iphone-fold-vs-galaxy-fold7-fold8-ultra",
+      "title": "아이폰 폴드 vs 갤럭시 폴드7·폴드8 울트라 성능 심층비교",
+      "subtitle": "공식 사양, 독립 벤치마크, 루머와 구매 시점을 표 중심으로 비교",
+      "category": "성능 비교 · 심층분석",
+      "summary": "현재 실측 선두는 Fold8 Ultra입니다. iPhone Fold는 Apple 공식 발표 전이라 기다림의 가치만 비교했습니다.",
+      "createdAt": "2026-08-02T11:50:14+09:00",
+      "updatedAt": "2026-08-02T11:50:14+09:00",
+      "status": "published",
+      "path": "reports/260802-iphone-fold-vs-galaxy-fold7-fold8-ultra.html",
+      "url": "https://aihubos.github.io/reportmode/reports/260802-iphone-fold-vs-galaxy-fold7-fold8-ultra.html",
+      "displayDate": "260802",
+      "sourceCount": 18,
+      "tags": ["apple", "samsung", "iphone-fold", "galaxy-z-fold7", "galaxy-z-fold8-ultra", "benchmarks", "deep-dive"]
+    },
     {
       "id": "260802-galaxy-z-fold8-deep-dive",
       "slug": "galaxy-z-fold8-deep-dive",
