@@ -1,7 +1,29 @@
 {
-  "generatedAt": "2026-08-02T04:00:00Z",
+  "generatedAt": "2026-08-02T06:00:00Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260802-pokemon-pokopia-deep-dive",
+      "slug": "pokemon-pokopia-deep-dive",
+      "title": "포켓몬 포코피아 장단점과 인기 요인",
+      "subtitle": "출시 성과, 평단 평가, 핵심 루프, 멀티플레이와 장기 만족 조건",
+      "category": "게임 분석 · 심층리서치",
+      "summary": "흥행의 핵심은 포켓몬 수집을 서식지·건설·관계 형성으로 재해석한 데 있으며, 느린 진행을 받아들일 수 있을 때 강력 추천합니다.",
+      "createdAt": "2026-08-02T15:00:00+09:00",
+      "updatedAt": "2026-08-02T15:00:00+09:00",
+      "status": "published",
+      "path": "reports/260802-pokemon-pokopia-deep-dive.html",
+      "url": "https://aihubos.github.io/reportmode/reports/260802-pokemon-pokopia-deep-dive.html",
+      "displayDate": "260802",
+      "sourceCount": 14,
+      "tags": [
+        "pokemon",
+        "pokopia",
+        "nintendo-switch-2",
+        "cozy-game",
+        "deep-dive"
+      ]
+    },
     {
       "id": "260802-ai-agent-hermes-openclaw-codex",
       "slug": "ai-agent-hermes-openclaw-codex",
