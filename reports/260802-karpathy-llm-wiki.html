@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Andrej Karpathy가 제안한 LLM Wiki의 핵심 개념, 3계층 구조, RAG와의 차이, 실제 도입법과 한계를 공식 원문 중심으로 설명한 한국어 보고서">
+  <meta name="color-scheme" content="light">
+  <title>260802 · Andrej Karpathy의 LLM Wiki란? — Report Mode</title>
+  <style>
+    :root{--page:#f5f7fa;--paper:#fff;--text:#191f28;--muted:#6b7684;--accent:#3182f6;--highlight:#ffe066;--line:#e5e8eb;--max:1120px;--radius:18px;--shadow:0 18px 54px rgba(25,31,40,.07);--sans:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,-apple-system,sans-serif}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--page);color:var(--text);font:18px/1.72 var(--sans);word-break:keep-all}a{color:var(--accent);text-underline-offset:3px}img{display:block;max-width:100%}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto}.nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}.nav-inner{min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{font-weight:900;color:var(--text);text-decoration:none}.nav-links{display:flex;gap:18px}.nav-links a{font-size:14px;color:var(--muted);text-decoration:none}.hero{background:#fff;padding:82px 0 70px}.kicker{font-size:13px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}h1,h2,h3,p{margin-top:0}.hero h1{max-width:17ch;margin:16px 0 24px;font-size:clamp(48px,6.2vw,78px);line-height:1.05;letter-spacing:-.055em}.hero h1 span{overflow-wrap:anywhere}.hero .lede{max-width:850px;font-size:26px;line-height:1.5;color:#3d4956}.marker{background:linear-gradient(transparent 62%,rgba(255,224,102,.72) 62%)}.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}.chip{border:1px solid var(--line);border-radius:999px;padding:7px 13px;font-size:14px;color:var(--muted)}main section{padding:62px 0}.section-head{margin-bottom:24px}.section-head h2{font-size:clamp(31px,4vw,47px);line-height:1.18;letter-spacing:-.04em;word-break:normal;overflow-wrap:anywhere}.section-head p{max-width:820px;color:var(--muted);word-break:normal;overflow-wrap:anywhere}.visual-hero{overflow:hidden;margin:0;border:1px solid var(--line);border-radius:22px;background:#fff;box-shadow:var(--shadow)}.visual-hero img{width:100%;height:auto}.visual-hero figcaption{display:flex;justify-content:space-between;gap:16px;padding:15px 20px;font-size:13px;color:var(--muted)}.paper,.callout{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow)}.callout{border-left:5px solid var(--accent);box-shadow:none}.table-wrap{width:100%;overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:#fff}table{width:100%;min-width:820px;border-collapse:collapse;font-size:15px;line-height:1.55}th,td{padding:15px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}thead th{background:#f2f6fc;font-size:13px}tbody th{background:#fbfcfe}.source-section{padding-bottom:80px}.sources{display:block;overflow-x:auto;min-width:0}.sources thead,.sources tbody{display:table;width:100%;min-width:1200px;table-layout:fixed}.sources th:nth-child(1),.sources td:nth-child(1){width:8%}.sources th:nth-child(2),.sources td:nth-child(2){width:19%}.sources th:nth-child(3),.sources td:nth-child(3){width:13%}.sources th:nth-child(4),.sources td:nth-child(4){width:25%}.sources th:nth-child(5),.sources td:nth-child(5){width:9%}.sources th:nth-child(6),.sources td:nth-child(6){width:14%}.sources th:nth-child(7),.sources td:nth-child(7){width:12%}
+    @media(max-width:860px){.nav-links a:nth-child(-n+2){display:none}.hero{padding-top:62px}}
+    @media(max-width:520px){body{font-size:17px}.wrap{width:min(calc(100% - 48px),var(--max))}.kicker{font-size:11px;letter-spacing:.045em;line-height:1.5}.hero h1{font-size:clamp(38px,10.5vw,48px);overflow-wrap:normal}.hero h1 span{display:block}.hero .lede{font-size:20px;word-break:normal;overflow-wrap:anywhere}.visual-hero figcaption{display:block}.visual-hero figcaption span{display:block;margin-top:4px}.paper,.callout{padding:22px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+    @media print{.nav{display:none}body{background:#fff;font-size:11pt}.hero{padding:30px 0}.hero h1{font-size:38pt}.wrap{width:100%;max-width:none}.paper,.callout,.visual-hero{box-shadow:none;break-inside:avoid}main section{padding:28px 0}.table-wrap{overflow:visible}.sources{overflow:visible;border:0}.sources thead,.sources tbody{min-width:0;font-size:7.5pt}.source-section{break-before:page}.source-section a{color:#000;text-decoration:none}}
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="보고서 탐색"><div class="wrap nav-inner"><a class="brand" href="../archive/">RM · Report Mode</a><div class="nav-links"><a href="#summary">요약</a><a href="#comparison">비교</a><a href="#decision">판단</a><a href="#sources">출처</a></div></div></nav>
+  <header class="hero"><div class="wrap"><div class="kicker">Knowledge Systems · Concept Brief</div><h1><span>Andrej Karpathy의&nbsp;</span><span>LLM Wiki란?&nbsp;</span><span>지식이 쌓이는 구조</span></h1><p class="lede">문서를 매번 다시 검색하는 데서 멈추지 않고, LLM이 <span class="marker">지속적으로 갱신하는 연결형 Markdown 위키</span>를 원자료와 사람 사이에 두자는 설계 패턴입니다.</p><div class="meta"><span class="chip"><strong>260802</strong> · 표준 심층</span><span class="chip">2026.08.02 KST</span><span class="chip">공식 Gist·Git 이력·원 논문 우선 · 사실과 해석 분리</span></div></div></header>
+  <main>
+    <section aria-labelledby="visual-title"><div class="wrap"><figure class="visual-hero"><img src="../assets/260802-karpathy-llm-wiki/llm-wiki-three-layers.png" alt="원자료, 연결형 위키, 스키마의 세 영역과 사람이 자료를 고르고 검수하며 AI가 요약과 연결을 담당하는 흐름을 그린 화이트보드 두들 인포그래픽"><figcaption id="visual-title"><b>AI 생성 인포그래픽 · 공식 제품 이미지 아님</b><span>원자료 → 연결형 위키 → 운영 스키마 · 사람은 자료·질문·검수, LLM은 요약·연결·정리</span></figcaption></figure></div></section>
+    <section id="summary"><div class="wrap"><div class="section-head"><h2>한 문장 판단: RAG의 대체품보다 ‘지식 컴파일 계층’에 가깝습니다</h2><p>핵심은 특정 앱이나 제품이 아니라, 원자료를 보존하면서 LLM이 읽기 쉬운 중간 지식 구조를 계속 유지하는 운영 패턴입니다.</p></div><div class="paper">
+    <h3>무엇인가</h3>
+    <p><strong>LLM Wiki</strong>는 Andrej Karpathy가 2026년 4월 4일 공개한 아이디어 문서입니다. LLM 에이전트가 원자료를 읽고, 요약·개체·개념·비교 페이지를 Markdown으로 만들며, 새 자료가 들어올 때 기존 페이지와 교차 링크·모순·종합을 갱신하도록 제안합니다. [S1][S2]</p>
+    <p>그래서 결과물은 한 번 쓰고 사라지는 채팅 답변이 아니라 <span class="marker"><strong>지속적이고 누적되는 지식 자산</strong></span>입니다. 좋은 질문에서 나온 비교나 분석도 다시 위키 페이지로 저장해 다음 질문의 출발점으로 삼습니다.</p>
+    <div class="callout"><strong>역할 분담</strong><br>사람은 믿을 자료를 고르고, 탐구 방향과 질문을 정하고, 변경 결과를 검수합니다. LLM은 요약·분류·교차 링크·파일 정리·일관성 점검을 맡습니다. Karpathy의 표현으로는 “Obsidian은 IDE, LLM은 프로그래머, 위키는 코드베이스”입니다. [S1]</div>
+  </div></div></section>
+    <section id="comparison"><div class="wrap"><div class="section-head"><h2>구조와 흐름을 분해하면 단순합니다</h2><p>원문은 특정 폴더 구조를 강제하지 않습니다. 다만 세 계층과 세 작업은 분명히 구분합니다.</p></div>
+    <div class="table-wrap"><table><thead><tr><th>계층</th><th>소유·역할</th><th>핵심 규칙</th><th>예시</th></tr></thead><tbody>
+      <tr><th>1. 원자료</th><td>사람이 선별한 진실의 원천</td><td>LLM이 읽되 수정하지 않는 불변 자료</td><td>논문, 기사, 회의록, 이미지, 데이터</td></tr>
+      <tr><th>2. 위키</th><td>LLM이 만들고 갱신하는 Markdown</td><td>요약·개체·개념·비교·종합을 연결</td><td>기업 페이지, 개념 설명, 비교표, 질의 결과</td></tr>
+      <tr><th>3. 스키마</th><td>사람과 LLM이 함께 다듬는 운영 규칙</td><td>구조·명명·출처·갱신·검수 절차를 고정</td><td>AGENTS.md, CLAUDE.md, SCHEMA.md</td></tr>
+    </tbody></table></div>
+    <div class="table-wrap" style="margin-top:18px"><table><thead><tr><th>작업</th><th>무엇을 하나</th><th>완료 조건</th><th>사람 검수 지점</th></tr></thead><tbody>
+      <tr><th>Ingest · 수집</th><td>새 원자료를 읽고 기존 페이지에 통합</td><td>요약·색인·관련 페이지·로그가 함께 갱신됨</td><td>강조점, 잘못된 합성, 누락 출처</td></tr>
+      <tr><th>Query · 질문</th><td>관련 위키 페이지를 찾아 근거와 함께 종합</td><td>답변이 근거 페이지로 추적되고, 가치 있으면 다시 저장됨</td><td>결론과 원자료의 일치, 반대 근거</td></tr>
+      <tr><th>Lint · 점검</th><td>모순·오래된 주장·고립 페이지·끊긴 링크·자료 공백 탐지</td><td>문제 목록과 수정·추가 조사 항목이 남음</td><td>어떤 주장을 폐기·보류할지</td></tr>
+    </tbody></table></div>
+  </div></section>
+    <section id="decision"><div class="wrap"><div class="section-head"><h2>누구에게 맞고, 어떻게 시작할까</h2><p>지식이 여러 주와 여러 자료에 걸쳐 누적될 때 가치가 큽니다. 한 번 묻고 끝나는 단순 검색에는 과할 수 있습니다.</p></div><div class="callout">
+    <h3>가장 작은 유용한 시험판</h3>
+    <ol>
+      <li><strong>한 주제만 고릅니다.</strong> 예: 특정 기술, 한 권의 책, 경쟁사 한 분야.</li>
+      <li><strong>세 폴더와 두 파일로 시작합니다.</strong> <code>raw/</code>, <code>pages/</code>, <code>queries/</code>, 그리고 <code>index.md</code>, <code>log.md</code>를 둡니다. 운영 규칙은 <code>SCHEMA.md</code>에 적습니다.</li>
+      <li><strong>자료 5개를 하나씩 수집합니다.</strong> 매번 생성·수정된 페이지와 원자료 연결을 사람이 확인합니다.</li>
+      <li><strong>교차 문서 질문 3개를 던집니다.</strong> 좋은 종합은 <code>queries/</code>에 다시 저장합니다.</li>
+      <li><strong>주말에 점검합니다.</strong> 끊긴 링크, 고립 페이지, 출처 없는 주장, 모순, 중복 페이지를 확인합니다.</li>
+    </ol>
+    <p><strong>계속할 기준:</strong> 두 번째 질문부터 답변의 근거 찾기와 종합 시간이 줄고, 새 자료가 기존 결론을 어디서 바꾸는지 추적된다면 확대할 가치가 있습니다. 그렇지 않다면 폴더·스키마를 단순화해야 합니다.</p>
+  </div></div></section>
+
+    <section id="rag"><div class="wrap"><div class="section-head"><h2>RAG와 무엇이 다른가</h2><p>둘은 경쟁 제품명이 아니라 지식을 준비하는 서로 다른 시점과 계층입니다.</p></div>
+      <div class="table-wrap"><table><thead><tr><th>비교축</th><th>질문 시점 검색 중심 RAG</th><th>LLM Wiki 패턴</th><th>현실적인 결합</th></tr></thead><tbody>
+        <tr><th>주요 처리 시점</th><td>질문할 때 관련 청크를 검색해 생성 문맥에 넣음</td><td>자료가 들어올 때 구조화·연결·모순 표시를 미리 갱신</td><td>위키를 먼저 검색하고 부족하면 원자료 RAG로 내려감</td></tr>
+        <tr><th>누적 산출물</th><td>기본형에서는 답변이 세션에 머물 수 있음</td><td>요약·비교·질문 결과가 파일로 남아 재사용됨</td><td>검증된 답변만 위키로 승격</td></tr>
+        <tr><th>출처와 수정</th><td>검색된 원문 청크를 직접 인용하기 쉬움</td><td>중간 요약이 오래되거나 잘못 굳어질 위험</td><td>위키 문장마다 원자료 경로와 날짜를 보존</td></tr>
+        <tr><th>확장성</th><td>대규모 코퍼스 검색에 성숙한 색인 활용</td><td>원문은 중간 규모에서 index.md가 잘 작동한다고 제안</td><td>규모가 커지면 BM25·벡터·재순위 검색을 추가</td></tr>
+      </tbody></table></div>
+      <div class="callout" style="margin-top:18px"><strong>중요한 완화</strong><br>Karpathy의 “RAG는 매번 다시 발견한다”는 설명은 문제의식을 선명하게 만드는 비교입니다. RAG 자체는 검색 가능한 비모수 메모리와 생성 모델을 결합한 계열이며, 지속형 요약·캐시·메모리·지식 그래프를 함께 쓰는 시스템도 만들 수 있습니다. 따라서 LLM Wiki는 RAG를 없애기보다 <strong>검증된 지식을 미리 컴파일해 두는 계층</strong>으로 보는 편이 정확합니다. [S3]</div>
+    </div></section>
+
+    <section id="files"><div class="wrap"><div class="section-head"><h2>index.md와 log.md가 중요한 이유</h2><p>하나는 현재 지식의 지도이고, 다른 하나는 변화의 시간축입니다.</p></div>
+      <div class="paper"><h3>index.md · 콘텐츠 지도</h3><p>모든 페이지의 링크와 한 줄 요약을 범주별로 모읍니다. 질문할 때 먼저 읽고 관련 페이지로 내려갑니다. 원문은 약 100개 원자료·수백 페이지의 중간 규모에서 이 방식이 놀랍도록 잘 작동한다고 경험적으로 설명하지만, 정식 벤치마크 수치는 아닙니다. [S1]</p><h3>log.md · 변경 기록</h3><p>수집·질문·점검을 날짜순으로 남깁니다. 최근 작업을 빠르게 복원하고, 무엇이 언제 바뀌었는지 추적합니다. 일관된 제목 형식을 쓰면 단순한 명령줄 도구로도 읽을 수 있습니다.</p></div>
+    </div></section>
+
+    <section id="fit"><div class="wrap"><div class="section-head"><h2>적합한 경우와 부적합한 경우</h2><p>문서 수보다 ‘연결과 갱신이 반복되는가’가 판단 기준입니다.</p></div>
+      <div class="table-wrap"><table><thead><tr><th>상황</th><th>적합도</th><th>이유</th><th>권장 방식</th></tr></thead><tbody>
+        <tr><th>몇 달짜리 연구·논문 읽기</th><td>높음</td><td>주장·개념·반대 근거가 계속 누적됨</td><td>개념·인물·비교 페이지와 출처 추적</td></tr>
+        <tr><th>책·강의·취미 심층 탐구</th><td>높음</td><td>장·주제·등장요소의 연결이 가치</td><td>장별 원자료와 주제별 종합 분리</td></tr>
+        <tr><th>팀의 회의·고객·프로젝트 지식</th><td>조건부</td><td>유용하지만 권한·개인정보·승인·동시 편집 필요</td><td>접근 통제와 사람 승인 후 위키 반영</td></tr>
+        <tr><th>일회성 사실 확인</th><td>낮음</td><td>유지 비용이 재사용 가치보다 큼</td><td>검색·RAG·일반 메모로 충분</td></tr>
+        <tr><th>초대형·고속 변경 데이터</th><td>조건부</td><td>전체 재정합성과 검색 비용이 커짐</td><td>DB·검색 색인·자동 검증과 결합</td></tr>
+      </tbody></table></div>
+    </div></section>
+
+    <section id="risk"><div class="wrap"><div class="section-head"><h2>반대 논리와 실패 가능성</h2><p>유지 비용이 ‘거의 0’이라는 원문의 낙관은 운영 설계와 검수 품질에 따라 달라집니다.</p></div>
+      <div class="paper"><ul>
+        <li><strong>오류가 누적될 수 있습니다.</strong> 잘못된 요약이 여러 페이지에 복제되면 이후 답변의 출발점도 오염됩니다. 원자료 불변 보존과 문장 단위 출처가 필요합니다.</li>
+        <li><strong>과도한 재작성은 신뢰를 떨어뜨립니다.</strong> 한 자료가 10~15개 페이지를 건드릴 수 있다는 원문 사례는 강점인 동시에 큰 변경 면적입니다. diff 검수와 변경 상한이 필요합니다.</li>
+        <li><strong>스키마가 너무 약하면 파일 더미가 됩니다.</strong> 페이지 생성 기준, 명명, 태그, 출처, 모순 처리와 보관 규칙을 먼저 정해야 합니다.</li>
+        <li><strong>스키마가 너무 강하면 탐구를 막습니다.</strong> 작은 파일럿에서 규칙을 함께 진화시키고, 자동화는 반복 문제가 확인된 뒤 추가하는 편이 낫습니다.</li>
+        <li><strong>민감 자료에는 별도 경계가 필요합니다.</strong> 건강·심리·회의·고객 자료는 저장 위치, 모델 전송, 계정 권한, 보존 기간과 삭제 절차를 사람이 정해야 합니다.</li>
+      </ul></div>
+    </div></section>
+
+    <section id="scenarios"><div class="wrap"><div class="section-head"><h2>세 가지 운영 시나리오</h2><p>도입 성패는 모델 성능보다 사람 검수와 운영 규칙이 얼마나 닫힌 루프를 이루는지에 좌우됩니다.</p></div>
+      <div class="table-wrap"><table><thead><tr><th>시나리오</th><th>운영 모습</th><th>예상 결과</th><th>대응</th></tr></thead><tbody>
+        <tr><th>낙관</th><td>출처·diff·점검이 습관화되고 고가치 질문을 다시 저장</td><td>질문할수록 연결과 종합이 빨라지는 누적 자산</td><td>주제와 사용자를 점진적으로 확대</td></tr>
+        <tr><th>기준</th><td>유용하지만 일부 페이지가 낡고 중복됨</td><td>검색 보조와 수동 정리가 함께 필요</td><td>주간 lint, 월간 보관, 핵심 페이지만 엄격 관리</td></tr>
+        <tr><th>보수</th><td>대량 자동 수집, 출처 없는 요약, 검수 없는 광범위 수정</td><td>그럴듯하지만 신뢰하기 어려운 파일 더미</td><td>자동 수집 중단, 원자료로 회귀, 중요 페이지 재검증</td></tr>
+      </tbody></table></div>
+    </div></section>
+
+
+    <section id="limitations"><div class="wrap"><div class="section-head"><h2>한계와 최종 체크리스트</h2><p>원문 자체도 이것이 구체 구현이 아닌 추상적 패턴이라고 명시합니다.</p></div>
+      <div class="paper"><ul>
+        <li>정확한 폴더, 페이지 형식, 도구와 자동화 수준은 도메인·자료·모델에 맞춰 정해야 합니다.</li>
+        <li>‘약 100개 원자료·수백 페이지’, ‘한 자료가 10~15개 페이지를 수정’은 원문의 경험적 예시이며 보편 성능 보장이 아닙니다.</li>
+        <li>RAG 비교는 기본적인 질문 시점 검색 흐름을 대상으로 한 개념 비교입니다. 모든 현대 RAG·메모리 시스템을 포괄하지 않습니다.</li>
+        <li>LLM이 모순을 표시해도 사실 판정이 자동으로 끝나는 것은 아닙니다. 중요한 결론은 원자료와 변경 내역을 사용자가 검수해야 합니다.</li>
+      </ul>
+      <h3>도입 전 네 가지 질문</h3><ol><li>원자료가 수정 불가 상태로 보존되는가?</li><li>모든 핵심 주장에 출처·날짜를 추적할 수 있는가?</li><li>한 번의 수집이 건드릴 수 있는 파일 수와 승인 기준이 정해졌는가?</li><li>점검·백업·보안·폐기 책임자가 분명한가?</li></ol></div>
+    </div></section>
+
+  </main>
+  <section id="sources" class="source-section"><div class="wrap"><div class="section-head"><h2>전체 출처</h2><p>사실·분석·전망·루머, 시각자료와 생성 이미지의 상태를 함께 기록했습니다.</p></div><table class="sources"><thead><tr><th>유형</th><th>자료명</th><th>제공자·저작자</th><th>URL</th><th>날짜</th><th>라이선스·상태</th><th>사용 범위</th></tr></thead><tbody>
+    <tr><td>공식 원문</td><td>LLM Wiki — A pattern for building personal knowledge bases using LLMs</td><td>Andrej Karpathy</td><td><a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">GitHub Gist</a></td><td>2026-04-04</td><td>공개 Gist · 원문 확인</td><td>정의, 구조, 작업, 규모 예시, 팁, 한계</td></tr>
+    <tr><td>Git 이력</td><td>llm-wiki.md 최초·현재 revision ac46de1</td><td>Andrej Karpathy / GitHub</td><td><a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f/revisions">Revisions</a></td><td>2026-04-04 16:25 UTC</td><td>공개 Git 이력 · 1 revision</td><td>작성일·단일 revision 검증</td></tr>
+    <tr><td>논문</td><td>Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks</td><td>Patrick Lewis 외</td><td><a href="https://arxiv.org/abs/2005.11401">arXiv:2005.11401</a></td><td>2020-05-22</td><td>arXiv 원 논문</td><td>RAG의 원래 정의와 비교 완화</td></tr>
+    <tr><td>공식 저장소</td><td>QMD — on-device search engine for markdown</td><td>Tobi Lütke 외</td><td><a href="https://github.com/tobi/qmd">GitHub</a></td><td>2026-08-02 확인</td><td>MIT · README/License 확인</td><td>선택형 BM25·벡터·LLM 재순위·MCP 검색</td></tr>
+    <tr><td>공식 문서</td><td>Graph view</td><td>Obsidian</td><td><a href="https://obsidian.md/help/plugins/graph">Obsidian Help</a></td><td>2026-08-02 확인</td><td>공식 도움말 · 링크</td><td>노트 관계 시각화 기능 확인</td></tr>
+    <tr><td>AI 생성 이미지</td><td>LLM Wiki 3계층 화이트보드 인포그래픽</td><td>OpenAI gpt-image-2-high</td><td>로컬 자산: llm-wiki-three-layers.png</td><td>2026-08-02</td><td>AI 생성 · 시각 검수 완료 · 공식 이미지 아님</td><td>보고서 상단 개념 설명</td></tr>
+  </tbody></table></div></section>
+</body>
+</html>
