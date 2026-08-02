@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Windows·macOS용 ChatGPT 데스크톱 앱에서 Chat, ChatGPT Work, Codex의 차이와 비전공자용 실제 활용법·상세 프롬프트를 설명한 심층 보고서">
+  <meta name="color-scheme" content="light">
+  <title>260803 · Chat·Work·Codex 비전공자 실전 가이드 — Report Mode</title>
+  <style>
+    :root{--page:#f5f7fa;--paper:#fff;--text:#191f28;--muted:#6b7684;--accent:#3182f6;--highlight:#ffe066;--line:#e5e8eb;--max:1120px;--radius:18px;--shadow:0 18px 54px rgba(25,31,40,.07);--sans:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,-apple-system,sans-serif}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--page);color:var(--text);font:18px/1.72 var(--sans);word-break:keep-all}a{color:var(--accent);text-underline-offset:3px}img{display:block;max-width:100%}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto}.nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}.nav-inner{min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{font-weight:900;color:var(--text);text-decoration:none}.nav-links{display:flex;gap:18px}.nav-links a{font-size:14px;color:var(--muted);text-decoration:none}.hero{background:#fff;padding:82px 0 70px}.kicker{font-size:13px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}h1,h2,h3,p{margin-top:0}.hero h1{max-width:17ch;margin:16px 0 24px;font-size:clamp(48px,6.2vw,78px);line-height:1.05;letter-spacing:-.055em}.hero h1 span{overflow-wrap:anywhere}.hero .lede{max-width:850px;font-size:26px;line-height:1.5;color:#3d4956}.marker{background:linear-gradient(transparent 62%,rgba(255,224,102,.72) 62%)}.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}.chip{border:1px solid var(--line);border-radius:999px;padding:7px 13px;font-size:14px;color:var(--muted)}main section{padding:62px 0}.section-head{margin-bottom:24px}.section-head h2{font-size:clamp(31px,4vw,47px);line-height:1.18;letter-spacing:-.04em;word-break:normal;overflow-wrap:anywhere}.section-head p{max-width:820px;color:var(--muted);word-break:normal;overflow-wrap:anywhere}.visual-hero{overflow:hidden;margin:0;border:1px solid var(--line);border-radius:22px;background:#fff;box-shadow:var(--shadow)}.visual-hero img{width:100%;height:auto}.visual-hero figcaption{display:flex;justify-content:space-between;gap:16px;padding:15px 20px;font-size:13px;color:var(--muted)}.paper,.callout{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow)}.callout{border-left:5px solid var(--accent);box-shadow:none}.table-wrap{width:100%;overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:#fff}table{width:100%;min-width:820px;border-collapse:collapse;font-size:15px;line-height:1.55}th,td{padding:15px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}thead th{background:#f2f6fc;font-size:13px}tbody th{background:#fbfcfe}.source-section{padding-bottom:80px}.sources{display:block;overflow-x:auto;min-width:0}.sources thead,.sources tbody{display:table;width:100%;min-width:1200px;table-layout:fixed}.sources th:nth-child(1),.sources td:nth-child(1){width:8%}.sources th:nth-child(2),.sources td:nth-child(2){width:19%}.sources th:nth-child(3),.sources td:nth-child(3){width:13%}.sources th:nth-child(4),.sources td:nth-child(4){width:25%}.sources th:nth-child(5),.sources td:nth-child(5){width:9%}.sources th:nth-child(6),.sources td:nth-child(6){width:14%}.sources th:nth-child(7),.sources td:nth-child(7){width:12%}
+    @media(max-width:860px){.nav-links a:nth-child(-n+2){display:none}.hero{padding-top:62px}}
+    @media(max-width:520px){body{font-size:17px}.wrap{width:min(calc(100% - 48px),var(--max))}.kicker{font-size:11px;letter-spacing:.045em;line-height:1.5}.hero h1{font-size:clamp(38px,10.5vw,48px);overflow-wrap:normal}.hero h1 span{display:block}.hero .lede{font-size:20px;word-break:normal;overflow-wrap:anywhere}.visual-hero figcaption{display:block}.visual-hero figcaption span{display:block;margin-top:4px}.paper,.callout{padding:22px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+    @media print{.nav{display:none}body{background:#fff;font-size:11pt}.hero{padding:30px 0}.hero h1{font-size:38pt}.wrap{width:100%;max-width:none}.paper,.callout,.visual-hero{box-shadow:none;break-inside:avoid}main section{padding:28px 0}.table-wrap{overflow:visible}.sources{overflow:visible;border:0}.sources thead,.sources tbody{min-width:0;font-size:7.5pt}.source-section{break-before:page}.source-section a{color:#000;text-decoration:none}}
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="보고서 탐색"><div class="wrap nav-inner"><a class="brand" href="../archive/">RM · Report Mode</a><div class="nav-links"><a href="#summary">요약</a><a href="#comparison">비교</a><a href="#decision">판단</a><a href="#sources">출처</a></div></div></nav>
+  <header class="hero"><div class="wrap"><div class="kicker">Desktop AI Work Guide · Deep Analysis</div><h1><span>Chat은 대화,</span><span>Work는 업무,</span><span>Codex는 구현</span></h1><p class="lede">Windows·macOS용 ChatGPT 데스크톱 앱에서 무엇을 언제 골라야 하는지, 비전공자도 바로 시험할 수 있는 실제 작업 예시와 안전한 프롬프트로 풀었습니다.</p><div class="meta"><span class="chip"><strong>260803</strong> · 심층보고서</span><span class="chip">2026.08.03 KST</span><span class="chip">OpenAI 공식 원문 11건 · 사실·분석·템플릿 분리</span></div></div></header>
+  <main>
+    <section aria-labelledby="visual-title"><div class="wrap"><figure class="visual-hero"><img src="../assets/260803-chatgpt-desktop-chat-work-codex-guide/chat-work-codex-whiteboard.png" alt="Chat, Work, Codex가 대화, 작업, 구현을 거쳐 사용자 검수로 모이는 화이트보드 두들 인포그래픽"><figcaption id="visual-title"><b>AI 생성 인포그래픽 · 공식 제품 이미지 아님</b><span>질문은 Chat · 검토할 결과물은 Work · 파일과 구현 세부는 Codex · 마지막은 사용자 검수</span></figcaption></figure></div></section>
+    <section id="summary"><div class="wrap"><div class="section-head"><h2>결론부터: 세 모드는 경쟁자가 아니라 작업의 깊이가 다릅니다</h2><p>비전공자에게 가장 중요한 기준은 “얼마나 기술적인가”가 아니라 “답변이 필요한가, 실제 결과물이 필요한가, 구현 과정까지 통제해야 하는가”입니다.</p></div><div class="paper">
+<h3 style="font-size:34px;line-height:1.35">한 문장 판단: <span class="marker">답이 필요하면 Chat, 완성된 업무 결과물이 필요하면 Work, 파일·코드의 구현 과정까지 보고 통제하려면 Codex</span>가 맞습니다.</h3>
+<p>비전공자가 Codex를 쓰는 이유는 코드를 배우기 위해서만이 아닙니다. 폴더 안의 여러 파일을 읽고, 실제 파일을 만들거나 바꾸고, 명령을 실행해 결과를 확인하며, 변경 내역을 검수 가능한 형태로 남겨야 할 때 가치가 생깁니다. 다만 보고서·발표자료·스프레드시트처럼 일상 업무 결과물이 목적이라면 ChatGPT Work가 더 쉬운 기본값입니다.</p>
+<div class="grid" style="margin-top:18px">
+  <div><b>Chat · 대화</b><p>설명, 아이디어, 짧은 초안, 비교와 조언. 결과는 주로 대화 안에 있습니다.</p></div>
+  <div><b>Work · 업무 위임</b><p>여러 자료와 도구를 사용해 문서·표·발표·분석 같은 검수 가능한 결과물을 완성합니다.</p></div>
+  <div><b>Codex · 기술 작업대</b><p>폴더·파일·명령·변경 내역·테스트를 자세히 보며 구현합니다. 소프트웨어 개발에 특히 적합합니다.</p></div>
+</div>
+<p style="margin-top:18px"><b>중요:</b> 현재 공식 명칭은 <b>ChatGPT desktop app</b>입니다. Windows와 macOS용 앱 안에서 ChatGPT 또는 Codex를 선택하고, ChatGPT 안에서는 Chat/Work를 전환합니다. 과거의 ‘Codex 앱’이라는 표현만으로는 지금의 제품 구조를 정확히 설명하지 못합니다.</p></div></div></section>
+    <section id="comparison"><div class="wrap"><div class="section-head"><h2>Chat·Work·Codex 차이와 데스크톱 앱의 이유</h2><p>공식 문서는 Work와 Codex의 핵심 능력이 겹친다고 설명합니다. 차이는 주로 시작 위치, 보이는 기술 정보, 결과를 제시하는 방식입니다.</p></div>
+<div class="table-wrap"><table><thead><tr><th>구분</th><th>Chat</th><th>ChatGPT Work</th><th>Codex</th></tr></thead><tbody>
+<tr><th>쉽게 말하면</th><td>똑똑한 대화 상대</td><td>결과물을 완성하는 실무 담당자</td><td>파일과 도구를 직접 다루는 기술 작업대</td></tr>
+<tr><th>가장 좋은 질문</th><td>“이게 무슨 뜻인가요?”</td><td>“이 자료로 8장 발표자료를 만들어 주세요.”</td><td>“이 폴더에서 웹페이지를 만들고 실제로 열어 검증해 주세요.”</td></tr>
+<tr><th>대표 결과</th><td>답변·아이디어·짧은 초안</td><td>문서·발표·스프레드시트·PDF·분석·반복 업데이트</td><td>코드·사이트·스크립트·파일 변경·테스트·변경 내역</td></tr>
+<tr><th>보이는 기술 정보</th><td>거의 없음</td><td>완성 결과 중심, Git·셸 세부는 숨기는 편</td><td>diff·리뷰·명령·구현 세부를 볼 수 있음</td></tr>
+<tr><th>비전공자 기본값</th><td>짧고 빠른 일</td><td><b>대부분의 복합 사무 작업</b></td><td>파일 시스템·자동화·웹 제작처럼 구현 통제가 필요할 때</td></tr>
+<tr><th>잘못 고르면</th><td>긴 작업이 대화에 머물 수 있음</td><td>단순 질문에 시간·크레딧을 더 쓸 수 있음</td><td>기술 정보가 과하고 잘못된 파일 변경 위험이 커짐</td></tr>
+</tbody></table></div>
+<div class="table-wrap" style="margin-top:20px"><table><thead><tr><th>왜 데스크톱 앱인가</th><th>브라우저만 쓸 때와 다른 점</th><th>현실적인 가치</th><th>주의</th></tr></thead><tbody>
+<tr><th>로컬 프로젝트</th><td>컴퓨터의 폴더를 프로젝트에 연결</td><td>업로드를 반복하지 않고 관련 파일을 함께 읽고 수정</td><td>연결한 모든 폴더의 읽기·변경 범위를 확인</td></tr>
+<tr><th>파일 미리보기</th><td>문서·발표·표·PDF, 지원 시 HTML을 나란히 검토</td><td>완성 파일을 열고 특정 부분만 다시 수정</td><td>모든 탭·슬라이드·페이지를 사람이 확인</td></tr>
+<tr><th>Computer Use</th><td>허용한 앱과 브라우저의 화면을 보고 조작</td><td>명령이나 플러그인으로 다루기 어려운 GUI 작업</td><td>macOS 권한 필요. Windows는 활성 데스크톱을 점유</td></tr>
+<tr><th>긴 작업·병렬 채팅</th><td>각 채팅이 문맥과 결과를 따로 유지</td><td>여러 프로젝트를 동시에 진행하고 중간에 방향 수정</td><td>두 채팅이 같은 파일을 동시에 바꾸지 않게 분리</td></tr>
+<tr><th>로컬/클라우드 선택</th><td>로컬 파일·앱이 필요하면 로컬, 기기가 꺼져도 계속하려면 클라우드</td><td>작업 성격에 따라 실행 장소를 선택</td><td>계정·플랜·지역·관리자 설정에 따라 기능 차이</td></tr>
+</tbody></table></div></div></section>
+    <section id="decision"><div class="wrap"><div class="section-head"><h2>무엇을 선택할까</h2><p>가장 작은 유용한 모드부터 시작하고, 필요할 때만 더 강한 실행 권한으로 올라갑니다.</p></div><div class="callout">
+<h3>3초 선택법</h3>
+<ul>
+<li><b>지금 필요한 것이 답변인가?</b> → Chat</li>
+<li><b>검토해서 바로 쓸 문서·표·발표·분석인가?</b> → Work</li>
+<li><b>폴더·파일·코드·명령을 실제로 바꾸고, 어떻게 바뀌었는지 자세히 보고 싶은가?</b> → Codex</li>
+</ul>
+<p><b>개인적인 권고:</b> 비전공자는 Work를 기본 작업실로 두고, “실제 폴더에서 구현·자동화·검증”이 필요한 순간에 Codex로 넘어가는 방식이 가장 쉽습니다. Codex를 선택해도 최종 검수 책임은 사용자에게 남습니다.</p></div></div></section>
+
+<section id="why"><div class="wrap"><div class="section-head"><h2>Codex를 써야 하는 이유와 쓰지 않아도 되는 이유</h2><p>기능 수가 아니라 완료 조건으로 판단해야 합니다.</p></div>
+<div class="grid"><div><h3>✅ 이유 1 · 말이 아니라 파일이 남는다</h3><p>예를 들어 “홈페이지 만들어 줘”라는 답변을 받는 데서 끝나지 않고, 실제 폴더에 HTML·CSS·이미지를 만들고 브라우저에서 열어 확인할 수 있습니다.</p></div><div><h3>✅ 이유 2 · 반복 작업을 절차로 바꾼다</h3><p>파일명 정리, 형식 변환, CSV 정제처럼 규칙이 있는 일을 스크립트나 작업 흐름으로 만들어 다시 쓸 수 있습니다.</p></div><div><h3>✅ 이유 3 · 변경 내역이 보인다</h3><p>어떤 파일을 만들고 무엇을 고쳤는지 기술 세부와 변경 보기를 통해 확인할 수 있습니다.</p></div></div>
+<div class="grid" style="margin-top:16px"><div><h3>⚠️ 이유 1 · 일상 문서에는 Work가 더 쉽다</h3><p>공식 문서도 Work가 비코딩 일상 업무를 위해 설계된 경험이라고 설명합니다. 기술 세부가 필요 없다면 Codex는 과할 수 있습니다.</p></div><div><h3>⚠️ 이유 2 · 실제 변경은 실제 위험을 만든다</h3><p>잘못된 폴더, 덮어쓰기, 명령 실행, 외부 전송은 대화 오류보다 영향이 큽니다. 처음에는 Ask for approval을 유지해야 합니다.</p></div><div><h3>⚠️ 이유 3 · 더 긴 작업은 더 많은 사용량을 쓸 수 있다</h3><p>Work와 Codex는 가격·크레딧·사용 한도를 공유합니다. 복합 작업은 결과 가치가 클 수 있지만 단순 질문보다 비용이 커질 수 있습니다.</p></div></div></section>
+
+<section id="start"><div class="wrap"><div class="section-head"><h2>비전공자용 15분 시작법</h2><p>처음부터 전체 폴더를 맡기지 말고 최소 시험판으로 시작합니다.</p></div>
+<div class="paper"><ol>
+<li><b>앱 설치:</b> 공식 다운로드에서 Windows 또는 macOS용 ChatGPT 데스크톱 앱을 설치합니다.</li>
+<li><b>작은 시험 폴더:</b> 원본의 복사본 5~10개만 새 폴더에 넣습니다.</li>
+<li><b>모드 선택:</b> 설명이면 Chat, 완성 문서면 Work, 실제 폴더 변경이면 Codex를 선택합니다.</li>
+<li><b>권한:</b> 처음에는 <b>Ask for approval</b>을 사용합니다. Full access로 시작하지 않습니다.</li>
+<li><b>프롬프트:</b> 목적·입력·금지사항·완료 조건·검증 방법을 씁니다.</li>
+<li><b>미리보기 후 실행:</b> 먼저 계획과 예상 변경 목록만 요청하고, 승인 뒤 복사본에 적용합니다.</li>
+<li><b>검수:</b> 생성 파일을 직접 열고 숫자·이름·날짜·누락·원본 보존을 확인합니다.</li>
+</ol></div></section>
+
+<section id="prompts"><div class="wrap"><div class="section-head"><h2>복사해서 쓰는 실제 활용 프롬프트 8개</h2><p>아래 문구는 실제 실행 결과가 아니라 안전 경계와 검증 조건을 포함한 재사용용 템플릿입니다.</p></div>
+
+<div class="paper"><h3>1. 폴더 정리 시험판 <small>· 권장: Codex</small></h3><p><b>결과:</b> 정리 계획 CSV, 복사본 폴더, 검증 보고서</p><pre style="white-space:pre-wrap">[목적] 이 폴더의 파일을 연도/월/종류 기준으로 정리할 시험판을 만드세요.
+[입력] ./inbox-test 안의 파일만 사용하세요.
+[안전 경계] 원본 파일은 이동·삭제·이름 변경하지 마세요. 외부 전송 금지. 먼저 proposed_moves.csv에 원본 경로, 제안 경로, 이유를 작성하고 멈추세요.
+[실행] 제가 승인한 뒤 ./organized-preview에 복사본만 만드세요. 이름 충돌은 덮어쓰지 말고 -2, -3을 붙이세요.
+[완료 조건] 원본 수와 복사본 수, 누락·중복·충돌 수가 포함된 verification.md를 만드세요.
+[중단 조건] 날짜나 종류를 확신할 수 없는 파일은 unknown에 제안만 하고 임의 분류하지 마세요.</pre><p><b>검수:</b> 샘플 10개 경로, 원본 개수, 중복 해시를 직접 확인합니다.</p></div>
+
+<div class="paper" style="margin-top:16px"><h3>2. 지저분한 CSV 정리 <small>· 권장: Work 또는 Codex</small></h3><p><b>결과:</b> cleaned.csv와 data-quality.md</p><pre style="white-space:pre-wrap">[목적] @sales-export.csv의 날짜·통화·중복·지역명을 정리한 새 CSV를 만드세요.
+[원본 보존] 원본은 절대 수정하지 마세요.
+[규칙] 날짜는 YYYY-MM-DD, 통화는 숫자 열로 통일하되 빈칸은 빈칸으로 유지하세요. source_row_id를 보존하세요. 요약 행은 데이터와 분리하세요.
+[검증] 처리 전후 행 수, 제거한 중복 기준, 변환 실패 행, 열별 빈값 수를 data-quality.md에 기록하세요. 합계가 원본과 달라지면 원인을 설명하세요.
+[완료 조건] cleaned.csv를 다시 읽어 열 수 있고 모든 행의 열 개수가 같아야 합니다.
+[중단 조건] 중복 판정 키가 불명확하면 삭제하지 말고 질문하세요.</pre><p><b>검수:</b> 합계·행 수·날짜 표본·중복 판정 키를 확인합니다.</p></div>
+
+<div class="paper" style="margin-top:16px"><h3>3. 반복 주간 보고서 <small>· 권장: Work</small></h3><p><b>결과:</b> 매주 검토용 초안, 발송 전 승인</p><pre style="white-space:pre-wrap">매주 월요일 오전, 승인된 @Google Drive와 @Slack의 [프로젝트명] 업데이트만 확인하세요. 지난 7일의 결정, 진행, 막힌 일, 담당자, 열린 질문을 1페이지 보고서로 정리하세요. 각 항목에 원문 링크와 날짜를 붙이고 사실과 제안을 구분하세요. 정보가 없으면 '확인되지 않음'이라고 쓰세요. 초안만 저장하고 누구에게도 보내거나 공유 설정을 바꾸지 마세요. 제가 승인하기 전에는 외부 발송을 중단하세요.</pre><p><b>검수:</b> 원문 링크, 담당자, 날짜, 누락된 채널을 확인합니다.</p></div>
+
+<div class="paper" style="margin-top:16px"><h3>4. 사진·영수증 파일명 정리 <small>· 권장: Codex</small></h3><p><b>결과:</b> rename-plan.csv와 복사본</p><pre style="white-space:pre-wrap">[목적] ./receipts-sample의 영수증 이미지 파일명을 YYYY-MM-DD_상호_금액_통화 형식으로 정리할 계획을 만드세요.
+[안전] 원본 수정·삭제 금지. OCR 결과를 외부 서비스로 보내지 마세요. 먼저 rename-plan.csv만 작성하세요.
+[불확실성] 날짜·상호·금액 중 하나라도 확신이 낮으면 NEEDS_REVIEW로 표시하고 이름을 바꾸지 마세요.
+[승인 후] ./receipts-renamed에 복사본만 생성하세요.
+[검증] 원본/복사본 개수, 인식 실패, 중복 이름, 총액 합계를 report.md에 기록하세요.</pre><p><b>검수:</b> 개인정보 노출, 금액·통화·날짜 오인식, 중복 파일을 확인합니다.</p></div>
+
+<div class="paper" style="margin-top:16px"><h3>5. 간단한 소개 웹페이지 <small>· 권장: Codex</small></h3><p><b>결과:</b> 실제로 열리는 반응형 HTML 사이트</p><pre style="white-space:pre-wrap">./site-draft 폴더에 단일 페이지 소개 사이트를 만드세요. 입력은 brief.md와 images 폴더뿐입니다. 먼저 페이지 구조와 사용할 문구 목록을 제안하고 승인받으세요. 승인 후 index.html, styles.css만 만들고 외부 분석·추적·폼 전송은 넣지 마세요. 제공된 사실 외의 경력·수치·후기는 만들지 마세요. 모바일 390px와 데스크톱에서 열어 가로 넘침, 깨진 이미지, 콘솔 오류, 키보드 탐색을 검사하세요. 마지막에 생성 파일과 검사 결과를 QA.md에 기록하세요.</pre><p><b>검수:</b> 문구 사실성, 연락처, 이미지 권리, 모바일 화면, 링크를 확인합니다.</p></div>
+
+<div class="paper" style="margin-top:16px"><h3>6. 문서 일괄 변환 <small>· 권장: Codex</small></h3><p><b>결과:</b> 변환본과 대조표</p><pre style="white-space:pre-wrap">./docs-sample의 .docx 파일을 ./pdf-preview에 PDF 복사본으로 변환하세요. 원본은 변경하지 마세요. 먼저 지원 도구와 예상 손실(폰트, 표, 주석, 페이지 나눔)을 설명하고 2개 파일만 시험 변환하세요. 시험본의 페이지 수, 파일 크기, 텍스트 추출 가능 여부를 conversion-check.csv에 기록한 뒤 멈추세요. 제가 승인하면 나머지를 진행하세요. 암호화·손상 파일은 건너뛰고 오류를 기록하세요. 임의로 내용을 수정하지 마세요.</pre><p><b>검수:</b> 표·각주·페이지 수·폰트·개인정보를 표본 대조합니다.</p></div>
+
+<div class="paper" style="margin-top:16px"><h3>7. 데이터 시각화 대시보드 <small>· 권장: Work</small></h3><p><b>결과:</b> 비공개 대시보드와 계산 근거</p><pre style="white-space:pre-wrap">첨부한 판매 CSV만 사용해 비공개 대시보드를 만드세요. 매출, 고객군, 기간별 변화와 이상치를 보여 주세요. 날짜·고객군 필터, 데이터 최신 시각, 차트의 계산식, 제외된 행 목록을 포함하세요. 가장 큰 금액 변화와 가장 큰 비율 변화를 구분하세요. 원본의 누락·불일치가 결론을 바꾸면 경고하세요. 공개·공유·권한 변경은 하지 말고 검토용 미리보기만 보여 주세요.</pre><p><b>검수:</b> 차트 합계와 원본 합계, 제외 행, 필터, 공개 범위를 확인합니다.</p></div>
+
+<div class="paper" style="margin-top:16px"><h3>8. 프로젝트 작업 체크리스트 생성기 <small>· 권장: Work, 자동 파일 생성은 Codex</small></h3><p><b>결과:</b> owners와 완료 기준이 있는 체크리스트</p><pre style="white-space:pre-wrap">notes 폴더의 회의록과 brief.md를 읽어 project-checklist.xlsx를 만드세요. 시트는 Summary, Tasks, Risks, Open Questions로 나누세요. 각 작업에 담당자, 마감일, 선행 조건, 완료 조건, 근거 파일을 적으세요. 문서에 없는 담당자·날짜는 추측하지 말고 TBC로 표시하세요. 서로 충돌하는 결정은 Risks에 원문 위치와 함께 기록하세요. 만든 파일을 다시 열어 모든 시트·열·필터가 존재하는지 확인하고, 누락과 가정을 verification.md에 적으세요.</pre><p><b>검수:</b> 담당자·마감일·완료 조건·근거 문서와 충돌 사항을 확인합니다.</p></div>
+</div></section>
+
+<section id="prompt-anatomy"><div class="wrap"><div class="section-head"><h2>좋은 프롬프트의 구조</h2><p>전문용어보다 경계와 완료 조건이 중요합니다.</p></div><div class="table-wrap"><table><thead><tr><th>요소</th><th>쓸 내용</th><th>나쁜 예</th><th>좋은 예</th></tr></thead><tbody>
+<tr><th>목적</th><td>최종 결과물</td><td>정리해 줘</td><td>중복 없는 cleaned.csv와 품질 보고서를 만들어 줘</td></tr>
+<tr><th>입력</th><td>폴더·파일·출처 범위</td><td>내 자료를 봐</td><td>./sample 폴더와 brief.md만 사용해</td></tr>
+<tr><th>안전 경계</th><td>삭제·덮어쓰기·발송·외부 전송 금지</td><td>알아서 해</td><td>원본은 보존하고 승인 전에는 복사본만 만들어</td></tr>
+<tr><th>완료 조건</th><td>파일명·형식·필수 항목</td><td>잘 만들어</td><td>390px/데스크톱, 깨진 링크 0건, QA.md 포함</td></tr>
+<tr><th>검증</th><td>실행할 검사와 보고 방식</td><td>확인해 줘</td><td>전후 행 수와 합계를 대조하고 오류 행을 기록해</td></tr>
+<tr><th>중단 조건</th><td>불확실하면 언제 멈출지</td><td>모르면 추측해</td><td>중복 기준이 불명확하면 삭제하지 말고 질문해</td></tr>
+</tbody></table></div></div></section>
+
+<section id="scenarios"><div class="wrap"><div class="section-head"><h2>도입 시나리오와 실패 가능성</h2><p>처음부터 전체 권한을 주는 방식은 가장 빠르지만 가장 위험합니다.</p></div><div class="table-wrap"><table><thead><tr><th>시나리오</th><th>전제</th><th>기대 효과</th><th>실패 신호</th><th>대응</th></tr></thead><tbody>
+<tr><th>낙관</th><td>작업이 규칙적이고 검증 가능</td><td>반복 업무를 재사용 가능한 흐름으로 전환</td><td>거의 없음</td><td>작은 표본에서 전체로 확대</td></tr>
+<tr><th>기준</th><td>일부 파일이 불규칙하고 사람 판단 필요</td><td>초안·분류·검사 시간을 줄임</td><td>예외가 반복됨</td><td>중단 조건과 검토 대기열을 추가</td></tr>
+<tr><th>보수</th><td>민감 데이터·복잡한 권한·불명확한 목표</td><td>오히려 검수 비용과 위험 증가</td><td>잘못된 창·폴더·외부 행동</td><td>Chat/Work로 축소하거나 별도 복사본·VM 사용</td></tr>
+</tbody></table></div>
+<div class="paper" style="margin-top:18px"><h3>실행 전 체크리스트</h3><ul><li>원본 백업 또는 복사본이 있는가?</li><li>작업 폴더가 정확히 한정됐는가?</li><li>삭제·발송·공개·권한 변경 금지가 적혀 있는가?</li><li>처음 권한이 Ask for approval인가?</li><li>완료를 증명할 숫자·테스트·대조표가 있는가?</li><li>결과 파일을 사람이 직접 열어볼 시간과 책임자가 있는가?</li></ul></div></div></section>
+
+<section id="method"><div class="wrap"><div class="section-head"><h2>조사 방법</h2><p>2026.08.03 KST에 OpenAI Learn의 현재 공식 데스크톱 앱·ChatGPT Work·프로젝트·파일·컴퓨터 사용·권한·가격·긴 작업 문서를 직접 확인했습니다.</p></div><div class="paper"><p>한국어 공식 동등 문서는 확인 범위에서 찾지 못해 영어 공식 원문을 기준으로 한국어로 풀었습니다. 기능은 플랜·플랫폼·지역·단계적 배포·조직 관리자 설정에 따라 달라질 수 있습니다. 예시 프롬프트는 공식 기능과 안전 지침을 바탕으로 작성한 교육용 템플릿이며, 특정 환경에서 실제로 실행했다는 뜻은 아닙니다.</p></div></div></section>
+    <section id="limits"><div class="wrap"><div class="section-head"><h2>한계와 최종 확인 과제</h2></div><div class="paper"><ul>
+<li>제품과 문서는 빠르게 변합니다. 이 보고서는 2026.08.03 KST의 공식 문서 스냅샷입니다.</li>
+<li>Windows·macOS의 최소 OS 버전, 한국 계정에서의 실제 배포 상태, 각 플랜의 구체적 사용량은 계정 화면에서 다시 확인해야 합니다.</li>
+<li>Computer Use는 지원 지역과 설정에 따라 달라집니다. Windows에서는 활성 데스크톱을 점유하고, macOS에서는 화면 기록·손쉬운 사용 권한이 필요합니다.</li>
+<li>예시 프롬프트는 템플릿입니다. 실제 파일 형식·프로그램·폴더 권한에 따라 도구와 결과가 달라집니다.</li>
+<li>법률·금융·의료·보안·개인정보 업무와 외부 발송·결제·삭제·권한 변경은 적절한 전문가와 사용자가 직접 검토해야 합니다.</li>
+</ul></div></div></section>
+  </main>
+  <section id="sources" class="source-section"><div class="wrap"><div class="section-head"><h2>전체 출처</h2><p>사실·분석·전망·루머, 시각자료와 생성 이미지의 상태를 함께 기록했습니다.</p></div><table class="sources"><thead><tr><th>유형</th><th>자료명</th><th>제공자·저작자</th><th>URL</th><th>날짜</th><th>라이선스·상태</th><th>사용 범위</th></tr></thead><tbody>
+<tr><td>공식 문서</td><td>ChatGPT desktop app</td><td>OpenAI</td><td><a href="https://learn.chatgpt.com/docs/app">원문</a></td><td>2026.08.03 확인</td><td>공식 · 발행일 미표기</td><td>앱 명칭·Windows/macOS·ChatGPT/Codex 선택·데스크톱 가치</td></tr>
+<tr><td>공식 문서</td><td>Get started with ChatGPT Work</td><td>OpenAI</td><td><a href="https://learn.chatgpt.com/docs/get-started-with-work">원문</a></td><td>2026.08.03 확인</td><td>공식 · 발행일 미표기</td><td>Chat과 Work의 목적·로컬/클라우드·예시·경계</td></tr>
+<tr><td>공식 문서</td><td>Use ChatGPT</td><td>OpenAI</td><td><a href="https://learn.chatgpt.com/docs/use-chatgpt">원문</a></td><td>2026.08.03 확인</td><td>공식 · 발행일 미표기</td><td>Chat/Work/Codex 비교·데스크톱 인터페이스·검수</td></tr>
+<tr><td>공식 문서</td><td>Projects and chats</td><td>OpenAI</td><td><a href="https://learn.chatgpt.com/docs/projects">원문</a></td><td>2026.08.03 확인</td><td>공식 · 발행일 미표기</td><td>로컬 프로젝트·폴더 접근·병렬 채팅·Quick chat</td></tr>
+<tr><td>공식 문서</td><td>Work with files</td><td>OpenAI</td><td><a href="https://learn.chatgpt.com/docs/artifacts-viewer">원문</a></td><td>2026.08.03 확인</td><td>공식 · 발행일 미표기</td><td>문서·발표·표·PDF·HTML 미리보기와 주석 검수</td></tr>
+<tr><td>공식 문서</td><td>Computer Use</td><td>OpenAI</td><td><a href="https://learn.chatgpt.com/docs/computer-use">원문</a></td><td>2026.08.03 확인</td><td>공식 · 발행일 미표기</td><td>지원 OS·GUI 작업·권한·Windows/macOS 차이·안전</td></tr>
+<tr><td>공식 문서</td><td>Permissions</td><td>OpenAI</td><td><a href="https://learn.chatgpt.com/docs/permission-modes">원문</a></td><td>2026.08.03 확인</td><td>공식 · 발행일 미표기</td><td>Ask for approval·sandbox·approval 관계</td></tr>
+<tr><td>공식 문서</td><td>Long-running work</td><td>OpenAI</td><td><a href="https://learn.chatgpt.com/docs/long-running-work">원문</a></td><td>2026.08.03 확인</td><td>공식 · 발행일 미표기</td><td>목표·제약·완료 정의·병렬 작업·Goal mode</td></tr>
+<tr><td>공식 문서</td><td>Pricing</td><td>OpenAI</td><td><a href="https://learn.chatgpt.com/docs/pricing">원문</a></td><td>2026.08.03 확인</td><td>공식 · 현재 가격은 변동 가능</td><td>Work와 Codex의 가격·크레딧·사용 한도 공유</td></tr>
+<tr><td>공식 사례</td><td>Clean and prepare messy data</td><td>OpenAI</td><td><a href="https://learn.chatgpt.com/use-cases/clean-messy-data">원문</a></td><td>2026.08.03 확인</td><td>공식 사례</td><td>원본 보존형 CSV 정리 프롬프트 근거</td></tr>
+<tr><td>공식 사례</td><td>Build a dashboard that stays up to date</td><td>OpenAI</td><td><a href="https://learn.chatgpt.com/use-cases/analyze-data-export">원문</a></td><td>2026.08.03 확인</td><td>공식 사례</td><td>비공개 대시보드·검증·예약 업데이트 근거</td></tr>
+<tr><td>시각자료</td><td>Chat·Work·Codex 화이트보드 인포그래픽</td><td>OpenAI 이미지 생성 / Report Mode</td><td>로컬 자산: chat-work-codex-whiteboard.png</td><td>2026.08.03 생성</td><td>AI 생성 · 공식 제품 이미지 아님 · 검수 완료</td><td>보고서 상단 개념 설명</td></tr></tbody></table></div></section>
+</body>
+</html>
