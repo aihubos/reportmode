@@ -1,7 +1,31 @@
 {
-  "generatedAt": "2026-08-02T02:50:14Z",
+  "generatedAt": "2026-08-02T04:00:00Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260802-ai-agent-hermes-openclaw-codex",
+      "slug": "ai-agent-hermes-openclaw-codex",
+      "title": "AI Agent 심층 비교 — Hermes vs OpenClaw vs Codex",
+      "subtitle": "아키텍처·자율성·메모리·보안·운영·비용·사용자 적합성 비교",
+      "category": "AI Agent 비교 · 심층분석",
+      "summary": "개인 AI 운영체제는 Hermes, 다채널·다기기 허브는 OpenClaw, 코드 작업은 Codex가 각각 가장 강합니다.",
+      "createdAt": "2026-08-02T13:00:00+09:00",
+      "updatedAt": "2026-08-02T13:00:00+09:00",
+      "status": "published",
+      "path": "reports/260802-ai-agent-hermes-openclaw-codex.html",
+      "url": "https://aihubos.github.io/reportmode/reports/260802-ai-agent-hermes-openclaw-codex.html",
+      "displayDate": "260802",
+      "sourceCount": 21,
+      "tags": [
+        "ai-agent",
+        "hermes-agent",
+        "openclaw",
+        "codex",
+        "security",
+        "automation",
+        "deep-dive"
+      ]
+    },
     {
       "id": "260802-iphone-fold-vs-galaxy-fold7-fold8-ultra",
       "slug": "iphone-fold-vs-galaxy-fold7-fold8-ultra",
@@ -16,7 +40,15 @@
       "url": "https://aihubos.github.io/reportmode/reports/260802-iphone-fold-vs-galaxy-fold7-fold8-ultra.html",
       "displayDate": "260802",
       "sourceCount": 18,
-      "tags": ["apple", "samsung", "iphone-fold", "galaxy-z-fold7", "galaxy-z-fold8-ultra", "benchmarks", "deep-dive"]
+      "tags": [
+        "apple",
+        "samsung",
+        "iphone-fold",
+        "galaxy-z-fold7",
+        "galaxy-z-fold8-ultra",
+        "benchmarks",
+        "deep-dive"
+      ]
     },
     {
       "id": "260802-galaxy-z-fold8-deep-dive",
@@ -32,7 +64,13 @@
       "url": "https://aihubos.github.io/reportmode/reports/260802-galaxy-z-fold8-deep-dive.html",
       "displayDate": "260802",
       "sourceCount": 16,
-      "tags": ["samsung", "galaxy-z-fold8", "foldable", "deep-dive", "official"]
+      "tags": [
+        "samsung",
+        "galaxy-z-fold8",
+        "foldable",
+        "deep-dive",
+        "official"
+      ]
     },
     {
       "id": "260802-apple-foldable-iphone",
@@ -48,7 +86,12 @@
       "url": "https://aihubos.github.io/reportmode/reports/260802-apple-foldable-iphone/",
       "displayDate": "260802",
       "sourceCount": 4,
-      "tags": ["apple", "foldable", "iphone", "rumor"]
+      "tags": [
+        "apple",
+        "foldable",
+        "iphone",
+        "rumor"
+      ]
     }
   ]
 }
