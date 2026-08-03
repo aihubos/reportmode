@@ -1,7 +1,31 @@
 {
-  "generatedAt": "2026-08-03T01:09:00Z",
+  "generatedAt": "2026-08-03T05:25:14Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260803-deepseek-v4-flash-comparison",
+      "slug": "deepseek-v4-flash-comparison",
+      "title": "DeepSeek V4 Flash 비교 — 가격은 압도적, 선택은 업무별",
+      "subtitle": "공식 사양·API 가격·독립 성능 신호·경쟁 모델·운영 리스크 비교",
+      "category": "AI 모델 비교 · 심층분석",
+      "summary": "V4 Flash는 대량 에이전트·코딩 초벌에서 비용 혁신 후보지만, 고위험 업무는 상위 모델 또는 사람의 교차 검수가 필요합니다.",
+      "createdAt": "2026-08-03T14:25:14+09:00",
+      "updatedAt": "2026-08-03T14:25:14+09:00",
+      "status": "published",
+      "path": "reports/260803-deepseek-v4-flash-comparison.html",
+      "url": "https://aihubos.github.io/reportmode/reports/260803-deepseek-v4-flash-comparison.html",
+      "displayDate": "260803",
+      "sourceCount": 16,
+      "tags": [
+        "deepseek",
+        "deepseek-v4-flash",
+        "gpt-5.6",
+        "gemini-3.6",
+        "claude-sonnet-5",
+        "ai-model",
+        "comparison"
+      ]
+    },
     {
       "id": "260803-buzz-slack-discord-telegram-guide",
       "slug": "buzz-slack-discord-telegram-guide",
