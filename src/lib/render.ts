@@ -469,7 +469,36 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
       });
     }
 
+    function wait(delay) {
+      return new Promise(function (resolve) {
+        window.setTimeout(resolve, delay);
+      });
+    }
+
+    function fetchViewCount(reportId, attemptsLeft) {
+      return fetch(COUNTER_BASE + encodeURIComponent(reportId) + "/", {
+        cache: "no-store",
+        mode: "cors"
+      })
+        .then(function (response) {
+          if (!response.ok) throw new Error("counter unavailable");
+          return response.json();
+        })
+        .then(function (data) {
+          var value = Number(data.count);
+          if (!Number.isFinite(value)) throw new Error("invalid counter value");
+          return value;
+        })
+        .catch(function (error) {
+          if (attemptsLeft <= 1) throw error;
+          return wait(350).then(function () {
+            return fetchViewCount(reportId, attemptsLeft - 1);
+          });
+        });
+    }
+
     function loadViewCounts(visiblePosts) {
+      var queue = Promise.resolve();
       visiblePosts.forEach(function (post) {
         var output = post.querySelector("[data-view-count]");
         var reportId = post.dataset.reportId || "";
@@ -479,20 +508,20 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
           return;
         }
         output.dataset.loaded = "true";
-        fetch(COUNTER_BASE + encodeURIComponent(reportId) + "/", {
-          cache: "no-store",
-          mode: "cors"
-        })
-          .then(function (response) {
-            if (!response.ok) throw new Error("counter unavailable");
-            return response.json();
+        output.textContent = "조회수 …";
+        queue = queue
+          .then(function () {
+            return fetchViewCount(reportId, 3);
           })
-          .then(function (data) {
-            var value = Number(data.count);
-            output.textContent = "조회수 " + (Number.isFinite(value) ? value.toLocaleString("ko-KR") : "0");
+          .then(function (value) {
+            output.textContent = "조회수 " + value.toLocaleString("ko-KR");
           })
           .catch(function () {
-            output.textContent = "조회수 0";
+            output.textContent = "조회수 —";
+            output.dataset.loaded = "false";
+          })
+          .then(function () {
+            return wait(120);
           });
       });
     }
