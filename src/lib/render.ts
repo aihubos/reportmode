@@ -268,8 +268,28 @@ export function renderReportHtml(doc: ReportDocument): string {
 }
 
 export function renderHomeHtml(items: ManifestItem[], linkPrefix = ""): string {
-  const categories = Array.from(new Set(items.map((item) => item.category))).sort(
-    (a, b) => a.localeCompare(b, "ko"),
+  const categoryFor = (item: ManifestItem) => {
+    const text = [item.title, item.subtitle, item.category, ...(item.tags || [])]
+      .filter(Boolean)
+      .join(" ")
+      .toLocaleLowerCase("ko");
+    if (/(pokemon|pokopia|nintendo|cozy-game|game|게임|포켓몬|포코피아)/.test(text)) {
+      return "게임";
+    }
+    if (/(tesla|model-y|electric-vehicle|전기차|자동차)/.test(text)) {
+      return "자동차";
+    }
+    if (/(deepseek|gpt-|gemini|claude|ai-agent|ai model|ai 모델|인공지능|hermes|openclaw|codex|buzz|slack|discord|telegram)/.test(text)) {
+      return "AI";
+    }
+    if (/(apple|iphone|samsung|galaxy|foldable|폴더블|갤럭시|스마트폰|it 기기)/.test(text)) {
+      return "IT 기기";
+    }
+    return "기타";
+  };
+  const categoryOrder = ["AI", "게임", "자동차", "IT 기기", "기타"];
+  const categories = categoryOrder.filter((category) =>
+    items.some((item) => categoryFor(item) === category),
   );
   const categoryButtons = ["전체", ...categories]
     .map(
@@ -278,14 +298,71 @@ export function renderHomeHtml(items: ManifestItem[], linkPrefix = ""): string {
         const count =
           value === "all"
             ? items.length
-            : items.filter((item) => item.category === category).length;
+            : items.filter((item) => categoryFor(item) === category).length;
         return `<button class="archive-category" type="button" data-category-filter="${escapeHtml(value)}"><span>${escapeHtml(category)}</span><b>${count}</b></button>`;
       },
     )
     .join("\n");
 
+  const tagLabels: Record<string, string> = {
+    "ai-agent": "AI 에이전트",
+    "ai-model": "AI 모델",
+    apple: "Apple",
+    automation: "자동화",
+    benchmarks: "벤치마크",
+    buzz: "Buzz",
+    "claude-sonnet-5": "Claude Sonnet 5",
+    codex: "Codex",
+    comparison: "비교",
+    "cozy-game": "코지 게임",
+    deepseek: "DeepSeek",
+    "deepseek-v4-flash": "DeepSeek V4 Flash",
+    "deep-dive": "심층분석",
+    discord: "Discord",
+    "electric-vehicle": "전기차",
+    foldable: "폴더블",
+    "galaxy-z-fold7": "Galaxy Z Fold7",
+    "galaxy-z-fold8": "Galaxy Z Fold8",
+    "galaxy-z-fold8-ultra": "Galaxy Z Fold8 Ultra",
+    "gemini-3.6": "Gemini 3.6",
+    "gpt-5.6": "GPT-5.6",
+    "hermes-agent": "Hermes",
+    iphone: "iPhone",
+    "iphone-fold": "iPhone Fold",
+    "model-y-l": "Model Y L",
+    "nintendo-switch-2": "Nintendo Switch 2",
+    official: "공식 발표",
+    openclaw: "OpenClaw",
+    pokemon: "포켓몬",
+    pokopia: "포코피아",
+    "purchase-decision": "구매 결정",
+    rumor: "루머",
+    samsung: "Samsung",
+    security: "보안",
+    "self-hosted": "셀프호스팅",
+    slack: "Slack",
+    telegram: "Telegram",
+    tesla: "Tesla",
+  };
+  const tagGroups = items
+    .map((item) => {
+      const reportTags = (item.tags || []).slice(0, 3);
+      if (reportTags.length === 0) return "";
+      const reportHref = linkPrefix + item.path;
+      const links = reportTags
+        .map((tag) => {
+          const label = tagLabels[tag.toLocaleLowerCase("en")] || tag;
+          return `<a class="archive-report-tag" href="${escapeHtml(reportHref)}" aria-label="${escapeHtml(label)} 태그: ${escapeHtml(item.title)} 보고서 열기">#${escapeHtml(label)}</a>`;
+        })
+        .join("");
+      return `<div class="archive-tag-group"><a class="archive-tag-title" href="${escapeHtml(reportHref)}">${escapeHtml(item.title)}</a><div class="archive-tag-links">${links}</div></div>`;
+    })
+    .filter(Boolean)
+    .join("\n");
+
   const posts = items
     .map((item, index) => {
+      const archiveCategory = categoryFor(item);
       const tags = (item.tags || [])
         .slice(0, 3)
         .map((tag) => `<span>#${escapeHtml(tag)}</span>`)
@@ -310,12 +387,12 @@ export function renderHomeHtml(items: ManifestItem[], linkPrefix = ""): string {
         ? `<figure class="archive-post-cover"><img src="${escapeHtml(coverSource)}" alt="${escapeHtml(coverAlt)}" loading="lazy"><figcaption>${escapeHtml(item.displayDate)}</figcaption></figure>`
         : `<div class="archive-post-cover archive-post-cover-fallback" aria-hidden="true"><span>REPORT</span><strong>${escapeHtml(item.displayDate.slice(0, 2))}</strong><small>${escapeHtml(item.category)}</small></div>`;
       return `
-      <article class="archive-post" data-report-item data-report-id="${escapeHtml(item.id)}" data-category="${escapeHtml(item.category)}" data-search="${escapeHtml(searchText)}">
+      <article class="archive-post" data-report-item data-report-id="${escapeHtml(item.id)}" data-category="${escapeHtml(archiveCategory)}" data-search="${escapeHtml(searchText)}">
         <a class="archive-post-link" href="${escapeHtml(linkPrefix + item.path)}">
           <div class="archive-post-number" aria-label="게시글 번호">${String(items.length - index).padStart(3, "0")}</div>
           <div class="archive-post-copy">
             <div class="archive-post-meta">
-              <span class="archive-post-category">${escapeHtml(item.category)}</span>
+              <span class="archive-post-category">${escapeHtml(archiveCategory)}</span>
               <span>${escapeHtml(item.displayDate)}</span>
               <span>출처 ${item.sourceCount}개</span>
               <span class="archive-view-count" data-view-count>조회수 0</span>
@@ -384,6 +461,13 @@ export function renderHomeHtml(items: ManifestItem[], linkPrefix = ""): string {
           <div class="archive-side-label">CATEGORY</div>
           <div class="archive-category-list">
 ${categoryButtons}
+          </div>
+        </section>
+        <section class="archive-side-card archive-side-tags">
+          <div class="archive-side-label">REPORT TAGS</div>
+          <h2>주제 태그</h2>
+          <div class="archive-tag-groups">
+${tagGroups}
           </div>
         </section>
         <section class="archive-side-note">

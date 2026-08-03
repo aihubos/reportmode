@@ -275,7 +275,7 @@ footer {
 .archive-blog-action small { color: rgba(255,255,255,.82); font-size: 10px; font-weight: 600; }
 .archive-blog-action i { margin-left: auto; font-size: 15px; font-style: normal; }
 .archive-layout { display: grid; grid-template-columns: 246px minmax(0, 1fr); align-items: start; gap: 22px; }
-.archive-sidebar { display: grid; gap: 14px; position: sticky; top: 86px; }
+.archive-sidebar { display: grid; gap: 14px; }
 .archive-side-card { padding: 24px !important; border: 1px solid #edf0f2; border-radius: 20px; background: #fff; }
 .archive-side-card h2 { margin: 13px 0 10px; font-size: 20px; line-height: 1.35; letter-spacing: -.035em; }
 .archive-side-card p { margin: 0; color: var(--archive-muted); font-size: 13px; line-height: 1.65; }
@@ -290,6 +290,22 @@ footer {
 .archive-category.is-active { color: var(--archive-blue-deep); background: var(--archive-blue-soft); font-weight: 800; }
 .archive-category b { color: var(--archive-subtle); font-size: 12px; }
 .archive-category.is-active b { color: var(--archive-blue); }
+.archive-side-tags h2 { margin-bottom: 15px; }
+.archive-tag-groups { display: grid; gap: 15px; }
+.archive-tag-group { min-width: 0; padding-bottom: 14px; border-bottom: 1px solid var(--archive-line); }
+.archive-tag-group:last-child { padding-bottom: 0; border-bottom: 0; }
+.archive-tag-title {
+  display: block; overflow: hidden; margin-bottom: 7px; color: var(--archive-ink); font-size: 12px; font-weight: 800;
+  line-height: 1.45; text-decoration: none; text-overflow: ellipsis; white-space: nowrap;
+}
+.archive-tag-title:hover { color: var(--archive-blue-deep); }
+.archive-tag-links { display: flex; flex-wrap: wrap; gap: 5px; }
+.archive-report-tag {
+  display: inline-flex; align-items: center; min-height: 25px; padding: 3px 8px; border-radius: 999px;
+  color: var(--archive-blue-deep); background: var(--archive-blue-soft); font-size: 10px; font-weight: 800;
+  line-height: 1.2; text-decoration: none; transition: color .18s ease, background .18s ease, transform .18s ease;
+}
+.archive-report-tag:hover { color: #fff; background: var(--archive-blue); transform: translateY(-1px); }
 .archive-side-note { display: flex; gap: 11px; align-items: flex-start; padding: 16px 18px !important; }
 .archive-side-note p { margin: 0; color: var(--archive-subtle); font-size: 12px; line-height: 1.55; }
 .archive-note-dot { width: 7px; height: 7px; flex: 0 0 auto; margin-top: 5px; border-radius: 50%; background: #00c73c; box-shadow: 0 0 0 4px rgba(0,199,60,.09); }
@@ -387,7 +403,7 @@ footer {
   .archive-primary-action { grid-column: 2; justify-self: start; }
   .archive-layout { grid-template-columns: 1fr; }
   .archive-sidebar { position: static; grid-template-columns: 1fr; }
-  .archive-side-categories, .archive-side-note { display: none; }
+  .archive-side-categories, .archive-side-tags, .archive-side-note { display: none; }
   .archive-mobile-categories { display: flex; gap: 7px; margin: 0 -2px 18px; overflow-x: auto; scrollbar-width: none; }
   .archive-mobile-categories::-webkit-scrollbar { display: none; }
   .archive-mobile-categories .archive-category { width: auto; min-width: max-content; padding: 0 14px; border: 1px solid var(--archive-line); border-radius: 999px; }
@@ -487,14 +503,24 @@ footer {
           <div class="archive-side-label">CATEGORY</div>
           <div class="archive-category-list">
 <button class="archive-category" type="button" data-category-filter="all"><span>전체</span><b>8</b></button>
-<button class="archive-category" type="button" data-category-filter="게임 분석 · 심층리서치"><span>게임 분석 · 심층리서치</span><b>1</b></button>
-<button class="archive-category" type="button" data-category-filter="공식 발표 제품 · 심층분석"><span>공식 발표 제품 · 심층분석</span><b>1</b></button>
-<button class="archive-category" type="button" data-category-filter="미발표 제품 · 루머 분석"><span>미발표 제품 · 루머 분석</span><b>1</b></button>
-<button class="archive-category" type="button" data-category-filter="성능 비교 · 심층분석"><span>성능 비교 · 심층분석</span><b>1</b></button>
-<button class="archive-category" type="button" data-category-filter="전기차 구매 판단 · 최대 심층"><span>전기차 구매 판단 · 최대 심층</span><b>1</b></button>
-<button class="archive-category" type="button" data-category-filter="AI 모델 비교 · 심층분석"><span>AI 모델 비교 · 심층분석</span><b>1</b></button>
-<button class="archive-category" type="button" data-category-filter="AI 협업 플랫폼 · 비전공자 심층 가이드"><span>AI 협업 플랫폼 · 비전공자 심층 가이드</span><b>1</b></button>
-<button class="archive-category" type="button" data-category-filter="AI Agent 비교 · 심층분석"><span>AI Agent 비교 · 심층분석</span><b>1</b></button>
+<button class="archive-category" type="button" data-category-filter="AI"><span>AI</span><b>3</b></button>
+<button class="archive-category" type="button" data-category-filter="게임"><span>게임</span><b>1</b></button>
+<button class="archive-category" type="button" data-category-filter="자동차"><span>자동차</span><b>1</b></button>
+<button class="archive-category" type="button" data-category-filter="IT 기기"><span>IT 기기</span><b>3</b></button>
+          </div>
+        </section>
+        <section class="archive-side-card archive-side-tags">
+          <div class="archive-side-label">REPORT TAGS</div>
+          <h2>주제 태그</h2>
+          <div class="archive-tag-groups">
+<div class="archive-tag-group"><a class="archive-tag-title" href="../reports/260803-tesla-model-y-l-delivery-decision.html">Tesla Model Y L 6,499만원 출고 결정</a><div class="archive-tag-links"><a class="archive-report-tag" href="../reports/260803-tesla-model-y-l-delivery-decision.html" aria-label="Tesla 태그: Tesla Model Y L 6,499만원 출고 결정 보고서 열기">#Tesla</a><a class="archive-report-tag" href="../reports/260803-tesla-model-y-l-delivery-decision.html" aria-label="Model Y L 태그: Tesla Model Y L 6,499만원 출고 결정 보고서 열기">#Model Y L</a><a class="archive-report-tag" href="../reports/260803-tesla-model-y-l-delivery-decision.html" aria-label="구매 결정 태그: Tesla Model Y L 6,499만원 출고 결정 보고서 열기">#구매 결정</a></div></div>
+<div class="archive-tag-group"><a class="archive-tag-title" href="../reports/260803-deepseek-v4-flash-comparison.html">DeepSeek V4 Flash 비교 — 가격은 압도적, 선택은 업무별</a><div class="archive-tag-links"><a class="archive-report-tag" href="../reports/260803-deepseek-v4-flash-comparison.html" aria-label="DeepSeek 태그: DeepSeek V4 Flash 비교 — 가격은 압도적, 선택은 업무별 보고서 열기">#DeepSeek</a><a class="archive-report-tag" href="../reports/260803-deepseek-v4-flash-comparison.html" aria-label="DeepSeek V4 Flash 태그: DeepSeek V4 Flash 비교 — 가격은 압도적, 선택은 업무별 보고서 열기">#DeepSeek V4 Flash</a><a class="archive-report-tag" href="../reports/260803-deepseek-v4-flash-comparison.html" aria-label="GPT-5.6 태그: DeepSeek V4 Flash 비교 — 가격은 압도적, 선택은 업무별 보고서 열기">#GPT-5.6</a></div></div>
+<div class="archive-tag-group"><a class="archive-tag-title" href="../reports/260803-buzz-slack-discord-telegram-guide.html">Buzz 쉽게 이해하기 — Slack·Discord·Telegram 비교</a><div class="archive-tag-links"><a class="archive-report-tag" href="../reports/260803-buzz-slack-discord-telegram-guide.html" aria-label="Buzz 태그: Buzz 쉽게 이해하기 — Slack·Discord·Telegram 비교 보고서 열기">#Buzz</a><a class="archive-report-tag" href="../reports/260803-buzz-slack-discord-telegram-guide.html" aria-label="Slack 태그: Buzz 쉽게 이해하기 — Slack·Discord·Telegram 비교 보고서 열기">#Slack</a><a class="archive-report-tag" href="../reports/260803-buzz-slack-discord-telegram-guide.html" aria-label="Discord 태그: Buzz 쉽게 이해하기 — Slack·Discord·Telegram 비교 보고서 열기">#Discord</a></div></div>
+<div class="archive-tag-group"><a class="archive-tag-title" href="../reports/260802-pokemon-pokopia-deep-dive.html">포켓몬 포코피아 장단점과 인기 요인</a><div class="archive-tag-links"><a class="archive-report-tag" href="../reports/260802-pokemon-pokopia-deep-dive.html" aria-label="포켓몬 태그: 포켓몬 포코피아 장단점과 인기 요인 보고서 열기">#포켓몬</a><a class="archive-report-tag" href="../reports/260802-pokemon-pokopia-deep-dive.html" aria-label="포코피아 태그: 포켓몬 포코피아 장단점과 인기 요인 보고서 열기">#포코피아</a><a class="archive-report-tag" href="../reports/260802-pokemon-pokopia-deep-dive.html" aria-label="Nintendo Switch 2 태그: 포켓몬 포코피아 장단점과 인기 요인 보고서 열기">#Nintendo Switch 2</a></div></div>
+<div class="archive-tag-group"><a class="archive-tag-title" href="../reports/260802-ai-agent-hermes-openclaw-codex.html">AI Agent 심층 비교 — Hermes vs OpenClaw vs Codex</a><div class="archive-tag-links"><a class="archive-report-tag" href="../reports/260802-ai-agent-hermes-openclaw-codex.html" aria-label="AI 에이전트 태그: AI Agent 심층 비교 — Hermes vs OpenClaw vs Codex 보고서 열기">#AI 에이전트</a><a class="archive-report-tag" href="../reports/260802-ai-agent-hermes-openclaw-codex.html" aria-label="Hermes 태그: AI Agent 심층 비교 — Hermes vs OpenClaw vs Codex 보고서 열기">#Hermes</a><a class="archive-report-tag" href="../reports/260802-ai-agent-hermes-openclaw-codex.html" aria-label="OpenClaw 태그: AI Agent 심층 비교 — Hermes vs OpenClaw vs Codex 보고서 열기">#OpenClaw</a></div></div>
+<div class="archive-tag-group"><a class="archive-tag-title" href="../reports/260802-iphone-fold-vs-galaxy-fold7-fold8-ultra.html">아이폰 폴드 vs 갤럭시 폴드7·폴드8 울트라 성능 심층비교</a><div class="archive-tag-links"><a class="archive-report-tag" href="../reports/260802-iphone-fold-vs-galaxy-fold7-fold8-ultra.html" aria-label="Apple 태그: 아이폰 폴드 vs 갤럭시 폴드7·폴드8 울트라 성능 심층비교 보고서 열기">#Apple</a><a class="archive-report-tag" href="../reports/260802-iphone-fold-vs-galaxy-fold7-fold8-ultra.html" aria-label="Samsung 태그: 아이폰 폴드 vs 갤럭시 폴드7·폴드8 울트라 성능 심층비교 보고서 열기">#Samsung</a><a class="archive-report-tag" href="../reports/260802-iphone-fold-vs-galaxy-fold7-fold8-ultra.html" aria-label="iPhone Fold 태그: 아이폰 폴드 vs 갤럭시 폴드7·폴드8 울트라 성능 심층비교 보고서 열기">#iPhone Fold</a></div></div>
+<div class="archive-tag-group"><a class="archive-tag-title" href="../reports/260802-galaxy-z-fold8-deep-dive.html">갤럭시 Z Fold8 심층분석</a><div class="archive-tag-links"><a class="archive-report-tag" href="../reports/260802-galaxy-z-fold8-deep-dive.html" aria-label="Samsung 태그: 갤럭시 Z Fold8 심층분석 보고서 열기">#Samsung</a><a class="archive-report-tag" href="../reports/260802-galaxy-z-fold8-deep-dive.html" aria-label="Galaxy Z Fold8 태그: 갤럭시 Z Fold8 심층분석 보고서 열기">#Galaxy Z Fold8</a><a class="archive-report-tag" href="../reports/260802-galaxy-z-fold8-deep-dive.html" aria-label="폴더블 태그: 갤럭시 Z Fold8 심층분석 보고서 열기">#폴더블</a></div></div>
+<div class="archive-tag-group"><a class="archive-tag-title" href="../reports/260802-apple-foldable-iphone/">Apple 폴더블 iPhone</a><div class="archive-tag-links"><a class="archive-report-tag" href="../reports/260802-apple-foldable-iphone/" aria-label="Apple 태그: Apple 폴더블 iPhone 보고서 열기">#Apple</a><a class="archive-report-tag" href="../reports/260802-apple-foldable-iphone/" aria-label="폴더블 태그: Apple 폴더블 iPhone 보고서 열기">#폴더블</a><a class="archive-report-tag" href="../reports/260802-apple-foldable-iphone/" aria-label="iPhone 태그: Apple 폴더블 iPhone 보고서 열기">#iPhone</a></div></div>
           </div>
         </section>
         <section class="archive-side-note">
@@ -519,14 +545,10 @@ footer {
 
         <div class="archive-mobile-categories" aria-label="보고서 분류">
 <button class="archive-category" type="button" data-category-filter="all"><span>전체</span><b>8</b></button>
-<button class="archive-category" type="button" data-category-filter="게임 분석 · 심층리서치"><span>게임 분석 · 심층리서치</span><b>1</b></button>
-<button class="archive-category" type="button" data-category-filter="공식 발표 제품 · 심층분석"><span>공식 발표 제품 · 심층분석</span><b>1</b></button>
-<button class="archive-category" type="button" data-category-filter="미발표 제품 · 루머 분석"><span>미발표 제품 · 루머 분석</span><b>1</b></button>
-<button class="archive-category" type="button" data-category-filter="성능 비교 · 심층분석"><span>성능 비교 · 심층분석</span><b>1</b></button>
-<button class="archive-category" type="button" data-category-filter="전기차 구매 판단 · 최대 심층"><span>전기차 구매 판단 · 최대 심층</span><b>1</b></button>
-<button class="archive-category" type="button" data-category-filter="AI 모델 비교 · 심층분석"><span>AI 모델 비교 · 심층분석</span><b>1</b></button>
-<button class="archive-category" type="button" data-category-filter="AI 협업 플랫폼 · 비전공자 심층 가이드"><span>AI 협업 플랫폼 · 비전공자 심층 가이드</span><b>1</b></button>
-<button class="archive-category" type="button" data-category-filter="AI Agent 비교 · 심층분석"><span>AI Agent 비교 · 심층분석</span><b>1</b></button>
+<button class="archive-category" type="button" data-category-filter="AI"><span>AI</span><b>3</b></button>
+<button class="archive-category" type="button" data-category-filter="게임"><span>게임</span><b>1</b></button>
+<button class="archive-category" type="button" data-category-filter="자동차"><span>자동차</span><b>1</b></button>
+<button class="archive-category" type="button" data-category-filter="IT 기기"><span>IT 기기</span><b>3</b></button>
         </div>
 
         <div class="archive-list-head" aria-hidden="true">
@@ -534,12 +556,12 @@ footer {
         </div>
         <div class="archive-posts" id="archivePosts">
 
-      <article class="archive-post" data-report-item data-report-id="260803-tesla-model-y-l-delivery-decision" data-category="전기차 구매 판단 · 최대 심층" data-search="tesla model y l 6,499만원 출고 결정 현재가, 보조금, 총비용, 6인승 효용, 실사용 리스크와 대안을 함께 검토한 의사결정 보고서 현재가 대비 800만원의 가격 잠금, 6인승 효용, 보조금·금융·감가·인도 품질을 출고와 미출고 기준으로 분석했습니다. 전기차 구매 판단 · 최대 심층 tesla model-y-l purchase-decision electric-vehicle">
+      <article class="archive-post" data-report-item data-report-id="260803-tesla-model-y-l-delivery-decision" data-category="자동차" data-search="tesla model y l 6,499만원 출고 결정 현재가, 보조금, 총비용, 6인승 효용, 실사용 리스크와 대안을 함께 검토한 의사결정 보고서 현재가 대비 800만원의 가격 잠금, 6인승 효용, 보조금·금융·감가·인도 품질을 출고와 미출고 기준으로 분석했습니다. 전기차 구매 판단 · 최대 심층 tesla model-y-l purchase-decision electric-vehicle">
         <a class="archive-post-link" href="../reports/260803-tesla-model-y-l-delivery-decision.html">
           <div class="archive-post-number" aria-label="게시글 번호">008</div>
           <div class="archive-post-copy">
             <div class="archive-post-meta">
-              <span class="archive-post-category">전기차 구매 판단 · 최대 심층</span>
+              <span class="archive-post-category">자동차</span>
               <span>260803</span>
               <span>출처 15개</span>
               <span class="archive-view-count" data-view-count>조회수 0</span>
@@ -552,12 +574,12 @@ footer {
         </a>
       </article>
 
-      <article class="archive-post" data-report-item data-report-id="260803-deepseek-v4-flash-comparison" data-category="AI 모델 비교 · 심층분석" data-search="deepseek v4 flash 비교 — 가격은 압도적, 선택은 업무별 공식 사양·api 가격·독립 성능 신호·경쟁 모델·운영 리스크 비교 v4 flash는 대량 에이전트·코딩 초벌에서 비용 혁신 후보지만, 고위험 업무는 상위 모델 또는 사람의 교차 검수가 필요합니다. ai 모델 비교 · 심층분석 deepseek deepseek-v4-flash gpt-5.6 gemini-3.6 claude-sonnet-5 ai-model comparison">
+      <article class="archive-post" data-report-item data-report-id="260803-deepseek-v4-flash-comparison" data-category="AI" data-search="deepseek v4 flash 비교 — 가격은 압도적, 선택은 업무별 공식 사양·api 가격·독립 성능 신호·경쟁 모델·운영 리스크 비교 v4 flash는 대량 에이전트·코딩 초벌에서 비용 혁신 후보지만, 고위험 업무는 상위 모델 또는 사람의 교차 검수가 필요합니다. ai 모델 비교 · 심층분석 deepseek deepseek-v4-flash gpt-5.6 gemini-3.6 claude-sonnet-5 ai-model comparison">
         <a class="archive-post-link" href="../reports/260803-deepseek-v4-flash-comparison.html">
           <div class="archive-post-number" aria-label="게시글 번호">007</div>
           <div class="archive-post-copy">
             <div class="archive-post-meta">
-              <span class="archive-post-category">AI 모델 비교 · 심층분석</span>
+              <span class="archive-post-category">AI</span>
               <span>260803</span>
               <span>출처 16개</span>
               <span class="archive-view-count" data-view-count>조회수 0</span>
@@ -570,12 +592,12 @@ footer {
         </a>
       </article>
 
-      <article class="archive-post" data-report-item data-report-id="260803-buzz-slack-discord-telegram-guide" data-category="AI 협업 플랫폼 · 비전공자 심층 가이드" data-search="buzz 쉽게 이해하기 — slack·discord·telegram 비교 사람+ai 에이전트 구조, 기능·보안·호스팅·비용·성숙도 비교 buzz는 사람과 ai 에이전트가 대화·코드·워크플로를 함께 다루는 개발자 중심 작업공간입니다. 기존 메신저를 바로 교체하기보다 작은 개발 프로젝트로 시험하는 편이 안전합니다. ai 협업 플랫폼 · 비전공자 심층 가이드 buzz slack discord telegram ai-agent self-hosted comparison">
+      <article class="archive-post" data-report-item data-report-id="260803-buzz-slack-discord-telegram-guide" data-category="AI" data-search="buzz 쉽게 이해하기 — slack·discord·telegram 비교 사람+ai 에이전트 구조, 기능·보안·호스팅·비용·성숙도 비교 buzz는 사람과 ai 에이전트가 대화·코드·워크플로를 함께 다루는 개발자 중심 작업공간입니다. 기존 메신저를 바로 교체하기보다 작은 개발 프로젝트로 시험하는 편이 안전합니다. ai 협업 플랫폼 · 비전공자 심층 가이드 buzz slack discord telegram ai-agent self-hosted comparison">
         <a class="archive-post-link" href="../reports/260803-buzz-slack-discord-telegram-guide.html">
           <div class="archive-post-number" aria-label="게시글 번호">006</div>
           <div class="archive-post-copy">
             <div class="archive-post-meta">
-              <span class="archive-post-category">AI 협업 플랫폼 · 비전공자 심층 가이드</span>
+              <span class="archive-post-category">AI</span>
               <span>260803</span>
               <span>출처 23개</span>
               <span class="archive-view-count" data-view-count>조회수 0</span>
@@ -588,12 +610,12 @@ footer {
         </a>
       </article>
 
-      <article class="archive-post" data-report-item data-report-id="260802-pokemon-pokopia-deep-dive" data-category="게임 분석 · 심층리서치" data-search="포켓몬 포코피아 장단점과 인기 요인 출시 성과, 평단 평가, 핵심 루프, 멀티플레이와 장기 만족 조건 흥행의 핵심은 포켓몬 수집을 서식지·건설·관계 형성으로 재해석한 데 있으며, 느린 진행을 받아들일 수 있을 때 강력 추천합니다. 게임 분석 · 심층리서치 pokemon pokopia nintendo-switch-2 cozy-game deep-dive">
+      <article class="archive-post" data-report-item data-report-id="260802-pokemon-pokopia-deep-dive" data-category="게임" data-search="포켓몬 포코피아 장단점과 인기 요인 출시 성과, 평단 평가, 핵심 루프, 멀티플레이와 장기 만족 조건 흥행의 핵심은 포켓몬 수집을 서식지·건설·관계 형성으로 재해석한 데 있으며, 느린 진행을 받아들일 수 있을 때 강력 추천합니다. 게임 분석 · 심층리서치 pokemon pokopia nintendo-switch-2 cozy-game deep-dive">
         <a class="archive-post-link" href="../reports/260802-pokemon-pokopia-deep-dive.html">
           <div class="archive-post-number" aria-label="게시글 번호">005</div>
           <div class="archive-post-copy">
             <div class="archive-post-meta">
-              <span class="archive-post-category">게임 분석 · 심층리서치</span>
+              <span class="archive-post-category">게임</span>
               <span>260802</span>
               <span>출처 14개</span>
               <span class="archive-view-count" data-view-count>조회수 0</span>
@@ -606,12 +628,12 @@ footer {
         </a>
       </article>
 
-      <article class="archive-post" data-report-item data-report-id="260802-ai-agent-hermes-openclaw-codex" data-category="AI Agent 비교 · 심층분석" data-search="ai agent 심층 비교 — hermes vs openclaw vs codex 아키텍처·자율성·메모리·보안·운영·비용·사용자 적합성 비교 개인 ai 운영체제는 hermes, 다채널·다기기 허브는 openclaw, 코드 작업은 codex가 각각 가장 강합니다. ai agent 비교 · 심층분석 ai-agent hermes-agent openclaw codex security automation deep-dive">
+      <article class="archive-post" data-report-item data-report-id="260802-ai-agent-hermes-openclaw-codex" data-category="AI" data-search="ai agent 심층 비교 — hermes vs openclaw vs codex 아키텍처·자율성·메모리·보안·운영·비용·사용자 적합성 비교 개인 ai 운영체제는 hermes, 다채널·다기기 허브는 openclaw, 코드 작업은 codex가 각각 가장 강합니다. ai agent 비교 · 심층분석 ai-agent hermes-agent openclaw codex security automation deep-dive">
         <a class="archive-post-link" href="../reports/260802-ai-agent-hermes-openclaw-codex.html">
           <div class="archive-post-number" aria-label="게시글 번호">004</div>
           <div class="archive-post-copy">
             <div class="archive-post-meta">
-              <span class="archive-post-category">AI Agent 비교 · 심층분석</span>
+              <span class="archive-post-category">AI</span>
               <span>260802</span>
               <span>출처 21개</span>
               <span class="archive-view-count" data-view-count>조회수 0</span>
@@ -624,12 +646,12 @@ footer {
         </a>
       </article>
 
-      <article class="archive-post" data-report-item data-report-id="260802-iphone-fold-vs-galaxy-fold7-fold8-ultra" data-category="성능 비교 · 심층분석" data-search="아이폰 폴드 vs 갤럭시 폴드7·폴드8 울트라 성능 심층비교 공식 사양, 독립 벤치마크, 루머와 구매 시점을 표 중심으로 비교 현재 실측 선두는 fold8 ultra입니다. iphone fold는 apple 공식 발표 전이라 기다림의 가치만 비교했습니다. 성능 비교 · 심층분석 apple samsung iphone-fold galaxy-z-fold7 galaxy-z-fold8-ultra benchmarks deep-dive">
+      <article class="archive-post" data-report-item data-report-id="260802-iphone-fold-vs-galaxy-fold7-fold8-ultra" data-category="IT 기기" data-search="아이폰 폴드 vs 갤럭시 폴드7·폴드8 울트라 성능 심층비교 공식 사양, 독립 벤치마크, 루머와 구매 시점을 표 중심으로 비교 현재 실측 선두는 fold8 ultra입니다. iphone fold는 apple 공식 발표 전이라 기다림의 가치만 비교했습니다. 성능 비교 · 심층분석 apple samsung iphone-fold galaxy-z-fold7 galaxy-z-fold8-ultra benchmarks deep-dive">
         <a class="archive-post-link" href="../reports/260802-iphone-fold-vs-galaxy-fold7-fold8-ultra.html">
           <div class="archive-post-number" aria-label="게시글 번호">003</div>
           <div class="archive-post-copy">
             <div class="archive-post-meta">
-              <span class="archive-post-category">성능 비교 · 심층분석</span>
+              <span class="archive-post-category">IT 기기</span>
               <span>260802</span>
               <span>출처 18개</span>
               <span class="archive-view-count" data-view-count>조회수 0</span>
@@ -642,12 +664,12 @@ footer {
         </a>
       </article>
 
-      <article class="archive-post" data-report-item data-report-id="260802-galaxy-z-fold8-deep-dive" data-category="공식 발표 제품 · 심층분석" data-search="갤럭시 z fold8 심층분석 공식 사양, fold7·ultra·경쟁 제품 비교, 시장 전망과 구매 판단 기준 더 가볍고 오래 가는 소형 폴드. 화면·카메라·s pen의 양보까지 감수할 가치는 사용 목적이 결정합니다. 공식 발표 제품 · 심층분석 samsung galaxy-z-fold8 foldable deep-dive official">
+      <article class="archive-post" data-report-item data-report-id="260802-galaxy-z-fold8-deep-dive" data-category="IT 기기" data-search="갤럭시 z fold8 심층분석 공식 사양, fold7·ultra·경쟁 제품 비교, 시장 전망과 구매 판단 기준 더 가볍고 오래 가는 소형 폴드. 화면·카메라·s pen의 양보까지 감수할 가치는 사용 목적이 결정합니다. 공식 발표 제품 · 심층분석 samsung galaxy-z-fold8 foldable deep-dive official">
         <a class="archive-post-link" href="../reports/260802-galaxy-z-fold8-deep-dive.html">
           <div class="archive-post-number" aria-label="게시글 번호">002</div>
           <div class="archive-post-copy">
             <div class="archive-post-meta">
-              <span class="archive-post-category">공식 발표 제품 · 심층분석</span>
+              <span class="archive-post-category">IT 기기</span>
               <span>260802</span>
               <span>출처 16개</span>
               <span class="archive-view-count" data-view-count>조회수 0</span>
@@ -660,12 +682,12 @@ footer {
         </a>
       </article>
 
-      <article class="archive-post" data-report-item data-report-id="260802-apple-foldable-iphone" data-category="미발표 제품 · 루머 분석" data-search="apple 폴더블 iphone 예상 사양, 장점과 단점, 구매 전 확인해야 할 다섯 가지 기준 1세대 혁신성은 높지만, 구매는 실측 검증 뒤가 맞습니다. 미발표 제품 · 루머 분석 apple foldable iphone rumor">
+      <article class="archive-post" data-report-item data-report-id="260802-apple-foldable-iphone" data-category="IT 기기" data-search="apple 폴더블 iphone 예상 사양, 장점과 단점, 구매 전 확인해야 할 다섯 가지 기준 1세대 혁신성은 높지만, 구매는 실측 검증 뒤가 맞습니다. 미발표 제품 · 루머 분석 apple foldable iphone rumor">
         <a class="archive-post-link" href="../reports/260802-apple-foldable-iphone/">
           <div class="archive-post-number" aria-label="게시글 번호">001</div>
           <div class="archive-post-copy">
             <div class="archive-post-meta">
-              <span class="archive-post-category">미발표 제품 · 루머 분석</span>
+              <span class="archive-post-category">IT 기기</span>
               <span>260802</span>
               <span>출처 4개</span>
               <span class="archive-view-count" data-view-count>조회수 0</span>
