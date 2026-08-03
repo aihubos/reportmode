@@ -1,7 +1,31 @@
 {
-  "generatedAt": "2026-08-02T06:00:00Z",
+  "generatedAt": "2026-08-03T01:09:00Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260803-buzz-slack-discord-telegram-guide",
+      "slug": "buzz-slack-discord-telegram-guide",
+      "title": "Buzz 쉽게 이해하기 — Slack·Discord·Telegram 비교",
+      "subtitle": "사람+AI 에이전트 구조, 기능·보안·호스팅·비용·성숙도 비교",
+      "category": "AI 협업 플랫폼 · 비전공자 심층 가이드",
+      "summary": "Buzz는 사람과 AI 에이전트가 대화·코드·워크플로를 함께 다루는 개발자 중심 작업공간입니다. 기존 메신저를 바로 교체하기보다 작은 개발 프로젝트로 시험하는 편이 안전합니다.",
+      "createdAt": "2026-08-03T10:09:00+09:00",
+      "updatedAt": "2026-08-03T10:09:00+09:00",
+      "status": "published",
+      "path": "reports/260803-buzz-slack-discord-telegram-guide.html",
+      "url": "https://aihubos.github.io/reportmode/reports/260803-buzz-slack-discord-telegram-guide.html",
+      "displayDate": "260803",
+      "sourceCount": 23,
+      "tags": [
+        "buzz",
+        "slack",
+        "discord",
+        "telegram",
+        "ai-agent",
+        "self-hosted",
+        "comparison"
+      ]
+    },
     {
       "id": "260802-pokemon-pokopia-deep-dive",
       "slug": "pokemon-pokopia-deep-dive",
