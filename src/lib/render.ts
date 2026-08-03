@@ -318,7 +318,7 @@ export function renderHomeHtml(items: ManifestItem[], linkPrefix = ""): string {
               <span class="archive-post-category">${escapeHtml(item.category)}</span>
               <span>${escapeHtml(item.displayDate)}</span>
               <span>출처 ${item.sourceCount}개</span>
-              <span class="archive-view-count" data-view-count>조회수 —</span>
+              <span class="archive-view-count" data-view-count>조회수 0</span>
             </div>
             <h2>${escapeHtml(item.displayDate)} · ${escapeHtml(item.title)}</h2>
             <p>${escapeHtml(item.summary)}</p>
@@ -475,7 +475,7 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
         var reportId = post.dataset.reportId || "";
         if (!output || output.dataset.loaded === "true") return;
         if (!COUNTER_ENABLED) {
-          output.textContent = "조회수 —";
+          output.textContent = "조회수 0";
           return;
         }
         output.dataset.loaded = "true";
