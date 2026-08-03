@@ -319,7 +319,24 @@ footer {
 .archive-post-meta span { position: relative; }
 .archive-post-meta span:not(:last-child)::after { content: ""; position: absolute; width: 1px; height: 9px; right: -7px; top: 4px; background: var(--archive-line); }
 .archive-post-meta .archive-post-category { color: var(--archive-blue-deep); font-weight: 800; }
-.archive-view-count { color: #596574; font-variant-numeric: tabular-nums; font-weight: 700; }
+.archive-view-count {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  color: var(--archive-blue-deep);
+  background: var(--archive-blue-soft);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 900;
+  box-shadow: inset 0 0 0 1px rgba(49, 130, 246, 0.12);
+}
+.archive-view-count::before {
+  content: "👁";
+  margin-right: 4px;
+  font-size: 11px;
+}
 .archive-post h2 { margin: 7px 0 6px; overflow: hidden; color: var(--archive-ink); font-size: 20px; line-height: 1.35; letter-spacing: -.035em; text-overflow: ellipsis; white-space: nowrap; }
 .archive-post p { display: -webkit-box; margin: 0; overflow: hidden; color: var(--archive-muted); font-size: 13px; line-height: 1.55; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
 .archive-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 9px; color: #8b95a1; font-size: 11px; }
