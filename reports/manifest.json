@@ -1,7 +1,28 @@
 {
-  "generatedAt": "2026-08-03T05:25:14Z",
+  "generatedAt": "2026-08-03T08:59:43.649Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260803-tesla-model-y-l-delivery-decision",
+      "slug": "tesla-model-y-l-delivery-decision",
+      "title": "Tesla Model Y L 6,499만원 출고 결정",
+      "subtitle": "현재가, 보조금, 총비용, 6인승 효용, 실사용 리스크와 대안을 함께 검토한 의사결정 보고서",
+      "category": "전기차 구매 판단 · 최대 심층",
+      "summary": "현재가 대비 800만원의 가격 잠금, 6인승 효용, 보조금·금융·감가·인도 품질을 출고와 미출고 기준으로 분석했습니다.",
+      "createdAt": "2026-08-03T17:33:30+09:00",
+      "updatedAt": "2026-08-03T17:37:45+09:00",
+      "status": "published",
+      "path": "reports/260803-tesla-model-y-l-delivery-decision.html",
+      "url": "https://aihubos.github.io/reportmode/reports/260803-tesla-model-y-l-delivery-decision.html",
+      "displayDate": "260803",
+      "sourceCount": 15,
+      "tags": [
+        "tesla",
+        "model-y-l",
+        "purchase-decision",
+        "electric-vehicle"
+      ]
+    },
     {
       "id": "260803-deepseek-v4-flash-comparison",
       "slug": "deepseek-v4-flash-comparison",

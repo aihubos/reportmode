@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Jeremy를 위한 검증 가능한 웹 보고서 아카이브">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%233182f6'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial' font-size='34' font-weight='800' fill='white'%3ER%3C/text%3E%3C/svg%3E">
   <title>Report Mode — Web Reports</title>
   <style>:root {
   --ink: #171717;
@@ -181,128 +182,606 @@ footer {
   background: #111; color: #a0a0a0; padding: 28px 0; font-size: 13px;
 }
 .footer-inner { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-.home body, body.home { background: #f5f5f7; }
-.home-wrap { width: min(980px, calc(100% - 40px)); margin: 0 auto; padding: 88px 0 64px; }
-.home h1 {
-  font-family: var(--serif);
-  font-size: clamp(48px, 9vw, 84px);
-  line-height: .95; letter-spacing: -.05em; margin: 14px 0 18px;
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
 }
-.home .intro { max-width: 40rem; color: var(--muted); font-size: 20px; }
-.cards { display: grid; gap: 16px; margin-top: 48px; }
-.card {
-  display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: center;
-  text-decoration: none; color: inherit; background: #fff; border-radius: 18px;
-  padding: 28px; box-shadow: 0 12px 40px rgba(0,0,0,.05);
-  transition: transform .18s ease, box-shadow .18s ease;
+.archive-page {
+  --archive-blue: #3182f6;
+  --archive-blue-deep: #1b64da;
+  --archive-blue-soft: #eaf3ff;
+  --archive-ink: #191f28;
+  --archive-muted: #6b7684;
+  --archive-subtle: #8b95a1;
+  --archive-line: #e5e8eb;
+  margin: 0;
+  color: var(--archive-ink);
+  background: #f5f7f9;
+  font-family: "Pretendard", "Avenir Next", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  line-height: 1.5;
+  letter-spacing: -.02em;
 }
-.card:hover { transform: translateY(-3px); box-shadow: 0 18px 46px rgba(0,0,0,.08); }
-.card .tag { color: #8a5a00; font-size: 13px; font-weight: 800; }
-.card h2 { margin: 8px 0; font-size: 28px; font-family: var(--serif); }
-.card p { margin: 0; color: var(--muted); }
-.card .arrow { font-size: 30px; color: var(--accent); }
+.archive-page section { padding: 0; }
+.archive-topbar {
+  position: sticky; top: 0; z-index: 50;
+  height: 64px; background: rgba(255,255,255,.92);
+  border-bottom: 1px solid rgba(229,232,235,.9);
+  backdrop-filter: saturate(180%) blur(18px);
+}
+.archive-topbar-inner {
+  width: min(1180px, calc(100% - 40px)); height: 100%; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+}
+.archive-brand {
+  display: inline-flex; align-items: center; gap: 10px;
+  color: var(--archive-ink); font-size: 17px; font-weight: 800; text-decoration: none;
+}
+.archive-brand-mark {
+  width: 32px; height: 32px; display: grid; place-items: center;
+  border-radius: 11px; color: #fff; background: var(--archive-blue);
+  box-shadow: 0 7px 18px rgba(49,130,246,.25);
+}
+.archive-topbar nav { display: flex; align-items: center; gap: 8px; }
+.archive-topbar nav a {
+  min-height: 40px; display: inline-flex; align-items: center; padding: 0 14px;
+  border-radius: 10px; color: var(--archive-muted); font-size: 14px; font-weight: 700; text-decoration: none;
+}
+.archive-topbar nav a:hover, .archive-topbar nav a.is-current { color: var(--archive-blue-deep); background: var(--archive-blue-soft); }
+.archive-shell { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+.archive-profile {
+  min-height: 240px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 28px;
+  margin: 32px 0 24px; padding: 38px 42px !important;
+  border: 1px solid #edf0f2; border-radius: 26px; background: #fff;
+  box-shadow: 0 14px 38px rgba(15,23,42,.045);
+  overflow: hidden; position: relative;
+}
+.archive-profile::after {
+  content: ""; position: absolute; width: 320px; height: 320px; right: -180px; top: -190px;
+  border-radius: 50%; background: radial-gradient(circle, rgba(49,130,246,.13), rgba(49,130,246,0) 68%);
+  pointer-events: none;
+}
+.archive-avatar {
+  width: 92px; height: 92px; display: grid; place-items: center; position: relative;
+  border-radius: 32px; color: #fff; background: linear-gradient(145deg, #4593ff, #1769e8);
+  box-shadow: 0 18px 36px rgba(49,130,246,.24);
+}
+.archive-avatar::before, .archive-avatar::after {
+  content: ""; position: absolute; border-radius: 999px; background: rgba(255,255,255,.28); transform: rotate(-28deg);
+}
+.archive-avatar::before { width: 54px; height: 9px; top: 19px; right: -5px; }
+.archive-avatar::after { width: 30px; height: 7px; bottom: 18px; left: -4px; }
+.archive-avatar span { font-size: 27px; font-weight: 900; letter-spacing: -.07em; }
+.archive-eyebrow, .archive-side-label {
+  color: var(--archive-blue); font-size: 11px; line-height: 1; font-weight: 900; letter-spacing: .11em;
+}
+.archive-profile h1 { margin: 9px 0 8px; font-size: clamp(30px, 4vw, 42px); line-height: 1.13; letter-spacing: -.045em; }
+.archive-profile-copy > p { margin: 0; color: var(--archive-muted); font-size: 16px; }
+.archive-profile-meta { display: flex; flex-wrap: wrap; gap: 7px 18px; margin-top: 17px; color: var(--archive-subtle); font-size: 13px; }
+.archive-profile-meta span { position: relative; }
+.archive-profile-meta span:not(:last-child)::after { content: ""; position: absolute; width: 1px; height: 10px; right: -10px; top: 5px; background: var(--archive-line); }
+.archive-profile-meta b { color: var(--archive-ink); }
+.archive-primary-action {
+  position: relative; z-index: 1; min-height: 48px; display: inline-flex; align-items: center; gap: 13px;
+  padding: 0 19px; border-radius: 14px; color: #fff; background: var(--archive-blue);
+  box-shadow: 0 10px 24px rgba(49,130,246,.22); font-size: 14px; font-weight: 800; text-decoration: none;
+  transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+}
+.archive-primary-action:hover { color: #fff; background: var(--archive-blue-deep); transform: translateY(-2px); box-shadow: 0 14px 28px rgba(49,130,246,.3); }
+.archive-layout { display: grid; grid-template-columns: 246px minmax(0, 1fr); align-items: start; gap: 22px; }
+.archive-sidebar { display: grid; gap: 14px; position: sticky; top: 86px; }
+.archive-side-card { padding: 24px !important; border: 1px solid #edf0f2; border-radius: 20px; background: #fff; }
+.archive-side-card h2 { margin: 13px 0 10px; font-size: 20px; line-height: 1.35; letter-spacing: -.035em; }
+.archive-side-card p { margin: 0; color: var(--archive-muted); font-size: 13px; line-height: 1.65; }
+.archive-side-categories { padding-bottom: 12px !important; }
+.archive-category-list { margin-top: 14px; }
+.archive-category {
+  width: 100%; min-height: 42px; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 0 12px; border: 0; border-radius: 10px; color: var(--archive-muted); background: transparent;
+  font: inherit; font-size: 14px; text-align: left; cursor: pointer;
+}
+.archive-category:hover { color: var(--archive-ink); background: #f6f8fa; }
+.archive-category.is-active { color: var(--archive-blue-deep); background: var(--archive-blue-soft); font-weight: 800; }
+.archive-category b { color: var(--archive-subtle); font-size: 12px; }
+.archive-category.is-active b { color: var(--archive-blue); }
+.archive-side-note { display: flex; gap: 11px; align-items: flex-start; padding: 16px 18px !important; }
+.archive-side-note p { margin: 0; color: var(--archive-subtle); font-size: 12px; line-height: 1.55; }
+.archive-note-dot { width: 7px; height: 7px; flex: 0 0 auto; margin-top: 5px; border-radius: 50%; background: #00c73c; box-shadow: 0 0 0 4px rgba(0,199,60,.09); }
+.archive-board { min-width: 0; padding: 30px 32px 28px !important; border: 1px solid #edf0f2; border-radius: 22px; background: #fff; }
+.archive-board-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; padding-bottom: 24px; }
+.archive-board-head h2 { margin: 8px 0 3px; font-size: 28px; letter-spacing: -.045em; }
+.archive-board-head p { margin: 0; color: var(--archive-subtle); font-size: 13px; }
+.archive-search {
+  width: min(320px, 45%); height: 46px; display: flex; align-items: center; gap: 10px;
+  padding: 0 14px; border: 1px solid var(--archive-line); border-radius: 13px; background: #f9fafb;
+  transition: border .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.archive-search:focus-within { border-color: var(--archive-blue); background: #fff; box-shadow: 0 0 0 4px rgba(49,130,246,.1); }
+.archive-search svg { width: 19px; height: 19px; flex: 0 0 auto; fill: none; stroke: var(--archive-subtle); stroke-width: 1.8; stroke-linecap: round; }
+.archive-search input { min-width: 0; width: 100%; border: 0; outline: 0; background: transparent; color: var(--archive-ink); font: inherit; font-size: 14px; }
+.archive-search input::placeholder { color: #aeb6bf; }
+.archive-mobile-categories { display: none; }
+.archive-list-head {
+  display: grid; grid-template-columns: 64px minmax(0, 1fr) 110px; gap: 18px;
+  padding: 12px 8px; border-top: 2px solid #333d4b; border-bottom: 1px solid var(--archive-line);
+  color: var(--archive-subtle); font-size: 11px; font-weight: 800; letter-spacing: .04em; text-align: center;
+}
+.archive-list-head span:nth-child(2) { text-align: left; }
+.archive-post { border-bottom: 1px solid #edf0f2; }
+.archive-post[hidden] { display: none; }
+.archive-post-link {
+  display: grid; grid-template-columns: 64px minmax(0, 1fr) 110px; gap: 18px; align-items: center;
+  min-height: 154px; padding: 22px 8px; color: inherit; text-decoration: none;
+  transition: background .18s ease, transform .18s ease;
+}
+.archive-post-link:hover { color: inherit; background: #fbfcfd; transform: translateX(3px); }
+.archive-post-number { color: #a7b0ba; font-size: 12px; font-variant-numeric: tabular-nums; text-align: center; }
+.archive-post-copy { min-width: 0; }
+.archive-post-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 13px; color: var(--archive-subtle); font-size: 12px; }
+.archive-post-meta span { position: relative; }
+.archive-post-meta span:not(:last-child)::after { content: ""; position: absolute; width: 1px; height: 9px; right: -7px; top: 4px; background: var(--archive-line); }
+.archive-post-meta .archive-post-category { color: var(--archive-blue-deep); font-weight: 800; }
+.archive-post h2 { margin: 7px 0 6px; overflow: hidden; color: var(--archive-ink); font-size: 20px; line-height: 1.35; letter-spacing: -.035em; text-overflow: ellipsis; white-space: nowrap; }
+.archive-post p { display: -webkit-box; margin: 0; overflow: hidden; color: var(--archive-muted); font-size: 13px; line-height: 1.55; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.archive-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 9px; color: #8b95a1; font-size: 11px; }
+.archive-post-cover {
+  width: 110px; height: 92px; display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 12px; border-radius: 13px; color: #fff; background: linear-gradient(145deg, #5aa0ff, #2477ed 62%, #1659bd);
+  box-shadow: inset 0 1px rgba(255,255,255,.25); overflow: hidden; position: relative;
+}
+.archive-post-cover::after { content: ""; position: absolute; width: 86px; height: 86px; right: -48px; top: -44px; border: 13px solid rgba(255,255,255,.14); border-radius: 50%; }
+.archive-post-cover span { position: absolute; top: 10px; left: 12px; color: rgba(255,255,255,.72); font-size: 8px; font-weight: 900; letter-spacing: .11em; }
+.archive-post-cover strong { font-size: 25px; line-height: .95; letter-spacing: -.06em; }
+.archive-post-cover small { margin-top: 5px; overflow: hidden; font-size: 9px; font-weight: 700; opacity: .85; text-overflow: ellipsis; white-space: nowrap; }
+.archive-empty-static, .archive-empty { padding: 72px 20px; color: var(--archive-muted); text-align: center; }
+.archive-empty div { font-size: 32px; }
+.archive-empty h3 { margin: 12px 0 5px; color: var(--archive-ink); font-size: 18px; }
+.archive-empty p { margin: 0; font-size: 13px; }
+.archive-pagination { display: flex; justify-content: center; align-items: center; gap: 7px; padding-top: 28px; }
+.archive-pagination[hidden] { display: none; }
+.archive-page-button {
+  min-width: 36px; height: 36px; padding: 0 8px; border: 1px solid transparent; border-radius: 10px;
+  color: var(--archive-muted); background: transparent; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer;
+}
+.archive-page-button:hover:not(:disabled) { color: var(--archive-blue-deep); background: var(--archive-blue-soft); }
+.archive-page-button.is-active { color: #fff; background: var(--archive-blue); box-shadow: 0 7px 14px rgba(49,130,246,.2); }
+.archive-page-button.is-wide { padding: 0 14px; }
+.archive-page-button:disabled { cursor: default; opacity: .35; }
+.archive-footer {
+  display: flex; justify-content: space-between; gap: 16px; margin: 26px 0 40px;
+  padding: 0 4px !important; color: var(--archive-subtle); background: transparent; font-size: 12px;
+}
 @media (max-width: 860px) {
   .verdict-grid, .duo, .checks, .metrics { grid-template-columns: 1fr 1fr; }
   .metrics { grid-template-columns: 1fr 1fr; }
   .t-item { grid-template-columns: 1fr; }
+  .archive-profile { grid-template-columns: auto 1fr; }
+  .archive-primary-action { grid-column: 2; justify-self: start; }
+  .archive-layout { grid-template-columns: 1fr; }
+  .archive-sidebar { position: static; grid-template-columns: 1fr; }
+  .archive-side-categories, .archive-side-note { display: none; }
+  .archive-mobile-categories { display: flex; gap: 7px; margin: 0 -2px 18px; overflow-x: auto; scrollbar-width: none; }
+  .archive-mobile-categories::-webkit-scrollbar { display: none; }
+  .archive-mobile-categories .archive-category { width: auto; min-width: max-content; padding: 0 14px; border: 1px solid var(--archive-line); border-radius: 999px; }
+  .archive-mobile-categories .archive-category b { margin-left: 5px; }
 }
 @media (max-width: 640px) {
   .nav-links a:not(:last-child) { display: none; }
   .verdict-grid, .duo, .checks, .metrics { grid-template-columns: 1fr; }
   section { padding: 56px 0; }
   .hero { padding: 72px 0 56px; }
-  .card { grid-template-columns: 1fr; }
-  .card .arrow { display: none; }
+  .archive-topbar { height: 58px; }
+  .archive-topbar-inner, .archive-shell { width: min(100% - 28px, 1180px); }
+  .archive-topbar nav a { padding: 0 10px; font-size: 12px; }
+  .archive-topbar nav a:first-child { display: none; }
+  .archive-profile { grid-template-columns: 1fr; gap: 18px; margin: 18px 0 14px; padding: 24px !important; border-radius: 20px; }
+  .archive-avatar { width: 68px; height: 68px; border-radius: 23px; }
+  .archive-avatar span { font-size: 21px; }
+  .archive-profile h1 { margin-top: 7px; font-size: 29px; }
+  .archive-profile-copy > p { font-size: 14px; }
+  .archive-profile-meta span:last-child { display: none; }
+  .archive-primary-action { grid-column: 1; width: 100%; justify-content: space-between; }
+  .archive-side-card { padding: 20px !important; }
+  .archive-side-card h2 { font-size: 18px; }
+  .archive-board { padding: 24px 18px 20px !important; border-radius: 20px; }
+  .archive-board-head { display: grid; gap: 18px; }
+  .archive-board-head h2 { font-size: 25px; }
+  .archive-search { width: 100%; }
+  .archive-list-head { display: none; }
+  .archive-post-link { grid-template-columns: minmax(0, 1fr) 82px; gap: 13px; min-height: 138px; padding: 19px 0; }
+  .archive-post-number { display: none; }
+  .archive-post h2 { font-size: 17px; white-space: normal; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+  .archive-post p { -webkit-line-clamp: 1; }
+  .archive-tags { display: none; }
+  .archive-post-cover { width: 82px; height: 78px; padding: 10px; border-radius: 11px; }
+  .archive-post-cover span { left: 10px; top: 9px; font-size: 7px; }
+  .archive-post-cover strong { font-size: 21px; }
+  .archive-post-cover small { font-size: 8px; }
+  .archive-pagination { gap: 3px; }
+  .archive-page-button { min-width: 32px; height: 34px; font-size: 12px; }
+  .archive-page-button.is-wide { padding: 0 9px; }
+  .archive-footer { display: grid; margin-bottom: 26px; }
 }
 @media print {
   .nav { display: none; }
   body { background: #fff; }
   .hero { break-inside: avoid; }
   section { break-inside: avoid; }
+  .archive-topbar, .archive-sidebar, .archive-primary-action, .archive-search, .archive-mobile-categories, .archive-pagination { display: none !important; }
+  .archive-shell { width: 100%; }
+  .archive-profile, .archive-board { box-shadow: none; }
+  .archive-post[hidden] { display: block; }
 }
-
 </style>
 </head>
-<body class="home">
-  <main class="home-wrap">
-    <div class="eyebrow">GitHub Pages Report Archive</div>
-    <h1>Report<br>Mode.</h1>
-    <p class="intro">원자료를 조사하고, 사실과 해석을 분리해 만든 기존 웹 보고서 모음입니다. 새 보고서 디자인은 <a href="../">Report Mode Skill Builder</a>에서 스킬로 생성할 수 있습니다.</p>
-    <section class="cards" aria-label="보고서 목록">
+<body class="archive-page">
+  <header class="archive-topbar">
+    <div class="archive-topbar-inner">
+      <a class="archive-brand" href="../" aria-label="Report Mode 홈">
+        <span class="archive-brand-mark">R</span>
+        <span>Report Mode</span>
+      </a>
+      <nav aria-label="주요 메뉴">
+        <a class="is-current" href="./">보고서 도서관</a>
+        <a href="../">스킬 만들기</a>
+      </nav>
+    </div>
+  </header>
 
-    <a class="card" href="../reports/260803-tesla-model-y-l-delivery-decision.html">
-      <div>
-        <div class="tag">260803 · 전기차 구매 판단 · 최대 심층</div>
-        <h2>260803 · Tesla Model Y L 6,499만원 출고 결정</h2>
-        <p>현재가 대비 800만원의 가격 잠금, 6인승 효용, 보조금·금융·감가·인도 품질을 출고와 미출고 기준으로 분석했습니다.</p>
+  <main class="archive-shell">
+    <section class="archive-profile" aria-labelledby="archive-title">
+      <div class="archive-avatar" aria-hidden="true"><span>RM</span></div>
+      <div class="archive-profile-copy">
+        <div class="archive-eyebrow">AI RESEARCH LIBRARY</div>
+        <h1 id="archive-title">Report Mode 도서관</h1>
+        <p>원자료를 조사하고 사실과 해석을 나눠 기록하는 개인 보고서 아카이브입니다.</p>
+        <div class="archive-profile-meta">
+          <span>전체 보고서 <b>8</b></span>
+          <span>최근 작성 <b>260803</b></span>
+          <span>자동 업데이트</span>
+        </div>
       </div>
-      <span class="arrow" aria-hidden="true">→</span>
-    </a>
-
-    <a class="card" href="../reports/260803-deepseek-v4-flash-comparison.html">
-      <div>
-        <div class="tag">260803 · AI 모델 비교 · 심층분석</div>
-        <h2>260803 · DeepSeek V4 Flash 비교</h2>
-        <p>공식 사양·API 가격·독립 성능 신호·경쟁 모델·운영 리스크를 같은 기준으로 비교했습니다.</p>
-      </div>
-      <span class="arrow" aria-hidden="true">→</span>
-    </a>
-
-    <a class="card" href="../reports/260803-buzz-slack-discord-telegram-guide.html">
-      <div>
-        <div class="tag">260803 · AI 협업 플랫폼 · 비전공자 심층 가이드</div>
-        <h2>260803 · Buzz vs Slack·Discord·Telegram</h2>
-        <p>Buzz의 사람+AI 에이전트 구조, 현재 기능과 미완성 영역, 보안·설치 부담을 네 서비스와 같은 기준으로 비교했습니다.</p>
-      </div>
-      <span class="arrow" aria-hidden="true">→</span>
-    </a>
-
-    <a class="card" href="../reports/260803-chatgpt-desktop-chat-work-codex-guide.html">
-      <div>
-        <div class="tag">260803 · ChatGPT 데스크톱 앱 · 비전공자 실전 가이드</div>
-        <h2>260803 · Chat·Work·Codex 차이와 실제 활용법</h2>
-        <p>Windows·macOS 앱을 써야 하는 이유, 세 모드의 차이, 안전 경계를 포함한 상세 활용 프롬프트 8개를 설명합니다.</p>
-      </div>
-      <span class="arrow" aria-hidden="true">→</span>
-    </a>
-
-    <a class="card" href="../reports/260802-ai-agent-hermes-openclaw-codex.html">
-      <div>
-        <div class="tag">260802 · AI Agent 비교 · 심층분석</div>
-        <h2>260802 · Hermes vs OpenClaw vs Codex</h2>
-        <p>아키텍처·자율성·메모리·보안·운영·비용과 목적별 적합성을 공식 원문 중심으로 비교했습니다.</p>
-      </div>
-      <span class="arrow" aria-hidden="true">→</span>
-    </a>
-
-    <a class="card" href="../reports/260802-iphone-fold-vs-galaxy-fold7-fold8-ultra.html">
-      <div>
-        <div class="tag">260802 · 성능 비교 · 심층분석</div>
-        <h2>260802 · 아이폰 폴드 vs 갤럭시 폴드7·폴드8 울트라</h2>
-        <p>확정 실측과 미발표 루머를 분리해 CPU·GPU·배터리·카메라·구매 시점을 표 중심으로 비교했습니다.</p>
-      </div>
-      <span class="arrow" aria-hidden="true">→</span>
-    </a>
-
-    <a class="card" href="../reports/260802-galaxy-z-fold8-deep-dive.html">
-      <div>
-        <div class="tag">260802 · 공식 발표 제품 · 심층분석</div>
-        <h2>260802 · 갤럭시 Z Fold8 심층분석</h2>
-        <p>더 가볍고 오래 가는 소형 폴드. 화면·카메라·S Pen의 양보까지 감수할 가치는 사용 목적이 결정합니다.</p>
-      </div>
-      <span class="arrow" aria-hidden="true">→</span>
-    </a>
-
-    <a class="card" href="../reports/260802-apple-foldable-iphone/">
-      <div>
-        <div class="tag">260802 · 미발표 제품 · 루머 분석</div>
-        <h2>260802 · Apple 폴더블 iPhone</h2>
-        <p>1세대 혁신성은 높지만, 구매는 실측 검증 뒤가 맞습니다.</p>
-      </div>
-      <span class="arrow" aria-hidden="true">→</span>
-    </a>
+      <a class="archive-primary-action" href="../">나만의 스킬 만들기 <span aria-hidden="true">→</span></a>
     </section>
-    <footer style="margin-top:48px;color:var(--muted);font-size:13px;">Report Mode · 최종 판단과 검수는 사용자에게 있습니다.</footer>
+
+    <div class="archive-layout">
+      <aside class="archive-sidebar" aria-label="도서관 안내와 분류">
+        <section class="archive-side-card">
+          <div class="archive-side-label">ABOUT</div>
+          <h2>읽고 판단하기 좋은<br>리서치만 모았습니다.</h2>
+          <p>모든 보고서는 작성일, 판단 근거, 사실·분석 구분과 전체 출처를 포함합니다.</p>
+        </section>
+        <section class="archive-side-card archive-side-categories">
+          <div class="archive-side-label">CATEGORY</div>
+          <div class="archive-category-list">
+<button class="archive-category" type="button" data-category-filter="all"><span>전체</span><b>8</b></button>
+<button class="archive-category" type="button" data-category-filter="게임 분석 · 심층리서치"><span>게임 분석 · 심층리서치</span><b>1</b></button>
+<button class="archive-category" type="button" data-category-filter="공식 발표 제품 · 심층분석"><span>공식 발표 제품 · 심층분석</span><b>1</b></button>
+<button class="archive-category" type="button" data-category-filter="미발표 제품 · 루머 분석"><span>미발표 제품 · 루머 분석</span><b>1</b></button>
+<button class="archive-category" type="button" data-category-filter="성능 비교 · 심층분석"><span>성능 비교 · 심층분석</span><b>1</b></button>
+<button class="archive-category" type="button" data-category-filter="전기차 구매 판단 · 최대 심층"><span>전기차 구매 판단 · 최대 심층</span><b>1</b></button>
+<button class="archive-category" type="button" data-category-filter="AI 모델 비교 · 심층분석"><span>AI 모델 비교 · 심층분석</span><b>1</b></button>
+<button class="archive-category" type="button" data-category-filter="AI 협업 플랫폼 · 비전공자 심층 가이드"><span>AI 협업 플랫폼 · 비전공자 심층 가이드</span><b>1</b></button>
+<button class="archive-category" type="button" data-category-filter="AI Agent 비교 · 심층분석"><span>AI Agent 비교 · 심층분석</span><b>1</b></button>
+          </div>
+        </section>
+        <section class="archive-side-note">
+          <span class="archive-note-dot" aria-hidden="true"></span>
+          <p>새 보고서가 공개되면 목록 맨 위에 자동으로 추가됩니다.</p>
+        </section>
+      </aside>
+
+      <section class="archive-board" aria-labelledby="board-title">
+        <div class="archive-board-head">
+          <div>
+            <div class="archive-side-label">ALL REPORTS</div>
+            <h2 id="board-title">전체 보고서</h2>
+            <p id="archiveResultCount">총 8개의 글</p>
+          </div>
+          <label class="archive-search">
+            <span class="sr-only">보고서 검색</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.1-5.4a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"/></svg>
+            <input id="archiveSearch" type="search" placeholder="제목, 분야, 키워드 검색" autocomplete="off">
+          </label>
+        </div>
+
+        <div class="archive-mobile-categories" aria-label="보고서 분류">
+<button class="archive-category" type="button" data-category-filter="all"><span>전체</span><b>8</b></button>
+<button class="archive-category" type="button" data-category-filter="게임 분석 · 심층리서치"><span>게임 분석 · 심층리서치</span><b>1</b></button>
+<button class="archive-category" type="button" data-category-filter="공식 발표 제품 · 심층분석"><span>공식 발표 제품 · 심층분석</span><b>1</b></button>
+<button class="archive-category" type="button" data-category-filter="미발표 제품 · 루머 분석"><span>미발표 제품 · 루머 분석</span><b>1</b></button>
+<button class="archive-category" type="button" data-category-filter="성능 비교 · 심층분석"><span>성능 비교 · 심층분석</span><b>1</b></button>
+<button class="archive-category" type="button" data-category-filter="전기차 구매 판단 · 최대 심층"><span>전기차 구매 판단 · 최대 심층</span><b>1</b></button>
+<button class="archive-category" type="button" data-category-filter="AI 모델 비교 · 심층분석"><span>AI 모델 비교 · 심층분석</span><b>1</b></button>
+<button class="archive-category" type="button" data-category-filter="AI 협업 플랫폼 · 비전공자 심층 가이드"><span>AI 협업 플랫폼 · 비전공자 심층 가이드</span><b>1</b></button>
+<button class="archive-category" type="button" data-category-filter="AI Agent 비교 · 심층분석"><span>AI Agent 비교 · 심층분석</span><b>1</b></button>
+        </div>
+
+        <div class="archive-list-head" aria-hidden="true">
+          <span>번호</span><span>보고서</span><span>표지</span>
+        </div>
+        <div class="archive-posts" id="archivePosts">
+
+      <article class="archive-post" data-report-item data-category="전기차 구매 판단 · 최대 심층" data-search="tesla model y l 6,499만원 출고 결정 현재가, 보조금, 총비용, 6인승 효용, 실사용 리스크와 대안을 함께 검토한 의사결정 보고서 현재가 대비 800만원의 가격 잠금, 6인승 효용, 보조금·금융·감가·인도 품질을 출고와 미출고 기준으로 분석했습니다. 전기차 구매 판단 · 최대 심층 tesla model-y-l purchase-decision electric-vehicle">
+        <a class="archive-post-link" href="../reports/260803-tesla-model-y-l-delivery-decision.html">
+          <div class="archive-post-number" aria-label="게시글 번호">008</div>
+          <div class="archive-post-copy">
+            <div class="archive-post-meta">
+              <span class="archive-post-category">전기차 구매 판단 · 최대 심층</span>
+              <span>260803</span>
+              <span>출처 15개</span>
+            </div>
+            <h2>260803 · Tesla Model Y L 6,499만원 출고 결정</h2>
+            <p>현재가 대비 800만원의 가격 잠금, 6인승 효용, 보조금·금융·감가·인도 품질을 출고와 미출고 기준으로 분석했습니다.</p>
+            <div class="archive-tags"><span>#tesla</span><span>#model-y-l</span><span>#purchase-decision</span></div>
+          </div>
+          <div class="archive-post-cover" aria-hidden="true">
+            <span>REPORT</span>
+            <strong>26</strong>
+            <small>전기차 구매 판단 · 최대 심층</small>
+          </div>
+        </a>
+      </article>
+
+      <article class="archive-post" data-report-item data-category="AI 모델 비교 · 심층분석" data-search="deepseek v4 flash 비교 — 가격은 압도적, 선택은 업무별 공식 사양·api 가격·독립 성능 신호·경쟁 모델·운영 리스크 비교 v4 flash는 대량 에이전트·코딩 초벌에서 비용 혁신 후보지만, 고위험 업무는 상위 모델 또는 사람의 교차 검수가 필요합니다. ai 모델 비교 · 심층분석 deepseek deepseek-v4-flash gpt-5.6 gemini-3.6 claude-sonnet-5 ai-model comparison">
+        <a class="archive-post-link" href="../reports/260803-deepseek-v4-flash-comparison.html">
+          <div class="archive-post-number" aria-label="게시글 번호">007</div>
+          <div class="archive-post-copy">
+            <div class="archive-post-meta">
+              <span class="archive-post-category">AI 모델 비교 · 심층분석</span>
+              <span>260803</span>
+              <span>출처 16개</span>
+            </div>
+            <h2>260803 · DeepSeek V4 Flash 비교 — 가격은 압도적, 선택은 업무별</h2>
+            <p>V4 Flash는 대량 에이전트·코딩 초벌에서 비용 혁신 후보지만, 고위험 업무는 상위 모델 또는 사람의 교차 검수가 필요합니다.</p>
+            <div class="archive-tags"><span>#deepseek</span><span>#deepseek-v4-flash</span><span>#gpt-5.6</span></div>
+          </div>
+          <div class="archive-post-cover" aria-hidden="true">
+            <span>REPORT</span>
+            <strong>26</strong>
+            <small>AI 모델 비교 · 심층분석</small>
+          </div>
+        </a>
+      </article>
+
+      <article class="archive-post" data-report-item data-category="AI 협업 플랫폼 · 비전공자 심층 가이드" data-search="buzz 쉽게 이해하기 — slack·discord·telegram 비교 사람+ai 에이전트 구조, 기능·보안·호스팅·비용·성숙도 비교 buzz는 사람과 ai 에이전트가 대화·코드·워크플로를 함께 다루는 개발자 중심 작업공간입니다. 기존 메신저를 바로 교체하기보다 작은 개발 프로젝트로 시험하는 편이 안전합니다. ai 협업 플랫폼 · 비전공자 심층 가이드 buzz slack discord telegram ai-agent self-hosted comparison">
+        <a class="archive-post-link" href="../reports/260803-buzz-slack-discord-telegram-guide.html">
+          <div class="archive-post-number" aria-label="게시글 번호">006</div>
+          <div class="archive-post-copy">
+            <div class="archive-post-meta">
+              <span class="archive-post-category">AI 협업 플랫폼 · 비전공자 심층 가이드</span>
+              <span>260803</span>
+              <span>출처 23개</span>
+            </div>
+            <h2>260803 · Buzz 쉽게 이해하기 — Slack·Discord·Telegram 비교</h2>
+            <p>Buzz는 사람과 AI 에이전트가 대화·코드·워크플로를 함께 다루는 개발자 중심 작업공간입니다. 기존 메신저를 바로 교체하기보다 작은 개발 프로젝트로 시험하는 편이 안전합니다.</p>
+            <div class="archive-tags"><span>#buzz</span><span>#slack</span><span>#discord</span></div>
+          </div>
+          <div class="archive-post-cover" aria-hidden="true">
+            <span>REPORT</span>
+            <strong>26</strong>
+            <small>AI 협업 플랫폼 · 비전공자 심층 가이드</small>
+          </div>
+        </a>
+      </article>
+
+      <article class="archive-post" data-report-item data-category="게임 분석 · 심층리서치" data-search="포켓몬 포코피아 장단점과 인기 요인 출시 성과, 평단 평가, 핵심 루프, 멀티플레이와 장기 만족 조건 흥행의 핵심은 포켓몬 수집을 서식지·건설·관계 형성으로 재해석한 데 있으며, 느린 진행을 받아들일 수 있을 때 강력 추천합니다. 게임 분석 · 심층리서치 pokemon pokopia nintendo-switch-2 cozy-game deep-dive">
+        <a class="archive-post-link" href="../reports/260802-pokemon-pokopia-deep-dive.html">
+          <div class="archive-post-number" aria-label="게시글 번호">005</div>
+          <div class="archive-post-copy">
+            <div class="archive-post-meta">
+              <span class="archive-post-category">게임 분석 · 심층리서치</span>
+              <span>260802</span>
+              <span>출처 14개</span>
+            </div>
+            <h2>260802 · 포켓몬 포코피아 장단점과 인기 요인</h2>
+            <p>흥행의 핵심은 포켓몬 수집을 서식지·건설·관계 형성으로 재해석한 데 있으며, 느린 진행을 받아들일 수 있을 때 강력 추천합니다.</p>
+            <div class="archive-tags"><span>#pokemon</span><span>#pokopia</span><span>#nintendo-switch-2</span></div>
+          </div>
+          <div class="archive-post-cover" aria-hidden="true">
+            <span>REPORT</span>
+            <strong>26</strong>
+            <small>게임 분석 · 심층리서치</small>
+          </div>
+        </a>
+      </article>
+
+      <article class="archive-post" data-report-item data-category="AI Agent 비교 · 심층분석" data-search="ai agent 심층 비교 — hermes vs openclaw vs codex 아키텍처·자율성·메모리·보안·운영·비용·사용자 적합성 비교 개인 ai 운영체제는 hermes, 다채널·다기기 허브는 openclaw, 코드 작업은 codex가 각각 가장 강합니다. ai agent 비교 · 심층분석 ai-agent hermes-agent openclaw codex security automation deep-dive">
+        <a class="archive-post-link" href="../reports/260802-ai-agent-hermes-openclaw-codex.html">
+          <div class="archive-post-number" aria-label="게시글 번호">004</div>
+          <div class="archive-post-copy">
+            <div class="archive-post-meta">
+              <span class="archive-post-category">AI Agent 비교 · 심층분석</span>
+              <span>260802</span>
+              <span>출처 21개</span>
+            </div>
+            <h2>260802 · AI Agent 심층 비교 — Hermes vs OpenClaw vs Codex</h2>
+            <p>개인 AI 운영체제는 Hermes, 다채널·다기기 허브는 OpenClaw, 코드 작업은 Codex가 각각 가장 강합니다.</p>
+            <div class="archive-tags"><span>#ai-agent</span><span>#hermes-agent</span><span>#openclaw</span></div>
+          </div>
+          <div class="archive-post-cover" aria-hidden="true">
+            <span>REPORT</span>
+            <strong>26</strong>
+            <small>AI Agent 비교 · 심층분석</small>
+          </div>
+        </a>
+      </article>
+
+      <article class="archive-post" data-report-item data-category="성능 비교 · 심층분석" data-search="아이폰 폴드 vs 갤럭시 폴드7·폴드8 울트라 성능 심층비교 공식 사양, 독립 벤치마크, 루머와 구매 시점을 표 중심으로 비교 현재 실측 선두는 fold8 ultra입니다. iphone fold는 apple 공식 발표 전이라 기다림의 가치만 비교했습니다. 성능 비교 · 심층분석 apple samsung iphone-fold galaxy-z-fold7 galaxy-z-fold8-ultra benchmarks deep-dive">
+        <a class="archive-post-link" href="../reports/260802-iphone-fold-vs-galaxy-fold7-fold8-ultra.html">
+          <div class="archive-post-number" aria-label="게시글 번호">003</div>
+          <div class="archive-post-copy">
+            <div class="archive-post-meta">
+              <span class="archive-post-category">성능 비교 · 심층분석</span>
+              <span>260802</span>
+              <span>출처 18개</span>
+            </div>
+            <h2>260802 · 아이폰 폴드 vs 갤럭시 폴드7·폴드8 울트라 성능 심층비교</h2>
+            <p>현재 실측 선두는 Fold8 Ultra입니다. iPhone Fold는 Apple 공식 발표 전이라 기다림의 가치만 비교했습니다.</p>
+            <div class="archive-tags"><span>#apple</span><span>#samsung</span><span>#iphone-fold</span></div>
+          </div>
+          <div class="archive-post-cover" aria-hidden="true">
+            <span>REPORT</span>
+            <strong>26</strong>
+            <small>성능 비교 · 심층분석</small>
+          </div>
+        </a>
+      </article>
+
+      <article class="archive-post" data-report-item data-category="공식 발표 제품 · 심층분석" data-search="갤럭시 z fold8 심층분석 공식 사양, fold7·ultra·경쟁 제품 비교, 시장 전망과 구매 판단 기준 더 가볍고 오래 가는 소형 폴드. 화면·카메라·s pen의 양보까지 감수할 가치는 사용 목적이 결정합니다. 공식 발표 제품 · 심층분석 samsung galaxy-z-fold8 foldable deep-dive official">
+        <a class="archive-post-link" href="../reports/260802-galaxy-z-fold8-deep-dive.html">
+          <div class="archive-post-number" aria-label="게시글 번호">002</div>
+          <div class="archive-post-copy">
+            <div class="archive-post-meta">
+              <span class="archive-post-category">공식 발표 제품 · 심층분석</span>
+              <span>260802</span>
+              <span>출처 16개</span>
+            </div>
+            <h2>260802 · 갤럭시 Z Fold8 심층분석</h2>
+            <p>더 가볍고 오래 가는 소형 폴드. 화면·카메라·S Pen의 양보까지 감수할 가치는 사용 목적이 결정합니다.</p>
+            <div class="archive-tags"><span>#samsung</span><span>#galaxy-z-fold8</span><span>#foldable</span></div>
+          </div>
+          <div class="archive-post-cover" aria-hidden="true">
+            <span>REPORT</span>
+            <strong>26</strong>
+            <small>공식 발표 제품 · 심층분석</small>
+          </div>
+        </a>
+      </article>
+
+      <article class="archive-post" data-report-item data-category="미발표 제품 · 루머 분석" data-search="apple 폴더블 iphone 예상 사양, 장점과 단점, 구매 전 확인해야 할 다섯 가지 기준 1세대 혁신성은 높지만, 구매는 실측 검증 뒤가 맞습니다. 미발표 제품 · 루머 분석 apple foldable iphone rumor">
+        <a class="archive-post-link" href="../reports/260802-apple-foldable-iphone/">
+          <div class="archive-post-number" aria-label="게시글 번호">001</div>
+          <div class="archive-post-copy">
+            <div class="archive-post-meta">
+              <span class="archive-post-category">미발표 제품 · 루머 분석</span>
+              <span>260802</span>
+              <span>출처 4개</span>
+            </div>
+            <h2>260802 · Apple 폴더블 iPhone</h2>
+            <p>1세대 혁신성은 높지만, 구매는 실측 검증 뒤가 맞습니다.</p>
+            <div class="archive-tags"><span>#apple</span><span>#foldable</span><span>#iphone</span></div>
+          </div>
+          <div class="archive-post-cover" aria-hidden="true">
+            <span>REPORT</span>
+            <strong>26</strong>
+            <small>미발표 제품 · 루머 분석</small>
+          </div>
+        </a>
+      </article>
+        </div>
+        <div class="archive-empty" id="archiveEmpty" hidden>
+          <div>🔎</div>
+          <h3>찾는 보고서가 없습니다.</h3>
+          <p>검색어나 카테고리를 바꿔보세요.</p>
+        </div>
+        <nav class="archive-pagination" id="archivePagination" aria-label="보고서 페이지 이동"></nav>
+      </section>
+    </div>
+
+    <footer class="archive-footer">
+      <span>Report Mode Library</span>
+      <span>최종 판단과 검수는 사용자에게 있습니다.</span>
+    </footer>
   </main>
+
+  <script>
+  (function () {
+    var PAGE_SIZE = 10;
+    var posts = Array.prototype.slice.call(document.querySelectorAll("[data-report-item]"));
+    var filters = Array.prototype.slice.call(document.querySelectorAll("[data-category-filter]"));
+    var search = document.getElementById("archiveSearch");
+    var count = document.getElementById("archiveResultCount");
+    var pagination = document.getElementById("archivePagination");
+    var empty = document.getElementById("archiveEmpty");
+    var params = new URLSearchParams(window.location.search);
+    var state = {
+      query: params.get("q") || "",
+      category: params.get("category") || "all",
+      page: Math.max(1, parseInt(params.get("page") || "1", 10) || 1)
+    };
+
+    search.value = state.query;
+
+    function makePageButton(label, page, active, disabled, className) {
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "archive-page-button" + (active ? " is-active" : "") + (className ? " " + className : "");
+      button.textContent = label;
+      button.disabled = disabled;
+      if (active) button.setAttribute("aria-current", "page");
+      button.addEventListener("click", function () {
+        state.page = page;
+        render(true);
+      });
+      return button;
+    }
+
+    function syncUrl() {
+      var next = new URLSearchParams();
+      if (state.query) next.set("q", state.query);
+      if (state.category !== "all") next.set("category", state.category);
+      if (state.page > 1) next.set("page", String(state.page));
+      var query = next.toString();
+      window.history.replaceState(null, "", window.location.pathname + (query ? "?" + query : ""));
+    }
+
+    function render(shouldScroll) {
+      var normalizedQuery = state.query.trim().toLocaleLowerCase("ko");
+      var filtered = posts.filter(function (post) {
+        var categoryMatches = state.category === "all" || post.dataset.category === state.category;
+        var queryMatches = !normalizedQuery || (post.dataset.search || "").indexOf(normalizedQuery) !== -1;
+        return categoryMatches && queryMatches;
+      });
+      var totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+      state.page = Math.min(state.page, totalPages);
+      var start = (state.page - 1) * PAGE_SIZE;
+      var visible = filtered.slice(start, start + PAGE_SIZE);
+
+      posts.forEach(function (post) { post.hidden = true; });
+      visible.forEach(function (post) { post.hidden = false; });
+      filters.forEach(function (filter) {
+        var active = filter.dataset.categoryFilter === state.category;
+        filter.classList.toggle("is-active", active);
+        filter.setAttribute("aria-pressed", active ? "true" : "false");
+      });
+
+      count.textContent = filtered.length === 0
+        ? "검색 결과가 없습니다"
+        : "총 " + filtered.length + "개의 글 · " + state.page + "/" + totalPages + " 페이지";
+      empty.hidden = filtered.length !== 0;
+      pagination.hidden = filtered.length === 0;
+      pagination.replaceChildren();
+
+      if (filtered.length > 0) {
+        pagination.appendChild(makePageButton("이전", Math.max(1, state.page - 1), false, state.page === 1, "is-wide"));
+        var firstPage = Math.max(1, Math.min(state.page - 2, totalPages - 4));
+        var lastPage = Math.min(totalPages, firstPage + 4);
+        for (var page = firstPage; page <= lastPage; page += 1) {
+          pagination.appendChild(makePageButton(String(page), page, page === state.page, false, ""));
+        }
+        pagination.appendChild(makePageButton("다음", Math.min(totalPages, state.page + 1), false, state.page === totalPages, "is-wide"));
+      }
+
+      syncUrl();
+      if (shouldScroll) {
+        document.querySelector(".archive-board").scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    filters.forEach(function (filter) {
+      filter.addEventListener("click", function () {
+        state.category = filter.dataset.categoryFilter || "all";
+        state.page = 1;
+        render(false);
+      });
+    });
+    search.addEventListener("input", function () {
+      state.query = search.value;
+      state.page = 1;
+      render(false);
+    });
+    render(false);
+  })();
+  </script>
 </body>
 </html>

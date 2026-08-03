@@ -2,7 +2,7 @@
 import { Command } from "commander";
 import fs from "node:fs";
 import path from "node:path";
-import { buildSite } from "../lib/build.js";
+import { buildArchive, buildSite } from "../lib/build.js";
 import { loadConfig } from "../lib/config.js";
 import {
   listReportsNewestFirst,
@@ -46,6 +46,14 @@ program
         2,
       ),
     );
+  });
+
+program
+  .command("archive-build")
+  .description("기존 보고서 파일은 건드리지 않고 아카이브와 manifest만 생성")
+  .action(() => {
+    const result = buildArchive();
+    console.log(JSON.stringify({ ok: true, ...result }, null, 2));
   });
 
 program

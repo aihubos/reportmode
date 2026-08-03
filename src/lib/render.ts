@@ -267,19 +267,63 @@ export function renderReportHtml(doc: ReportDocument): string {
 }
 
 export function renderHomeHtml(items: ManifestItem[], linkPrefix = ""): string {
-  const cards = items
+  const categories = Array.from(new Set(items.map((item) => item.category))).sort(
+    (a, b) => a.localeCompare(b, "ko"),
+  );
+  const categoryButtons = ["전체", ...categories]
     .map(
-      (item) => `
-    <a class="card" href="${escapeHtml(linkPrefix + item.path)}">
-      <div>
-        <div class="tag">${escapeHtml(item.displayDate)} · ${escapeHtml(item.category)}</div>
-        <h2>${escapeHtml(item.displayDate)} · ${escapeHtml(item.title)}</h2>
-        <p>${escapeHtml(item.summary)}</p>
-      </div>
-      <span class="arrow" aria-hidden="true">→</span>
-    </a>`,
+      (category) => {
+        const value = category === "전체" ? "all" : category;
+        const count =
+          value === "all"
+            ? items.length
+            : items.filter((item) => item.category === category).length;
+        return `<button class="archive-category" type="button" data-category-filter="${escapeHtml(value)}"><span>${escapeHtml(category)}</span><b>${count}</b></button>`;
+      },
     )
     .join("\n");
+
+  const posts = items
+    .map((item, index) => {
+      const tags = (item.tags || [])
+        .slice(0, 3)
+        .map((tag) => `<span>#${escapeHtml(tag)}</span>`)
+        .join("");
+      const searchText = [
+        item.title,
+        item.subtitle,
+        item.summary,
+        item.category,
+        ...(item.tags || []),
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLocaleLowerCase("ko");
+      return `
+      <article class="archive-post" data-report-item data-category="${escapeHtml(item.category)}" data-search="${escapeHtml(searchText)}">
+        <a class="archive-post-link" href="${escapeHtml(linkPrefix + item.path)}">
+          <div class="archive-post-number" aria-label="게시글 번호">${String(items.length - index).padStart(3, "0")}</div>
+          <div class="archive-post-copy">
+            <div class="archive-post-meta">
+              <span class="archive-post-category">${escapeHtml(item.category)}</span>
+              <span>${escapeHtml(item.displayDate)}</span>
+              <span>출처 ${item.sourceCount}개</span>
+            </div>
+            <h2>${escapeHtml(item.displayDate)} · ${escapeHtml(item.title)}</h2>
+            <p>${escapeHtml(item.summary)}</p>
+            ${tags ? `<div class="archive-tags">${tags}</div>` : ""}
+          </div>
+          <div class="archive-post-cover" aria-hidden="true">
+            <span>REPORT</span>
+            <strong>${escapeHtml(item.displayDate.slice(0, 2))}</strong>
+            <small>${escapeHtml(item.category)}</small>
+          </div>
+        </a>
+      </article>`;
+    })
+    .join("\n");
+
+  const latestDate = items[0]?.displayDate || "—";
 
   return `<!doctype html>
 <html lang="ko">
@@ -287,19 +331,197 @@ export function renderHomeHtml(items: ManifestItem[], linkPrefix = ""): string {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Jeremy를 위한 검증 가능한 웹 보고서 아카이브">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%233182f6'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial' font-size='34' font-weight='800' fill='white'%3ER%3C/text%3E%3C/svg%3E">
   <title>Report Mode — Web Reports</title>
   <style>${css()}</style>
 </head>
-<body class="home">
-  <main class="home-wrap">
-    <div class="eyebrow">GitHub Pages Report Archive</div>
-    <h1>Report<br>Mode.</h1>
-    <p class="intro">원자료를 조사하고, 사실과 해석을 분리해 만든 기존 웹 보고서 모음입니다. 새 보고서 디자인은 <a href="../">Report Mode Skill Builder</a>에서 스킬로 생성할 수 있습니다.</p>
-    <section class="cards" aria-label="보고서 목록">
-${cards || "      <p>아직 공개된 보고서가 없습니다.</p>"}
+<body class="archive-page">
+  <header class="archive-topbar">
+    <div class="archive-topbar-inner">
+      <a class="archive-brand" href="../" aria-label="Report Mode 홈">
+        <span class="archive-brand-mark">R</span>
+        <span>Report Mode</span>
+      </a>
+      <nav aria-label="주요 메뉴">
+        <a class="is-current" href="./">보고서 도서관</a>
+        <a href="../">스킬 만들기</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="archive-shell">
+    <section class="archive-profile" aria-labelledby="archive-title">
+      <div class="archive-avatar" aria-hidden="true"><span>RM</span></div>
+      <div class="archive-profile-copy">
+        <div class="archive-eyebrow">AI RESEARCH LIBRARY</div>
+        <h1 id="archive-title">Report Mode 도서관</h1>
+        <p>원자료를 조사하고 사실과 해석을 나눠 기록하는 개인 보고서 아카이브입니다.</p>
+        <div class="archive-profile-meta">
+          <span>전체 보고서 <b>${items.length}</b></span>
+          <span>최근 작성 <b>${escapeHtml(latestDate)}</b></span>
+          <span>자동 업데이트</span>
+        </div>
+      </div>
+      <a class="archive-primary-action" href="../">나만의 스킬 만들기 <span aria-hidden="true">→</span></a>
     </section>
-    <footer style="margin-top:48px;color:var(--muted);font-size:13px;">Report Mode · 최종 판단과 검수는 사용자에게 있습니다.</footer>
+
+    <div class="archive-layout">
+      <aside class="archive-sidebar" aria-label="도서관 안내와 분류">
+        <section class="archive-side-card">
+          <div class="archive-side-label">ABOUT</div>
+          <h2>읽고 판단하기 좋은<br>리서치만 모았습니다.</h2>
+          <p>모든 보고서는 작성일, 판단 근거, 사실·분석 구분과 전체 출처를 포함합니다.</p>
+        </section>
+        <section class="archive-side-card archive-side-categories">
+          <div class="archive-side-label">CATEGORY</div>
+          <div class="archive-category-list">
+${categoryButtons}
+          </div>
+        </section>
+        <section class="archive-side-note">
+          <span class="archive-note-dot" aria-hidden="true"></span>
+          <p>새 보고서가 공개되면 목록 맨 위에 자동으로 추가됩니다.</p>
+        </section>
+      </aside>
+
+      <section class="archive-board" aria-labelledby="board-title">
+        <div class="archive-board-head">
+          <div>
+            <div class="archive-side-label">ALL REPORTS</div>
+            <h2 id="board-title">전체 보고서</h2>
+            <p id="archiveResultCount">총 ${items.length}개의 글</p>
+          </div>
+          <label class="archive-search">
+            <span class="sr-only">보고서 검색</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.1-5.4a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"/></svg>
+            <input id="archiveSearch" type="search" placeholder="제목, 분야, 키워드 검색" autocomplete="off">
+          </label>
+        </div>
+
+        <div class="archive-mobile-categories" aria-label="보고서 분류">
+${categoryButtons}
+        </div>
+
+        <div class="archive-list-head" aria-hidden="true">
+          <span>번호</span><span>보고서</span><span>표지</span>
+        </div>
+        <div class="archive-posts" id="archivePosts">
+${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고서가 없습니다.</p>"}
+        </div>
+        <div class="archive-empty" id="archiveEmpty" hidden>
+          <div>🔎</div>
+          <h3>찾는 보고서가 없습니다.</h3>
+          <p>검색어나 카테고리를 바꿔보세요.</p>
+        </div>
+        <nav class="archive-pagination" id="archivePagination" aria-label="보고서 페이지 이동"></nav>
+      </section>
+    </div>
+
+    <footer class="archive-footer">
+      <span>Report Mode Library</span>
+      <span>최종 판단과 검수는 사용자에게 있습니다.</span>
+    </footer>
   </main>
+
+  <script>
+  (function () {
+    var PAGE_SIZE = 10;
+    var posts = Array.prototype.slice.call(document.querySelectorAll("[data-report-item]"));
+    var filters = Array.prototype.slice.call(document.querySelectorAll("[data-category-filter]"));
+    var search = document.getElementById("archiveSearch");
+    var count = document.getElementById("archiveResultCount");
+    var pagination = document.getElementById("archivePagination");
+    var empty = document.getElementById("archiveEmpty");
+    var params = new URLSearchParams(window.location.search);
+    var state = {
+      query: params.get("q") || "",
+      category: params.get("category") || "all",
+      page: Math.max(1, parseInt(params.get("page") || "1", 10) || 1)
+    };
+
+    search.value = state.query;
+
+    function makePageButton(label, page, active, disabled, className) {
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "archive-page-button" + (active ? " is-active" : "") + (className ? " " + className : "");
+      button.textContent = label;
+      button.disabled = disabled;
+      if (active) button.setAttribute("aria-current", "page");
+      button.addEventListener("click", function () {
+        state.page = page;
+        render(true);
+      });
+      return button;
+    }
+
+    function syncUrl() {
+      var next = new URLSearchParams();
+      if (state.query) next.set("q", state.query);
+      if (state.category !== "all") next.set("category", state.category);
+      if (state.page > 1) next.set("page", String(state.page));
+      var query = next.toString();
+      window.history.replaceState(null, "", window.location.pathname + (query ? "?" + query : ""));
+    }
+
+    function render(shouldScroll) {
+      var normalizedQuery = state.query.trim().toLocaleLowerCase("ko");
+      var filtered = posts.filter(function (post) {
+        var categoryMatches = state.category === "all" || post.dataset.category === state.category;
+        var queryMatches = !normalizedQuery || (post.dataset.search || "").indexOf(normalizedQuery) !== -1;
+        return categoryMatches && queryMatches;
+      });
+      var totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+      state.page = Math.min(state.page, totalPages);
+      var start = (state.page - 1) * PAGE_SIZE;
+      var visible = filtered.slice(start, start + PAGE_SIZE);
+
+      posts.forEach(function (post) { post.hidden = true; });
+      visible.forEach(function (post) { post.hidden = false; });
+      filters.forEach(function (filter) {
+        var active = filter.dataset.categoryFilter === state.category;
+        filter.classList.toggle("is-active", active);
+        filter.setAttribute("aria-pressed", active ? "true" : "false");
+      });
+
+      count.textContent = filtered.length === 0
+        ? "검색 결과가 없습니다"
+        : "총 " + filtered.length + "개의 글 · " + state.page + "/" + totalPages + " 페이지";
+      empty.hidden = filtered.length !== 0;
+      pagination.hidden = filtered.length === 0;
+      pagination.replaceChildren();
+
+      if (filtered.length > 0) {
+        pagination.appendChild(makePageButton("이전", Math.max(1, state.page - 1), false, state.page === 1, "is-wide"));
+        var firstPage = Math.max(1, Math.min(state.page - 2, totalPages - 4));
+        var lastPage = Math.min(totalPages, firstPage + 4);
+        for (var page = firstPage; page <= lastPage; page += 1) {
+          pagination.appendChild(makePageButton(String(page), page, page === state.page, false, ""));
+        }
+        pagination.appendChild(makePageButton("다음", Math.min(totalPages, state.page + 1), false, state.page === totalPages, "is-wide"));
+      }
+
+      syncUrl();
+      if (shouldScroll) {
+        document.querySelector(".archive-board").scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    filters.forEach(function (filter) {
+      filter.addEventListener("click", function () {
+        state.category = filter.dataset.categoryFilter || "all";
+        state.page = 1;
+        render(false);
+      });
+    });
+    search.addEventListener("input", function () {
+      state.query = search.value;
+      state.page = 1;
+      render(false);
+    });
+    render(false);
+  })();
+  </script>
 </body>
 </html>
 `;
