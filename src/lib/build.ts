@@ -113,6 +113,25 @@ function reportSearchTextById(
   );
 }
 
+function fallbackViewCounts(root: string): Record<string, number> {
+  const fallbackPath = path.join(root, "reports", "view-counts.json");
+  if (!fs.existsSync(fallbackPath)) return {};
+  try {
+    const raw = JSON.parse(readText(fallbackPath));
+    if (!raw || typeof raw !== "object" || Array.isArray(raw)) return {};
+    return Object.fromEntries(
+      Object.entries(raw).flatMap(([id, value]) => {
+        const count = Number(value);
+        return Number.isFinite(count) && count >= 0
+          ? [[id, Math.trunc(count)]]
+          : [];
+      }),
+    );
+  } catch {
+    return {};
+  }
+}
+
 function writeArchiveArtifacts(
   root: string,
   items: ManifestItem[],
@@ -122,7 +141,12 @@ function writeArchiveArtifacts(
   const manifestPath = path.join(root, "reports", "manifest.json");
   writeText(
     archivePath,
-    renderHomeHtml(items, "../", reportSearchTextById(root, items)),
+    renderHomeHtml(
+      items,
+      "../",
+      reportSearchTextById(root, items),
+      fallbackViewCounts(root),
+    ),
   );
   writeText(
     manifestPath,

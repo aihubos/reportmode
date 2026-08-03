@@ -271,6 +271,7 @@ export function renderHomeHtml(
   items: ManifestItem[],
   linkPrefix = "",
   bodySearchTextById: Record<string, string> = {},
+  fallbackViewCountsById: Record<string, number> = {},
 ): string {
   const categoryFor = (item: ManifestItem) => {
     const text = [item.title, item.subtitle, item.category, ...(item.tags || [])]
@@ -361,6 +362,10 @@ export function renderHomeHtml(
   const posts = items
     .map((item, index) => {
       const archiveCategory = categoryFor(item);
+      const rawFallbackViewCount = Number(fallbackViewCountsById[item.id] || 0);
+      const fallbackViewCount = Number.isFinite(rawFallbackViewCount)
+        ? Math.max(0, Math.trunc(rawFallbackViewCount))
+        : 0;
       const tags = (item.tags || [])
         .slice(0, 3)
         .map((tag) => `<span>#${escapeHtml(tag)}</span>`)
@@ -394,7 +399,7 @@ export function renderHomeHtml(
               <span class="archive-post-category">${escapeHtml(archiveCategory)}</span>
               <span>${escapeHtml(item.displayDate)}</span>
               <span>출처 ${item.sourceCount}개</span>
-              <span class="archive-view-count" data-view-count>조회수 0</span>
+              <span class="archive-view-count" data-view-count data-view-count-fallback="${fallbackViewCount}">조회수 ${fallbackViewCount.toLocaleString("ko-KR")}</span>
             </div>
             <h2>${escapeHtml(item.displayDate)} · ${escapeHtml(item.title)}</h2>
             <p>${escapeHtml(item.summary)}</p>
@@ -573,9 +578,14 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
     }
 
     function fetchViewCount(reportId, attemptsLeft) {
+      var controller = new AbortController();
+      var timeoutId = window.setTimeout(function () {
+        controller.abort();
+      }, 5000);
       return fetch(COUNTER_BASE + encodeURIComponent(reportId) + "/", {
         cache: "no-store",
-        mode: "cors"
+        mode: "cors",
+        signal: controller.signal
       })
         .then(function (response) {
           if (!response.ok) throw new Error("counter unavailable");
@@ -585,6 +595,9 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
           var value = Number(data.count);
           if (!Number.isFinite(value)) throw new Error("invalid counter value");
           return value;
+        })
+        .finally(function () {
+          window.clearTimeout(timeoutId);
         })
         .catch(function (error) {
           if (attemptsLeft <= 1) throw error;
@@ -619,14 +632,13 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
         var reportId = post.dataset.reportId || "";
         if (!output || output.dataset.loaded === "true") return;
         if (!COUNTER_ENABLED) {
-          output.textContent = "조회수 0";
           return;
         }
         output.dataset.loaded = "true";
         var cached = cachedViewCount(reportId);
-        output.textContent = cached === null
-          ? "조회수 확인 중"
-          : "조회수 " + cached.toLocaleString("ko-KR");
+        var fallback = Number(output.dataset.viewCountFallback || "0");
+        var displayed = cached === null || !Number.isFinite(cached) ? fallback : cached;
+        output.textContent = "조회수 " + displayed.toLocaleString("ko-KR");
         pending.push({ output: output, reportId: reportId, cached: cached });
       });
 
@@ -635,13 +647,12 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
         var task = pending[nextIndex];
         nextIndex += 1;
         if (!task) return Promise.resolve();
-        return fetchViewCount(task.reportId, 3)
+        return fetchViewCount(task.reportId, 2)
           .then(function (value) {
             task.output.textContent = "조회수 " + value.toLocaleString("ko-KR");
             storeViewCount(task.reportId, value);
           })
           .catch(function () {
-            if (task.cached === null) task.output.textContent = "조회수 확인 불가";
             task.output.dataset.loaded = "false";
           })
           .then(function () {
@@ -649,7 +660,7 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
           });
       }
 
-      var workerCount = Math.min(3, pending.length);
+      var workerCount = Math.min(1, pending.length);
       for (var workerIndex = 0; workerIndex < workerCount; workerIndex += 1) {
         loadNextCount();
       }
