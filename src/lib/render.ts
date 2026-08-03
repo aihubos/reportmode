@@ -594,8 +594,26 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
         });
     }
 
+    function cachedViewCount(reportId) {
+      try {
+        var cached = window.localStorage.getItem("reportmode:view-count:" + reportId);
+        var value = Number(cached);
+        return cached !== null && Number.isFinite(value) ? value : null;
+      } catch (_) {
+        return null;
+      }
+    }
+
+    function storeViewCount(reportId, value) {
+      try {
+        window.localStorage.setItem("reportmode:view-count:" + reportId, String(value));
+      } catch (_) {
+        // Continue without a local cache when browser storage is unavailable.
+      }
+    }
+
     function loadViewCounts(visiblePosts) {
-      var queue = Promise.resolve();
+      var pending = [];
       visiblePosts.forEach(function (post) {
         var output = post.querySelector("[data-view-count]");
         var reportId = post.dataset.reportId || "";
@@ -605,22 +623,36 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
           return;
         }
         output.dataset.loaded = "true";
-        output.textContent = "조회수 …";
-        queue = queue
-          .then(function () {
-            return fetchViewCount(reportId, 3);
-          })
+        var cached = cachedViewCount(reportId);
+        output.textContent = cached === null
+          ? "조회수 확인 중"
+          : "조회수 " + cached.toLocaleString("ko-KR");
+        pending.push({ output: output, reportId: reportId, cached: cached });
+      });
+
+      var nextIndex = 0;
+      function loadNextCount() {
+        var task = pending[nextIndex];
+        nextIndex += 1;
+        if (!task) return Promise.resolve();
+        return fetchViewCount(task.reportId, 3)
           .then(function (value) {
-            output.textContent = "조회수 " + value.toLocaleString("ko-KR");
+            task.output.textContent = "조회수 " + value.toLocaleString("ko-KR");
+            storeViewCount(task.reportId, value);
           })
           .catch(function () {
-            output.textContent = "조회수 —";
-            output.dataset.loaded = "false";
+            if (task.cached === null) task.output.textContent = "조회수 확인 불가";
+            task.output.dataset.loaded = "false";
           })
           .then(function () {
-            return wait(120);
+            return wait(120).then(loadNextCount);
           });
-      });
+      }
+
+      var workerCount = Math.min(3, pending.length);
+      for (var workerIndex = 0; workerIndex < workerCount; workerIndex += 1) {
+        loadNextCount();
+      }
     }
 
     function makePageButton(label, page, active, disabled, className) {
