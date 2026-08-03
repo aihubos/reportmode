@@ -85,6 +85,34 @@ function enrichCoverImages(root: string, items: ManifestItem[]): ManifestItem[] 
   return items.map((item) => discoverCoverImage(root, item));
 }
 
+function reportBodySearchText(root: string, item: ManifestItem): string {
+  const pagePath = item.path.endsWith("/")
+    ? `${item.path}index.html`
+    : item.path;
+  const absolutePagePath = path.join(root, pagePath);
+  if (!fs.existsSync(absolutePagePath)) return "";
+  try {
+    return readText(absolutePagePath)
+      .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ")
+      .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/&(?:[a-z]+|#\d+|#x[\da-f]+);/gi, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  } catch {
+    return "";
+  }
+}
+
+function reportSearchTextById(
+  root: string,
+  items: ManifestItem[],
+): Record<string, string> {
+  return Object.fromEntries(
+    items.map((item) => [item.id, reportBodySearchText(root, item)]),
+  );
+}
+
 function writeArchiveArtifacts(
   root: string,
   items: ManifestItem[],
@@ -92,7 +120,10 @@ function writeArchiveArtifacts(
 ) {
   const archivePath = path.join(root, "archive", "index.html");
   const manifestPath = path.join(root, "reports", "manifest.json");
-  writeText(archivePath, renderHomeHtml(items, "../"));
+  writeText(
+    archivePath,
+    renderHomeHtml(items, "../", reportSearchTextById(root, items)),
+  );
   writeText(
     manifestPath,
     JSON.stringify(

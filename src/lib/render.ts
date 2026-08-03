@@ -267,7 +267,11 @@ export function renderReportHtml(doc: ReportDocument): string {
 `;
 }
 
-export function renderHomeHtml(items: ManifestItem[], linkPrefix = ""): string {
+export function renderHomeHtml(
+  items: ManifestItem[],
+  linkPrefix = "",
+  bodySearchTextById: Record<string, string> = {},
+): string {
   const categoryFor = (item: ManifestItem) => {
     const text = [item.title, item.subtitle, item.category, ...(item.tags || [])]
       .filter(Boolean)
@@ -344,20 +348,14 @@ export function renderHomeHtml(items: ManifestItem[], linkPrefix = ""): string {
     telegram: "Telegram",
     tesla: "Tesla",
   };
-  const tagGroups = items
-    .map((item) => {
-      const reportTags = (item.tags || []).slice(0, 3);
-      if (reportTags.length === 0) return "";
+  const tagLinks = items
+    .flatMap((item) => {
       const reportHref = linkPrefix + item.path;
-      const links = reportTags
-        .map((tag) => {
+      return (item.tags || []).slice(0, 3).map((tag) => {
           const label = tagLabels[tag.toLocaleLowerCase("en")] || tag;
           return `<a class="archive-report-tag" href="${escapeHtml(reportHref)}" aria-label="${escapeHtml(label)} 태그: ${escapeHtml(item.title)} 보고서 열기">#${escapeHtml(label)}</a>`;
-        })
-        .join("");
-      return `<div class="archive-tag-group"><a class="archive-tag-title" href="${escapeHtml(reportHref)}">${escapeHtml(item.title)}</a><div class="archive-tag-links">${links}</div></div>`;
+        });
     })
-    .filter(Boolean)
     .join("\n");
 
   const posts = items
@@ -373,6 +371,7 @@ export function renderHomeHtml(items: ManifestItem[], linkPrefix = ""): string {
         item.summary,
         item.category,
         ...(item.tags || []),
+        bodySearchTextById[item.id] || "",
       ]
         .filter(Boolean)
         .join(" ")
@@ -466,8 +465,8 @@ ${categoryButtons}
         <section class="archive-side-card archive-side-tags">
           <div class="archive-side-label">REPORT TAGS</div>
           <h2>주제 태그</h2>
-          <div class="archive-tag-groups">
-${tagGroups}
+          <div class="archive-tag-cloud" data-report-tag-cloud>
+${tagLinks}
           </div>
         </section>
         <section class="archive-side-note">
@@ -486,7 +485,7 @@ ${tagGroups}
           <label class="archive-search">
             <span class="sr-only">보고서 검색</span>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.1-5.4a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"/></svg>
-            <input id="archiveSearch" type="search" placeholder="제목, 분야, 키워드 검색" autocomplete="off">
+            <input id="archiveSearch" type="search" placeholder="제목, 본문, 태그 검색" autocomplete="off">
           </label>
         </div>
 
@@ -526,6 +525,7 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
     var count = document.getElementById("archiveResultCount");
     var pagination = document.getElementById("archivePagination");
     var empty = document.getElementById("archiveEmpty");
+    var tagCloud = document.querySelector("[data-report-tag-cloud]");
     var params = new URLSearchParams(window.location.search);
     var state = {
       query: params.get("q") || "",
@@ -534,6 +534,19 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
     };
 
     search.value = state.query;
+
+    if (tagCloud) {
+      var shuffledTags = Array.prototype.slice.call(tagCloud.children);
+      for (var tagIndex = shuffledTags.length - 1; tagIndex > 0; tagIndex -= 1) {
+        var randomIndex = Math.floor(Math.random() * (tagIndex + 1));
+        var temporaryTag = shuffledTags[tagIndex];
+        shuffledTags[tagIndex] = shuffledTags[randomIndex];
+        shuffledTags[randomIndex] = temporaryTag;
+      }
+      shuffledTags.forEach(function (tag) {
+        tagCloud.appendChild(tag);
+      });
+    }
 
     function viewStorageKey(reportId) {
       return "reportmode:view:" + reportId;
