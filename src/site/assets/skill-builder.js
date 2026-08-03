@@ -1,11 +1,14 @@
 (function () {
   "use strict";
 
-  var storageKey = "reportmode-skill-builder-v2";
+  var storageKey = "reportmode-skill-builder-v43";
   var defaults = {
-    skillTitle: "Jeremy Research Report",
-    skillSlug: "jeremy-research-report",
+    skillTitle: "AI Research Report",
+    skillSlug: "ai-research-report",
     skillDescription: "웹 리서치와 실제 시각자료를 바탕으로 표, 이모티콘, 인포그래픽이 포함된 출처 중심 HTML 보고서를 만듭니다.",
+    deliveryMode: "github",
+    githubRepo: "",
+    previewView: "detail",
     depthMode: "simple",
     documentStyle: "toss",
     palette: "toss-lemon",
@@ -50,8 +53,8 @@
   var depthRules = {
     simple: {
       label: "일반 보고서",
-      preview: "일반 보고서 · 5분 읽기",
-      rule: "심플한 5분 읽기 분량으로 작성한다. 한 문장 결론, 핵심 요약, 핵심 표 1~2개, 장단점, 판단 기준, 전체 출처만 남기고 반복 설명과 긴 배경 설명은 덜어낸다."
+      preview: "일반 보고서 · 간단 2페이지 + 상세",
+      rule: "핵심 판단과 근거를 빠르게 읽을 수 있게 작성하되, 웹에서는 간단 보기와 상세 보기를 함께 제공한다. 간단 PDF는 검증된 내용으로 채운 정확히 A4 2페이지다."
     },
     deep: {
       label: "심층보고서모드",
@@ -248,6 +251,7 @@
       "---",
       "name: " + slugify(state.skillSlug),
       "description: " + yamlText(state.skillDescription),
+      "version: 4.3.0",
       "---",
       "",
       "# " + (state.skillTitle || "Custom Report Skill"),
@@ -261,6 +265,17 @@
       "- 화면에는 " + tick + "YYMMDD · 보고서 제목" + tick + ", 본문에는 " + tick + "YYYY.MM.DD KST" + tick + "를 표시한다.",
       "- CSS를 HTML 안에 포함하고 PC, 390px 모바일, 인쇄 화면을 지원한다.",
       "- 조사에 사용한 기사, 데이터, 로고, 사진, 생성 이미지를 문서 최하단 출처 표에 모두 기록한다.",
+      "",
+      "## 배포 대상 확인",
+      "",
+      "- 선택된 기본 전달 방식: " + (state.deliveryMode === "github" ? "사용자 지정 GitHub Pages" : "다운로드 가능한 로컬 웹페이지"),
+      state.deliveryMode === "github" && state.githubRepo
+        ? "- 기본 저장소 후보: " + state.githubRepo + ". 배포 전에 소유자, 기본 브랜치, push 권한, Pages 설정과 공개 주소를 실제 확인한다."
+        : "- 요청에 GitHub 저장소가 없으면 URL 또는 owner/repo를 한 번 입력받는다. GitHub가 없다고 하면 로컬 전달로 전환한다.",
+      "- 사용자가 지정하지 않은 제3자 저장소를 기본값으로 사용하거나 사용자 승인 없이 게시하지 않는다.",
+      "- GitHub가 없는 사용자는 index.html, 상대 자산, report-package.zip을 만들고 보고서 폴더만 127.0.0.1의 빈 포트에서 제공한다.",
+      "- 완료 응답에는 GitHub 모드면 공개 URL·저장소·브랜치·commit SHA를, 로컬 모드면 HTML·ZIP 경로·loopback 보기와 다운로드 주소·서버 종료 방법을 제공한다.",
+      "- 로컬 URL은 서버가 실행 중인 해당 컴퓨터에서만 열 수 있으며 공개 배포가 아니라고 명확히 표시한다.",
       "",
       "## 보고서 깊이",
       "",
@@ -282,7 +297,7 @@
       "- 조사 자식 권장 모델: " + state.researchModel + " (" + researchModelLabels[state.researchModel] + "). Hermes config.yaml의 delegation.model이 이 값과 일치해야 실제 적용된다.",
       "- Hermes의 delegate_task는 작업마다 model 인자를 받지 않는다. 실제 자식 모델은 config.yaml의 delegation.model을 사용하므로 지원하지 않는 model 인자를 만들지 않는다.",
       "- 일반 보고서는 두 자식을 한 batch로 실행한다: (1) 공식 자료·핵심 사실, (2) 시장·경쟁·시각자료·라이선스.",
-      "- 심층보고서모드는 기본 동시 한도 3개를 지킨다. 1차 3개는 공식·재무/시장·제품/기술을 조사하고, 2차 2개는 경쟁/반대근거·사진/로고/라이선스를 조사한다.",
+      "- 표준 심층은 공식 상태·독립 실측/반대근거·시장/반응/시각 권리의 세 자식을 한 batch로 실행한다. 결론을 바꾸는 누락이 있을 때만 보강 자식 1개를 추가한다.",
       "- 각 자식에게 주제, 기간, 독자, 담당 범위, 금지 추측, 필요한 출력 형식을 context에 완전하게 전달한다. 자식은 부모 대화 내용을 알지 못한다고 가정한다.",
       "- 각 자식의 결과는 주장, 근거 URL, 발행일, 확인일, 출처 유형, 사실/분석/전망/루머, 상충 내용, 시각자료 URL과 라이선스를 담은 evidence pack으로 받는다.",
       "- 서브에이전트에게 최종 보고서 작성이나 서로의 결과 리뷰를 맡기지 않는다. Sol 부모가 중복 제거, 충돌 표시, 최종 판단, HTML 작성과 이미지 생성을 책임진다.",
@@ -331,6 +346,11 @@
       "- 포인트색: " + palette.accent,
       "- 밑줄·마커 하이라이트색: " + palette.mark,
       "- 본문 글자색과 밑줄·마커색을 같은 값으로 쓰지 않는다.",
+      "- 상단에는 큰 pill형 간단·상세 segmented control과 별도 PDF 저장 버튼을 둔다. 버튼은 aria-pressed, 키보드 포커스, prefers-reduced-motion을 지원한다.",
+      "- h1 바로 아래에 핵심 판단·결정 근거·행동/주의의 정확히 3줄 핵심 결론을 두고, 각 줄의 핵심 문구 하나만 강조한다.",
+      "- 쿼리 없는 최초 진입은 상세 보기다. `?view=simple` 또는 간단 버튼을 선택하면 제목·핵심 결론 3줄·리드·배경·핵심 비교·선택 기준·주의점/다음 행동을 A4 2페이지로 압축한 간단 보기를 제공한다.",
+      "- 상세 보기는 전체 본문, 실제 인터넷·언론 반응과 기본 닫힘 상태의 전체 출처를 제공한다. PDF 저장은 현재 선택한 보기를 출력한다.",
+      "- 인터넷·언론 반응은 접근 가능한 공개 원문 3~6개를 긍정·비판·유보로 균형 있게 제시하고 개인 의견을 전체 여론처럼 확대하지 않는다.",
       "",
       "## 하이라이트·표·이모티콘",
       "",
@@ -384,7 +404,7 @@
       "",
       "## 최하단 전체 출처 표",
       "",
-      "문서의 마지막 요소는 반드시 전체 출처 표로 끝내라. 열은 " + tick + "유형 | 자료명 | 제공자·저작자 | URL | 날짜 | 라이선스·상태 | 사용 범위" + tick + "로 구성하라.",
+      "문서의 마지막 요소는 기본 닫힘 상태의 details#sources로 끝내고, 그 안의 전체 출처 표는 " + tick + "유형 | 자료명 | 제공자·저작자 | 원문 | 날짜 | 라이선스·상태 | 사용 범위" + tick + "로 구성하라.",
       "기사·논문·공식 문서뿐 아니라 로고, 실제 사진, 더미 사진 링크, AI 생성 이미지와 생성일도 모두 포함하라.",
       "",
       "## Apple 폴더블 예시",
@@ -396,12 +416,10 @@
       "",
       "## 완료 응답",
       "",
-      "- 생성일",
-      "- 보고서 깊이",
-      "- 보고서 제목",
-      "- 사용한 텍스트 출처 수와 시각자료 수",
-      "- 생성된 이미지 파일 경로",
-      "- 저장된 HTML 절대 경로",
+      "- 공개 또는 로컬 보고서 URL",
+      "- 다운로드 가능한 HTML 또는 ZIP",
+      "- 조사·작성·검수·배포의 실제 벽시계 시간과 사용 모델",
+      "- HTTP 200, 이미지, 390px, 간단 2페이지 PDF, 상세 PDF와 출처 검증 결과",
       "- 확인하지 못한 내용 또는 남은 불확실성",
       ""
     ]);
@@ -415,12 +433,14 @@
 
   function setActive(groupId, value) {
     document.querySelectorAll("#" + groupId + " button").forEach(function (button) {
-      button.classList.toggle("is-active", button.dataset.value === value);
+      var active = button.dataset.value === value;
+      button.classList.toggle("is-active", active);
+      if (button.hasAttribute("aria-pressed")) button.setAttribute("aria-pressed", String(active));
     });
   }
 
   function hydrateControls() {
-    ["skillTitle", "skillSlug", "skillDescription", "reportType", "layoutType", "visualStyle", "researchModel", "highlightStyle", "titleFont", "bodyFont", "titleSize", "bodySize", "lineHeight", "contentWidth", "cardRadius"].forEach(function (key) {
+    ["skillTitle", "skillSlug", "skillDescription", "githubRepo", "reportType", "layoutType", "visualStyle", "researchModel", "highlightStyle", "titleFont", "bodyFont", "titleSize", "bodySize", "lineHeight", "contentWidth", "cardRadius"].forEach(function (key) {
       setField(key, state[key]);
     });
     document.getElementById("aggressiveHighlight").checked = state.aggressiveHighlight;
@@ -432,6 +452,8 @@
       input.checked = state.sections[input.dataset.section] !== false;
     });
     setActive("depthButtons", state.depthMode);
+    setActive("deliveryButtons", state.deliveryMode);
+    setActive("previewViewButtons", state.previewView);
     setActive("documentStyleButtons", state.documentStyle);
     setActive("paletteButtons", state.palette);
     setActive("alignButtons", state.align);
@@ -460,6 +482,7 @@
     report.dataset.highlight = state.highlightStyle;
     report.dataset.documentStyle = state.documentStyle;
     report.dataset.depth = state.depthMode;
+    report.dataset.reportView = state.previewView;
     report.classList.toggle("is-aggressive", state.aggressiveHighlight);
     report.classList.remove("highlight-subtle", "highlight-standard", "highlight-active");
     report.classList.add("highlight-" + state.intensity);
@@ -469,13 +492,16 @@
       section.hidden = state.sections[section.dataset.previewSection] === false;
     });
     document.querySelectorAll("[data-depth-only]").forEach(function (section) {
-      section.hidden = state.depthMode !== section.dataset.depthOnly;
+      section.hidden = state.depthMode !== section.dataset.depthOnly || state.previewView !== section.dataset.viewOnly;
+    });
+    document.querySelectorAll("[data-view-only]:not([data-depth-only])").forEach(function (section) {
+      section.hidden = state.previewView !== section.dataset.viewOnly;
     });
     document.querySelectorAll("[data-preview-visual='infographic']").forEach(function (element) {
       element.hidden = !state.generateInfographic;
     });
     document.querySelectorAll("[data-preview-visual='realPhoto']").forEach(function (element) {
-      element.hidden = !state.useRealPhotos;
+      element.hidden = !state.useRealPhotos || (element.dataset.viewOnly && state.previewView !== element.dataset.viewOnly);
     });
     document.querySelectorAll("[data-preview-visual='officialLogo']").forEach(function (element) {
       element.hidden = !state.useOfficialLogos;
@@ -486,10 +512,16 @@
     document.getElementById("contentWidthValue").textContent = state.contentWidth + "px";
     document.getElementById("cardRadiusValue").textContent = state.cardRadius + "px";
     setActive("depthButtons", state.depthMode);
+    setActive("deliveryButtons", state.deliveryMode);
+    setActive("previewViewButtons", state.previewView);
     setActive("documentStyleButtons", state.documentStyle);
     setActive("paletteButtons", state.palette);
     setActive("alignButtons", state.align);
     setActive("intensityButtons", state.intensity);
+    document.getElementById("githubRepoField").hidden = state.deliveryMode !== "github";
+    document.getElementById("deliveryNote").textContent = state.deliveryMode === "github"
+      ? "사용자가 지정하지 않은 저장소에는 게시하지 않습니다."
+      : "index.html·자산·ZIP과 127.0.0.1 로컬 주소를 생성합니다.";
     saveState();
   }
 
@@ -617,7 +649,7 @@
     }
   }
 
-  ["skillTitle", "skillDescription", "reportType", "layoutType", "visualStyle", "researchModel", "highlightStyle", "titleFont", "bodyFont"].forEach(function (key) {
+  ["skillTitle", "skillDescription", "githubRepo", "reportType", "layoutType", "visualStyle", "researchModel", "highlightStyle", "titleFont", "bodyFont"].forEach(function (key) {
     bindInput(key, key);
   });
   ["titleSize", "bodySize", "lineHeight", "contentWidth", "cardRadius"].forEach(function (key) {
@@ -633,6 +665,8 @@
   bindToggle("useOfficialLogos", "useOfficialLogos");
   bindToggle("useSubagents", "useSubagents");
   bindButtonGroup("depthButtons", "depthMode");
+  bindButtonGroup("deliveryButtons", "deliveryMode");
+  bindButtonGroup("previewViewButtons", "previewView");
   bindButtonGroup("documentStyleButtons", "documentStyle", applyDocumentStyle);
   bindButtonGroup("paletteButtons", "palette");
   bindButtonGroup("alignButtons", "align");
@@ -669,6 +703,9 @@
   document.getElementById("downloadSkillBtn").addEventListener("click", downloadSkill);
   document.getElementById("copySkillBtn").addEventListener("click", copySkill);
   document.getElementById("installHermesBtn").addEventListener("click", installHermes);
+  document.getElementById("previewPdfBtn").addEventListener("click", function () {
+    window.print();
+  });
 
   hydrateControls();
   updatePreview();
