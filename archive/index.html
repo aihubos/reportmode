@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Jeremy를 위한 검증 가능한 웹 보고서 아카이브">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%233182f6'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial' font-size='34' font-weight='800' fill='white'%3ER%3C/text%3E%3C/svg%3E">
-  <title>Report Mode — Web Reports</title>
+  <title>Jeremy's AI Report 도서관</title>
   <style>:root {
   --ink: #171717;
   --muted: #5f5f66;
@@ -267,6 +267,13 @@ footer {
   transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
 }
 .archive-primary-action:hover { color: #fff; background: var(--archive-blue-deep); transform: translateY(-2px); box-shadow: 0 14px 28px rgba(49,130,246,.3); }
+.archive-blog-action { min-width: 244px; min-height: 62px; background: #03c75a; box-shadow: 0 10px 24px rgba(3,199,90,.2); }
+.archive-blog-action:hover { background: #00ad4e; box-shadow: 0 14px 28px rgba(3,199,90,.28); }
+.archive-blog-mark { width: 30px; height: 30px; display: grid; place-items: center; flex: 0 0 auto; border-radius: 9px; color: #03c75a; background: #fff; font-size: 17px; font-weight: 950; }
+.archive-blog-action > span:nth-child(2) { display: grid; gap: 1px; line-height: 1.15; }
+.archive-blog-action b { font-size: 14px; }
+.archive-blog-action small { color: rgba(255,255,255,.82); font-size: 10px; font-weight: 600; }
+.archive-blog-action i { margin-left: auto; font-size: 15px; font-style: normal; }
 .archive-layout { display: grid; grid-template-columns: 246px minmax(0, 1fr); align-items: start; gap: 22px; }
 .archive-sidebar { display: grid; gap: 14px; position: sticky; top: 86px; }
 .archive-side-card { padding: 24px !important; border: 1px solid #edf0f2; border-radius: 20px; background: #fff; }
@@ -301,7 +308,7 @@ footer {
 .archive-search input::placeholder { color: #aeb6bf; }
 .archive-mobile-categories { display: none; }
 .archive-list-head {
-  display: grid; grid-template-columns: 64px minmax(0, 1fr) 110px; gap: 18px;
+  display: grid; grid-template-columns: 64px minmax(0, 1fr) 154px; gap: 18px;
   padding: 12px 8px; border-top: 2px solid #333d4b; border-bottom: 1px solid var(--archive-line);
   color: var(--archive-subtle); font-size: 11px; font-weight: 800; letter-spacing: .04em; text-align: center;
 }
@@ -309,7 +316,7 @@ footer {
 .archive-post { border-bottom: 1px solid #edf0f2; }
 .archive-post[hidden] { display: none; }
 .archive-post-link {
-  display: grid; grid-template-columns: 64px minmax(0, 1fr) 110px; gap: 18px; align-items: center;
+  display: grid; grid-template-columns: 64px minmax(0, 1fr) 154px; gap: 18px; align-items: center;
   min-height: 154px; padding: 22px 8px; color: inherit; text-decoration: none;
   transition: background .18s ease, transform .18s ease;
 }
@@ -320,18 +327,22 @@ footer {
 .archive-post-meta span { position: relative; }
 .archive-post-meta span:not(:last-child)::after { content: ""; position: absolute; width: 1px; height: 9px; right: -7px; top: 4px; background: var(--archive-line); }
 .archive-post-meta .archive-post-category { color: var(--archive-blue-deep); font-weight: 800; }
+.archive-view-count { color: #596574; font-variant-numeric: tabular-nums; font-weight: 700; }
 .archive-post h2 { margin: 7px 0 6px; overflow: hidden; color: var(--archive-ink); font-size: 20px; line-height: 1.35; letter-spacing: -.035em; text-overflow: ellipsis; white-space: nowrap; }
 .archive-post p { display: -webkit-box; margin: 0; overflow: hidden; color: var(--archive-muted); font-size: 13px; line-height: 1.55; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
 .archive-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 9px; color: #8b95a1; font-size: 11px; }
 .archive-post-cover {
-  width: 110px; height: 92px; display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 12px; border-radius: 13px; color: #fff; background: linear-gradient(145deg, #5aa0ff, #2477ed 62%, #1659bd);
-  box-shadow: inset 0 1px rgba(255,255,255,.25); overflow: hidden; position: relative;
+  width: 154px; height: 104px; margin: 0; border: 1px solid #e5e8eb; border-radius: 14px;
+  background: #eef2f6; box-shadow: inset 0 1px rgba(255,255,255,.25); overflow: hidden; position: relative;
 }
-.archive-post-cover::after { content: ""; position: absolute; width: 86px; height: 86px; right: -48px; top: -44px; border: 13px solid rgba(255,255,255,.14); border-radius: 50%; }
-.archive-post-cover span { position: absolute; top: 10px; left: 12px; color: rgba(255,255,255,.72); font-size: 8px; font-weight: 900; letter-spacing: .11em; }
-.archive-post-cover strong { font-size: 25px; line-height: .95; letter-spacing: -.06em; }
-.archive-post-cover small { margin-top: 5px; overflow: hidden; font-size: 9px; font-weight: 700; opacity: .85; text-overflow: ellipsis; white-space: nowrap; }
+.archive-post-cover img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center; transition: transform .35s ease; }
+.archive-post-link:hover .archive-post-cover img { transform: scale(1.045); }
+.archive-post-cover figcaption { position: absolute; right: 8px; bottom: 8px; padding: 4px 7px; border-radius: 7px; color: #fff; background: rgba(25,31,40,.76); backdrop-filter: blur(8px); font-size: 9px; font-weight: 800; letter-spacing: .04em; }
+.archive-post-cover-fallback { display: flex; flex-direction: column; justify-content: flex-end; padding: 12px; color: #fff; background: linear-gradient(145deg, #5aa0ff, #2477ed 62%, #1659bd); }
+.archive-post-cover-fallback::after { content: ""; position: absolute; width: 86px; height: 86px; right: -48px; top: -44px; border: 13px solid rgba(255,255,255,.14); border-radius: 50%; }
+.archive-post-cover-fallback span { position: absolute; top: 10px; left: 12px; color: rgba(255,255,255,.72); font-size: 8px; font-weight: 900; letter-spacing: .11em; }
+.archive-post-cover-fallback strong { font-size: 25px; line-height: .95; letter-spacing: -.06em; }
+.archive-post-cover-fallback small { margin-top: 5px; overflow: hidden; font-size: 9px; font-weight: 700; opacity: .85; text-overflow: ellipsis; white-space: nowrap; }
 .archive-empty-static, .archive-empty { padding: 72px 20px; color: var(--archive-muted); text-align: center; }
 .archive-empty div { font-size: 32px; }
 .archive-empty h3 { margin: 12px 0 5px; color: var(--archive-ink); font-size: 18px; }
@@ -350,6 +361,7 @@ footer {
   display: flex; justify-content: space-between; gap: 16px; margin: 26px 0 40px;
   padding: 0 4px !important; color: var(--archive-subtle); background: transparent; font-size: 12px;
 }
+.archive-footer a { color: var(--archive-blue-deep); font-weight: 700; text-decoration: none; }
 @media (max-width: 860px) {
   .verdict-grid, .duo, .checks, .metrics { grid-template-columns: 1fr 1fr; }
   .metrics { grid-template-columns: 1fr 1fr; }
@@ -371,12 +383,14 @@ footer {
   .hero { padding: 72px 0 56px; }
   .archive-topbar { height: 58px; }
   .archive-topbar-inner, .archive-shell { width: min(100% - 28px, 1180px); }
-  .archive-topbar nav a { padding: 0 10px; font-size: 12px; }
+  .archive-brand > span:last-child { display: none; }
+  .archive-topbar nav { gap: 2px; }
+  .archive-topbar nav a { padding: 0 8px; font-size: 11px; white-space: nowrap; }
   .archive-topbar nav a:first-child { display: none; }
   .archive-profile { grid-template-columns: 1fr; gap: 18px; margin: 18px 0 14px; padding: 24px !important; border-radius: 20px; }
   .archive-avatar { width: 68px; height: 68px; border-radius: 23px; }
   .archive-avatar span { font-size: 21px; }
-  .archive-profile h1 { margin-top: 7px; font-size: 29px; }
+  .archive-profile h1 { margin-top: 7px; font-size: 29px; word-break: keep-all; }
   .archive-profile-copy > p { font-size: 14px; }
   .archive-profile-meta span:last-child { display: none; }
   .archive-primary-action { grid-column: 1; width: 100%; justify-content: space-between; }
@@ -387,15 +401,16 @@ footer {
   .archive-board-head h2 { font-size: 25px; }
   .archive-search { width: 100%; }
   .archive-list-head { display: none; }
-  .archive-post-link { grid-template-columns: minmax(0, 1fr) 82px; gap: 13px; min-height: 138px; padding: 19px 0; }
+  .archive-post-link { grid-template-columns: minmax(0, 1fr) 96px; gap: 13px; min-height: 138px; padding: 19px 0; }
   .archive-post-number { display: none; }
   .archive-post h2 { font-size: 17px; white-space: normal; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
   .archive-post p { -webkit-line-clamp: 1; }
   .archive-tags { display: none; }
-  .archive-post-cover { width: 82px; height: 78px; padding: 10px; border-radius: 11px; }
-  .archive-post-cover span { left: 10px; top: 9px; font-size: 7px; }
-  .archive-post-cover strong { font-size: 21px; }
-  .archive-post-cover small { font-size: 8px; }
+  .archive-post-cover { width: 96px; height: 80px; border-radius: 11px; }
+  .archive-post-cover-fallback { padding: 10px; }
+  .archive-post-cover-fallback span { left: 10px; top: 9px; font-size: 7px; }
+  .archive-post-cover-fallback strong { font-size: 21px; }
+  .archive-post-cover-fallback small { font-size: 8px; }
   .archive-pagination { gap: 3px; }
   .archive-page-button { min-width: 32px; height: 34px; font-size: 12px; }
   .archive-page-button.is-wide { padding: 0 9px; }
@@ -416,12 +431,13 @@ footer {
 <body class="archive-page">
   <header class="archive-topbar">
     <div class="archive-topbar-inner">
-      <a class="archive-brand" href="../" aria-label="Report Mode 홈">
+      <a class="archive-brand" href="../" aria-label="Jeremy's AI Report 홈">
         <span class="archive-brand-mark">R</span>
-        <span>Report Mode</span>
+        <span>Jeremy's AI Report</span>
       </a>
       <nav aria-label="주요 메뉴">
         <a class="is-current" href="./">보고서 도서관</a>
+        <a href="https://blog.naver.com/jeremylee0213" target="_blank" rel="noopener">Jeremy's Blog</a>
         <a href="../">스킬 만들기</a>
       </nav>
     </div>
@@ -432,7 +448,7 @@ footer {
       <div class="archive-avatar" aria-hidden="true"><span>RM</span></div>
       <div class="archive-profile-copy">
         <div class="archive-eyebrow">AI RESEARCH LIBRARY</div>
-        <h1 id="archive-title">Report Mode 도서관</h1>
+        <h1 id="archive-title">Jeremy's AI Report 도서관</h1>
         <p>원자료를 조사하고 사실과 해석을 나눠 기록하는 개인 보고서 아카이브입니다.</p>
         <div class="archive-profile-meta">
           <span>전체 보고서 <b>8</b></span>
@@ -440,7 +456,7 @@ footer {
           <span>자동 업데이트</span>
         </div>
       </div>
-      <a class="archive-primary-action" href="../">나만의 스킬 만들기 <span aria-hidden="true">→</span></a>
+      <a class="archive-primary-action archive-blog-action" href="https://blog.naver.com/jeremylee0213" target="_blank" rel="noopener"><span class="archive-blog-mark">N</span><span><b>Jeremy's Blog</b><small>blog.naver.com/jeremylee0213</small></span><i aria-hidden="true">↗</i></a>
     </section>
 
     <div class="archive-layout">
@@ -501,7 +517,7 @@ footer {
         </div>
         <div class="archive-posts" id="archivePosts">
 
-      <article class="archive-post" data-report-item data-category="전기차 구매 판단 · 최대 심층" data-search="tesla model y l 6,499만원 출고 결정 현재가, 보조금, 총비용, 6인승 효용, 실사용 리스크와 대안을 함께 검토한 의사결정 보고서 현재가 대비 800만원의 가격 잠금, 6인승 효용, 보조금·금융·감가·인도 품질을 출고와 미출고 기준으로 분석했습니다. 전기차 구매 판단 · 최대 심층 tesla model-y-l purchase-decision electric-vehicle">
+      <article class="archive-post" data-report-item data-report-id="260803-tesla-model-y-l-delivery-decision" data-category="전기차 구매 판단 · 최대 심층" data-search="tesla model y l 6,499만원 출고 결정 현재가, 보조금, 총비용, 6인승 효용, 실사용 리스크와 대안을 함께 검토한 의사결정 보고서 현재가 대비 800만원의 가격 잠금, 6인승 효용, 보조금·금융·감가·인도 품질을 출고와 미출고 기준으로 분석했습니다. 전기차 구매 판단 · 최대 심층 tesla model-y-l purchase-decision electric-vehicle">
         <a class="archive-post-link" href="../reports/260803-tesla-model-y-l-delivery-decision.html">
           <div class="archive-post-number" aria-label="게시글 번호">008</div>
           <div class="archive-post-copy">
@@ -509,20 +525,17 @@ footer {
               <span class="archive-post-category">전기차 구매 판단 · 최대 심층</span>
               <span>260803</span>
               <span>출처 15개</span>
+              <span class="archive-view-count" data-view-count>조회수 —</span>
             </div>
             <h2>260803 · Tesla Model Y L 6,499만원 출고 결정</h2>
             <p>현재가 대비 800만원의 가격 잠금, 6인승 효용, 보조금·금융·감가·인도 품질을 출고와 미출고 기준으로 분석했습니다.</p>
             <div class="archive-tags"><span>#tesla</span><span>#model-y-l</span><span>#purchase-decision</span></div>
           </div>
-          <div class="archive-post-cover" aria-hidden="true">
-            <span>REPORT</span>
-            <strong>26</strong>
-            <small>전기차 구매 판단 · 최대 심층</small>
-          </div>
+          <figure class="archive-post-cover"><img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-Y-L-Engineered-Carousel-Slide-1-Desktop.jpg" alt="Tesla 공식 제품 페이지에 공개된 은색 Model Y L 측면 실제 제품사진" loading="lazy"><figcaption>260803</figcaption></figure>
         </a>
       </article>
 
-      <article class="archive-post" data-report-item data-category="AI 모델 비교 · 심층분석" data-search="deepseek v4 flash 비교 — 가격은 압도적, 선택은 업무별 공식 사양·api 가격·독립 성능 신호·경쟁 모델·운영 리스크 비교 v4 flash는 대량 에이전트·코딩 초벌에서 비용 혁신 후보지만, 고위험 업무는 상위 모델 또는 사람의 교차 검수가 필요합니다. ai 모델 비교 · 심층분석 deepseek deepseek-v4-flash gpt-5.6 gemini-3.6 claude-sonnet-5 ai-model comparison">
+      <article class="archive-post" data-report-item data-report-id="260803-deepseek-v4-flash-comparison" data-category="AI 모델 비교 · 심층분석" data-search="deepseek v4 flash 비교 — 가격은 압도적, 선택은 업무별 공식 사양·api 가격·독립 성능 신호·경쟁 모델·운영 리스크 비교 v4 flash는 대량 에이전트·코딩 초벌에서 비용 혁신 후보지만, 고위험 업무는 상위 모델 또는 사람의 교차 검수가 필요합니다. ai 모델 비교 · 심층분석 deepseek deepseek-v4-flash gpt-5.6 gemini-3.6 claude-sonnet-5 ai-model comparison">
         <a class="archive-post-link" href="../reports/260803-deepseek-v4-flash-comparison.html">
           <div class="archive-post-number" aria-label="게시글 번호">007</div>
           <div class="archive-post-copy">
@@ -530,20 +543,17 @@ footer {
               <span class="archive-post-category">AI 모델 비교 · 심층분석</span>
               <span>260803</span>
               <span>출처 16개</span>
+              <span class="archive-view-count" data-view-count>조회수 —</span>
             </div>
             <h2>260803 · DeepSeek V4 Flash 비교 — 가격은 압도적, 선택은 업무별</h2>
             <p>V4 Flash는 대량 에이전트·코딩 초벌에서 비용 혁신 후보지만, 고위험 업무는 상위 모델 또는 사람의 교차 검수가 필요합니다.</p>
             <div class="archive-tags"><span>#deepseek</span><span>#deepseek-v4-flash</span><span>#gpt-5.6</span></div>
           </div>
-          <div class="archive-post-cover" aria-hidden="true">
-            <span>REPORT</span>
-            <strong>26</strong>
-            <small>AI 모델 비교 · 심층분석</small>
-          </div>
+          <figure class="archive-post-cover"><img src="../assets/260803-deepseek-v4-flash-comparison/deepseek-v4-flash-comparison.png" alt="DeepSeek V4 Flash와 V4 Pro, GPT-5.6 Luna·Terra, Claude Sonnet 5의 API 가격과 컨텍스트 비교 인포그래픽" loading="lazy"><figcaption>260803</figcaption></figure>
         </a>
       </article>
 
-      <article class="archive-post" data-report-item data-category="AI 협업 플랫폼 · 비전공자 심층 가이드" data-search="buzz 쉽게 이해하기 — slack·discord·telegram 비교 사람+ai 에이전트 구조, 기능·보안·호스팅·비용·성숙도 비교 buzz는 사람과 ai 에이전트가 대화·코드·워크플로를 함께 다루는 개발자 중심 작업공간입니다. 기존 메신저를 바로 교체하기보다 작은 개발 프로젝트로 시험하는 편이 안전합니다. ai 협업 플랫폼 · 비전공자 심층 가이드 buzz slack discord telegram ai-agent self-hosted comparison">
+      <article class="archive-post" data-report-item data-report-id="260803-buzz-slack-discord-telegram-guide" data-category="AI 협업 플랫폼 · 비전공자 심층 가이드" data-search="buzz 쉽게 이해하기 — slack·discord·telegram 비교 사람+ai 에이전트 구조, 기능·보안·호스팅·비용·성숙도 비교 buzz는 사람과 ai 에이전트가 대화·코드·워크플로를 함께 다루는 개발자 중심 작업공간입니다. 기존 메신저를 바로 교체하기보다 작은 개발 프로젝트로 시험하는 편이 안전합니다. ai 협업 플랫폼 · 비전공자 심층 가이드 buzz slack discord telegram ai-agent self-hosted comparison">
         <a class="archive-post-link" href="../reports/260803-buzz-slack-discord-telegram-guide.html">
           <div class="archive-post-number" aria-label="게시글 번호">006</div>
           <div class="archive-post-copy">
@@ -551,20 +561,17 @@ footer {
               <span class="archive-post-category">AI 협업 플랫폼 · 비전공자 심층 가이드</span>
               <span>260803</span>
               <span>출처 23개</span>
+              <span class="archive-view-count" data-view-count>조회수 —</span>
             </div>
             <h2>260803 · Buzz 쉽게 이해하기 — Slack·Discord·Telegram 비교</h2>
             <p>Buzz는 사람과 AI 에이전트가 대화·코드·워크플로를 함께 다루는 개발자 중심 작업공간입니다. 기존 메신저를 바로 교체하기보다 작은 개발 프로젝트로 시험하는 편이 안전합니다.</p>
             <div class="archive-tags"><span>#buzz</span><span>#slack</span><span>#discord</span></div>
           </div>
-          <div class="archive-post-cover" aria-hidden="true">
-            <span>REPORT</span>
-            <strong>26</strong>
-            <small>AI 협업 플랫폼 · 비전공자 심층 가이드</small>
-          </div>
+          <figure class="archive-post-cover"><img src="../assets/260803-buzz-guide/buzz-whiteboard.png" alt="Buzz에서 사람과 AI 에이전트가 같은 작업공간에서 대화하고 Git, 체크리스트, 서명 이벤트, 셀프호스트 서버에 연결되는 화이트보드 두들 인포그래픽" loading="lazy"><figcaption>260803</figcaption></figure>
         </a>
       </article>
 
-      <article class="archive-post" data-report-item data-category="게임 분석 · 심층리서치" data-search="포켓몬 포코피아 장단점과 인기 요인 출시 성과, 평단 평가, 핵심 루프, 멀티플레이와 장기 만족 조건 흥행의 핵심은 포켓몬 수집을 서식지·건설·관계 형성으로 재해석한 데 있으며, 느린 진행을 받아들일 수 있을 때 강력 추천합니다. 게임 분석 · 심층리서치 pokemon pokopia nintendo-switch-2 cozy-game deep-dive">
+      <article class="archive-post" data-report-item data-report-id="260802-pokemon-pokopia-deep-dive" data-category="게임 분석 · 심층리서치" data-search="포켓몬 포코피아 장단점과 인기 요인 출시 성과, 평단 평가, 핵심 루프, 멀티플레이와 장기 만족 조건 흥행의 핵심은 포켓몬 수집을 서식지·건설·관계 형성으로 재해석한 데 있으며, 느린 진행을 받아들일 수 있을 때 강력 추천합니다. 게임 분석 · 심층리서치 pokemon pokopia nintendo-switch-2 cozy-game deep-dive">
         <a class="archive-post-link" href="../reports/260802-pokemon-pokopia-deep-dive.html">
           <div class="archive-post-number" aria-label="게시글 번호">005</div>
           <div class="archive-post-copy">
@@ -572,20 +579,17 @@ footer {
               <span class="archive-post-category">게임 분석 · 심층리서치</span>
               <span>260802</span>
               <span>출처 14개</span>
+              <span class="archive-view-count" data-view-count>조회수 —</span>
             </div>
             <h2>260802 · 포켓몬 포코피아 장단점과 인기 요인</h2>
             <p>흥행의 핵심은 포켓몬 수집을 서식지·건설·관계 형성으로 재해석한 데 있으며, 느린 진행을 받아들일 수 있을 때 강력 추천합니다.</p>
             <div class="archive-tags"><span>#pokemon</span><span>#pokopia</span><span>#nintendo-switch-2</span></div>
           </div>
-          <div class="archive-post-cover" aria-hidden="true">
-            <span>REPORT</span>
-            <strong>26</strong>
-            <small>게임 분석 · 심층리서치</small>
-          </div>
+          <figure class="archive-post-cover"><img src="../assets/260802-pokemon-pokopia-deep-dive/pokopia-popularity-infographic.png" alt="포코피아의 출시 주말 220만 장, 메타스코어 89점, 만들고 모으고 함께하는 인기 요인과 느린 진행 주의점을 정리한 한글 화이트보드 인포그래픽" loading="lazy"><figcaption>260802</figcaption></figure>
         </a>
       </article>
 
-      <article class="archive-post" data-report-item data-category="AI Agent 비교 · 심층분석" data-search="ai agent 심층 비교 — hermes vs openclaw vs codex 아키텍처·자율성·메모리·보안·운영·비용·사용자 적합성 비교 개인 ai 운영체제는 hermes, 다채널·다기기 허브는 openclaw, 코드 작업은 codex가 각각 가장 강합니다. ai agent 비교 · 심층분석 ai-agent hermes-agent openclaw codex security automation deep-dive">
+      <article class="archive-post" data-report-item data-report-id="260802-ai-agent-hermes-openclaw-codex" data-category="AI Agent 비교 · 심층분석" data-search="ai agent 심층 비교 — hermes vs openclaw vs codex 아키텍처·자율성·메모리·보안·운영·비용·사용자 적합성 비교 개인 ai 운영체제는 hermes, 다채널·다기기 허브는 openclaw, 코드 작업은 codex가 각각 가장 강합니다. ai agent 비교 · 심층분석 ai-agent hermes-agent openclaw codex security automation deep-dive">
         <a class="archive-post-link" href="../reports/260802-ai-agent-hermes-openclaw-codex.html">
           <div class="archive-post-number" aria-label="게시글 번호">004</div>
           <div class="archive-post-copy">
@@ -593,20 +597,17 @@ footer {
               <span class="archive-post-category">AI Agent 비교 · 심층분석</span>
               <span>260802</span>
               <span>출처 21개</span>
+              <span class="archive-view-count" data-view-count>조회수 —</span>
             </div>
             <h2>260802 · AI Agent 심층 비교 — Hermes vs OpenClaw vs Codex</h2>
             <p>개인 AI 운영체제는 Hermes, 다채널·다기기 허브는 OpenClaw, 코드 작업은 Codex가 각각 가장 강합니다.</p>
             <div class="archive-tags"><span>#ai-agent</span><span>#hermes-agent</span><span>#openclaw</span></div>
           </div>
-          <div class="archive-post-cover" aria-hidden="true">
-            <span>REPORT</span>
-            <strong>26</strong>
-            <small>AI Agent 비교 · 심층분석</small>
-          </div>
+          <figure class="archive-post-cover"><img src="../assets/260802-ai-agent-comparison/ai-agent-three-paths-16x9.png" alt="지속형 개인 에이전트, 다채널 게이트웨이, 코딩 에이전트의 세 경로가 인간 검수자에게 모이는 AI 생성 비교 인포그래픽" loading="lazy"><figcaption>260802</figcaption></figure>
         </a>
       </article>
 
-      <article class="archive-post" data-report-item data-category="성능 비교 · 심층분석" data-search="아이폰 폴드 vs 갤럭시 폴드7·폴드8 울트라 성능 심층비교 공식 사양, 독립 벤치마크, 루머와 구매 시점을 표 중심으로 비교 현재 실측 선두는 fold8 ultra입니다. iphone fold는 apple 공식 발표 전이라 기다림의 가치만 비교했습니다. 성능 비교 · 심층분석 apple samsung iphone-fold galaxy-z-fold7 galaxy-z-fold8-ultra benchmarks deep-dive">
+      <article class="archive-post" data-report-item data-report-id="260802-iphone-fold-vs-galaxy-fold7-fold8-ultra" data-category="성능 비교 · 심층분석" data-search="아이폰 폴드 vs 갤럭시 폴드7·폴드8 울트라 성능 심층비교 공식 사양, 독립 벤치마크, 루머와 구매 시점을 표 중심으로 비교 현재 실측 선두는 fold8 ultra입니다. iphone fold는 apple 공식 발표 전이라 기다림의 가치만 비교했습니다. 성능 비교 · 심층분석 apple samsung iphone-fold galaxy-z-fold7 galaxy-z-fold8-ultra benchmarks deep-dive">
         <a class="archive-post-link" href="../reports/260802-iphone-fold-vs-galaxy-fold7-fold8-ultra.html">
           <div class="archive-post-number" aria-label="게시글 번호">003</div>
           <div class="archive-post-copy">
@@ -614,20 +615,17 @@ footer {
               <span class="archive-post-category">성능 비교 · 심층분석</span>
               <span>260802</span>
               <span>출처 18개</span>
+              <span class="archive-view-count" data-view-count>조회수 —</span>
             </div>
             <h2>260802 · 아이폰 폴드 vs 갤럭시 폴드7·폴드8 울트라 성능 심층비교</h2>
             <p>현재 실측 선두는 Fold8 Ultra입니다. iPhone Fold는 Apple 공식 발표 전이라 기다림의 가치만 비교했습니다.</p>
             <div class="archive-tags"><span>#apple</span><span>#samsung</span><span>#iphone-fold</span></div>
           </div>
-          <div class="archive-post-cover" aria-hidden="true">
-            <span>REPORT</span>
-            <strong>26</strong>
-            <small>성능 비교 · 심층분석</small>
-          </div>
+          <figure class="archive-post-cover"><img src="../assets/260802-iphone-fold-vs-galaxy-fold7-fold8-ultra/fold-performance-comparison-infographic.png" alt="아이폰 폴드, 갤럭시 Z 폴드7, Z 폴드8 울트라의 발표 상태와 Geekbench 6 성능을 비교한 한글 화이트보드 인포그래픽" loading="lazy"><figcaption>260802</figcaption></figure>
         </a>
       </article>
 
-      <article class="archive-post" data-report-item data-category="공식 발표 제품 · 심층분석" data-search="갤럭시 z fold8 심층분석 공식 사양, fold7·ultra·경쟁 제품 비교, 시장 전망과 구매 판단 기준 더 가볍고 오래 가는 소형 폴드. 화면·카메라·s pen의 양보까지 감수할 가치는 사용 목적이 결정합니다. 공식 발표 제품 · 심층분석 samsung galaxy-z-fold8 foldable deep-dive official">
+      <article class="archive-post" data-report-item data-report-id="260802-galaxy-z-fold8-deep-dive" data-category="공식 발표 제품 · 심층분석" data-search="갤럭시 z fold8 심층분석 공식 사양, fold7·ultra·경쟁 제품 비교, 시장 전망과 구매 판단 기준 더 가볍고 오래 가는 소형 폴드. 화면·카메라·s pen의 양보까지 감수할 가치는 사용 목적이 결정합니다. 공식 발표 제품 · 심층분석 samsung galaxy-z-fold8 foldable deep-dive official">
         <a class="archive-post-link" href="../reports/260802-galaxy-z-fold8-deep-dive.html">
           <div class="archive-post-number" aria-label="게시글 번호">002</div>
           <div class="archive-post-copy">
@@ -635,20 +633,17 @@ footer {
               <span class="archive-post-category">공식 발표 제품 · 심층분석</span>
               <span>260802</span>
               <span>출처 16개</span>
+              <span class="archive-view-count" data-view-count>조회수 —</span>
             </div>
             <h2>260802 · 갤럭시 Z Fold8 심층분석</h2>
             <p>더 가볍고 오래 가는 소형 폴드. 화면·카메라·S Pen의 양보까지 감수할 가치는 사용 목적이 결정합니다.</p>
             <div class="archive-tags"><span>#samsung</span><span>#galaxy-z-fold8</span><span>#foldable</span></div>
           </div>
-          <div class="archive-post-cover" aria-hidden="true">
-            <span>REPORT</span>
-            <strong>26</strong>
-            <small>공식 발표 제품 · 심층분석</small>
-          </div>
+          <figure class="archive-post-cover"><img src="../assets/260802-galaxy-z-fold8-deep-dive/samsung-galaxy-z-fold8-official-1.jpg" alt="그래파이트 색상의 Samsung Galaxy Z Fold8 공식 제품 이미지" loading="lazy"><figcaption>260802</figcaption></figure>
         </a>
       </article>
 
-      <article class="archive-post" data-report-item data-category="미발표 제품 · 루머 분석" data-search="apple 폴더블 iphone 예상 사양, 장점과 단점, 구매 전 확인해야 할 다섯 가지 기준 1세대 혁신성은 높지만, 구매는 실측 검증 뒤가 맞습니다. 미발표 제품 · 루머 분석 apple foldable iphone rumor">
+      <article class="archive-post" data-report-item data-report-id="260802-apple-foldable-iphone" data-category="미발표 제품 · 루머 분석" data-search="apple 폴더블 iphone 예상 사양, 장점과 단점, 구매 전 확인해야 할 다섯 가지 기준 1세대 혁신성은 높지만, 구매는 실측 검증 뒤가 맞습니다. 미발표 제품 · 루머 분석 apple foldable iphone rumor">
         <a class="archive-post-link" href="../reports/260802-apple-foldable-iphone/">
           <div class="archive-post-number" aria-label="게시글 번호">001</div>
           <div class="archive-post-copy">
@@ -656,16 +651,13 @@ footer {
               <span class="archive-post-category">미발표 제품 · 루머 분석</span>
               <span>260802</span>
               <span>출처 4개</span>
+              <span class="archive-view-count" data-view-count>조회수 —</span>
             </div>
             <h2>260802 · Apple 폴더블 iPhone</h2>
             <p>1세대 혁신성은 높지만, 구매는 실측 검증 뒤가 맞습니다.</p>
             <div class="archive-tags"><span>#apple</span><span>#foldable</span><span>#iphone</span></div>
           </div>
-          <div class="archive-post-cover" aria-hidden="true">
-            <span>REPORT</span>
-            <strong>26</strong>
-            <small>미발표 제품 · 루머 분석</small>
-          </div>
+          <figure class="archive-post-cover"><img src="../assets/apple-foldable-doodle-ko-v2.png" alt="Apple 폴더블 iPhone 예상 사양을 정리한 한글 화이트보드 인포그래픽" loading="lazy"><figcaption>260802</figcaption></figure>
         </a>
       </article>
         </div>
@@ -679,14 +671,16 @@ footer {
     </div>
 
     <footer class="archive-footer">
-      <span>Report Mode Library</span>
-      <span>최종 판단과 검수는 사용자에게 있습니다.</span>
+      <span>Jeremy's AI Report Library</span>
+      <a href="https://blog.naver.com/jeremylee0213" target="_blank" rel="noopener">blog.naver.com/jeremylee0213</a>
     </footer>
   </main>
 
   <script>
   (function () {
     var PAGE_SIZE = 10;
+    var COUNTER_BASE = "https://api.counterapi.dev/v1/aihubos-reportmode/";
+    var COUNTER_ENABLED = window.location.hostname === "aihubos.github.io";
     var posts = Array.prototype.slice.call(document.querySelectorAll("[data-report-item]"));
     var filters = Array.prototype.slice.call(document.querySelectorAll("[data-category-filter]"));
     var search = document.getElementById("archiveSearch");
@@ -701,6 +695,52 @@ footer {
     };
 
     search.value = state.query;
+
+    function viewStorageKey(reportId) {
+      return "reportmode:view:" + reportId;
+    }
+
+    function incrementView(reportId) {
+      if (!COUNTER_ENABLED || !reportId) return;
+      var key = viewStorageKey(reportId);
+      if (window.sessionStorage.getItem(key)) return;
+      window.sessionStorage.setItem(key, "1");
+      fetch(COUNTER_BASE + encodeURIComponent(reportId) + "/up", {
+        cache: "no-store",
+        keepalive: true,
+        mode: "cors"
+      }).catch(function () {
+        window.sessionStorage.removeItem(key);
+      });
+    }
+
+    function loadViewCounts(visiblePosts) {
+      visiblePosts.forEach(function (post) {
+        var output = post.querySelector("[data-view-count]");
+        var reportId = post.dataset.reportId || "";
+        if (!output || output.dataset.loaded === "true") return;
+        if (!COUNTER_ENABLED) {
+          output.textContent = "조회수 —";
+          return;
+        }
+        output.dataset.loaded = "true";
+        fetch(COUNTER_BASE + encodeURIComponent(reportId) + "/", {
+          cache: "no-store",
+          mode: "cors"
+        })
+          .then(function (response) {
+            if (!response.ok) throw new Error("counter unavailable");
+            return response.json();
+          })
+          .then(function (data) {
+            var value = Number(data.count);
+            output.textContent = "조회수 " + (Number.isFinite(value) ? value.toLocaleString("ko-KR") : "0");
+          })
+          .catch(function () {
+            output.textContent = "조회수 0";
+          });
+      });
+    }
 
     function makePageButton(label, page, active, disabled, className) {
       var button = document.createElement("button");
@@ -739,6 +779,7 @@ footer {
 
       posts.forEach(function (post) { post.hidden = true; });
       visible.forEach(function (post) { post.hidden = false; });
+      loadViewCounts(visible);
       filters.forEach(function (filter) {
         var active = filter.dataset.categoryFilter === state.category;
         filter.classList.toggle("is-active", active);
@@ -779,6 +820,13 @@ footer {
       state.query = search.value;
       state.page = 1;
       render(false);
+    });
+    posts.forEach(function (post) {
+      var link = post.querySelector(".archive-post-link");
+      if (!link) return;
+      link.addEventListener("click", function () {
+        incrementView(post.dataset.reportId || "");
+      });
     });
     render(false);
   })();

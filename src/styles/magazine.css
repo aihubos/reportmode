@@ -259,6 +259,13 @@ footer {
   transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
 }
 .archive-primary-action:hover { color: #fff; background: var(--archive-blue-deep); transform: translateY(-2px); box-shadow: 0 14px 28px rgba(49,130,246,.3); }
+.archive-blog-action { min-width: 244px; min-height: 62px; background: #03c75a; box-shadow: 0 10px 24px rgba(3,199,90,.2); }
+.archive-blog-action:hover { background: #00ad4e; box-shadow: 0 14px 28px rgba(3,199,90,.28); }
+.archive-blog-mark { width: 30px; height: 30px; display: grid; place-items: center; flex: 0 0 auto; border-radius: 9px; color: #03c75a; background: #fff; font-size: 17px; font-weight: 950; }
+.archive-blog-action > span:nth-child(2) { display: grid; gap: 1px; line-height: 1.15; }
+.archive-blog-action b { font-size: 14px; }
+.archive-blog-action small { color: rgba(255,255,255,.82); font-size: 10px; font-weight: 600; }
+.archive-blog-action i { margin-left: auto; font-size: 15px; font-style: normal; }
 .archive-layout { display: grid; grid-template-columns: 246px minmax(0, 1fr); align-items: start; gap: 22px; }
 .archive-sidebar { display: grid; gap: 14px; position: sticky; top: 86px; }
 .archive-side-card { padding: 24px !important; border: 1px solid #edf0f2; border-radius: 20px; background: #fff; }
@@ -293,7 +300,7 @@ footer {
 .archive-search input::placeholder { color: #aeb6bf; }
 .archive-mobile-categories { display: none; }
 .archive-list-head {
-  display: grid; grid-template-columns: 64px minmax(0, 1fr) 110px; gap: 18px;
+  display: grid; grid-template-columns: 64px minmax(0, 1fr) 154px; gap: 18px;
   padding: 12px 8px; border-top: 2px solid #333d4b; border-bottom: 1px solid var(--archive-line);
   color: var(--archive-subtle); font-size: 11px; font-weight: 800; letter-spacing: .04em; text-align: center;
 }
@@ -301,7 +308,7 @@ footer {
 .archive-post { border-bottom: 1px solid #edf0f2; }
 .archive-post[hidden] { display: none; }
 .archive-post-link {
-  display: grid; grid-template-columns: 64px minmax(0, 1fr) 110px; gap: 18px; align-items: center;
+  display: grid; grid-template-columns: 64px minmax(0, 1fr) 154px; gap: 18px; align-items: center;
   min-height: 154px; padding: 22px 8px; color: inherit; text-decoration: none;
   transition: background .18s ease, transform .18s ease;
 }
@@ -312,18 +319,22 @@ footer {
 .archive-post-meta span { position: relative; }
 .archive-post-meta span:not(:last-child)::after { content: ""; position: absolute; width: 1px; height: 9px; right: -7px; top: 4px; background: var(--archive-line); }
 .archive-post-meta .archive-post-category { color: var(--archive-blue-deep); font-weight: 800; }
+.archive-view-count { color: #596574; font-variant-numeric: tabular-nums; font-weight: 700; }
 .archive-post h2 { margin: 7px 0 6px; overflow: hidden; color: var(--archive-ink); font-size: 20px; line-height: 1.35; letter-spacing: -.035em; text-overflow: ellipsis; white-space: nowrap; }
 .archive-post p { display: -webkit-box; margin: 0; overflow: hidden; color: var(--archive-muted); font-size: 13px; line-height: 1.55; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
 .archive-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 9px; color: #8b95a1; font-size: 11px; }
 .archive-post-cover {
-  width: 110px; height: 92px; display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 12px; border-radius: 13px; color: #fff; background: linear-gradient(145deg, #5aa0ff, #2477ed 62%, #1659bd);
-  box-shadow: inset 0 1px rgba(255,255,255,.25); overflow: hidden; position: relative;
+  width: 154px; height: 104px; margin: 0; border: 1px solid #e5e8eb; border-radius: 14px;
+  background: #eef2f6; box-shadow: inset 0 1px rgba(255,255,255,.25); overflow: hidden; position: relative;
 }
-.archive-post-cover::after { content: ""; position: absolute; width: 86px; height: 86px; right: -48px; top: -44px; border: 13px solid rgba(255,255,255,.14); border-radius: 50%; }
-.archive-post-cover span { position: absolute; top: 10px; left: 12px; color: rgba(255,255,255,.72); font-size: 8px; font-weight: 900; letter-spacing: .11em; }
-.archive-post-cover strong { font-size: 25px; line-height: .95; letter-spacing: -.06em; }
-.archive-post-cover small { margin-top: 5px; overflow: hidden; font-size: 9px; font-weight: 700; opacity: .85; text-overflow: ellipsis; white-space: nowrap; }
+.archive-post-cover img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center; transition: transform .35s ease; }
+.archive-post-link:hover .archive-post-cover img { transform: scale(1.045); }
+.archive-post-cover figcaption { position: absolute; right: 8px; bottom: 8px; padding: 4px 7px; border-radius: 7px; color: #fff; background: rgba(25,31,40,.76); backdrop-filter: blur(8px); font-size: 9px; font-weight: 800; letter-spacing: .04em; }
+.archive-post-cover-fallback { display: flex; flex-direction: column; justify-content: flex-end; padding: 12px; color: #fff; background: linear-gradient(145deg, #5aa0ff, #2477ed 62%, #1659bd); }
+.archive-post-cover-fallback::after { content: ""; position: absolute; width: 86px; height: 86px; right: -48px; top: -44px; border: 13px solid rgba(255,255,255,.14); border-radius: 50%; }
+.archive-post-cover-fallback span { position: absolute; top: 10px; left: 12px; color: rgba(255,255,255,.72); font-size: 8px; font-weight: 900; letter-spacing: .11em; }
+.archive-post-cover-fallback strong { font-size: 25px; line-height: .95; letter-spacing: -.06em; }
+.archive-post-cover-fallback small { margin-top: 5px; overflow: hidden; font-size: 9px; font-weight: 700; opacity: .85; text-overflow: ellipsis; white-space: nowrap; }
 .archive-empty-static, .archive-empty { padding: 72px 20px; color: var(--archive-muted); text-align: center; }
 .archive-empty div { font-size: 32px; }
 .archive-empty h3 { margin: 12px 0 5px; color: var(--archive-ink); font-size: 18px; }
@@ -342,6 +353,7 @@ footer {
   display: flex; justify-content: space-between; gap: 16px; margin: 26px 0 40px;
   padding: 0 4px !important; color: var(--archive-subtle); background: transparent; font-size: 12px;
 }
+.archive-footer a { color: var(--archive-blue-deep); font-weight: 700; text-decoration: none; }
 @media (max-width: 860px) {
   .verdict-grid, .duo, .checks, .metrics { grid-template-columns: 1fr 1fr; }
   .metrics { grid-template-columns: 1fr 1fr; }
@@ -363,12 +375,14 @@ footer {
   .hero { padding: 72px 0 56px; }
   .archive-topbar { height: 58px; }
   .archive-topbar-inner, .archive-shell { width: min(100% - 28px, 1180px); }
-  .archive-topbar nav a { padding: 0 10px; font-size: 12px; }
+  .archive-brand > span:last-child { display: none; }
+  .archive-topbar nav { gap: 2px; }
+  .archive-topbar nav a { padding: 0 8px; font-size: 11px; white-space: nowrap; }
   .archive-topbar nav a:first-child { display: none; }
   .archive-profile { grid-template-columns: 1fr; gap: 18px; margin: 18px 0 14px; padding: 24px !important; border-radius: 20px; }
   .archive-avatar { width: 68px; height: 68px; border-radius: 23px; }
   .archive-avatar span { font-size: 21px; }
-  .archive-profile h1 { margin-top: 7px; font-size: 29px; }
+  .archive-profile h1 { margin-top: 7px; font-size: 29px; word-break: keep-all; }
   .archive-profile-copy > p { font-size: 14px; }
   .archive-profile-meta span:last-child { display: none; }
   .archive-primary-action { grid-column: 1; width: 100%; justify-content: space-between; }
@@ -379,15 +393,16 @@ footer {
   .archive-board-head h2 { font-size: 25px; }
   .archive-search { width: 100%; }
   .archive-list-head { display: none; }
-  .archive-post-link { grid-template-columns: minmax(0, 1fr) 82px; gap: 13px; min-height: 138px; padding: 19px 0; }
+  .archive-post-link { grid-template-columns: minmax(0, 1fr) 96px; gap: 13px; min-height: 138px; padding: 19px 0; }
   .archive-post-number { display: none; }
   .archive-post h2 { font-size: 17px; white-space: normal; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
   .archive-post p { -webkit-line-clamp: 1; }
   .archive-tags { display: none; }
-  .archive-post-cover { width: 82px; height: 78px; padding: 10px; border-radius: 11px; }
-  .archive-post-cover span { left: 10px; top: 9px; font-size: 7px; }
-  .archive-post-cover strong { font-size: 21px; }
-  .archive-post-cover small { font-size: 8px; }
+  .archive-post-cover { width: 96px; height: 80px; border-radius: 11px; }
+  .archive-post-cover-fallback { padding: 10px; }
+  .archive-post-cover-fallback span { left: 10px; top: 9px; font-size: 7px; }
+  .archive-post-cover-fallback strong { font-size: 21px; }
+  .archive-post-cover-fallback small { font-size: 8px; }
   .archive-pagination { gap: 3px; }
   .archive-page-button { min-width: 32px; height: 34px; font-size: 12px; }
   .archive-page-button.is-wide { padding: 0 9px; }

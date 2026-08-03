@@ -40,10 +40,49 @@ function mergeManifestItems(
   generated: ManifestItem[],
 ): ManifestItem[] {
   const itemsById = new Map(existing.map((item) => [item.id, item]));
-  for (const item of generated) itemsById.set(item.id, item);
+  for (const item of generated) {
+    const previous = itemsById.get(item.id);
+    itemsById.set(item.id, {
+      ...previous,
+      ...item,
+      coverImage: item.coverImage || previous?.coverImage,
+      coverAlt: item.coverAlt || previous?.coverAlt,
+    });
+  }
   return Array.from(itemsById.values())
     .filter((item) => item.status !== "draft" && item.status !== "publish_failed")
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+}
+
+function discoverCoverImage(root: string, item: ManifestItem): ManifestItem {
+  if (item.coverImage) return item;
+  const pagePath = item.path.endsWith("/")
+    ? `${item.path}index.html`
+    : item.path;
+  const absolutePagePath = path.join(root, pagePath);
+  if (!fs.existsSync(absolutePagePath)) return item;
+  try {
+    const html = readText(absolutePagePath);
+    const imageTag = html.match(/<img\b[^>]*>/i)?.[0];
+    if (!imageTag) return item;
+    const source = imageTag.match(/\bsrc=["']([^"']+)["']/i)?.[1];
+    if (!source) return item;
+    const alt = imageTag.match(/\balt=["']([^"']*)["']/i)?.[1];
+    const coverImage = /^(?:https?:|data:)/i.test(source)
+      ? source
+      : path.posix.normalize(path.posix.join(path.posix.dirname(pagePath), source));
+    return {
+      ...item,
+      coverImage,
+      coverAlt: alt || `${item.title} 보고서 대표 이미지`,
+    };
+  } catch {
+    return item;
+  }
+}
+
+function enrichCoverImages(root: string, items: ManifestItem[]): ManifestItem[] {
+  return items.map((item) => discoverCoverImage(root, item));
 }
 
 function writeArchiveArtifacts(
@@ -75,9 +114,9 @@ export function buildArchive() {
   const docs = listReportsNewestFirst().filter(
     (doc) => doc.status !== "draft" && doc.status !== "publish_failed",
   );
-  const items = mergeManifestItems(
-    existingManifestItems(root),
-    docs.map(toManifestItem),
+  const items = enrichCoverImages(
+    root,
+    mergeManifestItems(existingManifestItems(root), docs.map(toManifestItem)),
   );
   return {
     reportCount: items.length,
@@ -105,9 +144,9 @@ export function buildSite(options?: {
   );
   const config = loadConfig();
   const root = repoRoot();
-  const items = mergeManifestItems(
-    existingManifestItems(root),
-    docs.map(toManifestItem),
+  const items = enrichCoverImages(
+    root,
+    mergeManifestItems(existingManifestItems(root), docs.map(toManifestItem)),
   );
 
   for (const doc of docs) {

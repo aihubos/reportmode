@@ -1,0 +1,45 @@
++(function () {
+  "use strict";
+
+  var script = document.currentScript;
+  var reportId = script && script.dataset ? script.dataset.reportId : "";
+  if (!reportId || window.location.hostname !== "aihubos.github.io") return;
+
+  var storageKey = "reportmode:view:" + reportId;
+  try {
+    if (window.sessionStorage.getItem(storageKey)) return;
+    window.sessionStorage.setItem(storageKey, "1");
+  } catch (_) {
+    // Continue without session de-duplication when browser storage is unavailable.
+  }
+
+  fetch(
+    "https://api.counterapi.dev/v1/aihubos-reportmode/" +
+      encodeURIComponent(reportId) +
+      "/up",
+    {
+      cache: "no-store",
+      keepalive: true,
+      mode: "cors",
+    },
+  )
+    .then(function (response) {
+      if (!response.ok) throw new Error("counter unavailable");
+      return response.json();
+    })
+    .then(function (data) {
+      var count = Number(data.count);
+      if (!Number.isFinite(count)) return;
+      document.querySelectorAll("[data-report-view-count]").forEach(function (element) {
+        element.textContent = count.toLocaleString("ko-KR");
+      });
+    })
+    .catch(function () {
+      try {
+        window.sessionStorage.removeItem(storageKey);
+      } catch (_) {
+        // A later visit can retry when storage is unavailable.
+      }
+    });
+})();
+

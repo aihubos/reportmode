@@ -261,6 +261,7 @@ export function renderReportHtml(doc: ReportDocument): string {
       <span>최종 판단과 검수는 사용자에게 있습니다.</span>
     </div>
   </footer>
+  <script src="../../assets/report-view-counter.js" data-report-id="${escapeHtml(doc.id)}"></script>
 </body>
 </html>
 `;
@@ -299,8 +300,17 @@ export function renderHomeHtml(items: ManifestItem[], linkPrefix = ""): string {
         .filter(Boolean)
         .join(" ")
         .toLocaleLowerCase("ko");
+      const coverSource = item.coverImage
+        ? /^(?:https?:|data:)/i.test(item.coverImage)
+          ? item.coverImage
+          : linkPrefix + item.coverImage
+        : "";
+      const coverAlt = item.coverAlt || item.title + " 보고서 대표 이미지";
+      const cover = coverSource
+        ? `<figure class="archive-post-cover"><img src="${escapeHtml(coverSource)}" alt="${escapeHtml(coverAlt)}" loading="lazy"><figcaption>${escapeHtml(item.displayDate)}</figcaption></figure>`
+        : `<div class="archive-post-cover archive-post-cover-fallback" aria-hidden="true"><span>REPORT</span><strong>${escapeHtml(item.displayDate.slice(0, 2))}</strong><small>${escapeHtml(item.category)}</small></div>`;
       return `
-      <article class="archive-post" data-report-item data-category="${escapeHtml(item.category)}" data-search="${escapeHtml(searchText)}">
+      <article class="archive-post" data-report-item data-report-id="${escapeHtml(item.id)}" data-category="${escapeHtml(item.category)}" data-search="${escapeHtml(searchText)}">
         <a class="archive-post-link" href="${escapeHtml(linkPrefix + item.path)}">
           <div class="archive-post-number" aria-label="게시글 번호">${String(items.length - index).padStart(3, "0")}</div>
           <div class="archive-post-copy">
@@ -308,16 +318,13 @@ export function renderHomeHtml(items: ManifestItem[], linkPrefix = ""): string {
               <span class="archive-post-category">${escapeHtml(item.category)}</span>
               <span>${escapeHtml(item.displayDate)}</span>
               <span>출처 ${item.sourceCount}개</span>
+              <span class="archive-view-count" data-view-count>조회수 —</span>
             </div>
             <h2>${escapeHtml(item.displayDate)} · ${escapeHtml(item.title)}</h2>
             <p>${escapeHtml(item.summary)}</p>
             ${tags ? `<div class="archive-tags">${tags}</div>` : ""}
           </div>
-          <div class="archive-post-cover" aria-hidden="true">
-            <span>REPORT</span>
-            <strong>${escapeHtml(item.displayDate.slice(0, 2))}</strong>
-            <small>${escapeHtml(item.category)}</small>
-          </div>
+          ${cover}
         </a>
       </article>`;
     })
@@ -332,18 +339,19 @@ export function renderHomeHtml(items: ManifestItem[], linkPrefix = ""): string {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Jeremy를 위한 검증 가능한 웹 보고서 아카이브">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%233182f6'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial' font-size='34' font-weight='800' fill='white'%3ER%3C/text%3E%3C/svg%3E">
-  <title>Report Mode — Web Reports</title>
+  <title>Jeremy's AI Report 도서관</title>
   <style>${css()}</style>
 </head>
 <body class="archive-page">
   <header class="archive-topbar">
     <div class="archive-topbar-inner">
-      <a class="archive-brand" href="../" aria-label="Report Mode 홈">
+      <a class="archive-brand" href="../" aria-label="Jeremy's AI Report 홈">
         <span class="archive-brand-mark">R</span>
-        <span>Report Mode</span>
+        <span>Jeremy's AI Report</span>
       </a>
       <nav aria-label="주요 메뉴">
         <a class="is-current" href="./">보고서 도서관</a>
+        <a href="https://blog.naver.com/jeremylee0213" target="_blank" rel="noopener">Jeremy's Blog</a>
         <a href="../">스킬 만들기</a>
       </nav>
     </div>
@@ -354,7 +362,7 @@ export function renderHomeHtml(items: ManifestItem[], linkPrefix = ""): string {
       <div class="archive-avatar" aria-hidden="true"><span>RM</span></div>
       <div class="archive-profile-copy">
         <div class="archive-eyebrow">AI RESEARCH LIBRARY</div>
-        <h1 id="archive-title">Report Mode 도서관</h1>
+        <h1 id="archive-title">Jeremy's AI Report 도서관</h1>
         <p>원자료를 조사하고 사실과 해석을 나눠 기록하는 개인 보고서 아카이브입니다.</p>
         <div class="archive-profile-meta">
           <span>전체 보고서 <b>${items.length}</b></span>
@@ -362,7 +370,7 @@ export function renderHomeHtml(items: ManifestItem[], linkPrefix = ""): string {
           <span>자동 업데이트</span>
         </div>
       </div>
-      <a class="archive-primary-action" href="../">나만의 스킬 만들기 <span aria-hidden="true">→</span></a>
+      <a class="archive-primary-action archive-blog-action" href="https://blog.naver.com/jeremylee0213" target="_blank" rel="noopener"><span class="archive-blog-mark">N</span><span><b>Jeremy's Blog</b><small>blog.naver.com/jeremylee0213</small></span><i aria-hidden="true">↗</i></a>
     </section>
 
     <div class="archive-layout">
@@ -418,14 +426,16 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
     </div>
 
     <footer class="archive-footer">
-      <span>Report Mode Library</span>
-      <span>최종 판단과 검수는 사용자에게 있습니다.</span>
+      <span>Jeremy's AI Report Library</span>
+      <a href="https://blog.naver.com/jeremylee0213" target="_blank" rel="noopener">blog.naver.com/jeremylee0213</a>
     </footer>
   </main>
 
   <script>
   (function () {
     var PAGE_SIZE = 10;
+    var COUNTER_BASE = "https://api.counterapi.dev/v1/aihubos-reportmode/";
+    var COUNTER_ENABLED = window.location.hostname === "aihubos.github.io";
     var posts = Array.prototype.slice.call(document.querySelectorAll("[data-report-item]"));
     var filters = Array.prototype.slice.call(document.querySelectorAll("[data-category-filter]"));
     var search = document.getElementById("archiveSearch");
@@ -440,6 +450,52 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
     };
 
     search.value = state.query;
+
+    function viewStorageKey(reportId) {
+      return "reportmode:view:" + reportId;
+    }
+
+    function incrementView(reportId) {
+      if (!COUNTER_ENABLED || !reportId) return;
+      var key = viewStorageKey(reportId);
+      if (window.sessionStorage.getItem(key)) return;
+      window.sessionStorage.setItem(key, "1");
+      fetch(COUNTER_BASE + encodeURIComponent(reportId) + "/up", {
+        cache: "no-store",
+        keepalive: true,
+        mode: "cors"
+      }).catch(function () {
+        window.sessionStorage.removeItem(key);
+      });
+    }
+
+    function loadViewCounts(visiblePosts) {
+      visiblePosts.forEach(function (post) {
+        var output = post.querySelector("[data-view-count]");
+        var reportId = post.dataset.reportId || "";
+        if (!output || output.dataset.loaded === "true") return;
+        if (!COUNTER_ENABLED) {
+          output.textContent = "조회수 —";
+          return;
+        }
+        output.dataset.loaded = "true";
+        fetch(COUNTER_BASE + encodeURIComponent(reportId) + "/", {
+          cache: "no-store",
+          mode: "cors"
+        })
+          .then(function (response) {
+            if (!response.ok) throw new Error("counter unavailable");
+            return response.json();
+          })
+          .then(function (data) {
+            var value = Number(data.count);
+            output.textContent = "조회수 " + (Number.isFinite(value) ? value.toLocaleString("ko-KR") : "0");
+          })
+          .catch(function () {
+            output.textContent = "조회수 0";
+          });
+      });
+    }
 
     function makePageButton(label, page, active, disabled, className) {
       var button = document.createElement("button");
@@ -478,6 +534,7 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
 
       posts.forEach(function (post) { post.hidden = true; });
       visible.forEach(function (post) { post.hidden = false; });
+      loadViewCounts(visible);
       filters.forEach(function (filter) {
         var active = filter.dataset.categoryFilter === state.category;
         filter.classList.toggle("is-active", active);
@@ -518,6 +575,13 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
       state.query = search.value;
       state.page = 1;
       render(false);
+    });
+    posts.forEach(function (post) {
+      var link = post.querySelector(".archive-post-link");
+      if (!link) return;
+      link.addEventListener("click", function () {
+        incrementView(post.dataset.reportId || "");
+      });
     });
     render(false);
   })();

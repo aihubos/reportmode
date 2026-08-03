@@ -119,6 +119,8 @@ export const ManifestItemSchema = z.object({
   displayDate: z.string(),
   sourceCount: z.number(),
   tags: z.array(z.string()).default([]),
+  coverImage: z.string().optional(),
+  coverAlt: z.string().optional(),
 });
 
 export type ManifestItem = z.infer<typeof ManifestItemSchema>;

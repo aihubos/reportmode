@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-03T08:59:43.649Z",
+  "generatedAt": "2026-08-03T09:21:28.509Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
     {
@@ -21,7 +21,9 @@
         "model-y-l",
         "purchase-decision",
         "electric-vehicle"
-      ]
+      ],
+      "coverImage": "https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-Y-L-Engineered-Carousel-Slide-1-Desktop.jpg",
+      "coverAlt": "Tesla 공식 제품 페이지에 공개된 은색 Model Y L 측면 실제 제품사진"
     },
     {
       "id": "260803-deepseek-v4-flash-comparison",
@@ -45,7 +47,9 @@
         "claude-sonnet-5",
         "ai-model",
         "comparison"
-      ]
+      ],
+      "coverImage": "assets/260803-deepseek-v4-flash-comparison/deepseek-v4-flash-comparison.png",
+      "coverAlt": "DeepSeek V4 Flash와 V4 Pro, GPT-5.6 Luna·Terra, Claude Sonnet 5의 API 가격과 컨텍스트 비교 인포그래픽"
     },
     {
       "id": "260803-buzz-slack-discord-telegram-guide",
@@ -69,7 +73,9 @@
         "ai-agent",
         "self-hosted",
         "comparison"
-      ]
+      ],
+      "coverImage": "assets/260803-buzz-guide/buzz-whiteboard.png",
+      "coverAlt": "Buzz에서 사람과 AI 에이전트가 같은 작업공간에서 대화하고 Git, 체크리스트, 서명 이벤트, 셀프호스트 서버에 연결되는 화이트보드 두들 인포그래픽"
     },
     {
       "id": "260802-pokemon-pokopia-deep-dive",
@@ -91,7 +97,9 @@
         "nintendo-switch-2",
         "cozy-game",
         "deep-dive"
-      ]
+      ],
+      "coverImage": "assets/260802-pokemon-pokopia-deep-dive/pokopia-popularity-infographic.png",
+      "coverAlt": "포코피아의 출시 주말 220만 장, 메타스코어 89점, 만들고 모으고 함께하는 인기 요인과 느린 진행 주의점을 정리한 한글 화이트보드 인포그래픽"
     },
     {
       "id": "260802-ai-agent-hermes-openclaw-codex",
@@ -115,7 +123,9 @@
         "security",
         "automation",
         "deep-dive"
-      ]
+      ],
+      "coverImage": "assets/260802-ai-agent-comparison/ai-agent-three-paths-16x9.png",
+      "coverAlt": "지속형 개인 에이전트, 다채널 게이트웨이, 코딩 에이전트의 세 경로가 인간 검수자에게 모이는 AI 생성 비교 인포그래픽"
     },
     {
       "id": "260802-iphone-fold-vs-galaxy-fold7-fold8-ultra",
@@ -139,7 +149,9 @@
         "galaxy-z-fold8-ultra",
         "benchmarks",
         "deep-dive"
-      ]
+      ],
+      "coverImage": "assets/260802-iphone-fold-vs-galaxy-fold7-fold8-ultra/fold-performance-comparison-infographic.png",
+      "coverAlt": "아이폰 폴드, 갤럭시 Z 폴드7, Z 폴드8 울트라의 발표 상태와 Geekbench 6 성능을 비교한 한글 화이트보드 인포그래픽"
     },
     {
       "id": "260802-galaxy-z-fold8-deep-dive",
@@ -161,7 +173,9 @@
         "foldable",
         "deep-dive",
         "official"
-      ]
+      ],
+      "coverImage": "assets/260802-galaxy-z-fold8-deep-dive/samsung-galaxy-z-fold8-official-1.jpg",
+      "coverAlt": "그래파이트 색상의 Samsung Galaxy Z Fold8 공식 제품 이미지"
     },
     {
       "id": "260802-apple-foldable-iphone",
@@ -182,7 +196,9 @@
         "foldable",
         "iphone",
         "rumor"
-      ]
+      ],
+      "coverImage": "assets/apple-foldable-doodle-ko-v2.png",
+      "coverAlt": "Apple 폴더블 iPhone 예상 사양을 정리한 한글 화이트보드 인포그래픽"
     }
   ]
 }
