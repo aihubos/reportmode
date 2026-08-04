@@ -1,0 +1,208 @@
+{
+  "as_of": "2026-08-04 KST",
+  "report": "reports/260804-minimax-h3-m5-max-comfyui-guide.html",
+  "method": "공식 원문 우선, 파일 크기는 Hugging Face tree API 값으로 계산. 커뮤니티 속도는 M5 Max 예측으로 일반화하지 않음.",
+  "claims": [
+    {
+      "id": "C01",
+      "claim": "H3는 33B dense 영상·오디오 diffusion transformer이다",
+      "source_ids": [
+        2
+      ],
+      "status": "confirmed"
+    },
+    {
+      "id": "C02",
+      "claim": "Qwen3-VL-32B text encoder와 video/audio VAE를 사용한다",
+      "source_ids": [
+        2
+      ],
+      "status": "confirmed"
+    },
+    {
+      "id": "C03",
+      "claim": "공개 base model은 768p이고 hosted regeneration이 2K를 제공한다",
+      "source_ids": [
+        1,
+        2,
+        5
+      ],
+      "status": "confirmed"
+    },
+    {
+      "id": "C04",
+      "claim": "한국은 커뮤니티 라이선스 제외 지역이다",
+      "source_ids": [
+        3
+      ],
+      "status": "confirmed"
+    },
+    {
+      "id": "C05",
+      "claim": "공식 FAQ는 API를 글로벌 경로로 구분한다",
+      "source_ids": [
+        4
+      ],
+      "status": "confirmed"
+    },
+    {
+      "id": "C06",
+      "claim": "Comfy API Partner Node는 로컬 모델/GPU 없이 서버에서 실행되고 초당 과금된다",
+      "source_ids": [
+        7
+      ],
+      "status": "confirmed"
+    },
+    {
+      "id": "C07",
+      "claim": "Comfy API는 5–15초, 2K, 네이티브 스테레오 오디오를 제공한다",
+      "source_ids": [
+        7
+      ],
+      "status": "confirmed"
+    },
+    {
+      "id": "C08",
+      "claim": "Comfy 로컬 기본 4개 파일 합계는 42.470GB다",
+      "source_ids": [
+        8
+      ],
+      "status": "calculated"
+    },
+    {
+      "id": "C09",
+      "claim": "BF16 전체 Comfy 파일 합계는 123.599GB다",
+      "source_ids": [
+        8
+      ],
+      "status": "calculated"
+    },
+    {
+      "id": "C10",
+      "claim": "공식 repo 전체는 중복 variant 포함 약 498GB다",
+      "source_ids": [
+        2
+      ],
+      "status": "calculated"
+    },
+    {
+      "id": "C11",
+      "claim": "T2V/I2V는 FL2VA checkpoint를 공유한다",
+      "source_ids": [
+        2,
+        6,
+        15
+      ],
+      "status": "confirmed"
+    },
+    {
+      "id": "C12",
+      "claim": "H3 open release는 sparse attention code 없이 full attention을 사용한다",
+      "source_ids": [
+        2,
+        10
+      ],
+      "status": "confirmed"
+    },
+    {
+      "id": "C13",
+      "claim": "M3 Ultra MLX에서 5초 768p 한 step 531.6초가 측정됐다",
+      "source_ids": [
+        10
+      ],
+      "status": "community-measured"
+    },
+    {
+      "id": "C14",
+      "claim": "M3 Ultra MPS BF16 model tensor가 약 134.1GiB로 측정됐다",
+      "source_ids": [
+        11
+      ],
+      "status": "community-measured"
+    },
+    {
+      "id": "C15",
+      "claim": "M5 Max 128GB는 40-core GPU와 614GB/s bandwidth다",
+      "source_ids": [
+        12,
+        13
+      ],
+      "status": "confirmed"
+    },
+    {
+      "id": "C16",
+      "claim": "M5 Max H3 end-to-end 공개 실측은 확인하지 못했다",
+      "source_ids": [
+        1,
+        2,
+        6,
+        7,
+        8,
+        10,
+        11,
+        12
+      ],
+      "status": "not-found"
+    },
+    {
+      "id": "C17",
+      "claim": "Comfy local native support는 0.30.0+ 및 merged PR #15224에 있다",
+      "source_ids": [
+        6,
+        9
+      ],
+      "status": "confirmed"
+    },
+    {
+      "id": "C18",
+      "claim": "공식 workflow는 0.4MP 864x480과 124 frames를 기본값으로 사용한다",
+      "source_ids": [
+        6,
+        15
+      ],
+      "status": "confirmed"
+    },
+    {
+      "id": "C19",
+      "claim": "R2V는 이미지 최대 9, 비디오 3, 오디오 3을 받는다",
+      "source_ids": [
+        2,
+        7
+      ],
+      "status": "confirmed"
+    },
+    {
+      "id": "C20",
+      "claim": "API key는 built-in account mechanism을 우선해야 한다",
+      "source_ids": [
+        7
+      ],
+      "status": "recommendation"
+    },
+    {
+      "id": "C21",
+      "claim": "Apple Silicon의 공식 기본 INT8 ConvRot checkpoint가 ComfyUI 0.30.0 첫 sampling step에서 aten::_int_mm MPS 미구현으로 실패한 공개 이슈가 있다",
+      "source_ids": [
+        18
+      ],
+      "status": "confirmed-single-reproduction"
+    }
+  ],
+  "image_sources": [
+    {
+      "file": "minimax-h3-official-t2va-frame.jpg",
+      "source_id": 16,
+      "usage": "official sample video frame, attribution in caption"
+    },
+    {
+      "file": "minimax-h3-official-banner.png",
+      "source_id": 2,
+      "usage": "official model-card banner, trademark disclaimer in caption"
+    },
+    {
+      "file": "h3-mac-comfy-memory-doodle.png",
+      "source_id": 17,
+      "usage": "AI-generated explanatory visual, marked non-official"
+    }
+  ]
+}
