@@ -19,6 +19,11 @@ import {
   type ManifestItem,
   type ReportDocument,
 } from "../schema/report.js";
+import { listUploadedReports, uploadedToManifest } from "../publisher/store.js";
+
+function publicPagePath(root: string, itemPath: string): string {
+  return path.join(root, itemPath.endsWith("/") ? `${itemPath}index.html` : itemPath);
+}
 
 function existingManifestItems(root: string): ManifestItem[] {
   const manifestPath = path.join(root, "reports", "manifest.json");
@@ -28,11 +33,93 @@ function existingManifestItems(root: string): ManifestItem[] {
     if (!Array.isArray(raw?.reports)) return [];
     return raw.reports.flatMap((item: unknown) => {
       const parsed = ManifestItemSchema.safeParse(item);
-      return parsed.success ? [parsed.data] : [];
+      return parsed.success && fs.existsSync(publicPagePath(root, parsed.data.path))
+        ? [parsed.data]
+        : [];
     });
   } catch {
     return [];
   }
+}
+
+function decodeArchiveText(value: string): string {
+  return value
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">")
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;|&apos;/gi, "'")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function archiveDateIso(displayDate: string, order: number): string {
+  const match = displayDate.match(/^(\d{2})(\d{2})(\d{2})$/);
+  if (!match) return "2000-01-01T00:00:00+09:00";
+  const second = String(Math.max(0, 59 - (order % 60))).padStart(2, "0");
+  return `20${match[1]}-${match[2]}-${match[3]}T12:00:${second}+09:00`;
+}
+
+function existingArchiveItems(root: string, siteBase: string): ManifestItem[] {
+  const archivePath = path.join(root, "archive", "index.html");
+  if (!fs.existsSync(archivePath)) return [];
+  const html = readText(archivePath);
+  const items: ManifestItem[] = [];
+  const pattern = /<article\b[^>]*class=["'][^"']*archive-post[^"']*["'][^>]*data-report-id=["']([^"']+)["'][^>]*>([\s\S]*?)<\/article>/gi;
+  let match: RegExpExecArray | null;
+  let order = 0;
+  while ((match = pattern.exec(html))) {
+    const id = match[1];
+    const body = match[2];
+    if (!id || !body) continue;
+    const href = body.match(/class=["'][^"']*archive-post-link[^"']*["'][^>]*href=["']([^"']+)["']/i)?.[1];
+    if (!href) continue;
+    const reportPath = href.replace(/^\.\.\//, "").replace(/^\//, "");
+    if (!fs.existsSync(publicPagePath(root, reportPath))) continue;
+    const heading = decodeArchiveText(body.match(/<h2\b[^>]*>([\s\S]*?)<\/h2>/i)?.[1] || id);
+    const dateFromHeading = heading.match(/^(\d{6})\s*[·-]/)?.[1];
+    const displayDate = dateFromHeading || id.match(/^(\d{6})/)?.[1] || "000000";
+    const title = heading.replace(/^\d{6}\s*[·-]\s*/, "").trim() || id;
+    const category = decodeArchiveText(
+      body.match(/class=["'][^"']*archive-post-category[^"']*["'][^>]*>([\s\S]*?)<\//i)?.[1] || "기타",
+    );
+    const summary = decodeArchiveText(body.match(/<p\b[^>]*>([\s\S]*?)<\/p>/i)?.[1] || title);
+    const sourceCount = Number(body.match(/출처\s+(\d+)개/)?.[1] || 0);
+    const tagBlock = body.match(/class=["'][^"']*archive-tags[^"']*["'][^>]*>([\s\S]*?)<\/div>/i)?.[1] || "";
+    const tags = Array.from(tagBlock.matchAll(/<span\b[^>]*>#?([\s\S]*?)<\/span>/gi))
+      .map((tag) => decodeArchiveText(tag[1] || "").replace(/^#/, ""))
+      .filter(Boolean);
+    const imageTag = body.match(/<img\b[^>]*>/i)?.[0] || "";
+    const imageSource = imageTag.match(/\bsrc=["']([^"']+)["']/i)?.[1];
+    const imageAlt = imageTag.match(/\balt=["']([^"']*)["']/i)?.[1];
+    const coverImage = imageSource
+      ? /^(?:https?:|data:)/i.test(imageSource)
+        ? imageSource
+        : imageSource.replace(/^\.\.\//, "")
+      : undefined;
+    const createdAt = archiveDateIso(displayDate, order);
+    order += 1;
+    items.push({
+      id,
+      slug: id.replace(/^\d{6}-/, "") || id,
+      title,
+      category,
+      summary,
+      createdAt,
+      updatedAt: createdAt,
+      status: "published",
+      path: reportPath,
+      url: `${siteBase.replace(/\/$/, "")}/${reportPath}`,
+      displayDate,
+      sourceCount: Number.isFinite(sourceCount) ? sourceCount : 0,
+      tags,
+      coverImage,
+      coverAlt: imageAlt || undefined,
+    });
+  }
+  return items;
 }
 
 function mergeManifestItems(
@@ -83,6 +170,27 @@ function discoverCoverImage(root: string, item: ManifestItem): ManifestItem {
 
 function enrichCoverImages(root: string, items: ManifestItem[]): ManifestItem[] {
   return items.map((item) => discoverCoverImage(root, item));
+}
+
+function mergedItems(root: string, siteBase: string, docs: ReportDocument[]): ManifestItem[] {
+  const archiveItems = existingArchiveItems(root, siteBase);
+  const manifestItems = existingManifestItems(root);
+  const baseItems = mergeManifestItems(archiveItems, manifestItems);
+  const generatedItems = [
+    ...docs.map(toManifestItem),
+    ...listUploadedReports(root).map(uploadedToManifest),
+  ];
+  return enrichCoverImages(root, mergeManifestItems(baseItems, generatedItems));
+}
+
+function syncUploadedPublicFiles(root: string) {
+  for (const meta of listUploadedReports(root)) {
+    const source = path.join(root, "content", "uploads", meta.id, "files");
+    const destination = path.join(root, "reports", meta.id);
+    if (!fs.existsSync(source)) continue;
+    fs.rmSync(destination, { recursive: true, force: true });
+    fs.cpSync(source, destination, { recursive: true, force: true });
+  }
 }
 
 function reportBodySearchText(root: string, item: ManifestItem): string {
@@ -169,10 +277,7 @@ export function buildArchive() {
   const docs = listReportsNewestFirst().filter(
     (doc) => doc.status !== "draft" && doc.status !== "publish_failed",
   );
-  const items = enrichCoverImages(
-    root,
-    mergeManifestItems(existingManifestItems(root), docs.map(toManifestItem)),
-  );
+  const items = mergedItems(root, config.siteBase, docs);
   return {
     reportCount: items.length,
     ...writeArchiveArtifacts(root, items, config.siteBase),
@@ -199,14 +304,12 @@ export function buildSite(options?: {
   );
   const config = loadConfig();
   const root = repoRoot();
-  const items = enrichCoverImages(
-    root,
-    mergeManifestItems(existingManifestItems(root), docs.map(toManifestItem)),
-  );
 
   for (const doc of docs) {
     buildReport(doc);
   }
+  syncUploadedPublicFiles(root);
+  const items = mergedItems(root, config.siteBase, docs);
 
   writeText(
     path.join(root, "index.html"),

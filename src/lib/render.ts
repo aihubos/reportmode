@@ -273,7 +273,10 @@ export function renderHomeHtml(
   bodySearchTextById: Record<string, string> = {},
   fallbackViewCountsById: Record<string, number> = {},
 ): string {
+  const categoryOrder = ["AI", "게임", "자동차", "IT 기기", "비즈니스", "라이프", "기타"];
   const categoryFor = (item: ManifestItem) => {
+    const selectedCategory = String(item.category || "").trim();
+    if (categoryOrder.includes(selectedCategory)) return selectedCategory;
     const text = [item.title, item.subtitle, item.category, ...(item.tags || [])]
       .filter(Boolean)
       .join(" ")
@@ -292,7 +295,6 @@ export function renderHomeHtml(
     }
     return "기타";
   };
-  const categoryOrder = ["AI", "게임", "자동차", "IT 기기", "기타"];
   const categories = categoryOrder.filter((category) =>
     items.some((item) => categoryFor(item) === category),
   );

@@ -6,6 +6,15 @@ import { loadConfig } from "../lib/config.js";
 import { writeText } from "../lib/fs.js";
 import { repoRoot } from "../lib/paths.js";
 import { listReportsNewestFirst, toManifestItem } from "../lib/store.js";
+import { renderPublisherPage } from "../publisher/page.js";
+import {
+  deleteUploadedReport,
+  publishPreparedUpload,
+  remoteUploadedItem,
+  remoteUploadedRegistry,
+  updateUploadedReport,
+} from "../publisher/publish.js";
+import { prepareUpload } from "../publisher/store.js";
 
 function sendJson(
   res: http.ServerResponse,
@@ -16,13 +25,16 @@ function sendJson(
   res.end(JSON.stringify(body));
 }
 
-async function readJson(req: http.IncomingMessage): Promise<Record<string, unknown>> {
+async function readJson(
+  req: http.IncomingMessage,
+  maxBytes = 2_000_000,
+): Promise<Record<string, unknown>> {
   const chunks: Buffer[] = [];
   let size = 0;
   for await (const chunk of req) {
     const buffer = chunk as Buffer;
     size += buffer.length;
-    if (size > 2_000_000) throw new Error("스킬 내용이 너무 큽니다.");
+    if (size > maxBytes) throw new Error("요청 파일이 허용된 크기를 초과했습니다.");
     chunks.push(buffer);
   }
   return JSON.parse(Buffer.concat(chunks).toString("utf8") || "{}");
@@ -77,6 +89,7 @@ function resolveStatic(pathname: string): string | null {
 
 export async function startStudio(port: number) {
   const config = loadConfig();
+  let publisherBusy = false;
   const server = http.createServer(async (req, res) => {
     try {
       const url = new URL(req.url || "/", "http://" + (req.headers.host || "localhost"));
@@ -85,6 +98,73 @@ export async function startStudio(port: number) {
         const reports = listReportsNewestFirst().map(toManifestItem);
         sendJson(res, 200, { reports, siteBase: config.siteBase });
         return;
+      }
+
+      if (req.method === "GET" && ["/publisher", "/publisher/"].includes(url.pathname)) {
+        res.writeHead(200, {
+          "content-type": "text/html; charset=utf-8",
+          "cache-control": "no-store",
+        });
+        res.end(renderPublisherPage(config.siteBase));
+        return;
+      }
+
+      if (req.method === "GET" && url.pathname === "/api/publisher/list") {
+        const registry = remoteUploadedRegistry();
+        sendJson(res, 200, {
+          ok: true,
+          updatedAt: registry.updatedAt,
+          reports: registry.reports.map((report) => ({
+            ...report,
+            url: `${config.siteBase.replace(/\/$/, "")}/reports/${report.id}/`,
+          })),
+        });
+        return;
+      }
+
+      const publisherItemMatch = url.pathname.match(
+        /^\/api\/publisher\/item\/(\d{6}-[a-z0-9]+(?:-[a-z0-9]+)*)$/,
+      );
+      if (req.method === "GET" && publisherItemMatch?.[1]) {
+        const item = remoteUploadedItem(publisherItemMatch[1]);
+        sendJson(res, 200, { ok: true, ...item });
+        return;
+      }
+
+      const mutatingPublisherRequest =
+        (req.method === "POST" && url.pathname === "/api/publisher/upload") ||
+        ((req.method === "PUT" || req.method === "DELETE") && Boolean(publisherItemMatch));
+      if (mutatingPublisherRequest) {
+        if (publisherBusy) {
+          sendJson(res, 409, {
+            ok: false,
+            error: "다른 게시 작업이 진행 중입니다. 완료 후 다시 시도해주세요.",
+          });
+          return;
+        }
+        publisherBusy = true;
+        try {
+          if (req.method === "POST") {
+            const body = await readJson(req, 70 * 1024 * 1024);
+            const result = await publishPreparedUpload(prepareUpload(body));
+            sendJson(res, 200, { ok: true, ...result });
+            return;
+          }
+          if (req.method === "PUT" && publisherItemMatch?.[1]) {
+            const body = await readJson(req, 12 * 1024 * 1024);
+            const result = await updateUploadedReport(publisherItemMatch[1], body);
+            sendJson(res, 200, { ok: true, ...result });
+            return;
+          }
+          if (req.method === "DELETE" && publisherItemMatch?.[1]) {
+            await readJson(req, 20_000);
+            const result = await deleteUploadedReport(publisherItemMatch[1]);
+            sendJson(res, 200, { ok: true, ...result });
+            return;
+          }
+        } finally {
+          publisherBusy = false;
+        }
       }
 
       if (req.method === "POST" && url.pathname === "/api/skill/install") {
@@ -128,6 +208,7 @@ export async function startStudio(port: number) {
 
   server.listen(port, "127.0.0.1", () => {
     console.log("Report Mode Skill Builder: http://127.0.0.1:" + port);
+    console.log("HTML·ZIP 게시판 관리: http://127.0.0.1:" + port + "/publisher/");
     console.log("완료 버튼에서 SKILL.md 다운로드 또는 Hermes 직접 적용이 가능합니다.");
   });
 }
