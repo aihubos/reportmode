@@ -1,0 +1,107 @@
+{
+  "as_of": "2026-08-04 KST",
+  "currency": "USD nominal annual revenue",
+  "scope": "advanced package glass-core substrate only; excludes display glass, carrier glass and broad glass interposer market",
+  "classification": "analysis scenario, not observed market revenue",
+  "formulas": {
+    "tam": "large AI/HPC/networking package-substrate spend × physically replaceable share",
+    "sam": "TAM × composite serviceable share for qualification, supply and capacity",
+    "bottom_up": "good-area shipments × yield-adjusted package-substrate ASP"
+  },
+  "top_down": [
+    {
+      "year": 2026,
+      "denominator_usd_b": [
+        8,
+        12
+      ],
+      "replaceable_share": [
+        0.15,
+        0.25
+      ],
+      "tam_usd_b": [
+        1.2,
+        3.0
+      ],
+      "serviceable_share": [
+        0.05,
+        0.1
+      ],
+      "sam_usd_b": [
+        0.06,
+        0.3
+      ]
+    },
+    {
+      "year": 2030,
+      "denominator_usd_b": [
+        18,
+        28
+      ],
+      "replaceable_share": [
+        0.35,
+        0.5
+      ],
+      "tam_usd_b": [
+        6.3,
+        14.0
+      ],
+      "serviceable_share": [
+        0.15,
+        0.3
+      ],
+      "sam_usd_b": [
+        0.945,
+        4.2
+      ]
+    },
+    {
+      "year": 2035,
+      "denominator_usd_b": [
+        30,
+        45
+      ],
+      "replaceable_share": [
+        0.55,
+        0.7
+      ],
+      "tam_usd_b": [
+        16.5,
+        31.5
+      ],
+      "serviceable_share": [
+        0.35,
+        0.55
+      ],
+      "sam_usd_b": [
+        5.775,
+        17.325
+      ]
+    }
+  ],
+  "bottom_up": {
+    "2030": {
+      "area_million_m2": [
+        0.5,
+        1.3
+      ],
+      "asp_usd_per_m2": [
+        2000,
+        3200
+      ],
+      "revenue_usd_b": [
+        1.0,
+        4.16
+      ]
+    }
+  },
+  "notes": [
+    "All denominator, share, area and ASP inputs are analyst assumptions.",
+    "Company facilities, grants, samples and expected deliveries are not treated as mass-production revenue."
+  ],
+  "sources": [
+    "https://newsroom.intel.com/artificial-intelligence/intel-unveils-industry-leading-glass-substrates",
+    "https://www.nist.gov/chips/absolics-georgia-covington",
+    "https://www.nist.gov/chips/absolics-inc-covington"
+  ]
+}

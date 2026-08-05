@@ -1,0 +1,219 @@
+{
+  "schemaVersion": "1",
+  "id": "260802-apple-foldable-iphone",
+  "slug": "apple-foldable-iphone",
+  "title": "Apple 폴더블 iPhone",
+  "subtitle": "예상 사양, 장점과 단점, 구매 전 확인해야 할 다섯 가지 기준",
+  "category": "미발표 제품 · 루머 분석",
+  "language": "ko",
+  "author": "Jeremy",
+  "createdAt": "2026-08-02T00:00:00+09:00",
+  "updatedAt": "2026-08-02T08:26:08+09:00",
+  "status": "published",
+  "summary": "1세대 혁신성은 높지만, 구매는 실측 검증 뒤가 맞습니다.",
+  "verdict": "가장 큰 변화는 “화면 크기”가 아니라 사용 방식입니다. 외부 화면에서는 일반 아이폰처럼 쓰고, 펼치면 7인치 후반대 화면에서 두 앱을 나란히 사용하는 형태가 예상됩니다.",
+  "heroEyebrow": "Product Intelligence Report · 260802",
+  "metrics": [
+    {
+      "label": "예상 시작가",
+      "value": "$1,999+",
+      "note": "루머 범위"
+    },
+    {
+      "label": "내부 화면",
+      "value": "7.6–7.8\"",
+      "note": "다수 보도"
+    },
+    {
+      "label": "배터리 보도",
+      "value": "4,883mAh",
+      "note": "상충 있음"
+    },
+    {
+      "label": "확인 기준",
+      "value": "5",
+      "note": "구매 전 체크"
+    }
+  ],
+  "sections": [
+    {
+      "id": "form",
+      "heading": "현재까지 겹치는 형태 보도",
+      "kind": "rumor",
+      "body": "명칭은 ‘iPhone Ultra’ 또는 ‘iPhone Fold’로 불리지만 공식 제품명은 아닙니다. 책처럼 가로로 펼치는 북 스타일, 외부 화면과 내부 대화면 조합이 다수 보도에서 겹칩니다. 수치가 충돌하는 항목은 하나로 합치지 않았습니다.",
+      "bullets": [
+        "외부 5.3~5.5인치 · 내부 7.6~7.8인치",
+        "펼쳤을 때 5mm 미만, 접으면 약 9~9.5mm 두께 보도",
+        "티타늄 프레임과 액체금속·스테인리스 기반 힌지 보도"
+      ],
+      "sourceIds": [
+        "s1",
+        "s2"
+      ]
+    },
+    {
+      "id": "hardware",
+      "heading": "칩·카메라·인증 예상",
+      "kind": "rumor",
+      "body": "2nm 공정 A20 Pro, 12GB RAM, 애플 C2 5G 모뎀, 베이퍼 챔버 냉각이 거론됩니다. 후면 48MP 메인과 초광각 중심 구성, 망원 렌즈 제외 가능성, Face ID 대신 측면 Touch ID 가능성이 함께 보도됩니다.",
+      "bullets": [
+        "저장공간 256GB · 512GB · 1TB 예상",
+        "얇은 구조로 생체인증 방식 변경 가능성",
+        "카메라 구성은 아직 확정되지 않음"
+      ],
+      "sourceIds": [
+        "s1",
+        "s2"
+      ]
+    },
+    {
+      "id": "battery-conflict",
+      "heading": "배터리 수치는 상충한다",
+      "kind": "fact",
+      "body": "규제 자료 기반 보도는 듀얼 셀 합계 4,883mAh를 제시하지만, 별도 루머는 5,400~5,800mAh 범위를 거론합니다. 용량보다 외부·내부 화면별 실사용 시간이 더 중요합니다.",
+      "bullets": [
+        "4,883mAh 듀얼 셀 보도",
+        "더 높은 용량 루머와 충돌",
+        "공식 사양 아님"
+      ],
+      "sourceIds": [
+        "s3"
+      ]
+    },
+    {
+      "id": "supply",
+      "heading": "초기 물량과 일정 리스크",
+      "kind": "forecast",
+      "body": "2026년 가을 공개설과 함께, 초기 출하가 1~2개월 늦어질 가능성과 초기 물량 부족 가능성이 제기됩니다. 가격은 약 1,999~2,500달러 시작가 범위로 거론됩니다.",
+      "bullets": [
+        "초기 생산량 제약 가능성",
+        "프리미엄 가격대 예상",
+        "1세대 장기 내구성은 미검증"
+      ],
+      "sourceIds": [
+        "s2",
+        "s4"
+      ]
+    },
+    {
+      "id": "usage",
+      "heading": "하드웨어보다 멀티태스킹 완성도",
+      "kind": "analysis",
+      "body": "문서 검토·독서·영상·원격 업무는 좋아질 수 있지만, iOS의 앱 전환과 멀티태스킹 완성도가 하드웨어보다 중요한 평가 항목입니다. 앱이 넓은 화면을 제대로 활용하지 못하면 하드웨어 장점이 축소됩니다.",
+      "bullets": [
+        "외부 화면 빠른 작업 + 내부 화면 병행 작업",
+        "앱 최적화 수준이 체감 가치를 좌우",
+        "1세대 프리미엄을 감수할지 별도 판단 필요"
+      ],
+      "sourceIds": [
+        "s1",
+        "s2"
+      ]
+    }
+  ],
+  "pros": [
+    "아이폰 휴대성과 아이패드 미니급 작업 공간 결합",
+    "문서 비교, 메일+일정, 영상+메모 병행에 유리",
+    "주름 억제 기술이 구현되면 기존 폴더블 약점 개선",
+    "애플 생태계·앱 품질·기기간 연속성 활용",
+    "접은 상태에서도 외부 화면으로 빠른 작업 가능"
+  ],
+  "cons": [
+    "2,000달러 이상 진입 가격과 수리비 부담",
+    "접었을 때 두께·무게, 한 손 사용성 저하 가능성",
+    "힌지·내부 화면·방진 성능 등 1세대 내구성 불확실",
+    "망원 카메라와 Face ID 제외 가능성",
+    "앱 최적화 부족 시 하드웨어 장점 축소"
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "title": "실측 무게와 균형",
+      "body": "펼쳤을 때 손목 부담, 접었을 때 한 손 조작성을 확인합니다."
+    },
+    {
+      "id": "d2",
+      "title": "화면 켠 실제 사용 시간",
+      "body": "배터리 용량보다 외부·내부 화면별 실사용 시간을 봅니다."
+    },
+    {
+      "id": "d3",
+      "title": "주름과 반사",
+      "body": "정면 사진이 아닌 측면 조명과 손가락 촉감 평가가 중요합니다."
+    },
+    {
+      "id": "d4",
+      "title": "AppleCare+와 수리비",
+      "body": "내부 화면·힌지 교체 비용과 보증 범위를 먼저 확인합니다."
+    },
+    {
+      "id": "d5",
+      "title": "멀티태스킹 완성도",
+      "body": "앱 전환, 화면 비율 대응, 키보드 입력까지 실제 작업으로 검수합니다."
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2026-07",
+      "title": "배터리·가격 루머 재점화",
+      "body": "규제 자료 기반 배터리 수치와 고가 포지셔닝 보도가 이어짐"
+    },
+    {
+      "date": "2026 가을설",
+      "title": "공개 시점 관측",
+      "body": "공식 발표 전 단계이며 초기 출하 지연 가능성도 함께 거론"
+    }
+  ],
+  "quotes": [
+    "지금 확인되는 것은 제품이 아니라, 서로 다른 신뢰도의 보도와 공급망 정보입니다."
+  ],
+  "sources": [
+    {
+      "id": "s1",
+      "kind": "web",
+      "title": "MacRumors — 2026 iPhone Fold 루머 종합",
+      "publisher": "MacRumors",
+      "url": "https://www.macrumors.com/guide/foldable-iphone/",
+      "accessedAt": "2026-08-02T00:00:00+09:00",
+      "note": "형태, 화면, 칩, 카메라, 배터리 범위, 가격, 출시 시점 종합"
+    },
+    {
+      "id": "s2",
+      "kind": "web",
+      "title": "9to5Mac — iPhone Ultra 예상 핵심 기능 6가지",
+      "publisher": "9to5Mac",
+      "url": "https://9to5mac.com/2026/07/24/iphone-ultra-is-coming-six-new-features-in-apples-top-tier-model/",
+      "publishedAt": "2026-07-24",
+      "accessedAt": "2026-08-02T00:00:00+09:00",
+      "note": "디스플레이, 카메라, A20 Pro, 12GB RAM, Touch ID, 예상 시작가"
+    },
+    {
+      "id": "s3",
+      "kind": "web",
+      "title": "9to5Mac — 4,883mAh 듀얼 셀 배터리 보도",
+      "publisher": "9to5Mac",
+      "url": "https://9to5mac.com/2026/07/10/iphone-ultra-battery-details-allegedly-revealed-in-new-leak/",
+      "publishedAt": "2026-07-10",
+      "accessedAt": "2026-08-02T00:00:00+09:00",
+      "note": "규제 자료에 등장한 두 셀의 합산 용량 보도"
+    },
+    {
+      "id": "s4",
+      "kind": "web",
+      "title": "9to5Mac — 초기 물량 부족 및 출하 지연 가능성",
+      "publisher": "9to5Mac",
+      "url": "https://9to5mac.com/2026/07/05/iphone-fold-low-supply-at-launch-delayed-release/",
+      "publishedAt": "2026-07-05",
+      "accessedAt": "2026-08-02T00:00:00+09:00",
+      "note": "초기 생산량, 배송 지연, 2,300~2,500달러 가격 전망"
+    }
+  ],
+  "tags": [
+    "apple",
+    "foldable",
+    "iphone",
+    "rumor"
+  ],
+  "provider": "agent",
+  "model": "manual-migration"
+}
