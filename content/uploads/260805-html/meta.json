@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "1",
+  "id": "260805-html",
+  "slug": "html",
+  "title": "HTML 업로드 기능 확인",
+  "category": "기타",
+  "tags": [],
+  "summary": "HTML 업로드 게시 기능 확인용 임시 보고서입니다.",
+  "createdAt": "2026-08-05T09:32:40+09:00",
+  "updatedAt": "2026-08-05T09:32:40+09:00",
+  "status": "published",
+  "sourceName": "upload-sample.html",
+  "sourceCount": 1,
+  "entry": "index.html"
+}
