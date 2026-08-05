@@ -1,21 +1,25 @@
 {
-  "generatedAt": "2026-08-05T00:32:47.544Z",
+  "generatedAt": "2026-08-05T00:34:30.105Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
     {
       "id": "260805-html",
       "slug": "html",
-      "title": "HTML 업로드 기능 확인",
+      "title": "HTML 업로드 기능 수정 확인",
       "category": "기타",
-      "summary": "HTML 업로드 게시 기능 확인용 임시 보고서입니다.",
+      "summary": "HTML 보고서를 관리 화면에서 수정하고 다시 게시한 결과입니다.",
       "createdAt": "2026-08-05T09:32:40+09:00",
-      "updatedAt": "2026-08-05T09:32:40+09:00",
+      "updatedAt": "2026-08-05T09:34:28+09:00",
       "status": "published",
       "path": "reports/260805-html/",
       "url": "https://aihubos.github.io/reportmode/reports/260805-html/",
       "displayDate": "260805",
       "sourceCount": 1,
-      "tags": []
+      "tags": [
+        "업로드",
+        "수정",
+        "게시판"
+      ]
     },
     {
       "id": "260804-semiconductor-glass-substrate-scm-tam-sam",
