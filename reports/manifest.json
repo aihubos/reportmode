@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-06T06:52:37.983Z",
+  "generatedAt": "2026-08-06T07:32:45.100Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
     {
@@ -22,13 +22,14 @@
         "para",
         "llm-wiki"
       ],
+      "coverImage": "reports/assets/260806-hermes-second-brain/second-brain-architecture.png",
+      "coverAlt": "Hermes와 Second Brain 구성 관계 도식",
       "subtitle": "비전공자 임원을 위한 Hermes, Second Brain, Obsidian, PARA, LLM Wiki 개념 설명 자료"
     },
     {
       "id": "260806-palantir-business-ai-analysis",
       "slug": "palantir-business-ai-analysis",
       "title": "팔란티어 기업 분석 — AI 기업인가, 경쟁사가 없는가",
-      "subtitle": "비전공자를 위한 사업영역·AIP·경쟁력·주가 흐름과 향후 강점 분석",
       "category": "AI · 기업분석",
       "summary": "팔란티어는 생성형 AI 모델을 직접 만드는 회사라기보다, 정부와 기업이 보유한 복잡한 데이터를 실제 업무·작전·생산·의사결정에 연결하는 운영형 AI 플랫폼 회사입니다. 경쟁사가 없는 것은 아니지만, 데이터 의미 구조인 Ontology, 고보안 환경 배포 경험, AIP를 빠르게 현장에 적용하는 배포 방식이 차별점입니다. 주가는 AI 성장 기대를 강하게 반영하고 있어 사업 성장은 인상적이지만 가격 부담과 기대치도 함께 봐야 합니다.",
       "createdAt": "2026-08-06T00:00:00+09:00",
@@ -48,7 +49,10 @@
         "ai",
         "enterprise-software",
         "stock-analysis"
-      ]
+      ],
+      "coverImage": "reports/assets/260806-palantir-business-ai-analysis/palantir-aip-official.png",
+      "coverAlt": "팔란티어 AIP 공식 플랫폼 화면",
+      "subtitle": "비전공자를 위한 사업영역·AIP·경쟁력·주가 흐름과 향후 강점 분석"
     },
     {
       "id": "260804-semiconductor-glass-substrate-scm-tam-sam",
@@ -69,7 +73,7 @@
         "첨단-패키징"
       ],
       "coverImage": "reports/assets/260804-semiconductor-glass-substrate-scm-tam-sam/glass-substrate-scm-doodle.png",
-      "coverAlt": "반도체 유리 코어 기판과 TGV, 제조 공급망 화이트보드 두들"
+      "coverAlt": "유리 코어 기판 단면과 TGV, 칩렛, 제조 공급망을 표현한 화이트보드 두들"
     },
     {
       "id": "260804-minimax-h3-m5-max-comfyui-guide",
@@ -90,7 +94,7 @@
         "M5-Max"
       ],
       "coverImage": "reports/assets/260804-minimax-h3-m5-max-comfyui-guide/minimax-h3-official-t2va-frame.jpg",
-      "coverAlt": "MiniMax H3 공식 T2VA 샘플 영상의 우주선 장면"
+      "coverAlt": "MiniMax H3 공식 T2VA 우주선 샘플 영상에서 추출한 실제 출력 프레임"
     },
     {
       "id": "260804-shanghai-disneyland-family-hotel-strategy",
@@ -110,8 +114,8 @@
         "가족여행",
         "Toy-Story-Hotel"
       ],
-      "coverImage": "reports/assets/260804-shanghai-disneyland-family-hotel-strategy/family-4n5d-strategy-doodle.png",
-      "coverAlt": "3박 공식 호텔과 1박 도심, 파크 2일을 보여주는 4박5일 가족여행 두들"
+      "coverImage": "reports/assets/260804-shanghai-disneyland-family-hotel-strategy/toy-story-hotel-exterior.jpg",
+      "coverAlt": "토이 스토리 호텔 실제 외관"
     },
     {
       "id": "260804-academy-automation-hermes-obsidian-llm-wiki",
@@ -132,7 +136,7 @@
         "LLM-Wiki"
       ],
       "coverImage": "reports/assets/260804-academy-automation-hermes-obsidian-llm-wiki/academy-automation-doodle.png",
-      "coverAlt": "상담 메모에서 사람 검수까지 이어지는 학원 자동화 화이트보드 두들"
+      "coverAlt": "상담 메모를 Hermes가 정리하고 Obsidian과 LLM Wiki에 연결한 뒤 사람이 검수하는 흐름"
     },
     {
       "id": "260804-openai-hugging-face-agent-incident",
@@ -153,7 +157,7 @@
         "fact-check"
       ],
       "coverImage": "reports/assets/260804-openai-hugging-face-agent-incident/agent-incident-flow-doodle.png",
-      "coverAlt": "샌드박스에서 서버와 보안 분석으로 이어지는 자율 에이전트 침해 흐름 두들"
+      "coverAlt": "평가 샌드박스에서 패키지 프록시, 인터넷, 데이터 처리 서버, 방어 분석으로 이어지는 추상적 흐름도"
     },
     {
       "id": "260803-tesla-model-y-l-delivery-decision",
@@ -175,7 +179,7 @@
         "electric-vehicle"
       ],
       "coverImage": "https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-Y-L-Engineered-Carousel-Slide-1-Desktop.jpg",
-      "coverAlt": "Tesla 공식 제품 페이지에 공개된 은색 Model Y L 측면 실제 제품사진",
+      "coverAlt": "Tesla 공식 제품 페이지의 은색 Model Y L 측면 실제 제품사진",
       "subtitle": "현재가, 보조금, 총비용, 6인승 효용, 실사용 리스크와 대안을 함께 검토한 의사결정 보고서"
     },
     {
@@ -244,7 +248,7 @@
         "qwen3.5"
       ],
       "coverImage": "https://www.apple.com/newsroom/images/2026/03/apple-debuts-m5-pro-and-m5-max-to-supercharge-the-most-demanding-pro-workflows/article/Apple-M5-Pro-M5-Max-LM-Studio-and-Xcode-260303_big.jpg.large.jpg",
-      "coverAlt": "Apple Newsroom의 MacBook Pro 실제 제품사진. 화면에 Xcode와 LM Studio가 실행되어 있다"
+      "coverAlt": "Apple Newsroom의 MacBook Pro 실제 제품사진"
     },
     {
       "id": "260803-buzz-slack-discord-telegram-guide",
@@ -368,8 +372,8 @@
         "deep-dive",
         "official"
       ],
-      "coverImage": "assets/260802-galaxy-z-fold8-deep-dive/samsung-galaxy-z-fold8-official-1.jpg",
-      "coverAlt": "그래파이트 색상의 Samsung Galaxy Z Fold8 공식 제품 이미지",
+      "coverImage": "assets/260802-galaxy-z-fold8-deep-dive/fold8-deep-dive-infographic.png",
+      "coverAlt": "갤럭시 Z Fold8의 201g, 7.6형, 4,800mAh, 227만 8,100원과 망원 미지원, 구매 판단 기준을 정리한 한글 화이트보드 인포그래픽",
       "subtitle": "공식 사양, Fold7·Ultra·경쟁 제품 비교, 시장 전망과 구매 판단 기준"
     },
     {

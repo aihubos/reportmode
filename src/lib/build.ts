@@ -142,7 +142,6 @@ function mergeManifestItems(
 }
 
 function discoverCoverImage(root: string, item: ManifestItem): ManifestItem {
-  if (item.coverImage) return item;
   const pagePath = item.path.endsWith("/")
     ? `${item.path}index.html`
     : item.path;
@@ -150,11 +149,16 @@ function discoverCoverImage(root: string, item: ManifestItem): ManifestItem {
   if (!fs.existsSync(absolutePagePath)) return item;
   try {
     const html = readText(absolutePagePath);
-    const imageTag = html.match(/<img\b[^>]*>/i)?.[0];
-    if (!imageTag) return item;
-    const source = imageTag.match(/\bsrc=["']([^"']+)["']/i)?.[1];
+    const bodyTag = html.match(/<body\b[^>]*>/i)?.[0] || "";
+    const bodyHtml = html.slice(Math.max(0, html.search(/<body\b/i)));
+    const imageTag = bodyHtml.match(/<img\b[^>]*>/i)?.[0];
+    const source =
+      bodyTag.match(/\bdata-report-cover=["']([^"']+)["']/i)?.[1] ||
+      imageTag?.match(/\bsrc=["']([^"']+)["']/i)?.[1];
     if (!source) return item;
-    const alt = imageTag.match(/\balt=["']([^"']*)["']/i)?.[1];
+    const alt =
+      bodyTag.match(/\bdata-report-cover-alt=["']([^"']*)["']/i)?.[1] ||
+      imageTag?.match(/\balt=["']([^"']*)["']/i)?.[1];
     const coverImage = /^(?:https?:|data:)/i.test(source)
       ? source
       : path.posix.normalize(path.posix.join(path.posix.dirname(pagePath), source));
