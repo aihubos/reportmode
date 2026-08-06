@@ -187,7 +187,7 @@ export function renderReportHtml(doc: ReportDocument): string {
 <body>
   <nav class="nav" aria-label="보고서 탐색">
     <div class="nav-inner">
-      <a href="../../">Report Mode</a>
+      <a href="../../archive/">Report Mode</a>
       <div class="nav-links">
         <a href="#summary">요약</a>
         <a href="#body">본문</a>
