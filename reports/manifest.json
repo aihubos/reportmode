@@ -3,6 +3,22 @@
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
     {
+      "id": "260806-hermes-second-brain",
+      "slug": "hermes-second-brain",
+      "title": "Hermes × Second Brain",
+      "subtitle": "비전공자 임원을 위한 Hermes, Second Brain, Obsidian, PARA, LLM Wiki 개념 설명 자료",
+      "category": "AI",
+      "summary": "복잡한 AI 지식관리 구조를 임원 관점에서 한눈에 이해하도록 정리한 설명 자료입니다.",
+      "createdAt": "2026-08-06T00:00:00+09:00",
+      "updatedAt": "2026-08-06T00:00:00+09:00",
+      "status": "published",
+      "path": "reports/260806-hermes-second-brain/",
+      "url": "https://aihubos.github.io/reportmode/reports/260806-hermes-second-brain/",
+      "displayDate": "260806",
+      "sourceCount": 0,
+      "tags": ["hermes", "second-brain", "obsidian", "para", "llm-wiki"]
+    },
+    {
       "id": "260804-semiconductor-glass-substrate-scm-tam-sam",
       "slug": "semiconductor-glass-substrate-scm-tam-sam",
       "title": "반도체 유리기판 — 기본부터 SCM·TAM·SAM까지",
