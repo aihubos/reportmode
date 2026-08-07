@@ -1,7 +1,31 @@
 {
-  "generatedAt": "2026-08-07T12:33:00.732Z",
+  "generatedAt": "2026-08-07T13:52:26.497Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260807-paseo-mcp-orchestration-guidebook",
+      "slug": "paseo-mcp-orchestration-guidebook",
+      "title": "PASEO MCP·오케스트레이션 실전 가이드북",
+      "subtitle": "여러 AI를 한 팀처럼 움직이는 MCP 실전 가이드",
+      "category": "AI",
+      "summary": "PASEO MCP 도구 활성화, 멀티 AI 오케스트레이션, Git Worktree, Skills, Heartbeat와 Schedule을 macOS와 Windows에서 사용하는 실전 가이드북입니다.",
+      "createdAt": "2026-08-07T22:52:24+09:00",
+      "updatedAt": "2026-08-07T22:52:24+09:00",
+      "status": "published",
+      "path": "reports/260807-paseo-mcp-orchestration-guidebook.html",
+      "url": "https://aihubos.github.io/reportmode/reports/260807-paseo-mcp-orchestration-guidebook.html",
+      "displayDate": "260807",
+      "sourceCount": 0,
+      "tags": [
+        "paseo",
+        "mcp",
+        "multi-agent",
+        "orchestration",
+        "guide"
+      ],
+      "coverImage": "reports/assets/260807-paseo-mcp-orchestration-guidebook/cover.png",
+      "coverAlt": "PASEO MCP 오케스트레이션 구조도"
+    },
     {
       "id": "260807-paseo-multi-ai-orchestration-analysis",
       "slug": "paseo-multi-ai-orchestration-analysis",
