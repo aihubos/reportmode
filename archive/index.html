@@ -421,6 +421,18 @@ footer {
 .request-board-item strong { display: block; overflow: hidden; font-size: 12px; line-height: 1.35; text-overflow: ellipsis; white-space: nowrap; }
 .request-board-item p { display: none; }.request-board-item time { display: block; margin-top: 3px; color: var(--archive-subtle); font-size: 10px; }
 .request-board-empty { padding: 10px; border-radius: 9px; color: var(--archive-subtle); background: #f7f9fc; font-size: 11px; text-align: center; }
+@media (min-width: 1280px) {
+  .archive-shell {
+    width: min(1000px, calc(100% - 400px));
+    margin-left: max(20px, calc((100vw - 1400px) / 2));
+    margin-right: auto;
+  }
+  .request-board {
+    position: fixed; top: 88px; right: max(20px, calc((100vw - 1400px) / 2)); z-index: 45;
+    width: 340px; max-height: calc(100vh - 112px); margin: 0; overflow-y: auto;
+    box-shadow: 0 14px 36px rgba(15,23,42,.12);
+  }
+}
 @media (max-width: 860px) {
   .verdict-grid, .duo, .checks, .metrics { grid-template-columns: 1fr 1fr; }
   .metrics { grid-template-columns: 1fr 1fr; }
@@ -526,7 +538,7 @@ footer {
         <p>원하는 기업·제품·이슈를 남겨 주세요. 검토할 가치가 있는 주제는 다음 리포트 후보로 반영합니다.</p>
         <div class="request-board-steps"><span>로그인 없이 작성</span><span>주제 제안</span><span>리포트 후보 검토</span></div>
       </div>
-      <form class="request-board-form" id="requestBoardForm">
+      <form class="request-board-form" id="requestBoardForm" novalidate>
         <label>궁금한 점 또는 원하는 리포트 주제<textarea id="requestTopic" name="topic" minlength="4" maxlength="240" required placeholder="예: 엔비디아 실적과 경쟁력 분석. AMD·구글과 비교해 장기 경쟁력이 궁금합니다."></textarea></label>
         <button class="request-board-submit" type="submit">리포트 희망 남기기 →</button>
         <p class="request-board-status" id="requestBoardStatus" role="status"></p>
@@ -1213,6 +1225,11 @@ footer {
     var count = document.getElementById("requestBoardCount");
     var submit = form.querySelector("button[type=submit]");
 
+    topic.addEventListener("input", function () {
+      topic.removeAttribute("aria-invalid");
+      if (status.textContent === "궁금한 점을 4글자 이상 적어 주세요.") status.textContent = "";
+    });
+
     function formatDate(value) {
       var date = new Date(value);
       return Number.isNaN(date.getTime()) ? "방금 등록" : date.toLocaleDateString("ko-KR", { month: "numeric", day: "numeric" }) + " 제안";
@@ -1236,8 +1253,16 @@ footer {
     }
     form.addEventListener("submit", function (event) {
       event.preventDefault();
+      var value = topic.value.trim();
+      if (value.length < 4) {
+        topic.setAttribute("aria-invalid", "true");
+        status.textContent = "궁금한 점을 4글자 이상 적어 주세요.";
+        topic.focus();
+        return;
+      }
+      topic.removeAttribute("aria-invalid");
       status.textContent = "등록 중입니다…"; submit.disabled = true;
-      fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ topic: topic.value, context: "" }) })
+      fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ topic: value, context: "" }) })
         .then(function (response) { return response.json().then(function (data) { if (!response.ok) throw new Error(data.error || "submit_failed"); return data; }); })
         .then(function () { form.reset(); status.textContent = "희망 리포트를 등록했습니다. 감사합니다!"; return load(); })
         .catch(function (error) { status.textContent = error.message === "topic_too_short" ? "궁금한 점을 4글자 이상 적어 주세요." : "등록하지 못했습니다. 잠시 후 다시 시도해 주세요."; })
