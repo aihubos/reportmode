@@ -28,25 +28,73 @@
 
 /* ── Layout toggle fix ── */
 .report-view-switcher-inner {
-  grid-template-columns: auto minmax(100px,120px) auto minmax(100px,120px) auto !important;
-  gap: 10px !important;
+  display: flex !important;
+  flex-wrap: wrap;
   align-items: center !important;
-  min-height: 56px !important;
+  gap: 8px !important;
+  min-height: 48px !important;
+  padding: 6px 0 !important;
 }
 [aria-label="가로 또는 세로"],
 [aria-label="간단 또는 상세 보기"] {
   width: auto !important;
-  min-width: 100px !important;
+  min-width: 90px !important;
+  max-width: 110px !important;
 }
 [aria-label="가로 또는 세로"] .report-view-button,
 [aria-label="간단 또는 상세 보기"] .report-view-button {
-  min-height: 36px !important;
-  padding: 6px 12px !important;
-  font-size: 13px !important;
+  min-height: 32px !important;
+  padding: 4px 10px !important;
+  font-size: 12px !important;
 }
 .report-view-label {
-  font-size: 11px !important;
+  font-size: 10px !important;
   white-space: nowrap;
+  margin: 0 2px !important;
+}
+.report-utility-controls {
+  margin-left: auto !important;
+  width: 140px !important;
+  flex-shrink: 0;
+}
+@media(max-width:700px) {
+  .report-view-switcher-inner {
+    justify-content: center !important;
+    gap: 6px !important;
+  }
+  .report-utility-controls { width: 120px !important; }
+}
+
+
+.report-view-button[data-layout].is-active,
+.report-view-button[data-layout][aria-pressed="true"] {
+  color: #fff !important;
+  text-shadow: 0 1px 1px rgba(0,0,0,.12) !important;
+}
+
+
+[aria-label="가로 또는 세로"]::before { display: none !important; }
+
+/* ── Floating menu right-side ── */
+.floating-menu {
+  position: fixed !important;
+  right: max(16px, calc((100vw - 1120px) / 2 - 160px)) !important;
+  top: 140px !important;
+  left: auto !important;
+  bottom: auto !important;
+  width: 142px !important;
+  max-width: 142px !important;
+  z-index: 30;
+}
+@media(max-width:1439px) {
+  .floating-menu {
+    right: 10px !important;
+    top: auto !important;
+    bottom: 14px !important;
+    left: 10px !important;
+    width: auto !important;
+    max-width: none !important;
+  }
 }
 
 </style>
@@ -84,25 +132,73 @@
 
 /* ── Layout toggle fix ── */
 .report-view-switcher-inner {
-  grid-template-columns: auto minmax(100px,120px) auto minmax(100px,120px) auto !important;
-  gap: 10px !important;
+  display: flex !important;
+  flex-wrap: wrap;
   align-items: center !important;
-  min-height: 56px !important;
+  gap: 8px !important;
+  min-height: 48px !important;
+  padding: 6px 0 !important;
 }
 [aria-label="가로 또는 세로"],
 [aria-label="간단 또는 상세 보기"] {
   width: auto !important;
-  min-width: 100px !important;
+  min-width: 90px !important;
+  max-width: 110px !important;
 }
 [aria-label="가로 또는 세로"] .report-view-button,
 [aria-label="간단 또는 상세 보기"] .report-view-button {
-  min-height: 36px !important;
-  padding: 6px 12px !important;
-  font-size: 13px !important;
+  min-height: 32px !important;
+  padding: 4px 10px !important;
+  font-size: 12px !important;
 }
 .report-view-label {
-  font-size: 11px !important;
+  font-size: 10px !important;
   white-space: nowrap;
+  margin: 0 2px !important;
+}
+.report-utility-controls {
+  margin-left: auto !important;
+  width: 140px !important;
+  flex-shrink: 0;
+}
+@media(max-width:700px) {
+  .report-view-switcher-inner {
+    justify-content: center !important;
+    gap: 6px !important;
+  }
+  .report-utility-controls { width: 120px !important; }
+}
+
+
+.report-view-button[data-layout].is-active,
+.report-view-button[data-layout][aria-pressed="true"] {
+  color: #fff !important;
+  text-shadow: 0 1px 1px rgba(0,0,0,.12) !important;
+}
+
+
+[aria-label="가로 또는 세로"]::before { display: none !important; }
+
+/* ── Floating menu right-side ── */
+.floating-menu {
+  position: fixed !important;
+  right: max(16px, calc((100vw - 1120px) / 2 - 160px)) !important;
+  top: 140px !important;
+  left: auto !important;
+  bottom: auto !important;
+  width: 142px !important;
+  max-width: 142px !important;
+  z-index: 30;
+}
+@media(max-width:1439px) {
+  .floating-menu {
+    right: 10px !important;
+    top: auto !important;
+    bottom: 14px !important;
+    left: 10px !important;
+    width: auto !important;
+    max-width: none !important;
+  }
 }
 
 </style>
@@ -179,25 +275,73 @@
 
 /* ── Layout toggle fix ── */
 .report-view-switcher-inner {
-  grid-template-columns: auto minmax(100px,120px) auto minmax(100px,120px) auto !important;
-  gap: 10px !important;
+  display: flex !important;
+  flex-wrap: wrap;
   align-items: center !important;
-  min-height: 56px !important;
+  gap: 8px !important;
+  min-height: 48px !important;
+  padding: 6px 0 !important;
 }
 [aria-label="가로 또는 세로"],
 [aria-label="간단 또는 상세 보기"] {
   width: auto !important;
-  min-width: 100px !important;
+  min-width: 90px !important;
+  max-width: 110px !important;
 }
 [aria-label="가로 또는 세로"] .report-view-button,
 [aria-label="간단 또는 상세 보기"] .report-view-button {
-  min-height: 36px !important;
-  padding: 6px 12px !important;
-  font-size: 13px !important;
+  min-height: 32px !important;
+  padding: 4px 10px !important;
+  font-size: 12px !important;
 }
 .report-view-label {
-  font-size: 11px !important;
+  font-size: 10px !important;
   white-space: nowrap;
+  margin: 0 2px !important;
+}
+.report-utility-controls {
+  margin-left: auto !important;
+  width: 140px !important;
+  flex-shrink: 0;
+}
+@media(max-width:700px) {
+  .report-view-switcher-inner {
+    justify-content: center !important;
+    gap: 6px !important;
+  }
+  .report-utility-controls { width: 120px !important; }
+}
+
+
+.report-view-button[data-layout].is-active,
+.report-view-button[data-layout][aria-pressed="true"] {
+  color: #fff !important;
+  text-shadow: 0 1px 1px rgba(0,0,0,.12) !important;
+}
+
+
+[aria-label="가로 또는 세로"]::before { display: none !important; }
+
+/* ── Floating menu right-side ── */
+.floating-menu {
+  position: fixed !important;
+  right: max(16px, calc((100vw - 1120px) / 2 - 160px)) !important;
+  top: 140px !important;
+  left: auto !important;
+  bottom: auto !important;
+  width: 142px !important;
+  max-width: 142px !important;
+  z-index: 30;
+}
+@media(max-width:1439px) {
+  .floating-menu {
+    right: 10px !important;
+    top: auto !important;
+    bottom: 14px !important;
+    left: 10px !important;
+    width: auto !important;
+    max-width: none !important;
+  }
 }
 
 </style>
