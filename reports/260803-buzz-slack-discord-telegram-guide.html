@@ -70,7 +70,12 @@
 
 </style><!--Report Mode v4.3: detail default + two-page brief + Apple segmented control--></head>
 <body data-report-view="detail">
-<nav aria-label="보고서 탐색" class="nav"><div class="wrap nav-inner"><a class="brand" href="../archive/">RM · Report Mode</a><div class="nav-links"><a href="#summary">요약</a><a href="#comparison">비교</a><a href="#decision">판단</a><a href="#sources">출처</a></div></div></nav><section aria-label="보고서 보기 방식" class="report-view-switcher"><div class="wrap report-view-switcher-inner"><span class="report-view-label">보고서 보기</span><div aria-label="간단 또는 상세 보기" class="report-view-buttons" role="group"><button aria-pressed="false" class="report-view-button" data-report-view-target="simple" type="button">간단</button><button aria-pressed="true" class="report-view-button is-active" data-report-view-target="detail" type="button">상세</button></div><div aria-label="보고서 저장 도구" class="report-utility-controls"><button aria-label="현재 보고서 보기를 A4 PDF로 저장" class="pdf-save-button" id="report-pdf-button" type="button">PDF 저장</button></div></div></section>
+<nav aria-label="보고서 탐색" class="nav"><div class="wrap nav-inner"><a class="brand" href="../archive/">RM · Report Mode</a><div class="nav-links"><a href="#summary">요약</a><a href="#comparison">비교</a><a href="#decision">판단</a><a href="#sources">출처</a></div></div></nav><section aria-label="보고서 보기 방식" class="report-view-switcher"><div class="wrap report-view-switcher-inner"><span class="report-view-label">레이아웃</span>
+<div class="report-view-buttons" role="group" aria-label="가로 또는 세로" style="min-width:120px;">
+<button class="report-view-button" type="button" data-layout="wide">가로</button>
+<button class="report-view-button is-active" type="button" data-layout="a4">세로</button>
+</div>
+<span class="report-view-label">보기</span><div aria-label="간단 또는 상세 보기" class="report-view-buttons" role="group"><button aria-pressed="false" class="report-view-button" data-report-view-target="simple" type="button">간단</button><button aria-pressed="true" class="report-view-button is-active" data-report-view-target="detail" type="button">상세</button></div><div aria-label="보고서 저장 도구" class="report-utility-controls"><button aria-label="현재 보고서 보기를 A4 PDF로 저장" class="pdf-save-button" id="report-pdf-button" type="button">PDF 저장</button></div></div></section>
 <nav aria-label="보고서 바로가기" class="floating-menu"><a class="floating-action" href="#summary">핵심 내용 한눈에 보기</a><a class="floating-action" href="#comparison">핵심 항목 비교</a><a class="floating-action" href="#how">작동 구조 이해</a><a class="floating-action" href="#tradeoffs">장점과 한계 비교</a><a class="floating-action" href="#start">시작 전 실행 단계</a><a class="floating-action" href="#public-reaction">인터넷·언론 반응</a><a class="floating-action" href="#sources">전체 출처 확인</a></nav>
 <header class="hero"><div class="wrap"><div class="kicker">Human + Agent Workspace · Executive Brief</div><h1><span>Buzz는</span><span>메신저가 아니라</span><span>AI 작업공간</span></h1>
 <section aria-labelledby="top-conclusion-title" class="top-conclusion" id="report-top"><div class="top-conclusion-card">
@@ -79,10 +84,7 @@
 <p class="verdict-line"><span class="verdict-num">02</span><span class="verdict-text"><mark class="highlight-sweep">셀프호스트·서명 이벤트·Git 통합</mark>은 독특하지만 모바일·알림·권한·전달 안정성은 아직 초기입니다.</span></p>
 <p class="verdict-line"><span class="verdict-num">03</span><span class="verdict-text">기존 메신저를 바로 교체하지 말고 <mark class="highlight-sweep">비민감한 작은 개발 프로젝트로 시험</mark>한 뒤 사람이 검수하세요.</span></p>
 </div></section>
-<p class="lede">Block이 공개한 Buzz의 개념, 현재 기능과 미완성 영역, 설치·보안·운영 부담을 풀어 설명하고 Slack·Discord·Telegram과 같은 기준으로 비교했습니다.</p><div class="meta"><span class="chip"><strong>260803</strong> · 표준 심층보고서</span><span class="chip">2026.08.03 KST</span><span class="chip">공식·기술 문서·공개 이슈 23건 · 사실·분석·계획 분리</span></div></div><span class="report-layout-toggle" style="margin-left:12px;display:inline-flex;gap:3px;background:#f0f2f5;border-radius:8px;padding:3px;">
-<button class="report-layout-btn is-active" data-layout="wide" style="padding:5px 10px;border:none;background:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:#6b7684;">와이드</button>
-<button class="report-layout-btn" data-layout="a4" style="padding:5px 10px;border:none;background:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:#6b7684;">A4</button>
-</span>
+<p class="lede">Block이 공개한 Buzz의 개념, 현재 기능과 미완성 영역, 설치·보안·운영 부담을 풀어 설명하고 Slack·Discord·Telegram과 같은 기준으로 비교했습니다.</p><div class="meta"><span class="chip"><strong>260803</strong> · 표준 심층보고서</span><span class="chip">2026.08.03 KST</span><span class="chip">공식·기술 문서·공개 이슈 23건 · 사실·분석·계획 분리</span></div></div>
 
 </header>
 <section aria-labelledby="simple-report-title" class="simple-report" data-simple-pages="2" id="simple-report"><div class="wrap"><div class="simple-overview"><div class="eyebrow">TWO-PAGE EXECUTIVE BRIEF</div><h2 id="simple-report-title">2페이지 핵심 요약</h2><div class="simple-summary-content"><article class="simple-summary-block"><span class="simple-summary-index">01</span><h3>판단의 배경</h3><p>메신저, 코드 저장소, 자동화, AI 에이전트의 경계를 하나의 서명 기록으로 합치려 합니다. 쉽게 비유하면 , Slack의 채널, GitHub의 코드 변경, 자동화 도구의 실행 기록, AI 에이전트의 작업을 한 건물 안으로 모으려는 프로젝트입니다. 사람과 에이전트는 모두 각자의 암호키로 행동에 서명하고, 메시지·승인·코드 이벤트가 같은 감사 기록에 남습니다. 채널·스레드·DM, 캔버스, 미디어, 검색, 감사로그, 데스크톱 앱, CLI, YAML 워크플로, Git 이벤트·호스팅. 모바일 앱, 워크플로 승인 게이트의 완전한 연결, 허들 수명주기 일부. 푸시 알림 등은 계획 단계입니다.</p></article><article class="simple-summary-block"><span class="simple-summary-index">02</span><h3>핵심 비교와 근거</h3><p>기능 개수보다 각 서비스가 해결하려는 문제와 운영 책임을 비교했습니다. 사람+AI 에이전트+Git 작업실 친구·게임·커뮤니티용 음성 중심 공간 빠른 개인·그룹·대규모 방송 메신저 개발팀, AI 에이전트 운영팀, 셀프호스트 조직 친구, 게임, 크리에이터 커뮤니티 개인, 소규모 팀, 대규모 공개 그룹·채널 커뮤니티→채널→주제·스레드, DM 서버→텍스트·음성 채널, 스레드·DM 자기 키와 멤버십을 가진 1급 참여자 ; 채널·캔버스·워크플로·Git을 조작 Slackbot, AI 요약·검색·워크플로, 앱 통합 봇·Mini App을 채팅에 연결 내장 Git 호스팅과 NIP-34 이벤트 ; 브랜치를 방으로 연결하는 방향 GitHub 등 외부 앱 연동…</p></article><article class="simple-summary-block"><span class="simple-summary-index">03</span><h3>선택 기준과 판단</h3><p>가장 익숙한 제품이 아니라 완료하려는 일로 고릅니다. 회사 업무·문서·회의·관리자 정책이 중심 이면 → Slack 게임·친구·팬 커뮤니티와 음성 대화가 중심 이면 → Discord 빠른 개인 메시지·대규모 그룹·방송 채널이 중심 이면 → Telegram AI 에이전트가 코드·워크플로·채널을 사람처럼 다루고, 서버와 감사 기록도 직접 통제 해야 하면 → Buzz 시험판 권고: Buzz를 기존 메신저의 즉시 교체재로 보지 말고, 비민감한 작은 개발 프로젝트에서 2~5명과 에이전트 1개로 시험하는 것이 맞습니다. 메시지 전달, 권한, 백업, 모바일 공백을 검증한 뒤 확대하세요.</p></article><article class="simple-summary-block"><span class="simple-summary-index">04</span><h3>주의점과 다음 행동</h3><p>전문용어를 일상적인 비유로 바꾸면 구조가 보입니다. 하나의 URL이 하나의 작업공간 경계입니다. 채널·멤버·DM·검색·저장 데이터가 그 안에 묶입니다. 모든 앱과 에이전트가 릴레이에 연결됩니다. 릴레이는 서명을 확인하고 이벤트를 저장·검색·전달합니다. 메시지, 반응, 승인, Git 상태가 같은 모양의 서명된 기록입니다. 누가 무엇을 했는지 추적하기 쉽습니다. Nostr는 공개키 기반의 서명 이벤트 형식입니다. Buzz는 이를 회사용 작업공간처럼 확장합니다.</p></article></div><button class="simple-detail-button" data-report-view-target="detail" type="button">상세 근거 전체 보기</button></div></div></section><main class="detail-report">
@@ -292,7 +294,7 @@
 <script id="report-layout-script">
 (function(){
   var body = document.body;
-  var buttons = document.querySelectorAll('.report-layout-btn');
+  var buttons = document.querySelectorAll('[data-layout]');
   var LAYOUT_KEY = 'report-layout-pref';
   
   function setLayout(mode) {
@@ -306,8 +308,7 @@
     buttons.forEach(function(btn) {
       var active = btn.dataset.layout === mode;
       btn.classList.toggle('is-active', active);
-      if (active) { btn.style.background = '#fff'; btn.style.color = '#191f28'; btn.style.boxShadow = '0 1px 2px rgba(0,0,0,.06)'; }
-      else { btn.style.background = 'none'; btn.style.color = '#6b7684'; btn.style.boxShadow = 'none'; }
+      btn.setAttribute('aria-pressed', String(active));
     });
     localStorage.setItem(LAYOUT_KEY, mode);
   }
@@ -317,7 +318,7 @@
   });
   
   // Load preference - default wide
-  var saved = localStorage.getItem(LAYOUT_KEY) || 'wide';
+  var saved = localStorage.getItem(LAYOUT_KEY) || 'a4';
   setLayout(saved);
 })();
 </script>

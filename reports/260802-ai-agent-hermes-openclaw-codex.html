@@ -94,7 +94,12 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
 
 </style><!--Report Mode v4.3: detail default + two-page brief + Apple segmented control--></head>
 <body data-report-view="detail">
-<nav aria-label="보고서 탐색" class="nav"><div class="wrap nav-inner"><a class="brand" href="../archive/">RM · Report Mode</a><div class="nav-links"><a href="#summary">요약</a><a href="#matrix">비교표</a><a href="#security">보안</a><a href="#decision">선택</a><a href="#sources">출처</a></div></div></nav><section aria-label="보고서 보기 방식" class="report-view-switcher"><div class="wrap report-view-switcher-inner"><span class="report-view-label">보고서 보기</span><div aria-label="간단 또는 상세 보기" class="report-view-buttons" role="group"><button aria-pressed="false" class="report-view-button" data-report-view-target="simple" type="button">간단</button><button aria-pressed="true" class="report-view-button is-active" data-report-view-target="detail" type="button">상세</button></div><div aria-label="보고서 저장 도구" class="report-utility-controls"><button aria-label="현재 보고서 보기를 A4 PDF로 저장" class="pdf-save-button" id="report-pdf-button" type="button">PDF 저장</button></div></div></section>
+<nav aria-label="보고서 탐색" class="nav"><div class="wrap nav-inner"><a class="brand" href="../archive/">RM · Report Mode</a><div class="nav-links"><a href="#summary">요약</a><a href="#matrix">비교표</a><a href="#security">보안</a><a href="#decision">선택</a><a href="#sources">출처</a></div></div></nav><section aria-label="보고서 보기 방식" class="report-view-switcher"><div class="wrap report-view-switcher-inner"><span class="report-view-label">레이아웃</span>
+<div class="report-view-buttons" role="group" aria-label="가로 또는 세로" style="min-width:120px;">
+<button class="report-view-button" type="button" data-layout="wide">가로</button>
+<button class="report-view-button is-active" type="button" data-layout="a4">세로</button>
+</div>
+<span class="report-view-label">보기</span><div aria-label="간단 또는 상세 보기" class="report-view-buttons" role="group"><button aria-pressed="false" class="report-view-button" data-report-view-target="simple" type="button">간단</button><button aria-pressed="true" class="report-view-button is-active" data-report-view-target="detail" type="button">상세</button></div><div aria-label="보고서 저장 도구" class="report-utility-controls"><button aria-label="현재 보고서 보기를 A4 PDF로 저장" class="pdf-save-button" id="report-pdf-button" type="button">PDF 저장</button></div></div></section>
 <nav aria-label="보고서 바로가기" class="floating-menu"><a class="floating-action" href="#summary">핵심 내용 한눈에 보기</a><a class="floating-action" href="#matrix">에이전트 기능 비교</a><a class="floating-action" href="#fit">사용 목적별 추천</a><a class="floating-action" href="#security">보안·권한 주의사항</a><a class="floating-action" href="#decision">상황별 선택 기준</a><a class="floating-action" href="#sources">전체 출처 확인</a></nav>
 <header class="hero"><div class="wrap"><div class="kicker">AI Agent Intelligence · Deep Analysis</div><h1><span>Hermes vs</span> <span>OpenClaw vs</span> <span>Codex</span></h1>
 <section aria-labelledby="top-conclusion-title" class="top-conclusion" id="report-top"><div class="top-conclusion-card">
@@ -102,10 +107,7 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
 <p class="verdict-line"><span class="verdict-num">01</span><span class="verdict-text"><mark class="highlight-sweep">Hermes·OpenClaw·Codex의 역할을 분리</mark>하면 각각 자동화·채널 허브·저장소 구현에 가장 잘 맞습니다.</span></p>
 <p class="verdict-line"><span class="verdict-num">02</span><span class="verdict-text">핵심 비교 기준은 <mark class="highlight-sweep">실행 표면·기억·샌드박스·운영 책임</mark>입니다.</span></p>
 <p class="verdict-line"><span class="verdict-num">03</span><span class="verdict-text"><mark class="highlight-sweep">Hermes 중심＋Codex 결합</mark>으로 운영하고 외부 행동은 사람이 검수하세요.</span></p>
-</div></section><p class="lede">세 제품은 같은 ‘AI Agent’가 아닙니다. <span class="marker">Hermes는 학습하는 범용 개인 에이전트</span>, OpenClaw는 다채널·다기기 개인 비서 플랫폼, Codex는 코드 작업에 최적화된 실행 에이전트입니다.</p><div class="meta"><span class="chip"><strong>260802</strong> · 심층보고서모드</span><span class="chip">2026.08.02 KST 기준</span><span class="chip">공식 원문·GitHub API 우선</span><span class="chip">사실·해석·선택 기준 분리</span></div></div><span class="report-layout-toggle" style="margin-left:12px;display:inline-flex;gap:3px;background:#f0f2f5;border-radius:8px;padding:3px;">
-<button class="report-layout-btn is-active" data-layout="wide" style="padding:5px 10px;border:none;background:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:#6b7684;">와이드</button>
-<button class="report-layout-btn" data-layout="a4" style="padding:5px 10px;border:none;background:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:#6b7684;">A4</button>
-</span>
+</div></section><p class="lede">세 제품은 같은 ‘AI Agent’가 아닙니다. <span class="marker">Hermes는 학습하는 범용 개인 에이전트</span>, OpenClaw는 다채널·다기기 개인 비서 플랫폼, Codex는 코드 작업에 최적화된 실행 에이전트입니다.</p><div class="meta"><span class="chip"><strong>260802</strong> · 심층보고서모드</span><span class="chip">2026.08.02 KST 기준</span><span class="chip">공식 원문·GitHub API 우선</span><span class="chip">사실·해석·선택 기준 분리</span></div></div>
 
 </header>
 <section aria-labelledby="simple-report-title" class="simple-report" data-simple-pages="2" id="simple-report"><div class="wrap"><div class="simple-overview"><div class="eyebrow">TWO-PAGE EXECUTIVE BRIEF</div><h2 id="simple-report-title">2페이지 핵심 요약</h2><div class="simple-summary-content"><article class="simple-summary-block"><span class="simple-summary-index">01</span><h3>판단의 배경</h3><p>브랜드 인지도보다 실행 표면, 메모리, 안전 경계와 운영 책임의 차이가 선택을 결정합니다. 다만 가장 넓은 채널·모바일 노드·Canvas 생태계가 중요하면 OpenClaw, 저장소 안에서 코드 변경·테스트·리뷰 품질과 기본 샌드박스가 최우선이면 Codex가 더 맞습니다. 개인 AI 운영체제 → Hermes 연결성·기기 허브 → OpenClaw 소프트웨어 제작 → Codex 메모리·스킬·세션 검색·예약 실행·서브에이전트가 하나의 장기 학습 루프로 묶입니다. 단일 Gateway가 수많은 채널, 앱, 모바일 노드, Canvas와 도구를 연결합니다.</p></article><article class="simple-summary-block"><span class="simple-summary-index">02</span><h3>핵심 비교와 근거</h3><p>비교 조건과 기준이 같은 수치만 나란히 놓고 판단합니다.</p></article><article class="simple-summary-block"><span class="simple-summary-index">03</span><h3>선택 기준과 판단</h3><p>한 제품으로 모든 작업을 강제하기보다 역할을 나누는 편이 현실적입니다. Telegram/Discord에서 조사·문서·예약 보고를 이어가고 장기 기억을 쌓는다면 Hermes가 중심이 됩니다. WhatsApp·iMessage·Teams·모바일 센서·Canvas 등 연결 표면 자체가 가치라면 OpenClaw가 강합니다. 산출물이 코드 변경·테스트 통과·PR 검수라면 Codex의 workspace-first 설계와 기본 샌드박스가 유리합니다. Hermes를 기억·리서치·스케줄·메신저 허브로 두고, 깊은 코드 작업을 Codex CLI/Cloud에 위임하는 조합이 Jeremy의 사용 방식에 가장 자연스럽습니다.</p></article><article class="simple-summary-block"><span class="simple-summary-index">04</span><h3>주의점과 다음 행동</h3><p>공식 문서·저장소·보안 정책·라이선스·가격 문서를 1차 근거로 삼고, 저장소 인기도는 품질이 아닌 채택 신호로만 사용했습니다. 무엇을 실행하고 어디에 상주하며, 사용자가 실제로 접하는 표면은 무엇인가? 기억·스킬·예약 실행이 어떻게 유지되며, 모델 행동을 어떤 OS·승인 경계가 제한하는가? 설치·운영·모델 비용과 잠금 효과까지 포함하면 누구에게 무엇이 최적인가? 조사 체계: Terra 서브에이전트 3개가 공식 기능·보안/운영·생태계/비용을 분담했고, 부모 에이전트가 GitHub API와 공식 원문을 다시 확인했습니다.</p></article></div><button class="simple-detail-button" data-report-view-target="detail" type="button">상세 근거 전체 보기</button></div></div></section><main class="detail-report">
@@ -258,7 +260,7 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
 <script id="report-layout-script">
 (function(){
   var body = document.body;
-  var buttons = document.querySelectorAll('.report-layout-btn');
+  var buttons = document.querySelectorAll('[data-layout]');
   var LAYOUT_KEY = 'report-layout-pref';
   
   function setLayout(mode) {
@@ -272,8 +274,7 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
     buttons.forEach(function(btn) {
       var active = btn.dataset.layout === mode;
       btn.classList.toggle('is-active', active);
-      if (active) { btn.style.background = '#fff'; btn.style.color = '#191f28'; btn.style.boxShadow = '0 1px 2px rgba(0,0,0,.06)'; }
-      else { btn.style.background = 'none'; btn.style.color = '#6b7684'; btn.style.boxShadow = 'none'; }
+      btn.setAttribute('aria-pressed', String(active));
     });
     localStorage.setItem(LAYOUT_KEY, mode);
   }
@@ -283,7 +284,7 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
   });
   
   // Load preference - default wide
-  var saved = localStorage.getItem(LAYOUT_KEY) || 'wide';
+  var saved = localStorage.getItem(LAYOUT_KEY) || 'a4';
   setLayout(saved);
 })();
 </script>

@@ -61,7 +61,12 @@
 </head>
 <body data-report-view="detail">
   <nav class="nav" aria-label="보고서 탐색"><div class="wrap nav-inner"><a class="brand" href="../archive/">RM · Report Mode</a><div class="nav-links"><a href="#summary">요약</a><a href="#comparison">비교</a><a href="#decision">판단</a><a href="#sources">출처</a></div></div></nav>
-  <section class="report-view-switcher" aria-label="보고서 보기 방식"><div class="wrap report-view-switcher-inner"><span class="report-view-label">보고서 보기</span><div class="report-view-buttons" role="group" aria-label="간단 또는 상세 보기"><button class="report-view-button" type="button" data-report-view-target="simple" aria-pressed="false">간단</button><button class="report-view-button is-active" type="button" data-report-view-target="detail" aria-pressed="true">상세</button></div><div class="report-utility-controls" aria-label="보고서 저장 및 공유 도구"><a id="report-pdf-button" class="pdf-save-button" href="assets/260803-macbook-m5-max-local-llm-model-fit/detail.pdf" download="MacBook-M5-Max-로컬-LLM-심층-분석.pdf" data-simple-url="assets/260803-macbook-m5-max-local-llm-model-fit/summary.pdf" data-simple-filename="MacBook-M5-Max-로컬-LLM-요약-2장.pdf" data-detail-url="assets/260803-macbook-m5-max-local-llm-model-fit/detail.pdf" data-detail-filename="MacBook-M5-Max-로컬-LLM-심층-분석.pdf" aria-label="상세 보고서 PDF 파일 바로 저장">PDF 저장</a><button id="report-share-button" class="share-report-button" type="button" aria-label="현재 보고서 링크 공유">공유하기</button></div></div></section>
+  <section class="report-view-switcher" aria-label="보고서 보기 방식"><div class="wrap report-view-switcher-inner"><span class="report-view-label">레이아웃</span>
+<div class="report-view-buttons" role="group" aria-label="가로 또는 세로" style="min-width:120px;">
+<button class="report-view-button" type="button" data-layout="wide">가로</button>
+<button class="report-view-button is-active" type="button" data-layout="a4">세로</button>
+</div>
+<span class="report-view-label">보기</span><div class="report-view-buttons" role="group" aria-label="간단 또는 상세 보기"><button class="report-view-button" type="button" data-report-view-target="simple" aria-pressed="false">간단</button><button class="report-view-button is-active" type="button" data-report-view-target="detail" aria-pressed="true">상세</button></div><div class="report-utility-controls" aria-label="보고서 저장 및 공유 도구"><a id="report-pdf-button" class="pdf-save-button" href="assets/260803-macbook-m5-max-local-llm-model-fit/detail.pdf" download="MacBook-M5-Max-로컬-LLM-심층-분석.pdf" data-simple-url="assets/260803-macbook-m5-max-local-llm-model-fit/summary.pdf" data-simple-filename="MacBook-M5-Max-로컬-LLM-요약-2장.pdf" data-detail-url="assets/260803-macbook-m5-max-local-llm-model-fit/detail.pdf" data-detail-filename="MacBook-M5-Max-로컬-LLM-심층-분석.pdf" aria-label="상세 보고서 PDF 파일 바로 저장">PDF 저장</a><button id="report-share-button" class="share-report-button" type="button" aria-label="현재 보고서 링크 공유">공유하기</button></div></div></section>
   <nav class="floating-menu" aria-label="보고서 바로가기"><a class="floating-action" href="#summary">최적 구성 한눈에 보기</a><a class="floating-action" href="#comparison">모델별 실행 적합도</a><a class="floating-action" href="#decision">용도별 선택 기준</a><a class="floating-action" href="#concepts">개념을 쉽게 이해하기</a><a class="floating-action" href="#runtime">런타임·실행 순서</a><a class="floating-action" href="#public-reaction">실측·온라인 반응</a><a class="floating-action" href="#sources">전체 출처 확인</a></nav>
   <header class="hero"><div class="wrap"><div class="kicker">LOCAL LLM WORKSTATION · MEMORY FIT · MODEL ROUTING</div><h1><span>MacBook M5 Max</span><span>128GB 로컬 LLM</span><span>최적 모델 분석</span></h1>
     <section id="report-top" class="top-conclusion" aria-labelledby="top-conclusion-title"><div class="top-conclusion-card">
@@ -70,10 +75,7 @@
       <p class="verdict-line"><span class="verdict-num">02</span><span class="verdict-text">MLX 4-bit 저장소는 약 69.6GB이고 32K 실측 피크는 76.4GB였다. <mark class="highlight-sweep">128GB에서 약 51.6GB가 남는다.</mark></span></p>
       <p class="verdict-line"><span class="verdict-num">03</span><span class="verdict-text">32K 컨텍스트부터 시작해 프리필·디코드·메모리 압력을 따로 측정하라. <mark class="highlight-sweep">SSD는 보관함이지 통합 메모리의 대체재가 아니다.</mark></span></p>
     </div></section>
-    <p class="lede">128GB는 “가장 큰 모델 하나”보다 “품질·속도·여유 메모리의 균형”에서 가치가 큽니다. 총 파라미터와 활성 파라미터, 양자화 파일, KV 캐시와 런타임 여유를 분리해 실제로 쓸 만한 구성을 골랐습니다.</p><div class="meta"><span class="chip"><strong>260803</strong> · 표준 심층 · 기술 Executive Brief</span><span class="chip">2026.08.03 KST</span><span class="chip">Apple 공식 사양 · 공식 모델 카드 · HF 파일 트리 · M5 Max MLX 110회 실측</span></div></div><span class="report-layout-toggle" style="margin-left:12px;display:inline-flex;gap:3px;background:#f0f2f5;border-radius:8px;padding:3px;">
-<button class="report-layout-btn is-active" data-layout="wide" style="padding:5px 10px;border:none;background:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:#6b7684;">와이드</button>
-<button class="report-layout-btn" data-layout="a4" style="padding:5px 10px;border:none;background:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:#6b7684;">A4</button>
-</span>
+    <p class="lede">128GB는 “가장 큰 모델 하나”보다 “품질·속도·여유 메모리의 균형”에서 가치가 큽니다. 총 파라미터와 활성 파라미터, 양자화 파일, KV 캐시와 런타임 여유를 분리해 실제로 쓸 만한 구성을 골랐습니다.</p><div class="meta"><span class="chip"><strong>260803</strong> · 표준 심층 · 기술 Executive Brief</span><span class="chip">2026.08.03 KST</span><span class="chip">Apple 공식 사양 · 공식 모델 카드 · HF 파일 트리 · M5 Max MLX 110회 실측</span></div></div>
 
 </header>
   <section id="simple-report" class="simple-report" data-simple-pages="2" aria-labelledby="simple-report-title"><div class="wrap"><div class="simple-overview"><div class="eyebrow">TWO VISUAL SUMMARY SHEETS</div><h2 id="simple-report-title">도표·인포그래픽 요약 장표 2장</h2><div class="simple-summary-content"><article class="simple-slide simple-slide-1"><div class="simple-slide-head"><div><span class="simple-kicker">LOCAL LLM MODEL FIT · 1 / 2</span><h3>128GB의 균형점은 122B 4-bit</h3></div><span class="simple-slide-index">판단 대시보드</span></div><div class="simple-visual-grid"><figure><img class="simple-product-photo" src="https://www.apple.com/newsroom/images/2026/03/apple-debuts-m5-pro-and-m5-max-to-supercharge-the-most-demanding-pro-workflows/article/Apple-M5-Pro-M5-Max-LM-Studio-and-Xcode-260303_big.jpg.large.jpg" alt="Apple Newsroom의 MacBook Pro 실제 제품사진"><figcaption>M5 Pro 또는 M5 Max 탑재 MacBook Pro 실제 제품사진 · Apple Newsroom 미디어 자산</figcaption></figure><div><div class="simple-verdict"><b>종합 1위</b><br><strong>Qwen3.5-122B-A10B 4-bit</strong><br><span>멀티모달·다국어·에이전트 + 실측 가능한 속도</span></div><div class="simple-bar-chart"><div class="simple-bar-row"><span>모델 저장소</span><div class="simple-bar-track"><span class="simple-bar-fill" style="width:54.4%"></span></div><b>69.6GB</b></div><div class="simple-bar-row"><span>32K 피크</span><div class="simple-bar-track"><span class="simple-bar-fill" style="width:59.7%"></span></div><b>76.4GB</b></div><div class="simple-bar-row"><span>명목 여유</span><div class="simple-bar-track"><span class="simple-bar-fill" style="width:40.3%;background:#8aa0b8"></span></div><b>51.6GB</b></div></div></div></div><div class="simple-metric-strip"><div><b>614GB/s</b><br><span>공식 메모리 대역폭</span></div><div><b>63.9 tok/s</b><br><span>디코드 실측 중앙값</span></div><div><b>32K</b><br><span>권장 시작 컨텍스트</span></div></div><p class="simple-note">4-bit 품질이 실제 과제에서 부족할 때만 5-bit 84.9GB로 올립니다. 전체 메모리를 모델에 쓰지 않습니다.</p><footer class="simple-slide-footer"><span>MacBook M5 Max · Local LLM</span><span>2026.08.03 · 1 / 2</span></footer></article><article class="simple-slide simple-slide-2"><div class="simple-slide-head"><div><span class="simple-kicker">MODEL ROUTING · 2 / 2</span><h3>한 모델이 아니라 역할별 3개 프로필</h3></div><span class="simple-slide-index">선택 흐름</span></div><div class="simple-visual-grid"><figure style="position:relative"><img class="simple-infographic-image" src="assets/260803-macbook-m5-max-local-llm-model-fit/local-llm-memory-doodle.png" alt="128GB 통합 메모리와 모델 선택 흐름 두들"><div style="position:absolute;left:8px;bottom:8px;max-width:76%;background:rgba(255,255,255,.95);border:2px solid #3182f6;border-radius:12px;padding:7px 9px;font-size:10px;line-height:1.35"><b style="display:block;font-size:12px">Qwen3.5-122B-A10B 4-bit</b>32K 피크 76.4GB · 디코드 중앙 63.9 tok/s</div><div style="position:absolute;right:8px;top:8px;background:#fff;border:1px solid #dbe4ef;border-radius:999px;padding:5px 7px;font-size:9px;font-weight:800">Apple · 비후원 독립 분석</div></figure><div class="simple-decision-stack"><div class="simple-decision-card go"><b>주력 · Qwen 122B 4-bit</b><br><span>한국어·문서·이미지·에이전트</span></div><div class="simple-decision-card go"><b>코딩 · Qwen Coder Next 6-bit</b><br><span>대형 코드베이스·CLI 에이전트</span></div><div class="simple-decision-card stop"><b>속도 · Qwen 35B A3B 4-bit</b><br><span>보조 모델·병렬 작업·빠른 응답</span></div><div class="simple-decision-card stop"><b>피하기 · 397B 1-bit / swap</b><br><span>적재 시연이지 실용 최적이 아님</span></div></div></div><div class="simple-flow"><div><b>1. 32K 시작</b><br><span>단일 슬롯·전원 연결</span></div><i>→</i><div><b>2. 10개 과제 A/B</b><br><span>품질·프리필·디코드</span></div><i>→</i><div><b>3. 필요할 때만 확대</b><br><span>5-bit·64K 순차 승격</span></div></div><p class="simple-note">SSD 2TB는 체크포인트 보관함입니다. 실행 순간에는 모델·KV·런타임·앱이 128GB 통합 메모리를 함께 씁니다.</p><footer class="simple-slide-footer"><span>MacBook M5 Max · Local LLM</span><span>2026.08.03 · 2 / 2</span></footer></article></div><button class="simple-detail-button" type="button" data-report-view-target="detail">상세 근거 전체 보기</button></div></div></section>
@@ -246,7 +248,7 @@ ollama run qwen3.5:122b</pre><p class="note">명령은 2026-08-03 공개 저장�
 <script id="report-layout-script">
 (function(){
   var body = document.body;
-  var buttons = document.querySelectorAll('.report-layout-btn');
+  var buttons = document.querySelectorAll('[data-layout]');
   var LAYOUT_KEY = 'report-layout-pref';
   
   function setLayout(mode) {
@@ -260,8 +262,7 @@ ollama run qwen3.5:122b</pre><p class="note">명령은 2026-08-03 공개 저장�
     buttons.forEach(function(btn) {
       var active = btn.dataset.layout === mode;
       btn.classList.toggle('is-active', active);
-      if (active) { btn.style.background = '#fff'; btn.style.color = '#191f28'; btn.style.boxShadow = '0 1px 2px rgba(0,0,0,.06)'; }
-      else { btn.style.background = 'none'; btn.style.color = '#6b7684'; btn.style.boxShadow = 'none'; }
+      btn.setAttribute('aria-pressed', String(active));
     });
     localStorage.setItem(LAYOUT_KEY, mode);
   }
@@ -271,7 +272,7 @@ ollama run qwen3.5:122b</pre><p class="note">명령은 2026-08-03 공개 저장�
   });
   
   // Load preference - default wide
-  var saved = localStorage.getItem(LAYOUT_KEY) || 'wide';
+  var saved = localStorage.getItem(LAYOUT_KEY) || 'a4';
   setLayout(saved);
 })();
 </script>

@@ -78,7 +78,12 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
 
 </style><!--Report Mode v4.3: detail default + two-page brief + Apple segmented control--></head>
 <body data-report-view="detail">
-<nav aria-label="보고서 탐색" class="nav"><div class="wrap nav-inner"><a class="brand" href="../archive/">RM · Report Mode</a><div class="nav-links"><a href="#summary">요약</a><a href="#comparison">비교</a><a href="#decision">판단</a><a href="#sources">출처</a></div></div></nav><section aria-label="보고서 보기 방식" class="report-view-switcher"><div class="wrap report-view-switcher-inner"><span class="report-view-label">보고서 보기</span><div aria-label="간단 또는 상세 보기" class="report-view-buttons" role="group"><button aria-pressed="false" class="report-view-button" data-report-view-target="simple" type="button">간단</button><button aria-pressed="true" class="report-view-button is-active" data-report-view-target="detail" type="button">상세</button></div><div aria-label="보고서 저장 도구" class="report-utility-controls"><button aria-label="현재 보고서 보기를 A4 PDF로 저장" class="pdf-save-button" id="report-pdf-button" type="button">PDF 저장</button></div></div></section>
+<nav aria-label="보고서 탐색" class="nav"><div class="wrap nav-inner"><a class="brand" href="../archive/">RM · Report Mode</a><div class="nav-links"><a href="#summary">요약</a><a href="#comparison">비교</a><a href="#decision">판단</a><a href="#sources">출처</a></div></div></nav><section aria-label="보고서 보기 방식" class="report-view-switcher"><div class="wrap report-view-switcher-inner"><span class="report-view-label">레이아웃</span>
+<div class="report-view-buttons" role="group" aria-label="가로 또는 세로" style="min-width:120px;">
+<button class="report-view-button" type="button" data-layout="wide">가로</button>
+<button class="report-view-button is-active" type="button" data-layout="a4">세로</button>
+</div>
+<span class="report-view-label">보기</span><div aria-label="간단 또는 상세 보기" class="report-view-buttons" role="group"><button aria-pressed="false" class="report-view-button" data-report-view-target="simple" type="button">간단</button><button aria-pressed="true" class="report-view-button is-active" data-report-view-target="detail" type="button">상세</button></div><div aria-label="보고서 저장 도구" class="report-utility-controls"><button aria-label="현재 보고서 보기를 A4 PDF로 저장" class="pdf-save-button" id="report-pdf-button" type="button">PDF 저장</button></div></div></section>
 <nav aria-label="보고서 바로가기" class="floating-menu"><a class="floating-action" href="#summary">핵심 내용 한눈에 보기</a><a class="floating-action" href="#comparison">핵심 항목 비교</a><a class="floating-action" href="#decision">상황별 선택 기준</a><a class="floating-action" href="#rag">RAG 방식과 비교</a><a class="floating-action" href="#risk">주요 위험과 한계</a><a class="floating-action" href="#scenarios">향후 전망 시나리오</a><a class="floating-action" href="#sources">전체 출처 확인</a></nav>
 <header class="hero"><div class="wrap"><div class="kicker">Knowledge Systems · Concept Brief</div><h1><span>Andrej Karpathy의 </span><span>LLM Wiki란? </span><span>지식이 쌓이는 구조</span></h1>
 <section aria-labelledby="top-conclusion-title" class="top-conclusion" id="report-top"><div class="top-conclusion-card">
@@ -86,10 +91,7 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
 <p class="verdict-line"><span class="verdict-num">01</span><span class="verdict-text">LLM Wiki는 RAG 대체품보다 원자료를 연결형 지식으로 바꾸는 <mark class="highlight-sweep">지식 컴파일 계층</mark>입니다.</span></p>
 <p class="verdict-line"><span class="verdict-num">02</span><span class="verdict-text"><mark class="highlight-sweep">페이지·교차 링크·index·log</mark>가 누적돼 다음 질문의 출발점을 만듭니다.</span></p>
 <p class="verdict-line"><span class="verdict-num">03</span><span class="verdict-text"><mark class="highlight-sweep">작은 자료 묶음으로 시험</mark>하고 원자료·출처·모순·변경 기록을 사람이 검수하세요.</span></p>
-</div></section><p class="lede">문서를 매번 다시 검색하는 데서 멈추지 않고, LLM이 <span class="marker">지속적으로 갱신하는 연결형 Markdown 위키</span>를 원자료와 사람 사이에 두자는 설계 패턴입니다.</p><div class="meta"><span class="chip"><strong>260802</strong> · 표준 심층</span><span class="chip">2026.08.02 KST</span><span class="chip">공식 Gist·Git 이력·원 논문 우선 · 사실과 해석 분리</span></div></div><span class="report-layout-toggle" style="margin-left:12px;display:inline-flex;gap:3px;background:#f0f2f5;border-radius:8px;padding:3px;">
-<button class="report-layout-btn is-active" data-layout="wide" style="padding:5px 10px;border:none;background:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:#6b7684;">와이드</button>
-<button class="report-layout-btn" data-layout="a4" style="padding:5px 10px;border:none;background:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:#6b7684;">A4</button>
-</span>
+</div></section><p class="lede">문서를 매번 다시 검색하는 데서 멈추지 않고, LLM이 <span class="marker">지속적으로 갱신하는 연결형 Markdown 위키</span>를 원자료와 사람 사이에 두자는 설계 패턴입니다.</p><div class="meta"><span class="chip"><strong>260802</strong> · 표준 심층</span><span class="chip">2026.08.02 KST</span><span class="chip">공식 Gist·Git 이력·원 논문 우선 · 사실과 해석 분리</span></div></div>
 
 </header>
 <section aria-labelledby="simple-report-title" class="simple-report" data-simple-pages="2" id="simple-report"><div class="wrap"><div class="simple-overview"><div class="eyebrow">TWO-PAGE EXECUTIVE BRIEF</div><h2 id="simple-report-title">2페이지 핵심 요약</h2><div class="simple-summary-content"><article class="simple-summary-block"><span class="simple-summary-index">01</span><h3>판단의 배경</h3><p>핵심은 특정 앱이나 제품이 아니라, 원자료를 보존하면서 LLM이 읽기 쉬운 중간 지식 구조를 계속 유지하는 운영 패턴입니다. LLM Wiki 는 Andrej Karpathy가 2026년 4월 4일 공개한 아이디어 문서입니다. LLM 에이전트가 원자료를 읽고, 요약·개체·개념·비교 페이지를 Markdown으로 만들며, 새 자료가 들어올 때 기존 페이지와 교차 링크·모순·종합을 갱신하도록 제안합니다. [S1][S2] 그래서 결과물은 한 번 쓰고 사라지는 채팅 답변이 아니라 지속적이고 누적되는 지식 자산 입니다.</p></article><article class="simple-summary-block"><span class="simple-summary-index">02</span><h3>핵심 비교와 근거</h3><p>원문은 특정 폴더 구조를 강제하지 않습니다. 다만 세 계층과 세 작업은 분명히 구분합니다. LLM이 읽되 수정하지 않는 불변 자료 논문, 기사, 회의록, 이미지, 데이터 LLM이 만들고 갱신하는 Markdown 요약·개체·개념·비교·종합을 연결 기업 페이지, 개념 설명, 비교표, 질의 결과 사람과 LLM이 함께 다듬는 운영 규칙 구조·명명·출처·갱신·검수 절차를 고정 AGENTS.md, CLAUDE.md, SCHEMA.md 새 원자료를 읽고 기존 페이지에 통합 요약·색인·관련 페이지·로그가 함께 갱신됨 강조점, 잘못된 합성, 누락 출처 관련 위키 페이지를 찾아 근거와 함께 종합 답변이 근거 페이지로 추적되고, 가치 있으면 다시 저장됨 결…</p></article><article class="simple-summary-block"><span class="simple-summary-index">03</span><h3>선택 기준과 판단</h3><p>지식이 여러 주와 여러 자료에 걸쳐 누적될 때 가치가 큽니다. 한 번 묻고 끝나는 단순 검색에는 과할 수 있습니다. 한 주제만 고릅니다. 예: 특정 기술, 한 권의 책, 경쟁사 한 분야. 세 폴더와 두 파일로 시작합니다. raw/ , pages/ , queries/ , 그리고 index.md , log.md 를 둡니다. 운영 규칙은 SCHEMA.md 에 적습니다. 자료 5개를 하나씩 수집합니다. 매번 생성·수정된 페이지와 원자료 연결을 사람이 확인합니다. 교차 문서 질문 3개를 던집니다. 좋은 종합은 queries/ 에 다시 저장합니다. 주말에 점검합니다.</p></article><article class="simple-summary-block"><span class="simple-summary-index">04</span><h3>주의점과 다음 행동</h3><p>둘은 경쟁 제품명이 아니라 지식을 준비하는 서로 다른 시점과 계층입니다. 질문할 때 관련 청크를 검색해 생성 문맥에 넣음 자료가 들어올 때 구조화·연결·모순 표시를 미리 갱신 위키를 먼저 검색하고 부족하면 원자료 RAG로 내려감 기본형에서는 답변이 세션에 머물 수 있음 요약·비교·질문 결과가 파일로 남아 재사용됨 검색된 원문 청크를 직접 인용하기 쉬움 중간 요약이 오래되거나 잘못 굳어질 위험 위키 문장마다 원자료 경로와 날짜를 보존 대규모 코퍼스 검색에 성숙한 색인 활용 원문은 중간 규모에서 index.md가 잘 작동한다고 제안 규모가 커지면 BM25·벡터·재순위 검색을 추가</p></article></div><button class="simple-detail-button" data-report-view-target="detail" type="button">상세 근거 전체 보기</button></div></div></section><main class="detail-report">
@@ -279,7 +281,7 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
 <script id="report-layout-script">
 (function(){
   var body = document.body;
-  var buttons = document.querySelectorAll('.report-layout-btn');
+  var buttons = document.querySelectorAll('[data-layout]');
   var LAYOUT_KEY = 'report-layout-pref';
   
   function setLayout(mode) {
@@ -293,8 +295,7 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
     buttons.forEach(function(btn) {
       var active = btn.dataset.layout === mode;
       btn.classList.toggle('is-active', active);
-      if (active) { btn.style.background = '#fff'; btn.style.color = '#191f28'; btn.style.boxShadow = '0 1px 2px rgba(0,0,0,.06)'; }
-      else { btn.style.background = 'none'; btn.style.color = '#6b7684'; btn.style.boxShadow = 'none'; }
+      btn.setAttribute('aria-pressed', String(active));
     });
     localStorage.setItem(LAYOUT_KEY, mode);
   }
@@ -304,7 +305,7 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
   });
   
   // Load preference - default wide
-  var saved = localStorage.getItem(LAYOUT_KEY) || 'wide';
+  var saved = localStorage.getItem(LAYOUT_KEY) || 'a4';
   setLayout(saved);
 })();
 </script>

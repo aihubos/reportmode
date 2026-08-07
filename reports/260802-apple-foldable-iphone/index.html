@@ -296,7 +296,12 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
 <a href="#sources">출처</a>
 </div>
 </div>
-</nav><section aria-label="보고서 보기 방식" class="report-view-switcher"><div class="wrap report-view-switcher-inner"><span class="report-view-label">보고서 보기</span><div aria-label="간단 또는 상세 보기" class="report-view-buttons" role="group"><button aria-pressed="false" class="report-view-button" data-report-view-target="simple" type="button">간단</button><button aria-pressed="true" class="report-view-button is-active" data-report-view-target="detail" type="button">상세</button></div><div aria-label="보고서 저장 도구" class="report-utility-controls"><button aria-label="현재 보고서 보기를 A4 PDF로 저장" class="pdf-save-button" id="report-pdf-button" type="button">PDF 저장</button></div></div></section>
+</nav><section aria-label="보고서 보기 방식" class="report-view-switcher"><div class="wrap report-view-switcher-inner"><span class="report-view-label">레이아웃</span>
+<div class="report-view-buttons" role="group" aria-label="가로 또는 세로" style="min-width:120px;">
+<button class="report-view-button" type="button" data-layout="wide">가로</button>
+<button class="report-view-button is-active" type="button" data-layout="a4">세로</button>
+</div>
+<span class="report-view-label">보기</span><div aria-label="간단 또는 상세 보기" class="report-view-buttons" role="group"><button aria-pressed="false" class="report-view-button" data-report-view-target="simple" type="button">간단</button><button aria-pressed="true" class="report-view-button is-active" data-report-view-target="detail" type="button">상세</button></div><div aria-label="보고서 저장 도구" class="report-utility-controls"><button aria-label="현재 보고서 보기를 A4 PDF로 저장" class="pdf-save-button" id="report-pdf-button" type="button">PDF 저장</button></div></div></section>
 <nav aria-label="보고서 바로가기" class="floating-menu"><a class="floating-action" href="#report-top">핵심 결론 3가지</a><a class="floating-action" href="#body">공식 확인 내용</a><a class="floating-action" href="#tradeoffs">장점과 한계 비교</a><a class="floating-action" href="#criteria">구매 판단 기준</a><a class="floating-action" href="#timeline">출시 예상 일정</a><a class="floating-action" href="#sources">전체 출처 확인</a></nav>
 <header class="hero">
 <div class="hero-inner">
@@ -316,10 +321,7 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
 <div class="chip">출처 4개</div>
 </div>
 </div>
-<span class="report-layout-toggle" style="margin-left:12px;display:inline-flex;gap:3px;background:#f0f2f5;border-radius:8px;padding:3px;">
-<button class="report-layout-btn is-active" data-layout="wide" style="padding:5px 10px;border:none;background:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:#6b7684;">와이드</button>
-<button class="report-layout-btn" data-layout="a4" style="padding:5px 10px;border:none;background:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:#6b7684;">A4</button>
-</span>
+
 
 </header>
 <section aria-labelledby="simple-report-title" class="simple-report" data-simple-pages="2" id="simple-report"><div class="wrap"><div class="simple-overview"><div class="eyebrow">TWO-PAGE EXECUTIVE BRIEF</div><h2 id="simple-report-title">2페이지 핵심 요약</h2><div class="simple-summary-content"><article class="simple-summary-block"><span class="simple-summary-index">01</span><h3>판단의 배경</h3><p>1세대 혁신성은 높지만, 구매는 실측 검증 뒤가 맞습니다. 핵심 기준·지표와 출처를 함께 확인하세요. 최종 판단과 검수는 사용자에게 있습니다.</p></article><article class="simple-summary-block"><span class="simple-summary-index">02</span><h3>핵심 비교와 근거</h3><p>비교 조건과 기준이 같은 수치만 나란히 놓고 판단합니다.</p></article><article class="simple-summary-block"><span class="simple-summary-index">03</span><h3>선택 기준과 판단</h3><p>상황과 목적에 맞는 선택 기준을 정한 뒤 세부 근거를 대조합니다.</p></article><article class="simple-summary-block"><span class="simple-summary-index">04</span><h3>주의점과 다음 행동</h3><p>사실·분석·전망·루머를 분리해 정리했습니다. 명칭은 ‘iPhone Ultra’ 또는 ‘iPhone Fold’로 불리지만 공식 제품명은 아닙니다. 책처럼 가로로 펼치는 북 스타일, 외부 화면과 내부 대화면 조합이 다수 보도에서 겹칩니다. 수치가 충돌하는 항목은 하나로 합치지 않았습니다. 외부 5.3~5.5인치 · 내부 7.6~7.8인치 펼쳤을 때 5mm 미만, 접으면 약 9~9.5mm 두께 보도 티타늄 프레임과 액체금속·스테인리스 기반 힌지 보도 출처: MacRumors — 2026 iPhone Fold 루머 종합 · 9to5Mac — iPhone Ultra 예상 핵심 기능 6가지 2n…</p></article></div><button class="simple-detail-button" data-report-view-target="detail" type="button">상세 근거 전체 보기</button></div></div></section><main class="detail-report">
@@ -602,7 +604,7 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
 <script id="report-layout-script">
 (function(){
   var body = document.body;
-  var buttons = document.querySelectorAll('.report-layout-btn');
+  var buttons = document.querySelectorAll('[data-layout]');
   var LAYOUT_KEY = 'report-layout-pref';
   
   function setLayout(mode) {
@@ -616,8 +618,7 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
     buttons.forEach(function(btn) {
       var active = btn.dataset.layout === mode;
       btn.classList.toggle('is-active', active);
-      if (active) { btn.style.background = '#fff'; btn.style.color = '#191f28'; btn.style.boxShadow = '0 1px 2px rgba(0,0,0,.06)'; }
-      else { btn.style.background = 'none'; btn.style.color = '#6b7684'; btn.style.boxShadow = 'none'; }
+      btn.setAttribute('aria-pressed', String(active));
     });
     localStorage.setItem(LAYOUT_KEY, mode);
   }
@@ -627,7 +628,7 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
   });
   
   // Load preference - default wide
-  var saved = localStorage.getItem(LAYOUT_KEY) || 'wide';
+  var saved = localStorage.getItem(LAYOUT_KEY) || 'a4';
   setLayout(saved);
 })();
 </script>

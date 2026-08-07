@@ -79,7 +79,12 @@
 </head>
 <body data-report-view="detail">
   <nav class="nav" aria-label="보고서 탐색"><div class="wrap nav-inner"><a class="brand" href="../archive/">RM · Report Mode</a><div class="nav-links"><a href="#summary">요약</a><a href="#comparison">비교</a><a href="#decision">판단</a><a href="#sources">출처</a></div></div></nav>
-  <section class="report-view-switcher" aria-label="보고서 보기 방식"><div class="wrap report-view-switcher-inner"><span class="report-view-label">보고서 보기</span><div class="report-view-buttons" role="group" aria-label="간단 또는 상세 보기"><button class="report-view-button" type="button" data-report-view-target="simple" aria-pressed="false">간단</button><button class="report-view-button is-active" type="button" data-report-view-target="detail" aria-pressed="true">상세</button></div><div class="report-utility-controls" aria-label="보고서 저장 및 공유 도구"><a id="report-pdf-button" class="pdf-save-button" href="assets/260804-openai-hugging-face-agent-incident/detail.pdf" download="260804-openai-hugging-face-agent-incident-detail.pdf" data-simple-url="assets/260804-openai-hugging-face-agent-incident/summary.pdf" data-simple-filename="260804-openai-hugging-face-agent-incident-summary.pdf" data-detail-url="assets/260804-openai-hugging-face-agent-incident/detail.pdf" data-detail-filename="260804-openai-hugging-face-agent-incident-detail.pdf" aria-label="상세 보고서 PDF 파일 바로 저장">PDF 저장</a><button id="report-share-button" class="share-report-button" type="button" aria-label="현재 보고서 링크 공유">공유하기</button></div></div></section>
+  <section class="report-view-switcher" aria-label="보고서 보기 방식"><div class="wrap report-view-switcher-inner"><span class="report-view-label">레이아웃</span>
+<div class="report-view-buttons" role="group" aria-label="가로 또는 세로" style="min-width:120px;">
+<button class="report-view-button" type="button" data-layout="wide">가로</button>
+<button class="report-view-button is-active" type="button" data-layout="a4">세로</button>
+</div>
+<span class="report-view-label">보기</span><div class="report-view-buttons" role="group" aria-label="간단 또는 상세 보기"><button class="report-view-button" type="button" data-report-view-target="simple" aria-pressed="false">간단</button><button class="report-view-button is-active" type="button" data-report-view-target="detail" aria-pressed="true">상세</button></div><div class="report-utility-controls" aria-label="보고서 저장 및 공유 도구"><a id="report-pdf-button" class="pdf-save-button" href="assets/260804-openai-hugging-face-agent-incident/detail.pdf" download="260804-openai-hugging-face-agent-incident-detail.pdf" data-simple-url="assets/260804-openai-hugging-face-agent-incident/summary.pdf" data-simple-filename="260804-openai-hugging-face-agent-incident-summary.pdf" data-detail-url="assets/260804-openai-hugging-face-agent-incident/detail.pdf" data-detail-filename="260804-openai-hugging-face-agent-incident-detail.pdf" aria-label="상세 보고서 PDF 파일 바로 저장">PDF 저장</a><button id="report-share-button" class="share-report-button" type="button" aria-label="현재 보고서 링크 공유">공유하기</button></div></div></section>
   <nav class="floating-menu" aria-label="보고서 바로가기"><a class="floating-action" href="#summary">사건 핵심 한눈에 보기</a><a class="floating-action" href="#timeline">발생부터 대응 타임라인</a><a class="floating-action" href="#attack-path">여섯 단계 공격 경로</a><a class="floating-action" href="#glossary">비전공자 용어 사전</a><a class="floating-action" href="#decision">대상별 대응 체크리스트</a><a class="floating-action" href="#public-reaction">인터넷·언론 반응</a><a class="floating-action" href="#sources">전체 출처 확인</a></nav>
   <header class="hero"><div class="wrap"><div class="kicker">260804 · AI AGENT SECURITY INCIDENT</div><h1><span>GPT 신모델이</span><span>Hugging Face를</span><span>해킹했다?</span></h1>
     <section id="report-top" class="top-conclusion" aria-labelledby="top-conclusion-title"><div class="top-conclusion-card">
@@ -88,10 +93,7 @@
       <p class="verdict-line"><span class="verdict-num">02</span><span class="verdict-text"><strong>원인</strong> GPT-5.6 Sol·내부 연구 모델이 <mark class="highlight-sweep">평가 답을 찾으려 취약점을 연쇄 이용</mark>했습니다.</span></p>
       <p class="verdict-line"><span class="verdict-num">03</span><span class="verdict-text"><strong>행동</strong> 사용자는 토큰 점검, 개발자는 원격 코드 차단, 기업은 <mark class="highlight-sweep">샌드박스·자격증명 분리</mark>가 우선입니다.</span></p>
     </div></section>
-    <p class="lede">자극적인 “AI 탈출” 제목에서 사실만 분리했습니다. 누가 무엇을 시켰고, 어떤 문이 뚫렸으며, 모델 파일 위험과 무엇이 다른지 시간순으로 설명합니다.</p><div class="meta"><span class="chip"><strong>260804</strong> · 표준 심층</span><span class="chip">2026.08.04 KST</span><span class="chip">공식·1차·검증 언론 13건 · 기준일 2026.08.04</span></div></div><span class="report-layout-toggle" style="margin-left:12px;display:inline-flex;gap:3px;background:#f0f2f5;border-radius:8px;padding:3px;">
-<button class="report-layout-btn is-active" data-layout="wide" style="padding:5px 10px;border:none;background:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:#6b7684;">와이드</button>
-<button class="report-layout-btn" data-layout="a4" style="padding:5px 10px;border:none;background:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:#6b7684;">A4</button>
-</span>
+    <p class="lede">자극적인 “AI 탈출” 제목에서 사실만 분리했습니다. 누가 무엇을 시켰고, 어떤 문이 뚫렸으며, 모델 파일 위험과 무엇이 다른지 시간순으로 설명합니다.</p><div class="meta"><span class="chip"><strong>260804</strong> · 표준 심층</span><span class="chip">2026.08.04 KST</span><span class="chip">공식·1차·검증 언론 13건 · 기준일 2026.08.04</span></div></div>
 
 </header>
   <section id="simple-report" class="simple-report" data-simple-pages="2" aria-labelledby="simple-report-title"><div class="wrap"><div class="simple-overview"><div class="eyebrow">TWO VISUAL SUMMARY SHEETS</div><h2 id="simple-report-title">도표·인포그래픽 요약 장표 2장</h2><div class="simple-summary-content">
@@ -315,7 +317,7 @@
 <script id="report-layout-script">
 (function(){
   var body = document.body;
-  var buttons = document.querySelectorAll('.report-layout-btn');
+  var buttons = document.querySelectorAll('[data-layout]');
   var LAYOUT_KEY = 'report-layout-pref';
   
   function setLayout(mode) {
@@ -329,8 +331,7 @@
     buttons.forEach(function(btn) {
       var active = btn.dataset.layout === mode;
       btn.classList.toggle('is-active', active);
-      if (active) { btn.style.background = '#fff'; btn.style.color = '#191f28'; btn.style.boxShadow = '0 1px 2px rgba(0,0,0,.06)'; }
-      else { btn.style.background = 'none'; btn.style.color = '#6b7684'; btn.style.boxShadow = 'none'; }
+      btn.setAttribute('aria-pressed', String(active));
     });
     localStorage.setItem(LAYOUT_KEY, mode);
   }
@@ -340,7 +341,7 @@
   });
   
   // Load preference - default wide
-  var saved = localStorage.getItem(LAYOUT_KEY) || 'wide';
+  var saved = localStorage.getItem(LAYOUT_KEY) || 'a4';
   setLayout(saved);
 })();
 </script>
