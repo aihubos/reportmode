@@ -426,7 +426,7 @@ export function renderHomeHtml(
               <span>출처 ${item.sourceCount}개</span>
               <span class="archive-view-count" data-view-count data-view-count-fallback="${fallbackViewCount}">조회수 ${fallbackViewCount.toLocaleString("ko-KR")}</span>
             </div>
-            <h2>${escapeHtml(item.displayDate)} · ${escapeHtml(item.title)}</h2>
+            <h2>${escapeHtml(item.title)}</h2>
             <p>${escapeHtml(item.summary)}</p>
             ${tags ? `<div class="archive-tags">${tags}</div>` : ""}
           </div>
