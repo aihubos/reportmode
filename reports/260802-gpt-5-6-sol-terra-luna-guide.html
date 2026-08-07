@@ -243,14 +243,69 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
   (()=>{const button=document.getElementById('report-pdf-button');const sources=document.getElementById('sources');if(!button)return;let prepared=false;let sourceWasOpen=false;const prepare=()=>{if(prepared)return;prepared=true;sourceWasOpen=Boolean(sources?.open);if(sources&&document.body.dataset.reportView==='detail')sources.open=true;button.classList.add('is-printing')};const reset=()=>{if(!prepared)return;if(sources&&!sourceWasOpen)sources.open=false;button.classList.remove('is-printing');prepared=false};button.addEventListener('click',()=>{prepare();requestAnimationFrame(()=>window.print())});addEventListener('beforeprint',prepare);addEventListener('afterprint',reset);addEventListener('focus',()=>{if(prepared)setTimeout(reset,500)})})();
   </script>
 <script src="../assets/js/view-counter.js"></script>
-<div class="giscus" style="margin-top:48px;max-width:720px"></div>
-<script src="https://giscus.app/client.js"
-  data-repo="aihubos/reportmode"
-  data-repo-id="R_kgDOTqhwPQ" data-category="General"
-  data-category-id="DIC_kwDOTqhwPc4DC1QV" data-mapping="pathname"
-  data-strict="0" data-reactions-enabled="1" data-emit-metadata="0"
-  data-input-position="bottom" data-theme="light" data-lang="ko"
-  crossorigin="anonymous" async>
+<!-- COMMENT WIDGET -->
+<div style="max-width:720px;margin:60px auto 0;padding:32px 28px;background:#fff;border:1px solid #e5e8eb;border-radius:18px;box-shadow:0 4px 16px rgba(0,0,0,.04);">
+  <h3 style="margin:0 0 6px;font-size:20px;color:#191f28;">💬 댓글</h3>
+  <p style="margin:0 0 20px;font-size:14px;color:#8b95a1;">로그인 없이 자유롭게 의견을 남겨주세요.</p>
+  <div id="comment-list" style="margin-bottom:20px;max-height:400px;overflow-y:auto;"></div>
+  <form id="comment-form" style="display:flex;flex-direction:column;gap:10px;" onsubmit="return submitComment(event)">
+    <input id="comment-name" type="text" placeholder="이름 (선택)" style="padding:10px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;max-width:240px;">
+    <textarea id="comment-body" rows="3" placeholder="댓글을 입력하세요..." required style="padding:12px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;resize:vertical;font-family:inherit;"></textarea>
+    <button type="submit" style="align-self:flex-end;padding:10px 24px;background:#3182f6;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;">등록</button>
+  </form>
+</div>
+<script>
+(function(){
+  var PAGE = window.location.pathname.replace(/\//g,'-').replace(/^-|-$/g,'') || 'index';
+  var STORAGE_KEY = 'comments-' + PAGE;
+  var list = document.getElementById('comment-list');
+  
+  function loadComments() {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    var comments = raw ? JSON.parse(raw) : [];
+    list.innerHTML = comments.length === 0 
+      ? '<p style="color:#8b95a1;font-size:13px;text-align:center;padding:20px 0;">아직 댓글이 없습니다. 첫 댓글을 남겨보세요!</p>'
+      : comments.map(function(c,i){
+          var name = c.name || '익명';
+          var date = new Date(c.time).toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'});
+          return '<div style="padding:14px 0;border-bottom:1px solid #f0f0f0;">'
+            + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">'
+            + '<strong style="font-size:14px;color:#191f28;">' + escapeHtml(name) + '</strong>'
+            + '<span style="font-size:12px;color:#b0b8c1;">' + date + '</span>'
+            + '</div>'
+            + '<p style="margin:0;font-size:14px;color:#4a5568;line-height:1.5;">' + escapeHtml(c.body) + '</p>'
+            + '</div>';
+        }).join('');
+  }
+  
+  function escapeHtml(text) {
+    var div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+  
+  window.submitComment = function(e) {
+    e.preventDefault();
+    var nameEl = document.getElementById('comment-name');
+    var bodyEl = document.getElementById('comment-body');
+    var comment = {
+      name: nameEl.value.trim(),
+      body: bodyEl.value.trim(),
+      time: Date.now()
+    };
+    var raw = localStorage.getItem(STORAGE_KEY);
+    var comments = raw ? JSON.parse(raw) : [];
+    comments.unshift(comment);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(comments.slice(0, 100)));
+    bodyEl.value = '';
+    nameEl.value = '';
+    loadComments();
+    return false;
+  };
+  
+  loadComments();
+})();
 </script>
+<!-- END COMMENT WIDGET -->
 </body>
 </html>
