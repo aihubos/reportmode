@@ -1,12 +1,60 @@
 {
-  "generatedAt": "2026-08-07T13:52:26.497Z",
+  "generatedAt": "2026-08-07T22:19:06.303Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260808-macbook-m5max-comfyui-practical-guide",
+      "slug": "macbook-m5max-comfyui-practical-guide",
+      "title": "MacBook Pro M5 Max 128GB · ComfyUI 실전 가이드",
+      "category": "AI",
+      "summary": "MacBook Pro M5 Max 128GB에서 ComfyUI를 설치하고 FLUX 이미지와 Wan2.2 영상을 생성하는 비전공자용 실전 가이드입니다.",
+      "createdAt": "2026-08-08T07:15:46+09:00",
+      "updatedAt": "2026-08-08T07:15:46+09:00",
+      "status": "published",
+      "path": "reports/260808-macbook-m5max-comfyui-practical-guide.html",
+      "url": "https://aihubos.github.io/reportmode/reports/260808-macbook-m5max-comfyui-practical-guide.html",
+      "displayDate": "260808",
+      "sourceCount": 0,
+      "tags": [
+        "macbook",
+        "m5-max",
+        "comfyui",
+        "flux",
+        "wan2.2",
+        "local-ai"
+      ],
+      "coverImage": "reports/assets/260808-macbook-m5max-comfyui-practical-guide/cover.png",
+      "coverAlt": "MacBook Pro M5 Max 128GB에서 ComfyUI로 이미지·영상을 만드는 실전 가이드 대표 이미지",
+      "subtitle": "FLUX 이미지와 Wan2.2 영상을 로컬에서 만드는 방법"
+    },
+    {
+      "id": "260808-hermes-instagram-blog-automation-guide",
+      "slug": "hermes-instagram-blog-automation-guide",
+      "title": "Hermes로 만드는 인스타그램·블로그 자동화 가이드북",
+      "category": "AI",
+      "summary": "Hermes Agent로 Instagram과 블로그 콘텐츠를 기획·검수·승인·발행·기록하는 비전공자용 자동화 가이드북입니다.",
+      "createdAt": "2026-08-08T07:15:46+09:00",
+      "updatedAt": "2026-08-08T07:15:46+09:00",
+      "status": "published",
+      "path": "reports/260808-hermes-instagram-blog-automation-guide.html",
+      "url": "https://aihubos.github.io/reportmode/reports/260808-hermes-instagram-blog-automation-guide.html",
+      "displayDate": "260808",
+      "sourceCount": 0,
+      "tags": [
+        "hermes",
+        "instagram",
+        "blog",
+        "automation",
+        "approval-workflow"
+      ],
+      "coverImage": "reports/assets/260808-hermes-instagram-blog-automation-guide/cover.png",
+      "coverAlt": "Hermes 기반 인스타그램·블로그 승인형 자동화 구조",
+      "subtitle": "기획부터 승인·발행·기록까지 한 흐름으로"
+    },
     {
       "id": "260807-paseo-mcp-orchestration-guidebook",
       "slug": "paseo-mcp-orchestration-guidebook",
       "title": "PASEO MCP·오케스트레이션 실전 가이드북",
-      "subtitle": "여러 AI를 한 팀처럼 움직이는 MCP 실전 가이드",
       "category": "AI",
       "summary": "PASEO MCP 도구 활성화, 멀티 AI 오케스트레이션, Git Worktree, Skills, Heartbeat와 Schedule을 macOS와 Windows에서 사용하는 실전 가이드북입니다.",
       "createdAt": "2026-08-07T22:52:24+09:00",
@@ -24,7 +72,8 @@
         "guide"
       ],
       "coverImage": "reports/assets/260807-paseo-mcp-orchestration-guidebook/cover.png",
-      "coverAlt": "PASEO MCP 오케스트레이션 구조도"
+      "coverAlt": "PASEO MCP 오케스트레이션 구조도",
+      "subtitle": "여러 AI를 한 팀처럼 움직이는 MCP 실전 가이드"
     },
     {
       "id": "260807-paseo-multi-ai-orchestration-analysis",
