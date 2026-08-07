@@ -5,7 +5,6 @@
   if (!body || body.dataset.reportLayoutEnhanced === "true") return;
   body.dataset.reportLayoutEnhanced = "true";
 
-  var storageKey = "reportmode:layout";
   var printStyle = document.createElement("style");
   printStyle.id = "report-layout-print-style";
   document.head.appendChild(printStyle);
@@ -38,16 +37,14 @@
       button.setAttribute("aria-pressed", String(active));
     });
     setPrintPage(layout);
-    try { localStorage.setItem(storageKey, layout); } catch (_) {}
   }
 
   buttons.forEach(function (button) {
     button.addEventListener("click", function () { setLayout(button.dataset.reportLayout); });
   });
 
-  var saved = "a4";
-  try { saved = localStorage.getItem(storageKey) || "a4"; } catch (_) {}
-  setLayout(saved === "wide" ? "wide" : "a4");
+  // Every report opens in the shared default: portrait A4.
+  setLayout("a4");
 
   document.addEventListener("click", function (event) {
     var trigger = event.target.closest("#report-pdf-button");
