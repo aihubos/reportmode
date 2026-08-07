@@ -15,7 +15,17 @@
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.floating-action,.pdf-save-button{transition:none}.floating-action:before,.pdf-save-button:before{animation:none;display:none}}
     @page{size:A4 portrait;margin:18mm 14mm 20mm;@bottom-left{content:"상하이 디즈니랜드 9–10월 심층 방문 전략 · REPORT MODE";font:600 6.5pt/1.2 var(--sans);color:#66717e}@bottom-center{content:"2026년 8월 3일 · AIHUBOS · TRAVEL DECISION";font:600 6.5pt/1.2 var(--sans);color:#66717e}@bottom-right{content:counter(page) " / " counter(pages);font:800 7pt/1.2 var(--sans);color:#185abc}}
     @media print{.nav,.floating-menu{display:none!important}html{print-color-adjust:exact;-webkit-print-color-adjust:exact}body{background:#fff;font-size:10.5pt;line-height:1.55;padding-bottom:0}.top-conclusion{margin:12px 0 0}.top-conclusion-card{box-shadow:none;break-inside:avoid}.verdict-line{font-size:15pt}.highlight-sweep{-webkit-print-color-adjust:exact;print-color-adjust:exact}.hero{padding:18px 0 24px}.hero h1{font-size:34pt}.hero .lede{font-size:15pt}.wrap{width:100%;max-width:none}.paper,.callout,.visual-hero,.reaction-card{box-shadow:none;break-inside:avoid}.section-head h2,h2,h3{break-after:avoid-page}.visual-hero img{max-height:230mm;object-fit:contain}p,li{orphans:3;widows:3}main section{padding:20px 0}.table-wrap{overflow:visible}table{font-size:8.5pt}thead{display:table-header-group}tr,img,figure{break-inside:avoid}.sources{overflow:visible;border:0}.sources thead,.sources tbody{min-width:0;font-size:6.8pt}.sources th,.sources td{padding:5px 6px;line-height:1.35;overflow-wrap:anywhere}.source-section{break-before:page}.source-section>.source-content{display:block!important}.sources-summary{display:none}.reaction-card{box-shadow:none;break-inside:avoid}.source-section a{color:#000;text-decoration:none}}
-  </style>
+  
+/* ── A4 Portrait Display (toggle) ── */
+@media screen {
+  body.report-a4-mode { max-width: 210mm; margin: 24px auto !important; background: #fff !important; box-shadow: 0 2px 24px rgba(0,0,0,.12); border-radius: 4px; padding: 0 !important; }
+  body.report-a4-mode .wrap, body.report-a4-mode .report-section, body.report-a4-mode main { max-width: 100% !important; }
+  @media (max-width: 218mm) {
+    body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
+  }
+}
+
+</style>
   <style id="report-view-v4-style">
     :root{--max:1120px;--apple-blue:#007aff;--apple-gray:rgba(118,118,128,.16)}
     .report-view-switcher{position:sticky;top:58px;z-index:35;border-bottom:1px solid rgba(0,122,255,.13);background:rgba(247,248,250,.88);-webkit-backdrop-filter:saturate(180%) blur(22px);backdrop-filter:saturate(180%) blur(22px)}
@@ -37,7 +47,17 @@
     @media(max-width:700px){.report-view-switcher-inner{min-height:78px;grid-template-columns:minmax(0,1fr) 132px;gap:10px}.report-view-label{display:none}.report-view-buttons{min-height:62px;padding:6px}.report-view-buttons::before{left:6px;top:6px;bottom:6px;width:calc((100% - 12px)/2)}.report-view-button{min-height:50px;padding:8px 6px;font-size:17px}.report-utility-controls{width:132px}.report-utility-controls .pdf-save-button,.report-utility-controls .share-report-button{min-height:44px;padding:7px 5px;font-size:11px}.simple-report{padding:10px 0 46px}.simple-overview{padding:20px 12px}.simple-overview h2{font-size:28px}.simple-summary-content{gap:16px}.simple-slide{min-height:0;padding:24px 18px 72px;border-radius:18px}.simple-slide-head{gap:10px}.simple-slide-title{font-size:29px}.simple-slide-number{min-width:46px;height:34px}.simple-visual-grid,.simple-decision-grid{grid-template-columns:1fr}.simple-product-photo{min-height:210px}.simple-metric-strip{grid-template-columns:1fr}.simple-bar-row{grid-template-columns:86px 1fr 62px;gap:8px}.simple-flow{display:grid}.simple-flow-step+.simple-flow-step::before{content:"↓";left:50%;top:-12px;transform:translateX(-50%)}.simple-slide-footer{left:18px;right:18px;bottom:18px}.doodle-frame>.doodle-brand-logo{right:10px;top:10px;width:86px;padding:6px 8px}}
     @media(prefers-reduced-motion:reduce){.report-view-buttons::before,.report-view-button,.simple-detail-button{transition:none!important}}
     @media print{.report-view-switcher,.report-utility-controls{display:none!important}body[data-report-view="simple"] .hero,body[data-report-view="simple"] .detail-report,body[data-report-view="simple"] #sources{display:none!important}body[data-report-view="simple"] .simple-report{display:block!important;padding:0;break-before:auto;page-break-before:auto}body[data-report-view="simple"] .simple-overview{padding:0;border:0;box-shadow:none}body[data-report-view="simple"] .simple-overview>.eyebrow,body[data-report-view="simple"] .simple-overview>h2,body[data-report-view="simple"] .simple-detail-button{display:none!important}body[data-report-view="simple"] .simple-summary-content{display:block}body[data-report-view="simple"] .simple-slide{height:252mm;min-height:0;margin:0;padding:9mm 9mm 14mm;border:0;border-radius:0;box-shadow:none;break-inside:avoid;break-after:page;page-break-after:always}body[data-report-view="simple"] .simple-slide:last-child{break-after:auto;page-break-after:auto}body[data-report-view="simple"] .simple-slide::before{height:2mm}body[data-report-view="simple"] .simple-slide-title{font-size:23pt}body[data-report-view="simple"] .simple-slide-head{margin-bottom:5mm}body[data-report-view="simple"] .simple-product-photo{min-height:0;height:88mm;max-height:88mm}body[data-report-view="simple"] .simple-infographic-image{height:72mm;max-height:72mm;object-fit:contain}body[data-report-view="simple"] .simple-verdict{padding:4mm 5mm;font-size:17pt}body[data-report-view="simple"] .simple-metric-strip{gap:3mm;margin-top:4mm}body[data-report-view="simple"] .simple-metric-card{padding:4mm}body[data-report-view="simple"] .simple-metric-card b{font-size:20pt}body[data-report-view="simple"] .simple-metric-card span,body[data-report-view="simple"] .simple-bar-row,body[data-report-view="simple"] .simple-flow-step,body[data-report-view="simple"] .simple-slide-note{font-size:8.5pt}body[data-report-view="simple"] .simple-decision-card{padding:4mm}body[data-report-view="simple"] .simple-decision-card h3{font-size:13pt}body[data-report-view="simple"] .simple-slide-footer{left:9mm;right:9mm;bottom:5mm}body[data-report-view="detail"] .simple-report{display:none!important}body[data-report-view="detail"] .detail-report{display:block!important}}
-  </style>
+  
+/* ── A4 Portrait Display (toggle) ── */
+@media screen {
+  body.report-a4-mode { max-width: 210mm; margin: 24px auto !important; background: #fff !important; box-shadow: 0 2px 24px rgba(0,0,0,.12); border-radius: 4px; padding: 0 !important; }
+  body.report-a4-mode .wrap, body.report-a4-mode .report-section, body.report-a4-mode main { max-width: 100% !important; }
+  @media (max-width: 218mm) {
+    body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
+  }
+}
+
+</style>
 </head>
 <body data-report-view="detail">
   <nav class="nav" aria-label="보고서 탐색"><div class="wrap nav-inner"><a class="brand" href="../archive/">RM · Report Mode</a><div class="nav-links"><a href="#summary">요약</a><a href="#comparison">비교</a><a href="#decision">판단</a><a href="#sources">출처</a></div></div></nav>
@@ -50,7 +70,12 @@
       <p class="verdict-line"><span class="verdict-num">02</span><span class="verdict-text"><strong>회피</strong> <mark class="highlight-sweep">10/1–7 국경절</mark> · 9/25–27 중추절도 피하기</span></p>
       <p class="verdict-line"><span class="verdict-num">03</span><span class="verdict-text"><strong>동선</strong> Zootopia → <mark class="highlight-sweep">Pirates → TRON</mark> 야간 완성</span></p>
     </div></section>
-    <p class="lede">사람이 적은 날과 좋은 여행일은 같지 않습니다. 9월은 대기 신호가 가장 낮지만 태풍·고온이 퍼레이드와 실외 체험을 흔들 수 있고, 10월은 국경절 이후가 날씨와 동선의 균형점입니다. 공식 운영 정보와 민간 대기 데이터를 분리해 판단했습니다.</p><div class="meta"><span class="chip"><strong>2026.08.03</strong> · 표준 모드 · 3개 병렬 조사 배치 · 공식/민간 분리</span><span class="chip">2026년 8월 3일 KST</span><span class="chip">공식 어트랙션 33카드 · 실질 체험 31개 · 엔터테인먼트 33카드 · 출처 14개 · Queue-Times 장기 통계 및 2024–2026 자체 재집계 보조</span></div></div></header>
+    <p class="lede">사람이 적은 날과 좋은 여행일은 같지 않습니다. 9월은 대기 신호가 가장 낮지만 태풍·고온이 퍼레이드와 실외 체험을 흔들 수 있고, 10월은 국경절 이후가 날씨와 동선의 균형점입니다. 공식 운영 정보와 민간 대기 데이터를 분리해 판단했습니다.</p><div class="meta"><span class="chip"><strong>2026.08.03</strong> · 표준 모드 · 3개 병렬 조사 배치 · 공식/민간 분리</span><span class="chip">2026년 8월 3일 KST</span><span class="chip">공식 어트랙션 33카드 · 실질 체험 31개 · 엔터테인먼트 33카드 · 출처 14개 · Queue-Times 장기 통계 및 2024–2026 자체 재집계 보조</span></div></div><span class="report-layout-toggle" style="margin-left:12px;display:inline-flex;gap:3px;background:#f0f2f5;border-radius:8px;padding:3px;">
+<button class="report-layout-btn is-active" data-layout="wide" style="padding:5px 10px;border:none;background:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:#6b7684;">와이드</button>
+<button class="report-layout-btn" data-layout="a4" style="padding:5px 10px;border:none;background:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:#6b7684;">A4</button>
+</span>
+
+</header>
   <section id="simple-report" class="simple-report" data-simple-pages="2" aria-labelledby="simple-report-title"><div class="wrap"><div class="simple-overview"><div class="eyebrow">TWO VISUAL SUMMARY SHEETS</div><h2 id="simple-report-title">도표·인포그래픽 요약 장표 2장</h2><div class="simple-summary-content">
 <article class="simple-slide simple-slide-1">
   <div class="simple-slide-head"><span>01 · 9–10월 방문 판단</span><strong>REPORT MODE · 2026-08-03</strong></div>
@@ -78,6 +103,16 @@
 .strategy-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr auto 1fr;gap:8px;align-items:stretch}.strategy-flow article{padding:15px;border:1px solid #d8e1ee;border-radius:14px;background:#f8fbff}.strategy-flow>span{align-self:center;color:#1967d2;font-weight:900}.weather-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.weather-grid article{padding:22px;border:1px solid #d8e1ee;border-radius:18px;background:linear-gradient(145deg,#f8fbff,#fff)}.weather-icon{font-size:2rem}.simple-hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:12px}.simple-hero-grid figure,.simple-second-grid figure{margin:0}.simple-hero-grid img{width:100%;height:245px;object-fit:cover;border-radius:14px}.simple-hero-grid figcaption,.simple-second-grid figcaption{font-size:8.5px;line-height:1.35;margin-top:4px}.simple-choice{display:grid;gap:8px}.simple-choice>div{padding:12px;border-radius:12px;background:#eef5ff;border:1px solid #cbdcf6}.simple-choice b,.simple-choice span,.simple-choice small{display:block}.simple-choice span{font-size:16px;font-weight:900;margin:3px 0}.simple-choice small{font-size:9px}.simple-choice .danger{background:#fff1ef;border-color:#f0b8b1}.simple-two-month{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.simple-two-month>div{padding:10px 12px;border:1px solid #dce4ee;border-radius:12px;background:#fff}.simple-two-month h3{margin:0 0 4px}.simple-two-month p{margin:2px 0;font-size:10px}.slide-footnote{font-size:8px;line-height:1.4;margin:8px 0 0;color:#586475}.simple-second-grid{display:grid;grid-template-columns:1.4fr .6fr;gap:12px}.simple-second-grid img{width:100%;height:300px;object-fit:cover;border-radius:14px}.simple-priority{padding:14px;border:1px solid #d8e1ee;border-radius:14px;background:#f8fbff}.simple-priority h2{font-size:21px;margin:0 0 8px}.simple-priority ol{margin:0;padding-left:18px}.simple-priority li{font-size:11px;margin:5px 0}.simple-priority p{font-size:9px;line-height:1.5}.simple-month-strip{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;margin-top:9px}.simple-month-strip span{font-size:7.5px;font-weight:800;padding:6px 2px;text-align:center;border-radius:6px;background:#e8f5ec}.simple-month-strip .mid{background:#fff3c9}.simple-month-strip .high{background:#ffe1d8}.simple-month-strip .peak{background:#ffbbb0}.simple-actions{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:8px;padding:8px;border:1px dashed #9fb4ce;border-radius:10px}.simple-actions b,.simple-actions span{font-size:9px}.simple-actions b{color:#0b4b9b}
 @media(max-width:900px){.strategy-flow{grid-template-columns:1fr}.strategy-flow>span{display:none}.weather-grid{grid-template-columns:1fr}.attraction-table{font-size:.72rem}}
 @media(max-width:520px){.hero{overflow:hidden}.hero h1{font-size:clamp(32px,8.6vw,38px)!important;line-height:1.08!important;word-break:normal!important;overflow-wrap:anywhere!important}.hero h1 span,.verdict-text,.verdict-text mark{min-width:0!important;max-width:100%!important;white-space:normal!important;overflow-wrap:anywhere!important}.top-conclusion-card{overflow:hidden}.wrap{max-width:100%!important}}
+
+/* ── A4 Portrait Display (toggle) ── */
+@media screen {
+  body.report-a4-mode { max-width: 210mm; margin: 24px auto !important; background: #fff !important; box-shadow: 0 2px 24px rgba(0,0,0,.12); border-radius: 4px; padding: 0 !important; }
+  body.report-a4-mode .wrap, body.report-a4-mode .report-section, body.report-a4-mode main { max-width: 100% !important; }
+  @media (max-width: 218mm) {
+    body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
+  }
+}
+
 </style>
 <figure class="product-visual"><img src="assets/260803-shanghai-disneyland-attractions-crowd-guide/enchanted-storybook-castle-cc0.jpg" alt="푸른 하늘 아래 상하이 디즈니랜드 Enchanted Storybook Castle과 다리"><figcaption><b>실제 파크 사진</b> · Riku Lu · Wikimedia Commons · CC0 · 2018 업로드. 현재 운영 상태·10주년 장식 사진은 아닙니다.</figcaption></figure>
 <figure class="visual-hero"><div class="doodle-frame"><img src="assets/260803-shanghai-disneyland-attractions-crowd-guide/shanghai-disney-crowd-planning-doodle.png" alt="9월과 10월 달력, 주요 어트랙션, 퍼레이드, 날씨를 그린 화이트보드 두들"><div class="infographic-logo"><span>RM</span><b>상하이 디즈니랜드</b><small>9–10월 방문 판단 · 실제 실행 → 검증</small></div></div><figcaption id="visual-title"><b>AI 생성 인포그래픽 · 공식 제품 이미지 아님</b><span>두들은 설명용 시각자료입니다. 정확한 날짜·수치·운영 상태는 본문의 근거표와 공식 앱을 우선합니다.</span></figcaption></figure></div></section>
@@ -229,5 +264,39 @@
   (()=>{const button=document.getElementById('report-share-button');if(!button)return;const original=button.textContent;const shareUrl=()=>{const url=new URL(location.href);if(document.body.dataset.reportView==='simple')url.searchParams.set('view','simple');else url.searchParams.delete('view');url.hash='';return url.toString()};const copied=()=>{button.textContent='링크 복사됨';button.setAttribute('aria-label','보고서 링크가 복사되었습니다');setTimeout(()=>{button.textContent=original;button.setAttribute('aria-label','현재 보고서 링크 공유')},1800)};button.addEventListener('click',async()=>{const data={title:document.title,text:document.querySelector('meta[name="description"]')?.content||document.title,url:shareUrl()};try{if(navigator.share){await navigator.share(data)}else{await navigator.clipboard.writeText(data.url);copied()}}catch(error){if(error?.name==='AbortError')return;try{await navigator.clipboard.writeText(data.url);copied()}catch{button.textContent='주소창에서 복사';setTimeout(()=>button.textContent=original,2200)}}})})();
   </script>
 <script src="../assets/js/view-counter.js"></script>
+
+<script id="report-layout-script">
+(function(){
+  var body = document.body;
+  var buttons = document.querySelectorAll('.report-layout-btn');
+  var LAYOUT_KEY = 'report-layout-pref';
+  
+  function setLayout(mode) {
+    if (mode === 'a4') {
+      body.classList.add('report-a4-mode');
+      document.documentElement.style.background = '#e8ecf1';
+    } else {
+      body.classList.remove('report-a4-mode');
+      document.documentElement.style.background = '';
+    }
+    buttons.forEach(function(btn) {
+      var active = btn.dataset.layout === mode;
+      btn.classList.toggle('is-active', active);
+      if (active) { btn.style.background = '#fff'; btn.style.color = '#191f28'; btn.style.boxShadow = '0 1px 2px rgba(0,0,0,.06)'; }
+      else { btn.style.background = 'none'; btn.style.color = '#6b7684'; btn.style.boxShadow = 'none'; }
+    });
+    localStorage.setItem(LAYOUT_KEY, mode);
+  }
+  
+  buttons.forEach(function(btn) {
+    btn.addEventListener('click', function() { setLayout(btn.dataset.layout); });
+  });
+  
+  // Load preference - default wide
+  var saved = localStorage.getItem(LAYOUT_KEY) || 'wide';
+  setLayout(saved);
+})();
+</script>
+
 </body>
 </html>

@@ -15,7 +15,17 @@
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.floating-action,.pdf-save-button{transition:none}.floating-action:before,.pdf-save-button:before{animation:none;display:none}}
     @page{size:A4 portrait;margin:18mm 14mm 20mm;@bottom-left{content:"반도체 유리기판 · 기본부터 SCM·TAM·SAM까지 · AI Report";font:600 6.5pt/1.2 var(--sans);color:#66717e}@bottom-center{content:"2026.08.04 · github.com/aihubos";font:600 6.5pt/1.2 var(--sans);color:#66717e}@bottom-right{content:counter(page) " / " counter(pages);font:800 7pt/1.2 var(--sans);color:#185abc}}
     @media print{.nav,.floating-menu{display:none!important}html{print-color-adjust:exact;-webkit-print-color-adjust:exact}body{background:#fff;font-size:10.5pt;line-height:1.55;padding-bottom:0}.top-conclusion{margin:12px 0 0}.top-conclusion-card{box-shadow:none;break-inside:avoid}.verdict-line{font-size:15pt}.highlight-sweep{-webkit-print-color-adjust:exact;print-color-adjust:exact}.hero{padding:18px 0 24px}.hero h1{font-size:34pt}.hero .lede{font-size:15pt}.wrap{width:100%;max-width:none}.paper,.callout,.visual-hero,.reaction-card{box-shadow:none;break-inside:avoid}.section-head h2,h2,h3{break-after:avoid-page}.visual-hero img{max-height:230mm;object-fit:contain}p,li{orphans:3;widows:3}main section{padding:20px 0}.table-wrap{overflow:visible}table{font-size:8.5pt}thead{display:table-header-group}tr,img,figure{break-inside:avoid}.sources{overflow:visible;border:0}.sources thead,.sources tbody{min-width:0;font-size:6.8pt}.sources th,.sources td{padding:5px 6px;line-height:1.35;overflow-wrap:anywhere}.source-section{break-before:page}.source-section>.source-content{display:block!important}.sources-summary{display:none}.reaction-card{box-shadow:none;break-inside:avoid}.source-section a{color:#000;text-decoration:none}}
-  </style>
+  
+/* ── A4 Portrait Display (toggle) ── */
+@media screen {
+  body.report-a4-mode { max-width: 210mm; margin: 24px auto !important; background: #fff !important; box-shadow: 0 2px 24px rgba(0,0,0,.12); border-radius: 4px; padding: 0 !important; }
+  body.report-a4-mode .wrap, body.report-a4-mode .report-section, body.report-a4-mode main { max-width: 100% !important; }
+  @media (max-width: 218mm) {
+    body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
+  }
+}
+
+</style>
   <style id="report-view-v4-style">
     :root{--max:1120px;--apple-blue:#007aff;--apple-gray:rgba(118,118,128,.16)}
     .report-view-switcher{position:sticky;top:58px;z-index:35;border-bottom:1px solid rgba(0,122,255,.13);background:rgba(247,248,250,.88);-webkit-backdrop-filter:saturate(180%) blur(22px);backdrop-filter:saturate(180%) blur(22px)}
@@ -37,7 +47,17 @@
     @media(max-width:700px){.report-view-switcher-inner{min-height:78px;grid-template-columns:minmax(0,1fr) 132px;gap:10px}.report-view-label{display:none}.report-view-buttons{min-height:62px;padding:6px}.report-view-buttons::before{left:6px;top:6px;bottom:6px;width:calc((100% - 12px)/2)}.report-view-button{min-height:50px;padding:8px 6px;font-size:17px}.report-utility-controls{width:132px}.report-utility-controls .pdf-save-button,.report-utility-controls .share-report-button{min-height:44px;padding:7px 5px;font-size:11px}.simple-report{padding:10px 0 46px}.simple-overview{padding:20px 12px}.simple-overview h2{font-size:28px}.simple-summary-content{gap:16px}.simple-slide{min-height:0;padding:24px 18px 72px;border-radius:18px}.simple-slide-head{gap:10px}.simple-slide-title{font-size:29px}.simple-slide-number{min-width:46px;height:34px}.simple-visual-grid,.simple-decision-grid{grid-template-columns:1fr}.simple-product-photo{min-height:210px}.simple-metric-strip{grid-template-columns:1fr}.simple-bar-row{grid-template-columns:86px 1fr 62px;gap:8px}.simple-flow{display:grid}.simple-flow-step+.simple-flow-step::before{content:"↓";left:50%;top:-12px;transform:translateX(-50%)}.simple-slide-footer{left:18px;right:18px;bottom:18px}.doodle-frame>.doodle-brand-logo{right:10px;top:10px;width:86px;padding:6px 8px}}
     @media(prefers-reduced-motion:reduce){.report-view-buttons::before,.report-view-button,.simple-detail-button{transition:none!important}}
     @media print{.report-view-switcher,.report-utility-controls{display:none!important}body[data-report-view="simple"] .hero,body[data-report-view="simple"] .detail-report,body[data-report-view="simple"] #sources{display:none!important}body[data-report-view="simple"] .simple-report{display:block!important;padding:0;break-before:auto;page-break-before:auto}body[data-report-view="simple"] .simple-overview{padding:0;border:0;box-shadow:none}body[data-report-view="simple"] .simple-overview>.eyebrow,body[data-report-view="simple"] .simple-overview>h2,body[data-report-view="simple"] .simple-detail-button{display:none!important}body[data-report-view="simple"] .simple-summary-content{display:block}body[data-report-view="simple"] .simple-slide{height:252mm;min-height:0;margin:0;padding:9mm 9mm 14mm;border:0;border-radius:0;box-shadow:none;break-inside:avoid;break-after:page;page-break-after:always}body[data-report-view="simple"] .simple-slide:last-child{break-after:auto;page-break-after:auto}body[data-report-view="simple"] .simple-slide::before{height:2mm}body[data-report-view="simple"] .simple-slide-title{font-size:23pt}body[data-report-view="simple"] .simple-slide-head{margin-bottom:5mm}body[data-report-view="simple"] .simple-product-photo{min-height:0;height:88mm;max-height:88mm}body[data-report-view="simple"] .simple-infographic-image{height:72mm;max-height:72mm;object-fit:contain}body[data-report-view="simple"] .simple-verdict{padding:4mm 5mm;font-size:17pt}body[data-report-view="simple"] .simple-metric-strip{gap:3mm;margin-top:4mm}body[data-report-view="simple"] .simple-metric-card{padding:4mm}body[data-report-view="simple"] .simple-metric-card b{font-size:20pt}body[data-report-view="simple"] .simple-metric-card span,body[data-report-view="simple"] .simple-bar-row,body[data-report-view="simple"] .simple-flow-step,body[data-report-view="simple"] .simple-slide-note{font-size:8.5pt}body[data-report-view="simple"] .simple-decision-card{padding:4mm}body[data-report-view="simple"] .simple-decision-card h3{font-size:13pt}body[data-report-view="simple"] .simple-slide-footer{left:9mm;right:9mm;bottom:5mm}body[data-report-view="detail"] .simple-report{display:none!important}body[data-report-view="detail"] .detail-report{display:block!important}}
-  </style>
+  
+/* ── A4 Portrait Display (toggle) ── */
+@media screen {
+  body.report-a4-mode { max-width: 210mm; margin: 24px auto !important; background: #fff !important; box-shadow: 0 2px 24px rgba(0,0,0,.12); border-radius: 4px; padding: 0 !important; }
+  body.report-a4-mode .wrap, body.report-a4-mode .report-section, body.report-a4-mode main { max-width: 100% !important; }
+  @media (max-width: 218mm) {
+    body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
+  }
+}
+
+</style>
 </head>
 <body data-report-view="detail">
   <nav class="nav" aria-label="보고서 탐색"><div class="wrap nav-inner"><a class="brand" href="../archive/">RM · Report Mode</a><div class="nav-links"><a href="#summary">요약</a><a href="#comparison">비교</a><a href="#decision">판단</a><a href="#sources">출처</a></div></div></nav>
@@ -50,7 +70,12 @@
       <p class="verdict-line"><span class="verdict-num">02</span><span class="verdict-text"><strong>사업</strong> 공개 근거상 Absolics가 앞서지만, <mark class="highlight-sweep">대규모 양산매출은 아직 확인되지 않았습니다</mark>.</span></p>
       <p class="verdict-line"><span class="verdict-num">03</span><span class="verdict-text"><strong>시장</strong> 2030 자체 시나리오는 <mark class="highlight-sweep">TAM $6.3–14.0B · SAM $0.95–4.20B</mark>입니다.</span></p>
     </div></section>
-    <p class="lede">패키지와 기판의 역할부터 유리·유기·실리콘 차이, TGV·도금·RDL 제조, 한국·미국·일본·유럽 공급망, 기업별 상용화 단계, 2035년 전망과 투자 판단 지표까지 하나의 흐름으로 정리했습니다.</p><div class="meta"><span class="chip"><strong>260804</strong> · 표준 심층</span><span class="chip">2026.08.04 KST</span><span class="chip">공식·정부·학술·산업 원문 14건 · 기준일 2026.08.04</span></div></div></header>
+    <p class="lede">패키지와 기판의 역할부터 유리·유기·실리콘 차이, TGV·도금·RDL 제조, 한국·미국·일본·유럽 공급망, 기업별 상용화 단계, 2035년 전망과 투자 판단 지표까지 하나의 흐름으로 정리했습니다.</p><div class="meta"><span class="chip"><strong>260804</strong> · 표준 심층</span><span class="chip">2026.08.04 KST</span><span class="chip">공식·정부·학술·산업 원문 14건 · 기준일 2026.08.04</span></div></div><span class="report-layout-toggle" style="margin-left:12px;display:inline-flex;gap:3px;background:#f0f2f5;border-radius:8px;padding:3px;">
+<button class="report-layout-btn is-active" data-layout="wide" style="padding:5px 10px;border:none;background:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:#6b7684;">와이드</button>
+<button class="report-layout-btn" data-layout="a4" style="padding:5px 10px;border:none;background:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:#6b7684;">A4</button>
+</span>
+
+</header>
   <section id="simple-report" class="simple-report" data-simple-pages="2" aria-labelledby="simple-report-title"><div class="wrap"><div class="simple-overview"><div class="eyebrow">TWO VISUAL SUMMARY SHEETS</div><h2 id="simple-report-title">도표·인포그래픽 요약 장표 2장</h2><div class="simple-summary-content">
 <article class="simple-slide simple-slide-1"><div class="simple-slide-head"><div><span class="simple-slide-kicker">DECISION · 1 / 2</span><h3 class="simple-slide-title">유리는 ‘평평한 고속도로’, 양산은 아직 검증 중</h3></div><span class="simple-slide-number">01</span></div>
 <div class="simple-visual-grid"><img class="simple-infographic-image" src="assets/260804-semiconductor-glass-substrate-scm-tam-sam/glass-substrate-scm-doodle.png" alt="유리 코어 기판 단면과 TGV, 칩렛, 제조 공급망을 표현한 화이트보드 두들"><div><div class="simple-verdict"><b>핵심</b><br><strong>AI·HPC의 큰 패키지부터 선택적 채택</strong><br><span>평탄도·전기특성은 강점, 취성·도금·검사·고객 인증은 병목</span></div><div class="simple-decision-grid"><div class="simple-decision-card"><h4>공개 선두</h4><p>Absolics<br>미국 시설＋정부지원</p></div><div class="simple-decision-card"><h4>엄격 판정</h4><p>실제 대규모<br>양산매출 미확인</p></div></div></div></div>
@@ -76,6 +101,16 @@
     <section id="decision"><div class="wrap"><div class="section-head"><h2>기술·사업·시장 판단 프레임</h2><p>무엇이 가능하고, 무엇이 아직 확인되지 않았는지 구분합니다.</p></div><div class="callout"><div class="route-grid"><article class="route-card best"><span>기술</span><h3>대형 패키지부터</h3><p>AI 가속기·CPU/GPU·HBM·고속 스위치처럼 면적과 배선이 빠르게 커지는 신규 설계가 초기 채택 풀입니다.</p></article><article class="route-card"><span>사업</span><h3>Absolics가 공개 선두</h3><p>정부가 상업시설과 저용량 제조/R&D를 각각 지원합니다. 다만 예상 납품일·CAPEX는 매출 증거가 아닙니다.<sup><a class="cite" href="#src-2" aria-label="출처 2">[2]</a></sup><sup><a class="cite" href="#src-3" aria-label="출처 3">[3]</a></sup></p></article><article class="route-card"><span>시장</span><h3>2030 SAM $0.95–4.20B</h3><p>이론 TAM $6.3–14.0B에 인증·공급·CAPA 15–30%를 적용한 자체 시나리오입니다.</p></article><article class="route-card"><span>검수</span><h3>수율·고객·출하 면적</h3><p>MOU, 전시, 시제품보다 qualification 완료, lot 수율, 양품 m², 반복 매출을 확인해야 합니다.</p></article></div></div></div></section>
     <style>
 .route-grid,.grid2,.risk-grid,.scm-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.route-card,.grid2 article,.risk-grid article,.scm-grid article{padding:20px;border:1px solid #dce4ef;border-radius:17px;background:#fff}.route-card.best{border:2px solid #3182f6;background:#f2f8ff}.route-card>span,.pill{font-size:12px;font-weight:900;color:#3182f6}.process-flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.process-flow div{padding:16px;border-radius:14px;background:#f4f8fc;border:1px solid #dce4ef}.market-number{font-size:28px;font-weight:900;color:#185abc}.maturity{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px}.maturity div{padding:12px 7px;border-radius:12px;background:#eef3f8;text-align:center;font-size:12px;font-weight:800}.maturity .active{background:#dff3ff;color:#185abc;border:1px solid #7cc5ff}.warnbox{padding:22px;border:2px solid #ffb74d;border-radius:18px;background:#fff8ed}@media(max-width:760px){.route-grid,.grid2,.risk-grid,.scm-grid,.process-flow{grid-template-columns:1fr}.maturity{grid-template-columns:repeat(2,minmax(0,1fr))}.floating-menu{left:10px!important;right:10px!important;width:calc(100% - 20px)!important;max-width:calc(100% - 20px)!important}.report-view-switcher-inner{grid-template-columns:minmax(0,1fr)!important;gap:8px!important;padding:8px 0 10px}.report-view-buttons{width:100%!important;min-width:0!important}.report-utility-controls{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;width:100%!important;max-width:none!important;gap:8px!important}.report-utility-controls .pdf-save-button,.report-utility-controls .share-report-button{width:100%!important;min-width:0!important;max-width:none!important}.hero{padding-top:34px!important}.hero h1{font-size:clamp(34px,9.3vw,40px)!important;line-height:1.08!important}.top-conclusion-card,.top-conclusion-card p,.verdict-text,.hero .lede{min-width:0!important;max-width:100%!important;white-space:normal!important;word-break:keep-all!important;overflow-wrap:anywhere!important}.top-conclusion-card{overflow:visible!important}.verdict-line{display:grid!important;grid-template-columns:28px minmax(0,1fr)!important;width:100%!important;max-width:100%!important;min-width:0!important;gap:8px!important}.verdict-text{display:block!important;width:100%!important;min-width:0!important;max-width:100%!important;white-space:normal!important;word-break:break-all!important;overflow-wrap:anywhere!important}.top-conclusion-card p{font-size:16px!important;line-height:1.5!important}.highlight-sweep{white-space:normal!important;word-break:break-all!important;overflow-wrap:anywhere!important}.wrap{width:min(calc(100% - 48px),var(--max))!important}}
+
+/* ── A4 Portrait Display (toggle) ── */
+@media screen {
+  body.report-a4-mode { max-width: 210mm; margin: 24px auto !important; background: #fff !important; box-shadow: 0 2px 24px rgba(0,0,0,.12); border-radius: 4px; padding: 0 !important; }
+  body.report-a4-mode .wrap, body.report-a4-mode .report-section, body.report-a4-mode main { max-width: 100% !important; }
+  @media (max-width: 218mm) {
+    body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
+  }
+}
+
 </style>
 <section id="basics" class="report-section"><div class="wrap"><div class="section-head"><h2>패키지와 기판부터 이해하기</h2><p>미세공정 이후 성능은 칩끼리 얼마나 짧고 안정적으로 연결하느냐가 결정합니다.</p></div><div class="grid2"><article><span class="pill">패키지</span><h3>칩을 보호하고 연결하는 집</h3><p>여러 logic die, HBM, I/O chiplet을 한 시스템으로 묶고 전원·신호·열·기계 하중을 관리합니다.</p></article><article><span class="pill">기판</span><h3>칩과 보드 사이의 다층 도로</h3><p>미세한 칩 배선을 더 굵은 보드 배선으로 fan-out하고, 패키지 전체의 평탄도와 강도를 지지합니다.</p></article></div><h3>왜 지금 유리인가</h3><p>AI 패키지는 더 커지고 칩렛·HBM 연결은 촘촘해집니다. 유기 코어는 성숙하고 싸지만 큰 면적에서 열과 수분, 리플로 공정에 따른 변형·정렬 오차가 커질 수 있습니다. 유리는 조성으로 CTE를 조절할 수 있고 평탄하며 고주파 손실을 낮출 잠재력이 있어 대안으로 부상했습니다.<sup><a class="cite" href="#src-1" aria-label="출처 1">[1]</a></sup><sup><a class="cite" href="#src-4" aria-label="출처 4">[4]</a></sup><sup><a class="cite" href="#src-7" aria-label="출처 7">[7]</a></sup></p></div></section>
 <section id="process" class="report-section"><div class="wrap"><div class="section-head"><h2>제조 공정: 유리판을 전기기판으로 바꾸는 8단계</h2><p>구멍을 뚫는 것만으로 끝나지 않습니다.</p></div><div class="process-flow"><div><b>① 유리 선정</b><br>조성·두께·CTE·Dk/Df</div><div><b>② 레이저 개질</b><br>via 위치를 내부 개질</div><div><b>③ 선택 식각</b><br>TGV 형성·세정</div><div><b>④ 라이너/시드</b><br>접착·응력완충·Ti/Cu</div><div><b>⑤ 구리 도금</b><br>conformal/full fill</div><div><b>⑥ RDL</b><br>절연막·노광·미세배선</div><div><b>⑦ 본딩/조립</b><br>die·bridge·underfill</div><div><b>⑧ 검사</b><br>AOI·X-ray·SAM·전기·열사이클</div></div><div class="warnbox"><b>가장 어려운 연결고리</b><p>TGV 형상 → 금속-유리 접착 → 구리의 void/seam 없는 충진 → RDL 정렬 → 절단·조립의 crack 방지 → 열사이클 신뢰성이 하나의 공정창으로 이어져야 합니다.<sup><a class="cite" href="#src-6" aria-label="출처 6">[6]</a></sup><sup><a class="cite" href="#src-7" aria-label="출처 7">[7]</a></sup><sup><a class="cite" href="#src-8" aria-label="출처 8">[8]</a></sup><sup><a class="cite" href="#src-9" aria-label="출처 9">[9]</a></sup></p></div></div></section>
@@ -194,5 +229,39 @@
   (()=>{const button=document.getElementById('report-share-button');if(!button)return;const original=button.textContent;const shareUrl=()=>{const url=new URL(location.href);if(document.body.dataset.reportView==='simple')url.searchParams.set('view','simple');else url.searchParams.delete('view');url.hash='';return url.toString()};const copied=()=>{button.textContent='링크 복사됨';button.setAttribute('aria-label','보고서 링크가 복사되었습니다');setTimeout(()=>{button.textContent=original;button.setAttribute('aria-label','현재 보고서 링크 공유')},1800)};button.addEventListener('click',async()=>{const data={title:document.title,text:document.querySelector('meta[name="description"]')?.content||document.title,url:shareUrl()};try{if(navigator.share){await navigator.share(data)}else{await navigator.clipboard.writeText(data.url);copied()}}catch(error){if(error?.name==='AbortError')return;try{await navigator.clipboard.writeText(data.url);copied()}catch{button.textContent='주소창에서 복사';setTimeout(()=>button.textContent=original,2200)}}})})();
   </script>
 <script src="../assets/js/view-counter.js"></script>
+
+<script id="report-layout-script">
+(function(){
+  var body = document.body;
+  var buttons = document.querySelectorAll('.report-layout-btn');
+  var LAYOUT_KEY = 'report-layout-pref';
+  
+  function setLayout(mode) {
+    if (mode === 'a4') {
+      body.classList.add('report-a4-mode');
+      document.documentElement.style.background = '#e8ecf1';
+    } else {
+      body.classList.remove('report-a4-mode');
+      document.documentElement.style.background = '';
+    }
+    buttons.forEach(function(btn) {
+      var active = btn.dataset.layout === mode;
+      btn.classList.toggle('is-active', active);
+      if (active) { btn.style.background = '#fff'; btn.style.color = '#191f28'; btn.style.boxShadow = '0 1px 2px rgba(0,0,0,.06)'; }
+      else { btn.style.background = 'none'; btn.style.color = '#6b7684'; btn.style.boxShadow = 'none'; }
+    });
+    localStorage.setItem(LAYOUT_KEY, mode);
+  }
+  
+  buttons.forEach(function(btn) {
+    btn.addEventListener('click', function() { setLayout(btn.dataset.layout); });
+  });
+  
+  // Load preference - default wide
+  var saved = localStorage.getItem(LAYOUT_KEY) || 'wide';
+  setLayout(saved);
+})();
+</script>
+
 </body>
 </html>

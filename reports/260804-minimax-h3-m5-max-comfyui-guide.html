@@ -15,7 +15,17 @@
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.floating-action,.pdf-save-button{transition:none}.floating-action:before,.pdf-save-button:before{animation:none;display:none}}
     @page{size:A4 portrait;margin:18mm 14mm 20mm;@bottom-left{content:"MiniMax H3 × M5 Max 128GB × ComfyUI · AI Report";font:600 6.5pt/1.2 var(--sans);color:#66717e}@bottom-center{content:"2026.08.04 · github.com/aihubos";font:600 6.5pt/1.2 var(--sans);color:#66717e}@bottom-right{content:counter(page) " / " counter(pages);font:800 7pt/1.2 var(--sans);color:#185abc}}
     @media print{.nav,.floating-menu{display:none!important}html{print-color-adjust:exact;-webkit-print-color-adjust:exact}body{background:#fff;font-size:10.5pt;line-height:1.55;padding-bottom:0}.top-conclusion{margin:12px 0 0}.top-conclusion-card{box-shadow:none;break-inside:avoid}.verdict-line{font-size:15pt}.highlight-sweep{-webkit-print-color-adjust:exact;print-color-adjust:exact}.hero{padding:18px 0 24px}.hero h1{font-size:34pt}.hero .lede{font-size:15pt}.wrap{width:100%;max-width:none}.paper,.callout,.visual-hero,.reaction-card{box-shadow:none;break-inside:avoid}.section-head h2,h2,h3{break-after:avoid-page}.visual-hero img{max-height:230mm;object-fit:contain}p,li{orphans:3;widows:3}main section{padding:20px 0}.table-wrap{overflow:visible}table{font-size:8.5pt}thead{display:table-header-group}tr,img,figure{break-inside:avoid}.sources{overflow:visible;border:0}.sources thead,.sources tbody{min-width:0;font-size:6.8pt}.sources th,.sources td{padding:5px 6px;line-height:1.35;overflow-wrap:anywhere}.source-section{break-before:page}.source-section>.source-content{display:block!important}.sources-summary{display:none}.reaction-card{box-shadow:none;break-inside:avoid}.source-section a{color:#000;text-decoration:none}}
-  </style>
+  
+/* ── A4 Portrait Display (toggle) ── */
+@media screen {
+  body.report-a4-mode { max-width: 210mm; margin: 24px auto !important; background: #fff !important; box-shadow: 0 2px 24px rgba(0,0,0,.12); border-radius: 4px; padding: 0 !important; }
+  body.report-a4-mode .wrap, body.report-a4-mode .report-section, body.report-a4-mode main { max-width: 100% !important; }
+  @media (max-width: 218mm) {
+    body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
+  }
+}
+
+</style>
   <style id="report-view-v4-style">
     :root{--max:1120px;--apple-blue:#007aff;--apple-gray:rgba(118,118,128,.16)}
     .report-view-switcher{position:sticky;top:58px;z-index:35;border-bottom:1px solid rgba(0,122,255,.13);background:rgba(247,248,250,.88);-webkit-backdrop-filter:saturate(180%) blur(22px);backdrop-filter:saturate(180%) blur(22px)}
@@ -37,7 +47,17 @@
     @media(max-width:700px){.report-view-switcher-inner{min-height:78px;grid-template-columns:minmax(0,1fr) 132px;gap:10px}.report-view-label{display:none}.report-view-buttons{min-height:62px;padding:6px}.report-view-buttons::before{left:6px;top:6px;bottom:6px;width:calc((100% - 12px)/2)}.report-view-button{min-height:50px;padding:8px 6px;font-size:17px}.report-utility-controls{width:132px}.report-utility-controls .pdf-save-button,.report-utility-controls .share-report-button{min-height:44px;padding:7px 5px;font-size:11px}.simple-report{padding:10px 0 46px}.simple-overview{padding:20px 12px}.simple-overview h2{font-size:28px}.simple-summary-content{gap:16px}.simple-slide{min-height:0;padding:24px 18px 72px;border-radius:18px}.simple-slide-head{gap:10px}.simple-slide-title{font-size:29px}.simple-slide-number{min-width:46px;height:34px}.simple-visual-grid,.simple-decision-grid{grid-template-columns:1fr}.simple-product-photo{min-height:210px}.simple-metric-strip{grid-template-columns:1fr}.simple-bar-row{grid-template-columns:86px 1fr 62px;gap:8px}.simple-flow{display:grid}.simple-flow-step+.simple-flow-step::before{content:"↓";left:50%;top:-12px;transform:translateX(-50%)}.simple-slide-footer{left:18px;right:18px;bottom:18px}.doodle-frame>.doodle-brand-logo{right:10px;top:10px;width:86px;padding:6px 8px}}
     @media(prefers-reduced-motion:reduce){.report-view-buttons::before,.report-view-button,.simple-detail-button{transition:none!important}}
     @media print{.report-view-switcher,.report-utility-controls{display:none!important}body[data-report-view="simple"] .hero,body[data-report-view="simple"] .detail-report,body[data-report-view="simple"] #sources{display:none!important}body[data-report-view="simple"] .simple-report{display:block!important;padding:0;break-before:auto;page-break-before:auto}body[data-report-view="simple"] .simple-overview{padding:0;border:0;box-shadow:none}body[data-report-view="simple"] .simple-overview>.eyebrow,body[data-report-view="simple"] .simple-overview>h2,body[data-report-view="simple"] .simple-detail-button{display:none!important}body[data-report-view="simple"] .simple-summary-content{display:block}body[data-report-view="simple"] .simple-slide{height:252mm;min-height:0;margin:0;padding:9mm 9mm 14mm;border:0;border-radius:0;box-shadow:none;break-inside:avoid;break-after:page;page-break-after:always}body[data-report-view="simple"] .simple-slide:last-child{break-after:auto;page-break-after:auto}body[data-report-view="simple"] .simple-slide::before{height:2mm}body[data-report-view="simple"] .simple-slide-title{font-size:23pt}body[data-report-view="simple"] .simple-slide-head{margin-bottom:5mm}body[data-report-view="simple"] .simple-product-photo{min-height:0;height:88mm;max-height:88mm}body[data-report-view="simple"] .simple-infographic-image{height:72mm;max-height:72mm;object-fit:contain}body[data-report-view="simple"] .simple-verdict{padding:4mm 5mm;font-size:17pt}body[data-report-view="simple"] .simple-metric-strip{gap:3mm;margin-top:4mm}body[data-report-view="simple"] .simple-metric-card{padding:4mm}body[data-report-view="simple"] .simple-metric-card b{font-size:20pt}body[data-report-view="simple"] .simple-metric-card span,body[data-report-view="simple"] .simple-bar-row,body[data-report-view="simple"] .simple-flow-step,body[data-report-view="simple"] .simple-slide-note{font-size:8.5pt}body[data-report-view="simple"] .simple-decision-card{padding:4mm}body[data-report-view="simple"] .simple-decision-card h3{font-size:13pt}body[data-report-view="simple"] .simple-slide-footer{left:9mm;right:9mm;bottom:5mm}body[data-report-view="detail"] .simple-report{display:none!important}body[data-report-view="detail"] .detail-report{display:block!important}}
-  </style>
+  
+/* ── A4 Portrait Display (toggle) ── */
+@media screen {
+  body.report-a4-mode { max-width: 210mm; margin: 24px auto !important; background: #fff !important; box-shadow: 0 2px 24px rgba(0,0,0,.12); border-radius: 4px; padding: 0 !important; }
+  body.report-a4-mode .wrap, body.report-a4-mode .report-section, body.report-a4-mode main { max-width: 100% !important; }
+  @media (max-width: 218mm) {
+    body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
+  }
+}
+
+</style>
 </head>
 <body data-report-view="detail">
   <nav class="nav" aria-label="보고서 탐색"><div class="wrap nav-inner"><a class="brand" href="../archive/">RM · Report Mode</a><div class="nav-links"><a href="#summary">요약</a><a href="#comparison">비교</a><a href="#decision">판단</a><a href="#sources">출처</a></div></div></nav>
@@ -50,7 +70,12 @@
       <p class="verdict-line"><span class="verdict-num">02</span><span class="verdict-text"><strong>한국</strong> 로컬 가중치는 현재 라이선스 제외 지역이므로 <mark class="highlight-sweep">Comfy H3 API Partner Node</mark>가 기본값입니다.</span></p>
       <p class="verdict-line"><span class="verdict-num">03</span><span class="verdict-text"><strong>허가 후</strong> 128GB에는 42.47GB Comfy 조합이 들어가지만, <mark class="highlight-sweep">full attention 때문에 생성은 시간 단위</mark>일 수 있습니다.</span></p>
     </div></section>
-    <p class="lede">모델 파일이 메모리에 들어가는지만 보지 않았습니다. 한국에서의 라이선스, H3의 실제 네 모듈, 2K가 가능한 경로, 공개 Apple Silicon 실측, ComfyUI 클릭 순서와 오류 해결까지 한 번에 정리했습니다.</p><div class="meta"><span class="chip"><strong>260804</strong> · 표준 심층</span><span class="chip">2026.08.04 KST</span><span class="chip">공식·1차·커뮤니티 실측 15건 · 기준일 2026.08.04</span></div></div></header>
+    <p class="lede">모델 파일이 메모리에 들어가는지만 보지 않았습니다. 한국에서의 라이선스, H3의 실제 네 모듈, 2K가 가능한 경로, 공개 Apple Silicon 실측, ComfyUI 클릭 순서와 오류 해결까지 한 번에 정리했습니다.</p><div class="meta"><span class="chip"><strong>260804</strong> · 표준 심층</span><span class="chip">2026.08.04 KST</span><span class="chip">공식·1차·커뮤니티 실측 15건 · 기준일 2026.08.04</span></div></div><span class="report-layout-toggle" style="margin-left:12px;display:inline-flex;gap:3px;background:#f0f2f5;border-radius:8px;padding:3px;">
+<button class="report-layout-btn is-active" data-layout="wide" style="padding:5px 10px;border:none;background:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:#6b7684;">와이드</button>
+<button class="report-layout-btn" data-layout="a4" style="padding:5px 10px;border:none;background:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:#6b7684;">A4</button>
+</span>
+
+</header>
   <section id="simple-report" class="simple-report" data-simple-pages="2" aria-labelledby="simple-report-title"><div class="wrap"><div class="simple-overview"><div class="eyebrow">TWO VISUAL SUMMARY SHEETS</div><h2 id="simple-report-title">도표·인포그래픽 요약 장표 2장</h2><div class="simple-summary-content">
 <article class="simple-slide simple-slide-1">
   <div class="simple-slide-head"><div><span class="simple-slide-kicker">DECISION · 1 / 2</span><h3 class="simple-slide-title">한국에서는 로컬보다 API가 먼저입니다</h3></div><span class="simple-slide-number">01</span></div>
@@ -91,6 +116,16 @@
 .route-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.route-card{padding:22px;border:1px solid #dce4ef;border-radius:18px;background:#fff}.route-card.best{border:2px solid #3182f6;background:#f2f8ff}.route-card>span{font-size:12px;font-weight:900;color:#3182f6}.route-card h3{margin:6px 0 8px}.license-alert{padding:24px;border:3px solid #ff6b6b;border-radius:20px;background:#fff5f5}.license-alert h3{color:#c92a2a}.arch-grid,.workflow-grid,.trouble-grid,.security-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.arch-grid article,.workflow-grid article,.trouble-grid article,.security-grid article{padding:20px;border:1px solid #dce4ef;border-radius:17px;background:#fff}.step-list{counter-reset:guide;display:grid;gap:14px;padding:0;list-style:none}.step-list>li{counter-increment:guide;display:grid;grid-template-columns:52px 1fr;gap:14px;padding:18px;border:1px solid #dce4ef;border-radius:17px;background:#fff}.step-list>li::before{content:counter(guide,decimal-leading-zero);display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:#3182f6;color:#fff;font-weight:900}.step-list h3{margin:0 0 6px}.folder-tree{white-space:pre;overflow:auto;padding:18px;border-radius:15px;background:#111827;color:#e7efff;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace}.memory-bars{display:grid;gap:12px}.memory-row{display:grid;grid-template-columns:220px 1fr 110px;gap:12px;align-items:center}.memory-track{height:24px;border-radius:999px;background:#e9eef5;overflow:hidden}.memory-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,#3182f6,#7c4dff)}.status-pill{display:inline-flex;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:900;background:#e8f3ff;color:#185abc}@media(max-width:760px){.route-grid,.arch-grid,.workflow-grid,.trouble-grid,.security-grid{grid-template-columns:1fr}.step-list>li{grid-template-columns:44px 1fr;padding:14px}.step-list>li::before{width:40px;height:40px}.memory-row{grid-template-columns:1fr}}
 @media(max-width:700px){.floating-menu{left:10px!important;right:10px!important;width:calc(100% - 20px)!important;max-width:calc(100% - 20px)!important}code{overflow-wrap:anywhere!important;word-break:break-all!important}.report-view-switcher-inner{grid-template-columns:minmax(0,1fr)!important;gap:8px!important;padding:8px 0 10px}.report-view-buttons,.report-utility-controls{width:100%!important;max-width:none!important}.report-utility-controls{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:8px!important;justify-content:stretch!important}.report-utility-controls .pdf-save-button,.report-utility-controls .share-report-button{width:100%!important;min-width:0!important;max-width:none!important}.hero{padding-top:34px!important}.verdict-text,.top-conclusion-card p{min-width:0;max-width:100%;white-space:normal!important;word-break:break-all!important;overflow-wrap:anywhere!important}.hero .lede{min-width:0;max-width:100%;white-space:normal!important;word-break:break-word!important;overflow-wrap:anywhere!important}.highlight-sweep{white-space:normal!important;word-break:break-all!important;overflow-wrap:anywhere!important}}
 @media(max-width:520px){.wrap{width:min(calc(100% - 32px),var(--max))!important}.hero h1{font-size:clamp(34px,9.3vw,40px)!important}}
+
+/* ── A4 Portrait Display (toggle) ── */
+@media screen {
+  body.report-a4-mode { max-width: 210mm; margin: 24px auto !important; background: #fff !important; box-shadow: 0 2px 24px rgba(0,0,0,.12); border-radius: 4px; padding: 0 !important; }
+  body.report-a4-mode .wrap, body.report-a4-mode .report-section, body.report-a4-mode main { max-width: 100% !important; }
+  @media (max-width: 218mm) {
+    body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
+  }
+}
+
 </style>
 <section id="license" class="report-section"><div class="wrap"><div class="section-head"><h2>가장 먼저 확인할 것: 한국은 로컬 가중치 제외 지역입니다</h2><p>성능보다 먼저 적용되는 법적 조건입니다.</p></div><div class="license-alert"><h3>현재 커뮤니티 라이선스로 대한민국에서 로컬 실행은 허가되지 않습니다</h3><p>라이선스는 EU·영국·대한민국·미국을 Excluded Territories로 열거하고, 해당 지역에서 가중치·파생물과 출력의 사용·실행·표시를 허가하지 않습니다. 별도 정식 라이선스를 신청할 수 있으며, 공식 FAQ는 API를 글로벌 이용 경로로 구분합니다.<sup><a class="cite" href="#src-3" aria-label="출처 3">[3]</a></sup><sup><a class="cite" href="#src-4" aria-label="출처 4">[4]</a></sup></p><p><b>따라서 이 보고서의 로컬 조합은 “별도 허가를 받은 뒤의 기술 적합성” 분석입니다.</b> 법률 자문은 아니며, 실제 사용 전 MiniMax의 최신 라이선스와 허가 문서를 다시 확인해야 합니다.</p></div></div></section>
 <section id="architecture" class="report-section"><div class="wrap"><div class="section-head"><h2>H3는 네 덩어리가 함께 움직이는 영상·음성 시스템입니다</h2><p>“33B 모델 하나”만 다운로드해서 실행할 수 없습니다.</p></div><div class="arch-grid"><article><span class="status-pill">조건 이해</span><h3>Qwen3-VL-32B Encoder</h3><p>50번째 layer의 hidden state를 사용합니다. Comfy 기본 NVFP4 파일은 15.687GB, BF16은 51.506GB입니다.</p></article><article><span class="status-pill">생성 핵심</span><h3>H3 Omni Transformer · 33B</h3><p>영상과 오디오 latent를 같은 packed sequence에서 예측합니다. 13B AdaLN branch는 사전 계산·prune이 가능합니다.<sup><a class="cite" href="#src-2" aria-label="출처 2">[2]</a></sup><sup><a class="cite" href="#src-9" aria-label="출처 9">[9]</a></sup><sup><a class="cite" href="#src-10" aria-label="출처 10">[10]</a></sup></p></article><article><span class="status-pill">영상 복원</span><h3>Video VAE · 5.208GB FP16</h3><p>공간 16×·시간 4× 압축 후 영상으로 복원합니다. 고해상도에서 tiling이 필요합니다.</p></article><article><span class="status-pill">음성 복원</span><h3>Audio VAE · 0.605GB FP32</h3><p>32kHz 스테레오를 40Hz latent로 처리해 대사·효과음·음악을 영상과 함께 출력합니다.</p></article></div><p class="section-note">최초 공개 버전은 sparse attention 코드가 빠져 full attention만 제공합니다. 길이와 해상도가 커질수록 메모리보다 계산량이 급격히 커집니다.<sup><a class="cite" href="#src-2" aria-label="출처 2">[2]</a></sup><sup><a class="cite" href="#src-10" aria-label="출처 10">[10]</a></sup></p></div></section>
@@ -223,5 +258,39 @@
   (()=>{const button=document.getElementById('report-share-button');if(!button)return;const original=button.textContent;const shareUrl=()=>{const url=new URL(location.href);if(document.body.dataset.reportView==='simple')url.searchParams.set('view','simple');else url.searchParams.delete('view');url.hash='';return url.toString()};const copied=()=>{button.textContent='링크 복사됨';button.setAttribute('aria-label','보고서 링크가 복사되었습니다');setTimeout(()=>{button.textContent=original;button.setAttribute('aria-label','현재 보고서 링크 공유')},1800)};button.addEventListener('click',async()=>{const data={title:document.title,text:document.querySelector('meta[name="description"]')?.content||document.title,url:shareUrl()};try{if(navigator.share){await navigator.share(data)}else{await navigator.clipboard.writeText(data.url);copied()}}catch(error){if(error?.name==='AbortError')return;try{await navigator.clipboard.writeText(data.url);copied()}catch{button.textContent='주소창에서 복사';setTimeout(()=>button.textContent=original,2200)}}})})();
   </script>
 <script src="../assets/js/view-counter.js"></script>
+
+<script id="report-layout-script">
+(function(){
+  var body = document.body;
+  var buttons = document.querySelectorAll('.report-layout-btn');
+  var LAYOUT_KEY = 'report-layout-pref';
+  
+  function setLayout(mode) {
+    if (mode === 'a4') {
+      body.classList.add('report-a4-mode');
+      document.documentElement.style.background = '#e8ecf1';
+    } else {
+      body.classList.remove('report-a4-mode');
+      document.documentElement.style.background = '';
+    }
+    buttons.forEach(function(btn) {
+      var active = btn.dataset.layout === mode;
+      btn.classList.toggle('is-active', active);
+      if (active) { btn.style.background = '#fff'; btn.style.color = '#191f28'; btn.style.boxShadow = '0 1px 2px rgba(0,0,0,.06)'; }
+      else { btn.style.background = 'none'; btn.style.color = '#6b7684'; btn.style.boxShadow = 'none'; }
+    });
+    localStorage.setItem(LAYOUT_KEY, mode);
+  }
+  
+  buttons.forEach(function(btn) {
+    btn.addEventListener('click', function() { setLayout(btn.dataset.layout); });
+  });
+  
+  // Load preference - default wide
+  var saved = localStorage.getItem(LAYOUT_KEY) || 'wide';
+  setLayout(saved);
+})();
+</script>
+
 </body>
 </html>

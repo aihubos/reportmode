@@ -34,6 +34,16 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
     @page{size:A4 portrait;margin:18mm 14mm 20mm;@bottom-left{content:"포켓몬 포코피아: 장단점과 인기 요인 · Jeremy's AI Report";font:600 6.5pt/1.2 var(--sans);color:#66717e}@bottom-center{content:"2026.08.02 · github.com/aihubos";font:600 6.5pt/1.2 var(--sans);color:#66717e}@bottom-right{content:counter(page) " / " counter(pages);font:800 7pt/1.2 var(--sans);color:#185abc}}
     @media print{.nav,.floating-menu{display:none!important}html{print-color-adjust:exact;-webkit-print-color-adjust:exact}body{background:#fff;font-size:10.5pt;line-height:1.55;padding-bottom:0}.top-conclusion{margin:12px 0 0}.top-conclusion-card{box-shadow:none;break-inside:avoid}.verdict-line{font-size:15pt}.highlight-sweep{-webkit-print-color-adjust:exact;print-color-adjust:exact}.hero{padding:18px 0 24px}.hero h1{font-size:34pt}.hero .lede{font-size:15pt}.wrap{width:100%;max-width:none}.paper,.callout,.visual-hero,.reaction-card{box-shadow:none;break-inside:avoid}.section-head h2,h2,h3{break-after:avoid-page}.visual-hero img{max-height:230mm;object-fit:contain}p,li{orphans:3;widows:3}main section{padding:20px 0}.table-wrap{overflow:visible}table{font-size:8.5pt}thead{display:table-header-group}tr,img,figure{break-inside:avoid}.sources{overflow:visible;border:0}.sources thead,.sources tbody{min-width:0;font-size:6.8pt}.sources th,.sources td{padding:5px 6px;line-height:1.35;overflow-wrap:anywhere}.source-section{break-before:page}.source-section>.source-content{display:block!important}.sources-summary{display:none}.reaction-card{box-shadow:none;break-inside:avoid}.source-section a{color:#000;text-decoration:none}}
 
+
+/* ── A4 Portrait Display (toggle) ── */
+@media screen {
+  body.report-a4-mode { max-width: 210mm; margin: 24px auto !important; background: #fff !important; box-shadow: 0 2px 24px rgba(0,0,0,.12); border-radius: 4px; padding: 0 !important; }
+  body.report-a4-mode .wrap, body.report-a4-mode .report-section, body.report-a4-mode main { max-width: 100% !important; }
+  @media (max-width: 218mm) {
+    body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
+  }
+}
+
 </style>
 <style id="report-view-v4-style">
     :root{--max:1120px;--apple-blue:#007aff;--apple-gray:rgba(118,118,128,.16)}
@@ -56,7 +66,17 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
     @media(max-width:700px){.report-view-switcher-inner{min-height:78px;grid-template-columns:minmax(0,1fr) 76px;gap:10px}.report-view-label{display:none}.report-view-buttons{min-height:62px;padding:6px}.report-view-buttons::before{left:6px;top:6px;bottom:6px;width:calc((100% - 12px)/2)}.report-view-button{min-height:50px;padding:8px 6px;font-size:17px}.report-utility-controls{width:76px}.report-utility-controls .pdf-save-button{min-height:44px;padding:7px 5px;font-size:11px}.simple-report{padding:10px 0 46px}.simple-overview{padding:24px 20px}.simple-overview h2{font-size:30px}.simple-summary-content{grid-template-columns:1fr;gap:12px}.simple-summary-block{min-height:0;padding:18px}.simple-summary-block h3{font-size:19px}.simple-summary-block p{font-size:15px}}
     @media(prefers-reduced-motion:reduce){.report-view-buttons::before,.report-view-button,.simple-detail-button{transition:none!important}}
     @media print{.report-view-switcher,.report-utility-controls{display:none!important}body[data-report-view="simple"] .detail-report,body[data-report-view="simple"] #sources{display:none!important}body[data-report-view="simple"] .hero{padding:4mm 0 3mm;break-after:auto}body[data-report-view="simple"] .hero h1{font-size:28pt}body[data-report-view="simple"] .top-conclusion{margin-top:5mm}body[data-report-view="simple"] .top-conclusion-card{padding:4mm 5mm}body[data-report-view="simple"] .verdict-line{padding:2.4mm 0;font-size:12.5pt;line-height:1.4}body[data-report-view="simple"] .hero .lede{margin-top:4mm;font-size:12pt}body[data-report-view="simple"] .meta{margin-top:3mm}body[data-report-view="simple"] .simple-report{display:block!important;padding:4mm 0 0;break-before:page;page-break-before:always}body[data-report-view="simple"] .simple-overview{padding:4mm 5mm;border:0;box-shadow:none;break-inside:auto}body[data-report-view="simple"] .simple-overview h2{margin-bottom:4mm;font-size:20pt}body[data-report-view="simple"] .simple-summary-content{display:grid;grid-template-columns:1fr 1fr;gap:3.5mm}body[data-report-view="simple"] .simple-summary-block{min-height:0;padding:4mm;border-radius:4mm;break-inside:avoid}body[data-report-view="simple"] .simple-summary-index{height:5mm;margin-bottom:2mm;font-size:7.5pt}body[data-report-view="simple"] .simple-summary-block h3{margin-bottom:1.5mm;font-size:12.5pt}body[data-report-view="simple"] .simple-summary-block p{font-size:9.3pt;line-height:1.5}body[data-report-view="simple"] .simple-detail-button{display:none!important}body[data-report-view="detail"] .simple-report{display:none!important}body[data-report-view="detail"] .detail-report{display:block!important}}
-  </style><!--Report Mode v4.3: detail default + two-page brief + Apple segmented control--></head>
+  
+/* ── A4 Portrait Display (toggle) ── */
+@media screen {
+  body.report-a4-mode { max-width: 210mm; margin: 24px auto !important; background: #fff !important; box-shadow: 0 2px 24px rgba(0,0,0,.12); border-radius: 4px; padding: 0 !important; }
+  body.report-a4-mode .wrap, body.report-a4-mode .report-section, body.report-a4-mode main { max-width: 100% !important; }
+  @media (max-width: 218mm) {
+    body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
+  }
+}
+
+</style><!--Report Mode v4.3: detail default + two-page brief + Apple segmented control--></head>
 <body data-report-view="detail">
 <nav aria-label="보고서 탐색" class="nav"><div class="wrap nav-inner"><a class="brand" href="../archive/">RM · Report Mode</a><div class="nav-links"><a href="#summary">요약</a><a href="#comparison">비교</a><a href="#decision">판단</a><a href="#sources">출처</a></div></div></nav><section aria-label="보고서 보기 방식" class="report-view-switcher"><div class="wrap report-view-switcher-inner"><span class="report-view-label">보고서 보기</span><div aria-label="간단 또는 상세 보기" class="report-view-buttons" role="group"><button aria-pressed="false" class="report-view-button" data-report-view-target="simple" type="button">간단</button><button aria-pressed="true" class="report-view-button is-active" data-report-view-target="detail" type="button">상세</button></div><div aria-label="보고서 저장 도구" class="report-utility-controls"><button aria-label="현재 보고서 보기를 A4 PDF로 저장" class="pdf-save-button" id="report-pdf-button" type="button">PDF 저장</button></div></div></section>
 <nav aria-label="보고서 바로가기" class="floating-menu"><a class="floating-action" href="#summary">핵심 내용 한눈에 보기</a><a class="floating-action" href="#comparison">핵심 항목 비교</a><a class="floating-action" href="#popularity">인기 요인 분석</a><a class="floating-action" href="#reviews">사용자·언론 평가</a><a class="floating-action" href="#risks">주요 위험과 한계</a><a class="floating-action" href="#decision">상황별 선택 기준</a><a class="floating-action" href="#sources">전체 출처 확인</a></nav>
@@ -66,7 +86,12 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
 <p class="verdict-line"><span class="verdict-num">01</span><span class="verdict-text">포코피아의 흥행 핵심은 IP만이 아니라 <mark class="highlight-sweep">수집·건설·관계의 보상 루프</mark>입니다.</span></p>
 <p class="verdict-line"><span class="verdict-num">02</span><span class="verdict-text"><mark class="highlight-sweep">출시 주말 220만 장·메타스코어 89점</mark>은 강하지만 튜토리얼·대기·반복 의뢰가 약점입니다.</span></p>
 <p class="verdict-line"><span class="verdict-num">03</span><span class="verdict-text"><mark class="highlight-sweep">느린 생활 시뮬레이션 취향을 확인</mark>한 뒤 구매하세요.</span></p>
-</div></section><p class="lede"><span class="d-lede">출시 주말 220만 장과 메타스코어 89. 성공의 핵심은 포켓몬을 잡는 재미를 <span class="marker">함께 살아갈 세계를 만드는 재미</span>로 바꾼 데 있습니다.</span><span class="m-lede"><span class="m-line">출시 주말 220만 장과</span><span class="m-line">메타스코어 89.</span><span class="m-line">성공의 핵심은 포켓몬을</span><span class="m-line">잡는 재미를 <span class="marker">함께 살아갈</span></span><span class="m-line"><span class="marker">세계를 만드는 재미</span>로</span><span class="m-line">바꾼 데 있습니다.</span></span></p><div class="meta"><span class="chip"><strong>260802</strong> · 심층보고서모드</span><span class="chip">2026.08.02 KST</span><span class="chip">공식 원문·독립 리뷰·평점·판매 보도 교차검증</span></div></div></header>
+</div></section><p class="lede"><span class="d-lede">출시 주말 220만 장과 메타스코어 89. 성공의 핵심은 포켓몬을 잡는 재미를 <span class="marker">함께 살아갈 세계를 만드는 재미</span>로 바꾼 데 있습니다.</span><span class="m-lede"><span class="m-line">출시 주말 220만 장과</span><span class="m-line">메타스코어 89.</span><span class="m-line">성공의 핵심은 포켓몬을</span><span class="m-line">잡는 재미를 <span class="marker">함께 살아갈</span></span><span class="m-line"><span class="marker">세계를 만드는 재미</span>로</span><span class="m-line">바꾼 데 있습니다.</span></span></p><div class="meta"><span class="chip"><strong>260802</strong> · 심층보고서모드</span><span class="chip">2026.08.02 KST</span><span class="chip">공식 원문·독립 리뷰·평점·판매 보도 교차검증</span></div></div><span class="report-layout-toggle" style="margin-left:12px;display:inline-flex;gap:3px;background:#f0f2f5;border-radius:8px;padding:3px;">
+<button class="report-layout-btn is-active" data-layout="wide" style="padding:5px 10px;border:none;background:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:#6b7684;">와이드</button>
+<button class="report-layout-btn" data-layout="a4" style="padding:5px 10px;border:none;background:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;color:#6b7684;">A4</button>
+</span>
+
+</header>
 <section aria-labelledby="simple-report-title" class="simple-report" data-simple-pages="2" id="simple-report"><div class="wrap"><div class="simple-overview"><div class="eyebrow">TWO-PAGE EXECUTIVE BRIEF</div><h2 id="simple-report-title">2페이지 핵심 요약</h2><div class="simple-summary-content"><article class="simple-summary-block"><span class="simple-summary-index">01</span><h3>판단의 배경</h3><p>좋은 포켓몬 게임인 동시에, 느린 생활 시뮬레이션을 좋아해야 완성되는 게임입니다. 출시 주말 220만 장과 평론 집계 89점은 강한 출발을 보여 줍니다. 다만 긴 튜토리얼, 실시간 건설 대기, 후기 반복 의뢰는 몰입을 끊는 구조적 약점입니다. 포켓몬과 꾸미기·건설을 좋아하고 느린 장기 플레이를 받아들일 수 있을 때 가장 좋습니다.</p></article><article class="simple-summary-block"><span class="simple-summary-index">02</span><h3>핵심 비교와 근거</h3><p>의도적인 느림과 단계적 해금이 누구에게는 장기 몰입이고, 다른 사람에게는 불필요한 마찰입니다. 포켓몬을 잡는 대신 원하는 서식지를 만들고 관계를 쌓아 주민으로 끌어들인다. 의뢰·재료 수집·서식지 조성이 후기에는 반복 작업으로 느껴질 수 있다. Leafage·Surf·Glide 등 포켓몬 기술이 이동·채집·건설 도구가 된다. 기능이 긴 스토리 진행에 따라 단계적으로 열려 초반 자유도가 제한된다. 황폐한 지형이 마을과 생태계로 변하는 시각적 성취가 크다. 큰 건물은 실제 하루가 걸릴 수 있어 주 스토리 진행을 막기도 한다. Game Informer·RPGFan 블록 건설, 가구, 농사, 전력, 3D 프린터 복제까지 창작 범위가 넓다.</p></article><article class="simple-summary-block"><span class="simple-summary-index">03</span><h3>선택 기준과 판단</h3><p>구매 전 네 가지 조건을 먼저 확인하세요. 추천: Animal Crossing식 생활, Minecraft식 블록 창작, Dragon Quest Builders식 퀘스트 재건을 모두 좋아합니다. 대기: 빠른 해금·짧은 캠페인·전투 중심 포켓몬을 원하거나 하루 단위 대기가 답답합니다. 비용 확인: 미국 본편 $69.99, Expansion Pass $34.99입니다. 한국 가격은 이 보고서에서 직접 확인하지 못했습니다. 패키지 주의: game-key card는 전체 다운로드가 필요하며 공식 Pokopia 안내는 인터넷과 최소 10GB 여유 공간을 요구합니다.</p></article><article class="simple-summary-block"><span class="simple-summary-index">04</span><h3>주의점과 다음 행동</h3><p>공식 제품·멀티플레이·DLC 문서와 독립 리뷰·평점 집계를 분리하고, 결론을 바꾸는 수치와 핵심 원문을 교차 확인했습니다. IP 인지도 외에 게임 설계와 출시 환경이 판매·평가로 이어진 원인을 봤습니다. 세계 복원, 창작, 포켓몬 개성, 멀티플레이가 실제 리뷰에서 어떻게 평가됐는지 비교했습니다. 느린 해금, 시간 게이트, 반복 의뢰와 온라인 제약을 구매 조건으로 바꿨습니다.</p></article></div><button class="simple-detail-button" data-report-view-target="detail" type="button">상세 근거 전체 보기</button></div></div></section><main class="detail-report">
 <section aria-labelledby="visual-title"><div class="wrap"><figure class="visual-hero"><img alt="포코피아의 출시 주말 220만 장, 메타스코어 89점, 만들고 모으고 함께하는 인기 요인과 느린 진행 주의점을 정리한 한글 화이트보드 인포그래픽" src="../assets/260802-pokemon-pokopia-deep-dive/pokopia-popularity-infographic.png"/><figcaption id="visual-title"><b>AI 생성 인포그래픽 · 공식 제품 이미지 아님</b><span>확인된 수치와 짧은 판단 문구만 사용 · 생성 후 한글·숫자·잘림 검수 완료</span></figcaption></figure></div></section>
 <section id="summary"><div class="wrap"><div class="section-head"><h2>한 문장 판단</h2><p>좋은 포켓몬 게임인 동시에, 느린 생활 시뮬레이션을 좋아해야 완성되는 게임입니다.</p></div><div class="paper">
@@ -99,6 +124,16 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
 </div></div></section>
 <style>
 .metric-card{background:#f2f5f8;border-radius:16px;padding:18px}.metric-card b{display:block;font-size:28px;line-height:1.1}.metric-card span{display:block;color:#6b7684;font-size:13px;margin-top:7px}.note{margin-top:18px;border-left:5px solid #3182f6;background:#eef5ff;border-radius:0 14px 14px 0;padding:15px 18px}.note.warn{border-left-color:#f3b400;background:#fff8dd}.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.mini{background:#fff;border:1px solid #e5e8eb;border-radius:16px;padding:22px}.mini h3{font-size:21px;margin-bottom:8px}.mini p{font-size:16px;color:#6b7684;margin:0}.pros{border-top:5px solid #0b8f55}.cons{border-top:5px solid #c43d3d}.risk{border-left:5px solid #c43d3d}.scenario-up{border-top:5px solid #0b8f55}.scenario-base{border-top:5px solid #3182f6}.scenario-down{border-top:5px solid #c43d3d}.checks{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.badge{display:inline-block;padding:3px 9px;border-radius:999px;background:#eaf1ff;color:#245fc7;font-size:12px;font-weight:800}.m-lede{display:none}@media(max-width:860px){.summary-grid,.two,.card-grid,.checks{grid-template-columns:1fr!important}.metric-grid{grid-template-columns:1fr 1fr!important}}@media(max-width:520px){.metric-grid{grid-template-columns:1fr!important}.marker{white-space:normal!important}.hero .lede{word-break:keep-all!important;overflow-wrap:normal!important}.d-lede{display:none}.m-lede{display:block}.m-line{display:block}}
+
+/* ── A4 Portrait Display (toggle) ── */
+@media screen {
+  body.report-a4-mode { max-width: 210mm; margin: 24px auto !important; background: #fff !important; box-shadow: 0 2px 24px rgba(0,0,0,.12); border-radius: 4px; padding: 0 !important; }
+  body.report-a4-mode .wrap, body.report-a4-mode .report-section, body.report-a4-mode main { max-width: 100% !important; }
+  @media (max-width: 218mm) {
+    body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
+  }
+}
+
 </style>
 <section id="method"><div class="wrap"><div class="section-head"><h2>조사 질문과 방법</h2><p>공식 제품·멀티플레이·DLC 문서와 독립 리뷰·평점 집계를 분리하고, 결론을 바꾸는 수치와 핵심 원문을 교차 확인했습니다.</p></div><div class="card-grid"><article class="mini"><h3>① 왜 인기인가</h3><p>IP 인지도 외에 게임 설계와 출시 환경이 판매·평가로 이어진 원인을 봤습니다.</p></article><article class="mini"><h3>② 무엇이 좋은가</h3><p>세계 복원, 창작, 포켓몬 개성, 멀티플레이가 실제 리뷰에서 어떻게 평가됐는지 비교했습니다.</p></article><article class="mini"><h3>③ 어디서 갈리는가</h3><p>느린 해금, 시간 게이트, 반복 의뢰와 온라인 제약을 구매 조건으로 바꿨습니다.</p></article></div><div class="note"><strong>조사 구조:</strong> 공식 상태, 독립 리뷰, 시장·권리 자료를 병렬로 조사한 뒤 핵심 수치와 원문을 교차 검증했습니다. 한국 판매가·공식 누적 판매량·재배포 권리가 불명확한 공식 사진은 제외했습니다.</div></div></section>
 <section id="basics"><div class="wrap"><div class="section-head"><h2>제품 기본 정보</h2><p>미국 Nintendo 공식 페이지와 Pokopia 공식 사이트 기준입니다.</p></div><div class="table-wrap"><table><thead><tr><th>항목</th><th>확인 내용</th><th>주의</th></tr></thead><tbody>
@@ -220,5 +255,39 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
   (()=>{const button=document.getElementById('report-pdf-button');const sources=document.getElementById('sources');if(!button)return;let prepared=false;let sourceWasOpen=false;const prepare=()=>{if(prepared)return;prepared=true;sourceWasOpen=Boolean(sources?.open);if(sources&&document.body.dataset.reportView==='detail')sources.open=true;button.classList.add('is-printing')};const reset=()=>{if(!prepared)return;if(sources&&!sourceWasOpen)sources.open=false;button.classList.remove('is-printing');prepared=false};button.addEventListener('click',()=>{prepare();requestAnimationFrame(()=>window.print())});addEventListener('beforeprint',prepare);addEventListener('afterprint',reset);addEventListener('focus',()=>{if(prepared)setTimeout(reset,500)})})();
   </script>
 <script src="../assets/report-view-counter.js" data-report-id="260802-pokemon-pokopia-deep-dive"></script>
+
+<script id="report-layout-script">
+(function(){
+  var body = document.body;
+  var buttons = document.querySelectorAll('.report-layout-btn');
+  var LAYOUT_KEY = 'report-layout-pref';
+  
+  function setLayout(mode) {
+    if (mode === 'a4') {
+      body.classList.add('report-a4-mode');
+      document.documentElement.style.background = '#e8ecf1';
+    } else {
+      body.classList.remove('report-a4-mode');
+      document.documentElement.style.background = '';
+    }
+    buttons.forEach(function(btn) {
+      var active = btn.dataset.layout === mode;
+      btn.classList.toggle('is-active', active);
+      if (active) { btn.style.background = '#fff'; btn.style.color = '#191f28'; btn.style.boxShadow = '0 1px 2px rgba(0,0,0,.06)'; }
+      else { btn.style.background = 'none'; btn.style.color = '#6b7684'; btn.style.boxShadow = 'none'; }
+    });
+    localStorage.setItem(LAYOUT_KEY, mode);
+  }
+  
+  buttons.forEach(function(btn) {
+    btn.addEventListener('click', function() { setLayout(btn.dataset.layout); });
+  });
+  
+  // Load preference - default wide
+  var saved = localStorage.getItem(LAYOUT_KEY) || 'wide';
+  setLayout(saved);
+})();
+</script>
+
 </body>
 </html>
