@@ -6,92 +6,62 @@
   <title>보고서 업로드 - Jeremy's AI Report 도서관</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%233182f6'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial' font-size='34' font-weight='800' fill='white'%3ER%3C/text%3E%3C/svg%3E">
   <style>:root {
-  --ink: #171717;
-  --muted: #5f5f66;
-  --bg: #f4f1ea;
-  --paper: #fffdf8;
-  --line: #ddd4c5;
-  --accent: #0b3d91;
-  --soft: #efe8db;
-  --sans: "Avenir Next", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-  --max: 1080px;
-  --archive-blue: #3182f6;
-  --archive-ink: #191f28;
-  --archive-muted: #6b7684;
-  --archive-line: #e5e8eb;
+  --ink: #171717; --muted: #5f5f66; --bg: #f4f1ea; --paper: #fffdf8;
+  --line: #ddd4c5; --accent: #0b3d91; --soft: #efe8db;
+  --sans: "Avenir Next","Segoe UI","Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+  --max: 1080px; --archive-blue: #3182f6; --archive-ink: #191f28;
+  --archive-muted: #6b7684; --archive-line: #e5e8eb;
 }
 * { box-sizing: border-box; }
-body {
-  margin: 0; color: var(--archive-ink); background: #f5f7f9;
-  font-family: "Pretendard", "Avenir Next", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-  line-height: 1.65;
-}
-.archive-topbar {
-  position: sticky; top: 0; z-index: 20; height: 52px;
-  background: rgba(17,17,17,.95); color: #fff; backdrop-filter: blur(14px);
-}
-.archive-topbar-inner {
-  width: min(var(--max), calc(100% - 40px)); margin: 0 auto;
-  height: 100%; display: flex; align-items: center; justify-content: space-between;
-}
-.archive-brand {
-  display: flex; align-items: center; gap: 10px;
-  color: #fff; text-decoration: none; font-weight: 700; font-size: 16px;
-}
-.archive-brand-mark {
-  display: grid; place-items: center; width: 32px; height: 32px;
-  border-radius: 10px; background: var(--archive-blue); font-size: 17px; font-weight: 800;
-}
+body { margin: 0; color: var(--archive-ink); background: #f5f7f9; font-family: "Pretendard","Avenir Next","Apple SD Gothic Neo","Noto Sans KR",sans-serif; line-height: 1.65; }
+.archive-topbar { position: sticky; top: 0; z-index: 20; height: 52px; background: rgba(17,17,17,.95); color: #fff; backdrop-filter: blur(14px); }
+.archive-topbar-inner { width: min(var(--max),calc(100% - 40px)); margin: 0 auto; height: 100%; display: flex; align-items: center; justify-content: space-between; }
+.archive-brand { display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-weight: 700; font-size: 16px; }
+.archive-brand-mark { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 10px; background: var(--archive-blue); font-size: 17px; font-weight: 800; }
 .archive-topbar nav { display: flex; gap: 18px; }
-.archive-topbar nav a {
-  color: #d0d0d0; text-decoration: none; font-size: 13px;
-  min-height: 44px; display: inline-flex; align-items: center;
-}
+.archive-topbar nav a { color: #d0d0d0; text-decoration: none; font-size: 13px; min-height: 44px; display: inline-flex; align-items: center; }
 .archive-topbar nav a:hover { color: #fff; }
 .archive-topbar nav a.is-current { color: #fff; font-weight: 700; }
-.upload-shell {
-  width: min(720px, calc(100% - 40px)); margin: 48px auto 64px;
-}
-.upload-card {
-  background: #fff; border: 1px solid var(--archive-line);
-  border-radius: 22px; padding: 40px; box-shadow: 0 8px 30px rgba(0,0,0,.04);
-}
-.upload-card h1 { font-size: 28px; margin: 0 0 16px; }
-.upload-card p { color: var(--archive-muted); margin: 0 0 24px; font-size: 16px; }
-.upload-btn {
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 16px 32px; background: var(--archive-blue); color: #fff;
-  border-radius: 14px; text-decoration: none; font-size: 18px; font-weight: 700;
-  transition: background .2s;
-}
-.upload-btn:hover { background: #1b64da; }
-.upload-divider { border: none; border-top: 1px solid var(--archive-line); margin: 36px 0; }
-.upload-card h2 { font-size: 20px; margin: 0 0 12px; }
-.upload-card ol { padding-left: 20px; color: var(--archive-muted); }
-.upload-card ol li { margin: 8px 0; }
-.upload-card pre {
-  background: #f5f7f9; border: 1px solid var(--archive-line);
-  border-radius: 12px; padding: 20px 24px; overflow-x: auto;
-  font-size: 14px; line-height: 1.6;
-}
-.upload-card code { font-family: "SF Mono", "Consolas", monospace; color: var(--archive-ink); }
-.archive-footer {
-  text-align: center; padding: 24px 0 40px;
-  color: var(--archive-muted); font-size: 13px;
-}
+.upload-shell { width: min(720px,calc(100% - 40px)); margin: 48px auto 64px; }
+.upload-card { background: #fff; border: 1px solid var(--archive-line); border-radius: 22px; padding: 40px; box-shadow: 0 8px 30px rgba(0,0,0,.04); }
+.upload-card h1 { font-size: 28px; margin: 0 0 8px; }
+.upload-card .sub { color: var(--archive-muted); font-size: 15px; margin: 0 0 24px; }
+.upload-divider { border: none; border-top: 1px solid var(--archive-line); margin: 32px 0; }
+.upload-card h2 { font-size: 18px; margin: 0 0 16px; }
+.tab-row { display: flex; gap: 4px; margin-bottom: 24px; background: #f5f7f9; border-radius: 12px; padding: 4px; }
+.tab-btn { flex: 1; padding: 12px 16px; border: none; background: none; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; color: var(--archive-muted); transition: all .2s; }
+.tab-btn.active { background: #fff; color: var(--archive-ink); box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.form-group { margin-bottom: 18px; }
+.form-group label { display: block; font-size: 13px; font-weight: 700; color: var(--archive-muted); margin-bottom: 6px; }
+.form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px 14px; border: 1px solid var(--archive-line); border-radius: 10px; font-size: 14px; font-family: inherit; transition: border-color .2s; }
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--archive-blue); box-shadow: 0 0 0 3px rgba(49,130,246,.1); }
+.form-group textarea { resize: vertical; min-height: 120px; }
+.file-drop { border: 2px dashed var(--archive-line); border-radius: 14px; padding: 40px 24px; text-align: center; cursor: pointer; transition: all .2s; }
+.file-drop:hover, .file-drop.drag { border-color: var(--archive-blue); background: #f0f6ff; }
+.file-drop .icon { font-size: 40px; margin-bottom: 8px; }
+.file-drop p { margin: 4px 0; font-size: 14px; color: var(--archive-muted); }
+.file-drop .hint { font-size: 12px; }
+.file-selected { display: none; margin-top: 12px; padding: 12px 16px; background: #f0f7f0; border-radius: 10px; font-size: 13px; color: #2d6a2d; }
+.file-selected.show { display: flex; justify-content: space-between; align-items: center; }
+.submit-btn { width: 100%; padding: 14px 24px; background: var(--archive-blue); color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; transition: background .2s; margin-top: 8px; }
+.submit-btn:hover { background: #1b64da; }
+.submit-btn:disabled { background: #b0c4de; cursor: not-allowed; }
+.preview-box { display: none; margin-top: 16px; padding: 16px; background: #fafafa; border: 1px solid var(--archive-line); border-radius: 10px; max-height: 300px; overflow-y: auto; font-size: 13px; }
+.preview-box.show { display: block; }
+.archive-footer { text-align: center; padding: 24px 0 40px; color: var(--archive-muted); font-size: 13px; }
 .archive-footer a { color: var(--archive-blue); }
-@media (max-width: 640px) {
-  .upload-card { padding: 24px; border-radius: 16px; }
-  .upload-btn { width: 100%; justify-content: center; }
-}
+.toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: #191f28; color: #fff; padding: 14px 28px; border-radius: 12px; font-size: 14px; z-index: 999; opacity: 0; transition: opacity .3s; }
+.toast.show { opacity: 1; }
+@media (max-width: 640px) { .upload-card { padding: 24px; border-radius: 16px; } }
 </style>
 </head>
 <body>
   <header class="archive-topbar">
     <div class="archive-topbar-inner">
       <a class="archive-brand" href="./" aria-label="Jeremy's AI Report 홈">
-        <span class="archive-brand-mark">R</span>
-        <span>Jeremy's AI Report</span>
+        <span class="archive-brand-mark">R</span><span>Jeremy's AI Report</span>
       </a>
       <nav aria-label="주요 메뉴">
         <a href="./">보고서 도서관</a>
@@ -105,41 +75,82 @@ body {
   <main class="upload-shell">
     <div class="upload-card">
       <h1>📤 보고서 업로드</h1>
-      <p>아래 버튼을 눌러 GitHub Issue로 보고서를 제출하면, 관리자 검토 후 아카이브에 추가됩니다.</p>
+      <p class="sub">URL 주소나 HTML 파일로 보고서를 제출할 수 있습니다. 검토 후 아카이브에 추가됩니다.</p>
 
-      <a class="upload-btn" href="https://github.com/aihubos/reportmode/issues/new?template=report-upload.yml" target="_blank" rel="noopener">
-        📝 GitHub에서 보고서 제출하기
-      </a>
+      <div class="tab-row">
+        <button class="tab-btn active" onclick="switchTab('url')">🔗 URL 제출</button>
+        <button class="tab-btn" onclick="switchTab('file')">📁 파일 업로드</button>
+      </div>
 
-      <hr class="upload-divider">
+      <!-- URL Tab -->
+      <div id="tab-url" class="tab-content active">
+        <div class="form-group">
+          <label>보고서 제목 *</label>
+          <input type="text" id="url-title" placeholder="예: 애플 M5 칩셋 심층 분석">
+        </div>
+        <div class="form-group">
+          <label>분류 *</label>
+          <select id="url-category">
+            <option value="">선택하세요</option>
+            <option value="AI">AI</option>
+            <option value="게임">게임</option>
+            <option value="자동차">자동차</option>
+            <option value="IT 기기">IT 기기</option>
+            <option value="기타">기타</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>보고서 URL *</label>
+          <input type="url" id="url-link" placeholder="https://example.com/my-report">
+        </div>
+        <div class="form-group">
+          <label>한 줄 요약</label>
+          <textarea id="url-summary" rows="2" placeholder="보고서를 한 문장으로 요약해주세요"></textarea>
+        </div>
+        <div class="form-group">
+          <label>태그</label>
+          <input type="text" id="url-tags" placeholder="#AI #애플 #칩셋">
+        </div>
+        <button class="submit-btn" onclick="submitUrl()">📝 URL 보고서 제출하기</button>
+      </div>
 
-      <h2>📋 업로드 방법</h2>
-      <ol>
-        <li>위 버튼을 눌러 GitHub Issue 페이지로 이동하세요.</li>
-        <li>보고서 제목, 분류, 요약, 본문, 출처를 양식에 맞춰 작성하세요.</li>
-        <li><strong>Submit new issue</strong> 버튼을 누르면 접수 완료!</li>
-      </ol>
-
-      <hr class="upload-divider">
-
-      <h2>📝 업로드 형식 안내</h2>
-      <pre><code># 보고서 제목
-
-## 분류
-AI / 게임 / 자동차 / IT 기기 / 기타 중 하나
-
-## 요약
-보고서를 한 문장으로 요약
-
-## 본문
-보고서 전체 내용 (마크다운)
-
-## 출처
-- https://출처1.com
-- https://출처2.com
-
-## 태그
-#태그1 #태그2</code></pre>
+      <!-- File Tab -->
+      <div id="tab-file" class="tab-content">
+        <div class="form-group">
+          <label>보고서 제목 *</label>
+          <input type="text" id="file-title" placeholder="예: 애플 M5 칩셋 심층 분석">
+        </div>
+        <div class="form-group">
+          <label>분류 *</label>
+          <select id="file-category">
+            <option value="">선택하세요</option>
+            <option value="AI">AI</option>
+            <option value="게임">게임</option>
+            <option value="자동차">자동차</option>
+            <option value="IT 기기">IT 기기</option>
+            <option value="기타">기타</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>HTML 파일 업로드 *</label>
+          <div class="file-drop" id="file-drop" onclick="document.getElementById('file-input').click()">
+            <div class="icon">📂</div>
+            <p>클릭하여 파일 선택</p>
+            <p class="hint">.html 파일만 가능 (최대 2MB)</p>
+          </div>
+          <input type="file" id="file-input" accept=".html,.htm" style="display:none" onchange="handleFile(event)">
+          <div class="file-selected" id="file-selected">
+            <span id="file-name"></span>
+            <button onclick="removeFile()" style="background:none;border:none;color:#999;cursor:pointer;font-size:18px;">✕</button>
+          </div>
+        </div>
+        <div class="preview-box" id="preview-box"></div>
+        <div class="form-group">
+          <label>태그</label>
+          <input type="text" id="file-tags" placeholder="#AI #애플 #칩셋">
+        </div>
+        <button class="submit-btn" id="file-submit" disabled onclick="submitFile()">📁 파일 보고서 제출하기</button>
+      </div>
     </div>
   </main>
 
@@ -147,5 +158,118 @@ AI / 게임 / 자동차 / IT 기기 / 기타 중 하나
     <span>Jeremy's AI Report Library</span> ·
     <a href="https://blog.naver.com/jeremylee0213" target="_blank" rel="noopener">blog.naver.com/jeremylee0213</a>
   </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+  var selectedFile = null;
+
+  function switchTab(tab) {
+    document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.toggle('active', b.textContent.includes(tab==='url'?'URL':'파일')); });
+    document.getElementById('tab-url').classList.toggle('active', tab==='url');
+    document.getElementById('tab-file').classList.toggle('active', tab==='file');
+  }
+
+  function handleFile(e) {
+    var file = e.target.files[0];
+    if (!file) return;
+    if (!file.name.endsWith('.html') && !file.name.endsWith('.htm')) { toast('HTML 파일만 업로드 가능합니다'); return; }
+    if (file.size > 2*1024*1024) { toast('파일 크기는 2MB 이하여야 합니다'); return; }
+    selectedFile = file;
+    document.getElementById('file-name').textContent = file.name + ' (' + (file.size/1024).toFixed(1) + ' KB)';
+    document.getElementById('file-selected').classList.add('show');
+    document.getElementById('file-submit').disabled = false;
+    
+    var reader = new FileReader();
+    reader.onload = function(ev) {
+      var preview = document.getElementById('preview-box');
+      preview.innerHTML = ev.target.result.substring(0, 10000) + (ev.target.result.length>10000?'<br><em>...(미리보기 10,000자 제한)</em>':'');
+      preview.classList.add('show');
+    };
+    reader.readAsText(file);
+  }
+
+  function removeFile() {
+    selectedFile = null;
+    document.getElementById('file-input').value = '';
+    document.getElementById('file-selected').classList.remove('show');
+    document.getElementById('preview-box').classList.remove('show');
+    document.getElementById('file-submit').disabled = true;
+  }
+
+  function submitUrl() {
+    var title = document.getElementById('url-title').value.trim();
+    var cat = document.getElementById('url-category').value;
+    var link = document.getElementById('url-link').value.trim();
+    var summary = document.getElementById('url-summary').value.trim();
+    var tags = document.getElementById('url-tags').value.trim();
+    
+    if (!title || !cat || !link) { toast('제목, 분류, URL은 필수입니다'); return; }
+    
+    var body = '## 📎 URL 보고서 제출\n\n';
+    body += '| 항목 | 내용 |\n|------|------|\n';
+    body += '| 제목 | ' + title + ' |\n';
+    body += '| 분류 | ' + cat + ' |\n';
+    body += '| URL | ' + link + ' |\n';
+    if (summary) body += '| 요약 | ' + summary + ' |\n';
+    if (tags) body += '| 태그 | ' + tags + ' |\n';
+    body += '\n---\n*이 보고서는 업로드 페이지를 통해 제출되었습니다.*';
+    
+    openIssue(title, cat, body);
+  }
+
+  function submitFile() {
+    if (!selectedFile) { toast('파일을 선택해주세요'); return; }
+    var title = document.getElementById('file-title').value.trim();
+    var cat = document.getElementById('file-category').value;
+    var tags = document.getElementById('file-tags').value.trim();
+    
+    if (!title || !cat) { toast('제목과 분류는 필수입니다'); return; }
+    
+    var reader = new FileReader();
+    reader.onload = function(ev) {
+      var content = ev.target.result;
+      var body = '## 📁 파일 보고서 제출\n\n';
+      body += '| 항목 | 내용 |\n|------|------|\n';
+      body += '| 제목 | ' + title + ' |\n';
+      body += '| 분류 | ' + cat + ' |\n';
+      body += '| 파일명 | ' + selectedFile.name + ' |\n';
+      if (tags) body += '| 태그 | ' + tags + ' |\n';
+      body += '\n<details><summary>📄 HTML 내용 보기</summary>\n\n```html\n' + content.substring(0, 50000) + '\n```\n\n</details>\n';
+      body += '\n---\n*이 보고서는 업로드 페이지를 통해 제출되었습니다.*';
+      
+      openIssue(title, cat, body);
+    };
+    reader.readAsText(selectedFile);
+  }
+
+  function openIssue(title, cat, body) {
+    var label = encodeURIComponent('report-upload');
+    var t = encodeURIComponent('[보고서] ' + title);
+    var b = encodeURIComponent(body);
+    var url = 'https://github.com/aihubos/reportmode/issues/new?labels=' + label + '&title=' + t + '&body=' + b;
+    
+    if (url.length > 8000) {
+      toast('내용이 너무 깁니다. GitHub에서 직접 이슈를 작성해주세요.');
+      return;
+    }
+    
+    window.open(url, '_blank');
+    toast('GitHub Issue 페이지가 열렸습니다. 내용 확인 후 Submit을 눌러주세요!');
+  }
+
+  function toast(msg) {
+    var el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    setTimeout(function(){ el.classList.remove('show'); }, 3000);
+  }
+
+  // Drag & drop
+  var drop = document.getElementById('file-drop');
+  drop.addEventListener('dragover', function(e){ e.preventDefault(); drop.classList.add('drag'); });
+  drop.addEventListener('dragleave', function(){ drop.classList.remove('drag'); });
+  drop.addEventListener('drop', function(e){ e.preventDefault(); drop.classList.remove('drag'); handleFile({target:{files:e.dataTransfer.files}}); });
+  </script>
 </body>
 </html>
