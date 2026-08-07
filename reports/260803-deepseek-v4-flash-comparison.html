@@ -38,7 +38,7 @@
     @media(prefers-reduced-motion:reduce){.report-view-buttons::before,.report-view-button,.simple-detail-button{transition:none!important}}
     @media print{.report-view-switcher,.report-utility-controls{display:none!important}body[data-report-view="simple"] .detail-report,body[data-report-view="simple"] #sources{display:none!important}body[data-report-view="simple"] .hero{padding:4mm 0 3mm;break-after:auto}body[data-report-view="simple"] .hero h1{font-size:28pt}body[data-report-view="simple"] .top-conclusion{margin-top:5mm}body[data-report-view="simple"] .top-conclusion-card{padding:4mm 5mm}body[data-report-view="simple"] .verdict-line{padding:2.4mm 0;font-size:12.5pt;line-height:1.4}body[data-report-view="simple"] .hero .lede{margin-top:4mm;font-size:12pt}body[data-report-view="simple"] .meta{margin-top:3mm}body[data-report-view="simple"] .simple-report{display:block!important;padding:4mm 0 0;break-before:page;page-break-before:always}body[data-report-view="simple"] .simple-overview{padding:4mm 5mm;border:0;box-shadow:none;break-inside:auto}body[data-report-view="simple"] .simple-overview h2{margin-bottom:4mm;font-size:20pt}body[data-report-view="simple"] .simple-summary-content{display:grid;grid-template-columns:1fr 1fr;gap:3.5mm}body[data-report-view="simple"] .simple-summary-block{min-height:0;padding:4mm;border-radius:4mm;break-inside:avoid}body[data-report-view="simple"] .simple-summary-index{height:5mm;margin-bottom:2mm;font-size:7.5pt}body[data-report-view="simple"] .simple-summary-block h3{margin-bottom:1.5mm;font-size:12.5pt}body[data-report-view="simple"] .simple-summary-block p{font-size:9.3pt;line-height:1.5}body[data-report-view="simple"] .simple-detail-button{display:none!important}body[data-report-view="detail"] .simple-report{display:none!important}body[data-report-view="detail"] .detail-report{display:block!important}}
   </style><!--Report Mode v4.3: detail default + two-page brief + Apple segmented control-->
-  <link rel="stylesheet" href="../assets/report-page-layout.css?v=20260807b-wide">
+  <link rel="stylesheet" href="../assets/report-page-layout.css?v=20260807c-wide-default">
 </head>
 <body data-report-view="detail" data-report-layout="wide">
   <a class="report-home-button" href="../archive/" aria-label="보고서 도서관 메인으로 이동">🏠 메인</a>
@@ -108,6 +108,6 @@
   (()=>{const button=document.getElementById('report-pdf-button');const sources=document.getElementById('sources');if(!button)return;let prepared=false;let sourceWasOpen=false;const prepare=()=>{if(prepared)return;prepared=true;sourceWasOpen=Boolean(sources?.open);if(sources&&document.body.dataset.reportView==='detail')sources.open=true;button.classList.add('is-printing')};const reset=()=>{if(!prepared)return;if(sources&&!sourceWasOpen)sources.open=false;button.classList.remove('is-printing');prepared=false};button.addEventListener('click',()=>{prepare();requestAnimationFrame(()=>window.print())});addEventListener('beforeprint',prepare);addEventListener('afterprint',reset);addEventListener('focus',()=>{if(prepared)setTimeout(reset,500)})})();
   </script>
 <script src="../assets/report-view-counter.js" data-report-id="260803-deepseek-v4-flash-comparison"></script>
-  <script src="../assets/report-page-layout.js?v=20260807b-wide"></script>
+  <script src="../assets/report-page-layout.js?v=20260807c-wide-default"></script>
 </body>
 </html>

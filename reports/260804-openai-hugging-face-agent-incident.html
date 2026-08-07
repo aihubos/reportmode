@@ -46,7 +46,7 @@
     @media(max-width:520px){.audience-grid,.responsibility-grid,.attack-grid,.glossary-grid,.scenario-grid{grid-template-columns:1fr}.simple-timeline{grid-template-columns:1fr}.simple-status-grid{gap:8px}.key-answer{padding:18px}.key-answer p{font-size:19px}.timeline-list b{font-size:19px}}
     @media print{.simple-status-grid{gap:3mm;margin-top:3mm}.status-card{padding:3mm}.status-card span{font-size:7.8pt}.simple-timeline{gap:2mm;margin-top:3mm}.simple-timeline span{padding:2.5mm 2mm;font-size:7pt}.compact-flow{gap:2mm;margin-top:3mm}.compact-flow .simple-flow-step{min-height:0;padding:2.5mm}.compact-flow .simple-flow-step b{font-size:7.8pt}.compact-flow .simple-flow-step span{font-size:6.8pt}.simple-decision-grid{gap:2mm;margin-top:3mm}.simple-decision-card{padding:2.5mm}.simple-decision-card p{font-size:7pt}.simple-slide-note{margin-top:2mm}.timeline-list li,.attack-grid article,.glossary-grid article,.audience-grid article,.scenario,.responsibility-grid>div{break-inside:avoid}.glossary-grid{grid-template-columns:repeat(2,1fr)}}
   </style>
-  <link rel="stylesheet" href="../assets/report-page-layout.css?v=20260807b-wide">
+  <link rel="stylesheet" href="../assets/report-page-layout.css?v=20260807c-wide-default">
 </head>
 <body data-report-view="detail" data-report-layout="wide">
   <a class="report-home-button" href="../archive/" aria-label="보고서 도서관 메인으로 이동">🏠 메인</a>
@@ -187,7 +187,7 @@
   <script id="report-share-script">
   (()=>{const button=document.getElementById('report-share-button');if(!button)return;const original=button.textContent;const shareUrl=()=>{const url=new URL(location.href);if(document.body.dataset.reportView==='simple')url.searchParams.set('view','simple');else url.searchParams.delete('view');url.hash='';return url.toString()};const copied=()=>{button.textContent='링크 복사됨';button.setAttribute('aria-label','보고서 링크가 복사되었습니다');setTimeout(()=>{button.textContent=original;button.setAttribute('aria-label','현재 보고서 링크 공유')},1800)};button.addEventListener('click',async()=>{const data={title:document.title,text:document.querySelector('meta[name="description"]')?.content||document.title,url:shareUrl()};try{if(navigator.share){await navigator.share(data)}else{await navigator.clipboard.writeText(data.url);copied()}}catch(error){if(error?.name==='AbortError')return;try{await navigator.clipboard.writeText(data.url);copied()}catch{button.textContent='주소창에서 복사';setTimeout(()=>button.textContent=original,2200)}}})})();
   </script>
-  <script src="../assets/report-page-layout.js?v=20260807b-wide"></script>
+  <script src="../assets/report-page-layout.js?v=20260807c-wide-default"></script>
   <script src="../assets/report-view-counter.js" data-report-id="260804-openai-hugging-face-agent-incident"></script>
 </body>
 </html>
