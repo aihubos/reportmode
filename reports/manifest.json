@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07T12:15:30.641Z",
+  "generatedAt": "2026-08-07T12:19:29.586Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
     {
@@ -72,6 +72,27 @@
       ],
       "coverAlt": "왜 Mac은 AI 생태계에 유리한가 보고서 대표 이미지",
       "subtitle": "Mac-first 앱 출시, 통합 메모리, 로컬 AI 운영과 RAM 선택, Windows·Linux 대비 강점과 한계"
+    },
+    {
+      "id": "260807-ai-agent-books-review",
+      "slug": "ai-agent-books-review",
+      "title": "AI 에이전트 3권, 모두 사야 할까? 답은 단계 구매입니다",
+      "subtitle": "비전공자 관점에서 AI 에이전트 3권의 구매 적합성, 난이도, 읽는 순서 비교",
+      "category": "AI · 서적리뷰",
+      "summary": "비전공자 관점에서 『AI 에이전트 생태계』와 『AI 에이전트 실행 세계 1·2』의 구매 적합성, 난이도, 읽는 순서를 비교한 구매 전 도서 리뷰입니다.",
+      "createdAt": "2026-08-07T00:00:00+09:00",
+      "updatedAt": "2026-08-07T00:00:00+09:00",
+      "status": "published",
+      "path": "reports/260807-ai-agent-books-review.html",
+      "url": "https://aihubos.github.io/reportmode/reports/260807-ai-agent-books-review.html",
+      "displayDate": "260807",
+      "sourceCount": 0,
+      "tags": [
+        "ai-agent",
+        "book-review",
+        "ai-ecosystem",
+        "비전공자"
+      ]
     },
     {
       "id": "260806-hermes-second-brain",
