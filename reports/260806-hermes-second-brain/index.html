@@ -908,14 +908,67 @@
     }
   </style>
   <link rel="stylesheet" href="../../assets/report-page-layout.css">
+  <style>
+    /* Report Mode standard controls for this legacy standalone report. */
+    .report-view-switcher { position: sticky; top: 0; z-index: 1100; border-bottom: 1px solid rgba(49,130,246,.16); background: rgba(247,248,250,.92); backdrop-filter: blur(18px); }
+    .report-view-switcher-inner { width: min(1180px, calc(100% - 44px)); min-height: 58px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; padding: 8px 0; }
+    .report-view-label { color: var(--muted); font-size: 10px; font-weight: 800; white-space: nowrap; }
+    .report-view-buttons { display: inline-flex; overflow: hidden; min-width: 118px; border: 1px solid rgba(60,60,67,.16); border-radius: 999px; background: rgba(118,118,128,.12); }
+    .report-view-button { min-width: 58px; min-height: 32px; padding: 4px 10px; border: 0; background: transparent; color: #555b63; font: 800 12px/1.2 inherit; cursor: pointer; }
+    .report-view-button.is-active, .report-view-button[aria-pressed="true"] { color: #fff; background: var(--blue); }
+    .report-utility-controls { display: flex; gap: 6px; }
+    .report-utility-controls button { min-height: 32px; padding: 4px 10px; border: 1px solid rgba(60,60,67,.16); border-radius: 999px; background: #fff; color: var(--ink-2); font: 800 12px/1.2 inherit; cursor: pointer; }
+    .report-utility-controls .pdf-save-button { color: #fff; border-color: var(--blue); background: var(--blue); }
+    .hermes-simple-report { display: none; padding: 56px 0 96px; }
+    .hermes-simple-card { padding: 42px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: #fff; box-shadow: var(--shadow-sm); }
+    .hermes-simple-card h1 { margin: 12px 0; font-size: clamp(36px, 6vw, 66px); line-height: 1.08; }
+    .hermes-simple-card > p { max-width: 760px; margin: 0 0 28px; color: var(--ink-2); font-size: 19px; }
+    .hermes-simple-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 0 0 30px; }
+    .hermes-simple-grid article { min-height: 116px; padding: 20px; border-radius: 18px; background: var(--surface); }
+    .hermes-simple-grid b, .hermes-simple-grid span { display: block; }
+    .hermes-simple-grid b { margin-bottom: 8px; font-size: 18px; }
+    .hermes-simple-grid span { color: var(--muted); font-weight: 700; }
+    body[data-report-view="simple"] .hermes-simple-report { display: block; }
+    body[data-report-view="simple"] > main { display: none; }
+    @media (max-width: 700px) { .report-view-switcher-inner { width: min(100% - 20px, 520px); } .report-view-label { display: none; } .hermes-simple-card { padding: 28px 22px; } .hermes-simple-grid { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body class="report-a4-mode" data-report-layout="a4" data-report-view="detail" data-report-cover="../assets/260806-hermes-second-brain/second-brain-architecture.png" data-report-cover-alt="Hermes와 Second Brain 구성 관계 도식">
   <a class="report-home-button" href="../../archive/" aria-label="보고서 도서관 메인으로 이동">🏠 메인</a>
+  <section class="report-view-switcher" aria-label="보고서 보기 방식">
+    <div class="report-view-switcher-inner">
+      <span class="report-view-label">보고서 보기</span>
+      <div class="report-view-buttons" role="group" aria-label="간단 또는 상세 보기">
+        <button class="report-view-button" type="button" data-report-view-target="simple" aria-pressed="false">간단</button>
+        <button class="report-view-button is-active" type="button" data-report-view-target="detail" aria-pressed="true">상세</button>
+      </div>
+      <div class="report-utility-controls">
+        <button id="report-pdf-button" class="pdf-save-button" type="button">PDF 저장</button>
+        <button id="report-share-button" type="button">공유하기</button>
+      </div>
+    </div>
+  </section>
+  <section id="simple-report" class="hermes-simple-report" aria-labelledby="simple-report-title">
+    <div class="container">
+      <div class="hermes-simple-card">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>3분 핵심 요약</div>
+        <h1 id="simple-report-title">Hermes × Second Brain</h1>
+        <p>AI가 일을 이어서 하게 하려면, 자료를 담는 공간과 AI가 이해하는 지식 구조가 함께 필요합니다.</p>
+        <div class="hermes-simple-grid">
+          <article><b>Second Brain</b><span>회사 지식의 전체 운영체계</span></article>
+          <article><b>Obsidian + PARA</b><span>사람이 저장하고 찾는 문서 공간과 서랍</span></article>
+          <article><b>LLM Wiki</b><span>AI가 요약·연결·갱신하는 지식층</span></article>
+          <article><b>Hermes</b><span>지식을 읽고 실제 업무를 수행하는 AI 직원</span></article>
+        </div>
+        <button class="btn btn-primary" type="button" data-report-view-target="detail">상세 근거 전체 보기</button>
+      </div>
+    </div>
+  </section>
   <div class="scroll-progress" id="scrollProgress"></div>
 
   <div class="nav-wrap">
     <nav class="nav" aria-label="주요 메뉴">
-      <a class="brand" href="#top" aria-label="처음으로">
+      <a class="brand" href="../../archive/" aria-label="보고서 도서관 메인으로 이동">
         <span class="brand-mark" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none"><path d="M5 12.2 9.1 16 19 6.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </span>
@@ -1556,6 +1609,27 @@
     });
   </script>
   <script src="../../assets/report-page-layout.js"></script>
+  <script>
+    (() => {
+      const body = document.body;
+      const buttons = [...document.querySelectorAll('[data-report-view-target]')];
+      const setView = (view) => {
+        const next = view === 'simple' ? 'simple' : 'detail';
+        body.dataset.reportView = next;
+        buttons.forEach((button) => {
+          const active = button.dataset.reportViewTarget === next;
+          button.classList.toggle('is-active', active);
+          if (button.classList.contains('report-view-button')) button.setAttribute('aria-pressed', String(active));
+        });
+      };
+      buttons.forEach((button) => button.addEventListener('click', () => setView(button.dataset.reportViewTarget)));
+      setView(new URLSearchParams(location.search).get('view') === 'simple' ? 'simple' : 'detail');
+      document.getElementById('report-share-button').addEventListener('click', async () => {
+        try { await navigator.clipboard.writeText(location.href); showToast('링크를 복사했습니다.'); }
+        catch (_) { showToast('주소창의 링크를 복사해 공유해 주세요.'); }
+      });
+    })();
+  </script>
   <script src="../../assets/report-view-counter.js" data-report-id="260806-hermes-second-brain"></script>
 </body>
 </html>
