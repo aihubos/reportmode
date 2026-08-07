@@ -25,6 +25,30 @@
   }
 }
 
+
+/* ── Layout toggle fix ── */
+.report-view-switcher-inner {
+  grid-template-columns: auto minmax(100px,120px) auto minmax(100px,120px) auto !important;
+  gap: 10px !important;
+  align-items: center !important;
+  min-height: 56px !important;
+}
+[aria-label="가로 또는 세로"],
+[aria-label="간단 또는 상세 보기"] {
+  width: auto !important;
+  min-width: 100px !important;
+}
+[aria-label="가로 또는 세로"] .report-view-button,
+[aria-label="간단 또는 상세 보기"] .report-view-button {
+  min-height: 36px !important;
+  padding: 6px 12px !important;
+  font-size: 13px !important;
+}
+.report-view-label {
+  font-size: 11px !important;
+  white-space: nowrap;
+}
+
 </style>
   <style id="report-view-v4-style">
     :root{--max:1120px;--apple-blue:#007aff;--apple-gray:rgba(118,118,128,.16)}
@@ -55,6 +79,30 @@
   @media (max-width: 218mm) {
     body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
   }
+}
+
+
+/* ── Layout toggle fix ── */
+.report-view-switcher-inner {
+  grid-template-columns: auto minmax(100px,120px) auto minmax(100px,120px) auto !important;
+  gap: 10px !important;
+  align-items: center !important;
+  min-height: 56px !important;
+}
+[aria-label="가로 또는 세로"],
+[aria-label="간단 또는 상세 보기"] {
+  width: auto !important;
+  min-width: 100px !important;
+}
+[aria-label="가로 또는 세로"] .report-view-button,
+[aria-label="간단 또는 상세 보기"] .report-view-button {
+  min-height: 36px !important;
+  padding: 6px 12px !important;
+  font-size: 13px !important;
+}
+.report-view-label {
+  font-size: 11px !important;
+  white-space: nowrap;
 }
 
 </style>
@@ -90,6 +138,30 @@
   }
 }
 
+
+/* ── Layout toggle fix ── */
+.report-view-switcher-inner {
+  grid-template-columns: auto minmax(100px,120px) auto minmax(100px,120px) auto !important;
+  gap: 10px !important;
+  align-items: center !important;
+  min-height: 56px !important;
+}
+[aria-label="가로 또는 세로"],
+[aria-label="간단 또는 상세 보기"] {
+  width: auto !important;
+  min-width: 100px !important;
+}
+[aria-label="가로 또는 세로"] .report-view-button,
+[aria-label="간단 또는 상세 보기"] .report-view-button {
+  min-height: 36px !important;
+  padding: 6px 12px !important;
+  font-size: 13px !important;
+}
+.report-view-label {
+  font-size: 11px !important;
+  white-space: nowrap;
+}
+
 </style><div class="llm-wordmark">Apple · 비후원 독립 분석</div><div class="llm-badge"><b>균형점 · Qwen3.5-122B-A10B 4-bit</b>약 69.6GB 저장소 · 32K 피크 76.4GB · M5 Max 디코드 중앙값 63.9 tok/s</div></div><figcaption id="visual-title"><b>AI 생성 인포그래픽 · 공식 제품 이미지 아님</b><span>128GB 통합 메모리는 CPU와 GPU가 함께 쓰는 하나의 공간이다. 정확한 모델명·용량·판단 수치는 HTML 표에서 검증했다.</span></figcaption></figure></div></section>
     <section id="summary"><div class="wrap"><div class="section-head"><h2>128GB의 정답은 “122B 4-bit + 50GB대 여유”입니다</h2><p>큰 모델을 간신히 올리는 것보다, 32K 컨텍스트·IDE·브라우저·에이전트까지 함께 유지하는 구성이 실용적입니다.</p></div><div class="paper"><div class="verdict-grid"><article class="verdict-main"><h3>종합 1위 · Qwen3.5-122B-A10B 4-bit</h3><p>122B 전체 파라미터 중 토큰마다 약 10B가 활성화되는 MoE다. 4-bit MLX 저장소 약 69.6GB, M5 Max 실측 피크 69.8~76.4GB로 128GB에서 운영 여유를 남긴다. 공식 카드상 멀티모달·201개 언어·262K 기본 컨텍스트를 지원하지만, 로컬 운용은 32K부터 시작하는 편이 안전하다.</p><div class="legend"><span class="badge fact">공식 사양</span><span class="badge analysis">실측 기반 권고</span><span class="badge forecast">속도 보장 아님</span></div></article><aside class="verdict-side"><div class="big">63.9</div><b>decode tok/s 중앙값</b><p>M5 Max · MLX 4-bit · 11개 실측. 52.3~67.2 tok/s 범위이며 프롬프트·디코드 길이에 따라 달라졌다.</p></aside></div><div class="metrics"><div class="metric"><div class="value">128GB</div><div class="label">CPU·GPU가 공유하는 통합 메모리</div></div><div class="metric"><div class="value">614GB/s</div><div class="label">40코어 GPU M5 Max 공식 대역폭</div></div><div class="metric"><div class="value">69.6GB</div><div class="label">Qwen 122B MLX 4-bit 저장소 총량</div></div><div class="metric"><div class="value">51.6GB</div><div class="label">32K 피크 76.4GB 사용 후 명목 여유</div></div></div></div></div></section>
     <section id="comparison"><div class="wrap"><div class="section-head"><h2>모델별로 “파일이 들어감”과 “쓸 만함”을 분리했습니다</h2><p>실측은 Creative Strategies가 공개한 M5 Max·MLX 110회 데이터 중 동일 모델 11회씩을 집계했습니다. 해당 글은 정확한 메모리·칩 bin을 명시하지 않아 방향성 근거로 사용합니다.</p></div><div class="table-wrap"><table><thead><tr><th>모델</th><th>구조·컨텍스트</th><th>권장 양자·런타임</th><th>실제 크기·피크</th><th>M5 Max 디코드 실측</th><th>128GB 판정</th><th>주 용도·주의</th></tr></thead><tbody>
@@ -113,6 +185,30 @@
   @media (max-width: 218mm) {
     body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
   }
+}
+
+
+/* ── Layout toggle fix ── */
+.report-view-switcher-inner {
+  grid-template-columns: auto minmax(100px,120px) auto minmax(100px,120px) auto !important;
+  gap: 10px !important;
+  align-items: center !important;
+  min-height: 56px !important;
+}
+[aria-label="가로 또는 세로"],
+[aria-label="간단 또는 상세 보기"] {
+  width: auto !important;
+  min-width: 100px !important;
+}
+[aria-label="가로 또는 세로"] .report-view-button,
+[aria-label="간단 또는 상세 보기"] .report-view-button {
+  min-height: 36px !important;
+  padding: 6px 12px !important;
+  font-size: 13px !important;
+}
+.report-view-label {
+  font-size: 11px !important;
+  white-space: nowrap;
 }
 
 </style>

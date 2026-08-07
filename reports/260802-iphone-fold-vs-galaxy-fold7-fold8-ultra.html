@@ -52,6 +52,30 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
   }
 }
 
+
+/* ── Layout toggle fix ── */
+.report-view-switcher-inner {
+  grid-template-columns: auto minmax(100px,120px) auto minmax(100px,120px) auto !important;
+  gap: 10px !important;
+  align-items: center !important;
+  min-height: 56px !important;
+}
+[aria-label="가로 또는 세로"],
+[aria-label="간단 또는 상세 보기"] {
+  width: auto !important;
+  min-width: 100px !important;
+}
+[aria-label="가로 또는 세로"] .report-view-button,
+[aria-label="간단 또는 상세 보기"] .report-view-button {
+  min-height: 36px !important;
+  padding: 6px 12px !important;
+  font-size: 13px !important;
+}
+.report-view-label {
+  font-size: 11px !important;
+  white-space: nowrap;
+}
+
 </style>
 <style id="report-view-v4-style">
     :root{--max:1120px;--apple-blue:#007aff;--apple-gray:rgba(118,118,128,.16)}
@@ -82,6 +106,30 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
   @media (max-width: 218mm) {
     body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
   }
+}
+
+
+/* ── Layout toggle fix ── */
+.report-view-switcher-inner {
+  grid-template-columns: auto minmax(100px,120px) auto minmax(100px,120px) auto !important;
+  gap: 10px !important;
+  align-items: center !important;
+  min-height: 56px !important;
+}
+[aria-label="가로 또는 세로"],
+[aria-label="간단 또는 상세 보기"] {
+  width: auto !important;
+  min-width: 100px !important;
+}
+[aria-label="가로 또는 세로"] .report-view-button,
+[aria-label="간단 또는 상세 보기"] .report-view-button {
+  min-height: 36px !important;
+  padding: 6px 12px !important;
+  font-size: 13px !important;
+}
+.report-view-label {
+  font-size: 11px !important;
+  white-space: nowrap;
 }
 
 </style><!--Report Mode v4.3: detail default + two-page brief + Apple segmented control--></head>
