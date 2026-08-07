@@ -5,25 +5,39 @@
   <meta http-equiv="refresh" content="0; url=../260802-apple-foldable-iphone/">
   <link rel="canonical" href="https://aihubos.github.io/reportmode/reports/260802-apple-foldable-iphone/">
   <title>이동 중 — Apple 폴더블 iPhone</title>
-  <style>body{font-family:system-ui,sans-serif;padding:48px;max-width:640px;margin:auto;line-height:1.6}a{color:#0b3d91}</style>
+  <style>body{font-family:system-ui,sans-serif;padding:48px;max-width:640px;margin:auto;line-height:1.6}a{color:#0b3d91}
+@media print {
+  @page { size: A4 portrait; margin: 15mm; }
+  body { background: #fff; font-size: 11pt; color: #000; }
+  .nav, .archive-topbar, .floating-menu, .report-view-controls,
+  .report-share-button, #report-pdf-button, #scroll-top,
+  .giscus, #comment-form button, #comment-list button,
+  .archive-footer, .archive-sidebar, .archive-pagination { display: none !important; }
+  .archive-shell, .wrap, main { width: 100% !important; max-width: 100% !important; }
+  h1 { font-size: 20pt !important; }
+  h2 { font-size: 16pt !important; }
+  h3 { font-size: 13pt !important; }
+  p, li { font-size: 10pt !important; line-height: 1.5 !important; }
+  table { font-size: 8pt !important; }
+  .report-section { break-inside: avoid; }
+  img { max-width: 100% !important; }
+  a { color: #000 !important; text-decoration: underline; }
+  #sources { display: block !important; }
+  .source-content { display: block !important; }
+  #comment-list { max-height: none !important; }
+  #comment-list div { break-inside: avoid; }
+}
+
+</style>
 </head>
 <body>
 <span id="view-count" style="display:none">0</span>
   <h1>보고서 주소가 변경되었습니다</h1>
   <p><strong>Apple 폴더블 iPhone</strong> 보고서는 새 주소로 이동했습니다.</p>
   <p><a href="../260802-apple-foldable-iphone/">새 보고서로 이동</a></p>
-<div class="giscus" style="margin-top:48px;max-width:720px"></div>
-<script src="https://giscus.app/client.js"
-  data-repo="aihubos/reportmode"
-  data-repo-id="R_kgDOTqhwPQ" data-category="General"
-  data-category-id="DIC_kwDOTqhwPc4DC1QV" data-mapping="pathname"
-  data-strict="0" data-reactions-enabled="1" data-emit-metadata="0"
-  data-input-position="bottom" data-theme="light" data-lang="ko"
-  crossorigin="anonymous" async>
-</script>
 <script src="../../assets/js/view-counter.js"></script>
 <!-- COMMENT WIDGET -->
-<div style="max-width:720px;margin:60px auto 0;padding:32px 28px;background:#fff;border:1px solid #e5e8eb;border-radius:18px;box-shadow:0 4px 16px rgba(0,0,0,.04);">
+<div style="max-width:720px;margin:40px auto;padding:32px 28px;background:#fff;border:1px solid #e5e8eb;border-radius:18px;box-shadow:0 4px 16px rgba(0,0,0,.04);">
   <h3 style="margin:0 0 6px;font-size:20px;color:#191f28;">💬 댓글</h3>
   <p style="margin:0 0 20px;font-size:14px;color:#8b95a1;">로그인 없이 자유롭게 의견을 남겨주세요.</p>
   <div id="comment-list" style="margin-bottom:20px;max-height:400px;overflow-y:auto;"></div>
@@ -37,7 +51,12 @@
 (function(){
   var PAGE = window.location.pathname.replace(/\//g,'-').replace(/^-|-$/g,'') || 'index';
   var STORAGE_KEY = 'comments-' + PAGE;
+  var DEL_PASSWORD = '1234';
   var list = document.getElementById('comment-list');
+  
+  function saveComments(comments) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(comments));
+  }
   
   function loadComments() {
     var raw = localStorage.getItem(STORAGE_KEY);
@@ -47,10 +66,13 @@
       : comments.map(function(c,i){
           var name = c.name || '익명';
           var date = new Date(c.time).toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'});
-          return '<div style="padding:14px 0;border-bottom:1px solid #f0f0f0;">'
+          return '<div style="padding:14px 0;border-bottom:1px solid #f0f0f0;" data-idx="'+i+'">'
             + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">'
+            + '<div>'
             + '<strong style="font-size:14px;color:#191f28;">' + escapeHtml(name) + '</strong>'
-            + '<span style="font-size:12px;color:#b0b8c1;">' + date + '</span>'
+            + '<span style="font-size:12px;color:#b0b8c1;margin-left:8px;">' + date + '</span>'
+            + '</div>'
+            + '<button onclick="deleteComment('+i+')" style="background:none;border:none;color:#ccc;cursor:pointer;font-size:12px;padding:2px 6px;" title="삭제">✕</button>'
             + '</div>'
             + '<p style="margin:0;font-size:14px;color:#4a5568;line-height:1.5;">' + escapeHtml(c.body) + '</p>'
             + '</div>';
@@ -62,6 +84,17 @@
     div.textContent = text;
     return div.innerHTML;
   }
+  
+  window.deleteComment = function(idx) {
+    var pw = prompt('삭제 비밀번호를 입력하세요:');
+    if (pw !== DEL_PASSWORD) { alert('비밀번호가 틀렸습니다.'); return; }
+    if (!confirm('정말 삭제하시겠습니까?')) return;
+    var raw = localStorage.getItem(STORAGE_KEY);
+    var comments = raw ? JSON.parse(raw) : [];
+    comments.splice(idx, 1);
+    saveComments(comments);
+    loadComments();
+  };
   
   window.submitComment = function(e) {
     e.preventDefault();
@@ -75,7 +108,7 @@
     var raw = localStorage.getItem(STORAGE_KEY);
     var comments = raw ? JSON.parse(raw) : [];
     comments.unshift(comment);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(comments.slice(0, 100)));
+    saveComments(comments.slice(0, 100));
     bodyEl.value = '';
     nameEl.value = '';
     loadComments();

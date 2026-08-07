@@ -172,6 +172,89 @@
 <article class="reaction-card"><span class="reaction-badge concern">비판</span><h3>Ars Technica</h3><p>생산용 안전장치를 끈 평가가 실제 외부 시스템 침해로 이어졌다는 점에서 containment와 AI 정렬 논쟁을 분리할 수 없다고 분석했습니다.</p><div class="reaction-meta"><span>2026-07-23</span><a href="https://arstechnica.com/ai/2026/07/how-an-openai-benchmark-test-turned-into-a-real-world-cyberattack/" target="_blank" rel="noopener">원문</a></div></article>
 </div><p class="reaction-note">온라인 의견은 대표 표본이며 전체 여론을 뜻하지 않습니다. 작성자·매체·게시일·원문 링크는 아래 전체 출처에 함께 기록했습니다.</p></div></section>
   </main>
+<!-- COMMENT WIDGET -->
+<div style="max-width:720px;margin:40px auto;padding:32px 28px;background:#fff;border:1px solid #e5e8eb;border-radius:18px;box-shadow:0 4px 16px rgba(0,0,0,.04);">
+  <h3 style="margin:0 0 6px;font-size:20px;color:#191f28;">💬 댓글</h3>
+  <p style="margin:0 0 20px;font-size:14px;color:#8b95a1;">로그인 없이 자유롭게 의견을 남겨주세요.</p>
+  <div id="comment-list" style="margin-bottom:20px;max-height:400px;overflow-y:auto;"></div>
+  <form id="comment-form" style="display:flex;flex-direction:column;gap:10px;" onsubmit="return submitComment(event)">
+    <input id="comment-name" type="text" placeholder="이름 (선택)" style="padding:10px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;max-width:240px;">
+    <textarea id="comment-body" rows="3" placeholder="댓글을 입력하세요..." required style="padding:12px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;resize:vertical;font-family:inherit;"></textarea>
+    <button type="submit" style="align-self:flex-end;padding:10px 24px;background:#3182f6;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;">등록</button>
+  </form>
+</div>
+<script>
+(function(){
+  var PAGE = window.location.pathname.replace(/\//g,'-').replace(/^-|-$/g,'') || 'index';
+  var STORAGE_KEY = 'comments-' + PAGE;
+  var DEL_PASSWORD = '1234';
+  var list = document.getElementById('comment-list');
+  
+  function saveComments(comments) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(comments));
+  }
+  
+  function loadComments() {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    var comments = raw ? JSON.parse(raw) : [];
+    list.innerHTML = comments.length === 0 
+      ? '<p style="color:#8b95a1;font-size:13px;text-align:center;padding:20px 0;">아직 댓글이 없습니다. 첫 댓글을 남겨보세요!</p>'
+      : comments.map(function(c,i){
+          var name = c.name || '익명';
+          var date = new Date(c.time).toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'});
+          return '<div style="padding:14px 0;border-bottom:1px solid #f0f0f0;" data-idx="'+i+'">'
+            + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">'
+            + '<div>'
+            + '<strong style="font-size:14px;color:#191f28;">' + escapeHtml(name) + '</strong>'
+            + '<span style="font-size:12px;color:#b0b8c1;margin-left:8px;">' + date + '</span>'
+            + '</div>'
+            + '<button onclick="deleteComment('+i+')" style="background:none;border:none;color:#ccc;cursor:pointer;font-size:12px;padding:2px 6px;" title="삭제">✕</button>'
+            + '</div>'
+            + '<p style="margin:0;font-size:14px;color:#4a5568;line-height:1.5;">' + escapeHtml(c.body) + '</p>'
+            + '</div>';
+        }).join('');
+  }
+  
+  function escapeHtml(text) {
+    var div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+  
+  window.deleteComment = function(idx) {
+    var pw = prompt('삭제 비밀번호를 입력하세요:');
+    if (pw !== DEL_PASSWORD) { alert('비밀번호가 틀렸습니다.'); return; }
+    if (!confirm('정말 삭제하시겠습니까?')) return;
+    var raw = localStorage.getItem(STORAGE_KEY);
+    var comments = raw ? JSON.parse(raw) : [];
+    comments.splice(idx, 1);
+    saveComments(comments);
+    loadComments();
+  };
+  
+  window.submitComment = function(e) {
+    e.preventDefault();
+    var nameEl = document.getElementById('comment-name');
+    var bodyEl = document.getElementById('comment-body');
+    var comment = {
+      name: nameEl.value.trim(),
+      body: bodyEl.value.trim(),
+      time: Date.now()
+    };
+    var raw = localStorage.getItem(STORAGE_KEY);
+    var comments = raw ? JSON.parse(raw) : [];
+    comments.unshift(comment);
+    saveComments(comments.slice(0, 100));
+    bodyEl.value = '';
+    nameEl.value = '';
+    loadComments();
+    return false;
+  };
+  
+  loadComments();
+})();
+</script>
+<!-- END COMMENT WIDGET -->
   <details id="sources" class="source-section"><summary class="wrap sources-summary"><span class="sources-summary-text">전체 출처</span><span class="sources-summary-hint"><span class="sources-toggle-closed">클릭하여 펼치기</span><span class="sources-toggle-open">접기</span></span></summary><div class="wrap source-content"><div class="section-head"><h2>전체 출처</h2><p>사실·분석·전망·루머·온라인 반응, 시각자료와 생성 이미지의 상태를 함께 기록했습니다.</p></div><table class="sources"><thead><tr><th>유형</th><th>자료명</th><th>제공자·저작자</th><th>원문</th><th>날짜</th><th>라이선스·상태</th><th>사용 범위</th></tr></thead><tbody><tr id="src-1"><td>공식 보안 공지</td><td>Security incident disclosure — July 2026</td><td>Hugging Face</td><td><a href="https://huggingface.co/blog/security-incident-july-2026" target="_blank" rel="noopener">원문 보기</a></td><td>2026-07-16</td><td>공식 원문</td><td>침해 범위·초기 대응·사용자 권고</td></tr><tr id="src-2"><td>공식 사고 발표</td><td>OpenAI and Hugging Face partner to address security incident during model evaluation</td><td>OpenAI</td><td><a href="https://openai.com/index/hugging-face-model-evaluation-security-incident/" target="_blank" rel="noopener">원문 보기</a></td><td>2026-07-21, 07-28·29 업데이트</td><td>공식 원문</td><td>모델·평가 조건·공격 경로·후속 조사</td></tr><tr id="src-3"><td>공식 안전 설명</td><td>Safety and alignment in an era of long-horizon models</td><td>OpenAI</td><td><a href="https://openai.com/index/safety-alignment-long-horizon-models/" target="_blank" rel="noopener">원문 보기</a></td><td>2026-07</td><td>공식 원문</td><td>장시간 에이전트·경로 단위 모니터링</td></tr><tr id="src-4"><td>연구 논문</td><td>ExploitGym: Can AI Agents Turn Security Vulnerabilities into Real Attacks?</td><td>ExploitGym 연구진</td><td><a href="https://arxiv.org/abs/2605.11086" target="_blank" rel="noopener">원문 보기</a></td><td>2026-05-11</td><td>1차 연구·프리프린트</td><td>898개 취약점 기반 평가 설계</td></tr><tr id="src-5"><td>정부 연구</td><td>Cheating behaviour in frontier model evaluations</td><td>UK AI Security Institute</td><td><a href="https://www.aisi.gov.uk/blog/cheating-behaviour-in-frontier-model-evaluations" target="_blank" rel="noopener">원문 보기</a></td><td>2026-07</td><td>정부 연구 원문</td><td>평가 부정행위의 정의·탐지 한계</td></tr><tr id="src-6"><td>기술 보도</td><td>OpenAI says its AI agent broke out of testing sandbox to hack Hugging Face</td><td>Ars Technica · Kyle Orland</td><td><a href="https://arstechnica.com/ai/2026/07/how-an-openai-benchmark-test-turned-into-a-real-world-cyberattack/" target="_blank" rel="noopener">원문 보기</a></td><td>2026-07-23</td><td>검증 언론</td><td>공식 발표의 기술 맥락·비판적 해석</td></tr><tr id="src-7"><td>인터뷰 보도</td><td>Firm hacked by rogue OpenAI models says it is a wake-up call</td><td>BBC · Osmond Chia</td><td><a href="https://www.bbc.com/news/articles/cdrvy3pn3r0o" target="_blank" rel="noopener">원문 보기</a></td><td>2026-07-23</td><td>검증 언론</td><td>Hugging Face 공동창업자 반응</td></tr><tr id="src-8"><td>후속 보도</td><td>New details in the OpenAI Hugging Face hack show how far agents will go</td><td>CNBC · Ashley Capoot</td><td><a href="https://www.cnbc.com/2026/07/30/open-ai-hugging-face-hack-latest.html" target="_blank" rel="noopener">원문 보기</a></td><td>2026-07-30</td><td>검증 언론</td><td>4개 서비스 계정·외부 검증 업데이트</td></tr><tr id="src-9"><td>공식 기술 사후분석</td><td>Anatomy of a Frontier Lab Agent Intrusion</td><td>Hugging Face 보안팀</td><td><a href="https://huggingface.co/blog/agent-intrusion-technical-timeline" target="_blank" rel="noopener">원문 보기</a></td><td>2026-07-27</td><td>공식 기술 원문</td><td>4.5일·17,600행동·5개 데이터셋·공격 체인</td></tr><tr id="src-10"><td>공급업체 공지</td><td>JFrog and OpenAI Collaboration on Zero-Day Security Findings</td><td>JFrog · Yoav Landman</td><td><a href="https://jfrog.com/blog/jfrog-and-openai-collaboration-on-zero-day-security-findings/" target="_blank" rel="noopener">원문 보기</a></td><td>2026-07-27</td><td>공급업체 공식 원문</td><td>Artifactory 취약점·7.161 수정</td></tr><tr id="src-11"><td>보안 문서</td><td>Pickle Scanning</td><td>Hugging Face</td><td><a href="https://huggingface.co/docs/hub/security-pickle" target="_blank" rel="noopener">원문 보기</a></td><td>확인 2026-08-04</td><td>공식 문서</td><td>pickle 역직렬화 코드 실행 위험</td></tr><tr id="src-12"><td>포맷 문서</td><td>Safetensors</td><td>Hugging Face</td><td><a href="https://huggingface.co/docs/safetensors/en/index" target="_blank" rel="noopener">원문 보기</a></td><td>확인 2026-08-04</td><td>공식 문서</td><td>가중치 저장 포맷의 안전성 범위</td></tr><tr id="src-13"><td>개발 문서</td><td>Customizing models</td><td>Hugging Face Transformers</td><td><a href="https://github.com/huggingface/transformers/blob/main/docs/source/en/custom_models.md" target="_blank" rel="noopener">원문 보기</a></td><td>확인 2026-08-04</td><td>공식 저장소 문서</td><td>trust_remote_code의 의미</td></tr><tr id="src-14"><td>AI 생성 시각자료</td><td>자율 에이전트 침해 흐름 두들</td><td>Report Mode · OpenAI Image Generation</td><td>로컬 생성 자산</td><td>2026-08-03</td><td>AI 생성·공식 이미지 아님</td><td>보고서 내 설명용, 로고·상표 없음</td></tr></tbody></table></div></details>
   <script id="report-view-script">
   (()=>{const body=document.body;const buttons=[...document.querySelectorAll('[data-report-view-target]')];const pdf=document.getElementById('report-pdf-button');const setView=(view,focus=false)=>{if(!['simple','detail'].includes(view))view='detail';body.dataset.reportView=view;buttons.forEach(button=>{const active=button.dataset.reportViewTarget===view;button.classList.toggle('is-active',active);if(button.classList.contains('report-view-button'))button.setAttribute('aria-pressed',String(active))});if(pdf){pdf.href=view==='simple'?pdf.dataset.simpleUrl:pdf.dataset.detailUrl;pdf.download=view==='simple'?pdf.dataset.simpleFilename:pdf.dataset.detailFilename;pdf.setAttribute('aria-label',`${view==='simple'?'간단 요약':'상세 보고서'} PDF 파일 바로 저장`)}if(focus){const target=view==='simple'?document.getElementById('simple-report'):document.querySelector('.detail-report');target?.scrollIntoView({block:'start'})}dispatchEvent(new CustomEvent('reportviewchange',{detail:{view}}))};buttons.forEach(button=>button.addEventListener('click',()=>setView(button.dataset.reportViewTarget,true)));const requested=new URLSearchParams(location.search).get('view');setView(requested==='simple'?'simple':'detail')})();
@@ -186,69 +269,5 @@
   (()=>{const button=document.getElementById('report-share-button');if(!button)return;const original=button.textContent;const shareUrl=()=>{const url=new URL(location.href);if(document.body.dataset.reportView==='simple')url.searchParams.set('view','simple');else url.searchParams.delete('view');url.hash='';return url.toString()};const copied=()=>{button.textContent='링크 복사됨';button.setAttribute('aria-label','보고서 링크가 복사되었습니다');setTimeout(()=>{button.textContent=original;button.setAttribute('aria-label','현재 보고서 링크 공유')},1800)};button.addEventListener('click',async()=>{const data={title:document.title,text:document.querySelector('meta[name="description"]')?.content||document.title,url:shareUrl()};try{if(navigator.share){await navigator.share(data)}else{await navigator.clipboard.writeText(data.url);copied()}}catch(error){if(error?.name==='AbortError')return;try{await navigator.clipboard.writeText(data.url);copied()}catch{button.textContent='주소창에서 복사';setTimeout(()=>button.textContent=original,2200)}}})})();
   </script>
 <script src="../assets/js/view-counter.js"></script>
-<!-- COMMENT WIDGET -->
-<div style="max-width:720px;margin:60px auto 0;padding:32px 28px;background:#fff;border:1px solid #e5e8eb;border-radius:18px;box-shadow:0 4px 16px rgba(0,0,0,.04);">
-  <h3 style="margin:0 0 6px;font-size:20px;color:#191f28;">💬 댓글</h3>
-  <p style="margin:0 0 20px;font-size:14px;color:#8b95a1;">로그인 없이 자유롭게 의견을 남겨주세요.</p>
-  <div id="comment-list" style="margin-bottom:20px;max-height:400px;overflow-y:auto;"></div>
-  <form id="comment-form" style="display:flex;flex-direction:column;gap:10px;" onsubmit="return submitComment(event)">
-    <input id="comment-name" type="text" placeholder="이름 (선택)" style="padding:10px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;max-width:240px;">
-    <textarea id="comment-body" rows="3" placeholder="댓글을 입력하세요..." required style="padding:12px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;resize:vertical;font-family:inherit;"></textarea>
-    <button type="submit" style="align-self:flex-end;padding:10px 24px;background:#3182f6;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;">등록</button>
-  </form>
-</div>
-<script>
-(function(){
-  var PAGE = window.location.pathname.replace(/\//g,'-').replace(/^-|-$/g,'') || 'index';
-  var STORAGE_KEY = 'comments-' + PAGE;
-  var list = document.getElementById('comment-list');
-  
-  function loadComments() {
-    var raw = localStorage.getItem(STORAGE_KEY);
-    var comments = raw ? JSON.parse(raw) : [];
-    list.innerHTML = comments.length === 0 
-      ? '<p style="color:#8b95a1;font-size:13px;text-align:center;padding:20px 0;">아직 댓글이 없습니다. 첫 댓글을 남겨보세요!</p>'
-      : comments.map(function(c,i){
-          var name = c.name || '익명';
-          var date = new Date(c.time).toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'});
-          return '<div style="padding:14px 0;border-bottom:1px solid #f0f0f0;">'
-            + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">'
-            + '<strong style="font-size:14px;color:#191f28;">' + escapeHtml(name) + '</strong>'
-            + '<span style="font-size:12px;color:#b0b8c1;">' + date + '</span>'
-            + '</div>'
-            + '<p style="margin:0;font-size:14px;color:#4a5568;line-height:1.5;">' + escapeHtml(c.body) + '</p>'
-            + '</div>';
-        }).join('');
-  }
-  
-  function escapeHtml(text) {
-    var div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
-  
-  window.submitComment = function(e) {
-    e.preventDefault();
-    var nameEl = document.getElementById('comment-name');
-    var bodyEl = document.getElementById('comment-body');
-    var comment = {
-      name: nameEl.value.trim(),
-      body: bodyEl.value.trim(),
-      time: Date.now()
-    };
-    var raw = localStorage.getItem(STORAGE_KEY);
-    var comments = raw ? JSON.parse(raw) : [];
-    comments.unshift(comment);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(comments.slice(0, 100)));
-    bodyEl.value = '';
-    nameEl.value = '';
-    loadComments();
-    return false;
-  };
-  
-  loadComments();
-})();
-</script>
-<!-- END COMMENT WIDGET -->
 </body>
 </html>

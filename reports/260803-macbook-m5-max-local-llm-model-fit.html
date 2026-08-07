@@ -93,6 +93,89 @@ ollama run qwen3.5:122b</pre><p class="note">명령은 2026-08-03 공개 저장�
 <article class="reaction-card"><span class="badge analysis">유보·구매 관점</span><h3>로컬 모델은 프라이버시에 강하지만 클라우드 최전선을 완전히 대체하지 않는다</h3><p class="reaction-meta"><b>Hacker News 토론 · 2026-03-29</b></p><p>한 참여자는 M5 Pro의 Qwen3.5가 Opus보다 약 4배 느리고 결과도 낮았다고 썼고, 다른 참여자는 민감 데이터와 단순 작업에는 로컬이 유용하다고 반론했다. 개인 의견 표본이다.</p><a href="https://news.ycombinator.com/item?id=47566687">토론 보기</a></article>
 <p class="note">온라인 의견과 GitHub 이슈는 대표 표본이 아니다. 모델·양자·런타임·컨텍스트·온도 조건이 다르면 숫자를 직접 합치지 않았다.</p></div><p class="reaction-note">온라인 의견은 대표 표본이며 전체 여론을 뜻하지 않습니다. 작성자·매체·게시일·원문 링크는 아래 전체 출처에 함께 기록했습니다.</p></div></section>
   </main>
+<!-- COMMENT WIDGET -->
+<div style="max-width:720px;margin:40px auto;padding:32px 28px;background:#fff;border:1px solid #e5e8eb;border-radius:18px;box-shadow:0 4px 16px rgba(0,0,0,.04);">
+  <h3 style="margin:0 0 6px;font-size:20px;color:#191f28;">💬 댓글</h3>
+  <p style="margin:0 0 20px;font-size:14px;color:#8b95a1;">로그인 없이 자유롭게 의견을 남겨주세요.</p>
+  <div id="comment-list" style="margin-bottom:20px;max-height:400px;overflow-y:auto;"></div>
+  <form id="comment-form" style="display:flex;flex-direction:column;gap:10px;" onsubmit="return submitComment(event)">
+    <input id="comment-name" type="text" placeholder="이름 (선택)" style="padding:10px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;max-width:240px;">
+    <textarea id="comment-body" rows="3" placeholder="댓글을 입력하세요..." required style="padding:12px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;resize:vertical;font-family:inherit;"></textarea>
+    <button type="submit" style="align-self:flex-end;padding:10px 24px;background:#3182f6;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;">등록</button>
+  </form>
+</div>
+<script>
+(function(){
+  var PAGE = window.location.pathname.replace(/\//g,'-').replace(/^-|-$/g,'') || 'index';
+  var STORAGE_KEY = 'comments-' + PAGE;
+  var DEL_PASSWORD = '1234';
+  var list = document.getElementById('comment-list');
+  
+  function saveComments(comments) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(comments));
+  }
+  
+  function loadComments() {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    var comments = raw ? JSON.parse(raw) : [];
+    list.innerHTML = comments.length === 0 
+      ? '<p style="color:#8b95a1;font-size:13px;text-align:center;padding:20px 0;">아직 댓글이 없습니다. 첫 댓글을 남겨보세요!</p>'
+      : comments.map(function(c,i){
+          var name = c.name || '익명';
+          var date = new Date(c.time).toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'});
+          return '<div style="padding:14px 0;border-bottom:1px solid #f0f0f0;" data-idx="'+i+'">'
+            + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">'
+            + '<div>'
+            + '<strong style="font-size:14px;color:#191f28;">' + escapeHtml(name) + '</strong>'
+            + '<span style="font-size:12px;color:#b0b8c1;margin-left:8px;">' + date + '</span>'
+            + '</div>'
+            + '<button onclick="deleteComment('+i+')" style="background:none;border:none;color:#ccc;cursor:pointer;font-size:12px;padding:2px 6px;" title="삭제">✕</button>'
+            + '</div>'
+            + '<p style="margin:0;font-size:14px;color:#4a5568;line-height:1.5;">' + escapeHtml(c.body) + '</p>'
+            + '</div>';
+        }).join('');
+  }
+  
+  function escapeHtml(text) {
+    var div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+  
+  window.deleteComment = function(idx) {
+    var pw = prompt('삭제 비밀번호를 입력하세요:');
+    if (pw !== DEL_PASSWORD) { alert('비밀번호가 틀렸습니다.'); return; }
+    if (!confirm('정말 삭제하시겠습니까?')) return;
+    var raw = localStorage.getItem(STORAGE_KEY);
+    var comments = raw ? JSON.parse(raw) : [];
+    comments.splice(idx, 1);
+    saveComments(comments);
+    loadComments();
+  };
+  
+  window.submitComment = function(e) {
+    e.preventDefault();
+    var nameEl = document.getElementById('comment-name');
+    var bodyEl = document.getElementById('comment-body');
+    var comment = {
+      name: nameEl.value.trim(),
+      body: bodyEl.value.trim(),
+      time: Date.now()
+    };
+    var raw = localStorage.getItem(STORAGE_KEY);
+    var comments = raw ? JSON.parse(raw) : [];
+    comments.unshift(comment);
+    saveComments(comments.slice(0, 100));
+    bodyEl.value = '';
+    nameEl.value = '';
+    loadComments();
+    return false;
+  };
+  
+  loadComments();
+})();
+</script>
+<!-- END COMMENT WIDGET -->
   <details id="sources" class="source-section"><summary class="wrap sources-summary"><span class="sources-summary-text">전체 출처</span><span class="sources-summary-hint"><span class="sources-toggle-closed">클릭하여 펼치기</span><span class="sources-toggle-open">접기</span></span></summary><div class="wrap source-content"><div class="section-head"><h2>전체 출처</h2><p>사실·분석·전망·루머·온라인 반응, 시각자료와 생성 이미지의 상태를 함께 기록했습니다.</p></div><table class="sources"><thead><tr><th>유형</th><th>자료명</th><th>제공자·저작자</th><th>원문</th><th>날짜</th><th>라이선스·상태</th><th>사용 범위</th></tr></thead><tbody><tr><td>공식 사양</td><td>MacBook Pro 제품 사양</td><td>Apple</td><td><a href="https://www.apple.com/kr/macbook-pro/specs/">원문 보기</a></td><td>2026-08-03 확인</td><td>공식 원문</td><td>M5 Max·128GB·614GB/s·배터리·전원</td></tr><tr><td>공식 사진</td><td>MacBook Pro · Xcode·LM Studio 제품사진</td><td>Apple Newsroom</td><td><a href="https://www.apple.com/kr/newsroom/2026/03/apple-debuts-m5-pro-and-m5-max-to-supercharge-the-most-demanding-pro-workflows/">원문 보기</a></td><td>2026-03-03</td><td>공식 미디어 자산</td><td>상단 실제 제품사진</td></tr><tr><td>공식 모델</td><td>Qwen3.5-122B-A10B</td><td>Qwen3.5</td><td><a href="https://huggingface.co/Qwen/Qwen3.5-122B-A10B">원문 보기</a></td><td>2026-08-03 확인</td><td>공식 모델 카드</td><td>122B/10B·컨텍스트·라이선스</td></tr><tr><td>공식 모델</td><td>Qwen3.5-35B-A3B</td><td>Qwen3.5</td><td><a href="https://huggingface.co/Qwen/Qwen3.5-35B-A3B">원문 보기</a></td><td>2026-08-03 확인</td><td>공식 모델 카드</td><td>35B/3B·멀티모달</td></tr><tr><td>공식 모델</td><td>Qwen3.5-27B</td><td>Qwen3.5</td><td><a href="https://huggingface.co/Qwen/Qwen3.5-27B">원문 보기</a></td><td>2026-08-03 확인</td><td>공식 모델 카드</td><td>Dense 27B</td></tr><tr><td>공식 모델</td><td>Qwen3-Coder-Next</td><td>Qwen3</td><td><a href="https://huggingface.co/Qwen/Qwen3-Coder-Next">원문 보기</a></td><td>2026-08-03 확인</td><td>공식 모델 카드</td><td>80B/3B·코딩</td></tr><tr><td>공식 모델</td><td>gpt-oss-120b</td><td>gpt</td><td><a href="https://huggingface.co/openai/gpt-oss-120b">원문 보기</a></td><td>2026-08-03 확인</td><td>공식 모델 카드</td><td>117B/5.1B·MXFP4</td></tr><tr><td>공식 모델</td><td>GLM-4.7-Flash</td><td>GLM</td><td><a href="https://huggingface.co/zai-org/GLM-4.7-Flash">원문 보기</a></td><td>2026-08-03 확인</td><td>공식 모델 카드</td><td>30B/3B</td></tr><tr><td>공식 모델</td><td>MiniMax-M2.1</td><td>MiniMax</td><td><a href="https://huggingface.co/MiniMaxAI/MiniMax-M2.1">원문 보기</a></td><td>2026-08-03 확인</td><td>공식 모델 카드</td><td>대형 MoE·컨텍스트</td></tr><tr><td>공식 모델</td><td>Qwen3.5-397B-A17B</td><td>Qwen3.5</td><td><a href="https://huggingface.co/Qwen/Qwen3.5-397B-A17B">원문 보기</a></td><td>2026-08-03 확인</td><td>공식 모델 카드</td><td>397B/17B</td></tr><tr><td>공식 모델</td><td>DeepSeek-V3.2</td><td>DeepSeek</td><td><a href="https://huggingface.co/deepseek-ai/DeepSeek-V3.2">원문 보기</a></td><td>2026-08-03 확인</td><td>공식 모델 카드</td><td>최저 GGUF 적합도</td></tr><tr><td>공식 모델</td><td>Kimi-K2.5</td><td>Kimi</td><td><a href="https://huggingface.co/moonshotai/Kimi-K2.5">원문 보기</a></td><td>2026-08-03 확인</td><td>공식 모델 카드</td><td>1T/32B·적재 불가</td></tr><tr><td>아티팩트</td><td>Qwen3.5-122B GGUF 파일 트리</td><td>Hugging Face 공개 저장소</td><td><a href="https://huggingface.co/unsloth/Qwen3.5-122B-A10B-GGUF">원문 보기</a></td><td>2026-08-03 확인</td><td>커뮤니티/런타임 변환</td><td>실제 파일 크기</td></tr><tr><td>아티팩트</td><td>Qwen3.5-122B MLX 4-bit</td><td>Hugging Face 공개 저장소</td><td><a href="https://huggingface.co/mlx-community/Qwen3.5-122B-A10B-4bit">원문 보기</a></td><td>2026-08-03 확인</td><td>커뮤니티/런타임 변환</td><td>실제 파일 크기</td></tr><tr><td>아티팩트</td><td>Qwen3-Coder-Next MLX 6-bit</td><td>Hugging Face 공개 저장소</td><td><a href="https://huggingface.co/mlx-community/Qwen3-Coder-Next-6bit">원문 보기</a></td><td>2026-08-03 확인</td><td>커뮤니티/런타임 변환</td><td>실제 파일 크기</td></tr><tr><td>아티팩트</td><td>gpt-oss-120b GGUF</td><td>Hugging Face 공개 저장소</td><td><a href="https://huggingface.co/ggml-org/gpt-oss-120b-GGUF">원문 보기</a></td><td>2026-08-03 확인</td><td>커뮤니티/런타임 변환</td><td>실제 파일 크기</td></tr><tr><td>아티팩트</td><td>MiniMax-M2.1 GGUF</td><td>Hugging Face 공개 저장소</td><td><a href="https://huggingface.co/unsloth/MiniMax-M2.1-GGUF">원문 보기</a></td><td>2026-08-03 확인</td><td>커뮤니티/런타임 변환</td><td>실제 파일 크기</td></tr><tr><td>아티팩트</td><td>DeepSeek-V3.2 GGUF</td><td>Hugging Face 공개 저장소</td><td><a href="https://huggingface.co/unsloth/DeepSeek-V3.2-GGUF">원문 보기</a></td><td>2026-08-03 확인</td><td>커뮤니티/런타임 변환</td><td>실제 파일 크기</td></tr><tr><td>아티팩트</td><td>Kimi-K2.5 GGUF</td><td>Hugging Face 공개 저장소</td><td><a href="https://huggingface.co/unsloth/Kimi-K2.5-GGUF">원문 보기</a></td><td>2026-08-03 확인</td><td>커뮤니티/런타임 변환</td><td>실제 파일 크기</td></tr><tr><td>런타임</td><td>MLX-LM</td><td>공식 프로젝트</td><td><a href="https://github.com/ml-explore/mlx-lm">원문 보기</a></td><td>2026-08-03 확인</td><td>공식 저장소/카탈로그</td><td>Apple Silicon 런타임</td></tr><tr><td>런타임</td><td>llama.cpp</td><td>공식 프로젝트</td><td><a href="https://github.com/ggml-org/llama.cpp">원문 보기</a></td><td>2026-08-03 확인</td><td>공식 저장소/카탈로그</td><td>GGUF·Metal·아키텍처 지원</td></tr><tr><td>런타임</td><td>Ollama qwen3.5</td><td>공식 프로젝트</td><td><a href="https://ollama.com/library/qwen3.5">원문 보기</a></td><td>2026-08-03 확인</td><td>공식 저장소/카탈로그</td><td>122B 태그·파일 크기</td></tr><tr><td>독립 실측</td><td>M5 Max: Chiplets, Thermals, and Performance per Watt</td><td>Creative Strategies · Max Weinbach</td><td><a href="https://creativestrategies.com/research/m5-max-chiplets-thermals-and-performance-per-watt/">원문 보기</a></td><td>2026-03-09</td><td>독립 리뷰·정확한 RAM 미표기</td><td>열·전력·AI 실측 해석</td></tr><tr><td>실측 데이터</td><td>Apple Silicon Benchmark Explorer</td><td>Creative Strategies</td><td><a href="https://creativestrategies.com/wp-content/uploads/2026/03/apple_silicon_benchmark_explorer.html">원문 보기</a></td><td>2026-03</td><td>110회 공개 데이터</td><td>프리필·디코드·피크 메모리</td></tr><tr><td>개인 경험</td><td>qMLX: Qwen 122B daily driver</td><td>Andryo Marzuki</td><td><a href="https://mrzk.io/posts/qmlx-maximising-ai-psychosis-minmaxing-mac-studio/">원문 보기</a></td><td>2026-07-11</td><td>개인 M3 Ultra 96GB 경험</td><td>캐시·긴 컨텍스트 한계</td></tr><tr><td>공개 토론</td><td>M5 MacBook Pro buyers, worth it?</td><td>Hacker News</td><td><a href="https://news.ycombinator.com/item?id=47566687">원문 보기</a></td><td>2026-03-29</td><td>개인 의견 표본</td><td>클라우드 대비 반론</td></tr><tr><td>공개 프로젝트</td><td>Anubis OSS</td><td>UNC Software</td><td><a href="https://devpadapp.com/anubis-oss.html">원문 보기</a></td><td>2026-03 확인</td><td>커뮤니티 벤치마크</td><td>측정 방법론</td></tr><tr><td>개인 실측</td><td>M5 Max 128GB MLX/GGUF 측정</td><td>GitHub · ddalcu</td><td><a href="https://github.com/ddalcu/mlx-serve/issues/120">원문 보기</a></td><td>2026-08-03</td><td>단일 사용자 측정</td><td>MLX·GGUF·MTP 차이</td></tr><tr><td>버그 제보</td><td>LM Studio M5 tensor API 성능</td><td>LM Studio bug tracker</td><td><a href="https://github.com/lmstudio-ai/lmstudio-bug-tracker/issues/2040">원문 보기</a></td><td>2026-06-11</td><td>버전 한정 사용자 A/B</td><td>긴 프롬프트 TTFT 위험</td></tr><tr><td>버그 제보</td><td>node-llama-cpp Metal MoE hang</td><td>GitHub 사용자</td><td><a href="https://github.com/withcatai/node-llama-cpp/issues/595">원문 보기</a></td><td>2026-04-14</td><td>특정 임베딩 경로</td><td>안정성 검증 신호</td></tr><tr><td>공식 보도자료</td><td>M5 Pro·M5 Max와 MacBook Pro 미디어 자산</td><td>Apple Newsroom</td><td><a href="https://www.apple.com/kr/newsroom/2026/03/apple-debuts-m5-pro-and-m5-max-to-supercharge-the-most-demanding-pro-workflows/">원문 보기</a></td><td>2026-03-03</td><td>공식 미디어 자산</td><td>실제 제품사진·LM Studio/Xcode</td></tr><tr><td>AI 생성 이미지</td><td>128GB 통합 메모리 두들 인포그래픽</td><td>AI 생성 시각자료</td><td><a href="assets/260803-macbook-m5-max-local-llm-model-fit/local-llm-memory-doodle.png">원문 보기</a></td><td>2026-08-03</td><td>AI 생성 · 공식 제품 이미지 아님</td><td>설명용 시각자료</td></tr></tbody></table></div></details>
   <script id="report-view-script">
   (()=>{const body=document.body;const buttons=[...document.querySelectorAll('[data-report-view-target]')];const pdf=document.getElementById('report-pdf-button');const setView=(view,focus=false)=>{if(!['simple','detail'].includes(view))view='detail';body.dataset.reportView=view;buttons.forEach(button=>{const active=button.dataset.reportViewTarget===view;button.classList.toggle('is-active',active);if(button.classList.contains('report-view-button'))button.setAttribute('aria-pressed',String(active))});if(pdf){pdf.href=view==='simple'?pdf.dataset.simpleUrl:pdf.dataset.detailUrl;pdf.download=view==='simple'?pdf.dataset.simpleFilename:pdf.dataset.detailFilename;pdf.setAttribute('aria-label',`${view==='simple'?'간단 요약':'상세 보고서'} PDF 파일 바로 저장`)}if(focus){const target=view==='simple'?document.getElementById('simple-report'):document.querySelector('.detail-report');target?.scrollIntoView({block:'start'})}dispatchEvent(new CustomEvent('reportviewchange',{detail:{view}}))};buttons.forEach(button=>button.addEventListener('click',()=>setView(button.dataset.reportViewTarget,true)));const requested=new URLSearchParams(location.search).get('view');setView(requested==='simple'?'simple':'detail')})();
@@ -107,69 +190,5 @@ ollama run qwen3.5:122b</pre><p class="note">명령은 2026-08-03 공개 저장�
   (()=>{const button=document.getElementById('report-share-button');if(!button)return;const original=button.textContent;const shareUrl=()=>{const url=new URL(location.href);if(document.body.dataset.reportView==='simple')url.searchParams.set('view','simple');else url.searchParams.delete('view');url.hash='';return url.toString()};const copied=()=>{button.textContent='링크 복사됨';button.setAttribute('aria-label','보고서 링크가 복사되었습니다');setTimeout(()=>{button.textContent=original;button.setAttribute('aria-label','현재 보고서 링크 공유')},1800)};button.addEventListener('click',async()=>{const data={title:document.title,text:document.querySelector('meta[name="description"]')?.content||document.title,url:shareUrl()};try{if(navigator.share){await navigator.share(data)}else{await navigator.clipboard.writeText(data.url);copied()}}catch(error){if(error?.name==='AbortError')return;try{await navigator.clipboard.writeText(data.url);copied()}catch{button.textContent='주소창에서 복사';setTimeout(()=>button.textContent=original,2200)}}})})();
   </script>
 <script src="../assets/js/view-counter.js"></script>
-<!-- COMMENT WIDGET -->
-<div style="max-width:720px;margin:60px auto 0;padding:32px 28px;background:#fff;border:1px solid #e5e8eb;border-radius:18px;box-shadow:0 4px 16px rgba(0,0,0,.04);">
-  <h3 style="margin:0 0 6px;font-size:20px;color:#191f28;">💬 댓글</h3>
-  <p style="margin:0 0 20px;font-size:14px;color:#8b95a1;">로그인 없이 자유롭게 의견을 남겨주세요.</p>
-  <div id="comment-list" style="margin-bottom:20px;max-height:400px;overflow-y:auto;"></div>
-  <form id="comment-form" style="display:flex;flex-direction:column;gap:10px;" onsubmit="return submitComment(event)">
-    <input id="comment-name" type="text" placeholder="이름 (선택)" style="padding:10px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;max-width:240px;">
-    <textarea id="comment-body" rows="3" placeholder="댓글을 입력하세요..." required style="padding:12px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;resize:vertical;font-family:inherit;"></textarea>
-    <button type="submit" style="align-self:flex-end;padding:10px 24px;background:#3182f6;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;">등록</button>
-  </form>
-</div>
-<script>
-(function(){
-  var PAGE = window.location.pathname.replace(/\//g,'-').replace(/^-|-$/g,'') || 'index';
-  var STORAGE_KEY = 'comments-' + PAGE;
-  var list = document.getElementById('comment-list');
-  
-  function loadComments() {
-    var raw = localStorage.getItem(STORAGE_KEY);
-    var comments = raw ? JSON.parse(raw) : [];
-    list.innerHTML = comments.length === 0 
-      ? '<p style="color:#8b95a1;font-size:13px;text-align:center;padding:20px 0;">아직 댓글이 없습니다. 첫 댓글을 남겨보세요!</p>'
-      : comments.map(function(c,i){
-          var name = c.name || '익명';
-          var date = new Date(c.time).toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'});
-          return '<div style="padding:14px 0;border-bottom:1px solid #f0f0f0;">'
-            + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">'
-            + '<strong style="font-size:14px;color:#191f28;">' + escapeHtml(name) + '</strong>'
-            + '<span style="font-size:12px;color:#b0b8c1;">' + date + '</span>'
-            + '</div>'
-            + '<p style="margin:0;font-size:14px;color:#4a5568;line-height:1.5;">' + escapeHtml(c.body) + '</p>'
-            + '</div>';
-        }).join('');
-  }
-  
-  function escapeHtml(text) {
-    var div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
-  
-  window.submitComment = function(e) {
-    e.preventDefault();
-    var nameEl = document.getElementById('comment-name');
-    var bodyEl = document.getElementById('comment-body');
-    var comment = {
-      name: nameEl.value.trim(),
-      body: bodyEl.value.trim(),
-      time: Date.now()
-    };
-    var raw = localStorage.getItem(STORAGE_KEY);
-    var comments = raw ? JSON.parse(raw) : [];
-    comments.unshift(comment);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(comments.slice(0, 100)));
-    bodyEl.value = '';
-    nameEl.value = '';
-    loadComments();
-    return false;
-  };
-  
-  loadComments();
-})();
-</script>
-<!-- END COMMENT WIDGET -->
 </body>
 </html>

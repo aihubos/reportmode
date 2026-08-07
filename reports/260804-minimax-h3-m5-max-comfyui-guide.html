@@ -119,6 +119,89 @@
 <article class="reaction-card"><span class="reaction-badge concern">속도 경고</span><h3>M3 Ultra full-attention 실측</h3><p>5초 768p에서 한 step 약 8.86분이 측정돼, 로컬은 “메모리 적재”보다 계산 시간이 더 큰 문제라는 공개 경고가 나왔습니다.</p><div class="reaction-meta"><span>확인 2026-08-04</span><a href="https://github.com/PipeNetwork/minimax-h3-mlx">원문</a></div></article>
 </div><p class="reaction-note">온라인 의견은 대표 표본이며 전체 여론을 뜻하지 않습니다. 작성자·매체·게시일·원문 링크는 아래 전체 출처에 함께 기록했습니다.</p></div></section>
   </main>
+<!-- COMMENT WIDGET -->
+<div style="max-width:720px;margin:40px auto;padding:32px 28px;background:#fff;border:1px solid #e5e8eb;border-radius:18px;box-shadow:0 4px 16px rgba(0,0,0,.04);">
+  <h3 style="margin:0 0 6px;font-size:20px;color:#191f28;">💬 댓글</h3>
+  <p style="margin:0 0 20px;font-size:14px;color:#8b95a1;">로그인 없이 자유롭게 의견을 남겨주세요.</p>
+  <div id="comment-list" style="margin-bottom:20px;max-height:400px;overflow-y:auto;"></div>
+  <form id="comment-form" style="display:flex;flex-direction:column;gap:10px;" onsubmit="return submitComment(event)">
+    <input id="comment-name" type="text" placeholder="이름 (선택)" style="padding:10px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;max-width:240px;">
+    <textarea id="comment-body" rows="3" placeholder="댓글을 입력하세요..." required style="padding:12px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;resize:vertical;font-family:inherit;"></textarea>
+    <button type="submit" style="align-self:flex-end;padding:10px 24px;background:#3182f6;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;">등록</button>
+  </form>
+</div>
+<script>
+(function(){
+  var PAGE = window.location.pathname.replace(/\//g,'-').replace(/^-|-$/g,'') || 'index';
+  var STORAGE_KEY = 'comments-' + PAGE;
+  var DEL_PASSWORD = '1234';
+  var list = document.getElementById('comment-list');
+  
+  function saveComments(comments) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(comments));
+  }
+  
+  function loadComments() {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    var comments = raw ? JSON.parse(raw) : [];
+    list.innerHTML = comments.length === 0 
+      ? '<p style="color:#8b95a1;font-size:13px;text-align:center;padding:20px 0;">아직 댓글이 없습니다. 첫 댓글을 남겨보세요!</p>'
+      : comments.map(function(c,i){
+          var name = c.name || '익명';
+          var date = new Date(c.time).toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'});
+          return '<div style="padding:14px 0;border-bottom:1px solid #f0f0f0;" data-idx="'+i+'">'
+            + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">'
+            + '<div>'
+            + '<strong style="font-size:14px;color:#191f28;">' + escapeHtml(name) + '</strong>'
+            + '<span style="font-size:12px;color:#b0b8c1;margin-left:8px;">' + date + '</span>'
+            + '</div>'
+            + '<button onclick="deleteComment('+i+')" style="background:none;border:none;color:#ccc;cursor:pointer;font-size:12px;padding:2px 6px;" title="삭제">✕</button>'
+            + '</div>'
+            + '<p style="margin:0;font-size:14px;color:#4a5568;line-height:1.5;">' + escapeHtml(c.body) + '</p>'
+            + '</div>';
+        }).join('');
+  }
+  
+  function escapeHtml(text) {
+    var div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+  
+  window.deleteComment = function(idx) {
+    var pw = prompt('삭제 비밀번호를 입력하세요:');
+    if (pw !== DEL_PASSWORD) { alert('비밀번호가 틀렸습니다.'); return; }
+    if (!confirm('정말 삭제하시겠습니까?')) return;
+    var raw = localStorage.getItem(STORAGE_KEY);
+    var comments = raw ? JSON.parse(raw) : [];
+    comments.splice(idx, 1);
+    saveComments(comments);
+    loadComments();
+  };
+  
+  window.submitComment = function(e) {
+    e.preventDefault();
+    var nameEl = document.getElementById('comment-name');
+    var bodyEl = document.getElementById('comment-body');
+    var comment = {
+      name: nameEl.value.trim(),
+      body: bodyEl.value.trim(),
+      time: Date.now()
+    };
+    var raw = localStorage.getItem(STORAGE_KEY);
+    var comments = raw ? JSON.parse(raw) : [];
+    comments.unshift(comment);
+    saveComments(comments.slice(0, 100));
+    bodyEl.value = '';
+    nameEl.value = '';
+    loadComments();
+    return false;
+  };
+  
+  loadComments();
+})();
+</script>
+<!-- END COMMENT WIDGET -->
   <details id="sources" class="source-section"><summary class="wrap sources-summary"><span class="sources-summary-text">전체 출처</span><span class="sources-summary-hint"><span class="sources-toggle-closed">클릭하여 펼치기</span><span class="sources-toggle-open">접기</span></span></summary><div class="wrap source-content"><div class="section-head"><h2>전체 출처</h2><p>사실·분석·전망·루머·온라인 반응, 시각자료와 생성 이미지의 상태를 함께 기록했습니다.</p></div><table class="sources"><thead><tr><th>유형</th><th>자료명</th><th>제공자·저작자</th><th>원문</th><th>날짜</th><th>라이선스·상태</th><th>사용 범위</th></tr></thead><tbody><tr id="src-1"><td>공식 발표</td><td>MiniMax H3: An Open Model Breaking the Boundaries Between Tasks and Modalities</td><td>MiniMax</td><td><a href="https://www.minimax.io/blog/minimax-h3" target="_blank" rel="noopener">원문 보기</a></td><td>2026-07-31</td><td>공식 원문</td><td>출시·2K·15초·멀티모달·네이티브 스테레오</td></tr><tr id="src-2"><td>공식 모델 카드</td><td>MiniMaxAI/MiniMax-H3</td><td>MiniMaxAI</td><td><a href="https://huggingface.co/MiniMaxAI/MiniMax-H3" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-04 확인</td><td>공식 모델 카드</td><td>구조·체크포인트·768p 로컬·지원 프레임워크</td></tr><tr id="src-3"><td>공식 라이선스</td><td>MiniMax H3 Community License Agreement</td><td>MiniMax</td><td><a href="https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/LICENSE" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-02</td><td>공식 법적 문서</td><td>한국 포함 제외 지역·사용 제한·상업 조건</td></tr><tr id="src-4"><td>공식 라이선스 FAQ</td><td>Q&A About License</td><td>MiniMax</td><td><a href="https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/docs/QA-about-License.md" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-04 확인</td><td>공식 FAQ</td><td>API 글로벌 이용·제외 지역 별도 허가</td></tr><tr id="src-5"><td>공식 API 문서</td><td>Create Video Generation Task</td><td>MiniMax</td><td><a href="https://platform.minimax.io/docs/api-reference/video-generation-v2-create" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-04 확인</td><td>공식 개발 문서</td><td>API 모델명·2K·입력 형식·5–15초</td></tr><tr id="src-6"><td>공식 Comfy 가이드</td><td>MiniMax H3: ComfyUI Workflow Examples</td><td>ComfyUI</td><td><a href="https://docs.comfy.org/tutorials/video/minimax/minimax-h3" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-04 확인</td><td>공식 문서</td><td>로컬 워크플로·0.30.0+·파일·해상도·프롬프트</td></tr><tr id="src-7"><td>공식 Comfy API 가이드</td><td>MiniMax H3 API Video Generation in ComfyUI</td><td>ComfyUI</td><td><a href="https://docs.comfy.org/tutorials/partner-nodes/minimax/minimax-h3" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-04 확인</td><td>공식 문서</td><td>Partner Node·무다운로드·2K·초당 과금</td></tr><tr id="src-8"><td>공식 Comfy 모델 저장소</td><td>Comfy-Org/MiniMax-H3</td><td>Comfy Org</td><td><a href="https://huggingface.co/Comfy-Org/MiniMax-H3" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-04 확인</td><td>공식 재패키지</td><td>Comfy용 양자 파일·폴더·실제 파일 크기</td></tr><tr id="src-9"><td>공식 구현 PR</td><td>feat: Support MiniMax-H3 #15224</td><td>ComfyUI · kijai</td><td><a href="https://github.com/Comfy-Org/ComfyUI/pull/15224" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-03 병합</td><td>공식 코드 변경</td><td>네이티브 노드·프루닝·AWQ/INT8 연산</td></tr><tr id="src-10"><td>커뮤니티 Apple 포트</td><td>minimax-h3-mlx</td><td>PipeNetwork</td><td><a href="https://github.com/PipeNetwork/minimax-h3-mlx" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-04 확인</td><td>커뮤니티 구현·자체 측정</td><td>MLX 8/6/4bit·M3 Ultra 속도·양자 품질</td></tr><tr id="src-11"><td>커뮤니티 MPS 실측</td><td>RunH3onMac</td><td>HeyZhey</td><td><a href="https://github.com/HeyZhey/RunH3onMac" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-04 확인</td><td>커뮤니티 구현·M3 Ultra 실측</td><td>공식 BF16 MPS·134GiB·최소 192GiB 권고</td></tr><tr id="src-12"><td>공식 하드웨어 사양</td><td>MacBook Pro 제품 사양</td><td>Apple</td><td><a href="https://www.apple.com/kr/macbook-pro/specs/" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-04 확인</td><td>공식 사양</td><td>128GB·40코어 GPU·614GB/s</td></tr><tr id="src-13"><td>공식 제품 발표·사진</td><td>M5 Pro 및 M5 Max 공개</td><td>Apple Newsroom</td><td><a href="https://www.apple.com/kr/newsroom/2026/03/apple-debuts-m5-pro-and-m5-max-to-supercharge-the-most-demanding-pro-workflows/" target="_blank" rel="noopener">원문 보기</a></td><td>2026-03-03</td><td>공식 미디어 자산</td><td>M5 Max 제품사진·128GB·614GB/s</td></tr><tr id="src-14"><td>공식 설치 문서</td><td>macOS — Comfy Desktop</td><td>ComfyUI</td><td><a href="https://docs.comfy.org/installation/desktop/macos" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-04 확인</td><td>공식 문서</td><td>Apple Silicon·macOS 13+·설치</td></tr><tr id="src-15"><td>공식 워크플로</td><td>MiniMax H3 T2V/I2V/R2V templates</td><td>Comfy Org</td><td><a href="https://github.com/Comfy-Org/workflow_templates/tree/main/templates" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-04 확인</td><td>공식 JSON</td><td>노드명·기본 모델·저장 경로·기본 0.4MP</td></tr><tr id="src-16"><td>공식 출력 예시</td><td>MiniMax H3 T2VA sample frame</td><td>MiniMaxAI</td><td><a href="https://huggingface.co/MiniMaxAI/MiniMax-H3/blob/main/assets/t2va.mp4" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-04 확인</td><td>공식 모델 카드 영상에서 프레임 추출</td><td>상단 실제 생성 예시</td></tr><tr id="src-17"><td>AI 생성 시각자료</td><td>H3·Mac·Comfy 메모리 흐름 두들</td><td>Report Mode · OpenAI Image Generation</td><td>로컬 생성 자산</td><td>2026-08-04</td><td>AI 생성·공식 이미지 아님</td><td>메모리·노드·로컬/클라우드 경로 설명</td></tr><tr id="src-18"><td>공식 조직 공개 이슈</td><td>int8 quantized checkpoints fail immediately on Apple Silicon</td><td>Comfy-Org · comfy-kitchen</td><td><a href="https://github.com/Comfy-Org/comfy-kitchen/issues/92" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-03·08-04 업데이트</td><td>공식 조직 이슈·미해결 단일 재현군</td><td>MPS aten::_int_mm 미구현·Comfy 0.30.0·48GB Apple Silicon</td></tr></tbody></table></div></details>
   <script id="report-view-script">
   (()=>{const body=document.body;const buttons=[...document.querySelectorAll('[data-report-view-target]')];const pdf=document.getElementById('report-pdf-button');const setView=(view,focus=false)=>{if(!['simple','detail'].includes(view))view='detail';body.dataset.reportView=view;buttons.forEach(button=>{const active=button.dataset.reportViewTarget===view;button.classList.toggle('is-active',active);if(button.classList.contains('report-view-button'))button.setAttribute('aria-pressed',String(active))});if(pdf){pdf.href=view==='simple'?pdf.dataset.simpleUrl:pdf.dataset.detailUrl;pdf.download=view==='simple'?pdf.dataset.simpleFilename:pdf.dataset.detailFilename;pdf.setAttribute('aria-label',`${view==='simple'?'간단 요약':'상세 보고서'} PDF 파일 바로 저장`)}if(focus){const target=view==='simple'?document.getElementById('simple-report'):document.querySelector('.detail-report');target?.scrollIntoView({block:'start'})}dispatchEvent(new CustomEvent('reportviewchange',{detail:{view}}))};buttons.forEach(button=>button.addEventListener('click',()=>setView(button.dataset.reportViewTarget,true)));const requested=new URLSearchParams(location.search).get('view');setView(requested==='simple'?'simple':'detail')})();
@@ -133,69 +216,5 @@
   (()=>{const button=document.getElementById('report-share-button');if(!button)return;const original=button.textContent;const shareUrl=()=>{const url=new URL(location.href);if(document.body.dataset.reportView==='simple')url.searchParams.set('view','simple');else url.searchParams.delete('view');url.hash='';return url.toString()};const copied=()=>{button.textContent='링크 복사됨';button.setAttribute('aria-label','보고서 링크가 복사되었습니다');setTimeout(()=>{button.textContent=original;button.setAttribute('aria-label','현재 보고서 링크 공유')},1800)};button.addEventListener('click',async()=>{const data={title:document.title,text:document.querySelector('meta[name="description"]')?.content||document.title,url:shareUrl()};try{if(navigator.share){await navigator.share(data)}else{await navigator.clipboard.writeText(data.url);copied()}}catch(error){if(error?.name==='AbortError')return;try{await navigator.clipboard.writeText(data.url);copied()}catch{button.textContent='주소창에서 복사';setTimeout(()=>button.textContent=original,2200)}}})})();
   </script>
 <script src="../assets/js/view-counter.js"></script>
-<!-- COMMENT WIDGET -->
-<div style="max-width:720px;margin:60px auto 0;padding:32px 28px;background:#fff;border:1px solid #e5e8eb;border-radius:18px;box-shadow:0 4px 16px rgba(0,0,0,.04);">
-  <h3 style="margin:0 0 6px;font-size:20px;color:#191f28;">💬 댓글</h3>
-  <p style="margin:0 0 20px;font-size:14px;color:#8b95a1;">로그인 없이 자유롭게 의견을 남겨주세요.</p>
-  <div id="comment-list" style="margin-bottom:20px;max-height:400px;overflow-y:auto;"></div>
-  <form id="comment-form" style="display:flex;flex-direction:column;gap:10px;" onsubmit="return submitComment(event)">
-    <input id="comment-name" type="text" placeholder="이름 (선택)" style="padding:10px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;max-width:240px;">
-    <textarea id="comment-body" rows="3" placeholder="댓글을 입력하세요..." required style="padding:12px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;resize:vertical;font-family:inherit;"></textarea>
-    <button type="submit" style="align-self:flex-end;padding:10px 24px;background:#3182f6;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;">등록</button>
-  </form>
-</div>
-<script>
-(function(){
-  var PAGE = window.location.pathname.replace(/\//g,'-').replace(/^-|-$/g,'') || 'index';
-  var STORAGE_KEY = 'comments-' + PAGE;
-  var list = document.getElementById('comment-list');
-  
-  function loadComments() {
-    var raw = localStorage.getItem(STORAGE_KEY);
-    var comments = raw ? JSON.parse(raw) : [];
-    list.innerHTML = comments.length === 0 
-      ? '<p style="color:#8b95a1;font-size:13px;text-align:center;padding:20px 0;">아직 댓글이 없습니다. 첫 댓글을 남겨보세요!</p>'
-      : comments.map(function(c,i){
-          var name = c.name || '익명';
-          var date = new Date(c.time).toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'});
-          return '<div style="padding:14px 0;border-bottom:1px solid #f0f0f0;">'
-            + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">'
-            + '<strong style="font-size:14px;color:#191f28;">' + escapeHtml(name) + '</strong>'
-            + '<span style="font-size:12px;color:#b0b8c1;">' + date + '</span>'
-            + '</div>'
-            + '<p style="margin:0;font-size:14px;color:#4a5568;line-height:1.5;">' + escapeHtml(c.body) + '</p>'
-            + '</div>';
-        }).join('');
-  }
-  
-  function escapeHtml(text) {
-    var div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
-  
-  window.submitComment = function(e) {
-    e.preventDefault();
-    var nameEl = document.getElementById('comment-name');
-    var bodyEl = document.getElementById('comment-body');
-    var comment = {
-      name: nameEl.value.trim(),
-      body: bodyEl.value.trim(),
-      time: Date.now()
-    };
-    var raw = localStorage.getItem(STORAGE_KEY);
-    var comments = raw ? JSON.parse(raw) : [];
-    comments.unshift(comment);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(comments.slice(0, 100)));
-    bodyEl.value = '';
-    nameEl.value = '';
-    loadComments();
-    return false;
-  };
-  
-  loadComments();
-})();
-</script>
-<!-- END COMMENT WIDGET -->
 </body>
 </html>

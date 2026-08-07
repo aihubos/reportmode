@@ -172,6 +172,89 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
 <article class="reaction-card"><div class="reaction-meta"><span class="reaction-source">CNBC · 언론</span><span>CNBC · 2026.03.19</span></div><blockquote>언론은 ChatGPT 앱·브라우저·Codex를 하나의 데스크톱 슈퍼앱으로 합치는 전략에 주목했습니다. 통합의 방향을 설명하는 보도이며 사용성 자체를 보증하는 평가는 아닙니다.</blockquote><p><a href="https://www.cnbc.com/2026/03/19/openai-desktop-super-app-chatgpt-browser-codex.html">기사 원문</a> · 언론 보도</p></article>
 </div><p class="reaction-note">온라인 의견은 선택된 공개 사례이며 전체 여론이나 통계적 만족도를 뜻하지 않습니다. 개인 경험에 포함된 성능·장애 주장은 별도 실측 없이 일반화하지 않았습니다.</p></div></section>
 </main>
+<!-- COMMENT WIDGET -->
+<div style="max-width:720px;margin:40px auto;padding:32px 28px;background:#fff;border:1px solid #e5e8eb;border-radius:18px;box-shadow:0 4px 16px rgba(0,0,0,.04);">
+  <h3 style="margin:0 0 6px;font-size:20px;color:#191f28;">💬 댓글</h3>
+  <p style="margin:0 0 20px;font-size:14px;color:#8b95a1;">로그인 없이 자유롭게 의견을 남겨주세요.</p>
+  <div id="comment-list" style="margin-bottom:20px;max-height:400px;overflow-y:auto;"></div>
+  <form id="comment-form" style="display:flex;flex-direction:column;gap:10px;" onsubmit="return submitComment(event)">
+    <input id="comment-name" type="text" placeholder="이름 (선택)" style="padding:10px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;max-width:240px;">
+    <textarea id="comment-body" rows="3" placeholder="댓글을 입력하세요..." required style="padding:12px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;resize:vertical;font-family:inherit;"></textarea>
+    <button type="submit" style="align-self:flex-end;padding:10px 24px;background:#3182f6;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;">등록</button>
+  </form>
+</div>
+<script>
+(function(){
+  var PAGE = window.location.pathname.replace(/\//g,'-').replace(/^-|-$/g,'') || 'index';
+  var STORAGE_KEY = 'comments-' + PAGE;
+  var DEL_PASSWORD = '1234';
+  var list = document.getElementById('comment-list');
+  
+  function saveComments(comments) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(comments));
+  }
+  
+  function loadComments() {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    var comments = raw ? JSON.parse(raw) : [];
+    list.innerHTML = comments.length === 0 
+      ? '<p style="color:#8b95a1;font-size:13px;text-align:center;padding:20px 0;">아직 댓글이 없습니다. 첫 댓글을 남겨보세요!</p>'
+      : comments.map(function(c,i){
+          var name = c.name || '익명';
+          var date = new Date(c.time).toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'});
+          return '<div style="padding:14px 0;border-bottom:1px solid #f0f0f0;" data-idx="'+i+'">'
+            + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">'
+            + '<div>'
+            + '<strong style="font-size:14px;color:#191f28;">' + escapeHtml(name) + '</strong>'
+            + '<span style="font-size:12px;color:#b0b8c1;margin-left:8px;">' + date + '</span>'
+            + '</div>'
+            + '<button onclick="deleteComment('+i+')" style="background:none;border:none;color:#ccc;cursor:pointer;font-size:12px;padding:2px 6px;" title="삭제">✕</button>'
+            + '</div>'
+            + '<p style="margin:0;font-size:14px;color:#4a5568;line-height:1.5;">' + escapeHtml(c.body) + '</p>'
+            + '</div>';
+        }).join('');
+  }
+  
+  function escapeHtml(text) {
+    var div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+  
+  window.deleteComment = function(idx) {
+    var pw = prompt('삭제 비밀번호를 입력하세요:');
+    if (pw !== DEL_PASSWORD) { alert('비밀번호가 틀렸습니다.'); return; }
+    if (!confirm('정말 삭제하시겠습니까?')) return;
+    var raw = localStorage.getItem(STORAGE_KEY);
+    var comments = raw ? JSON.parse(raw) : [];
+    comments.splice(idx, 1);
+    saveComments(comments);
+    loadComments();
+  };
+  
+  window.submitComment = function(e) {
+    e.preventDefault();
+    var nameEl = document.getElementById('comment-name');
+    var bodyEl = document.getElementById('comment-body');
+    var comment = {
+      name: nameEl.value.trim(),
+      body: bodyEl.value.trim(),
+      time: Date.now()
+    };
+    var raw = localStorage.getItem(STORAGE_KEY);
+    var comments = raw ? JSON.parse(raw) : [];
+    comments.unshift(comment);
+    saveComments(comments.slice(0, 100));
+    bodyEl.value = '';
+    nameEl.value = '';
+    loadComments();
+    return false;
+  };
+  
+  loadComments();
+})();
+</script>
+<!-- END COMMENT WIDGET -->
 <details class="source-section" id="sources"><summary class="wrap sources-summary"><span class="sources-summary-text">전체 출처</span><span class="sources-summary-hint"><span class="sources-toggle-closed">클릭하여 펼치기</span><span class="sources-toggle-open">접기</span></span></summary><div class="wrap source-content"><div class="section-head"><h2>전체 출처</h2><p>사실·분석·전망·루머, 시각자료와 생성 이미지의 상태를 함께 기록했습니다.</p></div><table class="sources"><thead><tr><th>유형</th><th>자료명</th><th>제공자·저작자</th><th>원문</th><th>날짜</th><th>라이선스·상태</th><th>사용 범위</th></tr></thead><tbody>
 <tr><td>공식 문서</td><td>ChatGPT desktop app</td><td>OpenAI</td><td><a href="https://learn.chatgpt.com/docs/app">원문 보기</a></td><td>2026.08.03 확인</td><td>공식 · 발행일 미표기</td><td>앱 명칭·Windows/macOS·ChatGPT/Codex 선택·데스크톱 가치</td></tr>
 <tr><td>공식 문서</td><td>Get started with ChatGPT Work</td><td>OpenAI</td><td><a href="https://learn.chatgpt.com/docs/get-started-with-work">원문 보기</a></td><td>2026.08.03 확인</td><td>공식 · 발행일 미표기</td><td>Chat과 Work의 목적·로컬/클라우드·예시·경계</td></tr>
@@ -198,69 +281,5 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
   (()=>{const button=document.getElementById('report-pdf-button');const sources=document.getElementById('sources');if(!button)return;let prepared=false;let sourceWasOpen=false;const prepare=()=>{if(prepared)return;prepared=true;sourceWasOpen=Boolean(sources?.open);if(sources&&document.body.dataset.reportView==='detail')sources.open=true;button.classList.add('is-printing')};const reset=()=>{if(!prepared)return;if(sources&&!sourceWasOpen)sources.open=false;button.classList.remove('is-printing');prepared=false};button.addEventListener('click',()=>{prepare();requestAnimationFrame(()=>window.print())});addEventListener('beforeprint',prepare);addEventListener('afterprint',reset);addEventListener('focus',()=>{if(prepared)setTimeout(reset,500)})})();
   </script>
 <script src="../assets/js/view-counter.js"></script>
-<!-- COMMENT WIDGET -->
-<div style="max-width:720px;margin:60px auto 0;padding:32px 28px;background:#fff;border:1px solid #e5e8eb;border-radius:18px;box-shadow:0 4px 16px rgba(0,0,0,.04);">
-  <h3 style="margin:0 0 6px;font-size:20px;color:#191f28;">💬 댓글</h3>
-  <p style="margin:0 0 20px;font-size:14px;color:#8b95a1;">로그인 없이 자유롭게 의견을 남겨주세요.</p>
-  <div id="comment-list" style="margin-bottom:20px;max-height:400px;overflow-y:auto;"></div>
-  <form id="comment-form" style="display:flex;flex-direction:column;gap:10px;" onsubmit="return submitComment(event)">
-    <input id="comment-name" type="text" placeholder="이름 (선택)" style="padding:10px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;max-width:240px;">
-    <textarea id="comment-body" rows="3" placeholder="댓글을 입력하세요..." required style="padding:12px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;resize:vertical;font-family:inherit;"></textarea>
-    <button type="submit" style="align-self:flex-end;padding:10px 24px;background:#3182f6;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;">등록</button>
-  </form>
-</div>
-<script>
-(function(){
-  var PAGE = window.location.pathname.replace(/\//g,'-').replace(/^-|-$/g,'') || 'index';
-  var STORAGE_KEY = 'comments-' + PAGE;
-  var list = document.getElementById('comment-list');
-  
-  function loadComments() {
-    var raw = localStorage.getItem(STORAGE_KEY);
-    var comments = raw ? JSON.parse(raw) : [];
-    list.innerHTML = comments.length === 0 
-      ? '<p style="color:#8b95a1;font-size:13px;text-align:center;padding:20px 0;">아직 댓글이 없습니다. 첫 댓글을 남겨보세요!</p>'
-      : comments.map(function(c,i){
-          var name = c.name || '익명';
-          var date = new Date(c.time).toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'});
-          return '<div style="padding:14px 0;border-bottom:1px solid #f0f0f0;">'
-            + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">'
-            + '<strong style="font-size:14px;color:#191f28;">' + escapeHtml(name) + '</strong>'
-            + '<span style="font-size:12px;color:#b0b8c1;">' + date + '</span>'
-            + '</div>'
-            + '<p style="margin:0;font-size:14px;color:#4a5568;line-height:1.5;">' + escapeHtml(c.body) + '</p>'
-            + '</div>';
-        }).join('');
-  }
-  
-  function escapeHtml(text) {
-    var div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
-  
-  window.submitComment = function(e) {
-    e.preventDefault();
-    var nameEl = document.getElementById('comment-name');
-    var bodyEl = document.getElementById('comment-body');
-    var comment = {
-      name: nameEl.value.trim(),
-      body: bodyEl.value.trim(),
-      time: Date.now()
-    };
-    var raw = localStorage.getItem(STORAGE_KEY);
-    var comments = raw ? JSON.parse(raw) : [];
-    comments.unshift(comment);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(comments.slice(0, 100)));
-    bodyEl.value = '';
-    nameEl.value = '';
-    loadComments();
-    return false;
-  };
-  
-  loadComments();
-})();
-</script>
-<!-- END COMMENT WIDGET -->
 </body>
 </html>

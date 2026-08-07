@@ -167,6 +167,89 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
 <section id="method"><div class="wrap"><div class="section-head"><h2>순위 산정 방법과 한계</h2><p>인기순위와 추천순위를 분리했습니다.</p></div><div class="paper method"><p><strong>인기순위</strong>는 2026년 8월 2일 알라딘 Sales Point, 교보문고 검색·리뷰 참여, 네이버 도서 분야 순위를 관찰했습니다. 서로 다른 산식은 합산하지 않았고 판매부수라고 부르지 않았습니다.</p><p><strong>추천순위</strong>는 7살의 독립 읽기 편차, 짧은 단위 읽기, 첫 권 진입성, 부모와 상호작용, 공포·폭력 요소, 가격과 중복 위험을 편집 기준으로 삼았습니다.</p><p>서점 지표와 가격은 조회 시점에 바뀔 수 있고, 리뷰는 구매자 전체를 대표하지 않습니다. 아이의 한글 읽기 수준과 기존 소장권을 알지 못하므로 최종 결정 전 미리보기를 권합니다.</p></div></div></section>
 <section id="limitations"><div class="wrap"><div class="section-head"><h2>최종 판단</h2><p>선물은 인기보다 ‘첫 20분을 재미있게 읽는가’가 중요합니다.</p></div><div class="paper"><p><strong>아무 정보 없이 한 권만 고르면 상식스쿨 1</strong>, 짧은 과학 문답을 좋아하면 <strong>과학 퀴즈쇼 1</strong>, 이미 영상 팬이고 순수한 재미를 원하면 <strong>코믹 어드벤처 1</strong>이 좋습니다. 겁이 많으면 허징의 만물상점과 미라·저주 소재의 탐정편을 먼저 보여 주고, 첫 구매부터 전권 세트를 사지는 마세요.</p></div></div></section>
 </main>
+<!-- COMMENT WIDGET -->
+<div style="max-width:720px;margin:40px auto;padding:32px 28px;background:#fff;border:1px solid #e5e8eb;border-radius:18px;box-shadow:0 4px 16px rgba(0,0,0,.04);">
+  <h3 style="margin:0 0 6px;font-size:20px;color:#191f28;">💬 댓글</h3>
+  <p style="margin:0 0 20px;font-size:14px;color:#8b95a1;">로그인 없이 자유롭게 의견을 남겨주세요.</p>
+  <div id="comment-list" style="margin-bottom:20px;max-height:400px;overflow-y:auto;"></div>
+  <form id="comment-form" style="display:flex;flex-direction:column;gap:10px;" onsubmit="return submitComment(event)">
+    <input id="comment-name" type="text" placeholder="이름 (선택)" style="padding:10px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;max-width:240px;">
+    <textarea id="comment-body" rows="3" placeholder="댓글을 입력하세요..." required style="padding:12px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;resize:vertical;font-family:inherit;"></textarea>
+    <button type="submit" style="align-self:flex-end;padding:10px 24px;background:#3182f6;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;">등록</button>
+  </form>
+</div>
+<script>
+(function(){
+  var PAGE = window.location.pathname.replace(/\//g,'-').replace(/^-|-$/g,'') || 'index';
+  var STORAGE_KEY = 'comments-' + PAGE;
+  var DEL_PASSWORD = '1234';
+  var list = document.getElementById('comment-list');
+  
+  function saveComments(comments) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(comments));
+  }
+  
+  function loadComments() {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    var comments = raw ? JSON.parse(raw) : [];
+    list.innerHTML = comments.length === 0 
+      ? '<p style="color:#8b95a1;font-size:13px;text-align:center;padding:20px 0;">아직 댓글이 없습니다. 첫 댓글을 남겨보세요!</p>'
+      : comments.map(function(c,i){
+          var name = c.name || '익명';
+          var date = new Date(c.time).toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'});
+          return '<div style="padding:14px 0;border-bottom:1px solid #f0f0f0;" data-idx="'+i+'">'
+            + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">'
+            + '<div>'
+            + '<strong style="font-size:14px;color:#191f28;">' + escapeHtml(name) + '</strong>'
+            + '<span style="font-size:12px;color:#b0b8c1;margin-left:8px;">' + date + '</span>'
+            + '</div>'
+            + '<button onclick="deleteComment('+i+')" style="background:none;border:none;color:#ccc;cursor:pointer;font-size:12px;padding:2px 6px;" title="삭제">✕</button>'
+            + '</div>'
+            + '<p style="margin:0;font-size:14px;color:#4a5568;line-height:1.5;">' + escapeHtml(c.body) + '</p>'
+            + '</div>';
+        }).join('');
+  }
+  
+  function escapeHtml(text) {
+    var div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+  
+  window.deleteComment = function(idx) {
+    var pw = prompt('삭제 비밀번호를 입력하세요:');
+    if (pw !== DEL_PASSWORD) { alert('비밀번호가 틀렸습니다.'); return; }
+    if (!confirm('정말 삭제하시겠습니까?')) return;
+    var raw = localStorage.getItem(STORAGE_KEY);
+    var comments = raw ? JSON.parse(raw) : [];
+    comments.splice(idx, 1);
+    saveComments(comments);
+    loadComments();
+  };
+  
+  window.submitComment = function(e) {
+    e.preventDefault();
+    var nameEl = document.getElementById('comment-name');
+    var bodyEl = document.getElementById('comment-body');
+    var comment = {
+      name: nameEl.value.trim(),
+      body: bodyEl.value.trim(),
+      time: Date.now()
+    };
+    var raw = localStorage.getItem(STORAGE_KEY);
+    var comments = raw ? JSON.parse(raw) : [];
+    comments.unshift(comment);
+    saveComments(comments.slice(0, 100));
+    bodyEl.value = '';
+    nameEl.value = '';
+    loadComments();
+    return false;
+  };
+  
+  loadComments();
+})();
+</script>
+<!-- END COMMENT WIDGET -->
 <details class="source-section" id="sources"><summary class="wrap sources-summary"><span class="sources-summary-text">전체 출처</span><span class="sources-summary-hint"><span class="sources-toggle-closed">클릭하여 펼치기</span><span class="sources-toggle-open">접기</span></span></summary><div class="wrap source-content"><div class="section-head"><h2>전체 출처</h2><p>사실·분석·전망·루머, 시각자료와 생성 이미지의 상태를 함께 기록했습니다.</p></div><table class="sources"><thead><tr><th>유형</th><th>자료명</th><th>제공자·저작자</th><th>원문</th><th>날짜</th><th>라이선스·상태</th><th>사용 범위</th></tr></thead><tbody>
 <tr><td>출판사 공식</td><td>대원키즈 유아동 신간 목록</td><td>대원씨아이</td><td><a href="https://www.dwci.co.kr/front/kids/kidsList">원문 보기</a></td><td>2026-08-02 확인</td><td>한국 공식 페이지</td><td>원작·시리즈 소개, 최신권, 정가, 미스터리·상식 성격</td></tr>
 <tr><td>국내 서점</td><td>‘타키 포오’ 통합검색 · 판매량순</td><td>알라딘</td><td><a href="https://www.aladin.co.kr/search/wsearchresult.aspx?SearchTarget=All&amp;SearchWord=%ED%83%80%ED%82%A4+%ED%8F%AC%EC%98%A4">원문 보기</a></td><td>2026-08-02 확인</td><td>공개 상품·내부 지표</td><td>Sales Point, 정가·판매가, 출간월, 세트 구분</td></tr>
@@ -189,69 +272,5 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
   (()=>{const button=document.getElementById('report-pdf-button');const sources=document.getElementById('sources');if(!button)return;let prepared=false;let sourceWasOpen=false;const prepare=()=>{if(prepared)return;prepared=true;sourceWasOpen=Boolean(sources?.open);if(sources&&document.body.dataset.reportView==='detail')sources.open=true;button.classList.add('is-printing')};const reset=()=>{if(!prepared)return;if(sources&&!sourceWasOpen)sources.open=false;button.classList.remove('is-printing');prepared=false};button.addEventListener('click',()=>{prepare();requestAnimationFrame(()=>window.print())});addEventListener('beforeprint',prepare);addEventListener('afterprint',reset);addEventListener('focus',()=>{if(prepared)setTimeout(reset,500)})})();
   </script>
 <script src="../assets/js/view-counter.js"></script>
-<!-- COMMENT WIDGET -->
-<div style="max-width:720px;margin:60px auto 0;padding:32px 28px;background:#fff;border:1px solid #e5e8eb;border-radius:18px;box-shadow:0 4px 16px rgba(0,0,0,.04);">
-  <h3 style="margin:0 0 6px;font-size:20px;color:#191f28;">💬 댓글</h3>
-  <p style="margin:0 0 20px;font-size:14px;color:#8b95a1;">로그인 없이 자유롭게 의견을 남겨주세요.</p>
-  <div id="comment-list" style="margin-bottom:20px;max-height:400px;overflow-y:auto;"></div>
-  <form id="comment-form" style="display:flex;flex-direction:column;gap:10px;" onsubmit="return submitComment(event)">
-    <input id="comment-name" type="text" placeholder="이름 (선택)" style="padding:10px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;max-width:240px;">
-    <textarea id="comment-body" rows="3" placeholder="댓글을 입력하세요..." required style="padding:12px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;resize:vertical;font-family:inherit;"></textarea>
-    <button type="submit" style="align-self:flex-end;padding:10px 24px;background:#3182f6;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;">등록</button>
-  </form>
-</div>
-<script>
-(function(){
-  var PAGE = window.location.pathname.replace(/\//g,'-').replace(/^-|-$/g,'') || 'index';
-  var STORAGE_KEY = 'comments-' + PAGE;
-  var list = document.getElementById('comment-list');
-  
-  function loadComments() {
-    var raw = localStorage.getItem(STORAGE_KEY);
-    var comments = raw ? JSON.parse(raw) : [];
-    list.innerHTML = comments.length === 0 
-      ? '<p style="color:#8b95a1;font-size:13px;text-align:center;padding:20px 0;">아직 댓글이 없습니다. 첫 댓글을 남겨보세요!</p>'
-      : comments.map(function(c,i){
-          var name = c.name || '익명';
-          var date = new Date(c.time).toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'});
-          return '<div style="padding:14px 0;border-bottom:1px solid #f0f0f0;">'
-            + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">'
-            + '<strong style="font-size:14px;color:#191f28;">' + escapeHtml(name) + '</strong>'
-            + '<span style="font-size:12px;color:#b0b8c1;">' + date + '</span>'
-            + '</div>'
-            + '<p style="margin:0;font-size:14px;color:#4a5568;line-height:1.5;">' + escapeHtml(c.body) + '</p>'
-            + '</div>';
-        }).join('');
-  }
-  
-  function escapeHtml(text) {
-    var div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
-  
-  window.submitComment = function(e) {
-    e.preventDefault();
-    var nameEl = document.getElementById('comment-name');
-    var bodyEl = document.getElementById('comment-body');
-    var comment = {
-      name: nameEl.value.trim(),
-      body: bodyEl.value.trim(),
-      time: Date.now()
-    };
-    var raw = localStorage.getItem(STORAGE_KEY);
-    var comments = raw ? JSON.parse(raw) : [];
-    comments.unshift(comment);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(comments.slice(0, 100)));
-    bodyEl.value = '';
-    nameEl.value = '';
-    loadComments();
-    return false;
-  };
-  
-  loadComments();
-})();
-</script>
-<!-- END COMMENT WIDGET -->
 </body>
 </html>

@@ -124,15 +124,8 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
 <tr><td>AI 생성 이미지</td><td>폴더블 성능 비교 화이트보드 인포그래픽</td><td>OpenAI gpt-image-2-high / Hermes Report Mode</td><td>로컬 자산: fold-performance-comparison-infographic.png</td><td>2026-08-02</td><td>AI 생성 · 공식 제품 이미지 아님 · 시각 검수 완료</td><td>상단 발표 상태·벤치마크 요약</td></tr>
 </tbody></table></div></details>
 </main>
-<script id="report-view-script">
-  (()=>{const body=document.body;const buttons=[...document.querySelectorAll('[data-report-view-target]')];const setView=(view,focus=false)=>{if(!['simple','detail'].includes(view))view='detail';body.dataset.reportView=view;buttons.forEach(button=>{const active=button.dataset.reportViewTarget===view;button.classList.toggle('is-active',active);if(button.classList.contains('report-view-button'))button.setAttribute('aria-pressed',String(active))});if(focus){const target=view==='simple'?document.getElementById('simple-report'):document.querySelector('.detail-report');target?.scrollIntoView({block:'start'})}dispatchEvent(new CustomEvent('reportviewchange',{detail:{view}}))};buttons.forEach(button=>button.addEventListener('click',()=>setView(button.dataset.reportViewTarget,true)));const requested=new URLSearchParams(location.search).get('view');setView(requested==='simple'?'simple':'detail')})();
-  </script><script id="report-floating-nav-script">(()=>{const nav=document.querySelector('.floating-menu');if(!nav)return;const items=[...nav.querySelectorAll('.floating-action[href^="#"]')].map(link=>({link,target:document.getElementById(decodeURIComponent(link.hash.slice(1)))})).filter(item=>item.target);if(!items.length)return;const activate=item=>{items.forEach(({link})=>{const on=link===item.link;link.classList.toggle('is-active',on);if(on)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current')})};let queued=false;const update=()=>{queued=false;const line=Math.max(86,innerHeight*.32);let current=items[0];for(const item of items){if(item.target.getBoundingClientRect().top<=line)current=item;else break}activate(current)};addEventListener('scroll',()=>{if(!queued){queued=true;requestAnimationFrame(update)}},{passive:true});addEventListener('resize',update);items.forEach(item=>item.link.addEventListener('click',()=>activate(item)));update()})();</script>
-<script id="report-pdf-script">
-  (()=>{const button=document.getElementById('report-pdf-button');const sources=document.getElementById('sources');if(!button)return;let prepared=false;let sourceWasOpen=false;const prepare=()=>{if(prepared)return;prepared=true;sourceWasOpen=Boolean(sources?.open);if(sources&&document.body.dataset.reportView==='detail')sources.open=true;button.classList.add('is-printing')};const reset=()=>{if(!prepared)return;if(sources&&!sourceWasOpen)sources.open=false;button.classList.remove('is-printing');prepared=false};button.addEventListener('click',()=>{prepare();requestAnimationFrame(()=>window.print())});addEventListener('beforeprint',prepare);addEventListener('afterprint',reset);addEventListener('focus',()=>{if(prepared)setTimeout(reset,500)})})();
-  </script>
-<script src="../assets/report-view-counter.js" data-report-id="260802-iphone-fold-vs-galaxy-fold7-fold8-ultra"></script>
 <!-- COMMENT WIDGET -->
-<div style="max-width:720px;margin:60px auto 0;padding:32px 28px;background:#fff;border:1px solid #e5e8eb;border-radius:18px;box-shadow:0 4px 16px rgba(0,0,0,.04);">
+<div style="max-width:720px;margin:40px auto;padding:32px 28px;background:#fff;border:1px solid #e5e8eb;border-radius:18px;box-shadow:0 4px 16px rgba(0,0,0,.04);">
   <h3 style="margin:0 0 6px;font-size:20px;color:#191f28;">💬 댓글</h3>
   <p style="margin:0 0 20px;font-size:14px;color:#8b95a1;">로그인 없이 자유롭게 의견을 남겨주세요.</p>
   <div id="comment-list" style="margin-bottom:20px;max-height:400px;overflow-y:auto;"></div>
@@ -146,7 +139,12 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
 (function(){
   var PAGE = window.location.pathname.replace(/\//g,'-').replace(/^-|-$/g,'') || 'index';
   var STORAGE_KEY = 'comments-' + PAGE;
+  var DEL_PASSWORD = '1234';
   var list = document.getElementById('comment-list');
+  
+  function saveComments(comments) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(comments));
+  }
   
   function loadComments() {
     var raw = localStorage.getItem(STORAGE_KEY);
@@ -156,10 +154,13 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
       : comments.map(function(c,i){
           var name = c.name || '익명';
           var date = new Date(c.time).toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'});
-          return '<div style="padding:14px 0;border-bottom:1px solid #f0f0f0;">'
+          return '<div style="padding:14px 0;border-bottom:1px solid #f0f0f0;" data-idx="'+i+'">'
             + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">'
+            + '<div>'
             + '<strong style="font-size:14px;color:#191f28;">' + escapeHtml(name) + '</strong>'
-            + '<span style="font-size:12px;color:#b0b8c1;">' + date + '</span>'
+            + '<span style="font-size:12px;color:#b0b8c1;margin-left:8px;">' + date + '</span>'
+            + '</div>'
+            + '<button onclick="deleteComment('+i+')" style="background:none;border:none;color:#ccc;cursor:pointer;font-size:12px;padding:2px 6px;" title="삭제">✕</button>'
             + '</div>'
             + '<p style="margin:0;font-size:14px;color:#4a5568;line-height:1.5;">' + escapeHtml(c.body) + '</p>'
             + '</div>';
@@ -171,6 +172,17 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
     div.textContent = text;
     return div.innerHTML;
   }
+  
+  window.deleteComment = function(idx) {
+    var pw = prompt('삭제 비밀번호를 입력하세요:');
+    if (pw !== DEL_PASSWORD) { alert('비밀번호가 틀렸습니다.'); return; }
+    if (!confirm('정말 삭제하시겠습니까?')) return;
+    var raw = localStorage.getItem(STORAGE_KEY);
+    var comments = raw ? JSON.parse(raw) : [];
+    comments.splice(idx, 1);
+    saveComments(comments);
+    loadComments();
+  };
   
   window.submitComment = function(e) {
     e.preventDefault();
@@ -184,7 +196,7 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
     var raw = localStorage.getItem(STORAGE_KEY);
     var comments = raw ? JSON.parse(raw) : [];
     comments.unshift(comment);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(comments.slice(0, 100)));
+    saveComments(comments.slice(0, 100));
     bodyEl.value = '';
     nameEl.value = '';
     loadComments();
@@ -195,5 +207,12 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
 })();
 </script>
 <!-- END COMMENT WIDGET -->
+<script id="report-view-script">
+  (()=>{const body=document.body;const buttons=[...document.querySelectorAll('[data-report-view-target]')];const setView=(view,focus=false)=>{if(!['simple','detail'].includes(view))view='detail';body.dataset.reportView=view;buttons.forEach(button=>{const active=button.dataset.reportViewTarget===view;button.classList.toggle('is-active',active);if(button.classList.contains('report-view-button'))button.setAttribute('aria-pressed',String(active))});if(focus){const target=view==='simple'?document.getElementById('simple-report'):document.querySelector('.detail-report');target?.scrollIntoView({block:'start'})}dispatchEvent(new CustomEvent('reportviewchange',{detail:{view}}))};buttons.forEach(button=>button.addEventListener('click',()=>setView(button.dataset.reportViewTarget,true)));const requested=new URLSearchParams(location.search).get('view');setView(requested==='simple'?'simple':'detail')})();
+  </script><script id="report-floating-nav-script">(()=>{const nav=document.querySelector('.floating-menu');if(!nav)return;const items=[...nav.querySelectorAll('.floating-action[href^="#"]')].map(link=>({link,target:document.getElementById(decodeURIComponent(link.hash.slice(1)))})).filter(item=>item.target);if(!items.length)return;const activate=item=>{items.forEach(({link})=>{const on=link===item.link;link.classList.toggle('is-active',on);if(on)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current')})};let queued=false;const update=()=>{queued=false;const line=Math.max(86,innerHeight*.32);let current=items[0];for(const item of items){if(item.target.getBoundingClientRect().top<=line)current=item;else break}activate(current)};addEventListener('scroll',()=>{if(!queued){queued=true;requestAnimationFrame(update)}},{passive:true});addEventListener('resize',update);items.forEach(item=>item.link.addEventListener('click',()=>activate(item)));update()})();</script>
+<script id="report-pdf-script">
+  (()=>{const button=document.getElementById('report-pdf-button');const sources=document.getElementById('sources');if(!button)return;let prepared=false;let sourceWasOpen=false;const prepare=()=>{if(prepared)return;prepared=true;sourceWasOpen=Boolean(sources?.open);if(sources&&document.body.dataset.reportView==='detail')sources.open=true;button.classList.add('is-printing')};const reset=()=>{if(!prepared)return;if(sources&&!sourceWasOpen)sources.open=false;button.classList.remove('is-printing');prepared=false};button.addEventListener('click',()=>{prepare();requestAnimationFrame(()=>window.print())});addEventListener('beforeprint',prepare);addEventListener('afterprint',reset);addEventListener('focus',()=>{if(prepared)setTimeout(reset,500)})})();
+  </script>
+<script src="../assets/report-view-counter.js" data-report-id="260802-iphone-fold-vs-galaxy-fold7-fold8-ultra"></script>
 </body>
 </html>
