@@ -1,0 +1,27 @@
+name: Process Report Upload
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  process:
+    if: github.event.label.name == 'report-upload'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Acknowledge
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: '보고서가 접수되었습니다! 검토 후 아카이브에 추가됩니다.'
+            });

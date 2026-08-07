@@ -91,5 +91,15 @@
   <script id="report-share-script">
   (()=>{const button=document.getElementById('report-share-button');if(!button)return;const original=button.textContent;const shareUrl=()=>{const url=new URL(location.href);if(document.body.dataset.reportView==='simple')url.searchParams.set('view','simple');else url.searchParams.delete('view');url.hash='';return url.toString()};const copied=()=>{button.textContent='링크 복사됨';button.setAttribute('aria-label','보고서 링크가 복사되었습니다');setTimeout(()=>{button.textContent=original;button.setAttribute('aria-label','현재 보고서 링크 공유')},1800)};button.addEventListener('click',async()=>{const data={title:document.title,text:document.querySelector('meta[name="description"]')?.content||document.title,url:shareUrl()};try{if(navigator.share){await navigator.share(data)}else{await navigator.clipboard.writeText(data.url);copied()}}catch(error){if(error?.name==='AbortError')return;try{await navigator.clipboard.writeText(data.url);copied()}catch{button.textContent='주소창에서 복사';setTimeout(()=>button.textContent=original,2200)}}})})();
   </script>
+<script src="../assets/js/view-counter.js"></script>
+<div class="giscus" style="margin-top:48px;max-width:720px"></div>
+<script src="https://giscus.app/client.js"
+  data-repo="aihubos/reportmode"
+  data-repo-id="R_kgDOTqhwPQ" data-category="General"
+  data-category-id="DIC_kwDOTqhwPc4DC1QV" data-mapping="pathname"
+  data-strict="0" data-reactions-enabled="1" data-emit-metadata="0"
+  data-input-position="bottom" data-theme="light" data-lang="ko"
+  crossorigin="anonymous" async>
+</script>
 </body>
 </html>

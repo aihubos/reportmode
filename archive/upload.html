@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>보고서 업로드 - Jeremy's AI Report 도서관</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%233182f6'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial' font-size='34' font-weight='800' fill='white'%3ER%3C/text%3E%3C/svg%3E">
+  <style>:root {
+  --ink: #171717;
+  --muted: #5f5f66;
+  --bg: #f4f1ea;
+  --paper: #fffdf8;
+  --line: #ddd4c5;
+  --accent: #0b3d91;
+  --soft: #efe8db;
+  --sans: "Avenir Next", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  --max: 1080px;
+  --archive-blue: #3182f6;
+  --archive-ink: #191f28;
+  --archive-muted: #6b7684;
+  --archive-line: #e5e8eb;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; color: var(--archive-ink); background: #f5f7f9;
+  font-family: "Pretendard", "Avenir Next", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  line-height: 1.65;
+}
+.archive-topbar {
+  position: sticky; top: 0; z-index: 20; height: 52px;
+  background: rgba(17,17,17,.95); color: #fff; backdrop-filter: blur(14px);
+}
+.archive-topbar-inner {
+  width: min(var(--max), calc(100% - 40px)); margin: 0 auto;
+  height: 100%; display: flex; align-items: center; justify-content: space-between;
+}
+.archive-brand {
+  display: flex; align-items: center; gap: 10px;
+  color: #fff; text-decoration: none; font-weight: 700; font-size: 16px;
+}
+.archive-brand-mark {
+  display: grid; place-items: center; width: 32px; height: 32px;
+  border-radius: 10px; background: var(--archive-blue); font-size: 17px; font-weight: 800;
+}
+.archive-topbar nav { display: flex; gap: 18px; }
+.archive-topbar nav a {
+  color: #d0d0d0; text-decoration: none; font-size: 13px;
+  min-height: 44px; display: inline-flex; align-items: center;
+}
+.archive-topbar nav a:hover { color: #fff; }
+.archive-topbar nav a.is-current { color: #fff; font-weight: 700; }
+.upload-shell {
+  width: min(720px, calc(100% - 40px)); margin: 48px auto 64px;
+}
+.upload-card {
+  background: #fff; border: 1px solid var(--archive-line);
+  border-radius: 22px; padding: 40px; box-shadow: 0 8px 30px rgba(0,0,0,.04);
+}
+.upload-card h1 { font-size: 28px; margin: 0 0 16px; }
+.upload-card p { color: var(--archive-muted); margin: 0 0 24px; font-size: 16px; }
+.upload-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 16px 32px; background: var(--archive-blue); color: #fff;
+  border-radius: 14px; text-decoration: none; font-size: 18px; font-weight: 700;
+  transition: background .2s;
+}
+.upload-btn:hover { background: #1b64da; }
+.upload-divider { border: none; border-top: 1px solid var(--archive-line); margin: 36px 0; }
+.upload-card h2 { font-size: 20px; margin: 0 0 12px; }
+.upload-card ol { padding-left: 20px; color: var(--archive-muted); }
+.upload-card ol li { margin: 8px 0; }
+.upload-card pre {
+  background: #f5f7f9; border: 1px solid var(--archive-line);
+  border-radius: 12px; padding: 20px 24px; overflow-x: auto;
+  font-size: 14px; line-height: 1.6;
+}
+.upload-card code { font-family: "SF Mono", "Consolas", monospace; color: var(--archive-ink); }
+.archive-footer {
+  text-align: center; padding: 24px 0 40px;
+  color: var(--archive-muted); font-size: 13px;
+}
+.archive-footer a { color: var(--archive-blue); }
+@media (max-width: 640px) {
+  .upload-card { padding: 24px; border-radius: 16px; }
+  .upload-btn { width: 100%; justify-content: center; }
+}
+</style>
+</head>
+<body>
+  <header class="archive-topbar">
+    <div class="archive-topbar-inner">
+      <a class="archive-brand" href="./" aria-label="Jeremy's AI Report 홈">
+        <span class="archive-brand-mark">R</span>
+        <span>Jeremy's AI Report</span>
+      </a>
+      <nav aria-label="주요 메뉴">
+        <a href="./">보고서 도서관</a>
+        <a class="is-current" href="upload.html">📤 업로드</a>
+        <a href="https://blog.naver.com/jeremylee0213" target="_blank" rel="noopener">Jeremy's Blog</a>
+        <a href="../">스킬 만들기</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="upload-shell">
+    <div class="upload-card">
+      <h1>📤 보고서 업로드</h1>
+      <p>아래 버튼을 눌러 GitHub Issue로 보고서를 제출하면, 관리자 검토 후 아카이브에 추가됩니다.</p>
+
+      <a class="upload-btn" href="https://github.com/aihubos/reportmode/issues/new?template=report-upload.yml" target="_blank" rel="noopener">
+        📝 GitHub에서 보고서 제출하기
+      </a>
+
+      <hr class="upload-divider">
+
+      <h2>📋 업로드 방법</h2>
+      <ol>
+        <li>위 버튼을 눌러 GitHub Issue 페이지로 이동하세요.</li>
+        <li>보고서 제목, 분류, 요약, 본문, 출처를 양식에 맞춰 작성하세요.</li>
+        <li><strong>Submit new issue</strong> 버튼을 누르면 접수 완료!</li>
+      </ol>
+
+      <hr class="upload-divider">
+
+      <h2>📝 업로드 형식 안내</h2>
+      <pre><code># 보고서 제목
+
+## 분류
+AI / 게임 / 자동차 / IT 기기 / 기타 중 하나
+
+## 요약
+보고서를 한 문장으로 요약
+
+## 본문
+보고서 전체 내용 (마크다운)
+
+## 출처
+- https://출처1.com
+- https://출처2.com
+
+## 태그
+#태그1 #태그2</code></pre>
+    </div>
+  </main>
+
+  <footer class="archive-footer">
+    <span>Jeremy's AI Report Library</span> ·
+    <a href="https://blog.naver.com/jeremylee0213" target="_blank" rel="noopener">blog.naver.com/jeremylee0213</a>
+  </footer>
+</body>
+</html>

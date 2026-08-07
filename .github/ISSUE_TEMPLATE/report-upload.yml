@@ -1,0 +1,43 @@
+name: 보고서 업로드
+description: 새 보고서를 아카이브에 제출합니다
+title: "[보고서] "
+labels: ["report-upload"]
+body:
+  - type: input
+    id: category
+    attributes:
+      label: 분류
+      description: AI / 게임 / 자동차 / IT 기기 / 기타 중 하나를 입력하세요
+      placeholder: AI
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: 한 줄 요약
+      description: 보고서를 한 문장으로 요약해주세요
+    validations:
+      required: true
+  - type: textarea
+    id: body
+    attributes:
+      label: 본문
+      description: 보고서 전체 내용을 작성해주세요
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: 출처
+      description: 한 줄에 하나씩 URL을 적어주세요
+      placeholder: |
+        - https://example.com/source1
+        - https://example.com/source2
+    validations:
+      required: true
+  - type: input
+    id: tags
+    attributes:
+      label: 태그
+      description: #태그1 #태그2 형식으로 입력하세요
+      placeholder: "#AI #리서치"
