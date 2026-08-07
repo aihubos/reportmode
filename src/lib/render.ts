@@ -203,7 +203,7 @@ export function renderReportHtml(doc: ReportDocument): string {
   <meta name="color-scheme" content="light">
   <title>${escapeHtml(dateCode)} · ${escapeHtml(doc.title)} — Report Mode</title>
   <style>${css()}</style>
-  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260807-controls">
+  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260807c-wide-default">
 </head>
 <body data-report-view="detail" data-report-layout="wide">
   <a class="report-home-button" href="../../archive/" aria-label="보고서 도서관 메인으로 이동">🏠 메인</a>
@@ -283,7 +283,7 @@ export function renderReportHtml(doc: ReportDocument): string {
       <span>최종 판단과 검수는 사용자에게 있습니다.</span>
     </div>
   </footer>
-  <script src="../../assets/report-page-layout.js?v=20260807-inputfix"></script>
+  <script src="../../assets/report-page-layout.js?v=20260807c-wide-default"></script>
   <script src="../../assets/report-view-counter.js" data-report-id="${escapeHtml(doc.id)}"></script>
 </body>
 </html>
