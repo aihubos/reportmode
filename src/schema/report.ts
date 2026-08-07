@@ -25,12 +25,30 @@ export const SourceSchema = z.object({
   note: z.string().optional(),
 });
 
+export const ReportTableSchema = z
+  .object({
+    columns: z.array(z.string().min(1)).min(2),
+    rows: z.array(z.array(z.string().min(1)).min(2)).min(1),
+  })
+  .superRefine((table, ctx) => {
+    table.rows.forEach((row, index) => {
+      if (row.length !== table.columns.length) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["rows", index],
+          message: "표의 모든 행은 열 개수와 같아야 합니다.",
+        });
+      }
+    });
+  });
+
 export const SectionSchema = z.object({
   id: z.string().min(1),
   heading: z.string().min(1),
   kind: SectionKindSchema,
   body: z.string().min(1),
   bullets: z.array(z.string()).default([]),
+  table: ReportTableSchema.optional(),
   sourceIds: z.array(z.string()).default([]),
 });
 

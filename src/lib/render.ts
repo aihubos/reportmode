@@ -24,6 +24,24 @@ function sourceMap(doc: ReportDocument): Map<string, ReportDocument["sources"][n
   return new Map(doc.sources.map((s) => [s.id, s]));
 }
 
+function renderTable(section: ReportDocument["sections"][number]): string {
+  if (!section.table) return "";
+  return `
+  <div class="table-wrap" role="region" aria-label="${escapeHtml(section.heading)} 표" tabindex="0">
+    <table class="report-table">
+      <thead><tr>${section.table.columns
+        .map((column) => `<th scope="col">${inlineMark(column)}</th>`)
+        .join("")}</tr></thead>
+      <tbody>${section.table.rows
+        .map(
+          (row) =>
+            `<tr>${row.map((cell) => `<td>${inlineMark(cell)}</td>`).join("")}</tr>`,
+        )
+        .join("")}</tbody>
+    </table>
+  </div>`;
+}
+
 function renderSections(doc: ReportDocument): string {
   const map = sourceMap(doc);
   return doc.sections
@@ -43,11 +61,13 @@ function renderSections(doc: ReportDocument): string {
               .map((b) => `<li>${inlineMark(b)}</li>`)
               .join("")}</ul>`
           : "";
+      const table = renderTable(section);
       return `
 <article class="paper section-card" id="${escapeHtml(section.id)}">
   <div class="badge ${section.kind}">${KIND_LABEL[section.kind]}</div>
   <h3>${escapeHtml(section.heading)}</h3>
   <div class="body">${nl2p(section.body)}</div>
+  ${table}
   ${bullets}
   ${refs ? `<p class="muted" style="margin-top:14px;color:var(--muted);font-size:14px;">출처: ${refs}</p>` : ""}
 </article>`;

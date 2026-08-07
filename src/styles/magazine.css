@@ -118,6 +118,36 @@ section { padding: 78px 0; }
 .section-card .body p { margin: 0 0 12px; font-size: 17px; }
 .section-card ul { margin: 0; padding-left: 1.1rem; }
 .section-card li { margin: 6px 0; }
+.table-wrap {
+  margin: 20px 0;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+}
+.report-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.report-table th, .report-table td {
+  padding: 13px 14px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+  text-align: left;
+}
+.report-table th {
+  color: #263548;
+  background: #eef3f8;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: -.01em;
+  white-space: nowrap;
+}
+.report-table td:first-child { font-weight: 700; }
+.report-table tr:last-child td { border-bottom: 0; }
 .hl { background: #fff2a8; padding: 0 .12em; }
 .quote {
   border-left: 4px solid var(--accent);
