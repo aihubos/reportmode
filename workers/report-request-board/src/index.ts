@@ -112,7 +112,7 @@ export default {
     if (request.method === "POST") {
       let payload: { topic?: unknown; context?: unknown };
       try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
-      const topic = clean(payload.topic, 80);
+      const topic = clean(payload.topic, 240);
       const context = clean(payload.context, 300);
       if (topic.length < 4) return json(request, { error: "topic_too_short" }, 400);
 

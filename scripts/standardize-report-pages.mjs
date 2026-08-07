@@ -48,13 +48,16 @@ function enhance(file) {
   }
   html = html.replace(bodyMatch[0], bodyTag);
 
+  const layoutStylesheet = `${prefix}/assets/report-page-layout.css?v=20260807-controls`;
   if (!html.includes("report-page-layout.css")) {
-    html = html.replace("</head>", `  <link rel="stylesheet" href="${prefix}/assets/report-page-layout.css">\n</head>`);
+    html = html.replace("</head>", `  <link rel="stylesheet" href="${layoutStylesheet}">\n</head>`);
+  } else {
+    html = html.replace(/<link\s+rel=["']stylesheet["']\s+href=["'][^"']*report-page-layout\.css(?:\?[^"']*)?["']\s*\/?>(?:<\/link>)?/i, `<link rel="stylesheet" href="${layoutStylesheet}">`);
   }
   if (!html.includes("report-home-button")) {
     html = html.replace(bodyTag, `${bodyTag}\n  <a class="report-home-button" href="${archiveHref}" aria-label="보고서 도서관 메인으로 이동">🏠 메인</a>`);
   }
-  const layoutScript = `${prefix}/assets/report-page-layout.js?v=20260807-comments`;
+  const layoutScript = `${prefix}/assets/report-page-layout.js?v=20260807-controls`;
   if (!html.includes("report-page-layout.js")) {
     html = html.replace("</body>", `  <script src="${layoutScript}"></script>\n</body>`);
   } else {

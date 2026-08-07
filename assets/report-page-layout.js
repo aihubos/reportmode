@@ -14,8 +14,8 @@
   controls.innerHTML =
     '<span class="report-layout-label">레이아웃</span>' +
     '<div class="report-layout-buttons" role="group" aria-label="가로 또는 세로">' +
-    '<button class="report-layout-button" type="button" data-report-layout="wide" aria-pressed="false">가로</button>' +
-    '<button class="report-layout-button" type="button" data-report-layout="a4" aria-pressed="false">세로</button>' +
+    '<button class="report-layout-button" type="button" data-report-layout="wide" aria-pressed="false">↔ 가로</button>' +
+    '<button class="report-layout-button" type="button" data-report-layout="a4" aria-pressed="false">▯ 세로</button>' +
     "</div>";
 
   var switcher = document.querySelector(".report-view-switcher-inner");

@@ -527,8 +527,7 @@ footer {
         <div class="request-board-steps"><span>로그인 없이 작성</span><span>주제 제안</span><span>리포트 후보 검토</span></div>
       </div>
       <form class="request-board-form" id="requestBoardForm">
-        <label>원하는 리포트 주제<input id="requestTopic" name="topic" minlength="4" maxlength="80" required placeholder="예: 엔비디아 실적과 경쟁력 분석"></label>
-        <label>궁금한 점 (선택)<textarea id="requestContext" name="context" maxlength="300" placeholder="비교하고 싶은 기업, 판단에 필요한 기준을 적어 주세요."></textarea></label>
+        <label>궁금한 점 또는 원하는 리포트 주제<textarea id="requestTopic" name="topic" minlength="4" maxlength="240" required placeholder="예: 엔비디아 실적과 경쟁력 분석. AMD·구글과 비교해 장기 경쟁력이 궁금합니다."></textarea></label>
         <button class="request-board-submit" type="submit">리포트 희망 남기기 →</button>
         <p class="request-board-status" id="requestBoardStatus" role="status"></p>
       </form>
@@ -1209,7 +1208,6 @@ footer {
     var API = "https://reportmode-request-board.report-request-board.workers.dev/requests";
     var form = document.getElementById("requestBoardForm");
     var topic = document.getElementById("requestTopic");
-    var context = document.getElementById("requestContext");
     var list = document.getElementById("requestBoardList");
     var status = document.getElementById("requestBoardStatus");
     var count = document.getElementById("requestBoardCount");
@@ -1239,10 +1237,10 @@ footer {
     form.addEventListener("submit", function (event) {
       event.preventDefault();
       status.textContent = "등록 중입니다…"; submit.disabled = true;
-      fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ topic: topic.value, context: context.value }) })
-        .then(function (response) { if (!response.ok) throw new Error("submit failed"); return response.json(); })
+      fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ topic: topic.value, context: "" }) })
+        .then(function (response) { return response.json().then(function (data) { if (!response.ok) throw new Error(data.error || "submit_failed"); return data; }); })
         .then(function () { form.reset(); status.textContent = "희망 리포트를 등록했습니다. 감사합니다!"; return load(); })
-        .catch(function () { status.textContent = "등록하지 못했습니다. 잠시 후 다시 시도해 주세요."; })
+        .catch(function (error) { status.textContent = error.message === "topic_too_short" ? "궁금한 점을 4글자 이상 적어 주세요." : "등록하지 못했습니다. 잠시 후 다시 시도해 주세요."; })
         .finally(function () { submit.disabled = false; });
     });
     load();
