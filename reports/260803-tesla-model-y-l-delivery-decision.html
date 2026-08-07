@@ -15,83 +15,7 @@
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.floating-action,.pdf-save-button{transition:none}.floating-action:before,.pdf-save-button:before{animation:none;display:none}}
     @page{size:A4 portrait;margin:18mm 14mm 20mm;@bottom-left{content:"Tesla Model Y L 6,499만원 출고 결정 · AI Report";font:600 6.5pt/1.2 var(--sans);color:#66717e}@bottom-center{content:"2026.08.03 · github.com/aihubos";font:600 6.5pt/1.2 var(--sans);color:#66717e}@bottom-right{content:counter(page) " / " counter(pages);font:800 7pt/1.2 var(--sans);color:#185abc}}
     @media print{.nav,.floating-menu{display:none!important}html{print-color-adjust:exact;-webkit-print-color-adjust:exact}body{background:#fff;font-size:10.5pt;line-height:1.55;padding-bottom:0}.top-conclusion{margin:12px 0 0}.top-conclusion-card{box-shadow:none;break-inside:avoid}.verdict-line{font-size:15pt}.highlight-sweep{-webkit-print-color-adjust:exact;print-color-adjust:exact}.hero{padding:18px 0 24px}.hero h1{font-size:34pt}.hero .lede{font-size:15pt}.wrap{width:100%;max-width:none}.paper,.callout,.visual-hero,.reaction-card{box-shadow:none;break-inside:avoid}.section-head h2,h2,h3{break-after:avoid-page}.visual-hero img{max-height:230mm;object-fit:contain}p,li{orphans:3;widows:3}main section{padding:20px 0}.table-wrap{overflow:visible}table{font-size:8.5pt}thead{display:table-header-group}tr,img,figure{break-inside:avoid}.sources{overflow:visible;border:0}.sources thead,.sources tbody{min-width:0;font-size:6.8pt}.sources th,.sources td{padding:5px 6px;line-height:1.35;overflow-wrap:anywhere}.source-section{break-before:page}.source-section>.source-content{display:block!important}.sources-summary{display:none}.reaction-card{box-shadow:none;break-inside:avoid}.source-section a{color:#000;text-decoration:none}}
-  
-[aria-label="가로 또는 세로"]::before { display: none !important; }
-/* ── A4 Portrait Display (toggle) ── */
-@media screen {
-  body.report-a4-mode { max-width: 210mm; margin: 24px auto !important; background: #fff !important; box-shadow: 0 2px 24px rgba(0,0,0,.12); border-radius: 4px; padding: 0 !important; }
-  body.report-a4-mode .wrap, body.report-a4-mode .report-section, body.report-a4-mode main { max-width: 100% !important; }
-  @media (max-width: 218mm) {
-    body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
-  }
-}
-
-/* ── Floating menu right-side ── */
-.floating-menu {
-  position: fixed !important;
-  right: max(16px, calc((100vw - 1120px) / 2 - 160px)) !important;
-  top: 140px !important;
-  left: auto !important;
-  bottom: auto !important;
-  width: 142px !important;
-  max-width: 142px !important;
-  z-index: 30;
-}
-@media(max-width:1439px) {
-  .floating-menu {
-    right: 10px !important;
-    top: auto !important;
-    bottom: 14px !important;
-    left: 10px !important;
-    width: auto !important;
-    max-width: none !important;
-  }
-}
-
-</style>
-  <style id="report-view-v4-style">
-    :root{--max:1120px;--apple-blue:#007aff;--apple-gray:rgba(118,118,128,.16)}
-    .report-view-switcher{position:sticky;top:58px;z-index:35;border-bottom:1px solid rgba(0,122,255,.13);background:rgba(247,248,250,.88);-webkit-ba
-/* ── Layout toggle fix ── */
-.report-view-switcher-inner {
-  display: flex !important;
-  flex-wrap: wrap;
-  align-items: center !important;
-  gap: 8px !important;
-  min-height: 48px !important;
-  padding: 6px 0 !important;
-}
-[aria-label="가로 또는 세로"],
-[aria-label="간단 또는 상세 보기"] {
-  width: auto !important;
-  min-width: 90px !important;
-  max-width: 110px !important;
-}
-[aria-label="가로 또는 세로"] .report-view-button,
-[aria-label="간단 또는 상세 보기"] .report-view-button {
-  min-height: 32px !important;
-  padding: 4px 10px !important;
-  font-size: 12px !important;
-}
-.report-view-label {
-  font-size: 10px !important;
-  white-space: nowrap;
-  margin: 0 2px !important;
-}
-.report-utility-controls {
-  margin-left: auto !important;
-  width: 140px !important;
-  flex-shrink: 0;
-}
-@media(max-width:700px) {
-  .report-view-switcher-inner {
-    justify-content: center !important;
-    gap: 6px !important;
-  }
-  .report-utility-controls { width: 120px !important; }
-}
-
-</style>
+  </style>
   <style id="report-view-v4-style">
     :root{--max:1120px;--apple-blue:#007aff;--apple-gray:rgba(118,118,128,.16)}
     .report-view-switcher{position:sticky;top:58px;z-index:35;border-bottom:1px solid rgba(0,122,255,.13);background:rgba(247,248,250,.88);-webkit-backdrop-filter:saturate(180%) blur(22px);backdrop-filter:saturate(180%) blur(22px)}
@@ -113,69 +37,13 @@
     @media(max-width:700px){.report-view-switcher-inner{min-height:78px;grid-template-columns:minmax(0,1fr) 132px;gap:10px}.report-view-label{display:none}.report-view-buttons{min-height:62px;padding:6px}.report-view-buttons::before{left:6px;top:6px;bottom:6px;width:calc((100% - 12px)/2)}.report-view-button{min-height:50px;padding:8px 6px;font-size:17px}.report-utility-controls{width:132px}.report-utility-controls .pdf-save-button,.report-utility-controls .share-report-button{min-height:44px;padding:7px 5px;font-size:11px}.simple-report{padding:10px 0 46px}.simple-overview{padding:20px 12px}.simple-overview h2{font-size:28px}.simple-summary-content{gap:16px}.simple-slide{min-height:0;padding:24px 18px 72px;border-radius:18px}.simple-slide-head{gap:10px}.simple-slide-title{font-size:29px}.simple-slide-number{min-width:46px;height:34px}.simple-visual-grid,.simple-decision-grid{grid-template-columns:1fr}.simple-product-photo{min-height:210px}.simple-metric-strip{grid-template-columns:1fr}.simple-bar-row{grid-template-columns:86px 1fr 62px;gap:8px}.simple-flow{display:grid}.simple-flow-step+.simple-flow-step::before{content:"↓";left:50%;top:-12px;transform:translateX(-50%)}.simple-slide-footer{left:18px;right:18px;bottom:18px}.doodle-frame>.doodle-brand-logo{right:10px;top:10px;width:86px;padding:6px 8px}}
     @media(prefers-reduced-motion:reduce){.report-view-buttons::before,.report-view-button,.simple-detail-button{transition:none!important}}
     @media print{.report-view-switcher,.report-utility-controls{display:none!important}body[data-report-view="simple"] .hero,body[data-report-view="simple"] .detail-report,body[data-report-view="simple"] #sources{display:none!important}body[data-report-view="simple"] .simple-report{display:block!important;padding:0;break-before:auto;page-break-before:auto}body[data-report-view="simple"] .simple-overview{padding:0;border:0;box-shadow:none}body[data-report-view="simple"] .simple-overview>.eyebrow,body[data-report-view="simple"] .simple-overview>h2,body[data-report-view="simple"] .simple-detail-button{display:none!important}body[data-report-view="simple"] .simple-summary-content{display:block}body[data-report-view="simple"] .simple-slide{height:252mm;min-height:0;margin:0;padding:9mm 9mm 14mm;border:0;border-radius:0;box-shadow:none;break-inside:avoid;break-after:page;page-break-after:always}body[data-report-view="simple"] .simple-slide:last-child{break-after:auto;page-break-after:auto}body[data-report-view="simple"] .simple-slide::before{height:2mm}body[data-report-view="simple"] .simple-slide-title{font-size:23pt}body[data-report-view="simple"] .simple-slide-head{margin-bottom:5mm}body[data-report-view="simple"] .simple-product-photo{min-height:0;height:88mm;max-height:88mm}body[data-report-view="simple"] .simple-infographic-image{height:72mm;max-height:72mm;object-fit:contain}body[data-report-view="simple"] .simple-verdict{padding:4mm 5mm;font-size:17pt}body[data-report-view="simple"] .simple-metric-strip{gap:3mm;margin-top:4mm}body[data-report-view="simple"] .simple-metric-card{padding:4mm}body[data-report-view="simple"] .simple-metric-card b{font-size:20pt}body[data-report-view="simple"] .simple-metric-card span,body[data-report-view="simple"] .simple-bar-row,body[data-report-view="simple"] .simple-flow-step,body[data-report-view="simple"] .simple-slide-note{font-size:8.5pt}body[data-report-view="simple"] .simple-decision-card{padding:4mm}body[data-report-view="simple"] .simple-decision-card h3{font-size:13pt}body[data-report-view="simple"] .simple-slide-footer{left:9mm;right:9mm;bottom:5mm}body[data-report-view="detail"] .simple-report{display:none!important}body[data-report-view="detail"] .detail-report{display:block!important}}
-  
-[aria-label="가로 또는 세로"]::before { display: none !important; }
-/* ── A4 Portrait Display (toggle) ── */
-@media screen {
-  body.report-a4-mode { max-width: 210mm; margin: 24px auto !important; background: #fff !important; box-shadow: 0 2px 24px rgba(0,0,0,.12); border-radius: 4px; padding: 0 !important; }
-  body.report-a4-mode .wrap, body.report-a4-mode .report-section, body.report-a4-mode main { max-width: 100% !important; }
-  @media (max-width: 218mm) {
-    body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
-  }
-}
-
-
-/* ── Layout toggle fix ── */
-.report-view-switcher-inner {
-  display: flex !important;
-  flex-wrap: wrap;
-  align-items: center !important;
-  gap: 8px !important;
-  min-height: 48px !important;
-  padding: 6px 0 !important;
-}
-[aria-label="가로 또는 세로"],
-[aria-label="간단 또는 상세 보기"] {
-  width: auto !important;
-  min-width: 90px !important;
-  max-width: 110px !important;
-}
-[aria-label="가로 또는 세로"] .report-view-button,
-[aria-label="간단 또는 상세 보기"] .report-view-button {
-  min-height: 32px !important;
-  padding: 4px 10px !important;
-  font-size: 12px !important;
-}
-.report-view-label {
-  font-size: 10px !important;
-  white-space: nowrap;
-  margin: 0 2px !important;
-}
-.report-utility-controls {
-  margin-left: auto !important;
-  width: 140px !important;
-  flex-shrink: 0;
-}
-@media(max-width:700px) {
-  .report-view-switcher-inner {
-    justify-content: center !important;
-    gap: 6px !important;
-  }
-  .report-utility-controls { width: 120px !important; }
-}
-
-</style>
+  </style>
+  <link rel="stylesheet" href="../assets/report-page-layout.css">
 </head>
-<body
-<a href="../archive/" style="position:fixed;top:8px;left:12px;z-index:50;background:rgba(17,17,17,.85);color:#fff;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;text-decoration:none;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.15);">🏠 메인</a>
- data-report-view="detail">
+<body class="report-a4-mode" data-report-layout="a4" data-report-view="detail">
+  <a class="report-home-button" href="../archive/" aria-label="보고서 도서관 메인으로 이동">🏠 메인</a>
   <nav class="nav" aria-label="보고서 탐색"><div class="wrap nav-inner"><a class="brand" href="../archive/">RM · Report Mode</a><div class="nav-links"><a href="#summary">요약</a><a href="#comparison">비교</a><a href="#refresh-rumors">루머</a><a href="#decision">판단</a><a href="#sources">출처</a></div></div></nav>
-  <section class="report-view-switcher" aria-label="보고서 보기 방식"><div class="wrap report-view-switcher-inner"><span class="report-view-label">레이아웃</span>
-<div class="report-view-buttons" role="group" aria-label="가로 또는 세로" style="min-width:120px;">
-<button class="report-view-button" type="button" data-layout="wide">가로</button>
-<button class="report-view-button is-active" type="button" data-layout="a4">세로</button>
-</div>
-<span class="report-view-label">보기</span><div class="report-view-buttons" role="group" aria-label="간단 또는 상세 보기"><button class="report-view-button" type="button" data-report-view-target="simple" aria-pressed="false">간단</button><button class="report-view-button is-active" type="button" data-report-view-target="detail" aria-pressed="true">상세</button></div><div class="report-utility-controls" aria-label="보고서 저장 및 공유 도구"><a id="report-pdf-button" class="pdf-save-button" href="assets/260803-tesla-model-y-l-delivery-decision/detail.pdf" download="Tesla-Model-Y-L-상세-보고서.pdf" data-simple-url="assets/260803-tesla-model-y-l-delivery-decision/summary.pdf" data-simple-filename="Tesla-Model-Y-L-요약-2장.pdf" data-detail-url="assets/260803-tesla-model-y-l-delivery-decision/detail.pdf" data-detail-filename="Tesla-Model-Y-L-상세-보고서.pdf" aria-label="상세 보고서 PDF 파일 바로 저장">PDF 저장</a><button id="report-share-button" class="share-report-button" type="button" aria-label="현재 보고서 링크 공유">공유하기</button></div></div></section>
+  <section class="report-view-switcher" aria-label="보고서 보기 방식"><div class="wrap report-view-switcher-inner"><span class="report-view-label">보고서 보기</span><div class="report-view-buttons" role="group" aria-label="간단 또는 상세 보기"><button class="report-view-button" type="button" data-report-view-target="simple" aria-pressed="false">간단</button><button class="report-view-button is-active" type="button" data-report-view-target="detail" aria-pressed="true">상세</button></div><div class="report-utility-controls" aria-label="보고서 저장 및 공유 도구"><a id="report-pdf-button" class="pdf-save-button" href="assets/260803-tesla-model-y-l-delivery-decision/detail.pdf" download="Tesla-Model-Y-L-상세-보고서.pdf" data-simple-url="assets/260803-tesla-model-y-l-delivery-decision/summary.pdf" data-simple-filename="Tesla-Model-Y-L-요약-2장.pdf" data-detail-url="assets/260803-tesla-model-y-l-delivery-decision/detail.pdf" data-detail-filename="Tesla-Model-Y-L-상세-보고서.pdf" aria-label="상세 보고서 PDF 파일 바로 저장">PDF 저장</a><button id="report-share-button" class="share-report-button" type="button" aria-label="현재 보고서 링크 공유">공유하기</button></div></div></section>
   <nav class="floating-menu" aria-label="보고서 바로가기"><a class="floating-action" href="#summary">출고 판단 한눈에 보기</a><a class="floating-action" href="#comparison">계약가와 대안 비교</a><a class="floating-action" href="#refresh-rumors">신형 변경 루머</a><a class="floating-action" href="#decision">출고·미출고 기준</a><a class="floating-action" href="#economics">금융·총비용 점검</a><a class="floating-action" href="#delivery-check">인도 전 최종 검수</a><a class="floating-action" href="#public-reaction">인터넷·언론 반응</a><a class="floating-action" href="#sources">전체 출처 확인</a></nav>
   <header class="hero"><div class="wrap"><div class="kicker">KOREA EV PURCHASE DECISION · DELIVERY OR WALK AWAY</div><h1><span>Tesla Model Y L</span><span>6,499만원</span><span>출고 결정</span></h1>
     <section id="report-top" class="top-conclusion" aria-labelledby="top-conclusion-title"><div class="top-conclusion-card">
@@ -184,68 +52,11 @@
       <p class="verdict-line"><span class="verdict-num">02</span><span class="verdict-text">계약가는 현재 확인 가격보다 <mark class="highlight-sweep">800만원 낮고</mark>, 현행 Model Y 롱레인지 AWD보다도 200만원 낮습니다.</span></p>
       <p class="verdict-line"><span class="verdict-num">03</span><span class="verdict-text">다만 할인 때문에 사는 것은 절약이 아닙니다. <mark class="highlight-sweep">최종 청구서·보조금·VIN·실차</mark>를 확인한 뒤 결정해야 합니다.</span></p>
     </div></section>
-    <p class="lede">이 결정의 핵심은 ‘800만원을 버릴 것인가’가 아니라, 6,499만원짜리 6인승 전기 SUV를 실제 생활에서 충분히 사용할 것인가입니다. 가격 잠금의 이점과 불필요한 대형차의 비용을 분리해 판단했습니다.</p><div class="meta"><span class="chip"><strong>260803</strong> · 최대 심층 · 구매 판단</span><span class="chip">2026.08.03 KST</span><span class="chip">한국 공식·공공 우선 · 가격 타임라인·실사용·반대근거 교차 확인</span></div></div>
-
-</header>
-  <section id="simple-report" class="simple-report" data-simple-pages="2" aria-labelledby="simple-report-title"><div class="wrap"><div class="simple-overview"><div class="eyebrow">TWO VISUAL SUMMARY SHEETS</div><h2 id="simple-report-title">도표·인포그래픽 요약 장표 2장</h2><div class="simple-summary-content"><article class="simple-slide simple-slide-1"><header class="simple-slide-head"><div><span class="simple-slide-kicker">MODEL Y L · DELIVERY DECISION</span><h2 class="simple-slide-title">6,499만원 계약,<br>조건부 출고가 우세</h2></div><span class="simple-slide-number">1 / 2</span>
-
-</header><div class="simple-visual-grid"><img class="simple-product-photo" src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-Y-L-Engineered-Carousel-Slide-1-Desktop.jpg" alt="Tesla 공식 제품 페이지의 은색 Model Y L 측면 실제 제품사진"><div><div class="simple-verdict">6인승을 실제로 쓰고 3년 이상 보유한다면 출고 쪽입니다.</div><div class="simple-bar-chart" aria-label="차량 가격 비교 막대도표"><div class="simple-bar-row"><span>현행 Y L</span><span class="simple-bar-track"><span class="simple-bar-fill warn" style="width:100%"></span></span><strong>7,299</strong></div><div class="simple-bar-row"><span>계약 Y L</span><span class="simple-bar-track"><span class="simple-bar-fill" style="width:89%"></span></span><strong>6,499</strong></div><div class="simple-bar-row"><span>Y LR AWD</span><span class="simple-bar-track"><span class="simple-bar-fill" style="width:91.8%"></span></span><strong>6,699</strong></div><div class="simple-bar-row"><span>Y RWD</span><span class="simple-bar-track"><span class="simple-bar-fill" style="width:68.5%"></span></span><strong>4,999</strong></div></div></div></div><div class="simple-metric-strip"><div class="simple-metric-card"><b>800만원</b><span>현행 확인가 대비 가격 잠금</span></div><div class="simple-metric-card"><b>약 11.0%</b><span>현행가 대비 계약가 차이</span></div><div class="simple-metric-card"><b>1,500만원</b><span>RWD보다 더 내는 금액</span></div></div><div class="simple-slide-note"><strong>판단 기준:</strong> 가격이 아니라 6인승·2열 독립좌석을 실제 생활에서 반복 사용할지가 핵심입니다.</div><footer class="simple-slide-footer"><span>공식 제품사진 · Tesla China</span><span>금액 단위: 만원 · 2026.08.03 기준</span></footer></article><article class="simple-slide simple-slide-2"><header class="simple-slide-head"><div><span class="simple-slide-kicker">GO / NO-GO INFOGRAPHIC</span><h2 class="simple-slide-title">출고 조건과<br>48시간 검수 흐름</h2></div><span class="simple-slide-number">2 / 2</span>
-
-</header><div class="simple-visual-grid"><div class="doodle-frame"><img class="simple-infographic-image" src="assets/260803-tesla-model-y-l-delivery-decision/delivery-decision-doodle.png" alt="Model Y L 출고·미출고 조건과 마지막 검수 행동을 정리한 화이트보드 두들 인포그래픽"><img class="doodle-brand-logo" src="assets/260803-tesla-model-y-l-delivery-decision/tesla-wordmark-official.svg" alt="Tesla 공식 워드마크"></div><div class="simple-decision-grid"><section class="simple-decision-card go"><h3>출고 쪽</h3><ul><li>6석 월 1~2회 이상</li><li>3년 이상 보유</li><li>현금흐름 안전</li><li>주차공간 적합</li></ul></section><section class="simple-decision-card stop"><h3>미출고 쪽</h3><ul><li>대부분 1~2인 탑승</li><li>할인 때문에 구매</li><li>고금리 할부 부담</li><li>3열·주차 미검증</li></ul></section></div></div><div class="simple-flow" aria-label="인도 전 검수 순서"><div class="simple-flow-step"><strong>1</strong><br>6,499만원 최종 청구서</div><div class="simple-flow-step"><strong>2</strong><br>VIN·옵션·보조금</div><div class="simple-flow-step"><strong>3</strong><br>도장·단차·유리·충전</div><div class="simple-flow-step"><strong>4</strong><br>좌석·공조·타이어</div></div><div class="simple-slide-note"><strong>최종 행동:</strong> 앱과 계약서를 캡처하고, 인도 차량이 문서와 다르면 가격 이점만 보고 인수하지 않습니다.</div><footer class="simple-slide-footer"><span>화이트보드 두들 · 공식 Tesla 워드마크 오버레이</span><span>독립 보고서 · 비후원</span></footer></article></div><button class="simple-detail-button" type="button" data-report-view-target="detail">상세 근거 전체 보기</button></div></div></section>
+    <p class="lede">이 결정의 핵심은 ‘800만원을 버릴 것인가’가 아니라, 6,499만원짜리 6인승 전기 SUV를 실제 생활에서 충분히 사용할 것인가입니다. 가격 잠금의 이점과 불필요한 대형차의 비용을 분리해 판단했습니다.</p><div class="meta"><span class="chip"><strong>260803</strong> · 최대 심층 · 구매 판단</span><span class="chip">2026.08.03 KST</span><span class="chip">한국 공식·공공 우선 · 가격 타임라인·실사용·반대근거 교차 확인</span></div></div></header>
+  <section id="simple-report" class="simple-report" data-simple-pages="2" aria-labelledby="simple-report-title"><div class="wrap"><div class="simple-overview"><div class="eyebrow">TWO VISUAL SUMMARY SHEETS</div><h2 id="simple-report-title">도표·인포그래픽 요약 장표 2장</h2><div class="simple-summary-content"><article class="simple-slide simple-slide-1"><header class="simple-slide-head"><div><span class="simple-slide-kicker">MODEL Y L · DELIVERY DECISION</span><h2 class="simple-slide-title">6,499만원 계약,<br>조건부 출고가 우세</h2></div><span class="simple-slide-number">1 / 2</span></header><div class="simple-visual-grid"><img class="simple-product-photo" src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-Y-L-Engineered-Carousel-Slide-1-Desktop.jpg" alt="Tesla 공식 제품 페이지의 은색 Model Y L 측면 실제 제품사진"><div><div class="simple-verdict">6인승을 실제로 쓰고 3년 이상 보유한다면 출고 쪽입니다.</div><div class="simple-bar-chart" aria-label="차량 가격 비교 막대도표"><div class="simple-bar-row"><span>현행 Y L</span><span class="simple-bar-track"><span class="simple-bar-fill warn" style="width:100%"></span></span><strong>7,299</strong></div><div class="simple-bar-row"><span>계약 Y L</span><span class="simple-bar-track"><span class="simple-bar-fill" style="width:89%"></span></span><strong>6,499</strong></div><div class="simple-bar-row"><span>Y LR AWD</span><span class="simple-bar-track"><span class="simple-bar-fill" style="width:91.8%"></span></span><strong>6,699</strong></div><div class="simple-bar-row"><span>Y RWD</span><span class="simple-bar-track"><span class="simple-bar-fill" style="width:68.5%"></span></span><strong>4,999</strong></div></div></div></div><div class="simple-metric-strip"><div class="simple-metric-card"><b>800만원</b><span>현행 확인가 대비 가격 잠금</span></div><div class="simple-metric-card"><b>약 11.0%</b><span>현행가 대비 계약가 차이</span></div><div class="simple-metric-card"><b>1,500만원</b><span>RWD보다 더 내는 금액</span></div></div><div class="simple-slide-note"><strong>판단 기준:</strong> 가격이 아니라 6인승·2열 독립좌석을 실제 생활에서 반복 사용할지가 핵심입니다.</div><footer class="simple-slide-footer"><span>공식 제품사진 · Tesla China</span><span>금액 단위: 만원 · 2026.08.03 기준</span></footer></article><article class="simple-slide simple-slide-2"><header class="simple-slide-head"><div><span class="simple-slide-kicker">GO / NO-GO INFOGRAPHIC</span><h2 class="simple-slide-title">출고 조건과<br>48시간 검수 흐름</h2></div><span class="simple-slide-number">2 / 2</span></header><div class="simple-visual-grid"><div class="doodle-frame"><img class="simple-infographic-image" src="assets/260803-tesla-model-y-l-delivery-decision/delivery-decision-doodle.png" alt="Model Y L 출고·미출고 조건과 마지막 검수 행동을 정리한 화이트보드 두들 인포그래픽"><img class="doodle-brand-logo" src="assets/260803-tesla-model-y-l-delivery-decision/tesla-wordmark-official.svg" alt="Tesla 공식 워드마크"></div><div class="simple-decision-grid"><section class="simple-decision-card go"><h3>출고 쪽</h3><ul><li>6석 월 1~2회 이상</li><li>3년 이상 보유</li><li>현금흐름 안전</li><li>주차공간 적합</li></ul></section><section class="simple-decision-card stop"><h3>미출고 쪽</h3><ul><li>대부분 1~2인 탑승</li><li>할인 때문에 구매</li><li>고금리 할부 부담</li><li>3열·주차 미검증</li></ul></section></div></div><div class="simple-flow" aria-label="인도 전 검수 순서"><div class="simple-flow-step"><strong>1</strong><br>6,499만원 최종 청구서</div><div class="simple-flow-step"><strong>2</strong><br>VIN·옵션·보조금</div><div class="simple-flow-step"><strong>3</strong><br>도장·단차·유리·충전</div><div class="simple-flow-step"><strong>4</strong><br>좌석·공조·타이어</div></div><div class="simple-slide-note"><strong>최종 행동:</strong> 앱과 계약서를 캡처하고, 인도 차량이 문서와 다르면 가격 이점만 보고 인수하지 않습니다.</div><footer class="simple-slide-footer"><span>화이트보드 두들 · 공식 Tesla 워드마크 오버레이</span><span>독립 보고서 · 비후원</span></footer></article></div><button class="simple-detail-button" type="button" data-report-view-target="detail">상세 근거 전체 보기</button></div></div></section>
   <main class="detail-report">
     <section class="product-visuals" aria-label="제품사진과 핵심 인포그래픽"><div class="wrap"><figure class="visual-hero product-photo"><img src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-Y-L-Engineered-Carousel-Slide-1-Desktop.jpg" alt="Tesla 공식 제품 페이지에 공개된 은색 Model Y L 측면 실제 제품사진"><figcaption id="product-photo-title"><b>Tesla Model Y L 공식 제품사진 · Tesla China</b><span>공식 제조사 제품 페이지 에셋 · 한국 출고차의 색상·휠·세부 사양은 최종 VIN과 계약서로 확인</span></figcaption></figure><figure class="visual-hero"><div class="doodle-frame"><img src="assets/260803-tesla-model-y-l-delivery-decision/delivery-decision-doodle.png" alt="Model Y L 6,499만원 계약의 800만원 가격 잠금, 출고·미출고 조건과 인도 전 검수를 화이트보드 손그림으로 정리한 인포그래픽"><img class="doodle-brand-logo" src="assets/260803-tesla-model-y-l-delivery-decision/tesla-wordmark-official.svg" alt="Tesla 공식 워드마크"></div><figcaption id="visual-title"><b>AI 생성 인포그래픽 · 공식 제품 이미지 아님</b><span>RM 리포트 모드와 Tesla 공식 워드마크 포함 · 가격 타임라인, 6인승 실사용, 3년 보유, 현금흐름, 최종 청구서·VIN·실차 검수 시각화</span></figcaption></figure></div></section>
-    <section id="summary"><div class="wrap"><div class="section-head"><h2>한 문장 판단: ‘필요했던 6인승’이면 출고, ‘싸 보여서 생긴 욕구’면 미출고</h2><p>가격 우위는 강하지만, 사용 목적·현금흐름·품질 검수라는 세 문을 통과해야 합니다.</p></div><div class="paper"><style>.metric-grid,.choice-grid,.scenario-grid,.gate-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:22px 0}.metric,.choice,.scenario,.gate{padding:22px;border:1px solid var(--line);border-radius:18px;background:#fff}.metric b{display:block;font-size:30px;line-height:1.15;letter-spacing:-.04em;color:var(--accent)}.metric span,.fine{font-size:14px;color:var(--muted)}.choice.go{border-top:5px solid #3182f6}.choice.stop{border-top:5px solid #e5484d}.choice h3,.scenario h3,.gate h3{margin-bottom:8px}.signal{display:inline-flex;padding:5px 10px;border-radius:999px;background:#e8f3ff;color:#185abc;font-size:12px;font-weight:900}.warning{background:#fff8e1;border:1px solid #ffe08a;border-radius:16px;padding:18px 20px}.decision-banner{margin:20px 0;padding:22px 24px;border-radius:18px;background:#edf5ff;border:2px solid #3182f6}.decision-banner strong{font-size:24px}.timeline{display:grid;gap:10px}.timeline li{margin:.4em 0}.checklist li{margin:.65em 0}.formula{padding:18px;border-radius:16px;background:#f7f9fb;font-weight:800}.overlay-wrap{position:relative}.overlay-note{margin-top:12px;padding:12px 16px;border-left:4px solid var(--highlight);background:#fffdf0;font-size:14px}@media(max-width:760px){.metric-grid,.choice-grid,.scenario-grid,.gate-grid{grid-template-columns:1fr}.metric b{font-size:26px}}
-[aria-label="가로 또는 세로"]::before { display: none !important; }
-/* ── A4 Portrait Display (toggle) ── */
-@media screen {
-  body.report-a4-mode { max-width: 210mm; margin: 24px auto !important; background: #fff !important; box-shadow: 0 2px 24px rgba(0,0,0,.12); border-radius: 4px; padding: 0 !important; }
-  body.report-a4-mode .wrap, body.report-a4-mode .report-section, body.report-a4-mode main { max-width: 100% !important; }
-  @media (max-width: 218mm) {
-    body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
-  }
-}
-
-
-/* ── Layout toggle fix ── */
-.report-view-switcher-inner {
-  display: flex !important;
-  flex-wrap: wrap;
-  align-items: center !important;
-  gap: 8px !important;
-  min-height: 48px !important;
-  padding: 6px 0 !important;
-}
-[aria-label="가로 또는 세로"],
-[aria-label="간단 또는 상세 보기"] {
-  width: auto !important;
-  min-width: 90px !important;
-  max-width: 110px !important;
-}
-[aria-label="가로 또는 세로"] .report-view-button,
-[aria-label="간단 또는 상세 보기"] .report-view-button {
-  min-height: 32px !important;
-  padding: 4px 10px !important;
-  font-size: 12px !important;
-}
-.report-view-label {
-  font-size: 10px !important;
-  white-space: nowrap;
-  margin: 0 2px !important;
-}
-.report-utility-controls {
-  margin-left: auto !important;
-  width: 140px !important;
-  flex-shrink: 0;
-}
-@media(max-width:700px) {
-  .report-view-switcher-inner {
-    justify-content: center !important;
-    gap: 6px !important;
-  }
-  .report-utility-controls { width: 120px !important; }
-}
-
-</style><div class="decision-banner"><strong>기본 권고: 조건부 출고</strong><p>다음 네 조건을 충족할 때입니다: ① 6인승·2열 캡틴체어를 실제 사용, ② 3년 이상 보유, ③ 현금흐름에 무리 없음, ④ 인도 차량과 최종 청구서가 계약 내용과 일치.</p></div><div class="metric-grid"><div class="metric"><b>800만원</b><span>6,499만원 계약가와 7,299만원 현행 확인가 차이</span></div><div class="metric"><b>약 11.0%</b><span>현행가 대비 계약가 할인 효과</span></div><div class="metric"><b>-200만원</b><span>현행 Model Y 롱레인지 AWD 6,699만원 대비</span></div></div><p class="warning"><strong>중요:</strong> 위 800만원은 현금 수익이 아니라 ‘현재 같은 차를 새로 살 때보다 적게 내는 금액’입니다. 필요 없는 차를 6,499만원에 사는 순간, 할인은 절약이 아니라 지출의 이유가 됩니다.</p></div></div></section>
+    <section id="summary"><div class="wrap"><div class="section-head"><h2>한 문장 판단: ‘필요했던 6인승’이면 출고, ‘싸 보여서 생긴 욕구’면 미출고</h2><p>가격 우위는 강하지만, 사용 목적·현금흐름·품질 검수라는 세 문을 통과해야 합니다.</p></div><div class="paper"><style>.metric-grid,.choice-grid,.scenario-grid,.gate-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:22px 0}.metric,.choice,.scenario,.gate{padding:22px;border:1px solid var(--line);border-radius:18px;background:#fff}.metric b{display:block;font-size:30px;line-height:1.15;letter-spacing:-.04em;color:var(--accent)}.metric span,.fine{font-size:14px;color:var(--muted)}.choice.go{border-top:5px solid #3182f6}.choice.stop{border-top:5px solid #e5484d}.choice h3,.scenario h3,.gate h3{margin-bottom:8px}.signal{display:inline-flex;padding:5px 10px;border-radius:999px;background:#e8f3ff;color:#185abc;font-size:12px;font-weight:900}.warning{background:#fff8e1;border:1px solid #ffe08a;border-radius:16px;padding:18px 20px}.decision-banner{margin:20px 0;padding:22px 24px;border-radius:18px;background:#edf5ff;border:2px solid #3182f6}.decision-banner strong{font-size:24px}.timeline{display:grid;gap:10px}.timeline li{margin:.4em 0}.checklist li{margin:.65em 0}.formula{padding:18px;border-radius:16px;background:#f7f9fb;font-weight:800}.overlay-wrap{position:relative}.overlay-note{margin-top:12px;padding:12px 16px;border-left:4px solid var(--highlight);background:#fffdf0;font-size:14px}@media(max-width:760px){.metric-grid,.choice-grid,.scenario-grid,.gate-grid{grid-template-columns:1fr}.metric b{font-size:26px}}</style><div class="decision-banner"><strong>기본 권고: 조건부 출고</strong><p>다음 네 조건을 충족할 때입니다: ① 6인승·2열 캡틴체어를 실제 사용, ② 3년 이상 보유, ③ 현금흐름에 무리 없음, ④ 인도 차량과 최종 청구서가 계약 내용과 일치.</p></div><div class="metric-grid"><div class="metric"><b>800만원</b><span>6,499만원 계약가와 7,299만원 현행 확인가 차이</span></div><div class="metric"><b>약 11.0%</b><span>현행가 대비 계약가 할인 효과</span></div><div class="metric"><b>-200만원</b><span>현행 Model Y 롱레인지 AWD 6,699만원 대비</span></div></div><p class="warning"><strong>중요:</strong> 위 800만원은 현금 수익이 아니라 ‘현재 같은 차를 새로 살 때보다 적게 내는 금액’입니다. 필요 없는 차를 6,499만원에 사는 순간, 할인은 절약이 아니라 지출의 이유가 됩니다.</p></div></div></section>
     <section id="comparison"><div class="wrap"><div class="section-head"><h2>가격 잠금은 강력하지만, 진짜 대안은 ‘다른 6인승’보다 ‘5인승으로 충분한가’입니다</h2><p>2026년 7월 한국 가격 보도와 4월 계약가를 같은 차량가격 기준으로 비교했습니다. 옵션·보험·등록비·지역 보조금은 별도입니다.</p></div><div class="table-wrap"><table><thead><tr><th>선택지</th><th>확인 가격</th><th>6,499만원 대비</th><th>얻는 것</th><th>포기하는 것·주의</th></tr></thead><tbody><tr><td><strong>계약 Model Y L</strong></td><td><strong>6,499만원</strong></td><td>기준</td><td>6인승, 장축, 2열 독립좌석, 가변 댐핑</td><td>큰 차체, 높은 절대 지출, 가격 변동·감가 위험</td></tr><tr><td>현행 Model Y L</td><td>7,299만원</td><td>+800만원</td><td>동일 차종을 현재 주문</td><td>계약가를 포기하면 되돌리기 어려움</td></tr><tr><td>Model Y LR AWD</td><td>6,699만원</td><td>+200만원</td><td>5인승·짧은 차체·상대적으로 가벼움</td><td>계약 Y L보다 오히려 비싸고 3열 없음</td></tr><tr><td>Model Y RWD</td><td>4,999만원</td><td>-1,500만원</td><td>낮은 구매비·5인승 실용성</td><td>AWD·장축·6인승·캡틴체어 포기</td></tr><tr><td>EV9·아이오닉 9</td><td>트림·혜택별 재견적 필요</td><td>미확정</td><td>국내 서비스망, 더 전통적인 3열 SUV 패키징 비교</td><td>실구매가·옵션·납기·충전 생태계를 동일 견적으로 맞춰야 함</td></tr></tbody></table></div><p class="fine">가격은 기사에서 확인된 기본 차량가입니다. 도색·휠·FSD, 탁송·등록·보험, 보조금 소진 여부에 따라 실제 결제액이 달라집니다.</p></div></section>
     <section id="decision"><div class="wrap"><div class="section-head"><h2>출고와 미출고를 가르는 네 가지 질문</h2><p>‘예/아니오’가 분명하지 않으면 가격이 아니라 사용 장면부터 적으세요.</p></div><div class="callout"><div class="choice-grid"><article class="choice go"><span class="signal">출고 쪽</span><h3>6석을 월 1~2회 이상 쓴다</h3><p>부모님·자녀·동행인을 태우고 2열 독립좌석과 3열이 실제 일정에 등장한다면 Y L의 차별점이 비용으로 환산됩니다.</p></article><article class="choice go"><span class="signal">출고 쪽</span><h3>3년 이상 보유할 계획이다</h3><p>등록 직후 중고차 전환 비용과 가격 변동을 견디려면 단기 되팔기보다 장기 사용이 맞습니다.</p></article><article class="choice stop"><span class="signal">미출고 쪽</span><h3>대부분 1~2명만 탄다</h3><p>5인승 Model Y RWD와의 1,500만원 차이는 ‘할인받은 800만원’보다 큰 비용입니다.</p></article><article class="choice stop"><span class="signal">미출고 쪽</span><h3>할부·현금흐름이 부담된다</h3><p>차량을 산 뒤 비상자금이 6개월치 생활비 아래로 떨어지거나 고금리 할부가 필요하면 가격 잠금보다 유동성이 우선입니다.</p></article><article class="choice stop"><span class="signal">미출고 쪽</span><h3>주차·3열을 검증하지 못했다</h3><p>전장 4,976mm와 3열 자세·승하차·3열 사용 중 짐 공간은 표 수치가 아니라 집 주차장과 실차에서 확인해야 합니다.</p></article><article class="choice go"><span class="signal">출고 쪽</span><h3>최종 문서와 차량이 모두 통과한다</h3><p>6,499만원 유지, 보조금 처리, VIN·옵션·생산 정보, 인도 품질이 계약과 일치해야 가격 우위가 실제 이익이 됩니다.</p></article></div></div></div></section>
     <section id="price-timeline"><div class="wrap"><div class="section-head"><h2>가격 타임라인: 계약가는 현재보다 800만원 낮습니다</h2><p>한국 판매 가격의 빠른 변동은 출고 매력과 장기 감가 위험을 동시에 키웁니다.</p></div><div class="paper"><ol class="timeline"><li><strong>2026.04.03:</strong> 국내 출시 기본가 6,499만원. 한국 인증 관련 보도는 88.2kWh, 상온 553km·저온 454km, 국고보조금 약 210만원을 제시했습니다.</li><li><strong>2026.04.10:</strong> 6,999만원으로 500만원 인상.</li><li><strong>2026.07:</strong> 7,299만원으로 다시 300만원 인상. Tesla는 7월 1일 이전 예약자가 기존 옵션 구성을 바꾸지 않으면 인상 전 가격을 적용한다고 설명한 것으로 보도됐습니다.</li><li><strong>2026.08.03 판단:</strong> 6,499만원 계약은 현재 확인가보다 800만원 낮아 약 11.0%의 가격 완충이 있습니다.</li></ol><p class="warning"><strong>양면성:</strong> 지금은 계약자에게 유리하지만, Tesla의 잦은 가격 조정은 향후 인하 때 중고가와 심리적 만족을 훼손할 수 있습니다. ‘현재가보다 싸다’와 ‘미래 감가가 적다’는 같은 말이 아닙니다.</p></div></div></section><section id="fit"><div class="wrap"><div class="section-head"><h2>제품 적합성: Y L의 가치는 속도가 아니라 객실 패키징에 있습니다</h2><p>중국·호주 실차 근거는 한국형과 인증 수치가 다를 수 있어, 구조·사용성 판단에만 제한적으로 사용했습니다.</p></div><div class="table-wrap"><table><thead><tr><th>항목</th><th>강점</th><th>반대 근거·검수 포인트</th></tr></thead><tbody><tr><td>2열</td><td>독립형 캡틴체어, 열선·통풍, 장거리 승객 편의</td><td>카시트 상부 고정 방식과 3열 진입 동선을 실제 장착 상태로 확인</td></tr><tr><td>3열</td><td>필요할 때 6인 탑승 가능, 전용 공조·열선</td><td>성인 장거리에서는 높은 바닥·허벅지 지지·머리 공간 타협 지적</td></tr><tr><td>주행</td><td>가변 댐핑, AWD, 250kW급 최대 급속충전</td><td>실제 충전곡선·겨울 효율·타이어 비용은 사용 조건에 따라 달라짐</td></tr><tr><td>차체</td><td>축거 3,040mm로 실내 공간 확대</td><td>전장 4,976mm. 지하주차장 회전·기계식 제한·평행주차를 직접 확인</td></tr><tr><td>적재</td><td>좌석 폴딩 시 큰 최대 공간</td><td>3열을 세운 상태의 유모차·캐리어 적재가 핵심이며 최대 적재량 수치로 대체 불가</td></tr></tbody></table></div></div></section><section id="economics"><div class="wrap"><div class="section-head"><h2>금융·총비용: 800만원 할인보다 6,499만원의 자금비용을 먼저 보세요</h2><p>아래 할부는 비교용 예시이며 실제 금융상품 견적이 아닙니다.</p></div><div class="paper"><div class="metric-grid"><div class="metric"><b>약 83.8만원/월</b><span>차값 70%를 60개월·연 4% 원리금균등으로 가정</span></div><div class="metric"><b>약 88.0만원/월</b><span>같은 원금, 연 6% 가정</span></div><div class="metric"><b>약 92.2만원/월</b><span>같은 원금, 연 8% 가정</span></div></div><p>70%인 45,493,000원을 빌릴 경우 총이자는 연 4% 약 478만원, 6% 약 728만원, 8% 약 985만원입니다. 금리가 높으면 계약가 우위 800만원의 상당 부분이 금융비용으로 사라질 수 있습니다.</p><div class="formula">실질 판단비용 = 차량가 − 확정 보조금 + 등록·보험 + 금융비용 + 충전·타이어·정비 − 보유기간 후 중고가</div><ul class="checklist"><li><strong>취득세:</strong> 전기차 감면과 과세표준을 적용한 예비 계산은 약 274만원이지만, 6인승 분류·옵션·2026년 감면 적용은 등록 대행 견적과 관할 지자체에서 확정해야 합니다.</li><li><strong>보조금:</strong> 기사상 국고 210만원 수준입니다. 지역 보조금 잔액·대상 확정·출고 순서가 최종 청구서에 반영되는지 확인하세요.</li><li><strong>보험:</strong> VIN 기준 자차 포함 실제 견적을 2개 이상 받으세요. 차값보다 수리비·부품 대기와 자기부담금이 체감비용을 좌우할 수 있습니다.</li><li><strong>대안의 기회비용:</strong> RWD와의 1,500만원 차액을 연 4%로 5년 운용하면 단순 복리 차이는 약 325만원입니다. 3열을 쓰지 않는다면 이 차액이 가장 큰 비용입니다.</li></ul></div></div></section><section id="scenarios"><div class="wrap"><div class="section-head"><h2>세 가지 시나리오</h2><p>결론을 바꾸는 변수를 가격·사용·현금흐름으로 나눴습니다.</p></div><div class="scenario-grid"><article class="scenario"><span class="signal">낙관</span><h3>가족용 6인승으로 오래 사용</h3><p>월 2회 이상 6인 탑승, 자가 충전, 5년 보유. 계약가 우위와 객실 활용이 모두 살아납니다. 출고 권고가 강합니다.</p></article><article class="scenario"><span class="signal">기준</span><h3>5인 위주·가끔 6인 탑승</h3><p>사용성은 맞지만 절대 지출이 큽니다. 현금·저금리 조달과 실차 검수 통과 시 조건부 출고입니다.</p></article><article class="scenario"><span class="signal">보수</span><h3>1~2인 위주·단기 보유</h3><p>할인 때문에 구매하고 1~2년 내 매각할 가능성이 큽니다. 등록·보험·감가·가격 인하 위험이 커 미출고가 낫습니다.</p></article></div></div></section><section id="delivery-check"><div class="wrap"><div class="section-head"><h2>인도 전 48시간 체크리스트</h2><p>가격 우위를 실제 권리와 정상 차량으로 바꾸는 단계입니다.</p></div><div class="callout"><ol class="checklist"><li><strong>문서:</strong> Tesla 앱과 최종 주문계약서·청구서에 기본 차량가격 6,499만원이 유지되는지 캡처합니다.</li><li><strong>지원금:</strong> 국고·지자체 보조금 확정액, 소진 시 책임, 출고일 변경 시 처리 방식을 서면으로 확인합니다.</li><li><strong>VIN:</strong> 트림·좌석·휠·색상·옵션·생산월과 최종 차량이 일치하는지 확인합니다.</li><li><strong>외관:</strong> 도장 이색·찍힘·패널 단차·유리 흠집·램프 습기·휠·타이어 손상을 밝은 곳에서 촬영합니다.</li><li><strong>기능:</strong> 전 좌석 전동·열선·통풍, 2·3열 폴딩, 공조, 화면, 카메라, 충전구, 키·앱 연결을 시험합니다.</li><li><strong>생활 검증:</strong> 집 주차장에 4,976mm 차체가 들어가는지, 카시트·유모차·캐리어가 3열 사용 상태에서 맞는지 확인합니다.</li><li><strong>인수 기준:</strong> 중대한 손상·사양 불일치·문서 불일치 때 서명 전에 누구에게 어떤 절차로 이의를 제기할지 정합니다.</li><li><strong>최종 질문:</strong> ‘오늘 처음 이 차를 6,499만원에 봤어도 샀을까?’가 아니오라면 미출고가 맞습니다.</li></ol></div></div></section>
@@ -253,96 +64,6 @@
     <section id="limitations"><div class="wrap"><div class="section-head"><h2>한계와 최종 판단</h2><p>확정되지 않은 개인 조건과 계약 문서는 결론에서 분리했습니다.</p></div><div class="paper"><ul><li>6,499만원은 사용자가 제시한 계약가이며, 실제 최종 청구서·옵션·탁송·보조금 반영액은 보고서가 열람하지 못했습니다.</li><li>Tesla 한국 공식 구성기는 조사 환경에서 접근 차단되어, 현행 7,299만원은 2026년 7월 복수 한국 언론의 Tesla Korea 가격 확인을 사용했습니다.</li><li>한국 인증 88.2kWh·상온 553km·저온 454km와 국고 210만원은 무공해차 통합누리집을 인용한 한국 기사로 확인했으며, 출고일의 공식 목록을 다시 조회해야 합니다.</li><li>취득세·지역 보조금·보험·할부는 거주지, 옵션, 개인 신용과 법 적용에 따라 달라집니다. 제시 계산은 의사결정용 예시입니다.</li><li>중국·호주 실측은 차체 구조와 사용성의 반대근거로만 썼고 한국 인증 수치와 직접 합산하지 않았습니다.</li><li>이번 공개 표본에서는 Model Y L 고유의 대규모 인도품질 결함이나 장기 AS 지연 패턴을 확인하지 못했습니다. 이는 무결함의 증명이 아니며, 출시 초기라 현물 검수와 주소지 기준 서비스 예약 가능일 확인이 필요합니다.</li></ul><div class="decision-banner"><strong>최종 권고</strong><p><strong>6인승 필요가 이미 있었고 현금흐름이 안전하다면 출고하십시오.</strong> 800만원의 가격 잠금과 현행 Model Y LR AWD보다 200만원 낮은 가격은 드문 우위입니다. 반대로 3열을 거의 쓰지 않거나 ‘취소하면 손해 같아서’ 사는 것이라면 미출고하십시오. 이때 1,500만원 저렴한 Model Y RWD 또는 차량 구매 연기가 더 큰 절약입니다.</p></div></div></div></section>
   <section id="public-reaction"><div class="wrap"><div class="section-head"><h2>인터넷·언론 반응</h2><p>X·Threads·블로그·커뮤니티·뉴스에서 실제로 확인한 의견을 긍정·우려·조건부 평가로 나눴습니다.</p></div><div class="reaction-grid"><article class="reaction-card"><div class="reaction-meta"><span class="reaction-source">기글하드웨어 댓글 · 엇갈림</span><span>낄낄 외 · 2026.04.03</span></div><h3>‘EV9보다 작지만 경쟁력’과 쿠페형 공간 우려</h3><p>공개 댓글 표본에서는 “EV9보다 조금 작은 크기에 저 정도 가격이면 경쟁력”이라는 평가와 “쿠페형이라 EV9가 실내는 더 편할 것”이라는 반론이 함께 확인됐습니다. 댓글 4개의 소표본이며 시승 평가는 아닙니다.</p><a href="https://gigglehd.com/gg/lifetech/18646998" target="_blank" rel="noopener">게시물·댓글 보기</a></article><article class="reaction-card"><div class="reaction-meta"><span class="reaction-source">쿠키뉴스 · 비판</span><span>김수지 · 2026.04.10</span></div><h3>출시 일주일 만의 500만원 인상</h3><p>6,499만원에서 6,999만원으로 빠르게 오른 가격과 수요·환율·보조금 불확실성을 지적했습니다. 초기 계약자의 가격 잠금에는 유리하지만 가격 정책 신뢰에는 부정적입니다.</p><a href="https://www.kukinews.com/article/view/kuk202604100095" target="_blank" rel="noopener">기사 원문 보기</a></article><article class="reaction-card"><div class="reaction-meta"><span class="reaction-source">한국경제 · 비판</span><span>최수진 · 2026.07.15</span></div><h3>7,299만원 재인상과 ‘고무줄 가격’ 우려</h3><p>7월 Model Y L이 6,999만원에서 7,299만원으로 300만원 더 올랐다고 확인하면서 잦은 가격 변경이 소비자 혼란과 보조금·감가 위험을 키운다고 평가했습니다.</p><a href="https://www.hankyung.com/article/202607156600g" target="_blank" rel="noopener">기사 원문 보기</a></article><article class="reaction-card"><div class="reaction-meta"><span class="reaction-source">네이버 실차 착석 · 조건부 긍정</span><span>알고타 · 2026.05.16</span></div><h3>2열은 편안하지만 큰 체격·3열 자세는 확인 필요</h3><p>매장에서 1~3열을 직접 앉아본 공개 후기는 2열 캡틴시트의 편안함과 예상보다 나은 3열 공간을 장점으로 봤습니다. 동시에 큰 체격에는 2열 통로·시트 폭이 좁고, 3열은 무릎이 올라가는 자세라고 지적했습니다. 1인 착석 후기라는 한계가 있습니다.</p><a href="https://blog.naver.com/algota/224287148667" target="_blank" rel="noopener">실차 착석 후기 보기</a></article><article class="reaction-card"><div class="reaction-meta"><span class="reaction-source">Drive Australia · 유보</span><span>2026.07.17</span></div><h3>카시트 상부 고정 방식의 지역별 호환 이슈</h3><p>호주에서 일부 카시트 브랜드의 상부 테더 호환 판단이 엇갈렸고, 연장 스트랩 등 제품별 지침이 안내됐습니다. 한국 규정·제품에 그대로 적용하지 말고 실제 카시트로 확인해야 합니다.</p><a href="https://www.drive.com.au/news/tesla-model-y-l-reassessed-by-child-seat-brands-to-clarify-if-compatible/" target="_blank" rel="noopener">기사 원문 보기</a></article></div><p class="reaction-note">온라인 의견은 대표 표본이며 전체 여론을 뜻하지 않습니다. 작성자·매체·게시일·원문 링크는 아래 전체 출처에 함께 기록했습니다.</p></div></section>
   </main>
-<!-- COMMENT WIDGET -->
-<div style="max-width:720px;margin:40px auto;padding:32px 28px;background:#fff;border:1px solid #e5e8eb;border-radius:18px;box-shadow:0 4px 16px rgba(0,0,0,.04);">
-  <h3 style="margin:0 0 6px;font-size:20px;color:#191f28;">💬 댓글</h3>
-  <p style="margin:0 0 20px;font-size:14px;color:#8b95a1;">로그인 없이 자유롭게 의견을 남겨주세요.</p>
-  <div id="comment-list" style="margin-bottom:20px;max-height:400px;overflow-y:auto;"></div>
-  <form id="comment-form" style="display:flex;flex-direction:column;gap:10px;" onsubmit="return submitComment(event)">
-    <input id="comment-name" type="text" placeholder="이름 (선택)" style="padding:10px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;max-width:240px;">
-    <textarea id="comment-body" rows="3" placeholder="댓글을 입력하세요..." required style="padding:12px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;resize:vertical;font-family:inherit;"></textarea>
-    <button type="submit" style="align-self:flex-end;padding:10px 24px;background:#3182f6;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;">등록</button>
-  </form>
-</div>
-<script>
-(function(){
-  var PAGE = window.location.pathname.replace(/\//g,'-').replace(/^-|-$/g,'') || 'index';
-  var STORAGE_KEY = 'comments-' + PAGE;
-    var list = document.getElementById('comment-list');
-  
-  function saveComments(comments) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(comments));
-  }
-  
-  function loadComments() {
-    var raw = localStorage.getItem(STORAGE_KEY);
-    var comments = raw ? JSON.parse(raw) : [];
-    list.innerHTML = comments.length === 0 
-      ? '<p style="color:#8b95a1;font-size:13px;text-align:center;padding:20px 0;">아직 댓글이 없습니다. 첫 댓글을 남겨보세요!</p>'
-      : comments.map(function(c,i){
-          var name = c.name || '익명';
-          var date = new Date(c.time).toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'});
-          return '<div style="padding:14px 0;border-bottom:1px solid #f0f0f0;" data-idx="'+i+'">'
-            + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">'
-            + '<div>'
-            + '<strong style="font-size:14px;color:#191f28;">' + escapeHtml(name) + '</strong>'
-            + '<span style="font-size:12px;color:#b0b8c1;margin-left:8px;">' + date + '</span>'
-            + '</div>'
-            + '<button onclick="deleteComment('+i+')" style="background:none;border:none;color:#ccc;cursor:pointer;font-size:12px;padding:2px 6px;" title="삭제">✕</button>'
-            + '</div>'
-            + '<p style="margin:0;font-size:14px;color:#4a5568;line-height:1.5;">' + escapeHtml(c.body) + '</p>'
-            + '</div>';
-        }).join('');
-  }
-  
-  function escapeHtml(text) {
-    var div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
-  
-  window.deleteComment = function(idx) {
-    var savedPw = localStorage.getItem(STORAGE_KEY + '-pw');
-    if (!savedPw) {
-      savedPw = prompt('관리자 비밀번호를 설정하세요 (댓글 삭제용):');
-      if (!savedPw) return;
-      localStorage.setItem(STORAGE_KEY + '-pw', savedPw);
-      alert('비밀번호가 설정되었습니다. 다시 삭제 버튼을 눌러주세요.');
-      return;
-    }
-    var pw = prompt('삭제 비밀번호를 입력하세요:');
-    if (pw !== savedPw) { alert('비밀번호가 틀렸습니다.'); return; }
-    if (!confirm('정말 삭제하시겠습니까?')) return;
-    var raw = localStorage.getItem(STORAGE_KEY);
-    var comments = raw ? JSON.parse(raw) : [];
-    comments.splice(idx, 1);
-    saveComments(comments);
-    loadComments();
-  };
-  
-  window.submitComment = function(e) {
-    e.preventDefault();
-    var nameEl = document.getElementById('comment-name');
-    var bodyEl = document.getElementById('comment-body');
-    var comment = {
-      name: nameEl.value.trim(),
-      body: bodyEl.value.trim(),
-      time: Date.now()
-    };
-    var raw = localStorage.getItem(STORAGE_KEY);
-    var comments = raw ? JSON.parse(raw) : [];
-    comments.unshift(comment);
-    saveComments(comments.slice(0, 100));
-    bodyEl.value = '';
-    nameEl.value = '';
-    loadComments();
-    return false;
-  };
-  
-  loadComments();
-})();
-</script>
-<!-- END COMMENT WIDGET -->
   <details id="sources" class="source-section"><summary class="wrap sources-summary"><span class="sources-summary-text">전체 출처</span><span class="sources-summary-hint"><span class="sources-toggle-closed">클릭하여 펼치기</span><span class="sources-toggle-open">접기</span></span></summary><div class="wrap source-content"><div class="section-head"><h2>전체 출처</h2><p>사실·분석·전망·루머·온라인 반응, 시각자료와 생성 이미지의 상태를 함께 기록했습니다.</p></div><table class="sources"><thead><tr><th>유형</th><th>자료명</th><th>제공자·저작자</th><th>원문</th><th>날짜</th><th>라이선스·상태</th><th>사용 범위</th></tr></thead><tbody><tr><td>공식 주문 페이지</td><td>Tesla Korea · Model Y 구성기</td><td>Tesla Korea</td><td><a href="https://www.tesla.com/ko_kr/modely/design#overview">원문 보기</a></td><td>2026-08-03 확인 시도</td><td>공식 페이지 · 조사 환경 접근 차단</td><td>최종 가격·옵션은 사용자 앱과 주문계약서에서 재확인</td></tr><tr><td>공공 포털</td><td>무공해차 통합누리집 · 구매보조금</td><td>기후에너지환경부</td><td><a href="https://www.ev.or.kr/">원문 보기</a></td><td>2026-08-03 확인 시도</td><td>공식 공개 포털 · 동적 조회</td><td>국고·지자체 보조금 출고일 재확인</td></tr><tr><td>한국 출시 보도</td><td>테슬라, 6인승 Model Y L 국내 출시</td><td>디지털투데이 · 추현우</td><td><a href="https://www.digitaltoday.co.kr/news/articleView.html?idxno=653190">기사</a></td><td>2026-04-03</td><td>공개 기사 · Tesla Korea 사진 재배포 안 함</td><td>6,499만원, 한국 인증 주행거리·배터리·보조금</td></tr><tr><td>한국 가격 보도</td><td>출시 일주일 만에 500만원 인상</td><td>쿠키뉴스 · 김수지</td><td><a href="https://www.kukinews.com/article/view/kuk202604100095">기사</a></td><td>2026-04-10</td><td>공개 기사</td><td>6,499→6,999만원 가격 타임라인</td></tr><tr><td>한국 가격 보도</td><td>테슬라 또 가격 인상</td><td>한국경제 · 최수진</td><td><a href="https://www.hankyung.com/article/202607156600g">기사</a></td><td>2026-07-15</td><td>공개 기사</td><td>Y L 7,299만원, Y LR AWD 6,699만원, Y RWD 4,999만원</td></tr><tr><td>판매·시장 보도</td><td>상반기 EV 결산 · Model Y RWD 지배</td><td>블로터 · 조재환</td><td><a href="https://n.news.naver.com/mnews/article/293/0000087324">기사</a></td><td>2026-07</td><td>공개 기사</td><td>가격 타임라인, Y L 6월 5,155대 보도</td></tr><tr><td>공식 제품 페이지</td><td>Tesla China · Model Y / Model Y L</td><td>Tesla</td><td><a href="https://www.tesla.cn/modely">원문 보기</a></td><td>2026-08-02 확인</td><td>공식 공개 페이지 · 중국 사양</td><td>차체·좌석·공간 구조 보조 근거</td></tr><tr><td>독립 장기 시승</td><td>Model Y L is the plushest and most versatile Tesla yet</td><td>The Driven · Riz Akhtar</td><td><a href="https://thedriven.io/2026/06/19/review-model-y-l-is-the-plushest-and-most-versatile-tesla-yet-finally-with-v2l/">기사</a></td><td>2026-06-19</td><td>호주형 1주·800km 시승</td><td>효율·2열·승차감·3열 사용성</td></tr><tr><td>제3자 리뷰 종합</td><td>Early Chinese Model Y L reviews</td><td>Electrek</td><td><a href="https://electrek.co/2025/08/25/early-chinese-tesla-model-yl-reviews-show-good-dynamics-cramped-3rd-row/">기사</a></td><td>2025-08-25</td><td>현지 리뷰 재인용</td><td>3열 공간의 반대 근거</td></tr><tr><td>지역 안전·호환성</td><td>Model Y L child seat problem partially solved</td><td>Drive Australia</td><td><a href="https://www.drive.com.au/news/tesla-model-y-l-reassessed-by-child-seat-brands-to-clarify-if-compatible/">기사</a></td><td>2026-07-17</td><td>호주 카시트 브랜드·당국 취재</td><td>카시트 상부 테더 호환성 점검 항목</td></tr><tr><td>한국 커뮤니티 반응</td><td>Model Y L 국내 출시 게시물·공개 댓글</td><td>기글하드웨어 · 낄낄 외</td><td><a href="https://gigglehd.com/gg/lifetech/18646998">원문 보기</a></td><td>2026-04-03</td><td>공개 댓글 4개 · 소표본</td><td>EV9 대비 가격경쟁력과 쿠페형 실내 우려의 양면 반응</td></tr><tr><td>한국 실차 착석</td><td>Model Y L 1~3열 매장 체험</td><td>네이버 블로그 · 알고타</td><td><a href="https://blog.naver.com/algota/224287148667">원문 보기</a></td><td>2026-05-16</td><td>1인 매장 착석 후기 · 장기 시승 아님</td><td>2열 편안함, 큰 체격의 통로·시트 폭, 3열 무릎 자세</td></tr><tr><td>법령</td><td>지방세특례제한법 제66조</td><td>국가법령정보센터</td><td><a href="https://www.law.go.kr/법령/지방세특례제한법/제66조">원문 보기</a></td><td>2026-08-03 조회 기준</td><td>공식 법령 · 실제 등록일 적용 확인 필요</td><td>전기차 취득세 감면 검수 기준</td></tr><tr><td>계산</td><td>가격·할부·기회비용 시나리오</td><td>AI Report 결정적 계산</td><td>보고서 내 식</td><td>2026-08-03</td><td>입력값 명시 · 금융상품 아님</td><td>800만원·11.0%, 70% 60개월 4/6/8%, 1,500만원 기회비용</td></tr><tr><td>공식 제품사진</td><td>Model Y L 측면 공식 제품사진</td><td>Tesla China · Tesla Digital Assets</td><td><a href="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-Y-L-Engineered-Carousel-Slide-1-Desktop.jpg">원문 보기</a></td><td>2026-08-03 확인</td><td>공식 제조사 페이지 에셋 · 원본 권리 Tesla · 출처 표기</td><td>상세·간단 보기 실제 제품 식별용</td></tr><tr><td>공식 로고</td><td>Tesla 공식 워드마크</td><td>Tesla China</td><td><a href="https://www.tesla.cn/modely">원문 보기</a></td><td>2026-08-03 확인</td><td>공식 사이트 SVG 심볼 · 상표권 Tesla</td><td>두들 인포그래픽 브랜드 식별용 · 비후원 독립 보고서</td></tr><tr><td>AI 생성 이미지</td><td>Model Y L 출고 결정 화이트보드 두들</td><td>OpenAI gpt-image-2-high</td><td>로컬 자산</td><td>2026-08-03</td><td>AI 생성 · 시각 검수 완료</td><td>가격·선택 조건·인도 전 검수 요약 · 공식 제품 이미지 아님</td></tr></tbody></table></div></details>
   <script id="report-view-script">
   (()=>{const body=document.body;const buttons=[...document.querySelectorAll('[data-report-view-target]')];const pdf=document.getElementById('report-pdf-button');const setView=(view,focus=false)=>{if(!['simple','detail'].includes(view))view='detail';body.dataset.reportView=view;buttons.forEach(button=>{const active=button.dataset.reportViewTarget===view;button.classList.toggle('is-active',active);if(button.classList.contains('report-view-button'))button.setAttribute('aria-pressed',String(active))});if(pdf){pdf.href=view==='simple'?pdf.dataset.simpleUrl:pdf.dataset.detailUrl;pdf.download=view==='simple'?pdf.dataset.simpleFilename:pdf.dataset.detailFilename;pdf.setAttribute('aria-label',`${view==='simple'?'간단 요약':'상세 보고서'} PDF 파일 바로 저장`)}if(focus){const target=view==='simple'?document.getElementById('simple-report'):document.querySelector('.detail-report');target?.scrollIntoView({block:'start'})}dispatchEvent(new CustomEvent('reportviewchange',{detail:{view}}))};buttons.forEach(button=>button.addEventListener('click',()=>setView(button.dataset.reportViewTarget,true)));const requested=new URLSearchParams(location.search).get('view');setView(requested==='simple'?'simple':'detail')})();
@@ -357,38 +78,6 @@
   (()=>{const button=document.getElementById('report-share-button');if(!button)return;const original=button.textContent;const shareUrl=()=>{const url=new URL(location.href);if(document.body.dataset.reportView==='simple')url.searchParams.set('view','simple');else url.searchParams.delete('view');url.hash='';return url.toString()};const copied=()=>{button.textContent='링크 복사됨';button.setAttribute('aria-label','보고서 링크가 복사되었습니다');setTimeout(()=>{button.textContent=original;button.setAttribute('aria-label','현재 보고서 링크 공유')},1800)};button.addEventListener('click',async()=>{const data={title:document.title,text:document.querySelector('meta[name="description"]')?.content||document.title,url:shareUrl()};try{if(navigator.share){await navigator.share(data)}else{await navigator.clipboard.writeText(data.url);copied()}}catch(error){if(error?.name==='AbortError')return;try{await navigator.clipboard.writeText(data.url);copied()}catch{button.textContent='주소창에서 복사';setTimeout(()=>button.textContent=original,2200)}}})})();
   </script>
 <script src="../assets/report-view-counter.js" data-report-id="260803-tesla-model-y-l-delivery-decision"></script>
-
-<script id="report-layout-script">
-(function(){
-  var body = document.body;
-  var buttons = document.querySelectorAll('[data-layout]');
-  var LAYOUT_KEY = 'report-layout-pref';
-  
-  function setLayout(mode) {
-    if (mode === 'a4') {
-      body.classList.add('report-a4-mode');
-      document.documentElement.style.background = '#e8ecf1';
-    } else {
-      body.classList.remove('report-a4-mode');
-      document.documentElement.style.background = '';
-    }
-    buttons.forEach(function(btn) {
-      var active = btn.dataset.layout === mode;
-      btn.classList.toggle('is-active', active);
-      btn.setAttribute('aria-pressed', String(active));
-    });
-    localStorage.setItem(LAYOUT_KEY, mode);
-  }
-  
-  buttons.forEach(function(btn) {
-    btn.addEventListener('click', function() { setLayout(btn.dataset.layout); });
-  });
-  
-  // Load preference - default wide
-  var saved = localStorage.getItem(LAYOUT_KEY) || 'a4';
-  setLayout(saved);
-})();
-</script>
-
+  <script src="../assets/report-page-layout.js"></script>
 </body>
 </html>

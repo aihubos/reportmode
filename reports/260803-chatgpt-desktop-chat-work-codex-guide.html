@@ -37,82 +37,6 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
     @page{size:A4 portrait;margin:18mm 14mm 20mm;@bottom-left{content:"Chat은 대화, Work는 업무, Codex는 구현 · Jeremy's AI Report";font:600 6.5pt/1.2 var(--sans);color:#66717e}@bottom-center{content:"2026.08.03 · github.com/aihubos";font:600 6.5pt/1.2 var(--sans);color:#66717e}@bottom-right{content:counter(page) " / " counter(pages);font:800 7pt/1.2 var(--sans);color:#185abc}}
     @media print{.nav,.floating-menu{display:none!important}html{print-color-adjust:exact;-webkit-print-color-adjust:exact}body{background:#fff;font-size:10.5pt;line-height:1.55;padding-bottom:0}.top-conclusion{margin:12px 0 0}.top-conclusion-card{box-shadow:none;break-inside:avoid}.verdict-line{font-size:15pt}.highlight-sweep{-webkit-print-color-adjust:exact;print-color-adjust:exact}.hero{padding:18px 0 24px}.hero h1{font-size:34pt}.hero .lede{font-size:15pt}.wrap{width:100%;max-width:none}.paper,.callout,.visual-hero,.reaction-card{box-shadow:none;break-inside:avoid}.section-head h2,h2,h3{break-after:avoid-page}.visual-hero img{max-height:230mm;object-fit:contain}p,li{orphans:3;widows:3}main section{padding:20px 0}.table-wrap{overflow:visible}table{font-size:8.5pt}thead{display:table-header-group}tr,img,figure{break-inside:avoid}.sources{overflow:visible;border:0}.sources thead,.sources tbody{min-width:0;font-size:6.8pt}.sources th,.sources td{padding:5px 6px;line-height:1.35;overflow-wrap:anywhere}.source-section{break-before:page}.source-section>.source-content{display:block!important}.sources-summary{display:none}.reaction-card{box-shadow:none;break-inside:avoid}.source-section a{color:#000;text-decoration:none}}
 
-
-[aria-label="가로 또는 세로"]::before { display: none !important; }
-/* ── A4 Portrait Display (toggle) ── */
-@media screen {
-  body.report-a4-mode { max-width: 210mm; margin: 24px auto !important; background: #fff !important; box-shadow: 0 2px 24px rgba(0,0,0,.12); border-radius: 4px; padding: 0 !important; }
-  body.report-a4-mode .wrap, body.report-a4-mode .report-section, body.report-a4-mode main { max-width: 100% !important; }
-  @media (max-width: 218mm) {
-    body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
-  }
-}
-
-/* ── Floating menu right-side ── */
-.floating-menu {
-  position: fixed !important;
-  right: max(16px, calc((100vw - 1120px) / 2 - 160px)) !important;
-  top: 140px !important;
-  left: auto !important;
-  bottom: auto !important;
-  width: 142px !important;
-  max-width: 142px !important;
-  z-index: 30;
-}
-@media(max-width:1439px) {
-  .floating-menu {
-    right: 10px !important;
-    top: auto !important;
-    bottom: 14px !important;
-    left: 10px !important;
-    width: auto !important;
-    max-width: none !important;
-  }
-}
-
-</style>
-  <style id="report-view-v4-style">
-    :root{--max:1120px;--apple-blue:#007aff;--apple-gray:rgba(118,118,128,.16)}
-    .report-view-switcher{position:sticky;top:58px;z-index:35;border-bottom:1px solid rgba(0,122,255,.13);background:rgba(247,248,250,.88);-webkit-ba
-/* ── Layout toggle fix ── */
-.report-view-switcher-inner {
-  display: flex !important;
-  flex-wrap: wrap;
-  align-items: center !important;
-  gap: 8px !important;
-  min-height: 48px !important;
-  padding: 6px 0 !important;
-}
-[aria-label="가로 또는 세로"],
-[aria-label="간단 또는 상세 보기"] {
-  width: auto !important;
-  min-width: 90px !important;
-  max-width: 110px !important;
-}
-[aria-label="가로 또는 세로"] .report-view-button,
-[aria-label="간단 또는 상세 보기"] .report-view-button {
-  min-height: 32px !important;
-  padding: 4px 10px !important;
-  font-size: 12px !important;
-}
-.report-view-label {
-  font-size: 10px !important;
-  white-space: nowrap;
-  margin: 0 2px !important;
-}
-.report-utility-controls {
-  margin-left: auto !important;
-  width: 140px !important;
-  flex-shrink: 0;
-}
-@media(max-width:700px) {
-  .report-view-switcher-inner {
-    justify-content: center !important;
-    gap: 6px !important;
-  }
-  .report-utility-controls { width: 120px !important; }
-}
-
 </style>
 <style id="report-view-v4-style">
     :root{--max:1120px;--apple-blue:#007aff;--apple-gray:rgba(118,118,128,.16)}
@@ -135,67 +59,11 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
     @media(max-width:700px){.report-view-switcher-inner{min-height:78px;grid-template-columns:minmax(0,1fr) 76px;gap:10px}.report-view-label{display:none}.report-view-buttons{min-height:62px;padding:6px}.report-view-buttons::before{left:6px;top:6px;bottom:6px;width:calc((100% - 12px)/2)}.report-view-button{min-height:50px;padding:8px 6px;font-size:17px}.report-utility-controls{width:76px}.report-utility-controls .pdf-save-button{min-height:44px;padding:7px 5px;font-size:11px}.simple-report{padding:10px 0 46px}.simple-overview{padding:24px 20px}.simple-overview h2{font-size:30px}.simple-summary-content{grid-template-columns:1fr;gap:12px}.simple-summary-block{min-height:0;padding:18px}.simple-summary-block h3{font-size:19px}.simple-summary-block p{font-size:15px}}
     @media(prefers-reduced-motion:reduce){.report-view-buttons::before,.report-view-button,.simple-detail-button{transition:none!important}}
     @media print{.report-view-switcher,.report-utility-controls{display:none!important}body[data-report-view="simple"] .detail-report,body[data-report-view="simple"] #sources{display:none!important}body[data-report-view="simple"] .hero{padding:4mm 0 3mm;break-after:auto}body[data-report-view="simple"] .hero h1{font-size:28pt}body[data-report-view="simple"] .top-conclusion{margin-top:5mm}body[data-report-view="simple"] .top-conclusion-card{padding:4mm 5mm}body[data-report-view="simple"] .verdict-line{padding:2.4mm 0;font-size:12.5pt;line-height:1.4}body[data-report-view="simple"] .hero .lede{margin-top:4mm;font-size:12pt}body[data-report-view="simple"] .meta{margin-top:3mm}body[data-report-view="simple"] .simple-report{display:block!important;padding:4mm 0 0;break-before:page;page-break-before:always}body[data-report-view="simple"] .simple-overview{padding:4mm 5mm;border:0;box-shadow:none;break-inside:auto}body[data-report-view="simple"] .simple-overview h2{margin-bottom:4mm;font-size:20pt}body[data-report-view="simple"] .simple-summary-content{display:grid;grid-template-columns:1fr 1fr;gap:3.5mm}body[data-report-view="simple"] .simple-summary-block{min-height:0;padding:4mm;border-radius:4mm;break-inside:avoid}body[data-report-view="simple"] .simple-summary-index{height:5mm;margin-bottom:2mm;font-size:7.5pt}body[data-report-view="simple"] .simple-summary-block h3{margin-bottom:1.5mm;font-size:12.5pt}body[data-report-view="simple"] .simple-summary-block p{font-size:9.3pt;line-height:1.5}body[data-report-view="simple"] .simple-detail-button{display:none!important}body[data-report-view="detail"] .simple-report{display:none!important}body[data-report-view="detail"] .detail-report{display:block!important}}
-  
-[aria-label="가로 또는 세로"]::before { display: none !important; }
-/* ── A4 Portrait Display (toggle) ── */
-@media screen {
-  body.report-a4-mode { max-width: 210mm; margin: 24px auto !important; background: #fff !important; box-shadow: 0 2px 24px rgba(0,0,0,.12); border-radius: 4px; padding: 0 !important; }
-  body.report-a4-mode .wrap, body.report-a4-mode .report-section, body.report-a4-mode main { max-width: 100% !important; }
-  @media (max-width: 218mm) {
-    body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
-  }
-}
-
-
-/* ── Layout toggle fix ── */
-.report-view-switcher-inner {
-  display: flex !important;
-  flex-wrap: wrap;
-  align-items: center !important;
-  gap: 8px !important;
-  min-height: 48px !important;
-  padding: 6px 0 !important;
-}
-[aria-label="가로 또는 세로"],
-[aria-label="간단 또는 상세 보기"] {
-  width: auto !important;
-  min-width: 90px !important;
-  max-width: 110px !important;
-}
-[aria-label="가로 또는 세로"] .report-view-button,
-[aria-label="간단 또는 상세 보기"] .report-view-button {
-  min-height: 32px !important;
-  padding: 4px 10px !important;
-  font-size: 12px !important;
-}
-.report-view-label {
-  font-size: 10px !important;
-  white-space: nowrap;
-  margin: 0 2px !important;
-}
-.report-utility-controls {
-  margin-left: auto !important;
-  width: 140px !important;
-  flex-shrink: 0;
-}
-@media(max-width:700px) {
-  .report-view-switcher-inner {
-    justify-content: center !important;
-    gap: 6px !important;
-  }
-  .report-utility-controls { width: 120px !important; }
-}
-
-</style><!--Report Mode v4.3: detail default + two-page brief + Apple segmented control--></head>
-<body
-<a href="../archive/" style="position:fixed;top:8px;left:12px;z-index:50;background:rgba(17,17,17,.85);color:#fff;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;text-decoration:none;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.15);">🏠 메인</a>
- data-report-view="detail">
-<nav aria-label="보고서 탐색" class="nav"><div class="wrap nav-inner"><a class="brand" href="../archive/">RM · Report Mode</a><div class="nav-links"><a href="#summary">요약</a><a href="#comparison">비교</a><a href="#decision">판단</a><a href="#sources">출처</a></div></div></nav><section aria-label="보고서 보기 방식" class="report-view-switcher"><div class="wrap report-view-switcher-inner"><span class="report-view-label">레이아웃</span>
-<div class="report-view-buttons" role="group" aria-label="가로 또는 세로" style="min-width:120px;">
-<button class="report-view-button" type="button" data-layout="wide">가로</button>
-<button class="report-view-button is-active" type="button" data-layout="a4">세로</button>
-</div>
-<span class="report-view-label">보기</span><div aria-label="간단 또는 상세 보기" class="report-view-buttons" role="group"><button aria-pressed="false" class="report-view-button" data-report-view-target="simple" type="button">간단</button><button aria-pressed="true" class="report-view-button is-active" data-report-view-target="detail" type="button">상세</button></div><div aria-label="보고서 저장 도구" class="report-utility-controls"><button aria-label="현재 보고서 보기를 A4 PDF로 저장" class="pdf-save-button" id="report-pdf-button" type="button">PDF 저장</button></div></div></section>
+  </style><!--Report Mode v4.3: detail default + two-page brief + Apple segmented control-->  <link rel="stylesheet" href="../assets/report-page-layout.css">
+</head>
+<body class="report-a4-mode" data-report-layout="a4" data-report-view="detail">
+  <a class="report-home-button" href="../archive/" aria-label="보고서 도서관 메인으로 이동">🏠 메인</a>
+<nav aria-label="보고서 탐색" class="nav"><div class="wrap nav-inner"><a class="brand" href="../archive/">RM · Report Mode</a><div class="nav-links"><a href="#summary">요약</a><a href="#comparison">비교</a><a href="#decision">판단</a><a href="#sources">출처</a></div></div></nav><section aria-label="보고서 보기 방식" class="report-view-switcher"><div class="wrap report-view-switcher-inner"><span class="report-view-label">보고서 보기</span><div aria-label="간단 또는 상세 보기" class="report-view-buttons" role="group"><button aria-pressed="false" class="report-view-button" data-report-view-target="simple" type="button">간단</button><button aria-pressed="true" class="report-view-button is-active" data-report-view-target="detail" type="button">상세</button></div><div aria-label="보고서 저장 도구" class="report-utility-controls"><button aria-label="현재 보고서 보기를 A4 PDF로 저장" class="pdf-save-button" id="report-pdf-button" type="button">PDF 저장</button></div></div></section>
 <nav aria-label="보고서 바로가기" class="floating-menu"><a class="floating-action" href="#summary">핵심 내용 한눈에 보기</a><a class="floating-action" href="#comparison">핵심 항목 비교</a><a class="floating-action" href="#why">세 방식이 필요한 이유</a><a class="floating-action" href="#start">시작 전 실행 단계</a><a class="floating-action" href="#prompts">실제 활용 프롬프트</a><a class="floating-action" href="#public-reaction">인터넷·언론 반응</a><a class="floating-action" href="#sources">전체 출처 확인</a></nav>
 <header class="hero"><div class="wrap"><div class="kicker">Desktop AI Work Guide · Deep Analysis</div><h1><span>Chat은 대화,</span><span>Work는 업무,</span><span>Codex는 구현</span></h1>
 <section aria-labelledby="top-conclusion-title" class="top-conclusion" id="report-top"><div class="top-conclusion-card">
@@ -203,9 +71,7 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
 <p class="verdict-line"><span class="verdict-num">01</span><span class="verdict-text"><mark class="highlight-sweep">Chat·Work·Codex 역할 분리</mark>: 답은 Chat, 업무 결과물은 Work, 구현 통제는 Codex가 맞습니다.</span></p>
 <p class="verdict-line"><span class="verdict-num">02</span><span class="verdict-text">Codex의 가치는 <mark class="highlight-sweep">파일 변경·실행·diff·테스트</mark>를 검수 가능한 형태로 남길 때 생깁니다.</span></p>
 <p class="verdict-line"><span class="verdict-num">03</span><span class="verdict-text"><mark class="highlight-sweep">복사본·승인 모드로 작게 시험</mark>하고 원본·변경 목록·검증 결과를 사람이 확인하세요.</span></p>
-</div></section><p class="lede">Windows·macOS용 ChatGPT 데스크톱 앱에서 무엇을 언제 골라야 하는지, 비전공자도 바로 시험할 수 있는 실제 작업 예시와 안전한 프롬프트로 풀었습니다.</p><div class="meta"><span class="chip"><strong>260803</strong> · 심층보고서</span><span class="chip">2026.08.03 KST</span><span class="chip">OpenAI 공식 원문 11건 · 사실·분석·템플릿 분리</span></div></div>
-
-</header>
+</div></section><p class="lede">Windows·macOS용 ChatGPT 데스크톱 앱에서 무엇을 언제 골라야 하는지, 비전공자도 바로 시험할 수 있는 실제 작업 예시와 안전한 프롬프트로 풀었습니다.</p><div class="meta"><span class="chip"><strong>260803</strong> · 심층보고서</span><span class="chip">2026.08.03 KST</span><span class="chip">OpenAI 공식 원문 11건 · 사실·분석·템플릿 분리</span></div></div></header>
 <section aria-labelledby="simple-report-title" class="simple-report" data-simple-pages="2" id="simple-report"><div class="wrap"><div class="simple-overview"><div class="eyebrow">TWO-PAGE EXECUTIVE BRIEF</div><h2 id="simple-report-title">2페이지 핵심 요약</h2><div class="simple-summary-content"><article class="simple-summary-block"><span class="simple-summary-index">01</span><h3>판단의 배경</h3><p>비전공자에게 가장 중요한 기준은 “얼마나 기술적인가”가 아니라 “답변이 필요한가, 실제 결과물이 필요한가, 구현 과정까지 통제해야 하는가”입니다. 비전공자가 Codex를 쓰는 이유는 코드를 배우기 위해서만이 아닙니다. 폴더 안의 여러 파일을 읽고, 실제 파일을 만들거나 바꾸고, 명령을 실행해 결과를 확인하며, 변경 내역을 검수 가능한 형태로 남겨야 할 때 가치가 생깁니다. 다만 보고서·발표자료·스프레드시트처럼 일상 업무 결과물이 목적이라면 ChatGPT Work가 더 쉬운 기본값입니다. 설명, 아이디어, 짧은 초안, 비교와 조언. 결과는 주로 대화 안에 있습니다.</p></article><article class="simple-summary-block"><span class="simple-summary-index">02</span><h3>핵심 비교와 근거</h3><p>공식 문서는 Work와 Codex의 핵심 능력이 겹친다고 설명합니다. 차이는 주로 시작 위치, 보이는 기술 정보, 결과를 제시하는 방식입니다. 파일과 도구를 직접 다루는 기술 작업대 “이 자료로 8장 발표자료를 만들어 주세요.” “이 폴더에서 웹페이지를 만들고 실제로 열어 검증해 주세요.” 문서·발표·스프레드시트·PDF·분석·반복 업데이트 코드·사이트·스크립트·파일 변경·테스트·변경 내역 완성 결과 중심, Git·셸 세부는 숨기는 편 diff·리뷰·명령·구현 세부를 볼 수 있음 파일 시스템·자동화·웹 제작처럼 구현 통제가 필요할 때 단순 질문에 시간·크레딧을 더 쓸 수 있음 기술 정보가 과하고 잘못된 파일 변경 위험이 커짐 업로드를 반복…</p></article><article class="simple-summary-block"><span class="simple-summary-index">03</span><h3>선택 기준과 판단</h3><p>가장 작은 유용한 모드부터 시작하고, 필요할 때만 더 강한 실행 권한으로 올라갑니다. 지금 필요한 것이 답변인가? → Chat 검토해서 바로 쓸 문서·표·발표·분석인가? → Work 폴더·파일·코드·명령을 실제로 바꾸고, 어떻게 바뀌었는지 자세히 보고 싶은가? → Codex 개인적인 권고: 비전공자는 Work를 기본 작업실로 두고, “실제 폴더에서 구현·자동화·검증”이 필요한 순간에 Codex로 넘어가는 방식이 가장 쉽습니다. Codex를 선택해도 최종 검수 책임은 사용자에게 남습니다.</p></article><article class="simple-summary-block"><span class="simple-summary-index">04</span><h3>주의점과 다음 행동</h3><p>기능 수가 아니라 완료 조건으로 판단해야 합니다. 예를 들어 “홈페이지 만들어 줘”라는 답변을 받는 데서 끝나지 않고, 실제 폴더에 HTML·CSS·이미지를 만들고 브라우저에서 열어 확인할 수 있습니다. 파일명 정리, 형식 변환, CSV 정제처럼 규칙이 있는 일을 스크립트나 작업 흐름으로 만들어 다시 쓸 수 있습니다. 어떤 파일을 만들고 무엇을 고쳤는지 기술 세부와 변경 보기를 통해 확인할 수 있습니다. 공식 문서도 Work가 비코딩 일상 업무를 위해 설계된 경험이라고 설명합니다. 기술 세부가 필요 없다면 Codex는 과할 수 있습니다.</p></article></div><button class="simple-detail-button" data-report-view-target="detail" type="button">상세 근거 전체 보기</button></div></div></section><main class="detail-report">
 <section aria-labelledby="visual-title"><div class="wrap"><figure class="visual-hero"><img alt="Chat, Work, Codex가 대화, 작업, 구현을 거쳐 사용자 검수로 모이는 화이트보드 두들 인포그래픽" src="../assets/260803-chatgpt-desktop-chat-work-codex-guide/chat-work-codex-whiteboard.png"/><figcaption id="visual-title"><b>AI 생성 인포그래픽 · 공식 제품 이미지 아님</b><span>질문은 Chat · 검토할 결과물은 Work · 파일과 구현 세부는 Codex · 마지막은 사용자 검수</span></figcaption></figure></div></section>
 <section id="summary"><div class="wrap"><div class="section-head"><h2>결론부터: 세 모드는 경쟁자가 아니라 작업의 깊이가 다릅니다</h2><p>비전공자에게 가장 중요한 기준은 “얼마나 기술적인가”가 아니라 “답변이 필요한가, 실제 결과물이 필요한가, 구현 과정까지 통제해야 하는가”입니다.</p></div><div class="paper">
@@ -308,96 +174,6 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
 <article class="reaction-card"><div class="reaction-meta"><span class="reaction-source">CNBC · 언론</span><span>CNBC · 2026.03.19</span></div><blockquote>언론은 ChatGPT 앱·브라우저·Codex를 하나의 데스크톱 슈퍼앱으로 합치는 전략에 주목했습니다. 통합의 방향을 설명하는 보도이며 사용성 자체를 보증하는 평가는 아닙니다.</blockquote><p><a href="https://www.cnbc.com/2026/03/19/openai-desktop-super-app-chatgpt-browser-codex.html">기사 원문</a> · 언론 보도</p></article>
 </div><p class="reaction-note">온라인 의견은 선택된 공개 사례이며 전체 여론이나 통계적 만족도를 뜻하지 않습니다. 개인 경험에 포함된 성능·장애 주장은 별도 실측 없이 일반화하지 않았습니다.</p></div></section>
 </main>
-<!-- COMMENT WIDGET -->
-<div style="max-width:720px;margin:40px auto;padding:32px 28px;background:#fff;border:1px solid #e5e8eb;border-radius:18px;box-shadow:0 4px 16px rgba(0,0,0,.04);">
-  <h3 style="margin:0 0 6px;font-size:20px;color:#191f28;">💬 댓글</h3>
-  <p style="margin:0 0 20px;font-size:14px;color:#8b95a1;">로그인 없이 자유롭게 의견을 남겨주세요.</p>
-  <div id="comment-list" style="margin-bottom:20px;max-height:400px;overflow-y:auto;"></div>
-  <form id="comment-form" style="display:flex;flex-direction:column;gap:10px;" onsubmit="return submitComment(event)">
-    <input id="comment-name" type="text" placeholder="이름 (선택)" style="padding:10px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;max-width:240px;">
-    <textarea id="comment-body" rows="3" placeholder="댓글을 입력하세요..." required style="padding:12px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;resize:vertical;font-family:inherit;"></textarea>
-    <button type="submit" style="align-self:flex-end;padding:10px 24px;background:#3182f6;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;">등록</button>
-  </form>
-</div>
-<script>
-(function(){
-  var PAGE = window.location.pathname.replace(/\//g,'-').replace(/^-|-$/g,'') || 'index';
-  var STORAGE_KEY = 'comments-' + PAGE;
-    var list = document.getElementById('comment-list');
-  
-  function saveComments(comments) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(comments));
-  }
-  
-  function loadComments() {
-    var raw = localStorage.getItem(STORAGE_KEY);
-    var comments = raw ? JSON.parse(raw) : [];
-    list.innerHTML = comments.length === 0 
-      ? '<p style="color:#8b95a1;font-size:13px;text-align:center;padding:20px 0;">아직 댓글이 없습니다. 첫 댓글을 남겨보세요!</p>'
-      : comments.map(function(c,i){
-          var name = c.name || '익명';
-          var date = new Date(c.time).toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'});
-          return '<div style="padding:14px 0;border-bottom:1px solid #f0f0f0;" data-idx="'+i+'">'
-            + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">'
-            + '<div>'
-            + '<strong style="font-size:14px;color:#191f28;">' + escapeHtml(name) + '</strong>'
-            + '<span style="font-size:12px;color:#b0b8c1;margin-left:8px;">' + date + '</span>'
-            + '</div>'
-            + '<button onclick="deleteComment('+i+')" style="background:none;border:none;color:#ccc;cursor:pointer;font-size:12px;padding:2px 6px;" title="삭제">✕</button>'
-            + '</div>'
-            + '<p style="margin:0;font-size:14px;color:#4a5568;line-height:1.5;">' + escapeHtml(c.body) + '</p>'
-            + '</div>';
-        }).join('');
-  }
-  
-  function escapeHtml(text) {
-    var div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
-  
-  window.deleteComment = function(idx) {
-    var savedPw = localStorage.getItem(STORAGE_KEY + '-pw');
-    if (!savedPw) {
-      savedPw = prompt('관리자 비밀번호를 설정하세요 (댓글 삭제용):');
-      if (!savedPw) return;
-      localStorage.setItem(STORAGE_KEY + '-pw', savedPw);
-      alert('비밀번호가 설정되었습니다. 다시 삭제 버튼을 눌러주세요.');
-      return;
-    }
-    var pw = prompt('삭제 비밀번호를 입력하세요:');
-    if (pw !== savedPw) { alert('비밀번호가 틀렸습니다.'); return; }
-    if (!confirm('정말 삭제하시겠습니까?')) return;
-    var raw = localStorage.getItem(STORAGE_KEY);
-    var comments = raw ? JSON.parse(raw) : [];
-    comments.splice(idx, 1);
-    saveComments(comments);
-    loadComments();
-  };
-  
-  window.submitComment = function(e) {
-    e.preventDefault();
-    var nameEl = document.getElementById('comment-name');
-    var bodyEl = document.getElementById('comment-body');
-    var comment = {
-      name: nameEl.value.trim(),
-      body: bodyEl.value.trim(),
-      time: Date.now()
-    };
-    var raw = localStorage.getItem(STORAGE_KEY);
-    var comments = raw ? JSON.parse(raw) : [];
-    comments.unshift(comment);
-    saveComments(comments.slice(0, 100));
-    bodyEl.value = '';
-    nameEl.value = '';
-    loadComments();
-    return false;
-  };
-  
-  loadComments();
-})();
-</script>
-<!-- END COMMENT WIDGET -->
 <details class="source-section" id="sources"><summary class="wrap sources-summary"><span class="sources-summary-text">전체 출처</span><span class="sources-summary-hint"><span class="sources-toggle-closed">클릭하여 펼치기</span><span class="sources-toggle-open">접기</span></span></summary><div class="wrap source-content"><div class="section-head"><h2>전체 출처</h2><p>사실·분석·전망·루머, 시각자료와 생성 이미지의 상태를 함께 기록했습니다.</p></div><table class="sources"><thead><tr><th>유형</th><th>자료명</th><th>제공자·저작자</th><th>원문</th><th>날짜</th><th>라이선스·상태</th><th>사용 범위</th></tr></thead><tbody>
 <tr><td>공식 문서</td><td>ChatGPT desktop app</td><td>OpenAI</td><td><a href="https://learn.chatgpt.com/docs/app">원문 보기</a></td><td>2026.08.03 확인</td><td>공식 · 발행일 미표기</td><td>앱 명칭·Windows/macOS·ChatGPT/Codex 선택·데스크톱 가치</td></tr>
 <tr><td>공식 문서</td><td>Get started with ChatGPT Work</td><td>OpenAI</td><td><a href="https://learn.chatgpt.com/docs/get-started-with-work">원문 보기</a></td><td>2026.08.03 확인</td><td>공식 · 발행일 미표기</td><td>Chat과 Work의 목적·로컬/클라우드·예시·경계</td></tr>
@@ -423,39 +199,7 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
 <script id="report-pdf-script">
   (()=>{const button=document.getElementById('report-pdf-button');const sources=document.getElementById('sources');if(!button)return;let prepared=false;let sourceWasOpen=false;const prepare=()=>{if(prepared)return;prepared=true;sourceWasOpen=Boolean(sources?.open);if(sources&&document.body.dataset.reportView==='detail')sources.open=true;button.classList.add('is-printing')};const reset=()=>{if(!prepared)return;if(sources&&!sourceWasOpen)sources.open=false;button.classList.remove('is-printing');prepared=false};button.addEventListener('click',()=>{prepare();requestAnimationFrame(()=>window.print())});addEventListener('beforeprint',prepare);addEventListener('afterprint',reset);addEventListener('focus',()=>{if(prepared)setTimeout(reset,500)})})();
   </script>
-<script src="../assets/js/view-counter.js"></script>
-
-<script id="report-layout-script">
-(function(){
-  var body = document.body;
-  var buttons = document.querySelectorAll('[data-layout]');
-  var LAYOUT_KEY = 'report-layout-pref';
-  
-  function setLayout(mode) {
-    if (mode === 'a4') {
-      body.classList.add('report-a4-mode');
-      document.documentElement.style.background = '#e8ecf1';
-    } else {
-      body.classList.remove('report-a4-mode');
-      document.documentElement.style.background = '';
-    }
-    buttons.forEach(function(btn) {
-      var active = btn.dataset.layout === mode;
-      btn.classList.toggle('is-active', active);
-      btn.setAttribute('aria-pressed', String(active));
-    });
-    localStorage.setItem(LAYOUT_KEY, mode);
-  }
-  
-  buttons.forEach(function(btn) {
-    btn.addEventListener('click', function() { setLayout(btn.dataset.layout); });
-  });
-  
-  // Load preference - default wide
-  var saved = localStorage.getItem(LAYOUT_KEY) || 'a4';
-  setLayout(saved);
-})();
-</script>
-
+  <script src="../assets/report-page-layout.js"></script>
+  <script src="../assets/report-view-counter.js" data-report-id="260803-chatgpt-desktop-chat-work-codex-guide"></script>
 </body>
 </html>

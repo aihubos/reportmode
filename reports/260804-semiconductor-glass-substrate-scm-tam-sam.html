@@ -15,83 +15,7 @@
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.floating-action,.pdf-save-button{transition:none}.floating-action:before,.pdf-save-button:before{animation:none;display:none}}
     @page{size:A4 portrait;margin:18mm 14mm 20mm;@bottom-left{content:"반도체 유리기판 · 기본부터 SCM·TAM·SAM까지 · AI Report";font:600 6.5pt/1.2 var(--sans);color:#66717e}@bottom-center{content:"2026.08.04 · github.com/aihubos";font:600 6.5pt/1.2 var(--sans);color:#66717e}@bottom-right{content:counter(page) " / " counter(pages);font:800 7pt/1.2 var(--sans);color:#185abc}}
     @media print{.nav,.floating-menu{display:none!important}html{print-color-adjust:exact;-webkit-print-color-adjust:exact}body{background:#fff;font-size:10.5pt;line-height:1.55;padding-bottom:0}.top-conclusion{margin:12px 0 0}.top-conclusion-card{box-shadow:none;break-inside:avoid}.verdict-line{font-size:15pt}.highlight-sweep{-webkit-print-color-adjust:exact;print-color-adjust:exact}.hero{padding:18px 0 24px}.hero h1{font-size:34pt}.hero .lede{font-size:15pt}.wrap{width:100%;max-width:none}.paper,.callout,.visual-hero,.reaction-card{box-shadow:none;break-inside:avoid}.section-head h2,h2,h3{break-after:avoid-page}.visual-hero img{max-height:230mm;object-fit:contain}p,li{orphans:3;widows:3}main section{padding:20px 0}.table-wrap{overflow:visible}table{font-size:8.5pt}thead{display:table-header-group}tr,img,figure{break-inside:avoid}.sources{overflow:visible;border:0}.sources thead,.sources tbody{min-width:0;font-size:6.8pt}.sources th,.sources td{padding:5px 6px;line-height:1.35;overflow-wrap:anywhere}.source-section{break-before:page}.source-section>.source-content{display:block!important}.sources-summary{display:none}.reaction-card{box-shadow:none;break-inside:avoid}.source-section a{color:#000;text-decoration:none}}
-  
-[aria-label="가로 또는 세로"]::before { display: none !important; }
-/* ── A4 Portrait Display (toggle) ── */
-@media screen {
-  body.report-a4-mode { max-width: 210mm; margin: 24px auto !important; background: #fff !important; box-shadow: 0 2px 24px rgba(0,0,0,.12); border-radius: 4px; padding: 0 !important; }
-  body.report-a4-mode .wrap, body.report-a4-mode .report-section, body.report-a4-mode main { max-width: 100% !important; }
-  @media (max-width: 218mm) {
-    body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
-  }
-}
-
-/* ── Floating menu right-side ── */
-.floating-menu {
-  position: fixed !important;
-  right: max(16px, calc((100vw - 1120px) / 2 - 160px)) !important;
-  top: 140px !important;
-  left: auto !important;
-  bottom: auto !important;
-  width: 142px !important;
-  max-width: 142px !important;
-  z-index: 30;
-}
-@media(max-width:1439px) {
-  .floating-menu {
-    right: 10px !important;
-    top: auto !important;
-    bottom: 14px !important;
-    left: 10px !important;
-    width: auto !important;
-    max-width: none !important;
-  }
-}
-
-</style>
-  <style id="report-view-v4-style">
-    :root{--max:1120px;--apple-blue:#007aff;--apple-gray:rgba(118,118,128,.16)}
-    .report-view-switcher{position:sticky;top:58px;z-index:35;border-bottom:1px solid rgba(0,122,255,.13);background:rgba(247,248,250,.88);-webkit-ba
-/* ── Layout toggle fix ── */
-.report-view-switcher-inner {
-  display: flex !important;
-  flex-wrap: wrap;
-  align-items: center !important;
-  gap: 8px !important;
-  min-height: 48px !important;
-  padding: 6px 0 !important;
-}
-[aria-label="가로 또는 세로"],
-[aria-label="간단 또는 상세 보기"] {
-  width: auto !important;
-  min-width: 90px !important;
-  max-width: 110px !important;
-}
-[aria-label="가로 또는 세로"] .report-view-button,
-[aria-label="간단 또는 상세 보기"] .report-view-button {
-  min-height: 32px !important;
-  padding: 4px 10px !important;
-  font-size: 12px !important;
-}
-.report-view-label {
-  font-size: 10px !important;
-  white-space: nowrap;
-  margin: 0 2px !important;
-}
-.report-utility-controls {
-  margin-left: auto !important;
-  width: 140px !important;
-  flex-shrink: 0;
-}
-@media(max-width:700px) {
-  .report-view-switcher-inner {
-    justify-content: center !important;
-    gap: 6px !important;
-  }
-  .report-utility-controls { width: 120px !important; }
-}
-
-</style>
+  </style>
   <style id="report-view-v4-style">
     :root{--max:1120px;--apple-blue:#007aff;--apple-gray:rgba(118,118,128,.16)}
     .report-view-switcher{position:sticky;top:58px;z-index:35;border-bottom:1px solid rgba(0,122,255,.13);background:rgba(247,248,250,.88);-webkit-backdrop-filter:saturate(180%) blur(22px);backdrop-filter:saturate(180%) blur(22px)}
@@ -113,69 +37,13 @@
     @media(max-width:700px){.report-view-switcher-inner{min-height:78px;grid-template-columns:minmax(0,1fr) 132px;gap:10px}.report-view-label{display:none}.report-view-buttons{min-height:62px;padding:6px}.report-view-buttons::before{left:6px;top:6px;bottom:6px;width:calc((100% - 12px)/2)}.report-view-button{min-height:50px;padding:8px 6px;font-size:17px}.report-utility-controls{width:132px}.report-utility-controls .pdf-save-button,.report-utility-controls .share-report-button{min-height:44px;padding:7px 5px;font-size:11px}.simple-report{padding:10px 0 46px}.simple-overview{padding:20px 12px}.simple-overview h2{font-size:28px}.simple-summary-content{gap:16px}.simple-slide{min-height:0;padding:24px 18px 72px;border-radius:18px}.simple-slide-head{gap:10px}.simple-slide-title{font-size:29px}.simple-slide-number{min-width:46px;height:34px}.simple-visual-grid,.simple-decision-grid{grid-template-columns:1fr}.simple-product-photo{min-height:210px}.simple-metric-strip{grid-template-columns:1fr}.simple-bar-row{grid-template-columns:86px 1fr 62px;gap:8px}.simple-flow{display:grid}.simple-flow-step+.simple-flow-step::before{content:"↓";left:50%;top:-12px;transform:translateX(-50%)}.simple-slide-footer{left:18px;right:18px;bottom:18px}.doodle-frame>.doodle-brand-logo{right:10px;top:10px;width:86px;padding:6px 8px}}
     @media(prefers-reduced-motion:reduce){.report-view-buttons::before,.report-view-button,.simple-detail-button{transition:none!important}}
     @media print{.report-view-switcher,.report-utility-controls{display:none!important}body[data-report-view="simple"] .hero,body[data-report-view="simple"] .detail-report,body[data-report-view="simple"] #sources{display:none!important}body[data-report-view="simple"] .simple-report{display:block!important;padding:0;break-before:auto;page-break-before:auto}body[data-report-view="simple"] .simple-overview{padding:0;border:0;box-shadow:none}body[data-report-view="simple"] .simple-overview>.eyebrow,body[data-report-view="simple"] .simple-overview>h2,body[data-report-view="simple"] .simple-detail-button{display:none!important}body[data-report-view="simple"] .simple-summary-content{display:block}body[data-report-view="simple"] .simple-slide{height:252mm;min-height:0;margin:0;padding:9mm 9mm 14mm;border:0;border-radius:0;box-shadow:none;break-inside:avoid;break-after:page;page-break-after:always}body[data-report-view="simple"] .simple-slide:last-child{break-after:auto;page-break-after:auto}body[data-report-view="simple"] .simple-slide::before{height:2mm}body[data-report-view="simple"] .simple-slide-title{font-size:23pt}body[data-report-view="simple"] .simple-slide-head{margin-bottom:5mm}body[data-report-view="simple"] .simple-product-photo{min-height:0;height:88mm;max-height:88mm}body[data-report-view="simple"] .simple-infographic-image{height:72mm;max-height:72mm;object-fit:contain}body[data-report-view="simple"] .simple-verdict{padding:4mm 5mm;font-size:17pt}body[data-report-view="simple"] .simple-metric-strip{gap:3mm;margin-top:4mm}body[data-report-view="simple"] .simple-metric-card{padding:4mm}body[data-report-view="simple"] .simple-metric-card b{font-size:20pt}body[data-report-view="simple"] .simple-metric-card span,body[data-report-view="simple"] .simple-bar-row,body[data-report-view="simple"] .simple-flow-step,body[data-report-view="simple"] .simple-slide-note{font-size:8.5pt}body[data-report-view="simple"] .simple-decision-card{padding:4mm}body[data-report-view="simple"] .simple-decision-card h3{font-size:13pt}body[data-report-view="simple"] .simple-slide-footer{left:9mm;right:9mm;bottom:5mm}body[data-report-view="detail"] .simple-report{display:none!important}body[data-report-view="detail"] .detail-report{display:block!important}}
-  
-[aria-label="가로 또는 세로"]::before { display: none !important; }
-/* ── A4 Portrait Display (toggle) ── */
-@media screen {
-  body.report-a4-mode { max-width: 210mm; margin: 24px auto !important; background: #fff !important; box-shadow: 0 2px 24px rgba(0,0,0,.12); border-radius: 4px; padding: 0 !important; }
-  body.report-a4-mode .wrap, body.report-a4-mode .report-section, body.report-a4-mode main { max-width: 100% !important; }
-  @media (max-width: 218mm) {
-    body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
-  }
-}
-
-
-/* ── Layout toggle fix ── */
-.report-view-switcher-inner {
-  display: flex !important;
-  flex-wrap: wrap;
-  align-items: center !important;
-  gap: 8px !important;
-  min-height: 48px !important;
-  padding: 6px 0 !important;
-}
-[aria-label="가로 또는 세로"],
-[aria-label="간단 또는 상세 보기"] {
-  width: auto !important;
-  min-width: 90px !important;
-  max-width: 110px !important;
-}
-[aria-label="가로 또는 세로"] .report-view-button,
-[aria-label="간단 또는 상세 보기"] .report-view-button {
-  min-height: 32px !important;
-  padding: 4px 10px !important;
-  font-size: 12px !important;
-}
-.report-view-label {
-  font-size: 10px !important;
-  white-space: nowrap;
-  margin: 0 2px !important;
-}
-.report-utility-controls {
-  margin-left: auto !important;
-  width: 140px !important;
-  flex-shrink: 0;
-}
-@media(max-width:700px) {
-  .report-view-switcher-inner {
-    justify-content: center !important;
-    gap: 6px !important;
-  }
-  .report-utility-controls { width: 120px !important; }
-}
-
-</style>
+  </style>
+  <link rel="stylesheet" href="../assets/report-page-layout.css">
 </head>
-<body
-<a href="../archive/" style="position:fixed;top:8px;left:12px;z-index:50;background:rgba(17,17,17,.85);color:#fff;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;text-decoration:none;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.15);">🏠 메인</a>
- data-report-view="detail">
+<body class="report-a4-mode" data-report-layout="a4" data-report-view="detail">
+  <a class="report-home-button" href="../archive/" aria-label="보고서 도서관 메인으로 이동">🏠 메인</a>
   <nav class="nav" aria-label="보고서 탐색"><div class="wrap nav-inner"><a class="brand" href="../archive/">RM · Report Mode</a><div class="nav-links"><a href="#summary">요약</a><a href="#comparison">비교</a><a href="#decision">판단</a><a href="#sources">출처</a></div></div></nav>
-  <section class="report-view-switcher" aria-label="보고서 보기 방식"><div class="wrap report-view-switcher-inner"><span class="report-view-label">레이아웃</span>
-<div class="report-view-buttons" role="group" aria-label="가로 또는 세로" style="min-width:120px;">
-<button class="report-view-button" type="button" data-layout="wide">가로</button>
-<button class="report-view-button is-active" type="button" data-layout="a4">세로</button>
-</div>
-<span class="report-view-label">보기</span><div class="report-view-buttons" role="group" aria-label="간단 또는 상세 보기"><button class="report-view-button" type="button" data-report-view-target="simple" aria-pressed="false">간단</button><button class="report-view-button is-active" type="button" data-report-view-target="detail" aria-pressed="true">상세</button></div><div class="report-utility-controls" aria-label="보고서 저장 및 공유 도구"><a id="report-pdf-button" class="pdf-save-button" href="assets/260804-semiconductor-glass-substrate-scm-tam-sam/detail.pdf" download="260804-semiconductor-glass-substrate-scm-tam-sam-detail.pdf" data-simple-url="assets/260804-semiconductor-glass-substrate-scm-tam-sam/summary.pdf" data-simple-filename="260804-semiconductor-glass-substrate-scm-tam-sam-summary.pdf" data-detail-url="assets/260804-semiconductor-glass-substrate-scm-tam-sam/detail.pdf" data-detail-filename="260804-semiconductor-glass-substrate-scm-tam-sam-detail.pdf" aria-label="상세 보고서 PDF 파일 바로 저장">PDF 저장</a><button id="report-share-button" class="share-report-button" type="button" aria-label="현재 보고서 링크 공유">공유하기</button></div></div></section>
+  <section class="report-view-switcher" aria-label="보고서 보기 방식"><div class="wrap report-view-switcher-inner"><span class="report-view-label">보고서 보기</span><div class="report-view-buttons" role="group" aria-label="간단 또는 상세 보기"><button class="report-view-button" type="button" data-report-view-target="simple" aria-pressed="false">간단</button><button class="report-view-button is-active" type="button" data-report-view-target="detail" aria-pressed="true">상세</button></div><div class="report-utility-controls" aria-label="보고서 저장 및 공유 도구"><a id="report-pdf-button" class="pdf-save-button" href="assets/260804-semiconductor-glass-substrate-scm-tam-sam/detail.pdf" download="260804-semiconductor-glass-substrate-scm-tam-sam-detail.pdf" data-simple-url="assets/260804-semiconductor-glass-substrate-scm-tam-sam/summary.pdf" data-simple-filename="260804-semiconductor-glass-substrate-scm-tam-sam-summary.pdf" data-detail-url="assets/260804-semiconductor-glass-substrate-scm-tam-sam/detail.pdf" data-detail-filename="260804-semiconductor-glass-substrate-scm-tam-sam-detail.pdf" aria-label="상세 보고서 PDF 파일 바로 저장">PDF 저장</a><button id="report-share-button" class="share-report-button" type="button" aria-label="현재 보고서 링크 공유">공유하기</button></div></div></section>
   <nav class="floating-menu" aria-label="보고서 바로가기"><a class="floating-action" href="#summary">핵심 결론과 시장 판단</a><a class="floating-action" href="#process">유리기판 제조 공정</a><a class="floating-action" href="#scm">글로벌·한국 공급망</a><a class="floating-action" href="#companies">주요 기업 상용화 단계</a><a class="floating-action" href="#market">2030 TAM·SAM 모델</a><a class="floating-action" href="#risks">양산 리스크와 검증 지표</a><a class="floating-action" href="#sources">근거·한계·전체 출처</a></nav>
   <header class="hero"><div class="wrap"><div class="kicker">260804 · GLASS CORE · TGV · SCM · TAM/SAM</div><h1><span>반도체 유리기판,</span><span>평평한 유리판이</span><span>AI 패키지를 바꿀까</span></h1>
     <section id="report-top" class="top-conclusion" aria-labelledby="top-conclusion-title"><div class="top-conclusion-card">
@@ -184,9 +52,7 @@
       <p class="verdict-line"><span class="verdict-num">02</span><span class="verdict-text"><strong>사업</strong> 공개 근거상 Absolics가 앞서지만, <mark class="highlight-sweep">대규모 양산매출은 아직 확인되지 않았습니다</mark>.</span></p>
       <p class="verdict-line"><span class="verdict-num">03</span><span class="verdict-text"><strong>시장</strong> 2030 자체 시나리오는 <mark class="highlight-sweep">TAM $6.3–14.0B · SAM $0.95–4.20B</mark>입니다.</span></p>
     </div></section>
-    <p class="lede">패키지와 기판의 역할부터 유리·유기·실리콘 차이, TGV·도금·RDL 제조, 한국·미국·일본·유럽 공급망, 기업별 상용화 단계, 2035년 전망과 투자 판단 지표까지 하나의 흐름으로 정리했습니다.</p><div class="meta"><span class="chip"><strong>260804</strong> · 표준 심층</span><span class="chip">2026.08.04 KST</span><span class="chip">공식·정부·학술·산업 원문 14건 · 기준일 2026.08.04</span></div></div>
-
-</header>
+    <p class="lede">패키지와 기판의 역할부터 유리·유기·실리콘 차이, TGV·도금·RDL 제조, 한국·미국·일본·유럽 공급망, 기업별 상용화 단계, 2035년 전망과 투자 판단 지표까지 하나의 흐름으로 정리했습니다.</p><div class="meta"><span class="chip"><strong>260804</strong> · 표준 심층</span><span class="chip">2026.08.04 KST</span><span class="chip">공식·정부·학술·산업 원문 14건 · 기준일 2026.08.04</span></div></div></header>
   <section id="simple-report" class="simple-report" data-simple-pages="2" aria-labelledby="simple-report-title"><div class="wrap"><div class="simple-overview"><div class="eyebrow">TWO VISUAL SUMMARY SHEETS</div><h2 id="simple-report-title">도표·인포그래픽 요약 장표 2장</h2><div class="simple-summary-content">
 <article class="simple-slide simple-slide-1"><div class="simple-slide-head"><div><span class="simple-slide-kicker">DECISION · 1 / 2</span><h3 class="simple-slide-title">유리는 ‘평평한 고속도로’, 양산은 아직 검증 중</h3></div><span class="simple-slide-number">01</span></div>
 <div class="simple-visual-grid"><img class="simple-infographic-image" src="assets/260804-semiconductor-glass-substrate-scm-tam-sam/glass-substrate-scm-doodle.png" alt="유리 코어 기판 단면과 TGV, 칩렛, 제조 공급망을 표현한 화이트보드 두들"><div><div class="simple-verdict"><b>핵심</b><br><strong>AI·HPC의 큰 패키지부터 선택적 채택</strong><br><span>평탄도·전기특성은 강점, 취성·도금·검사·고객 인증은 병목</span></div><div class="simple-decision-grid"><div class="simple-decision-card"><h4>공개 선두</h4><p>Absolics<br>미국 시설＋정부지원</p></div><div class="simple-decision-card"><h4>엄격 판정</h4><p>실제 대규모<br>양산매출 미확인</p></div></div></div></div>
@@ -212,57 +78,6 @@
     <section id="decision"><div class="wrap"><div class="section-head"><h2>기술·사업·시장 판단 프레임</h2><p>무엇이 가능하고, 무엇이 아직 확인되지 않았는지 구분합니다.</p></div><div class="callout"><div class="route-grid"><article class="route-card best"><span>기술</span><h3>대형 패키지부터</h3><p>AI 가속기·CPU/GPU·HBM·고속 스위치처럼 면적과 배선이 빠르게 커지는 신규 설계가 초기 채택 풀입니다.</p></article><article class="route-card"><span>사업</span><h3>Absolics가 공개 선두</h3><p>정부가 상업시설과 저용량 제조/R&D를 각각 지원합니다. 다만 예상 납품일·CAPEX는 매출 증거가 아닙니다.<sup><a class="cite" href="#src-2" aria-label="출처 2">[2]</a></sup><sup><a class="cite" href="#src-3" aria-label="출처 3">[3]</a></sup></p></article><article class="route-card"><span>시장</span><h3>2030 SAM $0.95–4.20B</h3><p>이론 TAM $6.3–14.0B에 인증·공급·CAPA 15–30%를 적용한 자체 시나리오입니다.</p></article><article class="route-card"><span>검수</span><h3>수율·고객·출하 면적</h3><p>MOU, 전시, 시제품보다 qualification 완료, lot 수율, 양품 m², 반복 매출을 확인해야 합니다.</p></article></div></div></div></section>
     <style>
 .route-grid,.grid2,.risk-grid,.scm-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.route-card,.grid2 article,.risk-grid article,.scm-grid article{padding:20px;border:1px solid #dce4ef;border-radius:17px;background:#fff}.route-card.best{border:2px solid #3182f6;background:#f2f8ff}.route-card>span,.pill{font-size:12px;font-weight:900;color:#3182f6}.process-flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.process-flow div{padding:16px;border-radius:14px;background:#f4f8fc;border:1px solid #dce4ef}.market-number{font-size:28px;font-weight:900;color:#185abc}.maturity{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px}.maturity div{padding:12px 7px;border-radius:12px;background:#eef3f8;text-align:center;font-size:12px;font-weight:800}.maturity .active{background:#dff3ff;color:#185abc;border:1px solid #7cc5ff}.warnbox{padding:22px;border:2px solid #ffb74d;border-radius:18px;background:#fff8ed}@media(max-width:760px){.route-grid,.grid2,.risk-grid,.scm-grid,.process-flow{grid-template-columns:1fr}.maturity{grid-template-columns:repeat(2,minmax(0,1fr))}.floating-menu{left:10px!important;right:10px!important;width:calc(100% - 20px)!important;max-width:calc(100% - 20px)!important}.report-view-switcher-inner{grid-template-columns:minmax(0,1fr)!important;gap:8px!important;padding:8px 0 10px}.report-view-buttons{width:100%!important;min-width:0!important}.report-utility-controls{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;width:100%!important;max-width:none!important;gap:8px!important}.report-utility-controls .pdf-save-button,.report-utility-controls .share-report-button{width:100%!important;min-width:0!important;max-width:none!important}.hero{padding-top:34px!important}.hero h1{font-size:clamp(34px,9.3vw,40px)!important;line-height:1.08!important}.top-conclusion-card,.top-conclusion-card p,.verdict-text,.hero .lede{min-width:0!important;max-width:100%!important;white-space:normal!important;word-break:keep-all!important;overflow-wrap:anywhere!important}.top-conclusion-card{overflow:visible!important}.verdict-line{display:grid!important;grid-template-columns:28px minmax(0,1fr)!important;width:100%!important;max-width:100%!important;min-width:0!important;gap:8px!important}.verdict-text{display:block!important;width:100%!important;min-width:0!important;max-width:100%!important;white-space:normal!important;word-break:break-all!important;overflow-wrap:anywhere!important}.top-conclusion-card p{font-size:16px!important;line-height:1.5!important}.highlight-sweep{white-space:normal!important;word-break:break-all!important;overflow-wrap:anywhere!important}.wrap{width:min(calc(100% - 48px),var(--max))!important}}
-
-[aria-label="가로 또는 세로"]::before { display: none !important; }
-/* ── A4 Portrait Display (toggle) ── */
-@media screen {
-  body.report-a4-mode { max-width: 210mm; margin: 24px auto !important; background: #fff !important; box-shadow: 0 2px 24px rgba(0,0,0,.12); border-radius: 4px; padding: 0 !important; }
-  body.report-a4-mode .wrap, body.report-a4-mode .report-section, body.report-a4-mode main { max-width: 100% !important; }
-  @media (max-width: 218mm) {
-    body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
-  }
-}
-
-
-/* ── Layout toggle fix ── */
-.report-view-switcher-inner {
-  display: flex !important;
-  flex-wrap: wrap;
-  align-items: center !important;
-  gap: 8px !important;
-  min-height: 48px !important;
-  padding: 6px 0 !important;
-}
-[aria-label="가로 또는 세로"],
-[aria-label="간단 또는 상세 보기"] {
-  width: auto !important;
-  min-width: 90px !important;
-  max-width: 110px !important;
-}
-[aria-label="가로 또는 세로"] .report-view-button,
-[aria-label="간단 또는 상세 보기"] .report-view-button {
-  min-height: 32px !important;
-  padding: 4px 10px !important;
-  font-size: 12px !important;
-}
-.report-view-label {
-  font-size: 10px !important;
-  white-space: nowrap;
-  margin: 0 2px !important;
-}
-.report-utility-controls {
-  margin-left: auto !important;
-  width: 140px !important;
-  flex-shrink: 0;
-}
-@media(max-width:700px) {
-  .report-view-switcher-inner {
-    justify-content: center !important;
-    gap: 6px !important;
-  }
-  .report-utility-controls { width: 120px !important; }
-}
-
 </style>
 <section id="basics" class="report-section"><div class="wrap"><div class="section-head"><h2>패키지와 기판부터 이해하기</h2><p>미세공정 이후 성능은 칩끼리 얼마나 짧고 안정적으로 연결하느냐가 결정합니다.</p></div><div class="grid2"><article><span class="pill">패키지</span><h3>칩을 보호하고 연결하는 집</h3><p>여러 logic die, HBM, I/O chiplet을 한 시스템으로 묶고 전원·신호·열·기계 하중을 관리합니다.</p></article><article><span class="pill">기판</span><h3>칩과 보드 사이의 다층 도로</h3><p>미세한 칩 배선을 더 굵은 보드 배선으로 fan-out하고, 패키지 전체의 평탄도와 강도를 지지합니다.</p></article></div><h3>왜 지금 유리인가</h3><p>AI 패키지는 더 커지고 칩렛·HBM 연결은 촘촘해집니다. 유기 코어는 성숙하고 싸지만 큰 면적에서 열과 수분, 리플로 공정에 따른 변형·정렬 오차가 커질 수 있습니다. 유리는 조성으로 CTE를 조절할 수 있고 평탄하며 고주파 손실을 낮출 잠재력이 있어 대안으로 부상했습니다.<sup><a class="cite" href="#src-1" aria-label="출처 1">[1]</a></sup><sup><a class="cite" href="#src-4" aria-label="출처 4">[4]</a></sup><sup><a class="cite" href="#src-7" aria-label="출처 7">[7]</a></sup></p></div></section>
 <section id="process" class="report-section"><div class="wrap"><div class="section-head"><h2>제조 공정: 유리판을 전기기판으로 바꾸는 8단계</h2><p>구멍을 뚫는 것만으로 끝나지 않습니다.</p></div><div class="process-flow"><div><b>① 유리 선정</b><br>조성·두께·CTE·Dk/Df</div><div><b>② 레이저 개질</b><br>via 위치를 내부 개질</div><div><b>③ 선택 식각</b><br>TGV 형성·세정</div><div><b>④ 라이너/시드</b><br>접착·응력완충·Ti/Cu</div><div><b>⑤ 구리 도금</b><br>conformal/full fill</div><div><b>⑥ RDL</b><br>절연막·노광·미세배선</div><div><b>⑦ 본딩/조립</b><br>die·bridge·underfill</div><div><b>⑧ 검사</b><br>AOI·X-ray·SAM·전기·열사이클</div></div><div class="warnbox"><b>가장 어려운 연결고리</b><p>TGV 형상 → 금속-유리 접착 → 구리의 void/seam 없는 충진 → RDL 정렬 → 절단·조립의 crack 방지 → 열사이클 신뢰성이 하나의 공정창으로 이어져야 합니다.<sup><a class="cite" href="#src-6" aria-label="출처 6">[6]</a></sup><sup><a class="cite" href="#src-7" aria-label="출처 7">[7]</a></sup><sup><a class="cite" href="#src-8" aria-label="출처 8">[8]</a></sup><sup><a class="cite" href="#src-9" aria-label="출처 9">[9]</a></sup></p></div></div></section>
@@ -277,96 +92,6 @@
 <article class="reaction-card"><span class="reaction-badge neutral">개발 지속</span><h3>eeNews · 2026</h3><p>78×77mm thick-core와 EMIB 결합 콘셉트를 소개했지만 Intel이 제품 일정을 발표하지 않았다고 명시합니다.</p><div class="reaction-meta"><span>전문언론·2차</span><a href="https://www.eenewseurope.com/en/intel-outlines-thick-core-glass-substrate-concept-for-ai-data-centre-packaging/">원문</a></div></article>
 <article class="reaction-card"><span class="reaction-badge concern">시점 불일치</span><h3>TrendForce News · 2026</h3><p>Intel 2030, Absolics 2026년 말, 삼성전기 2027년 이후 등 여러 보도를 재인용합니다. 확정 일정이 아니라 경쟁 프레임입니다.</p><div class="reaction-meta"><span>큐레이션·다중 재인용</span><a href="https://www.trendforce.com/news/2026/05/26/news-intel-reportedly-eyes-worlds-first-glass-substrate-output-at-rio-rancho-offers-silicon-photonics-to-customers/">원문</a></div></article></div><p class="reaction-note">온라인 의견은 대표 표본이며 전체 여론을 뜻하지 않습니다. 작성자·매체·게시일·원문 링크는 아래 전체 출처에 함께 기록했습니다.</p></div></section>
   </main>
-<!-- COMMENT WIDGET -->
-<div style="max-width:720px;margin:40px auto;padding:32px 28px;background:#fff;border:1px solid #e5e8eb;border-radius:18px;box-shadow:0 4px 16px rgba(0,0,0,.04);">
-  <h3 style="margin:0 0 6px;font-size:20px;color:#191f28;">💬 댓글</h3>
-  <p style="margin:0 0 20px;font-size:14px;color:#8b95a1;">로그인 없이 자유롭게 의견을 남겨주세요.</p>
-  <div id="comment-list" style="margin-bottom:20px;max-height:400px;overflow-y:auto;"></div>
-  <form id="comment-form" style="display:flex;flex-direction:column;gap:10px;" onsubmit="return submitComment(event)">
-    <input id="comment-name" type="text" placeholder="이름 (선택)" style="padding:10px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;max-width:240px;">
-    <textarea id="comment-body" rows="3" placeholder="댓글을 입력하세요..." required style="padding:12px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;resize:vertical;font-family:inherit;"></textarea>
-    <button type="submit" style="align-self:flex-end;padding:10px 24px;background:#3182f6;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;">등록</button>
-  </form>
-</div>
-<script>
-(function(){
-  var PAGE = window.location.pathname.replace(/\//g,'-').replace(/^-|-$/g,'') || 'index';
-  var STORAGE_KEY = 'comments-' + PAGE;
-    var list = document.getElementById('comment-list');
-  
-  function saveComments(comments) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(comments));
-  }
-  
-  function loadComments() {
-    var raw = localStorage.getItem(STORAGE_KEY);
-    var comments = raw ? JSON.parse(raw) : [];
-    list.innerHTML = comments.length === 0 
-      ? '<p style="color:#8b95a1;font-size:13px;text-align:center;padding:20px 0;">아직 댓글이 없습니다. 첫 댓글을 남겨보세요!</p>'
-      : comments.map(function(c,i){
-          var name = c.name || '익명';
-          var date = new Date(c.time).toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'});
-          return '<div style="padding:14px 0;border-bottom:1px solid #f0f0f0;" data-idx="'+i+'">'
-            + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">'
-            + '<div>'
-            + '<strong style="font-size:14px;color:#191f28;">' + escapeHtml(name) + '</strong>'
-            + '<span style="font-size:12px;color:#b0b8c1;margin-left:8px;">' + date + '</span>'
-            + '</div>'
-            + '<button onclick="deleteComment('+i+')" style="background:none;border:none;color:#ccc;cursor:pointer;font-size:12px;padding:2px 6px;" title="삭제">✕</button>'
-            + '</div>'
-            + '<p style="margin:0;font-size:14px;color:#4a5568;line-height:1.5;">' + escapeHtml(c.body) + '</p>'
-            + '</div>';
-        }).join('');
-  }
-  
-  function escapeHtml(text) {
-    var div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
-  
-  window.deleteComment = function(idx) {
-    var savedPw = localStorage.getItem(STORAGE_KEY + '-pw');
-    if (!savedPw) {
-      savedPw = prompt('관리자 비밀번호를 설정하세요 (댓글 삭제용):');
-      if (!savedPw) return;
-      localStorage.setItem(STORAGE_KEY + '-pw', savedPw);
-      alert('비밀번호가 설정되었습니다. 다시 삭제 버튼을 눌러주세요.');
-      return;
-    }
-    var pw = prompt('삭제 비밀번호를 입력하세요:');
-    if (pw !== savedPw) { alert('비밀번호가 틀렸습니다.'); return; }
-    if (!confirm('정말 삭제하시겠습니까?')) return;
-    var raw = localStorage.getItem(STORAGE_KEY);
-    var comments = raw ? JSON.parse(raw) : [];
-    comments.splice(idx, 1);
-    saveComments(comments);
-    loadComments();
-  };
-  
-  window.submitComment = function(e) {
-    e.preventDefault();
-    var nameEl = document.getElementById('comment-name');
-    var bodyEl = document.getElementById('comment-body');
-    var comment = {
-      name: nameEl.value.trim(),
-      body: bodyEl.value.trim(),
-      time: Date.now()
-    };
-    var raw = localStorage.getItem(STORAGE_KEY);
-    var comments = raw ? JSON.parse(raw) : [];
-    comments.unshift(comment);
-    saveComments(comments.slice(0, 100));
-    bodyEl.value = '';
-    nameEl.value = '';
-    loadComments();
-    return false;
-  };
-  
-  loadComments();
-})();
-</script>
-<!-- END COMMENT WIDGET -->
   <details id="sources" class="source-section"><summary class="wrap sources-summary"><span class="sources-summary-text">전체 출처</span><span class="sources-summary-hint"><span class="sources-toggle-closed">클릭하여 펼치기</span><span class="sources-toggle-open">접기</span></span></summary><div class="wrap source-content"><div class="section-head"><h2>전체 출처</h2><p>사실·분석·전망·루머·온라인 반응, 시각자료와 생성 이미지의 상태를 함께 기록했습니다.</p></div><table class="sources"><thead><tr><th>유형</th><th>자료명</th><th>제공자·저작자</th><th>원문</th><th>날짜</th><th>라이선스·상태</th><th>사용 범위</th></tr></thead><tbody><tr id="src-1"><td>기업 공식</td><td>Intel Unveils Industry-Leading Glass Substrates</td><td>Intel</td><td><a href="https://newsroom.intel.com/artificial-intelligence/intel-unveils-industry-leading-glass-substrates" target="_blank" rel="noopener">원문 보기</a></td><td>2023-09-18</td><td>공식 원문·벤더 주장</td><td>로드맵·적용처·패턴왜곡·인터커넥트 밀도</td></tr><tr id="src-2"><td>미국 정부</td><td>Absolics (Georgia)</td><td>NIST CHIPS for America</td><td><a href="https://www.nist.gov/chips/absolics-georgia-covington" target="_blank" rel="noopener">원문 보기</a></td><td>2025-03-04 수정</td><td>공식 1차</td><td>최대 $75m·12만 sq ft·$343m CAPEX·예상 일정</td></tr><tr id="src-3"><td>미국 정부</td><td>Absolics Inc. SMART Packaging Program</td><td>NIST CHIPS NAPMP</td><td><a href="https://www.nist.gov/chips/absolics-inc-covington" target="_blank" rel="noopener">원문 보기</a></td><td>2025-01-04 수정</td><td>공식 1차</td><td>$100m R&D·저용량 제조·시제품 통합 검증</td></tr><tr id="src-4"><td>기업 기술</td><td>Glass for Advanced Packaging</td><td>LPKF</td><td><a href="https://lide.lpkf.com/en/" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-04 확인</td><td>공식 기술·마케팅 주장</td><td>TGV·600×600mm·LIDE/Tensor/NEXAR</td></tr><tr id="src-5"><td>학술</td><td>Physical and Thermal Characteristics of the Advanced Package with Glass Core Substrate</td><td>IEEE ICEP</td><td><a href="https://doi.org/10.23919/ICEP61562.2024.10535616" target="_blank" rel="noopener">원문 보기</a></td><td>2024-04</td><td>학술 1차·메타데이터 확인</td><td>유리 코어 패키지 물리·열 특성</td></tr><tr id="src-6"><td>학술·산업</td><td>TGV Etching on Glass Core Substrates for High Density 3D Advanced Packaging</td><td>IMAPS</td><td><a href="https://doi.org/10.4071/001c.151704" target="_blank" rel="noopener">원문 보기</a></td><td>2025/2026</td><td>초록·서지 확인</td><td>식각·CD 균일도·APL/SBL·금속화</td></tr><tr id="src-7"><td>학술 리뷰</td><td>Thermo-mechanical reliability of glass substrate and TGV</td><td>Microelectronics Reliability</td><td><a href="https://doi.org/10.1016/j.microrel.2024.115477" target="_blank" rel="noopener">원문 보기</a></td><td>2024-10</td><td>독립 리뷰·서지 확인</td><td>열기계 신뢰성·CTE·응력</td></tr><tr id="src-8"><td>학술</td><td>Die Strength Comparisons for Glass Singulation Methods</td><td>IEEE EPTC</td><td><a href="https://doi.org/10.1109/EPTC62800.2024.10909793" target="_blank" rel="noopener">원문 보기</a></td><td>2024-12</td><td>학술 1차·서지 확인</td><td>취성·절단 강도·핸들링 수율</td></tr><tr id="src-9"><td>학술</td><td>TGV Metallization by Direct Cu Plating on Glass</td><td>IEEE ECTC</td><td><a href="https://doi.org/10.1109/ECTC.2016.231" target="_blank" rel="noopener">원문 보기</a></td><td>2016-05</td><td>학술 1차·초록 확인</td><td>물질전달·seam·void·첨가제</td></tr><tr id="src-10"><td>학술</td><td>Solder joint reliability — glass core versus organic core substrate</td><td>Microelectronics Reliability</td><td><a href="https://doi.org/10.1016/j.microrel.2025.115701" target="_blank" rel="noopener">원문 보기</a></td><td>2025-05</td><td>독립 비교·서지 확인</td><td>솔더 접합 신뢰성 비교 연구</td></tr><tr id="src-11"><td>산업 전문언론</td><td>Intel outlines thick-core glass substrate concept</td><td>eeNews Europe</td><td><a href="https://www.eenewseurope.com/en/intel-outlines-thick-core-glass-substrate-concept-for-ai-data-centre-packaging/" target="_blank" rel="noopener">원문 보기</a></td><td>2026-01-28</td><td>본문 직접 확인·2차 재인용</td><td>78×77mm 콘셉트·제품 일정 미발표</td></tr><tr id="src-12"><td>산업 뉴스 큐레이션</td><td>Intel Reportedly Eyes Glass Substrate Output</td><td>TrendForce News</td><td><a href="https://www.trendforce.com/news/2026/05/26/news-intel-reportedly-eyes-worlds-first-glass-substrate-output-at-rio-rancho-offers-silicon-photonics-to-customers/" target="_blank" rel="noopener">원문 보기</a></td><td>2026-05-26</td><td>본문 직접 확인·다중 재인용</td><td>Intel·Absolics·삼성전기 상용화 보도</td></tr><tr id="src-13"><td>기업 검색 리드</td><td>삼성전기 뉴스룸·glass core 검색</td><td>Samsung Electro-Mechanics</td><td><a href="https://news.samsungsem.com/" target="_blank" rel="noopener">원문 보기</a></td><td>2025-11 확인</td><td>제목·메타데이터만 확인</td><td>MOU·전시 단계; 본문·양산 검증 불충분</td></tr><tr id="src-14"><td>기업 검색 리드</td><td>LG이노텍 뉴스룸·glass substrate 검색</td><td>LG Innotek</td><td><a href="https://www.lginnotek.com/" target="_blank" rel="noopener">원문 보기</a></td><td>2026-01 확인</td><td>제목·메타데이터만 확인</td><td>유리 가공 파트너십; 고객·양산 미확인</td></tr><tr id="src-15"><td>AI 생성 시각자료</td><td>유리 코어 기판·TGV·공급망 화이트보드 두들</td><td>Report Mode · OpenAI Image Generation</td><td>로컬 생성 자산</td><td>2026-08-04</td><td>AI 생성·공식 이미지 아님</td><td>개념 설명용; 실제 제품·회사 로고 아님</td></tr></tbody></table></div></details>
   <script id="report-view-script">
   (()=>{const body=document.body;const buttons=[...document.querySelectorAll('[data-report-view-target]')];const pdf=document.getElementById('report-pdf-button');const setView=(view,focus=false)=>{if(!['simple','detail'].includes(view))view='detail';body.dataset.reportView=view;buttons.forEach(button=>{const active=button.dataset.reportViewTarget===view;button.classList.toggle('is-active',active);if(button.classList.contains('report-view-button'))button.setAttribute('aria-pressed',String(active))});if(pdf){pdf.href=view==='simple'?pdf.dataset.simpleUrl:pdf.dataset.detailUrl;pdf.download=view==='simple'?pdf.dataset.simpleFilename:pdf.dataset.detailFilename;pdf.setAttribute('aria-label',`${view==='simple'?'간단 요약':'상세 보고서'} PDF 파일 바로 저장`)}if(focus){const target=view==='simple'?document.getElementById('simple-report'):document.querySelector('.detail-report');target?.scrollIntoView({block:'start'})}dispatchEvent(new CustomEvent('reportviewchange',{detail:{view}}))};buttons.forEach(button=>button.addEventListener('click',()=>setView(button.dataset.reportViewTarget,true)));const requested=new URLSearchParams(location.search).get('view');setView(requested==='simple'?'simple':'detail')})();
@@ -380,39 +105,7 @@
   <script id="report-share-script">
   (()=>{const button=document.getElementById('report-share-button');if(!button)return;const original=button.textContent;const shareUrl=()=>{const url=new URL(location.href);if(document.body.dataset.reportView==='simple')url.searchParams.set('view','simple');else url.searchParams.delete('view');url.hash='';return url.toString()};const copied=()=>{button.textContent='링크 복사됨';button.setAttribute('aria-label','보고서 링크가 복사되었습니다');setTimeout(()=>{button.textContent=original;button.setAttribute('aria-label','현재 보고서 링크 공유')},1800)};button.addEventListener('click',async()=>{const data={title:document.title,text:document.querySelector('meta[name="description"]')?.content||document.title,url:shareUrl()};try{if(navigator.share){await navigator.share(data)}else{await navigator.clipboard.writeText(data.url);copied()}}catch(error){if(error?.name==='AbortError')return;try{await navigator.clipboard.writeText(data.url);copied()}catch{button.textContent='주소창에서 복사';setTimeout(()=>button.textContent=original,2200)}}})})();
   </script>
-<script src="../assets/js/view-counter.js"></script>
-
-<script id="report-layout-script">
-(function(){
-  var body = document.body;
-  var buttons = document.querySelectorAll('[data-layout]');
-  var LAYOUT_KEY = 'report-layout-pref';
-  
-  function setLayout(mode) {
-    if (mode === 'a4') {
-      body.classList.add('report-a4-mode');
-      document.documentElement.style.background = '#e8ecf1';
-    } else {
-      body.classList.remove('report-a4-mode');
-      document.documentElement.style.background = '';
-    }
-    buttons.forEach(function(btn) {
-      var active = btn.dataset.layout === mode;
-      btn.classList.toggle('is-active', active);
-      btn.setAttribute('aria-pressed', String(active));
-    });
-    localStorage.setItem(LAYOUT_KEY, mode);
-  }
-  
-  buttons.forEach(function(btn) {
-    btn.addEventListener('click', function() { setLayout(btn.dataset.layout); });
-  });
-  
-  // Load preference - default wide
-  var saved = localStorage.getItem(LAYOUT_KEY) || 'a4';
-  setLayout(saved);
-})();
-</script>
-
+  <script src="../assets/report-page-layout.js"></script>
+  <script src="../assets/report-view-counter.js" data-report-id="260804-semiconductor-glass-substrate-scm-tam-sam"></script>
 </body>
 </html>
