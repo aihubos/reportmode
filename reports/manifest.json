@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07T22:19:06.303Z",
+  "generatedAt": "2026-08-07T22:51:48.438Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
     {
@@ -24,7 +24,7 @@
         "local-ai"
       ],
       "coverImage": "reports/assets/260808-macbook-m5max-comfyui-practical-guide/cover.png",
-      "coverAlt": "MacBook Pro M5 Max 128GB에서 ComfyUI로 이미지·영상을 만드는 실전 가이드 대표 이미지",
+      "coverAlt": "Apple 로고와 MacBook Pro 공식 제품 이미지",
       "subtitle": "FLUX 이미지와 Wan2.2 영상을 로컬에서 만드는 방법"
     },
     {
@@ -48,7 +48,7 @@
         "approval-workflow"
       ],
       "coverImage": "reports/assets/260808-hermes-instagram-blog-automation-guide/cover.png",
-      "coverAlt": "Hermes 기반 인스타그램·블로그 승인형 자동화 구조",
+      "coverAlt": "Instagram, WordPress, Meta 공식 로고",
       "subtitle": "기획부터 승인·발행·기록까지 한 흐름으로"
     },
     {
@@ -119,8 +119,8 @@
         "cost-analysis",
         "official"
       ],
-      "coverImage": "reports/assets/260807-chatgpt-codex-pricing-api-comparison-02/cost-report-cover.png",
-      "coverAlt": "ChatGPT 요금제와 Codex·API 비용 구조 시각화",
+      "coverImage": "reports/assets/260807-chatgpt-codex-pricing-api-comparison-02/cover.png",
+      "coverAlt": "OpenAI 공식 로고",
       "subtitle": "구독료, Codex 할당량, GPT-5.6 Sol·Terra·Luna API 단가와 Anthropic·Google·xAI 대표 모델 비교"
     },
     {
@@ -145,7 +145,7 @@
         "ai-ecosystem"
       ],
       "coverImage": "reports/assets/260807-mac-ai-ecosystem-advantage/cover.png",
-      "coverAlt": "Mac AI 생태계 구조 시각화",
+      "coverAlt": "Apple 공식 로고",
       "subtitle": "Mac-first 앱 출시, 통합 메모리, 로컬 AI 운영과 RAM 선택, Windows·Linux 대비 강점과 한계"
     },
     {
@@ -191,8 +191,8 @@
         "para",
         "llm-wiki"
       ],
-      "coverImage": "reports/assets/260806-hermes-second-brain/second-brain-architecture.png",
-      "coverAlt": "Hermes와 Second Brain 구성 관계 도식",
+      "coverImage": "reports/assets/260806-hermes-second-brain/cover.png",
+      "coverAlt": "Obsidian 공식 로고",
       "subtitle": "비전공자 임원을 위한 Hermes, Second Brain, Obsidian, PARA, LLM Wiki 개념 설명 자료"
     },
     {
@@ -219,8 +219,8 @@
         "enterprise-software",
         "stock-analysis"
       ],
-      "coverImage": "reports/assets/260806-palantir-business-ai-analysis/palantir-aip-official.png",
-      "coverAlt": "팔란티어 AIP 공식 플랫폼 화면",
+      "coverImage": "reports/assets/260806-palantir-business-ai-analysis/cover.png",
+      "coverAlt": "Palantir 공식 로고",
       "subtitle": "비전공자를 위한 사업영역·AIP·경쟁력·주가 흐름과 향후 강점 분석"
     },
     {
@@ -241,8 +241,8 @@
         "TGV",
         "첨단-패키징"
       ],
-      "coverImage": "reports/assets/260804-semiconductor-glass-substrate-scm-tam-sam/glass-substrate-scm-doodle.png",
-      "coverAlt": "유리 코어 기판 단면과 TGV, 칩렛, 제조 공급망을 표현한 화이트보드 두들"
+      "coverImage": "reports/assets/260804-semiconductor-glass-substrate-scm-tam-sam/cover.png",
+      "coverAlt": "유리 코어 기판 단면과 TGV, 칩렛, 제조 공급망 도식"
     },
     {
       "id": "260804-minimax-h3-m5-max-comfyui-guide",
@@ -262,8 +262,8 @@
         "ComfyUI",
         "M5-Max"
       ],
-      "coverImage": "reports/assets/260804-minimax-h3-m5-max-comfyui-guide/minimax-h3-official-t2va-frame.jpg",
-      "coverAlt": "MiniMax H3 공식 T2VA 우주선 샘플 영상에서 추출한 실제 출력 프레임"
+      "coverImage": "reports/assets/260804-minimax-h3-m5-max-comfyui-guide/cover.png",
+      "coverAlt": "MiniMax H3 공식 모델 배너"
     },
     {
       "id": "260804-shanghai-disneyland-family-hotel-strategy",
@@ -283,8 +283,8 @@
         "가족여행",
         "Toy-Story-Hotel"
       ],
-      "coverImage": "reports/assets/260804-shanghai-disneyland-family-hotel-strategy/toy-story-hotel-exterior.jpg",
-      "coverAlt": "토이 스토리 호텔 실제 외관"
+      "coverImage": "reports/assets/260804-shanghai-disneyland-family-hotel-strategy/cover.png",
+      "coverAlt": "상하이 디즈니랜드 호텔 실제 외관"
     },
     {
       "id": "260804-academy-automation-hermes-obsidian-llm-wiki",
@@ -304,8 +304,8 @@
         "Hermes",
         "LLM-Wiki"
       ],
-      "coverImage": "reports/assets/260804-academy-automation-hermes-obsidian-llm-wiki/academy-automation-doodle.png",
-      "coverAlt": "상담 메모를 Hermes가 정리하고 Obsidian과 LLM Wiki에 연결한 뒤 사람이 검수하는 흐름"
+      "coverImage": "reports/assets/260804-academy-automation-hermes-obsidian-llm-wiki/cover.png",
+      "coverAlt": "Obsidian 공식 로고"
     },
     {
       "id": "260804-openai-hugging-face-agent-incident",
@@ -325,8 +325,8 @@
         "Hugging-Face",
         "fact-check"
       ],
-      "coverImage": "reports/assets/260804-openai-hugging-face-agent-incident/agent-incident-flow-doodle.png",
-      "coverAlt": "평가 샌드박스에서 패키지 프록시, 인터넷, 데이터 처리 서버, 방어 분석으로 이어지는 추상적 흐름도"
+      "coverImage": "reports/assets/260804-openai-hugging-face-agent-incident/cover.png",
+      "coverAlt": "OpenAI와 Hugging Face 공식 로고"
     },
     {
       "id": "260803-tesla-model-y-l-delivery-decision",
@@ -347,8 +347,8 @@
         "purchase-decision",
         "electric-vehicle"
       ],
-      "coverImage": "https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-Y-L-Engineered-Carousel-Slide-1-Desktop.jpg",
-      "coverAlt": "Tesla 공식 제품 페이지의 은색 Model Y L 측면 실제 제품사진",
+      "coverImage": "reports/assets/260803-tesla-model-y-l-delivery-decision/cover.png",
+      "coverAlt": "Tesla 공식 로고",
       "subtitle": "현재가, 보조금, 총비용, 6인승 효용, 실사용 리스크와 대안을 함께 검토한 의사결정 보고서"
     },
     {
@@ -373,8 +373,8 @@
         "ai-model",
         "comparison"
       ],
-      "coverImage": "assets/260803-deepseek-v4-flash-comparison/deepseek-v4-flash-comparison.png",
-      "coverAlt": "DeepSeek V4 Flash와 V4 Pro, GPT-5.6 Luna·Terra, Claude Sonnet 5의 API 가격과 컨텍스트 비교 인포그래픽",
+      "coverImage": "reports/assets/260803-deepseek-v4-flash-comparison/cover.png",
+      "coverAlt": "DeepSeek 공식 로고",
       "subtitle": "공식 사양·API 가격·독립 성능 신호·경쟁 모델·운영 리스크 비교"
     },
     {
@@ -395,8 +395,8 @@
         "crowd-calendar",
         "attractions"
       ],
-      "coverImage": "reports/assets/260803-shanghai-disneyland-attractions-crowd-guide/enchanted-storybook-castle-cc0.jpg",
-      "coverAlt": "푸른 하늘 아래 상하이 디즈니랜드 Enchanted Storybook Castle과 다리"
+      "coverImage": "reports/assets/260803-shanghai-disneyland-attractions-crowd-guide/cover.png",
+      "coverAlt": "상하이 디즈니랜드 캐슬 실사 이미지"
     },
     {
       "id": "260803-macbook-m5-max-local-llm-model-fit",
@@ -416,8 +416,8 @@
         "m5-max",
         "qwen3.5"
       ],
-      "coverImage": "https://www.apple.com/newsroom/images/2026/03/apple-debuts-m5-pro-and-m5-max-to-supercharge-the-most-demanding-pro-workflows/article/Apple-M5-Pro-M5-Max-LM-Studio-and-Xcode-260303_big.jpg.large.jpg",
-      "coverAlt": "Apple Newsroom의 MacBook Pro 실제 제품사진"
+      "coverImage": "reports/assets/260803-macbook-m5-max-local-llm-model-fit/cover.png",
+      "coverAlt": "Apple 공식 로고"
     },
     {
       "id": "260803-buzz-slack-discord-telegram-guide",
@@ -441,8 +441,8 @@
         "self-hosted",
         "comparison"
       ],
-      "coverImage": "assets/260803-buzz-guide/buzz-whiteboard.png",
-      "coverAlt": "Buzz에서 사람과 AI 에이전트가 같은 작업공간에서 대화하고 Git, 체크리스트, 서명 이벤트, 셀프호스트 서버에 연결되는 화이트보드 두들 인포그래픽",
+      "coverImage": "reports/assets/260803-buzz-slack-discord-telegram-guide/cover.png",
+      "coverAlt": "Slack, Discord, Telegram 공식 로고",
       "subtitle": "사람+AI 에이전트 구조, 기능·보안·호스팅·비용·성숙도 비교"
     },
     {
@@ -465,8 +465,8 @@
         "cozy-game",
         "deep-dive"
       ],
-      "coverImage": "assets/260802-pokemon-pokopia-deep-dive/pokopia-popularity-infographic.png",
-      "coverAlt": "포코피아의 출시 주말 220만 장, 메타스코어 89점, 만들고 모으고 함께하는 인기 요인과 느린 진행 주의점을 정리한 한글 화이트보드 인포그래픽",
+      "coverImage": "reports/assets/260802-pokemon-pokopia-deep-dive/cover.png",
+      "coverAlt": "Pokémon 공식 로고",
       "subtitle": "출시 성과, 평단 평가, 핵심 루프, 멀티플레이와 장기 만족 조건"
     },
     {
@@ -491,8 +491,8 @@
         "automation",
         "deep-dive"
       ],
-      "coverImage": "assets/260802-ai-agent-comparison/ai-agent-three-paths-16x9.png",
-      "coverAlt": "지속형 개인 에이전트, 다채널 게이트웨이, 코딩 에이전트의 세 경로가 인간 검수자에게 모이는 AI 생성 비교 인포그래픽",
+      "coverImage": "reports/assets/260802-ai-agent-hermes-openclaw-codex/cover.png",
+      "coverAlt": "OpenAI, Anthropic, GitHub 공식 로고",
       "subtitle": "아키텍처·자율성·메모리·보안·운영·비용·사용자 적합성 비교"
     },
     {
@@ -517,8 +517,8 @@
         "benchmarks",
         "deep-dive"
       ],
-      "coverImage": "assets/260802-iphone-fold-vs-galaxy-fold7-fold8-ultra/fold-performance-comparison-infographic.png",
-      "coverAlt": "아이폰 폴드, 갤럭시 Z 폴드7, Z 폴드8 울트라의 발표 상태와 Geekbench 6 성능을 비교한 한글 화이트보드 인포그래픽",
+      "coverImage": "reports/assets/260802-iphone-fold-vs-galaxy-fold7-fold8-ultra/cover.png",
+      "coverAlt": "Apple과 Samsung 공식 로고",
       "subtitle": "공식 사양, 독립 벤치마크, 루머와 구매 시점을 표 중심으로 비교"
     },
     {
@@ -541,8 +541,8 @@
         "deep-dive",
         "official"
       ],
-      "coverImage": "assets/260802-galaxy-z-fold8-deep-dive/fold8-deep-dive-infographic.png",
-      "coverAlt": "갤럭시 Z Fold8의 201g, 7.6형, 4,800mAh, 227만 8,100원과 망원 미지원, 구매 판단 기준을 정리한 한글 화이트보드 인포그래픽",
+      "coverImage": "reports/assets/260802-galaxy-z-fold8-deep-dive/cover.png",
+      "coverAlt": "Samsung 공식 로고와 Galaxy Z Fold8 제품 이미지",
       "subtitle": "공식 사양, Fold7·Ultra·경쟁 제품 비교, 시장 전망과 구매 판단 기준"
     },
     {
@@ -564,8 +564,8 @@
         "iphone",
         "rumor"
       ],
-      "coverImage": "assets/apple-foldable-doodle-ko-v2.png",
-      "coverAlt": "Apple 폴더블 iPhone 예상 사양을 정리한 한글 화이트보드 인포그래픽",
+      "coverImage": "reports/assets/260802-apple-foldable-iphone/cover.png",
+      "coverAlt": "Apple 공식 로고",
       "subtitle": "예상 사양, 장점과 단점, 구매 전 확인해야 할 다섯 가지 기준"
     }
   ]
