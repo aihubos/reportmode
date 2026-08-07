@@ -14,6 +14,7 @@ type RequestRow = {
   password_hash?: string;
   admin_reply?: string | null;
   admin_replied_at?: string | null;
+  editable?: number;
 };
 
 type CommentRow = {
@@ -130,6 +131,7 @@ export default {
     if (url.pathname === "/requests" && request.method === "GET") {
       const rows = await env.DB.prepare(
         `SELECT r.id, r.topic, r.context, r.author, r.created_at, r.updated_at,
+                CASE WHEN length(r.password_hash) > 0 THEN 1 ELSE 0 END AS editable,
                 rr.content AS admin_reply, rr.created_at AS admin_replied_at
            FROM report_requests r
            LEFT JOIN report_request_replies rr ON rr.request_id = r.id
