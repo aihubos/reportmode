@@ -3,864 +3,336 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="개인 업무는 Plus($20/월)가 기본 후보이고, 매일 고강도 코딩을 지속하면 Pro의 5배·20배 사용량을 검토합니다. 조직은 Business의 사용자당 요금과 별도 크레딧을 분리해 예산화해야 하며, 서비스에 모델을 붙이는 API 비용은 어떤 ChatGPT 구독에도 포함되지 않습니다.">
-  <meta name="color-scheme" content="light">
-  <title>260807 · ChatGPT 요금제와 Codex·API 비용 비교 — Report Mode</title>
-  <style>:root {
-  --ink: #171717;
-  --muted: #5f5f66;
-  --bg: #f4f1ea;
-  --paper: #fffdf8;
-  --line: #ddd4c5;
-  --accent: #0b3d91;
-  --soft: #efe8db;
-  --dark: #111111;
-  --warn: #8a5a00;
-  --warn-bg: #fff4d8;
-  --fact: #0b6e4f;
-  --analysis: #0b3d91;
-  --forecast: #6b3fa0;
-  --rumor: #9a6700;
-  --max: 1080px;
-  --serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, "Noto Serif KR", serif;
-  --sans: "Avenir Next", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-}
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  color: var(--ink);
-  background: var(--bg);
-  font-family: var(--sans);
-  line-height: 1.65;
-  letter-spacing: -0.01em;
-}
-a { color: var(--accent); text-underline-offset: 3px; }
-a:focus-visible, button:focus-visible { outline: 3px solid #2f6fed; outline-offset: 3px; }
-.nav {
-  position: sticky; top: 0; z-index: 20; height: 52px;
-  background: rgba(17,17,17,.9); color: #fff; backdrop-filter: blur(14px);
-}
-.nav-inner, .wrap, .footer-inner {
-  width: min(var(--max), calc(100% - 40px));
-  margin: 0 auto;
-}
-.nav-inner {
-  height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px;
-}
-.nav a { color: #f5f5f7; text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
-.nav-links { display: flex; gap: 18px; font-size: 13px; }
-.hero {
-  background: radial-gradient(circle at top right, #243b55, #0b1020 55%, #05070d);
-  color: #fff; padding: 88px 0 72px;
-}
-.hero-inner { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
-.eyebrow {
-  font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: #b8c0cc; font-weight: 700;
-}
-.hero h1 {
-  font-family: var(--serif);
-  font-size: clamp(42px, 8vw, 78px);
-  line-height: 1.02;
-  letter-spacing: -.04em;
-  margin: 18px 0 18px;
-  max-width: 16ch;
-}
-.lede {
-  max-width: 48rem; font-size: clamp(18px, 2.4vw, 24px); line-height: 1.35; color: #d7dde7; font-weight: 500;
-}
-.meta-row {
-  display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px;
-}
-.chip {
-  display: inline-flex; align-items: center; gap: 8px;
-  border: 1px solid rgba(255,255,255,.18);
-  border-radius: 999px; padding: 8px 12px; font-size: 13px; color: #f0f3f8;
-}
-.dot { width: 8px; height: 8px; border-radius: 50%; background: #ffd166; box-shadow: 0 0 0 4px rgba(255,209,102,.15); }
-section { padding: 78px 0; }
-.section-head { max-width: 46rem; margin-bottom: 34px; }
-.kicker { color: var(--accent); font-size: 14px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
-.section-head h2 {
-  font-family: var(--serif);
-  font-size: clamp(30px, 4.5vw, 48px);
-  line-height: 1.1; letter-spacing: -.03em; margin: 10px 0 12px;
-}
-.section-head p { margin: 0; color: var(--muted); font-size: 18px; }
-.paper {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 22px;
-  padding: 28px;
-  box-shadow: 0 18px 40px rgba(40, 28, 8, .05);
-}
-.verdict-grid {
-  display: grid; grid-template-columns: 1.4fr .8fr; gap: 18px;
-}
-.verdict-main h3 { font-family: var(--serif); font-size: 28px; margin: 0 0 14px; }
-.verdict-side {
-  background: var(--dark); color: #fff; border-radius: 18px; padding: 24px;
-}
-.verdict-side .big { font-size: 42px; font-weight: 800; line-height: 1; }
-.metrics {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 22px;
-}
-.metric {
-  background: var(--soft); border-radius: 16px; padding: 18px;
-}
-.metric .value { font-family: var(--serif); font-size: 28px; font-weight: 700; }
-.metric .label { color: var(--muted); font-size: 13px; margin-top: 6px; }
-.legend { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; }
-.badge {
-  display: inline-flex; align-items: center; border-radius: 999px;
-  padding: 4px 10px; font-size: 12px; font-weight: 800;
-}
-.badge.fact { background: #e5f6ef; color: var(--fact); }
-.badge.analysis { background: #e8effc; color: var(--analysis); }
-.badge.forecast { background: #f1e9fb; color: var(--forecast); }
-.badge.rumor { background: #fff3d9; color: var(--rumor); }
-.section-card { margin-top: 18px; }
-.section-card h3 {
-  font-family: var(--serif); font-size: 28px; margin: 0 0 12px;
-}
-.section-card .body p { margin: 0 0 12px; font-size: 17px; }
-.section-card ul { margin: 0; padding-left: 1.1rem; }
-.section-card li { margin: 6px 0; }
-.table-wrap {
-  margin: 20px 0;
-  overflow-x: auto;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: #fff;
-}
-.report-table {
-  width: 100%;
-  min-width: 640px;
-  border-collapse: collapse;
-  font-size: 14px;
-  line-height: 1.5;
-}
-.report-table th, .report-table td {
-  padding: 13px 14px;
-  border-bottom: 1px solid var(--line);
-  vertical-align: top;
-  text-align: left;
-}
-.report-table th {
-  color: #263548;
-  background: #eef3f8;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: -.01em;
-  white-space: nowrap;
-}
-.report-table td:first-child { font-weight: 700; }
-.report-table tr:last-child td { border-bottom: 0; }
-.hl { background: #fff2a8; padding: 0 .12em; }
-.quote {
-  border-left: 4px solid var(--accent);
-  padding: 8px 0 8px 18px;
-  margin: 18px 0;
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 22px;
-  line-height: 1.35;
-  color: #2a2a2e;
-}
-.duo { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.panel {
-  border-radius: 18px; padding: 24px; background: #171717; color: #f2f2f2;
-}
-.panel h3 { margin: 0 0 14px; font-family: var(--serif); font-size: 26px; }
-.panel ul { list-style: none; margin: 0; padding: 0; }
-.panel li {
-  position: relative; padding: 12px 0 12px 30px; border-top: 1px solid #333;
-}
-.panel li:first-child { border-top: 0; }
-.panel.pros li::before, .panel.cons li::before {
-  position: absolute; left: 0; top: 12px; width: 20px; height: 20px;
-  border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 800;
-}
-.panel.pros li::before { content: "+"; background: #174a2d; color: #7dffb2; }
-.panel.cons li::before { content: "−"; background: #4a1d1d; color: #ff9b9b; }
-.checks {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
-}
-.check {
-  background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 20px;
-}
-.check .num { color: #888; font-size: 12px; font-weight: 800; letter-spacing: .08em; }
-.check h3 { font-size: 18px; margin: 10px 0 8px; }
-.check p { margin: 0; color: var(--muted); }
-.timeline { display: grid; gap: 12px; }
-.t-item {
-  display: grid; grid-template-columns: 120px 1fr; gap: 14px;
-  background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px;
-}
-.t-item .date { font-weight: 800; color: var(--accent); }
-.sources { list-style: none; margin: 0; padding: 0; }
-.sources li {
-  padding: 16px 0; border-top: 1px solid var(--line);
-}
-.sources li:first-child { border-top: 0; }
-.sources a { font-weight: 700; }
-.sources span { display: block; margin-top: 4px; color: var(--muted); font-size: 14px; }
-.notice {
-  background: var(--warn-bg); color: #5b4300; border-radius: 12px; padding: 14px 16px; margin-bottom: 18px;
-}
-footer {
-  background: #111; color: #a0a0a0; padding: 28px 0; font-size: 13px;
-}
-.footer-inner { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-.sr-only {
-  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
-}
-.archive-page {
-  --archive-blue: #3182f6;
-  --archive-blue-deep: #1b64da;
-  --archive-blue-soft: #eaf3ff;
-  --archive-ink: #191f28;
-  --archive-muted: #6b7684;
-  --archive-subtle: #8b95a1;
-  --archive-line: #e5e8eb;
-  margin: 0;
-  color: var(--archive-ink);
-  background: #f5f7f9;
-  font-family: "Pretendard", "Avenir Next", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-  line-height: 1.5;
-  letter-spacing: -.02em;
-}
-.archive-page section { padding: 0; }
-.archive-topbar {
-  position: sticky; top: 0; z-index: 50;
-  height: 64px; background: rgba(255,255,255,.92);
-  border-bottom: 1px solid rgba(229,232,235,.9);
-  backdrop-filter: saturate(180%) blur(18px);
-}
-.archive-topbar-inner {
-  width: min(1180px, calc(100% - 40px)); height: 100%; margin: 0 auto;
-  display: flex; align-items: center; justify-content: space-between; gap: 24px;
-}
-.archive-brand {
-  display: inline-flex; align-items: center; gap: 10px;
-  color: var(--archive-ink); font-size: 17px; font-weight: 800; text-decoration: none;
-}
-.archive-brand-mark {
-  width: 32px; height: 32px; display: grid; place-items: center;
-  border-radius: 11px; color: #fff; background: var(--archive-blue);
-  box-shadow: 0 7px 18px rgba(49,130,246,.25);
-}
-.archive-topbar nav { display: flex; align-items: center; gap: 8px; }
-.archive-topbar nav a {
-  min-height: 40px; display: inline-flex; align-items: center; padding: 0 14px;
-  border-radius: 10px; color: var(--archive-muted); font-size: 14px; font-weight: 700; text-decoration: none;
-}
-.archive-topbar nav a:hover, .archive-topbar nav a.is-current { color: var(--archive-blue-deep); background: var(--archive-blue-soft); }
-.archive-shell { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
-.archive-profile {
-  min-height: 240px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 28px;
-  margin: 32px 0 24px; padding: 38px 42px !important;
-  border: 1px solid #edf0f2; border-radius: 26px; background: #fff;
-  box-shadow: 0 14px 38px rgba(15,23,42,.045);
-  overflow: hidden; position: relative;
-}
-.archive-profile::after {
-  content: ""; position: absolute; width: 320px; height: 320px; right: -180px; top: -190px;
-  border-radius: 50%; background: radial-gradient(circle, rgba(49,130,246,.13), rgba(49,130,246,0) 68%);
-  pointer-events: none;
-}
-.archive-avatar {
-  width: 92px; height: 92px; display: grid; place-items: center; position: relative;
-  border-radius: 32px; color: #fff; background: linear-gradient(145deg, #4593ff, #1769e8);
-  box-shadow: 0 18px 36px rgba(49,130,246,.24);
-}
-.archive-avatar::before, .archive-avatar::after {
-  content: ""; position: absolute; border-radius: 999px; background: rgba(255,255,255,.28); transform: rotate(-28deg);
-}
-.archive-avatar::before { width: 54px; height: 9px; top: 19px; right: -5px; }
-.archive-avatar::after { width: 30px; height: 7px; bottom: 18px; left: -4px; }
-.archive-avatar span { font-size: 27px; font-weight: 900; letter-spacing: -.07em; }
-.archive-eyebrow, .archive-side-label {
-  color: var(--archive-blue); font-size: 11px; line-height: 1; font-weight: 900; letter-spacing: .11em;
-}
-.archive-profile h1 { margin: 9px 0 8px; font-size: clamp(30px, 4vw, 42px); line-height: 1.13; letter-spacing: -.045em; }
-.archive-profile-copy > p { margin: 0; color: var(--archive-muted); font-size: 16px; }
-.archive-profile-meta { display: flex; flex-wrap: wrap; gap: 7px 18px; margin-top: 17px; color: var(--archive-subtle); font-size: 13px; }
-.archive-profile-meta span { position: relative; }
-.archive-profile-meta span:not(:last-child)::after { content: ""; position: absolute; width: 1px; height: 10px; right: -10px; top: 5px; background: var(--archive-line); }
-.archive-profile-meta b { color: var(--archive-ink); }
-.archive-primary-action {
-  position: relative; z-index: 1; min-height: 48px; display: inline-flex; align-items: center; gap: 13px;
-  padding: 0 19px; border-radius: 14px; color: #fff; background: var(--archive-blue);
-  box-shadow: 0 10px 24px rgba(49,130,246,.22); font-size: 14px; font-weight: 800; text-decoration: none;
-  transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
-}
-.archive-primary-action:hover { color: #fff; background: var(--archive-blue-deep); transform: translateY(-2px); box-shadow: 0 14px 28px rgba(49,130,246,.3); }
-.archive-blog-action { min-width: 244px; min-height: 62px; background: #03c75a; box-shadow: 0 10px 24px rgba(3,199,90,.2); }
-.archive-blog-action:hover { background: #00ad4e; box-shadow: 0 14px 28px rgba(3,199,90,.28); }
-.archive-blog-mark { width: 30px; height: 30px; display: grid; place-items: center; flex: 0 0 auto; border-radius: 9px; color: #03c75a; background: #fff; font-size: 17px; font-weight: 950; }
-.archive-blog-action > span:nth-child(2) { display: grid; gap: 1px; line-height: 1.15; }
-.archive-blog-action b { font-size: 14px; }
-.archive-blog-action small { color: rgba(255,255,255,.82); font-size: 10px; font-weight: 600; }
-.archive-blog-action i { margin-left: auto; font-size: 15px; font-style: normal; }
-.archive-layout { display: grid; grid-template-columns: 246px minmax(0, 1fr); align-items: start; gap: 22px; }
-.archive-sidebar { display: grid; gap: 14px; }
-.archive-side-card { padding: 24px !important; border: 1px solid #edf0f2; border-radius: 20px; background: #fff; }
-.archive-side-card h2 { margin: 13px 0 10px; font-size: 20px; line-height: 1.35; letter-spacing: -.035em; }
-.archive-side-card p { margin: 0; color: var(--archive-muted); font-size: 13px; line-height: 1.65; }
-.archive-side-categories { padding-bottom: 12px !important; }
-.archive-category-list { margin-top: 14px; }
-.archive-category {
-  width: 100%; min-height: 42px; display: flex; align-items: center; justify-content: space-between; gap: 12px;
-  padding: 0 12px; border: 0; border-radius: 10px; color: var(--archive-muted); background: transparent;
-  font: inherit; font-size: 14px; text-align: left; cursor: pointer;
-}
-.archive-category:hover { color: var(--archive-ink); background: #f6f8fa; }
-.archive-category.is-active { color: var(--archive-blue-deep); background: var(--archive-blue-soft); font-weight: 800; }
-.archive-category b { color: var(--archive-subtle); font-size: 12px; }
-.archive-category.is-active b { color: var(--archive-blue); }
-.archive-side-tags h2 { margin-bottom: 15px; font-weight: 600; }
-.archive-tag-cloud { display: flex; flex-wrap: wrap; gap: 7px 6px; }
-.archive-report-tag {
-  display: inline-flex; align-items: center; min-height: 27px; padding: 4px 9px; border: 1px solid #dbe7f7; border-radius: 999px;
-  color: #4e5968; background: #f5f8fc; font-size: 11px; font-weight: 500;
-  line-height: 1.2; text-decoration: none; transition: color .18s ease, background .18s ease, transform .18s ease;
-}
-.archive-report-tag:hover { color: #fff; background: var(--archive-blue); transform: translateY(-1px); }
-.archive-side-note { display: flex; gap: 11px; align-items: flex-start; padding: 16px 18px !important; }
-.archive-side-note p { margin: 0; color: var(--archive-subtle); font-size: 12px; line-height: 1.55; }
-.archive-note-dot { width: 7px; height: 7px; flex: 0 0 auto; margin-top: 5px; border-radius: 50%; background: #00c73c; box-shadow: 0 0 0 4px rgba(0,199,60,.09); }
-.archive-board { min-width: 0; padding: 30px 32px 28px !important; border: 1px solid #edf0f2; border-radius: 22px; background: #fff; }
-.archive-board-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; padding-bottom: 24px; }
-.archive-board-head h2 { margin: 8px 0 3px; font-size: 28px; letter-spacing: -.045em; }
-.archive-board-head p { margin: 0; color: var(--archive-subtle); font-size: 13px; }
-.archive-search {
-  width: min(320px, 45%); height: 46px; display: flex; align-items: center; gap: 10px;
-  padding: 0 14px; border: 1px solid var(--archive-line); border-radius: 13px; background: #f9fafb;
-  transition: border .18s ease, box-shadow .18s ease, background .18s ease;
-}
-.archive-search:focus-within { border-color: var(--archive-blue); background: #fff; box-shadow: 0 0 0 4px rgba(49,130,246,.1); }
-.archive-search svg { width: 19px; height: 19px; flex: 0 0 auto; fill: none; stroke: var(--archive-subtle); stroke-width: 1.8; stroke-linecap: round; }
-.archive-search input { min-width: 0; width: 100%; border: 0; outline: 0; background: transparent; color: var(--archive-ink); font: inherit; font-size: 14px; }
-.archive-search input::placeholder { color: #aeb6bf; }
-.archive-mobile-categories { display: none; }
-.archive-list-head {
-  display: grid; grid-template-columns: 64px minmax(0, 1fr) 154px; gap: 18px;
-  padding: 12px 8px; border-top: 2px solid #333d4b; border-bottom: 1px solid var(--archive-line);
-  color: var(--archive-subtle); font-size: 11px; font-weight: 800; letter-spacing: .04em; text-align: center;
-}
-.archive-list-head span:nth-child(2) { text-align: left; }
-.archive-post { border-bottom: 1px solid #edf0f2; }
-.archive-post[hidden] { display: none; }
-.archive-post-link {
-  display: grid; grid-template-columns: 64px minmax(0, 1fr) 154px; gap: 18px; align-items: center;
-  min-height: 154px; padding: 22px 8px; color: inherit; text-decoration: none;
-  transition: background .18s ease, transform .18s ease;
-}
-.archive-post-link:hover { color: inherit; background: #fbfcfd; transform: translateX(3px); }
-.archive-post-number { color: #a7b0ba; font-size: 12px; font-variant-numeric: tabular-nums; text-align: center; }
-.archive-post-copy { min-width: 0; }
-.archive-post-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 13px; color: var(--archive-subtle); font-size: 12px; }
-.archive-post-meta span { position: relative; }
-.archive-post-meta span:not(:last-child)::after { content: ""; position: absolute; width: 1px; height: 9px; right: -7px; top: 4px; background: var(--archive-line); }
-.archive-post-meta .archive-post-category { color: var(--archive-blue-deep); font-weight: 800; }
-.archive-view-count {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 auto;
-  width: max-content;
-  min-width: 88px;
-  max-width: none;
-  min-height: 26px;
-  padding: 3px 9px;
-  border-radius: 999px;
-  color: var(--archive-blue-deep);
-  background: var(--archive-blue-soft);
-  font-size: 12px;
-  font-variant-numeric: tabular-nums;
-  font-weight: 900;
-  overflow: visible;
-  text-overflow: clip;
-  white-space: nowrap;
-  box-shadow: inset 0 0 0 1px rgba(49, 130, 246, 0.12);
-}
-.archive-view-count::before {
-  content: "👁";
-  margin-right: 4px;
-  font-size: 11px;
-}
-.archive-post h2 { margin: 7px 0 6px; overflow: hidden; color: var(--archive-ink); font-size: 20px; line-height: 1.35; letter-spacing: -.035em; text-overflow: ellipsis; white-space: nowrap; }
-.archive-post p { display: -webkit-box; margin: 0; overflow: hidden; color: var(--archive-muted); font-size: 13px; line-height: 1.55; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
-.archive-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 9px; color: #8b95a1; font-size: 11px; }
-.archive-post-cover {
-  width: 154px; height: 104px; margin: 0; border: 1px solid #e5e8eb; border-radius: 14px;
-  background: #eef2f6; box-shadow: inset 0 1px rgba(255,255,255,.25); overflow: hidden; position: relative;
-}
-.archive-post-cover img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center; transition: transform .35s ease; }
-.archive-post-link:hover .archive-post-cover img { transform: scale(1.045); }
-.archive-post-cover figcaption { position: absolute; right: 8px; bottom: 8px; padding: 4px 7px; border-radius: 7px; color: #fff; background: rgba(25,31,40,.76); backdrop-filter: blur(8px); font-size: 9px; font-weight: 800; letter-spacing: .04em; }
-.archive-post-cover-fallback { display: flex; flex-direction: column; justify-content: flex-end; padding: 12px; color: #fff; background: linear-gradient(145deg, #5aa0ff, #2477ed 62%, #1659bd); }
-.archive-post-cover-fallback::after { content: ""; position: absolute; width: 86px; height: 86px; right: -48px; top: -44px; border: 13px solid rgba(255,255,255,.14); border-radius: 50%; }
-.archive-post-cover-fallback span { position: absolute; top: 10px; left: 12px; color: rgba(255,255,255,.72); font-size: 8px; font-weight: 900; letter-spacing: .11em; }
-.archive-post-cover-fallback strong { font-size: 25px; line-height: .95; letter-spacing: -.06em; }
-.archive-post-cover-fallback small { margin-top: 5px; overflow: hidden; font-size: 9px; font-weight: 700; opacity: .85; text-overflow: ellipsis; white-space: nowrap; }
-.archive-empty-static, .archive-empty { padding: 72px 20px; color: var(--archive-muted); text-align: center; }
-.archive-empty div { font-size: 32px; }
-.archive-empty h3 { margin: 12px 0 5px; color: var(--archive-ink); font-size: 18px; }
-.archive-empty p { margin: 0; font-size: 13px; }
-.archive-pagination { display: flex; justify-content: center; align-items: center; gap: 7px; padding-top: 28px; }
-.archive-pagination[hidden] { display: none; }
-.archive-page-button {
-  min-width: 36px; height: 36px; padding: 0 8px; border: 1px solid transparent; border-radius: 10px;
-  color: var(--archive-muted); background: transparent; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer;
-}
-.archive-page-button:hover:not(:disabled) { color: var(--archive-blue-deep); background: var(--archive-blue-soft); }
-.archive-page-button.is-active { color: #fff; background: var(--archive-blue); box-shadow: 0 7px 14px rgba(49,130,246,.2); }
-.archive-page-button.is-wide { padding: 0 14px; }
-.archive-page-button:disabled { cursor: default; opacity: .35; }
-.archive-footer {
-  display: flex; justify-content: space-between; gap: 16px; margin: 26px 0 40px;
-  padding: 0 4px !important; color: var(--archive-subtle); background: transparent; font-size: 12px;
-}
-.archive-footer a { color: var(--archive-blue-deep); font-weight: 700; text-decoration: none; }
-@media (max-width: 860px) {
-  .verdict-grid, .duo, .checks, .metrics { grid-template-columns: 1fr 1fr; }
-  .metrics { grid-template-columns: 1fr 1fr; }
-  .t-item { grid-template-columns: 1fr; }
-  .archive-profile { grid-template-columns: auto 1fr; }
-  .archive-primary-action { grid-column: 2; justify-self: start; }
-  .archive-layout { grid-template-columns: 1fr; }
-  .archive-sidebar { position: static; grid-template-columns: 1fr; }
-  .archive-side-categories, .archive-side-tags, .archive-side-note { display: none; }
-  .archive-mobile-categories { display: flex; gap: 7px; margin: 0 -2px 18px; overflow-x: auto; scrollbar-width: none; }
-  .archive-mobile-categories::-webkit-scrollbar { display: none; }
-  .archive-mobile-categories .archive-category { width: auto; min-width: max-content; padding: 0 14px; border: 1px solid var(--archive-line); border-radius: 999px; }
-  .archive-mobile-categories .archive-category b { margin-left: 5px; }
-}
-@media (max-width: 640px) {
-  .nav-links a:not(:last-child) { display: none; }
-  .verdict-grid, .duo, .checks, .metrics { grid-template-columns: 1fr; }
-  section { padding: 56px 0; }
-  .hero { padding: 72px 0 56px; }
-  .archive-topbar { height: 58px; }
-  .archive-topbar-inner, .archive-shell { width: min(100% - 28px, 1180px); }
-  .archive-brand > span:last-child { display: none; }
-  .archive-topbar nav { gap: 2px; }
-  .archive-topbar nav a { padding: 0 8px; font-size: 11px; white-space: nowrap; }
-  .archive-topbar nav a:first-child { display: none; }
-  .archive-profile { grid-template-columns: 1fr; gap: 18px; margin: 18px 0 14px; padding: 24px !important; border-radius: 20px; }
-  .archive-avatar { width: 68px; height: 68px; border-radius: 23px; }
-  .archive-avatar span { font-size: 21px; }
-  .archive-profile h1 { margin-top: 7px; font-size: 29px; word-break: keep-all; }
-  .archive-profile-copy > p { font-size: 14px; }
-  .archive-profile-meta span:last-child { display: none; }
-  .archive-primary-action { grid-column: 1; width: 100%; justify-content: space-between; }
-  .archive-side-card { padding: 20px !important; }
-  .archive-side-card h2 { font-size: 18px; }
-  .archive-board { padding: 24px 18px 20px !important; border-radius: 20px; }
-  .archive-board-head { display: grid; gap: 18px; }
-  .archive-board-head h2 { font-size: 25px; }
-  .archive-search { width: 100%; }
-  .archive-list-head { display: none; }
-  .archive-post-link { grid-template-columns: minmax(0, 1fr) 96px; gap: 13px; min-height: 138px; padding: 19px 0; }
-  .archive-post-number { display: none; }
-  .archive-post h2 { font-size: 17px; white-space: normal; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
-  .archive-post p { -webkit-line-clamp: 1; }
-  .archive-tags { display: none; }
-  .archive-post-cover { width: 96px; height: 80px; border-radius: 11px; }
-  .archive-post-cover-fallback { padding: 10px; }
-  .archive-post-cover-fallback span { left: 10px; top: 9px; font-size: 7px; }
-  .archive-post-cover-fallback strong { font-size: 21px; }
-  .archive-post-cover-fallback small { font-size: 8px; }
-  .archive-pagination { gap: 3px; }
-  .archive-page-button { min-width: 32px; height: 34px; font-size: 12px; }
-  .archive-page-button.is-wide { padding: 0 9px; }
-  .archive-footer { display: grid; margin-bottom: 26px; }
-}
-@media print {
-  .nav { display: none; }
-  body { background: #fff; }
-  .hero { break-inside: avoid; }
-  section { break-inside: avoid; }
-  .archive-topbar, .archive-sidebar, .archive-primary-action, .archive-search, .archive-mobile-categories, .archive-pagination { display: none !important; }
-  .archive-shell { width: 100%; }
-  .archive-profile, .archive-board { box-shadow: none; }
-  .archive-post[hidden] { display: block; }
-}
-</style>
+  <meta name="description" content="ChatGPT 요금제, Codex 할당량, GPT-5.6 Sol, Terra, Luna API 단가와 경쟁사 API 비용을 비교한 임원용 분석 보고서">
+  <meta name="theme-color" content="#ffffff">
+  <title>ChatGPT 요금제와 Codex·API 비용 비교 | Report Mode</title>
   <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260807-controls">
+  <link rel="stylesheet" href="./pricing-report.css?v=20260807-hermes-style">
 </head>
-<body class="report-a4-mode" data-report-layout="a4" data-report-view="detail">
-  <a class="report-home-button" href="../../archive/" aria-label="보고서 도서관 메인으로 이동">🏠 메인</a>
-  <nav class="nav" aria-label="보고서 탐색">
-    <div class="nav-inner">
-      <a href="../../archive/">Report Mode</a>
-      <div class="nav-links">
-        <a href="#summary">요약</a>
-        <a href="#body">본문</a>
-        <a href="#sources">출처</a>
+<body class="report-a4-mode" data-report-view="detail">
+  <a class="report-home-button" href="../../archive/" aria-label="보고서 도서관 메인으로 이동">메인</a>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <section class="report-view-switcher" aria-label="보고서 보기 방식">
+    <div class="report-view-switcher-inner">
+      <span class="report-view-label">보고서 보기</span>
+      <div class="report-view-buttons" role="group" aria-label="간단 또는 상세 보기">
+        <button class="report-view-button" type="button" data-report-view-target="simple" aria-pressed="false">간단</button>
+        <button class="report-view-button is-active" type="button" data-report-view-target="detail" aria-pressed="true">상세</button>
+      </div>
+      <div class="report-utility-controls">
+        <button class="utility-button primary" type="button" id="printButton">PDF 저장</button>
+        <button class="utility-button" type="button" id="shareButton">공유하기</button>
       </div>
     </div>
-  </nav>
+  </section>
 
-  <header class="hero">
-    <div class="hero-inner">
-      <div class="eyebrow">EXECUTIVE AI COST REPORT · 260807</div>
-      <h1>ChatGPT 요금제와 Codex·API 비용 비교</h1>
-      <p class="lede">구독료, Codex 할당량, GPT-5.6 Sol·Terra·Luna API 단가와 Anthropic·Google·xAI 대표 모델 비교</p>
-      <div class="meta-row">
-        <div class="chip"><span class="dot" aria-hidden="true"></span>260807 · AI</div>
-        <div class="chip">작성 2026.08.07 KST</div>
-        <div class="chip">수정 2026.08.07 KST</div>
-        <div class="chip">출처 14개</div>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <section id="summary">
-      <div class="wrap">
-        <div class="section-head">
-          <div class="kicker">Executive Summary</div>
-          <h2>한 문장 판단</h2>
-          <p>개인 업무는 Plus($20/월)가 기본 후보이고, 매일 고강도 코딩을 지속하면 Pro의 5배·20배 사용량을 검토합니다. 조직은 Business의 사용자당 요금과 별도 크레딧을 분리해 예산화해야 하며, 서비스에 모델을 붙이는 API 비용은 어떤 ChatGPT 구독에도 포함되지 않습니다.</p>
+  <section class="simple-report" aria-labelledby="simpleTitle">
+    <div class="container">
+      <article class="simple-card">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>3분 핵심 요약</div>
+        <h1 id="simpleTitle">ChatGPT 비용을<br><span class="blue">세 갈래</span>로 보면 쉽습니다</h1>
+        <p>사람이 쓰는 구독료, Codex의 추가 크레딧, 제품에서 발생하는 API 사용료는 서로 다른 비용입니다.</p>
+        <div class="simple-grid">
+          <article><b>Plus</b><span>$20/월. 개인 업무의 기본 후보이며 API는 별도입니다.</span></article>
+          <article><b>Pro</b><span>$100 또는 $200. Plus 대비 5배 또는 20배 사용량입니다.</span></article>
+          <article><b>Terra</b><span>1M 입력과 출력 기준 $14. 균형형 API 후보입니다.</span></article>
+          <article><b>Luna</b><span>동일 기준 $1.40. 대량 반복 작업의 비용 민감 후보입니다.</span></article>
         </div>
-        <div class="verdict-grid">
-          <article class="paper verdict-main">
-            <h3>핵심은 ‘ChatGPT 구독료’와 ‘API 사용료’를 한 예산으로 보지 않는 것입니다. 현재 GPT-5.6 Terra는 1M 입력+1M 출력 기준 $14, Luna는 $1.40이며, 7월 9일 출시 공지 대비 각각 20%, 80% 낮아졌습니다. 단, Codex의 실제 소모는 메시지 수가 아니라 입력·캐시·출력 토큰과 작업 복잡도에 따라 달라지므로 공개 숫자는 상한 보장이 아닌 계획 기준으로 사용해야 합니다.</h3>
-            <blockquote class="quote">구독은 사람의 접근권, API는 제품의 사용량, Codex 크레딧은 한도 이후의 확장 비용이다. 세 숫자를 분리해야 AI 예산이 보인다.</blockquote>
+        <button class="btn btn-primary" type="button" data-report-view-target="detail">상세 표와 근거 보기</button>
+      </article>
+    </div>
+  </section>
+
+  <div class="detail-page">
+    <div class="nav-wrap">
+      <nav class="nav" aria-label="보고서 탐색">
+        <a class="brand" href="../../archive/" aria-label="보고서 도서관 메인으로 이동">
+          <span class="brand-mark" aria-hidden="true">$</span>
+          <span>CHATGPT COST MAP</span>
+          <span class="brand-sub">임원 분석용</span>
+        </a>
+        <div class="nav-links">
+          <a href="#structure">비용 구조</a>
+          <a href="#plans">요금제</a>
+          <a href="#api">API</a>
+          <a href="#market">경쟁사</a>
+        </div>
+        <a class="nav-action" href="#decision">판단 기준</a>
+      </nav>
+    </div>
+
+    <main id="top">
+      <div class="container">
+        <section class="hero" aria-labelledby="heroTitle">
+          <div class="hero-copy reveal">
+            <div class="eyebrow"><span class="eyebrow-dot"></span>2026.08.07 KST · 공식 출처 14개</div>
+            <h1 id="heroTitle">ChatGPT 비용을<br><span class="blue">정확히 나누고</span><br><span class="marker">낭비 없이</span> 쓰는 법</h1>
+            <p class="hero-lead">ChatGPT 요금제, Codex 할당량, GPT-5.6 Sol·Terra·Luna API 단가를 한 화면에 정리했습니다. Anthropic, Google, xAI의 대표 모델도 같은 기준으로 비교합니다.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#plans">요금제부터 보기</a>
+              <a class="btn btn-ghost" href="#api">API 비용 바로 보기</a>
+            </div>
+            <p class="hero-note"><span class="note-mark">i</span>구독료와 API 사용료를 합쳐 보지 않는 것이 첫 번째 비용 통제 원칙입니다.</p>
+          </div>
+
+          <div class="hero-visual reveal" aria-label="구독, Codex, API의 비용 흐름">
+            <div class="hero-orbit" aria-hidden="true"></div>
+            <article class="cost-map">
+              <div class="cost-map-head"><strong>AI 비용 운영 지도</strong><span>사람 + 사용량</span></div>
+              <div class="cost-track">
+                <div class="track-label"><span>사람이 쓰는 월 구독</span><span>기본 한도 포함</span></div>
+                <div class="tier-grid">
+                  <div class="tier"><b>Plus</b><span>$20/월</span></div>
+                  <div class="tier"><b>Pro</b><span>$100 · $200</span></div>
+                  <div class="tier"><b>Business</b><span>$25 또는 $20/인</span></div>
+                </div>
+              </div>
+              <div class="connector" aria-hidden="true"></div>
+              <div class="api-track">
+                <div class="track-label"><span>제품과 자동화의 API</span><span>1M 입력 + 출력 예시</span></div>
+                <div class="api-rows">
+                  <div class="api-row"><span>GPT-5.6 Sol <small>복잡한 전문 작업</small></span><strong>$35.00</strong></div>
+                  <div class="api-row"><span>GPT-5.6 Terra <small>성능과 비용의 균형</small></span><strong>$14.00</strong></div>
+                  <div class="api-row"><span>GPT-5.6 Luna <small>대량 반복 작업</small></span><strong>$1.40</strong></div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+      </div>
+
+      <section id="structure" class="section section-soft">
+        <div class="container">
+          <h2 class="section-title reveal">먼저 구분할 것,<br>구독·Codex·API는 같은 비용이 아닙니다</h2>
+          <p class="section-desc reveal">ChatGPT 구독은 사람이 사용하는 접근권과 기본 사용량입니다. Codex 크레딧은 한도 이후의 추가 작업량이고, API는 회사 서비스와 자동화가 모델을 호출할 때 별도 청구됩니다.</p>
+          <article class="thesis-card reveal">
+            <div class="thesis-number" aria-hidden="true">3</div>
+            <div>
+              <h3>AI 예산은 세 개의 장부로 관리합니다.</h3>
+              <p><strong>좌석비</strong>는 사람 수에 따라, <strong>크레딧</strong>은 Codex 작업량에 따라, <strong>API</strong>는 입력·캐시·출력 토큰과 도구 사용량에 따라 달라집니다. 세 숫자를 분리해야 실제 비용 원인이 보입니다.</p>
+            </div>
           </article>
-          <aside class="verdict-side">
-            <div class="big">4</div>
-            <p>핵심 기준·지표와 출처를 함께 확인하세요. 최종 판단과 검수는 사용자에게 있습니다.</p>
-          </aside>
+          <div class="compare-grid">
+            <article class="compare-card reveal">
+              <span class="compare-label">혼동하기 쉬운 방식</span>
+              <h3>구독을 결제하면 API도 포함된다고 생각</h3>
+              <p>Plus, Pro, Business를 결제해도 제품이나 자동화에서 발생하는 API 사용료는 포함되지 않습니다.</p>
+              <div class="compare-list">
+                <div class="compare-item"><b>1</b><span>구독료만 보고 제품 원가를 놓칩니다.</span></div>
+                <div class="compare-item"><b>2</b><span>대량 호출의 토큰 비용이 별도 청구됩니다.</span></div>
+                <div class="compare-item"><b>3</b><span>월말에 원인을 알기 어려운 비용이 생깁니다.</span></div>
+              </div>
+            </article>
+            <article class="compare-card good reveal">
+              <span class="compare-label">권장 관리 방식</span>
+              <h3>사용자·작업·제품을 각각 예산화</h3>
+              <p>개인은 플랜과 한도를, 팀은 좌석과 크레딧 상한을, 제품은 API 토큰과 도구 비용을 따로 관리합니다.</p>
+              <div class="compare-list">
+                <div class="compare-item"><b>1</b><span>사람당 플랜 비용을 명확히 봅니다.</span></div>
+                <div class="compare-item"><b>2</b><span>Codex 초과 사용을 크레딧으로 통제합니다.</span></div>
+                <div class="compare-item"><b>3</b><span>API는 모델별 라우팅으로 원가를 관리합니다.</span></div>
+              </div>
+            </article>
+          </div>
         </div>
-        <div class="metrics"><div class="metric"><div class="value">$20/월</div><div class="label">ChatGPT Plus · API 사용료 별도</div></div><div class="metric"><div class="value">5× / 20×</div><div class="label">Pro 사용량 · Plus 대비 정책</div></div><div class="metric"><div class="value">$2 / $12</div><div class="label">Terra 현재 단가 · 1M 입력 / 출력</div></div><div class="metric"><div class="value">$0.20 / $1.20</div><div class="label">Luna 현재 단가 · 1M 입력 / 출력</div></div></div>
-        <div class="legend">
-          <span class="badge fact">사실</span>
-          <span class="badge analysis">분석</span>
-          <span class="badge forecast">전망</span>
-          <span class="badge rumor">루머</span>
+      </section>
+
+      <section id="plans" class="section">
+        <div class="container">
+          <h2 class="section-title reveal">요금제는 가격보다<br>Codex 사용 방식이 다릅니다</h2>
+          <p class="section-desc reveal">Free와 Go의 Codex는 제한적 체험 접근입니다. 개인 업무는 Plus가 기준점이고, Pro는 기능보다 사용량 차이가 핵심입니다. 조직은 Business의 좌석비와 추가 크레딧을 함께 봐야 합니다.</p>
+          <div class="topic-grid">
+            <article class="topic-card reveal"><span class="topic-index">01</span><h3>Free · Go</h3><p>제한적 Codex 체험과 기본 기능 확인에 적합합니다. 상시 업무용 한도로 가정하면 안 됩니다.</p><span class="tag">기능 검증</span></article>
+            <article class="topic-card reveal"><span class="topic-index">02</span><h3>Plus · Pro</h3><p>Plus는 $20/월입니다. Pro $100과 $200은 Plus 대비 5배 또는 20배 사용량이 핵심입니다.</p><span class="tag">개인 생산성</span></article>
+            <article class="topic-card reveal"><span class="topic-index">03</span><h3>Business · Enterprise</h3><p>공유 워크스페이스와 관리 기능이 필요할 때 선택합니다. API는 여전히 별도 비용입니다.</p><span class="tag">조직 운영</span></article>
+            <article class="topic-card wide reveal"><span class="topic-index">04</span><h3>Codex 한도는 고정 메시지 수가 아닙니다</h3><p>5시간 공유 창, 주간 추가 제한, 프롬프트 길이, MCP 연결, 작업 복잡도에 따라 달라집니다. 실제 잔여량은 Codex 대시보드 또는 CLI의 /status에서 확인해야 합니다.</p></article>
+            <article class="topic-card wide reveal"><span class="topic-index">05</span><h3>팀 비용은 좌석비와 크레딧 상한으로 나눕니다</h3><p>Business 표준 좌석은 최소 2석입니다. 새로운 Business 워크스페이스는 2026-06-24 이후 Codex 전용 좌석을 새로 추가할 수 없다는 조건도 확인해야 합니다.</p></article>
+          </div>
         </div>
+      </section>
+
+      <section class="section section-soft">
+        <div class="container">
+          <article class="table-section reveal">
+            <h3>ChatGPT 요금제별 비용과 Codex 포함 범위</h3>
+            <p>공개 가격과 공식 도움말을 기준으로 정리했습니다. USD 표시 가격은 세금·환율·지역별 결제 가격과 다를 수 있습니다.</p>
+            <div class="table-wrap"><table><thead><tr><th>요금제</th><th>공개 비용</th><th>Codex</th><th>사용량과 핵심 차이</th><th>적합한 용도</th></tr></thead><tbody>
+              <tr><td>Free</td><td>$0</td><td>제한적 체험</td><td>메시지·업로드·리서치·메모리 제한</td><td>기능 확인</td></tr>
+              <tr><td>Go</td><td>지역별 월 정가</td><td>제한적 체험</td><td>Free보다 메시지·파일·이미지·분석·메모리 확대</td><td>가벼운 개인 사용</td></tr>
+              <tr><td>Plus</td><td>$20/월</td><td>포함·확대</td><td>고급 추론, 앱·플러그인, Codex 앱</td><td>집중 코딩·기획</td></tr>
+              <tr><td>Pro $100</td><td>$100/월</td><td>포함·상향</td><td>Plus 대비 5배 사용량</td><td>매일 고강도 사용</td></tr>
+              <tr><td>Pro $200</td><td>$200/월</td><td>포함·최대</td><td>Plus 대비 20배 사용량</td><td>매우 높은 개인 사용량</td></tr>
+              <tr><td>Business</td><td>$25/인·월 또는 $20/인·월(연간)</td><td>표준 좌석에 포함</td><td>최소 2석, 추가분은 워크스페이스 크레딧</td><td>소규모 팀</td></tr>
+              <tr><td>Enterprise</td><td>계약형</td><td>표준 좌석 포함</td><td>관리·계약형 크레딧, 고정 공개 한도 없음</td><td>대규모·규제 조직</td></tr>
+            </tbody></table></div>
+            <p class="source-line">출처: <a href="https://chatgpt.com/pricing/">ChatGPT Pricing</a> · <a href="https://chatgpt.com/codex/pricing/">Codex Pricing</a> · <a href="https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus">ChatGPT Plus</a> · <a href="https://help.openai.com/en/articles/8792828-what-is-chatgpt-team/">ChatGPT Business</a></p>
+          </article>
+
+          <article class="table-section reveal">
+            <h3>Codex 공개 할당량, Plus 기준 5시간 공유 창</h3>
+            <p>공개 페이지 기준의 모델별 로컬 메시지 범위입니다. Pro의 공개 정책은 Plus 대비 5배 또는 20배 사용량이며, 모델별 절대 메시지 수를 보장하는 표는 아닙니다.</p>
+            <div class="table-wrap"><table><thead><tr><th>모델</th><th>로컬 메시지 / 5시간</th><th>클라우드 작업</th><th>코드 리뷰</th><th>비고</th></tr></thead><tbody>
+              <tr><td>GPT-5.6 Sol</td><td>15~90</td><td>공개 표상 사용 불가</td><td>공개 표상 사용 불가</td><td>가장 높은 티어</td></tr>
+              <tr><td>GPT-5.6 Terra</td><td>20~110</td><td>공개 표상 사용 불가</td><td>공개 표상 사용 불가</td><td>성능·비용 균형</td></tr>
+              <tr><td>GPT-5.6 Luna</td><td>50~280</td><td>공개 표상 사용 불가</td><td>공개 표상 사용 불가</td><td>고용량·저비용</td></tr>
+              <tr><td>GPT-5.5</td><td>15~80</td><td>공개 표상 사용 불가</td><td>공개 표상 사용 불가</td><td>레거시 행</td></tr>
+              <tr><td>GPT-5.4</td><td>20~100</td><td>공개 표상 사용 불가</td><td>공개 표상 사용 불가</td><td>2026-08-31 은퇴 예정</td></tr>
+              <tr><td>GPT-5.4 mini</td><td>60~350</td><td>공개 표상 사용 불가</td><td>공개 표상 사용 불가</td><td>2026-08-31 은퇴 예정</td></tr>
+            </tbody></table></div>
+            <p class="source-line">출처: <a href="https://chatgpt.com/codex/pricing/">Codex Pricing</a> · <a href="https://help.openai.com/en/articles/20001106">Codex rate card</a></p>
+          </article>
+        </div>
+      </section>
+
+      <section id="api" class="section">
+        <div class="container">
+          <h2 class="section-title reveal">OpenAI API는<br>입력·캐시·출력을 따로 계산합니다</h2>
+          <p class="section-desc reveal">아래는 표준 짧은 컨텍스트의 1M 토큰 기준입니다. 실제 청구액은 실제 토큰 비중과 도구 호출에 따라 달라지고, 272K 토큰을 넘는 입력은 장기 컨텍스트 단가가 적용됩니다.</p>
+          <article class="table-section reveal">
+            <h3>GPT-5.6 Sol · Terra · Luna 현재 API 단가</h3>
+            <div class="table-wrap"><table><thead><tr><th>모델</th><th>입력 / 1M</th><th>캐시 입력 / 1M</th><th>캐시 쓰기 / 1M</th><th>출력 / 1M</th><th>입력 1M + 출력 1M 예시</th></tr></thead><tbody>
+              <tr><td>GPT-5.6 Sol</td><td>$5.00</td><td>$0.50</td><td>$6.25</td><td>$30.00</td><td>$35.00</td></tr>
+              <tr><td>GPT-5.6 Terra</td><td>$2.00</td><td>$0.20</td><td>$2.50</td><td>$12.00</td><td>$14.00</td></tr>
+              <tr><td>GPT-5.6 Luna</td><td>$0.20</td><td>$0.02</td><td>$0.25</td><td>$1.20</td><td>$1.40</td></tr>
+            </tbody></table></div>
+            <p class="source-line">출처: <a href="https://developers.openai.com/api/docs/pricing">OpenAI API Pricing</a></p>
+          </article>
+
+          <article class="table-section reveal">
+            <h3>Codex 크레딧 레이트 카드</h3>
+            <p>Codex 유연 과금은 API 달러 단가와 별도로 크레딧으로 운영됩니다. 작업별 입력·캐시·출력 토큰 비중에 따라 실제 소모가 달라집니다.</p>
+            <div class="table-wrap"><table><thead><tr><th>Codex 모델</th><th>입력 / 1M 크레딧</th><th>캐시 입력 / 1M 크레딧</th><th>출력 / 1M 크레딧</th><th>계획상 역할</th></tr></thead><tbody>
+              <tr><td>GPT-5.6 Sol</td><td>125</td><td>12.50</td><td>750</td><td>가장 어려운 전문 작업</td></tr>
+              <tr><td>GPT-5.6 Terra</td><td>50</td><td>5</td><td>300</td><td>일상 개발·분석 균형</td></tr>
+              <tr><td>GPT-5.6 Luna</td><td>5</td><td>0.5</td><td>30</td><td>대량·반복·비용 민감 작업</td></tr>
+            </tbody></table></div>
+            <p class="source-line">출처: <a href="https://help.openai.com/en/articles/20001106">Codex rate card</a></p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section highlight-section">
+        <div class="container">
+          <h2 class="section-title reveal">Terra와 Luna는<br>현재 단가가 달라졌습니다</h2>
+          <p class="section-desc reveal">2026-07-09 출시 공지와 현재 API 가격을 비교했습니다. 이 보고서는 현재 단가를 예산 기준으로 사용하며, 공식 문서에 없는 변경 배경과 적용일은 추정하지 않습니다.</p>
+          <div class="change-grid">
+            <article class="change-card reveal"><span class="change-label">GPT-5.6 Terra</span><div class="change-number">-20%</div><h3>$2.50 / $15 → $2 / $12</h3><p>입력과 출력 단가가 모두 출시 공지 대비 20% 낮아졌습니다. 1M 입력과 출력의 단순 합계는 $17.50에서 $14로 낮아졌습니다.</p></article>
+            <article class="change-card reveal"><span class="change-label">GPT-5.6 Luna</span><div class="change-number">-80%</div><h3>$1 / $6 → $0.20 / $1.20</h3><p>입력과 출력 단가가 모두 출시 공지 대비 80% 낮아졌습니다. 1M 입력과 출력의 단순 합계는 $7에서 $1.40으로 낮아졌습니다.</p></article>
+          </div>
+          <article class="table-section change-table reveal">
+            <h3>출시 공지 대비 현재 가격</h3>
+            <div class="table-wrap"><table><thead><tr><th>모델</th><th>2026-07-09 출시 공지</th><th>현재 API 단가</th><th>입력 변화</th><th>출력 변화</th></tr></thead><tbody>
+              <tr><td>GPT-5.6 Terra</td><td>$2.50 / $15</td><td>$2.00 / $12</td><td>-20%</td><td>-20%</td></tr>
+              <tr><td>GPT-5.6 Luna</td><td>$1.00 / $6</td><td>$0.20 / $1.20</td><td>-80%</td><td>-80%</td></tr>
+              <tr><td>GPT-5.6 Sol</td><td>$5.00 / $30</td><td>$5.00 / $30</td><td>0%</td><td>0%</td></tr>
+            </tbody></table></div>
+            <p class="source-line">출처: <a href="https://openai.com/index/gpt-5-6/">GPT-5.6 출시 공지</a> · <a href="https://developers.openai.com/api/docs/pricing">현재 API 가격</a></p>
+          </article>
+        </div>
+      </section>
+
+      <section id="market" class="section section-soft">
+        <div class="container">
+          <h2 class="section-title reveal">경쟁사 API는<br>가격만 같은 기준으로 비교합니다</h2>
+          <p class="section-desc reveal">모델 품질, 컨텍스트 길이, 사고 토큰, 검색·도구 비용, 지역·우선 처리, 미리보기 상태는 다릅니다. 아래의 달러 합계는 비용 비교의 출발점일 뿐 성능 비교의 결론은 아닙니다.</p>
+          <article class="table-section reveal">
+            <h3>대표 고성능 모델, 표준 1M 토큰 기준</h3>
+            <div class="table-wrap"><table><thead><tr><th>공급사</th><th>대표 고성능 모델</th><th>입력 / 1M</th><th>출력 / 1M</th><th>입력 1M + 출력 1M</th><th>주의점</th></tr></thead><tbody>
+              <tr><td>OpenAI</td><td>GPT-5.6 Sol</td><td>$5.00</td><td>$30.00</td><td>$35.00</td><td>272K 초과는 장기 컨텍스트 단가</td></tr>
+              <tr><td>Anthropic</td><td>Claude Opus 5</td><td>$5.00</td><td>$25.00</td><td>$30.00</td><td>캐시·지역 옵션 별도</td></tr>
+              <tr><td>Google</td><td>Gemini 3.1 Pro Preview</td><td>$3.60</td><td>$21.60</td><td>$25.20</td><td>Preview·Priority 기준</td></tr>
+              <tr><td>xAI</td><td>Grok 4.5</td><td>$2.00</td><td>$6.00</td><td>$8.00</td><td>200K 이상 장기 단가 별도</td></tr>
+            </tbody></table></div>
+          </article>
+          <article class="table-section reveal">
+            <h3>비용 민감 작업용 모델, 대량 처리 후보</h3>
+            <div class="table-wrap"><table><thead><tr><th>공급사</th><th>비용 민감 모델</th><th>입력 / 1M</th><th>출력 / 1M</th><th>입력 1M + 출력 1M</th><th>주요 용도</th></tr></thead><tbody>
+              <tr><td>OpenAI</td><td>GPT-5.6 Luna</td><td>$0.20</td><td>$1.20</td><td>$1.40</td><td>고용량·비용 민감 작업</td></tr>
+              <tr><td>Anthropic</td><td>Claude Haiku 4.5</td><td>$1.00</td><td>$5.00</td><td>$6.00</td><td>빠른 저비용 처리</td></tr>
+              <tr><td>Google</td><td>Gemini 3.5 Flash-Lite</td><td>$0.30</td><td>$2.50</td><td>$2.80</td><td>대량 에이전트·번역·단순 처리</td></tr>
+              <tr><td>xAI</td><td>Grok Build 0.1</td><td>$1.00</td><td>$2.00</td><td>$3.00</td><td>코딩 에이전트 기본 모델</td></tr>
+            </tbody></table></div>
+            <p class="source-line">출처: <a href="https://platform.claude.com/docs/en/about-claude/pricing">Anthropic Pricing</a> · <a href="https://ai.google.dev/gemini-api/docs/pricing?hl=en">Google Gemini Pricing</a> · <a href="https://docs.x.ai/developers/pricing">xAI Pricing</a></p>
+          </article>
+        </div>
+      </section>
+
+      <section id="decision" class="section">
+        <div class="container">
+          <h2 class="section-title reveal">임원 의사결정은<br>네 가지 질문이면 충분합니다</h2>
+          <p class="section-desc reveal">개인 도구 도입과 제품용 API 구매는 다른 질문으로 판단해야 합니다. 가격표를 보는 데서 끝내지 말고, 업무 난이도와 실제 사용량을 기준으로 운영 규칙을 정합니다.</p>
+          <div class="decision-grid">
+            <article class="decision reveal"><b>01</b><h3>개인 기본값</h3><p>Plus에서 시작하고 실제 한도 부족이 반복될 때만 Pro 또는 크레딧을 검토합니다.</p></article>
+            <article class="decision reveal"><b>02</b><h3>팀 도입 예산</h3><p>Business는 표준 좌석비와 별도 크레딧 상한을 분리해 승인합니다.</p></article>
+            <article class="decision reveal"><b>03</b><h3>API 기본 라우팅</h3><p>대량 작업은 Luna·Terra부터 검증하고, 복잡한 일만 상위 모델로 올립니다.</p></article>
+            <article class="decision reveal"><b>04</b><h3>월간 비용 보고</h3><p>입력·출력·캐시·장기 컨텍스트·도구 호출을 따로 집계합니다.</p></article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="sources" id="sources">
+      <div class="container">
+        <div class="source-head"><div><h2>원문과 확인 범위</h2><p>가격은 변경될 수 있습니다. 실제 결제와 도입 전에는 각 공식 가격표를 다시 확인해야 합니다.</p></div><span class="eyebrow">공식 출처 14개</span></div>
+        <div class="source-grid">
+          <a class="source-link" href="https://chatgpt.com/pricing/"><span>OPENAI</span><strong>ChatGPT Pricing</strong></a>
+          <a class="source-link" href="https://chatgpt.com/codex/pricing/"><span>OPENAI</span><strong>Codex Pricing</strong></a>
+          <a class="source-link" href="https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus"><span>OPENAI</span><strong>ChatGPT Plus</strong></a>
+          <a class="source-link" href="https://help.openai.com/en/articles/9793128-what-is-chatgpt-team"><span>OPENAI</span><strong>ChatGPT Pro tiers</strong></a>
+          <a class="source-link" href="https://help.openai.com/en/articles/8792828-what-is-chatgpt-team/"><span>OPENAI</span><strong>ChatGPT Business</strong></a>
+          <a class="source-link" href="https://help.openai.com/en/articles/8265053-what-is-chatgpt-enterprise"><span>OPENAI</span><strong>ChatGPT Enterprise</strong></a>
+          <a class="source-link" href="https://developers.openai.com/api/docs/pricing"><span>OPENAI</span><strong>OpenAI API Pricing</strong></a>
+          <a class="source-link" href="https://developers.openai.com/api/docs/models/gpt-5.6-terra"><span>OPENAI</span><strong>GPT-5.6 Terra</strong></a>
+          <a class="source-link" href="https://developers.openai.com/api/docs/models/gpt-5.6-luna"><span>OPENAI</span><strong>GPT-5.6 Luna</strong></a>
+          <a class="source-link" href="https://openai.com/index/gpt-5-6/"><span>OPENAI</span><strong>GPT-5.6 출시 공지</strong></a>
+          <a class="source-link" href="https://help.openai.com/en/articles/20001106"><span>OPENAI</span><strong>Codex rate card</strong></a>
+          <a class="source-link" href="https://platform.claude.com/docs/en/about-claude/pricing"><span>ANTHROPIC</span><strong>Claude API Pricing</strong></a>
+          <a class="source-link" href="https://ai.google.dev/gemini-api/docs/pricing?hl=en"><span>GOOGLE</span><strong>Gemini API Pricing</strong></a>
+          <a class="source-link" href="https://docs.x.ai/developers/pricing"><span>xAI</span><strong>Grok API Pricing</strong></a>
+        </div>
+        <div class="footer-bottom"><span>Report Mode · 260807 · ChatGPT 요금제와 Codex·API 비용 비교</span><span>최종 판단과 검수는 사용자에게 있습니다.</span></div>
       </div>
-    </section>
-
-    <section id="body">
-      <div class="wrap">
-        <div class="section-head">
-          <div class="kicker">Body</div>
-          <h2>본문</h2>
-          <p>사실·분석·전망·루머를 분리해 정리했습니다.</p>
-        </div>
-        
-<article class="paper section-card" id="cost-structure">
-  <div class="badge fact">사실</div>
-  <h3>먼저 구분할 것: 구독료, Codex 크레딧, API 사용료</h3>
-  <div class="body"><p>ChatGPT 구독은 사람이 ChatGPT와 Codex를 쓰기 위한 월간 접근 권한과 기본 사용량입니다. API는 회사 서비스·자동화·앱에서 모델을 호출할 때 토큰 단위로 별도 청구됩니다. 따라서 Plus·Pro·Business를 결제해도 API 사용량은 포함되지 않습니다. Codex는 개인 유료 플랜에서 기본 한도 이후 크레딧을 구매할 수 있고, Business·Enterprise는 워크스페이스 크레딧을 추가 구매할 수 있습니다.</p></div>
-  
-  <ul><li><strong class="hl">구독</strong>: 사람의 ChatGPT·Codex 사용권과 기본 한도</li><li><strong class="hl">Codex 크레딧</strong>: 포함 한도 이후의 추가 작업량; 실제 토큰 구성에 따라 소모</li><li><strong class="hl">API</strong>: 제품·자동화에 모델을 붙일 때의 별도 사용량 과금</li><li>비교 표의 금액은 USD 기준이며, 세금·환율·지역별 결제 가격은 별도입니다.</li></ul>
-  <p class="muted" style="margin-top:14px;color:var(--muted);font-size:14px;">출처: <a href="https://chatgpt.com/pricing/" rel="noopener">ChatGPT Pricing</a> · <a href="https://chatgpt.com/codex/pricing/" rel="noopener">Codex Pricing</a> · <a href="https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus" rel="noopener">What is ChatGPT Plus?</a> · <a href="https://help.openai.com/en/articles/8792828-what-is-chatgpt-team/" rel="noopener">What is ChatGPT Business?</a></p>
-</article>
-
-<article class="paper section-card" id="chatgpt-plan-table">
-  <div class="badge fact">사실</div>
-  <h3>ChatGPT 요금제별 비교 — Codex 포함 여부와 비용</h3>
-  <div class="body"><p>아래는 공개 가격과 공식 도움말 기준의 현재 구조입니다. Free·Go의 Codex는 제한적 체험 접근으로 표시되어 있어, 상시 업무용 한도로 간주하면 안 됩니다. Enterprise는 공개 정가가 아닌 계약형입니다.</p></div>
-  
-  <div class="table-wrap" role="region" aria-label="ChatGPT 요금제별 비교 — Codex 포함 여부와 비용 표" tabindex="0">
-    <table class="report-table">
-      <thead><tr><th scope="col">요금제</th><th scope="col">공개 비용(USD)</th><th scope="col">Codex</th><th scope="col">사용량·핵심 차이</th><th scope="col">적합한 용도</th></tr></thead>
-      <tbody><tr><td>Free</td><td>$0</td><td>제한적 체험</td><td>GPT-5.6·메시지·업로드·리서치·메모리 모두 제한적</td><td>기능 확인</td></tr><tr><td>Go</td><td>지역별 월 정가</td><td>제한적 체험</td><td>Free보다 메시지·파일·이미지·데이터 분석·메모리 확대; 고급 기능은 별도 플랜 필요 가능</td><td>가벼운 개인 사용</td></tr><tr><td>Plus</td><td>$20/월</td><td>포함·확대</td><td>고급 추론, 앱·플러그인, Codex 앱; 공개 Codex 한도는 별도 표 참조</td><td>주 몇 회 집중 코딩·기획</td></tr><tr><td>Pro $100</td><td>$100/월</td><td>포함·상향</td><td>Plus 대비 5배 사용량; 동일 핵심 기능</td><td>매일 고강도 개인 사용</td></tr><tr><td>Pro $200</td><td>$200/월</td><td>포함·최대</td><td>Plus 대비 20배 사용량; Pro 추론과 최대 Codex 작업</td><td>매우 높은 개인 사용량</td></tr><tr><td>Business</td><td>$25/인·월 또는 $20/인·월(연간)</td><td>표준 좌석에 포함</td><td>최소 2석, 관리·공유·지출 통제; 기본 한도 초과분은 워크스페이스 크레딧</td><td>소규모 팀</td></tr><tr><td>Enterprise</td><td>계약형</td><td>표준 좌석 포함; Codex 전용 좌석 가능</td><td>SSO·SCIM·조직 관리·계약형 크레딧; 고정 공개 한도 없음</td><td>대규모·규제 조직</td></tr></tbody>
-    </table>
+    </footer>
   </div>
-  <ul><li>Plus와 Pro는 API가 포함되지 않으며, 기본 한도 이후 Codex 크레딧을 구매할 수 있습니다.</li><li>Business 표준 ChatGPT 좌석은 최소 2석이며 ChatGPT와 Codex를 모두 포함합니다.</li><li>새 Business 워크스페이스는 2026-06-24 이후 Codex 전용 좌석을 새로 추가할 수 없습니다. 기존에 보유한 워크스페이스는 예외입니다.</li></ul>
-  <p class="muted" style="margin-top:14px;color:var(--muted);font-size:14px;">출처: <a href="https://chatgpt.com/pricing/" rel="noopener">ChatGPT Pricing</a> · <a href="https://chatgpt.com/codex/pricing/" rel="noopener">Codex Pricing</a> · <a href="https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus" rel="noopener">What is ChatGPT Plus?</a> · <a href="https://help.openai.com/en/articles/9793128-what-is-chatgpt-team" rel="noopener">About ChatGPT Pro tiers</a> · <a href="https://help.openai.com/en/articles/8792828-what-is-chatgpt-team/" rel="noopener">What is ChatGPT Business?</a> · <a href="https://help.openai.com/en/articles/8265053-what-is-chatgpt-enterprise" rel="noopener">What is ChatGPT Enterprise?</a></p>
-</article>
 
-<article class="paper section-card" id="codex-plus-limits">
-  <div class="badge fact">사실</div>
-  <h3>Codex 공개 할당량 — Plus 기준의 5시간 공유 창</h3>
-  <div class="body"><p>Codex 공개 가격 페이지가 보여 주는 Plus 선택 기준입니다. ‘로컬 메시지’와 ‘클라우드 작업’은 같은 5시간 창을 공유하고, 주간 추가 제한이 적용될 수 있습니다. 한도는 평균값 범위이며 프롬프트 길이, 연결한 MCP, 작업 복잡도에 따라 달라집니다.</p></div>
-  
-  <div class="table-wrap" role="region" aria-label="Codex 공개 할당량 — Plus 기준의 5시간 공유 창 표" tabindex="0">
-    <table class="report-table">
-      <thead><tr><th scope="col">모델</th><th scope="col">로컬 메시지 / 5시간</th><th scope="col">클라우드 작업 / 5시간</th><th scope="col">코드 리뷰 / 5시간</th><th scope="col">비고</th></tr></thead>
-      <tbody><tr><td>GPT-5.6 Sol</td><td>15–90</td><td>공개 표상 사용 불가</td><td>공개 표상 사용 불가</td><td>가장 높은 티어</td></tr><tr><td>GPT-5.6 Terra</td><td>20–110</td><td>공개 표상 사용 불가</td><td>공개 표상 사용 불가</td><td>성능·비용 균형</td></tr><tr><td>GPT-5.6 Luna</td><td>50–280</td><td>공개 표상 사용 불가</td><td>공개 표상 사용 불가</td><td>고용량·저비용</td></tr><tr><td>GPT-5.5</td><td>15–80</td><td>공개 표상 사용 불가</td><td>공개 표상 사용 불가</td><td>레거시 행</td></tr><tr><td>GPT-5.4</td><td>20–100</td><td>공개 표상 사용 불가</td><td>공개 표상 사용 불가</td><td>2026-08-31 Codex 은퇴 예정</td></tr><tr><td>GPT-5.4 mini</td><td>60–350</td><td>공개 표상 사용 불가</td><td>공개 표상 사용 불가</td><td>2026-08-31 Codex 은퇴 예정</td></tr></tbody>
-    </table>
-  </div>
-  <ul><li>공개 표에는 Plus의 모델별 로컬 메시지 범위만 고정 숫자로 제시됩니다.</li><li>Pro는 Plus 대비 5배 또는 20배 사용량 정책이지만, 모델별 절대 메시지 수를 공개 표로 별도 보장하지 않습니다.</li><li>실제 잔여량은 Codex 사용량 대시보드 또는 CLI의 `/status`에서 확인해야 합니다.</li></ul>
-  <p class="muted" style="margin-top:14px;color:var(--muted);font-size:14px;">출처: <a href="https://chatgpt.com/codex/pricing/" rel="noopener">Codex Pricing</a> · <a href="https://help.openai.com/en/articles/20001106" rel="noopener">Codex rate card</a></p>
-</article>
-
-<article class="paper section-card" id="pro-and-business-usage">
-  <div class="badge analysis">분석</div>
-  <h3>Pro·Business·Enterprise의 한도를 읽는 법</h3>
-  <div class="body"><p>Pro $100과 $200은 기능 차이보다 포함 사용량 차이가 핵심입니다. OpenAI는 각각 Plus 대비 5배와 20배로 설명하지만, 실제 한도는 모델·시간 창·시스템 상황에 따라 달라집니다. Business·Enterprise는 표준 좌석 기본 한도에 더해 크레딧으로 확장하는 구조이므로, 팀 예산은 ‘좌석비 + 월별 추가 크레딧 상한’으로 나누어 관리하는 편이 안전합니다.</p></div>
-  
-  <ul><li>Pro에서 ‘무제한’으로 표시되는 기능도 악용 방지 정책과 개별 모델 한도의 적용을 받습니다.</li><li>Enterprise·Edu의 유연 과금 환경은 고정 레이트 리밋 대신 크레딧에 따라 사용량이 확장됩니다.</li><li>Codex·ChatGPT Work·ChatGPT for Excel·Workspace Agents는 이용 가능한 경우 같은 에이전트 사용량·크레딧 풀을 공유합니다.</li></ul>
-  <p class="muted" style="margin-top:14px;color:var(--muted);font-size:14px;">출처: <a href="https://chatgpt.com/codex/pricing/" rel="noopener">Codex Pricing</a> · <a href="https://help.openai.com/en/articles/9793128-what-is-chatgpt-team" rel="noopener">About ChatGPT Pro tiers</a> · <a href="https://help.openai.com/en/articles/8792828-what-is-chatgpt-team/" rel="noopener">What is ChatGPT Business?</a> · <a href="https://help.openai.com/en/articles/8265053-what-is-chatgpt-enterprise" rel="noopener">What is ChatGPT Enterprise?</a> · <a href="https://help.openai.com/en/articles/20001106" rel="noopener">Codex rate card</a></p>
-</article>
-
-<article class="paper section-card" id="openai-api-current-pricing">
-  <div class="badge fact">사실</div>
-  <h3>OpenAI API 현재 단가 — GPT-5.6 Sol·Terra·Luna</h3>
-  <div class="body"><p>아래 API 단가는 표준·짧은 컨텍스트의 1M 토큰 기준입니다. ‘입력 1M + 출력 1M’ 열은 비교를 쉽게 하기 위한 단순 합계이며, 실제 청구액은 입력·캐시 입력·출력의 실제 비중과 도구 호출에 따라 달라집니다.</p></div>
-  
-  <div class="table-wrap" role="region" aria-label="OpenAI API 현재 단가 — GPT-5.6 Sol·Terra·Luna 표" tabindex="0">
-    <table class="report-table">
-      <thead><tr><th scope="col">모델</th><th scope="col">입력 / 1M</th><th scope="col">캐시 입력 / 1M</th><th scope="col">캐시 쓰기 / 1M</th><th scope="col">출력 / 1M</th><th scope="col">입력 1M+출력 1M 예시</th></tr></thead>
-      <tbody><tr><td>GPT-5.6 Sol</td><td>$5.00</td><td>$0.50</td><td>$6.25</td><td>$30.00</td><td>$35.00</td></tr><tr><td>GPT-5.6 Terra</td><td>$2.00</td><td>$0.20</td><td>$2.50</td><td>$12.00</td><td>$14.00</td></tr><tr><td>GPT-5.6 Luna</td><td>$0.20</td><td>$0.02</td><td>$0.25</td><td>$1.20</td><td>$1.40</td></tr></tbody>
-    </table>
-  </div>
-  <ul><li>입력이 272K 토큰을 넘는 요청은 전체 요청에 대해 입력 2배, 출력 1.5배 장기 컨텍스트 단가가 적용됩니다.</li><li>캐시 읽기는 일반 입력의 10% 수준이며, 캐시 쓰기는 일반 입력의 1.25배입니다.</li><li>데이터 레지던시 대상 리전 엔드포인트는 해당 모델에 10% 가산될 수 있습니다.</li></ul>
-  <p class="muted" style="margin-top:14px;color:var(--muted);font-size:14px;">출처: <a href="https://developers.openai.com/api/docs/pricing" rel="noopener">OpenAI API Pricing</a> · <a href="https://developers.openai.com/api/docs/models/gpt-5.6-terra" rel="noopener">GPT-5.6 Terra Model</a> · <a href="https://developers.openai.com/api/docs/models/gpt-5.6-luna" rel="noopener">GPT-5.6 Luna Model</a></p>
-</article>
-
-<article class="paper section-card" id="terra-luna-price-change">
-  <div class="badge fact">사실</div>
-  <h3>Terra·Luna 단가 변경 반영 — 출시 공지 대비 현재 가격</h3>
-  <div class="body"><p>OpenAI의 2026-07-09 GPT-5.6 출시 공지는 Terra를 $2.50/$15, Luna를 $1/$6(각 1M 입력/출력)로 제시했습니다. 현재 API 가격 페이지와 모델 페이지는 Terra $2/$12, Luna $0.20/$1.20을 제시합니다. 이 보고서는 현재 단가를 예산 기준으로 사용하고, 변경 시행일이나 배경은 공식 현재 가격 페이지에 명시되지 않아 추정하지 않습니다.</p></div>
-  
-  <div class="table-wrap" role="region" aria-label="Terra·Luna 단가 변경 반영 — 출시 공지 대비 현재 가격 표" tabindex="0">
-    <table class="report-table">
-      <thead><tr><th scope="col">모델</th><th scope="col">2026-07-09 출시 공지</th><th scope="col">현재 API 단가</th><th scope="col">입력 변화</th><th scope="col">출력 변화</th></tr></thead>
-      <tbody><tr><td>GPT-5.6 Terra</td><td>$2.50 / $15</td><td>$2.00 / $12</td><td>-20%</td><td>-20%</td></tr><tr><td>GPT-5.6 Luna</td><td>$1.00 / $6</td><td>$0.20 / $1.20</td><td>-80%</td><td>-80%</td></tr><tr><td>GPT-5.6 Sol</td><td>$5.00 / $30</td><td>$5.00 / $30</td><td>0%</td><td>0%</td></tr></tbody>
-    </table>
-  </div>
-  <ul><li>Terra: 입력·출력 모두 출시 공지 대비 20% 낮아짐</li><li>Luna: 입력·출력 모두 출시 공지 대비 80% 낮아짐</li><li>Sol은 현재 $5/$30이며, 이 비교에서는 출시 공지와 동일하게 표시됩니다.</li></ul>
-  <p class="muted" style="margin-top:14px;color:var(--muted);font-size:14px;">출처: <a href="https://developers.openai.com/api/docs/pricing" rel="noopener">OpenAI API Pricing</a> · <a href="https://developers.openai.com/api/docs/models/gpt-5.6-terra" rel="noopener">GPT-5.6 Terra Model</a> · <a href="https://developers.openai.com/api/docs/models/gpt-5.6-luna" rel="noopener">GPT-5.6 Luna Model</a> · <a href="https://openai.com/index/gpt-5-6/" rel="noopener">GPT-5.6: Frontier intelligence that scales with your ambition</a></p>
-</article>
-
-<article class="paper section-card" id="codex-credit-rate-card">
-  <div class="badge fact">사실</div>
-  <h3>Codex 크레딧 레이트 카드 — API 달러와 다른 단위</h3>
-  <div class="body"><p>Codex의 유연 과금은 달러 API 가격과 같은 표가 아니라 크레딧 레이트 카드로 관리됩니다. 실제 크레딧 사용량은 각 작업의 입력·캐시 입력·출력 토큰 구성에 따라 달라지고, Codex에서는 캐시 쓰기 자체에 크레딧을 청구하지 않습니다. OpenAI가 제시한 GPT-5.6 Sol의 일반 작업 예시는 작업당 약 5–40 크레딧입니다.</p></div>
-  
-  <div class="table-wrap" role="region" aria-label="Codex 크레딧 레이트 카드 — API 달러와 다른 단위 표" tabindex="0">
-    <table class="report-table">
-      <thead><tr><th scope="col">Codex 모델</th><th scope="col">입력 / 1M 크레딧</th><th scope="col">캐시 입력 / 1M 크레딧</th><th scope="col">출력 / 1M 크레딧</th><th scope="col">계획상 역할</th></tr></thead>
-      <tbody><tr><td>GPT-5.6 Sol</td><td>125</td><td>12.50</td><td>750</td><td>가장 어려운 전문 작업</td></tr><tr><td>GPT-5.6 Terra</td><td>50</td><td>5</td><td>300</td><td>일상 개발·분석 균형</td></tr><tr><td>GPT-5.6 Luna</td><td>5</td><td>0.5</td><td>30</td><td>대량·반복·비용 민감 작업</td></tr></tbody>
-    </table>
-  </div>
-  <ul><li>Terra와 Luna는 Sol보다 훨씬 적은 크레딧을 쓰므로 대량 반복 작업의 예산 통제에 유리합니다.</li><li>Fast 모드는 지원 모델에서 더 높은 크레딧을 소모합니다.</li><li>공식 문서가 제시한 Codex 평균 비용은 개발자당 월 약 $100–$200이나, 인스턴스 수·자동화·모델·속도 모드에 따라 큰 편차가 있습니다.</li></ul>
-  <p class="muted" style="margin-top:14px;color:var(--muted);font-size:14px;">출처: <a href="https://help.openai.com/en/articles/20001106" rel="noopener">Codex rate card</a></p>
-</article>
-
-<article class="paper section-card" id="competitor-api-comparison">
-  <div class="badge fact">사실</div>
-  <h3>경쟁사 API 대표 모델 비교 — 표준 1M 토큰 단가</h3>
-  <div class="body"><p>동일한 ‘1M 입력 + 1M 출력’이라는 단순 계산 기준으로 비교했습니다. 모델의 품질, 컨텍스트 길이, 사고 토큰, 도구·검색 비용, 지역·우선 처리, 미리보기 상태는 서로 달라 달러 합계만으로 성능 우열을 판단하면 안 됩니다.</p></div>
-  
-  <div class="table-wrap" role="region" aria-label="경쟁사 API 대표 모델 비교 — 표준 1M 토큰 단가 표" tabindex="0">
-    <table class="report-table">
-      <thead><tr><th scope="col">공급사</th><th scope="col">대표 고성능 모델</th><th scope="col">입력 / 1M</th><th scope="col">출력 / 1M</th><th scope="col">입력 1M+출력 1M</th><th scope="col">주의점</th></tr></thead>
-      <tbody><tr><td>OpenAI</td><td>GPT-5.6 Sol</td><td>$5.00</td><td>$30.00</td><td>$35.00</td><td>272K 초과는 장기 컨텍스트 단가</td></tr><tr><td>Anthropic</td><td>Claude Opus 5</td><td>$5.00</td><td>$25.00</td><td>$30.00</td><td>캐시·지역 옵션 별도</td></tr><tr><td>Google</td><td>Gemini 3.1 Pro Preview (Priority)</td><td>$3.60</td><td>$21.60</td><td>$25.20</td><td>Preview·Priority 기준</td></tr><tr><td>xAI</td><td>Grok 4.5</td><td>$2.00</td><td>$6.00</td><td>$8.00</td><td>200K 이상 장기 단가 별도</td></tr></tbody>
-    </table>
-  </div>
-  <ul><li>Anthropic Claude Sonnet 5의 현재 도입 단가는 2026-08-31까지로 명시되어 있어, 9월 이후 $3/$15로 바뀔 예정입니다.</li><li>Google Gemini 3.1 Pro는 Preview·Priority 모델이므로 운영 도입 전 정식화·한도 조건을 별도 확인해야 합니다.</li><li>xAI Grok 4.5와 Grok Build의 장기 컨텍스트는 200K 이상에서 별도 단가가 적용됩니다.</li></ul>
-  <p class="muted" style="margin-top:14px;color:var(--muted);font-size:14px;">출처: <a href="https://developers.openai.com/api/docs/pricing" rel="noopener">OpenAI API Pricing</a> · <a href="https://platform.claude.com/docs/en/about-claude/pricing" rel="noopener">Pricing — Claude Platform Docs</a> · <a href="https://ai.google.dev/gemini-api/docs/pricing?hl=en" rel="noopener">Gemini Developer API pricing</a> · <a href="https://docs.x.ai/developers/pricing" rel="noopener">Pricing — SpaceXAI Docs</a></p>
-</article>
-
-<article class="paper section-card" id="cost-efficient-models">
-  <div class="badge analysis">분석</div>
-  <h3>비용 민감 작업용 모델 비교 — 대량 처리 후보</h3>
-  <div class="body"><p>대량 요약, 분류, 초안 생성, 간단한 변환 작업은 가장 비싼 모델을 기본값으로 쓰기보다 저비용 모델을 먼저 배치하고, 실패·고난도 작업만 상위 모델로 올리는 구조가 합리적입니다. 아래 표는 가격만의 비교이며 실제 정확도·한국어 품질·도구 연결성은 업무 샘플로 검증해야 합니다.</p></div>
-  
-  <div class="table-wrap" role="region" aria-label="비용 민감 작업용 모델 비교 — 대량 처리 후보 표" tabindex="0">
-    <table class="report-table">
-      <thead><tr><th scope="col">공급사</th><th scope="col">비용 민감 모델</th><th scope="col">입력 / 1M</th><th scope="col">출력 / 1M</th><th scope="col">입력 1M+출력 1M</th><th scope="col">주요 용도</th></tr></thead>
-      <tbody><tr><td>OpenAI</td><td>GPT-5.6 Luna</td><td>$0.20</td><td>$1.20</td><td>$1.40</td><td>고용량·비용 민감 작업</td></tr><tr><td>Anthropic</td><td>Claude Haiku 4.5</td><td>$1.00</td><td>$5.00</td><td>$6.00</td><td>빠른 저비용 처리</td></tr><tr><td>Google</td><td>Gemini 3.5 Flash-Lite</td><td>$0.30</td><td>$2.50</td><td>$2.80</td><td>대량 에이전트·번역·단순 처리</td></tr><tr><td>xAI</td><td>Grok Build 0.1</td><td>$1.00</td><td>$2.00</td><td>$3.00</td><td>코딩 에이전트 기본 모델</td></tr></tbody>
-    </table>
-  </div>
-  <ul><li>OpenAI Luna는 현 표본에서 가장 낮은 단순 토큰 합계이지만, 복잡한 코딩·추론의 기본 모델로 자동 고정할 근거는 아닙니다.</li><li>Google은 Batch·Flex에서 추가 할인 옵션을 제공하며, Anthropic은 Batch API에서 입력·출력 50% 할인을 제공합니다.</li><li>반복되는 긴 시스템 프롬프트·문서 컨텍스트는 각 공급사의 캐시 기능을 쓰면 비용 차이가 더 커질 수 있습니다.</li></ul>
-  <p class="muted" style="margin-top:14px;color:var(--muted);font-size:14px;">출처: <a href="https://developers.openai.com/api/docs/pricing" rel="noopener">OpenAI API Pricing</a> · <a href="https://platform.claude.com/docs/en/about-claude/pricing" rel="noopener">Pricing — Claude Platform Docs</a> · <a href="https://ai.google.dev/gemini-api/docs/pricing?hl=en" rel="noopener">Gemini Developer API pricing</a> · <a href="https://docs.x.ai/developers/pricing" rel="noopener">Pricing — SpaceXAI Docs</a></p>
-</article>
-
-<article class="paper section-card" id="executive-decision-guide">
-  <div class="badge analysis">분석</div>
-  <h3>임원 의사결정 기준 — 어떤 비용 구조를 선택할까</h3>
-  <div class="body"><p>개인의 생산성 도구와 제품용 API는 구매 기준이 다릅니다. 개인은 실제 사용 빈도와 Codex 한도 압박을 보고 플랜을 선택하고, 팀은 사용자 수와 권한·데이터 관리·추가 크레딧 상한을 함께 정해야 합니다. 서비스 API는 모델별 단가가 아니라 월간 토큰량·캐시율·고난도 비율·도구 호출을 합친 비용 시나리오로 승인해야 합니다.</p></div>
-  
-  <ul><li><strong class="hl">개인 기본값</strong>: Plus에서 시작하고 실제 한도 부족이 반복될 때만 Pro 또는 크레딧을 검토합니다.</li><li><strong class="hl">팀 기본값</strong>: Business 좌석비와 별도 크레딧 예산을 분리하고, 새 Business의 Codex 전용 좌석 제한을 확인합니다.</li><li><strong class="hl">제품 API</strong>: Luna·Terra를 기본 후보로 두고 Sol·Opus·Pro급 모델은 복잡도 조건 또는 사람 승인 단계에만 올립니다.</li><li><strong class="hl">예산 통제</strong>: 월 한도, 모델별 라우팅, 캐시율, 장기 컨텍스트 발생률, 도구 호출을 운영 지표로 둡니다.</li></ul>
-  <p class="muted" style="margin-top:14px;color:var(--muted);font-size:14px;">출처: <a href="https://chatgpt.com/codex/pricing/" rel="noopener">Codex Pricing</a> · <a href="https://help.openai.com/en/articles/8792828-what-is-chatgpt-team/" rel="noopener">What is ChatGPT Business?</a> · <a href="https://developers.openai.com/api/docs/pricing" rel="noopener">OpenAI API Pricing</a> · <a href="https://help.openai.com/en/articles/20001106" rel="noopener">Codex rate card</a> · <a href="https://platform.claude.com/docs/en/about-claude/pricing" rel="noopener">Pricing — Claude Platform Docs</a> · <a href="https://ai.google.dev/gemini-api/docs/pricing?hl=en" rel="noopener">Gemini Developer API pricing</a> · <a href="https://docs.x.ai/developers/pricing" rel="noopener">Pricing — SpaceXAI Docs</a></p>
-</article>
-      </div>
-    </section>
-
-    
-<section>
-  <div class="wrap">
-    <div class="section-head">
-      <div class="kicker">Trade-offs</div>
-      <h2>얻게 되는 것과<br>감수해야 하는 것</h2>
-    </div>
-    <div class="duo">
-      <article class="panel pros"><h3>장점</h3><ul><li>Plus부터 Codex·고급 추론·앱 연동을 한 계정에서 쓸 수 있어 개인 도입이 단순함</li><li>Terra·Luna의 현재 API 단가가 낮아져 대량 업무의 비용 설계 폭이 넓어짐</li><li>Business·Enterprise는 좌석·권한·지출을 조직 단위로 관리할 수 있음</li><li>여러 공급사의 저비용·고성능 모델을 업무 단계별로 나눠 비용을 최적화할 수 있음</li></ul></article>
-      <article class="panel cons"><h3>단점</h3><ul><li>구독 한도는 고정 메시지 보장이 아니라 작업 조건에 따라 변동함</li><li>API 비용은 어떤 ChatGPT 구독에도 포함되지 않아 별도 예산이 필요함</li><li>Pro의 5배·20배 정책은 모델별 절대 작업 수를 의미하지 않음</li><li>경쟁사 가격만으로 품질·속도·한국어 성능·보안 적합성을 결론낼 수 없음</li><li>가격·모델·한도는 자주 변경되므로 실제 결제와 도입 전 공식 페이지 재확인이 필요함</li></ul></article>
-    </div>
-  </div>
-</section>
-    
-<section>
-  <div class="wrap">
-    <div class="section-head">
-      <div class="kicker">Decision Criteria</div>
-      <h2>판단 기준</h2>
-    </div>
-    <div class="checks">
-      
-        <article class="check">
-          <div class="num">01</div>
-          <h3>개인 업무의 시작점</h3>
-          <p>주 몇 회 집중 코딩·기획이면 Plus($20)로 시작하고, 한도 부족이 반복되는 실제 사용 기록이 있을 때 Pro 또는 크레딧으로 확장합니다.</p>
-        </article>
-        <article class="check">
-          <div class="num">02</div>
-          <h3>팀 도입 예산</h3>
-          <p>Business는 표준 좌석비와 별도 크레딧 상한을 나누어 승인합니다. 새 워크스페이스의 Codex 전용 좌석 제한도 먼저 확인합니다.</p>
-        </article>
-        <article class="check">
-          <div class="num">03</div>
-          <h3>API 기본 라우팅</h3>
-          <p>대량·반복 작업은 Luna·Terra 같은 저비용 티어부터 검증하고, 복잡한 고가 작업만 Sol·Opus·Pro급으로 승격하는 조건을 둡니다.</p>
-        </article>
-        <article class="check">
-          <div class="num">04</div>
-          <h3>월간 비용 보고</h3>
-          <p>입력·출력·캐시·장기 컨텍스트·도구 호출을 별도로 집계하고, 구독료와 API 사용료를 한 숫자로 합치지 않습니다.</p>
-        </article>
-    </div>
-  </div>
-</section>
-    
-<section>
-  <div class="wrap">
-    <div class="section-head">
-      <div class="kicker">Timeline</div>
-      <h2>타임라인</h2>
-    </div>
-    <div class="timeline">
-      
-        <div class="t-item">
-          <div class="date">2026-04-02</div>
-          <div>
-            <strong>Codex 유연 과금 전환</strong>
-            <div style="color:var(--muted);margin-top:4px;">Business·Enterprise에서 Codex 크레딧과 토큰 기반 레이트 카드 구조가 도입되었습니다.</div>
-          </div>
-        </div>
-        <div class="t-item">
-          <div class="date">2026-06-24</div>
-          <div>
-            <strong>Business의 새 Codex 전용 좌석 제한</strong>
-            <div style="color:var(--muted);margin-top:4px;">새 Business 워크스페이스와 기존에 Codex 전용 좌석이 없던 워크스페이스는 새 Codex 전용 좌석을 추가할 수 없게 되었습니다.</div>
-          </div>
-        </div>
-        <div class="t-item">
-          <div class="date">2026-07-09</div>
-          <div>
-            <strong>GPT-5.6 Sol·Terra·Luna 출시 공지</strong>
-            <div style="color:var(--muted);margin-top:4px;">출시 공지의 Terra $2.50/$15, Luna $1/$6 단가가 현재 가격 페이지와 다름을 확인했습니다.</div>
-          </div>
-        </div>
-        <div class="t-item">
-          <div class="date">2026-08-07</div>
-          <div>
-            <strong>현재 가격 점검</strong>
-            <div style="color:var(--muted);margin-top:4px;">현재 API 페이지의 Terra $2/$12, Luna $0.20/$1.20을 본 보고서의 예산 기준으로 반영했습니다.</div>
-          </div>
-        </div>
-        <div class="t-item">
-          <div class="date">2026-08-31 예정</div>
-          <div>
-            <strong>Codex 모델·경쟁사 가격 변경 예정</strong>
-            <div style="color:var(--muted);margin-top:4px;">OpenAI는 ChatGPT 로그인 Codex의 GPT-5.4·5.4 mini 은퇴를, Anthropic은 Claude Sonnet 5 도입 단가 종료를 공지했습니다.</div>
-          </div>
-        </div>
-    </div>
-  </div>
-</section>
-    <div id="sources">
-<section>
-  <div class="wrap">
-    <div class="section-head">
-      <div class="kicker">Sources</div>
-      <h2>원문과 확인 범위</h2>
-      <p>기사 전문은 저장하지 않습니다. 제목·발행처·URL·확인일만 남깁니다.</p>
-    </div>
-    <div class="paper">
-      <ul class="sources">
-        
-          <li>
-            <a href="https://chatgpt.com/pricing/" rel="noopener">ChatGPT Pricing</a>
-            <span>OpenAI · 확인 2026.08.07 KST · Free·Go·Plus·Pro·Business·Enterprise의 기능 범위와 API 분리 원칙</span>
-          </li>
-          <li>
-            <a href="https://chatgpt.com/codex/pricing/" rel="noopener">Codex Pricing</a>
-            <span>OpenAI · 확인 2026.08.07 KST · Codex 포함 플랜, Plus 5시간 메시지 범위, 크레딧과 사용량 안내</span>
-          </li>
-          <li>
-            <a href="https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus" rel="noopener">What is ChatGPT Plus?</a>
-            <span>OpenAI Help Center · 확인 2026.08.07 KST · Plus $20/월과 API 별도 청구 확인</span>
-          </li>
-          <li>
-            <a href="https://help.openai.com/en/articles/9793128-what-is-chatgpt-team" rel="noopener">About ChatGPT Pro tiers</a>
-            <span>OpenAI Help Center · 확인 2026.08.07 KST · Pro $100은 Plus 대비 5배, Pro $200은 20배 사용량</span>
-          </li>
-          <li>
-            <a href="https://help.openai.com/en/articles/8792828-what-is-chatgpt-team/" rel="noopener">What is ChatGPT Business?</a>
-            <span>OpenAI Help Center · 확인 2026.08.07 KST · Business $25 월간 또는 $20 연간, 2석 최소, Codex 좌석 정책, API 별도</span>
-          </li>
-          <li>
-            <a href="https://help.openai.com/en/articles/8265053-what-is-chatgpt-enterprise" rel="noopener">What is ChatGPT Enterprise?</a>
-            <span>OpenAI Help Center · 확인 2026.08.07 KST · 계약형 Enterprise, Codex 좌석, 관리자 기능과 크레딧 구조</span>
-          </li>
-          <li>
-            <a href="https://developers.openai.com/api/docs/pricing" rel="noopener">OpenAI API Pricing</a>
-            <span>OpenAI Developers · 확인 2026.08.07 KST · GPT-5.6 Sol·Terra·Luna 현재 표준·장기 컨텍스트·캐시 단가</span>
-          </li>
-          <li>
-            <a href="https://developers.openai.com/api/docs/models/gpt-5.6-terra" rel="noopener">GPT-5.6 Terra Model</a>
-            <span>OpenAI Developers · 확인 2026.08.07 KST · Terra 현재 $2 입력·$12 출력 및 1.05M 컨텍스트</span>
-          </li>
-          <li>
-            <a href="https://developers.openai.com/api/docs/models/gpt-5.6-luna" rel="noopener">GPT-5.6 Luna Model</a>
-            <span>OpenAI Developers · 확인 2026.08.07 KST · Luna 현재 $0.20 입력·$1.20 출력 및 1.05M 컨텍스트</span>
-          </li>
-          <li>
-            <a href="https://openai.com/index/gpt-5-6/" rel="noopener">GPT-5.6: Frontier intelligence that scales with your ambition</a>
-            <span>OpenAI · 발행 2026-07-09 · 확인 2026.08.07 KST · GPT-5.6 출시 공지 당시 Terra·Luna 가격과 플랜별 사용 가능 범위</span>
-          </li>
-          <li>
-            <a href="https://help.openai.com/en/articles/20001106" rel="noopener">Codex rate card</a>
-            <span>OpenAI Help Center · 확인 2026.08.07 KST · Codex 토큰별 크레딧, 작업당 예시, 공유 사용량 풀과 모델 은퇴 일정</span>
-          </li>
-          <li>
-            <a href="https://platform.claude.com/docs/en/about-claude/pricing" rel="noopener">Pricing — Claude Platform Docs</a>
-            <span>Anthropic · 확인 2026.08.07 KST · Claude Opus·Sonnet·Haiku 현재 API 가격, 캐시·Batch·지역 옵션</span>
-          </li>
-          <li>
-            <a href="https://ai.google.dev/gemini-api/docs/pricing?hl=en" rel="noopener">Gemini Developer API pricing</a>
-            <span>Google · 발행 2026-07-09 · 확인 2026.08.07 KST · Gemini 3.1 Pro Preview·3.5 Flash·Flash-Lite API 가격과 Batch·Flex 옵션</span>
-          </li>
-          <li>
-            <a href="https://docs.x.ai/developers/pricing" rel="noopener">Pricing — SpaceXAI Docs</a>
-            <span>xAI · 확인 2026.08.07 KST · Grok 4.5·Grok Build·Grok 4.3의 표준·장기 컨텍스트 API 가격</span>
-          </li>
-      </ul>
-    </div>
-  </div>
-</section></div>
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-      <span>Report Mode · 260807 · Jeremy</span>
-      <span>최종 판단과 검수는 사용자에게 있습니다.</span>
-    </div>
-  </footer>
-  <script src="../../assets/report-view-counter.js" data-report-id="260807-chatgpt-codex-pricing-api-comparison-02"></script>
+  <div class="toast" id="toast" role="status" aria-live="polite">링크를 복사했습니다.</div>
   <script src="../../assets/report-page-layout.js?v=20260807-inputfix"></script>
+  <script src="../../assets/report-view-counter.js" data-report-id="260807-chatgpt-codex-pricing-api-comparison-02"></script>
+  <script>
+    const body = document.body;
+    const toast = document.getElementById("toast");
+    const setView = (view) => {
+      body.dataset.reportView = view;
+      document.querySelectorAll("[data-report-view-target]").forEach((button) => {
+        const active = button.dataset.reportViewTarget === view;
+        button.classList.toggle("is-active", active);
+        button.setAttribute("aria-pressed", String(active));
+      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+    if (new URLSearchParams(window.location.search).get("view") === "simple") setView("simple");
+    document.querySelectorAll("[data-report-view-target]").forEach((button) => button.addEventListener("click", () => setView(button.dataset.reportViewTarget)));
+    document.getElementById("printButton").addEventListener("click", () => window.print());
+    document.getElementById("shareButton").addEventListener("click", async () => {
+      const shareData = { title: document.title, text: "ChatGPT 요금제와 Codex·API 비용 비교", url: window.location.href };
+      try {
+        if (navigator.share) await navigator.share(shareData);
+        else await navigator.clipboard.writeText(window.location.href);
+        toast.classList.add("show");
+        window.setTimeout(() => toast.classList.remove("show"), 1800);
+      } catch (_) {}
+    });
+    const progress = document.getElementById("scrollProgress");
+    const reveal = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add("visible")), { threshold: .08 });
+    reveal.forEach((item) => observer.observe(item));
+    const updateProgress = () => {
+      const height = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = `${height > 0 ? (window.scrollY / height) * 100 : 0}%`;
+    };
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    updateProgress();
+  </script>
 </body>
 </html>
