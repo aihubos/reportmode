@@ -54,8 +54,11 @@ function enhance(file) {
   if (!html.includes("report-home-button")) {
     html = html.replace(bodyTag, `${bodyTag}\n  <a class="report-home-button" href="${archiveHref}" aria-label="보고서 도서관 메인으로 이동">🏠 메인</a>`);
   }
+  const layoutScript = `${prefix}/assets/report-page-layout.js?v=20260807-comments`;
   if (!html.includes("report-page-layout.js")) {
-    html = html.replace("</body>", `  <script src="${prefix}/assets/report-page-layout.js"></script>\n</body>`);
+    html = html.replace("</body>", `  <script src="${layoutScript}"></script>\n</body>`);
+  } else {
+    html = html.replace(/<script\s+src=["'][^"']*report-page-layout\.js(?:\?[^"']*)?["']><\/script>/i, `<script src="${layoutScript}"></script>`);
   }
   if (!html.includes("report-view-counter.js")) {
     html = html.replace("</body>", `  <script src="${prefix}/assets/report-view-counter.js" data-report-id="${reportId(file)}"></script>\n</body>`);
