@@ -1,12 +1,31 @@
 {
-  "generatedAt": "2026-08-07T05:02:04.289Z",
+  "generatedAt": "2026-08-07T12:15:30.641Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260807-paseo-multi-ai-orchestration-analysis",
+      "slug": "paseo-multi-ai-orchestration-analysis",
+      "title": "Paseo 멀티 AI 오케스트레이션 분석",
+      "category": "AI",
+      "summary": "Mac·Windows 설치부터 Claude Code·Codex·Hermes 등 여러 AI 에이전트를 하나의 작업 흐름으로 연결하는 Paseo의 핵심 개념, 보안과 도입 판단을 비전공자 임원 관점에서 정리했습니다.",
+      "createdAt": "2026-08-07T12:00:58+09:00",
+      "updatedAt": "2026-08-07T12:00:58+09:00",
+      "status": "published",
+      "path": "reports/260807-paseo-multi-ai-orchestration-analysis.html",
+      "url": "https://aihubos.github.io/reportmode/reports/260807-paseo-multi-ai-orchestration-analysis.html",
+      "displayDate": "260807",
+      "sourceCount": 0,
+      "tags": [
+        "paseo",
+        "multi-agent",
+        "ai-orchestration"
+      ],
+      "coverAlt": "Paseo 멀티 AI 오케스트레이션 분석 보고서 대표 이미지"
+    },
     {
       "id": "260807-chatgpt-codex-pricing-api-comparison-02",
       "slug": "chatgpt-codex-pricing-api-comparison",
       "title": "ChatGPT 요금제와 Codex·API 비용 비교",
-      "subtitle": "구독료, Codex 할당량, GPT-5.6 Sol·Terra·Luna API 단가와 Anthropic·Google·xAI 대표 모델 비교",
       "category": "AI",
       "summary": "개인 업무는 Plus($20/월)가 기본 후보이고, 매일 고강도 코딩을 지속하면 Pro의 5배·20배 사용량을 검토합니다. 조직은 Business의 사용자당 요금과 별도 크레딧을 분리해 예산화해야 하며, 서비스에 모델을 붙이는 API 비용은 어떤 ChatGPT 구독에도 포함되지 않습니다.",
       "createdAt": "2026-08-07T10:00:00+09:00",
@@ -25,7 +44,34 @@
         "comparison",
         "cost-analysis",
         "official"
-      ]
+      ],
+      "coverImage": "reports/assets/260807-chatgpt-codex-pricing-api-comparison-02/cost-report-cover.png",
+      "coverAlt": "ChatGPT 요금제와 Codex·API 비용 구조 시각화",
+      "subtitle": "구독료, Codex 할당량, GPT-5.6 Sol·Terra·Luna API 단가와 Anthropic·Google·xAI 대표 모델 비교"
+    },
+    {
+      "id": "260807-mac-ai-ecosystem-advantage",
+      "slug": "mac-ai-ecosystem-advantage",
+      "title": "왜 Mac은 AI 생태계에 유리한가",
+      "category": "AI · IT 기기",
+      "summary": "Mac-first 앱 출시, Apple Silicon 통합 메모리, 로컬 LLM RAM 설계, MLX·Ollama·LM Studio 생태계 관점에서 Mac이 AI에 유리한 이유를 분석했습니다.",
+      "createdAt": "2026-08-07T00:00:00+09:00",
+      "updatedAt": "2026-08-07T00:00:00+09:00",
+      "status": "published",
+      "path": "reports/260807-mac-ai-ecosystem-advantage.html",
+      "url": "https://aihubos.github.io/reportmode/reports/260807-mac-ai-ecosystem-advantage.html",
+      "displayDate": "260807",
+      "sourceCount": 0,
+      "tags": [
+        "mac",
+        "apple-silicon",
+        "local-llm",
+        "mlx",
+        "ollama",
+        "ai-ecosystem"
+      ],
+      "coverAlt": "왜 Mac은 AI 생태계에 유리한가 보고서 대표 이미지",
+      "subtitle": "Mac-first 앱 출시, 통합 메모리, 로컬 AI 운영과 RAM 선택, Windows·Linux 대비 강점과 한계"
     },
     {
       "id": "260806-hermes-second-brain",
