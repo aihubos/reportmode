@@ -205,7 +205,7 @@ export function renderReportHtml(doc: ReportDocument): string {
   <style>${css()}</style>
   <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260807-controls">
 </head>
-<body class="report-a4-mode" data-report-view="detail" data-report-layout="a4">
+<body data-report-view="detail" data-report-layout="wide">
   <a class="report-home-button" href="../../archive/" aria-label="보고서 도서관 메인으로 이동">🏠 메인</a>
   <nav class="nav" aria-label="보고서 탐색">
     <div class="nav-inner">
@@ -458,7 +458,6 @@ export function renderHomeHtml(
       <nav aria-label="주요 메뉴">
         <a class="is-current" href="./">보고서 도서관</a>
         <a href="https://blog.naver.com/jeremylee0213" target="_blank" rel="noopener">Jeremy's Blog</a>
-        <a href="../">스킬 만들기</a>
       </nav>
     </div>
   </header>
