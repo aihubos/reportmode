@@ -479,6 +479,28 @@ export function renderHomeHtml(
       <a class="archive-primary-action archive-blog-action" href="https://blog.naver.com/jeremylee0213" target="_blank" rel="noopener"><span class="archive-blog-mark">N</span><span><b>Jeremy's Blog</b><small>blog.naver.com/jeremylee0213</small></span><i aria-hidden="true">↗</i></a>
     </section>
 
+    <section class="request-board" aria-labelledby="request-board-title">
+      <div class="request-board-copy">
+        <div class="request-board-kicker">REPORT WISHLIST</div>
+        <h2 id="request-board-title"><span class="request-board-highlight">다음 리포트,</span><br>무엇이 궁금하신가요?</h2>
+        <p>원하는 기업·제품·이슈를 남겨 주세요. 검토할 가치가 있는 주제는 다음 리포트 후보로 반영합니다.</p>
+      </div>
+      <form class="request-board-form" id="requestBoardForm" novalidate>
+        <div class="request-board-identity">
+          <label>신청자 이름<input id="requestAuthor" name="author" maxlength="24" autocomplete="name" required placeholder="이름 또는 닉네임"></label>
+          <label>수정·삭제 비밀번호<input id="requestPassword" name="password" type="password" minlength="4" maxlength="80" autocomplete="new-password" required placeholder="4글자 이상"></label>
+        </div>
+        <label>궁금한 점 또는 원하는 리포트 주제<textarea id="requestTopic" name="topic" minlength="4" maxlength="240" required placeholder="예: 엔비디아 실적과 경쟁력 분석. AMD·구글과 비교해 장기 경쟁력이 궁금합니다."></textarea></label>
+        <p class="request-board-helper">비밀번호는 글을 수정하거나 삭제할 때 필요합니다.</p>
+        <button class="request-board-submit" type="submit">리포트 희망 남기기 →</button>
+        <p class="request-board-status" id="requestBoardStatus" role="status"></p>
+      </form>
+      <div class="request-board-feed" aria-live="polite">
+        <div class="request-board-feed-head"><strong>최근 희망 리포트</strong><span id="requestBoardCount">불러오는 중</span></div>
+        <div class="request-board-list" id="requestBoardList"><div class="request-board-empty">아직 제안된 주제가 없습니다. 첫 번째 주제를 남겨 주세요.</div></div>
+      </div>
+    </section>
+
     <div class="archive-layout">
       <aside class="archive-sidebar" aria-label="도서관 안내와 분류">
         <section class="archive-side-card">
@@ -780,6 +802,7 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
     render(false);
   })();
   </script>
+  <script src="../assets/archive-request-board.js"></script>
 </body>
 </html>
 `;
