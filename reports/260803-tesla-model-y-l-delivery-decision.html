@@ -77,8 +77,7 @@
 (function(){
   var PAGE = window.location.pathname.replace(/\//g,'-').replace(/^-|-$/g,'') || 'index';
   var STORAGE_KEY = 'comments-' + PAGE;
-  var DEL_PASSWORD = '1234';
-  var list = document.getElementById('comment-list');
+    var list = document.getElementById('comment-list');
   
   function saveComments(comments) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(comments));
@@ -112,8 +111,16 @@
   }
   
   window.deleteComment = function(idx) {
+    var savedPw = localStorage.getItem(STORAGE_KEY + '-pw');
+    if (!savedPw) {
+      savedPw = prompt('관리자 비밀번호를 설정하세요 (댓글 삭제용):');
+      if (!savedPw) return;
+      localStorage.setItem(STORAGE_KEY + '-pw', savedPw);
+      alert('비밀번호가 설정되었습니다. 다시 삭제 버튼을 눌러주세요.');
+      return;
+    }
     var pw = prompt('삭제 비밀번호를 입력하세요:');
-    if (pw !== DEL_PASSWORD) { alert('비밀번호가 틀렸습니다.'); return; }
+    if (pw !== savedPw) { alert('비밀번호가 틀렸습니다.'); return; }
     if (!confirm('정말 삭제하시겠습니까?')) return;
     var raw = localStorage.getItem(STORAGE_KEY);
     var comments = raw ? JSON.parse(raw) : [];
