@@ -910,8 +910,8 @@
   <link rel="stylesheet" href="../../assets/report-page-layout.css">
   <style>
     /* Report Mode standard controls for this legacy standalone report. */
-    .report-view-switcher { position: sticky; top: 0; z-index: 1100; border-bottom: 1px solid rgba(49,130,246,.16); background: rgba(247,248,250,.92); backdrop-filter: blur(18px); }
-    .report-view-switcher-inner { width: min(1180px, calc(100% - 44px)); min-height: 58px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; padding: 8px 0; }
+    .report-view-switcher { position: sticky; top: 0; z-index: 1100; padding: 0 !important; border-bottom: 1px solid rgba(49,130,246,.16); background: rgba(247,248,250,.92); backdrop-filter: blur(18px); }
+    .report-view-switcher-inner { width: min(1180px, calc(100% - 44px)); min-height: 58px !important; margin: 0 auto; display: flex; flex-wrap: nowrap !important; align-items: center; justify-content: center; gap: 8px; padding: 8px 0 !important; }
     .report-view-label { color: var(--muted); font-size: 10px; font-weight: 800; white-space: nowrap; }
     .report-view-buttons { display: inline-flex; overflow: hidden; min-width: 118px; border: 1px solid rgba(60,60,67,.16); border-radius: 999px; background: rgba(118,118,128,.12); }
     .report-view-button { min-width: 58px; min-height: 32px; padding: 4px 10px; border: 0; background: transparent; color: #555b63; font: 800 12px/1.2 inherit; cursor: pointer; }
@@ -919,6 +919,9 @@
     .report-utility-controls { display: flex; gap: 6px; }
     .report-utility-controls button { min-height: 32px; padding: 4px 10px; border: 1px solid rgba(60,60,67,.16); border-radius: 999px; background: #fff; color: var(--ink-2); font: 800 12px/1.2 inherit; cursor: pointer; }
     .report-utility-controls .pdf-save-button { color: #fff; border-color: var(--blue); background: var(--blue); }
+    .report-view-switcher-inner > .report-view-buttons { width: auto !important; min-height: auto !important; }
+    .report-view-switcher-inner > .report-utility-controls { width: auto !important; margin-left: 0 !important; }
+    body.report-a4-mode .nav-links { display: none; }
     .hermes-simple-report { display: none; padding: 56px 0 96px; }
     .hermes-simple-card { padding: 42px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: #fff; box-shadow: var(--shadow-sm); }
     .hermes-simple-card h1 { margin: 12px 0; font-size: clamp(36px, 6vw, 66px); line-height: 1.08; }
@@ -930,7 +933,7 @@
     .hermes-simple-grid span { color: var(--muted); font-weight: 700; }
     body[data-report-view="simple"] .hermes-simple-report { display: block; }
     body[data-report-view="simple"] > main { display: none; }
-    @media (max-width: 700px) { .report-view-switcher-inner { width: min(100% - 20px, 520px); } .report-view-label { display: none; } .hermes-simple-card { padding: 28px 22px; } .hermes-simple-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 700px) { .report-view-switcher-inner { width: min(100% - 20px, 520px); flex-wrap: wrap !important; } .report-view-label { display: none; } .hermes-simple-card { padding: 28px 22px; } .hermes-simple-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body class="report-a4-mode" data-report-layout="a4" data-report-view="detail" data-report-cover="../assets/260806-hermes-second-brain/second-brain-architecture.png" data-report-cover-alt="Hermes와 Second Brain 구성 관계 도식">
