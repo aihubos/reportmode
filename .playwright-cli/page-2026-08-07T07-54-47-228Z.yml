@@ -1,0 +1,481 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Jeremy's AI Report 홈" [ref=e4] [cursor=pointer]:
+        - /url: ../
+        - generic [ref=e5]: R
+        - generic [ref=e6]: Jeremy's AI Report
+      - navigation "주요 메뉴" [ref=e7]:
+        - link "보고서 도서관" [ref=e8] [cursor=pointer]:
+          - /url: ./
+        - link "Jeremy's Blog" [ref=e9] [cursor=pointer]:
+          - /url: https://blog.naver.com/jeremylee0213
+        - link "스킬 만들기" [ref=e10] [cursor=pointer]:
+          - /url: ../
+  - main [ref=e11]:
+    - region [ref=e12]:
+      - generic [ref=e13]: RM
+      - generic [ref=e15]:
+        - generic [ref=e16]: AI RESEARCH LIBRARY
+        - heading "Jeremy's AI Report 도서관" [level=1] [ref=e17]
+        - paragraph [ref=e18]: 원자료를 조사하고 사실과 해석을 나눠 기록하는 개인 보고서 아카이브입니다.
+        - generic [ref=e19]:
+          - generic [ref=e20]: 전체 보고서 18
+          - generic [ref=e21]: 최근 작성 260807
+          - generic [ref=e22]: 자동 업데이트
+      - link "N Jeremy's Blog blog.naver.com/jeremylee0213" [ref=e23] [cursor=pointer]:
+        - /url: https://blog.naver.com/jeremylee0213
+        - generic [ref=e24]: "N"
+        - generic [ref=e25]:
+          - generic [ref=e26]: Jeremy's Blog
+          - generic [ref=e27]: blog.naver.com/jeremylee0213
+        - generic [ref=e28]: ↗
+    - region [ref=e29]:
+      - generic [ref=e30]:
+        - generic [ref=e31]: REPORT WISHLIST
+        - heading "다음 리포트, 무엇이 궁금하신가요?" [level=2] [ref=e32]: 다음 리포트,무엇이 궁금하신가요?
+        - paragraph [ref=e33]: 원하는 기업·제품·이슈를 남겨 주세요. 검토할 가치가 있는 주제는 다음 리포트 후보로 반영합니다.
+      - generic [ref=e34]:
+        - generic [ref=e35]:
+          - generic [ref=e36]:
+            - text: 신청자 이름
+            - textbox "신청자 이름" [ref=e37]:
+              - /placeholder: 이름 또는 닉네임
+          - generic [ref=e38]:
+            - text: 수정·삭제 비밀번호
+            - textbox "수정·삭제 비밀번호" [ref=e39]:
+              - /placeholder: 4글자 이상
+        - generic [ref=e40]:
+          - text: 궁금한 점 또는 원하는 리포트 주제
+          - textbox "궁금한 점 또는 원하는 리포트 주제" [ref=e41]:
+            - /placeholder: "예: 엔비디아 실적과 경쟁력 분석. AMD·구글과 비교해 장기 경쟁력이 궁금합니다."
+        - paragraph [ref=e42]: 비밀번호는 글을 수정하거나 삭제할 때 필요합니다.
+        - button "리포트 희망 남기기 →" [ref=e43] [cursor=pointer]
+        - status [ref=e44]: 희망 리포트를 등록했습니다. 감사합니다!
+      - generic [ref=e45]:
+        - generic [ref=e46]:
+          - strong [ref=e47]: 최근 희망 리포트
+          - generic [ref=e48]: 최근 2건
+        - generic [ref=e49]:
+          - article [ref=e356]:
+            - generic [ref=e357]:
+              - generic [ref=e358]: C
+              - strong [ref=e359]: Codex프로브
+              - time [ref=e360]: 8. 7.
+            - paragraph [ref=e361]: 브라우저 프로브 테스트 삭제 예정
+            - generic [ref=e362]:
+              - button "수정" [ref=e363] [cursor=pointer]
+              - button "삭제" [ref=e364] [cursor=pointer]
+              - button "관리자 답글" [ref=e365] [cursor=pointer]
+          - article [ref=e366]:
+            - generic [ref=e367]:
+              - generic [ref=e368]: 익
+              - strong [ref=e369]: 익명
+              - time [ref=e370]: 8. 7.
+            - paragraph [ref=e371]: 여기에 요청 레포트를 신청해주세요~!
+            - generic [ref=e372]:
+              - strong [ref=e373]: 관리자 답변 · 8. 7.
+              - paragraph [ref=e374]: 관리자 댓글입니다
+            - generic [ref=e375]:
+              - generic [ref=e376]: 이전 글 · 읽기 전용
+              - button "관리자 답글 수정" [ref=e377] [cursor=pointer]
+    - generic [ref=e51]:
+      - complementary "도서관 안내와 분류" [ref=e52]:
+        - generic [ref=e53]:
+          - generic [ref=e54]: ABOUT
+          - heading "읽고 판단하기 좋은 리서치만 모았습니다." [level=2] [ref=e55]: 읽고 판단하기 좋은리서치만 모았습니다.
+          - paragraph [ref=e56]: 모든 보고서는 작성일, 판단 근거, 사실·분석 구분과 전체 출처를 포함합니다.
+        - generic [ref=e57]:
+          - generic [ref=e58]: CATEGORY
+          - generic [ref=e59]:
+            - button "전체 18" [pressed] [ref=e60] [cursor=pointer]:
+              - generic [ref=e61]: 전체
+              - generic [ref=e62]: "18"
+            - button "AI 10" [ref=e63] [cursor=pointer]:
+              - generic [ref=e64]: AI
+              - generic [ref=e65]: "10"
+            - button "게임 1" [ref=e66] [cursor=pointer]:
+              - generic [ref=e67]: 게임
+              - generic [ref=e68]: "1"
+            - button "자동차 1" [ref=e69] [cursor=pointer]:
+              - generic [ref=e70]: 자동차
+              - generic [ref=e71]: "1"
+            - button "IT 기기 3" [ref=e72] [cursor=pointer]:
+              - generic [ref=e73]: IT 기기
+              - generic [ref=e74]: "3"
+            - button "기타 3" [ref=e75] [cursor=pointer]:
+              - generic [ref=e76]: 기타
+              - generic [ref=e77]: "3"
+        - generic [ref=e78]:
+          - generic [ref=e79]: REPORT TAGS
+          - heading "주제 태그" [level=2] [ref=e80]
+          - generic [ref=e81]:
+            - 'link "M5-Max 태그: MiniMax H3 × M5 Max 128GB × ComfyUI 심층 가이드 보고서 열기" [ref=e82] [cursor=pointer]':
+              - /url: ../reports/260804-minimax-h3-m5-max-comfyui-guide.html
+              - text: "#M5-Max"
+            - 'link "폴더블 태그: Apple 폴더블 iPhone 보고서 열기" [ref=e83] [cursor=pointer]':
+              - /url: ../reports/260802-apple-foldable-iphone/
+              - text: "#폴더블"
+            - 'link "Codex 태그: ChatGPT 요금제와 Codex·API 비용 비교 보고서 열기" [ref=e84] [cursor=pointer]':
+              - /url: ../reports/260807-chatgpt-codex-pricing-api-comparison-02/
+              - text: "#Codex"
+            - 'link "local-llm 태그: MacBook M5 Max 128GB 로컬 LLM 최적 모델 분석 보고서 열기" [ref=e85] [cursor=pointer]':
+              - /url: ../reports/260803-macbook-m5-max-local-llm-model-fit.html
+              - text: "#local-llm"
+            - 'link "second-brain 태그: Hermes × Second Brain 보고서 열기" [ref=e86] [cursor=pointer]':
+              - /url: ../reports/260806-hermes-second-brain/
+              - text: "#second-brain"
+            - 'link "Galaxy Z Fold8 태그: 갤럭시 Z Fold8 심층분석 보고서 열기" [ref=e87] [cursor=pointer]':
+              - /url: ../reports/260802-galaxy-z-fold8-deep-dive.html
+              - text: "#Galaxy Z Fold8"
+            - 'link "Nintendo Switch 2 태그: 포켓몬 포코피아 장단점과 인기 요인 보고서 열기" [ref=e88] [cursor=pointer]':
+              - /url: ../reports/260802-pokemon-pokopia-deep-dive.html
+              - text: "#Nintendo Switch 2"
+            - 'link "pltr 태그: 팔란티어 기업 분석 — AI 기업인가, 경쟁사가 없는가 보고서 열기" [ref=e89] [cursor=pointer]':
+              - /url: ../reports/260806-palantir-business-ai-analysis/
+              - text: "#pltr"
+            - 'link "Model Y L 태그: Tesla Model Y L 6,499만원 출고 결정 보고서 열기" [ref=e90] [cursor=pointer]':
+              - /url: ../reports/260803-tesla-model-y-l-delivery-decision.html
+              - text: "#Model Y L"
+            - 'link "DeepSeek 태그: DeepSeek V4 Flash 비교 — 가격은 압도적, 선택은 업무별 보고서 열기" [ref=e91] [cursor=pointer]':
+              - /url: ../reports/260803-deepseek-v4-flash-comparison.html
+              - text: "#DeepSeek"
+            - 'link "MiniMax-H3 태그: MiniMax H3 × M5 Max 128GB × ComfyUI 심층 가이드 보고서 열기" [ref=e92] [cursor=pointer]':
+              - /url: ../reports/260804-minimax-h3-m5-max-comfyui-guide.html
+              - text: "#MiniMax-H3"
+            - 'link "palantir 태그: 팔란티어 기업 분석 — AI 기업인가, 경쟁사가 없는가 보고서 열기" [ref=e93] [cursor=pointer]':
+              - /url: ../reports/260806-palantir-business-ai-analysis/
+              - text: "#palantir"
+            - 'link "aip 태그: 팔란티어 기업 분석 — AI 기업인가, 경쟁사가 없는가 보고서 열기" [ref=e94] [cursor=pointer]':
+              - /url: ../reports/260806-palantir-business-ai-analysis/
+              - text: "#aip"
+            - 'link "AI 에이전트 태그: AI Agent 심층 비교 — Hermes vs OpenClaw vs Codex 보고서 열기" [ref=e95] [cursor=pointer]':
+              - /url: ../reports/260802-ai-agent-hermes-openclaw-codex.html
+              - text: "#AI 에이전트"
+            - 'link "학원-자동화 태그: 비전공자를 위한 학원 자동화 실행 설계 보고서 열기" [ref=e96] [cursor=pointer]':
+              - /url: ../reports/260804-academy-automation-hermes-obsidian-llm-wiki.html
+              - text: "#학원-자동화"
+            - 'link "obsidian 태그: Hermes × Second Brain 보고서 열기" [ref=e97] [cursor=pointer]':
+              - /url: ../reports/260806-hermes-second-brain/
+              - text: "#obsidian"
+            - 'link "chatgpt 태그: ChatGPT 요금제와 Codex·API 비용 비교 보고서 열기" [ref=e98] [cursor=pointer]':
+              - /url: ../reports/260807-chatgpt-codex-pricing-api-comparison-02/
+              - text: "#chatgpt"
+            - 'link "hermes 태그: Hermes × Second Brain 보고서 열기" [ref=e99] [cursor=pointer]':
+              - /url: ../reports/260806-hermes-second-brain/
+              - text: "#hermes"
+            - 'link "ComfyUI 태그: MiniMax H3 × M5 Max 128GB × ComfyUI 심층 가이드 보고서 열기" [ref=e100] [cursor=pointer]':
+              - /url: ../reports/260804-minimax-h3-m5-max-comfyui-guide.html
+              - text: "#ComfyUI"
+            - 'link "qwen3.5 태그: MacBook M5 Max 128GB 로컬 LLM 최적 모델 분석 보고서 열기" [ref=e101] [cursor=pointer]':
+              - /url: ../reports/260803-macbook-m5-max-local-llm-model-fit.html
+              - text: "#qwen3.5"
+            - 'link "Samsung 태그: 갤럭시 Z Fold8 심층분석 보고서 열기" [ref=e102] [cursor=pointer]':
+              - /url: ../reports/260802-galaxy-z-fold8-deep-dive.html
+              - text: "#Samsung"
+            - 'link "crowd-calendar 태그: 상하이 디즈니랜드 9–10월 심층 방문 전략 보고서 열기" [ref=e103] [cursor=pointer]':
+              - /url: ../reports/260803-shanghai-disneyland-attractions-crowd-guide.html
+              - text: "#crowd-calendar"
+            - 'link "Hugging-Face 태그: GPT 신모델·Hugging Face 침해 사건 보고서 열기" [ref=e104] [cursor=pointer]':
+              - /url: ../reports/260804-openai-hugging-face-agent-incident.html
+              - text: "#Hugging-Face"
+            - 'link "iPhone 태그: Apple 폴더블 iPhone 보고서 열기" [ref=e105] [cursor=pointer]':
+              - /url: ../reports/260802-apple-foldable-iphone/
+              - text: "#iPhone"
+            - 'link "DeepSeek V4 Flash 태그: DeepSeek V4 Flash 비교 — 가격은 압도적, 선택은 업무별 보고서 열기" [ref=e106] [cursor=pointer]':
+              - /url: ../reports/260803-deepseek-v4-flash-comparison.html
+              - text: "#DeepSeek V4 Flash"
+            - 'link "Discord 태그: Buzz 쉽게 이해하기 — Slack·Discord·Telegram 비교 보고서 열기" [ref=e107] [cursor=pointer]':
+              - /url: ../reports/260803-buzz-slack-discord-telegram-guide.html
+              - text: "#Discord"
+            - 'link "포켓몬 태그: 포켓몬 포코피아 장단점과 인기 요인 보고서 열기" [ref=e108] [cursor=pointer]':
+              - /url: ../reports/260802-pokemon-pokopia-deep-dive.html
+              - text: "#포켓몬"
+            - 'link "GPT-5.6 태그: DeepSeek V4 Flash 비교 — 가격은 압도적, 선택은 업무별 보고서 열기" [ref=e109] [cursor=pointer]':
+              - /url: ../reports/260803-deepseek-v4-flash-comparison.html
+              - text: "#GPT-5.6"
+            - 'link "반도체-유리기판 태그: 반도체 유리기판 — 기본부터 SCM·TAM·SAM까지 보고서 열기" [ref=e110] [cursor=pointer]':
+              - /url: ../reports/260804-semiconductor-glass-substrate-scm-tam-sam.html
+              - text: "#반도체-유리기판"
+            - 'link "Apple 태그: 아이폰 폴드 vs 갤럭시 폴드7·폴드8 울트라 성능 심층비교 보고서 열기" [ref=e111] [cursor=pointer]':
+              - /url: ../reports/260802-iphone-fold-vs-galaxy-fold7-fold8-ultra.html
+              - text: "#Apple"
+            - 'link "Apple 태그: Apple 폴더블 iPhone 보고서 열기" [ref=e112] [cursor=pointer]':
+              - /url: ../reports/260802-apple-foldable-iphone/
+              - text: "#Apple"
+            - 'link "iPhone Fold 태그: 아이폰 폴드 vs 갤럭시 폴드7·폴드8 울트라 성능 심층비교 보고서 열기" [ref=e113] [cursor=pointer]':
+              - /url: ../reports/260802-iphone-fold-vs-galaxy-fold7-fold8-ultra.html
+              - text: "#iPhone Fold"
+            - 'link "포코피아 태그: 포켓몬 포코피아 장단점과 인기 요인 보고서 열기" [ref=e114] [cursor=pointer]':
+              - /url: ../reports/260802-pokemon-pokopia-deep-dive.html
+              - text: "#포코피아"
+            - 'link "Toy-Story-Hotel 태그: 두 가족을 위한 상하이 디즈니랜드 4박 5일 전략 보고서 열기" [ref=e115] [cursor=pointer]':
+              - /url: ../reports/260804-shanghai-disneyland-family-hotel-strategy.html
+              - text: "#Toy-Story-Hotel"
+            - 'link "m5-max 태그: MacBook M5 Max 128GB 로컬 LLM 최적 모델 분석 보고서 열기" [ref=e116] [cursor=pointer]':
+              - /url: ../reports/260803-macbook-m5-max-local-llm-model-fit.html
+              - text: "#m5-max"
+            - 'link "폴더블 태그: 갤럭시 Z Fold8 심층분석 보고서 열기" [ref=e117] [cursor=pointer]':
+              - /url: ../reports/260802-galaxy-z-fold8-deep-dive.html
+              - text: "#폴더블"
+            - 'link "가족여행 태그: 두 가족을 위한 상하이 디즈니랜드 4박 5일 전략 보고서 열기" [ref=e118] [cursor=pointer]':
+              - /url: ../reports/260804-shanghai-disneyland-family-hotel-strategy.html
+              - text: "#가족여행"
+            - 'link "LLM-Wiki 태그: 비전공자를 위한 학원 자동화 실행 설계 보고서 열기" [ref=e119] [cursor=pointer]':
+              - /url: ../reports/260804-academy-automation-hermes-obsidian-llm-wiki.html
+              - text: "#LLM-Wiki"
+            - 'link "shanghai-disneyland 태그: 상하이 디즈니랜드 9–10월 심층 방문 전략 보고서 열기" [ref=e120] [cursor=pointer]':
+              - /url: ../reports/260803-shanghai-disneyland-attractions-crowd-guide.html
+              - text: "#shanghai-disneyland"
+            - 'link "구매 결정 태그: Tesla Model Y L 6,499만원 출고 결정 보고서 열기" [ref=e121] [cursor=pointer]':
+              - /url: ../reports/260803-tesla-model-y-l-delivery-decision.html
+              - text: "#구매 결정"
+            - 'link "AI-agent-security 태그: GPT 신모델·Hugging Face 침해 사건 보고서 열기" [ref=e122] [cursor=pointer]':
+              - /url: ../reports/260804-openai-hugging-face-agent-incident.html
+              - text: "#AI-agent-security"
+            - 'link "Slack 태그: Buzz 쉽게 이해하기 — Slack·Discord·Telegram 비교 보고서 열기" [ref=e123] [cursor=pointer]':
+              - /url: ../reports/260803-buzz-slack-discord-telegram-guide.html
+              - text: "#Slack"
+            - 'link "TGV 태그: 반도체 유리기판 — 기본부터 SCM·TAM·SAM까지 보고서 열기" [ref=e124] [cursor=pointer]':
+              - /url: ../reports/260804-semiconductor-glass-substrate-scm-tam-sam.html
+              - text: "#TGV"
+            - 'link "첨단-패키징 태그: 반도체 유리기판 — 기본부터 SCM·TAM·SAM까지 보고서 열기" [ref=e125] [cursor=pointer]':
+              - /url: ../reports/260804-semiconductor-glass-substrate-scm-tam-sam.html
+              - text: "#첨단-패키징"
+            - 'link "attractions 태그: 상하이 디즈니랜드 9–10월 심층 방문 전략 보고서 열기" [ref=e126] [cursor=pointer]':
+              - /url: ../reports/260803-shanghai-disneyland-attractions-crowd-guide.html
+              - text: "#attractions"
+            - 'link "Hermes 태그: AI Agent 심층 비교 — Hermes vs OpenClaw vs Codex 보고서 열기" [ref=e127] [cursor=pointer]':
+              - /url: ../reports/260802-ai-agent-hermes-openclaw-codex.html
+              - text: "#Hermes"
+            - 'link "GPT-5.6 태그: ChatGPT 요금제와 Codex·API 비용 비교 보고서 열기" [ref=e128] [cursor=pointer]':
+              - /url: ../reports/260807-chatgpt-codex-pricing-api-comparison-02/
+              - text: "#GPT-5.6"
+            - 'link "Samsung 태그: 아이폰 폴드 vs 갤럭시 폴드7·폴드8 울트라 성능 심층비교 보고서 열기" [ref=e129] [cursor=pointer]':
+              - /url: ../reports/260802-iphone-fold-vs-galaxy-fold7-fold8-ultra.html
+              - text: "#Samsung"
+            - 'link "Hermes 태그: 비전공자를 위한 학원 자동화 실행 설계 보고서 열기" [ref=e130] [cursor=pointer]':
+              - /url: ../reports/260804-academy-automation-hermes-obsidian-llm-wiki.html
+              - text: "#Hermes"
+            - 'link "OpenClaw 태그: AI Agent 심층 비교 — Hermes vs OpenClaw vs Codex 보고서 열기" [ref=e131] [cursor=pointer]':
+              - /url: ../reports/260802-ai-agent-hermes-openclaw-codex.html
+              - text: "#OpenClaw"
+            - 'link "Tesla 태그: Tesla Model Y L 6,499만원 출고 결정 보고서 열기" [ref=e132] [cursor=pointer]':
+              - /url: ../reports/260803-tesla-model-y-l-delivery-decision.html
+              - text: "#Tesla"
+            - 'link "fact-check 태그: GPT 신모델·Hugging Face 침해 사건 보고서 열기" [ref=e133] [cursor=pointer]':
+              - /url: ../reports/260804-openai-hugging-face-agent-incident.html
+              - text: "#fact-check"
+            - 'link "Buzz 태그: Buzz 쉽게 이해하기 — Slack·Discord·Telegram 비교 보고서 열기" [ref=e134] [cursor=pointer]':
+              - /url: ../reports/260803-buzz-slack-discord-telegram-guide.html
+              - text: "#Buzz"
+            - 'link "상하이-디즈니랜드 태그: 두 가족을 위한 상하이 디즈니랜드 4박 5일 전략 보고서 열기" [ref=e135] [cursor=pointer]':
+              - /url: ../reports/260804-shanghai-disneyland-family-hotel-strategy.html
+              - text: "#상하이-디즈니랜드"
+        - paragraph [ref=e138]: 새 보고서가 공개되면 목록 맨 위에 자동으로 추가됩니다.
+      - region [ref=e139]:
+        - generic [ref=e140]:
+          - generic [ref=e141]:
+            - generic [ref=e142]: ALL REPORTS
+            - heading "전체 보고서" [level=2] [ref=e143]
+            - paragraph [ref=e144]: 총 18개의 글 · 1/2 페이지
+          - generic [ref=e145]:
+            - generic [ref=e146]: 보고서 검색
+            - searchbox "보고서 검색" [ref=e149]
+        - generic [ref=e150]:
+          - generic [ref=e151]: 번호
+          - generic [ref=e152]: 보고서
+          - generic [ref=e153]: 표지
+        - generic [ref=e154]:
+          - article [ref=e155]:
+            - 'link "게시글 번호 AI 260807 출처 14개 👁 조회수 13 ChatGPT 요금제와 Codex·API 비용 비교 개인 업무는 Plus($20/월)가 기본 후보이고, 매일 고강도 코딩을 지속하면 Pro의 5배·20배 사용량을 검토합니다. 조직은 Business의 사용자당 요금과 별도 크레딧을 분리해 예산화해야 하며, 서비스에 모델을 붙이는 API 비용은 어떤 ChatGPT 구독에도 포함되지 않습니다. #chatgpt #codex #gpt-5.6" [ref=e378] [cursor=pointer]':
+              - /url: ../reports/260807-chatgpt-codex-pricing-api-comparison-02/
+              - generic "게시글 번호" [ref=e157]: "018"
+              - generic [ref=e158]:
+                - generic [ref=e159]:
+                  - generic [ref=e160]: AI
+                  - generic [ref=e161]: "260807"
+                  - generic [ref=e162]: 출처 14개
+                  - generic [ref=e163]: 👁 조회수 13
+                - heading "ChatGPT 요금제와 Codex·API 비용 비교" [level=2] [ref=e164]
+                - paragraph [ref=e165]: 개인 업무는 Plus($20/월)가 기본 후보이고, 매일 고강도 코딩을 지속하면 Pro의 5배·20배 사용량을 검토합니다. 조직은 Business의 사용자당 요금과 별도 크레딧을 분리해 예산화해야 하며, 서비스에 모델을 붙이는 API 비용은 어떤 ChatGPT 구독에도 포함되지 않습니다.
+                - generic [ref=e166]:
+                  - generic [ref=e167]: "#chatgpt"
+                  - generic [ref=e168]: "#codex"
+                  - generic [ref=e169]: "#gpt-5.6"
+              - generic [ref=e170]:
+                - generic [ref=e171]: REPORT
+                - strong [ref=e172]: "26"
+                - generic [ref=e173]: AI
+          - article [ref=e174]:
+            - 'link "게시글 번호 AI 260806 출처 0개 👁 조회수 0 Hermes × Second Brain 복잡한 AI 지식관리 구조를 임원 관점에서 한눈에 이해하도록 정리한 설명 자료입니다. #hermes #second-brain #obsidian 260806" [ref=e175] [cursor=pointer]':
+              - /url: ../reports/260806-hermes-second-brain/
+              - generic "게시글 번호" [ref=e176]: "017"
+              - generic [ref=e177]:
+                - generic [ref=e178]:
+                  - generic [ref=e179]: AI
+                  - generic [ref=e180]: "260806"
+                  - generic [ref=e181]: 출처 0개
+                  - generic [ref=e182]: 👁 조회수 0
+                - heading "Hermes × Second Brain" [level=2] [ref=e183]
+                - paragraph [ref=e184]: 복잡한 AI 지식관리 구조를 임원 관점에서 한눈에 이해하도록 정리한 설명 자료입니다.
+                - generic [ref=e185]:
+                  - generic [ref=e186]: "#hermes"
+                  - generic [ref=e187]: "#second-brain"
+                  - generic [ref=e188]: "#obsidian"
+              - figure "260806" [ref=e189]:
+                - img "Hermes와 Second Brain 구성 관계 도식" [ref=e190]
+          - article [ref=e192]:
+            - 'link "게시글 번호 기타 260806 출처 9개 👁 조회수 15 팔란티어 기업 분석 — AI 기업인가, 경쟁사가 없는가 팔란티어는 생성형 AI 모델을 직접 만드는 회사라기보다, 정부와 기업이 보유한 복잡한 데이터를 실제 업무·작전·생산·의사결정에 연결하는 운영형 AI 플랫폼 회사입니다. 경쟁사가 없는 것은 아니지만, 데이터 의미 구조인 Ontology, 고보안 환경 배포 경험, AIP를 빠르게 현장에 적용하는 배포 방식이 차별점입니다. 주가는 AI 성장 기대를 강하게 반영하고 있어 사업 성장은 인상적이지만 가격 부담과 기대치도 함께 봐야 합니다. #palantir #pltr #aip 260806" [ref=e379] [cursor=pointer]':
+              - /url: ../reports/260806-palantir-business-ai-analysis/
+              - generic "게시글 번호" [ref=e194]: "016"
+              - generic [ref=e195]:
+                - generic [ref=e196]:
+                  - generic [ref=e197]: 기타
+                  - generic [ref=e198]: "260806"
+                  - generic [ref=e199]: 출처 9개
+                  - generic [ref=e200]: 👁 조회수 15
+                - heading "팔란티어 기업 분석 — AI 기업인가, 경쟁사가 없는가" [level=2] [ref=e201]
+                - paragraph [ref=e202]: 팔란티어는 생성형 AI 모델을 직접 만드는 회사라기보다, 정부와 기업이 보유한 복잡한 데이터를 실제 업무·작전·생산·의사결정에 연결하는 운영형 AI 플랫폼 회사입니다. 경쟁사가 없는 것은 아니지만, 데이터 의미 구조인 Ontology, 고보안 환경 배포 경험, AIP를 빠르게 현장에 적용하는 배포 방식이 차별점입니다. 주가는 AI 성장 기대를 강하게 반영하고 있어 사업 성장은 인상적이지만 가격 부담과 기대치도 함께 봐야 합니다.
+                - generic [ref=e203]:
+                  - generic [ref=e204]: "#palantir"
+                  - generic [ref=e205]: "#pltr"
+                  - generic [ref=e206]: "#aip"
+              - figure "260806" [ref=e207]:
+                - img "팔란티어 AIP 공식 플랫폼 화면" [ref=e208]
+          - article [ref=e210]:
+            - 'link "게시글 번호 AI 260804 출처 15개 👁 조회수 0 반도체 유리기판 — 기본부터 SCM·TAM·SAM까지 비전공자 관점에서 유리 코어·TGV 제조, 유기·실리콘 비교, 글로벌·한국 공급망, 기업 상용화 단계와 2035년 시장 시나리오를 분석했습니다. #반도체-유리기판 #TGV #첨단-패키징 260804" [ref=e211] [cursor=pointer]':
+              - /url: ../reports/260804-semiconductor-glass-substrate-scm-tam-sam.html
+              - generic "게시글 번호" [ref=e212]: "015"
+              - generic [ref=e213]:
+                - generic [ref=e214]:
+                  - generic [ref=e215]: AI
+                  - generic [ref=e216]: "260804"
+                  - generic [ref=e217]: 출처 15개
+                  - generic [ref=e218]: 👁 조회수 0
+                - heading "반도체 유리기판 — 기본부터 SCM·TAM·SAM까지" [level=2] [ref=e219]
+                - paragraph [ref=e220]: 비전공자 관점에서 유리 코어·TGV 제조, 유기·실리콘 비교, 글로벌·한국 공급망, 기업 상용화 단계와 2035년 시장 시나리오를 분석했습니다.
+                - generic [ref=e221]:
+                  - generic [ref=e222]: "#반도체-유리기판"
+                  - generic [ref=e223]: "#TGV"
+                  - generic [ref=e224]: "#첨단-패키징"
+              - figure "260804" [ref=e225]:
+                - img "유리 코어 기판 단면과 TGV, 칩렛, 제조 공급망을 표현한 화이트보드 두들" [ref=e226]
+          - article [ref=e228]:
+            - 'link "게시글 번호 AI 260804 출처 18개 👁 조회수 0 MiniMax H3 × M5 Max 128GB × ComfyUI 심층 가이드 한국 라이선스, 모델 조합별 메모리, Apple Silicon MPS 위험, ComfyUI API·로컬 사용법을 비전공자 관점에서 검증했습니다. #MiniMax-H3 #ComfyUI #M5-Max 260804" [ref=e229] [cursor=pointer]':
+              - /url: ../reports/260804-minimax-h3-m5-max-comfyui-guide.html
+              - generic "게시글 번호" [ref=e230]: "014"
+              - generic [ref=e231]:
+                - generic [ref=e232]:
+                  - generic [ref=e233]: AI
+                  - generic [ref=e234]: "260804"
+                  - generic [ref=e235]: 출처 18개
+                  - generic [ref=e236]: 👁 조회수 0
+                - heading "MiniMax H3 × M5 Max 128GB × ComfyUI 심층 가이드" [level=2] [ref=e237]
+                - paragraph [ref=e238]: 한국 라이선스, 모델 조합별 메모리, Apple Silicon MPS 위험, ComfyUI API·로컬 사용법을 비전공자 관점에서 검증했습니다.
+                - generic [ref=e239]:
+                  - generic [ref=e240]: "#MiniMax-H3"
+                  - generic [ref=e241]: "#ComfyUI"
+                  - generic [ref=e242]: "#M5-Max"
+              - figure "260804" [ref=e243]:
+                - img "MiniMax H3 공식 T2VA 우주선 샘플 영상에서 추출한 실제 출력 프레임" [ref=e244]
+          - article [ref=e246]:
+            - 'link "게시글 번호 기타 260804 출처 18개 👁 조회수 0 두 가족을 위한 상하이 디즈니랜드 4박 5일 전략 성인 4명과 7살 아이 2명을 기준으로 공식 호텔 2곳, 3박+1박 숙박안, 파크 2일과 도심 일정, 비용·예약 리스크를 분석했습니다. #상하이-디즈니랜드 #가족여행 #Toy-Story-Hotel 260804" [ref=e247] [cursor=pointer]':
+              - /url: ../reports/260804-shanghai-disneyland-family-hotel-strategy.html
+              - generic "게시글 번호" [ref=e248]: "013"
+              - generic [ref=e249]:
+                - generic [ref=e250]:
+                  - generic [ref=e251]: 기타
+                  - generic [ref=e252]: "260804"
+                  - generic [ref=e253]: 출처 18개
+                  - generic [ref=e254]: 👁 조회수 0
+                - heading "두 가족을 위한 상하이 디즈니랜드 4박 5일 전략" [level=2] [ref=e255]
+                - paragraph [ref=e256]: 성인 4명과 7살 아이 2명을 기준으로 공식 호텔 2곳, 3박+1박 숙박안, 파크 2일과 도심 일정, 비용·예약 리스크를 분석했습니다.
+                - generic [ref=e257]:
+                  - generic [ref=e258]: "#상하이-디즈니랜드"
+                  - generic [ref=e259]: "#가족여행"
+                  - generic [ref=e260]: "#Toy-Story-Hotel"
+              - figure "260804" [ref=e261]:
+                - img "토이 스토리 호텔 실제 외관" [ref=e262]
+          - article [ref=e264]:
+            - 'link "게시글 번호 AI 260804 출처 14개 👁 조회수 0 비전공자를 위한 학원 자동화 실행 설계 Hermes·Obsidian·LLM Wiki로 상담 메모를 기록·할 일·메시지 초안으로 바꾸는 최소 흐름과 개인정보 경계, 1·4·12주 실행안을 설명합니다. #학원-자동화 #Hermes #LLM-Wiki 260804" [ref=e265] [cursor=pointer]':
+              - /url: ../reports/260804-academy-automation-hermes-obsidian-llm-wiki.html
+              - generic "게시글 번호" [ref=e266]: "012"
+              - generic [ref=e267]:
+                - generic [ref=e268]:
+                  - generic [ref=e269]: AI
+                  - generic [ref=e270]: "260804"
+                  - generic [ref=e271]: 출처 14개
+                  - generic [ref=e272]: 👁 조회수 0
+                - heading "비전공자를 위한 학원 자동화 실행 설계" [level=2] [ref=e273]
+                - paragraph [ref=e274]: Hermes·Obsidian·LLM Wiki로 상담 메모를 기록·할 일·메시지 초안으로 바꾸는 최소 흐름과 개인정보 경계, 1·4·12주 실행안을 설명합니다.
+                - generic [ref=e275]:
+                  - generic [ref=e276]: "#학원-자동화"
+                  - generic [ref=e277]: "#Hermes"
+                  - generic [ref=e278]: "#LLM-Wiki"
+              - figure "260804" [ref=e279]:
+                - img "상담 메모를 Hermes가 정리하고 Obsidian과 LLM Wiki에 연결한 뒤 사람이 검수하는 흐름" [ref=e280]
+          - article [ref=e282]:
+            - 'link "게시글 번호 AI 260804 출처 14개 👁 조회수 0 GPT 신모델·Hugging Face 침해 사건 GPT-5.6 Sol과 내부 연구 모델의 평가 중 발생한 실제 플랫폼 침해를 타임라인·공격 경로·용어·대응으로 쉽게 설명했습니다. #AI-agent-security #Hugging-Face #fact-check 260804" [ref=e283] [cursor=pointer]':
+              - /url: ../reports/260804-openai-hugging-face-agent-incident.html
+              - generic "게시글 번호" [ref=e284]: "011"
+              - generic [ref=e285]:
+                - generic [ref=e286]:
+                  - generic [ref=e287]: AI
+                  - generic [ref=e288]: "260804"
+                  - generic [ref=e289]: 출처 14개
+                  - generic [ref=e290]: 👁 조회수 0
+                - heading "GPT 신모델·Hugging Face 침해 사건" [level=2] [ref=e291]
+                - paragraph [ref=e292]: GPT-5.6 Sol과 내부 연구 모델의 평가 중 발생한 실제 플랫폼 침해를 타임라인·공격 경로·용어·대응으로 쉽게 설명했습니다.
+                - generic [ref=e293]:
+                  - generic [ref=e294]: "#AI-agent-security"
+                  - generic [ref=e295]: "#Hugging-Face"
+                  - generic [ref=e296]: "#fact-check"
+              - figure "260804" [ref=e297]:
+                - img "평가 샌드박스에서 패키지 프록시, 인터넷, 데이터 처리 서버, 방어 분석으로 이어지는 추상적 흐름도" [ref=e298]
+          - article [ref=e300]:
+            - 'link "게시글 번호 자동차 260803 출처 15개 👁 조회수 15 Tesla Model Y L 6,499만원 출고 결정 현재가 대비 800만원의 가격 잠금, 6인승 효용, 보조금·금융·감가·인도 품질을 출고와 미출고 기준으로 분석했습니다. #tesla #model-y-l #purchase-decision 260803" [ref=e301] [cursor=pointer]':
+              - /url: ../reports/260803-tesla-model-y-l-delivery-decision.html
+              - generic "게시글 번호" [ref=e302]: "010"
+              - generic [ref=e303]:
+                - generic [ref=e304]:
+                  - generic [ref=e305]: 자동차
+                  - generic [ref=e306]: "260803"
+                  - generic [ref=e307]: 출처 15개
+                  - generic [ref=e308]: 👁 조회수 15
+                - heading "Tesla Model Y L 6,499만원 출고 결정" [level=2] [ref=e309]
+                - paragraph [ref=e310]: 현재가 대비 800만원의 가격 잠금, 6인승 효용, 보조금·금융·감가·인도 품질을 출고와 미출고 기준으로 분석했습니다.
+                - generic [ref=e311]:
+                  - generic [ref=e312]: "#tesla"
+                  - generic [ref=e313]: "#model-y-l"
+                  - generic [ref=e314]: "#purchase-decision"
+              - figure "260803" [ref=e315]:
+                - img "Tesla 공식 제품 페이지의 은색 Model Y L 측면 실제 제품사진" [ref=e316]
+          - article [ref=e318]:
+            - 'link "게시글 번호 AI 260803 출처 16개 👁 조회수 4 DeepSeek V4 Flash 비교 — 가격은 압도적, 선택은 업무별 V4 Flash는 대량 에이전트·코딩 초벌에서 비용 혁신 후보지만, 고위험 업무는 상위 모델 또는 사람의 교차 검수가 필요합니다. #deepseek #deepseek-v4-flash #gpt-5.6 260803" [ref=e319] [cursor=pointer]':
+              - /url: ../reports/260803-deepseek-v4-flash-comparison.html
+              - generic "게시글 번호" [ref=e320]: "009"
+              - generic [ref=e321]:
+                - generic [ref=e322]:
+                  - generic [ref=e323]: AI
+                  - generic [ref=e324]: "260803"
+                  - generic [ref=e325]: 출처 16개
+                  - generic [ref=e326]: 👁 조회수 4
+                - heading "DeepSeek V4 Flash 비교 — 가격은 압도적, 선택은 업무별" [level=2] [ref=e327]
+                - paragraph [ref=e328]: V4 Flash는 대량 에이전트·코딩 초벌에서 비용 혁신 후보지만, 고위험 업무는 상위 모델 또는 사람의 교차 검수가 필요합니다.
+                - generic [ref=e329]:
+                  - generic [ref=e330]: "#deepseek"
+                  - generic [ref=e331]: "#deepseek-v4-flash"
+                  - generic [ref=e332]: "#gpt-5.6"
+              - figure "260803" [ref=e333]:
+                - img "DeepSeek V4 Flash와 V4 Pro, GPT-5.6 Luna·Terra, Claude Sonnet 5의 API 가격과 컨텍스트 비교 인포그래픽" [ref=e334]
+          - text: 👁 👁 👁 👁 👁 👁 👁 👁
+        - navigation "보고서 페이지 이동" [ref=e336]:
+          - button "이전" [disabled] [ref=e337]
+          - button "1" [ref=e338] [cursor=pointer]
+          - button "2" [ref=e339] [cursor=pointer]
+          - button "다음" [ref=e340] [cursor=pointer]
+    - generic [ref=e341]:
+      - generic [ref=e342]: Jeremy's AI Report Library
+      - link "blog.naver.com/jeremylee0213" [ref=e343] [cursor=pointer]:
+        - /url: https://blog.naver.com/jeremylee0213
