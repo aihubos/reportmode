@@ -57,7 +57,7 @@ function enhance(file) {
   if (!html.includes("report-home-button")) {
     html = html.replace(bodyTag, `${bodyTag}\n  <a class="report-home-button" href="${archiveHref}" aria-label="보고서 도서관 메인으로 이동">🏠 메인</a>`);
   }
-  const layoutScript = `${prefix}/assets/report-page-layout.js?v=20260807-controls`;
+  const layoutScript = `${prefix}/assets/report-page-layout.js?v=20260807-inputfix`;
   if (!html.includes("report-page-layout.js")) {
     html = html.replace("</body>", `  <script src="${layoutScript}"></script>\n</body>`);
   } else {

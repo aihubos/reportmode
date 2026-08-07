@@ -64,7 +64,7 @@
     comments.className = "report-comments";
     comments.id = "reportComments";
     comments.setAttribute("aria-label", "보고서 댓글");
-    comments.innerHTML = '<div class="report-comments-shell"><div class="report-comments-head"><div><h2>이 보고서는 어떠셨나요?</h2><p>주제에 대한 의견과 다음 질문을 남겨 주세요.</p></div></div><form class="report-comment-form"><input name="author" maxlength="24" placeholder="이름 (선택)"><input name="password" type="password" minlength="4" required placeholder="삭제 비밀번호"><textarea name="content" minlength="2" maxlength="500" required placeholder="댓글을 남겨 주세요. 작성한 댓글은 비밀번호로 삭제할 수 있습니다."></textarea><button type="submit">댓글 남기기</button><p class="report-comment-notice" role="status"></p></form><div class="report-comment-list"><div class="report-comment-empty">댓글을 불러오는 중입니다.</div></div></div>';
+    comments.innerHTML = '<div class="report-comments-shell"><div class="report-comments-head"><div><h2>이 보고서는 어떠셨나요?</h2><p>주제에 대한 의견과 다음 질문을 남겨 주세요.</p></div></div><form class="report-comment-form" novalidate><input name="author" maxlength="24" placeholder="이름 (선택)"><input name="password" type="password" minlength="4" required placeholder="삭제 비밀번호"><textarea name="content" minlength="2" maxlength="500" required placeholder="댓글을 남겨 주세요. 작성한 댓글은 비밀번호로 삭제할 수 있습니다."></textarea><button type="submit">댓글 남기기</button><p class="report-comment-notice" role="status"></p></form><div class="report-comment-list"><div class="report-comment-empty">댓글을 불러오는 중입니다.</div></div></div>';
     var main = document.querySelector("main");
     if (main) main.insertAdjacentElement("afterend", comments);
     else document.body.appendChild(comments);
@@ -74,6 +74,18 @@
     var list = comments.querySelector(".report-comment-list");
     var notice = comments.querySelector(".report-comment-notice");
     var submit = form.querySelector("button[type=submit]");
+    var authorInput = form.querySelector('[name="author"]');
+    var passwordInput = form.querySelector('[name="password"]');
+    var contentInput = form.querySelector('[name="content"]');
+    [passwordInput, contentInput].forEach(function (input) {
+      input.addEventListener("input", function () {
+        input.removeAttribute("aria-invalid");
+        if (notice.dataset.validation === "true") {
+          notice.textContent = "";
+          delete notice.dataset.validation;
+        }
+      });
+    });
     function formatDate(value) { var date = new Date(value); return Number.isNaN(date.getTime()) ? "방금 전" : date.toLocaleDateString("ko-KR", { month: "numeric", day: "numeric" }); }
     function render(items) {
       list.replaceChildren();
@@ -103,8 +115,28 @@
         .catch(function () { list.innerHTML = '<div class="report-comment-empty">댓글을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.</div>'; });
     }
     form.addEventListener("submit", function (event) {
-      event.preventDefault(); submit.disabled = true; notice.textContent = "등록 중입니다…";
-      fetch(api, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ reportId: reportId, author: form.author.value, password: form.password.value, content: form.content.value }) })
+      event.preventDefault();
+      var contentValue = contentInput.value.trim();
+      var passwordValue = passwordInput.value;
+      if (contentValue.length < 2) {
+        contentInput.setAttribute("aria-invalid", "true");
+        notice.dataset.validation = "true";
+        notice.textContent = "댓글을 2글자 이상 적어 주세요.";
+        contentInput.focus();
+        return;
+      }
+      if (passwordValue.length < 4) {
+        passwordInput.setAttribute("aria-invalid", "true");
+        notice.dataset.validation = "true";
+        notice.textContent = "삭제 비밀번호를 4글자 이상 적어 주세요.";
+        passwordInput.focus();
+        return;
+      }
+      contentInput.removeAttribute("aria-invalid");
+      passwordInput.removeAttribute("aria-invalid");
+      delete notice.dataset.validation;
+      submit.disabled = true; notice.textContent = "등록 중입니다…";
+      fetch(api, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ reportId: reportId, author: authorInput.value.trim(), password: passwordValue, content: contentValue }) })
         .then(function (response) { if (!response.ok) throw new Error("submit failed"); return response.json(); })
         .then(function () { form.reset(); notice.textContent = "댓글을 등록했습니다."; return load(); })
         .catch(function () { notice.textContent = "댓글을 등록하지 못했습니다. 입력 내용을 확인해 주세요."; })
