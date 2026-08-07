@@ -14,6 +14,16 @@
   body.report-a4-mode .wrap,
   body.report-a4-mode .report-section,
   body.report-a4-mode main { max-width: 100% !important; }
+  body.report-a4-mode { font-size: 11px; line-height: 1.50; }
+  body.report-a4-mode .hero { padding: 28px 0 24px; }
+  body.report-a4-mode .hero h1 { font-size: clamp(22px, 2.7vw, 34px) !important; }
+  body.report-a4-mode .hero .lede { font-size: 12px; }
+  body.report-a4-mode h2 { font-size: clamp(16px, 1.8vw, 22px) !important; }
+  body.report-a4-mode .section-head h2 { font-size: clamp(16px, 1.8vw, 22px) !important; }
+  body.report-a4-mode .verdict-line { font-size: clamp(10px, 1.0vw, 14px) !important; }
+  body.report-a4-mode .visual-hero figcaption { font-size: 9px; }
+  body.report-a4-mode .paper, body.report-a4-mode .callout { padding: 14px; font-size: 11px; }
+  body.report-a4-mode table { font-size: 10px; }
 }
 
 .report-home-button {
