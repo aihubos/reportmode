@@ -395,6 +395,39 @@ footer {
   padding: 0 4px !important; color: var(--archive-subtle); background: transparent; font-size: 12px;
 }
 .archive-footer a { color: var(--archive-blue-deep); font-weight: 700; text-decoration: none; }
+.request-board {
+  display: grid; grid-template-columns: minmax(0, .96fr) minmax(360px, 1.04fr); gap: 24px;
+  margin: 0 0 24px; padding: 30px 32px !important; overflow: hidden; position: relative;
+  border: 1px solid #d9e8fc; border-radius: 24px; color: #fff;
+  background: linear-gradient(128deg, #0d3479 0%, #1d66d5 52%, #47a0ff 100%);
+  box-shadow: 0 18px 38px rgba(30, 102, 213, .20);
+}
+.request-board::after { content: ""; position: absolute; right: -120px; bottom: -165px; width: 410px; height: 410px; border: 46px solid rgba(255,255,255,.10); border-radius: 50%; pointer-events: none; }
+.request-board-copy, .request-board-form, .request-board-feed { position: relative; z-index: 1; }
+.request-board-kicker { color: #dcecff; font-size: 11px; font-weight: 900; letter-spacing: .12em; }
+.request-board h2 { max-width: 11ch; margin: 12px 0; font-size: clamp(29px, 3vw, 42px); line-height: 1.1; letter-spacing: -.055em; }
+.request-board-copy p { max-width: 33rem; margin: 0; color: rgba(255,255,255,.82); font-size: 15px; line-height: 1.6; }
+.request-board-steps { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 23px; }
+.request-board-steps span { padding: 6px 10px; border: 1px solid rgba(255,255,255,.22); border-radius: 999px; background: rgba(3,20,57,.18); color: #fff; font-size: 12px; font-weight: 800; }
+.request-board-form { display: grid; align-content: start; gap: 10px; padding: 20px; border: 1px solid rgba(255,255,255,.25); border-radius: 18px; background: rgba(255,255,255,.12); backdrop-filter: blur(10px); }
+.request-board-form label { display: grid; gap: 6px; color: #fff; font-size: 12px; font-weight: 800; }
+.request-board-form input, .request-board-form textarea { width: 100%; padding: 12px 13px; border: 1px solid rgba(255,255,255,.22); border-radius: 12px; outline: 0; color: var(--archive-ink); background: #fff; font: inherit; font-size: 14px; resize: vertical; }
+.request-board-form input:focus, .request-board-form textarea:focus { box-shadow: 0 0 0 4px rgba(255,255,255,.25); }
+.request-board-form textarea { min-height: 76px; }
+.request-board-submit { min-height: 44px; border: 0; border-radius: 12px; color: #0c4ba8; background: #fff; font: inherit; font-size: 14px; font-weight: 900; cursor: pointer; transition: transform .18s ease, background .18s ease; }
+.request-board-submit:hover { background: #eaf3ff; transform: translateY(-1px); }
+.request-board-submit:disabled { cursor: wait; opacity: .68; transform: none; }
+.request-board-status { min-height: 18px; margin: 0; color: #e4efff; font-size: 12px; font-weight: 700; }
+.request-board-feed { grid-column: 1 / -1; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.20); }
+.request-board-feed-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 11px; }
+.request-board-feed-head strong { font-size: 14px; }
+.request-board-feed-head span { color: #dcecff; font-size: 12px; }
+.request-board-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.request-board-item { min-height: 92px; padding: 14px; border: 1px solid rgba(255,255,255,.19); border-radius: 14px; background: rgba(3,20,57,.16); }
+.request-board-item strong { display: block; overflow: hidden; font-size: 14px; line-height: 1.35; text-overflow: ellipsis; white-space: nowrap; }
+.request-board-item p { display: -webkit-box; min-height: 32px; margin: 6px 0 0; overflow: hidden; color: rgba(255,255,255,.76); font-size: 12px; line-height: 1.35; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.request-board-item time { display: block; margin-top: 8px; color: #c8deff; font-size: 11px; font-weight: 700; }
+.request-board-empty { grid-column: 1 / -1; padding: 16px; border: 1px dashed rgba(255,255,255,.36); border-radius: 14px; color: #e4efff; font-size: 13px; text-align: center; }
 @media (max-width: 860px) {
   .verdict-grid, .duo, .checks, .metrics { grid-template-columns: 1fr 1fr; }
   .metrics { grid-template-columns: 1fr 1fr; }
@@ -408,6 +441,8 @@ footer {
   .archive-mobile-categories::-webkit-scrollbar { display: none; }
   .archive-mobile-categories .archive-category { width: auto; min-width: max-content; padding: 0 14px; border: 1px solid var(--archive-line); border-radius: 999px; }
   .archive-mobile-categories .archive-category b { margin-left: 5px; }
+  .request-board { grid-template-columns: 1fr; }
+  .request-board-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 640px) {
   .nav-links a:not(:last-child) { display: none; }
@@ -448,6 +483,9 @@ footer {
   .archive-page-button { min-width: 32px; height: 34px; font-size: 12px; }
   .archive-page-button.is-wide { padding: 0 9px; }
   .archive-footer { display: grid; margin-bottom: 26px; }
+  .request-board { gap: 18px; margin-bottom: 14px; padding: 24px 20px !important; border-radius: 20px; }
+  .request-board h2 { font-size: 31px; }
+  .request-board-list { grid-template-columns: 1fr; }
 }
 @media print {
   .nav { display: none; }
@@ -464,7 +502,7 @@ footer {
 <body class="archive-page">
   <header class="archive-topbar">
     <div class="archive-topbar-inner">
-      <a class="archive-brand" href="../" aria-label="Jeremy's AI Report 홈">
+      <a class="archive-brand" href="./" aria-label="Jeremy's AI Report 도서관 홈">
         <span class="archive-brand-mark">R</span>
         <span>Jeremy's AI Report</span>
       </a>
@@ -472,7 +510,6 @@ footer {
         <a class="is-current" href="./">보고서 도서관</a>
         <a href="upload.html">📤 업로드</a>
         <a href="https://blog.naver.com/jeremylee0213" target="_blank" rel="noopener">Jeremy's Blog</a>
-        <a href="../">스킬 만들기</a>
       </nav>
     </div>
   </header>
@@ -491,6 +528,25 @@ footer {
         </div>
       </div>
       <a class="archive-primary-action archive-blog-action" href="https://blog.naver.com/jeremylee0213" target="_blank" rel="noopener"><span class="archive-blog-mark">N</span><span><b>Jeremy's Blog</b><small>blog.naver.com/jeremylee0213</small></span><i aria-hidden="true">↗</i></a>
+    </section>
+
+    <section class="request-board" aria-labelledby="request-board-title">
+      <div class="request-board-copy">
+        <div class="request-board-kicker">REPORT WISHLIST</div>
+        <h2 id="request-board-title">다음 리포트,<br>무엇이 궁금하신가요?</h2>
+        <p>원하는 기업·제품·이슈를 남겨 주세요. 검토할 가치가 있는 주제는 다음 리포트 후보로 반영합니다.</p>
+        <div class="request-board-steps"><span>로그인 없이 작성</span><span>주제 제안</span><span>리포트 후보 검토</span></div>
+      </div>
+      <form class="request-board-form" id="requestBoardForm">
+        <label>원하는 리포트 주제<input id="requestTopic" name="topic" minlength="4" maxlength="80" required placeholder="예: 엔비디아 실적과 경쟁력 분석"></label>
+        <label>궁금한 점 (선택)<textarea id="requestContext" name="context" maxlength="300" placeholder="비교하고 싶은 기업, 판단에 필요한 기준을 적어 주세요."></textarea></label>
+        <button class="request-board-submit" type="submit">리포트 희망 남기기 →</button>
+        <p class="request-board-status" id="requestBoardStatus" role="status"></p>
+      </form>
+      <div class="request-board-feed" aria-live="polite">
+        <div class="request-board-feed-head"><strong>최근 희망 리포트</strong><span id="requestBoardCount">불러오는 중</span></div>
+        <div class="request-board-list" id="requestBoardList"><div class="request-board-empty">아직 제안된 주제가 없습니다. 첫 번째 주제를 남겨 주세요.</div></div>
+      </div>
     </section>
 
     <div class="archive-layout">
@@ -1157,6 +1213,50 @@ footer {
       });
     });
     render(false);
+  })();
+  </script>
+  <script>
+  (function () {
+    var API = "https://reportmode-request-board.report-request-board.workers.dev/requests";
+    var form = document.getElementById("requestBoardForm");
+    var topic = document.getElementById("requestTopic");
+    var context = document.getElementById("requestContext");
+    var list = document.getElementById("requestBoardList");
+    var status = document.getElementById("requestBoardStatus");
+    var count = document.getElementById("requestBoardCount");
+    var submit = form.querySelector("button[type=submit]");
+
+    function formatDate(value) {
+      var date = new Date(value);
+      return Number.isNaN(date.getTime()) ? "방금 등록" : date.toLocaleDateString("ko-KR", { month: "numeric", day: "numeric" }) + " 제안";
+    }
+    function render(items) {
+      list.replaceChildren();
+      count.textContent = items.length ? "최근 " + items.length + "건" : "아직 제안 없음";
+      if (!items.length) {
+        var empty = document.createElement("div"); empty.className = "request-board-empty"; empty.textContent = "아직 제안된 주제가 없습니다. 첫 번째 주제를 남겨 주세요."; list.appendChild(empty); return;
+      }
+      items.forEach(function (item) {
+        var card = document.createElement("article"); card.className = "request-board-item";
+        var title = document.createElement("strong"); title.textContent = item.topic;
+        var detail = document.createElement("p"); detail.textContent = item.context || "궁금한 분석 주제를 제안했습니다.";
+        var time = document.createElement("time"); time.dateTime = item.created_at; time.textContent = formatDate(item.created_at);
+        card.append(title, detail, time); list.appendChild(card);
+      });
+    }
+    function load() {
+      return fetch(API, { cache: "no-store" }).then(function (response) { if (!response.ok) throw new Error("load failed"); return response.json(); }).then(function (data) { render(Array.isArray(data.requests) ? data.requests : []); }).catch(function () { count.textContent = "연결을 다시 시도해 주세요"; });
+    }
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      status.textContent = "등록 중입니다…"; submit.disabled = true;
+      fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ topic: topic.value, context: context.value }) })
+        .then(function (response) { if (!response.ok) throw new Error("submit failed"); return response.json(); })
+        .then(function () { form.reset(); status.textContent = "희망 리포트를 등록했습니다. 감사합니다!"; return load(); })
+        .catch(function () { status.textContent = "등록하지 못했습니다. 잠시 후 다시 시도해 주세요."; })
+        .finally(function () { submit.disabled = false; });
+    });
+    load();
   })();
   </script>
 </body>
