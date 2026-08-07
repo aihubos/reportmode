@@ -15,83 +15,7 @@
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.floating-action,.pdf-save-button{transition:none}.floating-action:before,.pdf-save-button:before{animation:none;display:none}}
     @page{size:A4 portrait;margin:18mm 14mm 20mm;@bottom-left{content:"학원 자동화 — Hermes × Obsidian × LLM Wiki · Jeremy's AI Report";font:600 6.5pt/1.2 var(--sans);color:#66717e}@bottom-center{content:"2026.08.04 · github.com/aihubos";font:600 6.5pt/1.2 var(--sans);color:#66717e}@bottom-right{content:counter(page) " / " counter(pages);font:800 7pt/1.2 var(--sans);color:#185abc}}
     @media print{.nav,.floating-menu{display:none!important}html{print-color-adjust:exact;-webkit-print-color-adjust:exact}body{background:#fff;font-size:10.5pt;line-height:1.55;padding-bottom:0}.top-conclusion{margin:12px 0 0}.top-conclusion-card{box-shadow:none;break-inside:avoid}.verdict-line{font-size:15pt}.highlight-sweep{-webkit-print-color-adjust:exact;print-color-adjust:exact}.hero{padding:18px 0 24px}.hero h1{font-size:34pt}.hero .lede{font-size:15pt}.wrap{width:100%;max-width:none}.paper,.callout,.visual-hero,.reaction-card{box-shadow:none;break-inside:avoid}.section-head h2,h2,h3{break-after:avoid-page}.visual-hero img{max-height:230mm;object-fit:contain}p,li{orphans:3;widows:3}main section{padding:20px 0}.table-wrap{overflow:visible}table{font-size:8.5pt}thead{display:table-header-group}tr,img,figure{break-inside:avoid}.sources{overflow:visible;border:0}.sources thead,.sources tbody{min-width:0;font-size:6.8pt}.sources th,.sources td{padding:5px 6px;line-height:1.35;overflow-wrap:anywhere}.source-section{break-before:page}.source-section>.source-content{display:block!important}.sources-summary{display:none}.reaction-card{box-shadow:none;break-inside:avoid}.source-section a{color:#000;text-decoration:none}}
-  
-[aria-label="가로 또는 세로"]::before { display: none !important; }
-/* ── A4 Portrait Display (toggle) ── */
-@media screen {
-  body.report-a4-mode { max-width: 210mm; margin: 24px auto !important; background: #fff !important; box-shadow: 0 2px 24px rgba(0,0,0,.12); border-radius: 4px; padding: 0 !important; }
-  body.report-a4-mode .wrap, body.report-a4-mode .report-section, body.report-a4-mode main { max-width: 100% !important; }
-  @media (max-width: 218mm) {
-    body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
-  }
-}
-
-/* ── Floating menu right-side ── */
-.floating-menu {
-  position: fixed !important;
-  right: max(16px, calc((100vw - 1120px) / 2 - 160px)) !important;
-  top: 140px !important;
-  left: auto !important;
-  bottom: auto !important;
-  width: 142px !important;
-  max-width: 142px !important;
-  z-index: 30;
-}
-@media(max-width:1439px) {
-  .floating-menu {
-    right: 10px !important;
-    top: auto !important;
-    bottom: 14px !important;
-    left: 10px !important;
-    width: auto !important;
-    max-width: none !important;
-  }
-}
-
-</style>
-  <style id="report-view-v4-style">
-    :root{--max:1120px;--apple-blue:#007aff;--apple-gray:rgba(118,118,128,.16)}
-    .report-view-switcher{position:sticky;top:58px;z-index:35;border-bottom:1px solid rgba(0,122,255,.13);background:rgba(247,248,250,.88);-webkit-ba
-/* ── Layout toggle fix ── */
-.report-view-switcher-inner {
-  display: flex !important;
-  flex-wrap: wrap;
-  align-items: center !important;
-  gap: 8px !important;
-  min-height: 48px !important;
-  padding: 6px 0 !important;
-}
-[aria-label="가로 또는 세로"],
-[aria-label="간단 또는 상세 보기"] {
-  width: auto !important;
-  min-width: 90px !important;
-  max-width: 110px !important;
-}
-[aria-label="가로 또는 세로"] .report-view-button,
-[aria-label="간단 또는 상세 보기"] .report-view-button {
-  min-height: 32px !important;
-  padding: 4px 10px !important;
-  font-size: 12px !important;
-}
-.report-view-label {
-  font-size: 10px !important;
-  white-space: nowrap;
-  margin: 0 2px !important;
-}
-.report-utility-controls {
-  margin-left: auto !important;
-  width: 140px !important;
-  flex-shrink: 0;
-}
-@media(max-width:700px) {
-  .report-view-switcher-inner {
-    justify-content: center !important;
-    gap: 6px !important;
-  }
-  .report-utility-controls { width: 120px !important; }
-}
-
-</style>
+  </style>
   <style id="report-view-v4-style">
     :root{--max:1120px;--apple-blue:#007aff;--apple-gray:rgba(118,118,128,.16)}
     .report-view-switcher{position:sticky;top:58px;z-index:35;border-bottom:1px solid rgba(0,122,255,.13);background:rgba(247,248,250,.88);-webkit-backdrop-filter:saturate(180%) blur(22px);backdrop-filter:saturate(180%) blur(22px)}
@@ -113,69 +37,13 @@
     @media(max-width:700px){.report-view-switcher-inner{min-height:78px;grid-template-columns:minmax(0,1fr) 132px;gap:10px}.report-view-label{display:none}.report-view-buttons{min-height:62px;padding:6px}.report-view-buttons::before{left:6px;top:6px;bottom:6px;width:calc((100% - 12px)/2)}.report-view-button{min-height:50px;padding:8px 6px;font-size:17px}.report-utility-controls{width:132px}.report-utility-controls .pdf-save-button,.report-utility-controls .share-report-button{min-height:44px;padding:7px 5px;font-size:11px}.simple-report{padding:10px 0 46px}.simple-overview{padding:20px 12px}.simple-overview h2{font-size:28px}.simple-summary-content{gap:16px}.simple-slide{min-height:0;padding:24px 18px 72px;border-radius:18px}.simple-slide-head{gap:10px}.simple-slide-title{font-size:29px}.simple-slide-number{min-width:46px;height:34px}.simple-visual-grid,.simple-decision-grid{grid-template-columns:1fr}.simple-product-photo{min-height:210px}.simple-metric-strip{grid-template-columns:1fr}.simple-bar-row{grid-template-columns:86px 1fr 62px;gap:8px}.simple-flow{display:grid}.simple-flow-step+.simple-flow-step::before{content:"↓";left:50%;top:-12px;transform:translateX(-50%)}.simple-slide-footer{left:18px;right:18px;bottom:18px}.doodle-frame>.doodle-brand-logo{right:10px;top:10px;width:86px;padding:6px 8px}}
     @media(prefers-reduced-motion:reduce){.report-view-buttons::before,.report-view-button,.simple-detail-button{transition:none!important}}
     @media print{.report-view-switcher,.report-utility-controls{display:none!important}body[data-report-view="simple"] .hero,body[data-report-view="simple"] .detail-report,body[data-report-view="simple"] #sources{display:none!important}body[data-report-view="simple"] .simple-report{display:block!important;padding:0;break-before:auto;page-break-before:auto}body[data-report-view="simple"] .simple-overview{padding:0;border:0;box-shadow:none}body[data-report-view="simple"] .simple-overview>.eyebrow,body[data-report-view="simple"] .simple-overview>h2,body[data-report-view="simple"] .simple-detail-button{display:none!important}body[data-report-view="simple"] .simple-summary-content{display:block}body[data-report-view="simple"] .simple-slide{height:252mm;min-height:0;margin:0;padding:9mm 9mm 14mm;border:0;border-radius:0;box-shadow:none;break-inside:avoid;break-after:page;page-break-after:always}body[data-report-view="simple"] .simple-slide:last-child{break-after:auto;page-break-after:auto}body[data-report-view="simple"] .simple-slide::before{height:2mm}body[data-report-view="simple"] .simple-slide-title{font-size:23pt}body[data-report-view="simple"] .simple-slide-head{margin-bottom:5mm}body[data-report-view="simple"] .simple-product-photo{min-height:0;height:88mm;max-height:88mm}body[data-report-view="simple"] .simple-infographic-image{height:72mm;max-height:72mm;object-fit:contain}body[data-report-view="simple"] .simple-verdict{padding:4mm 5mm;font-size:17pt}body[data-report-view="simple"] .simple-metric-strip{gap:3mm;margin-top:4mm}body[data-report-view="simple"] .simple-metric-card{padding:4mm}body[data-report-view="simple"] .simple-metric-card b{font-size:20pt}body[data-report-view="simple"] .simple-metric-card span,body[data-report-view="simple"] .simple-bar-row,body[data-report-view="simple"] .simple-flow-step,body[data-report-view="simple"] .simple-slide-note{font-size:8.5pt}body[data-report-view="simple"] .simple-decision-card{padding:4mm}body[data-report-view="simple"] .simple-decision-card h3{font-size:13pt}body[data-report-view="simple"] .simple-slide-footer{left:9mm;right:9mm;bottom:5mm}body[data-report-view="detail"] .simple-report{display:none!important}body[data-report-view="detail"] .detail-report{display:block!important}}
-  
-[aria-label="가로 또는 세로"]::before { display: none !important; }
-/* ── A4 Portrait Display (toggle) ── */
-@media screen {
-  body.report-a4-mode { max-width: 210mm; margin: 24px auto !important; background: #fff !important; box-shadow: 0 2px 24px rgba(0,0,0,.12); border-radius: 4px; padding: 0 !important; }
-  body.report-a4-mode .wrap, body.report-a4-mode .report-section, body.report-a4-mode main { max-width: 100% !important; }
-  @media (max-width: 218mm) {
-    body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
-  }
-}
-
-
-/* ── Layout toggle fix ── */
-.report-view-switcher-inner {
-  display: flex !important;
-  flex-wrap: wrap;
-  align-items: center !important;
-  gap: 8px !important;
-  min-height: 48px !important;
-  padding: 6px 0 !important;
-}
-[aria-label="가로 또는 세로"],
-[aria-label="간단 또는 상세 보기"] {
-  width: auto !important;
-  min-width: 90px !important;
-  max-width: 110px !important;
-}
-[aria-label="가로 또는 세로"] .report-view-button,
-[aria-label="간단 또는 상세 보기"] .report-view-button {
-  min-height: 32px !important;
-  padding: 4px 10px !important;
-  font-size: 12px !important;
-}
-.report-view-label {
-  font-size: 10px !important;
-  white-space: nowrap;
-  margin: 0 2px !important;
-}
-.report-utility-controls {
-  margin-left: auto !important;
-  width: 140px !important;
-  flex-shrink: 0;
-}
-@media(max-width:700px) {
-  .report-view-switcher-inner {
-    justify-content: center !important;
-    gap: 6px !important;
-  }
-  .report-utility-controls { width: 120px !important; }
-}
-
-</style>
+  </style>
+  <link rel="stylesheet" href="../assets/report-page-layout.css">
 </head>
-<body
-<a href="../archive/" style="position:fixed;top:8px;left:12px;z-index:50;background:rgba(17,17,17,.85);color:#fff;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;text-decoration:none;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.15);">🏠 메인</a>
- data-report-view="detail">
+<body class="report-a4-mode" data-report-layout="a4" data-report-view="detail">
+  <a class="report-home-button" href="../archive/" aria-label="보고서 도서관 메인으로 이동">🏠 메인</a>
   <nav class="nav" aria-label="보고서 탐색"><div class="wrap nav-inner"><a class="brand" href="../archive/">RM · Report Mode</a><div class="nav-links"><a href="#summary">요약</a><a href="#comparison">비교</a><a href="#decision">판단</a><a href="#sources">출처</a></div></div></nav>
-  <section class="report-view-switcher" aria-label="보고서 보기 방식"><div class="wrap report-view-switcher-inner"><span class="report-view-label">레이아웃</span>
-<div class="report-view-buttons" role="group" aria-label="가로 또는 세로" style="min-width:120px;">
-<button class="report-view-button" type="button" data-layout="wide">가로</button>
-<button class="report-view-button is-active" type="button" data-layout="a4">세로</button>
-</div>
-<span class="report-view-label">보기</span><div class="report-view-buttons" role="group" aria-label="간단 또는 상세 보기"><button class="report-view-button" type="button" data-report-view-target="simple" aria-pressed="false">간단</button><button class="report-view-button is-active" type="button" data-report-view-target="detail" aria-pressed="true">상세</button></div><div class="report-utility-controls" aria-label="보고서 저장 및 공유 도구"><a id="report-pdf-button" class="pdf-save-button" href="assets/260804-academy-automation-hermes-obsidian-llm-wiki/detail.pdf" download="260804-academy-automation-hermes-obsidian-llm-wiki-detail.pdf" data-simple-url="assets/260804-academy-automation-hermes-obsidian-llm-wiki/summary.pdf" data-simple-filename="260804-academy-automation-hermes-obsidian-llm-wiki-summary.pdf" data-detail-url="assets/260804-academy-automation-hermes-obsidian-llm-wiki/detail.pdf" data-detail-filename="260804-academy-automation-hermes-obsidian-llm-wiki-detail.pdf" aria-label="상세 보고서 PDF 파일 바로 저장">PDF 저장</a><button id="report-share-button" class="share-report-button" type="button" aria-label="현재 보고서 링크 공유">공유하기</button></div></div></section>
+  <section class="report-view-switcher" aria-label="보고서 보기 방식"><div class="wrap report-view-switcher-inner"><span class="report-view-label">보고서 보기</span><div class="report-view-buttons" role="group" aria-label="간단 또는 상세 보기"><button class="report-view-button" type="button" data-report-view-target="simple" aria-pressed="false">간단</button><button class="report-view-button is-active" type="button" data-report-view-target="detail" aria-pressed="true">상세</button></div><div class="report-utility-controls" aria-label="보고서 저장 및 공유 도구"><a id="report-pdf-button" class="pdf-save-button" href="assets/260804-academy-automation-hermes-obsidian-llm-wiki/detail.pdf" download="260804-academy-automation-hermes-obsidian-llm-wiki-detail.pdf" data-simple-url="assets/260804-academy-automation-hermes-obsidian-llm-wiki/summary.pdf" data-simple-filename="260804-academy-automation-hermes-obsidian-llm-wiki-summary.pdf" data-detail-url="assets/260804-academy-automation-hermes-obsidian-llm-wiki/detail.pdf" data-detail-filename="260804-academy-automation-hermes-obsidian-llm-wiki-detail.pdf" aria-label="상세 보고서 PDF 파일 바로 저장">PDF 저장</a><button id="report-share-button" class="share-report-button" type="button" aria-label="현재 보고서 링크 공유">공유하기</button></div></div></section>
   <nav class="floating-menu" aria-label="보고서 바로가기"><a class="floating-action" href="#summary">세 도구 역할 이해</a><a class="floating-action" href="#decision">상담 자동화 시작</a><a class="floating-action" href="#architecture">Wiki 폴더 구조</a><a class="floating-action" href="#backlog">자동화 7개 순서</a><a class="floating-action" href="#privacy">개인정보 안전선</a><a class="floating-action" href="#roadmap">1·4·12주 실행안</a><a class="floating-action" href="#sources">근거·출처 전체</a></nav>
   <header class="hero"><div class="wrap"><div class="kicker">260804 · ACADEMY OPERATIONS</div><h1><span>비전공자를 위한</span><span>학원 자동화</span><span>실행 설계</span></h1>
     <section id="report-top" class="top-conclusion" aria-labelledby="top-conclusion-title"><div class="top-conclusion-card">
@@ -184,9 +52,7 @@
       <p class="verdict-line"><span class="verdict-num">02</span><span class="verdict-text"><strong>구조</strong> Hermes는 처리하고, Obsidian은 기록하며, <mark class="highlight-sweep">LLM Wiki는 규칙과 이력</mark>을 연결합니다.</span></p>
       <p class="verdict-line"><span class="verdict-num">03</span><span class="verdict-text"><strong>경계</strong> 학생정보는 최소화하고 <mark class="highlight-sweep">저장·발송·결정은 사람 승인</mark> 뒤에 둡니다.</span></p>
     </div></section>
-    <p class="lede">복잡한 학원 프로그램을 새로 만드는 보고서가 아닙니다. 지금 쓰는 상담 메모 한 건을 더 빠르고 빠짐없이 정리하는 최소 버전부터, 개인정보와 팀 운영까지 단계별로 설명합니다.</p><div class="meta"><span class="chip"><strong>260804</strong> · 표준 심층</span><span class="chip">2026.08.04 KST</span><span class="chip">공식·공공·원저자·학술·공개 반응 14묶음 · 기준일 2026.08.04</span></div></div>
-
-</header>
+    <p class="lede">복잡한 학원 프로그램을 새로 만드는 보고서가 아닙니다. 지금 쓰는 상담 메모 한 건을 더 빠르고 빠짐없이 정리하는 최소 버전부터, 개인정보와 팀 운영까지 단계별로 설명합니다.</p><div class="meta"><span class="chip"><strong>260804</strong> · 표준 심층</span><span class="chip">2026.08.04 KST</span><span class="chip">공식·공공·원저자·학술·공개 반응 14묶음 · 기준일 2026.08.04</span></div></div></header>
   <section id="simple-report" class="simple-report" data-simple-pages="2" aria-labelledby="simple-report-title"><div class="wrap"><div class="simple-overview"><div class="eyebrow">TWO VISUAL SUMMARY SHEETS</div><h2 id="simple-report-title">도표·인포그래픽 요약 장표 2장</h2><div class="simple-summary-content">
 <article class="simple-slide simple-slide-1">
   <div class="simple-slide-head"><div><span class="simple-slide-kicker">SYSTEM MAP · 1 / 2</span><h3 class="simple-slide-title">세 도구가 아니라 한 업무 흐름입니다</h3></div><span class="simple-slide-number">01</span></div>
@@ -210,57 +76,6 @@
 @media(max-width:860px){.role-grid,.priority-grid,.risk-grid,.roadmap-grid,.glossary-grid{grid-template-columns:1fr 1fr}.flow-lane{grid-template-columns:1fr 1fr}.flow-node+.flow-node:before{display:none}}
 @media(max-width:520px){pre{max-width:100%;overflow-x:auto;white-space:pre-wrap;word-break:break-word}pre code{display:block;max-width:100%;white-space:inherit;overflow-wrap:anywhere}.role-grid,.priority-grid,.risk-grid,.roadmap-grid,.glossary-grid,.simple-tool-grid,.simple-steps,.simple-stop{grid-template-columns:1fr}.flow-lane{grid-template-columns:1fr}.visual-hero figcaption{display:block}}
 @media print{.role-card,.priority-card,.risk-card,.roadmap-card,.glossary-grid article{break-inside:avoid}.flow-lane{grid-template-columns:repeat(3,1fr)}.reaction-grid{grid-template-columns:repeat(2,1fr)}}
-
-[aria-label="가로 또는 세로"]::before { display: none !important; }
-/* ── A4 Portrait Display (toggle) ── */
-@media screen {
-  body.report-a4-mode { max-width: 210mm; margin: 24px auto !important; background: #fff !important; box-shadow: 0 2px 24px rgba(0,0,0,.12); border-radius: 4px; padding: 0 !important; }
-  body.report-a4-mode .wrap, body.report-a4-mode .report-section, body.report-a4-mode main { max-width: 100% !important; }
-  @media (max-width: 218mm) {
-    body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
-  }
-}
-
-
-/* ── Layout toggle fix ── */
-.report-view-switcher-inner {
-  display: flex !important;
-  flex-wrap: wrap;
-  align-items: center !important;
-  gap: 8px !important;
-  min-height: 48px !important;
-  padding: 6px 0 !important;
-}
-[aria-label="가로 또는 세로"],
-[aria-label="간단 또는 상세 보기"] {
-  width: auto !important;
-  min-width: 90px !important;
-  max-width: 110px !important;
-}
-[aria-label="가로 또는 세로"] .report-view-button,
-[aria-label="간단 또는 상세 보기"] .report-view-button {
-  min-height: 32px !important;
-  padding: 4px 10px !important;
-  font-size: 12px !important;
-}
-.report-view-label {
-  font-size: 10px !important;
-  white-space: nowrap;
-  margin: 0 2px !important;
-}
-.report-utility-controls {
-  margin-left: auto !important;
-  width: 140px !important;
-  flex-shrink: 0;
-}
-@media(max-width:700px) {
-  .report-view-switcher-inner {
-    justify-content: center !important;
-    gap: 6px !important;
-  }
-  .report-utility-controls { width: 120px !important; }
-}
-
 </style><figure class="visual-hero"><div class="doodle-frame"><img src="assets/260804-academy-automation-hermes-obsidian-llm-wiki/academy-automation-doodle.png" alt="상담 메모를 Hermes가 정리하고 Obsidian과 LLM Wiki에 연결한 뒤 학원 운영자가 최종 검수하는 화이트보드 두들"></div><figcaption id="visual-title"><b>AI 생성 인포그래픽 · 공식 제품 이미지 아님</b><span>공식 로고 대신 텍스트 이름만 사용 · 자동 발송 없는 인간 검수형 흐름</span></figcaption></figure></div></section>
     <section id="summary"><div class="wrap"><div class="section-head"><h2>세 도구를 합치면 무엇이 달라지나</h2><p>각 제품보다 역할 분담을 먼저 이해하면 구현이 단순해집니다.</p></div><div class="paper">
 <div class="key-answer"><span class="eyebrow">한 문장 판단</span><p><strong>가장 빠르고 안전한 시작은 상담 메모 한 건을 ‘검수 가능한 초안’으로 바꾸는 것</strong>입니다. Hermes가 정리하고, Obsidian이 기록하며, LLM Wiki가 학원 규칙과 과거 이력을 연결합니다. 최종 판단과 발송은 사람이 합니다.</p></div>
@@ -326,96 +141,6 @@
 <article class="reaction-card"><span class="reaction-badge concern">비판</span><h3>mpazik · GitHub Gist</h3><p>수백 페이지 이후에는 파일과 수동 index가 질의·구조 관리에서 한계를 보이므로 SQLite 같은 구조화 색인이 필요하다고 반론했습니다.</p><div class="reaction-meta"><span>2026-04-05 KST</span><a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f#comment-6079689" target="_blank" rel="noopener">원문</a></div></article>
 <article class="reaction-card"><span class="reaction-badge neutral">미결</span><h3>geetansharora · GitHub Gist</h3><p>개인 지식베이스를 팀과 어떻게 공유할지 질문했습니다. 팀 권한·동시 편집·개인정보가 원 제안만으로 해결되지 않음을 보여줍니다.</p><div class="reaction-meta"><span>2026-04-05 KST</span><a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f#comment-6078979" target="_blank" rel="noopener">원문</a></div></article></div><p class="reaction-note">온라인 의견은 대표 표본이며 전체 여론을 뜻하지 않습니다. 작성자·매체·게시일·원문 링크는 아래 전체 출처에 함께 기록했습니다.</p></div></section>
   </main>
-<!-- COMMENT WIDGET -->
-<div style="max-width:720px;margin:40px auto;padding:32px 28px;background:#fff;border:1px solid #e5e8eb;border-radius:18px;box-shadow:0 4px 16px rgba(0,0,0,.04);">
-  <h3 style="margin:0 0 6px;font-size:20px;color:#191f28;">💬 댓글</h3>
-  <p style="margin:0 0 20px;font-size:14px;color:#8b95a1;">로그인 없이 자유롭게 의견을 남겨주세요.</p>
-  <div id="comment-list" style="margin-bottom:20px;max-height:400px;overflow-y:auto;"></div>
-  <form id="comment-form" style="display:flex;flex-direction:column;gap:10px;" onsubmit="return submitComment(event)">
-    <input id="comment-name" type="text" placeholder="이름 (선택)" style="padding:10px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;max-width:240px;">
-    <textarea id="comment-body" rows="3" placeholder="댓글을 입력하세요..." required style="padding:12px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;resize:vertical;font-family:inherit;"></textarea>
-    <button type="submit" style="align-self:flex-end;padding:10px 24px;background:#3182f6;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;">등록</button>
-  </form>
-</div>
-<script>
-(function(){
-  var PAGE = window.location.pathname.replace(/\//g,'-').replace(/^-|-$/g,'') || 'index';
-  var STORAGE_KEY = 'comments-' + PAGE;
-    var list = document.getElementById('comment-list');
-  
-  function saveComments(comments) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(comments));
-  }
-  
-  function loadComments() {
-    var raw = localStorage.getItem(STORAGE_KEY);
-    var comments = raw ? JSON.parse(raw) : [];
-    list.innerHTML = comments.length === 0 
-      ? '<p style="color:#8b95a1;font-size:13px;text-align:center;padding:20px 0;">아직 댓글이 없습니다. 첫 댓글을 남겨보세요!</p>'
-      : comments.map(function(c,i){
-          var name = c.name || '익명';
-          var date = new Date(c.time).toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'});
-          return '<div style="padding:14px 0;border-bottom:1px solid #f0f0f0;" data-idx="'+i+'">'
-            + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">'
-            + '<div>'
-            + '<strong style="font-size:14px;color:#191f28;">' + escapeHtml(name) + '</strong>'
-            + '<span style="font-size:12px;color:#b0b8c1;margin-left:8px;">' + date + '</span>'
-            + '</div>'
-            + '<button onclick="deleteComment('+i+')" style="background:none;border:none;color:#ccc;cursor:pointer;font-size:12px;padding:2px 6px;" title="삭제">✕</button>'
-            + '</div>'
-            + '<p style="margin:0;font-size:14px;color:#4a5568;line-height:1.5;">' + escapeHtml(c.body) + '</p>'
-            + '</div>';
-        }).join('');
-  }
-  
-  function escapeHtml(text) {
-    var div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
-  
-  window.deleteComment = function(idx) {
-    var savedPw = localStorage.getItem(STORAGE_KEY + '-pw');
-    if (!savedPw) {
-      savedPw = prompt('관리자 비밀번호를 설정하세요 (댓글 삭제용):');
-      if (!savedPw) return;
-      localStorage.setItem(STORAGE_KEY + '-pw', savedPw);
-      alert('비밀번호가 설정되었습니다. 다시 삭제 버튼을 눌러주세요.');
-      return;
-    }
-    var pw = prompt('삭제 비밀번호를 입력하세요:');
-    if (pw !== savedPw) { alert('비밀번호가 틀렸습니다.'); return; }
-    if (!confirm('정말 삭제하시겠습니까?')) return;
-    var raw = localStorage.getItem(STORAGE_KEY);
-    var comments = raw ? JSON.parse(raw) : [];
-    comments.splice(idx, 1);
-    saveComments(comments);
-    loadComments();
-  };
-  
-  window.submitComment = function(e) {
-    e.preventDefault();
-    var nameEl = document.getElementById('comment-name');
-    var bodyEl = document.getElementById('comment-body');
-    var comment = {
-      name: nameEl.value.trim(),
-      body: bodyEl.value.trim(),
-      time: Date.now()
-    };
-    var raw = localStorage.getItem(STORAGE_KEY);
-    var comments = raw ? JSON.parse(raw) : [];
-    comments.unshift(comment);
-    saveComments(comments.slice(0, 100));
-    bodyEl.value = '';
-    nameEl.value = '';
-    loadComments();
-    return false;
-  };
-  
-  loadComments();
-})();
-</script>
-<!-- END COMMENT WIDGET -->
   <details id="sources" class="source-section"><summary class="wrap sources-summary"><span class="sources-summary-text">전체 출처</span><span class="sources-summary-hint"><span class="sources-toggle-closed">클릭하여 펼치기</span><span class="sources-toggle-open">접기</span></span></summary><div class="wrap source-content"><div class="section-head"><h2>전체 출처</h2><p>사실·분석·전망·루머·온라인 반응, 시각자료와 생성 이미지의 상태를 함께 기록했습니다.</p></div><table class="sources"><thead><tr><th>유형</th><th>자료명</th><th>제공자·저작자</th><th>원문</th><th>날짜</th><th>라이선스·상태</th><th>사용 범위</th></tr></thead><tbody><tr id="src-1"><td>공식 문서</td><td>Hermes Agent Documentation</td><td>Nous Research</td><td><a href="https://hermes-agent.nousresearch.com/docs/" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-04 확인</td><td>공식 원문</td><td>메모리·스킬·cron·도구·메신저 기능</td></tr><tr id="src-2"><td>공식 저장소</td><td>Hermes Agent README</td><td>Nous Research</td><td><a href="https://github.com/NousResearch/hermes-agent/blob/main/README.md" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-04 확인</td><td>공식 저장소 · MIT 코드</td><td>지원 채널·제품 구조 교차 확인</td></tr><tr id="src-3"><td>공식 도움말</td><td>How Obsidian stores data</td><td>Obsidian</td><td><a href="https://help.obsidian.md/Files+and+folders/How+Obsidian+stores+data" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-04 확인</td><td>공식 원문</td><td>로컬 plain-text vault·외부 파일 변경</td></tr><tr id="src-4"><td>공식 도움말</td><td>Internal links</td><td>Obsidian</td><td><a href="https://help.obsidian.md/Linking+notes+and+files/Internal+links" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-04 확인</td><td>공식 원문</td><td>Wikilink·Markdown 링크·연결 구조</td></tr><tr id="src-5"><td>원저자 원문</td><td>LLM Wiki — personal knowledge bases using LLMs</td><td>Andrej Karpathy</td><td><a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f" target="_blank" rel="noopener">원문 보기</a></td><td>2026-04-04</td><td>공개 Gist · 링크/짧은 인용</td><td>정의·3계층·ingest/query/lint·규모 주의</td></tr><tr id="src-6"><td>법령</td><td>개인정보 보호법</td><td>국가법령정보센터</td><td><a href="https://www.law.go.kr/법령/개인정보보호법" target="_blank" rel="noopener">원문 보기</a></td><td>2025-10-02 시행</td><td>한국 공식 법령</td><td>최소수집·위탁·파기·국외이전·안전조치</td></tr><tr id="src-7"><td>행정규칙</td><td>개인정보의 안전성 확보조치 기준</td><td>국가법령정보센터</td><td><a href="https://www.law.go.kr/행정규칙/개인정보의안전성확보조치기준" target="_blank" rel="noopener">원문 보기</a></td><td>2026-07-01 시행</td><td>한국 공식 고시</td><td>권한·계정·접속기록 등 안전조치</td></tr><tr id="src-8"><td>공식 보도자료</td><td>개인정보 처리방침 작성지침 개정</td><td>개인정보보호위원회</td><td><a href="https://www.pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS074&mCode=&nttId=12021" target="_blank" rel="noopener">원문 보기</a></td><td>2026-04-24</td><td>한국 공식 원문</td><td>생성형 AI 입력·결과·학습·거부·투명성 안내</td></tr><tr id="src-9"><td>공식 지침</td><td>2026 개인정보 처리방침 작성지침</td><td>개인정보 포털</td><td><a href="https://www.privacy.go.kr/front/bbs/bbsView.do?bbsNo=BBSMSTR_000000000049&bbscttNo=20885" target="_blank" rel="noopener">원문 보기</a></td><td>2026</td><td>한국 공식 안내서</td><td>처리방침 구체화 참고</td></tr><tr id="src-10"><td>공공 기술기준</td><td>AI Risk Management Framework</td><td>NIST</td><td><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">원문 보기</a></td><td>2023-01-26</td><td>미국 공공 원문</td><td>AI 위험관리·사람 책임 보완</td></tr><tr id="src-11"><td>학술논문</td><td>Humans and Automation: Use, Misuse, Disuse, Abuse</td><td>Parasuraman & Riley</td><td><a href="https://doi.org/10.1518/001872097778543886" target="_blank" rel="noopener">원문 보기</a></td><td>1997</td><td>동료심사 · DOI 확인</td><td>자동화 과신 일반 원칙; 세부 수치 미사용</td></tr><tr id="src-12"><td>공개 반응</td><td>LLM Wiki 댓글 4건</td><td>GitHub Gist 사용자</td><td><a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f" target="_blank" rel="noopener">원문 보기</a></td><td>2026-04-05 KST</td><td>공개 댓글 · 대표성 없음</td><td>긍정·유보·확장성·팀 공유 반응 표본</td></tr><tr id="src-13"><td>AI 생성 이미지</td><td>학원 자동화 화이트보드 인포그래픽</td><td>OpenAI gpt-image-2-high</td><td>로컬 자산: reports/assets/260804-academy-automation-hermes-obsidian-llm-wiki/academy-automation-doodle.png</td><td>2026-08-04</td><td>AI 생성 · 시각 검수 완료 · 공식 이미지 아님</td><td>상담 메모→Hermes→Obsidian→LLM Wiki→사람 검수</td></tr><tr id="src-14"><td>내부 사용자 자료</td><td>승건 와이프 학원 자동화 컨설팅·대화 증류</td><td>Jeremy의 비공개 LLM Wiki</td><td>공개 링크 없음</td><td>2026-08-04</td><td>비공개 입력 · 개인정보 제외</td><td>업무 우선순위·요구사항·자동화 항목</td></tr></tbody></table></div></details>
   <script id="report-view-script">
   (()=>{const body=document.body;const buttons=[...document.querySelectorAll('[data-report-view-target]')];const pdf=document.getElementById('report-pdf-button');const setView=(view,focus=false)=>{if(!['simple','detail'].includes(view))view='detail';body.dataset.reportView=view;buttons.forEach(button=>{const active=button.dataset.reportViewTarget===view;button.classList.toggle('is-active',active);if(button.classList.contains('report-view-button'))button.setAttribute('aria-pressed',String(active))});if(pdf){pdf.href=view==='simple'?pdf.dataset.simpleUrl:pdf.dataset.detailUrl;pdf.download=view==='simple'?pdf.dataset.simpleFilename:pdf.dataset.detailFilename;pdf.setAttribute('aria-label',`${view==='simple'?'간단 요약':'상세 보고서'} PDF 파일 바로 저장`)}if(focus){const target=view==='simple'?document.getElementById('simple-report'):document.querySelector('.detail-report');target?.scrollIntoView({block:'start'})}dispatchEvent(new CustomEvent('reportviewchange',{detail:{view}}))};buttons.forEach(button=>button.addEventListener('click',()=>setView(button.dataset.reportViewTarget,true)));const requested=new URLSearchParams(location.search).get('view');setView(requested==='simple'?'simple':'detail')})();
@@ -429,39 +154,7 @@
   <script id="report-share-script">
   (()=>{const button=document.getElementById('report-share-button');if(!button)return;const original=button.textContent;const shareUrl=()=>{const url=new URL(location.href);if(document.body.dataset.reportView==='simple')url.searchParams.set('view','simple');else url.searchParams.delete('view');url.hash='';return url.toString()};const copied=()=>{button.textContent='링크 복사됨';button.setAttribute('aria-label','보고서 링크가 복사되었습니다');setTimeout(()=>{button.textContent=original;button.setAttribute('aria-label','현재 보고서 링크 공유')},1800)};button.addEventListener('click',async()=>{const data={title:document.title,text:document.querySelector('meta[name="description"]')?.content||document.title,url:shareUrl()};try{if(navigator.share){await navigator.share(data)}else{await navigator.clipboard.writeText(data.url);copied()}}catch(error){if(error?.name==='AbortError')return;try{await navigator.clipboard.writeText(data.url);copied()}catch{button.textContent='주소창에서 복사';setTimeout(()=>button.textContent=original,2200)}}})})();
   </script>
-<script src="../assets/js/view-counter.js"></script>
-
-<script id="report-layout-script">
-(function(){
-  var body = document.body;
-  var buttons = document.querySelectorAll('[data-layout]');
-  var LAYOUT_KEY = 'report-layout-pref';
-  
-  function setLayout(mode) {
-    if (mode === 'a4') {
-      body.classList.add('report-a4-mode');
-      document.documentElement.style.background = '#e8ecf1';
-    } else {
-      body.classList.remove('report-a4-mode');
-      document.documentElement.style.background = '';
-    }
-    buttons.forEach(function(btn) {
-      var active = btn.dataset.layout === mode;
-      btn.classList.toggle('is-active', active);
-      btn.setAttribute('aria-pressed', String(active));
-    });
-    localStorage.setItem(LAYOUT_KEY, mode);
-  }
-  
-  buttons.forEach(function(btn) {
-    btn.addEventListener('click', function() { setLayout(btn.dataset.layout); });
-  });
-  
-  // Load preference - default wide
-  var saved = localStorage.getItem(LAYOUT_KEY) || 'a4';
-  setLayout(saved);
-})();
-</script>
-
+  <script src="../assets/report-page-layout.js"></script>
+  <script src="../assets/report-view-counter.js" data-report-id="260804-academy-automation-hermes-obsidian-llm-wiki"></script>
 </body>
 </html>

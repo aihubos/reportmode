@@ -6,6 +6,9 @@
   body.dataset.reportLayoutEnhanced = "true";
 
   var storageKey = "reportmode:layout";
+  var printStyle = document.createElement("style");
+  printStyle.id = "report-layout-print-style";
+  document.head.appendChild(printStyle);
   var controls = document.createElement("div");
   controls.className = "report-layout-controls";
   controls.setAttribute("aria-label", "보고서 레이아웃");
@@ -21,6 +24,10 @@
   else document.body.insertBefore(controls, document.body.firstChild);
 
   var buttons = controls.querySelectorAll("[data-report-layout]");
+  function setPrintPage(layout) {
+    printStyle.textContent = "@page { size: A4 " + (layout === "wide" ? "landscape" : "portrait") + "; margin: 15mm; }";
+  }
+
   function setLayout(layout) {
     var isA4 = layout === "a4";
     body.classList.toggle("report-a4-mode", isA4);
@@ -30,6 +37,7 @@
       button.classList.toggle("is-active", active);
       button.setAttribute("aria-pressed", String(active));
     });
+    setPrintPage(layout);
     try { localStorage.setItem(storageKey, layout); } catch (_) {}
   }
 
@@ -40,4 +48,13 @@
   var saved = "a4";
   try { saved = localStorage.getItem(storageKey) || "a4"; } catch (_) {}
   setLayout(saved === "wide" ? "wide" : "a4");
+
+  document.addEventListener("click", function (event) {
+    var trigger = event.target.closest("#report-pdf-button");
+    if (!trigger) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    setPrintPage(body.dataset.reportLayout === "wide" ? "wide" : "a4");
+    window.print();
+  }, true);
 })();

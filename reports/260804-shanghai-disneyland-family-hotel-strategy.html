@@ -15,83 +15,7 @@
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.floating-action,.pdf-save-button{transition:none}.floating-action:before,.pdf-save-button:before{animation:none;display:none}}
     @page{size:A4 portrait;margin:18mm 14mm 20mm;@bottom-left{content:"상하이 디즈니랜드 4박5일 가족 숙박 전략 · Jeremy's AI Report";font:600 6.5pt/1.2 var(--sans);color:#66717e}@bottom-center{content:"2026.08.04 · github.com/aihubos";font:600 6.5pt/1.2 var(--sans);color:#66717e}@bottom-right{content:counter(page) " / " counter(pages);font:800 7pt/1.2 var(--sans);color:#185abc}}
     @media print{.nav,.floating-menu{display:none!important}html{print-color-adjust:exact;-webkit-print-color-adjust:exact}body{background:#fff;font-size:10.5pt;line-height:1.55;padding-bottom:0}.top-conclusion{margin:12px 0 0}.top-conclusion-card{box-shadow:none;break-inside:avoid}.verdict-line{font-size:15pt}.highlight-sweep{-webkit-print-color-adjust:exact;print-color-adjust:exact}.hero{padding:18px 0 24px}.hero h1{font-size:34pt}.hero .lede{font-size:15pt}.wrap{width:100%;max-width:none}.paper,.callout,.visual-hero,.reaction-card{box-shadow:none;break-inside:avoid}.section-head h2,h2,h3{break-after:avoid-page}.visual-hero img{max-height:230mm;object-fit:contain}p,li{orphans:3;widows:3}main section{padding:20px 0}.table-wrap{overflow:visible}table{font-size:8.5pt}thead{display:table-header-group}tr,img,figure{break-inside:avoid}.sources{overflow:visible;border:0}.sources thead,.sources tbody{min-width:0;font-size:6.8pt}.sources th,.sources td{padding:5px 6px;line-height:1.35;overflow-wrap:anywhere}.source-section{break-before:page}.source-section>.source-content{display:block!important}.sources-summary{display:none}.reaction-card{box-shadow:none;break-inside:avoid}.source-section a{color:#000;text-decoration:none}}
-  
-[aria-label="가로 또는 세로"]::before { display: none !important; }
-/* ── A4 Portrait Display (toggle) ── */
-@media screen {
-  body.report-a4-mode { max-width: 210mm; margin: 24px auto !important; background: #fff !important; box-shadow: 0 2px 24px rgba(0,0,0,.12); border-radius: 4px; padding: 0 !important; }
-  body.report-a4-mode .wrap, body.report-a4-mode .report-section, body.report-a4-mode main { max-width: 100% !important; }
-  @media (max-width: 218mm) {
-    body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
-  }
-}
-
-/* ── Floating menu right-side ── */
-.floating-menu {
-  position: fixed !important;
-  right: max(16px, calc((100vw - 1120px) / 2 - 160px)) !important;
-  top: 140px !important;
-  left: auto !important;
-  bottom: auto !important;
-  width: 142px !important;
-  max-width: 142px !important;
-  z-index: 30;
-}
-@media(max-width:1439px) {
-  .floating-menu {
-    right: 10px !important;
-    top: auto !important;
-    bottom: 14px !important;
-    left: 10px !important;
-    width: auto !important;
-    max-width: none !important;
-  }
-}
-
-</style>
-  <style id="report-view-v4-style">
-    :root{--max:1120px;--apple-blue:#007aff;--apple-gray:rgba(118,118,128,.16)}
-    .report-view-switcher{position:sticky;top:58px;z-index:35;border-bottom:1px solid rgba(0,122,255,.13);background:rgba(247,248,250,.88);-webkit-ba
-/* ── Layout toggle fix ── */
-.report-view-switcher-inner {
-  display: flex !important;
-  flex-wrap: wrap;
-  align-items: center !important;
-  gap: 8px !important;
-  min-height: 48px !important;
-  padding: 6px 0 !important;
-}
-[aria-label="가로 또는 세로"],
-[aria-label="간단 또는 상세 보기"] {
-  width: auto !important;
-  min-width: 90px !important;
-  max-width: 110px !important;
-}
-[aria-label="가로 또는 세로"] .report-view-button,
-[aria-label="간단 또는 상세 보기"] .report-view-button {
-  min-height: 32px !important;
-  padding: 4px 10px !important;
-  font-size: 12px !important;
-}
-.report-view-label {
-  font-size: 10px !important;
-  white-space: nowrap;
-  margin: 0 2px !important;
-}
-.report-utility-controls {
-  margin-left: auto !important;
-  width: 140px !important;
-  flex-shrink: 0;
-}
-@media(max-width:700px) {
-  .report-view-switcher-inner {
-    justify-content: center !important;
-    gap: 6px !important;
-  }
-  .report-utility-controls { width: 120px !important; }
-}
-
-</style>
+  </style>
   <style id="report-view-v4-style">
     :root{--max:1120px;--apple-blue:#007aff;--apple-gray:rgba(118,118,128,.16)}
     .report-view-switcher{position:sticky;top:58px;z-index:35;border-bottom:1px solid rgba(0,122,255,.13);background:rgba(247,248,250,.88);-webkit-backdrop-filter:saturate(180%) blur(22px);backdrop-filter:saturate(180%) blur(22px)}
@@ -113,69 +37,13 @@
     @media(max-width:700px){.report-view-switcher-inner{min-height:78px;grid-template-columns:minmax(0,1fr) 132px;gap:10px}.report-view-label{display:none}.report-view-buttons{min-height:62px;padding:6px}.report-view-buttons::before{left:6px;top:6px;bottom:6px;width:calc((100% - 12px)/2)}.report-view-button{min-height:50px;padding:8px 6px;font-size:17px}.report-utility-controls{width:132px}.report-utility-controls .pdf-save-button,.report-utility-controls .share-report-button{min-height:44px;padding:7px 5px;font-size:11px}.simple-report{padding:10px 0 46px}.simple-overview{padding:20px 12px}.simple-overview h2{font-size:28px}.simple-summary-content{gap:16px}.simple-slide{min-height:0;padding:24px 18px 72px;border-radius:18px}.simple-slide-head{gap:10px}.simple-slide-title{font-size:29px}.simple-slide-number{min-width:46px;height:34px}.simple-visual-grid,.simple-decision-grid{grid-template-columns:1fr}.simple-product-photo{min-height:210px}.simple-metric-strip{grid-template-columns:1fr}.simple-bar-row{grid-template-columns:86px 1fr 62px;gap:8px}.simple-flow{display:grid}.simple-flow-step+.simple-flow-step::before{content:"↓";left:50%;top:-12px;transform:translateX(-50%)}.simple-slide-footer{left:18px;right:18px;bottom:18px}.doodle-frame>.doodle-brand-logo{right:10px;top:10px;width:86px;padding:6px 8px}}
     @media(prefers-reduced-motion:reduce){.report-view-buttons::before,.report-view-button,.simple-detail-button{transition:none!important}}
     @media print{.report-view-switcher,.report-utility-controls{display:none!important}body[data-report-view="simple"] .hero,body[data-report-view="simple"] .detail-report,body[data-report-view="simple"] #sources{display:none!important}body[data-report-view="simple"] .simple-report{display:block!important;padding:0;break-before:auto;page-break-before:auto}body[data-report-view="simple"] .simple-overview{padding:0;border:0;box-shadow:none}body[data-report-view="simple"] .simple-overview>.eyebrow,body[data-report-view="simple"] .simple-overview>h2,body[data-report-view="simple"] .simple-detail-button{display:none!important}body[data-report-view="simple"] .simple-summary-content{display:block}body[data-report-view="simple"] .simple-slide{height:252mm;min-height:0;margin:0;padding:9mm 9mm 14mm;border:0;border-radius:0;box-shadow:none;break-inside:avoid;break-after:page;page-break-after:always}body[data-report-view="simple"] .simple-slide:last-child{break-after:auto;page-break-after:auto}body[data-report-view="simple"] .simple-slide::before{height:2mm}body[data-report-view="simple"] .simple-slide-title{font-size:23pt}body[data-report-view="simple"] .simple-slide-head{margin-bottom:5mm}body[data-report-view="simple"] .simple-product-photo{min-height:0;height:88mm;max-height:88mm}body[data-report-view="simple"] .simple-infographic-image{height:72mm;max-height:72mm;object-fit:contain}body[data-report-view="simple"] .simple-verdict{padding:4mm 5mm;font-size:17pt}body[data-report-view="simple"] .simple-metric-strip{gap:3mm;margin-top:4mm}body[data-report-view="simple"] .simple-metric-card{padding:4mm}body[data-report-view="simple"] .simple-metric-card b{font-size:20pt}body[data-report-view="simple"] .simple-metric-card span,body[data-report-view="simple"] .simple-bar-row,body[data-report-view="simple"] .simple-flow-step,body[data-report-view="simple"] .simple-slide-note{font-size:8.5pt}body[data-report-view="simple"] .simple-decision-card{padding:4mm}body[data-report-view="simple"] .simple-decision-card h3{font-size:13pt}body[data-report-view="simple"] .simple-slide-footer{left:9mm;right:9mm;bottom:5mm}body[data-report-view="detail"] .simple-report{display:none!important}body[data-report-view="detail"] .detail-report{display:block!important}}
-  
-[aria-label="가로 또는 세로"]::before { display: none !important; }
-/* ── A4 Portrait Display (toggle) ── */
-@media screen {
-  body.report-a4-mode { max-width: 210mm; margin: 24px auto !important; background: #fff !important; box-shadow: 0 2px 24px rgba(0,0,0,.12); border-radius: 4px; padding: 0 !important; }
-  body.report-a4-mode .wrap, body.report-a4-mode .report-section, body.report-a4-mode main { max-width: 100% !important; }
-  @media (max-width: 218mm) {
-    body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
-  }
-}
-
-
-/* ── Layout toggle fix ── */
-.report-view-switcher-inner {
-  display: flex !important;
-  flex-wrap: wrap;
-  align-items: center !important;
-  gap: 8px !important;
-  min-height: 48px !important;
-  padding: 6px 0 !important;
-}
-[aria-label="가로 또는 세로"],
-[aria-label="간단 또는 상세 보기"] {
-  width: auto !important;
-  min-width: 90px !important;
-  max-width: 110px !important;
-}
-[aria-label="가로 또는 세로"] .report-view-button,
-[aria-label="간단 또는 상세 보기"] .report-view-button {
-  min-height: 32px !important;
-  padding: 4px 10px !important;
-  font-size: 12px !important;
-}
-.report-view-label {
-  font-size: 10px !important;
-  white-space: nowrap;
-  margin: 0 2px !important;
-}
-.report-utility-controls {
-  margin-left: auto !important;
-  width: 140px !important;
-  flex-shrink: 0;
-}
-@media(max-width:700px) {
-  .report-view-switcher-inner {
-    justify-content: center !important;
-    gap: 6px !important;
-  }
-  .report-utility-controls { width: 120px !important; }
-}
-
-</style>
+  </style>
+  <link rel="stylesheet" href="../assets/report-page-layout.css">
 </head>
-<body
-<a href="../archive/" style="position:fixed;top:8px;left:12px;z-index:50;background:rgba(17,17,17,.85);color:#fff;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;text-decoration:none;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.15);">🏠 메인</a>
- data-report-view="detail">
+<body class="report-a4-mode" data-report-layout="a4" data-report-view="detail">
+  <a class="report-home-button" href="../archive/" aria-label="보고서 도서관 메인으로 이동">🏠 메인</a>
   <nav class="nav" aria-label="보고서 탐색"><div class="wrap nav-inner"><a class="brand" href="../archive/">RM · Report Mode</a><div class="nav-links"><a href="#summary">요약</a><a href="#comparison">비교</a><a href="#decision">판단</a><a href="#sources">출처</a></div></div></nav>
-  <section class="report-view-switcher" aria-label="보고서 보기 방식"><div class="wrap report-view-switcher-inner"><span class="report-view-label">레이아웃</span>
-<div class="report-view-buttons" role="group" aria-label="가로 또는 세로" style="min-width:120px;">
-<button class="report-view-button" type="button" data-layout="wide">가로</button>
-<button class="report-view-button is-active" type="button" data-layout="a4">세로</button>
-</div>
-<span class="report-view-label">보기</span><div class="report-view-buttons" role="group" aria-label="간단 또는 상세 보기"><button class="report-view-button" type="button" data-report-view-target="simple" aria-pressed="false">간단</button><button class="report-view-button is-active" type="button" data-report-view-target="detail" aria-pressed="true">상세</button></div><div class="report-utility-controls" aria-label="보고서 저장 및 공유 도구"><a id="report-pdf-button" class="pdf-save-button" href="assets/260804-shanghai-disneyland-family-hotel-strategy/detail.pdf" download="260804-shanghai-disneyland-family-hotel-strategy-detail.pdf" data-simple-url="assets/260804-shanghai-disneyland-family-hotel-strategy/summary.pdf" data-simple-filename="260804-shanghai-disneyland-family-hotel-strategy-summary.pdf" data-detail-url="assets/260804-shanghai-disneyland-family-hotel-strategy/detail.pdf" data-detail-filename="260804-shanghai-disneyland-family-hotel-strategy-detail.pdf" aria-label="상세 보고서 PDF 파일 바로 저장">PDF 저장</a><button id="report-share-button" class="share-report-button" type="button" aria-label="현재 보고서 링크 공유">공유하기</button></div></div></section>
+  <section class="report-view-switcher" aria-label="보고서 보기 방식"><div class="wrap report-view-switcher-inner"><span class="report-view-label">보고서 보기</span><div class="report-view-buttons" role="group" aria-label="간단 또는 상세 보기"><button class="report-view-button" type="button" data-report-view-target="simple" aria-pressed="false">간단</button><button class="report-view-button is-active" type="button" data-report-view-target="detail" aria-pressed="true">상세</button></div><div class="report-utility-controls" aria-label="보고서 저장 및 공유 도구"><a id="report-pdf-button" class="pdf-save-button" href="assets/260804-shanghai-disneyland-family-hotel-strategy/detail.pdf" download="260804-shanghai-disneyland-family-hotel-strategy-detail.pdf" data-simple-url="assets/260804-shanghai-disneyland-family-hotel-strategy/summary.pdf" data-simple-filename="260804-shanghai-disneyland-family-hotel-strategy-summary.pdf" data-detail-url="assets/260804-shanghai-disneyland-family-hotel-strategy/detail.pdf" data-detail-filename="260804-shanghai-disneyland-family-hotel-strategy-detail.pdf" aria-label="상세 보고서 PDF 파일 바로 저장">PDF 저장</a><button id="report-share-button" class="share-report-button" type="button" aria-label="현재 보고서 링크 공유">공유하기</button></div></div></section>
   <nav class="floating-menu" aria-label="보고서 바로가기"><a class="floating-action" href="#summary">최종 추천</a><a class="floating-action" href="#comparison">호텔 비교</a><a class="floating-action" href="#decision">비용·예약</a><a class="floating-action" href="#itinerary">4박5일 일정</a><a class="floating-action" href="#park-strategy">7세 전략</a><a class="floating-action" href="#family-ops">두 가족 운영</a><a class="floating-action" href="#booking">체크리스트</a><a class="floating-action" href="#sources">전체 출처</a></nav>
   <header class="hero"><div class="wrap"><div class="kicker">260804 · FAMILY TRAVEL STRATEGY</div><h1><span>두 가족을 위한</span><span>상하이 디즈니랜드</span><span>4박 5일 전략</span></h1>
     <section id="report-top" class="top-conclusion" aria-labelledby="top-conclusion-title"><div class="top-conclusion-card">
@@ -184,9 +52,7 @@
       <p class="verdict-line"><span class="verdict-num">02</span><span class="verdict-text"><strong>파크</strong><br class="mobile-only"><mark class="highlight-sweep">2일 방문 + 오후 휴식</mark><br class="mobile-only">으로 운영합니다.</span></p>
       <p class="verdict-line"><span class="verdict-num">03</span><span class="verdict-text"><strong>객실</strong><br class="mobile-only">가족별 1실<br class="mobile-only"><mark class="highlight-sweep">인접 객실은 보장이 아닙니다.</mark></span></p>
     </div></section>
-    <p class="lede">성인 4명과 7살 아이 2명으로 가정했습니다. 공식 호텔 2곳의 가격과 혜택을 비교하고, 파크 2일·도심 1박을 실제 동선으로 설계했습니다.</p><div class="meta"><span class="chip"><strong>260804</strong> · 상세 분석</span><span class="chip">2026.08.04 KST</span><span class="chip">공식 호텔·교통·티켓·후기·라이선스 사진 18묶음 · 가격은 날짜별 변동</span></div></div>
-
-</header>
+    <p class="lede">성인 4명과 7살 아이 2명으로 가정했습니다. 공식 호텔 2곳의 가격과 혜택을 비교하고, 파크 2일·도심 1박을 실제 동선으로 설계했습니다.</p><div class="meta"><span class="chip"><strong>260804</strong> · 상세 분석</span><span class="chip">2026.08.04 KST</span><span class="chip">공식 호텔·교통·티켓·후기·라이선스 사진 18묶음 · 가격은 날짜별 변동</span></div></div></header>
   <section id="simple-report" class="simple-report" data-simple-pages="2" aria-labelledby="simple-report-title"><div class="wrap"><div class="simple-overview"><div class="eyebrow">TWO VISUAL SUMMARY SHEETS</div><h2 id="simple-report-title">도표·인포그래픽 요약 장표 2장</h2><div class="simple-summary-content">
 <article class="simple-slide simple-slide-1"><div class="simple-slide-head"><div><span class="simple-slide-kicker">STAY VERDICT · 1 / 2</span><h3 class="simple-slide-title">토이 스토리 3박 + 도심 1박</h3></div><span class="simple-slide-number">01</span></div><div class="simple-visual-grid"><img class="simple-product-photo" src="assets/260804-shanghai-disneyland-family-hotel-strategy/toy-story-hotel-exterior.jpg" alt="토이 스토리 호텔 실제 외관"><div><div class="simple-verdict">객실 2개 · 파크 2일 · 숙소 이동 1회</div><div class="simple-metric-strip"><div class="simple-metric-card"><b>3박</b><span>공식 호텔에서 두 번의 파크 아침 보호</span></div><div class="simple-metric-card"><b>2일</b><span>날씨·운휴·아이 피로를 분산</span></div><div class="simple-metric-card"><b>1박</b><span>와이탄 중심 도심 경험</span></div></div></div></div><p class="simple-slide-note">기본 가정: 성인 4명 + 7세 2명, 가족별 객실 1개. 연결 객실은 요청이지 보장이 아닙니다.</p><footer class="simple-slide-footer"><span>2026.08.04</span><span>1 / 2</span></footer></article>
 <article class="simple-slide simple-slide-2"><div class="simple-slide-head"><div><span class="simple-slide-kicker">5-DAY PLAN · 2 / 2</span><h3 class="simple-slide-title">오전 공략, 오후 휴식, 둘째 날 보완</h3></div><span class="simple-slide-number">02</span></div><img class="simple-infographic-image" src="assets/260804-shanghai-disneyland-family-hotel-strategy/family-4n5d-strategy-doodle.png" alt="3박 공식 호텔, 2일 파크, 1박 도심으로 구성한 4박5일 일정"><div class="simple-flow"><div class="simple-flow-step"><b>D1</b><span>도착·Disneytown</span></div><div class="simple-flow-step"><b>D2</b><span>파크 핵심</span></div><div class="simple-flow-step"><b>D3</b><span>보완·공연</span></div><div class="simple-flow-step"><b>D4</b><span>도심 이동</span></div><div class="simple-flow-step"><b>D5</b><span>귀국</span></div></div><div class="simple-verdict" style="margin-top:18px">Premier Access는 전원 일괄 구매보다 현장 대기시간을 보고 필요한 시설만 선택합니다.</div><footer class="simple-slide-footer"><span>2026.08.04</span><span>2 / 2</span></footer></article></div><button class="simple-detail-button" type="button" data-report-view-target="detail">상세 근거 전체 보기</button></div></div></section>
@@ -197,57 +63,6 @@
 @media(max-width:700px){.mobile-only{display:block}.report-view-switcher-inner{display:grid!important;grid-template-columns:1fr!important;gap:8px!important;padding:10px 0!important}.report-view-buttons{width:100%!important;min-width:0!important}.report-utility-controls{display:grid!important;grid-template-columns:1fr 1fr!important;width:100%!important}.report-utility-controls .share-report-button{display:inline-flex!important}.report-utility-controls .pdf-save-button,.report-utility-controls .share-report-button{width:100%!important;min-width:0!important}.top-conclusion-card{min-width:0;overflow:hidden}.verdict-line{display:flex!important;align-items:flex-start!important;width:100%;max-width:100%;min-width:0}.verdict-num{flex:0 0 30px}.verdict-text{display:block!important;flex:1 1 0!important;width:0!important;min-width:0;white-space:normal!important;word-break:break-all!important;overflow-wrap:anywhere!important}.verdict-text *{white-space:normal!important;word-break:break-all!important;overflow-wrap:anywhere!important}.hero .lede{word-break:break-all!important;overflow-wrap:anywhere!important}}
 @media(max-width:520px){body{overflow-x:hidden}.photo-card img{height:220px}.hotel-card,.option-card,.rule-card,.risk-card,.day-card,.metric-card{padding:18px}.table-wrap{overflow-x:auto}.table-wrap table{min-width:700px}.code-address{font-size:13px}}
 @media print{.photo-card,.hotel-card,.option-card,.rule-card,.risk-card,.day-card,.metric-card{break-inside:avoid}.photo-card img{height:80mm}.day-card{grid-template-columns:28mm 1fr}.rule-grid,.risk-grid{grid-template-columns:repeat(3,1fr)}}
-
-[aria-label="가로 또는 세로"]::before { display: none !important; }
-/* ── A4 Portrait Display (toggle) ── */
-@media screen {
-  body.report-a4-mode { max-width: 210mm; margin: 24px auto !important; background: #fff !important; box-shadow: 0 2px 24px rgba(0,0,0,.12); border-radius: 4px; padding: 0 !important; }
-  body.report-a4-mode .wrap, body.report-a4-mode .report-section, body.report-a4-mode main { max-width: 100% !important; }
-  @media (max-width: 218mm) {
-    body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
-  }
-}
-
-
-/* ── Layout toggle fix ── */
-.report-view-switcher-inner {
-  display: flex !important;
-  flex-wrap: wrap;
-  align-items: center !important;
-  gap: 8px !important;
-  min-height: 48px !important;
-  padding: 6px 0 !important;
-}
-[aria-label="가로 또는 세로"],
-[aria-label="간단 또는 상세 보기"] {
-  width: auto !important;
-  min-width: 90px !important;
-  max-width: 110px !important;
-}
-[aria-label="가로 또는 세로"] .report-view-button,
-[aria-label="간단 또는 상세 보기"] .report-view-button {
-  min-height: 32px !important;
-  padding: 4px 10px !important;
-  font-size: 12px !important;
-}
-.report-view-label {
-  font-size: 10px !important;
-  white-space: nowrap;
-  margin: 0 2px !important;
-}
-.report-utility-controls {
-  margin-left: auto !important;
-  width: 140px !important;
-  flex-shrink: 0;
-}
-@media(max-width:700px) {
-  .report-view-switcher-inner {
-    justify-content: center !important;
-    gap: 6px !important;
-  }
-  .report-utility-controls { width: 120px !important; }
-}
-
 </style><div class="photo-grid"><figure class="photo-card product-photo"><img src="assets/260804-shanghai-disneyland-family-hotel-strategy/toy-story-hotel-exterior.jpg" alt="토이 스토리 호텔 실제 외관"><figcaption><b>추천 숙소 실제 외관 · Toy Story Hotel</b><br>Baycrest, CC BY-SA 2.5 · Wikimedia Commons<sup><a class="cite" href="#src-13" aria-label="출처 13">[13]</a></sup></figcaption></figure><figure class="photo-card product-photo"><img src="assets/260804-shanghai-disneyland-family-hotel-strategy/shanghai-disneyland-hotel.jpg" alt="상하이 디즈니랜드 호텔 실제 외관"><figcaption><b>비교 숙소 실제 외관 · Shanghai Disneyland Hotel</b><br>Fayhoo, CC BY-SA 3.0 · Wikimedia Commons<sup><a class="cite" href="#src-14" aria-label="출처 14">[14]</a></sup></figcaption></figure></div><figure class="visual-hero"><div class="doodle-frame"><img src="assets/260804-shanghai-disneyland-family-hotel-strategy/family-4n5d-strategy-doodle.png" alt="두 가족이 공식 호텔 3박, 파크 2일, 도심 1박 후 귀국하는 4박5일 화이트보드 일정"></div><figcaption id="visual-title"><b>AI 생성 인포그래픽 · 공식 제품 이미지 아님</b><span>3박 리조트 + 1박 도심 · 파크 2일 · 4성인 + 7세 2명 가정</span></figcaption></figure></div></section>
     <section id="summary"><div class="wrap"><div class="section-head"><h2>한 문장 결론과 전제</h2><p>호텔 선택보다 먼저 파크 아침 두 번과 아이 회복 시간을 확보합니다.</p></div><div class="paper"><div class="verdict-box"><strong>최종 추천:</strong> 토이 스토리 호텔 가든뷰 객실 2개로 3박하고, 마지막 1박만 인민광장·난징동루 권역으로 옮깁니다. 파크는 2일 방문합니다. 이 조합은 두 가족의 객실 독립성, 7세 아이의 낮 휴식, 두 번의 파크 아침, 상하이 도심 경험을 숙소 이동 한 번으로 묶습니다.</div>
 <div class="metric-grid" style="margin-top:18px"><article class="metric-card"><b>3 + 1</b><span>공식 리조트 3박 + 도심 1박</span></article><article class="metric-card"><b>2일</b><span>파크를 한 번에 몰지 않고 보완</span></article><article class="metric-card"><b>2실</b><span>가족별 객실 1개, 인접 객실 요청</span></article></div>
@@ -265,96 +80,6 @@
     <section id="limits"><div class="wrap"><div class="section-head"><h2>한계·리스크·업데이트 필요 항목</h2><p>이 보고서는 여행일이 없는 상태의 전략 설계입니다.</p></div><div class="risk-grid"><article class="risk-card risk-high"><strong>날짜 미확정</strong><p>호텔·티켓·운영시간·혼잡도는 크게 변합니다. 표본 요금은 견적이 아닙니다.</p></article><article class="risk-card risk-high"><strong>아이 키 미확정</strong><p>7세라는 나이만으로 탑승 가능 시설을 확정할 수 없습니다.</p></article><article class="risk-card risk-mid"><strong>호텔 혜택 변경</strong><p>Priority Entry, 셔틀, 식사·캐릭터 혜택은 예약 상품과 시기에 따라 달라질 수 있습니다.</p></article><article class="risk-card risk-mid"><strong>연결 객실</strong><p>공식 엔진에 객실 유형이 보여도 두 객실의 연결 배정은 호텔 확인 전 보장으로 간주하지 않습니다.</p></article><article class="risk-card risk-mid"><strong>OTA 후기 편향</strong><p>평점과 후기 태그는 경험의 신호일 뿐 객실·시기·기대 수준이 다릅니다.</p></article><article class="risk-card risk-low"><strong>사람의 최종 검수</strong><p>예약 직전 공식 앱·확인서·호텔 답변으로 가격과 혜택을 다시 확인하면 대부분의 변수를 통제할 수 있습니다.</p></article></div><div class="verdict-box" style="margin-top:18px"><strong>날짜가 정해지면 업데이트할 5개:</strong> 실제 객실 2실 총액, 티켓 6명 총액, 파크 운영시간, 키별 탑승표, 항공편에 맞춘 1·5일차.</div></div></section>
   <section id="public-reaction"><div class="wrap"><div class="section-head"><h2>인터넷·언론 반응</h2><p>X·Threads·블로그·커뮤니티·뉴스에서 실제로 확인한 의견을 긍정·우려·조건부 평가로 나눴습니다.</p></div><div class="reaction-grid"><article class="reaction-card"><span class="reaction-badge positive">긍정</span><h3>Trip.com 검증 후기 집계</h3><p>2026-08-04 확인 시 Toy Story Hotel은 13,347건에서 9.2/10을 보였고, 위치 9.3·청결 9.4가 표시됐습니다. 셔틀과 어린이 친화성이 반복적으로 언급됐습니다.</p><div class="reaction-meta"><span>표본 큼 · OTA 편향 가능</span><a href="https://www.trip.com/hotels/shanghai-hotel-detail-4687213/toy-story-hotel/review.html" target="_blank" rel="noopener">원문</a></div></article><article class="reaction-card"><span class="reaction-badge positive">긍정</span><h3>2026 가족 이용 후기</h3><p>2026년 6월 투숙 후기들은 파크 셔틀, 호텔 전용 입장 동선, 청결과 아이 기념품을 장점으로 들었습니다. 개별 경험이며 혜택은 예약 시 재확인해야 합니다.</p><div class="reaction-meta"><span>Trip.com · 2026-07~08 게시</span><a href="https://www.trip.com/hotels/shanghai-hotel-detail-4687213/toy-story-hotel/review.html" target="_blank" rel="noopener">원문</a></div></article><article class="reaction-card"><span class="reaction-badge concern">비판</span><h3>가격 대비 객실·식사</h3><p>같은 페이지의 비판 후기에서는 높은 공식 호텔 가격, 제한된 식사 선택, 조식 가격 대비 만족도와 작은 객실을 문제로 제기했습니다.</p><div class="reaction-meta"><span>개인 후기 · 일반화 금지</span><a href="https://www.trip.com/hotels/shanghai-hotel-detail-4687213/toy-story-hotel/review.html" target="_blank" rel="noopener">원문</a></div></article><article class="reaction-card"><span class="reaction-badge concern">비판</span><h3>독립 가족여행 블로그</h3><p>Mouse Hacking은 가족·어린이에게 테마가 잘 맞고 셔틀이 편하다고 평가하면서도, 체크인 대기와 버스 줄이 길어질 수 있다고 지적했습니다.</p><div class="reaction-meta"><span>2026-08-03 업데이트</span><a href="https://www.mousehacking.com/blog/shanghai-disneyland-toy-story-hotel-review" target="_blank" rel="noopener">원문</a></div></article><article class="reaction-card"><span class="reaction-badge neutral">장기 신호</span><h3>‘가치’보다 ‘목적’에 따라 갈림</h3><p>대규모 평점은 높지만 작은 객실과 가격 비판이 함께 존재합니다. 공식 호텔은 일반 5성급 객실 가치보다 파크 접근·아이 몰입·휴식 복귀에 비용을 지불하는 상품으로 보는 편이 정확합니다.</p><div class="reaction-meta"><span>종합 해석</span><a href="https://www.trip.com/hotels/shanghai-hotel-detail-4687213/toy-story-hotel/review.html" target="_blank" rel="noopener">근거</a></div></article></div><p class="reaction-note">온라인 의견은 대표 표본이며 전체 여론을 뜻하지 않습니다. 작성자·매체·게시일·원문 링크는 아래 전체 출처에 함께 기록했습니다.</p></div></section>
   </main>
-<!-- COMMENT WIDGET -->
-<div style="max-width:720px;margin:40px auto;padding:32px 28px;background:#fff;border:1px solid #e5e8eb;border-radius:18px;box-shadow:0 4px 16px rgba(0,0,0,.04);">
-  <h3 style="margin:0 0 6px;font-size:20px;color:#191f28;">💬 댓글</h3>
-  <p style="margin:0 0 20px;font-size:14px;color:#8b95a1;">로그인 없이 자유롭게 의견을 남겨주세요.</p>
-  <div id="comment-list" style="margin-bottom:20px;max-height:400px;overflow-y:auto;"></div>
-  <form id="comment-form" style="display:flex;flex-direction:column;gap:10px;" onsubmit="return submitComment(event)">
-    <input id="comment-name" type="text" placeholder="이름 (선택)" style="padding:10px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;max-width:240px;">
-    <textarea id="comment-body" rows="3" placeholder="댓글을 입력하세요..." required style="padding:12px 14px;border:1px solid #e5e8eb;border-radius:10px;font-size:14px;resize:vertical;font-family:inherit;"></textarea>
-    <button type="submit" style="align-self:flex-end;padding:10px 24px;background:#3182f6;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;">등록</button>
-  </form>
-</div>
-<script>
-(function(){
-  var PAGE = window.location.pathname.replace(/\//g,'-').replace(/^-|-$/g,'') || 'index';
-  var STORAGE_KEY = 'comments-' + PAGE;
-    var list = document.getElementById('comment-list');
-  
-  function saveComments(comments) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(comments));
-  }
-  
-  function loadComments() {
-    var raw = localStorage.getItem(STORAGE_KEY);
-    var comments = raw ? JSON.parse(raw) : [];
-    list.innerHTML = comments.length === 0 
-      ? '<p style="color:#8b95a1;font-size:13px;text-align:center;padding:20px 0;">아직 댓글이 없습니다. 첫 댓글을 남겨보세요!</p>'
-      : comments.map(function(c,i){
-          var name = c.name || '익명';
-          var date = new Date(c.time).toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'});
-          return '<div style="padding:14px 0;border-bottom:1px solid #f0f0f0;" data-idx="'+i+'">'
-            + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">'
-            + '<div>'
-            + '<strong style="font-size:14px;color:#191f28;">' + escapeHtml(name) + '</strong>'
-            + '<span style="font-size:12px;color:#b0b8c1;margin-left:8px;">' + date + '</span>'
-            + '</div>'
-            + '<button onclick="deleteComment('+i+')" style="background:none;border:none;color:#ccc;cursor:pointer;font-size:12px;padding:2px 6px;" title="삭제">✕</button>'
-            + '</div>'
-            + '<p style="margin:0;font-size:14px;color:#4a5568;line-height:1.5;">' + escapeHtml(c.body) + '</p>'
-            + '</div>';
-        }).join('');
-  }
-  
-  function escapeHtml(text) {
-    var div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
-  
-  window.deleteComment = function(idx) {
-    var savedPw = localStorage.getItem(STORAGE_KEY + '-pw');
-    if (!savedPw) {
-      savedPw = prompt('관리자 비밀번호를 설정하세요 (댓글 삭제용):');
-      if (!savedPw) return;
-      localStorage.setItem(STORAGE_KEY + '-pw', savedPw);
-      alert('비밀번호가 설정되었습니다. 다시 삭제 버튼을 눌러주세요.');
-      return;
-    }
-    var pw = prompt('삭제 비밀번호를 입력하세요:');
-    if (pw !== savedPw) { alert('비밀번호가 틀렸습니다.'); return; }
-    if (!confirm('정말 삭제하시겠습니까?')) return;
-    var raw = localStorage.getItem(STORAGE_KEY);
-    var comments = raw ? JSON.parse(raw) : [];
-    comments.splice(idx, 1);
-    saveComments(comments);
-    loadComments();
-  };
-  
-  window.submitComment = function(e) {
-    e.preventDefault();
-    var nameEl = document.getElementById('comment-name');
-    var bodyEl = document.getElementById('comment-body');
-    var comment = {
-      name: nameEl.value.trim(),
-      body: bodyEl.value.trim(),
-      time: Date.now()
-    };
-    var raw = localStorage.getItem(STORAGE_KEY);
-    var comments = raw ? JSON.parse(raw) : [];
-    comments.unshift(comment);
-    saveComments(comments.slice(0, 100));
-    bodyEl.value = '';
-    nameEl.value = '';
-    loadComments();
-    return false;
-  };
-  
-  loadComments();
-})();
-</script>
-<!-- END COMMENT WIDGET -->
   <details id="sources" class="source-section"><summary class="wrap sources-summary"><span class="sources-summary-text">전체 출처</span><span class="sources-summary-hint"><span class="sources-toggle-closed">클릭하여 펼치기</span><span class="sources-toggle-open">접기</span></span></summary><div class="wrap source-content"><div class="section-head"><h2>전체 출처</h2><p>사실·분석·전망·루머·온라인 반응, 시각자료와 생성 이미지의 상태를 함께 기록했습니다.</p></div><table class="sources"><thead><tr><th>유형</th><th>자료명</th><th>제공자·저작자</th><th>원문</th><th>날짜</th><th>라이선스·상태</th><th>사용 범위</th></tr></thead><tbody><tr id="src-1"><td>공식 호텔</td><td>Shanghai Disney Resort Hotels</td><td>Shanghai Disney Resort</td><td><a href="https://www.shanghaidisneyresort.com/en/hotels" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-04 확인</td><td>공식 원문</td><td>호텔 종류·투숙객 혜택·셔틀</td></tr><tr id="src-2"><td>공식 예약엔진</td><td>호텔 객실·요금 조회</td><td>Shanghai Disney Resort</td><td><a href="https://www.shanghaidisneyresort.com/en/commerce/hotel/intro/toy-story-hotel" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-04 조회</td><td>공식 동적 데이터</td><td>2026-10-12~15 객실·요금 표본·서비스요금·연결 객실</td></tr><tr id="src-3"><td>공식 교통</td><td>Hotels to the Park</td><td>Shanghai Disney Resort</td><td><a href="https://www.shanghaidisneyresort.com/en/information/transportation" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-04 확인</td><td>공식 원문</td><td>무료 셔틀·호텔과 파크 이동</td></tr><tr id="src-4"><td>공식 교통</td><td>Shanghai Pudong International Airport</td><td>Shanghai Disney Resort</td><td><a href="https://www.shanghaidisneyresort.com/en/information/transportation" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-04 확인</td><td>공식 원문</td><td>약 30km·택시 30~50분·메트로 80~90분</td></tr><tr id="src-5"><td>공식 상품</td><td>Theme Park Tickets & Early Park Entry</td><td>Shanghai Disney Resort</td><td><a href="https://www.shanghaidisneyresort.com/en/commerce/product?id=ThemePark" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-04 확인</td><td>공식 동적 페이지</td><td>티켓 시작가·Early Park Entry 최대 1시간 상품</td></tr><tr id="src-6"><td>공식 정책</td><td>Real Name Ticketing Policy</td><td>Shanghai Disney Resort</td><td><a href="https://www.shanghaidisneyresort.com/en/legal/shanghai-disney-resort-real-name-ticketing-policy" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-04 확인</td><td>공식 원문</td><td>실명·신분증 정책 재확인</td></tr><tr id="src-7"><td>공식 시설</td><td>Attractions</td><td>Shanghai Disney Resort</td><td><a href="https://www.shanghaidisneyresort.com/en/attractions" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-04 확인</td><td>공식 원문</td><td>시설별 신장·운영 조건</td></tr><tr id="src-8"><td>OTA 후기</td><td>Toy Story Hotel Reviews</td><td>Trip.com</td><td><a href="https://www.trip.com/hotels/shanghai-hotel-detail-4687213/toy-story-hotel/review.html" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-04 확인</td><td>검증후기 집계 · 대표성 한계</td><td>13,347건·9.2/10·긍정과 비판 표본</td></tr><tr id="src-9"><td>독립 후기</td><td>Shanghai Disneyland Toy Story Hotel Review</td><td>Mouse Hacking</td><td><a href="https://www.mousehacking.com/blog/shanghai-disneyland-toy-story-hotel-review" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-03 업데이트</td><td>독립 블로그 · 개인 경험</td><td>아이 테마·셔틀·체크인·버스줄</td></tr><tr id="src-10"><td>환율 데이터</td><td>CNY/KRW latest rate</td><td>Frankfurter</td><td><a href="https://api.frankfurter.app/latest?from=CNY&to=KRW" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-04</td><td>공개 환율 API · 참고값</td><td>1 CNY=211.33 KRW 단순 환산</td></tr><tr id="src-11"><td>라이선스 사진</td><td>Toy Story Hotel</td><td>Baycrest</td><td><a href="https://commons.wikimedia.org/wiki/File:Toy_Story_Hotel.jpg" target="_blank" rel="noopener">원문 보기</a></td><td>Wikimedia Commons 확인</td><td>CC BY-SA 2.5</td><td>추천 호텔 실제 외관</td></tr><tr id="src-12"><td>라이선스 사진</td><td>Room of Toy Story Hotel Shanghai</td><td>Edo-biscuit</td><td><a href="https://commons.wikimedia.org/wiki/File:Room_of_Toy_Story_Hotel_Shanghai.jpg" target="_blank" rel="noopener">원문 보기</a></td><td>Wikimedia Commons 확인</td><td>CC BY-SA 4.0</td><td>객실 테마 참고; 본문 미사용</td></tr><tr id="src-13"><td>라이선스 사진</td><td>Toy Story Hotel exterior</td><td>Baycrest</td><td><a href="https://commons.wikimedia.org/wiki/File:Toy_Story_Hotel.jpg" target="_blank" rel="noopener">원문 보기</a></td><td>Wikimedia Commons 확인</td><td>CC BY-SA 2.5</td><td>상단 추천 호텔 제품사진</td></tr><tr id="src-14"><td>라이선스 사진</td><td>Shanghai Disneyland Hotel 1</td><td>Fayhoo</td><td><a href="https://commons.wikimedia.org/wiki/File:Shanghai_Disneyland_Hotel_1.JPG" target="_blank" rel="noopener">원문 보기</a></td><td>Wikimedia Commons 확인</td><td>CC BY-SA 3.0</td><td>비교 호텔 제품사진</td></tr><tr id="src-15"><td>AI 생성 이미지</td><td>4박5일 가족여행 화이트보드 인포그래픽</td><td>OpenAI gpt-image-2-high</td><td>로컬 자산: reports/assets/260804-shanghai-disneyland-family-hotel-strategy/family-4n5d-strategy-doodle.png</td><td>2026-08-04</td><td>AI 생성 · 시각 검수 완료 · 공식 이미지 아님</td><td>3+1 숙박·2일 파크 흐름</td></tr><tr id="src-16"><td>공식 호텔</td><td>Shanghai Disneyland Hotel</td><td>Shanghai Disney Resort</td><td><a href="https://www.shanghaidisneyresort.com/en/commerce/hotel/intro/shanghai-disneyland-hotel" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-04 확인</td><td>공식 원문</td><td>Priority Entry·무료 수상택시·셔틀·현행 취소 안내</td></tr><tr id="src-17"><td>공식 호텔</td><td>Toy Story Hotel</td><td>Shanghai Disney Resort</td><td><a href="https://www.shanghaidisneyresort.com/en/commerce/hotel/intro/toy-story-hotel" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-04 확인</td><td>공식 원문</td><td>Priority Entry·아동 시설·현행 취소 안내</td></tr><tr id="src-18"><td>OTA 후기</td><td>Shanghai Disneyland Hotel Reviews</td><td>Trip.com</td><td><a href="https://www.trip.com/hotels/shanghai-hotel-detail-4687218/shanghai-disneyland-hotel/review.html" target="_blank" rel="noopener">원문 보기</a></td><td>2026-08-04 확인</td><td>검증후기 집계 · 대표성 한계</td><td>7,029건·9.2/10·프리미엄 휴식과 가격 비판</td></tr></tbody></table></div></details>
   <script id="report-view-script">
   (()=>{const body=document.body;const buttons=[...document.querySelectorAll('[data-report-view-target]')];const pdf=document.getElementById('report-pdf-button');const setView=(view,focus=false)=>{if(!['simple','detail'].includes(view))view='detail';body.dataset.reportView=view;buttons.forEach(button=>{const active=button.dataset.reportViewTarget===view;button.classList.toggle('is-active',active);if(button.classList.contains('report-view-button'))button.setAttribute('aria-pressed',String(active))});if(pdf){pdf.href=view==='simple'?pdf.dataset.simpleUrl:pdf.dataset.detailUrl;pdf.download=view==='simple'?pdf.dataset.simpleFilename:pdf.dataset.detailFilename;pdf.setAttribute('aria-label',`${view==='simple'?'간단 요약':'상세 보고서'} PDF 파일 바로 저장`)}if(focus){const target=view==='simple'?document.getElementById('simple-report'):document.querySelector('.detail-report');target?.scrollIntoView({block:'start'})}dispatchEvent(new CustomEvent('reportviewchange',{detail:{view}}))};buttons.forEach(button=>button.addEventListener('click',()=>setView(button.dataset.reportViewTarget,true)));const requested=new URLSearchParams(location.search).get('view');setView(requested==='simple'?'simple':'detail')})();
@@ -368,39 +93,7 @@
   <script id="report-share-script">
   (()=>{const button=document.getElementById('report-share-button');if(!button)return;const original=button.textContent;const shareUrl=()=>{const url=new URL(location.href);if(document.body.dataset.reportView==='simple')url.searchParams.set('view','simple');else url.searchParams.delete('view');url.hash='';return url.toString()};const copied=()=>{button.textContent='링크 복사됨';button.setAttribute('aria-label','보고서 링크가 복사되었습니다');setTimeout(()=>{button.textContent=original;button.setAttribute('aria-label','현재 보고서 링크 공유')},1800)};button.addEventListener('click',async()=>{const data={title:document.title,text:document.querySelector('meta[name="description"]')?.content||document.title,url:shareUrl()};try{if(navigator.share){await navigator.share(data)}else{await navigator.clipboard.writeText(data.url);copied()}}catch(error){if(error?.name==='AbortError')return;try{await navigator.clipboard.writeText(data.url);copied()}catch{button.textContent='주소창에서 복사';setTimeout(()=>button.textContent=original,2200)}}})})();
   </script>
-<script src="../assets/js/view-counter.js"></script>
-
-<script id="report-layout-script">
-(function(){
-  var body = document.body;
-  var buttons = document.querySelectorAll('[data-layout]');
-  var LAYOUT_KEY = 'report-layout-pref';
-  
-  function setLayout(mode) {
-    if (mode === 'a4') {
-      body.classList.add('report-a4-mode');
-      document.documentElement.style.background = '#e8ecf1';
-    } else {
-      body.classList.remove('report-a4-mode');
-      document.documentElement.style.background = '';
-    }
-    buttons.forEach(function(btn) {
-      var active = btn.dataset.layout === mode;
-      btn.classList.toggle('is-active', active);
-      btn.setAttribute('aria-pressed', String(active));
-    });
-    localStorage.setItem(LAYOUT_KEY, mode);
-  }
-  
-  buttons.forEach(function(btn) {
-    btn.addEventListener('click', function() { setLayout(btn.dataset.layout); });
-  });
-  
-  // Load preference - default wide
-  var saved = localStorage.getItem(LAYOUT_KEY) || 'a4';
-  setLayout(saved);
-})();
-</script>
-
+  <script src="../assets/report-page-layout.js"></script>
+  <script src="../assets/report-view-counter.js" data-report-id="260804-shanghai-disneyland-family-hotel-strategy"></script>
 </body>
 </html>
