@@ -2,6 +2,7 @@ import path from "node:path";
 import fs from "node:fs";
 import { loadConfig } from "./config.js";
 import { readText, writeText } from "./fs.js";
+import { escapeHtml } from "./html.js";
 import {
   listReportsNewestFirst,
   reportPublicExists,
@@ -275,6 +276,35 @@ function writeArchiveArtifacts(
   return { archive: archivePath, manifest: manifestPath };
 }
 
+function newestItem(items: ManifestItem[]): ManifestItem | undefined {
+  return [...items].sort((a, b) => {
+    const aTime = Date.parse(a.createdAt);
+    const bTime = Date.parse(b.createdAt);
+    if (Number.isFinite(aTime) && Number.isFinite(bTime) && aTime !== bTime) {
+      return bTime - aTime;
+    }
+    return b.createdAt.localeCompare(a.createdAt);
+  })[0];
+}
+
+function writeHomeIndex(root: string, items: ManifestItem[]): string {
+  const template = readText(path.join(root, "src", "site", "index.html"));
+  const latest = newestItem(items);
+  const marker = /<a class="ghost-link" data-latest-report href="[^"]*">[\s\S]*?<\/a>/;
+  if (!marker.test(template)) {
+    throw new Error("루트 index의 최신 보고서 링크 표시자를 찾지 못했습니다.");
+  }
+  const html = latest
+    ? template.replace(
+        marker,
+        `<a class="ghost-link" data-latest-report href="${escapeHtml(latest.path)}">최신 보고서 · ${escapeHtml(latest.title)}</a>`,
+      )
+    : template;
+  const home = path.join(root, "index.html");
+  writeText(home, html);
+  return home;
+}
+
 export function buildArchive() {
   const root = repoRoot();
   const config = loadConfig();
@@ -284,6 +314,7 @@ export function buildArchive() {
   const items = mergedItems(root, config.siteBase, docs);
   return {
     reportCount: items.length,
+    home: writeHomeIndex(root, items),
     ...writeArchiveArtifacts(root, items, config.siteBase),
   };
 }
@@ -315,15 +346,12 @@ export function buildSite(options?: {
   syncUploadedPublicFiles(root);
   const items = mergedItems(root, config.siteBase, docs);
 
-  writeText(
-    path.join(root, "index.html"),
-    readText(path.join(root, "src", "site", "index.html")),
-  );
   fs.cpSync(path.join(root, "src", "site", "assets"), path.join(root, "assets"), {
     recursive: true,
     force: true,
   });
   const archiveArtifacts = writeArchiveArtifacts(root, items, config.siteBase);
+  const home = writeHomeIndex(root, items);
 
   for (const legacy of options?.legacyRedirects || []) {
     writeText(
@@ -334,7 +362,7 @@ export function buildSite(options?: {
 
   return {
     reportCount: docs.length,
-    home: path.join(root, "index.html"),
+    home,
     archive: archiveArtifacts.archive,
     manifest: archiveArtifacts.manifest,
     published: docs.filter((d) => reportPublicExists(d.id)).map((d) => d.id),

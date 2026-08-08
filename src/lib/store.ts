@@ -6,6 +6,7 @@ import {
 } from "../schema/report.js";
 import { loadConfig } from "./config.js";
 import { exists, listDirs, readText, writeText } from "./fs.js";
+import { appendRevision } from "./revisions.js";
 import {
   contentReportPath,
   publicReportPath,
@@ -24,9 +25,27 @@ export function loadReport(id: string): ReportDocument {
   return ReportDocumentSchema.parse(raw);
 }
 
-export function saveReport(doc: ReportDocument): void {
+export function saveReport(
+  doc: ReportDocument,
+  options?: { recordHistory?: boolean; historyReason?: string },
+): void {
   const parsed = ReportDocumentSchema.parse(doc);
-  writeText(contentReportPath(parsed.id), JSON.stringify(parsed, null, 2) + "\n");
+  const reportPath = contentReportPath(parsed.id);
+  const nextContent = JSON.stringify(parsed, null, 2) + "\n";
+
+  if (exists(reportPath)) {
+    const previousContent = readText(reportPath);
+    if (previousContent === nextContent) return;
+    if (options?.recordHistory !== false) {
+      appendRevision(
+        path.join(path.dirname(reportPath), "history"),
+        options?.historyReason || "report_updated",
+        [{ name: "report.json", content: previousContent }],
+      );
+    }
+  }
+
+  writeText(reportPath, nextContent);
 }
 
 export function toManifestItem(doc: ReportDocument): ManifestItem {
@@ -59,4 +78,3 @@ export function listReportsNewestFirst(): ReportDocument[] {
 export function reportPublicExists(id: string): boolean {
   return exists(publicReportPath(id));
 }
-

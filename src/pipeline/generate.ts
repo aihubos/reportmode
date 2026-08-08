@@ -66,7 +66,7 @@ export async function runGenerate(
 
   if (request.draft) {
     document.status = "draft";
-    saveReport(document);
+    saveReport(document, { recordHistory: false });
     const localPreviewPath = buildDraftPreview(document);
     return {
       document,
@@ -92,7 +92,7 @@ export async function runGenerate(
     const failed = loadReport(document.id);
     failed.status = "publish_failed";
     failed.updatedAt = nowIsoKst();
-    saveReport(failed);
+    saveReport(failed, { recordHistory: false });
     writeText(
       runtimeDir("logs", `${document.id}-publish-error.json`),
       JSON.stringify(

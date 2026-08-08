@@ -6,6 +6,8 @@ import { loadConfig } from "../lib/config.js";
 import { writeText } from "../lib/fs.js";
 import { repoRoot } from "../lib/paths.js";
 import { listReportsNewestFirst, toManifestItem } from "../lib/store.js";
+import { nowIsoKst } from "../lib/time.js";
+import { ManifestItemSchema, type ManifestItem } from "../schema/report.js";
 import { renderPublisherPage } from "../publisher/page.js";
 import {
   deleteUploadedReport,
@@ -87,12 +89,62 @@ function resolveStatic(pathname: string): string | null {
   return fs.existsSync(target) && fs.statSync(target).isFile() ? target : null;
 }
 
+function localManifestItems(): ManifestItem[] {
+  try {
+    const raw = JSON.parse(
+      fs.readFileSync(path.join(repoRoot(), "reports", "manifest.json"), "utf8"),
+    );
+    if (!Array.isArray(raw?.reports)) return [];
+    return raw.reports.flatMap((item: unknown) => {
+      const parsed = ManifestItemSchema.safeParse(item);
+      return parsed.success ? [parsed.data] : [];
+    });
+  } catch {
+    return [];
+  }
+}
+
+function healthPayload() {
+  const reports = localManifestItems().sort((a, b) => {
+    const aTime = Date.parse(a.createdAt);
+    const bTime = Date.parse(b.createdAt);
+    if (Number.isFinite(aTime) && Number.isFinite(bTime) && aTime !== bTime) {
+      return bTime - aTime;
+    }
+    return b.createdAt.localeCompare(a.createdAt);
+  });
+  const latest = reports[0];
+  return {
+    ok: true,
+    status: "ready",
+    service: "reportmode",
+    version: "1.0.0",
+    publisher: true,
+    revisionHistory: true,
+    reportCount: reports.length,
+    latestReport: latest
+      ? {
+          id: latest.id,
+          title: latest.title,
+          createdAt: latest.createdAt,
+          url: latest.url,
+        }
+      : null,
+    checkedAt: nowIsoKst(),
+  };
+}
+
 export async function startStudio(port: number) {
   const config = loadConfig();
   let publisherBusy = false;
   const server = http.createServer(async (req, res) => {
     try {
       const url = new URL(req.url || "/", "http://" + (req.headers.host || "localhost"));
+
+      if (req.method === "GET" && url.pathname === "/api/health") {
+        sendJson(res, 200, healthPayload());
+        return;
+      }
 
       if (req.method === "GET" && url.pathname === "/api/list") {
         const reports = listReportsNewestFirst().map(toManifestItem);

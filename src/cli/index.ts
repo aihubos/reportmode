@@ -50,7 +50,7 @@ program
 
 program
   .command("archive-build")
-  .description("기존 보고서 파일은 건드리지 않고 아카이브와 manifest만 생성")
+  .description("보고서 파일은 유지하고 홈 최신 링크·아카이브·manifest 갱신")
   .action(() => {
     const result = buildArchive();
     console.log(JSON.stringify({ ok: true, ...result }, null, 2));

@@ -123,6 +123,7 @@ function syncPublishedFilesFromClone(tmp: string, id: string) {
     path.join(tmp, "reports", "manifest.json"),
     path.join(root, "reports", "manifest.json"),
   );
+  copyTree(path.join(tmp, "index.html"), path.join(root, "index.html"));
 }
 
 export async function publishReport(id: string): Promise<{
@@ -158,6 +159,10 @@ export async function publishReport(id: string): Promise<{
       root,
     );
 
+    copyTree(
+      path.join(root, "content", "reports", id),
+      path.join(tmp, "content", "reports", id),
+    );
     writeText(
       path.join(tmp, "content", "reports", id, "report.json"),
       JSON.stringify(publishedDocument, null, 2) + "\n",
@@ -167,10 +172,11 @@ export async function publishReport(id: string): Promise<{
     runFile("npm", ["run", "build"], tmp);
 
     const stagedPaths = [
-      path.join("content", "reports", id, "report.json"),
+      path.join("content", "reports", id),
       path.join("reports", id, "index.html"),
       path.join("archive", "index.html"),
       path.join("reports", "manifest.json"),
+      "index.html",
     ];
     runGit(["add", "--", ...stagedPaths], tmp);
 
@@ -219,7 +225,7 @@ export async function publishReport(id: string): Promise<{
     });
 
     syncPublishedFilesFromClone(tmp, id);
-    saveReport(publishedDocument);
+    saveReport(publishedDocument, { recordHistory: false });
     writeText(
       path.join(root, ".reportmode", "logs", `${id}-publish.json`),
       JSON.stringify(

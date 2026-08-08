@@ -5,6 +5,7 @@ import path from "node:path";
 import { loadConfig } from "../lib/config.js";
 import { ensureDir, readText, writeText } from "../lib/fs.js";
 import { repoRoot, runtimeDir } from "../lib/paths.js";
+import { appendRevision } from "../lib/revisions.js";
 import { nowIsoKst } from "../lib/time.js";
 import {
   UploadedReportMetaSchema,
@@ -104,6 +105,7 @@ function commitAndPush(
     path.join("reports", id),
     path.join("archive", "index.html"),
     path.join("reports", "manifest.json"),
+    "index.html",
   ];
   runGit(["add", "-A", "--", ...paths], tmp);
   const staged = runGit(["diff", "--cached", "--name-only"], tmp);
@@ -263,13 +265,25 @@ export async function updateUploadedReport(
         : current.sourceCount,
       updatedAt: nowIsoKst(),
     });
-    writeText(metaPath, JSON.stringify(next, null, 2) + "\n");
     const html = body.html === undefined ? undefined : String(body.html);
     if (html !== undefined) {
       if (!/<html\b|<!doctype\s+html/i.test(html)) throw new Error("유효한 HTML 문서가 아닙니다.");
       if (Buffer.byteLength(html, "utf8") > 10 * 1024 * 1024) {
         throw new Error("직접 수정하는 HTML은 10MB 이하여야 합니다.");
       }
+    }
+    const historyFiles = [{ name: "meta.json", content: readText(metaPath) }];
+    const currentHtmlPath = path.join(contentDir, "files", "index.html");
+    if (fs.existsSync(currentHtmlPath)) {
+      historyFiles.push({ name: "index.html", content: readText(currentHtmlPath) });
+    }
+    appendRevision(
+      path.join(contentDir, "history"),
+      "uploaded_report_updated",
+      historyFiles,
+    );
+    writeText(metaPath, JSON.stringify(next, null, 2) + "\n");
+    if (html !== undefined) {
       writeText(path.join(contentDir, "files", "index.html"), html);
       writeText(path.join(publicDir, "index.html"), html);
     }
