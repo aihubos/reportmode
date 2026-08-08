@@ -1,7 +1,31 @@
 {
-  "generatedAt": "2026-08-08T10:35:06+09:00",
+  "generatedAt": "2026-08-08T11:20:00+09:00",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260808-dongtan-toddler-hidden-daytrips",
+      "slug": "dongtan-toddler-hidden-daytrips",
+      "title": "동탄에서 1시간, 1~3세와 실패 적은 나들이 7선",
+      "subtitle": "동탄호수공원 1시간 내 1~3세 숨은 나들이 가이드",
+      "category": "라이프",
+      "summary": "동탄호수공원 기준 차량 1시간 내외, 만 1~3세 아이와 가기 좋은 덜 뻔한 나들이 7곳을 한 장 요약·지도·사진·준비물과 함께 정리한 가이드입니다.",
+      "createdAt": "2026-08-08T11:20:00+09:00",
+      "updatedAt": "2026-08-08T11:20:00+09:00",
+      "status": "published",
+      "path": "reports/260808-dongtan-toddler-hidden-daytrips.html",
+      "url": "https://aihubos.github.io/reportmode/reports/260808-dongtan-toddler-hidden-daytrips.html",
+      "displayDate": "260808",
+      "sourceCount": 0,
+      "tags": [
+        "dongtan",
+        "toddler",
+        "kids",
+        "family",
+        "day-trip"
+      ],
+      "coverImage": "reports/assets/260808-dongtan-toddler-hidden-daytrips/cover.png",
+      "coverAlt": "동탄 1~3세 나들이 대표 이미지 · 오산 에코리움/맑음터공원"
+    },
     {
       "id": "260808-ai-persona-prompting-intro",
       "slug": "ai-persona-prompting-intro",

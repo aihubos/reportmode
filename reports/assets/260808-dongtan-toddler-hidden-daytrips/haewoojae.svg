@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" fill="none" role="img" aria-label="해우재 어린이체험관 일러스트">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#EAF4FF"/>
+      <stop offset="55%" stop-color="#F7FBFF"/>
+      <stop offset="100%" stop-color="#EEF8F4"/>
+    </linearGradient>
+    <linearGradient id="bowl" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F8FBFF"/>
+      <stop offset="100%" stop-color="#D7E8FF"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="760" rx="36" fill="url(#bg)"/>
+  <circle cx="980" cy="120" r="150" fill="#3182F6" fill-opacity=".10"/>
+  <circle cx="160" cy="640" r="170" fill="#20B2A0" fill-opacity=".10"/>
+  <rect x="90" y="88" width="170" height="42" rx="21" fill="#3182F6" fill-opacity=".12"/>
+  <text x="115" y="115" fill="#216DDD" font-family="Apple SD Gothic Neo, Pretendard, sans-serif" font-size="20" font-weight="800">해우재 · 보고서 제작 일러스트</text>
+  <text x="90" y="190" fill="#191F28" font-family="Apple SD Gothic Neo, Pretendard, sans-serif" font-size="54" font-weight="800">배변 관심기</text>
+  <text x="90" y="250" fill="#4E5968" font-family="Apple SD Gothic Neo, Pretendard, sans-serif" font-size="28" font-weight="700">변기 모양 박물관 + 어린이 체험</text>
+  <!-- stylized toilet museum building -->
+  <g transform="translate(560 150)">
+    <rect x="40" y="40" width="420" height="360" rx="48" fill="#FFFFFF" stroke="#D6E4FF" stroke-width="6"/>
+    <rect x="110" y="0" width="280" height="90" rx="28" fill="#3182F6"/>
+    <rect x="150" y="18" width="80" height="18" rx="9" fill="#FFFFFF" fill-opacity=".85"/>
+    <rect x="250" y="18" width="100" height="18" rx="9" fill="#FFFFFF" fill-opacity=".55"/>
+    <ellipse cx="250" cy="210" rx="145" ry="110" fill="url(#bowl)" stroke="#9EC2FF" stroke-width="8"/>
+    <ellipse cx="250" cy="210" rx="88" ry="62" fill="#7EB0FF" fill-opacity=".35"/>
+    <rect x="180" y="300" width="140" height="36" rx="18" fill="#3182F6"/>
+    <circle cx="250" cy="210" r="18" fill="#216DDD"/>
+    <!-- kids path dots -->
+    <circle cx="70" cy="390" r="10" fill="#20B2A0"/>
+    <circle cx="120" cy="410" r="8" fill="#20B2A0" fill-opacity=".7"/>
+    <circle cx="165" cy="425" r="7" fill="#20B2A0" fill-opacity=".5"/>
+  </g>
+  <text x="90" y="680" fill="#6B7684" font-family="Apple SD Gothic Neo, Pretendard, sans-serif" font-size="22" font-weight="700">수원 장안 · 2~3세 주제 몰입 후보</text>
+</svg>
