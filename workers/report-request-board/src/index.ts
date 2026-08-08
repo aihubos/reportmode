@@ -116,14 +116,21 @@ export default {
 
     var commentId = url.pathname.match(/^\/comments\/([0-9a-f-]{36})$/i)?.[1];
     if (commentId && request.method === "DELETE") {
-      let payload: { password?: unknown };
+      let payload: { password?: unknown; adminPassword?: unknown };
       try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
-      const password = typeof payload.password === "string" ? payload.password : "";
+      const password = passwordValue(payload.password);
+      const adminPassword = passwordValue(payload.adminPassword);
+      const isAdmin = Boolean(env.ADMIN_PASSWORD) && (adminPassword === env.ADMIN_PASSWORD || password === env.ADMIN_PASSWORD);
       const comment = await env.DB.prepare(
         "SELECT id, password_salt, password_hash FROM report_comments WHERE id = ?"
       ).bind(commentId).first<CommentRow>();
-      if (!comment || !comment.password_salt || !comment.password_hash) return json(request, { error: "not_found" }, 404);
-      if (await hashPassword(password, comment.password_salt) !== comment.password_hash) return json(request, { error: "wrong_password" }, 403);
+      if (!comment) return json(request, { error: "not_found" }, 404);
+      if (!isAdmin) {
+        if (!comment.password_salt || !comment.password_hash) return json(request, { error: "not_found" }, 404);
+        if (!password || await hashPassword(password, comment.password_salt) !== comment.password_hash) {
+          return json(request, { error: "wrong_password" }, 403);
+        }
+      }
       await env.DB.prepare("DELETE FROM report_comments WHERE id = ?").bind(commentId).run();
       return json(request, { ok: true });
     }
@@ -211,11 +218,20 @@ export default {
     }
 
     if (requestId && request.method === "DELETE") {
-      let payload: { password?: unknown };
+      let payload: { password?: unknown; adminPassword?: unknown };
       try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
       const password = passwordValue(payload.password);
-      const verified = await verifyRequestPassword(env, requestId, password);
-      if ("error" in verified) return json(request, { error: verified.error }, verified.status);
+      const adminPassword = passwordValue(payload.adminPassword);
+      const isAdmin = Boolean(env.ADMIN_PASSWORD) && (adminPassword === env.ADMIN_PASSWORD || password === env.ADMIN_PASSWORD);
+      if (!isAdmin) {
+        const verified = await verifyRequestPassword(env, requestId, password);
+        if ("error" in verified) return json(request, { error: verified.error }, verified.status);
+      } else {
+        const existing = await env.DB.prepare(
+          "SELECT id FROM report_requests WHERE id = ? AND status = 'pending'"
+        ).bind(requestId).first<{ id: string }>();
+        if (!existing) return json(request, { error: "not_found" }, 404);
+      }
       await env.DB.batch([
         env.DB.prepare("DELETE FROM report_request_replies WHERE request_id = ?").bind(requestId),
         env.DB.prepare("DELETE FROM report_requests WHERE id = ?").bind(requestId),
