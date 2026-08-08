@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">ADHD와 HSP 일상 운영 가이드 표지</title>
+  <desc id="desc">ADHD와 감각처리 민감성을 함께 고려한 일상 운영 가이드 표지</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7fbff"/>
+      <stop offset="0.55" stop-color="#eef6ff"/>
+      <stop offset="1" stop-color="#f5ffef"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5ca2ff"/>
+      <stop offset="1" stop-color="#216ddd"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="1320" cy="140" r="250" fill="#dfffb0" opacity=".45"/>
+  <circle cx="1430" cy="710" r="320" fill="#d5e9ff" opacity=".7"/>
+  <rect x="90" y="92" width="160" height="48" rx="24" fill="#e8f3ff"/>
+  <text x="122" y="124" fill="#2164c8" font-family="Arial, Apple SD Gothic Neo, sans-serif" font-size="22" font-weight="700">DAILY GUIDE</text>
+  <text x="90" y="300" fill="#191f28" font-family="Arial, Apple SD Gothic Neo, sans-serif" font-size="82" font-weight="800">ADHD × HSP</text>
+  <text x="90" y="405" fill="#216ddd" font-family="Arial, Apple SD Gothic Neo, sans-serif" font-size="72" font-weight="800">일상 운영 가이드</text>
+  <text x="94" y="492" fill="#6b7684" font-family="Arial, Apple SD Gothic Neo, sans-serif" font-size="30" font-weight="600">의지보다 환경·감각·회복을 설계하는 방법</text>
+  <g transform="translate(980 250)">
+    <circle cx="220" cy="210" r="170" fill="#ffffff" opacity=".9" stroke="#d9e8f8" stroke-width="8"/>
+    <circle cx="220" cy="210" r="108" fill="url(#blue)" opacity=".95"/>
+    <path d="M220 125v170M135 210h170" stroke="#ffffff" stroke-width="12" stroke-linecap="round" opacity=".9"/>
+    <circle cx="220" cy="210" r="24" fill="#dfff6a"/>
+    <path d="M220 30v-55M220 435v55M40 210h-55M395 210h55" stroke="#3182f6" stroke-width="12" stroke-linecap="round" opacity=".6"/>
+    <circle cx="220" cy="30" r="15" fill="#3182f6"/>
+    <circle cx="220" cy="390" r="15" fill="#20b29f"/>
+    <circle cx="40" cy="210" r="15" fill="#f0b429"/>
+    <circle cx="400" cy="210" r="15" fill="#d45454"/>
+  </g>
+  <text x="90" y="760" fill="#8b95a1" font-family="Arial, Apple SD Gothic Neo, sans-serif" font-size="23" font-weight="600">외부기억 · 감각 총량 · 회복 예약 · 과부하 리셋</text>
+</svg>
