@@ -1,12 +1,31 @@
 {
-  "generatedAt": "2026-08-08T11:20:00+09:00",
+  "generatedAt": "2026-08-08T06:23:24.069Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260808-macbook-local-llm-lm-studio-v1-0-0",
+      "slug": "macbook-local-llm-lm-studio-v1-0-0",
+      "title": "MacBook에 Local LLM 설치하기",
+      "category": "AI",
+      "summary": "비전공자를 위한 MacBook Local LLM 설치 가이드. LM Studio로 모델 선택, 설치, 첫 채팅, 문서 RAG, 로컬 API까지 따라 하는 실전 안내서.",
+      "createdAt": "2026-08-08T15:23:15+09:00",
+      "updatedAt": "2026-08-08T15:23:15+09:00",
+      "status": "published",
+      "path": "reports/260808-macbook-local-llm-lm-studio-v1-0-0/",
+      "url": "https://aihubos.github.io/reportmode/reports/260808-macbook-local-llm-lm-studio-v1-0-0/",
+      "displayDate": "260808",
+      "sourceCount": 18,
+      "tags": [
+        "AI",
+        "자동화"
+      ],
+      "coverImage": "reports/260808-macbook-local-llm-lm-studio-v1-0-0/assets/lm-studio-logo.png",
+      "coverAlt": "LM Studio 공식 로고"
+    },
     {
       "id": "260808-dongtan-toddler-hidden-daytrips",
       "slug": "dongtan-toddler-hidden-daytrips",
       "title": "동탄에서 1시간, 1~3세와 실패 적은 나들이 7선",
-      "subtitle": "동탄호수공원 1시간 내 1~3세 숨은 나들이 가이드",
       "category": "라이프",
       "summary": "동탄호수공원 기준 차량 1시간 내외, 만 1~3세 아이와 가기 좋은 덜 뻔한 나들이 7곳을 한 장 요약·지도·사진·준비물과 함께 정리한 가이드입니다.",
       "createdAt": "2026-08-08T11:20:00+09:00",
@@ -24,13 +43,13 @@
         "day-trip"
       ],
       "coverImage": "reports/assets/260808-dongtan-toddler-hidden-daytrips/cover.png",
-      "coverAlt": "동탄 1~3세 나들이 대표 이미지 · 오산 에코리움/맑음터공원"
+      "coverAlt": "동탄 1~3세 나들이 대표 이미지 · 오산 에코리움/맑음터공원",
+      "subtitle": "동탄호수공원 1시간 내 1~3세 숨은 나들이 가이드"
     },
     {
       "id": "260808-ai-persona-prompting-intro",
       "slug": "ai-persona-prompting-intro",
       "title": "AI에게 '말투'를 가르칠 수 있을까?",
-      "subtitle": "페르소나 설정과 프롬프트 엔지니어링 입문",
       "category": "AI",
       "summary": "비전공자를 위한 AI 페르소나 설정과 프롬프트 엔지니어링 입문. 1장 요약, 10분 설정법, JARVIS·Her·스타워즈 로봇 비유, 19개 복사용 페르소나를 제공합니다.",
       "createdAt": "2026-08-08T10:30:00+09:00",
@@ -48,13 +67,13 @@
         "beginner"
       ],
       "coverImage": "reports/assets/260808-ai-persona-prompting-intro/cover.png",
-      "coverAlt": "OpenAI 공식 로고"
+      "coverAlt": "OpenAI 공식 로고",
+      "subtitle": "페르소나 설정과 프롬프트 엔지니어링 입문"
     },
     {
       "id": "260808-ai-token-lego-guide",
       "slug": "ai-token-lego-guide",
       "title": "AI의 토큰, 레고 블록처럼 이해하기",
-      "subtitle": "비전공자를 위한 토큰 기초 가이드",
       "category": "AI",
       "summary": "AI의 토큰이 무엇인지 레고 블록 비유, 시각 자료, 실습, 교육 영상으로 쉽게 설명하는 비전공자용 가이드입니다.",
       "createdAt": "2026-08-08T09:14:05+09:00",
@@ -72,13 +91,13 @@
         "beginner"
       ],
       "coverImage": "reports/assets/260808-ai-token-lego-guide/cover.png",
-      "coverAlt": "OpenAI와 Hugging Face 공식 로고"
+      "coverAlt": "OpenAI와 Hugging Face 공식 로고",
+      "subtitle": "비전공자를 위한 토큰 기초 가이드"
     },
     {
       "id": "260808-hostinger-vps-hermes-24h",
       "slug": "hostinger-vps-hermes-24h",
       "title": "Hostinger VPS로 Hermes 24시간 운영하기",
-      "subtitle": "비전공자를 위한 VPS 설치·운영 가이드",
       "category": "AI",
       "summary": "VPS 개념부터 Hostinger 가입, Hermes Agent 설치, Telegram 24시간 운영, 보안·백업까지 정리한 실전 가이드입니다.",
       "createdAt": "2026-08-08T09:14:05+09:00",
@@ -96,13 +115,13 @@
         "24h"
       ],
       "coverImage": "reports/assets/260808-hostinger-vps-hermes-24h/cover.png",
-      "coverAlt": "GitHub와 Telegram 공식 로고"
+      "coverAlt": "GitHub와 Telegram 공식 로고",
+      "subtitle": "비전공자를 위한 VPS 설치·운영 가이드"
     },
     {
       "id": "260808-dongtan-kids-day-trips",
       "slug": "dongtan-kids-day-trips",
       "title": "동탄에서 1시간, 뻔하지 않은 아이 나들이 7선",
-      "subtitle": "5~7세 가족을 위한 체험형 나들이 가이드",
       "category": "라이프",
       "summary": "동탄호수공원에서 차량 1시간 내외, 5~7세 아이와 가기 좋은 덜 뻔한 체험형 나들이 7곳을 지도·사진·준비물과 함께 정리한 가이드입니다.",
       "createdAt": "2026-08-08T09:14:05+09:00",
@@ -120,13 +139,13 @@
         "gyeonggi"
       ],
       "coverImage": "reports/assets/260808-dongtan-kids-day-trips/cover.png",
-      "coverAlt": "아이 나들이 대표 이미지 · 식물원/체험 공간"
+      "coverAlt": "아이 나들이 대표 이미지 · 식물원/체험 공간",
+      "subtitle": "5~7세 가족을 위한 체험형 나들이 가이드"
     },
     {
       "id": "260808-hbm-ai-memory-beginner",
       "slug": "hbm-ai-memory-beginner",
       "title": "HBM이란 무엇인가? 비전공자용 AI 메모리 입문",
-      "subtitle": "수직 적층 메모리와 AI 가속의 기초",
       "category": "AI",
       "summary": "HBM의 뜻, 구조, AI에서 중요한 이유, DDR·GDDR과의 차이, HBM3E·HBM4 세대 변화를 비유와 도식으로 설명하는 비전공자용 입문 보고서입니다.",
       "createdAt": "2026-08-08T09:14:05+09:00",
@@ -144,13 +163,13 @@
         "ai-chip"
       ],
       "coverImage": "reports/assets/260808-hbm-ai-memory-beginner/cover.png",
-      "coverAlt": "Samsung과 NVIDIA 공식 로고"
+      "coverAlt": "Samsung과 NVIDIA 공식 로고",
+      "subtitle": "수직 적층 메모리와 AI 가속의 기초"
     },
     {
       "id": "260808-hermes-second-brain-guide-site",
       "slug": "hermes-second-brain-guide-site",
       "title": "Hermes Second Brain 설치 가이드 사이트",
-      "subtitle": "외부 가이드 사이트 바로가기",
       "category": "AI",
       "summary": "Hermes와 Second Brain 구성 방법을 정리한 외부 가이드 사이트 링크입니다.",
       "createdAt": "2026-08-08T09:14:05+09:00",
@@ -167,13 +186,13 @@
         "external"
       ],
       "coverImage": "reports/assets/260808-hermes-second-brain-guide-site/cover.png",
-      "coverAlt": "Hermes Second Brain 가이드 외부 링크"
+      "coverAlt": "Hermes Second Brain 가이드 외부 링크",
+      "subtitle": "외부 가이드 사이트 바로가기"
     },
     {
       "id": "260808-hermes-desktop-guide-site",
       "slug": "hermes-desktop-guide-site",
       "title": "Hermes Desktop 설치 가이드 사이트",
-      "subtitle": "외부 가이드 사이트 바로가기",
       "category": "AI",
       "summary": "Hermes Desktop 설치와 사용을 정리한 외부 가이드 사이트 링크입니다.",
       "createdAt": "2026-08-08T09:14:05+09:00",
@@ -190,7 +209,8 @@
         "external"
       ],
       "coverImage": "reports/assets/260808-hermes-desktop-guide-site/cover.png",
-      "coverAlt": "Hermes Desktop 가이드 외부 링크"
+      "coverAlt": "Hermes Desktop 가이드 외부 링크",
+      "subtitle": "외부 가이드 사이트 바로가기"
     },
     {
       "id": "260808-macbook-m5max-comfyui-practical-guide",
