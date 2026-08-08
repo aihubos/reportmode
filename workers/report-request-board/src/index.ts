@@ -239,7 +239,57 @@ export default {
       return json(request, { ok: true });
     }
 
-    if (url.pathname === "/requests" || requestId || replyRequestId) {
+    if (url.pathname === "/admin/verify" && request.method === "POST") {
+      let payload: { adminPassword?: unknown };
+      try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+      if (!env.ADMIN_PASSWORD) return json(request, { error: "admin_not_configured" }, 503);
+      if (passwordValue(payload.adminPassword) !== env.ADMIN_PASSWORD) {
+        return json(request, { error: "wrong_admin_password" }, 403);
+      }
+      return json(request, { ok: true });
+    }
+
+    if (url.pathname === "/hidden-reports" && request.method === "GET") {
+      const rows = await env.DB.prepare(
+        "SELECT report_id FROM report_hidden ORDER BY hidden_at DESC LIMIT 500"
+      ).all<{ report_id: string }>();
+      return json(request, { reportIds: (rows.results || []).map((row) => row.report_id) });
+    }
+
+    if (url.pathname === "/hidden-reports" && request.method === "POST") {
+      let payload: { reportId?: unknown; adminPassword?: unknown; note?: unknown };
+      try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+      if (!env.ADMIN_PASSWORD) return json(request, { error: "admin_not_configured" }, 503);
+      if (passwordValue(payload.adminPassword) !== env.ADMIN_PASSWORD) {
+        return json(request, { error: "wrong_admin_password" }, 403);
+      }
+      const reportId = clean(payload.reportId, 120);
+      if (!reportId) return json(request, { error: "missing_report" }, 400);
+      const note = clean(payload.note, 120);
+      const hiddenAt = new Date().toISOString();
+      await env.DB.prepare(
+        `INSERT INTO report_hidden (report_id, hidden_at, note)
+         VALUES (?, ?, ?)
+         ON CONFLICT(report_id) DO UPDATE SET hidden_at = excluded.hidden_at, note = excluded.note`
+      ).bind(reportId, hiddenAt, note).run();
+      return json(request, { ok: true, reportId, hidden_at: hiddenAt });
+    }
+
+    const hiddenId = url.pathname.match(/^\/hidden-reports\/([^/]+)$/i)?.[1];
+    if (hiddenId && request.method === "DELETE") {
+      let payload: { adminPassword?: unknown };
+      try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+      if (!env.ADMIN_PASSWORD) return json(request, { error: "admin_not_configured" }, 503);
+      if (passwordValue(payload.adminPassword) !== env.ADMIN_PASSWORD) {
+        return json(request, { error: "wrong_admin_password" }, 403);
+      }
+      const reportId = decodeURIComponent(hiddenId).slice(0, 120);
+      if (!reportId) return json(request, { error: "missing_report" }, 400);
+      await env.DB.prepare("DELETE FROM report_hidden WHERE report_id = ?").bind(reportId).run();
+      return json(request, { ok: true, reportId });
+    }
+
+    if (url.pathname === "/requests" || requestId || replyRequestId || url.pathname.startsWith("/hidden-reports") || url.pathname === "/admin/verify") {
       return json(request, { error: "method_not_allowed" }, 405);
     }
     return json(request, { error: "not_found" }, 404);
