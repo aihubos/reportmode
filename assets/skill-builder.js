@@ -171,7 +171,7 @@
   }
 
   function saveState() {
-    try { localStorage.setItem(storageKey, JSON.stringify(state)); } catch (error) { /* storage may be blocked in local previews */ }
+    localStorage.setItem(storageKey, JSON.stringify(state));
   }
 
   function slugify(value) {
@@ -686,7 +686,7 @@
   });
   document.getElementById("resetBtn").addEventListener("click", function () {
     state = clone(defaults);
-    try { localStorage.removeItem(storageKey); } catch (error) { /* storage may be blocked */ }
+    localStorage.removeItem(storageKey);
     document.getElementById("skillSlug").removeAttribute("data-edited");
     hydrateControls();
     updatePreview();
