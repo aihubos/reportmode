@@ -1,7 +1,31 @@
 {
-  "generatedAt": "2026-08-08T00:14:22.779Z",
+  "generatedAt": "2026-08-08T10:35:06+09:00",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260808-ai-persona-prompting-intro",
+      "slug": "ai-persona-prompting-intro",
+      "title": "AI에게 '말투'를 가르칠 수 있을까?",
+      "subtitle": "페르소나 설정과 프롬프트 엔지니어링 입문",
+      "category": "AI",
+      "summary": "비전공자를 위한 AI 페르소나 설정과 프롬프트 엔지니어링 입문. 1장 요약, 10분 설정법, JARVIS·Her·스타워즈 로봇 비유, 19개 복사용 페르소나를 제공합니다.",
+      "createdAt": "2026-08-08T10:30:00+09:00",
+      "updatedAt": "2026-08-08T10:30:00+09:00",
+      "status": "published",
+      "path": "reports/260808-ai-persona-prompting-intro.html",
+      "url": "https://aihubos.github.io/reportmode/reports/260808-ai-persona-prompting-intro.html",
+      "displayDate": "260808",
+      "sourceCount": 0,
+      "tags": [
+        "persona",
+        "prompt",
+        "chatgpt",
+        "openai",
+        "beginner"
+      ],
+      "coverImage": "reports/assets/260808-ai-persona-prompting-intro/cover.png",
+      "coverAlt": "OpenAI 공식 로고"
+    },
     {
       "id": "260808-ai-token-lego-guide",
       "slug": "ai-token-lego-guide",
