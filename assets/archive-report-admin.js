@@ -189,12 +189,14 @@
   }
 
   function buildPanel() {
-    var host = document.querySelector(".archive-board-head");
+    var host = document.querySelector(".archive-footer");
     if (!host || document.getElementById("archiveAdminPanel")) return;
     var panel = document.createElement("section");
     panel.id = "archiveAdminPanel";
     panel.className = "archive-admin-panel";
     panel.innerHTML = [
+      '<button type="button" class="archive-admin-summary" aria-controls="archiveAdminBody" aria-expanded="false">관리자 메뉴</button>',
+      '<div id="archiveAdminBody" class="archive-admin-body" hidden>',
       '<div class="archive-admin-head">',
       '  <div>',
       '    <div class="archive-admin-kicker">ADMIN</div>',
@@ -213,8 +215,18 @@
       '</form>',
       '<p class="archive-admin-help">관리자 비밀번호를 입력하면 각 보고서 카드에 삭제 버튼이 나타납니다. 삭제 시 도서관 목록에서 숨겨집니다.</p>',
       '<p class="archive-admin-status" id="archiveAdminStatus" role="status"></p>',
+      '</div>',
     ].join("");
     host.appendChild(panel);
+
+    var summary = panel.querySelector(".archive-admin-summary");
+    var body = panel.querySelector("#archiveAdminBody");
+    summary.addEventListener("click", function () {
+      var isOpen = body.hidden;
+      body.hidden = !isOpen;
+      panel.classList.toggle("is-open", isOpen);
+      summary.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
 
     document.getElementById("archiveAdminUnlockBtn").addEventListener("click", function () {
       document.getElementById("archiveAdminForm").hidden = false;

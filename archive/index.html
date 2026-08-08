@@ -511,6 +511,14 @@ footer {
 }
 
 .archive-admin-panel { margin-top: 14px; padding: 12px 14px; border: 1px solid #e7ebf0; border-radius: 14px; background: #fbfcfd; }
+.archive-footer { flex-wrap: wrap; }
+.archive-footer .archive-admin-panel { flex-basis: 100%; margin-top: 2px; padding: 0; border: 0; background: transparent; text-align: right; }
+.archive-admin-summary { min-height: 22px; padding: 0 4px; border: 0; color: #aab2bd; background: transparent; font: inherit; font-size: 10px; font-weight: 700; cursor: pointer; }
+.archive-admin-summary:hover, .archive-admin-summary:focus-visible { color: var(--archive-muted); }
+.archive-admin-summary::before { content: "⋯"; margin-right: 5px; }
+.archive-admin-summary::after { content: "＋"; margin-left: 5px; font-size: 11px; }
+.archive-admin-panel.is-open .archive-admin-summary::after { content: "－"; }
+.archive-admin-body { margin-top: 8px; padding: 12px 14px; border: 1px solid #e7ebf0; border-radius: 14px; background: #fbfcfd; text-align: left; }
 .archive-admin-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .archive-admin-kicker { color: var(--archive-subtle); font-size: 10px; font-weight: 900; letter-spacing: .12em; }
 .archive-admin-head strong { display: block; margin-top: 2px; font-size: 14px; }
