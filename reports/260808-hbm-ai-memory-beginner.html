@@ -1,15 +1,16 @@
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="비전공자를 위해 HBM의 뜻, 구조, AI에서 중요한 이유, DDR·GDDR과의 차이, HBM3E·HBM4 세대 변화를 비유·도식·공식 교육 영상으로 설명하는 반응형 웹 보고서" />
-  <meta name="theme-color" content="#ffffff" />
-  <meta property="og:title" content="HBM이란 무엇인가? | 비전공자용 AI 메모리 입문" />
-  <meta property="og:description" content="HBM을 AI 칩 옆의 수직 물류창고와 수천 차선 출입구에 비유해 쉽게 설명합니다." />
-  <meta property="og:type" content="article" />
-  <title>HBM이란 무엇인가? | 비전공자용 AI 메모리 입문 · v1.0.0</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="HBM이란 무엇인가? | 비전공자용 AI 메모리 입문 — 2026년 8월 8일 최신 공식 자료와 사진·영상·예시·변경 이력을 반영한 AIHUBOS ReportMode 보고서" name="description"/>
+<meta content="#ffffff" name="theme-color"/>
+<meta content="HBM이란 무엇인가? | 비전공자용 AI 메모리 입문" property="og:title"/>
+<meta content="HBM을 AI 칩 옆의 수직 물류창고와 수천 차선 출입구에 비유해 쉽게 설명합니다." property="og:description"/>
+<meta content="article" property="og:type"/>
+<title>HBM이란 무엇인가? | 비전공자용 AI 메모리 입문 · v1.1.0</title>
+<style>
     :root {
       --blue: #3182f6;
       --blue-strong: #1b64da;
@@ -490,520 +491,490 @@
       a { text-decoration: none; }
     }
   </style>
-  <link rel="stylesheet" href="../assets/report-page-layout.css?v=20260807c-wide-default">
-  <script src="../assets/report-view-counter.js" data-report-id="260808-hbm-ai-memory-beginner"></script>
-  <script src="../assets/report-page-layout.js?v=20260807c-wide-default"></script>
-</head>
-<body data-report-view="detail" data-report-layout="wide" data-report-cover="assets/260808-hbm-ai-memory-beginner/cover.png" data-report-cover-alt="Samsung과 NVIDIA 공식 로고">
-  <a class="report-home-button" href="../archive/" aria-label="보고서 도서관 메인으로 이동">🏠 메인</a>
-  <div class="scroll-progress" id="scrollProgress"></div>
-
-  <div class="nav-wrap">
-    <nav class="nav" aria-label="주요 메뉴">
-      <a class="brand" href="../archive/" aria-label="보고서 처음으로">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M7 18.5h10M8 15h8M9 11.5h6M10 8h4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M5 21h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
-        </span>
-        <span>HBM EXPLAINED</span>
-        <span class="brand-sub">비전공자용</span>
-      </a>
-      <div class="nav-links">
-        <a href="#summary">한눈에</a>
-        <a href="#analogy">비유</a>
-        <a href="#anatomy">구조</a>
-        <a href="#comparison">비교</a>
-        <a href="#flow">AI 흐름</a>
-        <a href="#generations">세대</a>
-        <a href="#learning">영상</a>
-      </div>
-      <div class="nav-actions">
-        <a class="btn btn-ghost" href="#questions">5가지 질문</a>
-        <button class="btn btn-primary" type="button" onclick="window.print()" aria-label="보고서를 PDF로 저장">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 9V4h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M7 14h10v6H7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+<link href="../assets/report-page-layout.css?v=20260807c-wide-default" rel="stylesheet"/>
+<script data-report-id="260808-hbm-ai-memory-beginner" src="../assets/report-view-counter.js"></script>
+<script src="../assets/report-page-layout.js?v=20260807c-wide-default"></script>
+<link href="assets/reportmode-unified-20260808.css" rel="stylesheet"/><meta content="assets/260808-hbm-ai-memory-beginner/cover.png" property="og:image"/><meta content="2026-08-08" name="report:updated"/></head>
+<body class="reportmode-unified" data-report-cover="assets/260808-hbm-ai-memory-beginner/cover.png" data-report-cover-alt="Samsung과 NVIDIA 공식 로고" data-report-id="260808-hbm-ai-memory-beginner" data-report-layout="wide" data-report-view="detail"><a class="rm-skip" href="#rmUpdateSummary">최신 요약으로 건너뛰기</a><div class="rm-topline" id="rmTopline"><div class="rm-topline-inner">
+<a class="rm-topline-brand" href="../archive/"><span class="rm-topline-mark">R</span><span class="rm-topline-title">HBM이란 무엇인가? | 비전공자용 AI 메모리 입문</span></a>
+<div class="rm-topline-meta"><span class="rm-chip" id="rmVersionTop">v1.1.0</span><span id="rmUpdated">2026.08.08</span></div>
+<div class="rm-topline-actions"><a href="#rmUpdateSummary">요약</a><a href="#rmHistory">이력</a><button aria-label="PDF 저장" data-rm-print="" type="button">PDF</button></div>
+</div></div><section aria-labelledby="rm-update-title" class="rm-brief" id="rmUpdateSummary">
+<div class="rm-wrap rm-brief-grid">
+<div>
+<div class="rm-kicker">2026.08.08 VERIFIED UPDATE · 공식 자료 확인</div>
+<h2 id="rm-update-title">HBM이란 무엇인가? | 비전공자용 AI 메모리 입문<br/><span style="color:var(--rm-blue)">이번 업데이트의 한 문장 결론</span></h2>
+<p class="rm-brief-lead">기존 보고서를 보존하면서 최신 공식 자료, 실제 적용 예시, 미디어, 출처, 변경 이력을 공통 ReportMode 형식으로 보강했습니다.</p>
+<div class="rm-verdict"><span aria-hidden="true" class="rm-verdict-icon">✓</span><div><strong>HBM은 AI 가속기 옆에서 데이터를 매우 넓은 통로로 공급하는 적층 메모리이며, 2026년은 HBM3E 중심에서 HBM4 양산이 본격 확대되는 전환기입니다.</strong></div></div>
+<div class="rm-summary-cards">
+<article class="rm-summary-card"><b>01 · FACT</b><h3>Samsung HBM4</h3><p>2,048 I/O, 최대 3,300GB/s, 이전 세대 대비 약 2.7배 성능을 공식 안내합니다.</p></article>
+<article class="rm-summary-card"><b>02 · UPDATE</b><h3>양산 진척</h3><p>SK hynix는 2026년 2분기 HBM4 대량 출하를 시작했고 하반기 생산을 확대한다고 밝혔습니다.</p></article>
+<article class="rm-summary-card"><b>03 · ACTION</b><h3>과장 방지</h3><p>HBM이 빠르다고 GPU 연산·네트워크·소프트웨어 병목이 사라지는 것은 아니므로 시스템 전체를 봐야 합니다.</p></article>
+</div>
+<div class="rm-brief-actions">
+<a class="rm-action rm-action-primary" href="#rmMedia">사진·영상·예시 보기</a>
+<a class="rm-action" href="#rmHistory">변경 이력 보기</a>
+<a class="rm-action" href="../archive/">보고서 도서관</a>
+</div>
+</div>
+<article class="rm-visual-card">
+<figure><img alt="Samsung과 NVIDIA 공식 로고" decoding="async" loading="eager" src="assets/260808-hbm-ai-memory-beginner/cover.png"/><figcaption><span>공식 로고 또는 보고서 관련 이미지</span><span id="rmVersion">v1.1.0</span></figcaption></figure>
+</article>
+</div>
+</section><section aria-label="상세 본문 기준일 안내" class="rm-detail-note" id="rmDetailedContentNote"><div class="rm-detail-note-inner"><span aria-hidden="true" class="rm-detail-note-icon">i</span><div><strong>상세 본문 읽기:</strong> 아래 영역은 기존 보고서의 상세 분석과 근거를 보존한 내용입니다. 날짜·가격·버전·출시 상태가 상단의 <strong>2026.08.08 검증 요약</strong>과 다르면 상단 확인값이 우선하며, 중요한 결정은 연결된 공식 원문을 다시 확인하세요.</div></div></section>
+<a aria-label="보고서 도서관 메인으로 이동" class="report-home-button" href="../archive/">🏠 메인</a>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="nav-wrap">
+<nav aria-label="주요 메뉴" class="nav">
+<a aria-label="보고서 처음으로" class="brand" href="../archive/">
+<span aria-hidden="true" class="brand-mark">
+<svg fill="none" viewbox="0 0 24 24"><path d="M7 18.5h10M8 15h8M9 11.5h6M10 8h4" stroke="currentColor" stroke-linecap="round" stroke-width="2.2"></path><path d="M5 21h14" stroke="currentColor" stroke-linecap="round" stroke-width="2.2"></path></svg>
+</span>
+<span>HBM EXPLAINED</span>
+<span class="brand-sub">비전공자용</span>
+</a>
+<div class="nav-links">
+<a href="#summary">한눈에</a>
+<a href="#analogy">비유</a>
+<a href="#anatomy">구조</a>
+<a href="#comparison">비교</a>
+<a href="#flow">AI 흐름</a>
+<a href="#generations">세대</a>
+<a href="#learning">영상</a>
+</div>
+<div class="nav-actions">
+<a class="btn btn-ghost" href="#questions">5가지 질문</a>
+<button aria-label="보고서를 PDF로 저장" class="btn btn-primary" onclick="window.print()" type="button">
+<svg aria-hidden="true" fill="none" viewbox="0 0 24 24"><path d="M7 9V4h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"></path><path d="M7 14h10v6H7z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"></path></svg>
           PDF 저장
         </button>
-      </div>
-    </nav>
-  </div>
-
-  <main id="top">
-    <div class="container">
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-copy reveal">
-          <div class="eyebrow"><span class="eyebrow-dot"></span>비전공자를 위한 AI 반도체 기초 보고서</div>
-          <h1 id="hero-title">
-            HBM은 AI 칩 옆에 세운<br />
-            <span class="blue">수직 물류창고</span>와<br />
-            <span class="marker">수천 차선 출입구</span>입니다
+</div>
+</nav>
+</div>
+<main id="top">
+<div class="container">
+<section aria-labelledby="hero-title" class="hero">
+<div class="hero-copy reveal">
+<div class="eyebrow"><span class="eyebrow-dot"></span>비전공자를 위한 AI 반도체 기초 보고서</div>
+<h1 id="hero-title">
+            HBM은 AI 칩 옆에 세운<br/>
+<span class="blue">수직 물류창고</span>와<br/>
+<span class="marker">수천 차선 출입구</span>입니다
           </h1>
-          <p class="hero-lead">
+<p class="hero-lead">
             GPU가 아무리 계산을 빨리해도 데이터를 제때 받지 못하면 멈춰 기다립니다. HBM은 여러 DRAM을 위로 쌓고, 아주 넓은 통로로 GPU 가까이에 연결해 <strong>그 기다림을 줄이는 고대역폭 메모리</strong>입니다.
           </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#summary">3분 핵심부터 보기</a>
-            <a class="btn btn-ghost" href="#learning">공식 영상으로 배우기</a>
-          </div>
-          <div class="hero-note">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 10v6M12 7.2v.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            <span><strong>핵심 구분:</strong> HBM의 GB는 “얼마나 담는가”, GB/s·TB/s는 “1초에 얼마나 옮기는가”입니다. 용량과 대역폭은 서로 다른 숫자입니다.</span>
-          </div>
-          <div class="report-meta" aria-label="보고서 버전 정보">
-            <span class="version-badge" id="reportVersion">v1.0.0</span>
-            <span id="reportUpdated">Updated 2026.08.08</span>
-            <span class="report-meta-separator" aria-hidden="true"></span>
-            <span id="reportGeneration">AI-generated · Human review recommended</span>
-          </div>
-        </div>
-
-        <div class="hero-visual reveal" aria-label="GPU 옆에 배치된 HBM 적층 구조를 표현한 교육용 도식">
-          <div class="hero-orbit" aria-hidden="true"></div>
-          <div class="float-chip one"><i></i>위로 쌓아 작은 면적에 저장</div>
-          <div class="float-chip two"><i></i>짧고 넓은 길로 GPU와 연결</div>
-          <article class="hbm-stage">
-            <div class="hbm-stage-top">
-              <div class="hbm-stage-title"><i></i>AI PACKAGE CUTAWAY</div>
-              <div class="hbm-stage-tag">GPU + HBM</div>
-            </div>
-            <div class="package-visual" role="img" aria-label="인터포저 위에서 GPU와 HBM이 나란히 연결되고 HBM 내부 DRAM이 TSV로 수직 연결된 모습">
-              <div class="package-grid" aria-hidden="true"></div>
-              <div class="chip-floor" aria-hidden="true"></div>
-              <div class="gpu-block">
-                <div class="gpu-label"><span>COMPUTE ENGINE</span><strong>GPU</strong><small>계산을 수행하는 주방</small></div>
-              </div>
-              <div class="wide-link" aria-hidden="true"></div>
-              <div class="stack-wrap" aria-hidden="true">
-                <div class="tsv-line t1"></div><div class="tsv-line t2"></div><div class="tsv-line t3"></div>
-                <div class="dram-layer"><b>DRAM 4F</b><i></i></div>
-                <div class="dram-layer"><b>DRAM 3F</b><i></i></div>
-                <div class="dram-layer"><b>DRAM 2F</b><i></i></div>
-                <div class="dram-layer"><b>DRAM 1F</b><i></i></div>
-                <div class="dram-layer"><b>BASE DIE</b><i></i></div>
-              </div>
-              <div class="stage-caption"><span>INTERPOSER · 넓은 배선판</span><span>TSV · 수직 엘리베이터</span></div>
-            </div>
-          </article>
-        </div>
-      </section>
-    </div>
-
-    <section id="summary" class="section-soft">
-      <div class="container">
-        <div class="section-kicker reveal">EXECUTIVE SUMMARY</div>
-        <h2 class="section-title reveal">HBM의 본질은 “메모리 속도”보다<br />“데이터를 동시에 많이 옮기는 구조”에 있습니다</h2>
-        <p class="section-desc reveal">
-          HBM은 3차원으로 쌓은 DRAM을 수천 개의 TSV와 마이크로범프로 연결하고, GPU·AI 가속기 옆에 인터포저로 붙인 특수 메모리입니다. 넓고 짧은 연결 덕분에 프로세서가 데이터를 기다리는 시간을 줄이고, 전송 비트당 에너지도 낮추도록 설계됩니다.<a class="cite" href="#source-1" aria-label="출처 1">1</a><a class="cite" href="#source-2" aria-label="출처 2">2</a>
-        </p>
-
-        <article class="thesis-card reveal">
-          <div class="thesis-stamp" aria-hidden="true">
-            <svg viewBox="0 0 64 64" fill="none"><path d="M17 45h30M20 38h24M23 31h18M26 24h12M29 17h6" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/><path d="M13 50h38" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></svg>
-          </div>
-          <div class="thesis-copy">
-            <h3>한 문장 결론</h3>
-            <p><span class="highlight-line">HBM은 AI의 두뇌가 아니라, 두뇌가 쉬지 않고 계산하도록 데이터를 공급하는 초고속 물류 시스템</span>입니다. 계산량이 클수록 “연산 성능”과 “메모리 공급 능력”을 함께 봐야 합니다.</p>
-          </div>
-        </article>
-
-        <div class="summary-grid">
-          <article class="summary-card reveal">
-            <div class="card-index">01</div>
-            <h3>세로로 쌓습니다</h3>
-            <p>DRAM 다이를 여러 층으로 적층해 작은 바닥 면적에 더 많은 용량을 담습니다. 층간 연결은 칩을 관통하는 TSV가 담당합니다.</p>
-            <span class="mini-stat">비유 · 아파트형 창고</span>
-          </article>
-          <article class="summary-card reveal">
-            <div class="card-index">02</div>
-            <h3>통로를 매우 넓힙니다</h3>
-            <p>HBM3E는 한 스택에 1,024개 I/O, HBM4는 2,048비트 인터페이스를 사용해 많은 데이터를 병렬로 옮깁니다.<a class="cite" href="#source-3" aria-label="출처 3">3</a><a class="cite" href="#source-4" aria-label="출처 4">4</a></p>
-            <span class="mini-stat">비유 · 한 차선의 과속보다 수천 차선</span>
-          </article>
-          <article class="summary-card reveal">
-            <div class="card-index">03</div>
-            <h3>GPU 바로 옆에 둡니다</h3>
-            <p>메모리를 보드 멀리 두지 않고 같은 패키지 안에서 GPU 옆에 배치해 연결 길이를 줄입니다. 짧은 길은 고대역폭과 전력 효율에 유리합니다.</p>
-            <span class="mini-stat">비유 · 외곽 창고 대신 주방 옆 창고</span>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="analogy">
-      <div class="container">
-        <div class="section-kicker reveal">ONE EASY ANALOGY</div>
-        <h2 class="section-title reveal">대형 식당의 주방과 식재료 창고로 생각하면 쉽습니다</h2>
-        <p class="section-desc reveal">GPU는 수많은 요리사가 동시에 일하는 주방이고, 메모리는 재료 창고입니다. 주방이 커질수록 재료가 들어오는 문과 운반 통로가 병목이 됩니다.</p>
-
-        <div class="analogy-layout">
-          <article class="analogy-story reveal">
-            <div class="section-kicker">KITCHEN & WAREHOUSE</div>
-            <h3>요리사 1만 명에게<br />재료를 한 문으로 주면?</h3>
-            <p>요리 실력과 인원은 충분해도 재료가 늦게 오면 주방은 멈춥니다. HBM은 창고를 주방 옆에 붙이고 출입구를 수천 개로 늘리는 방식입니다.</p>
-            <div class="warehouse-visual" aria-label="GPU 주방과 HBM 창고 사이의 다차선 통로 비유">
-              <div class="warehouse-row">
-                <div class="warehouse-block"><div><strong>GPU 주방</strong><span>행렬 연산을 동시에 처리</span></div></div>
-                <div class="warehouse-road" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-                <div class="warehouse-block"><div><strong>HBM 창고</strong><span>가중치·활성값·KV 캐시 보관</span></div></div>
-              </div>
-            </div>
-            <div class="story-quote"><mark>연산기가 빠를수록, 메모리 통로가 좁으면 손해가 더 커집니다.</mark></div>
-          </article>
-
-          <div class="concept-grid">
-            <article class="concept-card reveal">
-              <div class="concept-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 7h14v12H5z" stroke="currentColor" stroke-width="1.8"/><path d="M8 4h8v3H8zM8 11h8M8 15h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-              <div class="easy-label">창고 크기</div>
-              <h3>용량 · GB</h3>
-              <p>한 번에 모델 가중치와 작업 데이터를 얼마나 많이 담을 수 있는지입니다. 용량이 부족하면 여러 장의 GPU로 나누거나 느린 외부 메모리로 넘겨야 할 수 있습니다.</p>
-            </article>
-            <article class="concept-card reveal">
-              <div class="concept-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="m17 4 3 3-3 3M17 9l3 3-3 3M17 14l3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="easy-label">출입구 처리량</div>
-              <h3>대역폭 · GB/s, TB/s</h3>
-              <p>1초에 메모리와 연산기 사이를 오갈 수 있는 데이터 양입니다. AI에서 HBM이 특히 주목받는 이유가 바로 이 수치입니다.</p>
-            </article>
-            <article class="concept-card wide reveal">
-              <div class="concept-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="easy-label">첫 상자가 도착하는 시간</div>
-              <h3>지연시간 · Latency</h3>
-              <p>요청한 데이터의 첫 부분이 도착할 때까지 걸리는 시간입니다. <strong>HBM은 대역폭에 최적화된 메모리</strong>이며, “항상 모든 메모리보다 지연시간이 가장 짧다”는 뜻은 아닙니다. 대역폭과 지연시간은 같은 개념이 아닙니다.</p>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="anatomy" class="section-soft">
-      <div class="container">
-        <div class="section-kicker reveal">INSIDE HBM</div>
-        <h2 class="section-title reveal">아파트, 엘리베이터, 로비, 넓은 도로가 한 패키지에 들어갑니다</h2>
-        <p class="section-desc reveal">HBM의 강점은 DRAM 칩 하나가 특별해서가 아니라, 적층·수직 연결·베이스 다이·인터포저를 함께 설계한 패키지 구조에서 나옵니다.</p>
-
-        <div class="anatomy-layout">
-          <figure class="anatomy-figure reveal">
-            <svg viewBox="0 0 720 540" role="img" aria-labelledby="anatomyTitle anatomyDesc">
-              <title id="anatomyTitle">HBM 적층 구조 단면도</title>
-              <desc id="anatomyDesc">여러 층의 DRAM 다이가 TSV로 연결되고 베이스 다이와 마이크로범프를 거쳐 인터포저 위 GPU와 연결되는 구조</desc>
-              <defs>
-                <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f8fbff"/><stop offset="1" stop-color="#e8f3ff"/></linearGradient>
-                <linearGradient id="dram" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5ca2ff"/><stop offset="1" stop-color="#1b64da"/></linearGradient>
-                <linearGradient id="base" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#71849f"/><stop offset="1" stop-color="#3d4b61"/></linearGradient>
-                <linearGradient id="gpu" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#303a48"/><stop offset="1" stop-color="#12171e"/></linearGradient>
-                <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#193150" flood-opacity=".15"/></filter>
-              </defs>
-              <rect width="720" height="540" rx="28" fill="url(#bg)"/>
-              <g opacity=".48" stroke="#b9d7ff" stroke-width="1"><path d="M0 80h720M0 160h720M0 240h720M0 320h720M0 400h720M0 480h720"/><path d="M80 0v540M160 0v540M240 0v540M320 0v540M400 0v540M480 0v540M560 0v540M640 0v540"/></g>
-              <rect x="54" y="422" width="612" height="42" rx="15" fill="#6297e2" filter="url(#shadow)"/>
-              <text x="360" y="449" text-anchor="middle" fill="#fff" font-size="15" font-weight="800">INTERPOSER · GPU와 HBM을 잇는 초미세 넓은 배선판</text>
-              <rect x="64" y="242" width="292" height="158" rx="25" fill="url(#gpu)" filter="url(#shadow)"/>
-              <rect x="82" y="260" width="256" height="122" rx="18" fill="none" stroke="#ffffff" stroke-opacity=".14"/>
-              <text x="210" y="314" text-anchor="middle" fill="#9cc7ff" font-size="13" font-weight="900" letter-spacing="2">COMPUTE</text>
-              <text x="210" y="350" text-anchor="middle" fill="#fff" font-size="34" font-weight="900">GPU / AI ASIC</text>
-              <text x="210" y="374" text-anchor="middle" fill="#fff" fill-opacity=".58" font-size="13" font-weight="700">계산을 수행하는 엔진</text>
-              <g filter="url(#shadow)">
-                <rect x="438" y="92" width="190" height="51" rx="13" fill="url(#dram)"/>
-                <rect x="438" y="151" width="190" height="51" rx="13" fill="url(#dram)"/>
-                <rect x="438" y="210" width="190" height="51" rx="13" fill="url(#dram)"/>
-                <rect x="438" y="269" width="190" height="51" rx="13" fill="url(#dram)"/>
-                <rect x="438" y="328" width="190" height="62" rx="14" fill="url(#base)"/>
-              </g>
-              <g fill="#fff" font-size="13" font-weight="850"><text x="457" y="123">DRAM DIE 4</text><text x="457" y="182">DRAM DIE 3</text><text x="457" y="241">DRAM DIE 2</text><text x="457" y="300">DRAM DIE 1</text><text x="457" y="364">BASE DIE</text></g>
-              <g fill="#dfff6a"><circle cx="597" cy="117" r="5"/><circle cx="597" cy="176" r="5"/><circle cx="597" cy="235" r="5"/><circle cx="597" cy="294" r="5"/><circle cx="597" cy="359" r="5"/></g>
-              <g stroke="#dfff6a" stroke-width="6" stroke-linecap="round"><path d="M480 111v250"/><path d="M533 111v250"/><path d="M586 111v250"/></g>
-              <g fill="#fff184"><circle cx="458" cy="407" r="6"/><circle cx="482" cy="407" r="6"/><circle cx="506" cy="407" r="6"/><circle cx="530" cy="407" r="6"/><circle cx="554" cy="407" r="6"/><circle cx="578" cy="407" r="6"/><circle cx="602" cy="407" r="6"/></g>
-              <path d="M354 350h82" stroke="#3182f6" stroke-width="22" stroke-linecap="round" stroke-dasharray="6 7"/>
-              <text x="395" y="325" text-anchor="middle" fill="#1b64da" font-size="12" font-weight="900">WIDE I/O</text>
-              <g fill="#1b64da" font-size="12" font-weight="900"><text x="400" y="74">TSV · 칩을 관통하는 수직 전극</text><text x="520" y="489" text-anchor="middle">마이크로범프 · 층과 배선판의 접점</text></g>
-              <path d="M430 82l42 21" stroke="#1b64da" stroke-width="2"/><path d="M520 474v-51" stroke="#1b64da" stroke-width="2"/>
-            </svg>
-            <figcaption>교육용 자체 제작 도식. 실제 제품의 층수·배치·베이스 다이 구성은 세대와 제조사, 고객 맞춤 설계에 따라 달라집니다.</figcaption>
-          </figure>
-
-          <div class="anatomy-list">
-            <article class="anatomy-item reveal"><h3><b>1</b>DRAM 다이 · 창고의 각 층</h3><p>데이터를 실제로 저장하는 메모리 층입니다. 8-Hi, 12-Hi, 16-Hi처럼 쌓는 층 수가 용량과 패키징 난이도에 영향을 줍니다.</p></article>
-            <article class="anatomy-item reveal"><h3><b>2</b>TSV · 수직 엘리베이터</h3><p>칩에 미세한 구멍을 만들고 금속 전극을 관통시켜 위·아래 층을 짧게 연결합니다. 수천 개의 TSV와 마이크로범프가 초광폭 인터페이스를 만듭니다.<a class="cite" href="#source-1" aria-label="출처 1">1</a></p></article>
-            <article class="anatomy-item reveal"><h3><b>3</b>베이스 다이 · 로비와 교통 관제실</h3><p>적층 DRAM과 외부 연산 칩 사이의 인터페이스·제어·신호 기능을 담당합니다. HBM4로 갈수록 고객 맞춤 로직과 패키지 공동 설계의 중요성이 커지고 있습니다.</p></article>
-            <article class="anatomy-item reveal"><h3><b>4</b>인터포저 · 넓은 전용 도로</h3><p>일반 기판만으로는 매우 많은 I/O 핀과 미세 배선을 수용하기 어려워, GPU와 HBM을 나란히 놓고 연결하는 중간 배선판을 사용합니다.<a class="cite" href="#source-2" aria-label="출처 2">2</a></p></article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="comparison">
-      <div class="container">
-        <div class="section-kicker reveal">DDR vs GDDR vs HBM</div>
-        <h2 class="section-title reveal">같은 DRAM 계열이지만, 쓰는 장소와 길을 만드는 방식이 다릅니다</h2>
-        <p class="section-desc reveal">DDR은 범용 시스템 메모리, GDDR은 그래픽 카드용 고속 메모리, HBM은 초고성능 연산기 가까이에서 매우 넓은 병렬 통로를 제공하는 메모리입니다. “무조건 누가 더 좋다”가 아니라 비용·용량·대역폭·패키징 목적이 다릅니다.</p>
-
-        <div class="compare-cards">
-          <article class="memory-card reveal">
-            <div class="memory-tag">범용 시스템 메모리</div>
-            <h3>DDR</h3>
-            <p>CPU가 쓰는 일반 서버·PC 메모리. 교체와 용량 확장이 쉽고 비용 효율적입니다.</p>
-            <div class="road-demo" aria-label="상대적으로 좁은 통로를 나타낸 도식"><i></i><i></i></div>
-            <div class="spec-list">
-              <div class="spec-item"><span>배치</span><strong>메인보드 DIMM 슬롯</strong></div>
-              <div class="spec-item"><span>강점</span><strong>대용량·범용성·확장성</strong></div>
-              <div class="spec-item"><span>제약</span><strong>AI 가속기 전용 초광폭 통로는 아님</strong></div>
-            </div>
-          </article>
-
-          <article class="memory-card reveal">
-            <div class="memory-tag">그래픽용 고속 메모리</div>
-            <h3>GDDR</h3>
-            <p>GPU 주변 PCB에 여러 개의 메모리 칩을 배치해 핀 속도를 높이는 방식입니다.</p>
-            <div class="road-demo medium" aria-label="중간 너비의 여러 고속 통로를 나타낸 도식"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-            <div class="spec-list">
-              <div class="spec-item"><span>배치</span><strong>GPU 주변 보드 위</strong></div>
-              <div class="spec-item"><span>강점</span><strong>성능과 비용의 균형</strong></div>
-              <div class="spec-item"><span>제약</span><strong>보드 배선·전력·면적 부담 증가</strong></div>
-            </div>
-          </article>
-
-          <article class="memory-card recommended reveal">
-            <div class="memory-tag">AI·HPC용 초고대역폭</div>
-            <h3>HBM</h3>
-            <p>여러 DRAM을 쌓고 GPU와 같은 패키지 안에 붙여 아주 넓고 짧은 통로를 만듭니다.</p>
-            <div class="road-demo wide" aria-label="매우 넓은 병렬 통로를 나타낸 도식"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-            <div class="spec-list">
-              <div class="spec-item"><span>배치</span><strong>GPU 옆, 같은 고급 패키지</strong></div>
-              <div class="spec-item"><span>강점</span><strong>대역폭·면적·전송 효율</strong></div>
-              <div class="spec-item"><span>제약</span><strong>고비용·복잡한 패키징·열·수율</strong></div>
-            </div>
-          </article>
-        </div>
-
-        <div class="calculator reveal" aria-labelledby="calcTitle">
-          <div class="calc-copy">
-            <div class="section-kicker">BANDWIDTH CALCULATOR</div>
-            <h3 id="calcTitle">“차선 수 × 차선 속도”로 대역폭을 이해하세요</h3>
-            <p>비트 단위 인터페이스 폭에 핀당 전송률을 곱하고 8로 나누면 초당 바이트 전송량의 이론적 피크를 구할 수 있습니다.</p>
-            <div class="calc-formula" aria-label="대역폭 계산식">인터페이스 폭(bit) × 핀 속도(Gb/s) ÷ 8 = GB/s</div>
-          </div>
-          <div class="calc-panel">
-            <div class="calc-tabs" role="tablist" aria-label="HBM 예시 선택">
-              <button class="calc-tab active" type="button" role="tab" aria-selected="true" data-calc="hbm3e">HBM3E 예시</button>
-              <button class="calc-tab" type="button" role="tab" aria-selected="false" data-calc="hbm4std">HBM4 표준</button>
-              <button class="calc-tab" type="button" role="tab" aria-selected="false" data-calc="hbm4product">HBM4 제품 예</button>
-            </div>
-            <div class="calc-result" aria-live="polite">
-              <div class="calc-metric"><span>인터페이스 폭</span><strong id="calcWidth">1,024 bit</strong></div>
-              <div class="calc-metric"><span>핀당 속도</span><strong id="calcSpeed">9.2 Gb/s</strong></div>
-              <div class="calc-metric"><span>나누기</span><strong>8 bit/Byte</strong></div>
-              <div class="calc-total"><span>이론적 피크</span><strong id="calcTotal">약 1.18 TB/s</strong></div>
-            </div>
-            <p class="calc-note" id="calcNote">Micron HBM3E는 9.2Gb/s 초과, 스택당 1.2TB/s 초과를 제시합니다. 계산값은 이해를 위한 기준점입니다.<a class="cite" href="#source-3" aria-label="출처 3">3</a></p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="flow" class="section-blue">
-      <div class="container">
-        <div class="section-kicker reveal">WHY AI NEEDS HBM</div>
-        <h2 class="section-title reveal">AI는 계산보다 “데이터 운반”을 수없이 반복합니다</h2>
-        <p class="section-desc reveal">대형 언어 모델은 가중치와 중간 결과를 메모리에서 읽고, GPU에서 계산하고, 다시 저장하는 과정을 반복합니다. 메모리 대역폭이 부족하면 연산 코어가 놀게 되고, 토큰 생성 속도와 학습 시간이 영향을 받습니다.</p>
-
-        <div class="flow-grid">
-          <article class="flow-step reveal"><div class="flow-num">01</div><h3>모델을 담습니다</h3><p>수십억 개의 가중치와 실행에 필요한 데이터를 HBM 용량 안에 배치합니다.</p><span class="flow-chip">용량 GB</span></article>
-          <article class="flow-step reveal"><div class="flow-num">02</div><h3>대량으로 읽습니다</h3><p>다음 연산에 필요한 가중치·활성값·KV 캐시를 여러 채널에서 동시에 가져옵니다.</p><span class="flow-chip">대역폭 TB/s</span></article>
-          <article class="flow-step reveal"><div class="flow-num">03</div><h3>GPU가 계산합니다</h3><p>수많은 코어가 행렬 곱셈과 어텐션 연산을 병렬로 처리합니다.</p><span class="flow-chip">FLOPS</span></article>
-          <article class="flow-step reveal"><div class="flow-num">04</div><h3>중간값을 씁니다</h3><p>계산 결과와 다음 토큰에 필요한 상태를 다시 메모리에 저장합니다.</p><span class="flow-chip">읽기 + 쓰기</span></article>
-          <article class="flow-step reveal"><div class="flow-num">05</div><h3>다음 토큰으로 반복</h3><p>이 사이클이 빠르게 반복될수록 응답 토큰/초와 학습 처리량이 높아질 수 있습니다.</p><span class="flow-chip">체감 성능</span></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="generations" class="section-soft">
-      <div class="container">
-        <div class="section-kicker reveal">GENERATION ROADMAP</div>
-        <h2 class="section-title reveal">세대가 바뀔수록 더 많이 쌓고, 더 넓게 연결하고, 더 효율적으로 식힙니다</h2>
-        <p class="section-desc reveal">HBM → HBM2 → HBM2E → HBM3 → HBM3E → HBM4로 진화했습니다. 세대명만 보지 말고 실제 제품의 스택 용량, 핀 속도, 스택 수, 총 대역폭을 함께 확인해야 합니다.</p>
-
-        <div class="generation-layout">
-          <aside class="generation-note reveal">
-            <div class="section-kicker">AS OF 2026.08.08</div>
-            <h3>2026년은 HBM3E와 HBM4가 함께 보이는 전환 구간입니다</h3>
-            <p>HBM3E는 현재 AI 플랫폼에서 널리 쓰이고, HBM4는 표준 확정 이후 양산·출하가 시작됐습니다. SK하이닉스가 소개한 주요 분석가 전망은 2026년 HBM 출하의 약 3분의 2를 HBM3E가 차지하고 HBM4 비중은 점진적으로 늘 것으로 봤습니다. 이는 전망치이며 실제 결과는 달라질 수 있습니다.<a class="cite" href="#source-7" aria-label="출처 7">7</a></p>
-            <div class="status-pill"><i></i><span>표준 수치와 제조사 제품 수치는 다릅니다. 아래 HBM4의 2TB/s는 JEDEC 기본 표준, 2.8~3.3TB/s는 특정 제조사 제품·발표 수치입니다.</span></div>
-          </aside>
-
-          <div class="timeline">
-            <article class="timeline-item reveal">
-              <div class="timeline-gen"><strong>HBM</strong><span>1세대</span></div>
-              <div class="timeline-copy"><h3>수직 적층과 초광폭 인터페이스의 출발</h3><p>2015년 AMD Radeon R9 Fury X가 세계 최초 HBM 탑재 그래픽 카드로 상용화되며 기술이 널리 알려졌습니다.<a class="cite" href="#source-8" aria-label="출처 8">8</a></p><div class="timeline-data"><b>4,096-bit 인터페이스</b><b>2015년 상용화 사례</b></div></div>
-            </article>
-            <article class="timeline-item reveal">
-              <div class="timeline-gen"><strong>HBM2</strong><span>2세대</span></div>
-              <div class="timeline-copy"><h3>용량과 신뢰성을 높여 HPC·가속기로 확대</h3><p>고성능 컴퓨팅과 전문 그래픽에서 활용이 확대됐고, 이후 HBM2E가 속도와 용량을 더 높였습니다. Micron의 비교 자료는 HBM2 제품 예시로 8개 채널과 최대 410GB/s를 제시합니다.<a class="cite" href="#source-3" aria-label="출처 3">3</a></p><div class="timeline-data"><b>8개 채널</b><b>HBM2 제품 예 최대 410GB/s</b></div></div>
-            </article>
-            <article class="timeline-item reveal">
-              <div class="timeline-gen"><strong>HBM3</strong><span>4세대</span></div>
-              <div class="timeline-copy"><h3>AI 가속기 시대의 본격적인 대역폭 확장</h3><p>채널 수와 핀 속도가 증가하며 대규모 AI 학습과 HPC에서 핵심 메모리로 자리 잡았습니다.</p><div class="timeline-data"><b>16개 채널</b><b>32개 pseudo-channel</b></div></div>
-            </article>
-            <article class="timeline-item current reveal">
-              <div class="timeline-gen"><strong>HBM3E</strong><span>현재 주력</span></div>
-              <div class="timeline-copy"><h3>1TB/s를 넘는 스택당 대역폭과 24~36GB 제품</h3><p>Micron HBM3E 예시는 1,024 I/O, 9.2Gb/s 초과, 스택당 1.2TB/s 초과이며 8-Hi 24GB와 12-Hi 36GB 구성을 제공합니다.<a class="cite" href="#source-3" aria-label="출처 3">3</a></p><div class="timeline-data"><b>1,024 I/O</b><b>&gt;1.2TB/s</b><b>24GB·36GB 제품 예</b></div></div>
-            </article>
-            <article class="timeline-item current reveal">
-              <div class="timeline-gen"><strong>HBM4</strong><span>양산 전환</span></div>
-              <div class="timeline-copy"><h3>인터페이스가 2,048비트로 두 배 확장</h3><p>JEDEC 표준은 8Gb/s, 최대 2TB/s, 32개 채널, 최대 64GB 스택 구성을 정의합니다.<a class="cite" href="#source-4" aria-label="출처 4">4</a> 2026년 제조사 제품은 이 표준 기준을 웃도는 속도를 제시하고 있습니다.</p><div class="timeline-data"><b>2,048-bit</b><b>표준 최대 2TB/s</b><b>최대 64GB 규격</b></div></div>
-            </article>
-          </div>
-        </div>
-
-        <div class="current-boxes">
-          <article class="current-box reveal"><span>JEDEC HBM4 STANDARD</span><strong>최대 2TB/s</strong><p>8Gb/s × 2,048-bit 인터페이스 기준의 표준 피크입니다.<a class="cite" href="#source-4" aria-label="출처 4">4</a></p></article>
-          <article class="current-box reveal"><span>2026 VOLUME PRODUCT EXAMPLE</span><strong>&gt;2.8TB/s</strong><p>Micron 36GB 12-Hi HBM4는 2026년 1분기 양산 출하와 11Gb/s 초과를 발표했습니다.<a class="cite" href="#source-5" aria-label="출처 5">5</a></p></article>
-          <article class="current-box reveal"><span>VENDOR MAX CLAIM</span><strong>최대 3.3TB/s</strong><p>삼성 HBM4 제품 페이지는 13.0Gb/s, 최대 3,300GB/s를 제시합니다. 시스템별 실제값과 구분해야 합니다.<a class="cite" href="#source-6" aria-label="출처 6">6</a></p></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="learning">
-      <div class="container">
-        <div class="section-kicker reveal">VIDEO LEARNING</div>
-        <h2 class="section-title reveal">공식 교육 영상으로 구조와 용도를 한 번 더 확인하세요</h2>
-        <p class="section-desc reveal">영상은 클릭할 때만 로드됩니다. 삼성전자·SK하이닉스·Micron의 공식 채널 자료를 서로 다른 난이도로 배치했습니다. 자동 생성 자막의 정확도는 원본 언어와 영상 설정에 따라 달라질 수 있습니다.</p>
-
-        <div class="video-grid">
-          <article class="video-card reveal">
-            <button class="video-poster" type="button" data-video-id="4MMfKTRZ_Mg" aria-label="삼성전자 HBM이란 무엇인가 공식 영상을 재생">
-              <span class="poster-art" aria-hidden="true"><span class="poster-stack"><i></i><i></i><i></i><i></i><i></i></span></span>
-              <span class="play-button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 11 7-11 7z"/></svg></span>
-            </button>
-            <div class="video-copy"><span class="video-source">SAMSUNG SEMICONDUCTOR · 공식</span><h3>“HBM, What Is It?” 현직자가 설명하는 HBM</h3><p>HBM의 기본 정의와 업계 맥락을 한국어 중심으로 빠르게 잡기 좋은 입문 영상입니다.</p><a class="video-link" href="https://www.youtube.com/watch?v=4MMfKTRZ_Mg" target="_blank" rel="noopener noreferrer">YouTube에서 열기 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 16 16 8M10 8h6v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
-          </article>
-
-          <article class="video-card reveal">
-            <button class="video-poster purple" type="button" data-video-id="TM0HTpKgzA8" aria-label="SK하이닉스 TSV와 MR-MUF 공식 교육 영상을 재생">
-              <span class="poster-art" aria-hidden="true"><span class="poster-stack"><i></i><i></i><i></i><i></i><i></i></span></span>
-              <span class="play-button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 11 7-11 7z"/></svg></span>
-            </button>
-            <div class="video-copy"><span class="video-source">SK HYNIX · 공식 교육</span><h3>HBM 핵심 기술 TSV와 MR-MUF</h3><p>왜 쌓을 수 있는지, 층간 연결과 열·패키징 문제를 어떻게 다루는지 이해하는 심화 입문 영상입니다.</p><a class="video-link" href="https://www.youtube.com/watch?v=TM0HTpKgzA8" target="_blank" rel="noopener noreferrer">YouTube에서 열기 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 16 16 8M10 8h6v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
-          </article>
-
-          <article class="video-card reveal">
-            <button class="video-poster dark" type="button" data-video-id="bzwPZD1w7UY" aria-label="Micron HBM3E와 AI 공식 영상을 재생">
-              <span class="poster-art dark" aria-hidden="true"><span class="poster-road"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
-              <span class="play-button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 11 7-11 7z"/></svg></span>
-            </button>
-            <div class="video-copy"><span class="video-source">MICRON · 공식</span><h3>HBM3E가 AI 가속기에 필요한 이유</h3><p>대역폭·전력 효율·AI 학습과 추론의 관계를 제품 관점에서 보여주는 영어 영상입니다.</p><a class="video-link" href="https://www.youtube.com/watch?v=bzwPZD1w7UY" target="_blank" rel="noopener noreferrer">YouTube에서 열기 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 16 16 8M10 8h6v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
-          </article>
-        </div>
-
-        <div class="quiz-wrap reveal">
-          <div class="quiz-head"><div><h3>30초 이해 확인</h3><p>질문을 눌러 답을 확인하세요.</p></div><span class="version-badge">3 QUESTIONS</span></div>
-          <div class="quiz-grid">
-            <details class="quiz"><summary>HBM의 가장 큰 장점은 저장 용량인가요?</summary><div class="quiz-answer"><strong>핵심은 대역폭입니다.</strong> 용량도 늘어나지만, HBM이라는 이름의 중심은 GPU와 메모리 사이에 데이터를 매우 많이 옮기는 능력입니다.</div></details>
-            <details class="quiz"><summary>TSV는 무엇을 하는 기술인가요?</summary><div class="quiz-answer"><strong>층간 수직 연결입니다.</strong> 칩을 관통하는 미세 전극으로 적층된 DRAM 층을 짧게 연결합니다.</div></details>
-            <details class="quiz"><summary>HBM이 많으면 모든 AI가 무조건 빨라지나요?</summary><div class="quiz-answer"><strong>아닙니다.</strong> 모델 크기, 연산량, 소프트웨어 최적화, GPU 간 연결, 배치 크기 등 다른 병목이 있으면 효과가 제한될 수 있습니다.</div></details>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="questions" class="section-soft">
-      <div class="container">
-        <div class="section-kicker reveal">MISCONCEPTIONS & DECISION POINTS</div>
-        <h2 class="section-title reveal">HBM을 볼 때 “세대명 하나”만 보면 안 됩니다</h2>
-        <p class="section-desc reveal">제품 비교에서는 HBM3E냐 HBM4냐보다 총 용량, 총 대역폭, 스택 수, GPU 간 연결, 전력·냉각과 실제 워크로드를 함께 봐야 합니다.</p>
-
-        <div class="correction-table reveal">
-          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>“HBM은 SSD처럼 파일을 오래 저장하는 저장장치다.”</div><div class="correction-cell right"><span class="correction-icon">✓</span>HBM은 전원이 켜진 동안 GPU가 즉시 쓰는 고속 작업 메모리입니다. SSD·스토리지와 역할이 다릅니다.</div></div>
-          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>“HBM4면 어떤 HBM3E 시스템보다 무조건 빠르다.”</div><div class="correction-cell right"><span class="correction-icon">✓</span>세대 외에도 스택 수, 실제 동작 속도, 총 용량, GPU 구조, 소프트웨어와 열 설계가 시스템 성능을 결정합니다.</div></div>
-          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>“대역폭이 두 배면 AI 응답도 정확히 두 배 빨라진다.”</div><div class="correction-cell right"><span class="correction-icon">✓</span>메모리 병목이 큰 작업에서는 효과가 크지만, 연산·통신·소프트웨어 병목이 크면 개선 폭은 달라집니다.</div></div>
-          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>“HBM은 성능만 높고 단점은 없다.”</div><div class="correction-cell right"><span class="correction-icon">✓</span>적층·TSV·인터포저·열·수율·검증이 복잡해 비용과 공급 능력이 중요한 제약이 됩니다.</div></div>
-        </div>
-
-        <div class="governance-note reveal">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 20 6v5.7c0 4.6-3.2 7.6-8 9.3-4.8-1.7-8-4.7-8-9.3V6z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <div><strong>수치 해석 원칙:</strong> 제조사 페이지의 “최대” 대역폭과 전력 효율은 특정 제품·조건의 피크 또는 내부 시험 기준일 수 있습니다. 실제 구매·운영 판단에서는 가속기 완제품 사양, 실측 벤치마크, 냉각·전력 조건을 함께 검증해야 합니다.</div>
-        </div>
-
-        <div class="question-grid">
-          <article class="question-card reveal"><div class="question-num">1</div><h3>총 HBM 용량은?</h3><p>GPU 한 장과 서버 한 노드에 모델·KV 캐시·배치를 얼마나 담을 수 있는지 확인합니다.</p></article>
-          <article class="question-card reveal"><div class="question-num">2</div><h3>총 대역폭은?</h3><p>스택당 수치가 아니라 가속기 전체의 실제 메모리 대역폭을 봅니다.</p></article>
-          <article class="question-card reveal"><div class="question-num">3</div><h3>메모리 병목인가?</h3><p>내 워크로드가 연산 제한인지, 메모리 제한인지 프로파일링과 벤치마크로 구분합니다.</p></article>
-          <article class="question-card reveal"><div class="question-num">4</div><h3>GPU 간 길은?</h3><p>여러 GPU를 쓰면 HBM만큼 GPU 간 인터커넥트와 통신 토폴로지도 중요합니다.</p></article>
-          <article class="question-card reveal"><div class="question-num">5</div><h3>전력·냉각·비용은?</h3><p>최대 성능뿐 아니라 랙 전력, 냉각, 공급 가능성, 시스템 총비용을 함께 계산합니다.</p></article>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="sources" id="sources">
-    <div class="container">
-      <div class="source-head">
-        <div><h2>참고 자료와 출처</h2><p>공식 제품 문서, 표준 발표, 제조사 기술 설명과 공식 교육 영상만 실제 사용했습니다. 확인일: 2026.08.08.</p></div>
-        <button class="btn btn-ghost" type="button" onclick="window.print()">전체 PDF 저장</button>
-      </div>
-
-      <div class="source-grid">
-        <a class="source-link" id="source-1" href="https://www.micron.com/products/memory/hbm" target="_blank" rel="noopener noreferrer"><span>OFFICIAL PRODUCT GUIDE · 2026-08-08 확인</span><strong>Micron · High-bandwidth memory (HBM)</strong><small>3D 적층, TSV, 1,024-bit 인터페이스, 프로세서 인접 배치 설명</small></a>
-        <a class="source-link" id="source-2" href="https://news.skhynix.com/en/semiconductor-back-end-process-episode-4-packages-part-2/" target="_blank" rel="noopener noreferrer"><span>OFFICIAL TECH EXPLAINER · 2026-08-08 확인</span><strong>SK hynix · Semiconductor Back-End Process Episode 4</strong><small>HBM, 인터포저, 2.5D 패키지와 SiP 구조 설명</small></a>
-        <a class="source-link" id="source-3" href="https://www.micron.com/products/memory/hbm/hbm3e" target="_blank" rel="noopener noreferrer"><span>OFFICIAL PRODUCT SPEC · 2026-08-08 확인</span><strong>Micron · HBM3E</strong><small>1,024 I/O, 9.2Gb/s 초과, 1.2TB/s 초과, 24GB·36GB 제품 정보</small></a>
-        <a class="source-link" id="source-4" href="https://www.businesswire.com/news/home/20250416843598/en/JEDEC-and-Industry-Leaders-Collaborate-to-Release-JESD270-4-HBM4-Standard-Advancing-Bandwidth-Efficiency-and-Capacity-for-AI-and-HPC" target="_blank" rel="noopener noreferrer"><span>STANDARD ANNOUNCEMENT · 2025-04-16</span><strong>JEDEC · JESD270-4 HBM4 Standard Release</strong><small>2,048-bit, 8Gb/s, 최대 2TB/s, 32채널, 최대 64GB 표준 내용</small></a>
-        <a class="source-link" id="source-5" href="https://investors.micron.com/news-releases/news-release-details/micron-high-volume-production-hbm4-designed-nvidia-vera-rubin" target="_blank" rel="noopener noreferrer"><span>OFFICIAL PRESS RELEASE · 2026-03-16</span><strong>Micron · HBM4 High-Volume Production</strong><small>36GB 12H, 11Gb/s 초과, 2.8TB/s 초과, 2026년 1분기 양산 출하</small></a>
-        <a class="source-link" id="source-6" href="https://semiconductor.samsung.com/kr/dram/hbm/hbm4/" target="_blank" rel="noopener noreferrer"><span>OFFICIAL PRODUCT PAGE · 2026-08-08 확인</span><strong>Samsung Semiconductor · HBM4</strong><small>2,048 I/O, 최대 13.0Gb/s, 최대 3,300GB/s 제품 발표 수치</small></a>
-        <a class="source-link" id="source-7" href="https://news.skhynix.com/en/2026-market-outlook-focus-on-the-hbm-led-memory-supercycle/" target="_blank" rel="noopener noreferrer"><span>OFFICIAL MARKET OUTLOOK · 2026 전망</span><strong>SK hynix · 2026 Market Outlook: HBM-Led Memory Supercycle</strong><small>HBM3E와 HBM4의 2026년 공존·전환 전망을 소개한 자료</small></a>
-        <a class="source-link" id="source-8" href="https://ir.amd.com/news-events/press-releases/detail/619/amd-ushers-in-a-new-era-of-pc-gaming-with-radeontm-r9-and-r7-300-series-graphics-line-up-including-worlds-first-graphics-family-with-revolutionary-hbm-technology" target="_blank" rel="noopener noreferrer"><span>OFFICIAL HISTORICAL RELEASE · 2015-06-16</span><strong>AMD · World’s First HBM-Powered Graphics Family</strong><small>Radeon R9 Fury X, 4,096-bit 인터페이스와 첫 상용 HBM GPU 사례</small></a>
-        <a class="source-link" href="https://www.youtube.com/watch?v=4MMfKTRZ_Mg" target="_blank" rel="noopener noreferrer"><span>OFFICIAL VIDEO · SAMSUNG</span><strong>“HBM, What Is It?” · DS Dictionary</strong><small>보고서 내 클릭형 교육 영상</small></a>
-        <a class="source-link" href="https://www.youtube.com/watch?v=TM0HTpKgzA8" target="_blank" rel="noopener noreferrer"><span>OFFICIAL VIDEO · SK HYNIX</span><strong>HBM 핵심 기술 TSV와 MR-MUF</strong><small>보고서 내 클릭형 교육 영상</small></a>
-        <a class="source-link" href="https://www.youtube.com/watch?v=bzwPZD1w7UY" target="_blank" rel="noopener noreferrer"><span>OFFICIAL VIDEO · MICRON</span><strong>Micron HBM3E | High-bandwidth memory for AI</strong><small>보고서 내 클릭형 교육 영상</small></a>
-      </div>
-
-      <div class="footer-bottom"><span id="footerTitle">HBM이란 무엇인가? · AIHUBOS ReportMode</span><span id="footerMeta">AI-generated · 2026.08</span></div>
-
-      <div class="report-history" id="history" aria-labelledby="history-title">
-        <div class="history-head">
-          <div><h2 id="history-title">버전 및 업데이트 히스토리</h2><p>수치, 구조, 교육 자료와 판단이 바뀔 때 변경 범위를 누적 기록합니다.</p></div>
-          <span class="version-badge" id="historyCurrentVersion">Current v1.0.0</span>
-        </div>
-        <div class="history-table-wrap" tabindex="0" aria-label="버전 변경 이력 표, 가로로 스크롤할 수 있습니다">
-          <table class="history-table">
-            <thead><tr><th>버전</th><th>업데이트일</th><th>변경 구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr></thead>
-            <tbody id="historyBody"><tr><td colspan="5" class="history-empty">변경 이력을 불러오는 중입니다.</td></tr></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <div class="floating-actions" aria-label="빠른 작업">
-    <button class="float-btn" type="button" id="toTop" aria-label="맨 위로 이동"><svg viewBox="0 0 24 24" fill="none"><path d="m6 14 6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-    <button class="float-btn" type="button" id="copySummary" aria-label="한 문장 결론 복사"><svg viewBox="0 0 24 24" fill="none"><rect x="8" y="8" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" stroke="currentColor" stroke-width="1.8"/></svg></button>
-    <button class="float-btn" type="button" onclick="window.print()" aria-label="PDF로 저장"><svg viewBox="0 0 24 24" fill="none"><path d="M7 9V4h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M7 14h10v6H7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></button>
-  </div>
-  <div class="toast" id="toast" role="status" aria-live="polite">복사했습니다.</div>
-
-  <script id="report-metadata" type="application/json">
-  {
-    "schemaVersion": "1.0",
-    "reportId": "260808-hbm-explainer",
-    "title": "HBM이란 무엇인가? | 비전공자용 AI 메모리 입문",
-    "version": "1.0.0",
-    "status": "Published",
-    "createdAt": "2026-08-08",
-    "updatedAt": "2026-08-08",
-    "language": "ko-KR",
-    "author": "Jeremy Lee",
-    "generation": "AI-generated",
-    "reviewStatus": "Human review recommended",
-    "history": [
-      {
-        "version": "1.0.0",
-        "date": "2026-08-08",
-        "type": "신규 작성",
-        "summary": "HBM의 정의와 적층·TSV·인터포저 구조, DDR·GDDR 비교, AI 데이터 흐름, HBM3E·HBM4 세대 수치를 비전공자용 비유와 자체 제작 SVG 도식으로 구성하고 삼성전자·SK하이닉스·Micron 공식 교육 영상을 추가함.",
-        "sections": ["Hero", "Executive Summary", "Analogy", "Anatomy", "Comparison", "AI Flow", "Generation Roadmap", "Video Learning", "Risks"],
-        "updatedBy": "AI-generated",
-        "reviewStatus": "검토 권장"
-      }
-    ]
-  }
-  </script>
-
-  <script>
+<div class="hero-actions">
+<a class="btn btn-primary" href="#summary">3분 핵심부터 보기</a>
+<a class="btn btn-ghost" href="#learning">공식 영상으로 배우기</a>
+</div>
+<div class="hero-note">
+<svg aria-hidden="true" fill="none" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"></circle><path d="M12 10v6M12 7.2v.2" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path></svg>
+<span><strong>핵심 구분:</strong> HBM의 GB는 “얼마나 담는가”, GB/s·TB/s는 “1초에 얼마나 옮기는가”입니다. 용량과 대역폭은 서로 다른 숫자입니다.</span>
+</div>
+<div aria-label="보고서 버전 정보" class="report-meta">
+<span class="version-badge" id="reportVersion">v1.0.0</span>
+<span id="reportUpdated">Updated 2026.08.08</span>
+<span aria-hidden="true" class="report-meta-separator"></span>
+<span id="reportGeneration">AI-generated · Human review recommended</span>
+</div>
+</div>
+<div aria-label="GPU 옆에 배치된 HBM 적층 구조를 표현한 교육용 도식" class="hero-visual reveal">
+<div aria-hidden="true" class="hero-orbit"></div>
+<div class="float-chip one"><i></i>위로 쌓아 작은 면적에 저장</div>
+<div class="float-chip two"><i></i>짧고 넓은 길로 GPU와 연결</div>
+<article class="hbm-stage">
+<div class="hbm-stage-top">
+<div class="hbm-stage-title"><i></i>AI PACKAGE CUTAWAY</div>
+<div class="hbm-stage-tag">GPU + HBM</div>
+</div>
+<div aria-label="인터포저 위에서 GPU와 HBM이 나란히 연결되고 HBM 내부 DRAM이 TSV로 수직 연결된 모습" class="package-visual" role="img">
+<div aria-hidden="true" class="package-grid"></div>
+<div aria-hidden="true" class="chip-floor"></div>
+<div class="gpu-block">
+<div class="gpu-label"><span>COMPUTE ENGINE</span><strong>GPU</strong><small>계산을 수행하는 주방</small></div>
+</div>
+<div aria-hidden="true" class="wide-link"></div>
+<div aria-hidden="true" class="stack-wrap">
+<div class="tsv-line t1"></div><div class="tsv-line t2"></div><div class="tsv-line t3"></div>
+<div class="dram-layer"><b>DRAM 4F</b><i></i></div>
+<div class="dram-layer"><b>DRAM 3F</b><i></i></div>
+<div class="dram-layer"><b>DRAM 2F</b><i></i></div>
+<div class="dram-layer"><b>DRAM 1F</b><i></i></div>
+<div class="dram-layer"><b>BASE DIE</b><i></i></div>
+</div>
+<div class="stage-caption"><span>INTERPOSER · 넓은 배선판</span><span>TSV · 수직 엘리베이터</span></div>
+</div>
+</article>
+</div>
+</section>
+</div>
+<section class="section-soft" id="summary">
+<div class="container">
+<div class="section-kicker reveal">EXECUTIVE SUMMARY</div>
+<h2 class="section-title reveal">HBM의 본질은 “메모리 속도”보다<br/>“데이터를 동시에 많이 옮기는 구조”에 있습니다</h2>
+<p class="section-desc reveal">
+          HBM은 3차원으로 쌓은 DRAM을 수천 개의 TSV와 마이크로범프로 연결하고, GPU·AI 가속기 옆에 인터포저로 붙인 특수 메모리입니다. 넓고 짧은 연결 덕분에 프로세서가 데이터를 기다리는 시간을 줄이고, 전송 비트당 에너지도 낮추도록 설계됩니다.<a aria-label="출처 1" class="cite" href="#source-1">1</a><a aria-label="출처 2" class="cite" href="#source-2">2</a>
+</p>
+<article class="thesis-card reveal">
+<div aria-hidden="true" class="thesis-stamp">
+<svg fill="none" viewbox="0 0 64 64"><path d="M17 45h30M20 38h24M23 31h18M26 24h12M29 17h6" stroke="currentColor" stroke-linecap="round" stroke-width="3.2"></path><path d="M13 50h38" stroke="currentColor" stroke-linecap="round" stroke-width="3.2"></path></svg>
+</div>
+<div class="thesis-copy">
+<h3>한 문장 결론</h3>
+<p><span class="highlight-line">HBM은 AI의 두뇌가 아니라, 두뇌가 쉬지 않고 계산하도록 데이터를 공급하는 초고속 물류 시스템</span>입니다. 계산량이 클수록 “연산 성능”과 “메모리 공급 능력”을 함께 봐야 합니다.</p>
+</div>
+</article>
+<div class="summary-grid">
+<article class="summary-card reveal">
+<div class="card-index">01</div>
+<h3>세로로 쌓습니다</h3>
+<p>DRAM 다이를 여러 층으로 적층해 작은 바닥 면적에 더 많은 용량을 담습니다. 층간 연결은 칩을 관통하는 TSV가 담당합니다.</p>
+<span class="mini-stat">비유 · 아파트형 창고</span>
+</article>
+<article class="summary-card reveal">
+<div class="card-index">02</div>
+<h3>통로를 매우 넓힙니다</h3>
+<p>HBM3E는 한 스택에 1,024개 I/O, HBM4는 2,048비트 인터페이스를 사용해 많은 데이터를 병렬로 옮깁니다.<a aria-label="출처 3" class="cite" href="#source-3">3</a><a aria-label="출처 4" class="cite" href="#source-4">4</a></p>
+<span class="mini-stat">비유 · 한 차선의 과속보다 수천 차선</span>
+</article>
+<article class="summary-card reveal">
+<div class="card-index">03</div>
+<h3>GPU 바로 옆에 둡니다</h3>
+<p>메모리를 보드 멀리 두지 않고 같은 패키지 안에서 GPU 옆에 배치해 연결 길이를 줄입니다. 짧은 길은 고대역폭과 전력 효율에 유리합니다.</p>
+<span class="mini-stat">비유 · 외곽 창고 대신 주방 옆 창고</span>
+</article>
+</div>
+</div>
+</section>
+<section id="analogy">
+<div class="container">
+<div class="section-kicker reveal">ONE EASY ANALOGY</div>
+<h2 class="section-title reveal">대형 식당의 주방과 식재료 창고로 생각하면 쉽습니다</h2>
+<p class="section-desc reveal">GPU는 수많은 요리사가 동시에 일하는 주방이고, 메모리는 재료 창고입니다. 주방이 커질수록 재료가 들어오는 문과 운반 통로가 병목이 됩니다.</p>
+<div class="analogy-layout">
+<article class="analogy-story reveal">
+<div class="section-kicker">KITCHEN &amp; WAREHOUSE</div>
+<h3>요리사 1만 명에게<br/>재료를 한 문으로 주면?</h3>
+<p>요리 실력과 인원은 충분해도 재료가 늦게 오면 주방은 멈춥니다. HBM은 창고를 주방 옆에 붙이고 출입구를 수천 개로 늘리는 방식입니다.</p>
+<div aria-label="GPU 주방과 HBM 창고 사이의 다차선 통로 비유" class="warehouse-visual">
+<div class="warehouse-row">
+<div class="warehouse-block"><div><strong>GPU 주방</strong><span>행렬 연산을 동시에 처리</span></div></div>
+<div aria-hidden="true" class="warehouse-road"><i></i><i></i><i></i><i></i><i></i></div>
+<div class="warehouse-block"><div><strong>HBM 창고</strong><span>가중치·활성값·KV 캐시 보관</span></div></div>
+</div>
+</div>
+<div class="story-quote"><mark>연산기가 빠를수록, 메모리 통로가 좁으면 손해가 더 커집니다.</mark></div>
+</article>
+<div class="concept-grid">
+<article class="concept-card reveal">
+<div aria-hidden="true" class="concept-icon"><svg fill="none" viewbox="0 0 24 24"><path d="M5 7h14v12H5z" stroke="currentColor" stroke-width="1.8"></path><path d="M8 4h8v3H8zM8 11h8M8 15h5" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path></svg></div>
+<div class="easy-label">창고 크기</div>
+<h3>용량 · GB</h3>
+<p>한 번에 모델 가중치와 작업 데이터를 얼마나 많이 담을 수 있는지입니다. 용량이 부족하면 여러 장의 GPU로 나누거나 느린 외부 메모리로 넘겨야 할 수 있습니다.</p>
+</article>
+<article class="concept-card reveal">
+<div aria-hidden="true" class="concept-icon"><svg fill="none" viewbox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path><path d="m17 4 3 3-3 3M17 9l3 3-3 3M17 14l3 3-3 3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></div>
+<div class="easy-label">출입구 처리량</div>
+<h3>대역폭 · GB/s, TB/s</h3>
+<p>1초에 메모리와 연산기 사이를 오갈 수 있는 데이터 양입니다. AI에서 HBM이 특히 주목받는 이유가 바로 이 수치입니다.</p>
+</article>
+<article class="concept-card wide reveal">
+<div aria-hidden="true" class="concept-icon"><svg fill="none" viewbox="0 0 24 24"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"></circle><path d="M12 7v5l3 2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></div>
+<div class="easy-label">첫 상자가 도착하는 시간</div>
+<h3>지연시간 · Latency</h3>
+<p>요청한 데이터의 첫 부분이 도착할 때까지 걸리는 시간입니다. <strong>HBM은 대역폭에 최적화된 메모리</strong>이며, “항상 모든 메모리보다 지연시간이 가장 짧다”는 뜻은 아닙니다. 대역폭과 지연시간은 같은 개념이 아닙니다.</p>
+</article>
+</div>
+</div>
+</div>
+</section>
+<section class="section-soft" id="anatomy">
+<div class="container">
+<div class="section-kicker reveal">INSIDE HBM</div>
+<h2 class="section-title reveal">아파트, 엘리베이터, 로비, 넓은 도로가 한 패키지에 들어갑니다</h2>
+<p class="section-desc reveal">HBM의 강점은 DRAM 칩 하나가 특별해서가 아니라, 적층·수직 연결·베이스 다이·인터포저를 함께 설계한 패키지 구조에서 나옵니다.</p>
+<div class="anatomy-layout">
+<figure class="anatomy-figure reveal">
+<svg aria-labelledby="anatomyTitle anatomyDesc" role="img" viewbox="0 0 720 540">
+<title id="anatomyTitle">HBM 적층 구조 단면도</title>
+<desc id="anatomyDesc">여러 층의 DRAM 다이가 TSV로 연결되고 베이스 다이와 마이크로범프를 거쳐 인터포저 위 GPU와 연결되는 구조</desc>
+<defs>
+<lineargradient id="bg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#f8fbff"></stop><stop offset="1" stop-color="#e8f3ff"></stop></lineargradient>
+<lineargradient id="dram" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#5ca2ff"></stop><stop offset="1" stop-color="#1b64da"></stop></lineargradient>
+<lineargradient id="base" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#71849f"></stop><stop offset="1" stop-color="#3d4b61"></stop></lineargradient>
+<lineargradient id="gpu" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#303a48"></stop><stop offset="1" stop-color="#12171e"></stop></lineargradient>
+<filter height="150%" id="shadow" width="140%" x="-20%" y="-20%"><fedropshadow dx="0" dy="12" flood-color="#193150" flood-opacity=".15" stddeviation="10"></fedropshadow></filter>
+</defs>
+<rect fill="url(#bg)" height="540" rx="28" width="720"></rect>
+<g opacity=".48" stroke="#b9d7ff" stroke-width="1"><path d="M0 80h720M0 160h720M0 240h720M0 320h720M0 400h720M0 480h720"></path><path d="M80 0v540M160 0v540M240 0v540M320 0v540M400 0v540M480 0v540M560 0v540M640 0v540"></path></g>
+<rect fill="#6297e2" filter="url(#shadow)" height="42" rx="15" width="612" x="54" y="422"></rect>
+<text fill="#fff" font-size="15" font-weight="800" text-anchor="middle" x="360" y="449">INTERPOSER · GPU와 HBM을 잇는 초미세 넓은 배선판</text>
+<rect fill="url(#gpu)" filter="url(#shadow)" height="158" rx="25" width="292" x="64" y="242"></rect>
+<rect fill="none" height="122" rx="18" stroke="#ffffff" stroke-opacity=".14" width="256" x="82" y="260"></rect>
+<text fill="#9cc7ff" font-size="13" font-weight="900" letter-spacing="2" text-anchor="middle" x="210" y="314">COMPUTE</text>
+<text fill="#fff" font-size="34" font-weight="900" text-anchor="middle" x="210" y="350">GPU / AI ASIC</text>
+<text fill="#fff" fill-opacity=".58" font-size="13" font-weight="700" text-anchor="middle" x="210" y="374">계산을 수행하는 엔진</text>
+<g filter="url(#shadow)">
+<rect fill="url(#dram)" height="51" rx="13" width="190" x="438" y="92"></rect>
+<rect fill="url(#dram)" height="51" rx="13" width="190" x="438" y="151"></rect>
+<rect fill="url(#dram)" height="51" rx="13" width="190" x="438" y="210"></rect>
+<rect fill="url(#dram)" height="51" rx="13" width="190" x="438" y="269"></rect>
+<rect fill="url(#base)" height="62" rx="14" width="190" x="438" y="328"></rect>
+</g>
+<g fill="#fff" font-size="13" font-weight="850"><text x="457" y="123">DRAM DIE 4</text><text x="457" y="182">DRAM DIE 3</text><text x="457" y="241">DRAM DIE 2</text><text x="457" y="300">DRAM DIE 1</text><text x="457" y="364">BASE DIE</text></g>
+<g fill="#dfff6a"><circle cx="597" cy="117" r="5"></circle><circle cx="597" cy="176" r="5"></circle><circle cx="597" cy="235" r="5"></circle><circle cx="597" cy="294" r="5"></circle><circle cx="597" cy="359" r="5"></circle></g>
+<g stroke="#dfff6a" stroke-linecap="round" stroke-width="6"><path d="M480 111v250"></path><path d="M533 111v250"></path><path d="M586 111v250"></path></g>
+<g fill="#fff184"><circle cx="458" cy="407" r="6"></circle><circle cx="482" cy="407" r="6"></circle><circle cx="506" cy="407" r="6"></circle><circle cx="530" cy="407" r="6"></circle><circle cx="554" cy="407" r="6"></circle><circle cx="578" cy="407" r="6"></circle><circle cx="602" cy="407" r="6"></circle></g>
+<path d="M354 350h82" stroke="#3182f6" stroke-dasharray="6 7" stroke-linecap="round" stroke-width="22"></path>
+<text fill="#1b64da" font-size="12" font-weight="900" text-anchor="middle" x="395" y="325">WIDE I/O</text>
+<g fill="#1b64da" font-size="12" font-weight="900"><text x="400" y="74">TSV · 칩을 관통하는 수직 전극</text><text text-anchor="middle" x="520" y="489">마이크로범프 · 층과 배선판의 접점</text></g>
+<path d="M430 82l42 21" stroke="#1b64da" stroke-width="2"></path><path d="M520 474v-51" stroke="#1b64da" stroke-width="2"></path>
+</svg>
+<figcaption>교육용 자체 제작 도식. 실제 제품의 층수·배치·베이스 다이 구성은 세대와 제조사, 고객 맞춤 설계에 따라 달라집니다.</figcaption>
+</figure>
+<div class="anatomy-list">
+<article class="anatomy-item reveal"><h3><b>1</b>DRAM 다이 · 창고의 각 층</h3><p>데이터를 실제로 저장하는 메모리 층입니다. 8-Hi, 12-Hi, 16-Hi처럼 쌓는 층 수가 용량과 패키징 난이도에 영향을 줍니다.</p></article>
+<article class="anatomy-item reveal"><h3><b>2</b>TSV · 수직 엘리베이터</h3><p>칩에 미세한 구멍을 만들고 금속 전극을 관통시켜 위·아래 층을 짧게 연결합니다. 수천 개의 TSV와 마이크로범프가 초광폭 인터페이스를 만듭니다.<a aria-label="출처 1" class="cite" href="#source-1">1</a></p></article>
+<article class="anatomy-item reveal"><h3><b>3</b>베이스 다이 · 로비와 교통 관제실</h3><p>적층 DRAM과 외부 연산 칩 사이의 인터페이스·제어·신호 기능을 담당합니다. HBM4로 갈수록 고객 맞춤 로직과 패키지 공동 설계의 중요성이 커지고 있습니다.</p></article>
+<article class="anatomy-item reveal"><h3><b>4</b>인터포저 · 넓은 전용 도로</h3><p>일반 기판만으로는 매우 많은 I/O 핀과 미세 배선을 수용하기 어려워, GPU와 HBM을 나란히 놓고 연결하는 중간 배선판을 사용합니다.<a aria-label="출처 2" class="cite" href="#source-2">2</a></p></article>
+</div>
+</div>
+</div>
+</section>
+<section id="comparison">
+<div class="container">
+<div class="section-kicker reveal">DDR vs GDDR vs HBM</div>
+<h2 class="section-title reveal">같은 DRAM 계열이지만, 쓰는 장소와 길을 만드는 방식이 다릅니다</h2>
+<p class="section-desc reveal">DDR은 범용 시스템 메모리, GDDR은 그래픽 카드용 고속 메모리, HBM은 초고성능 연산기 가까이에서 매우 넓은 병렬 통로를 제공하는 메모리입니다. “무조건 누가 더 좋다”가 아니라 비용·용량·대역폭·패키징 목적이 다릅니다.</p>
+<div class="compare-cards">
+<article class="memory-card reveal">
+<div class="memory-tag">범용 시스템 메모리</div>
+<h3>DDR</h3>
+<p>CPU가 쓰는 일반 서버·PC 메모리. 교체와 용량 확장이 쉽고 비용 효율적입니다.</p>
+<div aria-label="상대적으로 좁은 통로를 나타낸 도식" class="road-demo"><i></i><i></i></div>
+<div class="spec-list">
+<div class="spec-item"><span>배치</span><strong>메인보드 DIMM 슬롯</strong></div>
+<div class="spec-item"><span>강점</span><strong>대용량·범용성·확장성</strong></div>
+<div class="spec-item"><span>제약</span><strong>AI 가속기 전용 초광폭 통로는 아님</strong></div>
+</div>
+</article>
+<article class="memory-card reveal">
+<div class="memory-tag">그래픽용 고속 메모리</div>
+<h3>GDDR</h3>
+<p>GPU 주변 PCB에 여러 개의 메모리 칩을 배치해 핀 속도를 높이는 방식입니다.</p>
+<div aria-label="중간 너비의 여러 고속 통로를 나타낸 도식" class="road-demo medium"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="spec-list">
+<div class="spec-item"><span>배치</span><strong>GPU 주변 보드 위</strong></div>
+<div class="spec-item"><span>강점</span><strong>성능과 비용의 균형</strong></div>
+<div class="spec-item"><span>제약</span><strong>보드 배선·전력·면적 부담 증가</strong></div>
+</div>
+</article>
+<article class="memory-card recommended reveal">
+<div class="memory-tag">AI·HPC용 초고대역폭</div>
+<h3>HBM</h3>
+<p>여러 DRAM을 쌓고 GPU와 같은 패키지 안에 붙여 아주 넓고 짧은 통로를 만듭니다.</p>
+<div aria-label="매우 넓은 병렬 통로를 나타낸 도식" class="road-demo wide"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="spec-list">
+<div class="spec-item"><span>배치</span><strong>GPU 옆, 같은 고급 패키지</strong></div>
+<div class="spec-item"><span>강점</span><strong>대역폭·면적·전송 효율</strong></div>
+<div class="spec-item"><span>제약</span><strong>고비용·복잡한 패키징·열·수율</strong></div>
+</div>
+</article>
+</div>
+<div aria-labelledby="calcTitle" class="calculator reveal">
+<div class="calc-copy">
+<div class="section-kicker">BANDWIDTH CALCULATOR</div>
+<h3 id="calcTitle">“차선 수 × 차선 속도”로 대역폭을 이해하세요</h3>
+<p>비트 단위 인터페이스 폭에 핀당 전송률을 곱하고 8로 나누면 초당 바이트 전송량의 이론적 피크를 구할 수 있습니다.</p>
+<div aria-label="대역폭 계산식" class="calc-formula">인터페이스 폭(bit) × 핀 속도(Gb/s) ÷ 8 = GB/s</div>
+</div>
+<div class="calc-panel">
+<div aria-label="HBM 예시 선택" class="calc-tabs" role="tablist">
+<button aria-selected="true" class="calc-tab active" data-calc="hbm3e" role="tab" type="button">HBM3E 예시</button>
+<button aria-selected="false" class="calc-tab" data-calc="hbm4std" role="tab" type="button">HBM4 표준</button>
+<button aria-selected="false" class="calc-tab" data-calc="hbm4product" role="tab" type="button">HBM4 제품 예</button>
+</div>
+<div aria-live="polite" class="calc-result">
+<div class="calc-metric"><span>인터페이스 폭</span><strong id="calcWidth">1,024 bit</strong></div>
+<div class="calc-metric"><span>핀당 속도</span><strong id="calcSpeed">9.2 Gb/s</strong></div>
+<div class="calc-metric"><span>나누기</span><strong>8 bit/Byte</strong></div>
+<div class="calc-total"><span>이론적 피크</span><strong id="calcTotal">약 1.18 TB/s</strong></div>
+</div>
+<p class="calc-note" id="calcNote">Micron HBM3E는 9.2Gb/s 초과, 스택당 1.2TB/s 초과를 제시합니다. 계산값은 이해를 위한 기준점입니다.<a aria-label="출처 3" class="cite" href="#source-3">3</a></p>
+</div>
+</div>
+</div>
+</section>
+<section class="section-blue" id="flow">
+<div class="container">
+<div class="section-kicker reveal">WHY AI NEEDS HBM</div>
+<h2 class="section-title reveal">AI는 계산보다 “데이터 운반”을 수없이 반복합니다</h2>
+<p class="section-desc reveal">대형 언어 모델은 가중치와 중간 결과를 메모리에서 읽고, GPU에서 계산하고, 다시 저장하는 과정을 반복합니다. 메모리 대역폭이 부족하면 연산 코어가 놀게 되고, 토큰 생성 속도와 학습 시간이 영향을 받습니다.</p>
+<div class="flow-grid">
+<article class="flow-step reveal"><div class="flow-num">01</div><h3>모델을 담습니다</h3><p>수십억 개의 가중치와 실행에 필요한 데이터를 HBM 용량 안에 배치합니다.</p><span class="flow-chip">용량 GB</span></article>
+<article class="flow-step reveal"><div class="flow-num">02</div><h3>대량으로 읽습니다</h3><p>다음 연산에 필요한 가중치·활성값·KV 캐시를 여러 채널에서 동시에 가져옵니다.</p><span class="flow-chip">대역폭 TB/s</span></article>
+<article class="flow-step reveal"><div class="flow-num">03</div><h3>GPU가 계산합니다</h3><p>수많은 코어가 행렬 곱셈과 어텐션 연산을 병렬로 처리합니다.</p><span class="flow-chip">FLOPS</span></article>
+<article class="flow-step reveal"><div class="flow-num">04</div><h3>중간값을 씁니다</h3><p>계산 결과와 다음 토큰에 필요한 상태를 다시 메모리에 저장합니다.</p><span class="flow-chip">읽기 + 쓰기</span></article>
+<article class="flow-step reveal"><div class="flow-num">05</div><h3>다음 토큰으로 반복</h3><p>이 사이클이 빠르게 반복될수록 응답 토큰/초와 학습 처리량이 높아질 수 있습니다.</p><span class="flow-chip">체감 성능</span></article>
+</div>
+</div>
+</section>
+<section class="section-soft" id="generations">
+<div class="container">
+<div class="section-kicker reveal">GENERATION ROADMAP</div>
+<h2 class="section-title reveal">세대가 바뀔수록 더 많이 쌓고, 더 넓게 연결하고, 더 효율적으로 식힙니다</h2>
+<p class="section-desc reveal">HBM → HBM2 → HBM2E → HBM3 → HBM3E → HBM4로 진화했습니다. 세대명만 보지 말고 실제 제품의 스택 용량, 핀 속도, 스택 수, 총 대역폭을 함께 확인해야 합니다.</p>
+<div class="generation-layout">
+<aside class="generation-note reveal">
+<div class="section-kicker">AS OF 2026.08.08</div>
+<h3>2026년은 HBM3E와 HBM4가 함께 보이는 전환 구간입니다</h3>
+<p>HBM3E는 현재 AI 플랫폼에서 널리 쓰이고, HBM4는 표준 확정 이후 양산·출하가 시작됐습니다. SK하이닉스가 소개한 주요 분석가 전망은 2026년 HBM 출하의 약 3분의 2를 HBM3E가 차지하고 HBM4 비중은 점진적으로 늘 것으로 봤습니다. 이는 전망치이며 실제 결과는 달라질 수 있습니다.<a aria-label="출처 7" class="cite" href="#source-7">7</a></p>
+<div class="status-pill"><i></i><span>표준 수치와 제조사 제품 수치는 다릅니다. 아래 HBM4의 2TB/s는 JEDEC 기본 표준, 2.8~3.3TB/s는 특정 제조사 제품·발표 수치입니다.</span></div>
+</aside>
+<div class="timeline">
+<article class="timeline-item reveal">
+<div class="timeline-gen"><strong>HBM</strong><span>1세대</span></div>
+<div class="timeline-copy"><h3>수직 적층과 초광폭 인터페이스의 출발</h3><p>2015년 AMD Radeon R9 Fury X가 세계 최초 HBM 탑재 그래픽 카드로 상용화되며 기술이 널리 알려졌습니다.<a aria-label="출처 8" class="cite" href="#source-8">8</a></p><div class="timeline-data"><b>4,096-bit 인터페이스</b><b>2015년 상용화 사례</b></div></div>
+</article>
+<article class="timeline-item reveal">
+<div class="timeline-gen"><strong>HBM2</strong><span>2세대</span></div>
+<div class="timeline-copy"><h3>용량과 신뢰성을 높여 HPC·가속기로 확대</h3><p>고성능 컴퓨팅과 전문 그래픽에서 활용이 확대됐고, 이후 HBM2E가 속도와 용량을 더 높였습니다. Micron의 비교 자료는 HBM2 제품 예시로 8개 채널과 최대 410GB/s를 제시합니다.<a aria-label="출처 3" class="cite" href="#source-3">3</a></p><div class="timeline-data"><b>8개 채널</b><b>HBM2 제품 예 최대 410GB/s</b></div></div>
+</article>
+<article class="timeline-item reveal">
+<div class="timeline-gen"><strong>HBM3</strong><span>4세대</span></div>
+<div class="timeline-copy"><h3>AI 가속기 시대의 본격적인 대역폭 확장</h3><p>채널 수와 핀 속도가 증가하며 대규모 AI 학습과 HPC에서 핵심 메모리로 자리 잡았습니다.</p><div class="timeline-data"><b>16개 채널</b><b>32개 pseudo-channel</b></div></div>
+</article>
+<article class="timeline-item current reveal">
+<div class="timeline-gen"><strong>HBM3E</strong><span>현재 주력</span></div>
+<div class="timeline-copy"><h3>1TB/s를 넘는 스택당 대역폭과 24~36GB 제품</h3><p>Micron HBM3E 예시는 1,024 I/O, 9.2Gb/s 초과, 스택당 1.2TB/s 초과이며 8-Hi 24GB와 12-Hi 36GB 구성을 제공합니다.<a aria-label="출처 3" class="cite" href="#source-3">3</a></p><div class="timeline-data"><b>1,024 I/O</b><b>&gt;1.2TB/s</b><b>24GB·36GB 제품 예</b></div></div>
+</article>
+<article class="timeline-item current reveal">
+<div class="timeline-gen"><strong>HBM4</strong><span>양산 전환</span></div>
+<div class="timeline-copy"><h3>인터페이스가 2,048비트로 두 배 확장</h3><p>JEDEC 표준은 8Gb/s, 최대 2TB/s, 32개 채널, 최대 64GB 스택 구성을 정의합니다.<a aria-label="출처 4" class="cite" href="#source-4">4</a> 2026년 제조사 제품은 이 표준 기준을 웃도는 속도를 제시하고 있습니다.</p><div class="timeline-data"><b>2,048-bit</b><b>표준 최대 2TB/s</b><b>최대 64GB 규격</b></div></div>
+</article>
+</div>
+</div>
+<div class="current-boxes">
+<article class="current-box reveal"><span>JEDEC HBM4 STANDARD</span><strong>최대 2TB/s</strong><p>8Gb/s × 2,048-bit 인터페이스 기준의 표준 피크입니다.<a aria-label="출처 4" class="cite" href="#source-4">4</a></p></article>
+<article class="current-box reveal"><span>2026 VOLUME PRODUCT EXAMPLE</span><strong>&gt;2.8TB/s</strong><p>Micron 36GB 12-Hi HBM4는 2026년 1분기 양산 출하와 11Gb/s 초과를 발표했습니다.<a aria-label="출처 5" class="cite" href="#source-5">5</a></p></article>
+<article class="current-box reveal"><span>VENDOR MAX CLAIM</span><strong>최대 3.3TB/s</strong><p>삼성 HBM4 제품 페이지는 13.0Gb/s, 최대 3,300GB/s를 제시합니다. 시스템별 실제값과 구분해야 합니다.<a aria-label="출처 6" class="cite" href="#source-6">6</a></p></article>
+</div>
+</div>
+</section>
+<section id="learning">
+<div class="container">
+<div class="section-kicker reveal">VIDEO LEARNING</div>
+<h2 class="section-title reveal">공식 교육 영상으로 구조와 용도를 한 번 더 확인하세요</h2>
+<p class="section-desc reveal">영상은 클릭할 때만 로드됩니다. 삼성전자·SK하이닉스·Micron의 공식 채널 자료를 서로 다른 난이도로 배치했습니다. 자동 생성 자막의 정확도는 원본 언어와 영상 설정에 따라 달라질 수 있습니다.</p>
+<div class="video-grid">
+<article class="video-card reveal">
+<button aria-label="삼성전자 HBM이란 무엇인가 공식 영상을 재생" class="video-poster" data-video-id="4MMfKTRZ_Mg" type="button">
+<span aria-hidden="true" class="poster-art"><span class="poster-stack"><i></i><i></i><i></i><i></i><i></i></span></span>
+<span aria-hidden="true" class="play-button"><svg fill="currentColor" viewbox="0 0 24 24"><path d="m8 5 11 7-11 7z"></path></svg></span>
+</button>
+<div class="video-copy"><span class="video-source">SAMSUNG SEMICONDUCTOR · 공식</span><h3>“HBM, What Is It?” 현직자가 설명하는 HBM</h3><p>HBM의 기본 정의와 업계 맥락을 한국어 중심으로 빠르게 잡기 좋은 입문 영상입니다.</p><a class="video-link" href="https://www.youtube.com/watch?v=4MMfKTRZ_Mg" rel="noopener noreferrer" target="_blank">YouTube에서 열기 <svg aria-hidden="true" fill="none" viewbox="0 0 24 24"><path d="M8 16 16 8M10 8h6v6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></a></div>
+</article>
+<article class="video-card reveal">
+<button aria-label="SK하이닉스 TSV와 MR-MUF 공식 교육 영상을 재생" class="video-poster purple" data-video-id="TM0HTpKgzA8" type="button">
+<span aria-hidden="true" class="poster-art"><span class="poster-stack"><i></i><i></i><i></i><i></i><i></i></span></span>
+<span aria-hidden="true" class="play-button"><svg fill="currentColor" viewbox="0 0 24 24"><path d="m8 5 11 7-11 7z"></path></svg></span>
+</button>
+<div class="video-copy"><span class="video-source">SK HYNIX · 공식 교육</span><h3>HBM 핵심 기술 TSV와 MR-MUF</h3><p>왜 쌓을 수 있는지, 층간 연결과 열·패키징 문제를 어떻게 다루는지 이해하는 심화 입문 영상입니다.</p><a class="video-link" href="https://www.youtube.com/watch?v=TM0HTpKgzA8" rel="noopener noreferrer" target="_blank">YouTube에서 열기 <svg aria-hidden="true" fill="none" viewbox="0 0 24 24"><path d="M8 16 16 8M10 8h6v6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></a></div>
+</article>
+<article class="video-card reveal">
+<button aria-label="Micron HBM3E와 AI 공식 영상을 재생" class="video-poster dark" data-video-id="bzwPZD1w7UY" type="button">
+<span aria-hidden="true" class="poster-art dark"><span class="poster-road"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
+<span aria-hidden="true" class="play-button"><svg fill="currentColor" viewbox="0 0 24 24"><path d="m8 5 11 7-11 7z"></path></svg></span>
+</button>
+<div class="video-copy"><span class="video-source">MICRON · 공식</span><h3>HBM3E가 AI 가속기에 필요한 이유</h3><p>대역폭·전력 효율·AI 학습과 추론의 관계를 제품 관점에서 보여주는 영어 영상입니다.</p><a class="video-link" href="https://www.youtube.com/watch?v=bzwPZD1w7UY" rel="noopener noreferrer" target="_blank">YouTube에서 열기 <svg aria-hidden="true" fill="none" viewbox="0 0 24 24"><path d="M8 16 16 8M10 8h6v6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></a></div>
+</article>
+</div>
+<div class="quiz-wrap reveal">
+<div class="quiz-head"><div><h3>30초 이해 확인</h3><p>질문을 눌러 답을 확인하세요.</p></div><span class="version-badge">3 QUESTIONS</span></div>
+<div class="quiz-grid">
+<details class="quiz"><summary>HBM의 가장 큰 장점은 저장 용량인가요?</summary><div class="quiz-answer"><strong>핵심은 대역폭입니다.</strong> 용량도 늘어나지만, HBM이라는 이름의 중심은 GPU와 메모리 사이에 데이터를 매우 많이 옮기는 능력입니다.</div></details>
+<details class="quiz"><summary>TSV는 무엇을 하는 기술인가요?</summary><div class="quiz-answer"><strong>층간 수직 연결입니다.</strong> 칩을 관통하는 미세 전극으로 적층된 DRAM 층을 짧게 연결합니다.</div></details>
+<details class="quiz"><summary>HBM이 많으면 모든 AI가 무조건 빨라지나요?</summary><div class="quiz-answer"><strong>아닙니다.</strong> 모델 크기, 연산량, 소프트웨어 최적화, GPU 간 연결, 배치 크기 등 다른 병목이 있으면 효과가 제한될 수 있습니다.</div></details>
+</div>
+</div>
+</div>
+</section>
+<section class="section-soft" id="questions">
+<div class="container">
+<div class="section-kicker reveal">MISCONCEPTIONS &amp; DECISION POINTS</div>
+<h2 class="section-title reveal">HBM을 볼 때 “세대명 하나”만 보면 안 됩니다</h2>
+<p class="section-desc reveal">제품 비교에서는 HBM3E냐 HBM4냐보다 총 용량, 총 대역폭, 스택 수, GPU 간 연결, 전력·냉각과 실제 워크로드를 함께 봐야 합니다.</p>
+<div class="correction-table reveal">
+<div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>“HBM은 SSD처럼 파일을 오래 저장하는 저장장치다.”</div><div class="correction-cell right"><span class="correction-icon">✓</span>HBM은 전원이 켜진 동안 GPU가 즉시 쓰는 고속 작업 메모리입니다. SSD·스토리지와 역할이 다릅니다.</div></div>
+<div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>“HBM4면 어떤 HBM3E 시스템보다 무조건 빠르다.”</div><div class="correction-cell right"><span class="correction-icon">✓</span>세대 외에도 스택 수, 실제 동작 속도, 총 용량, GPU 구조, 소프트웨어와 열 설계가 시스템 성능을 결정합니다.</div></div>
+<div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>“대역폭이 두 배면 AI 응답도 정확히 두 배 빨라진다.”</div><div class="correction-cell right"><span class="correction-icon">✓</span>메모리 병목이 큰 작업에서는 효과가 크지만, 연산·통신·소프트웨어 병목이 크면 개선 폭은 달라집니다.</div></div>
+<div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>“HBM은 성능만 높고 단점은 없다.”</div><div class="correction-cell right"><span class="correction-icon">✓</span>적층·TSV·인터포저·열·수율·검증이 복잡해 비용과 공급 능력이 중요한 제약이 됩니다.</div></div>
+</div>
+<div class="governance-note reveal">
+<svg aria-hidden="true" fill="none" viewbox="0 0 24 24"><path d="M12 3 20 6v5.7c0 4.6-3.2 7.6-8 9.3-4.8-1.7-8-4.7-8-9.3V6z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"></path><path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg>
+<div><strong>수치 해석 원칙:</strong> 제조사 페이지의 “최대” 대역폭과 전력 효율은 특정 제품·조건의 피크 또는 내부 시험 기준일 수 있습니다. 실제 구매·운영 판단에서는 가속기 완제품 사양, 실측 벤치마크, 냉각·전력 조건을 함께 검증해야 합니다.</div>
+</div>
+<div class="question-grid">
+<article class="question-card reveal"><div class="question-num">1</div><h3>총 HBM 용량은?</h3><p>GPU 한 장과 서버 한 노드에 모델·KV 캐시·배치를 얼마나 담을 수 있는지 확인합니다.</p></article>
+<article class="question-card reveal"><div class="question-num">2</div><h3>총 대역폭은?</h3><p>스택당 수치가 아니라 가속기 전체의 실제 메모리 대역폭을 봅니다.</p></article>
+<article class="question-card reveal"><div class="question-num">3</div><h3>메모리 병목인가?</h3><p>내 워크로드가 연산 제한인지, 메모리 제한인지 프로파일링과 벤치마크로 구분합니다.</p></article>
+<article class="question-card reveal"><div class="question-num">4</div><h3>GPU 간 길은?</h3><p>여러 GPU를 쓰면 HBM만큼 GPU 간 인터커넥트와 통신 토폴로지도 중요합니다.</p></article>
+<article class="question-card reveal"><div class="question-num">5</div><h3>전력·냉각·비용은?</h3><p>최대 성능뿐 아니라 랙 전력, 냉각, 공급 가능성, 시스템 총비용을 함께 계산합니다.</p></article>
+</div>
+</div>
+</section>
+</main>
+<section aria-labelledby="rm-media-title" class="rm-media" id="rmMedia">
+<div class="rm-wrap">
+<div class="rm-section-head"><div class="rm-kicker">MEDIA &amp; REAL EXAMPLE</div><h2 id="rm-media-title">실제 이미지·공식 자료·업무 예시를 함께 봅니다</h2><p>이미지는 저장소 내부 파일로 제공해 깨짐을 줄였고, 영상은 기존 보고서의 검증된 링크가 있을 때만 클릭 로드합니다.</p></div>
+<div class="rm-media-grid">
+<article class="rm-media-card rm-media-card-media"><img alt="Samsung과 NVIDIA 공식 로고" decoding="async" loading="lazy" src="assets/260808-hbm-ai-memory-beginner/cover.png"/><div class="rm-media-card-copy"><span class="rm-label">RELATED VISUAL</span><h3>HBM이란 무엇인가? | 비전공자용 AI 메모리 입문 대표 이미지</h3><p>메인 도서관 썸네일과 본문이 같은 로컬 자산을 사용합니다.</p></div></article>
+<article class="rm-media-card"><span class="rm-label">VIDEO / OFFICIAL DEMO</span><h3>영상 또는 공식 데모</h3><div class="rm-video-placeholder"><button class="rm-action rm-action-primary" data-rm-youtube="4MMfKTRZ_Mg" data-title="HBM이란 무엇인가? | 비전공자용 AI 메모리 입문 관련 영상" type="button"><span aria-hidden="true" class="rm-play">▶</span>클릭하여 관련 영상 재생</button></div><p style="margin-top:16px">외부 영상은 사용자가 클릭할 때만 불러와 초기 로딩과 개인정보 전송을 줄였습니다.</p><div class="rm-source-list"><a href="https://semiconductor.samsung.com/dram/hbm/hbm4/" rel="noopener noreferrer" target="_blank">Samsung HBM4</a><a href="https://news.skhynix.com/en/q2-2026-business-results/" rel="noopener noreferrer" target="_blank">SK hynix 2Q26 Results</a></div></article>
+<article class="rm-media-card"><span class="rm-label">PRACTICAL EXAMPLE</span><h3>바로 적용하는 예시</h3><div class="rm-example"><strong>예시 시나리오</strong>예: HBM은 주방의 넓은 재료 컨베이어, GPU는 요리사입니다. 통로가 넓어도 요리사 수와 레시피가 병목이면 전체 속도는 제한됩니다.</div><p style="margin-top:16px">보고서의 추천은 작은 범위에서 검증한 뒤 확대하고, 중요한 판단은 원문과 사람 검토를 거칩니다.</p></article>
+</div>
+</div>
+</section><footer class="sources" id="sources">
+<div class="container">
+<div class="source-head">
+<div><h2>참고 자료와 출처</h2><p>공식 제품 문서, 표준 발표, 제조사 기술 설명과 공식 교육 영상만 실제 사용했습니다. 확인일: 2026.08.08.</p></div>
+<button class="btn btn-ghost" onclick="window.print()" type="button">전체 PDF 저장</button>
+</div>
+<div class="source-grid">
+<a class="source-link" href="https://www.micron.com/products/memory/hbm" id="source-1" rel="noopener noreferrer" target="_blank"><span>OFFICIAL PRODUCT GUIDE · 2026-08-08 확인</span><strong>Micron · High-bandwidth memory (HBM)</strong><small>3D 적층, TSV, 1,024-bit 인터페이스, 프로세서 인접 배치 설명</small></a>
+<a class="source-link" href="https://news.skhynix.com/en/semiconductor-back-end-process-episode-4-packages-part-2/" id="source-2" rel="noopener noreferrer" target="_blank"><span>OFFICIAL TECH EXPLAINER · 2026-08-08 확인</span><strong>SK hynix · Semiconductor Back-End Process Episode 4</strong><small>HBM, 인터포저, 2.5D 패키지와 SiP 구조 설명</small></a>
+<a class="source-link" href="https://www.micron.com/products/memory/hbm/hbm3e" id="source-3" rel="noopener noreferrer" target="_blank"><span>OFFICIAL PRODUCT SPEC · 2026-08-08 확인</span><strong>Micron · HBM3E</strong><small>1,024 I/O, 9.2Gb/s 초과, 1.2TB/s 초과, 24GB·36GB 제품 정보</small></a>
+<a class="source-link" href="https://www.businesswire.com/news/home/20250416843598/en/JEDEC-and-Industry-Leaders-Collaborate-to-Release-JESD270-4-HBM4-Standard-Advancing-Bandwidth-Efficiency-and-Capacity-for-AI-and-HPC" id="source-4" rel="noopener noreferrer" target="_blank"><span>STANDARD ANNOUNCEMENT · 2025-04-16</span><strong>JEDEC · JESD270-4 HBM4 Standard Release</strong><small>2,048-bit, 8Gb/s, 최대 2TB/s, 32채널, 최대 64GB 표준 내용</small></a>
+<a class="source-link" href="https://investors.micron.com/news-releases/news-release-details/micron-high-volume-production-hbm4-designed-nvidia-vera-rubin" id="source-5" rel="noopener noreferrer" target="_blank"><span>OFFICIAL PRESS RELEASE · 2026-03-16</span><strong>Micron · HBM4 High-Volume Production</strong><small>36GB 12H, 11Gb/s 초과, 2.8TB/s 초과, 2026년 1분기 양산 출하</small></a>
+<a class="source-link" href="https://semiconductor.samsung.com/kr/dram/hbm/hbm4/" id="source-6" rel="noopener noreferrer" target="_blank"><span>OFFICIAL PRODUCT PAGE · 2026-08-08 확인</span><strong>Samsung Semiconductor · HBM4</strong><small>2,048 I/O, 최대 13.0Gb/s, 최대 3,300GB/s 제품 발표 수치</small></a>
+<a class="source-link" href="https://news.skhynix.com/en/2026-market-outlook-focus-on-the-hbm-led-memory-supercycle/" id="source-7" rel="noopener noreferrer" target="_blank"><span>OFFICIAL MARKET OUTLOOK · 2026 전망</span><strong>SK hynix · 2026 Market Outlook: HBM-Led Memory Supercycle</strong><small>HBM3E와 HBM4의 2026년 공존·전환 전망을 소개한 자료</small></a>
+<a class="source-link" href="https://ir.amd.com/news-events/press-releases/detail/619/amd-ushers-in-a-new-era-of-pc-gaming-with-radeontm-r9-and-r7-300-series-graphics-line-up-including-worlds-first-graphics-family-with-revolutionary-hbm-technology" id="source-8" rel="noopener noreferrer" target="_blank"><span>OFFICIAL HISTORICAL RELEASE · 2015-06-16</span><strong>AMD · World’s First HBM-Powered Graphics Family</strong><small>Radeon R9 Fury X, 4,096-bit 인터페이스와 첫 상용 HBM GPU 사례</small></a>
+<a class="source-link" href="https://www.youtube.com/watch?v=4MMfKTRZ_Mg" rel="noopener noreferrer" target="_blank"><span>OFFICIAL VIDEO · SAMSUNG</span><strong>“HBM, What Is It?” · DS Dictionary</strong><small>보고서 내 클릭형 교육 영상</small></a>
+<a class="source-link" href="https://www.youtube.com/watch?v=TM0HTpKgzA8" rel="noopener noreferrer" target="_blank"><span>OFFICIAL VIDEO · SK HYNIX</span><strong>HBM 핵심 기술 TSV와 MR-MUF</strong><small>보고서 내 클릭형 교육 영상</small></a>
+<a class="source-link" href="https://www.youtube.com/watch?v=bzwPZD1w7UY" rel="noopener noreferrer" target="_blank"><span>OFFICIAL VIDEO · MICRON</span><strong>Micron HBM3E | High-bandwidth memory for AI</strong><small>보고서 내 클릭형 교육 영상</small></a>
+</div>
+<div class="footer-bottom"><span id="footerTitle">HBM이란 무엇인가? · AIHUBOS ReportMode</span><span id="footerMeta">AI-generated · 2026.08</span></div>
+<div aria-labelledby="history-title" class="report-history" id="history">
+<div class="history-head">
+<div><h2 id="history-title">버전 및 업데이트 히스토리</h2><p>수치, 구조, 교육 자료와 판단이 바뀔 때 변경 범위를 누적 기록합니다.</p></div>
+<span class="version-badge" id="historyCurrentVersion">Current v1.0.0</span>
+</div>
+<div aria-label="버전 변경 이력 표, 가로로 스크롤할 수 있습니다" class="history-table-wrap" tabindex="0">
+<table class="history-table">
+<thead><tr><th>버전</th><th>업데이트일</th><th>변경 구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr></thead>
+<tbody id="historyBody"><tr><td class="history-empty" colspan="5">변경 이력을 불러오는 중입니다.</td></tr></tbody>
+</table>
+</div>
+</div>
+</div>
+</footer>
+<div aria-label="빠른 작업" class="floating-actions">
+<button aria-label="맨 위로 이동" class="float-btn" id="toTop" type="button"><svg fill="none" viewbox="0 0 24 24"><path d="m6 14 6-6 6 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></button>
+<button aria-label="한 문장 결론 복사" class="float-btn" id="copySummary" type="button"><svg fill="none" viewbox="0 0 24 24"><rect height="11" rx="2" stroke="currentColor" stroke-width="1.8" width="11" x="8" y="8"></rect><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" stroke="currentColor" stroke-width="1.8"></path></svg></button>
+<button aria-label="PDF로 저장" class="float-btn" onclick="window.print()" type="button"><svg fill="none" viewbox="0 0 24 24"><path d="M7 9V4h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"></path><path d="M7 14h10v6H7z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"></path></svg></button>
+</div>
+<div aria-live="polite" class="toast" id="toast" role="status">복사했습니다.</div>
+<script>
     const progress = document.getElementById('scrollProgress');
     const toTop = document.getElementById('toTop');
     const toast = document.getElementById('toast');
@@ -1175,5 +1146,62 @@
     }
     renderReportMetadata();
   </script>
-</body>
+<section aria-labelledby="rm-history-title" class="rm-history" id="rmHistory">
+<div class="rm-wrap">
+<div class="rm-history-head"><div><div class="rm-kicker">VERSION &amp; CHANGE LOG</div><h2 id="rm-history-title">버전 및 변경 이력</h2><p>최신 기록이 위에 오며, 과거 이력은 삭제하지 않습니다.</p></div><span class="rm-chip" id="rmHistoryVersion">Current v1.1.0</span></div>
+<div class="rm-history-table-wrap"><table class="rm-history-table"><thead><tr><th>버전</th><th>업데이트일</th><th>변경 구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr></thead><tbody id="rmHistoryBody"><tr><td>v1.1.0</td><td>2026.08.08</td><td>내용·출처·디자인 통합 업데이트</td><td>2026년 8월 8일 기준 최신 공식 자료를 대조하고, ‘양산 진척’ 내용을 추가함. 공통 요약·미디어·출처·변경 이력 형식과 반응형·인쇄·접근성 규칙을 통일함.</td><td><span class="rm-status">AI-assisted · 자동 QA 완료 · 사람 검토 권장</span></td></tr><tr><td>v1.0.0</td><td>2026.08.08</td><td>신규 작성</td><td>HBM의 정의와 적층·TSV·인터포저 구조, DDR·GDDR 비교, AI 데이터 흐름, HBM3E·HBM4 세대 수치를 비전공자용 비유와 자체 제작 SVG 도식으로 구성하고 삼성전자·SK하이닉스·Micron 공식 교육 영상을 추가함.</td><td><span class="rm-status">AI-generated · 검토 권장</span></td></tr></tbody></table></div>
+<div class="rm-integrity-note"><strong>검증 상태:</strong> 로컬 이미지 경로, 메타데이터 JSON, 버전 렌더링, 360px 반응형, A4 인쇄 규칙을 자동 점검했습니다. 가격·운영시간·구매·예약·의료·보안 판단은 배포 전 담당자의 최종 확인을 권장합니다.</div>
+</div>
+</section><script id="report-metadata" type="application/json">
+{
+  "schemaVersion": "1.0",
+  "reportId": "260808-hbm-ai-memory-beginner",
+  "title": "HBM이란 무엇인가? | 비전공자용 AI 메모리 입문",
+  "version": "1.1.0",
+  "status": "Published",
+  "createdAt": "2026-08-08",
+  "updatedAt": "2026-08-08",
+  "language": "ko-KR",
+  "author": "Jeremy Lee",
+  "generation": "AI-assisted",
+  "reviewStatus": "Human review recommended",
+  "history": [
+    {
+      "version": "1.1.0",
+      "date": "2026-08-08",
+      "type": "내용·출처·디자인 통합 업데이트",
+      "summary": "2026년 8월 8일 기준 최신 공식 자료를 대조하고, ‘양산 진척’ 내용을 추가함. 공통 요약·미디어·출처·변경 이력 형식과 반응형·인쇄·접근성 규칙을 통일함.",
+      "sections": [
+        "1페이지 요약",
+        "최신 검증",
+        "미디어·예시",
+        "출처",
+        "변경 이력",
+        "반응형·인쇄"
+      ],
+      "updatedBy": "AI-assisted",
+      "reviewStatus": "자동 QA 완료 · 사람 검토 권장"
+    },
+    {
+      "version": "1.0.0",
+      "date": "2026-08-08",
+      "type": "신규 작성",
+      "summary": "HBM의 정의와 적층·TSV·인터포저 구조, DDR·GDDR 비교, AI 데이터 흐름, HBM3E·HBM4 세대 수치를 비전공자용 비유와 자체 제작 SVG 도식으로 구성하고 삼성전자·SK하이닉스·Micron 공식 교육 영상을 추가함.",
+      "sections": [
+        "Hero",
+        "Executive Summary",
+        "Analogy",
+        "Anatomy",
+        "Comparison",
+        "AI Flow",
+        "Generation Roadmap",
+        "Video Learning",
+        "Risks"
+      ],
+      "updatedBy": "AI-generated",
+      "reviewStatus": "검토 권장"
+    }
+  ]
+}
+</script><script defer="True" src="assets/reportmode-unified-20260808.js"></script></body>
 </html>

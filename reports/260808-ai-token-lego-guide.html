@@ -1,15 +1,16 @@
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="AI의 토큰이 무엇인지 레고 블록 비유, 시각 자료, 실습, 교육 영상으로 쉽게 설명하는 비전공자용 반응형 웹 보고서" />
-  <meta name="theme-color" content="#ffffff" />
-  <meta property="og:title" content="AI의 토큰, 레고 블록처럼 이해하기" />
-  <meta property="og:description" content="토큰의 뜻, 작동 원리, 컨텍스트 창·비용과의 관계를 비유와 예시로 이해하는 비전공자용 가이드" />
-  <meta property="og:type" content="article" />
-  <title>AI의 토큰, 레고 블록처럼 이해하기 · v1.0.0</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="AI의 토큰, 레고 블록처럼 이해하기 — 2026년 8월 8일 최신 공식 자료와 사진·영상·예시·변경 이력을 반영한 AIHUBOS ReportMode 보고서" name="description"/>
+<meta content="#ffffff" name="theme-color"/>
+<meta content="AI의 토큰, 레고 블록처럼 이해하기" property="og:title"/>
+<meta content="토큰의 뜻, 작동 원리, 컨텍스트 창·비용과의 관계를 비유와 예시로 이해하는 비전공자용 가이드" property="og:description"/>
+<meta content="article" property="og:type"/>
+<title>AI의 토큰, 레고 블록처럼 이해하기 · v1.1.0</title>
+<style>
     :root {
       --blue: #3182f6;
       --blue-strong: #1b64da;
@@ -687,644 +688,612 @@
       iframe { display: none !important; }
     }
   </style>
-  <link rel="stylesheet" href="../assets/report-page-layout.css?v=20260807c-wide-default">
-  <script src="../assets/report-view-counter.js" data-report-id="260808-ai-token-lego-guide"></script>
-  <script src="../assets/report-page-layout.js?v=20260807c-wide-default"></script>
-</head>
-<body data-report-view="detail" data-report-layout="wide" data-report-cover="assets/260808-ai-token-lego-guide/cover.png" data-report-cover-alt="OpenAI와 Hugging Face 공식 로고">
-  <a class="report-home-button" href="../archive/" aria-label="보고서 도서관 메인으로 이동">🏠 메인</a>
-  <a class="skip-link" href="#main-content">본문으로 바로가기</a>
-  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
-
-  <div class="nav-wrap">
-    <nav class="nav" aria-label="주요 메뉴">
-      <a class="brand" href="../archive/" aria-label="보고서 처음으로">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="6" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="2"/><rect x="14" y="6" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="2"/><rect x="9" y="13" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="2"/></svg>
-        </span>
-        <span>AI TOKEN GUIDE</span>
-        <span class="brand-sub">비전공자용</span>
-      </a>
-      <div class="nav-links">
-        <a href="#summary">한 줄 결론</a>
-        <a href="#analogy">비유</a>
-        <a href="#flow">작동 원리</a>
-        <a href="#lab">실습</a>
-        <a href="#impact">왜 중요한가</a>
-        <a href="#videos">영상</a>
-        <a href="#quiz">퀴즈</a>
-      </div>
-      <div class="nav-actions">
-        <a class="btn btn-ghost" href="#sources">출처</a>
-        <button class="btn btn-primary" type="button" onclick="window.print()" aria-label="보고서를 PDF로 저장">PDF 저장</button>
-      </div>
-    </nav>
-  </div>
-
-  <main id="main-content">
-    <div class="container" id="top">
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-copy reveal">
-          <div class="eyebrow"><span class="eyebrow-dot"></span>AI 기초 개념 · 비전공자용 교육 보고서</div>
-          <h1 id="hero-title">
-            AI의 토큰은<br />
-            문장을 잘게 나눈<br />
-            <span class="marker">레고 블록</span>입니다
+<link href="../assets/report-page-layout.css?v=20260807c-wide-default" rel="stylesheet"/>
+<script data-report-id="260808-ai-token-lego-guide" src="../assets/report-view-counter.js"></script>
+<script src="../assets/report-page-layout.js?v=20260807c-wide-default"></script>
+<link href="assets/reportmode-unified-20260808.css" rel="stylesheet"/><meta content="assets/260808-ai-token-lego-guide/cover.png" property="og:image"/><meta content="2026-08-08" name="report:updated"/></head>
+<body class="reportmode-unified" data-report-cover="assets/260808-ai-token-lego-guide/cover.png" data-report-cover-alt="OpenAI와 Hugging Face 공식 로고" data-report-id="260808-ai-token-lego-guide" data-report-layout="wide" data-report-view="detail"><a class="rm-skip" href="#rmUpdateSummary">최신 요약으로 건너뛰기</a><div class="rm-topline" id="rmTopline"><div class="rm-topline-inner">
+<a class="rm-topline-brand" href="../archive/"><span class="rm-topline-mark">R</span><span class="rm-topline-title">AI의 토큰, 레고 블록처럼 이해하기</span></a>
+<div class="rm-topline-meta"><span class="rm-chip" id="rmVersionTop">v1.1.0</span><span id="rmUpdated">2026.08.08</span></div>
+<div class="rm-topline-actions"><a href="#rmUpdateSummary">요약</a><a href="#rmHistory">이력</a><button aria-label="PDF 저장" data-rm-print="" type="button">PDF</button></div>
+</div></div><section aria-labelledby="rm-update-title" class="rm-brief" id="rmUpdateSummary">
+<div class="rm-wrap rm-brief-grid">
+<div>
+<div class="rm-kicker">2026.08.08 VERIFIED UPDATE · 공식 자료 확인</div>
+<h2 id="rm-update-title">AI의 토큰, 레고 블록처럼 이해하기<br/><span style="color:var(--rm-blue)">이번 업데이트의 한 문장 결론</span></h2>
+<p class="rm-brief-lead">기존 보고서를 보존하면서 최신 공식 자료, 실제 적용 예시, 미디어, 출처, 변경 이력을 공통 ReportMode 형식으로 보강했습니다.</p>
+<div class="rm-verdict"><span aria-hidden="true" class="rm-verdict-icon">✓</span><div><strong>토큰은 글자 수나 단어 수와 정확히 같지 않은, 모델이 텍스트를 처리·과금·기억하는 기본 조각입니다.</strong></div></div>
+<div class="rm-summary-cards">
+<article class="rm-summary-card"><b>01 · FACT</b><h3>가격 연결</h3><p>API 가격은 대부분 100만 토큰 단위의 입력·캐시·출력으로 나뉘며 모델과 컨텍스트 길이에 따라 달라집니다.</p></article>
+<article class="rm-summary-card"><b>02 · UPDATE</b><h3>최신 예시</h3><p>GPT‑5.6 계열의 입력/출력 가격과 장문 컨텍스트 구간을 예시로 추가했습니다.</p></article>
+<article class="rm-summary-card"><b>03 · ACTION</b><h3>실무 팁</h3><p>긴 문서를 매번 통째로 보내지 말고 필요한 구간 검색, 캐시, 요약, Batch를 조합하세요.</p></article>
+</div>
+<div class="rm-brief-actions">
+<a class="rm-action rm-action-primary" href="#rmMedia">사진·영상·예시 보기</a>
+<a class="rm-action" href="#rmHistory">변경 이력 보기</a>
+<a class="rm-action" href="../archive/">보고서 도서관</a>
+</div>
+</div>
+<article class="rm-visual-card">
+<figure><img alt="OpenAI와 Hugging Face 공식 로고" decoding="async" loading="eager" src="assets/260808-ai-token-lego-guide/cover.png"/><figcaption><span>공식 로고 또는 보고서 관련 이미지</span><span id="rmVersion">v1.1.0</span></figcaption></figure>
+</article>
+</div>
+</section><section aria-label="상세 본문 기준일 안내" class="rm-detail-note" id="rmDetailedContentNote"><div class="rm-detail-note-inner"><span aria-hidden="true" class="rm-detail-note-icon">i</span><div><strong>상세 본문 읽기:</strong> 아래 영역은 기존 보고서의 상세 분석과 근거를 보존한 내용입니다. 날짜·가격·버전·출시 상태가 상단의 <strong>2026.08.08 검증 요약</strong>과 다르면 상단 확인값이 우선하며, 중요한 결정은 연결된 공식 원문을 다시 확인하세요.</div></div></section>
+<a aria-label="보고서 도서관 메인으로 이동" class="report-home-button" href="../archive/">🏠 메인</a>
+<a class="skip-link" href="#main-content">본문으로 바로가기</a>
+<div aria-hidden="true" class="scroll-progress" id="scrollProgress"></div>
+<div class="nav-wrap">
+<nav aria-label="주요 메뉴" class="nav">
+<a aria-label="보고서 처음으로" class="brand" href="../archive/">
+<span aria-hidden="true" class="brand-mark">
+<svg fill="none" viewbox="0 0 24 24"><rect height="6" rx="1.5" stroke="currentColor" stroke-width="2" width="6" x="4" y="6"></rect><rect height="6" rx="1.5" stroke="currentColor" stroke-width="2" width="6" x="14" y="6"></rect><rect height="6" rx="1.5" stroke="currentColor" stroke-width="2" width="6" x="9" y="13"></rect></svg>
+</span>
+<span>AI TOKEN GUIDE</span>
+<span class="brand-sub">비전공자용</span>
+</a>
+<div class="nav-links">
+<a href="#summary">한 줄 결론</a>
+<a href="#analogy">비유</a>
+<a href="#flow">작동 원리</a>
+<a href="#lab">실습</a>
+<a href="#impact">왜 중요한가</a>
+<a href="#videos">영상</a>
+<a href="#quiz">퀴즈</a>
+</div>
+<div class="nav-actions">
+<a class="btn btn-ghost" href="#sources">출처</a>
+<button aria-label="보고서를 PDF로 저장" class="btn btn-primary" onclick="window.print()" type="button">PDF 저장</button>
+</div>
+</nav>
+</div>
+<main id="main-content">
+<div class="container" id="top">
+<section aria-labelledby="hero-title" class="hero">
+<div class="hero-copy reveal">
+<div class="eyebrow"><span class="eyebrow-dot"></span>AI 기초 개념 · 비전공자용 교육 보고서</div>
+<h1 id="hero-title">
+            AI의 토큰은<br/>
+            문장을 잘게 나눈<br/>
+<span class="marker">레고 블록</span>입니다
           </h1>
-          <p class="hero-lead">
+<p class="hero-lead">
             ChatGPT 같은 언어 AI는 문장을 사람처럼 통째로 읽지 않습니다. 글을 작은 조각인 <strong>토큰</strong>으로 나누고, 그 조각을 숫자로 바꾼 뒤 다음 조각을 하나씩 예측합니다.
           </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#summary">30초 만에 이해하기</a>
-            <a class="btn btn-ghost" href="#lab">직접 조각내 보기</a>
-            <a class="btn btn-outline" href="#videos">교육 영상 보기</a>
-          </div>
-          <div class="hero-note">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 10v6M12 7.2v.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            <span><strong>중요:</strong> 토큰은 항상 한 단어가 아닙니다. 한 글자, 단어 일부, 구두점, 공백이 붙은 조각이 될 수 있으며 모델마다 나누는 방식이 다릅니다.<a class="cite" href="#source-1" aria-label="출처 1">[1]</a></span>
-          </div>
-          <div class="report-meta" aria-label="보고서 버전 정보">
-            <span class="version-badge" id="reportVersion">v1.0.0</span>
-            <span id="reportUpdated">Updated 2026.08.08</span>
-            <span class="report-meta-separator" aria-hidden="true"></span>
-            <span id="reportGeneration">AI-generated · Human review recommended</span>
-          </div>
-        </div>
-
-        <figure class="hero-visual reveal" aria-labelledby="token-machine-caption">
-          <div class="hero-orbit" aria-hidden="true"></div>
-          <div class="token-machine">
-            <div class="machine-head">
-              <div class="machine-title"><i></i>AI가 문장을 보는 방식</div>
-              <div class="machine-tag">설명용 시각화</div>
-            </div>
-            <div class="speech-card">
-              <div class="speech-label">사람이 입력한 문장</div>
-              <p class="speech-text">“오늘 회의 핵심만 요약해줘.”</p>
-            </div>
-            <div class="machine-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m7 9 5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div class="token-row" aria-label="문장을 교육용 토큰 조각으로 나눈 예시">
-              <span class="token-chip">오늘</span><span class="token-chip"> 회의</span><span class="token-chip"> 핵심</span><span class="token-chip">만</span><span class="token-chip"> 요약</span><span class="token-chip">해줘.</span>
-            </div>
-            <div class="id-row" aria-label="각 조각이 고유한 숫자 식별자로 바뀌는 개념 예시">
-              <div class="id-box">ID ①</div><div class="id-box">ID ②</div><div class="id-box">ID ③</div><div class="id-box">ID ④</div><div class="id-box">ID ⑤</div><div class="id-box">ID ⑥</div>
-            </div>
-            <div class="machine-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m7 9 5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div class="predict-card">
-              <div><span>AI의 반복 작업</span><strong>다음 토큰을 예측</strong></div>
-              <div class="predict-next">“회의”</div>
-            </div>
-            <figcaption class="machine-caption" id="token-machine-caption">실제 토큰 경계와 ID는 모델·인코딩에 따라 달라집니다.</figcaption>
-          </div>
-        </figure>
-      </section>
-    </div>
-
-    <section id="summary" class="section-soft">
-      <div class="container">
-        <div class="section-kicker reveal">EXECUTIVE SUMMARY</div>
-        <h2 class="section-title reveal">토큰을 이해하면 AI의 용량·비용·답변 길이가 한 번에 보입니다</h2>
-        <p class="section-desc reveal">토큰은 개발자만 아는 기술 용어가 아닙니다. 긴 문서를 넣을 수 있는 양, API 비용, 답변이 중간에 끊기는 이유를 설명하는 AI의 기본 단위입니다.</p>
-
-        <article class="thesis-card reveal">
-          <div class="thesis-stamp" aria-hidden="true">
-            <svg viewBox="0 0 64 64" fill="none"><rect x="10" y="18" width="18" height="18" rx="4" stroke="currentColor" stroke-width="3"/><rect x="36" y="18" width="18" height="18" rx="4" stroke="currentColor" stroke-width="3"/><rect x="23" y="39" width="18" height="13" rx="4" stroke="currentColor" stroke-width="3"/><path d="M28 27h8M32 36v3" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
-          </div>
-          <div class="thesis-copy">
-            <h3>한 문장 결론</h3>
-            <p><strong>토큰은 AI가 읽고 쓰는 최소 작업 조각</strong>입니다. 단어와 1:1로 같지 않으며, 입력 토큰과 출력 토큰이 함께 모델의 한 번 처리 용량을 차지하고 API 사용량에도 영향을 줍니다.<a class="cite" href="#source-1" aria-label="출처 1">[1]</a></p>
-          </div>
-        </article>
-
-        <div class="metric-grid">
-          <article class="metric-card reveal">
-            <div class="metric-label">ENGLISH RULE OF THUMB</div>
-            <div class="metric-value">≈ 4자</div>
-            <h3>영문 1토큰의 대략적 크기</h3>
-            <p>OpenAI가 제시한 영문 기준의 경험칙입니다. 한국어에 그대로 적용하면 안 됩니다.<a class="cite" href="#source-1" aria-label="출처 1">[1]</a></p>
-          </article>
-          <article class="metric-card reveal">
-            <div class="metric-label">ENGLISH RULE OF THUMB</div>
-            <div class="metric-value">100 ≈ 75</div>
-            <h3>100토큰은 약 75개 영단어</h3>
-            <p>문장 구조와 모델 인코딩에 따라 실제 값은 달라집니다.<a class="cite" href="#source-1" aria-label="출처 1">[1]</a></p>
-          </article>
-          <article class="metric-card principle reveal">
-            <div class="metric-label">THE MOST IMPORTANT RULE</div>
-            <div class="metric-value">모델마다 다름</div>
-            <h3>정확한 값은 전용 토크나이저로 확인</h3>
-            <p>같은 문장도 모델과 인코딩 규칙이 달라지면 토큰 수가 바뀔 수 있습니다.<a class="cite" href="#source-2" aria-label="출처 2">[2]</a></p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="analogy">
-      <div class="container">
-        <div class="analogy-layout">
-          <article class="analogy-visual reveal">
-            <div>
-              <div class="section-kicker">ONE EASY ANALOGY</div>
-              <h2>레고 상자를 떠올리면 토큰의 역할이 선명해집니다</h2>
-              <p>사람은 완성된 문장을 보지만, AI는 조립 가능한 작은 블록의 줄을 봅니다.</p>
-              <div class="lego-scene" aria-label="완성 문장이 여러 레고 블록으로 나뉘는 그림">
-                <div class="lego-line">
-                  <span class="lego-block blue-block">AI는</span>
-                  <span class="lego-block green-block">다음</span>
-                  <span class="lego-block yellow-block">조각을</span>
-                  <span class="lego-block">예측해요</span>
-                </div>
-                <div class="lego-line">
-                  <span class="lego-block">문장</span>
-                  <span class="lego-block blue-block">→</span>
-                  <span class="lego-block green-block">토큰</span>
-                  <span class="lego-block yellow-block">→</span>
-                  <span class="lego-block">숫자 ID</span>
-                </div>
-                <div class="lego-caption">블록의 크기와 모양은 모델의 토크나이저가 정합니다.</div>
-              </div>
-            </div>
-            <div class="quote-line"><mark>토큰은 의미 그 자체가 아니라</mark>, AI가 의미를 계산하기 위해 사용하는 입력·출력 단위입니다.</div>
-          </article>
-
-          <div class="analogy-grid">
-            <article class="analogy-card reveal">
-              <div class="analogy-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="6" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="13" y="6" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="8.5" y="14" width="7" height="5" rx="1.5" stroke="currentColor" stroke-width="1.8"/></svg></div>
-              <h3>토큰</h3>
-              <div class="easy-label">레고 블록</div>
-              <p>한 글자, 단어, 단어의 일부, 구두점 등으로 이루어진 작은 텍스트 조각입니다.</p>
-            </article>
-            <article class="analogy-card reveal">
-              <div class="analogy-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v5.5M16 5v5.5M6 19l12-8M18 19 6 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="8" cy="15" r="2.5" stroke="currentColor" stroke-width="1.8"/><circle cx="16" cy="15" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg></div>
-              <h3>토크나이저</h3>
-              <div class="easy-label">자동 재단기</div>
-              <p>입력 문장을 모델이 사용할 수 있는 규칙에 따라 토큰으로 나누는 도구입니다.</p>
-            </article>
-            <article class="analogy-card reveal">
-              <div class="analogy-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5h14v14H5z" stroke="currentColor" stroke-width="1.8"/><path d="M8 8v8M11 8v8M15 8v8M17 8v8" stroke="currentColor" stroke-width="1.5"/></svg></div>
-              <h3>토큰 ID</h3>
-              <div class="easy-label">블록의 바코드</div>
-              <p>컴퓨터는 글자 자체보다 각 토큰에 대응하는 숫자 식별자를 계산에 사용합니다.<a class="cite" href="#source-4" aria-label="출처 4">[4]</a></p>
-            </article>
-            <article class="analogy-card reveal">
-              <div class="analogy-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="7" width="16" height="12" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7M4 12h16" stroke="currentColor" stroke-width="1.8"/></svg></div>
-              <h3>컨텍스트 창</h3>
-              <div class="easy-label">한 번에 여는 여행가방</div>
-              <p>AI가 한 번에 참고할 수 있는 토큰의 총량입니다. 입력과 출력이 같은 공간을 나눠 씁니다.<a class="cite" href="#source-6" aria-label="출처 6">[6]</a></p>
-            </article>
-            <article class="analogy-card reveal">
-              <div class="analogy-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="m10 8 4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 6v12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-              <h3>출력 생성</h3>
-              <div class="easy-label">다음 블록 맞히기</div>
-              <p>언어 모델은 지금까지의 토큰을 보고 다음에 올 가능성이 높은 토큰을 고르는 일을 반복해 문장을 만듭니다.<a class="cite" href="#source-5" aria-label="출처 5">[5]</a></p>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="flow" class="section-blue">
-      <div class="container">
-        <div class="section-kicker reveal">HOW IT WORKS</div>
-        <h2 class="section-title reveal">사람의 문장이 AI의 답변이 되기까지 다섯 단계를 거칩니다</h2>
-        <p class="section-desc reveal">토큰화는 단순히 문장을 자르는 일이 아닙니다. 텍스트를 숫자로 바꾸고, 문맥 속에서 다음 토큰의 확률을 계산하고, 다시 사람이 읽을 수 있는 글로 돌리는 과정의 출발점입니다.<a class="cite" href="#source-4" aria-label="출처 4">[4]</a></p>
-
-        <div class="flow-grid">
-          <article class="flow-step reveal">
-            <div class="flow-num">01</div>
-            <h3>문장 입력</h3>
-            <p>사용자가 질문, 문서, 지시사항을 글로 입력합니다.</p>
-            <div class="flow-mini"><span>질문</span><span>대화 기록</span><span>문서</span></div>
-          </article>
-          <article class="flow-step reveal">
-            <div class="flow-num">02</div>
-            <h3>토큰으로 분할</h3>
-            <p>토크나이저가 글을 단어·부분 단어·기호 등의 조각으로 나눕니다.</p>
-            <div class="flow-mini"><span>token</span><span>ization</span><span>!</span></div>
-          </article>
-          <article class="flow-step reveal">
-            <div class="flow-num">03</div>
-            <h3>숫자 ID로 변환</h3>
-            <p>각 조각을 모델의 어휘표에 있는 숫자 식별자로 바꿉니다.</p>
-            <div class="flow-mini"><span>ID ①</span><span>ID ②</span><span>ID ③</span></div>
-          </article>
-          <article class="flow-step reveal">
-            <div class="flow-num">04</div>
-            <h3>다음 토큰 계산</h3>
-            <p>문맥을 보고 다음에 올 후보마다 확률을 계산합니다.</p>
-            <div class="probability" aria-label="다음 토큰 후보 확률의 설명용 예시">
-              <div class="prob-row"><span>핵심</span><div class="prob-track"><div class="prob-fill" style="width:72%"></div></div><span>72</span></div>
-              <div class="prob-row"><span>내용</span><div class="prob-track"><div class="prob-fill" style="width:19%"></div></div><span>19</span></div>
-              <div class="prob-row"><span>기타</span><div class="prob-track"><div class="prob-fill" style="width:9%"></div></div><span>9</span></div>
-            </div>
-          </article>
-          <article class="flow-step reveal">
-            <div class="flow-num">05</div>
-            <h3>글로 복원</h3>
-            <p>선택된 토큰 ID를 다시 글자로 바꾸고, 이 과정을 반복해 답변을 완성합니다.</p>
-            <div class="flow-mini"><span>토큰</span><span>→</span><span>문장</span></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="lab" class="section-soft">
-      <div class="container">
-        <div class="section-kicker reveal">EXAMPLES & MINI LAB</div>
-        <h2 class="section-title reveal">‘단어 수’와 ‘토큰 수’가 다른 이유를 직접 확인해 보세요</h2>
-        <p class="section-desc reveal">현대 언어 모델은 흔한 표현은 크게 묶고, 드문 표현은 더 작은 부분 단어로 나누는 방식을 자주 사용합니다. Hugging Face의 예처럼 <code>tokenization</code>은 <code>token</code>과 <code>ization</code> 같은 부분으로 나뉠 수 있습니다.<a class="cite" href="#source-4" aria-label="출처 4">[4]</a></p>
-
-        <div class="lab-layout">
-          <div class="example-stack">
-            <article class="example-card reveal">
-              <div class="example-label">공식 교육 예시 · 부분 단어</div>
-              <h3><code>tokenization</code>은 한 단어지만 여러 토큰이 될 수 있습니다</h3>
-              <p>자주 반복되는 부분을 재사용하면 작은 어휘표로도 다양한 단어를 표현할 수 있습니다.</p>
-              <div class="split-demo" aria-label="tokenization을 token과 ization으로 나눈 예시">
-                <span class="accent">token</span><span class="accent">ization</span>
-              </div>
-            </article>
-
-            <article class="example-card reveal">
-              <div class="example-label">한국어 · 설명용 분할</div>
-              <h3>“인공지능을 배워요!”도 여러 방식으로 잘릴 수 있습니다</h3>
-              <p>한국어는 조사와 어미가 붙고, 모델이 학습한 어휘가 달라 정확한 경계가 모델마다 달라질 수 있습니다.</p>
-              <div class="split-demo" aria-label="한국어 문장의 개념적 분할 예시">
-                <span>인공</span><span>지능</span><span>을</span><span class="accent"> 배워</span><span>요</span><span>!</span>
-              </div>
-              <div class="example-note">이 분할은 개념 설명용입니다. 정확한 결과는 사용하려는 모델의 토크나이저로 확인해야 합니다.</div>
-            </article>
-
-            <article class="example-card reveal">
-              <div class="example-label">기호·코드 · 예상보다 잘게 분할 가능</div>
-              <h3>코드, 날짜, URL, 이모지는 눈에 보이는 ‘한 덩어리’와 다를 수 있습니다</h3>
-              <p>토크나이저는 공백뿐 아니라 기호와 자주 등장하는 문자 패턴을 함께 고려합니다.</p>
-              <div class="split-demo" aria-label="코드 문자열을 개념적으로 나눈 예시">
-                <span>user</span><span>_</span><span>id</span><span>=</span><span class="accent">2026</span><span>-</span><span>08</span><span>-</span><span>08</span>
-              </div>
-            </article>
-          </div>
-
-          <article class="token-lab reveal" aria-labelledby="lab-title">
-            <div class="lab-head">
-              <div>
-                <h3 id="lab-title">교육용 토큰 조각내기</h3>
-                <p>문장을 입력하고 ‘조각내기’를 눌러 레고 블록처럼 확인하세요.</p>
-              </div>
-              <span class="lab-badge">실제 토크나이저 아님</span>
-            </div>
-            <div class="lab-presets" aria-label="예시 문장 선택">
-              <button class="preset-btn" type="button" data-preset="오늘 회의 핵심만 5줄로 요약해줘.">한글 예시</button>
-              <button class="preset-btn" type="button" data-preset="Tokenization turns text into model-readable pieces.">영문 예시</button>
-              <button class="preset-btn" type="button" data-preset="user_id=2026-08-08; status='ready';">코드 예시</button>
-            </div>
-            <label for="labInput" class="speech-label" style="color:rgba(255,255,255,.65)">입력 문장</label>
-            <textarea class="lab-input" id="labInput">오늘 회의 핵심만 5줄로 요약해줘.</textarea>
-            <div class="lab-controls">
-              <span class="lab-count" id="labCount">학습용 블록 0개</span>
-              <button class="lab-run" type="button" id="runLab">조각내기</button>
-            </div>
-            <div class="lab-output" id="labOutput" aria-live="polite" aria-label="교육용으로 분할된 텍스트 조각"></div>
-            <div class="lab-warning"><strong>주의:</strong> 이 실습은 개념을 보여주는 시뮬레이션입니다. 정확한 토큰 수는 <a href="https://platform.openai.com/tokenizer" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;text-underline-offset:3px">OpenAI Tokenizer</a>처럼 대상 모델에 맞는 도구로 확인하세요.<a class="cite" href="#source-2" aria-label="출처 2">[2]</a></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="impact">
-      <div class="container">
-        <div class="section-kicker reveal">WHY IT MATTERS</div>
-        <h2 class="section-title reveal">토큰은 ‘AI가 얼마나 담고, 얼마나 쓰며, 얼마나 비용이 드는지’를 정합니다</h2>
-        <p class="section-desc reveal">토큰 수는 단순한 글자 세기가 아닙니다. 한 번에 처리할 수 있는 문맥의 크기, API 사용량, 응답 속도와 출력 길이에 직접 또는 간접적으로 연결됩니다.</p>
-
-        <div class="impact-layout">
-          <div class="impact-grid">
-            <article class="impact-card reveal">
-              <div class="impact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="14" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M8 9h8M8 13h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-              <h3>한 번 처리할 수 있는 양</h3>
-              <p>컨텍스트 창은 AI가 한 요청에서 고려할 수 있는 토큰의 총량입니다. 긴 문서와 긴 대화가 이 공간을 함께 사용합니다.<a class="cite" href="#source-6" aria-label="출처 6">[6]</a></p>
-              <div class="mini-claim">쉽게 말해 · 책상 크기</div>
-            </article>
-            <article class="impact-card reveal">
-              <div class="impact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"/><path d="M9 9.5c.7-1 1.8-1.5 3.2-1.5 1.7 0 2.8.8 2.8 2 0 1.4-1.1 1.9-3 2.2-1.9.3-3 1-3 2.4 0 1.3 1.2 2.4 3.2 2.4 1.4 0 2.5-.5 3.2-1.5M12 6v12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-              <h3>API 비용</h3>
-              <p>API는 일반적으로 입력·출력·캐시 토큰을 구분해 사용량을 계산하며, 가격은 모델에 따라 다릅니다.<a class="cite" href="#source-1" aria-label="출처 1">[1]</a></p>
-              <div class="mini-claim">쉽게 말해 · 전기 계량기</div>
-            </article>
-            <article class="impact-card reveal">
-              <div class="impact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"/><path d="M12 8v4l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <h3>응답 시간</h3>
-              <p>처리해야 할 입력과 생성해야 할 출력이 늘어나면 계산량도 늘어, 대체로 응답이 더 오래 걸릴 수 있습니다.</p>
-              <div class="mini-claim">보고서 판단 · 길수록 항상 느리다는 뜻은 아님</div>
-            </article>
-            <article class="impact-card reveal">
-              <div class="impact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 7h14M5 12h10M5 17h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="m17 15 2 2 3-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <h3>답변의 집중도</h3>
-              <p>더 많은 토큰이 항상 더 좋은 답을 뜻하지는 않습니다. 반복·잡음이 많으면 중요한 지시가 묻힐 수 있어 핵심 맥락을 선별하는 편이 좋습니다.</p>
-              <div class="mini-claim">실무 원칙 · 적은 토큰보다 유용한 토큰</div>
-            </article>
-          </div>
-
-          <figure class="context-figure reveal" aria-labelledby="context-title">
-            <h3 id="context-title">컨텍스트 창 = 한 번에 여는 여행가방</h3>
-            <p>모델이 한 요청에서 참고할 수 있는 총 토큰 공간을 시각화한 설명용 그림입니다.</p>
-            <div class="window-shell">
-              <div class="window-top"><span>한 번의 요청</span><span>입력 + 출력</span></div>
-              <div class="window-bar" aria-label="컨텍스트 창을 시스템 지시, 대화 기록, 첨부 문서, 답변이 나눠 쓰는 그림">
-                <div class="window-part">현재 질문<small>input</small></div>
-                <div class="window-part history">대화 기록<small>history</small></div>
-                <div class="window-part docs">첨부 문서<small>context</small></div>
-                <div class="window-part answer">답변 공간<small>output</small></div>
-              </div>
-              <div class="overflow-demo"><div class="overflow-track"><div class="overflow-fill"></div></div><span class="overflow-label">83% 사용</span></div>
-            </div>
-            <div class="context-legend">
-              <div class="legend-row"><b>1</b><div>입력이 너무 길면 답변을 위한 남은 공간이 줄어듭니다.</div></div>
-              <div class="legend-row"><b>2</b><div>한도를 넘으면 요청이 실패하거나 일부 내용을 줄여야 할 수 있습니다.<a class="cite" href="#source-1" aria-label="출처 1">[1]</a></div></div>
-              <div class="legend-row"><b>3</b><div>긴 문서는 나누고, 필요한 부분만 검색해 넣거나 먼저 요약하는 방식이 유용합니다.</div></div>
-            </div>
-            <figcaption class="context-foot">기억과는 다릅니다. 컨텍스트 창은 ‘영원히 저장되는 기억’이 아니라 지금 답할 때 펼쳐 놓은 작업 공간입니다.</figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-soft" id="practice">
-      <div class="container">
-        <div class="section-kicker reveal">BETTER PROMPTS</div>
-        <h2 class="section-title reveal">토큰을 무조건 줄이기보다, 답변에 필요한 정보만 선명하게 남기세요</h2>
-        <p class="section-desc reveal">좋은 프롬프트는 가장 짧은 문장이 아니라, 목표·범위·출력 형식·근거가 명확한 문장입니다. 긴 자료는 목적에 맞게 나누고 중복을 제거하는 편이 효율적입니다.</p>
-
-        <div class="compare-grid">
-          <article class="compare-card reveal">
-            <div class="compare-label">비효율적인 방식</div>
-            <h3>자료를 모두 붙이고 “정리해줘”라고 요청</h3>
-            <p>AI가 무엇을 우선해야 하는지 불분명하고, 불필요한 토큰이 컨텍스트 공간을 차지합니다.</p>
-            <div class="compare-list">
-              <div class="compare-item"><b>×</b><div>목적과 독자가 없음</div></div>
-              <div class="compare-item"><b>×</b><div>중복 문서와 과거 버전이 섞임</div></div>
-              <div class="compare-item"><b>×</b><div>원하는 답변 길이와 형식이 없음</div></div>
-            </div>
-          </article>
-          <article class="compare-card good reveal">
-            <div class="compare-label">권장 방식</div>
-            <h3>목표·범위·결과 형식을 먼저 지정</h3>
-            <p>AI가 참고해야 할 토큰의 우선순위를 분명히 해 짧고 일관된 결과를 얻기 쉽습니다.</p>
-            <div class="compare-list">
-              <div class="compare-item"><b>✓</b><div>“임원용 5줄 요약”처럼 독자와 길이를 명시</div></div>
-              <div class="compare-item"><b>✓</b><div>최신 문서와 핵심 구간만 제공</div></div>
-              <div class="compare-item"><b>✓</b><div>결론·근거·다음 행동 순서로 출력 요구</div></div>
-            </div>
-          </article>
-        </div>
-
-        <div class="prompt-demo reveal">
-          <div class="prompt-panel">
-            <strong>Before · 목적 없는 긴 요청</strong>
-            <p>“이 자료들을 읽고 자세히 정리해줘.”</p>
-            <div class="prompt-code">[회의록 12개]
+<div class="hero-actions">
+<a class="btn btn-primary" href="#summary">30초 만에 이해하기</a>
+<a class="btn btn-ghost" href="#lab">직접 조각내 보기</a>
+<a class="btn btn-outline" href="#videos">교육 영상 보기</a>
+</div>
+<div class="hero-note">
+<svg aria-hidden="true" fill="none" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"></circle><path d="M12 10v6M12 7.2v.2" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path></svg>
+<span><strong>중요:</strong> 토큰은 항상 한 단어가 아닙니다. 한 글자, 단어 일부, 구두점, 공백이 붙은 조각이 될 수 있으며 모델마다 나누는 방식이 다릅니다.<a aria-label="출처 1" class="cite" href="#source-1">[1]</a></span>
+</div>
+<div aria-label="보고서 버전 정보" class="report-meta">
+<span class="version-badge" id="reportVersion">v1.0.0</span>
+<span id="reportUpdated">Updated 2026.08.08</span>
+<span aria-hidden="true" class="report-meta-separator"></span>
+<span id="reportGeneration">AI-generated · Human review recommended</span>
+</div>
+</div>
+<figure aria-labelledby="token-machine-caption" class="hero-visual reveal">
+<div aria-hidden="true" class="hero-orbit"></div>
+<div class="token-machine">
+<div class="machine-head">
+<div class="machine-title"><i></i>AI가 문장을 보는 방식</div>
+<div class="machine-tag">설명용 시각화</div>
+</div>
+<div class="speech-card">
+<div class="speech-label">사람이 입력한 문장</div>
+<p class="speech-text">“오늘 회의 핵심만 요약해줘.”</p>
+</div>
+<div aria-hidden="true" class="machine-arrow"><svg fill="none" viewbox="0 0 24 24"><path d="m7 9 5 5 5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div>
+<div aria-label="문장을 교육용 토큰 조각으로 나눈 예시" class="token-row">
+<span class="token-chip">오늘</span><span class="token-chip"> 회의</span><span class="token-chip"> 핵심</span><span class="token-chip">만</span><span class="token-chip"> 요약</span><span class="token-chip">해줘.</span>
+</div>
+<div aria-label="각 조각이 고유한 숫자 식별자로 바뀌는 개념 예시" class="id-row">
+<div class="id-box">ID ①</div><div class="id-box">ID ②</div><div class="id-box">ID ③</div><div class="id-box">ID ④</div><div class="id-box">ID ⑤</div><div class="id-box">ID ⑥</div>
+</div>
+<div aria-hidden="true" class="machine-arrow"><svg fill="none" viewbox="0 0 24 24"><path d="m7 9 5 5 5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div>
+<div class="predict-card">
+<div><span>AI의 반복 작업</span><strong>다음 토큰을 예측</strong></div>
+<div class="predict-next">“회의”</div>
+</div>
+<figcaption class="machine-caption" id="token-machine-caption">실제 토큰 경계와 ID는 모델·인코딩에 따라 달라집니다.</figcaption>
+</div>
+</figure>
+</section>
+</div>
+<section class="section-soft" id="summary">
+<div class="container">
+<div class="section-kicker reveal">EXECUTIVE SUMMARY</div>
+<h2 class="section-title reveal">토큰을 이해하면 AI의 용량·비용·답변 길이가 한 번에 보입니다</h2>
+<p class="section-desc reveal">토큰은 개발자만 아는 기술 용어가 아닙니다. 긴 문서를 넣을 수 있는 양, API 비용, 답변이 중간에 끊기는 이유를 설명하는 AI의 기본 단위입니다.</p>
+<article class="thesis-card reveal">
+<div aria-hidden="true" class="thesis-stamp">
+<svg fill="none" viewbox="0 0 64 64"><rect height="18" rx="4" stroke="currentColor" stroke-width="3" width="18" x="10" y="18"></rect><rect height="18" rx="4" stroke="currentColor" stroke-width="3" width="18" x="36" y="18"></rect><rect height="13" rx="4" stroke="currentColor" stroke-width="3" width="18" x="23" y="39"></rect><path d="M28 27h8M32 36v3" stroke="currentColor" stroke-linecap="round" stroke-width="3"></path></svg>
+</div>
+<div class="thesis-copy">
+<h3>한 문장 결론</h3>
+<p><strong>토큰은 AI가 읽고 쓰는 최소 작업 조각</strong>입니다. 단어와 1:1로 같지 않으며, 입력 토큰과 출력 토큰이 함께 모델의 한 번 처리 용량을 차지하고 API 사용량에도 영향을 줍니다.<a aria-label="출처 1" class="cite" href="#source-1">[1]</a></p>
+</div>
+</article>
+<div class="metric-grid">
+<article class="metric-card reveal">
+<div class="metric-label">ENGLISH RULE OF THUMB</div>
+<div class="metric-value">≈ 4자</div>
+<h3>영문 1토큰의 대략적 크기</h3>
+<p>OpenAI가 제시한 영문 기준의 경험칙입니다. 한국어에 그대로 적용하면 안 됩니다.<a aria-label="출처 1" class="cite" href="#source-1">[1]</a></p>
+</article>
+<article class="metric-card reveal">
+<div class="metric-label">ENGLISH RULE OF THUMB</div>
+<div class="metric-value">100 ≈ 75</div>
+<h3>100토큰은 약 75개 영단어</h3>
+<p>문장 구조와 모델 인코딩에 따라 실제 값은 달라집니다.<a aria-label="출처 1" class="cite" href="#source-1">[1]</a></p>
+</article>
+<article class="metric-card principle reveal">
+<div class="metric-label">THE MOST IMPORTANT RULE</div>
+<div class="metric-value">모델마다 다름</div>
+<h3>정확한 값은 전용 토크나이저로 확인</h3>
+<p>같은 문장도 모델과 인코딩 규칙이 달라지면 토큰 수가 바뀔 수 있습니다.<a aria-label="출처 2" class="cite" href="#source-2">[2]</a></p>
+</article>
+</div>
+</div>
+</section>
+<section id="analogy">
+<div class="container">
+<div class="analogy-layout">
+<article class="analogy-visual reveal">
+<div>
+<div class="section-kicker">ONE EASY ANALOGY</div>
+<h2>레고 상자를 떠올리면 토큰의 역할이 선명해집니다</h2>
+<p>사람은 완성된 문장을 보지만, AI는 조립 가능한 작은 블록의 줄을 봅니다.</p>
+<div aria-label="완성 문장이 여러 레고 블록으로 나뉘는 그림" class="lego-scene">
+<div class="lego-line">
+<span class="lego-block blue-block">AI는</span>
+<span class="lego-block green-block">다음</span>
+<span class="lego-block yellow-block">조각을</span>
+<span class="lego-block">예측해요</span>
+</div>
+<div class="lego-line">
+<span class="lego-block">문장</span>
+<span class="lego-block blue-block">→</span>
+<span class="lego-block green-block">토큰</span>
+<span class="lego-block yellow-block">→</span>
+<span class="lego-block">숫자 ID</span>
+</div>
+<div class="lego-caption">블록의 크기와 모양은 모델의 토크나이저가 정합니다.</div>
+</div>
+</div>
+<div class="quote-line"><mark>토큰은 의미 그 자체가 아니라</mark>, AI가 의미를 계산하기 위해 사용하는 입력·출력 단위입니다.</div>
+</article>
+<div class="analogy-grid">
+<article class="analogy-card reveal">
+<div aria-hidden="true" class="analogy-icon"><svg fill="none" viewbox="0 0 24 24"><rect height="7" rx="1.5" stroke="currentColor" stroke-width="1.8" width="7" x="4" y="6"></rect><rect height="7" rx="1.5" stroke="currentColor" stroke-width="1.8" width="7" x="13" y="6"></rect><rect height="5" rx="1.5" stroke="currentColor" stroke-width="1.8" width="7" x="8.5" y="14"></rect></svg></div>
+<h3>토큰</h3>
+<div class="easy-label">레고 블록</div>
+<p>한 글자, 단어, 단어의 일부, 구두점 등으로 이루어진 작은 텍스트 조각입니다.</p>
+</article>
+<article class="analogy-card reveal">
+<div aria-hidden="true" class="analogy-icon"><svg fill="none" viewbox="0 0 24 24"><path d="M8 5v5.5M16 5v5.5M6 19l12-8M18 19 6 11" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path><circle cx="8" cy="15" r="2.5" stroke="currentColor" stroke-width="1.8"></circle><circle cx="16" cy="15" r="2.5" stroke="currentColor" stroke-width="1.8"></circle></svg></div>
+<h3>토크나이저</h3>
+<div class="easy-label">자동 재단기</div>
+<p>입력 문장을 모델이 사용할 수 있는 규칙에 따라 토큰으로 나누는 도구입니다.</p>
+</article>
+<article class="analogy-card reveal">
+<div aria-hidden="true" class="analogy-icon"><svg fill="none" viewbox="0 0 24 24"><path d="M5 5h14v14H5z" stroke="currentColor" stroke-width="1.8"></path><path d="M8 8v8M11 8v8M15 8v8M17 8v8" stroke="currentColor" stroke-width="1.5"></path></svg></div>
+<h3>토큰 ID</h3>
+<div class="easy-label">블록의 바코드</div>
+<p>컴퓨터는 글자 자체보다 각 토큰에 대응하는 숫자 식별자를 계산에 사용합니다.<a aria-label="출처 4" class="cite" href="#source-4">[4]</a></p>
+</article>
+<article class="analogy-card reveal">
+<div aria-hidden="true" class="analogy-icon"><svg fill="none" viewbox="0 0 24 24"><rect height="12" rx="3" stroke="currentColor" stroke-width="1.8" width="16" x="4" y="7"></rect><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7M4 12h16" stroke="currentColor" stroke-width="1.8"></path></svg></div>
+<h3>컨텍스트 창</h3>
+<div class="easy-label">한 번에 여는 여행가방</div>
+<p>AI가 한 번에 참고할 수 있는 토큰의 총량입니다. 입력과 출력이 같은 공간을 나눠 씁니다.<a aria-label="출처 6" class="cite" href="#source-6">[6]</a></p>
+</article>
+<article class="analogy-card reveal">
+<div aria-hidden="true" class="analogy-icon"><svg fill="none" viewbox="0 0 24 24"><path d="M4 12h9" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path><path d="m10 8 4 4-4 4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path><path d="M17 6v12" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path></svg></div>
+<h3>출력 생성</h3>
+<div class="easy-label">다음 블록 맞히기</div>
+<p>언어 모델은 지금까지의 토큰을 보고 다음에 올 가능성이 높은 토큰을 고르는 일을 반복해 문장을 만듭니다.<a aria-label="출처 5" class="cite" href="#source-5">[5]</a></p>
+</article>
+</div>
+</div>
+</div>
+</section>
+<section class="section-blue" id="flow">
+<div class="container">
+<div class="section-kicker reveal">HOW IT WORKS</div>
+<h2 class="section-title reveal">사람의 문장이 AI의 답변이 되기까지 다섯 단계를 거칩니다</h2>
+<p class="section-desc reveal">토큰화는 단순히 문장을 자르는 일이 아닙니다. 텍스트를 숫자로 바꾸고, 문맥 속에서 다음 토큰의 확률을 계산하고, 다시 사람이 읽을 수 있는 글로 돌리는 과정의 출발점입니다.<a aria-label="출처 4" class="cite" href="#source-4">[4]</a></p>
+<div class="flow-grid">
+<article class="flow-step reveal">
+<div class="flow-num">01</div>
+<h3>문장 입력</h3>
+<p>사용자가 질문, 문서, 지시사항을 글로 입력합니다.</p>
+<div class="flow-mini"><span>질문</span><span>대화 기록</span><span>문서</span></div>
+</article>
+<article class="flow-step reveal">
+<div class="flow-num">02</div>
+<h3>토큰으로 분할</h3>
+<p>토크나이저가 글을 단어·부분 단어·기호 등의 조각으로 나눕니다.</p>
+<div class="flow-mini"><span>token</span><span>ization</span><span>!</span></div>
+</article>
+<article class="flow-step reveal">
+<div class="flow-num">03</div>
+<h3>숫자 ID로 변환</h3>
+<p>각 조각을 모델의 어휘표에 있는 숫자 식별자로 바꿉니다.</p>
+<div class="flow-mini"><span>ID ①</span><span>ID ②</span><span>ID ③</span></div>
+</article>
+<article class="flow-step reveal">
+<div class="flow-num">04</div>
+<h3>다음 토큰 계산</h3>
+<p>문맥을 보고 다음에 올 후보마다 확률을 계산합니다.</p>
+<div aria-label="다음 토큰 후보 확률의 설명용 예시" class="probability">
+<div class="prob-row"><span>핵심</span><div class="prob-track"><div class="prob-fill" style="width:72%"></div></div><span>72</span></div>
+<div class="prob-row"><span>내용</span><div class="prob-track"><div class="prob-fill" style="width:19%"></div></div><span>19</span></div>
+<div class="prob-row"><span>기타</span><div class="prob-track"><div class="prob-fill" style="width:9%"></div></div><span>9</span></div>
+</div>
+</article>
+<article class="flow-step reveal">
+<div class="flow-num">05</div>
+<h3>글로 복원</h3>
+<p>선택된 토큰 ID를 다시 글자로 바꾸고, 이 과정을 반복해 답변을 완성합니다.</p>
+<div class="flow-mini"><span>토큰</span><span>→</span><span>문장</span></div>
+</article>
+</div>
+</div>
+</section>
+<section class="section-soft" id="lab">
+<div class="container">
+<div class="section-kicker reveal">EXAMPLES &amp; MINI LAB</div>
+<h2 class="section-title reveal">‘단어 수’와 ‘토큰 수’가 다른 이유를 직접 확인해 보세요</h2>
+<p class="section-desc reveal">현대 언어 모델은 흔한 표현은 크게 묶고, 드문 표현은 더 작은 부분 단어로 나누는 방식을 자주 사용합니다. Hugging Face의 예처럼 <code>tokenization</code>은 <code>token</code>과 <code>ization</code> 같은 부분으로 나뉠 수 있습니다.<a aria-label="출처 4" class="cite" href="#source-4">[4]</a></p>
+<div class="lab-layout">
+<div class="example-stack">
+<article class="example-card reveal">
+<div class="example-label">공식 교육 예시 · 부분 단어</div>
+<h3><code>tokenization</code>은 한 단어지만 여러 토큰이 될 수 있습니다</h3>
+<p>자주 반복되는 부분을 재사용하면 작은 어휘표로도 다양한 단어를 표현할 수 있습니다.</p>
+<div aria-label="tokenization을 token과 ization으로 나눈 예시" class="split-demo">
+<span class="accent">token</span><span class="accent">ization</span>
+</div>
+</article>
+<article class="example-card reveal">
+<div class="example-label">한국어 · 설명용 분할</div>
+<h3>“인공지능을 배워요!”도 여러 방식으로 잘릴 수 있습니다</h3>
+<p>한국어는 조사와 어미가 붙고, 모델이 학습한 어휘가 달라 정확한 경계가 모델마다 달라질 수 있습니다.</p>
+<div aria-label="한국어 문장의 개념적 분할 예시" class="split-demo">
+<span>인공</span><span>지능</span><span>을</span><span class="accent"> 배워</span><span>요</span><span>!</span>
+</div>
+<div class="example-note">이 분할은 개념 설명용입니다. 정확한 결과는 사용하려는 모델의 토크나이저로 확인해야 합니다.</div>
+</article>
+<article class="example-card reveal">
+<div class="example-label">기호·코드 · 예상보다 잘게 분할 가능</div>
+<h3>코드, 날짜, URL, 이모지는 눈에 보이는 ‘한 덩어리’와 다를 수 있습니다</h3>
+<p>토크나이저는 공백뿐 아니라 기호와 자주 등장하는 문자 패턴을 함께 고려합니다.</p>
+<div aria-label="코드 문자열을 개념적으로 나눈 예시" class="split-demo">
+<span>user</span><span>_</span><span>id</span><span>=</span><span class="accent">2026</span><span>-</span><span>08</span><span>-</span><span>08</span>
+</div>
+</article>
+</div>
+<article aria-labelledby="lab-title" class="token-lab reveal">
+<div class="lab-head">
+<div>
+<h3 id="lab-title">교육용 토큰 조각내기</h3>
+<p>문장을 입력하고 ‘조각내기’를 눌러 레고 블록처럼 확인하세요.</p>
+</div>
+<span class="lab-badge">실제 토크나이저 아님</span>
+</div>
+<div aria-label="예시 문장 선택" class="lab-presets">
+<button class="preset-btn" data-preset="오늘 회의 핵심만 5줄로 요약해줘." type="button">한글 예시</button>
+<button class="preset-btn" data-preset="Tokenization turns text into model-readable pieces." type="button">영문 예시</button>
+<button class="preset-btn" data-preset="user_id=2026-08-08; status='ready';" type="button">코드 예시</button>
+</div>
+<label class="speech-label" for="labInput" style="color:rgba(255,255,255,.65)">입력 문장</label>
+<textarea class="lab-input" id="labInput">오늘 회의 핵심만 5줄로 요약해줘.</textarea>
+<div class="lab-controls">
+<span class="lab-count" id="labCount">학습용 블록 0개</span>
+<button class="lab-run" id="runLab" type="button">조각내기</button>
+</div>
+<div aria-label="교육용으로 분할된 텍스트 조각" aria-live="polite" class="lab-output" id="labOutput"></div>
+<div class="lab-warning"><strong>주의:</strong> 이 실습은 개념을 보여주는 시뮬레이션입니다. 정확한 토큰 수는 <a href="https://platform.openai.com/tokenizer" rel="noopener noreferrer" style="text-decoration:underline;text-underline-offset:3px" target="_blank">OpenAI Tokenizer</a>처럼 대상 모델에 맞는 도구로 확인하세요.<a aria-label="출처 2" class="cite" href="#source-2">[2]</a></div>
+</article>
+</div>
+</div>
+</section>
+<section id="impact">
+<div class="container">
+<div class="section-kicker reveal">WHY IT MATTERS</div>
+<h2 class="section-title reveal">토큰은 ‘AI가 얼마나 담고, 얼마나 쓰며, 얼마나 비용이 드는지’를 정합니다</h2>
+<p class="section-desc reveal">토큰 수는 단순한 글자 세기가 아닙니다. 한 번에 처리할 수 있는 문맥의 크기, API 사용량, 응답 속도와 출력 길이에 직접 또는 간접적으로 연결됩니다.</p>
+<div class="impact-layout">
+<div class="impact-grid">
+<article class="impact-card reveal">
+<div aria-hidden="true" class="impact-icon"><svg fill="none" viewbox="0 0 24 24"><rect height="14" rx="3" stroke="currentColor" stroke-width="1.8" width="16" x="4" y="5"></rect><path d="M8 9h8M8 13h5" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path></svg></div>
+<h3>한 번 처리할 수 있는 양</h3>
+<p>컨텍스트 창은 AI가 한 요청에서 고려할 수 있는 토큰의 총량입니다. 긴 문서와 긴 대화가 이 공간을 함께 사용합니다.<a aria-label="출처 6" class="cite" href="#source-6">[6]</a></p>
+<div class="mini-claim">쉽게 말해 · 책상 크기</div>
+</article>
+<article class="impact-card reveal">
+<div aria-hidden="true" class="impact-icon"><svg fill="none" viewbox="0 0 24 24"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"></circle><path d="M9 9.5c.7-1 1.8-1.5 3.2-1.5 1.7 0 2.8.8 2.8 2 0 1.4-1.1 1.9-3 2.2-1.9.3-3 1-3 2.4 0 1.3 1.2 2.4 3.2 2.4 1.4 0 2.5-.5 3.2-1.5M12 6v12" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"></path></svg></div>
+<h3>API 비용</h3>
+<p>API는 일반적으로 입력·출력·캐시 토큰을 구분해 사용량을 계산하며, 가격은 모델에 따라 다릅니다.<a aria-label="출처 1" class="cite" href="#source-1">[1]</a></p>
+<div class="mini-claim">쉽게 말해 · 전기 계량기</div>
+</article>
+<article class="impact-card reveal">
+<div aria-hidden="true" class="impact-icon"><svg fill="none" viewbox="0 0 24 24"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"></circle><path d="M12 8v4l3 2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></div>
+<h3>응답 시간</h3>
+<p>처리해야 할 입력과 생성해야 할 출력이 늘어나면 계산량도 늘어, 대체로 응답이 더 오래 걸릴 수 있습니다.</p>
+<div class="mini-claim">보고서 판단 · 길수록 항상 느리다는 뜻은 아님</div>
+</article>
+<article class="impact-card reveal">
+<div aria-hidden="true" class="impact-icon"><svg fill="none" viewbox="0 0 24 24"><path d="M5 7h14M5 12h10M5 17h7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path><path d="m17 15 2 2 3-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></div>
+<h3>답변의 집중도</h3>
+<p>더 많은 토큰이 항상 더 좋은 답을 뜻하지는 않습니다. 반복·잡음이 많으면 중요한 지시가 묻힐 수 있어 핵심 맥락을 선별하는 편이 좋습니다.</p>
+<div class="mini-claim">실무 원칙 · 적은 토큰보다 유용한 토큰</div>
+</article>
+</div>
+<figure aria-labelledby="context-title" class="context-figure reveal">
+<h3 id="context-title">컨텍스트 창 = 한 번에 여는 여행가방</h3>
+<p>모델이 한 요청에서 참고할 수 있는 총 토큰 공간을 시각화한 설명용 그림입니다.</p>
+<div class="window-shell">
+<div class="window-top"><span>한 번의 요청</span><span>입력 + 출력</span></div>
+<div aria-label="컨텍스트 창을 시스템 지시, 대화 기록, 첨부 문서, 답변이 나눠 쓰는 그림" class="window-bar">
+<div class="window-part">현재 질문<small>input</small></div>
+<div class="window-part history">대화 기록<small>history</small></div>
+<div class="window-part docs">첨부 문서<small>context</small></div>
+<div class="window-part answer">답변 공간<small>output</small></div>
+</div>
+<div class="overflow-demo"><div class="overflow-track"><div class="overflow-fill"></div></div><span class="overflow-label">83% 사용</span></div>
+</div>
+<div class="context-legend">
+<div class="legend-row"><b>1</b><div>입력이 너무 길면 답변을 위한 남은 공간이 줄어듭니다.</div></div>
+<div class="legend-row"><b>2</b><div>한도를 넘으면 요청이 실패하거나 일부 내용을 줄여야 할 수 있습니다.<a aria-label="출처 1" class="cite" href="#source-1">[1]</a></div></div>
+<div class="legend-row"><b>3</b><div>긴 문서는 나누고, 필요한 부분만 검색해 넣거나 먼저 요약하는 방식이 유용합니다.</div></div>
+</div>
+<figcaption class="context-foot">기억과는 다릅니다. 컨텍스트 창은 ‘영원히 저장되는 기억’이 아니라 지금 답할 때 펼쳐 놓은 작업 공간입니다.</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section class="section-soft" id="practice">
+<div class="container">
+<div class="section-kicker reveal">BETTER PROMPTS</div>
+<h2 class="section-title reveal">토큰을 무조건 줄이기보다, 답변에 필요한 정보만 선명하게 남기세요</h2>
+<p class="section-desc reveal">좋은 프롬프트는 가장 짧은 문장이 아니라, 목표·범위·출력 형식·근거가 명확한 문장입니다. 긴 자료는 목적에 맞게 나누고 중복을 제거하는 편이 효율적입니다.</p>
+<div class="compare-grid">
+<article class="compare-card reveal">
+<div class="compare-label">비효율적인 방식</div>
+<h3>자료를 모두 붙이고 “정리해줘”라고 요청</h3>
+<p>AI가 무엇을 우선해야 하는지 불분명하고, 불필요한 토큰이 컨텍스트 공간을 차지합니다.</p>
+<div class="compare-list">
+<div class="compare-item"><b>×</b><div>목적과 독자가 없음</div></div>
+<div class="compare-item"><b>×</b><div>중복 문서와 과거 버전이 섞임</div></div>
+<div class="compare-item"><b>×</b><div>원하는 답변 길이와 형식이 없음</div></div>
+</div>
+</article>
+<article class="compare-card good reveal">
+<div class="compare-label">권장 방식</div>
+<h3>목표·범위·결과 형식을 먼저 지정</h3>
+<p>AI가 참고해야 할 토큰의 우선순위를 분명히 해 짧고 일관된 결과를 얻기 쉽습니다.</p>
+<div class="compare-list">
+<div class="compare-item"><b>✓</b><div>“임원용 5줄 요약”처럼 독자와 길이를 명시</div></div>
+<div class="compare-item"><b>✓</b><div>최신 문서와 핵심 구간만 제공</div></div>
+<div class="compare-item"><b>✓</b><div>결론·근거·다음 행동 순서로 출력 요구</div></div>
+</div>
+</article>
+</div>
+<div class="prompt-demo reveal">
+<div class="prompt-panel">
+<strong>Before · 목적 없는 긴 요청</strong>
+<p>“이 자료들을 읽고 자세히 정리해줘.”</p>
+<div class="prompt-code">[회의록 12개]
 [이전 보고서 5개]
 [관련 없는 이메일 포함]
 → 정리해줘</div>
-          </div>
-          <div class="prompt-arrow" aria-hidden="true">→</div>
-          <div class="prompt-panel">
-            <strong>After · 필요한 토큰에 역할을 부여</strong>
-            <p>독자, 기준일, 분량, 판단 기준을 먼저 알려줍니다.</p>
-            <div class="prompt-code">대상: 비전공자 임원
+</div>
+<div aria-hidden="true" class="prompt-arrow">→</div>
+<div class="prompt-panel">
+<strong>After · 필요한 토큰에 역할을 부여</strong>
+<p>독자, 기준일, 분량, 판단 기준을 먼저 알려줍니다.</p>
+<div class="prompt-code">대상: 비전공자 임원
 범위: 2026년 8월 최신 회의록 3개
 출력: 결론 1문장 + 근거 3개 + 다음 행동
 제외: 중복·종료 이슈</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="videos">
-      <div class="container">
-        <div class="section-kicker reveal">VIDEO LEARNING</div>
-        <h2 class="section-title reveal">영상으로 보면 ‘문장 → 토큰 → 숫자’ 흐름이 더 빠르게 잡힙니다</h2>
-        <p class="section-desc reveal">아래 영상은 Hugging Face 공식 LLM Course의 교육 자료입니다. 영어 영상이지만 화면의 조각·ID 예시가 직관적이며, YouTube 자동 자막을 켜면 이해하기 쉽습니다.<a class="cite" href="#source-4" aria-label="출처 4">[4]</a></p>
-
-        <div class="video-grid">
-          <article class="video-card reveal">
-            <div class="video-frame">
-              <iframe src="https://www.youtube-nocookie.com/embed/VFp38yj8h3A" title="Hugging Face LLM Course 토크나이저 개요 영상" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            </div>
-            <div class="print-video-note">영상 링크: https://www.youtube.com/watch?v=VFp38yj8h3A</div>
-            <div class="video-copy">
-              <div class="video-type">OFFICIAL COURSE · 영어</div>
-              <h3>1. 토크나이저가 왜 필요한가</h3>
-              <p>사람의 텍스트를 모델이 처리할 수 있는 숫자 데이터로 바꾸는 전체 흐름을 설명합니다.</p>
-              <a class="video-link" href="https://huggingface.co/learn/llm-course/chapter2/4" target="_blank" rel="noopener noreferrer">강의 노트 함께 보기<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-            </div>
-          </article>
-
-          <article class="video-card reveal">
-            <div class="video-frame">
-              <iframe src="https://www.youtube-nocookie.com/embed/zHvTiHr506c" title="Hugging Face LLM Course 부분 단어 토큰화 영상" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            </div>
-            <div class="print-video-note">영상 링크: https://www.youtube.com/watch?v=zHvTiHr506c</div>
-            <div class="video-copy">
-              <div class="video-type">OFFICIAL COURSE · 영어</div>
-              <h3>2. 단어를 왜 ‘부분 단어’로 나누는가</h3>
-              <p>흔한 단어는 크게, 드문 단어는 의미 있는 작은 조각으로 나누는 subword tokenization을 설명합니다.</p>
-              <a class="video-link" href="https://huggingface.co/learn/llm-course/chapter2/4#subword-tokenization" target="_blank" rel="noopener noreferrer">부분 단어 설명 읽기<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-            </div>
-          </article>
-        </div>
-
-        <div class="learning-links">
-          <a class="learning-link reveal" href="https://platform.openai.com/tokenizer" target="_blank" rel="noopener noreferrer"><span>INTERACTIVE TOOL</span><strong>OpenAI Tokenizer</strong><p>문장을 직접 넣고 실제 분할과 토큰 수를 확인합니다.</p></a>
-          <a class="learning-link reveal" href="https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them" target="_blank" rel="noopener noreferrer"><span>OFFICIAL EXPLAINER</span><strong>OpenAI 토큰 설명</strong><p>영문 경험칙, 입력·출력·캐시 토큰, 한도를 확인합니다.</p></a>
-          <a class="learning-link reveal" href="https://developers.google.com/machine-learning/crash-course/llm" target="_blank" rel="noopener noreferrer"><span>FOUNDATION COURSE</span><strong>Google LLM 입문</strong><p>토큰과 언어 모델의 큰 그림을 학습합니다.</p></a>
-        </div>
-      </div>
-    </section>
-
-    <section id="quiz" class="section-soft">
-      <div class="container">
-        <div class="section-kicker reveal">3-QUESTION QUIZ</div>
-        <h2 class="section-title reveal">세 문제를 맞히면 토큰의 핵심을 이해한 것입니다</h2>
-        <p class="section-desc reveal">정답을 누르면 즉시 이유를 확인할 수 있습니다. 점수보다 오해를 바로잡는 것이 목적입니다.</p>
-
-        <div class="quiz-shell reveal">
-          <div class="quiz-progress"><strong>토큰 이해도 점검</strong><span class="quiz-score" id="quizScore" aria-live="polite">0 / 3 정답</span></div>
-          <div class="quiz-grid">
-            <article class="quiz-card" data-quiz="1">
-              <h3>Q1. 토큰 1개는 항상 단어 1개와 같을까요?</h3>
-              <div class="quiz-options">
-                <button class="quiz-option" type="button" data-correct="false">네, 항상 같습니다</button>
-                <button class="quiz-option" type="button" data-correct="true">아니요, 글자·부분 단어·기호일 수 있습니다</button>
-              </div>
-              <div class="quiz-feedback" aria-live="polite"></div>
-            </article>
-            <article class="quiz-card" data-quiz="2">
-              <h3>Q2. 컨텍스트 창을 사용하는 것은 무엇일까요?</h3>
-              <div class="quiz-options">
-                <button class="quiz-option" type="button" data-correct="true">입력·대화 기록·첨부 문서·출력</button>
-                <button class="quiz-option" type="button" data-correct="false">사용자의 마지막 질문만</button>
-              </div>
-              <div class="quiz-feedback" aria-live="polite"></div>
-            </article>
-            <article class="quiz-card" data-quiz="3">
-              <h3>Q3. 정확한 토큰 수를 확인하는 가장 좋은 방법은?</h3>
-              <div class="quiz-options">
-                <button class="quiz-option" type="button" data-correct="false">영문 ‘4자≈1토큰’ 규칙만 적용</button>
-                <button class="quiz-option" type="button" data-correct="true">대상 모델의 토크나이저 사용</button>
-              </div>
-              <div class="quiz-feedback" aria-live="polite"></div>
-            </article>
-          </div>
-          <button class="btn btn-ghost quiz-reset" type="button" id="resetQuiz">퀴즈 다시 풀기</button>
-        </div>
-      </div>
-    </section>
-
-    <section id="myths">
-      <div class="container">
-        <div class="section-kicker reveal">COMMON MISUNDERSTANDINGS</div>
-        <h2 class="section-title reveal">토큰을 ‘단어 수’나 ‘AI의 기억’으로만 보면 중요한 차이를 놓칩니다</h2>
-        <p class="section-desc reveal">아래 네 가지 표현만 바로잡아도 토큰 한도와 비용을 훨씬 정확하게 이해할 수 있습니다.</p>
-
-        <div class="correction-table reveal">
-          <div class="correction-row">
-            <div class="correction-cell wrong"><span class="correction-icon">×</span>“토큰 하나는 단어 하나입니다.”</div>
-            <div class="correction-cell right"><span class="correction-icon">✓</span>“토큰은 단어, 단어 일부, 글자, 구두점, 공백이 붙은 조각 등이 될 수 있습니다.”</div>
-          </div>
-          <div class="correction-row">
-            <div class="correction-cell wrong"><span class="correction-icon">×</span>“토큰을 많이 쓰면 AI가 더 똑똑해집니다.”</div>
-            <div class="correction-cell right"><span class="correction-icon">✓</span>“필요한 맥락이 충분해야 하지만, 중복과 잡음은 품질·비용·속도에 불리할 수 있습니다.”</div>
-          </div>
-          <div class="correction-row">
-            <div class="correction-cell wrong"><span class="correction-icon">×</span>“컨텍스트 창은 AI의 영구 기억입니다.”</div>
-            <div class="correction-cell right"><span class="correction-icon">✓</span>“컨텍스트 창은 현재 요청에서 한 번에 참고할 수 있는 임시 작업 공간입니다.”</div>
-          </div>
-          <div class="correction-row">
-            <div class="correction-cell wrong"><span class="correction-icon">×</span>“같은 문장이면 모든 AI에서 토큰 수가 같습니다.”</div>
-            <div class="correction-cell right"><span class="correction-icon">✓</span>“토크나이저와 어휘표가 다르면 같은 문장의 분할과 토큰 수가 달라질 수 있습니다.”</div>
-          </div>
-        </div>
-
-        <div class="governance-note reveal">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 20 6v5.7c0 4.6-3.2 7.6-8 9.3-4.8-1.7-8-4.7-8-9.3V6z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <div><strong>검증 원칙:</strong> 영문 경험칙은 빠른 추정에만 쓰고, 한국어·코드·표·URL·이모지가 섞인 실제 업무에서는 대상 모델의 토크나이저 또는 API 응답의 usage 정보를 확인하는 것이 안전합니다.<a class="cite" href="#source-1" aria-label="출처 1">[1]</a></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="action" class="section-soft">
-      <div class="container">
-        <div class="section-kicker reveal">TAKEAWAY</div>
-        <h2 class="section-title reveal">30초 설명문과 다섯 가지 실무 원칙만 기억하세요</h2>
-        <p class="section-desc reveal">비전공자에게 설명할 때는 “레고 블록, 바코드, 여행가방” 세 가지 비유로 충분합니다.</p>
-
-        <div class="action-grid">
-          <article class="script-card reveal">
-            <h3>30초 설명문</h3>
-            <p>회의나 교육에서 그대로 읽을 수 있는 짧은 버전입니다.</p>
-            <div class="script-box" id="explainScript">“토큰은 AI가 문장을 읽고 쓰기 위해 사용하는 작은 조각입니다. 사람은 한 문장을 통째로 보지만 AI는 단어, 단어의 일부, 기호 같은 레고 블록으로 나눠 숫자로 계산합니다. 이 블록들이 한 번에 들어가는 여행가방의 크기가 컨텍스트 창이고, API에서는 사용한 입력·출력 토큰이 비용과 연결됩니다. 정확한 토큰 수는 모델마다 다르므로 전용 토크나이저로 확인합니다.”</div>
-            <button class="copy-btn" type="button" id="copyScript">설명문 복사</button>
-          </article>
-
-          <article class="checklist-card reveal">
-            <h3>실무에서 바로 쓰는 5가지 원칙</h3>
-            <div class="check-list">
-              <div class="check-item"><div class="check-num">1</div><div><strong>단어 수와 토큰 수를 같다고 보지 않기</strong><p>특히 한국어·코드·기호가 섞이면 차이가 커질 수 있습니다.</p></div></div>
-              <div class="check-item"><div class="check-num">2</div><div><strong>입력과 출력이 같은 한도를 나눠 쓴다고 생각하기</strong><p>긴 자료를 넣을수록 답변을 위한 공간도 함께 고려합니다.</p></div></div>
-              <div class="check-item"><div class="check-num">3</div><div><strong>긴 문서는 나누고 필요한 부분만 넣기</strong><p>요약, 검색, 구간 분할을 사용해 중요한 맥락을 우선합니다.</p></div></div>
-              <div class="check-item"><div class="check-num">4</div><div><strong>원하는 답변 길이를 명시하기</strong><p>“5줄”, “표 1개”, “1페이지”처럼 출력 범위를 알려줍니다.</p></div></div>
-              <div class="check-item"><div class="check-num">5</div><div><strong>정확한 수는 대상 모델 도구로 검증하기</strong><p>OpenAI Tokenizer, tiktoken, API usage 값을 활용합니다.</p></div></div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="sources" id="sources">
-    <div class="container">
-      <div class="source-head">
-        <div>
-          <h2>참고 자료와 출처</h2>
-          <p>공식 문서와 교육기관 자료를 우선 사용했으며, 2026년 8월 8일 확인했습니다.</p>
-        </div>
-        <button class="btn btn-ghost" type="button" onclick="window.print()">전체 PDF 저장</button>
-      </div>
-
-      <div class="source-grid">
-        <a class="source-link" id="source-1" href="https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · OPENAI · 2026-08-08 확인</span><strong>What are tokens and how to count them?</strong><small>토큰 정의, 영문 경험칙, 입력·출력·캐시 토큰, 한도와 가격 관계</small></a>
-        <a class="source-link" id="source-2" href="https://platform.openai.com/tokenizer" target="_blank" rel="noopener noreferrer"><span>OFFICIAL TOOL · OPENAI · 2026-08-08 확인</span><strong>OpenAI Tokenizer</strong><small>텍스트가 실제로 어떻게 나뉘는지 확인하는 대화형 도구</small></a>
-        <a class="source-link" id="source-3" href="https://github.com/openai/tiktoken" target="_blank" rel="noopener noreferrer"><span>OFFICIAL OPEN SOURCE · OPENAI · 2026-08-08 확인</span><strong>openai/tiktoken</strong><small>OpenAI 모델용 BPE 토크나이저와 교육용 시각화 설명</small></a>
-        <a class="source-link" id="source-4" href="https://huggingface.co/learn/llm-course/chapter2/4" target="_blank" rel="noopener noreferrer"><span>OFFICIAL COURSE · HUGGING FACE · 2026-08-08 확인</span><strong>LLM Course: Tokenizers</strong><small>단어·문자·부분 단어 토큰화, ID 인코딩과 디코딩</small></a>
-        <a class="source-link" id="source-5" href="https://developers.google.com/machine-learning/crash-course/llm" target="_blank" rel="noopener noreferrer"><span>OFFICIAL COURSE · GOOGLE · 2026-08-08 확인</span><strong>Introduction to Large Language Models</strong><small>토큰을 언어 모델의 기본 단위로 설명하는 입문 과정</small></a>
-        <a class="source-link" id="source-6" href="https://www.ibm.com/think/topics/context-window" target="_blank" rel="noopener noreferrer"><span>EXPLAINER · IBM · 2026-08-08 확인</span><strong>What is a context window?</strong><small>LLM이 한 번에 고려할 수 있는 토큰 범위와 의미</small></a>
-      </div>
-
-      <div class="footer-bottom">
-        <span id="footerTitle">AI의 토큰, 레고 블록처럼 이해하기 · AIHUBOS ReportMode</span>
-        <span id="footerMeta">AI-generated · 2026.08</span>
-      </div>
-
-      <div class="report-history" id="history" aria-labelledby="history-title">
-        <div class="history-head">
-          <div>
-            <h2 id="history-title">버전 및 업데이트 히스토리</h2>
-            <p>보고서의 사실·교육 자료·디자인 변경 범위를 누적 기록합니다.</p>
-          </div>
-          <span class="version-badge" id="historyCurrentVersion">Current v1.0.0</span>
-        </div>
-        <div class="history-table-wrap" role="region" aria-label="버전 변경 이력 표" tabindex="0">
-          <table class="history-table">
-            <thead>
-              <tr><th>버전</th><th>업데이트일</th><th>변경 구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr>
-            </thead>
-            <tbody id="historyBody"><tr><td colspan="5" class="history-empty">변경 이력을 불러오는 중입니다.</td></tr></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <div class="floating-actions" aria-label="빠른 작업">
-    <button class="float-btn" type="button" id="toTop" aria-label="맨 위로 이동">
-      <svg viewBox="0 0 24 24" fill="none"><path d="m6 14 6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
-    <button class="float-btn" type="button" onclick="window.print()" aria-label="PDF로 저장">
-      <svg viewBox="0 0 24 24" fill="none"><path d="M7 9V4h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M7 14h10v6H7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-    </button>
-  </div>
-
-  <div class="toast" id="toast" role="status" aria-live="polite">복사했습니다.</div>
-
-  <script id="report-metadata" type="application/json">
-  {
-    "schemaVersion": "1.0",
-    "reportId": "260808-ai-token-beginner-guide",
-    "title": "AI의 토큰, 레고 블록처럼 이해하기",
-    "version": "1.0.0",
-    "status": "Published",
-    "createdAt": "2026-08-08",
-    "updatedAt": "2026-08-08",
-    "language": "ko-KR",
-    "author": "Jeremy Lee",
-    "generation": "AI-generated",
-    "reviewStatus": "Human review recommended",
-    "history": [
-      {
-        "version": "1.0.0",
-        "date": "2026-08-08",
-        "type": "신규 작성",
-        "summary": "토큰의 정의·토큰화·숫자 ID·다음 토큰 예측·컨텍스트 창·API 사용량의 관계를 비전공자용 비유와 시각 자료로 구성하고, Hugging Face 공식 교육 영상 2개, 교육용 조각내기 실습, 3문항 퀴즈를 추가함.",
-        "sections": ["전체", "교육 영상", "인터랙티브 실습", "출처"],
-        "updatedBy": "AI-generated",
-        "reviewStatus": "검토 권장"
-      }
-    ]
-  }
-  </script>
-
-  <script>
+</div>
+</div>
+</div>
+</section>
+<section id="videos">
+<div class="container">
+<div class="section-kicker reveal">VIDEO LEARNING</div>
+<h2 class="section-title reveal">영상으로 보면 ‘문장 → 토큰 → 숫자’ 흐름이 더 빠르게 잡힙니다</h2>
+<p class="section-desc reveal">아래 영상은 Hugging Face 공식 LLM Course의 교육 자료입니다. 영어 영상이지만 화면의 조각·ID 예시가 직관적이며, YouTube 자동 자막을 켜면 이해하기 쉽습니다.<a aria-label="출처 4" class="cite" href="#source-4">[4]</a></p>
+<div class="video-grid">
+<article class="video-card reveal">
+<div class="video-frame">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/VFp38yj8h3A" title="Hugging Face LLM Course 토크나이저 개요 영상"></iframe>
+</div>
+<div class="print-video-note">영상 링크: https://www.youtube.com/watch?v=VFp38yj8h3A</div>
+<div class="video-copy">
+<div class="video-type">OFFICIAL COURSE · 영어</div>
+<h3>1. 토크나이저가 왜 필요한가</h3>
+<p>사람의 텍스트를 모델이 처리할 수 있는 숫자 데이터로 바꾸는 전체 흐름을 설명합니다.</p>
+<a class="video-link" href="https://huggingface.co/learn/llm-course/chapter2/4" rel="noopener noreferrer" target="_blank">강의 노트 함께 보기<svg aria-hidden="true" fill="none" viewbox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></a>
+</div>
+</article>
+<article class="video-card reveal">
+<div class="video-frame">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/zHvTiHr506c" title="Hugging Face LLM Course 부분 단어 토큰화 영상"></iframe>
+</div>
+<div class="print-video-note">영상 링크: https://www.youtube.com/watch?v=zHvTiHr506c</div>
+<div class="video-copy">
+<div class="video-type">OFFICIAL COURSE · 영어</div>
+<h3>2. 단어를 왜 ‘부분 단어’로 나누는가</h3>
+<p>흔한 단어는 크게, 드문 단어는 의미 있는 작은 조각으로 나누는 subword tokenization을 설명합니다.</p>
+<a class="video-link" href="https://huggingface.co/learn/llm-course/chapter2/4#subword-tokenization" rel="noopener noreferrer" target="_blank">부분 단어 설명 읽기<svg aria-hidden="true" fill="none" viewbox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></a>
+</div>
+</article>
+</div>
+<div class="learning-links">
+<a class="learning-link reveal" href="https://platform.openai.com/tokenizer" rel="noopener noreferrer" target="_blank"><span>INTERACTIVE TOOL</span><strong>OpenAI Tokenizer</strong><p>문장을 직접 넣고 실제 분할과 토큰 수를 확인합니다.</p></a>
+<a class="learning-link reveal" href="https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them" rel="noopener noreferrer" target="_blank"><span>OFFICIAL EXPLAINER</span><strong>OpenAI 토큰 설명</strong><p>영문 경험칙, 입력·출력·캐시 토큰, 한도를 확인합니다.</p></a>
+<a class="learning-link reveal" href="https://developers.google.com/machine-learning/crash-course/llm" rel="noopener noreferrer" target="_blank"><span>FOUNDATION COURSE</span><strong>Google LLM 입문</strong><p>토큰과 언어 모델의 큰 그림을 학습합니다.</p></a>
+</div>
+</div>
+</section>
+<section class="section-soft" id="quiz">
+<div class="container">
+<div class="section-kicker reveal">3-QUESTION QUIZ</div>
+<h2 class="section-title reveal">세 문제를 맞히면 토큰의 핵심을 이해한 것입니다</h2>
+<p class="section-desc reveal">정답을 누르면 즉시 이유를 확인할 수 있습니다. 점수보다 오해를 바로잡는 것이 목적입니다.</p>
+<div class="quiz-shell reveal">
+<div class="quiz-progress"><strong>토큰 이해도 점검</strong><span aria-live="polite" class="quiz-score" id="quizScore">0 / 3 정답</span></div>
+<div class="quiz-grid">
+<article class="quiz-card" data-quiz="1">
+<h3>Q1. 토큰 1개는 항상 단어 1개와 같을까요?</h3>
+<div class="quiz-options">
+<button class="quiz-option" data-correct="false" type="button">네, 항상 같습니다</button>
+<button class="quiz-option" data-correct="true" type="button">아니요, 글자·부분 단어·기호일 수 있습니다</button>
+</div>
+<div aria-live="polite" class="quiz-feedback"></div>
+</article>
+<article class="quiz-card" data-quiz="2">
+<h3>Q2. 컨텍스트 창을 사용하는 것은 무엇일까요?</h3>
+<div class="quiz-options">
+<button class="quiz-option" data-correct="true" type="button">입력·대화 기록·첨부 문서·출력</button>
+<button class="quiz-option" data-correct="false" type="button">사용자의 마지막 질문만</button>
+</div>
+<div aria-live="polite" class="quiz-feedback"></div>
+</article>
+<article class="quiz-card" data-quiz="3">
+<h3>Q3. 정확한 토큰 수를 확인하는 가장 좋은 방법은?</h3>
+<div class="quiz-options">
+<button class="quiz-option" data-correct="false" type="button">영문 ‘4자≈1토큰’ 규칙만 적용</button>
+<button class="quiz-option" data-correct="true" type="button">대상 모델의 토크나이저 사용</button>
+</div>
+<div aria-live="polite" class="quiz-feedback"></div>
+</article>
+</div>
+<button class="btn btn-ghost quiz-reset" id="resetQuiz" type="button">퀴즈 다시 풀기</button>
+</div>
+</div>
+</section>
+<section id="myths">
+<div class="container">
+<div class="section-kicker reveal">COMMON MISUNDERSTANDINGS</div>
+<h2 class="section-title reveal">토큰을 ‘단어 수’나 ‘AI의 기억’으로만 보면 중요한 차이를 놓칩니다</h2>
+<p class="section-desc reveal">아래 네 가지 표현만 바로잡아도 토큰 한도와 비용을 훨씬 정확하게 이해할 수 있습니다.</p>
+<div class="correction-table reveal">
+<div class="correction-row">
+<div class="correction-cell wrong"><span class="correction-icon">×</span>“토큰 하나는 단어 하나입니다.”</div>
+<div class="correction-cell right"><span class="correction-icon">✓</span>“토큰은 단어, 단어 일부, 글자, 구두점, 공백이 붙은 조각 등이 될 수 있습니다.”</div>
+</div>
+<div class="correction-row">
+<div class="correction-cell wrong"><span class="correction-icon">×</span>“토큰을 많이 쓰면 AI가 더 똑똑해집니다.”</div>
+<div class="correction-cell right"><span class="correction-icon">✓</span>“필요한 맥락이 충분해야 하지만, 중복과 잡음은 품질·비용·속도에 불리할 수 있습니다.”</div>
+</div>
+<div class="correction-row">
+<div class="correction-cell wrong"><span class="correction-icon">×</span>“컨텍스트 창은 AI의 영구 기억입니다.”</div>
+<div class="correction-cell right"><span class="correction-icon">✓</span>“컨텍스트 창은 현재 요청에서 한 번에 참고할 수 있는 임시 작업 공간입니다.”</div>
+</div>
+<div class="correction-row">
+<div class="correction-cell wrong"><span class="correction-icon">×</span>“같은 문장이면 모든 AI에서 토큰 수가 같습니다.”</div>
+<div class="correction-cell right"><span class="correction-icon">✓</span>“토크나이저와 어휘표가 다르면 같은 문장의 분할과 토큰 수가 달라질 수 있습니다.”</div>
+</div>
+</div>
+<div class="governance-note reveal">
+<svg aria-hidden="true" fill="none" viewbox="0 0 24 24"><path d="M12 3 20 6v5.7c0 4.6-3.2 7.6-8 9.3-4.8-1.7-8-4.7-8-9.3V6z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"></path><path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg>
+<div><strong>검증 원칙:</strong> 영문 경험칙은 빠른 추정에만 쓰고, 한국어·코드·표·URL·이모지가 섞인 실제 업무에서는 대상 모델의 토크나이저 또는 API 응답의 usage 정보를 확인하는 것이 안전합니다.<a aria-label="출처 1" class="cite" href="#source-1">[1]</a></div>
+</div>
+</div>
+</section>
+<section class="section-soft" id="action">
+<div class="container">
+<div class="section-kicker reveal">TAKEAWAY</div>
+<h2 class="section-title reveal">30초 설명문과 다섯 가지 실무 원칙만 기억하세요</h2>
+<p class="section-desc reveal">비전공자에게 설명할 때는 “레고 블록, 바코드, 여행가방” 세 가지 비유로 충분합니다.</p>
+<div class="action-grid">
+<article class="script-card reveal">
+<h3>30초 설명문</h3>
+<p>회의나 교육에서 그대로 읽을 수 있는 짧은 버전입니다.</p>
+<div class="script-box" id="explainScript">“토큰은 AI가 문장을 읽고 쓰기 위해 사용하는 작은 조각입니다. 사람은 한 문장을 통째로 보지만 AI는 단어, 단어의 일부, 기호 같은 레고 블록으로 나눠 숫자로 계산합니다. 이 블록들이 한 번에 들어가는 여행가방의 크기가 컨텍스트 창이고, API에서는 사용한 입력·출력 토큰이 비용과 연결됩니다. 정확한 토큰 수는 모델마다 다르므로 전용 토크나이저로 확인합니다.”</div>
+<button class="copy-btn" id="copyScript" type="button">설명문 복사</button>
+</article>
+<article class="checklist-card reveal">
+<h3>실무에서 바로 쓰는 5가지 원칙</h3>
+<div class="check-list">
+<div class="check-item"><div class="check-num">1</div><div><strong>단어 수와 토큰 수를 같다고 보지 않기</strong><p>특히 한국어·코드·기호가 섞이면 차이가 커질 수 있습니다.</p></div></div>
+<div class="check-item"><div class="check-num">2</div><div><strong>입력과 출력이 같은 한도를 나눠 쓴다고 생각하기</strong><p>긴 자료를 넣을수록 답변을 위한 공간도 함께 고려합니다.</p></div></div>
+<div class="check-item"><div class="check-num">3</div><div><strong>긴 문서는 나누고 필요한 부분만 넣기</strong><p>요약, 검색, 구간 분할을 사용해 중요한 맥락을 우선합니다.</p></div></div>
+<div class="check-item"><div class="check-num">4</div><div><strong>원하는 답변 길이를 명시하기</strong><p>“5줄”, “표 1개”, “1페이지”처럼 출력 범위를 알려줍니다.</p></div></div>
+<div class="check-item"><div class="check-num">5</div><div><strong>정확한 수는 대상 모델 도구로 검증하기</strong><p>OpenAI Tokenizer, tiktoken, API usage 값을 활용합니다.</p></div></div>
+</div>
+</article>
+</div>
+</div>
+</section>
+</main>
+<section aria-labelledby="rm-media-title" class="rm-media" id="rmMedia">
+<div class="rm-wrap">
+<div class="rm-section-head"><div class="rm-kicker">MEDIA &amp; REAL EXAMPLE</div><h2 id="rm-media-title">실제 이미지·공식 자료·업무 예시를 함께 봅니다</h2><p>이미지는 저장소 내부 파일로 제공해 깨짐을 줄였고, 영상은 기존 보고서의 검증된 링크가 있을 때만 클릭 로드합니다.</p></div>
+<div class="rm-media-grid">
+<article class="rm-media-card rm-media-card-media"><img alt="OpenAI와 Hugging Face 공식 로고" decoding="async" loading="lazy" src="assets/260808-ai-token-lego-guide/cover.png"/><div class="rm-media-card-copy"><span class="rm-label">RELATED VISUAL</span><h3>AI의 토큰, 레고 블록처럼 이해하기 대표 이미지</h3><p>메인 도서관 썸네일과 본문이 같은 로컬 자산을 사용합니다.</p></div></article>
+<article class="rm-media-card"><span class="rm-label">VIDEO / OFFICIAL DEMO</span><h3>영상 또는 공식 데모</h3><div class="rm-video-placeholder"><button class="rm-action rm-action-primary" data-rm-youtube="VFp38yj8h3A" data-title="AI의 토큰, 레고 블록처럼 이해하기 관련 영상" type="button"><span aria-hidden="true" class="rm-play">▶</span>클릭하여 관련 영상 재생</button></div><p style="margin-top:16px">외부 영상은 사용자가 클릭할 때만 불러와 초기 로딩과 개인정보 전송을 줄였습니다.</p><div class="rm-source-list"><a href="https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them" rel="noopener noreferrer" target="_blank">OpenAI Help · Tokens</a><a href="https://developers.openai.com/api/docs/pricing" rel="noopener noreferrer" target="_blank">OpenAI API Pricing</a></div></article>
+<article class="rm-media-card"><span class="rm-label">PRACTICAL EXAMPLE</span><h3>바로 적용하는 예시</h3><div class="rm-example"><strong>예시 시나리오</strong>예: 100페이지 문서를 매 요청마다 넣기보다 질문과 관련된 3~5개 문단만 검색해 모델에 전달합니다.</div><p style="margin-top:16px">보고서의 추천은 작은 범위에서 검증한 뒤 확대하고, 중요한 판단은 원문과 사람 검토를 거칩니다.</p></article>
+</div>
+</div>
+</section><footer class="sources" id="sources">
+<div class="container">
+<div class="source-head">
+<div>
+<h2>참고 자료와 출처</h2>
+<p>공식 문서와 교육기관 자료를 우선 사용했으며, 2026년 8월 8일 확인했습니다.</p>
+</div>
+<button class="btn btn-ghost" onclick="window.print()" type="button">전체 PDF 저장</button>
+</div>
+<div class="source-grid">
+<a class="source-link" href="https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them" id="source-1" rel="noopener noreferrer" target="_blank"><span>OFFICIAL · OPENAI · 2026-08-08 확인</span><strong>What are tokens and how to count them?</strong><small>토큰 정의, 영문 경험칙, 입력·출력·캐시 토큰, 한도와 가격 관계</small></a>
+<a class="source-link" href="https://platform.openai.com/tokenizer" id="source-2" rel="noopener noreferrer" target="_blank"><span>OFFICIAL TOOL · OPENAI · 2026-08-08 확인</span><strong>OpenAI Tokenizer</strong><small>텍스트가 실제로 어떻게 나뉘는지 확인하는 대화형 도구</small></a>
+<a class="source-link" href="https://github.com/openai/tiktoken" id="source-3" rel="noopener noreferrer" target="_blank"><span>OFFICIAL OPEN SOURCE · OPENAI · 2026-08-08 확인</span><strong>openai/tiktoken</strong><small>OpenAI 모델용 BPE 토크나이저와 교육용 시각화 설명</small></a>
+<a class="source-link" href="https://huggingface.co/learn/llm-course/chapter2/4" id="source-4" rel="noopener noreferrer" target="_blank"><span>OFFICIAL COURSE · HUGGING FACE · 2026-08-08 확인</span><strong>LLM Course: Tokenizers</strong><small>단어·문자·부분 단어 토큰화, ID 인코딩과 디코딩</small></a>
+<a class="source-link" href="https://developers.google.com/machine-learning/crash-course/llm" id="source-5" rel="noopener noreferrer" target="_blank"><span>OFFICIAL COURSE · GOOGLE · 2026-08-08 확인</span><strong>Introduction to Large Language Models</strong><small>토큰을 언어 모델의 기본 단위로 설명하는 입문 과정</small></a>
+<a class="source-link" href="https://www.ibm.com/think/topics/context-window" id="source-6" rel="noopener noreferrer" target="_blank"><span>EXPLAINER · IBM · 2026-08-08 확인</span><strong>What is a context window?</strong><small>LLM이 한 번에 고려할 수 있는 토큰 범위와 의미</small></a>
+</div>
+<div class="footer-bottom">
+<span id="footerTitle">AI의 토큰, 레고 블록처럼 이해하기 · AIHUBOS ReportMode</span>
+<span id="footerMeta">AI-generated · 2026.08</span>
+</div>
+<div aria-labelledby="history-title" class="report-history" id="history">
+<div class="history-head">
+<div>
+<h2 id="history-title">버전 및 업데이트 히스토리</h2>
+<p>보고서의 사실·교육 자료·디자인 변경 범위를 누적 기록합니다.</p>
+</div>
+<span class="version-badge" id="historyCurrentVersion">Current v1.0.0</span>
+</div>
+<div aria-label="버전 변경 이력 표" class="history-table-wrap" role="region" tabindex="0">
+<table class="history-table">
+<thead>
+<tr><th>버전</th><th>업데이트일</th><th>변경 구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr>
+</thead>
+<tbody id="historyBody"><tr><td class="history-empty" colspan="5">변경 이력을 불러오는 중입니다.</td></tr></tbody>
+</table>
+</div>
+</div>
+</div>
+</footer>
+<div aria-label="빠른 작업" class="floating-actions">
+<button aria-label="맨 위로 이동" class="float-btn" id="toTop" type="button">
+<svg fill="none" viewbox="0 0 24 24"><path d="m6 14 6-6 6 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<button aria-label="PDF로 저장" class="float-btn" onclick="window.print()" type="button">
+<svg fill="none" viewbox="0 0 24 24"><path d="M7 9V4h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"></path><path d="M7 14h10v6H7z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"></path></svg>
+</button>
+</div>
+<div aria-live="polite" class="toast" id="toast" role="status">복사했습니다.</div>
+<script>
     const progress = document.getElementById('scrollProgress');
     const toTop = document.getElementById('toTop');
     const toast = document.getElementById('toast');
@@ -1533,5 +1502,57 @@
     }
     renderReportMetadata();
   </script>
-</body>
+<section aria-labelledby="rm-history-title" class="rm-history" id="rmHistory">
+<div class="rm-wrap">
+<div class="rm-history-head"><div><div class="rm-kicker">VERSION &amp; CHANGE LOG</div><h2 id="rm-history-title">버전 및 변경 이력</h2><p>최신 기록이 위에 오며, 과거 이력은 삭제하지 않습니다.</p></div><span class="rm-chip" id="rmHistoryVersion">Current v1.1.0</span></div>
+<div class="rm-history-table-wrap"><table class="rm-history-table"><thead><tr><th>버전</th><th>업데이트일</th><th>변경 구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr></thead><tbody id="rmHistoryBody"><tr><td>v1.1.0</td><td>2026.08.08</td><td>내용·출처·디자인 통합 업데이트</td><td>2026년 8월 8일 기준 최신 공식 자료를 대조하고, ‘최신 예시’ 내용을 추가함. 공통 요약·미디어·출처·변경 이력 형식과 반응형·인쇄·접근성 규칙을 통일함.</td><td><span class="rm-status">AI-assisted · 자동 QA 완료 · 사람 검토 권장</span></td></tr><tr><td>v1.0.0</td><td>2026.08.08</td><td>신규 작성</td><td>토큰의 정의·토큰화·숫자 ID·다음 토큰 예측·컨텍스트 창·API 사용량의 관계를 비전공자용 비유와 시각 자료로 구성하고, Hugging Face 공식 교육 영상 2개, 교육용 조각내기 실습, 3문항 퀴즈를 추가함.</td><td><span class="rm-status">AI-generated · 검토 권장</span></td></tr></tbody></table></div>
+<div class="rm-integrity-note"><strong>검증 상태:</strong> 로컬 이미지 경로, 메타데이터 JSON, 버전 렌더링, 360px 반응형, A4 인쇄 규칙을 자동 점검했습니다. 가격·운영시간·구매·예약·의료·보안 판단은 배포 전 담당자의 최종 확인을 권장합니다.</div>
+</div>
+</section><script id="report-metadata" type="application/json">
+{
+  "schemaVersion": "1.0",
+  "reportId": "260808-ai-token-lego-guide",
+  "title": "AI의 토큰, 레고 블록처럼 이해하기",
+  "version": "1.1.0",
+  "status": "Published",
+  "createdAt": "2026-08-08",
+  "updatedAt": "2026-08-08",
+  "language": "ko-KR",
+  "author": "Jeremy Lee",
+  "generation": "AI-assisted",
+  "reviewStatus": "Human review recommended",
+  "history": [
+    {
+      "version": "1.1.0",
+      "date": "2026-08-08",
+      "type": "내용·출처·디자인 통합 업데이트",
+      "summary": "2026년 8월 8일 기준 최신 공식 자료를 대조하고, ‘최신 예시’ 내용을 추가함. 공통 요약·미디어·출처·변경 이력 형식과 반응형·인쇄·접근성 규칙을 통일함.",
+      "sections": [
+        "1페이지 요약",
+        "최신 검증",
+        "미디어·예시",
+        "출처",
+        "변경 이력",
+        "반응형·인쇄"
+      ],
+      "updatedBy": "AI-assisted",
+      "reviewStatus": "자동 QA 완료 · 사람 검토 권장"
+    },
+    {
+      "version": "1.0.0",
+      "date": "2026-08-08",
+      "type": "신규 작성",
+      "summary": "토큰의 정의·토큰화·숫자 ID·다음 토큰 예측·컨텍스트 창·API 사용량의 관계를 비전공자용 비유와 시각 자료로 구성하고, Hugging Face 공식 교육 영상 2개, 교육용 조각내기 실습, 3문항 퀴즈를 추가함.",
+      "sections": [
+        "전체",
+        "교육 영상",
+        "인터랙티브 실습",
+        "출처"
+      ],
+      "updatedBy": "AI-generated",
+      "reviewStatus": "검토 권장"
+    }
+  ]
+}
+</script><script defer="True" src="assets/reportmode-unified-20260808.js"></script></body>
 </html>

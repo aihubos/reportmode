@@ -1,15 +1,16 @@
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Mac이 AI 생태계에 유리한 이유를 Mac-first 앱 출시, Apple Silicon 통합 메모리, 로컬 LLM RAM 설계, MLX·Ollama·LM Studio 생태계 관점에서 분석한 반응형 보고서" />
-  <meta name="theme-color" content="#ffffff" />
-  <meta property="og:title" content="왜 Mac은 AI 생태계에 유리한가" />
-  <meta property="og:description" content="최신 AI 앱, 통합 메모리, 로컬 AI 운영과 RAM 선택, Windows·Linux 대비 강점과 한계" />
-  <meta property="og:type" content="article" />
-  <title>왜 Mac은 AI 생태계에 유리한가 | Report v1.0.0</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="왜 Mac은 AI 생태계에 유리한가 | Report v1.0.0 — 2026년 8월 8일 최신 공식 자료와 사진·영상·예시·변경 이력을 반영한 AIHUBOS ReportMode 보고서" name="description"/>
+<meta content="#ffffff" name="theme-color"/>
+<meta content="왜 Mac은 AI 생태계에 유리한가" property="og:title"/>
+<meta content="최신 AI 앱, 통합 메모리, 로컬 AI 운영과 RAM 선택, Windows·Linux 대비 강점과 한계" property="og:description"/>
+<meta content="article" property="og:type"/>
+<title>왜 Mac은 AI 생태계에 유리한가 | Report v1.0.0 · v1.1.0</title>
+<style>
     :root {
       --blue: #3182f6;
       --blue-strong: #1b64da;
@@ -523,394 +524,393 @@
       footer { padding-bottom:0; }
     }
   </style>
-
-  <link rel="stylesheet" href="../assets/report-page-layout.css?v=20260807c-wide-default">
-</head>
-<body data-report-view="detail" data-report-layout="wide" data-report-cover="assets/260807-mac-ai-ecosystem-advantage/cover.png" data-report-cover-alt="Apple 공식 로고">
-  <div class="scroll-progress" id="scrollProgress"></div>
-
-  <header class="nav-wrap">
-    <nav class="nav" aria-label="보고서 내비게이션">
-      <a class="brand" href="#overview" aria-label="보고서 첫 화면으로 이동">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M7 4.5h10a2.5 2.5 0 0 1 2.5 2.5v8A2.5 2.5 0 0 1 17 17.5H7A2.5 2.5 0 0 1 4.5 15V7A2.5 2.5 0 0 1 7 4.5Z" stroke="currentColor" stroke-width="1.7"/><path d="M8 20h8M10 17.5 9 20m5-2.5 1 2.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="m9 9 2 2-2 2m4 0h2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </span>
-        <span>MAC × AI <span class="brand-sub">ANALYSIS</span></span>
-      </a>
-      <div class="nav-links" id="navLinks">
-        <a href="#executive">결론</a><a href="#macfirst">Mac-first</a><a href="#memory">통합 메모리</a><a href="#ram">RAM</a><a href="#ecosystem">생태계</a><a href="#comparison">비교</a><a href="#buying">구매 가이드</a><a href="#history">히스토리</a>
-      </div>
-      <div class="nav-actions">
-        <button class="btn btn-ghost" id="copySummary" type="button" title="핵심 요약 복사">
-          <svg viewBox="0 0 24 24" fill="none"><rect x="8" y="8" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" stroke="currentColor" stroke-width="1.7"/></svg>요약 복사
+<link href="../assets/report-page-layout.css?v=20260807c-wide-default" rel="stylesheet"/>
+<link href="assets/reportmode-unified-20260808.css" rel="stylesheet"/><meta content="assets/260807-mac-ai-ecosystem-advantage/cover.png" property="og:image"/><meta content="2026-08-08" name="report:updated"/></head>
+<body class="reportmode-unified" data-report-cover="assets/260807-mac-ai-ecosystem-advantage/cover.png" data-report-cover-alt="Apple 공식 로고" data-report-id="260807-mac-ai-ecosystem-advantage" data-report-layout="wide" data-report-view="detail"><a class="rm-skip" href="#rmUpdateSummary">최신 요약으로 건너뛰기</a><div class="rm-topline" id="rmTopline"><div class="rm-topline-inner">
+<a class="rm-topline-brand" href="../archive/"><span class="rm-topline-mark">R</span><span class="rm-topline-title">왜 Mac은 AI 생태계에 유리한가 | Report v1.0.0</span></a>
+<div class="rm-topline-meta"><span class="rm-chip" id="rmVersionTop">v1.1.0</span><span id="rmUpdated">2026.08.08</span></div>
+<div class="rm-topline-actions"><a href="#rmUpdateSummary">요약</a><a href="#rmHistory">이력</a><button aria-label="PDF 저장" data-rm-print="" type="button">PDF</button></div>
+</div></div><section aria-labelledby="rm-update-title" class="rm-brief" id="rmUpdateSummary">
+<div class="rm-wrap rm-brief-grid">
+<div>
+<div class="rm-kicker">2026.08.08 VERIFIED UPDATE · 공식 자료 확인</div>
+<h2 id="rm-update-title">왜 Mac은 AI 생태계에 유리한가 | Report v1.0.0<br/><span style="color:var(--rm-blue)">이번 업데이트의 한 문장 결론</span></h2>
+<p class="rm-brief-lead">기존 보고서를 보존하면서 최신 공식 자료, 실제 적용 예시, 미디어, 출처, 변경 이력을 공통 ReportMode 형식으로 보강했습니다.</p>
+<div class="rm-verdict"><span aria-hidden="true" class="rm-verdict-icon">✓</span><div><strong>Mac의 AI 장점은 모든 작업에서 절대 성능 우위가 아니라, 통합 메모리·MLX·전력 효율·개발 생태계가 로컬 AI 실험을 단순하게 만든다는 데 있습니다.</strong></div></div>
+<div class="rm-summary-cards">
+<article class="rm-summary-card"><b>01 · FACT</b><h3>M5 공식 수치</h3><p>M5 Max는 최대 128GB 통합 메모리·614GB/s를 제공하고 Apple은 M4 Max 대비 최대 4배 LLM 프롬프트 처리 향상을 제시합니다.</p></article>
+<article class="rm-summary-card"><b>02 · UPDATE</b><h3>도구 최신화</h3><p>LM Studio 0.4.20, ComfyUI 0.31.0과 Apple Silicon 지원 조건을 반영했습니다.</p></article>
+<article class="rm-summary-card"><b>03 · ACTION</b><h3>한계</h3><p>CUDA 전용 연구·최신 대형 모델·멀티 GPU 확장에는 NVIDIA/Linux가 더 적합할 수 있으므로 워크로드별로 선택하세요.</p></article>
+</div>
+<div class="rm-brief-actions">
+<a class="rm-action rm-action-primary" href="#rmMedia">사진·영상·예시 보기</a>
+<a class="rm-action" href="#rmHistory">변경 이력 보기</a>
+<a class="rm-action" href="../archive/">보고서 도서관</a>
+</div>
+</div>
+<article class="rm-visual-card">
+<figure><img alt="Apple 공식 로고" decoding="async" loading="eager" src="assets/260807-mac-ai-ecosystem-advantage/cover.png"/><figcaption><span>공식 로고 또는 보고서 관련 이미지</span><span id="rmVersion">v1.1.0</span></figcaption></figure>
+</article>
+</div>
+</section><section aria-label="상세 본문 기준일 안내" class="rm-detail-note" id="rmDetailedContentNote"><div class="rm-detail-note-inner"><span aria-hidden="true" class="rm-detail-note-icon">i</span><div><strong>상세 본문 읽기:</strong> 아래 영역은 기존 보고서의 상세 분석과 근거를 보존한 내용입니다. 날짜·가격·버전·출시 상태가 상단의 <strong>2026.08.08 검증 요약</strong>과 다르면 상단 확인값이 우선하며, 중요한 결정은 연결된 공식 원문을 다시 확인하세요.</div></div></section>
+<div class="scroll-progress" id="scrollProgress"></div>
+<header class="nav-wrap">
+<nav aria-label="보고서 내비게이션" class="nav">
+<a aria-label="보고서 첫 화면으로 이동" class="brand" href="#overview">
+<span aria-hidden="true" class="brand-mark">
+<svg fill="none" viewbox="0 0 24 24"><path d="M7 4.5h10a2.5 2.5 0 0 1 2.5 2.5v8A2.5 2.5 0 0 1 17 17.5H7A2.5 2.5 0 0 1 4.5 15V7A2.5 2.5 0 0 1 7 4.5Z" stroke="currentColor" stroke-width="1.7"></path><path d="M8 20h8M10 17.5 9 20m5-2.5 1 2.5" stroke="currentColor" stroke-linecap="round" stroke-width="1.7"></path><path d="m9 9 2 2-2 2m4 0h2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"></path></svg>
+</span>
+<span>MAC × AI <span class="brand-sub">ANALYSIS</span></span>
+</a>
+<div class="nav-links" id="navLinks">
+<a href="#executive">결론</a><a href="#macfirst">Mac-first</a><a href="#memory">통합 메모리</a><a href="#ram">RAM</a><a href="#ecosystem">생태계</a><a href="#comparison">비교</a><a href="#buying">구매 가이드</a><a href="#history">히스토리</a>
+</div>
+<div class="nav-actions">
+<button class="btn btn-ghost" id="copySummary" title="핵심 요약 복사" type="button">
+<svg fill="none" viewbox="0 0 24 24"><rect height="11" rx="2" stroke="currentColor" stroke-width="1.7" width="11" x="8" y="8"></rect><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" stroke="currentColor" stroke-width="1.7"></path></svg>요약 복사
         </button>
-        <button class="btn btn-primary" id="printReport" type="button">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M7 9V4h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M7 14h10v6H7z" stroke="currentColor" stroke-width="1.7"/></svg>PDF 저장
+<button class="btn btn-primary" id="printReport" type="button">
+<svg fill="none" viewbox="0 0 24 24"><path d="M7 9V4h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-linejoin="round" stroke-width="1.7"></path><path d="M7 14h10v6H7z" stroke="currentColor" stroke-width="1.7"></path></svg>PDF 저장
         </button>
-        <button class="btn btn-ghost icon-btn menu-btn" id="menuBtn" type="button" aria-label="모바일 메뉴 열기" aria-expanded="false">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M5 7h14M5 12h14M5 17h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-        </button>
-      </div>
-    </nav>
-    <div class="mobile-menu" id="mobileMenu"><a href="#executive">핵심 결론</a><a href="#macfirst">Mac-first 근거</a><a href="#memory">통합 메모리</a><a href="#ram">RAM 설계</a><a href="#ecosystem">AI 생태계</a><a href="#comparison">Windows·Linux 비교</a><a href="#buying">구매 가이드</a><a href="#history">버전 히스토리</a></div>
-  </header>
-
-  <main>
-    <section id="overview">
-      <div class="container hero">
-        <div class="hero-copy reveal">
-          <div class="eyebrow"><span class="eyebrow-dot"></span> REPORT v1.0.0 · 2026.08.07</div>
-          <h1>왜 Mac은<br><span class="blue">AI 생태계</span>에<br><span class="marker">유리한가</span></h1>
-          <p class="hero-lead">Mac의 강점은 단순히 “칩이 빠르다”가 아닙니다. <strong>최신 데스크톱 AI 앱이 먼저 들어오는 경향, Unix 개발 환경, Apple Silicon의 통합 메모리, MLX·Metal 기반 로컬 AI 생태계</strong>가 한 기기 안에서 연결된다는 점이 핵심입니다.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#executive">핵심 결론 보기</a>
-            <a class="btn btn-ghost" href="#ram">내게 맞는 RAM 계산</a>
-          </div>
-          <div class="hero-meta">
-            <span class="meta-chip"><span class="status"></span><b>Stable OS</b> macOS Tahoe 26.6.1<a class="ref" href="#source-1">[1]</a></span>
-            <span class="meta-chip preview"><span class="status"></span><b>Preview</b> macOS 27 Golden Gate<a class="ref" href="#source-2">[2]</a></span>
-            <span class="meta-chip"><b>제목 최대 크기</b> 54px · 기존 대비 약 71%</span>
-          </div>
-        </div>
-
-        <div class="hero-visual reveal" aria-label="Mac AI 생태계 구조 시각화">
-          <div class="visual-glow"></div>
-          <div class="mac-stage">
-            <div class="screen-shell">
-              <div class="screen">
-                <div class="screen-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="screen-title">Mac AI Stack</span></div>
-                <div class="stack-board">
-                  <div class="stack-row"><span class="stack-icon app">A</span><span class="stack-copy"><strong>AI 앱 · 에이전트</strong><span>ChatGPT · Codex · Claude Code · IDE</span></span><span class="stack-tag">Mac-first</span></div>
-                  <div class="stack-row"><span class="stack-icon mem">M</span><span class="stack-copy"><strong>통합 메모리</strong><span>CPU · GPU가 같은 메모리 풀 공유</span></span><span class="stack-tag">16–512GB</span></div>
-                  <div class="stack-row"><span class="stack-icon local">L</span><span class="stack-copy"><strong>로컬 AI 런타임</strong><span>MLX · Ollama · LM Studio · PyTorch MPS</span></span><span class="stack-tag">On-device</span></div>
-                  <div class="stack-row"><span class="stack-icon dev">D</span><span class="stack-copy"><strong>개발 환경</strong><span>Unix shell · Homebrew · Docker · Git</span></span><span class="stack-tag">Workflow</span></div>
-                </div>
-              </div>
-            </div>
-            <div class="screen-base"></div><div class="screen-foot"></div>
-            <div class="float-badge">✓ 한 대로 개발 + 에이전트 + 로컬 추론</div>
-            <div class="chip-card">
-              <div class="chip-head"><span class="chip-symbol">UMA</span><span><strong>Unified Memory</strong><span>AI 모델이 머무는 공간</span></span></div>
-              <div class="chip-metric"><div><b>128GB</b><small>M5 Max 최대</small></div><div><b>614GB/s</b><small>메모리 대역폭</small></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="executive" class="soft-section">
-      <div class="container">
-        <div class="section-kicker reveal">Executive Summary</div>
-        <h2 class="section-title reveal">Mac은 “모든 AI 작업에 최고”라기보다,<br><span class="marker">개인용 AI 워크스테이션의 균형</span>이 뛰어납니다</h2>
-        <p class="section-desc reveal">최신 앱, 개발 도구, 배터리·소음·휴대성, 대용량 통합 메모리, 로컬 LLM을 하나의 환경에서 쓰고 싶다면 Mac이 매우 유리합니다. 다만 대규모 학습·CUDA 전용 연구·GPU 업그레이드가 핵심이면 Linux/NVIDIA가 더 적합합니다.</p>
-
-        <div class="executive-grid">
-          <article class="thesis-card reveal">
-            <div class="thesis-label">한 문장 결론</div>
-            <h3>Mac의 진짜 강점은 <span class="marker">하드웨어와 소프트웨어가 같은 방향</span>으로 최적화된다는 점입니다.</h3>
-            <p>AI 앱은 macOS 네이티브 기능을 빠르게 활용하고, Apple Silicon은 CPU와 GPU가 같은 메모리를 공유하며, MLX·Metal·Foundation Models가 그 구조를 직접 사용합니다. 결과적으로 “설치 → 실행 → 로컬 모델 → 자동화”까지의 마찰이 작습니다.</p>
-          </article>
-          <aside class="balance-card reveal">
-            <h3>분석 관점별 평가</h3>
-            <div class="score-row"><div class="score-head"><span>AI 데스크톱 앱 접근성</span><span>9.2</span></div><div class="score-track"><i style="width:92%"></i></div></div>
-            <div class="score-row"><div class="score-head"><span>로컬 LLM 메모리 확장성</span><span>9.0</span></div><div class="score-track"><i style="width:90%"></i></div></div>
-            <div class="score-row"><div class="score-head"><span>전력·소음·휴대성</span><span>9.1</span></div><div class="score-track"><i style="width:91%"></i></div></div>
-            <div class="score-row"><div class="score-head"><span>대규모 CUDA 학습</span><span>5.0</span></div><div class="score-track"><i style="width:50%"></i></div></div>
-          </aside>
-        </div>
-
-        <div class="metric-grid">
-          <article class="metric-card reveal"><div class="metric-icon">⚡</div><strong>Mac-first 출시</strong><p>ChatGPT 데스크톱, Codex 앱, Codex Computer Use처럼 생산성·에이전트 앱이 macOS에서 먼저 출발한 사례가 반복됐습니다.</p></article>
-          <article class="metric-card reveal"><div class="metric-icon">∞</div><strong>대용량 통합 메모리</strong><p>CPU와 GPU가 하나의 메모리 풀을 공유해, 일반적인 소비자용 독립 GPU의 VRAM 한계를 넘어 큰 모델을 올리기 쉽습니다.</p></article>
-          <article class="metric-card reveal"><div class="metric-icon">⌁</div><strong>로컬 AI 전용 스택</strong><p>MLX, Ollama MLX 엔진, LM Studio, MPS가 Apple Silicon과 Metal을 직접 활용합니다.</p></article>
-          <article class="metric-card reveal"><div class="metric-icon">≠</div><strong>명확한 한계</strong><p>CUDA 중심 연구·학습, 다중 GPU 확장, 부품 업그레이드가 핵심이면 Windows/Linux가 우위입니다.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="macfirst">
-      <div class="container">
-        <div class="section-kicker reveal">Mac-first Evidence</div>
-        <h2 class="section-title reveal">“최신 버전이 Mac에 먼저 나온다”는 말은<br><span class="marker">일부 AI 앱에서는 실제 근거</span>가 있습니다</h2>
-        <p class="section-desc reveal">모든 AI 기술이 Mac-first인 것은 아닙니다. 그러나 사용자의 화면·파일·IDE·터미널과 밀접하게 연결되는 <strong>데스크톱 AI 앱과 에이전트 기능</strong>에서는 macOS가 초기 출시 플랫폼으로 선택된 사례가 분명합니다.</p>
-
-        <div class="timeline">
-          <article class="timeline-item reveal">
-            <div class="timeline-dot">24</div>
-            <div class="timeline-copy"><small>2024.05.13</small><strong>ChatGPT 데스크톱 앱, macOS에서 첫 공개</strong><p>Option + Space 호출, 화면 캡처 등 운영체제와 밀접한 기능을 macOS 앱으로 먼저 선보였습니다.<a class="ref" href="#source-8">[8]</a></p></div>
-            <div class="timeline-chip">Desktop AI</div>
-          </article>
-          <article class="timeline-item reveal">
-            <div class="timeline-dot">26</div>
-            <div class="timeline-copy"><small>2026.02.02 → 03.04</small><strong>Codex 앱: macOS 먼저, Windows는 약 한 달 뒤</strong><p>다중 에이전트·Worktree·Automations를 제공하는 Codex 앱은 macOS로 출시된 뒤 Windows가 추가됐습니다.<a class="ref" href="#source-9">[9]</a></p></div>
-            <div class="timeline-chip">Agent Hub</div>
-          </article>
-          <article class="timeline-item reveal">
-            <div class="timeline-dot">26</div>
-            <div class="timeline-copy"><small>2026.04.16</small><strong>Codex Computer Use, 초기 제공 플랫폼은 macOS</strong><p>데스크톱 앱을 보고 클릭하고 입력하는 Computer Use가 macOS부터 시작됐습니다.<a class="ref" href="#source-10">[10]</a></p></div>
-            <div class="timeline-chip">Computer Use</div>
-          </article>
-          <article class="timeline-item reveal">
-            <div class="timeline-dot">26</div>
-            <div class="timeline-copy"><small>2026.01.20</small><strong>Ollama 로컬 이미지 생성도 macOS에서 먼저 실험</strong><p>실험적 이미지 생성 기능은 macOS 우선으로 공개되고 Windows·Linux는 추후 제공 대상으로 안내됐습니다.<a class="ref" href="#source-13">[13]</a></p></div>
-            <div class="timeline-chip">Local Gen AI</div>
-          </article>
-        </div>
-
-        <div class="reason-grid">
-          <article class="reason-card reveal"><div class="reason-num">01</div><h3>하드웨어 조합이 단순합니다</h3><p>Apple Silicon과 macOS 조합은 PC 생태계보다 검증해야 할 CPU·GPU·드라이버 조합이 좁아, 초기 품질 관리가 상대적으로 쉽습니다.</p></article>
-          <article class="reason-card reveal"><div class="reason-num">02</div><h3>AI 개발자가 많이 쓰는 Unix 환경입니다</h3><p>Shell, Git, Python, Homebrew, Docker 중심의 흐름이 Linux 서버와 유사해 개발용 데스크톱 앱을 붙이기 좋습니다.</p></article>
-          <article class="reason-card reveal"><div class="reason-num">03</div><h3>운영체제 통합 가치가 큽니다</h3><p>접근성 API, Spotlight, 앱 간 문맥, 화면·마이크·파일 권한 등 네이티브 기능과 AI를 결합하기 쉽습니다.</p></article>
-          <article class="reason-card reveal"><div class="reason-num">04</div><h3>초기 사용자층이 명확합니다</h3><p>개발자·창작자·지식근로자가 밀집해 있어, 데스크톱 AI 제품이 빠르게 피드백을 얻기 좋은 시장입니다.</p></article>
-        </div>
-
-        <div class="caveat reveal"><div class="caveat-icon">!</div><div><strong>중요한 보정: “AI는 무조건 Mac이 먼저”는 틀린 표현입니다.</strong><p>모델 학습 프레임워크, CUDA 커널, 데이터센터 추론, 다중 GPU 기술은 대체로 Linux/NVIDIA가 먼저입니다. Mac-first 경향은 특히 <b>개인 생산성 앱·에이전트·로컬 실행 도구</b>에서 강합니다. 또한 OpenAI의 새 통합 데스크톱 앱은 2026년 7월 기준 macOS와 Windows 모두 지원합니다.<a class="ref" href="#source-11">[11]</a></p></div></div>
-      </div>
-    </section>
-
-    <section id="memory" class="soft-section">
-      <div class="container">
-        <div class="section-kicker reveal">Unified Memory</div>
-        <h2 class="section-title reveal">로컬 AI에서 Mac의 핵심은 GPU 코어보다 먼저<br><span class="marker">“모델이 들어갈 메모리 공간”</span>입니다</h2>
-        <p class="section-desc reveal">Apple Silicon의 통합 메모리는 CPU와 GPU가 같은 물리 메모리 풀을 공유합니다. MLX는 이 구조를 이용해 데이터 복사를 줄이고, 큰 모델을 CPU RAM과 별도 GPU VRAM으로 나누지 않고 다룰 수 있습니다.<a class="ref" href="#source-4">[4]</a><a class="ref" href="#source-5">[5]</a></p>
-
-        <div class="memory-compare">
-          <article class="memory-panel mac reveal">
-            <div class="panel-head"><div class="panel-title"><span class="panel-symbol">M</span><span><strong>Apple Silicon Mac</strong><span>Unified Memory Architecture</span></span></div><span class="panel-status">하나의 큰 풀</span></div>
-            <div class="pool"><div class="pool-label">16GB ~ 512GB 통합 메모리</div><div class="pool-modules"><div class="module"><span><b>CPU</b><small>전처리·도구 실행</small></span></div><div class="module"><span><b>GPU</b><small>행렬 연산·추론</small></span></div><div class="module"><span><b>Neural</b><small>온디바이스 가속</small></span></div></div><p class="pool-note">같은 데이터 버퍼를 공유하므로 CPU ↔ GPU 사이의 중복 복사 부담을 줄일 수 있습니다.</p></div>
-          </article>
-          <article class="memory-panel reveal">
-            <div class="panel-head"><div class="panel-title"><span class="panel-symbol" style="background:linear-gradient(145deg,#333d4b,#8b95a1)">PC</span><span><strong>전통적 PC + 독립 GPU</strong><span>System RAM + Dedicated VRAM</span></span></div><span class="panel-status" style="color:var(--orange-ink);background:var(--orange)">분리된 풀</span></div>
-            <div class="split-system"><div class="split-box"><strong>시스템 RAM</strong><div>OS · 앱</div><div>CPU 데이터</div></div><div class="copy-arrow">↔<small>전송·복사</small></div><div class="split-box"><strong>GPU VRAM</strong><div>모델 가중치</div><div>KV Cache</div></div></div>
-          </article>
-        </div>
-
-        <div class="hardware-grid">
-          <article class="hardware-card reveal"><span class="hardware-tag">휴대형 입문</span><h3>MacBook Air M5</h3><div class="spec">최대 32GB · 153GB/s</div><p>클라우드 AI·에이전트 중심이며 3B~14B급 로컬 모델을 병행하는 사용자에게 적합합니다.</p><small>공식 사양 기준<a class="ref" href="#source-6">[6]</a></small></article>
-          <article class="hardware-card reveal"><span class="hardware-tag">가성비 데스크톱</span><h3>Mac mini M4 Pro</h3><div class="spec">최대 64GB · 273GB/s</div><p>고정형 로컬 AI 서버와 개발 환경을 비교적 합리적인 비용으로 구축하기 좋습니다.</p><small>공식 사양 기준<a class="ref" href="#source-7">[7]</a></small></article>
-          <article class="hardware-card reveal"><span class="hardware-tag">모바일 워크스테이션</span><h3>MacBook Pro M5 Max</h3><div class="spec">최대 128GB · 614GB/s</div><p>70B급 양자화 모델, 장시간 에이전트, 대형 코드베이스를 휴대하며 쓰는 상위 구성입니다.</p><small>공식 사양 기준<a class="ref" href="#source-3">[3]</a></small></article>
-          <article class="hardware-card reveal"><span class="hardware-tag">초대형 로컬 모델</span><h3>Mac Studio M3 Ultra</h3><div class="spec">최대 512GB · 800GB/s+</div><p>Apple은 600B 초과 LLM을 메모리에 올려 온디바이스 실행할 수 있다고 설명합니다. 단, “적재 가능”과 “실용 속도”는 다릅니다.</p><small>공식 발표 기준<a class="ref" href="#source-4">[4]</a></small></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="ram">
-      <div class="container">
-        <div class="section-kicker reveal">Local AI RAM Guide</div>
-        <h2 class="section-title reveal">로컬 AI 구매에서 RAM은 옵션이 아니라<br><span class="marker">실행 가능한 모델의 상한선</span>입니다</h2>
-        <p class="section-desc reveal">모델 파일 크기만 보고 RAM을 고르면 부족해지기 쉽습니다. 실제 실행에는 가중치 외에도 KV Cache, 런타임 버퍼, 프롬프트 길이, 운영체제와 다른 앱이 사용할 공간이 필요합니다. 양자화는 메모리를 줄이지만 품질·속도와 맞교환됩니다.<a class="ref" href="#source-19">[19]</a><a class="ref" href="#source-20">[20]</a></p>
-
-        <div class="ram-layout">
-          <article class="formula-card reveal">
-            <h3>가장 먼저 보는 계산식</h3>
-            <p>아래 값은 “모델 가중치만” 계산한 최소치입니다. 실제 구매 판단은 여기에 25~65% 이상 헤드룸을 더해야 합니다.</p>
-            <div class="formula"><small>WEIGHT-ONLY MEMORY</small><strong>파라미터 수 × 양자화 비트 ÷ 8</strong></div>
-            <div class="formula-note"><div><b>예:</b><span>70B 모델을 4-bit로 저장하면 가중치만 약 35GB</span></div><div><b>추가:</b><span>KV Cache·런타임·OS·앱·여유 공간을 포함하면 48~64GB 이상이 현실적</span></div><div><b>주의:</b><span>MoE 모델은 총 파라미터와 활성 파라미터 구조가 달라 단순 계산 오차가 커질 수 있음</span></div></div>
-          </article>
-
-          <article class="calculator reveal">
-            <div class="calculator-head"><div><h3>RAM 계획 계산기</h3><p>벤치마크가 아닌 구매 전 1차 필터용 추정치입니다.</p></div><span class="calc-badge">Planning Estimate</span></div>
-            <div class="calc-inputs">
-              <div class="field"><label for="params">모델 파라미터(B)</label><input id="params" type="number" min="0.5" max="1000" step="0.5" value="32" /></div>
-              <div class="field"><label for="bits">양자화</label><select id="bits"><option value="2">2-bit</option><option value="3">3-bit</option><option value="4" selected>4-bit</option><option value="5">5-bit</option><option value="6">6-bit</option><option value="8">8-bit</option><option value="16">16-bit</option></select></div>
-              <div class="field"><label for="headroom">사용 시나리오</label><select id="headroom"><option value="1.25">짧은 문맥 · 단일 채팅 (+25%)</option><option value="1.4" selected>일반 업무 · 16~32K (+40%)</option><option value="1.65">긴 문맥 · 도구·에이전트 (+65%)</option></select></div>
-            </div>
-            <div class="calc-results">
-              <div class="calc-result"><small>가중치 최소치</small><strong id="weightResult">16.0GB</strong><span>모델 파일에 가까운 값</span></div>
-              <div class="calc-result"><small>운영 추정치</small><strong id="runtimeResult">22.4GB</strong><span>헤드룸 포함</span></div>
-              <div class="calc-result"><small>권장 통합 메모리</small><strong id="tierResult">32GB</strong><span id="tierNote">다른 앱 병행 기준</span></div>
-            </div>
-            <p class="calc-disclaimer">※ 모델 구조, KV Cache 형식, 컨텍스트 길이, 배치, 비전 입력, 런타임에 따라 크게 달라질 수 있습니다. 실제 로드 전 LM Studio의 메모리 추정 또는 MLX/Ollama 실측을 확인하세요.</p>
-          </article>
-        </div>
-
-        <div class="table-wrap reveal">
-          <table aria-label="Mac 통합 메모리별 로컬 AI 권장 용도">
-            <thead><tr><th>통합 메모리</th><th>편안한 사용 범위</th><th>가능하지만 제약이 큰 범위</th><th>추천 사용자</th><th>판단</th></tr></thead>
-            <tbody>
-              <tr><td><span class="tier">16GB</span></td><td>클라우드 AI, 코딩 에이전트, 3B~8B Q4</td><td>14B는 문맥·동시 앱 제한</td><td>로컬 AI 입문, 업무 앱 중심</td><td class="maybe">최소 구성</td></tr>
-              <tr><td><span class="tier">24GB</span></td><td>7B~14B Q4, 일반 RAG, 가벼운 에이전트</td><td>20B~32B는 짧은 문맥</td><td>휴대형 범용 AI 사용자</td><td class="good">실용 입문</td></tr>
-              <tr><td><span class="tier">32GB</span></td><td>8B~14B 여유, 일부 20B~32B Q4</td><td>32B 장문·다중 앱은 압박</td><td>MacBook Air 상위 구성</td><td class="good">대중적 Sweet Spot</td></tr>
-              <tr><td><span class="tier">48GB</span></td><td>32B Q4, 대형 문서 RAG, 다중 에이전트</td><td>70B는 컨텍스트 제한</td><td>개발자·업무 자동화 사용자</td><td class="good">전문 입문</td></tr>
-              <tr><td><span class="tier">64GB</span></td><td>32B 여유, 70B Q4 로드 가능</td><td>70B 장문·동시 작업은 조정 필요</td><td>Mac mini/Pro 로컬 AI 서버</td><td class="good">고급 Sweet Spot</td></tr>
-              <tr><td><span class="tier">96~128GB</span></td><td>70B급 편안, 여러 모델·에이전트 병행</td><td>120B+는 구조별 편차</td><td>전문 로컬 LLM·코딩 에이전트</td><td class="good">상위 워크스테이션</td></tr>
-              <tr><td><span class="tier">192~512GB</span></td><td>120B+, 초대형 MoE·연구용 로컬 실행</td><td>적재 가능해도 속도·지원 여부가 병목</td><td>기관·기업·프라이버시 워크스테이션</td><td class="good">특수 목적</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="fit-comfort">
-          <article class="fit-card reveal"><h3><span>①</span>“모델이 열린다”</h3><p>메모리에 간신히 적재되는 상태입니다. Swap, 긴 첫 응답 시간, 앱 강제 종료, 짧은 컨텍스트가 동반될 수 있습니다.</p></article>
-          <article class="fit-card reveal"><h3><span>②</span>“업무에 편하게 쓴다”</h3><p>브라우저·IDE·Obsidian·에이전트를 함께 켜고도 여유가 남는 상태입니다. 구매 기준은 항상 이쪽으로 잡는 것이 안전합니다.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="ecosystem" class="soft-section">
-      <div class="container">
-        <div class="section-kicker reveal">Software Ecosystem</div>
-        <h2 class="section-title reveal">Mac은 칩만 좋은 것이 아니라,<br><span class="marker">칩을 실제로 쓰는 소프트웨어 층</span>이 빠르게 커지고 있습니다</h2>
-        <p class="section-desc reveal">Apple 전용 MLX부터 범용 PyTorch MPS, 사용하기 쉬운 Ollama·LM Studio, 운영체제 내장 Foundation Models까지 개발자용과 일반 사용자용 도구가 동시에 성숙하고 있습니다.</p>
-
-        <div class="ecosystem-grid">
-          <article class="eco-card reveal"><div class="eco-head"><span class="eco-logo">MLX</span><span class="eco-version">0.32.0</span></div><h3>Apple MLX</h3><p>Apple Silicon 통합 메모리에 맞춰 설계된 오픈소스 머신러닝 프레임워크입니다.</p><div class="eco-list"><div><i>✓</i><span>Python·Swift·C++·C 지원</span></div><div><i>✓</i><span>CPU·GPU가 같은 배열을 공유</span></div><div><i>✓</i><span>연구·추론·미세조정에 활용</span></div></div></article>
-          <article class="eco-card reveal"><div class="eco-head"><span class="eco-logo">LM</span><span class="eco-version">0.31.3</span></div><h3>MLX-LM</h3><p>Hugging Face 모델을 Apple Silicon에서 생성·양자화·미세조정하기 쉽게 만든 도구입니다.</p><div class="eco-list"><div><i>✓</i><span>수천 개 LLM과 연결</span></div><div><i>✓</i><span>4-bit 등 양자화 워크플로</span></div><div><i>✓</i><span>로컬 서버·CLI 운영</span></div></div></article>
-          <article class="eco-card reveal"><div class="eco-head"><span class="eco-logo">O</span><span class="eco-version">0.32.6</span></div><h3>Ollama</h3><p>명령 한 줄로 로컬 모델을 실행하고 API로 제공하는 대표적인 런타임입니다.</p><div class="eco-list"><div><i>✓</i><span>Apple GPU를 Metal로 가속</span></div><div><i>✓</i><span>2026년 MLX 엔진 통합 강화</span></div><div><i>✓</i><span>코딩 에이전트와 연결 용이</span></div></div></article>
-          <article class="eco-card reveal"><div class="eco-head"><span class="eco-logo">LS</span><span class="eco-version">0.4 series</span></div><h3>LM Studio</h3><p>모델 검색·다운로드·채팅·서버 운영을 GUI에서 처리하는 로컬 AI 앱입니다.</p><div class="eco-list"><div><i>✓</i><span>Mac 16GB+ 권장</span></div><div><i>✓</i><span>MLX·GGUF 런타임</span></div><div><i>✓</i><span>병렬 요청·Headless 서버</span></div></div></article>
-          <article class="eco-card reveal"><div class="eco-head"><span class="eco-logo">PT</span><span class="eco-version">2.13</span></div><h3>PyTorch MPS</h3><p>Metal Performance Shaders를 통해 macOS GPU에서 PyTorch 학습·추론을 가속합니다.</p><div class="eco-list"><div><i>✓</i><span>기존 PyTorch 코드 접근성</span></div><div><i>✓</i><span>2.13에서 Apple Silicon 최적화 확대</span></div><div><i>✓</i><span>프로토타입·중소형 학습에 유용</span></div></div></article>
-          <article class="eco-card reveal"><div class="eco-head"><span class="eco-logo">FM</span><span class="eco-version">macOS 26·27</span></div><h3>Foundation Models</h3><p>앱이 Apple의 온디바이스·Private Cloud 모델과 외부 모델 공급자를 네이티브 Swift API로 사용할 수 있게 합니다.</p><div class="eco-list"><div><i>✓</i><span>오프라인·프라이버시 중심</span></div><div><i>✓</i><span>요약·분류·도구 호출</span></div><div><i>✓</i><span>macOS 27에서 공급자 추상화 확대</span></div></div></article>
-        </div>
-
-        <div class="version-board reveal" aria-label="2026년 8월 7일 AI 소프트웨어 버전 스냅샷">
-          <div class="version-item"><small>Stable OS</small><strong>macOS Tahoe 26.6.1</strong><span>2026.08.06 공개<a class="ref" href="#source-1">[1]</a></span></div>
-          <div class="version-item preview"><small>Preview OS</small><strong>macOS 27 Golden Gate</strong><span>Foundation Models·Xcode 27 확장<a class="ref" href="#source-2">[2]</a></span></div>
-          <div class="version-item"><small>Apple ML</small><strong>MLX 0.32.0</strong><span>Apple Silicon 전용 배열 프레임워크<a class="ref" href="#source-14">[14]</a></span></div>
-          <div class="version-item"><small>LLM Toolkit</small><strong>MLX-LM 0.31.3</strong><span>생성·양자화·미세조정<a class="ref" href="#source-15">[15]</a></span></div>
-          <div class="version-item"><small>Local Runtime</small><strong>Ollama 0.32.6</strong><span>Apple GPU용 MLX 엔진 업데이트<a class="ref" href="#source-16">[16]</a></span></div>
-          <div class="version-item"><small>Framework</small><strong>PyTorch 2.13</strong><span>MPS FlexAttention 성능 확대<a class="ref" href="#source-18">[18]</a></span></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="comparison">
-      <div class="container">
-        <div class="section-kicker reveal">Mac vs Windows · Linux</div>
-        <h2 class="section-title reveal">Mac은 로컬 추론과 개인 워크플로에 강하고,<br><span class="marker">NVIDIA는 대규모 학습과 확장</span>에 강합니다</h2>
-        <p class="section-desc reveal">“어느 쪽이 더 빠른가”보다 어떤 업무를 반복할 것인지가 중요합니다. 한 대의 조용한 개인용 AI 컴퓨터가 필요하면 Mac, GPU를 교체·증설하거나 CUDA 연구 코드를 그대로 돌리려면 NVIDIA 기반 Windows/Linux가 더 합리적입니다.</p>
-
-        <div class="compare-shell">
-          <article class="platform-card mac reveal"><div class="platform-head"><small>Balanced Personal AI</small><h3>Mac · Apple Silicon</h3></div><div class="platform-body">
-            <div class="platform-row"><strong>강점</strong><p>대용량 통합 메모리, 낮은 소음·전력, 높은 휴대성, 네이티브 AI 앱, Unix 개발 환경</p></div>
-            <div class="platform-row"><strong>로컬 모델</strong><p>32B~70B급을 단일 메모리 풀에서 다루기 유리. 128~512GB 구성으로 소비자 GPU VRAM 한계 초과</p></div>
-            <div class="platform-row"><strong>개발</strong><p>MLX·Metal·MPS·Swift Foundation Models와 Python·Shell 도구를 함께 사용</p></div>
-            <div class="platform-row"><strong>약점</strong><p>CUDA 미지원, 메모리·GPU 업그레이드 불가, 일부 최신 연구 커널·패키지 지원 지연</p></div>
-          </div></article>
-          <article class="platform-card pc reveal"><div class="platform-head"><small>Maximum Training Scale</small><h3>Windows/Linux · NVIDIA</h3></div><div class="platform-body">
-            <div class="platform-row"><strong>강점</strong><p>CUDA 생태계, 광범위한 학습 라이브러리, 멀티 GPU, 교체 가능한 GPU·VRAM, 데이터센터 연속성</p></div>
-            <div class="platform-row"><strong>로컬 모델</strong><p>고성능 RTX는 추론 속도가 매우 빠르지만, 단일 카드 VRAM이 모델 크기의 직접적인 한계가 되기 쉬움</p></div>
-            <div class="platform-row"><strong>개발</strong><p>대규모 학습·분산 처리·최신 CUDA 커널·연구 재현에 최적. Linux 서버와 가장 직접적으로 연결</p></div>
-            <div class="platform-row"><strong>약점</strong><p>고성능 GPU 시스템의 전력·소음·부피, RAM과 VRAM 분리, 드라이버·하드웨어 조합 복잡성</p></div>
-          </div></article>
-        </div>
-
-        <div class="decision-grid">
-          <article class="decision-card reveal"><span class="badge">Mac 우세</span><h3>AI 지식근로자·개발자</h3><p>ChatGPT·Codex·Claude Code·Obsidian·브라우저·로컬 LLM을 한 기기에서 계속 돌리는 업무.</p></article>
-          <article class="decision-card reveal"><span class="badge">상황별</span><h3>로컬 추론 서버</h3><p>메모리 용량과 저소음이 중요하면 Mac, 최대 토큰 속도와 GPU 교체가 중요하면 NVIDIA.</p></article>
-          <article class="decision-card reveal"><span class="badge">NVIDIA 우세</span><h3>대규모 학습·연구</h3><p>CUDA 전용 프로젝트, 여러 GPU, 분산 학습, 최신 연구 커널을 그대로 재현해야 하는 업무.<a class="ref" href="#source-21">[21]</a></p></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="buying" class="soft-section">
-      <div class="container">
-        <div class="section-kicker reveal">Buying Guide</div>
-        <h2 class="section-title reveal">AI용 Mac은 CPU 등급보다 먼저<br><span class="marker">RAM과 메모리 대역폭</span>을 고르세요</h2>
-        <p class="section-desc reveal">Mac의 통합 메모리는 구매 후 증설할 수 없습니다. 로컬 AI를 3년 이상 사용할 계획이라면 현재 필요한 용량보다 한 단계 여유 있게 고르는 편이 안전합니다. SSD는 외장 NVMe로 보완할 수 있지만 RAM은 보완할 수 없습니다.</p>
-
-        <div class="buy-grid">
-          <article class="buy-card reveal"><span class="buy-label">Cloud AI 중심</span><h3>MacBook Air M5</h3><div class="buy-spec">24~32GB / 1TB</div><p>ChatGPT·Codex·Claude Code와 7B~14B 로컬 모델을 가볍게 병행하는 휴대형 구성.</p><div class="buy-list"><div><i>✓</i><span>가볍고 배터리 우수</span></div><div><i>✓</i><span>일반 업무·개발에 충분</span></div><div><i>△</i><span>팬리스라 장시간 고부하 제약</span></div></div></article>
-          <article class="buy-card featured reveal"><span class="buy-label">가장 균형적</span><h3>MacBook Pro M5 Pro</h3><div class="buy-spec">48~64GB / 1~2TB</div><p>32B급 로컬 모델, 대형 코드베이스, Obsidian·브라우저·에이전트 병행에 적합한 전문가 Sweet Spot.</p><div class="buy-list"><div><i>✓</i><span>지속 성능과 휴대성 균형</span></div><div><i>✓</i><span>307GB/s 메모리 대역폭</span></div><div><i>✓</i><span>로컬 AI 입문을 넘어선 실무</span></div></div></article>
-          <article class="buy-card reveal"><span class="buy-label">고정형 가성비</span><h3>Mac mini M4 Pro</h3><div class="buy-spec">48~64GB / 1TB</div><p>24시간 가까이 켜두는 개인용 로컬 AI 서버, 자동화, 개발 환경으로 효율적인 선택.</p><div class="buy-list"><div><i>✓</i><span>작고 조용한 데스크톱</span></div><div><i>✓</i><span>273GB/s 메모리 대역폭</span></div><div><i>△</i><span>디스플레이·주변기기 별도</span></div></div></article>
-          <article class="buy-card reveal"><span class="buy-label">대형 로컬 모델</span><h3>M5 Max / Mac Studio</h3><div class="buy-spec">96~512GB</div><p>70B 이상 모델, 다중 에이전트, 민감정보 로컬 처리, 사내 추론 노드를 위한 상위 구성.</p><div class="buy-list"><div><i>✓</i><span>대용량 모델 적재</span></div><div><i>✓</i><span>높은 메모리 대역폭</span></div><div><i>△</i><span>비용 대비 활용률 검토 필요</span></div></div></article>
-        </div>
-
-        <div class="priority-bar reveal"><div><h3>예산이 한정되면: <span class="marker">RAM → 칩 등급 → SSD</span> 순으로 검토</h3><p>로컬 AI에서는 모델이 메모리에 들어가는지가 1차 조건입니다. 다만 모델 파일은 수십~수백 GB이므로 최소 1TB, 여러 모델을 보관하면 2TB 또는 외장 NVMe를 권장합니다.</p></div><div class="priority-order"><span>1. RAM</span><span>2. 대역폭</span><span>3. 냉각</span><span>4. SSD</span></div></div>
-      </div>
-    </section>
-
-    <section id="risks">
-      <div class="container">
-        <div class="section-kicker reveal">Limitations & Risks</div>
-        <h2 class="section-title reveal">Mac의 장점은 분명하지만,<br><span class="marker">구매 전에 한계도 같이 봐야</span> 합니다</h2>
-        <p class="section-desc reveal">대용량 통합 메모리만 보고 “모든 모델이 빠르게 돈다”고 판단하면 과투자할 수 있습니다. 모델 지원, 런타임 최적화, 메모리 대역폭, 발열, 컨텍스트 길이가 함께 작동합니다.</p>
-        <div class="risk-grid">
-          <article class="risk-card reveal"><div class="risk-icon">1</div><h3>CUDA 생태계 부재</h3><p>CUDA 전용 라이브러리와 연구 코드는 그대로 실행되지 않습니다. Metal·MLX·MPS 포팅 여부를 확인해야 합니다.</p></article>
-          <article class="risk-card reveal"><div class="risk-icon">2</div><h3>구매 후 업그레이드 불가</h3><p>통합 메모리와 GPU는 교체할 수 없습니다. 부족하면 기기 전체를 바꿔야 하므로 초기 용량 선택이 중요합니다.</p></article>
-          <article class="risk-card reveal"><div class="risk-icon">3</div><h3>적재와 속도는 다릅니다</h3><p>512GB에 초대형 모델이 들어가더라도 토큰 속도·첫 응답 시간·도구 호출 안정성이 실무 요구를 충족하는지는 별도입니다.</p></article>
-          <article class="risk-card reveal"><div class="risk-icon">4</div><h3>긴 문맥의 KV Cache</h3><p>모델 가중치가 들어가도 64K·128K 문맥, 비전 입력, 병렬 요청은 추가 메모리를 크게 사용합니다.</p></article>
-          <article class="risk-card reveal"><div class="risk-icon">5</div><h3>장시간 발열·스왑</h3><p>MacBook Air 같은 팬리스 기기는 지속 부하에서 성능이 낮아질 수 있고, RAM 부족 시 SSD Swap으로 체감 속도가 급락합니다.</p></article>
-          <article class="risk-card reveal"><div class="risk-icon">6</div><h3>앱 버전 격차는 영구적이지 않음</h3><p>Mac-first 기능도 몇 주~몇 달 뒤 Windows에 추가될 수 있습니다. 구매 근거는 단일 앱보다 전체 워크플로여야 합니다.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="conclusion" class="soft-section">
-      <div class="container">
-        <div class="section-kicker reveal">Final Recommendation</div>
-        <div class="final-card reveal">
-          <h3>Mac은 <span class="marker">AI를 연구실 밖의 일상 업무로 가져오는 데</span> 가장 완성도 높은 개인용 플랫폼 중 하나입니다.</h3>
-          <p>최신 데스크톱 에이전트를 빠르게 쓰고, 클라우드 모델과 로컬 모델을 섞고, 문서·코드·자동화를 한 환경에서 운영하려는 사용자에게 특히 유리합니다. 반면 모델을 직접 대규모로 학습하거나 GPU를 계속 증설할 계획이라면 Mac 단독보다 NVIDIA/Linux 또는 하이브리드 구성이 맞습니다.</p>
-          <div class="final-choices">
-            <div class="final-choice"><small>개인·임원·지식근로자</small><strong>Mac + Cloud AI + 24~32GB</strong><p>최신 앱과 에이전트 중심, 작은 로컬 모델을 보조로 사용.</p></div>
-            <div class="final-choice"><small>개발자·자동화 전문가</small><strong>Mac + 48~128GB + Local LLM</strong><p>코딩 에이전트, RAG, 다중 앱, 민감 자료 로컬 처리.</p></div>
-            <div class="final-choice"><small>AI 연구·대규모 학습</small><strong>Mac Client + Linux/NVIDIA Server</strong><p>Mac에서 개발·관리하고 학습은 CUDA 서버에 맡기는 하이브리드.</p></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="sources">
-      <div class="container">
-        <div class="section-kicker reveal">Official Sources</div>
-        <h2 class="section-title reveal">검증 기준과 공식 출처</h2>
-        <p class="section-desc reveal">버전·사양·출시 시점은 2026년 8월 7일 기준입니다. “왜 Mac-first인가”, RAM 권장 범위, 용도별 평가는 공식 자료를 기반으로 한 분석·추정이며 실제 모델과 런타임에 따라 달라질 수 있습니다.</p>
-        <div class="sources">
-          <a id="source-1" class="source-card reveal" href="https://support.apple.com/en-us/100100" target="_blank" rel="noopener"><span class="source-num">01</span><span class="source-copy"><strong>Apple Security Releases</strong><span>macOS Tahoe 26.6.1 · 2026.08.06</span></span></a>
-          <a id="source-2" class="source-card reveal" href="https://developer.apple.com/macos/" target="_blank" rel="noopener"><span class="source-num">02</span><span class="source-copy"><strong>Apple Developer · macOS</strong><span>macOS 27 · Foundation Models · Language Model protocol</span></span></a>
-          <a id="source-3" class="source-card reveal" href="https://www.apple.com/newsroom/2026/03/apple-introduces-macbook-pro-with-all-new-m5-pro-and-m5-max/" target="_blank" rel="noopener"><span class="source-num">03</span><span class="source-copy"><strong>Apple M5 Pro · M5 Max</strong><span>64GB/307GB/s · 128GB/614GB/s</span></span></a>
-          <a id="source-4" class="source-card reveal" href="https://www.apple.com/newsroom/2025/03/apple-reveals-m3-ultra-taking-apple-silicon-to-a-new-extreme/" target="_blank" rel="noopener"><span class="source-num">04</span><span class="source-copy"><strong>Apple M3 Ultra</strong><span>512GB 통합 메모리 · 800GB/s+ · 600B+ LLM</span></span></a>
-          <a id="source-5" class="source-card reveal" href="https://developer.apple.com/videos/play/wwdc2025/315/" target="_blank" rel="noopener"><span class="source-num">05</span><span class="source-copy"><strong>WWDC25 · Get started with MLX</strong><span>통합 메모리와 CPU·GPU 데이터 공유</span></span></a>
-          <a id="source-6" class="source-card reveal" href="https://support.apple.com/en-us/126320" target="_blank" rel="noopener"><span class="source-num">06</span><span class="source-copy"><strong>MacBook Air M5 사양</strong><span>최대 32GB · 153GB/s</span></span></a>
-          <a id="source-7" class="source-card reveal" href="https://support.apple.com/en-ke/121555" target="_blank" rel="noopener"><span class="source-num">07</span><span class="source-copy"><strong>Mac mini M4 Pro 사양</strong><span>최대 64GB · 273GB/s</span></span></a>
-          <a id="source-8" class="source-card reveal" href="https://openai.com/index/gpt-4o-and-more-tools-to-chatgpt-free/" target="_blank" rel="noopener"><span class="source-num">08</span><span class="source-copy"><strong>OpenAI · ChatGPT macOS App</strong><span>2024.05.13 macOS 데스크톱 앱 공개</span></span></a>
-          <a id="source-9" class="source-card reveal" href="https://openai.com/index/introducing-the-codex-app/" target="_blank" rel="noopener"><span class="source-num">09</span><span class="source-copy"><strong>OpenAI · Introducing the Codex app</strong><span>macOS 2026.02.02 · Windows 2026.03.04</span></span></a>
-          <a id="source-10" class="source-card reveal" href="https://openai.com/index/codex-for-almost-everything/" target="_blank" rel="noopener"><span class="source-num">10</span><span class="source-copy"><strong>OpenAI · Codex Computer Use</strong><span>초기 제공 플랫폼 macOS</span></span></a>
-          <a id="source-11" class="source-card reveal" href="https://developers.openai.com/codex/changelog" target="_blank" rel="noopener"><span class="source-num">11</span><span class="source-copy"><strong>OpenAI · ChatGPT & Codex Changelog</strong><span>2026.07 macOS·Windows 통합 데스크톱 앱</span></span></a>
-          <a id="source-12" class="source-card reveal" href="https://ollama.com/blog/mlx" target="_blank" rel="noopener"><span class="source-num">12</span><span class="source-copy"><strong>Ollama · MLX on Apple Silicon</strong><span>통합 메모리를 활용하는 MLX 엔진</span></span></a>
-          <a id="source-13" class="source-card reveal" href="https://ollama.com/blog/image-generation" target="_blank" rel="noopener"><span class="source-num">13</span><span class="source-copy"><strong>Ollama · Local Image Generation</strong><span>macOS 우선 실험 공개</span></span></a>
-          <a id="source-14" class="source-card reveal" href="https://ml-explore.github.io/mlx/" target="_blank" rel="noopener"><span class="source-num">14</span><span class="source-copy"><strong>MLX 0.32.0 Documentation</strong><span>Apple Silicon 머신러닝 배열 프레임워크</span></span></a>
-          <a id="source-15" class="source-card reveal" href="https://github.com/ml-explore/mlx-lm/releases" target="_blank" rel="noopener"><span class="source-num">15</span><span class="source-copy"><strong>MLX-LM Releases</strong><span>v0.31.3 최신 릴리스 스냅샷</span></span></a>
-          <a id="source-16" class="source-card reveal" href="https://github.com/ollama/ollama/releases" target="_blank" rel="noopener"><span class="source-num">16</span><span class="source-copy"><strong>Ollama Releases</strong><span>v0.32.6 · Apple GPU MLX 엔진 업데이트</span></span></a>
-          <a id="source-17" class="source-card reveal" href="https://lmstudio.ai/docs/app/system-requirements" target="_blank" rel="noopener"><span class="source-num">17</span><span class="source-copy"><strong>LM Studio System Requirements</strong><span>Apple Silicon · 16GB+ 권장</span></span></a>
-          <a id="source-18" class="source-card reveal" href="https://pytorch.org/blog/pytorch-2-13-release-blog/" target="_blank" rel="noopener"><span class="source-num">18</span><span class="source-copy"><strong>PyTorch 2.13 Release</strong><span>Apple Silicon MPS · FlexAttention 개선</span></span></a>
-          <a id="source-19" class="source-card reveal" href="https://huggingface.co/docs/transformers/quantization/overview" target="_blank" rel="noopener"><span class="source-num">19</span><span class="source-copy"><strong>Hugging Face · Quantization</strong><span>낮은 정밀도로 메모리 요구량 절감</span></span></a>
-          <a id="source-20" class="source-card reveal" href="https://huggingface.co/docs/transformers/llm_tutorial_optimization" target="_blank" rel="noopener"><span class="source-num">20</span><span class="source-copy"><strong>Hugging Face · LLM Memory Optimization</strong><span>KV Cache·문맥 길이·4-bit 메모리 특성</span></span></a>
-          <a id="source-21" class="source-card reveal" href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html" target="_blank" rel="noopener"><span class="source-num">21</span><span class="source-copy"><strong>NVIDIA CUDA Guide</strong><span>CUDA-capable GPU와 Linux 중심 대규모 가속 환경</span></span></a>
-          <a id="source-22" class="source-card reveal" href="https://lmstudio.ai/blog/0.4.0" target="_blank" rel="noopener"><span class="source-num">22</span><span class="source-copy"><strong>LM Studio 0.4.0</strong><span>병렬 요청·Headless daemon·REST API</span></span></a>
-        </div>
-      </div>
-    </section>
-
-    <section id="history" class="soft-section">
-      <div class="container">
-        <div class="section-kicker reveal">Version & AI Update History</div>
-        <h2 class="section-title reveal">내용이 바뀌면 무엇이 달라졌는지<br><span class="marker">최하단에 계속 기록</span>합니다</h2>
-        <p class="section-desc reveal">이 보고서는 AI가 이후 최신 버전·하드웨어·앱 출시 정보를 갱신할 수 있도록 버전 정책과 변경 이력을 문서 안에 포함합니다.</p>
-
-        <div class="history-shell reveal">
-          <div class="history-head"><div><h3>보고서 업데이트 규칙</h3><p>향후 AI 수정 시 기존 이력을 삭제하지 않고 새 행을 추가합니다. 사실 정정은 Patch, 내용 추가는 Minor, 구조·결론 변화는 Major 버전을 올립니다. 상단 버전, 최종 업데이트일, 소프트웨어 스냅샷도 함께 갱신해야 합니다.</p></div><div class="version-seal"><small>Current Version</small><strong>v1.0.0</strong></div></div>
-          <div class="update-policy"><div class="policy-item"><strong>Patch · v1.0.1</strong><span>오탈자, 수치 정정, 링크 보완</span></div><div class="policy-item"><strong>Minor · v1.1.0</strong><span>신규 제품·버전·분석 섹션 추가</span></div><div class="policy-item"><strong>Major · v2.0.0</strong><span>평가 기준·구조·핵심 결론 변경</span></div></div>
-          <div class="table-wrap history-table">
-            <table aria-label="보고서 업데이트 히스토리">
-              <thead><tr><th>버전</th><th>업데이트일</th><th>구분</th><th>업데이트 내용</th><th>검증 범위</th><th>작성 주체</th></tr></thead>
-              <tbody>
-                <tr><td><strong>v1.0.0</strong></td><td>2026.08.07</td><td><span class="change-tag">최초 작성</span></td><td>Mac-first 출시 사례, 통합 메모리 구조, RAM 계산기·권장표, MLX·Ollama·LM Studio·PyTorch 버전, Windows/Linux 비교, 구매 가이드 추가</td><td>Apple·OpenAI·MLX·Ollama·LM Studio·PyTorch·NVIDIA 공식 자료 22건</td><td>AI 작성 · 사용자 검토 전</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-inner"><div>Mac AI Ecosystem Advantage Report · 공식 자료 기반 분석</div><div class="footer-version"><span>Last updated 2026.08.07</span><b>v1.0.0</b></div></div>
-  </footer>
-
-  <button class="back-top" id="backTop" type="button" aria-label="맨 위로 이동"><svg viewBox="0 0 24 24" fill="none"><path d="m6 14 6-6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-  <div class="toast" id="toast" role="status" aria-live="polite">복사했습니다.</div>
-
-  <script type="application/json" id="report-manifest">
+<button aria-expanded="false" aria-label="모바일 메뉴 열기" class="btn btn-ghost icon-btn menu-btn" id="menuBtn" type="button">
+<svg fill="none" viewbox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h14" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path></svg>
+</button>
+</div>
+</nav>
+<div class="mobile-menu" id="mobileMenu"><a href="#executive">핵심 결론</a><a href="#macfirst">Mac-first 근거</a><a href="#memory">통합 메모리</a><a href="#ram">RAM 설계</a><a href="#ecosystem">AI 생태계</a><a href="#comparison">Windows·Linux 비교</a><a href="#buying">구매 가이드</a><a href="#history">버전 히스토리</a></div>
+</header>
+<main>
+<section id="overview">
+<div class="container hero">
+<div class="hero-copy reveal">
+<div class="eyebrow"><span class="eyebrow-dot"></span> REPORT v1.0.0 · 2026.08.07</div>
+<h1>왜 Mac은<br/><span class="blue">AI 생태계</span>에<br/><span class="marker">유리한가</span></h1>
+<p class="hero-lead">Mac의 강점은 단순히 “칩이 빠르다”가 아닙니다. <strong>최신 데스크톱 AI 앱이 먼저 들어오는 경향, Unix 개발 환경, Apple Silicon의 통합 메모리, MLX·Metal 기반 로컬 AI 생태계</strong>가 한 기기 안에서 연결된다는 점이 핵심입니다.</p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="#executive">핵심 결론 보기</a>
+<a class="btn btn-ghost" href="#ram">내게 맞는 RAM 계산</a>
+</div>
+<div class="hero-meta">
+<span class="meta-chip"><span class="status"></span><b>Stable OS</b> macOS Tahoe 26.6.1<a class="ref" href="#source-1">[1]</a></span>
+<span class="meta-chip preview"><span class="status"></span><b>Preview</b> macOS 27 Golden Gate<a class="ref" href="#source-2">[2]</a></span>
+<span class="meta-chip"><b>제목 최대 크기</b> 54px · 기존 대비 약 71%</span>
+</div>
+</div>
+<div aria-label="Mac AI 생태계 구조 시각화" class="hero-visual reveal">
+<div class="visual-glow"></div>
+<div class="mac-stage">
+<div class="screen-shell">
+<div class="screen">
+<div class="screen-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="screen-title">Mac AI Stack</span></div>
+<div class="stack-board">
+<div class="stack-row"><span class="stack-icon app">A</span><span class="stack-copy"><strong>AI 앱 · 에이전트</strong><span>ChatGPT · Codex · Claude Code · IDE</span></span><span class="stack-tag">Mac-first</span></div>
+<div class="stack-row"><span class="stack-icon mem">M</span><span class="stack-copy"><strong>통합 메모리</strong><span>CPU · GPU가 같은 메모리 풀 공유</span></span><span class="stack-tag">16–512GB</span></div>
+<div class="stack-row"><span class="stack-icon local">L</span><span class="stack-copy"><strong>로컬 AI 런타임</strong><span>MLX · Ollama · LM Studio · PyTorch MPS</span></span><span class="stack-tag">On-device</span></div>
+<div class="stack-row"><span class="stack-icon dev">D</span><span class="stack-copy"><strong>개발 환경</strong><span>Unix shell · Homebrew · Docker · Git</span></span><span class="stack-tag">Workflow</span></div>
+</div>
+</div>
+</div>
+<div class="screen-base"></div><div class="screen-foot"></div>
+<div class="float-badge">✓ 한 대로 개발 + 에이전트 + 로컬 추론</div>
+<div class="chip-card">
+<div class="chip-head"><span class="chip-symbol">UMA</span><span><strong>Unified Memory</strong><span>AI 모델이 머무는 공간</span></span></div>
+<div class="chip-metric"><div><b>128GB</b><small>M5 Max 최대</small></div><div><b>614GB/s</b><small>메모리 대역폭</small></div></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="soft-section" id="executive">
+<div class="container">
+<div class="section-kicker reveal">Executive Summary</div>
+<h2 class="section-title reveal">Mac은 “모든 AI 작업에 최고”라기보다,<br/><span class="marker">개인용 AI 워크스테이션의 균형</span>이 뛰어납니다</h2>
+<p class="section-desc reveal">최신 앱, 개발 도구, 배터리·소음·휴대성, 대용량 통합 메모리, 로컬 LLM을 하나의 환경에서 쓰고 싶다면 Mac이 매우 유리합니다. 다만 대규모 학습·CUDA 전용 연구·GPU 업그레이드가 핵심이면 Linux/NVIDIA가 더 적합합니다.</p>
+<div class="executive-grid">
+<article class="thesis-card reveal">
+<div class="thesis-label">한 문장 결론</div>
+<h3>Mac의 진짜 강점은 <span class="marker">하드웨어와 소프트웨어가 같은 방향</span>으로 최적화된다는 점입니다.</h3>
+<p>AI 앱은 macOS 네이티브 기능을 빠르게 활용하고, Apple Silicon은 CPU와 GPU가 같은 메모리를 공유하며, MLX·Metal·Foundation Models가 그 구조를 직접 사용합니다. 결과적으로 “설치 → 실행 → 로컬 모델 → 자동화”까지의 마찰이 작습니다.</p>
+</article>
+<aside class="balance-card reveal">
+<h3>분석 관점별 평가</h3>
+<div class="score-row"><div class="score-head"><span>AI 데스크톱 앱 접근성</span><span>9.2</span></div><div class="score-track"><i style="width:92%"></i></div></div>
+<div class="score-row"><div class="score-head"><span>로컬 LLM 메모리 확장성</span><span>9.0</span></div><div class="score-track"><i style="width:90%"></i></div></div>
+<div class="score-row"><div class="score-head"><span>전력·소음·휴대성</span><span>9.1</span></div><div class="score-track"><i style="width:91%"></i></div></div>
+<div class="score-row"><div class="score-head"><span>대규모 CUDA 학습</span><span>5.0</span></div><div class="score-track"><i style="width:50%"></i></div></div>
+</aside>
+</div>
+<div class="metric-grid">
+<article class="metric-card reveal"><div class="metric-icon">⚡</div><strong>Mac-first 출시</strong><p>ChatGPT 데스크톱, Codex 앱, Codex Computer Use처럼 생산성·에이전트 앱이 macOS에서 먼저 출발한 사례가 반복됐습니다.</p></article>
+<article class="metric-card reveal"><div class="metric-icon">∞</div><strong>대용량 통합 메모리</strong><p>CPU와 GPU가 하나의 메모리 풀을 공유해, 일반적인 소비자용 독립 GPU의 VRAM 한계를 넘어 큰 모델을 올리기 쉽습니다.</p></article>
+<article class="metric-card reveal"><div class="metric-icon">⌁</div><strong>로컬 AI 전용 스택</strong><p>MLX, Ollama MLX 엔진, LM Studio, MPS가 Apple Silicon과 Metal을 직접 활용합니다.</p></article>
+<article class="metric-card reveal"><div class="metric-icon">≠</div><strong>명확한 한계</strong><p>CUDA 중심 연구·학습, 다중 GPU 확장, 부품 업그레이드가 핵심이면 Windows/Linux가 우위입니다.</p></article>
+</div>
+</div>
+</section>
+<section id="macfirst">
+<div class="container">
+<div class="section-kicker reveal">Mac-first Evidence</div>
+<h2 class="section-title reveal">“최신 버전이 Mac에 먼저 나온다”는 말은<br/><span class="marker">일부 AI 앱에서는 실제 근거</span>가 있습니다</h2>
+<p class="section-desc reveal">모든 AI 기술이 Mac-first인 것은 아닙니다. 그러나 사용자의 화면·파일·IDE·터미널과 밀접하게 연결되는 <strong>데스크톱 AI 앱과 에이전트 기능</strong>에서는 macOS가 초기 출시 플랫폼으로 선택된 사례가 분명합니다.</p>
+<div class="timeline">
+<article class="timeline-item reveal">
+<div class="timeline-dot">24</div>
+<div class="timeline-copy"><small>2024.05.13</small><strong>ChatGPT 데스크톱 앱, macOS에서 첫 공개</strong><p>Option + Space 호출, 화면 캡처 등 운영체제와 밀접한 기능을 macOS 앱으로 먼저 선보였습니다.<a class="ref" href="#source-8">[8]</a></p></div>
+<div class="timeline-chip">Desktop AI</div>
+</article>
+<article class="timeline-item reveal">
+<div class="timeline-dot">26</div>
+<div class="timeline-copy"><small>2026.02.02 → 03.04</small><strong>Codex 앱: macOS 먼저, Windows는 약 한 달 뒤</strong><p>다중 에이전트·Worktree·Automations를 제공하는 Codex 앱은 macOS로 출시된 뒤 Windows가 추가됐습니다.<a class="ref" href="#source-9">[9]</a></p></div>
+<div class="timeline-chip">Agent Hub</div>
+</article>
+<article class="timeline-item reveal">
+<div class="timeline-dot">26</div>
+<div class="timeline-copy"><small>2026.04.16</small><strong>Codex Computer Use, 초기 제공 플랫폼은 macOS</strong><p>데스크톱 앱을 보고 클릭하고 입력하는 Computer Use가 macOS부터 시작됐습니다.<a class="ref" href="#source-10">[10]</a></p></div>
+<div class="timeline-chip">Computer Use</div>
+</article>
+<article class="timeline-item reveal">
+<div class="timeline-dot">26</div>
+<div class="timeline-copy"><small>2026.01.20</small><strong>Ollama 로컬 이미지 생성도 macOS에서 먼저 실험</strong><p>실험적 이미지 생성 기능은 macOS 우선으로 공개되고 Windows·Linux는 추후 제공 대상으로 안내됐습니다.<a class="ref" href="#source-13">[13]</a></p></div>
+<div class="timeline-chip">Local Gen AI</div>
+</article>
+</div>
+<div class="reason-grid">
+<article class="reason-card reveal"><div class="reason-num">01</div><h3>하드웨어 조합이 단순합니다</h3><p>Apple Silicon과 macOS 조합은 PC 생태계보다 검증해야 할 CPU·GPU·드라이버 조합이 좁아, 초기 품질 관리가 상대적으로 쉽습니다.</p></article>
+<article class="reason-card reveal"><div class="reason-num">02</div><h3>AI 개발자가 많이 쓰는 Unix 환경입니다</h3><p>Shell, Git, Python, Homebrew, Docker 중심의 흐름이 Linux 서버와 유사해 개발용 데스크톱 앱을 붙이기 좋습니다.</p></article>
+<article class="reason-card reveal"><div class="reason-num">03</div><h3>운영체제 통합 가치가 큽니다</h3><p>접근성 API, Spotlight, 앱 간 문맥, 화면·마이크·파일 권한 등 네이티브 기능과 AI를 결합하기 쉽습니다.</p></article>
+<article class="reason-card reveal"><div class="reason-num">04</div><h3>초기 사용자층이 명확합니다</h3><p>개발자·창작자·지식근로자가 밀집해 있어, 데스크톱 AI 제품이 빠르게 피드백을 얻기 좋은 시장입니다.</p></article>
+</div>
+<div class="caveat reveal"><div class="caveat-icon">!</div><div><strong>중요한 보정: “AI는 무조건 Mac이 먼저”는 틀린 표현입니다.</strong><p>모델 학습 프레임워크, CUDA 커널, 데이터센터 추론, 다중 GPU 기술은 대체로 Linux/NVIDIA가 먼저입니다. Mac-first 경향은 특히 <b>개인 생산성 앱·에이전트·로컬 실행 도구</b>에서 강합니다. 또한 OpenAI의 새 통합 데스크톱 앱은 2026년 7월 기준 macOS와 Windows 모두 지원합니다.<a class="ref" href="#source-11">[11]</a></p></div></div>
+</div>
+</section>
+<section class="soft-section" id="memory">
+<div class="container">
+<div class="section-kicker reveal">Unified Memory</div>
+<h2 class="section-title reveal">로컬 AI에서 Mac의 핵심은 GPU 코어보다 먼저<br/><span class="marker">“모델이 들어갈 메모리 공간”</span>입니다</h2>
+<p class="section-desc reveal">Apple Silicon의 통합 메모리는 CPU와 GPU가 같은 물리 메모리 풀을 공유합니다. MLX는 이 구조를 이용해 데이터 복사를 줄이고, 큰 모델을 CPU RAM과 별도 GPU VRAM으로 나누지 않고 다룰 수 있습니다.<a class="ref" href="#source-4">[4]</a><a class="ref" href="#source-5">[5]</a></p>
+<div class="memory-compare">
+<article class="memory-panel mac reveal">
+<div class="panel-head"><div class="panel-title"><span class="panel-symbol">M</span><span><strong>Apple Silicon Mac</strong><span>Unified Memory Architecture</span></span></div><span class="panel-status">하나의 큰 풀</span></div>
+<div class="pool"><div class="pool-label">16GB ~ 512GB 통합 메모리</div><div class="pool-modules"><div class="module"><span><b>CPU</b><small>전처리·도구 실행</small></span></div><div class="module"><span><b>GPU</b><small>행렬 연산·추론</small></span></div><div class="module"><span><b>Neural</b><small>온디바이스 가속</small></span></div></div><p class="pool-note">같은 데이터 버퍼를 공유하므로 CPU ↔ GPU 사이의 중복 복사 부담을 줄일 수 있습니다.</p></div>
+</article>
+<article class="memory-panel reveal">
+<div class="panel-head"><div class="panel-title"><span class="panel-symbol" style="background:linear-gradient(145deg,#333d4b,#8b95a1)">PC</span><span><strong>전통적 PC + 독립 GPU</strong><span>System RAM + Dedicated VRAM</span></span></div><span class="panel-status" style="color:var(--orange-ink);background:var(--orange)">분리된 풀</span></div>
+<div class="split-system"><div class="split-box"><strong>시스템 RAM</strong><div>OS · 앱</div><div>CPU 데이터</div></div><div class="copy-arrow">↔<small>전송·복사</small></div><div class="split-box"><strong>GPU VRAM</strong><div>모델 가중치</div><div>KV Cache</div></div></div>
+</article>
+</div>
+<div class="hardware-grid">
+<article class="hardware-card reveal"><span class="hardware-tag">휴대형 입문</span><h3>MacBook Air M5</h3><div class="spec">최대 32GB · 153GB/s</div><p>클라우드 AI·에이전트 중심이며 3B~14B급 로컬 모델을 병행하는 사용자에게 적합합니다.</p><small>공식 사양 기준<a class="ref" href="#source-6">[6]</a></small></article>
+<article class="hardware-card reveal"><span class="hardware-tag">가성비 데스크톱</span><h3>Mac mini M4 Pro</h3><div class="spec">최대 64GB · 273GB/s</div><p>고정형 로컬 AI 서버와 개발 환경을 비교적 합리적인 비용으로 구축하기 좋습니다.</p><small>공식 사양 기준<a class="ref" href="#source-7">[7]</a></small></article>
+<article class="hardware-card reveal"><span class="hardware-tag">모바일 워크스테이션</span><h3>MacBook Pro M5 Max</h3><div class="spec">최대 128GB · 614GB/s</div><p>70B급 양자화 모델, 장시간 에이전트, 대형 코드베이스를 휴대하며 쓰는 상위 구성입니다.</p><small>공식 사양 기준<a class="ref" href="#source-3">[3]</a></small></article>
+<article class="hardware-card reveal"><span class="hardware-tag">초대형 로컬 모델</span><h3>Mac Studio M3 Ultra</h3><div class="spec">최대 512GB · 800GB/s+</div><p>Apple은 600B 초과 LLM을 메모리에 올려 온디바이스 실행할 수 있다고 설명합니다. 단, “적재 가능”과 “실용 속도”는 다릅니다.</p><small>공식 발표 기준<a class="ref" href="#source-4">[4]</a></small></article>
+</div>
+</div>
+</section>
+<section id="ram">
+<div class="container">
+<div class="section-kicker reveal">Local AI RAM Guide</div>
+<h2 class="section-title reveal">로컬 AI 구매에서 RAM은 옵션이 아니라<br/><span class="marker">실행 가능한 모델의 상한선</span>입니다</h2>
+<p class="section-desc reveal">모델 파일 크기만 보고 RAM을 고르면 부족해지기 쉽습니다. 실제 실행에는 가중치 외에도 KV Cache, 런타임 버퍼, 프롬프트 길이, 운영체제와 다른 앱이 사용할 공간이 필요합니다. 양자화는 메모리를 줄이지만 품질·속도와 맞교환됩니다.<a class="ref" href="#source-19">[19]</a><a class="ref" href="#source-20">[20]</a></p>
+<div class="ram-layout">
+<article class="formula-card reveal">
+<h3>가장 먼저 보는 계산식</h3>
+<p>아래 값은 “모델 가중치만” 계산한 최소치입니다. 실제 구매 판단은 여기에 25~65% 이상 헤드룸을 더해야 합니다.</p>
+<div class="formula"><small>WEIGHT-ONLY MEMORY</small><strong>파라미터 수 × 양자화 비트 ÷ 8</strong></div>
+<div class="formula-note"><div><b>예:</b><span>70B 모델을 4-bit로 저장하면 가중치만 약 35GB</span></div><div><b>추가:</b><span>KV Cache·런타임·OS·앱·여유 공간을 포함하면 48~64GB 이상이 현실적</span></div><div><b>주의:</b><span>MoE 모델은 총 파라미터와 활성 파라미터 구조가 달라 단순 계산 오차가 커질 수 있음</span></div></div>
+</article>
+<article class="calculator reveal">
+<div class="calculator-head"><div><h3>RAM 계획 계산기</h3><p>벤치마크가 아닌 구매 전 1차 필터용 추정치입니다.</p></div><span class="calc-badge">Planning Estimate</span></div>
+<div class="calc-inputs">
+<div class="field"><label for="params">모델 파라미터(B)</label><input id="params" max="1000" min="0.5" step="0.5" type="number" value="32"/></div>
+<div class="field"><label for="bits">양자화</label><select id="bits"><option value="2">2-bit</option><option value="3">3-bit</option><option selected="" value="4">4-bit</option><option value="5">5-bit</option><option value="6">6-bit</option><option value="8">8-bit</option><option value="16">16-bit</option></select></div>
+<div class="field"><label for="headroom">사용 시나리오</label><select id="headroom"><option value="1.25">짧은 문맥 · 단일 채팅 (+25%)</option><option selected="" value="1.4">일반 업무 · 16~32K (+40%)</option><option value="1.65">긴 문맥 · 도구·에이전트 (+65%)</option></select></div>
+</div>
+<div class="calc-results">
+<div class="calc-result"><small>가중치 최소치</small><strong id="weightResult">16.0GB</strong><span>모델 파일에 가까운 값</span></div>
+<div class="calc-result"><small>운영 추정치</small><strong id="runtimeResult">22.4GB</strong><span>헤드룸 포함</span></div>
+<div class="calc-result"><small>권장 통합 메모리</small><strong id="tierResult">32GB</strong><span id="tierNote">다른 앱 병행 기준</span></div>
+</div>
+<p class="calc-disclaimer">※ 모델 구조, KV Cache 형식, 컨텍스트 길이, 배치, 비전 입력, 런타임에 따라 크게 달라질 수 있습니다. 실제 로드 전 LM Studio의 메모리 추정 또는 MLX/Ollama 실측을 확인하세요.</p>
+</article>
+</div>
+<div class="table-wrap reveal">
+<table aria-label="Mac 통합 메모리별 로컬 AI 권장 용도">
+<thead><tr><th>통합 메모리</th><th>편안한 사용 범위</th><th>가능하지만 제약이 큰 범위</th><th>추천 사용자</th><th>판단</th></tr></thead>
+<tbody>
+<tr><td><span class="tier">16GB</span></td><td>클라우드 AI, 코딩 에이전트, 3B~8B Q4</td><td>14B는 문맥·동시 앱 제한</td><td>로컬 AI 입문, 업무 앱 중심</td><td class="maybe">최소 구성</td></tr>
+<tr><td><span class="tier">24GB</span></td><td>7B~14B Q4, 일반 RAG, 가벼운 에이전트</td><td>20B~32B는 짧은 문맥</td><td>휴대형 범용 AI 사용자</td><td class="good">실용 입문</td></tr>
+<tr><td><span class="tier">32GB</span></td><td>8B~14B 여유, 일부 20B~32B Q4</td><td>32B 장문·다중 앱은 압박</td><td>MacBook Air 상위 구성</td><td class="good">대중적 Sweet Spot</td></tr>
+<tr><td><span class="tier">48GB</span></td><td>32B Q4, 대형 문서 RAG, 다중 에이전트</td><td>70B는 컨텍스트 제한</td><td>개발자·업무 자동화 사용자</td><td class="good">전문 입문</td></tr>
+<tr><td><span class="tier">64GB</span></td><td>32B 여유, 70B Q4 로드 가능</td><td>70B 장문·동시 작업은 조정 필요</td><td>Mac mini/Pro 로컬 AI 서버</td><td class="good">고급 Sweet Spot</td></tr>
+<tr><td><span class="tier">96~128GB</span></td><td>70B급 편안, 여러 모델·에이전트 병행</td><td>120B+는 구조별 편차</td><td>전문 로컬 LLM·코딩 에이전트</td><td class="good">상위 워크스테이션</td></tr>
+<tr><td><span class="tier">192~512GB</span></td><td>120B+, 초대형 MoE·연구용 로컬 실행</td><td>적재 가능해도 속도·지원 여부가 병목</td><td>기관·기업·프라이버시 워크스테이션</td><td class="good">특수 목적</td></tr>
+</tbody>
+</table>
+</div>
+<div class="fit-comfort">
+<article class="fit-card reveal"><h3><span>①</span>“모델이 열린다”</h3><p>메모리에 간신히 적재되는 상태입니다. Swap, 긴 첫 응답 시간, 앱 강제 종료, 짧은 컨텍스트가 동반될 수 있습니다.</p></article>
+<article class="fit-card reveal"><h3><span>②</span>“업무에 편하게 쓴다”</h3><p>브라우저·IDE·Obsidian·에이전트를 함께 켜고도 여유가 남는 상태입니다. 구매 기준은 항상 이쪽으로 잡는 것이 안전합니다.</p></article>
+</div>
+</div>
+</section>
+<section class="soft-section" id="ecosystem">
+<div class="container">
+<div class="section-kicker reveal">Software Ecosystem</div>
+<h2 class="section-title reveal">Mac은 칩만 좋은 것이 아니라,<br/><span class="marker">칩을 실제로 쓰는 소프트웨어 층</span>이 빠르게 커지고 있습니다</h2>
+<p class="section-desc reveal">Apple 전용 MLX부터 범용 PyTorch MPS, 사용하기 쉬운 Ollama·LM Studio, 운영체제 내장 Foundation Models까지 개발자용과 일반 사용자용 도구가 동시에 성숙하고 있습니다.</p>
+<div class="ecosystem-grid">
+<article class="eco-card reveal"><div class="eco-head"><span class="eco-logo">MLX</span><span class="eco-version">0.32.0</span></div><h3>Apple MLX</h3><p>Apple Silicon 통합 메모리에 맞춰 설계된 오픈소스 머신러닝 프레임워크입니다.</p><div class="eco-list"><div><i>✓</i><span>Python·Swift·C++·C 지원</span></div><div><i>✓</i><span>CPU·GPU가 같은 배열을 공유</span></div><div><i>✓</i><span>연구·추론·미세조정에 활용</span></div></div></article>
+<article class="eco-card reveal"><div class="eco-head"><span class="eco-logo">LM</span><span class="eco-version">0.31.3</span></div><h3>MLX-LM</h3><p>Hugging Face 모델을 Apple Silicon에서 생성·양자화·미세조정하기 쉽게 만든 도구입니다.</p><div class="eco-list"><div><i>✓</i><span>수천 개 LLM과 연결</span></div><div><i>✓</i><span>4-bit 등 양자화 워크플로</span></div><div><i>✓</i><span>로컬 서버·CLI 운영</span></div></div></article>
+<article class="eco-card reveal"><div class="eco-head"><span class="eco-logo">O</span><span class="eco-version">0.32.6</span></div><h3>Ollama</h3><p>명령 한 줄로 로컬 모델을 실행하고 API로 제공하는 대표적인 런타임입니다.</p><div class="eco-list"><div><i>✓</i><span>Apple GPU를 Metal로 가속</span></div><div><i>✓</i><span>2026년 MLX 엔진 통합 강화</span></div><div><i>✓</i><span>코딩 에이전트와 연결 용이</span></div></div></article>
+<article class="eco-card reveal"><div class="eco-head"><span class="eco-logo">LS</span><span class="eco-version">0.4 series</span></div><h3>LM Studio</h3><p>모델 검색·다운로드·채팅·서버 운영을 GUI에서 처리하는 로컬 AI 앱입니다.</p><div class="eco-list"><div><i>✓</i><span>Mac 16GB+ 권장</span></div><div><i>✓</i><span>MLX·GGUF 런타임</span></div><div><i>✓</i><span>병렬 요청·Headless 서버</span></div></div></article>
+<article class="eco-card reveal"><div class="eco-head"><span class="eco-logo">PT</span><span class="eco-version">2.13</span></div><h3>PyTorch MPS</h3><p>Metal Performance Shaders를 통해 macOS GPU에서 PyTorch 학습·추론을 가속합니다.</p><div class="eco-list"><div><i>✓</i><span>기존 PyTorch 코드 접근성</span></div><div><i>✓</i><span>2.13에서 Apple Silicon 최적화 확대</span></div><div><i>✓</i><span>프로토타입·중소형 학습에 유용</span></div></div></article>
+<article class="eco-card reveal"><div class="eco-head"><span class="eco-logo">FM</span><span class="eco-version">macOS 26·27</span></div><h3>Foundation Models</h3><p>앱이 Apple의 온디바이스·Private Cloud 모델과 외부 모델 공급자를 네이티브 Swift API로 사용할 수 있게 합니다.</p><div class="eco-list"><div><i>✓</i><span>오프라인·프라이버시 중심</span></div><div><i>✓</i><span>요약·분류·도구 호출</span></div><div><i>✓</i><span>macOS 27에서 공급자 추상화 확대</span></div></div></article>
+</div>
+<div aria-label="2026년 8월 7일 AI 소프트웨어 버전 스냅샷" class="version-board reveal">
+<div class="version-item"><small>Stable OS</small><strong>macOS Tahoe 26.6.1</strong><span>2026.08.06 공개<a class="ref" href="#source-1">[1]</a></span></div>
+<div class="version-item preview"><small>Preview OS</small><strong>macOS 27 Golden Gate</strong><span>Foundation Models·Xcode 27 확장<a class="ref" href="#source-2">[2]</a></span></div>
+<div class="version-item"><small>Apple ML</small><strong>MLX 0.32.0</strong><span>Apple Silicon 전용 배열 프레임워크<a class="ref" href="#source-14">[14]</a></span></div>
+<div class="version-item"><small>LLM Toolkit</small><strong>MLX-LM 0.31.3</strong><span>생성·양자화·미세조정<a class="ref" href="#source-15">[15]</a></span></div>
+<div class="version-item"><small>Local Runtime</small><strong>Ollama 0.32.6</strong><span>Apple GPU용 MLX 엔진 업데이트<a class="ref" href="#source-16">[16]</a></span></div>
+<div class="version-item"><small>Framework</small><strong>PyTorch 2.13</strong><span>MPS FlexAttention 성능 확대<a class="ref" href="#source-18">[18]</a></span></div>
+</div>
+</div>
+</section>
+<section id="comparison">
+<div class="container">
+<div class="section-kicker reveal">Mac vs Windows · Linux</div>
+<h2 class="section-title reveal">Mac은 로컬 추론과 개인 워크플로에 강하고,<br/><span class="marker">NVIDIA는 대규모 학습과 확장</span>에 강합니다</h2>
+<p class="section-desc reveal">“어느 쪽이 더 빠른가”보다 어떤 업무를 반복할 것인지가 중요합니다. 한 대의 조용한 개인용 AI 컴퓨터가 필요하면 Mac, GPU를 교체·증설하거나 CUDA 연구 코드를 그대로 돌리려면 NVIDIA 기반 Windows/Linux가 더 합리적입니다.</p>
+<div class="compare-shell">
+<article class="platform-card mac reveal"><div class="platform-head"><small>Balanced Personal AI</small><h3>Mac · Apple Silicon</h3></div><div class="platform-body">
+<div class="platform-row"><strong>강점</strong><p>대용량 통합 메모리, 낮은 소음·전력, 높은 휴대성, 네이티브 AI 앱, Unix 개발 환경</p></div>
+<div class="platform-row"><strong>로컬 모델</strong><p>32B~70B급을 단일 메모리 풀에서 다루기 유리. 128~512GB 구성으로 소비자 GPU VRAM 한계 초과</p></div>
+<div class="platform-row"><strong>개발</strong><p>MLX·Metal·MPS·Swift Foundation Models와 Python·Shell 도구를 함께 사용</p></div>
+<div class="platform-row"><strong>약점</strong><p>CUDA 미지원, 메모리·GPU 업그레이드 불가, 일부 최신 연구 커널·패키지 지원 지연</p></div>
+</div></article>
+<article class="platform-card pc reveal"><div class="platform-head"><small>Maximum Training Scale</small><h3>Windows/Linux · NVIDIA</h3></div><div class="platform-body">
+<div class="platform-row"><strong>강점</strong><p>CUDA 생태계, 광범위한 학습 라이브러리, 멀티 GPU, 교체 가능한 GPU·VRAM, 데이터센터 연속성</p></div>
+<div class="platform-row"><strong>로컬 모델</strong><p>고성능 RTX는 추론 속도가 매우 빠르지만, 단일 카드 VRAM이 모델 크기의 직접적인 한계가 되기 쉬움</p></div>
+<div class="platform-row"><strong>개발</strong><p>대규모 학습·분산 처리·최신 CUDA 커널·연구 재현에 최적. Linux 서버와 가장 직접적으로 연결</p></div>
+<div class="platform-row"><strong>약점</strong><p>고성능 GPU 시스템의 전력·소음·부피, RAM과 VRAM 분리, 드라이버·하드웨어 조합 복잡성</p></div>
+</div></article>
+</div>
+<div class="decision-grid">
+<article class="decision-card reveal"><span class="badge">Mac 우세</span><h3>AI 지식근로자·개발자</h3><p>ChatGPT·Codex·Claude Code·Obsidian·브라우저·로컬 LLM을 한 기기에서 계속 돌리는 업무.</p></article>
+<article class="decision-card reveal"><span class="badge">상황별</span><h3>로컬 추론 서버</h3><p>메모리 용량과 저소음이 중요하면 Mac, 최대 토큰 속도와 GPU 교체가 중요하면 NVIDIA.</p></article>
+<article class="decision-card reveal"><span class="badge">NVIDIA 우세</span><h3>대규모 학습·연구</h3><p>CUDA 전용 프로젝트, 여러 GPU, 분산 학습, 최신 연구 커널을 그대로 재현해야 하는 업무.<a class="ref" href="#source-21">[21]</a></p></article>
+</div>
+</div>
+</section>
+<section class="soft-section" id="buying">
+<div class="container">
+<div class="section-kicker reveal">Buying Guide</div>
+<h2 class="section-title reveal">AI용 Mac은 CPU 등급보다 먼저<br/><span class="marker">RAM과 메모리 대역폭</span>을 고르세요</h2>
+<p class="section-desc reveal">Mac의 통합 메모리는 구매 후 증설할 수 없습니다. 로컬 AI를 3년 이상 사용할 계획이라면 현재 필요한 용량보다 한 단계 여유 있게 고르는 편이 안전합니다. SSD는 외장 NVMe로 보완할 수 있지만 RAM은 보완할 수 없습니다.</p>
+<div class="buy-grid">
+<article class="buy-card reveal"><span class="buy-label">Cloud AI 중심</span><h3>MacBook Air M5</h3><div class="buy-spec">24~32GB / 1TB</div><p>ChatGPT·Codex·Claude Code와 7B~14B 로컬 모델을 가볍게 병행하는 휴대형 구성.</p><div class="buy-list"><div><i>✓</i><span>가볍고 배터리 우수</span></div><div><i>✓</i><span>일반 업무·개발에 충분</span></div><div><i>△</i><span>팬리스라 장시간 고부하 제약</span></div></div></article>
+<article class="buy-card featured reveal"><span class="buy-label">가장 균형적</span><h3>MacBook Pro M5 Pro</h3><div class="buy-spec">48~64GB / 1~2TB</div><p>32B급 로컬 모델, 대형 코드베이스, Obsidian·브라우저·에이전트 병행에 적합한 전문가 Sweet Spot.</p><div class="buy-list"><div><i>✓</i><span>지속 성능과 휴대성 균형</span></div><div><i>✓</i><span>307GB/s 메모리 대역폭</span></div><div><i>✓</i><span>로컬 AI 입문을 넘어선 실무</span></div></div></article>
+<article class="buy-card reveal"><span class="buy-label">고정형 가성비</span><h3>Mac mini M4 Pro</h3><div class="buy-spec">48~64GB / 1TB</div><p>24시간 가까이 켜두는 개인용 로컬 AI 서버, 자동화, 개발 환경으로 효율적인 선택.</p><div class="buy-list"><div><i>✓</i><span>작고 조용한 데스크톱</span></div><div><i>✓</i><span>273GB/s 메모리 대역폭</span></div><div><i>△</i><span>디스플레이·주변기기 별도</span></div></div></article>
+<article class="buy-card reveal"><span class="buy-label">대형 로컬 모델</span><h3>M5 Max / Mac Studio</h3><div class="buy-spec">96~512GB</div><p>70B 이상 모델, 다중 에이전트, 민감정보 로컬 처리, 사내 추론 노드를 위한 상위 구성.</p><div class="buy-list"><div><i>✓</i><span>대용량 모델 적재</span></div><div><i>✓</i><span>높은 메모리 대역폭</span></div><div><i>△</i><span>비용 대비 활용률 검토 필요</span></div></div></article>
+</div>
+<div class="priority-bar reveal"><div><h3>예산이 한정되면: <span class="marker">RAM → 칩 등급 → SSD</span> 순으로 검토</h3><p>로컬 AI에서는 모델이 메모리에 들어가는지가 1차 조건입니다. 다만 모델 파일은 수십~수백 GB이므로 최소 1TB, 여러 모델을 보관하면 2TB 또는 외장 NVMe를 권장합니다.</p></div><div class="priority-order"><span>1. RAM</span><span>2. 대역폭</span><span>3. 냉각</span><span>4. SSD</span></div></div>
+</div>
+</section>
+<section id="risks">
+<div class="container">
+<div class="section-kicker reveal">Limitations &amp; Risks</div>
+<h2 class="section-title reveal">Mac의 장점은 분명하지만,<br/><span class="marker">구매 전에 한계도 같이 봐야</span> 합니다</h2>
+<p class="section-desc reveal">대용량 통합 메모리만 보고 “모든 모델이 빠르게 돈다”고 판단하면 과투자할 수 있습니다. 모델 지원, 런타임 최적화, 메모리 대역폭, 발열, 컨텍스트 길이가 함께 작동합니다.</p>
+<div class="risk-grid">
+<article class="risk-card reveal"><div class="risk-icon">1</div><h3>CUDA 생태계 부재</h3><p>CUDA 전용 라이브러리와 연구 코드는 그대로 실행되지 않습니다. Metal·MLX·MPS 포팅 여부를 확인해야 합니다.</p></article>
+<article class="risk-card reveal"><div class="risk-icon">2</div><h3>구매 후 업그레이드 불가</h3><p>통합 메모리와 GPU는 교체할 수 없습니다. 부족하면 기기 전체를 바꿔야 하므로 초기 용량 선택이 중요합니다.</p></article>
+<article class="risk-card reveal"><div class="risk-icon">3</div><h3>적재와 속도는 다릅니다</h3><p>512GB에 초대형 모델이 들어가더라도 토큰 속도·첫 응답 시간·도구 호출 안정성이 실무 요구를 충족하는지는 별도입니다.</p></article>
+<article class="risk-card reveal"><div class="risk-icon">4</div><h3>긴 문맥의 KV Cache</h3><p>모델 가중치가 들어가도 64K·128K 문맥, 비전 입력, 병렬 요청은 추가 메모리를 크게 사용합니다.</p></article>
+<article class="risk-card reveal"><div class="risk-icon">5</div><h3>장시간 발열·스왑</h3><p>MacBook Air 같은 팬리스 기기는 지속 부하에서 성능이 낮아질 수 있고, RAM 부족 시 SSD Swap으로 체감 속도가 급락합니다.</p></article>
+<article class="risk-card reveal"><div class="risk-icon">6</div><h3>앱 버전 격차는 영구적이지 않음</h3><p>Mac-first 기능도 몇 주~몇 달 뒤 Windows에 추가될 수 있습니다. 구매 근거는 단일 앱보다 전체 워크플로여야 합니다.</p></article>
+</div>
+</div>
+</section>
+<section class="soft-section" id="conclusion">
+<div class="container">
+<div class="section-kicker reveal">Final Recommendation</div>
+<div class="final-card reveal">
+<h3>Mac은 <span class="marker">AI를 연구실 밖의 일상 업무로 가져오는 데</span> 가장 완성도 높은 개인용 플랫폼 중 하나입니다.</h3>
+<p>최신 데스크톱 에이전트를 빠르게 쓰고, 클라우드 모델과 로컬 모델을 섞고, 문서·코드·자동화를 한 환경에서 운영하려는 사용자에게 특히 유리합니다. 반면 모델을 직접 대규모로 학습하거나 GPU를 계속 증설할 계획이라면 Mac 단독보다 NVIDIA/Linux 또는 하이브리드 구성이 맞습니다.</p>
+<div class="final-choices">
+<div class="final-choice"><small>개인·임원·지식근로자</small><strong>Mac + Cloud AI + 24~32GB</strong><p>최신 앱과 에이전트 중심, 작은 로컬 모델을 보조로 사용.</p></div>
+<div class="final-choice"><small>개발자·자동화 전문가</small><strong>Mac + 48~128GB + Local LLM</strong><p>코딩 에이전트, RAG, 다중 앱, 민감 자료 로컬 처리.</p></div>
+<div class="final-choice"><small>AI 연구·대규모 학습</small><strong>Mac Client + Linux/NVIDIA Server</strong><p>Mac에서 개발·관리하고 학습은 CUDA 서버에 맡기는 하이브리드.</p></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sources">
+<div class="container">
+<div class="section-kicker reveal">Official Sources</div>
+<h2 class="section-title reveal">검증 기준과 공식 출처</h2>
+<p class="section-desc reveal">버전·사양·출시 시점은 2026년 8월 7일 기준입니다. “왜 Mac-first인가”, RAM 권장 범위, 용도별 평가는 공식 자료를 기반으로 한 분석·추정이며 실제 모델과 런타임에 따라 달라질 수 있습니다.</p>
+<div class="sources">
+<a class="source-card reveal" href="https://support.apple.com/en-us/100100" id="source-1" rel="noopener noreferrer" target="_blank"><span class="source-num">01</span><span class="source-copy"><strong>Apple Security Releases</strong><span>macOS Tahoe 26.6.1 · 2026.08.06</span></span></a>
+<a class="source-card reveal" href="https://developer.apple.com/macos/" id="source-2" rel="noopener noreferrer" target="_blank"><span class="source-num">02</span><span class="source-copy"><strong>Apple Developer · macOS</strong><span>macOS 27 · Foundation Models · Language Model protocol</span></span></a>
+<a class="source-card reveal" href="https://www.apple.com/newsroom/2026/03/apple-introduces-macbook-pro-with-all-new-m5-pro-and-m5-max/" id="source-3" rel="noopener noreferrer" target="_blank"><span class="source-num">03</span><span class="source-copy"><strong>Apple M5 Pro · M5 Max</strong><span>64GB/307GB/s · 128GB/614GB/s</span></span></a>
+<a class="source-card reveal" href="https://www.apple.com/newsroom/2025/03/apple-reveals-m3-ultra-taking-apple-silicon-to-a-new-extreme/" id="source-4" rel="noopener noreferrer" target="_blank"><span class="source-num">04</span><span class="source-copy"><strong>Apple M3 Ultra</strong><span>512GB 통합 메모리 · 800GB/s+ · 600B+ LLM</span></span></a>
+<a class="source-card reveal" href="https://developer.apple.com/videos/play/wwdc2025/315/" id="source-5" rel="noopener noreferrer" target="_blank"><span class="source-num">05</span><span class="source-copy"><strong>WWDC25 · Get started with MLX</strong><span>통합 메모리와 CPU·GPU 데이터 공유</span></span></a>
+<a class="source-card reveal" href="https://support.apple.com/en-us/126320" id="source-6" rel="noopener noreferrer" target="_blank"><span class="source-num">06</span><span class="source-copy"><strong>MacBook Air M5 사양</strong><span>최대 32GB · 153GB/s</span></span></a>
+<a class="source-card reveal" href="https://support.apple.com/en-ke/121555" id="source-7" rel="noopener noreferrer" target="_blank"><span class="source-num">07</span><span class="source-copy"><strong>Mac mini M4 Pro 사양</strong><span>최대 64GB · 273GB/s</span></span></a>
+<a class="source-card reveal" href="https://openai.com/index/gpt-4o-and-more-tools-to-chatgpt-free/" id="source-8" rel="noopener noreferrer" target="_blank"><span class="source-num">08</span><span class="source-copy"><strong>OpenAI · ChatGPT macOS App</strong><span>2024.05.13 macOS 데스크톱 앱 공개</span></span></a>
+<a class="source-card reveal" href="https://openai.com/index/introducing-the-codex-app/" id="source-9" rel="noopener noreferrer" target="_blank"><span class="source-num">09</span><span class="source-copy"><strong>OpenAI · Introducing the Codex app</strong><span>macOS 2026.02.02 · Windows 2026.03.04</span></span></a>
+<a class="source-card reveal" href="https://openai.com/index/codex-for-almost-everything/" id="source-10" rel="noopener noreferrer" target="_blank"><span class="source-num">10</span><span class="source-copy"><strong>OpenAI · Codex Computer Use</strong><span>초기 제공 플랫폼 macOS</span></span></a>
+<a class="source-card reveal" href="https://developers.openai.com/codex/changelog" id="source-11" rel="noopener noreferrer" target="_blank"><span class="source-num">11</span><span class="source-copy"><strong>OpenAI · ChatGPT &amp; Codex Changelog</strong><span>2026.07 macOS·Windows 통합 데스크톱 앱</span></span></a>
+<a class="source-card reveal" href="https://ollama.com/blog/mlx" id="source-12" rel="noopener noreferrer" target="_blank"><span class="source-num">12</span><span class="source-copy"><strong>Ollama · MLX on Apple Silicon</strong><span>통합 메모리를 활용하는 MLX 엔진</span></span></a>
+<a class="source-card reveal" href="https://ollama.com/blog/image-generation" id="source-13" rel="noopener noreferrer" target="_blank"><span class="source-num">13</span><span class="source-copy"><strong>Ollama · Local Image Generation</strong><span>macOS 우선 실험 공개</span></span></a>
+<a class="source-card reveal" href="https://ml-explore.github.io/mlx/" id="source-14" rel="noopener noreferrer" target="_blank"><span class="source-num">14</span><span class="source-copy"><strong>MLX 0.32.0 Documentation</strong><span>Apple Silicon 머신러닝 배열 프레임워크</span></span></a>
+<a class="source-card reveal" href="https://github.com/ml-explore/mlx-lm/releases" id="source-15" rel="noopener noreferrer" target="_blank"><span class="source-num">15</span><span class="source-copy"><strong>MLX-LM Releases</strong><span>v0.31.3 최신 릴리스 스냅샷</span></span></a>
+<a class="source-card reveal" href="https://github.com/ollama/ollama/releases" id="source-16" rel="noopener noreferrer" target="_blank"><span class="source-num">16</span><span class="source-copy"><strong>Ollama Releases</strong><span>v0.32.6 · Apple GPU MLX 엔진 업데이트</span></span></a>
+<a class="source-card reveal" href="https://lmstudio.ai/docs/app/system-requirements" id="source-17" rel="noopener noreferrer" target="_blank"><span class="source-num">17</span><span class="source-copy"><strong>LM Studio System Requirements</strong><span>Apple Silicon · 16GB+ 권장</span></span></a>
+<a class="source-card reveal" href="https://pytorch.org/blog/pytorch-2-13-release-blog/" id="source-18" rel="noopener noreferrer" target="_blank"><span class="source-num">18</span><span class="source-copy"><strong>PyTorch 2.13 Release</strong><span>Apple Silicon MPS · FlexAttention 개선</span></span></a>
+<a class="source-card reveal" href="https://huggingface.co/docs/transformers/quantization/overview" id="source-19" rel="noopener noreferrer" target="_blank"><span class="source-num">19</span><span class="source-copy"><strong>Hugging Face · Quantization</strong><span>낮은 정밀도로 메모리 요구량 절감</span></span></a>
+<a class="source-card reveal" href="https://huggingface.co/docs/transformers/llm_tutorial_optimization" id="source-20" rel="noopener noreferrer" target="_blank"><span class="source-num">20</span><span class="source-copy"><strong>Hugging Face · LLM Memory Optimization</strong><span>KV Cache·문맥 길이·4-bit 메모리 특성</span></span></a>
+<a class="source-card reveal" href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html" id="source-21" rel="noopener noreferrer" target="_blank"><span class="source-num">21</span><span class="source-copy"><strong>NVIDIA CUDA Guide</strong><span>CUDA-capable GPU와 Linux 중심 대규모 가속 환경</span></span></a>
+<a class="source-card reveal" href="https://lmstudio.ai/blog/0.4.0" id="source-22" rel="noopener noreferrer" target="_blank"><span class="source-num">22</span><span class="source-copy"><strong>LM Studio 0.4.0</strong><span>병렬 요청·Headless daemon·REST API</span></span></a>
+</div>
+</div>
+</section>
+<section class="soft-section" id="history">
+<div class="container">
+<div class="section-kicker reveal">Version &amp; AI Update History</div>
+<h2 class="section-title reveal">내용이 바뀌면 무엇이 달라졌는지<br/><span class="marker">최하단에 계속 기록</span>합니다</h2>
+<p class="section-desc reveal">이 보고서는 AI가 이후 최신 버전·하드웨어·앱 출시 정보를 갱신할 수 있도록 버전 정책과 변경 이력을 문서 안에 포함합니다.</p>
+<div class="history-shell reveal">
+<div class="history-head"><div><h3>보고서 업데이트 규칙</h3><p>향후 AI 수정 시 기존 이력을 삭제하지 않고 새 행을 추가합니다. 사실 정정은 Patch, 내용 추가는 Minor, 구조·결론 변화는 Major 버전을 올립니다. 상단 버전, 최종 업데이트일, 소프트웨어 스냅샷도 함께 갱신해야 합니다.</p></div><div class="version-seal"><small>Current Version</small><strong>v1.0.0</strong></div></div>
+<div class="update-policy"><div class="policy-item"><strong>Patch · v1.0.1</strong><span>오탈자, 수치 정정, 링크 보완</span></div><div class="policy-item"><strong>Minor · v1.1.0</strong><span>신규 제품·버전·분석 섹션 추가</span></div><div class="policy-item"><strong>Major · v2.0.0</strong><span>평가 기준·구조·핵심 결론 변경</span></div></div>
+<div class="table-wrap history-table">
+<table aria-label="보고서 업데이트 히스토리">
+<thead><tr><th>버전</th><th>업데이트일</th><th>구분</th><th>업데이트 내용</th><th>검증 범위</th><th>작성 주체</th></tr></thead>
+<tbody>
+<tr><td><strong>v1.0.0</strong></td><td>2026.08.07</td><td><span class="change-tag">최초 작성</span></td><td>Mac-first 출시 사례, 통합 메모리 구조, RAM 계산기·권장표, MLX·Ollama·LM Studio·PyTorch 버전, Windows/Linux 비교, 구매 가이드 추가</td><td>Apple·OpenAI·MLX·Ollama·LM Studio·PyTorch·NVIDIA 공식 자료 22건</td><td>AI 작성 · 사용자 검토 전</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+</main>
+<section aria-labelledby="rm-media-title" class="rm-media" id="rmMedia">
+<div class="rm-wrap">
+<div class="rm-section-head"><div class="rm-kicker">MEDIA &amp; REAL EXAMPLE</div><h2 id="rm-media-title">실제 이미지·공식 자료·업무 예시를 함께 봅니다</h2><p>이미지는 저장소 내부 파일로 제공해 깨짐을 줄였고, 영상은 기존 보고서의 검증된 링크가 있을 때만 클릭 로드합니다.</p></div>
+<div class="rm-media-grid">
+<article class="rm-media-card rm-media-card-media"><img alt="Apple 공식 로고" decoding="async" loading="lazy" src="assets/260807-mac-ai-ecosystem-advantage/cover.png"/><div class="rm-media-card-copy"><span class="rm-label">RELATED VISUAL</span><h3>왜 Mac은 AI 생태계에 유리한가 | Report v1.0.0 대표 이미지</h3><p>메인 도서관 썸네일과 본문이 같은 로컬 자산을 사용합니다.</p></div></article>
+<article class="rm-media-card"><span class="rm-label">VIDEO / OFFICIAL DEMO</span><h3>영상 또는 공식 데모</h3><div class="rm-video-placeholder"><div><div aria-hidden="true" class="rm-play">↗</div><strong>공식 데모·문서로 확인</strong></div></div><p style="margin-top:16px">검증되지 않은 영상을 임의로 넣지 않고, 공식 원문·데모 페이지를 바로 열 수 있게 구성했습니다.</p><div class="rm-source-list"><a href="https://www.apple.com/newsroom/2026/03/apple-introduces-macbook-pro-with-all-new-m5-pro-and-m5-max/" rel="noopener noreferrer" target="_blank">Apple M5 Pro / M5 Max</a><a href="https://lmstudio.ai/changelog" rel="noopener noreferrer" target="_blank">LM Studio Changelog</a></div></article>
+<article class="rm-media-card"><span class="rm-label">PRACTICAL EXAMPLE</span><h3>바로 적용하는 예시</h3><div class="rm-example"><strong>예시 시나리오</strong>예: 개인 RAG·프로토타입은 Mac, CUDA 커널·대규모 학습은 원격 NVIDIA 서버로 하이브리드 운영합니다.</div><p style="margin-top:16px">보고서의 추천은 작은 범위에서 검증한 뒤 확대하고, 중요한 판단은 원문과 사람 검토를 거칩니다.</p></article>
+</div>
+</div>
+</section><footer>
+<div class="container footer-inner"><div>Mac AI Ecosystem Advantage Report · 공식 자료 기반 분석</div><div class="footer-version"><span>Last updated 2026.08.07</span><b>v1.0.0</b></div></div>
+</footer>
+<button aria-label="맨 위로 이동" class="back-top" id="backTop" type="button"><svg fill="none" viewbox="0 0 24 24"><path d="m6 14 6-6 6 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></button>
+<div aria-live="polite" class="toast" id="toast" role="status">복사했습니다.</div>
+<script id="report-manifest" type="application/json">
   {
     "reportId": "mac-ai-ecosystem-advantage",
     "title": "왜 Mac은 AI 생태계에 유리한가",
@@ -938,8 +938,7 @@
     ]
   }
   </script>
-
-  <script>
+<script>
     const $ = (s, root = document) => root.querySelector(s);
     const $$ = (s, root = document) => [...root.querySelectorAll(s)];
     const progress = $('#scrollProgress');
@@ -1023,8 +1022,56 @@
 
     document.documentElement.dataset.reportVersion = '1.0.0';
   </script>
-
-<script src="../assets/report-view-counter.js" data-report-id="260807-mac-ai-ecosystem-advantage"></script>
-  <script src="../assets/report-page-layout.js?v=20260807c-wide-default"></script>
-</body>
+<script data-report-id="260807-mac-ai-ecosystem-advantage" src="../assets/report-view-counter.js"></script>
+<script src="../assets/report-page-layout.js?v=20260807c-wide-default"></script>
+<section aria-labelledby="rm-history-title" class="rm-history" id="rmHistory">
+<div class="rm-wrap">
+<div class="rm-history-head"><div><div class="rm-kicker">VERSION &amp; CHANGE LOG</div><h2 id="rm-history-title">버전 및 변경 이력</h2><p>최신 기록이 위에 오며, 과거 이력은 삭제하지 않습니다.</p></div><span class="rm-chip" id="rmHistoryVersion">Current v1.1.0</span></div>
+<div class="rm-history-table-wrap"><table class="rm-history-table"><thead><tr><th>버전</th><th>업데이트일</th><th>변경 구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr></thead><tbody id="rmHistoryBody"><tr><td>v1.1.0</td><td>2026.08.08</td><td>내용·출처·디자인 통합 업데이트</td><td>2026년 8월 8일 기준 최신 공식 자료를 대조하고, ‘도구 최신화’ 내용을 추가함. 공통 요약·미디어·출처·변경 이력 형식과 반응형·인쇄·접근성 규칙을 통일함.</td><td><span class="rm-status">AI-assisted · 자동 QA 완료 · 사람 검토 권장</span></td></tr><tr><td>v1.0.0</td><td>2026.08.07</td><td>기존 보고서 이력 복원</td><td>저장소에 존재하던 원본 보고서를 기준 버전으로 복원함.</td><td><span class="rm-status">AI-assisted · 원본 상태</span></td></tr></tbody></table></div>
+<div class="rm-integrity-note"><strong>검증 상태:</strong> 로컬 이미지 경로, 메타데이터 JSON, 버전 렌더링, 360px 반응형, A4 인쇄 규칙을 자동 점검했습니다. 가격·운영시간·구매·예약·의료·보안 판단은 배포 전 담당자의 최종 확인을 권장합니다.</div>
+</div>
+</section><script id="report-metadata" type="application/json">
+{
+  "schemaVersion": "1.0",
+  "reportId": "260807-mac-ai-ecosystem-advantage",
+  "title": "왜 Mac은 AI 생태계에 유리한가 | Report v1.0.0",
+  "version": "1.1.0",
+  "status": "Published",
+  "createdAt": "2026-08-07",
+  "updatedAt": "2026-08-08",
+  "language": "ko-KR",
+  "author": "Jeremy Lee",
+  "generation": "AI-assisted",
+  "reviewStatus": "Human review recommended",
+  "history": [
+    {
+      "version": "1.1.0",
+      "date": "2026-08-08",
+      "type": "내용·출처·디자인 통합 업데이트",
+      "summary": "2026년 8월 8일 기준 최신 공식 자료를 대조하고, ‘도구 최신화’ 내용을 추가함. 공통 요약·미디어·출처·변경 이력 형식과 반응형·인쇄·접근성 규칙을 통일함.",
+      "sections": [
+        "1페이지 요약",
+        "최신 검증",
+        "미디어·예시",
+        "출처",
+        "변경 이력",
+        "반응형·인쇄"
+      ],
+      "updatedBy": "AI-assisted",
+      "reviewStatus": "자동 QA 완료 · 사람 검토 권장"
+    },
+    {
+      "version": "1.0.0",
+      "date": "2026-08-07",
+      "type": "기존 보고서 이력 복원",
+      "summary": "저장소에 존재하던 원본 보고서를 기준 버전으로 복원함.",
+      "sections": [
+        "전체"
+      ],
+      "updatedBy": "AI-assisted",
+      "reviewStatus": "원본 상태"
+    }
+  ]
+}
+</script><script defer="True" src="assets/reportmode-unified-20260808.js"></script></body>
 </html>
