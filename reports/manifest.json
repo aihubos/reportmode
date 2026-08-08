@@ -1,7 +1,32 @@
 {
-  "generatedAt": "2026-08-08T06:40:22.448Z",
+  "generatedAt": "2026-08-08T15:45:00+09:00",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260808-ai-beginner-hermes-second-brain-50",
+      "slug": "ai-beginner-hermes-second-brain-50",
+      "title": "AI 입문 50페이지 교육 가이드북 | Hermes × Second Brain",
+      "subtitle": "비전공자용 AI·LLM·Agent·Hermes·Second Brain 교과서",
+      "category": "AI",
+      "summary": "비전공자 초보자를 위한 AI·LLM·토큰·모델 비교·AI Agent·Hermes·Second Brain·PARA·LLM Wiki 50페이지 교육 가이드북입니다.",
+      "createdAt": "2026-08-08T15:45:00+09:00",
+      "updatedAt": "2026-08-08T15:45:00+09:00",
+      "status": "published",
+      "path": "reports/260808-ai-beginner-hermes-second-brain-50/",
+      "url": "https://aihubos.github.io/reportmode/reports/260808-ai-beginner-hermes-second-brain-50/",
+      "displayDate": "260808",
+      "sourceCount": 34,
+      "tags": [
+        "ai",
+        "beginner",
+        "hermes",
+        "second-brain",
+        "llm",
+        "agent"
+      ],
+      "coverImage": "reports/260808-ai-beginner-hermes-second-brain-50/assets/cover.png",
+      "coverAlt": "Hermes 로고 · AI 입문 50페이지 교육 가이드"
+    },
     {
       "id": "260808-macbook-local-llm-lm-studio-v1-0-1",
       "slug": "macbook-local-llm-lm-studio-v1-0-1",
