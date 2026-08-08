@@ -1,12 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="MacBook Pro M5 Max 128GB에서 ComfyUI를 설치하고 FLUX 이미지와 Wan2.2 영상을 생성하는 비전공자용 실전 가이드" />
-  <meta name="theme-color" content="#ffffff" />
-  <title>MacBook Pro M5 Max 128GB · ComfyUI 실전 가이드 · v1.0.0</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="MacBook Pro M5 Max 128GB · ComfyUI 실전 가이드 — 2026년 8월 8일 최신 공식 자료와 사진·영상·예시·변경 이력을 반영한 AIHUBOS ReportMode 보고서" name="description"/>
+<meta content="#ffffff" name="theme-color"/>
+<title>MacBook Pro M5 Max 128GB · ComfyUI 실전 가이드 · v1.1.0</title>
+<style>
     :root {
       --blue:#3182f6; --blue-strong:#1b64da; --blue-soft:#e8f3ff;
       --ink:#191f28; --ink-2:#333d4b; --muted:#6b7684; --muted-2:#8b95a1;
@@ -59,105 +60,127 @@
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
     @media print{@page{size:A4;margin:12mm}body{background:#fff!important;color:#000}.nav-wrap,.floating-actions,.scroll-progress,.hero-actions,.copy-btn,.tab-list,.source-head .btn{display:none!important}.container{width:100%;max-width:none}.hero{min-height:auto;grid-template-columns:1fr 1fr;padding:8mm 0 12mm}.hero-visual:before{display:none}.hero-specs{position:static;margin-top:3mm}.hero-art,.card,.media-card,.setup-card,.metric-card,.ladder-card,.recommend-card,.thesis-card{box-shadow:none}.tab-panel{display:block!important;padding:5mm 0;border-top:1px solid #ccc}.tab-panel:before{content:attr(data-print-title);display:block;margin-bottom:3mm;font-size:16px;font-weight:800}.section-blue{color:#000!important;background:#fff!important;border-top:2px solid var(--blue);border-bottom:2px solid var(--blue)}.section-blue .section-desc,.section-blue p,.video-card p,.flow-step p,.offline-item span{color:#333!important}.video-card,.flow-step,.offline-demo,.offline-item,.recommend-card.blue-card{color:#000!important;background:#f4f6f8!important;border:1px solid #ccc}.video-card h3,.flow-step h3,.offline-item strong,.blue-card .recommend-item strong{color:#000!important}section{padding:12mm 0;break-inside:avoid}.source-grid{grid-template-columns:repeat(2,1fr)}video{display:none!important}.print-only{display:block!important}.reveal{opacity:1!important;transform:none!important}.history-table,.benchmark-table{min-width:0;font-size:9px}.history-table-wrap,.benchmark-table-wrap{overflow:visible}a{text-decoration:none}}
   </style>
-  <link rel="stylesheet" href="../assets/report-page-layout.css?v=20260807c-wide-default">
-</head>
-<body data-report-view="detail" data-report-layout="wide" data-report-cover="assets/260808-macbook-m5max-comfyui-practical-guide/cover.png" data-report-cover-alt="Apple 로고와 MacBook Pro 공식 제품 이미지">
-  <div class="scroll-progress" id="scrollProgress"></div>
-  <div class="nav-wrap">
-    <nav class="nav" aria-label="주요 메뉴">
-      <a class="brand" href="../archive/" aria-label="보고서 처음으로">
-        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.2 9.1 16 19 6.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        <span>AIHUBOS REPORTMODE</span><span class="brand-sub">ComfyUI Guide</span>
-      </a>
-      <div class="nav-links">
-        <a href="#summary">결론</a><a href="#install">설치</a><a href="#image">이미지</a><a href="#video">동영상</a><a href="#operations">운영</a><a href="#troubleshoot">문제 해결</a><a href="#sources">출처</a>
-      </div>
-      <div class="nav-actions"><a class="btn btn-ghost" href="#history">변경 이력</a><button class="btn btn-primary" type="button" onclick="window.print()">PDF 저장</button></div>
-    </nav>
-  </div>
-
-  <main id="top">
-    <div class="container">
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-copy reveal">
-          <div class="eyebrow"><span class="eyebrow-dot"></span>비전공자도 따라 하는 로컬 생성형 AI 가이드</div>
-          <h1 id="hero-title">MacBook Pro <span class="blue">M5 Max 128GB</span>로<br><span class="marker">ComfyUI</span> 이미지·영상 만들기</h1>
-          <p class="hero-lead">설치부터 MPS 확인, FLUX 이미지 생성, Wan2.2 텍스트·이미지 기반 영상 생성까지 한 흐름으로 정리했습니다. 결과물과 워크플로 파일을 함께 제공해 설명만 읽고 끝나지 않도록 구성했습니다.</p>
-          <div class="hero-actions"><a class="btn btn-primary" href="#install">설치부터 시작</a><a class="btn btn-ghost" href="#image">생성 예시 보기</a></div>
-          <div class="hero-note"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 10v6M12 7.2v.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>기준일 2026.08.08. 실제 사용자 장비에서 시간을 측정한 벤치마크는 아니며, 속도는 모델·해상도·ComfyUI/PyTorch 버전에 따라 달라집니다.</span></div>
-          <div class="report-meta" aria-label="보고서 버전 정보"><span class="version-badge" id="reportVersion">v1.0.0</span><span id="reportUpdated">Updated 2026.08.08</span><span class="meta-dot"></span><span id="reportGeneration">AI-generated · Human review recommended</span></div>
-        </div>
-        <div class="hero-visual reveal" aria-label="ComfyUI 작동 구조 일러스트">
-          <div class="hero-art"><img src="assets/260808-macbook-m5max-comfyui-practical-guide/comfyui-m5max-diagram.svg" alt="MacBook 화면에서 프롬프트, 모델, 샘플러, 출력 노드가 연결된 ComfyUI 구조" width="1200" height="820"></div>
-          <div class="hero-specs" aria-label="대상 장비 핵심 사양">
-            <div class="hero-spec"><span>UNIFIED MEMORY</span><strong>128GB</strong></div><div class="hero-spec"><span>GPU</span><strong>40-core</strong></div><div class="hero-spec"><span>MEMORY BANDWIDTH</span><strong>614GB/s</strong></div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <section id="summary" class="section-soft">
-      <div class="container">
-        <div class="section-kicker reveal">EXECUTIVE SUMMARY</div>
-        <h2 class="section-title reveal">용량은 충분하지만, 성공 여부는 <span class="blue">MPS 호환성과 워크플로 선택</span>이 좌우합니다</h2>
-        <p class="section-desc reveal">M5 Max 128GB는 대형 이미지·영상 모델을 메모리에 올릴 수 있는 강한 기반입니다. 다만 128GB가 모두 GPU 전용 메모리는 아니며, CUDA 전용 노드와 일부 연산은 Mac에서 다르게 작동할 수 있습니다.</p>
-        <article class="thesis-card reveal">
-          <div class="thesis-stamp" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M17 25.5a11 11 0 0 1 19.4-7.1A10.5 10.5 0 0 1 49 28.6a10 10 0 0 1-2.8 19.2H20.4A11.4 11.4 0 0 1 17 25.5Z" stroke="currentColor" stroke-width="3.2"/><path d="M24 31h16M24 38h12" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></svg></div>
-          <div class="thesis-copy"><h3>한 문장 결론</h3><p><strong>Desktop 앱 + MPS + FLUX.1 첫 이미지</strong>로 설치를 검증한 뒤, <strong>Wan2.2 5B·41프레임</strong>으로 영상 파이프라인을 확인하고 해상도와 프레임 수를 단계적으로 높이는 방식이 가장 안전합니다.</p></div>
-        </article>
-        <div class="insight-grid">
-          <article class="card reveal"><div class="card-index">01</div><h3>하드웨어 여유</h3><div class="easy">큰 책상을 가진 셈</div><p>128GB 통합 메모리는 모델·텍스트 인코더·VAE를 함께 다룰 여유를 줍니다. Apple 사양상 이 구성은 40코어 GPU와 614GB/s 대역폭 조합입니다.<a class="cite" href="#source-1">[1]</a></p></article>
-          <article class="card reveal"><div class="card-index">02</div><h3>권장 설치 경로</h3><div class="easy">먼저 앱으로 성공</div><p>비전공자는 Comfy Desktop을 권장합니다. macOS 13+, Apple Silicon, 설치당 약 4.85GB가 공식 최소 출발점입니다.<a class="cite" href="#source-3">[3]</a></p></article>
-          <article class="card reveal"><div class="card-index">03</div><h3>가장 큰 변수</h3><div class="easy">RAM보다 호환성</div><p>PyTorch는 Metal의 MPS로 GPU를 사용하지만 MPS 백엔드는 계속 개선되는 영역입니다. CUDA 전용 최적화와 동일한 결과·속도를 전제로 하면 안 됩니다.<a class="cite" href="#source-5">[5]</a></p></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="hardware">
-      <div class="container">
-        <div class="section-kicker reveal">HARDWARE FIT</div>
-        <h2 class="section-title reveal">M5 Max 128GB는 “실행 가능성”이 아니라 <span class="blue">운영 여유</span>를 확보한 구성입니다</h2>
-        <p class="section-desc reveal">모델이 메모리에 들어가는 것과 빠르게 생성되는 것은 다른 문제입니다. 이 장비는 용량 측면에서 강하지만, 실제 처리 시간은 각 노드의 Metal 지원과 모델 구조에 달려 있습니다.</p>
-        <div class="hardware-layout">
-          <figure class="photo-card reveal">
-            <img src="assets/260808-macbook-m5max-comfyui-practical-guide/apple-macbook-pro-m5.png" alt="Apple 공식 MacBook Pro 제품 이미지" loading="lazy" referrerpolicy="no-referrer">
-            <figcaption class="photo-credit">공식 제품 이미지: Apple MacBook Pro 기술 사양 페이지 · 로드 실패 시 설명용 로컬 일러스트 표시</figcaption>
-          </figure>
-          <div class="fit-panel">
-            <article class="fit-row reveal"><span class="fit-grade">매우 적합</span><div><h3>FLUX 이미지 생성</h3><p>1024×1024, 배치 1부터 시작하기에 충분한 메모리 여유가 있습니다. 32GB 초과 RAM에서는 FLUX의 FP16 T5 텍스트 인코더를 권장한다는 공식 예제 설명과도 부합합니다.<a class="cite" href="#source-7">[7]</a></p></div></article>
-            <article class="fit-row reveal"><span class="fit-grade">적합</span><div><h3>Wan2.2 5B 영상</h3><p>공식 문서는 5B 하이브리드 모델이 네이티브 오프로딩으로 8GB VRAM에도 맞는다고 안내합니다. 128GB 구성은 용량보다 생성 시간·노드 호환성을 먼저 확인해야 합니다.<a class="cite" href="#source-8">[8]</a></p></div></article>
-            <article class="fit-row reveal"><span class="fit-grade conditional">조건부</span><div><h3>Wan2.2 14B·고프레임</h3><p>메모리에는 들어갈 가능성이 높아도, 긴 영상은 픽셀 수×프레임 수×샘플링 단계만큼 계산량이 커집니다. 5B 파이프라인 검증 전 14B를 첫 모델로 선택하지 않는 편이 안전합니다.</p></div></article>
-            <article class="fit-row reveal"><span class="fit-grade conditional">확인 필요</span><div><h3>커스텀 노드</h3><p>CUDA 전용 라이브러리, Triton, xFormers 특정 기능을 요구하는 노드는 Mac에서 설치 실패 또는 CPU 폴백이 날 수 있습니다. 필요한 노드만 신뢰할 수 있는 출처에서 설치합니다.<a class="cite" href="#source-10">[10]</a></p></div></article>
-          </div>
-        </div>
-        <div class="decision-note reveal"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 20 6v5.7c0 4.6-3.2 7.6-8 9.3-4.8-1.7-8-4.7-8-9.3V6z" stroke="currentColor" stroke-width="1.8"/><path d="M12 8v5M12 16.2v.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><div><strong>중요:</strong> “128GB 통합 메모리 = 128GB 전용 VRAM”은 아닙니다. macOS, CPU, GPU, 앱이 같은 메모리 풀을 공유하므로 Activity Monitor의 <strong>메모리 압력</strong>을 기준으로 판단합니다.</div></div>
-      </div>
-    </section>
-
-    <section id="install" class="section-soft">
-      <div class="container">
-        <div class="section-kicker reveal">INSTALLATION</div>
-        <h2 class="section-title reveal">첫 설치는 Desktop, 장기 운영은 필요할 때만 수동 설치로 전환합니다</h2>
-        <p class="section-desc reveal">Desktop은 Python과 의존성을 자동 관리해 첫 성공률이 높습니다. 수동 설치는 최신 커밋, 독립 환경, 세밀한 버전 통제가 필요한 사용자에게 적합합니다.</p>
-        <div class="tabs reveal" data-tabs>
-          <div class="tab-list" role="tablist" aria-label="설치 방식 선택">
-            <button class="tab-button" id="tab-desktop" role="tab" aria-controls="panel-desktop" aria-selected="true">A. Desktop 앱 · 권장</button>
-            <button class="tab-button" id="tab-manual" role="tab" aria-controls="panel-manual" aria-selected="false">B. 수동 설치 · 고급</button>
-          </div>
-          <div class="tab-panel" id="panel-desktop" role="tabpanel" aria-labelledby="tab-desktop" data-print-title="A. Desktop 앱 설치">
-            <div class="install-grid">
-              <article class="install-step"><b>1</b><h3>macOS 확인</h3><p>Comfy Desktop 기준 macOS 13 이상, Apple Silicon이 필요합니다. 최신 MPS 수동 환경은 macOS 14 이상을 권장합니다.<a class="cite" href="#source-3">[3]</a></p></article>
-              <article class="install-step"><b>2</b><h3>공식 설치 파일</h3><p>ComfyUI 공식 macOS 다운로드 페이지에서 최신 DMG를 받습니다. 비공식 번들보다 공식 경로를 우선합니다.</p></article>
-              <article class="install-step"><b>3</b><h3>Applications로 이동</h3><p>DMG를 열고 Comfy Desktop을 Applications 폴더로 드래그한 뒤 Launchpad 또는 Spotlight에서 실행합니다.<a class="cite" href="#source-3">[3]</a></p></article>
-              <article class="install-step"><b>4</b><h3>보안 허용</h3><p>첫 실행 경고가 나오면 시스템 설정 → 개인정보 보호 및 보안 → 그래도 열기를 선택합니다.</p></article>
-              <article class="install-step"><b>5</b><h3>MPS 선택</h3><p>실행 장치 선택 화면이 나타나면 MPS를 선택합니다. CPU Mode는 문제 진단 외에는 선택하지 않습니다.</p></article>
-              <article class="install-step"><b>6</b><h3>전용 폴더 지정</h3><p>모델·출력·워크플로를 위한 빈 폴더를 지정합니다. 권장 예: <span class="inline-code">~/ComfyUI-Shared</span>.</p></article>
-            </div>
-            <div class="install-result">완료 기준: 앱이 열리고 기본 워크플로가 보이며, Queue/Run을 눌렀을 때 콘솔에 <strong>MPS</strong> 장치가 표시됩니다.</div>
-          </div>
-          <div class="tab-panel" id="panel-manual" role="tabpanel" aria-labelledby="tab-manual" data-print-title="B. 수동 설치" hidden>
-            <p>수동 설치는 가상환경 → 저장소 복제 → PyTorch/MPS → ComfyUI 의존성 → 실행 순서로 진행합니다. 공식 문서는 시스템 Python 오염을 피하기 위해 독립 환경을 권장하며, Python 3.13을 우선 권장하고 일부 커스텀 노드 의존성 문제가 있으면 3.12를 대안으로 안내합니다.<a class="cite" href="#source-4">[4]</a><a class="cite" href="#source-13">[13]</a></p>
-            <div class="code-wrap"><div class="code-head"><span>Terminal · Conda 기준</span><button class="copy-btn" type="button" data-copy>명령 복사</button></div><pre><code><span class="code-comment"># 0) Apple 개발 도구 설치</span>
+<link href="../assets/report-page-layout.css?v=20260807c-wide-default" rel="stylesheet"/>
+<link href="assets/reportmode-unified-20260808.css" rel="stylesheet"/><meta content="assets/260808-macbook-m5max-comfyui-practical-guide/cover.png" property="og:image"/><meta content="2026-08-08" name="report:updated"/></head>
+<body class="reportmode-unified" data-report-cover="assets/260808-macbook-m5max-comfyui-practical-guide/cover.png" data-report-cover-alt="Apple 로고와 MacBook Pro 공식 제품 이미지" data-report-id="260808-macbook-m5max-comfyui-practical-guide" data-report-layout="wide" data-report-view="detail"><a class="rm-skip" href="#rmUpdateSummary">최신 요약으로 건너뛰기</a><div class="rm-topline" id="rmTopline"><div class="rm-topline-inner">
+<a class="rm-topline-brand" href="../archive/"><span class="rm-topline-mark">R</span><span class="rm-topline-title">MacBook Pro M5 Max 128GB · ComfyUI 실전 가이드</span></a>
+<div class="rm-topline-meta"><span class="rm-chip" id="rmVersionTop">v1.1.0</span><span id="rmUpdated">2026.08.08</span></div>
+<div class="rm-topline-actions"><a href="#rmUpdateSummary">요약</a><a href="#rmHistory">이력</a><button aria-label="PDF 저장" data-rm-print="" type="button">PDF</button></div>
+</div></div><section aria-labelledby="rm-update-title" class="rm-brief" id="rmUpdateSummary">
+<div class="rm-wrap rm-brief-grid">
+<div>
+<div class="rm-kicker">2026.08.08 VERIFIED UPDATE · 공식 자료 확인</div>
+<h2 id="rm-update-title">MacBook Pro M5 Max 128GB · ComfyUI 실전 가이드<br/><span style="color:var(--rm-blue)">이번 업데이트의 한 문장 결론</span></h2>
+<p class="rm-brief-lead">기존 보고서를 보존하면서 최신 공식 자료, 실제 적용 예시, 미디어, 출처, 변경 이력을 공통 ReportMode 형식으로 보강했습니다.</p>
+<div class="rm-verdict"><span aria-hidden="true" class="rm-verdict-icon">✓</span><div><strong>M5 Max 128GB는 ComfyUI 실험에 강하지만, 워크플로 성공은 메모리보다 지원 노드·모델 포맷·해상도·프레임 수를 맞추는 데 달려 있습니다.</strong></div></div>
+<div class="rm-summary-cards">
+<article class="rm-summary-card"><b>01 · FACT</b><h3>공식 지원</h3><p>Comfy Desktop은 macOS 13+, Apple Silicon M1+, 설치당 4.85GB 이상을 권장합니다.</p></article>
+<article class="rm-summary-card"><b>02 · UPDATE</b><h3>최신 버전</h3><p>ComfyUI changelog는 2026년 8월 7일 v0.31.0을 기록합니다.</p></article>
+<article class="rm-summary-card"><b>03 · ACTION</b><h3>실전 순서</h3><p>정지 이미지 512~1024px → 짧은 영상·낮은 프레임 → 업스케일 순으로 확장하고 각 단계의 VRAM/통합메모리와 시간을 기록하세요.</p></article>
+</div>
+<div class="rm-brief-actions">
+<a class="rm-action rm-action-primary" href="#rmMedia">사진·영상·예시 보기</a>
+<a class="rm-action" href="#rmHistory">변경 이력 보기</a>
+<a class="rm-action" href="../archive/">보고서 도서관</a>
+</div>
+</div>
+<article class="rm-visual-card">
+<figure><img alt="Apple 로고와 MacBook Pro 공식 제품 이미지" decoding="async" loading="eager" src="assets/260808-macbook-m5max-comfyui-practical-guide/cover.png"/><figcaption><span>공식 로고 또는 보고서 관련 이미지</span><span id="rmVersion">v1.1.0</span></figcaption></figure>
+</article>
+</div>
+</section><section aria-label="상세 본문 기준일 안내" class="rm-detail-note" id="rmDetailedContentNote"><div class="rm-detail-note-inner"><span aria-hidden="true" class="rm-detail-note-icon">i</span><div><strong>상세 본문 읽기:</strong> 아래 영역은 기존 보고서의 상세 분석과 근거를 보존한 내용입니다. 날짜·가격·버전·출시 상태가 상단의 <strong>2026.08.08 검증 요약</strong>과 다르면 상단 확인값이 우선하며, 중요한 결정은 연결된 공식 원문을 다시 확인하세요.</div></div></section>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="nav-wrap">
+<nav aria-label="주요 메뉴" class="nav">
+<a aria-label="보고서 처음으로" class="brand" href="../archive/">
+<span aria-hidden="true" class="brand-mark"><svg fill="none" viewbox="0 0 24 24"><path d="M5 12.2 9.1 16 19 6.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6"></path></svg></span>
+<span>AIHUBOS REPORTMODE</span><span class="brand-sub">ComfyUI Guide</span>
+</a>
+<div class="nav-links">
+<a href="#summary">결론</a><a href="#install">설치</a><a href="#image">이미지</a><a href="#video">동영상</a><a href="#operations">운영</a><a href="#troubleshoot">문제 해결</a><a href="#sources">출처</a>
+</div>
+<div class="nav-actions"><a class="btn btn-ghost" href="#history">변경 이력</a><button class="btn btn-primary" onclick="window.print()" type="button">PDF 저장</button></div>
+</nav>
+</div>
+<main id="top">
+<div class="container">
+<section aria-labelledby="hero-title" class="hero">
+<div class="hero-copy reveal">
+<div class="eyebrow"><span class="eyebrow-dot"></span>비전공자도 따라 하는 로컬 생성형 AI 가이드</div>
+<h1 id="hero-title">MacBook Pro <span class="blue">M5 Max 128GB</span>로<br/><span class="marker">ComfyUI</span> 이미지·영상 만들기</h1>
+<p class="hero-lead">설치부터 MPS 확인, FLUX 이미지 생성, Wan2.2 텍스트·이미지 기반 영상 생성까지 한 흐름으로 정리했습니다. 결과물과 워크플로 파일을 함께 제공해 설명만 읽고 끝나지 않도록 구성했습니다.</p>
+<div class="hero-actions"><a class="btn btn-primary" href="#install">설치부터 시작</a><a class="btn btn-ghost" href="#image">생성 예시 보기</a></div>
+<div class="hero-note"><svg fill="none" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"></circle><path d="M12 10v6M12 7.2v.2" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path></svg><span>기준일 2026.08.08. 실제 사용자 장비에서 시간을 측정한 벤치마크는 아니며, 속도는 모델·해상도·ComfyUI/PyTorch 버전에 따라 달라집니다.</span></div>
+<div aria-label="보고서 버전 정보" class="report-meta"><span class="version-badge" id="reportVersion">v1.0.0</span><span id="reportUpdated">Updated 2026.08.08</span><span class="meta-dot"></span><span id="reportGeneration">AI-generated · Human review recommended</span></div>
+</div>
+<div aria-label="ComfyUI 작동 구조 일러스트" class="hero-visual reveal">
+<div class="hero-art"><img alt="MacBook 화면에서 프롬프트, 모델, 샘플러, 출력 노드가 연결된 ComfyUI 구조" decoding="async" height="820" loading="lazy" src="assets/260808-macbook-m5max-comfyui-practical-guide/comfyui-m5max-diagram.svg" width="1200"/></div>
+<div aria-label="대상 장비 핵심 사양" class="hero-specs">
+<div class="hero-spec"><span>UNIFIED MEMORY</span><strong>128GB</strong></div><div class="hero-spec"><span>GPU</span><strong>40-core</strong></div><div class="hero-spec"><span>MEMORY BANDWIDTH</span><strong>614GB/s</strong></div>
+</div>
+</div>
+</section>
+</div>
+<section class="section-soft" id="summary">
+<div class="container">
+<div class="section-kicker reveal">EXECUTIVE SUMMARY</div>
+<h2 class="section-title reveal">용량은 충분하지만, 성공 여부는 <span class="blue">MPS 호환성과 워크플로 선택</span>이 좌우합니다</h2>
+<p class="section-desc reveal">M5 Max 128GB는 대형 이미지·영상 모델을 메모리에 올릴 수 있는 강한 기반입니다. 다만 128GB가 모두 GPU 전용 메모리는 아니며, CUDA 전용 노드와 일부 연산은 Mac에서 다르게 작동할 수 있습니다.</p>
+<article class="thesis-card reveal">
+<div aria-hidden="true" class="thesis-stamp"><svg fill="none" viewbox="0 0 64 64"><path d="M17 25.5a11 11 0 0 1 19.4-7.1A10.5 10.5 0 0 1 49 28.6a10 10 0 0 1-2.8 19.2H20.4A11.4 11.4 0 0 1 17 25.5Z" stroke="currentColor" stroke-width="3.2"></path><path d="M24 31h16M24 38h12" stroke="currentColor" stroke-linecap="round" stroke-width="3.2"></path></svg></div>
+<div class="thesis-copy"><h3>한 문장 결론</h3><p><strong>Desktop 앱 + MPS + FLUX.1 첫 이미지</strong>로 설치를 검증한 뒤, <strong>Wan2.2 5B·41프레임</strong>으로 영상 파이프라인을 확인하고 해상도와 프레임 수를 단계적으로 높이는 방식이 가장 안전합니다.</p></div>
+</article>
+<div class="insight-grid">
+<article class="card reveal"><div class="card-index">01</div><h3>하드웨어 여유</h3><div class="easy">큰 책상을 가진 셈</div><p>128GB 통합 메모리는 모델·텍스트 인코더·VAE를 함께 다룰 여유를 줍니다. Apple 사양상 이 구성은 40코어 GPU와 614GB/s 대역폭 조합입니다.<a class="cite" href="#source-1">[1]</a></p></article>
+<article class="card reveal"><div class="card-index">02</div><h3>권장 설치 경로</h3><div class="easy">먼저 앱으로 성공</div><p>비전공자는 Comfy Desktop을 권장합니다. macOS 13+, Apple Silicon, 설치당 약 4.85GB가 공식 최소 출발점입니다.<a class="cite" href="#source-3">[3]</a></p></article>
+<article class="card reveal"><div class="card-index">03</div><h3>가장 큰 변수</h3><div class="easy">RAM보다 호환성</div><p>PyTorch는 Metal의 MPS로 GPU를 사용하지만 MPS 백엔드는 계속 개선되는 영역입니다. CUDA 전용 최적화와 동일한 결과·속도를 전제로 하면 안 됩니다.<a class="cite" href="#source-5">[5]</a></p></article>
+</div>
+</div>
+</section>
+<section id="hardware">
+<div class="container">
+<div class="section-kicker reveal">HARDWARE FIT</div>
+<h2 class="section-title reveal">M5 Max 128GB는 “실행 가능성”이 아니라 <span class="blue">운영 여유</span>를 확보한 구성입니다</h2>
+<p class="section-desc reveal">모델이 메모리에 들어가는 것과 빠르게 생성되는 것은 다른 문제입니다. 이 장비는 용량 측면에서 강하지만, 실제 처리 시간은 각 노드의 Metal 지원과 모델 구조에 달려 있습니다.</p>
+<div class="hardware-layout">
+<figure class="photo-card reveal">
+<img alt="Apple 공식 MacBook Pro 제품 이미지" decoding="async" loading="lazy" referrerpolicy="no-referrer" src="assets/260808-macbook-m5max-comfyui-practical-guide/apple-macbook-pro-m5.png"/>
+<figcaption class="photo-credit">공식 제품 이미지: Apple MacBook Pro 기술 사양 페이지 · 로드 실패 시 설명용 로컬 일러스트 표시</figcaption>
+</figure>
+<div class="fit-panel">
+<article class="fit-row reveal"><span class="fit-grade">매우 적합</span><div><h3>FLUX 이미지 생성</h3><p>1024×1024, 배치 1부터 시작하기에 충분한 메모리 여유가 있습니다. 32GB 초과 RAM에서는 FLUX의 FP16 T5 텍스트 인코더를 권장한다는 공식 예제 설명과도 부합합니다.<a class="cite" href="#source-7">[7]</a></p></div></article>
+<article class="fit-row reveal"><span class="fit-grade">적합</span><div><h3>Wan2.2 5B 영상</h3><p>공식 문서는 5B 하이브리드 모델이 네이티브 오프로딩으로 8GB VRAM에도 맞는다고 안내합니다. 128GB 구성은 용량보다 생성 시간·노드 호환성을 먼저 확인해야 합니다.<a class="cite" href="#source-8">[8]</a></p></div></article>
+<article class="fit-row reveal"><span class="fit-grade conditional">조건부</span><div><h3>Wan2.2 14B·고프레임</h3><p>메모리에는 들어갈 가능성이 높아도, 긴 영상은 픽셀 수×프레임 수×샘플링 단계만큼 계산량이 커집니다. 5B 파이프라인 검증 전 14B를 첫 모델로 선택하지 않는 편이 안전합니다.</p></div></article>
+<article class="fit-row reveal"><span class="fit-grade conditional">확인 필요</span><div><h3>커스텀 노드</h3><p>CUDA 전용 라이브러리, Triton, xFormers 특정 기능을 요구하는 노드는 Mac에서 설치 실패 또는 CPU 폴백이 날 수 있습니다. 필요한 노드만 신뢰할 수 있는 출처에서 설치합니다.<a class="cite" href="#source-10">[10]</a></p></div></article>
+</div>
+</div>
+<div class="decision-note reveal"><svg fill="none" viewbox="0 0 24 24"><path d="M12 3 20 6v5.7c0 4.6-3.2 7.6-8 9.3-4.8-1.7-8-4.7-8-9.3V6z" stroke="currentColor" stroke-width="1.8"></path><path d="M12 8v5M12 16.2v.2" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path></svg><div><strong>중요:</strong> “128GB 통합 메모리 = 128GB 전용 VRAM”은 아닙니다. macOS, CPU, GPU, 앱이 같은 메모리 풀을 공유하므로 Activity Monitor의 <strong>메모리 압력</strong>을 기준으로 판단합니다.</div></div>
+</div>
+</section>
+<section class="section-soft" id="install">
+<div class="container">
+<div class="section-kicker reveal">INSTALLATION</div>
+<h2 class="section-title reveal">첫 설치는 Desktop, 장기 운영은 필요할 때만 수동 설치로 전환합니다</h2>
+<p class="section-desc reveal">Desktop은 Python과 의존성을 자동 관리해 첫 성공률이 높습니다. 수동 설치는 최신 커밋, 독립 환경, 세밀한 버전 통제가 필요한 사용자에게 적합합니다.</p>
+<div class="tabs reveal" data-tabs="">
+<div aria-label="설치 방식 선택" class="tab-list" role="tablist">
+<button aria-controls="panel-desktop" aria-selected="true" class="tab-button" id="tab-desktop" role="tab">A. Desktop 앱 · 권장</button>
+<button aria-controls="panel-manual" aria-selected="false" class="tab-button" id="tab-manual" role="tab">B. 수동 설치 · 고급</button>
+</div>
+<div aria-labelledby="tab-desktop" class="tab-panel" data-print-title="A. Desktop 앱 설치" id="panel-desktop" role="tabpanel">
+<div class="install-grid">
+<article class="install-step"><b>1</b><h3>macOS 확인</h3><p>Comfy Desktop 기준 macOS 13 이상, Apple Silicon이 필요합니다. 최신 MPS 수동 환경은 macOS 14 이상을 권장합니다.<a class="cite" href="#source-3">[3]</a></p></article>
+<article class="install-step"><b>2</b><h3>공식 설치 파일</h3><p>ComfyUI 공식 macOS 다운로드 페이지에서 최신 DMG를 받습니다. 비공식 번들보다 공식 경로를 우선합니다.</p></article>
+<article class="install-step"><b>3</b><h3>Applications로 이동</h3><p>DMG를 열고 Comfy Desktop을 Applications 폴더로 드래그한 뒤 Launchpad 또는 Spotlight에서 실행합니다.<a class="cite" href="#source-3">[3]</a></p></article>
+<article class="install-step"><b>4</b><h3>보안 허용</h3><p>첫 실행 경고가 나오면 시스템 설정 → 개인정보 보호 및 보안 → 그래도 열기를 선택합니다.</p></article>
+<article class="install-step"><b>5</b><h3>MPS 선택</h3><p>실행 장치 선택 화면이 나타나면 MPS를 선택합니다. CPU Mode는 문제 진단 외에는 선택하지 않습니다.</p></article>
+<article class="install-step"><b>6</b><h3>전용 폴더 지정</h3><p>모델·출력·워크플로를 위한 빈 폴더를 지정합니다. 권장 예: <span class="inline-code">~/ComfyUI-Shared</span>.</p></article>
+</div>
+<div class="install-result">완료 기준: 앱이 열리고 기본 워크플로가 보이며, Queue/Run을 눌렀을 때 콘솔에 <strong>MPS</strong> 장치가 표시됩니다.</div>
+</div>
+<div aria-labelledby="tab-manual" class="tab-panel" data-print-title="B. 수동 설치" hidden="" id="panel-manual" role="tabpanel">
+<p>수동 설치는 가상환경 → 저장소 복제 → PyTorch/MPS → ComfyUI 의존성 → 실행 순서로 진행합니다. 공식 문서는 시스템 Python 오염을 피하기 위해 독립 환경을 권장하며, Python 3.13을 우선 권장하고 일부 커스텀 노드 의존성 문제가 있으면 3.12를 대안으로 안내합니다.<a class="cite" href="#source-4">[4]</a><a class="cite" href="#source-13">[13]</a></p>
+<div class="code-wrap"><div class="code-head"><span>Terminal · Conda 기준</span><button class="copy-btn" data-copy="" type="button">명령 복사</button></div><pre><code><span class="code-comment"># 0) Apple 개발 도구 설치</span>
 xcode-select --install
 
 <span class="code-comment"># 1) 독립 환경 생성 — Python 3.13 우선, 문제 시 3.12</span>
@@ -176,21 +199,20 @@ conda install pytorch-nightly::pytorch torchvision torchaudio -c pytorch-nightly
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 python main.py</code></pre></div>
-            <div class="install-result">브라우저가 자동으로 열리지 않으면 터미널에 표시된 로컬 주소를 엽니다. 종료는 터미널에서 <strong>Control + C</strong>입니다.</div>
-          </div>
-        </div>
-        <div class="download-strip reveal"><p><strong>운영 권고:</strong> Desktop과 수동 설치를 동시에 운영한다면 모델은 공유 폴더 하나에 두고 <span class="inline-code">extra_model_paths.yaml</span>로 연결해 중복 저장을 막습니다.<a class="cite" href="#source-4">[4]</a></p><a class="btn btn-outline" href="https://www.comfy.org/download" target="_blank" rel="noopener noreferrer">공식 다운로드 열기</a></div>
-      </div>
-    </section>
-
-    <section id="setup">
-      <div class="container">
-        <div class="section-kicker reveal">FIRST CONFIGURATION</div>
-        <h2 class="section-title reveal">모델 파일은 “아무 폴더”가 아니라 <span class="blue">역할별 서랍</span>에 넣어야 합니다</h2>
-        <p class="section-desc reveal">ComfyUI는 모델 유형별 폴더를 검색합니다. 파일 이름이 맞아도 폴더가 틀리면 노드 목록에 나타나지 않습니다. 파일을 넣은 뒤에는 앱 재시작 또는 <strong>R</strong> 키로 모델 목록을 새로고침합니다.<a class="cite" href="#source-6">[6]</a></p>
-        <div class="setup-grid">
-          <article class="setup-card reveal"><h3>권장 폴더 구조</h3><p>Desktop의 실제 루트는 설치 시 선택한 공유 폴더, 수동 설치는 <span class="inline-code">ComfyUI/models</span>입니다.</p>
-            <div class="code-wrap"><div class="code-head"><span>MODEL LIBRARY</span><button class="copy-btn" type="button" data-copy>구조 복사</button></div><pre><code>ComfyUI/
+<div class="install-result">브라우저가 자동으로 열리지 않으면 터미널에 표시된 로컬 주소를 엽니다. 종료는 터미널에서 <strong>Control + C</strong>입니다.</div>
+</div>
+</div>
+<div class="download-strip reveal"><p><strong>운영 권고:</strong> Desktop과 수동 설치를 동시에 운영한다면 모델은 공유 폴더 하나에 두고 <span class="inline-code">extra_model_paths.yaml</span>로 연결해 중복 저장을 막습니다.<a class="cite" href="#source-4">[4]</a></p><a class="btn btn-outline" href="https://www.comfy.org/download" rel="noopener noreferrer" target="_blank">공식 다운로드 열기</a></div>
+</div>
+</section>
+<section id="setup">
+<div class="container">
+<div class="section-kicker reveal">FIRST CONFIGURATION</div>
+<h2 class="section-title reveal">모델 파일은 “아무 폴더”가 아니라 <span class="blue">역할별 서랍</span>에 넣어야 합니다</h2>
+<p class="section-desc reveal">ComfyUI는 모델 유형별 폴더를 검색합니다. 파일 이름이 맞아도 폴더가 틀리면 노드 목록에 나타나지 않습니다. 파일을 넣은 뒤에는 앱 재시작 또는 <strong>R</strong> 키로 모델 목록을 새로고침합니다.<a class="cite" href="#source-6">[6]</a></p>
+<div class="setup-grid">
+<article class="setup-card reveal"><h3>권장 폴더 구조</h3><p>Desktop의 실제 루트는 설치 시 선택한 공유 폴더, 수동 설치는 <span class="inline-code">ComfyUI/models</span>입니다.</p>
+<div class="code-wrap"><div class="code-head"><span>MODEL LIBRARY</span><button class="copy-btn" data-copy="" type="button">구조 복사</button></div><pre><code>ComfyUI/
 ├─ models/
 │  ├─ diffusion_models/  <span class="code-comment"># FLUX, Wan 본체</span>
 │  ├─ text_encoders/     <span class="code-comment"># T5, CLIP, UMT5</span>
@@ -200,108 +222,105 @@ python main.py</code></pre></div>
 ├─ input/                <span class="code-comment"># I2V 입력 이미지</span>
 ├─ output/               <span class="code-comment"># 생성 결과</span>
 └─ user/                 <span class="code-comment"># 워크플로·설정</span></code></pre></div>
-          </article>
-          <article class="setup-card reveal"><h3>MPS 가속 확인</h3><p>“실행된다”보다 “GPU로 실행된다”를 확인해야 합니다. 아래 스크립트는 PyTorch가 MPS를 빌드했고 현재 장치에서 사용할 수 있는지 검사합니다.<a class="cite" href="#source-5">[5]</a></p>
-            <div class="code-wrap"><div class="code-head"><span>Terminal · comfyenv 활성화 후</span><button class="copy-btn" type="button" data-copy>명령 복사</button></div><pre><code>cd ~/AI/ComfyUI
+</article>
+<article class="setup-card reveal"><h3>MPS 가속 확인</h3><p>“실행된다”보다 “GPU로 실행된다”를 확인해야 합니다. 아래 스크립트는 PyTorch가 MPS를 빌드했고 현재 장치에서 사용할 수 있는지 검사합니다.<a class="cite" href="#source-5">[5]</a></p>
+<div class="code-wrap"><div class="code-head"><span>Terminal · comfyenv 활성화 후</span><button class="copy-btn" data-copy="" type="button">명령 복사</button></div><pre><code>cd ~/AI/ComfyUI
 python /path/to/verify_mps.py
 
 <span class="code-comment"># 기대 결과</span>
 MPS built: True
 MPS available: True
 MPS tensor test: tensor([1.], device='mps:0')</code></pre></div>
-            <div class="media-actions"><a class="btn btn-outline" href="scripts/verify_mps.py" download>verify_mps.py 받기</a></div>
-          </article>
-        </div>
-        <div class="metric-grid reveal">
-          <article class="metric-card"><span>공식 Desktop 기본 공간</span><strong>4.85GB+</strong><p>설치 인스턴스 하나의 출발점. 모델·출력은 별도입니다.<a class="cite" href="#source-3">[3]</a></p></article>
-          <article class="metric-card"><span>실전 여유 공간 · 보고서 권고</span><strong>150–300GB</strong><p>FLUX + Wan 5B + 캐시 + 출력 보관을 위한 운영 추정치입니다.</p></article>
-          <article class="metric-card"><span>첫 Queue</span><strong>1개씩</strong><p>동시 생성보다 단일 작업으로 오류와 메모리 압력을 먼저 확인합니다.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="image" class="section-soft">
-      <div class="container">
-        <div class="section-kicker reveal">IMAGE GENERATION · FLUX.1 DEV</div>
-        <h2 class="section-title reveal">공식 예제 PNG를 끌어놓으면 <span class="blue">그 결과를 만든 노드 그래프</span>가 열립니다</h2>
-        <p class="section-desc reveal">ComfyUI 공식 예제 이미지는 워크플로 메타데이터를 포함합니다. 아래 PNG를 다운로드해 ComfyUI 캔버스에 드래그하면 모델 파일만 갖춰진 상태에서 동일한 구조를 불러올 수 있습니다.<a class="cite" href="#source-12">[12]</a></p>
-        <div class="media-layout">
-          <figure class="media-card square reveal">
-            <img src="assets/260808-macbook-m5max-comfyui-practical-guide/flux-dev-example.png" alt="FLUX.1 Dev로 생성한 여우 귀 메이드가 케이크를 들고 있는 공식 ComfyUI 예제 이미지" width="1024" height="1024" loading="lazy">
-            <figcaption class="media-copy"><span class="media-badge">ACTUAL COMFYUI OUTPUT · WORKFLOW EMBEDDED</span><h3>FLUX.1 Dev 공식 생성 예시</h3><p>1024×1024 PNG 안에 실제 워크플로와 API 프롬프트가 포함되어 있습니다. 보고서 패키지에는 추출한 JSON도 함께 제공합니다. 예제 저장소 라이선스는 워크플로 재사용을 허용하지만, 생성 이미지의 별도 재배포 권리와 모델 이용 조건은 프로젝트 목적에 맞게 다시 확인해야 합니다.<a class="cite" href="#source-15">[15]</a></p><div class="media-actions"><a class="btn btn-primary" href="assets/260808-macbook-m5max-comfyui-practical-guide/flux-dev-example.png" download>PNG 받기</a><a class="btn btn-outline" href="assets/260808-macbook-m5max-comfyui-practical-guide/workflow.json" download>Workflow JSON</a><a class="btn btn-outline" href="assets/260808-macbook-m5max-comfyui-practical-guide/prompt.json" download>API Prompt JSON</a></div></figcaption>
-          </figure>
-          <div class="reveal">
-            <div class="prompt-box"><span>POSITIVE PROMPT · 실제 PNG 메타데이터</span><p>cute anime girl with massive fluffy fennec ears and a big fluffy tail, blonde messy long hair, blue eyes, wearing a maid outfit with a long black gold leaf pattern dress and a white apron, holding a fancy black forest cake with candles, in the kitchen of an old dark Victorian mansion lit by candlelight, bright window to a foggy forest</p><p class="prompt-korean">핵심은 “주체 → 외형 → 의상 → 행동 → 배경 → 조명” 순서입니다. 긴 수식어보다 충돌 없는 장면 구조가 재현성에 유리합니다.</p></div>
-            <div class="settings-list" aria-label="FLUX 공식 예제 설정">
-              <div class="setting-row"><b>Diffusion Model</b><span><span class="inline-code">flux1-dev.safetensors</span> → <span class="inline-code">models/diffusion_models</span></span></div>
-              <div class="setting-row"><b>Text Encoders</b><span><span class="inline-code">t5xxl_fp16.safetensors</span> + <span class="inline-code">clip_l.safetensors</span> → <span class="inline-code">models/text_encoders</span></span></div>
-              <div class="setting-row"><b>VAE</b><span><span class="inline-code">ae.safetensors</span> → <span class="inline-code">models/vae</span></span></div>
-              <div class="setting-row"><b>Canvas</b><span>1024 × 1024 · Batch 1</span></div>
-              <div class="setting-row"><b>Sampling</b><span>20 steps · Euler · Simple · Denoise 1.0</span></div>
-              <div class="setting-row"><b>Guidance</b><span>3.5 · Seed는 고정하면 같은 조건 비교 가능</span></div>
-            </div>
-            <div class="decision-note"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 20 6v5.7c0 4.6-3.2 7.6-8 9.3-4.8-1.7-8-4.7-8-9.3V6z" stroke="currentColor" stroke-width="1.8"/><path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.8"/></svg><div><strong>128GB 활용법:</strong> 첫 성공은 FP8 체크포인트도 좋지만, 품질 확인 단계에서는 공식 분리형 모델과 FP16 T5를 사용할 여유가 있습니다. FP8은 메모리를 줄이는 대신 품질이 소폭 저하될 수 있습니다.<a class="cite" href="#source-7">[7]</a></div></div>
-          </div>
-        </div>
-        <div class="download-strip reveal"><p><strong>실행 순서:</strong> PNG 드래그 → 빨간 노드의 모델 파일명 확인 → 각 모델 다운로드·배치 → R 키로 새로고침 → 프롬프트 수정 → <strong>Cmd + Enter</strong>. FLUX.1 Dev 가중치는 모델 카드의 이용 조건 동의가 필요합니다.<a class="cite" href="#source-14">[14]</a></p><div class="media-actions"><a class="btn btn-outline" href="https://comfyanonymous.github.io/ComfyUI_examples/flux/" target="_blank" rel="noopener noreferrer">공식 FLUX 예제</a><a class="btn btn-outline" href="https://huggingface.co/black-forest-labs/FLUX.1-dev" target="_blank" rel="noopener noreferrer">FLUX.1 Dev 모델 카드</a></div></div>
-      </div>
-    </section>
-
-    <section id="video" class="section-blue">
-      <div class="container">
-        <div class="section-kicker reveal">VIDEO GENERATION · WAN2.2 5B</div>
-        <h2 class="section-title reveal">텍스트만 넣는 T2V와 첫 장면을 주는 I2V를 <span class="marker">같은 5B 워크플로</span>로 검증합니다</h2>
-        <p class="section-desc reveal">공식 템플릿은 Workflow → Browse Templates → Video → “Wan2.2 5B video generation”에서 불러올 수 있습니다. 5B 모델은 텍스트·이미지 기반 영상을 한 워크플로에서 다룹니다.<a class="cite" href="#source-8">[8]</a></p>
-        <div class="video-grid">
-          <article class="video-card reveal">
-            <img src="assets/260808-macbook-m5max-comfyui-practical-guide/wan22-text-to-video-5b.webp" alt="화산이 분화하는 산비탈을 여우가 걷는 Wan2.2 5B 공식 텍스트-투-비디오 애니메이션" loading="lazy" referrerpolicy="no-referrer">
-            <div class="video-copy"><span class="media-badge">OFFICIAL ACTUAL OUTPUT · ONLINE</span><h3>A. Text-to-Video</h3><p><strong style="color:#fff">예시 프롬프트:</strong> drone shot of a volcano erupting with a fox walking on it</p><div class="media-actions"><a class="btn btn-outline" href="https://raw.githubusercontent.com/comfyanonymous/ComfyUI_examples/master/wan22/text_to_video_wan22_5B.json" target="_blank" rel="noopener noreferrer">공식 JSON</a><a class="btn btn-outline" href="assets/260808-macbook-m5max-comfyui-practical-guide/wan22-text-to-video-5b.webp" target="_blank" rel="noopener noreferrer">원본 WebP</a></div></div>
-          </article>
-          <article class="video-card reveal">
-            <img src="assets/260808-macbook-m5max-comfyui-practical-guide/wan22-image-to-video-5b.webp" alt="여우 귀 캐릭터가 들판에서 움직이는 Wan2.2 5B 공식 이미지-투-비디오 애니메이션" loading="lazy" referrerpolicy="no-referrer">
-            <div class="video-copy"><span class="media-badge">OFFICIAL ACTUAL OUTPUT · ONLINE</span><h3>B. Image-to-Video</h3><p>Load Image 노드를 활성화해 첫 프레임을 연결합니다. 움직임, 카메라, 유지해야 할 요소를 프롬프트로 지정합니다.</p><div class="media-actions"><a class="btn btn-outline" href="https://raw.githubusercontent.com/comfyanonymous/ComfyUI_examples/master/wan22/image_to_video_wan22_5B.json" target="_blank" rel="noopener noreferrer">공식 JSON</a><a class="btn btn-outline" href="assets/260808-macbook-m5max-comfyui-practical-guide/wan22-image-to-video-5b.webp" target="_blank" rel="noopener noreferrer">원본 WebP</a></div></div>
-          </article>
-        </div>
-        <div class="offline-demo reveal">
-          <p><strong style="color:#fff">패키지 내 로컬 MP4:</strong> 아래 파일은 브라우저 재생과 전달 포맷을 확인하기 위한 부속 예시입니다. 첫 영상은 첨부 FLUX 이미지에 카메라 모션만 적용했으며, 둘째는 공식 T2V 프롬프트의 절차형 스토리보드입니다. <strong style="color:#fff">Wan2.2 모델 출력으로 오인하지 마십시오.</strong></p>
-          <div class="offline-grid">
-            <div class="offline-item"><img src="assets/260808-macbook-m5max-comfyui-practical-guide/wan22-image-to-video-5b.webp" alt="로컬 I2V 모션 미리보기" loading="lazy" style="width:100%;border-radius:16px;display:block"><div><strong>로컬 I2V 모션 미리보기</strong><span>FLUX 정지 이미지 + 카메라 이동 · 7초 MP4 · 공식 예제 이미지</span></div></div>
-            <div class="offline-item"><img src="assets/260808-macbook-m5max-comfyui-practical-guide/wan22-text-to-video-5b.webp" alt="로컬 T2V 스토리보드" loading="lazy" style="width:100%;border-radius:16px;display:block"><div><strong>로컬 T2V 스토리보드</strong><span>화산·여우 프롬프트 장면 설계 · 6초 MP4 · 공식 예제 이미지</span></div></div>
-          </div>
-        </div>
-        <div class="flow-grid">
-          <article class="flow-step reveal"><div class="flow-num">1</div><h3>템플릿 로드</h3><p>Video 템플릿에서 Wan2.2 5B 워크플로를 엽니다.</p></article>
-          <article class="flow-step reveal"><div class="flow-num">2</div><h3>모델 배치</h3><p>5B 본체, UMT5 텍스트 인코더, Wan VAE를 지정 폴더에 넣습니다.</p></article>
-          <article class="flow-step reveal"><div class="flow-num">3</div><h3>입력 선택</h3><p>T2V는 시작 이미지 없음. I2V는 Load Image를 start_image에 연결합니다.</p></article>
-          <article class="flow-step reveal"><div class="flow-num">4</div><h3>짧게 검증</h3><p>1280×704, 41프레임, 30 steps, batch 1로 첫 결과를 확인합니다.</p></article>
-          <article class="flow-step reveal"><div class="flow-num">5</div><h3>품질 확대</h3><p>성공 후 프레임·해상도·모델 규모를 한 번에 하나씩 높입니다.</p></article>
-        </div>
-        <div class="code-wrap reveal"><div class="code-head"><span>Wan2.2 5B · 모델 배치</span><button class="copy-btn" type="button" data-copy>구조 복사</button></div><pre><code>ComfyUI/models/
+<div class="media-actions"><a class="btn btn-outline" download="" href="../scripts/verify_mps.py">verify_mps.py 받기</a></div>
+</article>
+</div>
+<div class="metric-grid reveal">
+<article class="metric-card"><span>공식 Desktop 기본 공간</span><strong>4.85GB+</strong><p>설치 인스턴스 하나의 출발점. 모델·출력은 별도입니다.<a class="cite" href="#source-3">[3]</a></p></article>
+<article class="metric-card"><span>실전 여유 공간 · 보고서 권고</span><strong>150–300GB</strong><p>FLUX + Wan 5B + 캐시 + 출력 보관을 위한 운영 추정치입니다.</p></article>
+<article class="metric-card"><span>첫 Queue</span><strong>1개씩</strong><p>동시 생성보다 단일 작업으로 오류와 메모리 압력을 먼저 확인합니다.</p></article>
+</div>
+</div>
+</section>
+<section class="section-soft" id="image">
+<div class="container">
+<div class="section-kicker reveal">IMAGE GENERATION · FLUX.1 DEV</div>
+<h2 class="section-title reveal">공식 예제 PNG를 끌어놓으면 <span class="blue">그 결과를 만든 노드 그래프</span>가 열립니다</h2>
+<p class="section-desc reveal">ComfyUI 공식 예제 이미지는 워크플로 메타데이터를 포함합니다. 아래 PNG를 다운로드해 ComfyUI 캔버스에 드래그하면 모델 파일만 갖춰진 상태에서 동일한 구조를 불러올 수 있습니다.<a class="cite" href="#source-12">[12]</a></p>
+<div class="media-layout">
+<figure class="media-card square reveal">
+<img alt="FLUX.1 Dev로 생성한 여우 귀 메이드가 케이크를 들고 있는 공식 ComfyUI 예제 이미지" decoding="async" height="1024" loading="lazy" src="assets/260808-macbook-m5max-comfyui-practical-guide/flux-dev-example.png" width="1024"/>
+<figcaption class="media-copy"><span class="media-badge">ACTUAL COMFYUI OUTPUT · WORKFLOW EMBEDDED</span><h3>FLUX.1 Dev 공식 생성 예시</h3><p>1024×1024 PNG 안에 실제 워크플로와 API 프롬프트가 포함되어 있습니다. 보고서 패키지에는 추출한 JSON도 함께 제공합니다. 예제 저장소 라이선스는 워크플로 재사용을 허용하지만, 생성 이미지의 별도 재배포 권리와 모델 이용 조건은 프로젝트 목적에 맞게 다시 확인해야 합니다.<a class="cite" href="#source-15">[15]</a></p><div class="media-actions"><a class="btn btn-primary" download="" href="assets/260808-macbook-m5max-comfyui-practical-guide/flux-dev-example.png">PNG 받기</a><a class="btn btn-outline" download="" href="assets/260808-macbook-m5max-comfyui-practical-guide/workflow.json">Workflow JSON</a><a class="btn btn-outline" download="" href="assets/260808-macbook-m5max-comfyui-practical-guide/prompt.json">API Prompt JSON</a></div></figcaption>
+</figure>
+<div class="reveal">
+<div class="prompt-box"><span>POSITIVE PROMPT · 실제 PNG 메타데이터</span><p>cute anime girl with massive fluffy fennec ears and a big fluffy tail, blonde messy long hair, blue eyes, wearing a maid outfit with a long black gold leaf pattern dress and a white apron, holding a fancy black forest cake with candles, in the kitchen of an old dark Victorian mansion lit by candlelight, bright window to a foggy forest</p><p class="prompt-korean">핵심은 “주체 → 외형 → 의상 → 행동 → 배경 → 조명” 순서입니다. 긴 수식어보다 충돌 없는 장면 구조가 재현성에 유리합니다.</p></div>
+<div aria-label="FLUX 공식 예제 설정" class="settings-list">
+<div class="setting-row"><b>Diffusion Model</b><span><span class="inline-code">flux1-dev.safetensors</span> → <span class="inline-code">models/diffusion_models</span></span></div>
+<div class="setting-row"><b>Text Encoders</b><span><span class="inline-code">t5xxl_fp16.safetensors</span> + <span class="inline-code">clip_l.safetensors</span> → <span class="inline-code">models/text_encoders</span></span></div>
+<div class="setting-row"><b>VAE</b><span><span class="inline-code">ae.safetensors</span> → <span class="inline-code">models/vae</span></span></div>
+<div class="setting-row"><b>Canvas</b><span>1024 × 1024 · Batch 1</span></div>
+<div class="setting-row"><b>Sampling</b><span>20 steps · Euler · Simple · Denoise 1.0</span></div>
+<div class="setting-row"><b>Guidance</b><span>3.5 · Seed는 고정하면 같은 조건 비교 가능</span></div>
+</div>
+<div class="decision-note"><svg fill="none" viewbox="0 0 24 24"><path d="M12 3 20 6v5.7c0 4.6-3.2 7.6-8 9.3-4.8-1.7-8-4.7-8-9.3V6z" stroke="currentColor" stroke-width="1.8"></path><path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.8"></path></svg><div><strong>128GB 활용법:</strong> 첫 성공은 FP8 체크포인트도 좋지만, 품질 확인 단계에서는 공식 분리형 모델과 FP16 T5를 사용할 여유가 있습니다. FP8은 메모리를 줄이는 대신 품질이 소폭 저하될 수 있습니다.<a class="cite" href="#source-7">[7]</a></div></div>
+</div>
+</div>
+<div class="download-strip reveal"><p><strong>실행 순서:</strong> PNG 드래그 → 빨간 노드의 모델 파일명 확인 → 각 모델 다운로드·배치 → R 키로 새로고침 → 프롬프트 수정 → <strong>Cmd + Enter</strong>. FLUX.1 Dev 가중치는 모델 카드의 이용 조건 동의가 필요합니다.<a class="cite" href="#source-14">[14]</a></p><div class="media-actions"><a class="btn btn-outline" href="https://comfyanonymous.github.io/ComfyUI_examples/flux/" rel="noopener noreferrer" target="_blank">공식 FLUX 예제</a><a class="btn btn-outline" href="https://huggingface.co/black-forest-labs/FLUX.1-dev" rel="noopener noreferrer" target="_blank">FLUX.1 Dev 모델 카드</a></div></div>
+</div>
+</section>
+<section class="section-blue" id="video">
+<div class="container">
+<div class="section-kicker reveal">VIDEO GENERATION · WAN2.2 5B</div>
+<h2 class="section-title reveal">텍스트만 넣는 T2V와 첫 장면을 주는 I2V를 <span class="marker">같은 5B 워크플로</span>로 검증합니다</h2>
+<p class="section-desc reveal">공식 템플릿은 Workflow → Browse Templates → Video → “Wan2.2 5B video generation”에서 불러올 수 있습니다. 5B 모델은 텍스트·이미지 기반 영상을 한 워크플로에서 다룹니다.<a class="cite" href="#source-8">[8]</a></p>
+<div class="video-grid">
+<article class="video-card reveal">
+<img alt="화산이 분화하는 산비탈을 여우가 걷는 Wan2.2 5B 공식 텍스트-투-비디오 애니메이션" decoding="async" loading="lazy" referrerpolicy="no-referrer" src="assets/260808-macbook-m5max-comfyui-practical-guide/wan22-text-to-video-5b.webp"/>
+<div class="video-copy"><span class="media-badge">OFFICIAL ACTUAL OUTPUT · ONLINE</span><h3>A. Text-to-Video</h3><p><strong style="color:#fff">예시 프롬프트:</strong> drone shot of a volcano erupting with a fox walking on it</p><div class="media-actions"><a class="btn btn-outline" href="https://raw.githubusercontent.com/comfyanonymous/ComfyUI_examples/master/wan22/text_to_video_wan22_5B.json" rel="noopener noreferrer" target="_blank">공식 JSON</a><a class="btn btn-outline" href="assets/260808-macbook-m5max-comfyui-practical-guide/wan22-text-to-video-5b.webp" rel="noopener noreferrer" target="_blank">원본 WebP</a></div></div>
+</article>
+<article class="video-card reveal">
+<img alt="여우 귀 캐릭터가 들판에서 움직이는 Wan2.2 5B 공식 이미지-투-비디오 애니메이션" decoding="async" loading="lazy" referrerpolicy="no-referrer" src="assets/260808-macbook-m5max-comfyui-practical-guide/wan22-image-to-video-5b.webp"/>
+<div class="video-copy"><span class="media-badge">OFFICIAL ACTUAL OUTPUT · ONLINE</span><h3>B. Image-to-Video</h3><p>Load Image 노드를 활성화해 첫 프레임을 연결합니다. 움직임, 카메라, 유지해야 할 요소를 프롬프트로 지정합니다.</p><div class="media-actions"><a class="btn btn-outline" href="https://raw.githubusercontent.com/comfyanonymous/ComfyUI_examples/master/wan22/image_to_video_wan22_5B.json" rel="noopener noreferrer" target="_blank">공식 JSON</a><a class="btn btn-outline" href="assets/260808-macbook-m5max-comfyui-practical-guide/wan22-image-to-video-5b.webp" rel="noopener noreferrer" target="_blank">원본 WebP</a></div></div>
+</article>
+</div>
+<div class="offline-demo reveal">
+<p><strong style="color:#fff">패키지 내 로컬 MP4:</strong> 아래 파일은 브라우저 재생과 전달 포맷을 확인하기 위한 부속 예시입니다. 첫 영상은 첨부 FLUX 이미지에 카메라 모션만 적용했으며, 둘째는 공식 T2V 프롬프트의 절차형 스토리보드입니다. <strong style="color:#fff">Wan2.2 모델 출력으로 오인하지 마십시오.</strong></p>
+<div class="offline-grid">
+<div class="offline-item"><img alt="로컬 I2V 모션 미리보기" decoding="async" loading="lazy" src="assets/260808-macbook-m5max-comfyui-practical-guide/wan22-image-to-video-5b.webp" style="width:100%;border-radius:16px;display:block"/><div><strong>로컬 I2V 모션 미리보기</strong><span>FLUX 정지 이미지 + 카메라 이동 · 7초 MP4 · 공식 예제 이미지</span></div></div>
+<div class="offline-item"><img alt="로컬 T2V 스토리보드" decoding="async" loading="lazy" src="assets/260808-macbook-m5max-comfyui-practical-guide/wan22-text-to-video-5b.webp" style="width:100%;border-radius:16px;display:block"/><div><strong>로컬 T2V 스토리보드</strong><span>화산·여우 프롬프트 장면 설계 · 6초 MP4 · 공식 예제 이미지</span></div></div>
+</div>
+</div>
+<div class="flow-grid">
+<article class="flow-step reveal"><div class="flow-num">1</div><h3>템플릿 로드</h3><p>Video 템플릿에서 Wan2.2 5B 워크플로를 엽니다.</p></article>
+<article class="flow-step reveal"><div class="flow-num">2</div><h3>모델 배치</h3><p>5B 본체, UMT5 텍스트 인코더, Wan VAE를 지정 폴더에 넣습니다.</p></article>
+<article class="flow-step reveal"><div class="flow-num">3</div><h3>입력 선택</h3><p>T2V는 시작 이미지 없음. I2V는 Load Image를 start_image에 연결합니다.</p></article>
+<article class="flow-step reveal"><div class="flow-num">4</div><h3>짧게 검증</h3><p>1280×704, 41프레임, 30 steps, batch 1로 첫 결과를 확인합니다.</p></article>
+<article class="flow-step reveal"><div class="flow-num">5</div><h3>품질 확대</h3><p>성공 후 프레임·해상도·모델 규모를 한 번에 하나씩 높입니다.</p></article>
+</div>
+<div class="code-wrap reveal"><div class="code-head"><span>Wan2.2 5B · 모델 배치</span><button class="copy-btn" data-copy="" type="button">구조 복사</button></div><pre><code>ComfyUI/models/
 ├─ diffusion_models/
 │  └─ wan2.2_ti2v_5B_fp16.safetensors
 ├─ text_encoders/
 │  └─ umt5_xxl_fp8_e4m3fn_scaled.safetensors
 └─ vae/
    └─ wan2.2_vae.safetensors</code></pre></div>
-      </div>
-    </section>
-
-    <section id="video-settings">
-      <div class="container">
-        <div class="section-kicker reveal">REPRODUCIBLE EXAMPLES</div>
-        <h2 class="section-title reveal">영상은 “길게 한 번”보다 <span class="blue">짧게 세 번 검증</span>하는 편이 빠릅니다</h2>
-        <p class="section-desc reveal">공식 5B 예제 JSON은 1280×704, 41프레임, 30단계, CFG 5, 24fps를 사용합니다. 워크플로 메모에는 121프레임이 권장 길이로 적혀 있지만 첫 결과 대기 시간을 줄이기 위해 41프레임을 사용합니다.</p>
-        <div class="ladder-grid">
-          <article class="ladder-card reveal"><span class="ladder-tag">RUN 1 · 연결 확인</span><h3>최소 검증</h3><ul><li>Batch 1</li><li>41 frames</li><li>기본 해상도 유지</li><li>프롬프트 1문장</li><li>목표: 오류 없이 저장</li></ul></article>
-          <article class="ladder-card recommended reveal"><span class="ladder-tag">RUN 2 · 권장</span><h3>움직임 조정</h3><ul><li>Seed 고정</li><li>카메라 움직임 한 가지</li><li>주체 동작 한 가지</li><li>negative prompt 유지</li><li>목표: 흔들림·형태 확인</li></ul></article>
-          <article class="ladder-card reveal"><span class="ladder-tag">RUN 3 · 품질</span><h3>길이·해상도 확대</h3><ul><li>81 → 121 frames</li><li>필요 시 14B 비교</li><li>프레임 보간은 별도 단계</li><li>최종 MP4 변환</li><li>목표: 납품 규격 충족</li></ul></article>
-        </div>
-        <div class="setup-grid" style="margin-top:22px">
-          <article class="setup-card reveal"><h3>T2V 프롬프트 예시</h3><p>장면 전체를 지시하는 대신 카메라·주체·동작·환경 변화 순서로 적습니다.</p><div class="prompt-box"><span>TEXT-TO-VIDEO</span><p>cinematic drone shot, a red fox walks cautiously across a black volcanic slope, ash clouds rise from an erupting crater in the background, subtle camera push-in, realistic scale, natural motion, no text, no watermark</p><p class="prompt-korean">카메라: drone shot / 주체: red fox / 동작: walks cautiously / 환경: erupting crater / 품질 통제: no text</p></div></article>
-          <article class="setup-card reveal"><h3>I2V 프롬프트 예시</h3><p>입력 이미지의 정체성을 지키고 “무엇이 움직이는지”만 구체화합니다.</p><div class="prompt-box"><span>IMAGE-TO-VIDEO</span><p>gentle dolly-in, candle flames flicker, her hair and fluffy tail move softly in the indoor breeze, she steadies the cake with both hands, preserve face, costume and background composition, natural motion, no scene cut</p><p class="prompt-korean">원본 유지: preserve face / 움직임: hair, tail, candle / 카메라: gentle dolly-in / 금지: no scene cut</p></div></article>
-        </div>
-        <div class="download-strip reveal"><p><strong>MP4 변환:</strong> 공식 예제의 WebM 또는 Animated WebP를 범용 H.264 MP4로 바꾸려면 FFmpeg를 사용합니다.</p><button class="btn btn-outline" type="button" data-scroll-code="#ffmpeg-code">변환 명령 보기</button></div>
-        <div class="code-wrap reveal" id="ffmpeg-code"><div class="code-head"><span>Terminal · Homebrew FFmpeg</span><button class="copy-btn" type="button" data-copy>명령 복사</button></div><pre><code>brew install ffmpeg
+</div>
+</section>
+<section id="video-settings">
+<div class="container">
+<div class="section-kicker reveal">REPRODUCIBLE EXAMPLES</div>
+<h2 class="section-title reveal">영상은 “길게 한 번”보다 <span class="blue">짧게 세 번 검증</span>하는 편이 빠릅니다</h2>
+<p class="section-desc reveal">공식 5B 예제 JSON은 1280×704, 41프레임, 30단계, CFG 5, 24fps를 사용합니다. 워크플로 메모에는 121프레임이 권장 길이로 적혀 있지만 첫 결과 대기 시간을 줄이기 위해 41프레임을 사용합니다.</p>
+<div class="ladder-grid">
+<article class="ladder-card reveal"><span class="ladder-tag">RUN 1 · 연결 확인</span><h3>최소 검증</h3><ul><li>Batch 1</li><li>41 frames</li><li>기본 해상도 유지</li><li>프롬프트 1문장</li><li>목표: 오류 없이 저장</li></ul></article>
+<article class="ladder-card recommended reveal"><span class="ladder-tag">RUN 2 · 권장</span><h3>움직임 조정</h3><ul><li>Seed 고정</li><li>카메라 움직임 한 가지</li><li>주체 동작 한 가지</li><li>negative prompt 유지</li><li>목표: 흔들림·형태 확인</li></ul></article>
+<article class="ladder-card reveal"><span class="ladder-tag">RUN 3 · 품질</span><h3>길이·해상도 확대</h3><ul><li>81 → 121 frames</li><li>필요 시 14B 비교</li><li>프레임 보간은 별도 단계</li><li>최종 MP4 변환</li><li>목표: 납품 규격 충족</li></ul></article>
+</div>
+<div class="setup-grid" style="margin-top:22px">
+<article class="setup-card reveal"><h3>T2V 프롬프트 예시</h3><p>장면 전체를 지시하는 대신 카메라·주체·동작·환경 변화 순서로 적습니다.</p><div class="prompt-box"><span>TEXT-TO-VIDEO</span><p>cinematic drone shot, a red fox walks cautiously across a black volcanic slope, ash clouds rise from an erupting crater in the background, subtle camera push-in, realistic scale, natural motion, no text, no watermark</p><p class="prompt-korean">카메라: drone shot / 주체: red fox / 동작: walks cautiously / 환경: erupting crater / 품질 통제: no text</p></div></article>
+<article class="setup-card reveal"><h3>I2V 프롬프트 예시</h3><p>입력 이미지의 정체성을 지키고 “무엇이 움직이는지”만 구체화합니다.</p><div class="prompt-box"><span>IMAGE-TO-VIDEO</span><p>gentle dolly-in, candle flames flicker, her hair and fluffy tail move softly in the indoor breeze, she steadies the cake with both hands, preserve face, costume and background composition, natural motion, no scene cut</p><p class="prompt-korean">원본 유지: preserve face / 움직임: hair, tail, candle / 카메라: gentle dolly-in / 금지: no scene cut</p></div></article>
+</div>
+<div class="download-strip reveal"><p><strong>MP4 변환:</strong> 공식 예제의 WebM 또는 Animated WebP를 범용 H.264 MP4로 바꾸려면 FFmpeg를 사용합니다.</p><button class="btn btn-outline" data-scroll-code="#ffmpeg-code" type="button">변환 명령 보기</button></div>
+<div class="code-wrap reveal" id="ffmpeg-code"><div class="code-head"><span>Terminal · Homebrew FFmpeg</span><button class="copy-btn" data-copy="" type="button">명령 복사</button></div><pre><code>brew install ffmpeg
 
 <span class="code-comment"># WebM → 범용 MP4</span>
 ffmpeg -i ComfyUI_00001_.webm \
@@ -310,143 +329,120 @@ ffmpeg -i ComfyUI_00001_.webm \
 <span class="code-comment"># Animated WebP → MP4</span>
 ffmpeg -i ComfyUI_00001_.webp \
   -c:v libx264 -pix_fmt yuv420p -movflags +faststart output.mp4</code></pre></div>
-      </div>
-    </section>
-
-    <section id="operations" class="section-soft">
-      <div class="container">
-        <div class="section-kicker reveal">PERFORMANCE & OPERATIONS</div>
-        <h2 class="section-title reveal">“몇 초 걸리나요?”보다 먼저 <span class="blue">내 장비의 기준선</span>을 기록하십시오</h2>
-        <p class="section-desc reveal">M5 Max의 공개 사양만으로 특정 워크플로 시간을 단정할 수 없습니다. 아래 표에 동일 Seed·동일 모델로 세 번 측정해 첫 로드와 재실행을 분리하면 실제 운영 판단이 가능합니다.</p>
-        <div class="benchmark-table-wrap reveal">
-          <table class="benchmark-table">
-            <thead><tr><th>테스트</th><th>모델·설정</th><th>첫 실행</th><th>재실행</th><th>메모리 압력</th><th>판정</th></tr></thead>
-            <tbody>
-              <tr><td>이미지 기준선</td><td>FLUX.1 Dev · 1024² · 20 steps</td><td><input aria-label="이미지 첫 실행 시간" placeholder="예: 00:00"></td><td><input aria-label="이미지 재실행 시간" placeholder="예: 00:00"></td><td><input aria-label="이미지 메모리 압력" placeholder="녹색/노랑"></td><td><input aria-label="이미지 판정" placeholder="통과/조정"></td></tr>
-              <tr><td>영상 기준선</td><td>Wan2.2 5B · 1280×704 · 41f</td><td><input aria-label="영상 첫 실행 시간" placeholder="예: 00:00"></td><td><input aria-label="영상 재실행 시간" placeholder="예: 00:00"></td><td><input aria-label="영상 메모리 압력" placeholder="녹색/노랑"></td><td><input aria-label="영상 판정" placeholder="통과/조정"></td></tr>
-              <tr><td>품질 확대</td><td>동일 Seed · 프레임 또는 해상도만 변경</td><td><input aria-label="확대 첫 실행 시간" placeholder="예: 00:00"></td><td><input aria-label="확대 재실행 시간" placeholder="예: 00:00"></td><td><input aria-label="확대 메모리 압력" placeholder="녹색/노랑"></td><td><input aria-label="확대 판정" placeholder="채택/보류"></td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="micro-note">입력값은 현재 브라우저 세션에만 있으며 자동 저장되지 않습니다. PDF로 저장하면 기록을 남길 수 있습니다.</p>
-        <div class="feature-grid">
-          <article class="card reveal"><div class="card-index">01</div><h3>전원과 냉각</h3><p>전원 어댑터를 연결하고 통풍이 되는 단단한 바닥에서 실행합니다. 긴 영상 큐는 발열로 처리 속도가 달라질 수 있습니다.</p></article>
-          <article class="card reveal"><div class="card-index">02</div><h3>메모리 압력</h3><p>Activity Monitor에서 노랑·빨강이 지속되면 프레임·해상도·동시 큐를 줄입니다. 숫자보다 압력 상태가 중요합니다.</p></article>
-          <article class="card reveal"><div class="card-index">03</div><h3>한 변수씩 변경</h3><p>Seed를 고정한 뒤 Steps, Guidance, 해상도, 프레임 중 하나만 바꿉니다. 그래야 품질 차이의 원인을 알 수 있습니다.</p></article>
-          <article class="card reveal"><div class="card-index">04</div><h3>모델 공유</h3><p>Desktop·수동 설치가 공존하면 <span class="inline-code">extra_model_paths</span>로 한 라이브러리를 공유해 수십 GB 중복을 피합니다.</p></article>
-          <article class="card reveal"><div class="card-index">05</div><h3>출력 정리</h3><p>초안·승인·최종 폴더를 구분하고 Seed·프롬프트·워크플로 JSON을 결과물과 함께 보관합니다.</p></article>
-          <article class="card reveal"><div class="card-index">06</div><h3>업데이트 원칙</h3><p>납품 중에는 코어·노드·PyTorch를 동시에 업데이트하지 않습니다. 별도 인스턴스에서 검증 후 운영 환경에 반영합니다.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="troubleshoot">
-      <div class="container">
-        <div class="section-kicker reveal">TROUBLESHOOTING & GUARDRAILS</div>
-        <h2 class="section-title reveal">오류는 대부분 <span class="blue">장치·경로·의존성</span> 중 하나에서 발생합니다</h2>
-        <p class="section-desc reveal">처음부터 커스텀 노드를 많이 설치하면 원인 분리가 어려워집니다. 코어 워크플로가 정상 동작한 뒤 필요한 기능만 추가합니다.</p>
-        <div class="correction-table reveal">
-          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span><div><strong>“Model not found”인데 파일을 다시 다운로드</strong><br>같은 파일을 중복 저장하면 문제만 커집니다.</div></div><div class="correction-cell right"><span class="correction-icon">✓</span><div><strong>파일명·하위 폴더·검색 경로 확인</strong><br>diffusion_models, text_encoders, vae를 구분하고 R 키 또는 재시작으로 새로고침합니다.</div></div></div>
-          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span><div><strong>MPS 오류가 나면 바로 CPU Mode 고정</strong><br>대형 모델은 사실상 사용성이 크게 떨어질 수 있습니다.</div></div><div class="correction-cell right"><span class="correction-icon">✓</span><div><strong>PyTorch·macOS·노드 지원부터 확인</strong><br>MPS 검증 스크립트, ComfyUI 콘솔, 실패한 정확한 노드 순으로 원인을 좁힙니다.</div></div></div>
-          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span><div><strong>빨간 노드를 보고 노드 팩을 무작정 설치</strong><br>악성 코드·의존성 충돌 위험이 있습니다.</div></div><div class="correction-cell right"><span class="correction-icon">✓</span><div><strong>공식 템플릿과 코어 노드로 먼저 재현</strong><br>커스텀 노드는 신뢰할 수 있는 작성자·Registry·소스 코드를 확인한 뒤 설치합니다.<a class="cite" href="#source-10">[10]</a></div></div></div>
-          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span><div><strong>메모리가 많으니 121프레임부터 시작</strong><br>긴 실패는 원인 확인에도 오래 걸립니다.</div></div><div class="correction-cell right"><span class="correction-icon">✓</span><div><strong>41프레임에서 저장까지 통과</strong><br>그 후 81, 121프레임으로 늘리고 각 단계 시간을 기록합니다.</div></div></div>
-        </div>
-        <div class="faq">
-          <details class="reveal"><summary>MPS available이 False입니다</summary><div class="faq-content"><p>현재 가상환경의 PyTorch가 MPS 지원 빌드인지, macOS가 최신인지, Apple Silicon 환경인지 확인합니다. Desktop이라면 앱 내부 Terminal에서 검사해야 하며 시스템 Terminal의 다른 Python 결과와 혼동하지 마십시오.</p></div></details>
-          <details class="reveal"><summary>생성 도중 앱이 종료되거나 메모리 압력이 빨갛습니다</summary><div class="faq-content"><p>동시 큐를 1개로 줄이고, 영상 프레임 수 또는 해상도를 낮춥니다. 브라우저 탭·영상 편집기·다른 AI 앱을 닫고 재시도합니다. 비공식 환경 변수로 메모리 안전 한계를 해제하는 방법은 시스템 불안정 위험이 있어 기본 해결책으로 권장하지 않습니다.</p></div></details>
-          <details class="reveal"><summary>커스텀 노드 설치 후 ComfyUI가 시작되지 않습니다</summary><div class="faq-content"><p>최근 설치한 노드 폴더를 <span class="inline-code">custom_nodes</span> 밖으로 이동해 부팅을 확인합니다. 별도 인스턴스에서 노드 의존성을 검증하고, 운영 인스턴스의 Python 환경에 시스템 <span class="inline-code">pip</span>로 설치하지 않습니다.</p></div></details>
-          <details class="reveal"><summary>모델 파일과 생성 결과를 상업적으로 사용할 수 있나요?</summary><div class="faq-content"><p>ComfyUI, 모델 가중치, LoRA, 입력 이미지, 생성 결과는 각각 조건이 다릅니다. FLUX.1 Dev 모델 카드는 가중치에 Non-Commercial License 동의를 요구하고 생성 결과의 이용 조건을 별도로 설명합니다.<a class="cite" href="#source-14">[14]</a> ComfyUI의 Wan2.2 공식 문서는 공개 모델 시리즈를 Apache 2.0으로 안내합니다.<a class="cite" href="#source-8">[8]</a> 최종 납품 전에는 사용한 정확한 파일의 모델 카드, 귀속·고지 의무, 인물·브랜드·원저작물 권리를 함께 검토하십시오.</p></div></details>
-          <details class="reveal"><summary>완전 오프라인으로 사용할 수 있나요?</summary><div class="faq-content"><p>코어는 로컬 워크플로로 사용할 수 있지만, 최초 앱·모델·노드 다운로드와 업데이트에는 인터넷이 필요합니다. Partner/API 노드는 외부 서비스로 데이터를 보낼 수 있으므로 민감 자료는 로컬 코어 노드만 사용하는 별도 인스턴스에서 처리합니다.<a class="cite" href="#source-11">[11]</a></p></div></details>
-        </div>
-        <div class="decision-note reveal"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 20 6v5.7c0 4.6-3.2 7.6-8 9.3-4.8-1.7-8-4.7-8-9.3V6z" stroke="currentColor" stroke-width="1.8"/><path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.8"/></svg><div><strong>보안 원칙:</strong> 미공개 제품 이미지, 고객 얼굴, 계약 자료를 외부 API 노드에 넣기 전에 데이터 전송 위치와 보관 정책을 확인합니다. 민감 프로젝트는 로컬 전용 인스턴스와 별도 모델 폴더로 분리합니다.</div></div>
-      </div>
-    </section>
-
-    <section id="roadmap" class="section-soft">
-      <div class="container">
-        <div class="section-kicker reveal">30-MINUTE START & 7-DAY PLAN</div>
-        <h2 class="section-title reveal">오늘은 한 장과 41프레임, 일주일 뒤에는 재현 가능한 제작 템플릿을 남깁니다</h2>
-        <p class="section-desc reveal">성공 기준은 “앱이 열림”이 아니라 이미지·영상이 저장되고 같은 JSON으로 다시 생성되는 것입니다.</p>
-        <div class="recommend-grid">
-          <article class="recommend-card reveal"><h3>첫 30분 체크리스트</h3><div class="recommend-list">
-            <div class="recommend-item"><div class="recommend-num">1</div><div><strong>Desktop 설치</strong><p>공식 DMG 설치, MPS 장치 선택, 공유 폴더 지정.</p></div></div>
-            <div class="recommend-item"><div class="recommend-num">2</div><div><strong>MPS 로그 확인</strong><p>기본 워크플로 실행 전 콘솔에서 장치를 확인.</p></div></div>
-            <div class="recommend-item"><div class="recommend-num">3</div><div><strong>FLUX PNG 드래그</strong><p>첨부 공식 예제 PNG로 노드 그래프를 불러오기.</p></div></div>
-            <div class="recommend-item"><div class="recommend-num">4</div><div><strong>모델 경로 해결</strong><p>빨간 모델 노드의 파일을 역할별 폴더에 배치.</p></div></div>
-            <div class="recommend-item"><div class="recommend-num">5</div><div><strong>첫 이미지 저장</strong><p>Seed·시간·메모리 압력을 기록하고 JSON 저장.</p></div></div>
-          </div></article>
-          <article class="recommend-card blue-card reveal"><h3>7일 운영 계획</h3><div class="recommend-list">
-            <div class="recommend-item"><div class="recommend-num">D1</div><div><strong>이미지 기준선</strong><p>FLUX 1024², 20 steps, batch 1을 3회 측정.</p></div></div>
-            <div class="recommend-item"><div class="recommend-num">D2</div><div><strong>프롬프트 템플릿</strong><p>주체·행동·배경·조명 순서의 템플릿 확정.</p></div></div>
-            <div class="recommend-item"><div class="recommend-num">D3</div><div><strong>Wan 5B 설치</strong><p>T2V 41프레임으로 저장까지 통과.</p></div></div>
-            <div class="recommend-item"><div class="recommend-num">D4</div><div><strong>I2V 검증</strong><p>첫 이미지에 한 가지 카메라 모션 적용.</p></div></div>
-            <div class="recommend-item"><div class="recommend-num">D5–7</div><div><strong>품질·보안·보관</strong><p>121프레임 비교, MP4 변환, 모델 라이선스와 폴더 백업 점검.</p></div></div>
-          </div></article>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="sources" id="sources">
-    <div class="container">
-      <div class="source-head"><div><h2>참고 자료와 출처</h2><p>2026.08.08에 확인한 공식·1차 자료와 실제 사용한 예제만 기재했습니다.</p></div><button class="btn btn-ghost" type="button" onclick="window.print()">전체 PDF 저장</button></div>
-      <div class="source-grid">
-        <a class="source-link" id="source-1" href="https://www.apple.com/macbook-pro/specs/" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · APPLE · 2026-08-08</span><strong>MacBook Pro Technical Specifications</strong><small>M5 Max 40-core GPU, 614GB/s, 128GB 구성</small></a>
-        <a class="source-link" id="source-2" href="https://support.apple.com/en-us/126318" target="_blank" rel="noopener noreferrer"><span>OFFICIAL SUPPORT · APPLE · 2026-08-08</span><strong>MacBook Pro 14-inch, M5 Pro or M5 Max</strong><small>제품 지원 사양 교차 확인</small></a>
-        <a class="source-link" id="source-3" href="https://docs.comfy.org/installation/desktop/macos" target="_blank" rel="noopener noreferrer"><span>OFFICIAL DOCS · COMFYUI · 2026-08-08</span><strong>macOS — Comfy Desktop</strong><small>요구 사항, DMG 설치, 업데이트, 기본 데이터 경로</small></a>
-        <a class="source-link" id="source-4" href="https://docs.comfy.org/installation/manual_install" target="_blank" rel="noopener noreferrer"><span>OFFICIAL DOCS · COMFYUI · 2026-08-08</span><strong>Manual Installation — Local Self-Hosted</strong><small>가상환경, Apple Silicon PyTorch, 실행, extra model paths</small></a>
-        <a class="source-link" id="source-5" href="https://developer.apple.com/metal/pytorch/" target="_blank" rel="noopener noreferrer"><span>PRIMARY · APPLE DEVELOPER · 2026-08-08</span><strong>Accelerated PyTorch Training on Mac</strong><small>MPS 요구 사항과 검증 코드</small></a>
-        <a class="source-link" id="source-6" href="https://docs.comfy.org/interface/overview" target="_blank" rel="noopener noreferrer"><span>OFFICIAL DOCS · COMFYUI · 2026-08-08</span><strong>ComfyUI Interface Overview</strong><small>한국어 설정, Models·Workflows·Queue 패널</small></a>
-        <a class="source-link" id="source-7" href="https://comfyanonymous.github.io/ComfyUI_examples/flux/" target="_blank" rel="noopener noreferrer"><span>PRIMARY EXAMPLE · COMFYUI · 2026-08-08</span><strong>FLUX Official Example Workflows</strong><small>모델 폴더, FP16/FP8 설명, 워크플로 포함 PNG</small></a>
-        <a class="source-link" id="source-8" href="https://docs.comfy.org/tutorials/video/wan/wan2_2" target="_blank" rel="noopener noreferrer"><span>OFFICIAL TUTORIAL · COMFYUI · 2026-08-08</span><strong>Wan2.2 Native Workflow Example</strong><small>5B 모델 파일, 템플릿 경로, T2V·I2V 실행</small></a>
-        <a class="source-link" id="source-9" href="https://comfyanonymous.github.io/ComfyUI_examples/wan22/" target="_blank" rel="noopener noreferrer"><span>PRIMARY MEDIA · COMFYUI · 2026-08-08</span><strong>Wan2.2 Official Example Assets</strong><small>실제 T2V·I2V 애니메이션과 JSON 워크플로</small></a>
-        <a class="source-link" id="source-10" href="https://docs.comfy.org/installation/install_custom_node" target="_blank" rel="noopener noreferrer"><span>OFFICIAL DOCS · COMFYUI · 2026-08-08</span><strong>How to Install Custom Nodes</strong><small>Manager 권장, 신뢰 출처와 보안 주의</small></a>
-        <a class="source-link" id="source-11" href="https://github.com/Comfy-Org/ComfyUI" target="_blank" rel="noopener noreferrer"><span>PRIMARY CODE · GITHUB · 2026-08-08</span><strong>Comfy-Org/ComfyUI Repository</strong><small>지원 플랫폼, 로컬·API 노드, 워크플로 기능</small></a>
-        <a class="source-link" id="source-12" href="https://github.com/comfyanonymous/ComfyUI_examples" target="_blank" rel="noopener noreferrer"><span>PRIMARY EXAMPLES · GITHUB · 2026-08-08</span><strong>ComfyUI_examples Repository</strong><small>메타데이터 포함 이미지와 공식 워크플로 모음</small></a>
-        <a class="source-link" id="source-13" href="https://docs.comfy.org/installation/system_requirements" target="_blank" rel="noopener noreferrer"><span>OFFICIAL DOCS · COMFYUI · 2026-08-08</span><strong>System Requirements</strong><small>Python 3.13 권장, 3.12 호환성 대안</small></a>
-        <a class="source-link" id="source-14" href="https://huggingface.co/black-forest-labs/FLUX.1-dev" target="_blank" rel="noopener noreferrer"><span>PRIMARY MODEL CARD · BFL · 2026-08-08</span><strong>black-forest-labs/FLUX.1-dev</strong><small>가중치 접근 조건, 라이선스, 출력 이용 안내</small></a>
-        <a class="source-link" id="source-15" href="https://github.com/comfyanonymous/ComfyUI_examples/blob/master/LICENSE" target="_blank" rel="noopener noreferrer"><span>PRIMARY LICENSE · GITHUB · 2026-08-08</span><strong>ComfyUI_examples License</strong><small>예제 워크플로 사용·복사·수정·배포 조건</small></a>
-      </div>
-      <div class="footer-bottom"><span id="footerTitle">MacBook Pro M5 Max 128GB · ComfyUI 실전 가이드</span><span id="footerMeta">AI-generated · 2026.08</span></div>
-      <div class="report-history" id="history" aria-labelledby="history-title">
-        <div class="history-head"><div><h2 id="history-title">버전 및 업데이트 히스토리</h2><p>내용·출처·미디어가 수정될 때 변경 범위를 누적 기록합니다.</p></div><span class="version-badge" id="historyCurrentVersion">Current v1.0.0</span></div>
-        <div class="history-table-wrap"><table class="history-table"><thead><tr><th>버전</th><th>업데이트일</th><th>변경 구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr></thead><tbody id="historyBody"><tr><td colspan="5" class="history-empty">변경 이력을 불러오는 중입니다.</td></tr></tbody></table></div>
-      </div>
-    </div>
-  </footer>
-
-  <div class="floating-actions" aria-label="빠른 작업">
-    <button class="float-btn" type="button" id="toTop" aria-label="맨 위로 이동"><svg viewBox="0 0 24 24" fill="none"><path d="m6 14 6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-    <button class="float-btn" type="button" onclick="window.print()" aria-label="PDF로 저장"><svg viewBox="0 0 24 24" fill="none"><path d="M7 9V4h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-width="1.8"/><path d="M7 14h10v6H7z" stroke="currentColor" stroke-width="1.8"/></svg></button>
-  </div>
-
-  <script id="report-metadata" type="application/json">
-  {
-    "schemaVersion":"1.0",
-    "reportId":"260808-comfyui-m5max-128gb-guide",
-    "title":"MacBook Pro M5 Max 128GB · ComfyUI 실전 가이드",
-    "version":"1.0.0",
-    "status":"Published",
-    "createdAt":"2026-08-08",
-    "updatedAt":"2026-08-08",
-    "language":"ko-KR",
-    "author":"AIHUBOS ReportMode",
-    "generation":"AI-generated",
-    "reviewStatus":"Human review recommended",
-    "history":[
-      {
-        "version":"1.0.0",
-        "date":"2026-08-08",
-        "type":"신규 작성",
-        "summary":"MacBook Pro M5 Max 128GB 기준 Comfy Desktop·수동 설치, MPS 검증, FLUX.1 이미지 생성, Wan2.2 5B T2V·I2V 절차를 최초 작성함. 실제 생성 PNG·공식 온라인 애니메이션·로컬 MP4 미리보기·워크플로 JSON을 첨부하고 Python 호환성과 모델·예제 라이선스 출처를 명시함.",
-        "sections":["전체"],
-        "updatedBy":"AI-generated",
-        "reviewStatus":"검토 권장"
-      }
-    ]
-  }
-  </script>
-  <script>
+</div>
+</section>
+<section class="section-soft" id="operations">
+<div class="container">
+<div class="section-kicker reveal">PERFORMANCE &amp; OPERATIONS</div>
+<h2 class="section-title reveal">“몇 초 걸리나요?”보다 먼저 <span class="blue">내 장비의 기준선</span>을 기록하십시오</h2>
+<p class="section-desc reveal">M5 Max의 공개 사양만으로 특정 워크플로 시간을 단정할 수 없습니다. 아래 표에 동일 Seed·동일 모델로 세 번 측정해 첫 로드와 재실행을 분리하면 실제 운영 판단이 가능합니다.</p>
+<div class="benchmark-table-wrap reveal">
+<table class="benchmark-table">
+<thead><tr><th>테스트</th><th>모델·설정</th><th>첫 실행</th><th>재실행</th><th>메모리 압력</th><th>판정</th></tr></thead>
+<tbody>
+<tr><td>이미지 기준선</td><td>FLUX.1 Dev · 1024² · 20 steps</td><td><input aria-label="이미지 첫 실행 시간" placeholder="예: 00:00"/></td><td><input aria-label="이미지 재실행 시간" placeholder="예: 00:00"/></td><td><input aria-label="이미지 메모리 압력" placeholder="녹색/노랑"/></td><td><input aria-label="이미지 판정" placeholder="통과/조정"/></td></tr>
+<tr><td>영상 기준선</td><td>Wan2.2 5B · 1280×704 · 41f</td><td><input aria-label="영상 첫 실행 시간" placeholder="예: 00:00"/></td><td><input aria-label="영상 재실행 시간" placeholder="예: 00:00"/></td><td><input aria-label="영상 메모리 압력" placeholder="녹색/노랑"/></td><td><input aria-label="영상 판정" placeholder="통과/조정"/></td></tr>
+<tr><td>품질 확대</td><td>동일 Seed · 프레임 또는 해상도만 변경</td><td><input aria-label="확대 첫 실행 시간" placeholder="예: 00:00"/></td><td><input aria-label="확대 재실행 시간" placeholder="예: 00:00"/></td><td><input aria-label="확대 메모리 압력" placeholder="녹색/노랑"/></td><td><input aria-label="확대 판정" placeholder="채택/보류"/></td></tr>
+</tbody>
+</table>
+</div>
+<p class="micro-note">입력값은 현재 브라우저 세션에만 있으며 자동 저장되지 않습니다. PDF로 저장하면 기록을 남길 수 있습니다.</p>
+<div class="feature-grid">
+<article class="card reveal"><div class="card-index">01</div><h3>전원과 냉각</h3><p>전원 어댑터를 연결하고 통풍이 되는 단단한 바닥에서 실행합니다. 긴 영상 큐는 발열로 처리 속도가 달라질 수 있습니다.</p></article>
+<article class="card reveal"><div class="card-index">02</div><h3>메모리 압력</h3><p>Activity Monitor에서 노랑·빨강이 지속되면 프레임·해상도·동시 큐를 줄입니다. 숫자보다 압력 상태가 중요합니다.</p></article>
+<article class="card reveal"><div class="card-index">03</div><h3>한 변수씩 변경</h3><p>Seed를 고정한 뒤 Steps, Guidance, 해상도, 프레임 중 하나만 바꿉니다. 그래야 품질 차이의 원인을 알 수 있습니다.</p></article>
+<article class="card reveal"><div class="card-index">04</div><h3>모델 공유</h3><p>Desktop·수동 설치가 공존하면 <span class="inline-code">extra_model_paths</span>로 한 라이브러리를 공유해 수십 GB 중복을 피합니다.</p></article>
+<article class="card reveal"><div class="card-index">05</div><h3>출력 정리</h3><p>초안·승인·최종 폴더를 구분하고 Seed·프롬프트·워크플로 JSON을 결과물과 함께 보관합니다.</p></article>
+<article class="card reveal"><div class="card-index">06</div><h3>업데이트 원칙</h3><p>납품 중에는 코어·노드·PyTorch를 동시에 업데이트하지 않습니다. 별도 인스턴스에서 검증 후 운영 환경에 반영합니다.</p></article>
+</div>
+</div>
+</section>
+<section id="troubleshoot">
+<div class="container">
+<div class="section-kicker reveal">TROUBLESHOOTING &amp; GUARDRAILS</div>
+<h2 class="section-title reveal">오류는 대부분 <span class="blue">장치·경로·의존성</span> 중 하나에서 발생합니다</h2>
+<p class="section-desc reveal">처음부터 커스텀 노드를 많이 설치하면 원인 분리가 어려워집니다. 코어 워크플로가 정상 동작한 뒤 필요한 기능만 추가합니다.</p>
+<div class="correction-table reveal">
+<div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span><div><strong>“Model not found”인데 파일을 다시 다운로드</strong><br/>같은 파일을 중복 저장하면 문제만 커집니다.</div></div><div class="correction-cell right"><span class="correction-icon">✓</span><div><strong>파일명·하위 폴더·검색 경로 확인</strong><br/>diffusion_models, text_encoders, vae를 구분하고 R 키 또는 재시작으로 새로고침합니다.</div></div></div>
+<div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span><div><strong>MPS 오류가 나면 바로 CPU Mode 고정</strong><br/>대형 모델은 사실상 사용성이 크게 떨어질 수 있습니다.</div></div><div class="correction-cell right"><span class="correction-icon">✓</span><div><strong>PyTorch·macOS·노드 지원부터 확인</strong><br/>MPS 검증 스크립트, ComfyUI 콘솔, 실패한 정확한 노드 순으로 원인을 좁힙니다.</div></div></div>
+<div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span><div><strong>빨간 노드를 보고 노드 팩을 무작정 설치</strong><br/>악성 코드·의존성 충돌 위험이 있습니다.</div></div><div class="correction-cell right"><span class="correction-icon">✓</span><div><strong>공식 템플릿과 코어 노드로 먼저 재현</strong><br/>커스텀 노드는 신뢰할 수 있는 작성자·Registry·소스 코드를 확인한 뒤 설치합니다.<a class="cite" href="#source-10">[10]</a></div></div></div>
+<div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span><div><strong>메모리가 많으니 121프레임부터 시작</strong><br/>긴 실패는 원인 확인에도 오래 걸립니다.</div></div><div class="correction-cell right"><span class="correction-icon">✓</span><div><strong>41프레임에서 저장까지 통과</strong><br/>그 후 81, 121프레임으로 늘리고 각 단계 시간을 기록합니다.</div></div></div>
+</div>
+<div class="faq">
+<details class="reveal"><summary>MPS available이 False입니다</summary><div class="faq-content"><p>현재 가상환경의 PyTorch가 MPS 지원 빌드인지, macOS가 최신인지, Apple Silicon 환경인지 확인합니다. Desktop이라면 앱 내부 Terminal에서 검사해야 하며 시스템 Terminal의 다른 Python 결과와 혼동하지 마십시오.</p></div></details>
+<details class="reveal"><summary>생성 도중 앱이 종료되거나 메모리 압력이 빨갛습니다</summary><div class="faq-content"><p>동시 큐를 1개로 줄이고, 영상 프레임 수 또는 해상도를 낮춥니다. 브라우저 탭·영상 편집기·다른 AI 앱을 닫고 재시도합니다. 비공식 환경 변수로 메모리 안전 한계를 해제하는 방법은 시스템 불안정 위험이 있어 기본 해결책으로 권장하지 않습니다.</p></div></details>
+<details class="reveal"><summary>커스텀 노드 설치 후 ComfyUI가 시작되지 않습니다</summary><div class="faq-content"><p>최근 설치한 노드 폴더를 <span class="inline-code">custom_nodes</span> 밖으로 이동해 부팅을 확인합니다. 별도 인스턴스에서 노드 의존성을 검증하고, 운영 인스턴스의 Python 환경에 시스템 <span class="inline-code">pip</span>로 설치하지 않습니다.</p></div></details>
+<details class="reveal"><summary>모델 파일과 생성 결과를 상업적으로 사용할 수 있나요?</summary><div class="faq-content"><p>ComfyUI, 모델 가중치, LoRA, 입력 이미지, 생성 결과는 각각 조건이 다릅니다. FLUX.1 Dev 모델 카드는 가중치에 Non-Commercial License 동의를 요구하고 생성 결과의 이용 조건을 별도로 설명합니다.<a class="cite" href="#source-14">[14]</a> ComfyUI의 Wan2.2 공식 문서는 공개 모델 시리즈를 Apache 2.0으로 안내합니다.<a class="cite" href="#source-8">[8]</a> 최종 납품 전에는 사용한 정확한 파일의 모델 카드, 귀속·고지 의무, 인물·브랜드·원저작물 권리를 함께 검토하십시오.</p></div></details>
+<details class="reveal"><summary>완전 오프라인으로 사용할 수 있나요?</summary><div class="faq-content"><p>코어는 로컬 워크플로로 사용할 수 있지만, 최초 앱·모델·노드 다운로드와 업데이트에는 인터넷이 필요합니다. Partner/API 노드는 외부 서비스로 데이터를 보낼 수 있으므로 민감 자료는 로컬 코어 노드만 사용하는 별도 인스턴스에서 처리합니다.<a class="cite" href="#source-11">[11]</a></p></div></details>
+</div>
+<div class="decision-note reveal"><svg fill="none" viewbox="0 0 24 24"><path d="M12 3 20 6v5.7c0 4.6-3.2 7.6-8 9.3-4.8-1.7-8-4.7-8-9.3V6z" stroke="currentColor" stroke-width="1.8"></path><path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.8"></path></svg><div><strong>보안 원칙:</strong> 미공개 제품 이미지, 고객 얼굴, 계약 자료를 외부 API 노드에 넣기 전에 데이터 전송 위치와 보관 정책을 확인합니다. 민감 프로젝트는 로컬 전용 인스턴스와 별도 모델 폴더로 분리합니다.</div></div>
+</div>
+</section>
+<section class="section-soft" id="roadmap">
+<div class="container">
+<div class="section-kicker reveal">30-MINUTE START &amp; 7-DAY PLAN</div>
+<h2 class="section-title reveal">오늘은 한 장과 41프레임, 일주일 뒤에는 재현 가능한 제작 템플릿을 남깁니다</h2>
+<p class="section-desc reveal">성공 기준은 “앱이 열림”이 아니라 이미지·영상이 저장되고 같은 JSON으로 다시 생성되는 것입니다.</p>
+<div class="recommend-grid">
+<article class="recommend-card reveal"><h3>첫 30분 체크리스트</h3><div class="recommend-list">
+<div class="recommend-item"><div class="recommend-num">1</div><div><strong>Desktop 설치</strong><p>공식 DMG 설치, MPS 장치 선택, 공유 폴더 지정.</p></div></div>
+<div class="recommend-item"><div class="recommend-num">2</div><div><strong>MPS 로그 확인</strong><p>기본 워크플로 실행 전 콘솔에서 장치를 확인.</p></div></div>
+<div class="recommend-item"><div class="recommend-num">3</div><div><strong>FLUX PNG 드래그</strong><p>첨부 공식 예제 PNG로 노드 그래프를 불러오기.</p></div></div>
+<div class="recommend-item"><div class="recommend-num">4</div><div><strong>모델 경로 해결</strong><p>빨간 모델 노드의 파일을 역할별 폴더에 배치.</p></div></div>
+<div class="recommend-item"><div class="recommend-num">5</div><div><strong>첫 이미지 저장</strong><p>Seed·시간·메모리 압력을 기록하고 JSON 저장.</p></div></div>
+</div></article>
+<article class="recommend-card blue-card reveal"><h3>7일 운영 계획</h3><div class="recommend-list">
+<div class="recommend-item"><div class="recommend-num">D1</div><div><strong>이미지 기준선</strong><p>FLUX 1024², 20 steps, batch 1을 3회 측정.</p></div></div>
+<div class="recommend-item"><div class="recommend-num">D2</div><div><strong>프롬프트 템플릿</strong><p>주체·행동·배경·조명 순서의 템플릿 확정.</p></div></div>
+<div class="recommend-item"><div class="recommend-num">D3</div><div><strong>Wan 5B 설치</strong><p>T2V 41프레임으로 저장까지 통과.</p></div></div>
+<div class="recommend-item"><div class="recommend-num">D4</div><div><strong>I2V 검증</strong><p>첫 이미지에 한 가지 카메라 모션 적용.</p></div></div>
+<div class="recommend-item"><div class="recommend-num">D5–7</div><div><strong>품질·보안·보관</strong><p>121프레임 비교, MP4 변환, 모델 라이선스와 폴더 백업 점검.</p></div></div>
+</div></article>
+</div>
+</div>
+</section>
+</main>
+<section aria-labelledby="rm-media-title" class="rm-media" id="rmMedia">
+<div class="rm-wrap">
+<div class="rm-section-head"><div class="rm-kicker">MEDIA &amp; REAL EXAMPLE</div><h2 id="rm-media-title">실제 이미지·공식 자료·업무 예시를 함께 봅니다</h2><p>이미지는 저장소 내부 파일로 제공해 깨짐을 줄였고, 영상은 기존 보고서의 검증된 링크가 있을 때만 클릭 로드합니다.</p></div>
+<div class="rm-media-grid">
+<article class="rm-media-card rm-media-card-media"><img alt="Apple 로고와 MacBook Pro 공식 제품 이미지" decoding="async" loading="lazy" src="assets/260808-macbook-m5max-comfyui-practical-guide/cover.png"/><div class="rm-media-card-copy"><span class="rm-label">RELATED VISUAL</span><h3>MacBook Pro M5 Max 128GB · ComfyUI 실전 가이드 대표 이미지</h3><p>메인 도서관 썸네일과 본문이 같은 로컬 자산을 사용합니다.</p></div></article>
+<article class="rm-media-card"><span class="rm-label">VIDEO / OFFICIAL DEMO</span><h3>영상 또는 공식 데모</h3><div class="rm-video-placeholder"><div><div aria-hidden="true" class="rm-play">↗</div><strong>공식 데모·문서로 확인</strong></div></div><p style="margin-top:16px">검증되지 않은 영상을 임의로 넣지 않고, 공식 원문·데모 페이지를 바로 열 수 있게 구성했습니다.</p><div class="rm-source-list"><a href="https://docs.comfy.org/installation/desktop/macos" rel="noopener noreferrer" target="_blank">ComfyUI macOS 설치</a><a href="https://docs.comfy.org/changelog" rel="noopener noreferrer" target="_blank">ComfyUI Changelog</a></div></article>
+<article class="rm-media-card"><span class="rm-label">PRACTICAL EXAMPLE</span><h3>바로 적용하는 예시</h3><div class="rm-example"><strong>예시 시나리오</strong>예: 첫 영상은 5초·낮은 해상도로 성공 여부를 확인하고, 노드와 시드를 고정한 뒤 해상도와 길이를 한 번에 하나씩 올립니다.</div><p style="margin-top:16px">보고서의 추천은 작은 범위에서 검증한 뒤 확대하고, 중요한 판단은 원문과 사람 검토를 거칩니다.</p></article>
+</div>
+</div>
+</section><footer class="sources" id="sources">
+<div class="container">
+<div class="source-head"><div><h2>참고 자료와 출처</h2><p>2026.08.08에 확인한 공식·1차 자료와 실제 사용한 예제만 기재했습니다.</p></div><button class="btn btn-ghost" onclick="window.print()" type="button">전체 PDF 저장</button></div>
+<div class="source-grid">
+<a class="source-link" href="https://www.apple.com/macbook-pro/specs/" id="source-1" rel="noopener noreferrer" target="_blank"><span>OFFICIAL · APPLE · 2026-08-08</span><strong>MacBook Pro Technical Specifications</strong><small>M5 Max 40-core GPU, 614GB/s, 128GB 구성</small></a>
+<a class="source-link" href="https://support.apple.com/en-us/126318" id="source-2" rel="noopener noreferrer" target="_blank"><span>OFFICIAL SUPPORT · APPLE · 2026-08-08</span><strong>MacBook Pro 14-inch, M5 Pro or M5 Max</strong><small>제품 지원 사양 교차 확인</small></a>
+<a class="source-link" href="https://docs.comfy.org/installation/desktop/macos" id="source-3" rel="noopener noreferrer" target="_blank"><span>OFFICIAL DOCS · COMFYUI · 2026-08-08</span><strong>macOS — Comfy Desktop</strong><small>요구 사항, DMG 설치, 업데이트, 기본 데이터 경로</small></a>
+<a class="source-link" href="https://docs.comfy.org/installation/manual_install" id="source-4" rel="noopener noreferrer" target="_blank"><span>OFFICIAL DOCS · COMFYUI · 2026-08-08</span><strong>Manual Installation — Local Self-Hosted</strong><small>가상환경, Apple Silicon PyTorch, 실행, extra model paths</small></a>
+<a class="source-link" href="https://developer.apple.com/metal/pytorch/" id="source-5" rel="noopener noreferrer" target="_blank"><span>PRIMARY · APPLE DEVELOPER · 2026-08-08</span><strong>Accelerated PyTorch Training on Mac</strong><small>MPS 요구 사항과 검증 코드</small></a>
+<a class="source-link" href="https://docs.comfy.org/interface/overview" id="source-6" rel="noopener noreferrer" target="_blank"><span>OFFICIAL DOCS · COMFYUI · 2026-08-08</span><strong>ComfyUI Interface Overview</strong><small>한국어 설정, Models·Workflows·Queue 패널</small></a>
+<a class="source-link" href="https://comfyanonymous.github.io/ComfyUI_examples/flux/" id="source-7" rel="noopener noreferrer" target="_blank"><span>PRIMARY EXAMPLE · COMFYUI · 2026-08-08</span><strong>FLUX Official Example Workflows</strong><small>모델 폴더, FP16/FP8 설명, 워크플로 포함 PNG</small></a>
+<a class="source-link" href="https://docs.comfy.org/tutorials/video/wan/wan2_2" id="source-8" rel="noopener noreferrer" target="_blank"><span>OFFICIAL TUTORIAL · COMFYUI · 2026-08-08</span><strong>Wan2.2 Native Workflow Example</strong><small>5B 모델 파일, 템플릿 경로, T2V·I2V 실행</small></a>
+<a class="source-link" href="https://comfyanonymous.github.io/ComfyUI_examples/wan22/" id="source-9" rel="noopener noreferrer" target="_blank"><span>PRIMARY MEDIA · COMFYUI · 2026-08-08</span><strong>Wan2.2 Official Example Assets</strong><small>실제 T2V·I2V 애니메이션과 JSON 워크플로</small></a>
+<a class="source-link" href="https://docs.comfy.org/installation/install_custom_node" id="source-10" rel="noopener noreferrer" target="_blank"><span>OFFICIAL DOCS · COMFYUI · 2026-08-08</span><strong>How to Install Custom Nodes</strong><small>Manager 권장, 신뢰 출처와 보안 주의</small></a>
+<a class="source-link" href="https://github.com/Comfy-Org/ComfyUI" id="source-11" rel="noopener noreferrer" target="_blank"><span>PRIMARY CODE · GITHUB · 2026-08-08</span><strong>Comfy-Org/ComfyUI Repository</strong><small>지원 플랫폼, 로컬·API 노드, 워크플로 기능</small></a>
+<a class="source-link" href="https://github.com/comfyanonymous/ComfyUI_examples" id="source-12" rel="noopener noreferrer" target="_blank"><span>PRIMARY EXAMPLES · GITHUB · 2026-08-08</span><strong>ComfyUI_examples Repository</strong><small>메타데이터 포함 이미지와 공식 워크플로 모음</small></a>
+<a class="source-link" href="https://docs.comfy.org/installation/system_requirements" id="source-13" rel="noopener noreferrer" target="_blank"><span>OFFICIAL DOCS · COMFYUI · 2026-08-08</span><strong>System Requirements</strong><small>Python 3.13 권장, 3.12 호환성 대안</small></a>
+<a class="source-link" href="https://huggingface.co/black-forest-labs/FLUX.1-dev" id="source-14" rel="noopener noreferrer" target="_blank"><span>PRIMARY MODEL CARD · BFL · 2026-08-08</span><strong>black-forest-labs/FLUX.1-dev</strong><small>가중치 접근 조건, 라이선스, 출력 이용 안내</small></a>
+<a class="source-link" href="https://github.com/comfyanonymous/ComfyUI_examples/blob/master/LICENSE" id="source-15" rel="noopener noreferrer" target="_blank"><span>PRIMARY LICENSE · GITHUB · 2026-08-08</span><strong>ComfyUI_examples License</strong><small>예제 워크플로 사용·복사·수정·배포 조건</small></a>
+</div>
+<div class="footer-bottom"><span id="footerTitle">MacBook Pro M5 Max 128GB · ComfyUI 실전 가이드</span><span id="footerMeta">AI-generated · 2026.08</span></div>
+<div aria-labelledby="history-title" class="report-history" id="history">
+<div class="history-head"><div><h2 id="history-title">버전 및 업데이트 히스토리</h2><p>내용·출처·미디어가 수정될 때 변경 범위를 누적 기록합니다.</p></div><span class="version-badge" id="historyCurrentVersion">Current v1.0.0</span></div>
+<div class="history-table-wrap"><table class="history-table"><thead><tr><th>버전</th><th>업데이트일</th><th>변경 구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr></thead><tbody id="historyBody"><tr><td class="history-empty" colspan="5">변경 이력을 불러오는 중입니다.</td></tr></tbody></table></div>
+</div>
+</div>
+</footer>
+<div aria-label="빠른 작업" class="floating-actions">
+<button aria-label="맨 위로 이동" class="float-btn" id="toTop" type="button"><svg fill="none" viewbox="0 0 24 24"><path d="m6 14 6-6 6 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></button>
+<button aria-label="PDF로 저장" class="float-btn" onclick="window.print()" type="button"><svg fill="none" viewbox="0 0 24 24"><path d="M7 9V4h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-width="1.8"></path><path d="M7 14h10v6H7z" stroke="currentColor" stroke-width="1.8"></path></svg></button>
+</div>
+<script>
     const progress=document.getElementById('scrollProgress'); const toTop=document.getElementById('toTop');
     function updateProgress(){const max=document.documentElement.scrollHeight-window.innerHeight;progress.style.width=(max>0?window.scrollY/max*100:0)+'%';const show=window.scrollY>600;toTop.style.opacity=show?'1':'0';toTop.style.pointerEvents=show?'auto':'none'}
     window.addEventListener('scroll',updateProgress,{passive:true});updateProgress();toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
@@ -457,8 +453,56 @@ ffmpeg -i ComfyUI_00001_.webp \
     function renderMeta(){const node=document.getElementById('report-metadata');if(!node)return;try{const meta=JSON.parse(node.textContent);const version='v'+meta.version;const date=String(meta.updatedAt||'').replaceAll('-','.');const month=date.slice(0,7);const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v};set('reportVersion',version);set('reportUpdated','Updated '+date);set('reportGeneration',meta.generation+' · '+meta.reviewStatus);set('historyCurrentVersion','Current '+version);set('footerTitle',meta.title+' · AIHUBOS ReportMode');set('footerMeta',meta.generation+' · '+month);document.title=meta.title+' · '+version;const body=document.getElementById('historyBody');body.innerHTML='';(meta.history||[]).forEach(item=>{const tr=document.createElement('tr');[versionFrom(item.version),String(item.date||'').replaceAll('-','.'),item.type||'',item.summary||'',[item.updatedBy,item.reviewStatus].filter(Boolean).join(' · ')].forEach((value,i)=>{const td=document.createElement('td');if(i===4){const badge=document.createElement('span');badge.className='history-status';badge.textContent=value;td.appendChild(badge)}else td.textContent=value;tr.appendChild(td)});body.appendChild(tr)});if(!(meta.history||[]).length)body.innerHTML='<tr><td colspan="5" class="history-empty">기록된 변경 이력이 없습니다.</td></tr>'}catch(e){console.error('Invalid report metadata',e)}}
     function versionFrom(v){return 'v'+v} renderMeta();
   </script>
-
-  <script src="../assets/report-view-counter.js" data-report-id="260808-macbook-m5max-comfyui-practical-guide"></script>
-  <script src="../assets/report-page-layout.js?v=20260807c-wide-default"></script>
-</body>
+<script data-report-id="260808-macbook-m5max-comfyui-practical-guide" src="../assets/report-view-counter.js"></script>
+<script src="../assets/report-page-layout.js?v=20260807c-wide-default"></script>
+<section aria-labelledby="rm-history-title" class="rm-history" id="rmHistory">
+<div class="rm-wrap">
+<div class="rm-history-head"><div><div class="rm-kicker">VERSION &amp; CHANGE LOG</div><h2 id="rm-history-title">버전 및 변경 이력</h2><p>최신 기록이 위에 오며, 과거 이력은 삭제하지 않습니다.</p></div><span class="rm-chip" id="rmHistoryVersion">Current v1.1.0</span></div>
+<div class="rm-history-table-wrap"><table class="rm-history-table"><thead><tr><th>버전</th><th>업데이트일</th><th>변경 구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr></thead><tbody id="rmHistoryBody"><tr><td>v1.1.0</td><td>2026.08.08</td><td>내용·출처·디자인 통합 업데이트</td><td>2026년 8월 8일 기준 최신 공식 자료를 대조하고, ‘최신 버전’ 내용을 추가함. 공통 요약·미디어·출처·변경 이력 형식과 반응형·인쇄·접근성 규칙을 통일함.</td><td><span class="rm-status">AI-assisted · 자동 QA 완료 · 사람 검토 권장</span></td></tr><tr><td>v1.0.0</td><td>2026.08.08</td><td>신규 작성</td><td>MacBook Pro M5 Max 128GB 기준 Comfy Desktop·수동 설치, MPS 검증, FLUX.1 이미지 생성, Wan2.2 5B T2V·I2V 절차를 최초 작성함. 실제 생성 PNG·공식 온라인 애니메이션·로컬 MP4 미리보기·워크플로 JSON을 첨부하고 Python 호환성과 모델·예제 라이선스 출처를 명시함.</td><td><span class="rm-status">AI-generated · 검토 권장</span></td></tr></tbody></table></div>
+<div class="rm-integrity-note"><strong>검증 상태:</strong> 로컬 이미지 경로, 메타데이터 JSON, 버전 렌더링, 360px 반응형, A4 인쇄 규칙을 자동 점검했습니다. 가격·운영시간·구매·예약·의료·보안 판단은 배포 전 담당자의 최종 확인을 권장합니다.</div>
+</div>
+</section><script id="report-metadata" type="application/json">
+{
+  "schemaVersion": "1.0",
+  "reportId": "260808-macbook-m5max-comfyui-practical-guide",
+  "title": "MacBook Pro M5 Max 128GB · ComfyUI 실전 가이드",
+  "version": "1.1.0",
+  "status": "Published",
+  "createdAt": "2026-08-08",
+  "updatedAt": "2026-08-08",
+  "language": "ko-KR",
+  "author": "AIHUBOS ReportMode",
+  "generation": "AI-assisted",
+  "reviewStatus": "Human review recommended",
+  "history": [
+    {
+      "version": "1.1.0",
+      "date": "2026-08-08",
+      "type": "내용·출처·디자인 통합 업데이트",
+      "summary": "2026년 8월 8일 기준 최신 공식 자료를 대조하고, ‘최신 버전’ 내용을 추가함. 공통 요약·미디어·출처·변경 이력 형식과 반응형·인쇄·접근성 규칙을 통일함.",
+      "sections": [
+        "1페이지 요약",
+        "최신 검증",
+        "미디어·예시",
+        "출처",
+        "변경 이력",
+        "반응형·인쇄"
+      ],
+      "updatedBy": "AI-assisted",
+      "reviewStatus": "자동 QA 완료 · 사람 검토 권장"
+    },
+    {
+      "version": "1.0.0",
+      "date": "2026-08-08",
+      "type": "신규 작성",
+      "summary": "MacBook Pro M5 Max 128GB 기준 Comfy Desktop·수동 설치, MPS 검증, FLUX.1 이미지 생성, Wan2.2 5B T2V·I2V 절차를 최초 작성함. 실제 생성 PNG·공식 온라인 애니메이션·로컬 MP4 미리보기·워크플로 JSON을 첨부하고 Python 호환성과 모델·예제 라이선스 출처를 명시함.",
+      "sections": [
+        "전체"
+      ],
+      "updatedBy": "AI-generated",
+      "reviewStatus": "검토 권장"
+    }
+  ]
+}
+</script><script defer="True" src="assets/reportmode-unified-20260808.js"></script></body>
 </html>

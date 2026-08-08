@@ -22,7 +22,9 @@
     "</div>";
 
   var switcher = document.querySelector(".report-view-switcher-inner");
-  if (switcher) switcher.insertBefore(controls, switcher.firstChild);
+  var unifiedActions = document.querySelector(".rm-topline-actions");
+  if (unifiedActions) unifiedActions.insertBefore(controls, unifiedActions.firstChild);
+  else if (switcher) switcher.insertBefore(controls, switcher.firstChild);
   else document.body.insertBefore(controls, document.body.firstChild);
 
   var buttons = controls.querySelectorAll("[data-report-layout]");

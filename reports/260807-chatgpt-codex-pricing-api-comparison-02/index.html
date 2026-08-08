@@ -1,15 +1,16 @@
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="ChatGPT 요금제, Codex 사용량·크레딧, GPT-5.6 API 가격과 주요 경쟁 모델을 한눈에 비교하는 반응형 임원 보고서" />
-  <meta name="theme-color" content="#ffffff" />
-  <meta property="og:title" content="ChatGPT 요금제와 Codex·API 비용 비교" />
-  <meta property="og:description" content="구독·Codex 크레딧·API 사용료를 분리해 보는 2026.08.07 비용 의사결정 보고서" />
-  <meta property="og:type" content="article" />
-  <title>ChatGPT 요금제와 Codex·API 비용 비교 | Executive AI Cost Report</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="ChatGPT 요금제와 Codex·API 비용 비교 | Executive AI Cost Report — 2026년 8월 8일 최신 공식 자료와 사진·영상·예시·변경 이력을 반영한 AIHUBOS ReportMode 보고서" name="description"/>
+<meta content="#ffffff" name="theme-color"/>
+<meta content="ChatGPT 요금제와 Codex·API 비용 비교" property="og:title"/>
+<meta content="구독·Codex 크레딧·API 사용료를 분리해 보는 2026.08.07 비용 의사결정 보고서" property="og:description"/>
+<meta content="article" property="og:type"/>
+<title>ChatGPT 요금제와 Codex·API 비용 비교 | Executive AI Cost Report · v1.1.0</title>
+<style>
     :root {
       --blue: #3182f6;
       --blue-strong: #1b64da;
@@ -821,859 +822,845 @@
       footer { padding:20px 0 0; }
     }
   </style>
-
-  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260807c-wide-default">
-</head>
-<body data-report-view="detail" data-report-layout="wide" data-report-cover="../assets/260807-chatgpt-codex-pricing-api-comparison-02/cover.png" data-report-cover-alt="OpenAI 공식 로고">
-
-  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
-
-  <div class="nav-wrap">
-    <nav class="nav" aria-label="주요 탐색">
-      <a class="brand" href="#top" aria-label="보고서 처음으로">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M5 17.5V14m4 3.5V9m4 8.5V12m4 5.5V5.5" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/><path d="m5 8 4-3 4 2 5-4" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </span>
-        <span>AI COST REPORT <span class="brand-sub">· 260807</span></span>
-      </a>
-      <div class="nav-links" id="desktopNav">
-        <a href="#summary">요약</a>
-        <a href="#structure">비용 구조</a>
-        <a href="#plans">요금제</a>
-        <a href="#codex">Codex</a>
-        <a href="#api">API</a>
-        <a href="#compare">경쟁사</a>
-        <a href="#decision">판단 기준</a>
-        <a href="#sources">출처</a>
-      </div>
-      <div class="nav-actions">
-        <button class="btn btn-ghost" id="copySummary" type="button" title="핵심 요약 복사">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="8" y="8" width="10" height="11" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M6 16H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          <span class="copy-label">요약 복사</span>
-        </button>
-        <button class="btn btn-primary" id="printBtn" type="button">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 8V3h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M7 14h10v7H7z" stroke="currentColor" stroke-width="1.8"/></svg>
+<link href="../../assets/report-page-layout.css?v=20260807c-wide-default" rel="stylesheet"/>
+<link href="../assets/reportmode-unified-20260808.css" rel="stylesheet"/><meta content="../assets/260807-chatgpt-codex-pricing-api-comparison-02/cover.png" property="og:image"/><meta content="2026-08-08" name="report:updated"/></head>
+<body class="reportmode-unified" data-report-cover="../assets/260807-chatgpt-codex-pricing-api-comparison-02/cover.png" data-report-cover-alt="OpenAI 공식 로고" data-report-id="260807-chatgpt-codex-pricing-api-comparison-02" data-report-layout="wide" data-report-view="detail"><a class="rm-skip" href="#rmUpdateSummary">최신 요약으로 건너뛰기</a><div class="rm-topline" id="rmTopline"><div class="rm-topline-inner">
+<a class="rm-topline-brand" href="../../archive/"><span class="rm-topline-mark">R</span><span class="rm-topline-title">ChatGPT 요금제와 Codex·API 비용 비교 | Executive AI Cost Report</span></a>
+<div class="rm-topline-meta"><span class="rm-chip" id="rmVersionTop">v1.1.0</span><span id="rmUpdated">2026.08.08</span></div>
+<div class="rm-topline-actions"><a href="#rmUpdateSummary">요약</a><a href="#rmHistory">이력</a><button aria-label="PDF 저장" data-rm-print="" type="button">PDF</button></div>
+</div></div><section aria-labelledby="rm-update-title" class="rm-brief" id="rmUpdateSummary">
+<div class="rm-wrap rm-brief-grid">
+<div>
+<div class="rm-kicker">2026.08.08 VERIFIED UPDATE · 공식 자료 확인</div>
+<h2 id="rm-update-title">ChatGPT 요금제와 Codex·API 비용 비교 | Executive AI Cost Report<br/><span style="color:var(--rm-blue)">이번 업데이트의 한 문장 결론</span></h2>
+<p class="rm-brief-lead">기존 보고서를 보존하면서 최신 공식 자료, 실제 적용 예시, 미디어, 출처, 변경 이력을 공통 ReportMode 형식으로 보강했습니다.</p>
+<div class="rm-verdict"><span aria-hidden="true" class="rm-verdict-icon">✓</span><div><strong>ChatGPT 구독료, Codex 사용량, API 토큰 비용은 서로 다른 과금 체계이므로 한 표에 섞지 말고 사용 시나리오별 월 총비용으로 비교해야 합니다.</strong></div></div>
+<div class="rm-summary-cards">
+<article class="rm-summary-card"><b>01 · FACT</b><h3>GPT‑5.6 단가</h3><p>표준 단문 기준 100만 토큰당 Sol 입력 2.50달러/출력 15달러, Terra 1달러/6달러, Luna 0.10달러/0.60달러가 공개돼 있습니다.</p></article>
+<article class="rm-summary-card"><b>02 · UPDATE</b><h3>가격 인하 반영</h3><p>7월 30일 Luna 80%, Terra 20% 인하와 장문 컨텍스트·Fast mode 차등을 반영했습니다.</p></article>
+<article class="rm-summary-card"><b>03 · ACTION</b><h3>비용 통제</h3><p>요청별 모델 라우팅, 캐시, Batch, 월 하드 한도, 실패 재시도까지 포함해 실제 청구액을 추정하세요.</p></article>
+</div>
+<div class="rm-brief-actions">
+<a class="rm-action rm-action-primary" href="#rmMedia">사진·영상·예시 보기</a>
+<a class="rm-action" href="#rmHistory">변경 이력 보기</a>
+<a class="rm-action" href="../../archive/">보고서 도서관</a>
+</div>
+</div>
+<article class="rm-visual-card">
+<figure><img alt="OpenAI 공식 로고" decoding="async" loading="eager" src="../assets/260807-chatgpt-codex-pricing-api-comparison-02/cover.png"/><figcaption><span>공식 로고 또는 보고서 관련 이미지</span><span id="rmVersion">v1.1.0</span></figcaption></figure>
+</article>
+</div>
+</section><section aria-label="상세 본문 기준일 안내" class="rm-detail-note" id="rmDetailedContentNote"><div class="rm-detail-note-inner"><span aria-hidden="true" class="rm-detail-note-icon">i</span><div><strong>상세 본문 읽기:</strong> 아래 영역은 기존 보고서의 상세 분석과 근거를 보존한 내용입니다. 날짜·가격·버전·출시 상태가 상단의 <strong>2026.08.08 검증 요약</strong>과 다르면 상단 확인값이 우선하며, 중요한 결정은 연결된 공식 원문을 다시 확인하세요.</div></div></section>
+<div aria-hidden="true" class="scroll-progress" id="scrollProgress"></div>
+<div class="nav-wrap">
+<nav aria-label="주요 탐색" class="nav">
+<a aria-label="보고서 처음으로" class="brand" href="#top">
+<span aria-hidden="true" class="brand-mark">
+<svg fill="none" viewbox="0 0 24 24"><path d="M5 17.5V14m4 3.5V9m4 8.5V12m4 5.5V5.5" stroke="currentColor" stroke-linecap="round" stroke-width="2.1"></path><path d="m5 8 4-3 4 2 5-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1"></path></svg>
+</span>
+<span>AI COST REPORT <span class="brand-sub">· 260807</span></span>
+</a>
+<div class="nav-links" id="desktopNav">
+<a href="#summary">요약</a>
+<a href="#structure">비용 구조</a>
+<a href="#plans">요금제</a>
+<a href="#codex">Codex</a>
+<a href="#api">API</a>
+<a href="#compare">경쟁사</a>
+<a href="#decision">판단 기준</a>
+<a href="#sources">출처</a>
+</div>
+<div class="nav-actions">
+<button class="btn btn-ghost" id="copySummary" title="핵심 요약 복사" type="button">
+<svg aria-hidden="true" fill="none" viewbox="0 0 24 24"><rect height="11" rx="2" stroke="currentColor" stroke-width="1.8" width="10" x="8" y="8"></rect><path d="M6 16H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path></svg>
+<span class="copy-label">요약 복사</span>
+</button>
+<button class="btn btn-primary" id="printBtn" type="button">
+<svg aria-hidden="true" fill="none" viewbox="0 0 24 24"><path d="M7 8V3h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"></path><path d="M7 14h10v7H7z" stroke="currentColor" stroke-width="1.8"></path></svg>
           PDF 저장
         </button>
-        <button class="btn btn-ghost icon-btn menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu" title="목차 열기">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        </button>
-      </div>
-    </nav>
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="#summary">Executive Summary</a>
-      <a href="#structure">비용 구조</a>
-      <a href="#plans">ChatGPT 요금제</a>
-      <a href="#codex">Codex 할당량</a>
-      <a href="#api">OpenAI API</a>
-      <a href="#compare">경쟁사 비교</a>
-      <a href="#decision">의사결정 기준</a>
-      <a href="#sources">원문·출처</a>
-    </div>
-  </div>
-
-  <main id="top">
-    <div class="container">
-      <section class="hero" aria-labelledby="heroTitle">
-        <div class="hero-copy">
-          <div class="eyebrow reveal"><span class="eyebrow-dot"></span> EXECUTIVE AI COST REPORT · 2026.08.07 SNAPSHOT</div>
-          <h1 id="heroTitle" class="reveal">ChatGPT 요금제와<br /><span class="blue">Codex·API 비용</span>을<br /><span class="marker">한 번에 비교</span></h1>
-          <p class="hero-lead reveal">사람이 쓰는 <strong>ChatGPT 구독료</strong>, 한도 이후의 <strong>Codex 크레딧</strong>, 제품에 모델을 붙일 때의 <strong>API 사용료</strong>를 분리해 예산과 모델 선택 기준을 정리했습니다.</p>
-          <div class="hero-actions reveal">
-            <a class="btn btn-primary" href="#summary">
+<button aria-controls="mobileMenu" aria-expanded="false" class="btn btn-ghost icon-btn menu-btn" id="menuBtn" title="목차 열기" type="button">
+<svg aria-hidden="true" fill="none" viewbox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h14" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path></svg>
+</button>
+</div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+<a href="#summary">Executive Summary</a>
+<a href="#structure">비용 구조</a>
+<a href="#plans">ChatGPT 요금제</a>
+<a href="#codex">Codex 할당량</a>
+<a href="#api">OpenAI API</a>
+<a href="#compare">경쟁사 비교</a>
+<a href="#decision">의사결정 기준</a>
+<a href="#sources">원문·출처</a>
+</div>
+</div>
+<main id="top">
+<div class="container">
+<section aria-labelledby="heroTitle" class="hero">
+<div class="hero-copy">
+<div class="eyebrow reveal"><span class="eyebrow-dot"></span> EXECUTIVE AI COST REPORT · 2026.08.07 SNAPSHOT</div>
+<h1 class="reveal" id="heroTitle">ChatGPT 요금제와<br/><span class="blue">Codex·API 비용</span>을<br/><span class="marker">한 번에 비교</span></h1>
+<p class="hero-lead reveal">사람이 쓰는 <strong>ChatGPT 구독료</strong>, 한도 이후의 <strong>Codex 크레딧</strong>, 제품에 모델을 붙일 때의 <strong>API 사용료</strong>를 분리해 예산과 모델 선택 기준을 정리했습니다.</p>
+<div class="hero-actions reveal">
+<a class="btn btn-primary" href="#summary">
               핵심 결론 보기
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-            <a class="btn btn-ghost" href="#calculator">API 비용 계산하기</a>
-          </div>
-          <div class="hero-meta reveal">
-            <span><i></i> 작성·수정 2026.08.07 KST</span>
-            <span><i></i> 공식 출처 14개</span>
-            <span><i></i> USD 기준·세금/환율 별도</span>
-          </div>
-        </div>
-
-        <div class="hero-visual reveal" aria-label="AI 비용 구조 시각화">
-          <div class="orbit" aria-hidden="true"></div>
-          <div class="cost-map">
-            <div class="cost-map-head">
-              <div class="cost-map-title"><small>AI BUDGET MAP</small><strong>비용은 3개 통장으로</strong></div>
-              <span class="snapshot-chip">260807 기준</span>
-            </div>
-            <div class="cost-layer subscription">
-              <div class="layer-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 7.5h14v11H5z" stroke="currentColor" stroke-width="1.8"/><path d="M8 5h8M8.5 11h7M8.5 14.5h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-              <div class="layer-copy"><strong>ChatGPT 구독</strong><span>사람의 접근권과 기본 사용량</span></div>
-              <span class="layer-label">월 정액</span>
-            </div>
-            <div class="cost-layer credits">
-              <div class="layer-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="12" r="5" stroke="currentColor" stroke-width="1.8"/><circle cx="15" cy="12" r="5" stroke="currentColor" stroke-width="1.8"/><path d="M9 9.5v5M15 9.5v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-              <div class="layer-copy"><strong>Codex 크레딧</strong><span>포함 한도 이후의 추가 작업량</span></div>
-              <span class="layer-label">유연 과금</span>
-            </div>
-            <div class="cost-layer api">
-              <div class="layer-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M8 7 3 12l5 5M16 7l5 5-5 5M14 4l-4 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="layer-copy"><strong>API 사용료</strong><span>서비스·자동화가 호출한 토큰 비용</span></div>
-              <span class="layer-label">사용량 과금</span>
-            </div>
-            <div class="map-footer">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.5 3.1 7.6 7.5 9.5 4.4-1.9 7.5-5 7.5-9.5V6z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <span>세 비용을 한 숫자로 합치지 않아야 실제 AI 예산이 보입니다.</span>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <section id="summary">
-      <div class="container">
-        <div class="section-kicker reveal">Executive Summary</div>
-        <h2 class="section-title reveal">한 문장으로 정리하면,<br /><span class="marker">Plus에서 시작하고 비용을 분리</span>합니다</h2>
-        <p class="section-desc reveal">개인은 Plus를 기본 후보로 두고 실제 한도 부족이 반복될 때만 Pro 또는 추가 크레딧을 검토합니다. 조직은 좌석비와 Codex 크레딧을 나누고, 제품용 API는 별도 사용량 예산으로 승인하는 것이 핵심입니다.</p>
-
-        <div class="summary-panel reveal">
-          <article class="summary-main">
-            <div>
-              <span class="label"><span class="eyebrow-dot" style="background:#fff;box-shadow:0 0 0 5px rgba(255,255,255,.13)"></span> 핵심 판단</span>
-              <h3>개인 업무는 <span style="color:var(--highlight)">Plus($20/월)</span>가 기본 후보.<br />매일 고강도 코딩이면 Pro의 5배·20배 사용량을 검토.</h3>
-            </div>
-            <p>Business는 사용자당 좌석비와 별도 크레딧을 분리해 예산화해야 하며, 서비스에 모델을 붙이는 API 비용은 어떤 ChatGPT 구독에도 포함되지 않습니다.</p>
-          </article>
-          <div class="summary-side">
-            <article class="summary-rule">
-              <span class="num">1</span>
-              <strong>구독은 사람의 접근권</strong>
-              <span>ChatGPT와 Codex를 사람이 쓰기 위한 월간 권한과 기본 한도</span>
-            </article>
-            <article class="summary-rule">
-              <span class="num">2</span>
-              <strong>크레딧은 한도 이후 확장</strong>
-              <span>Codex 작업량이 기본 한도를 넘을 때 추가로 사용하는 유연 과금</span>
-            </article>
-            <article class="summary-rule">
-              <span class="num">3</span>
-              <strong>API는 제품의 사용량</strong>
-              <span>앱·서비스·자동화가 모델을 호출한 실제 토큰 기준의 별도 비용</span>
-            </article>
-          </div>
-        </div>
-
-        <div class="metric-grid">
-          <article class="metric-card reveal"><small>개인 기본 후보</small><strong>$20<small style="display:inline;font-size:13px;color:var(--muted)">/월</small></strong><span>ChatGPT Plus · API 사용료는 별도</span></article>
-          <article class="metric-card reveal"><small>Pro 포함 사용량 정책</small><strong>5× / 20×</strong><span>Plus 대비 사용량 배수. 모델별 절대 작업 수 보장은 아님</span></article>
-          <article class="metric-card reveal"><small>GPT-5.6 Terra</small><strong>$2 / $12</strong><span>1M 입력 / 출력 토큰 현재 표준 단가</span></article>
-          <article class="metric-card reveal"><small>GPT-5.6 Luna</small><strong>$0.20 / $1.20</strong><span>1M 입력 / 출력 토큰 현재 표준 단가</span></article>
-        </div>
-
-        <div class="decision-quote reveal">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17h3l2-4V7H6v6h3M15 17h3l2-4V7h-6v6h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <p id="summaryText">구독은 사람의 접근권, API는 제품의 사용량, Codex 크레딧은 한도 이후의 확장 비용입니다. 세 숫자를 분리해야 AI 예산이 보입니다.</p>
-        </div>
-        <div class="source-strip reveal" aria-label="요약 출처">
-          <a href="https://chatgpt.com/pricing/" target="_blank" rel="noopener">[1] ChatGPT Pricing <svg viewBox="0 0 24 24" fill="none"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <a href="https://chatgpt.com/codex/pricing/" target="_blank" rel="noopener">[2] Codex Pricing <svg viewBox="0 0 24 24" fill="none"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <a href="https://developers.openai.com/api/docs/pricing" target="_blank" rel="noopener">[7] OpenAI API Pricing <svg viewBox="0 0 24 24" fill="none"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        </div>
-      </div>
-    </section>
-
-    <section id="structure" style="background:linear-gradient(180deg,rgba(247,248,250,.78),rgba(255,255,255,0))">
-      <div class="container">
-        <div class="section-kicker reveal">Separate the Budget</div>
-        <h2 class="section-title reveal">먼저 세 가지 비용을<br />같은 예산표에서 <span class="marker">분리하세요</span></h2>
-        <p class="section-desc reveal">같은 OpenAI 서비스처럼 보여도 구매 주체와 청구 방식이 다릅니다. 개인 생산성, 개발 작업량, 제품 운영비를 섞으면 플랜 비교와 비용 통제가 모두 어려워집니다.</p>
-
-        <div class="cards-3">
-          <article class="concept-card reveal">
-            <div class="concept-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 6h14v13H5z" stroke="currentColor" stroke-width="1.8"/><path d="M8 3h8v3H8zM8 10h8M8 14h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-            <span class="micro">사람이 쓰는 도구</span>
-            <h3>ChatGPT 구독료</h3>
-            <p>사람이 ChatGPT와 Codex를 사용하기 위한 월간 접근 권한과 포함 사용량입니다. Plus·Pro·Business를 결제해도 API 사용료가 포함되지는 않습니다.</p>
-            <ul>
-              <li>개인: Plus·Pro 중심</li>
-              <li>조직: Business·Enterprise 중심</li>
-              <li>예산 단위: 사용자·월</li>
-            </ul>
-          </article>
-          <article class="concept-card reveal">
-            <div class="concept-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M7 5h10v14H7z" stroke="currentColor" stroke-width="1.8"/><path d="M10 9h4M10 12h4M10 15h2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M5 8H3v10h2M19 8h2v10h-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-            <span class="micro">개발 작업량의 확장</span>
-            <h3>Codex 크레딧</h3>
-            <p>포함 한도를 초과한 Codex 작업을 확장하는 단위입니다. 메시지 개수만이 아니라 입력·캐시 입력·출력 토큰과 작업 복잡도에 따라 소모됩니다.</p>
-            <ul>
-              <li>개인 유료 플랜: 추가 구매 가능</li>
-              <li>Business·Enterprise: 워크스페이스 크레딧</li>
-              <li>예산 단위: 크레딧·작업량</li>
-            </ul>
-          </article>
-          <article class="concept-card reveal">
-            <div class="concept-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M8 7 3 12l5 5M16 7l5 5-5 5M14 4l-4 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <span class="micro">제품과 자동화의 비용</span>
-            <h3>API 사용료</h3>
-            <p>회사 서비스·앱·자동화에서 모델을 호출할 때 실제 입력·캐시·출력 토큰에 따라 별도 청구됩니다. 구독 여부와 무관한 제품 운영비입니다.</p>
-            <ul>
-              <li>모델별 단가와 캐시율 반영</li>
-              <li>장기 컨텍스트·도구 호출 별도 고려</li>
-              <li>예산 단위: 1M 토큰·월</li>
-            </ul>
-          </article>
-        </div>
-
-        <div class="report-note warning reveal">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 3 2.8 20h18.4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 9v5M12 17.5v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          <span>이 보고서의 모든 금액은 USD 기준이며 세금, 환율, 지역별 결제 가격은 별도입니다. 가격과 한도는 변경될 수 있으므로 실제 구매 직전에 공식 페이지를 다시 확인해야 합니다.</span>
-        </div>
-      </div>
-    </section>
-
-    <section id="plans">
-      <div class="container">
-        <div class="section-kicker reveal">ChatGPT Plans</div>
-        <h2 class="section-title reveal">개인은 사용 빈도,<br />조직은 <span class="marker">관리와 추가 크레딧</span>까지 봅니다</h2>
-        <p class="section-desc reveal">Plus와 Pro는 핵심 기능보다 포함 사용량의 차이가 중요합니다. Business는 좌석비만 비교하지 말고 최소 좌석 수, 조직 관리, 추가 크레딧 상한을 함께 결정해야 합니다.</p>
-
-        <div class="plan-feature-grid">
-          <article class="plan-card recommended reveal">
-            <span class="plan-badge">개인 기본 후보</span>
-            <h3>Plus</h3>
-            <div class="plan-price">$20<small>/월</small></div>
-            <p>주 몇 회 집중 코딩·기획, 고급 추론과 Codex를 함께 쓰는 개인의 시작점.</p>
-            <ul class="plan-points">
-              <li><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>고급 추론·앱·Codex 포함</li>
-              <li><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>기본 한도 이후 크레딧 구매 가능</li>
-              <li><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>API 비용은 별도</li>
-            </ul>
-          </article>
-          <article class="plan-card reveal">
-            <span class="plan-badge">고강도 개인</span>
-            <h3>Pro $100</h3>
-            <div class="plan-price">$100<small>/월</small></div>
-            <p>Plus 한도 부족이 반복되는 매일 고강도 연구·코딩 사용자용.</p>
-            <ul class="plan-points">
-              <li><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Plus 대비 5배 사용량 정책</li>
-              <li><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Pro 추론·최대 Codex 작업</li>
-              <li><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>절대 메시지 수 보장은 아님</li>
-            </ul>
-          </article>
-          <article class="plan-card reveal">
-            <span class="plan-badge">최대 개인 사용량</span>
-            <h3>Pro $200</h3>
-            <div class="plan-price">$200<small>/월</small></div>
-            <p>매우 높은 개인 사용량과 복잡한 Codex 작업이 상시 발생하는 경우.</p>
-            <ul class="plan-points">
-              <li><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Plus 대비 20배 사용량 정책</li>
-              <li><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>최대 수준의 개인 작업량</li>
-              <li><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>실사용 기록 후 승격 권장</li>
-            </ul>
-          </article>
-          <article class="plan-card team reveal">
-            <span class="plan-badge">소규모 팀</span>
-            <h3>Business</h3>
-            <div class="plan-price">$25<small>/인·월</small></div>
-            <p>좌석·권한·공유·지출 통제를 조직 단위로 관리할 때의 기본 후보.</p>
-            <ul class="plan-points">
-              <li><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>연간 결제 $20/인·월</li>
-              <li><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>최소 2석·Codex 포함</li>
-              <li><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>초과분은 워크스페이스 크레딧</li>
-            </ul>
-          </article>
-        </div>
-
-        <div class="table-shell reveal">
-          <div class="table-head"><strong>전체 요금제 비교</strong><span>모바일에서는 표를 좌우로 움직여 확인하세요</span></div>
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>요금제</th><th>공개 비용(USD)</th><th>Codex</th><th>사용량·핵심 차이</th><th>적합한 용도</th></tr></thead>
-              <tbody>
-                <tr><td><strong>Free</strong></td><td>$0</td><td><span class="tag gray">제한적 체험</span></td><td>GPT-5.6·메시지·업로드·리서치·메모리 모두 제한적</td><td>기능 확인</td></tr>
-                <tr><td><strong>Go</strong></td><td>지역별 월 정가</td><td><span class="tag gray">제한적 체험</span></td><td>Free보다 메시지·파일·이미지·데이터 분석·메모리 확대</td><td>가벼운 개인 사용</td></tr>
-                <tr><td><strong>Plus</strong></td><td>$20/월</td><td><span class="tag">포함·확대</span></td><td>고급 추론, 앱·플러그인, Codex 앱, 기본 한도 이후 크레딧</td><td>주 몇 회 집중 코딩·기획</td></tr>
-                <tr><td><strong>Pro $100</strong></td><td>$100/월</td><td><span class="tag violet">포함·상향</span></td><td>Plus 대비 5배 사용량, 동일 핵심 기능, Pro 추론</td><td>매일 고강도 개인 사용</td></tr>
-                <tr><td><strong>Pro $200</strong></td><td>$200/월</td><td><span class="tag violet">포함·최대</span></td><td>Plus 대비 20배 사용량, 최대 Codex 작업</td><td>매우 높은 개인 사용량</td></tr>
-                <tr><td><strong>Business</strong></td><td>$25/인·월<br />$20/인·월(연간)</td><td><span class="tag green">표준 좌석 포함</span></td><td>최소 2석, 관리·공유·지출 통제, 초과분은 워크스페이스 크레딧</td><td>소규모 팀</td></tr>
-                <tr><td><strong>Enterprise</strong></td><td>계약형</td><td><span class="tag green">표준 좌석 포함</span></td><td>SSO·SCIM·조직 관리·계약형 크레딧, 공개 고정 한도 없음</td><td>대규모·규제 조직</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div class="report-note reveal">
-          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 11v5M12 8v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          <span>새 Business 워크스페이스는 2026-06-24 이후 Codex 전용 좌석을 새로 추가할 수 없습니다. 기존에 전용 좌석을 보유한 워크스페이스는 예외이며, 표준 ChatGPT 좌석에는 ChatGPT와 Codex가 함께 포함됩니다.</span>
-        </div>
-        <div class="source-strip reveal">
-          <a href="https://chatgpt.com/pricing/" target="_blank" rel="noopener">[1] ChatGPT Pricing</a>
-          <a href="https://chatgpt.com/codex/pricing/" target="_blank" rel="noopener">[2] Codex Pricing</a>
-          <a href="https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus" target="_blank" rel="noopener">[3] ChatGPT Plus</a>
-          <a href="https://help.openai.com/en/articles/9793128-what-is-chatgpt-team" target="_blank" rel="noopener">[4] Pro tiers</a>
-          <a href="https://help.openai.com/en/articles/8792828-what-is-chatgpt-team/" target="_blank" rel="noopener">[5] ChatGPT Business</a>
-          <a href="https://help.openai.com/en/articles/8265053-what-is-chatgpt-enterprise" target="_blank" rel="noopener">[6] ChatGPT Enterprise</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="codex" style="background:linear-gradient(180deg,rgba(232,243,255,.44),rgba(255,255,255,0))">
-      <div class="container">
-        <div class="section-kicker reveal">Codex Included Usage</div>
-        <h2 class="section-title reveal">공개 숫자는 메시지 보장이 아니라<br /><span class="marker">계획 범위</span>입니다</h2>
-        <p class="section-desc reveal">Plus의 로컬 메시지와 클라우드 작업은 같은 5시간 창을 공유하고 주간 추가 제한이 적용될 수 있습니다. 프롬프트 길이, MCP 연결, 작업 복잡도에 따라 실제 소모가 달라집니다.</p>
-
-        <div class="quota-layout">
-          <article class="quota-chart reveal">
-            <h3>Plus 기준 로컬 메시지 / 5시간</h3>
-            <p>공개 표가 고정 숫자로 제시하는 모델별 평균 범위입니다. 막대 길이는 최대 350회를 기준으로 상대 표시했습니다.</p>
-            <div class="quota-list">
-              <div class="quota-row">
-                <div class="quota-name"><strong>GPT-5.6 Sol</strong><small>최상위 티어</small></div>
-                <div class="range-track"><span class="range-fill" style="--w:25.7%"></span><i class="range-min" style="--min:4.3%"></i></div>
-                <div class="quota-value">15–90</div>
-              </div>
-              <div class="quota-row">
-                <div class="quota-name"><strong>GPT-5.6 Terra</strong><small>균형형</small></div>
-                <div class="range-track"><span class="range-fill" style="--w:31.4%"></span><i class="range-min" style="--min:5.7%"></i></div>
-                <div class="quota-value">20–110</div>
-              </div>
-              <div class="quota-row">
-                <div class="quota-name"><strong>GPT-5.6 Luna</strong><small>고용량</small></div>
-                <div class="range-track"><span class="range-fill" style="--w:80%"></span><i class="range-min" style="--min:14.3%"></i></div>
-                <div class="quota-value">50–280</div>
-              </div>
-              <div class="quota-row">
-                <div class="quota-name"><strong>GPT-5.5</strong><small>레거시</small></div>
-                <div class="range-track"><span class="range-fill" style="--w:22.9%"></span><i class="range-min" style="--min:4.3%"></i></div>
-                <div class="quota-value">15–80</div>
-              </div>
-              <div class="quota-row">
-                <div class="quota-name"><strong>GPT-5.4</strong><small>8/31 은퇴 예정</small></div>
-                <div class="range-track"><span class="range-fill" style="--w:28.6%"></span><i class="range-min" style="--min:5.7%"></i></div>
-                <div class="quota-value">20–100</div>
-              </div>
-              <div class="quota-row">
-                <div class="quota-name"><strong>GPT-5.4 mini</strong><small>8/31 은퇴 예정</small></div>
-                <div class="range-track"><span class="range-fill" style="--w:100%"></span><i class="range-min" style="--min:17.1%"></i></div>
-                <div class="quota-value">60–350</div>
-              </div>
-            </div>
-          </article>
-
-          <article class="multiplier-card reveal">
-            <span class="mini-label">HOW TO READ PRO</span>
-            <h3>Pro의 핵심은 기능보다<br />포함 사용량의 배수</h3>
-            <p>OpenAI는 Pro $100과 $200을 각각 Plus 대비 5배와 20배 사용량으로 설명합니다. 하지만 모델별 절대 메시지 수를 공개 표로 보장하지는 않습니다.</p>
-            <div class="multiplier-grid">
-              <div class="multiplier-box"><strong>5×</strong><span>Pro $100 · Plus 대비</span></div>
-              <div class="multiplier-box"><strong>20×</strong><span>Pro $200 · Plus 대비</span></div>
-            </div>
-            <div class="fine">실제 잔여량은 Codex 사용량 대시보드 또는 CLI의 <code>/status</code>에서 확인해야 하며, 시스템 상황과 작업 조건에 따라 달라질 수 있습니다.</div>
-          </article>
-        </div>
-
-        <div class="table-shell reveal" style="margin-top:18px">
-          <div class="table-head"><strong>Plus 공개 할당량 요약</strong><span>클라우드 작업·코드 리뷰는 공개 표상 절대 수치 미제공</span></div>
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>모델</th><th>로컬 메시지 / 5시간</th><th>클라우드 작업 / 5시간</th><th>코드 리뷰 / 5시간</th><th>비고</th></tr></thead>
-              <tbody>
-                <tr><td><strong>GPT-5.6 Sol</strong></td><td>15–90</td><td>공개 표상 사용 불가</td><td>공개 표상 사용 불가</td><td>가장 높은 티어</td></tr>
-                <tr><td><strong>GPT-5.6 Terra</strong></td><td>20–110</td><td>공개 표상 사용 불가</td><td>공개 표상 사용 불가</td><td>성능·비용 균형</td></tr>
-                <tr><td><strong>GPT-5.6 Luna</strong></td><td>50–280</td><td>공개 표상 사용 불가</td><td>공개 표상 사용 불가</td><td>고용량·저비용</td></tr>
-                <tr><td><strong>GPT-5.5</strong></td><td>15–80</td><td>공개 표상 사용 불가</td><td>공개 표상 사용 불가</td><td>레거시 행</td></tr>
-                <tr><td><strong>GPT-5.4</strong></td><td>20–100</td><td>공개 표상 사용 불가</td><td>공개 표상 사용 불가</td><td>2026-08-31 Codex 은퇴 예정</td></tr>
-                <tr><td><strong>GPT-5.4 mini</strong></td><td>60–350</td><td>공개 표상 사용 불가</td><td>공개 표상 사용 불가</td><td>2026-08-31 Codex 은퇴 예정</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div class="report-note reveal">
-          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 11v5M12 8v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          <span>Business·Enterprise는 표준 좌석의 기본 한도에 크레딧으로 확장하는 구조입니다. 팀 예산은 ‘좌석비 + 월별 추가 크레딧 상한’으로 나누어 관리하는 편이 안전합니다.</span>
-        </div>
-        <div class="source-strip reveal">
-          <a href="https://chatgpt.com/codex/pricing/" target="_blank" rel="noopener">[2] Codex Pricing</a>
-          <a href="https://help.openai.com/en/articles/20001106" target="_blank" rel="noopener">[11] Codex rate card</a>
-          <a href="https://help.openai.com/en/articles/9793128-what-is-chatgpt-team" target="_blank" rel="noopener">[4] Pro tiers</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="api">
-      <div class="container">
-        <div class="section-kicker reveal">OpenAI API Pricing</div>
-        <h2 class="section-title reveal">같은 1M 입력 + 1M 출력도<br />모델에 따라 <span class="marker">25배 차이</span>가 납니다</h2>
-        <p class="section-desc reveal">표준·짧은 컨텍스트의 1M 토큰 기준입니다. 단순 합계는 비교용이며 실제 청구액은 입력, 캐시 읽기·쓰기, 출력, 장기 컨텍스트, 도구 호출의 실제 비중에 따라 달라집니다.</p>
-
-        <div class="model-grid">
-          <article class="model-card sol reveal">
-            <div class="model-top"><span class="model-tier">Frontier</span><span class="tag gray">고난도</span></div>
-            <h3>GPT-5.6 Sol</h3>
-            <div class="model-role">가장 어려운 전문 작업과 높은 추론 품질이 필요한 단계</div>
-            <div class="model-total"><small>입력 1M + 출력 1M 단순 예시</small><strong>$35.00 <span>/ 2M tokens</span></strong></div>
-            <div class="rate-list">
-              <div class="rate-line"><span>입력 / 1M</span><b>$5.00</b></div>
-              <div class="rate-line"><span>캐시 입력 / 1M</span><b>$0.50</b></div>
-              <div class="rate-line"><span>캐시 쓰기 / 1M</span><b>$6.25</b></div>
-              <div class="rate-line"><span>출력 / 1M</span><b>$30.00</b></div>
-            </div>
-          </article>
-          <article class="model-card terra reveal">
-            <div class="model-top"><span class="model-tier">Balanced</span><span class="tag violet">균형형</span></div>
-            <h3>GPT-5.6 Terra</h3>
-            <div class="model-role">일상 개발·분석에서 성능과 비용의 균형을 노리는 기본 후보</div>
-            <div class="model-total"><small>입력 1M + 출력 1M 단순 예시</small><strong>$14.00 <span>/ 2M tokens</span></strong></div>
-            <div class="rate-list">
-              <div class="rate-line"><span>입력 / 1M</span><b>$2.00</b></div>
-              <div class="rate-line"><span>캐시 입력 / 1M</span><b>$0.20</b></div>
-              <div class="rate-line"><span>캐시 쓰기 / 1M</span><b>$2.50</b></div>
-              <div class="rate-line"><span>출력 / 1M</span><b>$12.00</b></div>
-            </div>
-          </article>
-          <article class="model-card luna reveal">
-            <div class="model-top"><span class="model-tier">Efficient</span><span class="tag green">저비용</span></div>
-            <h3>GPT-5.6 Luna</h3>
-            <div class="model-role">대량 요약·분류·초안·단순 변환처럼 비용 민감한 반복 작업</div>
-            <div class="model-total"><small>입력 1M + 출력 1M 단순 예시</small><strong>$1.40 <span>/ 2M tokens</span></strong></div>
-            <div class="rate-list">
-              <div class="rate-line"><span>입력 / 1M</span><b>$0.20</b></div>
-              <div class="rate-line"><span>캐시 입력 / 1M</span><b>$0.02</b></div>
-              <div class="rate-line"><span>캐시 쓰기 / 1M</span><b>$0.25</b></div>
-              <div class="rate-line"><span>출력 / 1M</span><b>$1.20</b></div>
-            </div>
-          </article>
-        </div>
-
-        <article class="price-bars reveal">
-          <h3>입력 1M + 출력 1M 단순 합계 비교</h3>
-          <p>Sol을 100%로 둔 상대 비용입니다. 품질·추론 능력·처리 성공률을 반영한 성능 비교는 아닙니다.</p>
-          <div class="bar-list">
-            <div class="bar-row"><div class="bar-name">GPT-5.6 Sol</div><div class="bar-track"><div class="bar-fill" style="--w:100%"></div></div><div class="bar-price">$35.00</div></div>
-            <div class="bar-row"><div class="bar-name">GPT-5.6 Terra</div><div class="bar-track"><div class="bar-fill" style="--w:40%"></div></div><div class="bar-price">$14.00</div></div>
-            <div class="bar-row"><div class="bar-name">GPT-5.6 Luna</div><div class="bar-track"><div class="bar-fill" style="--w:4%"></div></div><div class="bar-price">$1.40</div></div>
-          </div>
-        </article>
-
-        <div class="report-note warning reveal">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 3 2.8 20h18.4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 9v5M12 17.5v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          <span>입력이 272K 토큰을 넘는 요청은 전체 요청에 대해 입력 2배, 출력 1.5배의 장기 컨텍스트 단가가 적용됩니다. 캐시 읽기는 일반 입력의 10% 수준, 캐시 쓰기는 일반 입력의 1.25배이며, 데이터 레지던시 대상 리전은 10% 가산될 수 있습니다.</span>
-        </div>
-        <div class="source-strip reveal">
-          <a href="https://developers.openai.com/api/docs/pricing" target="_blank" rel="noopener">[7] OpenAI API Pricing</a>
-          <a href="https://developers.openai.com/api/docs/models/gpt-5.6-terra" target="_blank" rel="noopener">[8] GPT-5.6 Terra</a>
-          <a href="https://developers.openai.com/api/docs/models/gpt-5.6-luna" target="_blank" rel="noopener">[9] GPT-5.6 Luna</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="change" style="background:linear-gradient(180deg,rgba(247,248,250,.8),rgba(255,255,255,0))">
-      <div class="container">
-        <div class="section-kicker reveal">Price Change</div>
-        <h2 class="section-title reveal">출시 공지 대비 현재 가격은<br />Terra <span style="color:var(--blue)">-20%</span>, Luna <span class="marker">-80%</span></h2>
-        <p class="section-desc reveal">2026-07-09 출시 공지와 현재 API 가격 페이지의 차이를 비교했습니다. 변경 시행일이나 배경은 공식 현재 가격 페이지에 명시되지 않아 이 보고서에서는 추정하지 않습니다.</p>
-
-        <div class="change-grid">
-          <article class="change-card reveal">
-            <div class="change-head"><h3>GPT-5.6 Terra</h3><span class="change-rate">-20%</span></div>
-            <div class="before-after">
-              <div class="price-snapshot"><small>7/09 출시 공지</small><strong>$2.50 / $15</strong></div>
-              <svg viewBox="0 0 24 24" fill="none"><path d="m8 5 7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <div class="price-snapshot"><small>현재 API</small><strong>$2.00 / $12</strong></div>
-            </div>
-            <p>입력과 출력 단가 모두 출시 공지 대비 20% 낮아졌습니다.</p>
-          </article>
-          <article class="change-card reveal">
-            <div class="change-head"><h3>GPT-5.6 Luna</h3><span class="change-rate">-80%</span></div>
-            <div class="before-after">
-              <div class="price-snapshot"><small>7/09 출시 공지</small><strong>$1.00 / $6</strong></div>
-              <svg viewBox="0 0 24 24" fill="none"><path d="m8 5 7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <div class="price-snapshot"><small>현재 API</small><strong>$0.20 / $1.20</strong></div>
-            </div>
-            <p>입력과 출력 단가 모두 출시 공지 대비 80% 낮아졌습니다.</p>
-          </article>
-          <article class="change-card reveal">
-            <div class="change-head"><h3>GPT-5.6 Sol</h3><span class="change-rate same">0%</span></div>
-            <div class="before-after">
-              <div class="price-snapshot"><small>7/09 출시 공지</small><strong>$5.00 / $30</strong></div>
-              <svg viewBox="0 0 24 24" fill="none"><path d="m8 5 7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <div class="price-snapshot"><small>현재 API</small><strong>$5.00 / $30</strong></div>
-            </div>
-            <p>이 비교에서는 출시 공지와 현재 표준 단가가 동일합니다.</p>
-          </article>
-        </div>
-        <div class="source-strip reveal">
-          <a href="https://developers.openai.com/api/docs/pricing" target="_blank" rel="noopener">[7] Current API Pricing</a>
-          <a href="https://openai.com/index/gpt-5-6/" target="_blank" rel="noopener">[10] GPT-5.6 Launch</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="credits">
-      <div class="container">
-        <div class="section-kicker reveal">Codex Credit Rate Card</div>
-        <h2 class="section-title reveal">Codex 크레딧은<br /><span class="marker">API 달러와 다른 단위</span>입니다</h2>
-        <p class="section-desc reveal">Codex의 유연 과금은 API 가격표를 그대로 쓰지 않습니다. 실제 크레딧은 입력·캐시 입력·출력 토큰 구성에 따라 달라지며, Codex에서는 캐시 쓰기 자체에 크레딧을 청구하지 않습니다.</p>
-
-        <div class="credit-layout">
-          <article class="credit-explainer reveal">
-            <span class="mini-label">CREDIT ≠ API DOLLAR</span>
-            <h3>작업 수가 같아도<br />모델과 토큰 구성에 따라 달라집니다</h3>
-            <p>공개 숫자를 ‘메시지 1회당 고정 비용’으로 해석하면 안 됩니다. 모델, 프롬프트 길이, 출력량, 속도 모드, 병렬 인스턴스 수가 실제 비용을 바꿉니다.</p>
-            <div class="credit-callout">
-              <strong>Sol 일반 작업 ≈ 5–40 credits</strong>
-              <span>OpenAI가 제시한 작업당 예시 범위. 실제 사용량은 작업 난이도와 토큰 구성에 따라 크게 달라질 수 있습니다.</span>
-            </div>
-          </article>
-
-          <div class="credit-table-cards reveal">
-            <div class="credit-row-card">
-              <strong>GPT-5.6 Sol</strong>
-              <div class="credit-cell"><small>입력 / 1M</small><b>125</b></div>
-              <div class="credit-cell"><small>캐시 입력 / 1M</small><b>12.50</b></div>
-              <div class="credit-cell"><small>출력 / 1M</small><b>750</b></div>
-            </div>
-            <div class="credit-row-card">
-              <strong>GPT-5.6 Terra</strong>
-              <div class="credit-cell"><small>입력 / 1M</small><b>50</b></div>
-              <div class="credit-cell"><small>캐시 입력 / 1M</small><b>5</b></div>
-              <div class="credit-cell"><small>출력 / 1M</small><b>300</b></div>
-            </div>
-            <div class="credit-row-card">
-              <strong>GPT-5.6 Luna</strong>
-              <div class="credit-cell"><small>입력 / 1M</small><b>5</b></div>
-              <div class="credit-cell"><small>캐시 입력 / 1M</small><b>0.5</b></div>
-              <div class="credit-cell"><small>출력 / 1M</small><b>30</b></div>
-            </div>
-            <div class="report-note" style="margin:0">
-              <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 11v5M12 8v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-              <span>Terra와 Luna는 Sol보다 훨씬 적은 크레딧을 사용합니다. Fast 모드는 지원 모델에서 더 높은 크레딧을 소모하며, 공식 문서의 개발자당 평균 Codex 비용은 월 약 $100–$200으로 제시됩니다.</span>
-            </div>
-          </div>
-        </div>
-        <div class="source-strip reveal">
-          <a href="https://help.openai.com/en/articles/20001106" target="_blank" rel="noopener">[11] Codex rate card</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="compare" style="background:linear-gradient(180deg,rgba(238,233,255,.24),rgba(255,255,255,0))">
-      <div class="container">
-        <div class="section-kicker reveal">Cross-vendor API Comparison</div>
-        <h2 class="section-title reveal">가격표는 출발점일 뿐,<br /><span class="marker">성능 우열표가 아닙니다</span></h2>
-        <p class="section-desc reveal">동일한 ‘1M 입력 + 1M 출력’ 단순 계산으로 비교했습니다. 품질, 컨텍스트 길이, 사고 토큰, 검색·도구 비용, 지역·우선 처리, 미리보기 상태가 달라 달러 합계만으로 모델의 우열을 판단할 수 없습니다.</p>
-
-        <div class="compare-tabs reveal" role="tablist" aria-label="모델 비교 유형">
-          <button class="compare-tab active" type="button" role="tab" aria-selected="true" data-panel="performance">대표 고성능 모델</button>
-          <button class="compare-tab" type="button" role="tab" aria-selected="false" data-panel="efficient">비용 민감 모델</button>
-        </div>
-
-        <div class="compare-panel active" id="performance" role="tabpanel">
-          <div class="vendor-chart">
-            <article class="vendor-bars reveal">
-              <h3>대표 고성능 모델 · 단순 합계</h3>
-              <p>1M 입력 + 1M 출력 기준. OpenAI Sol $35를 100%로 표시했습니다.</p>
-              <div class="vendor-row">
-                <div class="vendor-name"><strong>OpenAI</strong><small>GPT-5.6 Sol</small></div>
-                <div class="vendor-track"><div class="vendor-fill" style="--w:100%"></div></div>
-                <div class="vendor-price">$35.00</div>
-              </div>
-              <div class="vendor-row">
-                <div class="vendor-name"><strong>Anthropic</strong><small>Claude Opus 5</small></div>
-                <div class="vendor-track"><div class="vendor-fill" style="--w:85.7%"></div></div>
-                <div class="vendor-price">$30.00</div>
-              </div>
-              <div class="vendor-row">
-                <div class="vendor-name"><strong>Google</strong><small>Gemini 3.1 Pro Preview</small></div>
-                <div class="vendor-track"><div class="vendor-fill" style="--w:72%"></div></div>
-                <div class="vendor-price">$25.20</div>
-              </div>
-              <div class="vendor-row">
-                <div class="vendor-name"><strong>xAI</strong><small>Grok 4.5</small></div>
-                <div class="vendor-track"><div class="vendor-fill" style="--w:22.9%"></div></div>
-                <div class="vendor-price">$8.00</div>
-              </div>
-            </article>
-            <aside class="compare-insight reveal">
-              <div class="insight-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V9m5 10V5m5 14v-7m5 7V3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-              <h3>고성능 모델도<br />운영 조건이 다릅니다</h3>
-              <p>가격이 낮다고 동일한 난도의 작업을 같은 성공률로 처리한다는 의미는 아닙니다. 실제 도입에서는 자사 업무 샘플로 품질과 총비용을 함께 측정해야 합니다.</p>
-              <ul class="insight-list">
-                <li>OpenAI Sol: 272K 초과 장기 컨텍스트 단가</li>
-                <li>Google: Preview·Priority 기준</li>
-                <li>xAI: 200K 이상 장기 단가 별도</li>
-                <li>Anthropic: 캐시·지역 옵션 별도</li>
-              </ul>
-            </aside>
-          </div>
-          <div class="table-shell reveal" style="margin-top:18px">
-            <div class="table-head"><strong>대표 고성능 모델 표준 단가</strong><span>USD / 1M tokens</span></div>
-            <div class="table-wrap">
-              <table>
-                <thead><tr><th>공급사</th><th>대표 모델</th><th>입력 / 1M</th><th>출력 / 1M</th><th>입력+출력</th><th>주의점</th></tr></thead>
-                <tbody>
-                  <tr><td><strong>OpenAI</strong></td><td>GPT-5.6 Sol</td><td>$5.00</td><td>$30.00</td><td><strong>$35.00</strong></td><td>272K 초과는 장기 컨텍스트 단가</td></tr>
-                  <tr><td><strong>Anthropic</strong></td><td>Claude Opus 5</td><td>$5.00</td><td>$25.00</td><td><strong>$30.00</strong></td><td>캐시·지역 옵션 별도</td></tr>
-                  <tr><td><strong>Google</strong></td><td>Gemini 3.1 Pro Preview (Priority)</td><td>$3.60</td><td>$21.60</td><td><strong>$25.20</strong></td><td>Preview·Priority 기준</td></tr>
-                  <tr><td><strong>xAI</strong></td><td>Grok 4.5</td><td>$2.00</td><td>$6.00</td><td><strong>$8.00</strong></td><td>200K 이상 장기 단가 별도</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <div class="compare-panel" id="efficient" role="tabpanel">
-          <div class="vendor-chart">
-            <article class="vendor-bars reveal visible">
-              <h3>비용 민감 모델 · 단순 합계</h3>
-              <p>1M 입력 + 1M 출력 기준. 가장 높은 Claude Haiku 4.5 $6를 100%로 표시했습니다.</p>
-              <div class="vendor-row">
-                <div class="vendor-name"><strong>OpenAI</strong><small>GPT-5.6 Luna</small></div>
-                <div class="vendor-track"><div class="vendor-fill" style="--w:23.3%"></div></div>
-                <div class="vendor-price">$1.40</div>
-              </div>
-              <div class="vendor-row">
-                <div class="vendor-name"><strong>Anthropic</strong><small>Claude Haiku 4.5</small></div>
-                <div class="vendor-track"><div class="vendor-fill" style="--w:100%"></div></div>
-                <div class="vendor-price">$6.00</div>
-              </div>
-              <div class="vendor-row">
-                <div class="vendor-name"><strong>Google</strong><small>Gemini 3.5 Flash-Lite</small></div>
-                <div class="vendor-track"><div class="vendor-fill" style="--w:46.7%"></div></div>
-                <div class="vendor-price">$2.80</div>
-              </div>
-              <div class="vendor-row">
-                <div class="vendor-name"><strong>xAI</strong><small>Grok Build 0.1</small></div>
-                <div class="vendor-track"><div class="vendor-fill" style="--w:50%"></div></div>
-                <div class="vendor-price">$3.00</div>
-              </div>
-            </article>
-            <aside class="compare-insight reveal visible">
-              <div class="insight-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 15.5 9 11l4 3 7-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 6h4v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <h3>저비용 모델을 기본값으로,<br />실패한 작업만 승격</h3>
-              <p>대량 요약·분류·초안·간단한 변환은 저비용 모델에서 먼저 처리하고, 정확도 기준을 넘지 못하거나 고난도인 경우에만 상위 모델로 올리는 라우팅이 합리적입니다.</p>
-              <ul class="insight-list">
-                <li>Luna가 표본상 가장 낮은 단순 합계</li>
-                <li>복잡한 코딩·추론 기본값으로 고정할 근거는 아님</li>
-                <li>Batch·Flex·캐시 할인까지 포함해 비교</li>
-                <li>한국어 품질과 도구 연결성은 샘플 검증 필요</li>
-              </ul>
-            </aside>
-          </div>
-          <div class="table-shell reveal visible" style="margin-top:18px">
-            <div class="table-head"><strong>비용 민감 모델 표준 단가</strong><span>USD / 1M tokens</span></div>
-            <div class="table-wrap">
-              <table>
-                <thead><tr><th>공급사</th><th>비용 민감 모델</th><th>입력 / 1M</th><th>출력 / 1M</th><th>입력+출력</th><th>주요 용도</th></tr></thead>
-                <tbody>
-                  <tr><td><strong>OpenAI</strong></td><td>GPT-5.6 Luna</td><td>$0.20</td><td>$1.20</td><td><strong>$1.40</strong></td><td>고용량·비용 민감 작업</td></tr>
-                  <tr><td><strong>Anthropic</strong></td><td>Claude Haiku 4.5</td><td>$1.00</td><td>$5.00</td><td><strong>$6.00</strong></td><td>빠른 저비용 처리</td></tr>
-                  <tr><td><strong>Google</strong></td><td>Gemini 3.5 Flash-Lite</td><td>$0.30</td><td>$2.50</td><td><strong>$2.80</strong></td><td>대량 에이전트·번역·단순 처리</td></tr>
-                  <tr><td><strong>xAI</strong></td><td>Grok Build 0.1</td><td>$1.00</td><td>$2.00</td><td><strong>$3.00</strong></td><td>코딩 에이전트 기본 모델</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <div class="report-note warning reveal">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 3 2.8 20h18.4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 9v5M12 17.5v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          <span>Claude Sonnet 5의 도입 단가는 2026-08-31까지로 명시되어 있으며 이후 $3/$15로 변경 예정입니다. Google 모델은 Preview 상태와 우선 처리 조건, xAI는 장기 컨텍스트 조건을 운영 도입 전에 다시 확인해야 합니다.</span>
-        </div>
-        <div class="source-strip reveal">
-          <a href="https://developers.openai.com/api/docs/pricing" target="_blank" rel="noopener">[7] OpenAI API</a>
-          <a href="https://platform.claude.com/docs/en/about-claude/pricing" target="_blank" rel="noopener">[12] Claude Pricing</a>
-          <a href="https://ai.google.dev/gemini-api/docs/pricing?hl=en" target="_blank" rel="noopener">[13] Gemini Pricing</a>
-          <a href="https://docs.x.ai/developers/pricing" target="_blank" rel="noopener">[14] xAI Pricing</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="calculator">
-      <div class="container">
-        <div class="section-kicker reveal">Quick Cost Simulator</div>
-        <h2 class="section-title reveal">월간 토큰량을 넣으면<br /><span class="marker">API 예상 비용</span>을 바로 계산합니다</h2>
-        <p class="section-desc reveal">표준 단가 기준의 간단한 예산 시뮬레이터입니다. 장기 컨텍스트, 도구 호출, Batch·Flex 할인, 지역 가산, 세금과 환율은 반영하지 않습니다.</p>
-
-        <div class="calculator reveal">
-          <div class="calc-form">
-            <h3>토큰 사용량 입력</h3>
-            <p>각 항목은 월간 1M 토큰 단위입니다. 예: 2.5는 250만 토큰.</p>
-            <div class="form-grid">
-              <div class="field full">
-                <label for="modelSelect">모델</label>
-                <select id="modelSelect">
-                  <option value="sol">GPT-5.6 Sol</option>
-                  <option value="terra" selected>GPT-5.6 Terra</option>
-                  <option value="luna">GPT-5.6 Luna</option>
-                </select>
-              </div>
-              <div class="field"><label for="inputTokens">일반 입력 (M)</label><input id="inputTokens" type="number" min="0" step="0.1" value="10" inputmode="decimal" /></div>
-              <div class="field"><label for="outputTokens">출력 (M)</label><input id="outputTokens" type="number" min="0" step="0.1" value="2" inputmode="decimal" /></div>
-              <div class="field"><label for="cacheRead">캐시 읽기 (M)</label><input id="cacheRead" type="number" min="0" step="0.1" value="5" inputmode="decimal" /></div>
-              <div class="field"><label for="cacheWrite">캐시 쓰기 (M)</label><input id="cacheWrite" type="number" min="0" step="0.1" value="1" inputmode="decimal" /></div>
-            </div>
-            <div class="calc-help">입력 토큰 중 캐시 읽기·쓰기를 별도로 집계하는 구조라면 중복 입력하지 않도록 주의하세요.</div>
-          </div>
-          <div class="calc-result" aria-live="polite">
-            <small id="calcModelLabel">GPT-5.6 Terra · 월간 표준 예상액</small>
-            <div class="calc-total" id="calcTotal">$47.50 <span>/ month</span></div>
-            <div class="calc-breakdown">
-              <div class="calc-item"><span>일반 입력</span><strong id="calcInput">$20.00</strong></div>
-              <div class="calc-item"><span>출력</span><strong id="calcOutput">$24.00</strong></div>
-              <div class="calc-item"><span>캐시 읽기</span><strong id="calcCacheRead">$1.00</strong></div>
-              <div class="calc-item"><span>캐시 쓰기</span><strong id="calcCacheWrite">$2.50</strong></div>
-            </div>
-            <div class="calc-disclaimer">단순 예산 참고용 계산입니다. 272K 초과 장기 컨텍스트와 데이터 레지던시 가산 등이 발생하면 실제 비용이 더 높아질 수 있습니다.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="decision" style="background:linear-gradient(180deg,rgba(232,243,255,.38),rgba(255,255,255,0))">
-      <div class="container">
-        <div class="section-kicker reveal">Decision Criteria</div>
-        <h2 class="section-title reveal">임원 의사결정은<br /><span class="marker">네 가지 질문</span>이면 됩니다</h2>
-        <p class="section-desc reveal">개인 생산성 도구와 제품용 API는 구매 기준이 다릅니다. 플랜 이름보다 실제 사용 빈도, 조직 관리 필요성, 월간 토큰 시나리오, 상위 모델 승격 조건을 먼저 정합니다.</p>
-
-        <div class="decision-grid">
-          <article class="decision-card reveal">
-            <span class="decision-num">01</span>
-            <h3>개인 업무의 시작점은?</h3>
-            <p>주 몇 회 집중 코딩·기획이면 Plus($20)로 시작합니다. 실제 한도 부족이 반복되는 기록이 생길 때 Pro 또는 추가 크레딧을 검토합니다.</p>
-          </article>
-          <article class="decision-card reveal">
-            <span class="decision-num">02</span>
-            <h3>팀 도입 예산은?</h3>
-            <p>Business 표준 좌석비와 별도 크레딧 상한을 나누어 승인합니다. 최소 2석과 새 워크스페이스의 Codex 전용 좌석 제한도 확인합니다.</p>
-          </article>
-          <article class="decision-card reveal">
-            <span class="decision-num">03</span>
-            <h3>API 기본 라우팅은?</h3>
-            <p>대량·반복 작업은 Luna·Terra부터 검증하고, 복잡한 고가 작업만 Sol·Opus·Pro급으로 승격하는 조건을 둡니다.</p>
-          </article>
-          <article class="decision-card reveal">
-            <span class="decision-num">04</span>
-            <h3>월간 비용 보고는?</h3>
-            <p>입력·출력·캐시·장기 컨텍스트·도구 호출을 따로 집계하고, ChatGPT 구독료와 API 사용료를 하나의 숫자로 합치지 않습니다.</p>
-          </article>
-        </div>
-
-        <div class="routing-flow reveal">
-          <div class="routing-head">
-            <h3>권장 모델 라우팅 구조</h3>
-            <span>저비용 기본값 → 실패·고난도만 상위 모델</span>
-          </div>
-          <div class="routing-steps">
-            <div class="routing-step"><small>STEP 1</small><strong>업무 분류</strong><span>요약·분류·초안 vs 복잡한 추론·코딩</span></div>
-            <div class="routing-step"><small>STEP 2</small><strong>Luna / Terra 우선</strong><span>비용 민감 작업을 낮은 티어에서 처리</span></div>
-            <div class="routing-step"><small>STEP 3</small><strong>품질 기준 확인</strong><span>정확도·도구 성공률·사람 검수 기준 적용</span></div>
-            <div class="routing-step"><small>STEP 4</small><strong>Sol급 승격</strong><span>실패·고난도·고위험 작업에만 조건부 사용</span></div>
-          </div>
-        </div>
-
-        <div class="trade-grid" style="margin-top:18px">
-          <article class="trade-card good reveal">
-            <div class="trade-head"><span class="trade-icon"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3>얻게 되는 것</h3></div>
-            <ul class="trade-list">
-              <li>Plus부터 Codex·고급 추론·앱 연동을 한 계정에서 사용할 수 있어 개인 도입이 단순함</li>
-              <li>Terra·Luna의 낮아진 API 단가로 대량 업무의 비용 설계 폭이 넓어짐</li>
-              <li>Business·Enterprise에서 좌석·권한·지출을 조직 단위로 관리 가능</li>
-              <li>업무 단계별로 저비용·고성능 모델을 나눠 총비용을 최적화 가능</li>
-            </ul>
-          </article>
-          <article class="trade-card bad reveal">
-            <div class="trade-head"><span class="trade-icon"><svg viewBox="0 0 24 24" fill="none"><path d="m7 7 10 10M17 7 7 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><h3>감수해야 하는 것</h3></div>
-            <ul class="trade-list">
-              <li>구독 한도는 작업 조건에 따라 변동하며 고정 메시지 수를 보장하지 않음</li>
-              <li>API 비용은 어떤 ChatGPT 구독에도 포함되지 않아 별도 예산 필요</li>
-              <li>Pro의 5배·20배 정책은 모델별 절대 작업 수를 의미하지 않음</li>
-              <li>가격만으로 품질·속도·한국어 성능·보안 적합성을 결론낼 수 없음</li>
-              <li>가격·모델·한도가 자주 바뀌므로 구매 직전 공식 문서 재확인 필요</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="timeline">
-      <div class="container">
-        <div class="section-kicker reveal">Timeline</div>
-        <h2 class="section-title reveal">가격과 정책은<br />이 흐름으로 <span class="marker">변경되었습니다</span></h2>
-        <p class="section-desc reveal">현재 가격만 보는 것보다 정책 전환과 예정된 변경 일정을 함께 확인해야 예산과 마이그레이션 계획을 세울 수 있습니다.</p>
-
-        <div class="timeline">
-          <div class="timeline-item reveal">
-            <span class="timeline-dot"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v14H4V6a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <div class="timeline-date">2026-04-02</div>
-            <div class="timeline-copy"><strong>Codex 유연 과금 전환</strong><p>Business·Enterprise에서 Codex 크레딧과 토큰 기반 레이트 카드 구조가 도입되었습니다.</p></div>
-          </div>
-          <div class="timeline-item reveal">
-            <span class="timeline-dot"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v14H4V6a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <div class="timeline-date">2026-06-24</div>
-            <div class="timeline-copy"><strong>Business의 새 Codex 전용 좌석 제한</strong><p>새 Business 워크스페이스와 기존에 전용 좌석이 없던 워크스페이스는 새 Codex 전용 좌석을 추가할 수 없게 되었습니다.</p></div>
-          </div>
-          <div class="timeline-item reveal">
-            <span class="timeline-dot"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v14H4V6a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <div class="timeline-date">2026-07-09</div>
-            <div class="timeline-copy"><strong>GPT-5.6 Sol·Terra·Luna 출시 공지</strong><p>출시 공지의 Terra $2.50/$15, Luna $1/$6 단가가 현재 API 가격 페이지와 다름을 확인했습니다.</p></div>
-          </div>
-          <div class="timeline-item reveal">
-            <span class="timeline-dot"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v14H4V6a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <div class="timeline-date">2026-08-07</div>
-            <div class="timeline-copy"><strong>현재 가격 점검</strong><p>현재 API 페이지의 Terra $2/$12, Luna $0.20/$1.20을 본 보고서의 예산 기준으로 반영했습니다.</p></div>
-          </div>
-          <div class="timeline-item reveal">
-            <span class="timeline-dot"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v14H4V6a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <div class="timeline-date">2026-08-31 예정</div>
-            <div class="timeline-copy"><strong>Codex 모델·경쟁사 가격 변경 예정</strong><p>OpenAI는 ChatGPT 로그인 Codex의 GPT-5.4·5.4 mini 은퇴를, Anthropic은 Claude Sonnet 5 도입 단가 종료를 공지했습니다.</p></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="sources" style="background:linear-gradient(180deg,rgba(247,248,250,.82),rgba(255,255,255,0))">
-      <div class="container">
-        <div class="section-kicker reveal">Sources</div>
-        <h2 class="section-title reveal">원문과 확인 범위</h2>
-        <p class="section-desc reveal">기사 전문은 저장하지 않고 제목·발행처·URL·확인일과 본 보고서에서 확인한 범위만 남겼습니다. 모든 출처는 2026.08.07 KST 기준으로 확인했습니다.</p>
-
-        <div class="source-grid">
-          <a class="source-card reveal" href="https://chatgpt.com/pricing/" target="_blank" rel="noopener"><span class="source-num">01</span><span class="source-copy"><strong>ChatGPT Plans · Pricing</strong><span>OpenAI · Free·Go·Plus·Pro·Business·Enterprise 기능 범위와 API 분리 원칙</span><em>원문 열기 <svg viewBox="0 0 24 24" fill="none"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></em></span></a>
-          <a class="source-card reveal" href="https://chatgpt.com/codex/pricing/" target="_blank" rel="noopener"><span class="source-num">02</span><span class="source-copy"><strong>Codex Pricing</strong><span>OpenAI · Codex 포함 플랜, Plus 5시간 메시지 범위, 크레딧과 사용량 안내</span><em>원문 열기 <svg viewBox="0 0 24 24" fill="none"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></em></span></a>
-          <a class="source-card reveal" href="https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus" target="_blank" rel="noopener"><span class="source-num">03</span><span class="source-copy"><strong>What is ChatGPT Plus?</strong><span>OpenAI Help Center · Plus $20/월과 API 별도 청구 확인</span><em>원문 열기 <svg viewBox="0 0 24 24" fill="none"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></em></span></a>
-          <a class="source-card reveal" href="https://help.openai.com/en/articles/9793128-what-is-chatgpt-team" target="_blank" rel="noopener"><span class="source-num">04</span><span class="source-copy"><strong>About ChatGPT Pro tiers</strong><span>OpenAI Help Center · Pro $100은 Plus 대비 5배, Pro $200은 20배 사용량</span><em>원문 열기 <svg viewBox="0 0 24 24" fill="none"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></em></span></a>
-          <a class="source-card reveal" href="https://help.openai.com/en/articles/8792828-what-is-chatgpt-team/" target="_blank" rel="noopener"><span class="source-num">05</span><span class="source-copy"><strong>What is ChatGPT Business?</strong><span>OpenAI Help Center · Business 가격, 최소 2석, Codex 좌석 정책, API 별도</span><em>원문 열기 <svg viewBox="0 0 24 24" fill="none"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></em></span></a>
-          <a class="source-card reveal" href="https://help.openai.com/en/articles/8265053-what-is-chatgpt-enterprise" target="_blank" rel="noopener"><span class="source-num">06</span><span class="source-copy"><strong>What is ChatGPT Enterprise?</strong><span>OpenAI Help Center · 계약형 Enterprise, Codex 좌석, 관리자 기능과 크레딧 구조</span><em>원문 열기 <svg viewBox="0 0 24 24" fill="none"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></em></span></a>
-          <a class="source-card reveal" href="https://developers.openai.com/api/docs/pricing" target="_blank" rel="noopener"><span class="source-num">07</span><span class="source-copy"><strong>Pricing · OpenAI API</strong><span>OpenAI Developers · GPT-5.6 현재 표준·장기 컨텍스트·캐시 단가</span><em>원문 열기 <svg viewBox="0 0 24 24" fill="none"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></em></span></a>
-          <a class="source-card reveal" href="https://developers.openai.com/api/docs/models/gpt-5.6-terra" target="_blank" rel="noopener"><span class="source-num">08</span><span class="source-copy"><strong>GPT-5.6 Terra Model</strong><span>OpenAI Developers · Terra 현재 $2 입력·$12 출력 및 모델 조건</span><em>원문 열기 <svg viewBox="0 0 24 24" fill="none"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></em></span></a>
-          <a class="source-card reveal" href="https://developers.openai.com/api/docs/models/gpt-5.6-luna" target="_blank" rel="noopener"><span class="source-num">09</span><span class="source-copy"><strong>GPT-5.6 Luna Model</strong><span>OpenAI Developers · Luna 현재 $0.20 입력·$1.20 출력 및 모델 조건</span><em>원문 열기 <svg viewBox="0 0 24 24" fill="none"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></em></span></a>
-          <a class="source-card reveal" href="https://openai.com/index/gpt-5-6/" target="_blank" rel="noopener"><span class="source-num">10</span><span class="source-copy"><strong>GPT-5.6: Frontier intelligence that scales</strong><span>OpenAI · 2026-07-09 출시 공지 당시 Terra·Luna 가격과 플랜별 범위</span><em>원문 열기 <svg viewBox="0 0 24 24" fill="none"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></em></span></a>
-          <a class="source-card reveal" href="https://help.openai.com/en/articles/20001106" target="_blank" rel="noopener"><span class="source-num">11</span><span class="source-copy"><strong>Codex rate card</strong><span>OpenAI Help Center · 토큰별 크레딧, 작업당 예시, 공유 사용량 풀과 모델 은퇴 일정</span><em>원문 열기 <svg viewBox="0 0 24 24" fill="none"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></em></span></a>
-          <a class="source-card reveal" href="https://platform.claude.com/docs/en/about-claude/pricing" target="_blank" rel="noopener"><span class="source-num">12</span><span class="source-copy"><strong>Pricing · Claude Platform Docs</strong><span>Anthropic · Opus·Sonnet·Haiku API 가격, 캐시·Batch·지역 옵션</span><em>원문 열기 <svg viewBox="0 0 24 24" fill="none"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></em></span></a>
-          <a class="source-card reveal" href="https://ai.google.dev/gemini-api/docs/pricing?hl=en" target="_blank" rel="noopener"><span class="source-num">13</span><span class="source-copy"><strong>Gemini Developer API pricing</strong><span>Google AI · Gemini 3.1 Pro Preview·3.5 Flash-Lite 가격과 Batch·Flex 옵션</span><em>원문 열기 <svg viewBox="0 0 24 24" fill="none"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></em></span></a>
-          <a class="source-card reveal" href="https://docs.x.ai/developers/pricing" target="_blank" rel="noopener"><span class="source-num">14</span><span class="source-copy"><strong>Pricing · xAI Docs</strong><span>xAI · Grok 4.5·Grok Build의 표준·장기 컨텍스트 API 가격</span><em>원문 열기 <svg viewBox="0 0 24 24" fill="none"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></em></span></a>
-        </div>
-
-        <div class="report-note warning reveal" style="margin-top:20px">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 3 2.8 20h18.4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 9v5M12 17.5v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          <span>본 페이지는 원 보고서의 내용과 공식 출처를 기반으로 시각 구조와 반응형 UX를 재설계한 버전입니다. 가격·한도·모델 정책은 변동 가능성이 높으므로 최종 결제와 도입 판단은 공식 페이지 재확인 후 진행하세요.</span>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-grid">
-      <div class="footer-brand">
-        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 17.5V14m4 3.5V9m4 8.5V12m4 5.5V5.5" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/><path d="m5 8 4-3 4 2 5-4" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        <div><strong>Executive AI Cost Report</strong><br /><span style="color:var(--muted);font-size:12px;font-weight:650">260807 · Responsive Redesign</span></div>
-      </div>
-      <div class="footer-copy">원문: <a href="https://aihubos.github.io/reportmode/reports/260807-chatgpt-codex-pricing-api-comparison-02/" target="_blank" rel="noopener">Report Mode</a><br />최종 판단과 검수는 사용자에게 있습니다.</div>
-    </div>
-  </footer>
-
-  <button class="back-top" id="backTop" type="button" aria-label="맨 위로 이동">
-    <svg viewBox="0 0 24 24" fill="none"><path d="m6 14 6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </button>
-
-  <script>
+              <svg aria-hidden="true" fill="none" viewbox="0 0 24 24"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</a>
+<a class="btn btn-ghost" href="#calculator">API 비용 계산하기</a>
+</div>
+<div class="hero-meta reveal">
+<span><i></i> 작성·수정 2026.08.07 KST</span>
+<span><i></i> 공식 출처 14개</span>
+<span><i></i> USD 기준·세금/환율 별도</span>
+</div>
+</div>
+<div aria-label="AI 비용 구조 시각화" class="hero-visual reveal">
+<div aria-hidden="true" class="orbit"></div>
+<div class="cost-map">
+<div class="cost-map-head">
+<div class="cost-map-title"><small>AI BUDGET MAP</small><strong>비용은 3개 통장으로</strong></div>
+<span class="snapshot-chip">260807 기준</span>
+</div>
+<div class="cost-layer subscription">
+<div aria-hidden="true" class="layer-icon"><svg fill="none" viewbox="0 0 24 24"><path d="M5 7.5h14v11H5z" stroke="currentColor" stroke-width="1.8"></path><path d="M8 5h8M8.5 11h7M8.5 14.5h4" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path></svg></div>
+<div class="layer-copy"><strong>ChatGPT 구독</strong><span>사람의 접근권과 기본 사용량</span></div>
+<span class="layer-label">월 정액</span>
+</div>
+<div class="cost-layer credits">
+<div aria-hidden="true" class="layer-icon"><svg fill="none" viewbox="0 0 24 24"><circle cx="9" cy="12" r="5" stroke="currentColor" stroke-width="1.8"></circle><circle cx="15" cy="12" r="5" stroke="currentColor" stroke-width="1.8"></circle><path d="M9 9.5v5M15 9.5v5" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path></svg></div>
+<div class="layer-copy"><strong>Codex 크레딧</strong><span>포함 한도 이후의 추가 작업량</span></div>
+<span class="layer-label">유연 과금</span>
+</div>
+<div class="cost-layer api">
+<div aria-hidden="true" class="layer-icon"><svg fill="none" viewbox="0 0 24 24"><path d="M8 7 3 12l5 5M16 7l5 5-5 5M14 4l-4 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></div>
+<div class="layer-copy"><strong>API 사용료</strong><span>서비스·자동화가 호출한 토큰 비용</span></div>
+<span class="layer-label">사용량 과금</span>
+</div>
+<div class="map-footer">
+<svg aria-hidden="true" fill="none" viewbox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.5 3.1 7.6 7.5 9.5 4.4-1.9 7.5-5 7.5-9.5V6z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"></path><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg>
+<span>세 비용을 한 숫자로 합치지 않아야 실제 AI 예산이 보입니다.</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<section id="summary">
+<div class="container">
+<div class="section-kicker reveal">Executive Summary</div>
+<h2 class="section-title reveal">한 문장으로 정리하면,<br/><span class="marker">Plus에서 시작하고 비용을 분리</span>합니다</h2>
+<p class="section-desc reveal">개인은 Plus를 기본 후보로 두고 실제 한도 부족이 반복될 때만 Pro 또는 추가 크레딧을 검토합니다. 조직은 좌석비와 Codex 크레딧을 나누고, 제품용 API는 별도 사용량 예산으로 승인하는 것이 핵심입니다.</p>
+<div class="summary-panel reveal">
+<article class="summary-main">
+<div>
+<span class="label"><span class="eyebrow-dot" style="background:#fff;box-shadow:0 0 0 5px rgba(255,255,255,.13)"></span> 핵심 판단</span>
+<h3>개인 업무는 <span style="color:var(--highlight)">Plus($20/월)</span>가 기본 후보.<br/>매일 고강도 코딩이면 Pro의 5배·20배 사용량을 검토.</h3>
+</div>
+<p>Business는 사용자당 좌석비와 별도 크레딧을 분리해 예산화해야 하며, 서비스에 모델을 붙이는 API 비용은 어떤 ChatGPT 구독에도 포함되지 않습니다.</p>
+</article>
+<div class="summary-side">
+<article class="summary-rule">
+<span class="num">1</span>
+<strong>구독은 사람의 접근권</strong>
+<span>ChatGPT와 Codex를 사람이 쓰기 위한 월간 권한과 기본 한도</span>
+</article>
+<article class="summary-rule">
+<span class="num">2</span>
+<strong>크레딧은 한도 이후 확장</strong>
+<span>Codex 작업량이 기본 한도를 넘을 때 추가로 사용하는 유연 과금</span>
+</article>
+<article class="summary-rule">
+<span class="num">3</span>
+<strong>API는 제품의 사용량</strong>
+<span>앱·서비스·자동화가 모델을 호출한 실제 토큰 기준의 별도 비용</span>
+</article>
+</div>
+</div>
+<div class="metric-grid">
+<article class="metric-card reveal"><small>개인 기본 후보</small><strong>$20<small style="display:inline;font-size:13px;color:var(--muted)">/월</small></strong><span>ChatGPT Plus · API 사용료는 별도</span></article>
+<article class="metric-card reveal"><small>Pro 포함 사용량 정책</small><strong>5× / 20×</strong><span>Plus 대비 사용량 배수. 모델별 절대 작업 수 보장은 아님</span></article>
+<article class="metric-card reveal"><small>GPT-5.6 Terra</small><strong>$2 / $12</strong><span>1M 입력 / 출력 토큰 현재 표준 단가</span></article>
+<article class="metric-card reveal"><small>GPT-5.6 Luna</small><strong>$0.20 / $1.20</strong><span>1M 입력 / 출력 토큰 현재 표준 단가</span></article>
+</div>
+<div class="decision-quote reveal">
+<svg aria-hidden="true" fill="none" viewbox="0 0 24 24"><path d="M7 17h3l2-4V7H6v6h3M15 17h3l2-4V7h-6v6h3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg>
+<p id="summaryText">구독은 사람의 접근권, API는 제품의 사용량, Codex 크레딧은 한도 이후의 확장 비용입니다. 세 숫자를 분리해야 AI 예산이 보입니다.</p>
+</div>
+<div aria-label="요약 출처" class="source-strip reveal">
+<a href="https://chatgpt.com/pricing/" rel="noopener noreferrer" target="_blank">[1] ChatGPT Pricing <svg fill="none" viewbox="0 0 24 24"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></a>
+<a href="https://chatgpt.com/codex/pricing/" rel="noopener noreferrer" target="_blank">[2] Codex Pricing <svg fill="none" viewbox="0 0 24 24"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></a>
+<a href="https://developers.openai.com/api/docs/pricing" rel="noopener noreferrer" target="_blank">[7] OpenAI API Pricing <svg fill="none" viewbox="0 0 24 24"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></a>
+</div>
+</div>
+</section>
+<section id="structure" style="background:linear-gradient(180deg,rgba(247,248,250,.78),rgba(255,255,255,0))">
+<div class="container">
+<div class="section-kicker reveal">Separate the Budget</div>
+<h2 class="section-title reveal">먼저 세 가지 비용을<br/>같은 예산표에서 <span class="marker">분리하세요</span></h2>
+<p class="section-desc reveal">같은 OpenAI 서비스처럼 보여도 구매 주체와 청구 방식이 다릅니다. 개인 생산성, 개발 작업량, 제품 운영비를 섞으면 플랜 비교와 비용 통제가 모두 어려워집니다.</p>
+<div class="cards-3">
+<article class="concept-card reveal">
+<div class="concept-icon"><svg fill="none" viewbox="0 0 24 24"><path d="M5 6h14v13H5z" stroke="currentColor" stroke-width="1.8"></path><path d="M8 3h8v3H8zM8 10h8M8 14h5" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path></svg></div>
+<span class="micro">사람이 쓰는 도구</span>
+<h3>ChatGPT 구독료</h3>
+<p>사람이 ChatGPT와 Codex를 사용하기 위한 월간 접근 권한과 포함 사용량입니다. Plus·Pro·Business를 결제해도 API 사용료가 포함되지는 않습니다.</p>
+<ul>
+<li>개인: Plus·Pro 중심</li>
+<li>조직: Business·Enterprise 중심</li>
+<li>예산 단위: 사용자·월</li>
+</ul>
+</article>
+<article class="concept-card reveal">
+<div class="concept-icon"><svg fill="none" viewbox="0 0 24 24"><path d="M7 5h10v14H7z" stroke="currentColor" stroke-width="1.8"></path><path d="M10 9h4M10 12h4M10 15h2" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path><path d="M5 8H3v10h2M19 8h2v10h-2" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path></svg></div>
+<span class="micro">개발 작업량의 확장</span>
+<h3>Codex 크레딧</h3>
+<p>포함 한도를 초과한 Codex 작업을 확장하는 단위입니다. 메시지 개수만이 아니라 입력·캐시 입력·출력 토큰과 작업 복잡도에 따라 소모됩니다.</p>
+<ul>
+<li>개인 유료 플랜: 추가 구매 가능</li>
+<li>Business·Enterprise: 워크스페이스 크레딧</li>
+<li>예산 단위: 크레딧·작업량</li>
+</ul>
+</article>
+<article class="concept-card reveal">
+<div class="concept-icon"><svg fill="none" viewbox="0 0 24 24"><path d="M8 7 3 12l5 5M16 7l5 5-5 5M14 4l-4 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></div>
+<span class="micro">제품과 자동화의 비용</span>
+<h3>API 사용료</h3>
+<p>회사 서비스·앱·자동화에서 모델을 호출할 때 실제 입력·캐시·출력 토큰에 따라 별도 청구됩니다. 구독 여부와 무관한 제품 운영비입니다.</p>
+<ul>
+<li>모델별 단가와 캐시율 반영</li>
+<li>장기 컨텍스트·도구 호출 별도 고려</li>
+<li>예산 단위: 1M 토큰·월</li>
+</ul>
+</article>
+</div>
+<div class="report-note warning reveal">
+<svg fill="none" viewbox="0 0 24 24"><path d="M12 3 2.8 20h18.4z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"></path><path d="M12 9v5M12 17.5v.1" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path></svg>
+<span>이 보고서의 모든 금액은 USD 기준이며 세금, 환율, 지역별 결제 가격은 별도입니다. 가격과 한도는 변경될 수 있으므로 실제 구매 직전에 공식 페이지를 다시 확인해야 합니다.</span>
+</div>
+</div>
+</section>
+<section id="plans">
+<div class="container">
+<div class="section-kicker reveal">ChatGPT Plans</div>
+<h2 class="section-title reveal">개인은 사용 빈도,<br/>조직은 <span class="marker">관리와 추가 크레딧</span>까지 봅니다</h2>
+<p class="section-desc reveal">Plus와 Pro는 핵심 기능보다 포함 사용량의 차이가 중요합니다. Business는 좌석비만 비교하지 말고 최소 좌석 수, 조직 관리, 추가 크레딧 상한을 함께 결정해야 합니다.</p>
+<div class="plan-feature-grid">
+<article class="plan-card recommended reveal">
+<span class="plan-badge">개인 기본 후보</span>
+<h3>Plus</h3>
+<div class="plan-price">$20<small>/월</small></div>
+<p>주 몇 회 집중 코딩·기획, 고급 추론과 Codex를 함께 쓰는 개인의 시작점.</p>
+<ul class="plan-points">
+<li><svg fill="none" viewbox="0 0 24 24"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>고급 추론·앱·Codex 포함</li>
+<li><svg fill="none" viewbox="0 0 24 24"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>기본 한도 이후 크레딧 구매 가능</li>
+<li><svg fill="none" viewbox="0 0 24 24"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>API 비용은 별도</li>
+</ul>
+</article>
+<article class="plan-card reveal">
+<span class="plan-badge">고강도 개인</span>
+<h3>Pro $100</h3>
+<div class="plan-price">$100<small>/월</small></div>
+<p>Plus 한도 부족이 반복되는 매일 고강도 연구·코딩 사용자용.</p>
+<ul class="plan-points">
+<li><svg fill="none" viewbox="0 0 24 24"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>Plus 대비 5배 사용량 정책</li>
+<li><svg fill="none" viewbox="0 0 24 24"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>Pro 추론·최대 Codex 작업</li>
+<li><svg fill="none" viewbox="0 0 24 24"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>절대 메시지 수 보장은 아님</li>
+</ul>
+</article>
+<article class="plan-card reveal">
+<span class="plan-badge">최대 개인 사용량</span>
+<h3>Pro $200</h3>
+<div class="plan-price">$200<small>/월</small></div>
+<p>매우 높은 개인 사용량과 복잡한 Codex 작업이 상시 발생하는 경우.</p>
+<ul class="plan-points">
+<li><svg fill="none" viewbox="0 0 24 24"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>Plus 대비 20배 사용량 정책</li>
+<li><svg fill="none" viewbox="0 0 24 24"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>최대 수준의 개인 작업량</li>
+<li><svg fill="none" viewbox="0 0 24 24"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>실사용 기록 후 승격 권장</li>
+</ul>
+</article>
+<article class="plan-card team reveal">
+<span class="plan-badge">소규모 팀</span>
+<h3>Business</h3>
+<div class="plan-price">$25<small>/인·월</small></div>
+<p>좌석·권한·공유·지출 통제를 조직 단위로 관리할 때의 기본 후보.</p>
+<ul class="plan-points">
+<li><svg fill="none" viewbox="0 0 24 24"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>연간 결제 $20/인·월</li>
+<li><svg fill="none" viewbox="0 0 24 24"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>최소 2석·Codex 포함</li>
+<li><svg fill="none" viewbox="0 0 24 24"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>초과분은 워크스페이스 크레딧</li>
+</ul>
+</article>
+</div>
+<div class="table-shell reveal">
+<div class="table-head"><strong>전체 요금제 비교</strong><span>모바일에서는 표를 좌우로 움직여 확인하세요</span></div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>요금제</th><th>공개 비용(USD)</th><th>Codex</th><th>사용량·핵심 차이</th><th>적합한 용도</th></tr></thead>
+<tbody>
+<tr><td><strong>Free</strong></td><td>$0</td><td><span class="tag gray">제한적 체험</span></td><td>GPT-5.6·메시지·업로드·리서치·메모리 모두 제한적</td><td>기능 확인</td></tr>
+<tr><td><strong>Go</strong></td><td>지역별 월 정가</td><td><span class="tag gray">제한적 체험</span></td><td>Free보다 메시지·파일·이미지·데이터 분석·메모리 확대</td><td>가벼운 개인 사용</td></tr>
+<tr><td><strong>Plus</strong></td><td>$20/월</td><td><span class="tag">포함·확대</span></td><td>고급 추론, 앱·플러그인, Codex 앱, 기본 한도 이후 크레딧</td><td>주 몇 회 집중 코딩·기획</td></tr>
+<tr><td><strong>Pro $100</strong></td><td>$100/월</td><td><span class="tag violet">포함·상향</span></td><td>Plus 대비 5배 사용량, 동일 핵심 기능, Pro 추론</td><td>매일 고강도 개인 사용</td></tr>
+<tr><td><strong>Pro $200</strong></td><td>$200/월</td><td><span class="tag violet">포함·최대</span></td><td>Plus 대비 20배 사용량, 최대 Codex 작업</td><td>매우 높은 개인 사용량</td></tr>
+<tr><td><strong>Business</strong></td><td>$25/인·월<br/>$20/인·월(연간)</td><td><span class="tag green">표준 좌석 포함</span></td><td>최소 2석, 관리·공유·지출 통제, 초과분은 워크스페이스 크레딧</td><td>소규모 팀</td></tr>
+<tr><td><strong>Enterprise</strong></td><td>계약형</td><td><span class="tag green">표준 좌석 포함</span></td><td>SSO·SCIM·조직 관리·계약형 크레딧, 공개 고정 한도 없음</td><td>대규모·규제 조직</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="report-note reveal">
+<svg fill="none" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"></circle><path d="M12 11v5M12 8v.1" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path></svg>
+<span>새 Business 워크스페이스는 2026-06-24 이후 Codex 전용 좌석을 새로 추가할 수 없습니다. 기존에 전용 좌석을 보유한 워크스페이스는 예외이며, 표준 ChatGPT 좌석에는 ChatGPT와 Codex가 함께 포함됩니다.</span>
+</div>
+<div class="source-strip reveal">
+<a href="https://chatgpt.com/pricing/" rel="noopener noreferrer" target="_blank">[1] ChatGPT Pricing</a>
+<a href="https://chatgpt.com/codex/pricing/" rel="noopener noreferrer" target="_blank">[2] Codex Pricing</a>
+<a href="https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus" rel="noopener noreferrer" target="_blank">[3] ChatGPT Plus</a>
+<a href="https://help.openai.com/en/articles/9793128-what-is-chatgpt-team" rel="noopener noreferrer" target="_blank">[4] Pro tiers</a>
+<a href="https://help.openai.com/en/articles/8792828-what-is-chatgpt-team/" rel="noopener noreferrer" target="_blank">[5] ChatGPT Business</a>
+<a href="https://help.openai.com/en/articles/8265053-what-is-chatgpt-enterprise" rel="noopener noreferrer" target="_blank">[6] ChatGPT Enterprise</a>
+</div>
+</div>
+</section>
+<section id="codex" style="background:linear-gradient(180deg,rgba(232,243,255,.44),rgba(255,255,255,0))">
+<div class="container">
+<div class="section-kicker reveal">Codex Included Usage</div>
+<h2 class="section-title reveal">공개 숫자는 메시지 보장이 아니라<br/><span class="marker">계획 범위</span>입니다</h2>
+<p class="section-desc reveal">Plus의 로컬 메시지와 클라우드 작업은 같은 5시간 창을 공유하고 주간 추가 제한이 적용될 수 있습니다. 프롬프트 길이, MCP 연결, 작업 복잡도에 따라 실제 소모가 달라집니다.</p>
+<div class="quota-layout">
+<article class="quota-chart reveal">
+<h3>Plus 기준 로컬 메시지 / 5시간</h3>
+<p>공개 표가 고정 숫자로 제시하는 모델별 평균 범위입니다. 막대 길이는 최대 350회를 기준으로 상대 표시했습니다.</p>
+<div class="quota-list">
+<div class="quota-row">
+<div class="quota-name"><strong>GPT-5.6 Sol</strong><small>최상위 티어</small></div>
+<div class="range-track"><span class="range-fill" style="--w:25.7%"></span><i class="range-min" style="--min:4.3%"></i></div>
+<div class="quota-value">15–90</div>
+</div>
+<div class="quota-row">
+<div class="quota-name"><strong>GPT-5.6 Terra</strong><small>균형형</small></div>
+<div class="range-track"><span class="range-fill" style="--w:31.4%"></span><i class="range-min" style="--min:5.7%"></i></div>
+<div class="quota-value">20–110</div>
+</div>
+<div class="quota-row">
+<div class="quota-name"><strong>GPT-5.6 Luna</strong><small>고용량</small></div>
+<div class="range-track"><span class="range-fill" style="--w:80%"></span><i class="range-min" style="--min:14.3%"></i></div>
+<div class="quota-value">50–280</div>
+</div>
+<div class="quota-row">
+<div class="quota-name"><strong>GPT-5.5</strong><small>레거시</small></div>
+<div class="range-track"><span class="range-fill" style="--w:22.9%"></span><i class="range-min" style="--min:4.3%"></i></div>
+<div class="quota-value">15–80</div>
+</div>
+<div class="quota-row">
+<div class="quota-name"><strong>GPT-5.4</strong><small>8/31 은퇴 예정</small></div>
+<div class="range-track"><span class="range-fill" style="--w:28.6%"></span><i class="range-min" style="--min:5.7%"></i></div>
+<div class="quota-value">20–100</div>
+</div>
+<div class="quota-row">
+<div class="quota-name"><strong>GPT-5.4 mini</strong><small>8/31 은퇴 예정</small></div>
+<div class="range-track"><span class="range-fill" style="--w:100%"></span><i class="range-min" style="--min:17.1%"></i></div>
+<div class="quota-value">60–350</div>
+</div>
+</div>
+</article>
+<article class="multiplier-card reveal">
+<span class="mini-label">HOW TO READ PRO</span>
+<h3>Pro의 핵심은 기능보다<br/>포함 사용량의 배수</h3>
+<p>OpenAI는 Pro $100과 $200을 각각 Plus 대비 5배와 20배 사용량으로 설명합니다. 하지만 모델별 절대 메시지 수를 공개 표로 보장하지는 않습니다.</p>
+<div class="multiplier-grid">
+<div class="multiplier-box"><strong>5×</strong><span>Pro $100 · Plus 대비</span></div>
+<div class="multiplier-box"><strong>20×</strong><span>Pro $200 · Plus 대비</span></div>
+</div>
+<div class="fine">실제 잔여량은 Codex 사용량 대시보드 또는 CLI의 <code>/status</code>에서 확인해야 하며, 시스템 상황과 작업 조건에 따라 달라질 수 있습니다.</div>
+</article>
+</div>
+<div class="table-shell reveal" style="margin-top:18px">
+<div class="table-head"><strong>Plus 공개 할당량 요약</strong><span>클라우드 작업·코드 리뷰는 공개 표상 절대 수치 미제공</span></div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>모델</th><th>로컬 메시지 / 5시간</th><th>클라우드 작업 / 5시간</th><th>코드 리뷰 / 5시간</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td><strong>GPT-5.6 Sol</strong></td><td>15–90</td><td>공개 표상 사용 불가</td><td>공개 표상 사용 불가</td><td>가장 높은 티어</td></tr>
+<tr><td><strong>GPT-5.6 Terra</strong></td><td>20–110</td><td>공개 표상 사용 불가</td><td>공개 표상 사용 불가</td><td>성능·비용 균형</td></tr>
+<tr><td><strong>GPT-5.6 Luna</strong></td><td>50–280</td><td>공개 표상 사용 불가</td><td>공개 표상 사용 불가</td><td>고용량·저비용</td></tr>
+<tr><td><strong>GPT-5.5</strong></td><td>15–80</td><td>공개 표상 사용 불가</td><td>공개 표상 사용 불가</td><td>레거시 행</td></tr>
+<tr><td><strong>GPT-5.4</strong></td><td>20–100</td><td>공개 표상 사용 불가</td><td>공개 표상 사용 불가</td><td>2026-08-31 Codex 은퇴 예정</td></tr>
+<tr><td><strong>GPT-5.4 mini</strong></td><td>60–350</td><td>공개 표상 사용 불가</td><td>공개 표상 사용 불가</td><td>2026-08-31 Codex 은퇴 예정</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="report-note reveal">
+<svg fill="none" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"></circle><path d="M12 11v5M12 8v.1" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path></svg>
+<span>Business·Enterprise는 표준 좌석의 기본 한도에 크레딧으로 확장하는 구조입니다. 팀 예산은 ‘좌석비 + 월별 추가 크레딧 상한’으로 나누어 관리하는 편이 안전합니다.</span>
+</div>
+<div class="source-strip reveal">
+<a href="https://chatgpt.com/codex/pricing/" rel="noopener noreferrer" target="_blank">[2] Codex Pricing</a>
+<a href="https://help.openai.com/en/articles/20001106" rel="noopener noreferrer" target="_blank">[11] Codex rate card</a>
+<a href="https://help.openai.com/en/articles/9793128-what-is-chatgpt-team" rel="noopener noreferrer" target="_blank">[4] Pro tiers</a>
+</div>
+</div>
+</section>
+<section id="api">
+<div class="container">
+<div class="section-kicker reveal">OpenAI API Pricing</div>
+<h2 class="section-title reveal">같은 1M 입력 + 1M 출력도<br/>모델에 따라 <span class="marker">25배 차이</span>가 납니다</h2>
+<p class="section-desc reveal">표준·짧은 컨텍스트의 1M 토큰 기준입니다. 단순 합계는 비교용이며 실제 청구액은 입력, 캐시 읽기·쓰기, 출력, 장기 컨텍스트, 도구 호출의 실제 비중에 따라 달라집니다.</p>
+<div class="model-grid">
+<article class="model-card sol reveal">
+<div class="model-top"><span class="model-tier">Frontier</span><span class="tag gray">고난도</span></div>
+<h3>GPT-5.6 Sol</h3>
+<div class="model-role">가장 어려운 전문 작업과 높은 추론 품질이 필요한 단계</div>
+<div class="model-total"><small>입력 1M + 출력 1M 단순 예시</small><strong>$35.00 <span>/ 2M tokens</span></strong></div>
+<div class="rate-list">
+<div class="rate-line"><span>입력 / 1M</span><b>$5.00</b></div>
+<div class="rate-line"><span>캐시 입력 / 1M</span><b>$0.50</b></div>
+<div class="rate-line"><span>캐시 쓰기 / 1M</span><b>$6.25</b></div>
+<div class="rate-line"><span>출력 / 1M</span><b>$30.00</b></div>
+</div>
+</article>
+<article class="model-card terra reveal">
+<div class="model-top"><span class="model-tier">Balanced</span><span class="tag violet">균형형</span></div>
+<h3>GPT-5.6 Terra</h3>
+<div class="model-role">일상 개발·분석에서 성능과 비용의 균형을 노리는 기본 후보</div>
+<div class="model-total"><small>입력 1M + 출력 1M 단순 예시</small><strong>$14.00 <span>/ 2M tokens</span></strong></div>
+<div class="rate-list">
+<div class="rate-line"><span>입력 / 1M</span><b>$2.00</b></div>
+<div class="rate-line"><span>캐시 입력 / 1M</span><b>$0.20</b></div>
+<div class="rate-line"><span>캐시 쓰기 / 1M</span><b>$2.50</b></div>
+<div class="rate-line"><span>출력 / 1M</span><b>$12.00</b></div>
+</div>
+</article>
+<article class="model-card luna reveal">
+<div class="model-top"><span class="model-tier">Efficient</span><span class="tag green">저비용</span></div>
+<h3>GPT-5.6 Luna</h3>
+<div class="model-role">대량 요약·분류·초안·단순 변환처럼 비용 민감한 반복 작업</div>
+<div class="model-total"><small>입력 1M + 출력 1M 단순 예시</small><strong>$1.40 <span>/ 2M tokens</span></strong></div>
+<div class="rate-list">
+<div class="rate-line"><span>입력 / 1M</span><b>$0.20</b></div>
+<div class="rate-line"><span>캐시 입력 / 1M</span><b>$0.02</b></div>
+<div class="rate-line"><span>캐시 쓰기 / 1M</span><b>$0.25</b></div>
+<div class="rate-line"><span>출력 / 1M</span><b>$1.20</b></div>
+</div>
+</article>
+</div>
+<article class="price-bars reveal">
+<h3>입력 1M + 출력 1M 단순 합계 비교</h3>
+<p>Sol을 100%로 둔 상대 비용입니다. 품질·추론 능력·처리 성공률을 반영한 성능 비교는 아닙니다.</p>
+<div class="bar-list">
+<div class="bar-row"><div class="bar-name">GPT-5.6 Sol</div><div class="bar-track"><div class="bar-fill" style="--w:100%"></div></div><div class="bar-price">$35.00</div></div>
+<div class="bar-row"><div class="bar-name">GPT-5.6 Terra</div><div class="bar-track"><div class="bar-fill" style="--w:40%"></div></div><div class="bar-price">$14.00</div></div>
+<div class="bar-row"><div class="bar-name">GPT-5.6 Luna</div><div class="bar-track"><div class="bar-fill" style="--w:4%"></div></div><div class="bar-price">$1.40</div></div>
+</div>
+</article>
+<div class="report-note warning reveal">
+<svg fill="none" viewbox="0 0 24 24"><path d="M12 3 2.8 20h18.4z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"></path><path d="M12 9v5M12 17.5v.1" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path></svg>
+<span>입력이 272K 토큰을 넘는 요청은 전체 요청에 대해 입력 2배, 출력 1.5배의 장기 컨텍스트 단가가 적용됩니다. 캐시 읽기는 일반 입력의 10% 수준, 캐시 쓰기는 일반 입력의 1.25배이며, 데이터 레지던시 대상 리전은 10% 가산될 수 있습니다.</span>
+</div>
+<div class="source-strip reveal">
+<a href="https://developers.openai.com/api/docs/pricing" rel="noopener noreferrer" target="_blank">[7] OpenAI API Pricing</a>
+<a href="https://developers.openai.com/api/docs/models/gpt-5.6-terra" rel="noopener noreferrer" target="_blank">[8] GPT-5.6 Terra</a>
+<a href="https://developers.openai.com/api/docs/models/gpt-5.6-luna" rel="noopener noreferrer" target="_blank">[9] GPT-5.6 Luna</a>
+</div>
+</div>
+</section>
+<section id="change" style="background:linear-gradient(180deg,rgba(247,248,250,.8),rgba(255,255,255,0))">
+<div class="container">
+<div class="section-kicker reveal">Price Change</div>
+<h2 class="section-title reveal">출시 공지 대비 현재 가격은<br/>Terra <span style="color:var(--blue)">-20%</span>, Luna <span class="marker">-80%</span></h2>
+<p class="section-desc reveal">2026-07-09 출시 공지와 현재 API 가격 페이지의 차이를 비교했습니다. 변경 시행일이나 배경은 공식 현재 가격 페이지에 명시되지 않아 이 보고서에서는 추정하지 않습니다.</p>
+<div class="change-grid">
+<article class="change-card reveal">
+<div class="change-head"><h3>GPT-5.6 Terra</h3><span class="change-rate">-20%</span></div>
+<div class="before-after">
+<div class="price-snapshot"><small>7/09 출시 공지</small><strong>$2.50 / $15</strong></div>
+<svg fill="none" viewbox="0 0 24 24"><path d="m8 5 7 7-7 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<div class="price-snapshot"><small>현재 API</small><strong>$2.00 / $12</strong></div>
+</div>
+<p>입력과 출력 단가 모두 출시 공지 대비 20% 낮아졌습니다.</p>
+</article>
+<article class="change-card reveal">
+<div class="change-head"><h3>GPT-5.6 Luna</h3><span class="change-rate">-80%</span></div>
+<div class="before-after">
+<div class="price-snapshot"><small>7/09 출시 공지</small><strong>$1.00 / $6</strong></div>
+<svg fill="none" viewbox="0 0 24 24"><path d="m8 5 7 7-7 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<div class="price-snapshot"><small>현재 API</small><strong>$0.20 / $1.20</strong></div>
+</div>
+<p>입력과 출력 단가 모두 출시 공지 대비 80% 낮아졌습니다.</p>
+</article>
+<article class="change-card reveal">
+<div class="change-head"><h3>GPT-5.6 Sol</h3><span class="change-rate same">0%</span></div>
+<div class="before-after">
+<div class="price-snapshot"><small>7/09 출시 공지</small><strong>$5.00 / $30</strong></div>
+<svg fill="none" viewbox="0 0 24 24"><path d="m8 5 7 7-7 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<div class="price-snapshot"><small>현재 API</small><strong>$5.00 / $30</strong></div>
+</div>
+<p>이 비교에서는 출시 공지와 현재 표준 단가가 동일합니다.</p>
+</article>
+</div>
+<div class="source-strip reveal">
+<a href="https://developers.openai.com/api/docs/pricing" rel="noopener noreferrer" target="_blank">[7] Current API Pricing</a>
+<a href="https://openai.com/index/gpt-5-6/" rel="noopener noreferrer" target="_blank">[10] GPT-5.6 Launch</a>
+</div>
+</div>
+</section>
+<section id="credits">
+<div class="container">
+<div class="section-kicker reveal">Codex Credit Rate Card</div>
+<h2 class="section-title reveal">Codex 크레딧은<br/><span class="marker">API 달러와 다른 단위</span>입니다</h2>
+<p class="section-desc reveal">Codex의 유연 과금은 API 가격표를 그대로 쓰지 않습니다. 실제 크레딧은 입력·캐시 입력·출력 토큰 구성에 따라 달라지며, Codex에서는 캐시 쓰기 자체에 크레딧을 청구하지 않습니다.</p>
+<div class="credit-layout">
+<article class="credit-explainer reveal">
+<span class="mini-label">CREDIT ≠ API DOLLAR</span>
+<h3>작업 수가 같아도<br/>모델과 토큰 구성에 따라 달라집니다</h3>
+<p>공개 숫자를 ‘메시지 1회당 고정 비용’으로 해석하면 안 됩니다. 모델, 프롬프트 길이, 출력량, 속도 모드, 병렬 인스턴스 수가 실제 비용을 바꿉니다.</p>
+<div class="credit-callout">
+<strong>Sol 일반 작업 ≈ 5–40 credits</strong>
+<span>OpenAI가 제시한 작업당 예시 범위. 실제 사용량은 작업 난이도와 토큰 구성에 따라 크게 달라질 수 있습니다.</span>
+</div>
+</article>
+<div class="credit-table-cards reveal">
+<div class="credit-row-card">
+<strong>GPT-5.6 Sol</strong>
+<div class="credit-cell"><small>입력 / 1M</small><b>125</b></div>
+<div class="credit-cell"><small>캐시 입력 / 1M</small><b>12.50</b></div>
+<div class="credit-cell"><small>출력 / 1M</small><b>750</b></div>
+</div>
+<div class="credit-row-card">
+<strong>GPT-5.6 Terra</strong>
+<div class="credit-cell"><small>입력 / 1M</small><b>50</b></div>
+<div class="credit-cell"><small>캐시 입력 / 1M</small><b>5</b></div>
+<div class="credit-cell"><small>출력 / 1M</small><b>300</b></div>
+</div>
+<div class="credit-row-card">
+<strong>GPT-5.6 Luna</strong>
+<div class="credit-cell"><small>입력 / 1M</small><b>5</b></div>
+<div class="credit-cell"><small>캐시 입력 / 1M</small><b>0.5</b></div>
+<div class="credit-cell"><small>출력 / 1M</small><b>30</b></div>
+</div>
+<div class="report-note" style="margin:0">
+<svg fill="none" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"></circle><path d="M12 11v5M12 8v.1" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path></svg>
+<span>Terra와 Luna는 Sol보다 훨씬 적은 크레딧을 사용합니다. Fast 모드는 지원 모델에서 더 높은 크레딧을 소모하며, 공식 문서의 개발자당 평균 Codex 비용은 월 약 $100–$200으로 제시됩니다.</span>
+</div>
+</div>
+</div>
+<div class="source-strip reveal">
+<a href="https://help.openai.com/en/articles/20001106" rel="noopener noreferrer" target="_blank">[11] Codex rate card</a>
+</div>
+</div>
+</section>
+<section id="compare" style="background:linear-gradient(180deg,rgba(238,233,255,.24),rgba(255,255,255,0))">
+<div class="container">
+<div class="section-kicker reveal">Cross-vendor API Comparison</div>
+<h2 class="section-title reveal">가격표는 출발점일 뿐,<br/><span class="marker">성능 우열표가 아닙니다</span></h2>
+<p class="section-desc reveal">동일한 ‘1M 입력 + 1M 출력’ 단순 계산으로 비교했습니다. 품질, 컨텍스트 길이, 사고 토큰, 검색·도구 비용, 지역·우선 처리, 미리보기 상태가 달라 달러 합계만으로 모델의 우열을 판단할 수 없습니다.</p>
+<div aria-label="모델 비교 유형" class="compare-tabs reveal" role="tablist">
+<button aria-selected="true" class="compare-tab active" data-panel="performance" role="tab" type="button">대표 고성능 모델</button>
+<button aria-selected="false" class="compare-tab" data-panel="efficient" role="tab" type="button">비용 민감 모델</button>
+</div>
+<div class="compare-panel active" id="performance" role="tabpanel">
+<div class="vendor-chart">
+<article class="vendor-bars reveal">
+<h3>대표 고성능 모델 · 단순 합계</h3>
+<p>1M 입력 + 1M 출력 기준. OpenAI Sol $35를 100%로 표시했습니다.</p>
+<div class="vendor-row">
+<div class="vendor-name"><strong>OpenAI</strong><small>GPT-5.6 Sol</small></div>
+<div class="vendor-track"><div class="vendor-fill" style="--w:100%"></div></div>
+<div class="vendor-price">$35.00</div>
+</div>
+<div class="vendor-row">
+<div class="vendor-name"><strong>Anthropic</strong><small>Claude Opus 5</small></div>
+<div class="vendor-track"><div class="vendor-fill" style="--w:85.7%"></div></div>
+<div class="vendor-price">$30.00</div>
+</div>
+<div class="vendor-row">
+<div class="vendor-name"><strong>Google</strong><small>Gemini 3.1 Pro Preview</small></div>
+<div class="vendor-track"><div class="vendor-fill" style="--w:72%"></div></div>
+<div class="vendor-price">$25.20</div>
+</div>
+<div class="vendor-row">
+<div class="vendor-name"><strong>xAI</strong><small>Grok 4.5</small></div>
+<div class="vendor-track"><div class="vendor-fill" style="--w:22.9%"></div></div>
+<div class="vendor-price">$8.00</div>
+</div>
+</article>
+<aside class="compare-insight reveal">
+<div class="insight-icon"><svg fill="none" viewbox="0 0 24 24"><path d="M4 19V9m5 10V5m5 14v-7m5 7V3" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path></svg></div>
+<h3>고성능 모델도<br/>운영 조건이 다릅니다</h3>
+<p>가격이 낮다고 동일한 난도의 작업을 같은 성공률로 처리한다는 의미는 아닙니다. 실제 도입에서는 자사 업무 샘플로 품질과 총비용을 함께 측정해야 합니다.</p>
+<ul class="insight-list">
+<li>OpenAI Sol: 272K 초과 장기 컨텍스트 단가</li>
+<li>Google: Preview·Priority 기준</li>
+<li>xAI: 200K 이상 장기 단가 별도</li>
+<li>Anthropic: 캐시·지역 옵션 별도</li>
+</ul>
+</aside>
+</div>
+<div class="table-shell reveal" style="margin-top:18px">
+<div class="table-head"><strong>대표 고성능 모델 표준 단가</strong><span>USD / 1M tokens</span></div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>공급사</th><th>대표 모델</th><th>입력 / 1M</th><th>출력 / 1M</th><th>입력+출력</th><th>주의점</th></tr></thead>
+<tbody>
+<tr><td><strong>OpenAI</strong></td><td>GPT-5.6 Sol</td><td>$5.00</td><td>$30.00</td><td><strong>$35.00</strong></td><td>272K 초과는 장기 컨텍스트 단가</td></tr>
+<tr><td><strong>Anthropic</strong></td><td>Claude Opus 5</td><td>$5.00</td><td>$25.00</td><td><strong>$30.00</strong></td><td>캐시·지역 옵션 별도</td></tr>
+<tr><td><strong>Google</strong></td><td>Gemini 3.1 Pro Preview (Priority)</td><td>$3.60</td><td>$21.60</td><td><strong>$25.20</strong></td><td>Preview·Priority 기준</td></tr>
+<tr><td><strong>xAI</strong></td><td>Grok 4.5</td><td>$2.00</td><td>$6.00</td><td><strong>$8.00</strong></td><td>200K 이상 장기 단가 별도</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="compare-panel" id="efficient" role="tabpanel">
+<div class="vendor-chart">
+<article class="vendor-bars reveal visible">
+<h3>비용 민감 모델 · 단순 합계</h3>
+<p>1M 입력 + 1M 출력 기준. 가장 높은 Claude Haiku 4.5 $6를 100%로 표시했습니다.</p>
+<div class="vendor-row">
+<div class="vendor-name"><strong>OpenAI</strong><small>GPT-5.6 Luna</small></div>
+<div class="vendor-track"><div class="vendor-fill" style="--w:23.3%"></div></div>
+<div class="vendor-price">$1.40</div>
+</div>
+<div class="vendor-row">
+<div class="vendor-name"><strong>Anthropic</strong><small>Claude Haiku 4.5</small></div>
+<div class="vendor-track"><div class="vendor-fill" style="--w:100%"></div></div>
+<div class="vendor-price">$6.00</div>
+</div>
+<div class="vendor-row">
+<div class="vendor-name"><strong>Google</strong><small>Gemini 3.5 Flash-Lite</small></div>
+<div class="vendor-track"><div class="vendor-fill" style="--w:46.7%"></div></div>
+<div class="vendor-price">$2.80</div>
+</div>
+<div class="vendor-row">
+<div class="vendor-name"><strong>xAI</strong><small>Grok Build 0.1</small></div>
+<div class="vendor-track"><div class="vendor-fill" style="--w:50%"></div></div>
+<div class="vendor-price">$3.00</div>
+</div>
+</article>
+<aside class="compare-insight reveal visible">
+<div class="insight-icon"><svg fill="none" viewbox="0 0 24 24"><path d="M4 15.5 9 11l4 3 7-8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path><path d="M16 6h4v4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></div>
+<h3>저비용 모델을 기본값으로,<br/>실패한 작업만 승격</h3>
+<p>대량 요약·분류·초안·간단한 변환은 저비용 모델에서 먼저 처리하고, 정확도 기준을 넘지 못하거나 고난도인 경우에만 상위 모델로 올리는 라우팅이 합리적입니다.</p>
+<ul class="insight-list">
+<li>Luna가 표본상 가장 낮은 단순 합계</li>
+<li>복잡한 코딩·추론 기본값으로 고정할 근거는 아님</li>
+<li>Batch·Flex·캐시 할인까지 포함해 비교</li>
+<li>한국어 품질과 도구 연결성은 샘플 검증 필요</li>
+</ul>
+</aside>
+</div>
+<div class="table-shell reveal visible" style="margin-top:18px">
+<div class="table-head"><strong>비용 민감 모델 표준 단가</strong><span>USD / 1M tokens</span></div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>공급사</th><th>비용 민감 모델</th><th>입력 / 1M</th><th>출력 / 1M</th><th>입력+출력</th><th>주요 용도</th></tr></thead>
+<tbody>
+<tr><td><strong>OpenAI</strong></td><td>GPT-5.6 Luna</td><td>$0.20</td><td>$1.20</td><td><strong>$1.40</strong></td><td>고용량·비용 민감 작업</td></tr>
+<tr><td><strong>Anthropic</strong></td><td>Claude Haiku 4.5</td><td>$1.00</td><td>$5.00</td><td><strong>$6.00</strong></td><td>빠른 저비용 처리</td></tr>
+<tr><td><strong>Google</strong></td><td>Gemini 3.5 Flash-Lite</td><td>$0.30</td><td>$2.50</td><td><strong>$2.80</strong></td><td>대량 에이전트·번역·단순 처리</td></tr>
+<tr><td><strong>xAI</strong></td><td>Grok Build 0.1</td><td>$1.00</td><td>$2.00</td><td><strong>$3.00</strong></td><td>코딩 에이전트 기본 모델</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="report-note warning reveal">
+<svg fill="none" viewbox="0 0 24 24"><path d="M12 3 2.8 20h18.4z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"></path><path d="M12 9v5M12 17.5v.1" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path></svg>
+<span>Claude Sonnet 5의 도입 단가는 2026-08-31까지로 명시되어 있으며 이후 $3/$15로 변경 예정입니다. Google 모델은 Preview 상태와 우선 처리 조건, xAI는 장기 컨텍스트 조건을 운영 도입 전에 다시 확인해야 합니다.</span>
+</div>
+<div class="source-strip reveal">
+<a href="https://developers.openai.com/api/docs/pricing" rel="noopener noreferrer" target="_blank">[7] OpenAI API</a>
+<a href="https://platform.claude.com/docs/en/about-claude/pricing" rel="noopener noreferrer" target="_blank">[12] Claude Pricing</a>
+<a href="https://ai.google.dev/gemini-api/docs/pricing?hl=en" rel="noopener noreferrer" target="_blank">[13] Gemini Pricing</a>
+<a href="https://docs.x.ai/developers/pricing" rel="noopener noreferrer" target="_blank">[14] xAI Pricing</a>
+</div>
+</div>
+</section>
+<section id="calculator">
+<div class="container">
+<div class="section-kicker reveal">Quick Cost Simulator</div>
+<h2 class="section-title reveal">월간 토큰량을 넣으면<br/><span class="marker">API 예상 비용</span>을 바로 계산합니다</h2>
+<p class="section-desc reveal">표준 단가 기준의 간단한 예산 시뮬레이터입니다. 장기 컨텍스트, 도구 호출, Batch·Flex 할인, 지역 가산, 세금과 환율은 반영하지 않습니다.</p>
+<div class="calculator reveal">
+<div class="calc-form">
+<h3>토큰 사용량 입력</h3>
+<p>각 항목은 월간 1M 토큰 단위입니다. 예: 2.5는 250만 토큰.</p>
+<div class="form-grid">
+<div class="field full">
+<label for="modelSelect">모델</label>
+<select id="modelSelect">
+<option value="sol">GPT-5.6 Sol</option>
+<option selected="" value="terra">GPT-5.6 Terra</option>
+<option value="luna">GPT-5.6 Luna</option>
+</select>
+</div>
+<div class="field"><label for="inputTokens">일반 입력 (M)</label><input id="inputTokens" inputmode="decimal" min="0" step="0.1" type="number" value="10"/></div>
+<div class="field"><label for="outputTokens">출력 (M)</label><input id="outputTokens" inputmode="decimal" min="0" step="0.1" type="number" value="2"/></div>
+<div class="field"><label for="cacheRead">캐시 읽기 (M)</label><input id="cacheRead" inputmode="decimal" min="0" step="0.1" type="number" value="5"/></div>
+<div class="field"><label for="cacheWrite">캐시 쓰기 (M)</label><input id="cacheWrite" inputmode="decimal" min="0" step="0.1" type="number" value="1"/></div>
+</div>
+<div class="calc-help">입력 토큰 중 캐시 읽기·쓰기를 별도로 집계하는 구조라면 중복 입력하지 않도록 주의하세요.</div>
+</div>
+<div aria-live="polite" class="calc-result">
+<small id="calcModelLabel">GPT-5.6 Terra · 월간 표준 예상액</small>
+<div class="calc-total" id="calcTotal">$47.50 <span>/ month</span></div>
+<div class="calc-breakdown">
+<div class="calc-item"><span>일반 입력</span><strong id="calcInput">$20.00</strong></div>
+<div class="calc-item"><span>출력</span><strong id="calcOutput">$24.00</strong></div>
+<div class="calc-item"><span>캐시 읽기</span><strong id="calcCacheRead">$1.00</strong></div>
+<div class="calc-item"><span>캐시 쓰기</span><strong id="calcCacheWrite">$2.50</strong></div>
+</div>
+<div class="calc-disclaimer">단순 예산 참고용 계산입니다. 272K 초과 장기 컨텍스트와 데이터 레지던시 가산 등이 발생하면 실제 비용이 더 높아질 수 있습니다.</div>
+</div>
+</div>
+</div>
+</section>
+<section id="decision" style="background:linear-gradient(180deg,rgba(232,243,255,.38),rgba(255,255,255,0))">
+<div class="container">
+<div class="section-kicker reveal">Decision Criteria</div>
+<h2 class="section-title reveal">임원 의사결정은<br/><span class="marker">네 가지 질문</span>이면 됩니다</h2>
+<p class="section-desc reveal">개인 생산성 도구와 제품용 API는 구매 기준이 다릅니다. 플랜 이름보다 실제 사용 빈도, 조직 관리 필요성, 월간 토큰 시나리오, 상위 모델 승격 조건을 먼저 정합니다.</p>
+<div class="decision-grid">
+<article class="decision-card reveal">
+<span class="decision-num">01</span>
+<h3>개인 업무의 시작점은?</h3>
+<p>주 몇 회 집중 코딩·기획이면 Plus($20)로 시작합니다. 실제 한도 부족이 반복되는 기록이 생길 때 Pro 또는 추가 크레딧을 검토합니다.</p>
+</article>
+<article class="decision-card reveal">
+<span class="decision-num">02</span>
+<h3>팀 도입 예산은?</h3>
+<p>Business 표준 좌석비와 별도 크레딧 상한을 나누어 승인합니다. 최소 2석과 새 워크스페이스의 Codex 전용 좌석 제한도 확인합니다.</p>
+</article>
+<article class="decision-card reveal">
+<span class="decision-num">03</span>
+<h3>API 기본 라우팅은?</h3>
+<p>대량·반복 작업은 Luna·Terra부터 검증하고, 복잡한 고가 작업만 Sol·Opus·Pro급으로 승격하는 조건을 둡니다.</p>
+</article>
+<article class="decision-card reveal">
+<span class="decision-num">04</span>
+<h3>월간 비용 보고는?</h3>
+<p>입력·출력·캐시·장기 컨텍스트·도구 호출을 따로 집계하고, ChatGPT 구독료와 API 사용료를 하나의 숫자로 합치지 않습니다.</p>
+</article>
+</div>
+<div class="routing-flow reveal">
+<div class="routing-head">
+<h3>권장 모델 라우팅 구조</h3>
+<span>저비용 기본값 → 실패·고난도만 상위 모델</span>
+</div>
+<div class="routing-steps">
+<div class="routing-step"><small>STEP 1</small><strong>업무 분류</strong><span>요약·분류·초안 vs 복잡한 추론·코딩</span></div>
+<div class="routing-step"><small>STEP 2</small><strong>Luna / Terra 우선</strong><span>비용 민감 작업을 낮은 티어에서 처리</span></div>
+<div class="routing-step"><small>STEP 3</small><strong>품질 기준 확인</strong><span>정확도·도구 성공률·사람 검수 기준 적용</span></div>
+<div class="routing-step"><small>STEP 4</small><strong>Sol급 승격</strong><span>실패·고난도·고위험 작업에만 조건부 사용</span></div>
+</div>
+</div>
+<div class="trade-grid" style="margin-top:18px">
+<article class="trade-card good reveal">
+<div class="trade-head"><span class="trade-icon"><svg fill="none" viewbox="0 0 24 24"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></span><h3>얻게 되는 것</h3></div>
+<ul class="trade-list">
+<li>Plus부터 Codex·고급 추론·앱 연동을 한 계정에서 사용할 수 있어 개인 도입이 단순함</li>
+<li>Terra·Luna의 낮아진 API 단가로 대량 업무의 비용 설계 폭이 넓어짐</li>
+<li>Business·Enterprise에서 좌석·권한·지출을 조직 단위로 관리 가능</li>
+<li>업무 단계별로 저비용·고성능 모델을 나눠 총비용을 최적화 가능</li>
+</ul>
+</article>
+<article class="trade-card bad reveal">
+<div class="trade-head"><span class="trade-icon"><svg fill="none" viewbox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path></svg></span><h3>감수해야 하는 것</h3></div>
+<ul class="trade-list">
+<li>구독 한도는 작업 조건에 따라 변동하며 고정 메시지 수를 보장하지 않음</li>
+<li>API 비용은 어떤 ChatGPT 구독에도 포함되지 않아 별도 예산 필요</li>
+<li>Pro의 5배·20배 정책은 모델별 절대 작업 수를 의미하지 않음</li>
+<li>가격만으로 품질·속도·한국어 성능·보안 적합성을 결론낼 수 없음</li>
+<li>가격·모델·한도가 자주 바뀌므로 구매 직전 공식 문서 재확인 필요</li>
+</ul>
+</article>
+</div>
+</div>
+</section>
+<section id="timeline">
+<div class="container">
+<div class="section-kicker reveal">Timeline</div>
+<h2 class="section-title reveal">가격과 정책은<br/>이 흐름으로 <span class="marker">변경되었습니다</span></h2>
+<p class="section-desc reveal">현재 가격만 보는 것보다 정책 전환과 예정된 변경 일정을 함께 확인해야 예산과 마이그레이션 계획을 세울 수 있습니다.</p>
+<div class="timeline">
+<div class="timeline-item reveal">
+<span class="timeline-dot"><svg fill="none" viewbox="0 0 24 24"><path d="M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v14H4V6a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></span>
+<div class="timeline-date">2026-04-02</div>
+<div class="timeline-copy"><strong>Codex 유연 과금 전환</strong><p>Business·Enterprise에서 Codex 크레딧과 토큰 기반 레이트 카드 구조가 도입되었습니다.</p></div>
+</div>
+<div class="timeline-item reveal">
+<span class="timeline-dot"><svg fill="none" viewbox="0 0 24 24"><path d="M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v14H4V6a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></span>
+<div class="timeline-date">2026-06-24</div>
+<div class="timeline-copy"><strong>Business의 새 Codex 전용 좌석 제한</strong><p>새 Business 워크스페이스와 기존에 전용 좌석이 없던 워크스페이스는 새 Codex 전용 좌석을 추가할 수 없게 되었습니다.</p></div>
+</div>
+<div class="timeline-item reveal">
+<span class="timeline-dot"><svg fill="none" viewbox="0 0 24 24"><path d="M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v14H4V6a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></span>
+<div class="timeline-date">2026-07-09</div>
+<div class="timeline-copy"><strong>GPT-5.6 Sol·Terra·Luna 출시 공지</strong><p>출시 공지의 Terra $2.50/$15, Luna $1/$6 단가가 현재 API 가격 페이지와 다름을 확인했습니다.</p></div>
+</div>
+<div class="timeline-item reveal">
+<span class="timeline-dot"><svg fill="none" viewbox="0 0 24 24"><path d="M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v14H4V6a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></span>
+<div class="timeline-date">2026-08-07</div>
+<div class="timeline-copy"><strong>현재 가격 점검</strong><p>현재 API 페이지의 Terra $2/$12, Luna $0.20/$1.20을 본 보고서의 예산 기준으로 반영했습니다.</p></div>
+</div>
+<div class="timeline-item reveal">
+<span class="timeline-dot"><svg fill="none" viewbox="0 0 24 24"><path d="M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v14H4V6a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></span>
+<div class="timeline-date">2026-08-31 예정</div>
+<div class="timeline-copy"><strong>Codex 모델·경쟁사 가격 변경 예정</strong><p>OpenAI는 ChatGPT 로그인 Codex의 GPT-5.4·5.4 mini 은퇴를, Anthropic은 Claude Sonnet 5 도입 단가 종료를 공지했습니다.</p></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sources" style="background:linear-gradient(180deg,rgba(247,248,250,.82),rgba(255,255,255,0))">
+<div class="container">
+<div class="section-kicker reveal">Sources</div>
+<h2 class="section-title reveal">원문과 확인 범위</h2>
+<p class="section-desc reveal">기사 전문은 저장하지 않고 제목·발행처·URL·확인일과 본 보고서에서 확인한 범위만 남겼습니다. 모든 출처는 2026.08.07 KST 기준으로 확인했습니다.</p>
+<div class="source-grid">
+<a class="source-card reveal" href="https://chatgpt.com/pricing/" rel="noopener noreferrer" target="_blank"><span class="source-num">01</span><span class="source-copy"><strong>ChatGPT Plans · Pricing</strong><span>OpenAI · Free·Go·Plus·Pro·Business·Enterprise 기능 범위와 API 분리 원칙</span><em>원문 열기 <svg fill="none" viewbox="0 0 24 24"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></em></span></a>
+<a class="source-card reveal" href="https://chatgpt.com/codex/pricing/" rel="noopener noreferrer" target="_blank"><span class="source-num">02</span><span class="source-copy"><strong>Codex Pricing</strong><span>OpenAI · Codex 포함 플랜, Plus 5시간 메시지 범위, 크레딧과 사용량 안내</span><em>원문 열기 <svg fill="none" viewbox="0 0 24 24"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></em></span></a>
+<a class="source-card reveal" href="https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus" rel="noopener noreferrer" target="_blank"><span class="source-num">03</span><span class="source-copy"><strong>What is ChatGPT Plus?</strong><span>OpenAI Help Center · Plus $20/월과 API 별도 청구 확인</span><em>원문 열기 <svg fill="none" viewbox="0 0 24 24"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></em></span></a>
+<a class="source-card reveal" href="https://help.openai.com/en/articles/9793128-what-is-chatgpt-team" rel="noopener noreferrer" target="_blank"><span class="source-num">04</span><span class="source-copy"><strong>About ChatGPT Pro tiers</strong><span>OpenAI Help Center · Pro $100은 Plus 대비 5배, Pro $200은 20배 사용량</span><em>원문 열기 <svg fill="none" viewbox="0 0 24 24"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></em></span></a>
+<a class="source-card reveal" href="https://help.openai.com/en/articles/8792828-what-is-chatgpt-team/" rel="noopener noreferrer" target="_blank"><span class="source-num">05</span><span class="source-copy"><strong>What is ChatGPT Business?</strong><span>OpenAI Help Center · Business 가격, 최소 2석, Codex 좌석 정책, API 별도</span><em>원문 열기 <svg fill="none" viewbox="0 0 24 24"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></em></span></a>
+<a class="source-card reveal" href="https://help.openai.com/en/articles/8265053-what-is-chatgpt-enterprise" rel="noopener noreferrer" target="_blank"><span class="source-num">06</span><span class="source-copy"><strong>What is ChatGPT Enterprise?</strong><span>OpenAI Help Center · 계약형 Enterprise, Codex 좌석, 관리자 기능과 크레딧 구조</span><em>원문 열기 <svg fill="none" viewbox="0 0 24 24"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></em></span></a>
+<a class="source-card reveal" href="https://developers.openai.com/api/docs/pricing" rel="noopener noreferrer" target="_blank"><span class="source-num">07</span><span class="source-copy"><strong>Pricing · OpenAI API</strong><span>OpenAI Developers · GPT-5.6 현재 표준·장기 컨텍스트·캐시 단가</span><em>원문 열기 <svg fill="none" viewbox="0 0 24 24"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></em></span></a>
+<a class="source-card reveal" href="https://developers.openai.com/api/docs/models/gpt-5.6-terra" rel="noopener noreferrer" target="_blank"><span class="source-num">08</span><span class="source-copy"><strong>GPT-5.6 Terra Model</strong><span>OpenAI Developers · Terra 현재 $2 입력·$12 출력 및 모델 조건</span><em>원문 열기 <svg fill="none" viewbox="0 0 24 24"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></em></span></a>
+<a class="source-card reveal" href="https://developers.openai.com/api/docs/models/gpt-5.6-luna" rel="noopener noreferrer" target="_blank"><span class="source-num">09</span><span class="source-copy"><strong>GPT-5.6 Luna Model</strong><span>OpenAI Developers · Luna 현재 $0.20 입력·$1.20 출력 및 모델 조건</span><em>원문 열기 <svg fill="none" viewbox="0 0 24 24"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></em></span></a>
+<a class="source-card reveal" href="https://openai.com/index/gpt-5-6/" rel="noopener noreferrer" target="_blank"><span class="source-num">10</span><span class="source-copy"><strong>GPT-5.6: Frontier intelligence that scales</strong><span>OpenAI · 2026-07-09 출시 공지 당시 Terra·Luna 가격과 플랜별 범위</span><em>원문 열기 <svg fill="none" viewbox="0 0 24 24"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></em></span></a>
+<a class="source-card reveal" href="https://help.openai.com/en/articles/20001106" rel="noopener noreferrer" target="_blank"><span class="source-num">11</span><span class="source-copy"><strong>Codex rate card</strong><span>OpenAI Help Center · 토큰별 크레딧, 작업당 예시, 공유 사용량 풀과 모델 은퇴 일정</span><em>원문 열기 <svg fill="none" viewbox="0 0 24 24"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></em></span></a>
+<a class="source-card reveal" href="https://platform.claude.com/docs/en/about-claude/pricing" rel="noopener noreferrer" target="_blank"><span class="source-num">12</span><span class="source-copy"><strong>Pricing · Claude Platform Docs</strong><span>Anthropic · Opus·Sonnet·Haiku API 가격, 캐시·Batch·지역 옵션</span><em>원문 열기 <svg fill="none" viewbox="0 0 24 24"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></em></span></a>
+<a class="source-card reveal" href="https://ai.google.dev/gemini-api/docs/pricing?hl=en" rel="noopener noreferrer" target="_blank"><span class="source-num">13</span><span class="source-copy"><strong>Gemini Developer API pricing</strong><span>Google AI · Gemini 3.1 Pro Preview·3.5 Flash-Lite 가격과 Batch·Flex 옵션</span><em>원문 열기 <svg fill="none" viewbox="0 0 24 24"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></em></span></a>
+<a class="source-card reveal" href="https://docs.x.ai/developers/pricing" rel="noopener noreferrer" target="_blank"><span class="source-num">14</span><span class="source-copy"><strong>Pricing · xAI Docs</strong><span>xAI · Grok 4.5·Grok Build의 표준·장기 컨텍스트 API 가격</span><em>원문 열기 <svg fill="none" viewbox="0 0 24 24"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></em></span></a>
+</div>
+<div class="report-note warning reveal" style="margin-top:20px">
+<svg fill="none" viewbox="0 0 24 24"><path d="M12 3 2.8 20h18.4z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"></path><path d="M12 9v5M12 17.5v.1" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path></svg>
+<span>본 페이지는 원 보고서의 내용과 공식 출처를 기반으로 시각 구조와 반응형 UX를 재설계한 버전입니다. 가격·한도·모델 정책은 변동 가능성이 높으므로 최종 결제와 도입 판단은 공식 페이지 재확인 후 진행하세요.</span>
+</div>
+</div>
+</section>
+</main>
+<section aria-labelledby="rm-media-title" class="rm-media" id="rmMedia">
+<div class="rm-wrap">
+<div class="rm-section-head"><div class="rm-kicker">MEDIA &amp; REAL EXAMPLE</div><h2 id="rm-media-title">실제 이미지·공식 자료·업무 예시를 함께 봅니다</h2><p>이미지는 저장소 내부 파일로 제공해 깨짐을 줄였고, 영상은 기존 보고서의 검증된 링크가 있을 때만 클릭 로드합니다.</p></div>
+<div class="rm-media-grid">
+<article class="rm-media-card rm-media-card-media"><img alt="OpenAI 공식 로고" decoding="async" loading="lazy" src="../assets/260807-chatgpt-codex-pricing-api-comparison-02/cover.png"/><div class="rm-media-card-copy"><span class="rm-label">RELATED VISUAL</span><h3>ChatGPT 요금제와 Codex·API 비용 비교 | Executive AI Cost Report 대표 이미지</h3><p>메인 도서관 썸네일과 본문이 같은 로컬 자산을 사용합니다.</p></div></article>
+<article class="rm-media-card"><span class="rm-label">VIDEO / OFFICIAL DEMO</span><h3>영상 또는 공식 데모</h3><div class="rm-video-placeholder"><div><div aria-hidden="true" class="rm-play">↗</div><strong>공식 데모·문서로 확인</strong></div></div><p style="margin-top:16px">검증되지 않은 영상을 임의로 넣지 않고, 공식 원문·데모 페이지를 바로 열 수 있게 구성했습니다.</p><div class="rm-source-list"><a href="https://developers.openai.com/api/docs/pricing" rel="noopener noreferrer" target="_blank">OpenAI API Pricing</a><a href="https://developers.openai.com/api/docs/changelog" rel="noopener noreferrer" target="_blank">OpenAI API Changelog</a></div></article>
+<article class="rm-media-card"><span class="rm-label">PRACTICAL EXAMPLE</span><h3>바로 적용하는 예시</h3><div class="rm-example"><strong>예시 시나리오</strong>예: 90% 분류는 Luna, 9% 일반 업무는 Terra, 1% 고난도 검증은 Sol로 배분해 비용과 품질을 동시에 관리합니다.</div><p style="margin-top:16px">보고서의 추천은 작은 범위에서 검증한 뒤 확대하고, 중요한 판단은 원문과 사람 검토를 거칩니다.</p></article>
+</div>
+</div>
+</section><footer>
+<div class="container footer-grid">
+<div class="footer-brand">
+<span aria-hidden="true" class="brand-mark"><svg fill="none" viewbox="0 0 24 24"><path d="M5 17.5V14m4 3.5V9m4 8.5V12m4 5.5V5.5" stroke="currentColor" stroke-linecap="round" stroke-width="2.1"></path><path d="m5 8 4-3 4 2 5-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1"></path></svg></span>
+<div><strong>Executive AI Cost Report</strong><br/><span style="color:var(--muted);font-size:12px;font-weight:650">260807 · Responsive Redesign</span></div>
+</div>
+<div class="footer-copy">원문: <a href="https://aihubos.github.io/reportmode/reports/260807-chatgpt-codex-pricing-api-comparison-02/" rel="noopener noreferrer" target="_blank">Report Mode</a><br/>최종 판단과 검수는 사용자에게 있습니다.</div>
+</div>
+</footer>
+<button aria-label="맨 위로 이동" class="back-top" id="backTop" type="button">
+<svg fill="none" viewbox="0 0 24 24"><path d="m6 14 6-6 6 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<script>
     (() => {
       const $ = (selector, root = document) => root.querySelector(selector);
       const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -1793,7 +1780,55 @@
       calculate();
     })();
   </script>
-
-  <script src="../../assets/report-page-layout.js?v=20260807c-wide-default"></script>
-</body>
+<script src="../../assets/report-page-layout.js?v=20260807c-wide-default"></script>
+<section aria-labelledby="rm-history-title" class="rm-history" id="rmHistory">
+<div class="rm-wrap">
+<div class="rm-history-head"><div><div class="rm-kicker">VERSION &amp; CHANGE LOG</div><h2 id="rm-history-title">버전 및 변경 이력</h2><p>최신 기록이 위에 오며, 과거 이력은 삭제하지 않습니다.</p></div><span class="rm-chip" id="rmHistoryVersion">Current v1.1.0</span></div>
+<div class="rm-history-table-wrap"><table class="rm-history-table"><thead><tr><th>버전</th><th>업데이트일</th><th>변경 구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr></thead><tbody id="rmHistoryBody"><tr><td>v1.1.0</td><td>2026.08.08</td><td>내용·출처·디자인 통합 업데이트</td><td>2026년 8월 8일 기준 최신 공식 자료를 대조하고, ‘가격 인하 반영’ 내용을 추가함. 공통 요약·미디어·출처·변경 이력 형식과 반응형·인쇄·접근성 규칙을 통일함.</td><td><span class="rm-status">AI-assisted · 자동 QA 완료 · 사람 검토 권장</span></td></tr><tr><td>v1.0.0</td><td>2026.08.07</td><td>기존 보고서 이력 복원</td><td>저장소에 존재하던 원본 보고서를 기준 버전으로 복원함.</td><td><span class="rm-status">AI-assisted · 원본 상태</span></td></tr></tbody></table></div>
+<div class="rm-integrity-note"><strong>검증 상태:</strong> 로컬 이미지 경로, 메타데이터 JSON, 버전 렌더링, 360px 반응형, A4 인쇄 규칙을 자동 점검했습니다. 가격·운영시간·구매·예약·의료·보안 판단은 배포 전 담당자의 최종 확인을 권장합니다.</div>
+</div>
+</section><script id="report-metadata" type="application/json">
+{
+  "schemaVersion": "1.0",
+  "reportId": "260807-chatgpt-codex-pricing-api-comparison-02",
+  "title": "ChatGPT 요금제와 Codex·API 비용 비교 | Executive AI Cost Report",
+  "version": "1.1.0",
+  "status": "Published",
+  "createdAt": "2026-08-07",
+  "updatedAt": "2026-08-08",
+  "language": "ko-KR",
+  "author": "Jeremy Lee",
+  "generation": "AI-assisted",
+  "reviewStatus": "Human review recommended",
+  "history": [
+    {
+      "version": "1.1.0",
+      "date": "2026-08-08",
+      "type": "내용·출처·디자인 통합 업데이트",
+      "summary": "2026년 8월 8일 기준 최신 공식 자료를 대조하고, ‘가격 인하 반영’ 내용을 추가함. 공통 요약·미디어·출처·변경 이력 형식과 반응형·인쇄·접근성 규칙을 통일함.",
+      "sections": [
+        "1페이지 요약",
+        "최신 검증",
+        "미디어·예시",
+        "출처",
+        "변경 이력",
+        "반응형·인쇄"
+      ],
+      "updatedBy": "AI-assisted",
+      "reviewStatus": "자동 QA 완료 · 사람 검토 권장"
+    },
+    {
+      "version": "1.0.0",
+      "date": "2026-08-07",
+      "type": "기존 보고서 이력 복원",
+      "summary": "저장소에 존재하던 원본 보고서를 기준 버전으로 복원함.",
+      "sections": [
+        "전체"
+      ],
+      "updatedBy": "AI-assisted",
+      "reviewStatus": "원본 상태"
+    }
+  ]
+}
+</script><script defer="True" src="../assets/reportmode-unified-20260808.js"></script></body>
 </html>
