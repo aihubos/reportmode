@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1",
+  "id": "260808-macbook-local-llm-lm-studio-v1-1-0",
+  "slug": "macbook-local-llm-lm-studio-v1-1-0",
+  "title": "MacBook에 Local LLM 설치하기 · LM Studio 완전 입문 가이드",
+  "category": "AI",
+  "tags": [
+    "AI",
+    "자동화"
+  ],
+  "summary": "비전공자를 위한 MacBook Local LLM 설치 가이드. LM Studio 0.4.20 기준 설치, RAM별 모델 선택, 첫 채팅, 문서 RAG, 로컬 API, 문제 해결을 한 번에 설명합니다.",
+  "createdAt": "2026-08-08T16:34:31+09:00",
+  "updatedAt": "2026-08-08T16:34:31+09:00",
+  "status": "published",
+  "sourceName": "MacBook에 Local LLM 설치하기 · LM Studio 완전 입문 가이드.html",
+  "sourceCount": 20,
+  "coverImage": "assets/blog-hub-thumbnail.webp",
+  "coverAlt": "LM Studio 로고",
+  "entry": "index.html"
+}

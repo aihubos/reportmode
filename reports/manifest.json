@@ -1,12 +1,31 @@
 {
-  "generatedAt": "2026-08-08T15:45:00+09:00",
+  "generatedAt": "2026-08-08T07:34:39.541Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260808-macbook-local-llm-lm-studio-v1-1-0",
+      "slug": "macbook-local-llm-lm-studio-v1-1-0",
+      "title": "MacBook에 Local LLM 설치하기 · LM Studio 완전 입문 가이드",
+      "category": "AI",
+      "summary": "비전공자를 위한 MacBook Local LLM 설치 가이드. LM Studio 0.4.20 기준 설치, RAM별 모델 선택, 첫 채팅, 문서 RAG, 로컬 API, 문제 해결을 한 번에 설명합니다.",
+      "createdAt": "2026-08-08T16:34:31+09:00",
+      "updatedAt": "2026-08-08T16:34:31+09:00",
+      "status": "published",
+      "path": "reports/260808-macbook-local-llm-lm-studio-v1-1-0/",
+      "url": "https://aihubos.github.io/reportmode/reports/260808-macbook-local-llm-lm-studio-v1-1-0/",
+      "displayDate": "260808",
+      "sourceCount": 20,
+      "tags": [
+        "AI",
+        "자동화"
+      ],
+      "coverImage": "reports/260808-macbook-local-llm-lm-studio-v1-1-0/assets/blog-hub-thumbnail.webp",
+      "coverAlt": "LM Studio 로고"
+    },
     {
       "id": "260808-ai-beginner-hermes-second-brain-50",
       "slug": "ai-beginner-hermes-second-brain-50",
       "title": "AI 입문 50페이지 교육 가이드북 | Hermes × Second Brain",
-      "subtitle": "비전공자용 AI·LLM·Agent·Hermes·Second Brain 교과서",
       "category": "AI",
       "summary": "비전공자 초보자를 위한 AI·LLM·토큰·모델 비교·AI Agent·Hermes·Second Brain·PARA·LLM Wiki 50페이지 교육 가이드북입니다.",
       "createdAt": "2026-08-08T15:45:00+09:00",
@@ -25,7 +44,8 @@
         "agent"
       ],
       "coverImage": "reports/260808-ai-beginner-hermes-second-brain-50/assets/cover.png",
-      "coverAlt": "Hermes 로고 · AI 입문 50페이지 교육 가이드"
+      "coverAlt": "Hermes 로고 · AI 입문 50페이지 교육 가이드",
+      "subtitle": "비전공자용 AI·LLM·Agent·Hermes·Second Brain 교과서"
     },
     {
       "id": "260808-macbook-local-llm-lm-studio-v1-0-1",
