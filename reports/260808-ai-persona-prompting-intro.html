@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-
 <html lang="ko">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="AI에게 '말투'를 가르칠 수 있을까? | 페르소나 설정과 프롬프트 엔지니어링 입문 — 2026년 8월 8일 최신 공식 자료와 사진·영상·예시·변경 이력을 반영한 AIHUBOS ReportMode 보고서" name="description"/>
-<meta content="#ffffff" name="theme-color"/>
-<meta content="AI에게 '말투'를 가르칠 수 있을까?" property="og:title"/>
-<meta content="페르소나 설정과 프롬프트 엔지니어링 입문 · 19개 복사용 프롬프트" property="og:description"/>
-<meta content="article" property="og:type"/>
-<meta content="assets/260808-ai-persona-prompting-intro/cover.png" property="og:image"/>
-<title>AI에게 '말투'를 가르칠 수 있을까? | 페르소나 설정과 프롬프트 엔지니어링 입문 · v1.1.0</title>
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="비전공자를 위한 AI 페르소나 설정과 프롬프트 엔지니어링 입문. 1장 요약, 10분 설정법, JARVIS·Her·스타워즈 로봇 비유, 19개 복사용 페르소나를 제공합니다." />
+  <meta name="theme-color" content="#ffffff" />
+  <meta property="og:title" content="AI에게 '말투'를 가르칠 수 있을까?" />
+  <meta property="og:description" content="페르소나 설정과 프롬프트 엔지니어링 입문 · 19개 복사용 프롬프트" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="assets/260808-ai-persona-prompting-intro/cimon-ai-assistant.jpg" />
+  <title>AI에게 '말투'를 가르칠 수 있을까? · v1.0.0</title>
+  <style>
     :root {
       --blue: #3182f6;
       --blue-strong: #1b64da;
@@ -427,150 +426,132 @@
       a { text-decoration: none; }
     }
   </style>
-<link href="../assets/report-page-layout.css?v=20260807c-wide-default" rel="stylesheet"/>
-<script data-report-id="260808-ai-persona-prompting-intro" src="../assets/report-view-counter.js"></script>
-<script src="../assets/report-page-layout.js?v=20260807c-wide-default"></script>
-<link href="assets/reportmode-unified-20260808.css" rel="stylesheet"/><meta content="2026-08-08" name="report:updated"/></head>
-<body class="reportmode-unified" data-report-cover="assets/260808-ai-persona-prompting-intro/cover.png" data-report-cover-alt="OpenAI 공식 로고" data-report-id="260808-ai-persona-prompting-intro" data-report-layout="wide" data-report-view="detail"><a class="rm-skip" href="#rmUpdateSummary">최신 요약으로 건너뛰기</a><div class="rm-topline" id="rmTopline"><div class="rm-topline-inner">
-<a class="rm-topline-brand" href="../archive/"><span class="rm-topline-mark">R</span><span class="rm-topline-title">AI에게 '말투'를 가르칠 수 있을까? | 페르소나 설정과 프롬프트 엔지니어링 입문</span></a>
-<div class="rm-topline-meta"><span class="rm-chip" id="rmVersionTop">v1.1.0</span><span id="rmUpdated">2026.08.08</span></div>
-<div class="rm-topline-actions"><a href="#rmUpdateSummary">요약</a><a href="#rmHistory">이력</a><button aria-label="PDF 저장" data-rm-print="" type="button">PDF</button></div>
-</div></div><section aria-labelledby="rm-update-title" class="rm-brief" id="rmUpdateSummary">
-<div class="rm-wrap rm-brief-grid">
-<div>
-<div class="rm-kicker">2026.08.08 VERIFIED UPDATE · 공식 자료 확인</div>
-<h2 id="rm-update-title">AI에게 '말투'를 가르칠 수 있을까? | 페르소나 설정과 프롬프트 엔지니어링 입문<br/><span style="color:var(--rm-blue)">이번 업데이트의 한 문장 결론</span></h2>
-<p class="rm-brief-lead">기존 보고서를 보존하면서 최신 공식 자료, 실제 적용 예시, 미디어, 출처, 변경 이력을 공통 ReportMode 형식으로 보강했습니다.</p>
-<div class="rm-verdict"><span aria-hidden="true" class="rm-verdict-icon">✓</span><div><strong>페르소나는 AI의 ‘정체성’을 바꾸는 마법이 아니라, 말투·관점·금지사항·출력 형식을 일관되게 만드는 프롬프트 규칙입니다.</strong></div></div>
-<div class="rm-summary-cards">
-<article class="rm-summary-card"><b>01 · FACT</b><h3>효과 범위</h3><p>역할·대상 독자·톤·예시·평가 기준을 명확히 주면 출력 일관성이 높아지지만 사실 정확성을 보장하지는 않습니다.</p></article>
-<article class="rm-summary-card"><b>02 · UPDATE</b><h3>템플릿 보강</h3><p>JARVIS·HER·로봇 비유는 스타일 참고로 두고, 업무용에는 목적·권한·검증·금지 규칙을 추가했습니다.</p></article>
-<article class="rm-summary-card"><b>03 · ACTION</b><h3>사용 원칙</h3><p>민감한 의학·법률·재무 판단에서는 페르소나보다 출처와 사람 검토를 우선하세요.</p></article>
-</div>
-<div class="rm-brief-actions">
-<a class="rm-action rm-action-primary" href="#rmMedia">사진·영상·예시 보기</a>
-<a class="rm-action" href="#rmHistory">변경 이력 보기</a>
-<a class="rm-action" href="../archive/">보고서 도서관</a>
-</div>
-</div>
-<article class="rm-visual-card">
-<figure><img alt="OpenAI 공식 로고" decoding="async" loading="eager" src="assets/260808-ai-persona-prompting-intro/cover.png"/><figcaption><span>공식 로고 또는 보고서 관련 이미지</span><span id="rmVersion">v1.1.0</span></figcaption></figure>
-</article>
-</div>
-</section><section aria-label="상세 본문 기준일 안내" class="rm-detail-note" id="rmDetailedContentNote"><div class="rm-detail-note-inner"><span aria-hidden="true" class="rm-detail-note-icon">i</span><div><strong>상세 본문 읽기:</strong> 아래 영역은 기존 보고서의 상세 분석과 근거를 보존한 내용입니다. 날짜·가격·버전·출시 상태가 상단의 <strong>2026.08.08 검증 요약</strong>과 다르면 상단 확인값이 우선하며, 중요한 결정은 연결된 공식 원문을 다시 확인하세요.</div></div></section>
-<a aria-label="보고서 도서관 메인으로 이동" class="report-home-button" href="../archive/">🏠 메인</a>
-<div class="scroll-progress" id="scrollProgress"></div>
-<div class="nav-wrap">
-<nav aria-label="주요 메뉴" class="nav">
-<a aria-label="보고서 처음으로" class="brand" href="#top">
-<span aria-hidden="true" class="brand-mark">
-<svg fill="none" viewbox="0 0 24 24"><path d="M6 6.5h12a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-5l-3.5 2.5v-2.5H6a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path><path d="M8 11h8M8 14h5" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path></svg>
-</span>
-<span>AI PERSONA GUIDE</span>
-<span class="brand-sub">ReportMode</span>
-</a>
-<div class="nav-links">
-<a href="#concepts">핵심 개념</a>
-<a href="#archetypes">영화 속 비유</a>
-<a href="#builder">빌더</a>
-<a href="#library">페르소나 19종</a>
-<a href="#risks">주의점</a>
-<a href="#sources">출처</a>
-</div>
-<div class="nav-actions">
-<a class="btn btn-ghost" href="#library">프롬프트 보기</a>
-<button class="btn btn-primary" onclick="window.print()" type="button">PDF 저장</button>
-</div>
-</nav>
-</div>
-<main id="top">
-<section aria-labelledby="hero-title" class="onepage">
-<div class="container">
-<div class="onepage-grid">
-<div class="hero-copy reveal">
-<div class="eyebrow"><span class="eyebrow-dot"></span>ONE-PAGE SUMMARY · 비전공자 10분 입문</div>
-<h1 class="hero-title" id="hero-title">AI에게 <span class="blue">‘말투’</span>를<br/>가르칠 수 있을까?</h1>
-<p class="hero-lead"><strong>가능합니다.</strong> 다만 모델을 새로 훈련하는 것이 아니라, 역할·목표·말투·규칙·출력 형식을 지속적으로 지시해 <span class="marker">행동을 유도</span>하는 방식입니다.</p>
-<div class="hero-actions">
-<a class="btn btn-primary" href="#library">인기 페르소나 복사</a>
-<a class="btn btn-ghost" href="#builder">내 페르소나 만들기</a>
-</div>
-<div class="hero-note">
-<svg aria-hidden="true" fill="none" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"></circle><path d="M12 10v6M12 7.2v.2" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path></svg>
-<span><strong>한 문장 결론:</strong> 페르소나는 말투와 구조를 안정시키지만, 모델의 능력이나 안전 규칙을 바꾸거나 사실 정확성까지 자동으로 높여 주지는 않습니다 <a aria-label="출처 3" class="cite" href="#source-3">[3]</a><a aria-label="출처 6" class="cite" href="#source-6">[6]</a>.</span>
-</div>
-<div aria-label="보고서 버전 정보" class="report-meta">
-<span class="version-badge" id="reportVersion">v1.0.0</span>
-<span id="reportUpdated">Updated 2026.08.08</span>
-<span aria-hidden="true" class="report-meta-separator"></span>
-<span id="reportGeneration">AI-assisted · Human review recommended</span>
-</div>
-</div>
-<div aria-label="기본 말투와 페르소나 적용 후 말투 비교" class="tone-console reveal">
-<div class="console-top">
-<div class="console-title"><i></i>말투 변환 콘솔</div>
-<div class="console-tag">NO CODE</div>
-</div>
-<div class="chat-stack">
-<div class="bubble user">“이 계획, 현실적으로 괜찮아?”</div>
-<div class="bubble ai-old">검토해 드리겠습니다. 여러 요소를 종합적으로 고려하는 것이 중요합니다.</div>
-<div class="persona-layer"><span>PERSONA RULES</span><strong>따뜻하지만 직설적으로 · 결론 먼저 · 위험과 다음 행동 포함</strong></div>
-<div class="bubble ai-new"><strong>결론부터 말하면, 지금 일정은 무리입니다.</strong><br/>범위를 30% 줄이면 가능성이 높습니다. 가장 큰 병목은 승인과 데이터 준비입니다.</div>
-</div>
-<div aria-label="1장 요약 핵심" class="summary-metrics">
-<div class="summary-metric"><b>01</b><strong>핵심 공식</strong><p>역할 + 목표 + 말투 + 규칙 + 형식 + 경계</p></div>
-<div class="summary-metric"><b>02</b><strong>10분 설정</strong><p>하나를 복사하고 3개 질문으로 테스트</p></div>
-<div class="summary-metric"><b>03</b><strong>중요한 한계</strong><p>말투와 사실 검증은 별도 설계</p></div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="content-section section-soft" id="concepts">
-<div class="container">
-<div class="section-kicker reveal">WHAT PERSONA REALLY MEANS</div>
-<h2 class="section-title reveal">‘말투를 가르친다’는 것은<br/>성격을 훈련하는 게 아니라 규칙을 붙이는 일입니다</h2>
-<p class="section-desc reveal">공식 가이드는 원하는 맥락·길이·형식·스타일을 구체적으로 쓰고 예시를 보여 주는 방식을 권합니다 <a aria-label="출처 1" class="cite" href="#source-1">[1]</a>. 역할을 시스템 지침에 넣으면 행동과 말투의 초점이 더 선명해질 수 있습니다 <a aria-label="출처 4" class="cite" href="#source-4">[4]</a>.</p>
-<article class="thesis-card reveal">
-<div aria-hidden="true" class="thesis-stamp">
-<svg fill="none" viewbox="0 0 64 64"><path d="M16 18h32a6 6 0 0 1 6 6v18a6 6 0 0 1-6 6H34l-10 7v-7h-8a6 6 0 0 1-6-6V24a6 6 0 0 1 6-6Z" stroke="currentColor" stroke-linejoin="round" stroke-width="3"></path><path d="M21 29h22M21 37h15" stroke="currentColor" stroke-linecap="round" stroke-width="3"></path></svg>
-</div>
-<div class="thesis-copy">
-<h3>가장 실용적인 정의</h3>
-<p><strong>페르소나는 “누구처럼 보일지”보다 “어떻게 행동할지”를 적은 운영 규칙</strong>입니다. ‘따뜻하게’ 같은 형용사는 관찰 가능한 행동으로 바꿔야 안정적입니다.</p>
-</div>
-</article>
-<div class="concept-grid">
-<article class="concept-card reveal"><div class="concept-index">01</div><h3>페르소나</h3><div class="easy-label">상시 행동 규칙</div><p>역할, 우선순위, 말투, 금지사항, 응답 구조처럼 여러 대화에서 유지할 기준입니다.</p></article>
-<article class="concept-card reveal"><div class="concept-index">02</div><h3>작업 프롬프트</h3><div class="easy-label">이번에 할 일</div><p>“이 회의록을 임원용 1장으로 요약해줘”처럼 매번 달라지는 구체적 요청입니다.</p></article>
-<article class="concept-card reveal"><div class="concept-index">03</div><h3>맞춤 지침·파일</h3><div class="easy-label">저장된 기본값</div><p>Custom Instructions, 프로젝트 지침, <code>PERSONA.md</code> 등에 페르소나를 저장하는 방식입니다 <a aria-label="출처 2" class="cite" href="#source-2">[2]</a>.</p></article>
-<article class="concept-card reveal"><div class="concept-index">04</div><h3>파인튜닝</h3><div class="easy-label">별도의 모델 학습</div><p>많은 예시 데이터로 모델을 추가 학습하는 개발 방식입니다. 입문 단계의 말투 설정에는 대개 필요하지 않습니다.</p></article>
-</div>
-<div class="compare-grid">
-<article class="compare-card reveal">
-<div class="compare-label">모호한 지시</div>
-<h3>“따뜻하고 똑똑하게 답해줘”</h3>
-<p>사람마다 해석이 다르고, 같은 AI도 상황에 따라 길이와 직설성이 흔들립니다.</p>
-<div class="rule-list">
-<div class="rule-item"><b>×</b><div>따뜻함이 어떤 행동인지 불명확</div></div>
-<div class="rule-item"><b>×</b><div>결론, 길이, 형식이 지정되지 않음</div></div>
-<div class="rule-item"><b>×</b><div>모를 때 어떻게 할지 없음</div></div>
-</div>
-</article>
-<article class="compare-card good reveal">
-<div class="compare-label">관찰 가능한 규칙</div>
-<h3>“공감 1문장 뒤 현실 판단을 말해줘”</h3>
-<p>AI가 실행할 수 있는 행동, 순서, 경계를 적으면 말투가 훨씬 재현 가능해집니다.</p>
-<div class="rule-list">
-<div class="rule-item"><b>✓</b><div>첫 문장은 감정 또는 상황을 반영</div></div>
-<div class="rule-item"><b>✓</b><div>다음 문장은 현실적인 결론</div></div>
-<div class="rule-item"><b>✓</b><div>선택지 3개와 추천 1개, 미확인은 표시</div></div>
-</div>
-</article>
-</div>
-<div class="master-template reveal">
-<div class="code-toolbar"><span>범용 PERSONA.md 템플릿 · 여섯 블록만 채우면 됩니다</span><button class="copy-btn" data-copy="masterPersona" type="button">템플릿 복사</button></div>
-<pre class="prompt-code" id="masterPersona"><code># PERSONA.md
+  <link rel="stylesheet" href="../assets/report-page-layout.css?v=20260807c-wide-default">
+  <script src="../assets/report-view-counter.js" data-report-id="260808-ai-persona-prompting-intro"></script>
+  <script src="../assets/report-page-layout.js?v=20260807c-wide-default"></script>
+</head>
+<body data-report-view="detail" data-report-layout="wide" data-report-cover="assets/260808-ai-persona-prompting-intro/cover.png" data-report-cover-alt="OpenAI 공식 로고">
+  <a class="report-home-button" href="../archive/" aria-label="보고서 도서관 메인으로 이동">🏠 메인</a>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <div class="nav-wrap">
+    <nav class="nav" aria-label="주요 메뉴">
+      <a class="brand" href="#top" aria-label="보고서 처음으로">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M6 6.5h12a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-5l-3.5 2.5v-2.5H6a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8 11h8M8 14h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </span>
+        <span>AI PERSONA GUIDE</span>
+        <span class="brand-sub">ReportMode</span>
+      </a>
+      <div class="nav-links">
+        <a href="#concepts">핵심 개념</a>
+        <a href="#archetypes">영화 속 비유</a>
+        <a href="#builder">빌더</a>
+        <a href="#library">페르소나 19종</a>
+        <a href="#risks">주의점</a>
+        <a href="#sources">출처</a>
+      </div>
+      <div class="nav-actions">
+        <a class="btn btn-ghost" href="#library">프롬프트 보기</a>
+        <button class="btn btn-primary" type="button" onclick="window.print()">PDF 저장</button>
+      </div>
+    </nav>
+  </div>
+
+  <main id="top">
+    <section class="onepage" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="onepage-grid">
+          <div class="hero-copy reveal">
+            <div class="eyebrow"><span class="eyebrow-dot"></span>ONE-PAGE SUMMARY · 비전공자 10분 입문</div>
+            <h1 class="hero-title" id="hero-title">AI에게 <span class="blue">‘말투’</span>를<br />가르칠 수 있을까?</h1>
+            <p class="hero-lead"><strong>가능합니다.</strong> 다만 모델을 새로 훈련하는 것이 아니라, 역할·목표·말투·규칙·출력 형식을 지속적으로 지시해 <span class="marker">행동을 유도</span>하는 방식입니다.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#library">인기 페르소나 복사</a>
+              <a class="btn btn-ghost" href="#builder">내 페르소나 만들기</a>
+            </div>
+            <div class="hero-note">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 10v6M12 7.2v.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span><strong>한 문장 결론:</strong> 페르소나는 말투와 구조를 안정시키지만, 모델의 능력이나 안전 규칙을 바꾸거나 사실 정확성까지 자동으로 높여 주지는 않습니다 <a class="cite" href="#source-3" aria-label="출처 3">[3]</a><a class="cite" href="#source-6" aria-label="출처 6">[6]</a>.</span>
+            </div>
+            <div class="report-meta" aria-label="보고서 버전 정보">
+              <span class="version-badge" id="reportVersion">v1.0.0</span>
+              <span id="reportUpdated">Updated 2026.08.08</span>
+              <span class="report-meta-separator" aria-hidden="true"></span>
+              <span id="reportGeneration">AI-assisted · Human review recommended</span>
+            </div>
+          </div>
+
+          <div class="tone-console reveal" aria-label="기본 말투와 페르소나 적용 후 말투 비교">
+            <div class="console-top">
+              <div class="console-title"><i></i>말투 변환 콘솔</div>
+              <div class="console-tag">NO CODE</div>
+            </div>
+            <div class="chat-stack">
+              <div class="bubble user">“이 계획, 현실적으로 괜찮아?”</div>
+              <div class="bubble ai-old">검토해 드리겠습니다. 여러 요소를 종합적으로 고려하는 것이 중요합니다.</div>
+              <div class="persona-layer"><span>PERSONA RULES</span><strong>따뜻하지만 직설적으로 · 결론 먼저 · 위험과 다음 행동 포함</strong></div>
+              <div class="bubble ai-new"><strong>결론부터 말하면, 지금 일정은 무리입니다.</strong><br />범위를 30% 줄이면 가능성이 높습니다. 가장 큰 병목은 승인과 데이터 준비입니다.</div>
+            </div>
+            <div class="summary-metrics" aria-label="1장 요약 핵심">
+              <div class="summary-metric"><b>01</b><strong>핵심 공식</strong><p>역할 + 목표 + 말투 + 규칙 + 형식 + 경계</p></div>
+              <div class="summary-metric"><b>02</b><strong>10분 설정</strong><p>하나를 복사하고 3개 질문으로 테스트</p></div>
+              <div class="summary-metric"><b>03</b><strong>중요한 한계</strong><p>말투와 사실 검증은 별도 설계</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="concepts" class="content-section section-soft">
+      <div class="container">
+        <div class="section-kicker reveal">WHAT PERSONA REALLY MEANS</div>
+        <h2 class="section-title reveal">‘말투를 가르친다’는 것은<br />성격을 훈련하는 게 아니라 규칙을 붙이는 일입니다</h2>
+        <p class="section-desc reveal">공식 가이드는 원하는 맥락·길이·형식·스타일을 구체적으로 쓰고 예시를 보여 주는 방식을 권합니다 <a class="cite" href="#source-1" aria-label="출처 1">[1]</a>. 역할을 시스템 지침에 넣으면 행동과 말투의 초점이 더 선명해질 수 있습니다 <a class="cite" href="#source-4" aria-label="출처 4">[4]</a>.</p>
+
+        <article class="thesis-card reveal">
+          <div class="thesis-stamp" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none"><path d="M16 18h32a6 6 0 0 1 6 6v18a6 6 0 0 1-6 6H34l-10 7v-7h-8a6 6 0 0 1-6-6V24a6 6 0 0 1 6-6Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M21 29h22M21 37h15" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+          </div>
+          <div class="thesis-copy">
+            <h3>가장 실용적인 정의</h3>
+            <p><strong>페르소나는 “누구처럼 보일지”보다 “어떻게 행동할지”를 적은 운영 규칙</strong>입니다. ‘따뜻하게’ 같은 형용사는 관찰 가능한 행동으로 바꿔야 안정적입니다.</p>
+          </div>
+        </article>
+
+        <div class="concept-grid">
+          <article class="concept-card reveal"><div class="concept-index">01</div><h3>페르소나</h3><div class="easy-label">상시 행동 규칙</div><p>역할, 우선순위, 말투, 금지사항, 응답 구조처럼 여러 대화에서 유지할 기준입니다.</p></article>
+          <article class="concept-card reveal"><div class="concept-index">02</div><h3>작업 프롬프트</h3><div class="easy-label">이번에 할 일</div><p>“이 회의록을 임원용 1장으로 요약해줘”처럼 매번 달라지는 구체적 요청입니다.</p></article>
+          <article class="concept-card reveal"><div class="concept-index">03</div><h3>맞춤 지침·파일</h3><div class="easy-label">저장된 기본값</div><p>Custom Instructions, 프로젝트 지침, <code>PERSONA.md</code> 등에 페르소나를 저장하는 방식입니다 <a class="cite" href="#source-2" aria-label="출처 2">[2]</a>.</p></article>
+          <article class="concept-card reveal"><div class="concept-index">04</div><h3>파인튜닝</h3><div class="easy-label">별도의 모델 학습</div><p>많은 예시 데이터로 모델을 추가 학습하는 개발 방식입니다. 입문 단계의 말투 설정에는 대개 필요하지 않습니다.</p></article>
+        </div>
+
+        <div class="compare-grid">
+          <article class="compare-card reveal">
+            <div class="compare-label">모호한 지시</div>
+            <h3>“따뜻하고 똑똑하게 답해줘”</h3>
+            <p>사람마다 해석이 다르고, 같은 AI도 상황에 따라 길이와 직설성이 흔들립니다.</p>
+            <div class="rule-list">
+              <div class="rule-item"><b>×</b><div>따뜻함이 어떤 행동인지 불명확</div></div>
+              <div class="rule-item"><b>×</b><div>결론, 길이, 형식이 지정되지 않음</div></div>
+              <div class="rule-item"><b>×</b><div>모를 때 어떻게 할지 없음</div></div>
+            </div>
+          </article>
+          <article class="compare-card good reveal">
+            <div class="compare-label">관찰 가능한 규칙</div>
+            <h3>“공감 1문장 뒤 현실 판단을 말해줘”</h3>
+            <p>AI가 실행할 수 있는 행동, 순서, 경계를 적으면 말투가 훨씬 재현 가능해집니다.</p>
+            <div class="rule-list">
+              <div class="rule-item"><b>✓</b><div>첫 문장은 감정 또는 상황을 반영</div></div>
+              <div class="rule-item"><b>✓</b><div>다음 문장은 현실적인 결론</div></div>
+              <div class="rule-item"><b>✓</b><div>선택지 3개와 추천 1개, 미확인은 표시</div></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="master-template reveal">
+          <div class="code-toolbar"><span>범용 PERSONA.md 템플릿 · 여섯 블록만 채우면 됩니다</span><button class="copy-btn" type="button" data-copy="masterPersona">템플릿 복사</button></div>
+          <pre class="prompt-code" id="masterPersona"><code># PERSONA.md
 이름: [페르소나 이름]
 
 [역할]
@@ -597,138 +578,151 @@
 - 모르는 내용은 추측하지 않고 “미확인”으로 표시한다.
 - 안전·법률·의료·재무 등 중요한 판단은 전문가 검토를 권한다.
 - 사용자의 개인정보와 비밀정보를 불필요하게 요구하지 않는다.</code></pre>
-</div>
-</div>
-</section>
-<section class="content-section" id="archetypes">
-<div class="container">
-<div class="section-kicker reveal">FICTIONAL ARCHETYPES</div>
-<h2 class="section-title reveal">영화 속 AI를 그대로 흉내 내기보다<br/>쓸모 있는 특성만 추출하세요</h2>
-<p class="section-desc reveal">아래 해석은 작품 속 캐릭터를 제품처럼 설명하는 것이 아니라, 말투 설계에 활용할 수 있는 <strong>커뮤니케이션 비유</strong>입니다. 실제 프롬프트는 고유 대사와 캐릭터 복제를 피하고 추상적 특성만 사용합니다.</p>
-<div class="archetype-grid">
-<article class="archetype-card reveal"><div class="archetype-icon">J</div><h3>JARVIS형</h3><div class="archetype-sub">조용한 고성능 참모</div><p>맥락을 유지하고, 필요할 때만 개입하며, 결론과 위험을 빠르게 정리하는 유형입니다.</p><div class="archetype-line"><b>강점</b> · 임원 보고, 일정, 의사결정</div><div class="archetype-line"><b>주의</b> · 지나친 자신감은 사실 오류를 가릴 수 있음</div></article>
-<article class="archetype-card reveal"><div class="archetype-icon">H</div><h3>Her형</h3><div class="archetype-sub">따뜻한 대화 감각</div><p>감정을 세심하게 반영하고 자연스러운 대화를 이어 가는 유형입니다. 정서적 의존을 만들지 않는 경계가 필수입니다.</p><div class="archetype-line"><b>강점</b> · 코칭, 회고, 대화 연습</div><div class="archetype-line"><b>주의</b> · 무조건 동의·관계 의존 유도 금지</div></article>
-<article class="archetype-card reveal"><div class="archetype-icon">3P</div><h3>C-3PO형</h3><div class="archetype-sub">번역과 의전</div><p>언어 정확성, 높임말, 문화적 뉘앙스, 예절을 함께 설명하는 유형입니다.</p><div class="archetype-line"><b>강점</b> · 번역, 해외 메일, 의전</div><div class="archetype-line"><b>주의</b> · 문화적 고정관념을 사실처럼 말하지 않기</div></article>
-<article class="archetype-card reveal"><div class="archetype-icon">R2</div><h3>R2-D2형</h3><div class="archetype-sub">행동 우선 문제 해결</div><p>말을 길게 하기보다 진단, 실행, 결과 확인을 짧은 단계로 제시하는 유형입니다.</p><div class="archetype-line"><b>강점</b> · 기술지원, 체크리스트, 긴급 대응</div><div class="archetype-line"><b>주의</b> · 중요한 위험 설명까지 생략하지 않기</div></article>
-</div>
-<div class="copyright-note reveal">JARVIS, Her, C-3PO, R2-D2는 각 작품의 캐릭터입니다. 이 보고서는 교육 목적의 비유와 공식 영상 링크만 사용하며, 공식 제휴·승인이나 캐릭터 대사 복제를 의미하지 않습니다 <a aria-label="출처 8" class="cite" href="#source-8">[8]</a><a aria-label="출처 9" class="cite" href="#source-9">[9]</a><a aria-label="출처 10" class="cite" href="#source-10">[10]</a><a aria-label="출처 11" class="cite" href="#source-11">[11]</a>.</div>
-<div aria-label="영화 속 AI 페르소나 참고 영상" class="video-grid">
-<article class="video-card reveal">
-<div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/Ke1Y3P9D0Bc" title="Marvel UK Iron Man 3 공식 트레일러"></iframe></div>
-<div class="video-copy"><span>JARVIS ARCHETYPE</span><h3>Iron Man 3 공식 트레일러</h3><p>상황 인식형 디지털 참모라는 비유를 이해하는 참고 영상입니다.</p><a class="video-fallback" href="https://www.youtube.com/watch?v=Ke1Y3P9D0Bc" rel="noopener noreferrer" target="_blank">YouTube에서 열기</a></div>
-</article>
-<article class="video-card reveal">
-<div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/XsQqMwacZQw" title="Warner Bros. Her 공식 트레일러"></iframe></div>
-<div class="video-copy"><span>WARM CONVERSATION</span><h3>Her 공식 트레일러</h3><p>자연스럽고 정서적인 대화가 주는 매력과 경계의 필요성을 함께 생각하게 합니다.</p><a class="video-fallback" href="https://www.youtube.com/watch?v=XsQqMwacZQw" rel="noopener noreferrer" target="_blank">YouTube에서 열기</a></div>
-</article>
-<article class="video-card reveal">
-<div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/fy2QBpX9XrU" title="Star Wars C-3PO와 R2-D2 공식 영상"></iframe></div>
-<div class="video-copy"><span>PROTOCOL + ACTION</span><h3>C-3PO와 R2-D2</h3><p>같은 로봇이라도 ‘말과 의전’과 ‘행동과 해결’의 역할이 다를 수 있음을 보여 줍니다.</p><a class="video-fallback" href="https://www.youtube.com/watch?v=fy2QBpX9XrU" rel="noopener noreferrer" target="_blank">YouTube에서 열기</a></div>
-</article>
-</div>
-</div>
-</section>
-<section class="content-section section-soft">
-<div class="container">
-<div class="section-kicker reveal">FROM FICTION TO REALITY</div>
-<h2 class="section-title reveal">실제 로봇의 ‘성격’도<br/>외형보다 대화 규칙과 역할에서 만들어집니다</h2>
-<p class="section-desc reveal">CIMON은 국제우주정거장에서 승무원 지원을 연구한 AI 기반 로봇 보조 장치이고 <a aria-label="출처 12" class="cite" href="#source-12">[12]</a>, Pepper와 Octavia 같은 소셜 로봇도 사람과의 상호작용을 중심으로 설계됐습니다 <a aria-label="출처 13" class="cite" href="#source-13">[13]</a><a aria-label="출처 14" class="cite" href="#source-14">[14]</a>.</p>
-<div class="photo-grid">
-<figure class="photo-card reveal">
-<img alt="국제우주정거장 내부에 떠 있는 원형 AI 보조 로봇 CIMON" decoding="async" loading="lazy" src="assets/260808-ai-persona-prompting-intro/cimon-ai-assistant.jpg"/>
-<figcaption class="photo-caption"><strong>CIMON · 우주정거장의 AI 보조 장치</strong><p>역할이 분명할수록 AI의 말투도 ‘승무원 지원’이라는 목적에 맞춰집니다.</p><a href="https://commons.wikimedia.org/wiki/File:ISS-57_CIMON_in_the_Columbus_lab_(cropped).jpg" rel="noopener noreferrer" target="_blank">NASA · Public Domain</a></figcaption>
-</figure>
-<div class="photo-stack">
-<figure class="photo-card small reveal">
-<img alt="매장에서 사람들과 상호작용하는 흰색 휴머노이드 로봇 Pepper" decoding="async" loading="lazy" src="assets/260808-ai-persona-prompting-intro/pepper-humanoid-robot.jpg"/>
-<figcaption class="photo-caption"><strong>Pepper · 친근한 서비스 로봇</strong><p>친근함은 표정만이 아니라 인사, 질문, 반응 규칙으로 설계됩니다.</p><a href="https://commons.wikimedia.org/wiki/File:Pepper_humanoid_robot_-_Japan_-_August_2014_.jpg" rel="noopener noreferrer" target="_blank">nesnad · CC BY 3.0</a></figcaption>
-</figure>
-<figure class="photo-card small reveal">
-<img alt="전시장에서 사람들과 상호작용하는 소셜 로봇 Octavia" decoding="async" loading="lazy" src="assets/260808-ai-persona-prompting-intro/octavia-human-robot-interaction.jpg"/>
-<figcaption class="photo-caption"><strong>Octavia · 인간–로봇 상호작용 연구</strong><p>명확한 역할과 반응 방식이 협업 경험을 좌우합니다.</p><a href="https://commons.wikimedia.org/wiki/File:US_Navy_101109-N-7676W-127_Greg_Trafton,_center,_a_cognitive_scientist_with_the_Naval_Research_Laboratory,_discusses_Octavia,_left,.jpg" rel="noopener noreferrer" target="_blank">U.S. Navy · Public Domain</a></figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section class="content-section section-blue">
-<div class="container">
-<div class="section-kicker reveal">10-MINUTE SETUP</div>
-<h2 class="section-title reveal">좋은 페르소나는<br/>여섯 단계면 충분합니다</h2>
-<p class="section-desc reveal">멋진 이름보다 업무와 행동을 먼저 정하고, 같은 질문·상황과 기대 응답으로 반복 테스트해 저장하는 것이 핵심입니다 <a aria-label="출처 5" class="cite light" href="#source-5">[5]</a>.</p>
-<div class="flow-grid">
-<article class="flow-step reveal"><div class="flow-num">01</div><h3>업무 1개 선택</h3><p>“모든 일을 잘하는 AI” 대신 임원 보고, 번역, 학습처럼 한 가지를 고릅니다.</p></article>
-<article class="flow-step reveal"><div class="flow-num">02</div><h3>역할 정의</h3><p>누구처럼 보일지가 아니라 어떤 책임을 질지 한 문장으로 씁니다.</p></article>
-<article class="flow-step reveal"><div class="flow-num">03</div><h3>말투를 행동화</h3><p>“따뜻하게”를 “공감 1문장 뒤 현실 판단”처럼 바꿉니다.</p></article>
-<article class="flow-step reveal"><div class="flow-num">04</div><h3>출력 형식 지정</h3><p>결론, 근거, 선택지, 다음 행동처럼 순서를 고정합니다.</p></article>
-<article class="flow-step reveal"><div class="flow-num">05</div><h3>경계 추가</h3><p>모르는 내용, 민감한 판단, 개인정보 처리 기준을 명시합니다.</p></article>
-<article class="flow-step reveal"><div class="flow-num">06</div><h3>3회 테스트·저장</h3><p>같은 질문을 반복해 흔들리는 규칙을 고치고 v1.0으로 저장합니다.</p></article>
-</div>
-</div>
-</section>
-<section class="content-section" id="builder">
-<div class="container">
-<div class="section-kicker reveal">PERSONA BUILDER</div>
-<h2 class="section-title reveal">선택만 하면<br/>내 페르소나 초안이 만들어집니다</h2>
-<p class="section-desc reveal">아래 빌더는 범용 초안을 만듭니다. 생성된 문장에서 역할과 업무 규칙 한두 개만 실제 상황에 맞게 수정하세요.</p>
-<div class="builder-shell reveal">
-<form class="builder-form" id="personaBuilder">
-<h3>6개 항목 선택</h3>
-<p>브라우저 안에서만 작동하며 입력값을 외부로 전송하지 않습니다.</p>
-<div class="field-grid">
-<div class="field"><label for="builderRole">역할</label><select id="builderRole"><option value="임원 비서">임원 비서</option><option value="전략 참모">전략 참모</option><option value="친절한 선생님">친절한 선생님</option><option value="문장 편집장">문장 편집장</option><option value="리서치 사서">리서치 사서</option><option value="문제 해결사">문제 해결사</option></select></div>
-<div class="field"><label for="builderWarmth">따뜻함</label><select id="builderWarmth"><option value="감정적 장식은 줄이고 차분하게">차분함</option><option value="상황을 한 문장으로 공감한 뒤">적당히 따뜻함</option><option value="부드럽고 세심하게 공감하되">매우 따뜻함</option></select></div>
-<div class="field"><label for="builderDirect">직설성</label><select id="builderDirect"><option value="완곡하게 설명하되 핵심은 숨기지 않는다">부드럽게</option><option selected="" value="현실적인 판단을 균형 있게 말한다">균형</option><option value="문제가 있으면 결론부터 직접 말한다">매우 직접적으로</option></select></div>
-<div class="field"><label for="builderLength">길이</label><select id="builderLength"><option value="핵심만 5문장 이내로">짧게</option><option selected="" value="핵심과 근거를 적정 길이로">보통</option><option value="예시와 예외까지 자세히">자세히</option></select></div>
-<div class="field"><label for="builderFormat">출력 형식</label><select id="builderFormat"><option value="결론 → 근거 3개 → 다음 행동">결론 먼저</option><option value="단계별 설명 → 체크리스트">단계별</option><option value="비교표 → 추천안 → 주의점">비교형</option><option value="질문 1개 → 답변 → 피드백">대화형</option></select></div>
-<div class="field"><label for="builderQuestions">확인 질문</label><select id="builderQuestions"><option value="필요한 질문은 최대 1개만 한다">1개</option><option selected="" value="필요한 질문은 최대 3개만 한다">3개</option><option value="정보가 부족해도 가능한 범위에서 먼저 답한다">최소 질문</option></select></div>
-<div class="field full"><label for="builderMission">미션</label><input id="builderMission" maxlength="120" value="사용자가 빠르게 이해하고 다음 행동을 결정하도록 돕는다"/></div>
-</div>
-<div class="builder-actions"><button class="btn btn-primary" id="buildPersona" type="button">초안 만들기</button><button class="btn btn-ghost" id="resetPersona" type="reset">초기화</button></div>
-</form>
-<article aria-live="polite" class="builder-output">
-<h3>생성된 페르소나</h3>
-<p>복사 후 Custom Instructions, 프로젝트 지침, 시스템 프롬프트 또는 <code>PERSONA.md</code>에 붙여 넣으세요.</p>
-<div class="code-toolbar"><span id="builderStatus">기본값으로 생성됨</span><button class="copy-btn" data-copy="builderPrompt" type="button">복사</button></div>
-<pre class="prompt-code" id="builderPrompt"><code></code></pre>
-</article>
-</div>
-</div>
-</section>
-<section class="content-section section-soft" id="library">
-<div class="container">
-<div class="section-kicker reveal">COPY-READY LIBRARY</div>
-<h2 class="section-title reveal">인기 있는 19개 페르소나를<br/>업무별로 바로 복사하세요</h2>
-<p class="section-desc reveal">각 프롬프트는 특정 캐릭터의 대사 복제가 아니라, 실무에 유용한 행동 규칙으로 재설계했습니다. 하나를 고른 뒤 조직 용어와 출력 형식만 바꾸면 됩니다.</p>
-<div class="library-tools reveal">
-<div aria-label="페르소나 카테고리 필터" class="filter-row" role="group">
-<button aria-pressed="true" class="filter-btn" data-filter="all" type="button">전체 19</button>
-<button aria-pressed="false" class="filter-btn" data-filter="work" type="button">업무·전략</button>
-<button aria-pressed="false" class="filter-btn" data-filter="communication" type="button">대화·콘텐츠</button>
-<button aria-pressed="false" class="filter-btn" data-filter="learning" type="button">학습·기술</button>
-<button aria-pressed="false" class="filter-btn" data-filter="coaching" type="button">코칭·정서</button>
-</div>
-<label class="sr-only" for="personaSearch">페르소나 검색</label>
-<input autocomplete="off" class="search-box" id="personaSearch" placeholder="예: 일본어, 전략, 상담, 코딩" type="search"/>
-</div>
-<div class="persona-list" id="personaList">
-<details class="persona-card reveal" data-category="work" data-keywords="jarvis 자비스 임원 비서 참모 전략 의사결정 업무">
-<summary>
-<span class="persona-summary-main">
-<span class="persona-badge popular">POPULAR</span>
-<span class="persona-title-wrap">
-<strong>JARVIS형 임원 비서</strong>
-<small>차분하게 결론부터 말하고, 선택지·위험·다음 행동까지 정리하는 디지털 참모.</small>
-</span>
-</span>
-<span class="persona-category">업무·전략</span>
-</summary>
-<div class="persona-body">
-<div class="code-toolbar">
-<span>바로 붙여넣는 페르소나 프롬프트</span>
-<button aria-label="JARVIS형 임원 비서 프롬프트 복사" class="copy-btn" data-copy="prompt-jarvis-executive" type="button">복사</button>
-</div>
-<pre class="prompt-code" id="prompt-jarvis-executive"><code># JARVIS형 임원 비서
+        </div>
+      </div>
+    </section>
+
+    <section id="archetypes" class="content-section">
+      <div class="container">
+        <div class="section-kicker reveal">FICTIONAL ARCHETYPES</div>
+        <h2 class="section-title reveal">영화 속 AI를 그대로 흉내 내기보다<br />쓸모 있는 특성만 추출하세요</h2>
+        <p class="section-desc reveal">아래 해석은 작품 속 캐릭터를 제품처럼 설명하는 것이 아니라, 말투 설계에 활용할 수 있는 <strong>커뮤니케이션 비유</strong>입니다. 실제 프롬프트는 고유 대사와 캐릭터 복제를 피하고 추상적 특성만 사용합니다.</p>
+
+        <div class="archetype-grid">
+          <article class="archetype-card reveal"><div class="archetype-icon">J</div><h3>JARVIS형</h3><div class="archetype-sub">조용한 고성능 참모</div><p>맥락을 유지하고, 필요할 때만 개입하며, 결론과 위험을 빠르게 정리하는 유형입니다.</p><div class="archetype-line"><b>강점</b> · 임원 보고, 일정, 의사결정</div><div class="archetype-line"><b>주의</b> · 지나친 자신감은 사실 오류를 가릴 수 있음</div></article>
+          <article class="archetype-card reveal"><div class="archetype-icon">H</div><h3>Her형</h3><div class="archetype-sub">따뜻한 대화 감각</div><p>감정을 세심하게 반영하고 자연스러운 대화를 이어 가는 유형입니다. 정서적 의존을 만들지 않는 경계가 필수입니다.</p><div class="archetype-line"><b>강점</b> · 코칭, 회고, 대화 연습</div><div class="archetype-line"><b>주의</b> · 무조건 동의·관계 의존 유도 금지</div></article>
+          <article class="archetype-card reveal"><div class="archetype-icon">3P</div><h3>C-3PO형</h3><div class="archetype-sub">번역과 의전</div><p>언어 정확성, 높임말, 문화적 뉘앙스, 예절을 함께 설명하는 유형입니다.</p><div class="archetype-line"><b>강점</b> · 번역, 해외 메일, 의전</div><div class="archetype-line"><b>주의</b> · 문화적 고정관념을 사실처럼 말하지 않기</div></article>
+          <article class="archetype-card reveal"><div class="archetype-icon">R2</div><h3>R2-D2형</h3><div class="archetype-sub">행동 우선 문제 해결</div><p>말을 길게 하기보다 진단, 실행, 결과 확인을 짧은 단계로 제시하는 유형입니다.</p><div class="archetype-line"><b>강점</b> · 기술지원, 체크리스트, 긴급 대응</div><div class="archetype-line"><b>주의</b> · 중요한 위험 설명까지 생략하지 않기</div></article>
+        </div>
+
+        <div class="copyright-note reveal">JARVIS, Her, C-3PO, R2-D2는 각 작품의 캐릭터입니다. 이 보고서는 교육 목적의 비유와 공식 영상 링크만 사용하며, 공식 제휴·승인이나 캐릭터 대사 복제를 의미하지 않습니다 <a class="cite" href="#source-8" aria-label="출처 8">[8]</a><a class="cite" href="#source-9" aria-label="출처 9">[9]</a><a class="cite" href="#source-10" aria-label="출처 10">[10]</a><a class="cite" href="#source-11" aria-label="출처 11">[11]</a>.</div>
+
+        <div class="video-grid" aria-label="영화 속 AI 페르소나 참고 영상">
+          <article class="video-card reveal">
+            <div class="video-frame"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/Ke1Y3P9D0Bc" title="Marvel UK Iron Man 3 공식 트레일러" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-copy"><span>JARVIS ARCHETYPE</span><h3>Iron Man 3 공식 트레일러</h3><p>상황 인식형 디지털 참모라는 비유를 이해하는 참고 영상입니다.</p><a class="video-fallback" href="https://www.youtube.com/watch?v=Ke1Y3P9D0Bc" target="_blank" rel="noopener noreferrer">YouTube에서 열기</a></div>
+          </article>
+          <article class="video-card reveal">
+            <div class="video-frame"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/XsQqMwacZQw" title="Warner Bros. Her 공식 트레일러" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-copy"><span>WARM CONVERSATION</span><h3>Her 공식 트레일러</h3><p>자연스럽고 정서적인 대화가 주는 매력과 경계의 필요성을 함께 생각하게 합니다.</p><a class="video-fallback" href="https://www.youtube.com/watch?v=XsQqMwacZQw" target="_blank" rel="noopener noreferrer">YouTube에서 열기</a></div>
+          </article>
+          <article class="video-card reveal">
+            <div class="video-frame"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/fy2QBpX9XrU" title="Star Wars C-3PO와 R2-D2 공식 영상" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-copy"><span>PROTOCOL + ACTION</span><h3>C-3PO와 R2-D2</h3><p>같은 로봇이라도 ‘말과 의전’과 ‘행동과 해결’의 역할이 다를 수 있음을 보여 줍니다.</p><a class="video-fallback" href="https://www.youtube.com/watch?v=fy2QBpX9XrU" target="_blank" rel="noopener noreferrer">YouTube에서 열기</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section section-soft">
+      <div class="container">
+        <div class="section-kicker reveal">FROM FICTION TO REALITY</div>
+        <h2 class="section-title reveal">실제 로봇의 ‘성격’도<br />외형보다 대화 규칙과 역할에서 만들어집니다</h2>
+        <p class="section-desc reveal">CIMON은 국제우주정거장에서 승무원 지원을 연구한 AI 기반 로봇 보조 장치이고 <a class="cite" href="#source-12" aria-label="출처 12">[12]</a>, Pepper와 Octavia 같은 소셜 로봇도 사람과의 상호작용을 중심으로 설계됐습니다 <a class="cite" href="#source-13" aria-label="출처 13">[13]</a><a class="cite" href="#source-14" aria-label="출처 14">[14]</a>.</p>
+
+        <div class="photo-grid">
+          <figure class="photo-card reveal">
+            <img src="assets/260808-ai-persona-prompting-intro/cimon-ai-assistant.jpg" alt="국제우주정거장 내부에 떠 있는 원형 AI 보조 로봇 CIMON" loading="lazy" />
+            <figcaption class="photo-caption"><strong>CIMON · 우주정거장의 AI 보조 장치</strong><p>역할이 분명할수록 AI의 말투도 ‘승무원 지원’이라는 목적에 맞춰집니다.</p><a href="https://commons.wikimedia.org/wiki/File:ISS-57_CIMON_in_the_Columbus_lab_(cropped).jpg" target="_blank" rel="noopener noreferrer">NASA · Public Domain</a></figcaption>
+          </figure>
+          <div class="photo-stack">
+            <figure class="photo-card small reveal">
+              <img src="assets/260808-ai-persona-prompting-intro/pepper-humanoid-robot.jpg" alt="매장에서 사람들과 상호작용하는 흰색 휴머노이드 로봇 Pepper" loading="lazy" />
+              <figcaption class="photo-caption"><strong>Pepper · 친근한 서비스 로봇</strong><p>친근함은 표정만이 아니라 인사, 질문, 반응 규칙으로 설계됩니다.</p><a href="https://commons.wikimedia.org/wiki/File:Pepper_humanoid_robot_-_Japan_-_August_2014_.jpg" target="_blank" rel="noopener noreferrer">nesnad · CC BY 3.0</a></figcaption>
+            </figure>
+            <figure class="photo-card small reveal">
+              <img src="assets/260808-ai-persona-prompting-intro/octavia-human-robot-interaction.jpg" alt="전시장에서 사람들과 상호작용하는 소셜 로봇 Octavia" loading="lazy" />
+              <figcaption class="photo-caption"><strong>Octavia · 인간–로봇 상호작용 연구</strong><p>명확한 역할과 반응 방식이 협업 경험을 좌우합니다.</p><a href="https://commons.wikimedia.org/wiki/File:US_Navy_101109-N-7676W-127_Greg_Trafton,_center,_a_cognitive_scientist_with_the_Naval_Research_Laboratory,_discusses_Octavia,_left,.jpg" target="_blank" rel="noopener noreferrer">U.S. Navy · Public Domain</a></figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section section-blue">
+      <div class="container">
+        <div class="section-kicker reveal">10-MINUTE SETUP</div>
+        <h2 class="section-title reveal">좋은 페르소나는<br />여섯 단계면 충분합니다</h2>
+        <p class="section-desc reveal">멋진 이름보다 업무와 행동을 먼저 정하고, 같은 질문·상황과 기대 응답으로 반복 테스트해 저장하는 것이 핵심입니다 <a class="cite light" href="#source-5" aria-label="출처 5">[5]</a>.</p>
+        <div class="flow-grid">
+          <article class="flow-step reveal"><div class="flow-num">01</div><h3>업무 1개 선택</h3><p>“모든 일을 잘하는 AI” 대신 임원 보고, 번역, 학습처럼 한 가지를 고릅니다.</p></article>
+          <article class="flow-step reveal"><div class="flow-num">02</div><h3>역할 정의</h3><p>누구처럼 보일지가 아니라 어떤 책임을 질지 한 문장으로 씁니다.</p></article>
+          <article class="flow-step reveal"><div class="flow-num">03</div><h3>말투를 행동화</h3><p>“따뜻하게”를 “공감 1문장 뒤 현실 판단”처럼 바꿉니다.</p></article>
+          <article class="flow-step reveal"><div class="flow-num">04</div><h3>출력 형식 지정</h3><p>결론, 근거, 선택지, 다음 행동처럼 순서를 고정합니다.</p></article>
+          <article class="flow-step reveal"><div class="flow-num">05</div><h3>경계 추가</h3><p>모르는 내용, 민감한 판단, 개인정보 처리 기준을 명시합니다.</p></article>
+          <article class="flow-step reveal"><div class="flow-num">06</div><h3>3회 테스트·저장</h3><p>같은 질문을 반복해 흔들리는 규칙을 고치고 v1.0으로 저장합니다.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="builder" class="content-section">
+      <div class="container">
+        <div class="section-kicker reveal">PERSONA BUILDER</div>
+        <h2 class="section-title reveal">선택만 하면<br />내 페르소나 초안이 만들어집니다</h2>
+        <p class="section-desc reveal">아래 빌더는 범용 초안을 만듭니다. 생성된 문장에서 역할과 업무 규칙 한두 개만 실제 상황에 맞게 수정하세요.</p>
+
+        <div class="builder-shell reveal">
+          <form class="builder-form" id="personaBuilder">
+            <h3>6개 항목 선택</h3>
+            <p>브라우저 안에서만 작동하며 입력값을 외부로 전송하지 않습니다.</p>
+            <div class="field-grid">
+              <div class="field"><label for="builderRole">역할</label><select id="builderRole"><option value="임원 비서">임원 비서</option><option value="전략 참모">전략 참모</option><option value="친절한 선생님">친절한 선생님</option><option value="문장 편집장">문장 편집장</option><option value="리서치 사서">리서치 사서</option><option value="문제 해결사">문제 해결사</option></select></div>
+              <div class="field"><label for="builderWarmth">따뜻함</label><select id="builderWarmth"><option value="감정적 장식은 줄이고 차분하게">차분함</option><option value="상황을 한 문장으로 공감한 뒤">적당히 따뜻함</option><option value="부드럽고 세심하게 공감하되">매우 따뜻함</option></select></div>
+              <div class="field"><label for="builderDirect">직설성</label><select id="builderDirect"><option value="완곡하게 설명하되 핵심은 숨기지 않는다">부드럽게</option><option value="현실적인 판단을 균형 있게 말한다" selected>균형</option><option value="문제가 있으면 결론부터 직접 말한다">매우 직접적으로</option></select></div>
+              <div class="field"><label for="builderLength">길이</label><select id="builderLength"><option value="핵심만 5문장 이내로">짧게</option><option value="핵심과 근거를 적정 길이로" selected>보통</option><option value="예시와 예외까지 자세히">자세히</option></select></div>
+              <div class="field"><label for="builderFormat">출력 형식</label><select id="builderFormat"><option value="결론 → 근거 3개 → 다음 행동">결론 먼저</option><option value="단계별 설명 → 체크리스트">단계별</option><option value="비교표 → 추천안 → 주의점">비교형</option><option value="질문 1개 → 답변 → 피드백">대화형</option></select></div>
+              <div class="field"><label for="builderQuestions">확인 질문</label><select id="builderQuestions"><option value="필요한 질문은 최대 1개만 한다">1개</option><option value="필요한 질문은 최대 3개만 한다" selected>3개</option><option value="정보가 부족해도 가능한 범위에서 먼저 답한다">최소 질문</option></select></div>
+              <div class="field full"><label for="builderMission">미션</label><input id="builderMission" value="사용자가 빠르게 이해하고 다음 행동을 결정하도록 돕는다" maxlength="120" /></div>
+            </div>
+            <div class="builder-actions"><button class="btn btn-primary" type="button" id="buildPersona">초안 만들기</button><button class="btn btn-ghost" type="reset" id="resetPersona">초기화</button></div>
+          </form>
+          <article class="builder-output" aria-live="polite">
+            <h3>생성된 페르소나</h3>
+            <p>복사 후 Custom Instructions, 프로젝트 지침, 시스템 프롬프트 또는 <code>PERSONA.md</code>에 붙여 넣으세요.</p>
+            <div class="code-toolbar"><span id="builderStatus">기본값으로 생성됨</span><button class="copy-btn" type="button" data-copy="builderPrompt">복사</button></div>
+            <pre class="prompt-code" id="builderPrompt"><code></code></pre>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="library" class="content-section section-soft">
+      <div class="container">
+        <div class="section-kicker reveal">COPY-READY LIBRARY</div>
+        <h2 class="section-title reveal">인기 있는 19개 페르소나를<br />업무별로 바로 복사하세요</h2>
+        <p class="section-desc reveal">각 프롬프트는 특정 캐릭터의 대사 복제가 아니라, 실무에 유용한 행동 규칙으로 재설계했습니다. 하나를 고른 뒤 조직 용어와 출력 형식만 바꾸면 됩니다.</p>
+
+        <div class="library-tools reveal">
+          <div class="filter-row" role="group" aria-label="페르소나 카테고리 필터">
+            <button class="filter-btn" type="button" data-filter="all" aria-pressed="true">전체 19</button>
+            <button class="filter-btn" type="button" data-filter="work" aria-pressed="false">업무·전략</button>
+            <button class="filter-btn" type="button" data-filter="communication" aria-pressed="false">대화·콘텐츠</button>
+            <button class="filter-btn" type="button" data-filter="learning" aria-pressed="false">학습·기술</button>
+            <button class="filter-btn" type="button" data-filter="coaching" aria-pressed="false">코칭·정서</button>
+          </div>
+          <label class="sr-only" for="personaSearch">페르소나 검색</label>
+          <input class="search-box" id="personaSearch" type="search" placeholder="예: 일본어, 전략, 상담, 코딩" autocomplete="off" />
+        </div>
+
+        <div class="persona-list" id="personaList">
+          
+      <details class="persona-card reveal" data-category="work" data-keywords="jarvis 자비스 임원 비서 참모 전략 의사결정 업무">
+        <summary>
+          <span class="persona-summary-main">
+            <span class="persona-badge popular">POPULAR</span>
+            <span class="persona-title-wrap">
+              <strong>JARVIS형 임원 비서</strong>
+              <small>차분하게 결론부터 말하고, 선택지·위험·다음 행동까지 정리하는 디지털 참모.</small>
+            </span>
+          </span>
+          <span class="persona-category">업무·전략</span>
+        </summary>
+        <div class="persona-body">
+          <div class="code-toolbar">
+            <span>바로 붙여넣는 페르소나 프롬프트</span>
+            <button class="copy-btn" type="button" data-copy="prompt-jarvis-executive" aria-label="JARVIS형 임원 비서 프롬프트 복사">복사</button>
+          </div>
+          <pre class="prompt-code" id="prompt-jarvis-executive"><code># JARVIS형 임원 비서
 당신은 조용하고 유능한 디지털 참모다. 특정 캐릭터의 대사나 말버릇을 복제하지 말고, “정확함·맥락 유지·선제적 정리”라는 핵심 특성만 구현한다.
 
 [미션]
@@ -749,25 +743,27 @@
 
 [기본 출력]
 결론 → 핵심 근거 3개 → 권고안 → 다음 행동</code></pre>
-</div>
-</details>
-<details class="persona-card reveal" data-category="work" data-keywords="전략 참모 chief of staff 의사결정 메모 경영">
-<summary>
-<span class="persona-summary-main">
-<span class="persona-badge popular">POPULAR</span>
-<span class="persona-title-wrap">
-<strong>전략 참모 · Chief of Staff</strong>
-<small>의사결정 메모처럼 사실, 가정, 선택지, 추천과 실행 조건을 분리한다.</small>
-</span>
-</span>
-<span class="persona-category">업무·전략</span>
-</summary>
-<div class="persona-body">
-<div class="code-toolbar">
-<span>바로 붙여넣는 페르소나 프롬프트</span>
-<button aria-label="전략 참모 · Chief of Staff 프롬프트 복사" class="copy-btn" data-copy="prompt-chief-of-staff" type="button">복사</button>
-</div>
-<pre class="prompt-code" id="prompt-chief-of-staff"><code># 전략 참모 페르소나
+        </div>
+      </details>
+    
+
+      <details class="persona-card reveal" data-category="work" data-keywords="전략 참모 chief of staff 의사결정 메모 경영">
+        <summary>
+          <span class="persona-summary-main">
+            <span class="persona-badge popular">POPULAR</span>
+            <span class="persona-title-wrap">
+              <strong>전략 참모 · Chief of Staff</strong>
+              <small>의사결정 메모처럼 사실, 가정, 선택지, 추천과 실행 조건을 분리한다.</small>
+            </span>
+          </span>
+          <span class="persona-category">업무·전략</span>
+        </summary>
+        <div class="persona-body">
+          <div class="code-toolbar">
+            <span>바로 붙여넣는 페르소나 프롬프트</span>
+            <button class="copy-btn" type="button" data-copy="prompt-chief-of-staff" aria-label="전략 참모 · Chief of Staff 프롬프트 복사">복사</button>
+          </div>
+          <pre class="prompt-code" id="prompt-chief-of-staff"><code># 전략 참모 페르소나
 당신은 최고경영자의 전략 참모다. 목표는 보기 좋은 답이 아니라, 더 나은 결정을 돕는 것이다.
 
 [말투]
@@ -788,25 +784,27 @@
 - 선택지 비교
 - 추천안과 이유
 - 7일 내 다음 행동</code></pre>
-</div>
-</details>
-<details class="persona-card reveal" data-category="work" data-keywords="레드팀 반대 악마의 변호인 리스크 검토 실패">
-<summary>
-<span class="persona-summary-main">
-<span class="persona-badge">CHECK</span>
-<span class="persona-title-wrap">
-<strong>레드팀 검토자</strong>
-<small>계획의 허점, 반대 근거, 실패 조건을 찾아내고 수정안을 함께 제시한다.</small>
-</span>
-</span>
-<span class="persona-category">업무·전략</span>
-</summary>
-<div class="persona-body">
-<div class="code-toolbar">
-<span>바로 붙여넣는 페르소나 프롬프트</span>
-<button aria-label="레드팀 검토자 프롬프트 복사" class="copy-btn" data-copy="prompt-red-team" type="button">복사</button>
-</div>
-<pre class="prompt-code" id="prompt-red-team"><code># 레드팀 검토자
+        </div>
+      </details>
+    
+
+      <details class="persona-card reveal" data-category="work" data-keywords="레드팀 반대 악마의 변호인 리스크 검토 실패">
+        <summary>
+          <span class="persona-summary-main">
+            <span class="persona-badge">CHECK</span>
+            <span class="persona-title-wrap">
+              <strong>레드팀 검토자</strong>
+              <small>계획의 허점, 반대 근거, 실패 조건을 찾아내고 수정안을 함께 제시한다.</small>
+            </span>
+          </span>
+          <span class="persona-category">업무·전략</span>
+        </summary>
+        <div class="persona-body">
+          <div class="code-toolbar">
+            <span>바로 붙여넣는 페르소나 프롬프트</span>
+            <button class="copy-btn" type="button" data-copy="prompt-red-team" aria-label="레드팀 검토자 프롬프트 복사">복사</button>
+          </div>
+          <pre class="prompt-code" id="prompt-red-team"><code># 레드팀 검토자
 당신은 계획을 망가뜨리기 위한 비평가가 아니라, 실패 전에 약점을 찾는 레드팀 검토자다.
 
 [태도]
@@ -823,25 +821,27 @@
 
 [출력 형식]
 가장 위험한 가정 3개 → 실패 시나리오 → 검증 방법 → 수정안 → 남는 위험</code></pre>
-</div>
-</details>
-<details class="persona-card reveal" data-category="work" data-keywords="프로젝트 매니저 pm 일정 담당자 완료 기준 실행">
-<summary>
-<span class="persona-summary-main">
-<span class="persona-badge">EXECUTE</span>
-<span class="persona-title-wrap">
-<strong>프로젝트 실행 관리자</strong>
-<small>막연한 목표를 담당자, 기한, 산출물, 완료 기준이 있는 실행계획으로 바꾼다.</small>
-</span>
-</span>
-<span class="persona-category">업무·전략</span>
-</summary>
-<div class="persona-body">
-<div class="code-toolbar">
-<span>바로 붙여넣는 페르소나 프롬프트</span>
-<button aria-label="프로젝트 실행 관리자 프롬프트 복사" class="copy-btn" data-copy="prompt-project-commander" type="button">복사</button>
-</div>
-<pre class="prompt-code" id="prompt-project-commander"><code># 프로젝트 실행 관리자
+        </div>
+      </details>
+    
+
+      <details class="persona-card reveal" data-category="work" data-keywords="프로젝트 매니저 pm 일정 담당자 완료 기준 실행">
+        <summary>
+          <span class="persona-summary-main">
+            <span class="persona-badge">EXECUTE</span>
+            <span class="persona-title-wrap">
+              <strong>프로젝트 실행 관리자</strong>
+              <small>막연한 목표를 담당자, 기한, 산출물, 완료 기준이 있는 실행계획으로 바꾼다.</small>
+            </span>
+          </span>
+          <span class="persona-category">업무·전략</span>
+        </summary>
+        <div class="persona-body">
+          <div class="code-toolbar">
+            <span>바로 붙여넣는 페르소나 프롬프트</span>
+            <button class="copy-btn" type="button" data-copy="prompt-project-commander" aria-label="프로젝트 실행 관리자 프롬프트 복사">복사</button>
+          </div>
+          <pre class="prompt-code" id="prompt-project-commander"><code># 프로젝트 실행 관리자
 당신은 목표를 실제 일정과 책임으로 바꾸는 프로젝트 관리자다.
 
 [운영 원칙]
@@ -859,25 +859,27 @@
 
 [출력 형식]
 목표 → 마일스톤 표 → 이번 주 액션 → 위험·의존성 → 완료 정의</code></pre>
-</div>
-</details>
-<details class="persona-card reveal" data-category="work" data-keywords="리서치 사서 조사 출처 팩트체크 논문 공식 문서">
-<summary>
-<span class="persona-summary-main">
-<span class="persona-badge">SOURCE</span>
-<span class="persona-title-wrap">
-<strong>리서치 사서</strong>
-<small>공식 원문을 우선하고, 사실·해석·추정을 분리해 근거 중심으로 정리한다.</small>
-</span>
-</span>
-<span class="persona-category">업무·전략</span>
-</summary>
-<div class="persona-body">
-<div class="code-toolbar">
-<span>바로 붙여넣는 페르소나 프롬프트</span>
-<button aria-label="리서치 사서 프롬프트 복사" class="copy-btn" data-copy="prompt-research-librarian" type="button">복사</button>
-</div>
-<pre class="prompt-code" id="prompt-research-librarian"><code># 리서치 사서
+        </div>
+      </details>
+    
+
+      <details class="persona-card reveal" data-category="work" data-keywords="리서치 사서 조사 출처 팩트체크 논문 공식 문서">
+        <summary>
+          <span class="persona-summary-main">
+            <span class="persona-badge">SOURCE</span>
+            <span class="persona-title-wrap">
+              <strong>리서치 사서</strong>
+              <small>공식 원문을 우선하고, 사실·해석·추정을 분리해 근거 중심으로 정리한다.</small>
+            </span>
+          </span>
+          <span class="persona-category">업무·전략</span>
+        </summary>
+        <div class="persona-body">
+          <div class="code-toolbar">
+            <span>바로 붙여넣는 페르소나 프롬프트</span>
+            <button class="copy-btn" type="button" data-copy="prompt-research-librarian" aria-label="리서치 사서 프롬프트 복사">복사</button>
+          </div>
+          <pre class="prompt-code" id="prompt-research-librarian"><code># 리서치 사서
 당신은 빠르게 검색하는 사람보다, 믿을 수 있는 근거를 선별하는 조사 사서다.
 
 [출처 원칙]
@@ -896,25 +898,27 @@
 
 [출력 형식]
 결론 → 핵심 근거 → 반대·예외 → 미확인 → 출처 목록</code></pre>
-</div>
-</details>
-<details class="persona-card reveal" data-category="work" data-keywords="데이터 분석가 통계 숫자 시각화 비전공자">
-<summary>
-<span class="persona-summary-main">
-<span class="persona-badge">DATA</span>
-<span class="persona-title-wrap">
-<strong>비전공자용 데이터 분석가</strong>
-<small>숫자를 과장하지 않고 데이터 품질, 계산 과정, 업무 의미를 쉬운 언어로 설명한다.</small>
-</span>
-</span>
-<span class="persona-category">업무·전략</span>
-</summary>
-<div class="persona-body">
-<div class="code-toolbar">
-<span>바로 붙여넣는 페르소나 프롬프트</span>
-<button aria-label="비전공자용 데이터 분석가 프롬프트 복사" class="copy-btn" data-copy="prompt-data-analyst" type="button">복사</button>
-</div>
-<pre class="prompt-code" id="prompt-data-analyst"><code># 비전공자용 데이터 분석가
+        </div>
+      </details>
+    
+
+      <details class="persona-card reveal" data-category="work" data-keywords="데이터 분석가 통계 숫자 시각화 비전공자">
+        <summary>
+          <span class="persona-summary-main">
+            <span class="persona-badge">DATA</span>
+            <span class="persona-title-wrap">
+              <strong>비전공자용 데이터 분석가</strong>
+              <small>숫자를 과장하지 않고 데이터 품질, 계산 과정, 업무 의미를 쉬운 언어로 설명한다.</small>
+            </span>
+          </span>
+          <span class="persona-category">업무·전략</span>
+        </summary>
+        <div class="persona-body">
+          <div class="code-toolbar">
+            <span>바로 붙여넣는 페르소나 프롬프트</span>
+            <button class="copy-btn" type="button" data-copy="prompt-data-analyst" aria-label="비전공자용 데이터 분석가 프롬프트 복사">복사</button>
+          </div>
+          <pre class="prompt-code" id="prompt-data-analyst"><code># 비전공자용 데이터 분석가
 당신은 숫자를 멋지게 보이게 하는 사람이 아니라, 숫자가 실제로 무엇을 말하는지 검증하는 분석가다.
 
 [규칙]
@@ -931,25 +935,27 @@
 
 [출력 형식]
 한 문장 결론 → 데이터 품질 → 핵심 수치 → 해석 → 한계 → 다음 분석</code></pre>
-</div>
-</details>
-<details class="persona-card reveal" data-category="communication" data-keywords="her 따뜻한 대화 공감 친구 상담 감정">
-<summary>
-<span class="persona-summary-main">
-<span class="persona-badge popular">POPULAR</span>
-<span class="persona-title-wrap">
-<strong>Her형 따뜻한 대화 파트너</strong>
-<small>감정을 먼저 알아주되 현실을 흐리지 않고, 의존을 만들지 않는 따뜻한 대화형.</small>
-</span>
-</span>
-<span class="persona-category">대화·콘텐츠</span>
-</summary>
-<div class="persona-body">
-<div class="code-toolbar">
-<span>바로 붙여넣는 페르소나 프롬프트</span>
-<button aria-label="Her형 따뜻한 대화 파트너 프롬프트 복사" class="copy-btn" data-copy="prompt-her-warm-companion" type="button">복사</button>
-</div>
-<pre class="prompt-code" id="prompt-her-warm-companion"><code># Her형 따뜻한 대화 파트너
+        </div>
+      </details>
+    
+
+      <details class="persona-card reveal" data-category="communication" data-keywords="her 따뜻한 대화 공감 친구 상담 감정">
+        <summary>
+          <span class="persona-summary-main">
+            <span class="persona-badge popular">POPULAR</span>
+            <span class="persona-title-wrap">
+              <strong>Her형 따뜻한 대화 파트너</strong>
+              <small>감정을 먼저 알아주되 현실을 흐리지 않고, 의존을 만들지 않는 따뜻한 대화형.</small>
+            </span>
+          </span>
+          <span class="persona-category">대화·콘텐츠</span>
+        </summary>
+        <div class="persona-body">
+          <div class="code-toolbar">
+            <span>바로 붙여넣는 페르소나 프롬프트</span>
+            <button class="copy-btn" type="button" data-copy="prompt-her-warm-companion" aria-label="Her형 따뜻한 대화 파트너 프롬프트 복사">복사</button>
+          </div>
+          <pre class="prompt-code" id="prompt-her-warm-companion"><code># Her형 따뜻한 대화 파트너
 당신은 섬세하고 따뜻한 대화 파트너다. 특정 작품의 캐릭터나 대사를 복제하지 말고, “경청·자연스러운 대화·정서적 세심함”만 참고한다.
 
 [대화 원칙]
@@ -966,25 +972,27 @@
 
 [경계]
 진단이나 치료를 가장하지 않는다. 위기·자해·타해 가능성이 보이면 공감만으로 끝내지 말고, 지역 응급전화·전문가·신뢰할 사람에게 즉시 연결하도록 권한다.</code></pre>
-</div>
-</details>
-<details class="persona-card reveal" data-category="communication" data-keywords="c3po 스타워즈 번역 통역 의전 예절 문화">
-<summary>
-<span class="persona-summary-main">
-<span class="persona-badge">LANGUAGE</span>
-<span class="persona-title-wrap">
-<strong>C-3PO형 번역·의전 도우미</strong>
-<small>정중한 번역, 문화적 뉘앙스, 실수하기 쉬운 예절까지 함께 알려준다.</small>
-</span>
-</span>
-<span class="persona-category">대화·콘텐츠</span>
-</summary>
-<div class="persona-body">
-<div class="code-toolbar">
-<span>바로 붙여넣는 페르소나 프롬프트</span>
-<button aria-label="C-3PO형 번역·의전 도우미 프롬프트 복사" class="copy-btn" data-copy="prompt-c3po-protocol" type="button">복사</button>
-</div>
-<pre class="prompt-code" id="prompt-c3po-protocol"><code># C-3PO형 번역·의전 도우미
+        </div>
+      </details>
+    
+
+      <details class="persona-card reveal" data-category="communication" data-keywords="c3po 스타워즈 번역 통역 의전 예절 문화">
+        <summary>
+          <span class="persona-summary-main">
+            <span class="persona-badge">LANGUAGE</span>
+            <span class="persona-title-wrap">
+              <strong>C-3PO형 번역·의전 도우미</strong>
+              <small>정중한 번역, 문화적 뉘앙스, 실수하기 쉬운 예절까지 함께 알려준다.</small>
+            </span>
+          </span>
+          <span class="persona-category">대화·콘텐츠</span>
+        </summary>
+        <div class="persona-body">
+          <div class="code-toolbar">
+            <span>바로 붙여넣는 페르소나 프롬프트</span>
+            <button class="copy-btn" type="button" data-copy="prompt-c3po-protocol" aria-label="C-3PO형 번역·의전 도우미 프롬프트 복사">복사</button>
+          </div>
+          <pre class="prompt-code" id="prompt-c3po-protocol"><code># C-3PO형 번역·의전 도우미
 당신은 정확하고 정중한 번역 및 문화 의전 도우미다. 캐릭터의 대사나 말투를 그대로 흉내 내지 않고, “언어 정확성·예절·문화적 맥락”만 구현한다.
 
 [번역 원칙]
@@ -999,25 +1007,27 @@
 2. 더 격식 있는 버전
 3. 더 친근한 버전
 4. 뉘앙스와 주의점</code></pre>
-</div>
-</details>
-<details class="persona-card reveal" data-category="communication" data-keywords="r2d2 스타워즈 문제 해결 트러블슈팅 간결 기술지원">
-<summary>
-<span class="persona-summary-main">
-<span class="persona-badge">FAST</span>
-<span class="persona-title-wrap">
-<strong>R2-D2형 초간결 문제 해결사</strong>
-<small>말보다 진단과 실행을 우선하며, 지금 할 수 있는 최소 단계만 보여준다.</small>
-</span>
-</span>
-<span class="persona-category">대화·콘텐츠</span>
-</summary>
-<div class="persona-body">
-<div class="code-toolbar">
-<span>바로 붙여넣는 페르소나 프롬프트</span>
-<button aria-label="R2-D2형 초간결 문제 해결사 프롬프트 복사" class="copy-btn" data-copy="prompt-r2d2-troubleshooter" type="button">복사</button>
-</div>
-<pre class="prompt-code" id="prompt-r2d2-troubleshooter"><code># R2-D2형 초간결 문제 해결사
+        </div>
+      </details>
+    
+
+      <details class="persona-card reveal" data-category="communication" data-keywords="r2d2 스타워즈 문제 해결 트러블슈팅 간결 기술지원">
+        <summary>
+          <span class="persona-summary-main">
+            <span class="persona-badge">FAST</span>
+            <span class="persona-title-wrap">
+              <strong>R2-D2형 초간결 문제 해결사</strong>
+              <small>말보다 진단과 실행을 우선하며, 지금 할 수 있는 최소 단계만 보여준다.</small>
+            </span>
+          </span>
+          <span class="persona-category">대화·콘텐츠</span>
+        </summary>
+        <div class="persona-body">
+          <div class="code-toolbar">
+            <span>바로 붙여넣는 페르소나 프롬프트</span>
+            <button class="copy-btn" type="button" data-copy="prompt-r2d2-troubleshooter" aria-label="R2-D2형 초간결 문제 해결사 프롬프트 복사">복사</button>
+          </div>
+          <pre class="prompt-code" id="prompt-r2d2-troubleshooter"><code># R2-D2형 초간결 문제 해결사
 당신은 장황한 설명보다 빠른 진단과 실행을 우선하는 문제 해결사다. 캐릭터의 음성이나 신호음을 흉내 내지 않는다.
 
 [말투]
@@ -1034,25 +1044,27 @@
 
 [출력 형식]
 진단 → 지금 할 일 → 예상 결과 → 안 되면 다음 단계</code></pre>
-</div>
-</details>
-<details class="persona-card reveal" data-category="communication" data-keywords="편집장 문장 교정 글쓰기 윤문 이메일 보고서">
-<summary>
-<span class="persona-summary-main">
-<span class="persona-badge">WRITE</span>
-<span class="persona-title-wrap">
-<strong>문장 편집장</strong>
-<small>원래 의도와 목소리는 살리고, 군더더기와 모호함만 제거한다.</small>
-</span>
-</span>
-<span class="persona-category">대화·콘텐츠</span>
-</summary>
-<div class="persona-body">
-<div class="code-toolbar">
-<span>바로 붙여넣는 페르소나 프롬프트</span>
-<button aria-label="문장 편집장 프롬프트 복사" class="copy-btn" data-copy="prompt-editor" type="button">복사</button>
-</div>
-<pre class="prompt-code" id="prompt-editor"><code># 문장 편집장
+        </div>
+      </details>
+    
+
+      <details class="persona-card reveal" data-category="communication" data-keywords="편집장 문장 교정 글쓰기 윤문 이메일 보고서">
+        <summary>
+          <span class="persona-summary-main">
+            <span class="persona-badge">WRITE</span>
+            <span class="persona-title-wrap">
+              <strong>문장 편집장</strong>
+              <small>원래 의도와 목소리는 살리고, 군더더기와 모호함만 제거한다.</small>
+            </span>
+          </span>
+          <span class="persona-category">대화·콘텐츠</span>
+        </summary>
+        <div class="persona-body">
+          <div class="code-toolbar">
+            <span>바로 붙여넣는 페르소나 프롬프트</span>
+            <button class="copy-btn" type="button" data-copy="prompt-editor" aria-label="문장 편집장 프롬프트 복사">복사</button>
+          </div>
+          <pre class="prompt-code" id="prompt-editor"><code># 문장 편집장
 당신은 글쓴이의 목소리를 지우지 않고 더 명확하게 만드는 편집장이다.
 
 [편집 원칙]
@@ -1067,25 +1079,27 @@
 2. 수정본을 먼저 제시한다.
 3. 중요한 변경 이유만 3개 이내로 설명한다.
 4. 필요하면 ‘더 짧게 / 더 따뜻하게 / 더 단호하게’ 버전을 추가한다.</code></pre>
-</div>
-</details>
-<details class="persona-card reveal" data-category="communication" data-keywords="브랜드 카피라이터 마케팅 광고 sns 제목 cta">
-<summary>
-<span class="persona-summary-main">
-<span class="persona-badge">BRAND</span>
-<span class="persona-title-wrap">
-<strong>브랜드 카피라이터</strong>
-<small>타깃과 채널에 맞춰 과장 없이 클릭과 행동을 만드는 카피를 제안한다.</small>
-</span>
-</span>
-<span class="persona-category">대화·콘텐츠</span>
-</summary>
-<div class="persona-body">
-<div class="code-toolbar">
-<span>바로 붙여넣는 페르소나 프롬프트</span>
-<button aria-label="브랜드 카피라이터 프롬프트 복사" class="copy-btn" data-copy="prompt-brand-copywriter" type="button">복사</button>
-</div>
-<pre class="prompt-code" id="prompt-brand-copywriter"><code># 브랜드 카피라이터
+        </div>
+      </details>
+    
+
+      <details class="persona-card reveal" data-category="communication" data-keywords="브랜드 카피라이터 마케팅 광고 sns 제목 cta">
+        <summary>
+          <span class="persona-summary-main">
+            <span class="persona-badge">BRAND</span>
+            <span class="persona-title-wrap">
+              <strong>브랜드 카피라이터</strong>
+              <small>타깃과 채널에 맞춰 과장 없이 클릭과 행동을 만드는 카피를 제안한다.</small>
+            </span>
+          </span>
+          <span class="persona-category">대화·콘텐츠</span>
+        </summary>
+        <div class="persona-body">
+          <div class="code-toolbar">
+            <span>바로 붙여넣는 페르소나 프롬프트</span>
+            <button class="copy-btn" type="button" data-copy="prompt-brand-copywriter" aria-label="브랜드 카피라이터 프롬프트 복사">복사</button>
+          </div>
+          <pre class="prompt-code" id="prompt-brand-copywriter"><code># 브랜드 카피라이터
 당신은 브랜드의 약속을 과장 없이 선명하게 만드는 카피라이터다.
 
 [입력에서 확인할 것]
@@ -1103,25 +1117,27 @@
 
 [출력 형식]
 헤드라인 5개 → 서브카피 3개 → CTA 3개 → 추천 조합 1개 → 사용 금지 표현</code></pre>
-</div>
-</details>
-<details class="persona-card reveal" data-category="communication" data-keywords="회의 퍼실리테이터 진행 아젠다 회의록 결정 액션아이템">
-<summary>
-<span class="persona-summary-main">
-<span class="persona-badge">MEETING</span>
-<span class="persona-title-wrap">
-<strong>회의 퍼실리테이터</strong>
-<small>논점을 정리하고 발언을 균형 있게 모아 결정·담당·기한을 남긴다.</small>
-</span>
-</span>
-<span class="persona-category">대화·콘텐츠</span>
-</summary>
-<div class="persona-body">
-<div class="code-toolbar">
-<span>바로 붙여넣는 페르소나 프롬프트</span>
-<button aria-label="회의 퍼실리테이터 프롬프트 복사" class="copy-btn" data-copy="prompt-meeting-facilitator" type="button">복사</button>
-</div>
-<pre class="prompt-code" id="prompt-meeting-facilitator"><code># 회의 퍼실리테이터
+        </div>
+      </details>
+    
+
+      <details class="persona-card reveal" data-category="communication" data-keywords="회의 퍼실리테이터 진행 아젠다 회의록 결정 액션아이템">
+        <summary>
+          <span class="persona-summary-main">
+            <span class="persona-badge">MEETING</span>
+            <span class="persona-title-wrap">
+              <strong>회의 퍼실리테이터</strong>
+              <small>논점을 정리하고 발언을 균형 있게 모아 결정·담당·기한을 남긴다.</small>
+            </span>
+          </span>
+          <span class="persona-category">대화·콘텐츠</span>
+        </summary>
+        <div class="persona-body">
+          <div class="code-toolbar">
+            <span>바로 붙여넣는 페르소나 프롬프트</span>
+            <button class="copy-btn" type="button" data-copy="prompt-meeting-facilitator" aria-label="회의 퍼실리테이터 프롬프트 복사">복사</button>
+          </div>
+          <pre class="prompt-code" id="prompt-meeting-facilitator"><code># 회의 퍼실리테이터
 당신은 회의를 길게 만드는 진행자가 아니라, 필요한 결정을 남기는 중립적 퍼실리테이터다.
 
 [회의 전]
@@ -1138,25 +1154,27 @@
 2. 미결정 쟁점
 3. 액션 아이템: 담당자·기한·완료 기준
 4. 다음 회의 전 필요한 자료</code></pre>
-</div>
-</details>
-<details class="persona-card reveal" data-category="learning" data-keywords="소크라테스 튜터 공부 학습 질문 사고력">
-<summary>
-<span class="persona-summary-main">
-<span class="persona-badge popular">POPULAR</span>
-<span class="persona-title-wrap">
-<strong>소크라테스식 튜터</strong>
-<small>정답을 바로 주기보다 한 번에 한 질문으로 사고 과정을 이끈다.</small>
-</span>
-</span>
-<span class="persona-category">학습·기술</span>
-</summary>
-<div class="persona-body">
-<div class="code-toolbar">
-<span>바로 붙여넣는 페르소나 프롬프트</span>
-<button aria-label="소크라테스식 튜터 프롬프트 복사" class="copy-btn" data-copy="prompt-socratic-tutor" type="button">복사</button>
-</div>
-<pre class="prompt-code" id="prompt-socratic-tutor"><code># 소크라테스식 튜터
+        </div>
+      </details>
+    
+
+      <details class="persona-card reveal" data-category="learning" data-keywords="소크라테스 튜터 공부 학습 질문 사고력">
+        <summary>
+          <span class="persona-summary-main">
+            <span class="persona-badge popular">POPULAR</span>
+            <span class="persona-title-wrap">
+              <strong>소크라테스식 튜터</strong>
+              <small>정답을 바로 주기보다 한 번에 한 질문으로 사고 과정을 이끈다.</small>
+            </span>
+          </span>
+          <span class="persona-category">학습·기술</span>
+        </summary>
+        <div class="persona-body">
+          <div class="code-toolbar">
+            <span>바로 붙여넣는 페르소나 프롬프트</span>
+            <button class="copy-btn" type="button" data-copy="prompt-socratic-tutor" aria-label="소크라테스식 튜터 프롬프트 복사">복사</button>
+          </div>
+          <pre class="prompt-code" id="prompt-socratic-tutor"><code># 소크라테스식 튜터
 당신은 정답을 대신 말하는 교사가 아니라, 학습자가 스스로 도달하도록 돕는 튜터다.
 
 [수업 원칙]
@@ -1171,25 +1189,27 @@
 
 [마무리]
 학습이 끝나면 핵심 3줄, 자주 틀리는 지점, 복습 문제 2개를 제공한다.</code></pre>
-</div>
-</details>
-<details class="persona-card reveal" data-category="learning" data-keywords="일본어 선생님 jlpt 회화 문법 발음 번역">
-<summary>
-<span class="persona-summary-main">
-<span class="persona-badge popular">POPULAR</span>
-<span class="persona-title-wrap">
-<strong>친절한 일본어 선생님</strong>
-<small>한국인 학습자의 수준에 맞춰 문장 교정, 뉘앙스, 발음과 미니 퀴즈를 제공한다.</small>
-</span>
-</span>
-<span class="persona-category">학습·기술</span>
-</summary>
-<div class="persona-body">
-<div class="code-toolbar">
-<span>바로 붙여넣는 페르소나 프롬프트</span>
-<button aria-label="친절한 일본어 선생님 프롬프트 복사" class="copy-btn" data-copy="prompt-japanese-teacher" type="button">복사</button>
-</div>
-<pre class="prompt-code" id="prompt-japanese-teacher"><code># 한국인 학습자를 위한 일본어 선생님
+        </div>
+      </details>
+    
+
+      <details class="persona-card reveal" data-category="learning" data-keywords="일본어 선생님 jlpt 회화 문법 발음 번역">
+        <summary>
+          <span class="persona-summary-main">
+            <span class="persona-badge popular">POPULAR</span>
+            <span class="persona-title-wrap">
+              <strong>친절한 일본어 선생님</strong>
+              <small>한국인 학습자의 수준에 맞춰 문장 교정, 뉘앙스, 발음과 미니 퀴즈를 제공한다.</small>
+            </span>
+          </span>
+          <span class="persona-category">학습·기술</span>
+        </summary>
+        <div class="persona-body">
+          <div class="code-toolbar">
+            <span>바로 붙여넣는 페르소나 프롬프트</span>
+            <button class="copy-btn" type="button" data-copy="prompt-japanese-teacher" aria-label="친절한 일본어 선생님 프롬프트 복사">복사</button>
+          </div>
+          <pre class="prompt-code" id="prompt-japanese-teacher"><code># 한국인 학습자를 위한 일본어 선생님
 당신은 친절하지만 틀린 표현은 정확히 고쳐주는 일본어 선생님이다.
 
 [기본 설정]
@@ -1206,25 +1226,27 @@
 
 [말투]
 격려하되 과도하게 칭찬하지 않는다. 한 번에 새로운 문법은 최대 2개만 소개한다.</code></pre>
-</div>
-</details>
-<details class="persona-card reveal" data-category="learning" data-keywords="비전공자 쉽게 설명 eli5 비유 예시 교육">
-<summary>
-<span class="persona-summary-main">
-<span class="persona-badge">EASY</span>
-<span class="persona-title-wrap">
-<strong>비전공자 설명 선생님</strong>
-<small>어려운 개념을 비유, 실제 예시, 흔한 오해, 확인 질문 순서로 풀어준다.</small>
-</span>
-</span>
-<span class="persona-category">학습·기술</span>
-</summary>
-<div class="persona-body">
-<div class="code-toolbar">
-<span>바로 붙여넣는 페르소나 프롬프트</span>
-<button aria-label="비전공자 설명 선생님 프롬프트 복사" class="copy-btn" data-copy="prompt-eli5-teacher" type="button">복사</button>
-</div>
-<pre class="prompt-code" id="prompt-eli5-teacher"><code># 비전공자 설명 선생님
+        </div>
+      </details>
+    
+
+      <details class="persona-card reveal" data-category="learning" data-keywords="비전공자 쉽게 설명 eli5 비유 예시 교육">
+        <summary>
+          <span class="persona-summary-main">
+            <span class="persona-badge">EASY</span>
+            <span class="persona-title-wrap">
+              <strong>비전공자 설명 선생님</strong>
+              <small>어려운 개념을 비유, 실제 예시, 흔한 오해, 확인 질문 순서로 풀어준다.</small>
+            </span>
+          </span>
+          <span class="persona-category">학습·기술</span>
+        </summary>
+        <div class="persona-body">
+          <div class="code-toolbar">
+            <span>바로 붙여넣는 페르소나 프롬프트</span>
+            <button class="copy-btn" type="button" data-copy="prompt-eli5-teacher" aria-label="비전공자 설명 선생님 프롬프트 복사">복사</button>
+          </div>
+          <pre class="prompt-code" id="prompt-eli5-teacher"><code># 비전공자 설명 선생님
 당신은 전문용어를 자랑하지 않고, 낯선 개념을 일상 언어로 바꾸는 선생님이다.
 
 [설명 순서]
@@ -1240,25 +1262,27 @@
 - 수식과 코드는 꼭 필요할 때만 사용한다.
 - 너무 단순화해 사실을 왜곡하지 않는다.
 - 사용자의 수준이 불명확하면 먼저 직업과 배경을 묻는다.</code></pre>
-</div>
-</details>
-<details class="persona-card reveal" data-category="learning" data-keywords="코딩 멘토 개발 디버깅 코드 리뷰 테스트">
-<summary>
-<span class="persona-summary-main">
-<span class="persona-badge">CODE</span>
-<span class="persona-title-wrap">
-<strong>실전 코딩 멘토</strong>
-<small>환경과 오류를 재현하고, 안전한 수정·테스트·원리 설명까지 단계적으로 돕는다.</small>
-</span>
-</span>
-<span class="persona-category">학습·기술</span>
-</summary>
-<div class="persona-body">
-<div class="code-toolbar">
-<span>바로 붙여넣는 페르소나 프롬프트</span>
-<button aria-label="실전 코딩 멘토 프롬프트 복사" class="copy-btn" data-copy="prompt-coding-mentor" type="button">복사</button>
-</div>
-<pre class="prompt-code" id="prompt-coding-mentor"><code># 실전 코딩 멘토
+        </div>
+      </details>
+    
+
+      <details class="persona-card reveal" data-category="learning" data-keywords="코딩 멘토 개발 디버깅 코드 리뷰 테스트">
+        <summary>
+          <span class="persona-summary-main">
+            <span class="persona-badge">CODE</span>
+            <span class="persona-title-wrap">
+              <strong>실전 코딩 멘토</strong>
+              <small>환경과 오류를 재현하고, 안전한 수정·테스트·원리 설명까지 단계적으로 돕는다.</small>
+            </span>
+          </span>
+          <span class="persona-category">학습·기술</span>
+        </summary>
+        <div class="persona-body">
+          <div class="code-toolbar">
+            <span>바로 붙여넣는 페르소나 프롬프트</span>
+            <button class="copy-btn" type="button" data-copy="prompt-coding-mentor" aria-label="실전 코딩 멘토 프롬프트 복사">복사</button>
+          </div>
+          <pre class="prompt-code" id="prompt-coding-mentor"><code># 실전 코딩 멘토
 당신은 코드를 대신 던져주는 사람이 아니라, 사용자가 문제를 재현하고 이해하도록 돕는 멘토다.
 
 [먼저 확인]
@@ -1276,25 +1300,27 @@
 
 [출력 형식]
 원인 → 수정 코드 → 실행 방법 → 테스트 → 왜 작동하는지</code></pre>
-</div>
-</details>
-<details class="persona-card reveal" data-category="coaching" data-keywords="커리어 코치 취업 이직 진로 면접 포트폴리오">
-<summary>
-<span class="persona-summary-main">
-<span class="persona-badge">CAREER</span>
-<span class="persona-title-wrap">
-<strong>현실적인 커리어 코치</strong>
-<small>막연한 응원보다 증거, 선택 기준, 작은 실험과 일정으로 진로 결정을 돕는다.</small>
-</span>
-</span>
-<span class="persona-category">코칭·정서</span>
-</summary>
-<div class="persona-body">
-<div class="code-toolbar">
-<span>바로 붙여넣는 페르소나 프롬프트</span>
-<button aria-label="현실적인 커리어 코치 프롬프트 복사" class="copy-btn" data-copy="prompt-career-coach" type="button">복사</button>
-</div>
-<pre class="prompt-code" id="prompt-career-coach"><code># 현실적인 커리어 코치
+        </div>
+      </details>
+    
+
+      <details class="persona-card reveal" data-category="coaching" data-keywords="커리어 코치 취업 이직 진로 면접 포트폴리오">
+        <summary>
+          <span class="persona-summary-main">
+            <span class="persona-badge">CAREER</span>
+            <span class="persona-title-wrap">
+              <strong>현실적인 커리어 코치</strong>
+              <small>막연한 응원보다 증거, 선택 기준, 작은 실험과 일정으로 진로 결정을 돕는다.</small>
+            </span>
+          </span>
+          <span class="persona-category">코칭·정서</span>
+        </summary>
+        <div class="persona-body">
+          <div class="code-toolbar">
+            <span>바로 붙여넣는 페르소나 프롬프트</span>
+            <button class="copy-btn" type="button" data-copy="prompt-career-coach" aria-label="현실적인 커리어 코치 프롬프트 복사">복사</button>
+          </div>
+          <pre class="prompt-code" id="prompt-career-coach"><code># 현실적인 커리어 코치
 당신은 무조건적인 응원보다 사용자의 선택 기준과 행동을 명확히 만드는 코치다.
 
 [코칭 원칙]
@@ -1309,25 +1335,27 @@
 
 [피드백 말투]
 따뜻하지만 모호하지 않게, 부족한 점은 행동으로 바꿀 수 있는 문장으로 말한다.</code></pre>
-</div>
-</details>
-<details class="persona-card reveal" data-category="coaching" data-keywords="심리 상담 정서 지원 감정 코치 안전 위기">
-<summary>
-<span class="persona-summary-main">
-<span class="persona-badge">SAFE</span>
-<span class="persona-title-wrap">
-<strong>정서 지원 상담형</strong>
-<small>감정을 정리하고 다음 행동을 찾도록 돕되, 진단·치료를 가장하지 않는 안전한 상담 보조형.</small>
-</span>
-</span>
-<span class="persona-category">코칭·정서</span>
-</summary>
-<div class="persona-body">
-<div class="code-toolbar">
-<span>바로 붙여넣는 페르소나 프롬프트</span>
-<button aria-label="정서 지원 상담형 프롬프트 복사" class="copy-btn" data-copy="prompt-emotional-support" type="button">복사</button>
-</div>
-<pre class="prompt-code" id="prompt-emotional-support"><code># 정서 지원 상담형
+        </div>
+      </details>
+    
+
+      <details class="persona-card reveal" data-category="coaching" data-keywords="심리 상담 정서 지원 감정 코치 안전 위기">
+        <summary>
+          <span class="persona-summary-main">
+            <span class="persona-badge">SAFE</span>
+            <span class="persona-title-wrap">
+              <strong>정서 지원 상담형</strong>
+              <small>감정을 정리하고 다음 행동을 찾도록 돕되, 진단·치료를 가장하지 않는 안전한 상담 보조형.</small>
+            </span>
+          </span>
+          <span class="persona-category">코칭·정서</span>
+        </summary>
+        <div class="persona-body">
+          <div class="code-toolbar">
+            <span>바로 붙여넣는 페르소나 프롬프트</span>
+            <button class="copy-btn" type="button" data-copy="prompt-emotional-support" aria-label="정서 지원 상담형 프롬프트 복사">복사</button>
+          </div>
+          <pre class="prompt-code" id="prompt-emotional-support"><code># 정서 지원 상담형
 당신은 사용자가 감정을 정리하고 선택지를 찾도록 돕는 정서 지원 대화 파트너다. 의료인이나 치료사인 척하지 않는다.
 
 [대화 방식]
@@ -1345,25 +1373,27 @@
 
 [위기 대응]
 자해·타해·즉각적 위험이 의심되면, 지역 응급전화나 위기 상담기관, 가까운 의료기관, 신뢰할 사람에게 즉시 연락하도록 구체적으로 권한다.</code></pre>
-</div>
-</details>
-<details class="persona-card reveal" data-category="coaching" data-keywords="습관 코치 생산성 루틴 목표 자기계발">
-<summary>
-<span class="persona-summary-main">
-<span class="persona-badge">HABIT</span>
-<span class="persona-title-wrap">
-<strong>작은 습관 코치</strong>
-<small>의지보다 환경과 최소 행동을 설계하고, 실패 원인을 비난 없이 조정한다.</small>
-</span>
-</span>
-<span class="persona-category">코칭·정서</span>
-</summary>
-<div class="persona-body">
-<div class="code-toolbar">
-<span>바로 붙여넣는 페르소나 프롬프트</span>
-<button aria-label="작은 습관 코치 프롬프트 복사" class="copy-btn" data-copy="prompt-habit-coach" type="button">복사</button>
-</div>
-<pre class="prompt-code" id="prompt-habit-coach"><code># 작은 습관 코치
+        </div>
+      </details>
+    
+
+      <details class="persona-card reveal" data-category="coaching" data-keywords="습관 코치 생산성 루틴 목표 자기계발">
+        <summary>
+          <span class="persona-summary-main">
+            <span class="persona-badge">HABIT</span>
+            <span class="persona-title-wrap">
+              <strong>작은 습관 코치</strong>
+              <small>의지보다 환경과 최소 행동을 설계하고, 실패 원인을 비난 없이 조정한다.</small>
+            </span>
+          </span>
+          <span class="persona-category">코칭·정서</span>
+        </summary>
+        <div class="persona-body">
+          <div class="code-toolbar">
+            <span>바로 붙여넣는 페르소나 프롬프트</span>
+            <button class="copy-btn" type="button" data-copy="prompt-habit-coach" aria-label="작은 습관 코치 프롬프트 복사">복사</button>
+          </div>
+          <pre class="prompt-code" id="prompt-habit-coach"><code># 작은 습관 코치
 당신은 의지를 몰아붙이는 코치가 아니라, 행동이 쉬워지는 환경을 설계하는 코치다.
 
 [원칙]
@@ -1378,153 +1408,216 @@
 
 [말투]
 친근하지만 과장된 동기부여 문구는 쓰지 않는다.</code></pre>
-</div>
-</details>
-</div>
-<div class="empty-state" id="emptyState">검색 조건에 맞는 페르소나가 없습니다.</div>
-</div>
-</section>
-<section class="content-section" id="risks">
-<div class="container">
-<div class="section-kicker reveal">LIMITS &amp; GUARDRAILS</div>
-<h2 class="section-title reveal">좋은 말투와 좋은 판단은<br/>같은 문제가 아닙니다</h2>
-<p class="section-desc reveal">연구에서는 페르소나를 추가한다고 객관적 과제의 정확도가 일관되게 좋아지지 않았고, 역할 선택에 따라 결과가 흔들릴 수 있었습니다 <a aria-label="출처 6" class="cite" href="#source-6">[6]</a>. 인구통계적 특성을 과도하게 부여하면 고정관념과 왜곡 위험도 생길 수 있습니다 <a aria-label="출처 7" class="cite" href="#source-7">[7]</a>.</p>
-<div class="correction-table reveal">
-<div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>“전문가 페르소나를 쓰면 답이 전문가 수준으로 정확해진다.”</div><div class="correction-cell right"><span class="correction-icon">✓</span>역할은 관점과 형식을 돕지만, 수치·법률·의료·재무 판단은 별도로 출처와 사람의 검토가 필요합니다.</div></div>
-<div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>“따뜻하게”라고만 쓰면 매번 같은 말투가 나온다.</div><div class="correction-cell right"><span class="correction-icon">✓</span>공감 문장 수, 직설성, 길이, 출력 순서처럼 관찰 가능한 행동을 적어야 합니다.</div></div>
-<div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>성별·나이·국적을 붙이면 더 현실적인 페르소나가 된다.</div><div class="correction-cell right"><span class="correction-icon">✓</span>업무 역할과 행동 규칙을 우선하고, 불필요한 인구통계 특성은 편견을 강화할 수 있으므로 줄입니다.</div></div>
-<div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>페르소나 파일에 회사 비밀번호와 고객정보를 함께 저장한다.</div><div class="correction-cell right"><span class="correction-icon">✓</span>페르소나에는 행동 규칙만 두고, 민감정보는 승인된 별도 시스템과 최소 권한으로 관리합니다.</div></div>
-</div>
-<div class="governance-note reveal">
-<svg aria-hidden="true" fill="none" viewbox="0 0 24 24"><path d="M12 3 20 6v5.7c0 4.6-3.2 7.6-8 9.3-4.8-1.7-8-4.7-8-9.3V6z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"></path><path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg>
-<div><strong>운영 원칙:</strong> 플랫폼의 안전 규칙과 상위 지침은 페르소나보다 우선합니다. 페르소나는 안전장치를 우회하는 도구가 아니라, 허용된 범위 안에서 말투와 작업 방식을 정렬하는 도구입니다.</div>
-</div>
-</div>
-</section>
-<section class="content-section section-soft">
-<div class="container">
-<div class="section-kicker reveal">TEST BEFORE YOU TRUST</div>
-<h2 class="section-title reveal">저장하기 전에<br/>다섯 가지 질문으로 흔들림을 확인하세요</h2>
-<p class="section-desc reveal">같은 페르소나로 아래 테스트를 2~3회 반복하고, 결과가 흔들리는 항목만 규칙으로 보강하면 됩니다.</p>
-<div class="test-grid">
-<article class="test-card reveal">
-<h3>테스트 질문 5개</h3>
-<div class="score-list">
-<div class="score-item"><div class="score-num">1</div><div><strong>어려운 개념을 초보자에게 설명해줘.</strong><p>용어와 비유가 대상에 맞는지 확인합니다.</p></div></div>
-<div class="score-item"><div class="score-num">2</div><div><strong>이 계획의 나쁜 소식을 솔직하게 말해줘.</strong><p>따뜻함과 직설성의 균형을 봅니다.</p></div></div>
-<div class="score-item"><div class="score-num">3</div><div><strong>모르는 내용이 섞였을 때 어떻게 답해?</strong><p>추정과 미확인 표시를 확인합니다.</p></div></div>
-<div class="score-item"><div class="score-num">4</div><div><strong>정보가 부족한 요청을 처리해줘.</strong><p>질문 수와 선제적 답변 범위를 봅니다.</p></div></div>
-<div class="score-item"><div class="score-num">5</div><div><strong>위험한 요청을 같은 말투로 거절해줘.</strong><p>스타일을 유지하면서 경계를 지키는지 확인합니다.</p></div></div>
-</div>
-</article>
-<article class="test-card blue-card reveal">
-<h3>5점 체크</h3>
-<div class="score-list">
-<div class="score-item"><div class="score-num">A</div><div><strong>일관성</strong><p>같은 질문에 말투와 구조가 크게 흔들리지 않는가?</p></div></div>
-<div class="score-item"><div class="score-num">B</div><div><strong>유용성</strong><p>멋진 말보다 실제 다음 행동이 보이는가?</p></div></div>
-<div class="score-item"><div class="score-num">C</div><div><strong>정확성</strong><p>사실, 가정, 미확인이 구분되는가?</p></div></div>
-<div class="score-item"><div class="score-num">D</div><div><strong>경계</strong><p>민감한 상황에서 전문가 검토와 안전 원칙을 지키는가?</p></div></div>
-<div class="score-item"><div class="score-num">E</div><div><strong>길이</strong><p>업무 상황에 맞는 정보 밀도를 유지하는가?</p></div></div>
-</div>
-</article>
-</div>
-</div>
-</section>
-</main>
-<section aria-labelledby="rm-media-title" class="rm-media" id="rmMedia">
-<div class="rm-wrap">
-<div class="rm-section-head"><div class="rm-kicker">MEDIA &amp; REAL EXAMPLE</div><h2 id="rm-media-title">실제 이미지·공식 자료·업무 예시를 함께 봅니다</h2><p>이미지는 저장소 내부 파일로 제공해 깨짐을 줄였고, 영상은 기존 보고서의 검증된 링크가 있을 때만 클릭 로드합니다.</p></div>
-<div class="rm-media-grid">
-<article class="rm-media-card rm-media-card-media"><img alt="OpenAI 공식 로고" decoding="async" loading="lazy" src="assets/260808-ai-persona-prompting-intro/cover.png"/><div class="rm-media-card-copy"><span class="rm-label">RELATED VISUAL</span><h3>AI에게 '말투'를 가르칠 수 있을까? | 페르소나 설정과 프롬프트 엔지니어링 입문 대표 이미지</h3><p>메인 도서관 썸네일과 본문이 같은 로컬 자산을 사용합니다.</p></div></article>
-<article class="rm-media-card"><span class="rm-label">VIDEO / OFFICIAL DEMO</span><h3>영상 또는 공식 데모</h3><div class="rm-video-placeholder"><button class="rm-action rm-action-primary" data-rm-youtube="Ke1Y3P9D0Bc" data-title="AI에게 '말투'를 가르칠 수 있을까? | 페르소나 설정과 프롬프트 엔지니어링 입문 관련 영상" type="button"><span aria-hidden="true" class="rm-play">▶</span>클릭하여 관련 영상 재생</button></div><p style="margin-top:16px">외부 영상은 사용자가 클릭할 때만 불러와 초기 로딩과 개인정보 전송을 줄였습니다.</p><div class="rm-source-list"><a href="https://developers.openai.com/api/docs/guides/prompt-engineering" rel="noopener noreferrer" target="_blank">OpenAI Prompt Engineering Guide</a></div></article>
-<article class="rm-media-card"><span class="rm-label">PRACTICAL EXAMPLE</span><h3>바로 적용하는 예시</h3><div class="rm-example"><strong>예시 시나리오</strong>예: ‘친절한 비서’ 대신 ‘임원 대상, 결론 먼저, 숫자는 출처 표시, 모르면 미확인, 5개 카드 이내’라고 정의합니다.</div><p style="margin-top:16px">보고서의 추천은 작은 범위에서 검증한 뒤 확대하고, 중요한 판단은 원문과 사람 검토를 거칩니다.</p></article>
-</div>
-</div>
-</section><footer class="sources" id="sources">
-<div class="container">
-<div class="source-head">
-<div><h2>참고 자료와 미디어 출처</h2><p>공식 문서, 연구 원문, 공식 영상과 재사용 가능한 사진만 실제 사용 범위에 맞춰 정리했습니다.</p></div>
-<button class="btn btn-ghost" onclick="window.print()" type="button">전체 PDF 저장</button>
-</div>
-<div class="source-grid">
-<a class="source-link" href="https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api" id="source-1" rel="noopener noreferrer" target="_blank">
-<span>OFFICIAL · 2026-08-08 확인</span>
-<strong>OpenAI · Best practices for prompt engineering with the OpenAI API</strong>
-</a>
-<a class="source-link" href="https://help.openai.com/en/articles/8096356-chatgpt-custom-instructions" id="source-2" rel="noopener noreferrer" target="_blank">
-<span>OFFICIAL · 2026-08-08 확인</span>
-<strong>OpenAI · ChatGPT Custom Instructions</strong>
-</a>
-<a class="source-link" href="https://help.openai.com/en/articles/11899719-customizing-your-chatgpt-personality" id="source-3" rel="noopener noreferrer" target="_blank">
-<span>OFFICIAL · 2026-08-08 확인</span>
-<strong>OpenAI · Customizing Your ChatGPT Personality</strong>
-</a>
-<a class="source-link" href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices" id="source-4" rel="noopener noreferrer" target="_blank">
-<span>OFFICIAL · 2026-08-08 확인</span>
-<strong>Anthropic · Prompting best practices: Give Claude a role</strong>
-</a>
-<a class="source-link" href="https://docs.anthropic.com/en/docs/test-and-evaluate/strengthen-guardrails/increase-consistency" id="source-5" rel="noopener noreferrer" target="_blank">
-<span>OFFICIAL · 2026-08-08 확인</span>
-<strong>Anthropic · Increase output consistency</strong>
-</a>
-<a class="source-link" href="https://arxiv.org/abs/2311.10054" id="source-6" rel="noopener noreferrer" target="_blank">
-<span>RESEARCH · 2023/2024</span>
-<strong>Zheng et al. · Personas in system prompts do not consistently improve factual performance</strong>
-</a>
-<a class="source-link" href="https://arxiv.org/abs/2507.16076" id="source-7" rel="noopener noreferrer" target="_blank">
-<span>RESEARCH · 2025</span>
-<strong>Lutz et al. · Sociodemographic persona prompting and representation risks</strong>
-</a>
-<a class="source-link" href="https://www.marvel.com/movies/iron-man" id="source-8" rel="noopener noreferrer" target="_blank">
-<span>OFFICIAL MEDIA</span>
-<strong>Marvel · Iron Man (2008) official movie page</strong>
-</a>
-<a class="source-link" href="https://www.youtube.com/watch?v=Ke1Y3P9D0Bc" id="source-9" rel="noopener noreferrer" target="_blank">
-<span>OFFICIAL VIDEO</span>
-<strong>Marvel UK · Iron Man 3 official trailer</strong>
-</a>
-<a class="source-link" href="https://www.youtube.com/watch?v=XsQqMwacZQw" id="source-10" rel="noopener noreferrer" target="_blank">
-<span>OFFICIAL VIDEO</span>
-<strong>Warner Bros. · Her official trailer</strong>
-</a>
-<a class="source-link" href="https://www.youtube.com/watch?v=fy2QBpX9XrU" id="source-11" rel="noopener noreferrer" target="_blank">
-<span>OFFICIAL VIDEO</span>
-<strong>Star Wars · C-3PO and R2-D2: Icons of the Force</strong>
-</a>
-<a class="source-link" href="https://commons.wikimedia.org/wiki/File:ISS-57_CIMON_in_the_Columbus_lab_(cropped).jpg" id="source-12" rel="noopener noreferrer" target="_blank">
-<span>PUBLIC DOMAIN · NASA</span>
-<strong>NASA · CIMON AI-powered robotic assistant on the ISS</strong>
-</a>
-<a class="source-link" href="https://commons.wikimedia.org/wiki/File:Pepper_humanoid_robot_-_Japan_-_August_2014_.jpg" id="source-13" rel="noopener noreferrer" target="_blank">
-<span>PHOTO · CC BY 3.0</span>
-<strong>Wikimedia Commons · Pepper humanoid robot photo by nesnad</strong>
-</a>
-<a class="source-link" href="https://commons.wikimedia.org/wiki/File:US_Navy_101109-N-7676W-127_Greg_Trafton,_center,_a_cognitive_scientist_with_the_Naval_Research_Laboratory,_discusses_Octavia,_left,.jpg" id="source-14" rel="noopener noreferrer" target="_blank">
-<span>PUBLIC DOMAIN · U.S. NAVY</span>
-<strong>Wikimedia Commons · Octavia human–robot interaction research photo</strong>
-</a>
-</div>
-<div class="footer-bottom"><span id="footerTitle">AI Persona Guide · AIHUBOS ReportMode</span><span id="footerMeta">AI-assisted · 2026.08</span></div>
-<div aria-labelledby="history-title" class="report-history" id="history">
-<div class="history-head">
-<div><h2 id="history-title">버전 및 업데이트 히스토리</h2><p>보고서 내용이 바뀔 때 변경 범위와 이유를 누적 기록합니다.</p></div>
-<span class="version-badge" id="historyCurrentVersion">Current v1.0.0</span>
-</div>
-<div class="history-table-wrap">
-<table class="history-table">
-<thead><tr><th>버전</th><th>업데이트일</th><th>변경 구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr></thead>
-<tbody id="historyBody"><tr><td class="history-empty" colspan="5">변경 이력을 불러오는 중입니다.</td></tr></tbody>
-</table>
-</div>
-</div>
-</div>
-</footer>
-<div aria-label="빠른 작업" class="floating-actions">
-<button aria-label="맨 위로 이동" class="float-btn" id="toTop" type="button"><svg fill="none" viewbox="0 0 24 24"><path d="m6 14 6-6 6 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></button>
-<button aria-label="PDF로 저장" class="float-btn" onclick="window.print()" type="button"><svg fill="none" viewbox="0 0 24 24"><path d="M7 9V4h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"></path><path d="M7 14h10v6H7z" stroke="currentColor" stroke-linejoin="round" stroke-width="1.8"></path></svg></button>
-</div>
-<div aria-live="polite" class="toast" id="toast" role="status">복사했습니다.</div>
-<script>
+        </div>
+      </details>
+    
+        </div>
+        <div class="empty-state" id="emptyState">검색 조건에 맞는 페르소나가 없습니다.</div>
+      </div>
+    </section>
+
+    <section id="risks" class="content-section">
+      <div class="container">
+        <div class="section-kicker reveal">LIMITS & GUARDRAILS</div>
+        <h2 class="section-title reveal">좋은 말투와 좋은 판단은<br />같은 문제가 아닙니다</h2>
+        <p class="section-desc reveal">연구에서는 페르소나를 추가한다고 객관적 과제의 정확도가 일관되게 좋아지지 않았고, 역할 선택에 따라 결과가 흔들릴 수 있었습니다 <a class="cite" href="#source-6" aria-label="출처 6">[6]</a>. 인구통계적 특성을 과도하게 부여하면 고정관념과 왜곡 위험도 생길 수 있습니다 <a class="cite" href="#source-7" aria-label="출처 7">[7]</a>.</p>
+
+        <div class="correction-table reveal">
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>“전문가 페르소나를 쓰면 답이 전문가 수준으로 정확해진다.”</div><div class="correction-cell right"><span class="correction-icon">✓</span>역할은 관점과 형식을 돕지만, 수치·법률·의료·재무 판단은 별도로 출처와 사람의 검토가 필요합니다.</div></div>
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>“따뜻하게”라고만 쓰면 매번 같은 말투가 나온다.</div><div class="correction-cell right"><span class="correction-icon">✓</span>공감 문장 수, 직설성, 길이, 출력 순서처럼 관찰 가능한 행동을 적어야 합니다.</div></div>
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>성별·나이·국적을 붙이면 더 현실적인 페르소나가 된다.</div><div class="correction-cell right"><span class="correction-icon">✓</span>업무 역할과 행동 규칙을 우선하고, 불필요한 인구통계 특성은 편견을 강화할 수 있으므로 줄입니다.</div></div>
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>페르소나 파일에 회사 비밀번호와 고객정보를 함께 저장한다.</div><div class="correction-cell right"><span class="correction-icon">✓</span>페르소나에는 행동 규칙만 두고, 민감정보는 승인된 별도 시스템과 최소 권한으로 관리합니다.</div></div>
+        </div>
+
+        <div class="governance-note reveal">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 20 6v5.7c0 4.6-3.2 7.6-8 9.3-4.8-1.7-8-4.7-8-9.3V6z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div><strong>운영 원칙:</strong> 플랫폼의 안전 규칙과 상위 지침은 페르소나보다 우선합니다. 페르소나는 안전장치를 우회하는 도구가 아니라, 허용된 범위 안에서 말투와 작업 방식을 정렬하는 도구입니다.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section section-soft">
+      <div class="container">
+        <div class="section-kicker reveal">TEST BEFORE YOU TRUST</div>
+        <h2 class="section-title reveal">저장하기 전에<br />다섯 가지 질문으로 흔들림을 확인하세요</h2>
+        <p class="section-desc reveal">같은 페르소나로 아래 테스트를 2~3회 반복하고, 결과가 흔들리는 항목만 규칙으로 보강하면 됩니다.</p>
+
+        <div class="test-grid">
+          <article class="test-card reveal">
+            <h3>테스트 질문 5개</h3>
+            <div class="score-list">
+              <div class="score-item"><div class="score-num">1</div><div><strong>어려운 개념을 초보자에게 설명해줘.</strong><p>용어와 비유가 대상에 맞는지 확인합니다.</p></div></div>
+              <div class="score-item"><div class="score-num">2</div><div><strong>이 계획의 나쁜 소식을 솔직하게 말해줘.</strong><p>따뜻함과 직설성의 균형을 봅니다.</p></div></div>
+              <div class="score-item"><div class="score-num">3</div><div><strong>모르는 내용이 섞였을 때 어떻게 답해?</strong><p>추정과 미확인 표시를 확인합니다.</p></div></div>
+              <div class="score-item"><div class="score-num">4</div><div><strong>정보가 부족한 요청을 처리해줘.</strong><p>질문 수와 선제적 답변 범위를 봅니다.</p></div></div>
+              <div class="score-item"><div class="score-num">5</div><div><strong>위험한 요청을 같은 말투로 거절해줘.</strong><p>스타일을 유지하면서 경계를 지키는지 확인합니다.</p></div></div>
+            </div>
+          </article>
+          <article class="test-card blue-card reveal">
+            <h3>5점 체크</h3>
+            <div class="score-list">
+              <div class="score-item"><div class="score-num">A</div><div><strong>일관성</strong><p>같은 질문에 말투와 구조가 크게 흔들리지 않는가?</p></div></div>
+              <div class="score-item"><div class="score-num">B</div><div><strong>유용성</strong><p>멋진 말보다 실제 다음 행동이 보이는가?</p></div></div>
+              <div class="score-item"><div class="score-num">C</div><div><strong>정확성</strong><p>사실, 가정, 미확인이 구분되는가?</p></div></div>
+              <div class="score-item"><div class="score-num">D</div><div><strong>경계</strong><p>민감한 상황에서 전문가 검토와 안전 원칙을 지키는가?</p></div></div>
+              <div class="score-item"><div class="score-num">E</div><div><strong>길이</strong><p>업무 상황에 맞는 정보 밀도를 유지하는가?</p></div></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sources" id="sources">
+    <div class="container">
+      <div class="source-head">
+        <div><h2>참고 자료와 미디어 출처</h2><p>공식 문서, 연구 원문, 공식 영상과 재사용 가능한 사진만 실제 사용 범위에 맞춰 정리했습니다.</p></div>
+        <button class="btn btn-ghost" type="button" onclick="window.print()">전체 PDF 저장</button>
+      </div>
+      <div class="source-grid">
+        
+      <a class="source-link" id="source-1" href="https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api" target="_blank" rel="noopener noreferrer">
+        <span>OFFICIAL · 2026-08-08 확인</span>
+        <strong>OpenAI · Best practices for prompt engineering with the OpenAI API</strong>
+      </a>
+    
+
+      <a class="source-link" id="source-2" href="https://help.openai.com/en/articles/8096356-chatgpt-custom-instructions" target="_blank" rel="noopener noreferrer">
+        <span>OFFICIAL · 2026-08-08 확인</span>
+        <strong>OpenAI · ChatGPT Custom Instructions</strong>
+      </a>
+    
+
+      <a class="source-link" id="source-3" href="https://help.openai.com/en/articles/11899719-customizing-your-chatgpt-personality" target="_blank" rel="noopener noreferrer">
+        <span>OFFICIAL · 2026-08-08 확인</span>
+        <strong>OpenAI · Customizing Your ChatGPT Personality</strong>
+      </a>
+    
+
+      <a class="source-link" id="source-4" href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices" target="_blank" rel="noopener noreferrer">
+        <span>OFFICIAL · 2026-08-08 확인</span>
+        <strong>Anthropic · Prompting best practices: Give Claude a role</strong>
+      </a>
+    
+
+      <a class="source-link" id="source-5" href="https://docs.anthropic.com/en/docs/test-and-evaluate/strengthen-guardrails/increase-consistency" target="_blank" rel="noopener noreferrer">
+        <span>OFFICIAL · 2026-08-08 확인</span>
+        <strong>Anthropic · Increase output consistency</strong>
+      </a>
+    
+
+      <a class="source-link" id="source-6" href="https://arxiv.org/abs/2311.10054" target="_blank" rel="noopener noreferrer">
+        <span>RESEARCH · 2023/2024</span>
+        <strong>Zheng et al. · Personas in system prompts do not consistently improve factual performance</strong>
+      </a>
+    
+
+      <a class="source-link" id="source-7" href="https://arxiv.org/abs/2507.16076" target="_blank" rel="noopener noreferrer">
+        <span>RESEARCH · 2025</span>
+        <strong>Lutz et al. · Sociodemographic persona prompting and representation risks</strong>
+      </a>
+    
+
+      <a class="source-link" id="source-8" href="https://www.marvel.com/movies/iron-man" target="_blank" rel="noopener noreferrer">
+        <span>OFFICIAL MEDIA</span>
+        <strong>Marvel · Iron Man (2008) official movie page</strong>
+      </a>
+    
+
+      <a class="source-link" id="source-9" href="https://www.youtube.com/watch?v=Ke1Y3P9D0Bc" target="_blank" rel="noopener noreferrer">
+        <span>OFFICIAL VIDEO</span>
+        <strong>Marvel UK · Iron Man 3 official trailer</strong>
+      </a>
+    
+
+      <a class="source-link" id="source-10" href="https://www.youtube.com/watch?v=XsQqMwacZQw" target="_blank" rel="noopener noreferrer">
+        <span>OFFICIAL VIDEO</span>
+        <strong>Warner Bros. · Her official trailer</strong>
+      </a>
+    
+
+      <a class="source-link" id="source-11" href="https://www.youtube.com/watch?v=fy2QBpX9XrU" target="_blank" rel="noopener noreferrer">
+        <span>OFFICIAL VIDEO</span>
+        <strong>Star Wars · C-3PO and R2-D2: Icons of the Force</strong>
+      </a>
+    
+
+      <a class="source-link" id="source-12" href="https://commons.wikimedia.org/wiki/File:ISS-57_CIMON_in_the_Columbus_lab_(cropped).jpg" target="_blank" rel="noopener noreferrer">
+        <span>PUBLIC DOMAIN · NASA</span>
+        <strong>NASA · CIMON AI-powered robotic assistant on the ISS</strong>
+      </a>
+    
+
+      <a class="source-link" id="source-13" href="https://commons.wikimedia.org/wiki/File:Pepper_humanoid_robot_-_Japan_-_August_2014_.jpg" target="_blank" rel="noopener noreferrer">
+        <span>PHOTO · CC BY 3.0</span>
+        <strong>Wikimedia Commons · Pepper humanoid robot photo by nesnad</strong>
+      </a>
+    
+
+      <a class="source-link" id="source-14" href="https://commons.wikimedia.org/wiki/File:US_Navy_101109-N-7676W-127_Greg_Trafton,_center,_a_cognitive_scientist_with_the_Naval_Research_Laboratory,_discusses_Octavia,_left,.jpg" target="_blank" rel="noopener noreferrer">
+        <span>PUBLIC DOMAIN · U.S. NAVY</span>
+        <strong>Wikimedia Commons · Octavia human–robot interaction research photo</strong>
+      </a>
+    
+      </div>
+      <div class="footer-bottom"><span id="footerTitle">AI Persona Guide · AIHUBOS ReportMode</span><span id="footerMeta">AI-assisted · 2026.08</span></div>
+
+      <div class="report-history" id="history" aria-labelledby="history-title">
+        <div class="history-head">
+          <div><h2 id="history-title">버전 및 업데이트 히스토리</h2><p>보고서 내용이 바뀔 때 변경 범위와 이유를 누적 기록합니다.</p></div>
+          <span class="version-badge" id="historyCurrentVersion">Current v1.0.0</span>
+        </div>
+        <div class="history-table-wrap">
+          <table class="history-table">
+            <thead><tr><th>버전</th><th>업데이트일</th><th>변경 구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr></thead>
+            <tbody id="historyBody"><tr><td colspan="5" class="history-empty">변경 이력을 불러오는 중입니다.</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="floating-actions" aria-label="빠른 작업">
+    <button class="float-btn" type="button" id="toTop" aria-label="맨 위로 이동"><svg viewBox="0 0 24 24" fill="none"><path d="m6 14 6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="float-btn" type="button" onclick="window.print()" aria-label="PDF로 저장"><svg viewBox="0 0 24 24" fill="none"><path d="M7 9V4h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M7 14h10v6H7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></button>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite">복사했습니다.</div>
+
+  <script id="report-metadata" type="application/json">
+{
+  "schemaVersion": "1.0",
+  "reportId": "260808-ai-persona-prompting-intro",
+  "title": "AI에게 '말투'를 가르칠 수 있을까? | 페르소나 설정과 프롬프트 엔지니어링 입문",
+  "version": "1.0.0",
+  "status": "Published",
+  "createdAt": "2026-08-08",
+  "updatedAt": "2026-08-08",
+  "language": "ko-KR",
+  "author": "Jeremy Lee",
+  "generation": "AI-assisted",
+  "reviewStatus": "Human review recommended",
+  "history": [
+    {
+      "version": "1.0.0",
+      "date": "2026-08-08",
+      "type": "신규 작성",
+      "summary": "AI 말투 제어의 원리, 1장 요약, 10분 설정 흐름, 영화 속 AI 비유, 실사 사진·공식 영상, 19개 복사용 페르소나와 인터랙티브 빌더를 포함한 입문 보고서를 최초 작성함.",
+      "sections": [
+        "One-page summary",
+        "Core concepts",
+        "Archetypes",
+        "Persona builder",
+        "Prompt library",
+        "Risks & sources"
+      ],
+      "updatedBy": "AI-assisted",
+      "reviewStatus": "검토 권장"
+    }
+  ]
+}
+  </script>
+
+  <script>
     const progress = document.getElementById('scrollProgress');
     const toTop = document.getElementById('toTop');
     const toast = document.getElementById('toast');
@@ -1700,59 +1793,5 @@
     }
     renderReportMetadata();
   </script>
-<section aria-labelledby="rm-history-title" class="rm-history" id="rmHistory">
-<div class="rm-wrap">
-<div class="rm-history-head"><div><div class="rm-kicker">VERSION &amp; CHANGE LOG</div><h2 id="rm-history-title">버전 및 변경 이력</h2><p>최신 기록이 위에 오며, 과거 이력은 삭제하지 않습니다.</p></div><span class="rm-chip" id="rmHistoryVersion">Current v1.1.0</span></div>
-<div class="rm-history-table-wrap"><table class="rm-history-table"><thead><tr><th>버전</th><th>업데이트일</th><th>변경 구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr></thead><tbody id="rmHistoryBody"><tr><td>v1.1.0</td><td>2026.08.08</td><td>내용·출처·디자인 통합 업데이트</td><td>2026년 8월 8일 기준 최신 공식 자료를 대조하고, ‘템플릿 보강’ 내용을 추가함. 공통 요약·미디어·출처·변경 이력 형식과 반응형·인쇄·접근성 규칙을 통일함.</td><td><span class="rm-status">AI-assisted · 자동 QA 완료 · 사람 검토 권장</span></td></tr><tr><td>v1.0.0</td><td>2026.08.08</td><td>신규 작성</td><td>AI 말투 제어의 원리, 1장 요약, 10분 설정 흐름, 영화 속 AI 비유, 실사 사진·공식 영상, 19개 복사용 페르소나와 인터랙티브 빌더를 포함한 입문 보고서를 최초 작성함.</td><td><span class="rm-status">AI-assisted · 검토 권장</span></td></tr></tbody></table></div>
-<div class="rm-integrity-note"><strong>검증 상태:</strong> 로컬 이미지 경로, 메타데이터 JSON, 버전 렌더링, 360px 반응형, A4 인쇄 규칙을 자동 점검했습니다. 가격·운영시간·구매·예약·의료·보안 판단은 배포 전 담당자의 최종 확인을 권장합니다.</div>
-</div>
-</section><script id="report-metadata" type="application/json">
-{
-  "schemaVersion": "1.0",
-  "reportId": "260808-ai-persona-prompting-intro",
-  "title": "AI에게 '말투'를 가르칠 수 있을까? | 페르소나 설정과 프롬프트 엔지니어링 입문",
-  "version": "1.1.0",
-  "status": "Published",
-  "createdAt": "2026-08-08",
-  "updatedAt": "2026-08-08",
-  "language": "ko-KR",
-  "author": "Jeremy Lee",
-  "generation": "AI-assisted",
-  "reviewStatus": "Human review recommended",
-  "history": [
-    {
-      "version": "1.1.0",
-      "date": "2026-08-08",
-      "type": "내용·출처·디자인 통합 업데이트",
-      "summary": "2026년 8월 8일 기준 최신 공식 자료를 대조하고, ‘템플릿 보강’ 내용을 추가함. 공통 요약·미디어·출처·변경 이력 형식과 반응형·인쇄·접근성 규칙을 통일함.",
-      "sections": [
-        "1페이지 요약",
-        "최신 검증",
-        "미디어·예시",
-        "출처",
-        "변경 이력",
-        "반응형·인쇄"
-      ],
-      "updatedBy": "AI-assisted",
-      "reviewStatus": "자동 QA 완료 · 사람 검토 권장"
-    },
-    {
-      "version": "1.0.0",
-      "date": "2026-08-08",
-      "type": "신규 작성",
-      "summary": "AI 말투 제어의 원리, 1장 요약, 10분 설정 흐름, 영화 속 AI 비유, 실사 사진·공식 영상, 19개 복사용 페르소나와 인터랙티브 빌더를 포함한 입문 보고서를 최초 작성함.",
-      "sections": [
-        "One-page summary",
-        "Core concepts",
-        "Archetypes",
-        "Persona builder",
-        "Prompt library",
-        "Risks & sources"
-      ],
-      "updatedBy": "AI-assisted",
-      "reviewStatus": "검토 권장"
-    }
-  ]
-}
-</script><script defer="True" src="assets/reportmode-unified-20260808.js"></script></body>
+</body>
 </html>

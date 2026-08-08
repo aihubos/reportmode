@@ -1,15 +1,5 @@
 # Report Mode Skill Builder
 
-## 2026-08-08 보고서 통합 업데이트
-
-- 전체 HTML 보고서·가이드 45개 중 실내용 42개를 최신 공식 자료와 공통 AIHUBOS ReportMode 형식으로 업데이트했습니다.
-- 외부 원문으로 연결되는 단순 링크형 3개는 콘텐츠 업데이트 대상에서 제외하고 링크 상태를 유지했습니다.
-- 모든 실내용 보고서에 1페이지 요약, 로컬 이미지, 공식 데모·자료 링크, 실제 예시, `report-metadata`, 누적 변경 이력, 모바일·A4 인쇄 규칙을 적용했습니다.
-- 전체 도서관: [`archive/index.html`](./archive/index.html)
-- 업데이트 감사 보고서: [`UPDATE_AUDIT_20260808.md`](./UPDATE_AUDIT_20260808.md)
-- 자동 검증용 데이터: [`UPDATE_AUDIT_20260808.json`](./UPDATE_AUDIT_20260808.json)
-
-
 Hermes가 사용할 보고서 스킬의 디자인과 작성 규칙을 화면에서 만드는 도구입니다.
 
 - 공개 제작기: https://aihubos.github.io/reportmode/

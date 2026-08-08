@@ -4,9 +4,9 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="GPT-5.6 Sol·Terra·Luna 실사용 가이드 — 2026년 8월 8일 최신 공식 자료와 사진·영상·예시·변경 이력을 반영한 AIHUBOS ReportMode 보고서" name="description"/>
+<meta content="GPT-5.6 Sol, Terra, Luna의 특성, 토큰 한도, 가격 인하, Codex 사용량과 모델 라우팅 실전 가이드" name="description"/>
 <meta content="light" name="color-scheme"/>
-<title>GPT-5.6 Sol·Terra·Luna 실사용 가이드 · v1.1.0</title>
+<title>260802 · GPT-5.6 Sol·Terra·Luna 실사용 가이드 — Report Mode</title>
 <style>
     :root{--page:#f5f7fa;--paper:#fff;--text:#191f28;--muted:#6b7684;--accent:#3182f6;--highlight:#ffe066;--line:#e5e8eb;--max:1120px;--radius:18px;--shadow:0 18px 54px rgba(25,31,40,.07);--sans:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,-apple-system,sans-serif}
     *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--page);color:var(--text);font:18px/1.72 var(--sans);word-break:keep-all}a{color:var(--accent);text-underline-offset:3px}img{display:block;max-width:100%}.wrap{width:min(calc(100% - 40px),var(--max));margin:auto}.nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}.nav-inner{min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{font-weight:900;color:var(--text);text-decoration:none}.nav-links{display:flex;gap:18px}.nav-links a{font-size:14px;color:var(--muted);text-decoration:none}.hero{background:#fff;padding:82px 0 70px}.kicker{font-size:13px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}h1,h2,h3,p{margin-top:0}.hero h1{max-width:17ch;margin:16px 0 24px;font-size:clamp(48px,6.2vw,78px);line-height:1.05;letter-spacing:-.055em}.hero h1 span{overflow-wrap:anywhere}.hero .lede{max-width:850px;font-size:26px;line-height:1.5;color:#3d4956}.marker{background:linear-gradient(transparent 62%,rgba(255,224,102,.72) 62%)}.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}.chip{border:1px solid var(--line);border-radius:999px;padding:7px 13px;font-size:14px;color:var(--muted)}main section{padding:62px 0}.section-head{margin-bottom:24px}.section-head h2{font-size:clamp(31px,4vw,47px);line-height:1.18;letter-spacing:-.04em;word-break:normal;overflow-wrap:anywhere}.section-head p{max-width:820px;color:var(--muted);word-break:normal;overflow-wrap:anywhere}.visual-hero{overflow:hidden;margin:0;border:1px solid var(--line);border-radius:22px;background:#fff;box-shadow:var(--shadow)}.visual-hero img{width:100%;height:auto}.visual-hero figcaption{display:flex;justify-content:space-between;gap:16px;padding:15px 20px;font-size:13px;color:var(--muted)}.paper,.callout{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow)}.callout{border-left:5px solid var(--accent);box-shadow:none}.table-wrap{width:100%;overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:#fff}table{width:100%;min-width:820px;border-collapse:collapse;font-size:15px;line-height:1.55}th,td{padding:15px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}thead th{background:#f2f6fc;font-size:13px}tbody th{background:#fbfcfe}.source-section{padding-bottom:80px}.sources{display:block;overflow-x:auto;min-width:0}.sources thead,.sources tbody{display:table;width:100%;min-width:1200px;table-layout:fixed}.sources th:nth-child(1),.sources td:nth-child(1){width:8%}.sources th:nth-child(2),.sources td:nth-child(2){width:19%}.sources th:nth-child(3),.sources td:nth-child(3){width:13%}.sources th:nth-child(4),.sources td:nth-child(4){width:25%}.sources th:nth-child(5),.sources td:nth-child(5){width:9%}.sources th:nth-child(6),.sources td:nth-child(6){width:14%}.sources th:nth-child(7),.sources td:nth-child(7){width:12%}
@@ -56,36 +56,10 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
     @media(max-width:700px){.report-view-switcher-inner{min-height:78px;grid-template-columns:minmax(0,1fr) 76px;gap:10px}.report-view-label{display:none}.report-view-buttons{min-height:62px;padding:6px}.report-view-buttons::before{left:6px;top:6px;bottom:6px;width:calc((100% - 12px)/2)}.report-view-button{min-height:50px;padding:8px 6px;font-size:17px}.report-utility-controls{width:76px}.report-utility-controls .pdf-save-button{min-height:44px;padding:7px 5px;font-size:11px}.simple-report{padding:10px 0 46px}.simple-overview{padding:24px 20px}.simple-overview h2{font-size:30px}.simple-summary-content{grid-template-columns:1fr;gap:12px}.simple-summary-block{min-height:0;padding:18px}.simple-summary-block h3{font-size:19px}.simple-summary-block p{font-size:15px}}
     @media(prefers-reduced-motion:reduce){.report-view-buttons::before,.report-view-button,.simple-detail-button{transition:none!important}}
     @media print{.report-view-switcher,.report-utility-controls{display:none!important}body[data-report-view="simple"] .detail-report,body[data-report-view="simple"] #sources{display:none!important}body[data-report-view="simple"] .hero{padding:4mm 0 3mm;break-after:auto}body[data-report-view="simple"] .hero h1{font-size:28pt}body[data-report-view="simple"] .top-conclusion{margin-top:5mm}body[data-report-view="simple"] .top-conclusion-card{padding:4mm 5mm}body[data-report-view="simple"] .verdict-line{padding:2.4mm 0;font-size:12.5pt;line-height:1.4}body[data-report-view="simple"] .hero .lede{margin-top:4mm;font-size:12pt}body[data-report-view="simple"] .meta{margin-top:3mm}body[data-report-view="simple"] .simple-report{display:block!important;padding:4mm 0 0;break-before:page;page-break-before:always}body[data-report-view="simple"] .simple-overview{padding:4mm 5mm;border:0;box-shadow:none;break-inside:auto}body[data-report-view="simple"] .simple-overview h2{margin-bottom:4mm;font-size:20pt}body[data-report-view="simple"] .simple-summary-content{display:grid;grid-template-columns:1fr 1fr;gap:3.5mm}body[data-report-view="simple"] .simple-summary-block{min-height:0;padding:4mm;border-radius:4mm;break-inside:avoid}body[data-report-view="simple"] .simple-summary-index{height:5mm;margin-bottom:2mm;font-size:7.5pt}body[data-report-view="simple"] .simple-summary-block h3{margin-bottom:1.5mm;font-size:12.5pt}body[data-report-view="simple"] .simple-summary-block p{font-size:9.3pt;line-height:1.5}body[data-report-view="simple"] .simple-detail-button{display:none!important}body[data-report-view="detail"] .simple-report{display:none!important}body[data-report-view="detail"] .detail-report{display:block!important}}
-  </style><!--Report Mode v4.3: detail default + two-page brief + Apple segmented control--> <link href="../assets/report-page-layout.css?v=20260807c-wide-default" rel="stylesheet"/>
-<link href="assets/reportmode-unified-20260808.css" rel="stylesheet"/><meta content="../assets/260802-gpt-5-6-guide/sol-terra-luna-workflow.png" property="og:image"/><meta content="2026-08-08" name="report:updated"/></head>
-<body class="reportmode-unified" data-report-cover="../assets/260802-gpt-5-6-guide/sol-terra-luna-workflow.png" data-report-cover-alt="GPT-5.6 Sol, Terra, Luna의 역할과 계획, 구현, 검수 흐름을 표현한 다크 테크 인포그래픽" data-report-id="260802-gpt-5-6-sol-terra-luna-guide" data-report-layout="wide" data-report-view="detail"><a class="rm-skip" href="#rmUpdateSummary">최신 요약으로 건너뛰기</a><div class="rm-topline" id="rmTopline"><div class="rm-topline-inner">
-<a class="rm-topline-brand" href="../archive/"><span class="rm-topline-mark">R</span><span class="rm-topline-title">GPT-5.6 Sol·Terra·Luna 실사용 가이드</span></a>
-<div class="rm-topline-meta"><span class="rm-chip" id="rmVersionTop">v1.1.0</span><span id="rmUpdated">2026.08.08</span></div>
-<div class="rm-topline-actions"><a href="#rmUpdateSummary">요약</a><a href="#rmHistory">이력</a><button aria-label="PDF 저장" data-rm-print="" type="button">PDF</button></div>
-</div></div><section aria-labelledby="rm-update-title" class="rm-brief" id="rmUpdateSummary">
-<div class="rm-wrap rm-brief-grid">
-<div>
-<div class="rm-kicker">2026.08.08 VERIFIED UPDATE · 공식 자료 확인</div>
-<h2 id="rm-update-title">GPT-5.6 Sol·Terra·Luna 실사용 가이드<br/><span style="color:var(--rm-blue)">이번 업데이트의 한 문장 결론</span></h2>
-<p class="rm-brief-lead">기존 보고서를 보존하면서 최신 공식 자료, 실제 적용 예시, 미디어, 출처, 변경 이력을 공통 ReportMode 형식으로 보강했습니다.</p>
-<div class="rm-verdict"><span aria-hidden="true" class="rm-verdict-icon">✓</span><div><strong>Sol은 최고 난도, Terra는 기본 업무, Luna는 대량·저비용 처리라는 역할 구분이 가장 실용적입니다.</strong></div></div>
-<div class="rm-summary-cards">
-<article class="rm-summary-card"><b>01 · FACT</b><h3>공식 역할</h3><p>OpenAI는 Sol을 최고 성능, Terra를 지능·비용 균형, Luna를 고빈도 효율형 모델로 안내합니다.</p></article>
-<article class="rm-summary-card"><b>02 · UPDATE</b><h3>가격·속도 변경</h3><p>7월 30일 Luna 가격은 80%, Terra는 20% 인하됐고, 8월 5일부터 272K 초과 장문도 Fast mode를 지원합니다.</p></article>
-<article class="rm-summary-card"><b>03 · ACTION</b><h3>모델 전환</h3><p>gpt-5.2/5.3-chat-latest는 8월 10일 종료 예정이므로 API·자동화의 모델명을 점검하세요.</p></article>
-</div>
-<div class="rm-brief-actions">
-<a class="rm-action rm-action-primary" href="#rmMedia">사진·영상·예시 보기</a>
-<a class="rm-action" href="#rmHistory">변경 이력 보기</a>
-<a class="rm-action" href="../archive/">보고서 도서관</a>
-</div>
-</div>
-<article class="rm-visual-card">
-<figure><img alt="GPT-5.6 Sol, Terra, Luna의 역할과 계획, 구현, 검수 흐름을 표현한 다크 테크 인포그래픽" decoding="async" loading="eager" src="../assets/260802-gpt-5-6-guide/sol-terra-luna-workflow.png"/><figcaption><span>공식 로고 또는 보고서 관련 이미지</span><span id="rmVersion">v1.1.0</span></figcaption></figure>
-</article>
-</div>
-</section><section aria-label="상세 본문 기준일 안내" class="rm-detail-note" id="rmDetailedContentNote"><div class="rm-detail-note-inner"><span aria-hidden="true" class="rm-detail-note-icon">i</span><div><strong>상세 본문 읽기:</strong> 아래 영역은 기존 보고서의 상세 분석과 근거를 보존한 내용입니다. 날짜·가격·버전·출시 상태가 상단의 <strong>2026.08.08 검증 요약</strong>과 다르면 상단 확인값이 우선하며, 중요한 결정은 연결된 공식 원문을 다시 확인하세요.</div></div></section>
-<a aria-label="보고서 도서관 메인으로 이동" class="report-home-button" href="../archive/">🏠 메인</a>
+  </style><!--Report Mode v4.3: detail default + two-page brief + Apple segmented control-->  <link rel="stylesheet" href="../assets/report-page-layout.css?v=20260807c-wide-default">
+</head>
+<body data-report-view="detail" data-report-layout="wide">
+  <a class="report-home-button" href="../archive/" aria-label="보고서 도서관 메인으로 이동">🏠 메인</a>
 <nav aria-label="보고서 탐색" class="nav"><div class="wrap nav-inner"><a class="brand" href="../archive/">RM · Report Mode</a><div class="nav-links"><a href="#summary">요약</a><a href="#comparison">비교</a><a href="#decision">판단</a><a href="#sources">출처</a></div></div></nav><section aria-label="보고서 보기 방식" class="report-view-switcher"><div class="wrap report-view-switcher-inner"><span class="report-view-label">보고서 보기</span><div aria-label="간단 또는 상세 보기" class="report-view-buttons" role="group"><button aria-pressed="false" class="report-view-button" data-report-view-target="simple" type="button">간단</button><button aria-pressed="true" class="report-view-button is-active" data-report-view-target="detail" type="button">상세</button></div><div aria-label="보고서 저장 도구" class="report-utility-controls"><button aria-label="현재 보고서 보기를 A4 PDF로 저장" class="pdf-save-button" id="report-pdf-button" type="button">PDF 저장</button></div></div></section>
 <nav aria-label="보고서 바로가기" class="floating-menu"><a class="floating-action" href="#summary">핵심 내용 한눈에 보기</a><a class="floating-action" href="#comparison">핵심 항목 비교</a><a class="floating-action" href="#decision">상황별 선택 기준</a><a class="floating-action" href="#cost-examples">비용 계산 예시</a><a class="floating-action" href="#task-router">작업별 모델 추천</a><a class="floating-action" href="#practical-tips">실전 운영 팁</a><a class="floating-action" href="#sources">전체 출처 확인</a></nav>
 <header class="hero"><div class="wrap"><div class="kicker">AI Model Field Guide · Cost &amp; Workflow</div><h1><span>GPT-5.6 </span><span>Sol · Terra · Luna </span><span>실사용 가이드</span></h1>
@@ -94,9 +68,9 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
 <p class="verdict-line"><span class="verdict-num">01</span><span class="verdict-text"><mark class="highlight-sweep">Terra 기본·Sol 고위험·Luna 반복 구현</mark>으로 역할을 나누는 방식이 가장 효율적입니다.</span></p>
 <p class="verdict-line"><span class="verdict-num">02</span><span class="verdict-text">같은 토큰 기준 <mark class="highlight-sweep">Luna는 Sol의 1/25 비용</mark>이지만 재설계가 반복되면 절감 효과가 사라집니다.</span></p>
 <p class="verdict-line"><span class="verdict-num">03</span><span class="verdict-text"><mark class="highlight-sweep">Sol로 명세→Luna로 실행</mark>하고 불확실성이 생기면 상위 모델과 사람 검수로 되돌리세요.</span></p>
-</div></section><p class="lede">세 모델의 <span class="marker">품질·속도·비용 역할</span>을 분리하고, 최근 Luna 가격 인하와 Sol max 계획 → Luna 구현 전략을 실제 토큰 계산으로 검증했습니다.</p><div class="meta"><span class="chip"><strong>260802</strong> · 표준 심층</span><span class="chip">2026.08.08 KST</span><span class="chip">공식 문서·가격표 우선 · API와 구독 분리 · 계산 검증</span></div></div></header>
+</div></section><p class="lede">세 모델의 <span class="marker">품질·속도·비용 역할</span>을 분리하고, 최근 Luna 가격 인하와 Sol max 계획 → Luna 구현 전략을 실제 토큰 계산으로 검증했습니다.</p><div class="meta"><span class="chip"><strong>260802</strong> · 표준 심층</span><span class="chip">2026.08.02 KST</span><span class="chip">공식 문서·가격표 우선 · API와 구독 분리 · 계산 검증</span></div></div></header>
 <section aria-labelledby="simple-report-title" class="simple-report" data-simple-pages="2" id="simple-report"><div class="wrap"><div class="simple-overview"><div class="eyebrow">TWO-PAGE EXECUTIVE BRIEF</div><h2 id="simple-report-title">2페이지 핵심 요약</h2><div class="simple-summary-content"><article class="simple-summary-block"><span class="simple-summary-index">01</span><h3>판단의 배경</h3><p>최고 모델을 계속 쓰는 대신 오류 비용이 큰 구간에만 지능을 집중하면 품질을 지키면서 사용량을 크게 줄일 수 있습니다. 가장 효율적인 기본 라우팅은 ‘Terra medium → 필요할 때 Sol high/max → 명세가 굳으면 Luna low~max’입니다. 사용자가 제안한 Sol max로 계획하고 Luna max로 구현 하는 방식은 충분히 실용적입니다. 다만 Luna가 다시 설계 판단까지 해야 하는 순간에는 절감 효과가 반복 수정으로 사라지므로, 계획서·완료 조건·테스트가 명확한 작업에 한정해야 합니다.</p></article><article class="simple-summary-block"><span class="simple-summary-index">02</span><h3>핵심 비교와 근거</h3><p>기능 한도는 거의 같지만 권장 업무와 단가가 크게 다릅니다. 2026년 7월 30일 Terra·Luna 가격이 인하됐습니다. 복잡한 전문 업무용 프런티어 모델 모호한 문제, 설계, 장기 추론, 고난도 코딩·리뷰 일상 코딩, 보고서, 문서 분석, 판단이 필요한 실행 분류, 추출, 지원, 자동화, 좁은 범위의 코딩 OpenAI는 gpt-5.6 별칭을 Sol로 라우팅합니다. 모든 사용처를 별칭으로 통일하면 비용 민감 경로까지 Sol이 될 수 있으므로 역할별 명시적 모델 ID가 안전합니다. OpenAI RSS는 2026년 7월 30일 19:00 KST(10:00 UTC)에 Terra·Luna의 가격 인하 글을 게시했습니다.</p></article><article class="simple-summary-block"><span class="simple-summary-index">03</span><h3>선택 기준과 판단</h3><p>계획이 실행 계약으로 고정되고 검증 명령이 있을 때 강합니다. Luna가 다시 설계해야 하면 Terra나 Sol로 판단을 올려야 합니다. 목표·비목표, 현재 상태, 파일과 인터페이스, 실패 모드, 완료 조건, 테스트, 롤백을 결정합니다. 단순 작업이면 max 대신 high 또는 medium으로 낮춥니다. Luna가 다시 설계하지 않도록 변경 목록, 금지 사항, 명령, 기대 출력, 승인 경계를 짧은 실행 계약으로 남깁니다. 기계적 수정은 low/medium, 여러 파일과 도구 사용은 high, 어려운 구현만 max로 올립니다. 각 단계 후 테스트를 실제 실행합니다.</p></article><article class="simple-summary-block"><span class="simple-summary-index">04</span><h3>주의점과 다음 행동</h3><p>세 모델 모두 텍스트·이미지 입력, 텍스트 출력, 1.05M 컨텍스트, 922K 최대 입력, 128K 최대 출력을 지원하며 지식 컷오프는 2026년 2월 16일입니다. 272K를 초과한 입력 은 해당 요청 전체가 입력 2배·출력 1.5배 단가로 계산됩니다. 캐시 읽기와 캐시 쓰기도 장문 입력 배율의 영향을 받습니다. 긴 문서를 무조건 한 번에 넣기보다 검색·요약·작업 단위 분할을 먼저 검토해야 합니다. 추론 토큰 은 화면에 보이지 않아도 컨텍스트를 차지하고 출력 단가로 청구됩니다. max 와 pro 는 토큰 상한이 아니라 더 많은 모델 작업을 허용하는 품질 설정입니다.</p></article></div><button class="simple-detail-button" data-report-view-target="detail" type="button">상세 근거 전체 보기</button></div></div></section><main class="detail-report">
-<section aria-labelledby="visual-title"><div class="wrap"><figure class="visual-hero"><img alt="GPT-5.6 Sol, Terra, Luna의 역할과 계획, 구현, 검수 흐름을 표현한 다크 테크 인포그래픽" decoding="async" loading="lazy" src="../assets/260802-gpt-5-6-guide/sol-terra-luna-workflow.png"/><figcaption id="visual-title"><b>AI 생성 인포그래픽 · 공식 제품 이미지 아님</b><span>Sol은 전략, Terra는 균형, Luna는 빠른 실행 · 마지막 결정은 사람 검수</span></figcaption></figure></div></section>
+<section aria-labelledby="visual-title"><div class="wrap"><figure class="visual-hero"><img alt="GPT-5.6 Sol, Terra, Luna의 역할과 계획, 구현, 검수 흐름을 표현한 다크 테크 인포그래픽" src="../assets/260802-gpt-5-6-guide/sol-terra-luna-workflow.png"/><figcaption id="visual-title"><b>AI 생성 인포그래픽 · 공식 제품 이미지 아님</b><span>Sol은 전략, Terra는 균형, Luna는 빠른 실행 · 마지막 결정은 사람 검수</span></figcaption></figure></div></section>
 <section id="summary"><div class="wrap"><div class="section-head"><h2>한 문장 판단: Terra를 기본으로, Sol은 결정에, Luna는 반복 실행에 쓰세요</h2><p>최고 모델을 계속 쓰는 대신 오류 비용이 큰 구간에만 지능을 집중하면 품질을 지키면서 사용량을 크게 줄일 수 있습니다.</p></div><div class="paper"><div class="highlight-box">
 <p><strong>가장 효율적인 기본 라우팅은 ‘Terra medium → 필요할 때 Sol high/max → 명세가 굳으면 Luna low~max’입니다.</strong> 사용자가 제안한 <span class="marker">Sol max로 계획하고 Luna max로 구현</span>하는 방식은 충분히 실용적입니다. 다만 Luna가 다시 설계 판단까지 해야 하는 순간에는 절감 효과가 반복 수정으로 사라지므로, 계획서·완료 조건·테스트가 명확한 작업에 한정해야 합니다.</p>
 </div>
@@ -245,90 +219,32 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
 </ol>
 </div></section>
 <section id="limitations"><div class="wrap"><div class="section-head"><h2>한계와 최종 판단</h2><p>공개 수치와 권장 워크플로의 경계를 분리했습니다.</p></div><div class="paper"><ul class="risk-list">
-<li>모델 설명과 가격·한도는 2026년 8월 8일 공개 문서 기준이며 바뀔 수 있습니다.</li>
+<li>모델 설명과 가격·한도는 2026년 8월 2일 공개 문서 기준이며 바뀔 수 있습니다.</li>
 <li>OpenRouter 벤치마크는 max 설정과 특정 공급자·평가 조건의 제3자 수치입니다. 실제 코드베이스의 성공률을 보장하지 않습니다.</li>
-<li>OpenAI API Changelog에서 Luna 80%, Terra 20% 인하를 확인했고, 계산은 2026년 8월 8일 공식 Pricing의 Standard 단가(Terra 입력 $2·출력 $12, Luna 입력 $0.20·출력 $1.20)를 기준으로 했습니다.</li>
+<li>OpenAI의 7월 30일 공식 게시물은 Terra·Luna의 인하 사실을 확인하지만 현재 RSS 설명에는 변경 전 숫자와 인하율이 포함되지 않습니다. 따라서 그 수치는 보고서에서 확정하지 않았습니다.</li>
 <li>모델 선택 규칙은 출발점입니다. 중요 업무는 대표 과제 10–30개로 품질·시간·비용을 직접 평가해야 합니다.</li>
 </ul></div></div></section>
 </main>
-<details class="source-section" id="sources"><summary class="wrap sources-summary"><span class="sources-summary-text">전체 출처</span><span class="sources-summary-hint"><span class="sources-toggle-closed">클릭하여 펼치기</span><span class="sources-toggle-open">접기</span></span></summary><div class="wrap source-content"><div class="section-head"><h2>전체 출처</h2><p>사실·분석·전망·루머, 시각자료와 생성 이미지의 상태를 함께 기록했습니다.</p></div><div aria-label="표를 가로로 스크롤하여 확인" class="rm-table-scroll" role="region" tabindex="0"><table class="sources"><thead><tr><th>유형</th><th>자료명</th><th>제공자·저작자</th><th>원문</th><th>날짜</th><th>라이선스·상태</th><th>사용 범위</th></tr></thead><tbody>
-<tr><td>공식 모델 문서</td><td>GPT-5.6 Sol</td><td>OpenAI</td><td><a href="https://developers.openai.com/api/docs/models/gpt-5.6-sol" rel="noopener noreferrer" target="_blank">원문 보기</a></td><td>2026-08-02 확인</td><td>공식 공개 문서</td><td>역할, 컨텍스트, 현재 단가, 272K 프리미엄</td></tr>
-<tr><td>공식 모델 문서</td><td>GPT-5.6 Terra</td><td>OpenAI</td><td><a href="https://developers.openai.com/api/docs/models/gpt-5.6-terra" rel="noopener noreferrer" target="_blank">원문 보기</a></td><td>2026-08-02 확인</td><td>공식 공개 문서</td><td>mini 대응, 현재 $2/$0.2/$12</td></tr>
-<tr><td>공식 모델 문서</td><td>GPT-5.6 Luna</td><td>OpenAI</td><td><a href="https://developers.openai.com/api/docs/models/gpt-5.6-luna" rel="noopener noreferrer" target="_blank">원문 보기</a></td><td>2026-08-02 확인</td><td>공식 공개 문서</td><td>nano 대응, 현재 $0.2/$0.02/$1.2</td></tr>
-<tr><td>공식 사용 가이드</td><td>Using GPT-5.6</td><td>OpenAI</td><td><a href="https://developers.openai.com/api/docs/guides/latest-model/gpt-5.6" rel="noopener noreferrer" target="_blank">원문 보기</a></td><td>2026-08-02 확인</td><td>공식 공개 문서</td><td>모델 라우팅, effort, pro, 캐시, lean prompt</td></tr>
-<tr><td>공식 추론 가이드</td><td>Reasoning models</td><td>OpenAI</td><td><a href="https://developers.openai.com/api/docs/guides/reasoning" rel="noopener noreferrer" target="_blank">원문 보기</a></td><td>2026-08-02 확인</td><td>공식 공개 문서</td><td>effort 단계, 추론 토큰, standard/pro</td></tr>
-<tr><td>공식 가격 문서</td><td>Codex pricing</td><td>OpenAI</td><td><a href="https://developers.openai.com/codex/pricing" rel="noopener noreferrer" target="_blank">원문 보기</a></td><td>2026-08-02 확인</td><td>공식 공개 문서</td><td>Plus/Pro 가격과 5시간 메시지 범위</td></tr>
-<tr><td>공식 뉴스 피드</td><td>Advancing the price-performance frontier with GPT-5.6</td><td>OpenAI</td><td><a href="https://openai.com/news/rss.xml" rel="noopener noreferrer" target="_blank">원문 보기</a></td><td>2026-07-30 10:00 UTC</td><td>공식 RSS</td><td>Terra·Luna 가격 인하 발표일과 설명</td></tr>
-<tr><td>공급 플랫폼</td><td>Discounted AI Models</td><td>OpenRouter</td><td><a href="https://openrouter.ai/collections/discounted-models" rel="noopener noreferrer" target="_blank">원문 보기</a></td><td>2026-08-02 확인</td><td>한시 프로모션 · 종료일 미공개</td><td>Terra/Luna 50% 할인 단가</td></tr>
-<tr><td>제3자 집계</td><td>GPT-5.6 model pages</td><td>OpenRouter / Artificial Analysis</td><td><a href="https://openrouter.ai/openai/gpt-5.6-sol" rel="noopener noreferrer" target="_blank">원문 보기</a></td><td>2026-08-02 확인</td><td>제3자 벤치마크·공급자 집계</td><td>max 성능지표, 지연·처리량 보조 확인</td></tr>
-<tr><td>구현 자료</td><td>Hermes Agent source</td><td>Nous Research</td><td><a href="https://github.com/NousResearch/hermes-agent" rel="noopener noreferrer" target="_blank">원문 보기</a></td><td>2026-08-02 확인</td><td>공개 소스</td><td>Codex OAuth 경로의 272K 컨텍스트 처리</td></tr>
+<details class="source-section" id="sources"><summary class="wrap sources-summary"><span class="sources-summary-text">전체 출처</span><span class="sources-summary-hint"><span class="sources-toggle-closed">클릭하여 펼치기</span><span class="sources-toggle-open">접기</span></span></summary><div class="wrap source-content"><div class="section-head"><h2>전체 출처</h2><p>사실·분석·전망·루머, 시각자료와 생성 이미지의 상태를 함께 기록했습니다.</p></div><table class="sources"><thead><tr><th>유형</th><th>자료명</th><th>제공자·저작자</th><th>원문</th><th>날짜</th><th>라이선스·상태</th><th>사용 범위</th></tr></thead><tbody>
+<tr><td>공식 모델 문서</td><td>GPT-5.6 Sol</td><td>OpenAI</td><td><a href="https://developers.openai.com/api/docs/models/gpt-5.6-sol">원문 보기</a></td><td>2026-08-02 확인</td><td>공식 공개 문서</td><td>역할, 컨텍스트, 현재 단가, 272K 프리미엄</td></tr>
+<tr><td>공식 모델 문서</td><td>GPT-5.6 Terra</td><td>OpenAI</td><td><a href="https://developers.openai.com/api/docs/models/gpt-5.6-terra">원문 보기</a></td><td>2026-08-02 확인</td><td>공식 공개 문서</td><td>mini 대응, 현재 $2/$0.2/$12</td></tr>
+<tr><td>공식 모델 문서</td><td>GPT-5.6 Luna</td><td>OpenAI</td><td><a href="https://developers.openai.com/api/docs/models/gpt-5.6-luna">원문 보기</a></td><td>2026-08-02 확인</td><td>공식 공개 문서</td><td>nano 대응, 현재 $0.2/$0.02/$1.2</td></tr>
+<tr><td>공식 사용 가이드</td><td>Using GPT-5.6</td><td>OpenAI</td><td><a href="https://developers.openai.com/api/docs/guides/latest-model/gpt-5.6">원문 보기</a></td><td>2026-08-02 확인</td><td>공식 공개 문서</td><td>모델 라우팅, effort, pro, 캐시, lean prompt</td></tr>
+<tr><td>공식 추론 가이드</td><td>Reasoning models</td><td>OpenAI</td><td><a href="https://developers.openai.com/api/docs/guides/reasoning">원문 보기</a></td><td>2026-08-02 확인</td><td>공식 공개 문서</td><td>effort 단계, 추론 토큰, standard/pro</td></tr>
+<tr><td>공식 가격 문서</td><td>Codex pricing</td><td>OpenAI</td><td><a href="https://developers.openai.com/codex/pricing">원문 보기</a></td><td>2026-08-02 확인</td><td>공식 공개 문서</td><td>Plus/Pro 가격과 5시간 메시지 범위</td></tr>
+<tr><td>공식 뉴스 피드</td><td>Advancing the price-performance frontier with GPT-5.6</td><td>OpenAI</td><td><a href="https://openai.com/news/rss.xml">원문 보기</a></td><td>2026-07-30 10:00 UTC</td><td>공식 RSS</td><td>Terra·Luna 가격 인하 발표일과 설명</td></tr>
+<tr><td>공급 플랫폼</td><td>Discounted AI Models</td><td>OpenRouter</td><td><a href="https://openrouter.ai/collections/discounted-models">원문 보기</a></td><td>2026-08-02 확인</td><td>한시 프로모션 · 종료일 미공개</td><td>Terra/Luna 50% 할인 단가</td></tr>
+<tr><td>제3자 집계</td><td>GPT-5.6 model pages</td><td>OpenRouter / Artificial Analysis</td><td><a href="https://openrouter.ai/openai/gpt-5.6-sol">원문 보기</a></td><td>2026-08-02 확인</td><td>제3자 벤치마크·공급자 집계</td><td>max 성능지표, 지연·처리량 보조 확인</td></tr>
+<tr><td>구현 자료</td><td>Hermes Agent source</td><td>Nous Research</td><td><a href="https://github.com/NousResearch/hermes-agent">원문 보기</a></td><td>2026-08-02 확인</td><td>공개 소스</td><td>Codex OAuth 경로의 272K 컨텍스트 처리</td></tr>
 <tr><td>AI 생성 이미지</td><td>Sol·Terra·Luna workflow infographic</td><td>OpenAI gpt-image-2-high</td><td>로컬 자산: sol-terra-luna-workflow.png</td><td>2026-08-02</td><td>AI 생성 · 시각 검수 완료</td><td>상단 개념 시각화 · 공식 제품 이미지 아님</td></tr>
-</tbody></table></div></div></details>
+</tbody></table></div></details>
 <script id="report-view-script">
   (()=>{const body=document.body;const buttons=[...document.querySelectorAll('[data-report-view-target]')];const setView=(view,focus=false)=>{if(!['simple','detail'].includes(view))view='detail';body.dataset.reportView=view;buttons.forEach(button=>{const active=button.dataset.reportViewTarget===view;button.classList.toggle('is-active',active);if(button.classList.contains('report-view-button'))button.setAttribute('aria-pressed',String(active))});if(focus){const target=view==='simple'?document.getElementById('simple-report'):document.querySelector('.detail-report');target?.scrollIntoView({block:'start'})}dispatchEvent(new CustomEvent('reportviewchange',{detail:{view}}))};buttons.forEach(button=>button.addEventListener('click',()=>setView(button.dataset.reportViewTarget,true)));const requested=new URLSearchParams(location.search).get('view');setView(requested==='simple'?'simple':'detail')})();
   </script><script id="report-floating-nav-script">(()=>{const nav=document.querySelector('.floating-menu');if(!nav)return;const items=[...nav.querySelectorAll('.floating-action[href^="#"]')].map(link=>({link,target:document.getElementById(decodeURIComponent(link.hash.slice(1)))})).filter(item=>item.target);if(!items.length)return;const activate=item=>{items.forEach(({link})=>{const on=link===item.link;link.classList.toggle('is-active',on);if(on)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current')})};let queued=false;const update=()=>{queued=false;const line=Math.max(86,innerHeight*.32);let current=items[0];for(const item of items){if(item.target.getBoundingClientRect().top<=line)current=item;else break}activate(current)};addEventListener('scroll',()=>{if(!queued){queued=true;requestAnimationFrame(update)}},{passive:true});addEventListener('resize',update);items.forEach(item=>item.link.addEventListener('click',()=>activate(item)));update()})();</script>
 <script id="report-pdf-script">
   (()=>{const button=document.getElementById('report-pdf-button');const sources=document.getElementById('sources');if(!button)return;let prepared=false;let sourceWasOpen=false;const prepare=()=>{if(prepared)return;prepared=true;sourceWasOpen=Boolean(sources?.open);if(sources&&document.body.dataset.reportView==='detail')sources.open=true;button.classList.add('is-printing')};const reset=()=>{if(!prepared)return;if(sources&&!sourceWasOpen)sources.open=false;button.classList.remove('is-printing');prepared=false};button.addEventListener('click',()=>{prepare();requestAnimationFrame(()=>window.print())});addEventListener('beforeprint',prepare);addEventListener('afterprint',reset);addEventListener('focus',()=>{if(prepared)setTimeout(reset,500)})})();
   </script>
-<script src="../assets/report-page-layout.js?v=20260807c-wide-default"></script>
-<script data-report-id="260802-gpt-5-6-sol-terra-luna-guide" src="../assets/report-view-counter.js"></script>
-<section aria-labelledby="rm-media-title" class="rm-media" id="rmMedia">
-<div class="rm-wrap">
-<div class="rm-section-head"><div class="rm-kicker">MEDIA &amp; REAL EXAMPLE</div><h2 id="rm-media-title">실제 이미지·공식 자료·업무 예시를 함께 봅니다</h2><p>이미지는 저장소 내부 파일로 제공해 깨짐을 줄였고, 영상은 기존 보고서의 검증된 링크가 있을 때만 클릭 로드합니다.</p></div>
-<div class="rm-media-grid">
-<article class="rm-media-card rm-media-card-media"><img alt="GPT-5.6 Sol, Terra, Luna의 역할과 계획, 구현, 검수 흐름을 표현한 다크 테크 인포그래픽" decoding="async" loading="lazy" src="../assets/260802-gpt-5-6-guide/sol-terra-luna-workflow.png"/><div class="rm-media-card-copy"><span class="rm-label">RELATED VISUAL</span><h3>GPT-5.6 Sol·Terra·Luna 실사용 가이드 대표 이미지</h3><p>메인 도서관 썸네일과 본문이 같은 로컬 자산을 사용합니다.</p></div></article>
-<article class="rm-media-card"><span class="rm-label">VIDEO / OFFICIAL DEMO</span><h3>영상 또는 공식 데모</h3><div class="rm-video-placeholder"><div><div aria-hidden="true" class="rm-play">↗</div><strong>공식 데모·문서로 확인</strong></div></div><p style="margin-top:16px">검증되지 않은 영상을 임의로 넣지 않고, 공식 원문·데모 페이지를 바로 열 수 있게 구성했습니다.</p><div class="rm-source-list"><a href="https://developers.openai.com/api/docs/changelog" rel="noopener noreferrer" target="_blank">OpenAI API Changelog</a><a href="https://developers.openai.com/api/docs/pricing" rel="noopener noreferrer" target="_blank">OpenAI API Pricing</a></div></article>
-<article class="rm-media-card"><span class="rm-label">PRACTICAL EXAMPLE</span><h3>바로 적용하는 예시</h3><div class="rm-example"><strong>예시 시나리오</strong>예: 전략 초안은 Terra, 최종 난도 높은 검증은 Sol, 수천 건 분류는 Luna로 라우팅합니다.</div><p style="margin-top:16px">보고서의 추천은 작은 범위에서 검증한 뒤 확대하고, 중요한 판단은 원문과 사람 검토를 거칩니다.</p></article>
-</div>
-</div>
-</section><section aria-labelledby="rm-history-title" class="rm-history" id="rmHistory">
-<div class="rm-wrap">
-<div class="rm-history-head"><div><div class="rm-kicker">VERSION &amp; CHANGE LOG</div><h2 id="rm-history-title">버전 및 변경 이력</h2><p>최신 기록이 위에 오며, 과거 이력은 삭제하지 않습니다.</p></div><span class="rm-chip" id="rmHistoryVersion">Current v1.1.0</span></div>
-<div class="rm-history-table-wrap"><table class="rm-history-table"><thead><tr><th>버전</th><th>업데이트일</th><th>변경 구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr></thead><tbody id="rmHistoryBody"><tr><td>v1.1.0</td><td>2026.08.08</td><td>내용·출처·디자인 통합 업데이트</td><td>2026년 8월 8일 기준 최신 공식 자료를 대조하고, ‘가격·속도 변경’ 내용을 추가함. 공통 요약·미디어·출처·변경 이력 형식과 반응형·인쇄·접근성 규칙을 통일함.</td><td><span class="rm-status">AI-assisted · 자동 QA 완료 · 사람 검토 권장</span></td></tr><tr><td>v1.0.0</td><td>2026.08.02</td><td>기존 보고서 이력 복원</td><td>저장소에 존재하던 원본 보고서를 기준 버전으로 복원함.</td><td><span class="rm-status">AI-assisted · 원본 상태</span></td></tr></tbody></table></div>
-<div class="rm-integrity-note"><strong>검증 상태:</strong> 로컬 이미지 경로, 메타데이터 JSON, 버전 렌더링, 360px 반응형, A4 인쇄 규칙을 자동 점검했습니다. 가격·운영시간·구매·예약·의료·보안 판단은 배포 전 담당자의 최종 확인을 권장합니다.</div>
-</div>
-</section><script id="report-metadata" type="application/json">
-{
-  "schemaVersion": "1.0",
-  "reportId": "260802-gpt-5-6-sol-terra-luna-guide",
-  "title": "GPT-5.6 Sol·Terra·Luna 실사용 가이드",
-  "version": "1.1.0",
-  "status": "Published",
-  "createdAt": "2026-08-02",
-  "updatedAt": "2026-08-08",
-  "language": "ko-KR",
-  "author": "Jeremy Lee",
-  "generation": "AI-assisted",
-  "reviewStatus": "Human review recommended",
-  "history": [
-    {
-      "version": "1.1.0",
-      "date": "2026-08-08",
-      "type": "내용·출처·디자인 통합 업데이트",
-      "summary": "2026년 8월 8일 기준 최신 공식 자료를 대조하고, ‘가격·속도 변경’ 내용을 추가함. 공통 요약·미디어·출처·변경 이력 형식과 반응형·인쇄·접근성 규칙을 통일함.",
-      "sections": [
-        "1페이지 요약",
-        "최신 검증",
-        "미디어·예시",
-        "출처",
-        "변경 이력",
-        "반응형·인쇄"
-      ],
-      "updatedBy": "AI-assisted",
-      "reviewStatus": "자동 QA 완료 · 사람 검토 권장"
-    },
-    {
-      "version": "1.0.0",
-      "date": "2026-08-02",
-      "type": "기존 보고서 이력 복원",
-      "summary": "저장소에 존재하던 원본 보고서를 기준 버전으로 복원함.",
-      "sections": [
-        "전체"
-      ],
-      "updatedBy": "AI-assisted",
-      "reviewStatus": "원본 상태"
-    }
-  ]
-}
-</script><script defer="True" src="assets/reportmode-unified-20260808.js"></script></body>
+  <script src="../assets/report-page-layout.js?v=20260807c-wide-default"></script>
+  <script src="../assets/report-view-counter.js" data-report-id="260802-gpt-5-6-sol-terra-luna-guide"></script>
+</body>
 </html>
