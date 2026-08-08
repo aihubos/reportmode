@@ -501,3 +501,34 @@ footer {
   .archive-profile, .archive-board { box-shadow: none; }
   .archive-post[hidden] { display: block; }
 }
+
+
+/* Archive admin delete controls */
+.archive-admin-panel { margin-top: 14px; padding: 12px 14px; border: 1px solid #e7ebf0; border-radius: 14px; background: #fbfcfd; }
+.archive-admin-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.archive-admin-kicker { color: var(--archive-subtle); font-size: 10px; font-weight: 900; letter-spacing: .12em; }
+.archive-admin-head strong { display: block; margin-top: 2px; font-size: 14px; }
+.archive-admin-head-actions { display: flex; gap: 6px; }
+.archive-admin-chip, .archive-admin-submit, .archive-admin-delete {
+  min-height: 32px; padding: 0 11px; border: 1px solid #d7dee7; border-radius: 9px;
+  color: var(--archive-muted); background: #fff; font: inherit; font-size: 12px; font-weight: 800; cursor: pointer;
+}
+.archive-admin-chip:hover, .archive-admin-submit:hover, .archive-admin-delete:hover { color: var(--archive-ink); border-color: #c5ceda; }
+.archive-admin-chip.is-lock { color: #b42318; border-color: #f3c6c2; }
+.archive-admin-form { display: grid; grid-template-columns: 1fr auto; gap: 8px; margin-top: 10px; }
+.archive-admin-form label { display: grid; gap: 5px; color: var(--archive-muted); font-size: 11px; font-weight: 800; }
+.archive-admin-form input { width: 100%; min-height: 36px; padding: 0 11px; border: 1px solid var(--archive-line); border-radius: 10px; font: inherit; }
+.archive-admin-submit { align-self: end; color: #fff; background: var(--archive-blue); border-color: var(--archive-blue); }
+.archive-admin-help { margin: 8px 0 0; color: var(--archive-subtle); font-size: 11px; line-height: 1.45; }
+.archive-admin-status { min-height: 16px; margin: 6px 0 0; color: var(--archive-blue-deep); font-size: 11px; font-weight: 700; }
+.archive-admin-status[data-error="true"] { color: #b42318; }
+.archive-admin-actions { position: absolute; right: 12px; top: 12px; z-index: 3; }
+.archive-post { position: relative; }
+.archive-admin-delete { min-height: 30px; color: #b42318; border-color: #f0c7c3; background: #fff7f6; }
+.archive-post.is-admin-hidden { outline: 1px dashed #f0b4ae; background: #fffaf9; }
+.archive-admin-hidden-badge { display: inline-flex; align-items: center; min-height: 20px; padding: 0 7px; border-radius: 999px; color: #b42318; background: #ffe8e5; font-size: 10px; font-weight: 900; }
+.archive-admin-panel.is-unlocked { border-color: #cfe2ff; background: #f5f9ff; }
+@media (max-width: 720px) {
+  .archive-admin-form { grid-template-columns: 1fr; }
+  .archive-admin-actions { right: 8px; top: 8px; }
+}

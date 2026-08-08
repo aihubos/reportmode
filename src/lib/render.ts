@@ -738,6 +738,10 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
     function render(shouldScroll) {
       var normalizedQuery = state.query.trim().toLocaleLowerCase("ko");
       var filtered = posts.filter(function (post) {
+        var reportId = post.dataset.reportId || "";
+        var hiddenSet = window.reportmodeHiddenReports;
+        var isHidden = (hiddenSet && typeof hiddenSet.has === "function" && hiddenSet.has(reportId)) || post.dataset.adminForceHidden === "true";
+        if (isHidden && !window.reportmodeAdminUnlocked) return false;
         var categoryMatches = state.category === "all" || post.dataset.category === state.category;
         var queryMatches = !normalizedQuery || (post.dataset.search || "").indexOf(normalizedQuery) !== -1;
         return categoryMatches && queryMatches;
@@ -798,10 +802,12 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
         incrementView(post.dataset.reportId || "");
       });
     });
+    window.reportmodeArchiveRender = render;
     render(false);
   })();
   </script>
   <script src="../assets/archive-request-board.js"></script>
+  <script src="../assets/archive-report-admin.js"></script>
 </body>
 </html>
 `;
