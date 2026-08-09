@@ -60,3 +60,11 @@ test("uploaded Hermes and watercourse reports keep their local covers and primar
   assert.match(watercourse, /https:\/\/newsletter\.teaboard\.link\/post\/2026-08-08-wwt1y2/);
   assert.match(security, /data-report-cover="assets\/video-cover-fallback\.png"/);
 });
+
+test("Graphify LLM Wiki guide keeps the official Graphify cover", () => {
+  const graphify = read("reports/260809-graphify-llm-wiki-guide/index.html");
+  const provenance = read("reports/260809-graphify-llm-wiki-guide/assets/THUMBNAIL_PROVENANCE.txt");
+
+  assert.match(graphify, /data-report-cover="assets\/graphify-official-og\.png"/);
+  assert.match(provenance, /https:\/\/graphify\.net\/og\.png/);
+});
