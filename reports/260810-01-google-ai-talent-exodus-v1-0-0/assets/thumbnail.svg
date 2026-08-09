@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">구글 AI 천재들이 떠난다</title>
+<desc id="desc">관료주의인가 전략 재편인가</desc>
+<defs>
+  <linearGradient id="blueGrad" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#1B64DA"/>
+    <stop offset="1" stop-color="#5A9CFF"/>
+  </linearGradient>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+    <feDropShadow dx="0" dy="20" stdDeviation="24" flood-color="#191F28" flood-opacity="0.14"/>
+  </filter>
+  <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+    <path d="M0,0 L12,6 L0,12 Z" fill="#DFFF6A"/>
+  </marker>
+</defs>
+<rect width="1200" height="630" fill="#FFFFFF"/>
+<circle cx="108" cy="86" r="220" fill="#E8F3FF" opacity="0.85"/>
+<circle cx="1065" cy="570" r="245" fill="#F3F7FB"/>
+<path d="M74 510 C260 458 390 494 514 542" fill="none" stroke="#DFFF6A" stroke-width="26" stroke-linecap="round" opacity="0.9"/>
+
+<g font-family="Noto Sans CJK KR, NanumGothic, sans-serif">
+  <text x="82" y="205" fill="#3182F6" font-size="72" font-weight="800" letter-spacing="-4">구글 AI</text>
+  <text x="82" y="300" fill="#191F28" font-size="72" font-weight="800" letter-spacing="-4">천재들이 떠난다</text>
+  <rect x="84" y="360" width="365" height="58" rx="18" fill="#DFFF6A"/>
+  <text x="110" y="399" fill="#334200" font-size="27" font-weight="700" letter-spacing="-1.2">관료주의인가 전략 재편인가</text>
+</g>
+
+<g transform="translate(674 82)" filter="url(#shadow)">
+  <rect x="0" y="0" width="430" height="465" rx="58" fill="url(#blueGrad)"/>
+  <rect x="46" y="48" width="338" height="370" rx="42" fill="none" stroke="#FFFFFF" stroke-opacity="0.3" stroke-width="2"/>
+  <!-- abstract maze -->
+  <path d="M80 95 H220 V145 H135 V215 H260 V105 H345 V250 H285 V315 H180 V380 H90 V300 H145 V260 H85 Z"
+        fill="none" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" opacity="0.92"/>
+  <path d="M238 330 C325 320 376 278 409 219" fill="none" stroke="#DFFF6A" stroke-width="14" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <!-- seven moving knowledge nodes -->
+  <g fill="#FFFFFF">
+    <circle cx="112" cy="116" r="13"/>
+    <circle cx="207" cy="146" r="13"/>
+    <circle cx="154" cy="236" r="13"/>
+    <circle cx="272" cy="214" r="13"/>
+    <circle cx="205" cy="332" r="13"/>
+  </g>
+  <circle cx="315" cy="303" r="15" fill="#DFFF6A"/>
+  <circle cx="392" cy="202" r="17" fill="#DFFF6A"/>
+  <path d="M94 400 H332" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="2" stroke-dasharray="8 10"/>
+</g>
+</svg>

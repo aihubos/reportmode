@@ -1,0 +1,105 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "rh-20260810-google-ai-talent-exodus",
+  "title": "구글 AI 천재들이 떠난다: 제프 딘 퇴사와 허사비스 개편, 문제는 관료주의보다 속도다",
+  "seoTitle": "구글 AI 인재 이탈: 제프 딘 퇴사·허사비스 개편 분석",
+  "alternativeTitles": [
+    "구글 AI 대탈출, 정말 관료주의 때문일까? 확인된 사실 7가지",
+    "제프 딘도 떠났다: Google DeepMind 인재 이탈과 Gemini 3.5 지연",
+    "구글은 AI 전쟁에서 밀렸나? 핵심 인재 7명 이탈과 9.5억 사용자의 반전"
+  ],
+  "slug": "google-ai-talent-exodus",
+  "folder": "260810-01-google-ai-talent-exodus-v1-0-0",
+  "version": "1.0.0",
+  "status": "Published",
+  "summary": "구글 AI 핵심 인재 이탈은 사실이지만 허사비스는 퇴사한 것이 아니며, Gemini 9.5억 MAU와 Cloud 82% 성장이라는 반대 증거도 강하다. 진짜 리스크는 기술 부재보다 대규모 조직의 실행 속도와 연구·제품화의 연결이다.",
+  "hook": "신문 제목은 맞았을까? 이름과 숫자를 하나씩 다시 확인했다.",
+  "keywords": [
+    "구글 AI",
+    "Google DeepMind",
+    "제프 딘",
+    "데미스 허사비스",
+    "AI 인재 전쟁",
+    "Gemini 3.5 Pro",
+    "Discovery Loop",
+    "구글 관료주의",
+    "AI 조직 설계"
+  ],
+  "category": "AI",
+  "createdAt": "2026-08-10",
+  "updatedAt": "2026-08-10",
+  "canonical": "https://aihubos.github.io/reportmode/reports/260810-01-google-ai-talent-exodus-v1-0-0/",
+  "thumbnail": "assets/thumbnail.png",
+  "topicScore": 95,
+  "assumptions": [
+    "2026-08-10 당일 첫 보고서이므로 일일 순번은 01로 가정했다.",
+    "공개적으로 확인 가능한 2026년 핵심 이탈자 7명만 집계했으며, 1차·신뢰도 높은 보도로 확인이 어려운 인물은 숫자에서 제외했다.",
+    "독립 HTML은 썸네일을 data URI로 내장하고, GitHub용 index.html은 assets/thumbnail.png를 참조한다.",
+    "관료주의 비용 계산기는 실제 Google 손실 추정치가 아니라 조직 내부 파일럿을 위한 기회비용 proxy다.",
+    "아카이브 원문을 제공받지 않아 archive/index.html과 sitemap 원문은 덮어쓰지 않고 안전한 삽입용 entry만 생성했다.",
+    "사용자가 제공한 신문 스크랩 이미지는 본문에서 출발 자료로 표시하고, 썸네일은 Google 공식 워드마크로 별도 구성했다."
+  ],
+  "generation": "AI-assisted",
+  "reviewStatus": "Published with user-provided source image",
+  "topicScoreBreakdown": {
+    "freshness": 20,
+    "searchIntent": 15,
+    "socialShareability": 15,
+    "practicalUtility": 14,
+    "koreaRelevance": 12,
+    "evidenceStrength": 10,
+    "visualFit": 9
+  },
+  "titleCandidates": [
+    {
+      "title": "구글 AI 천재들이 떠난다: 제프 딘 퇴사와 허사비스 개편, 문제는 관료주의보다 속도다",
+      "score": 96
+    },
+    {
+      "title": "구글 AI 대탈출, 정말 관료주의 때문일까? 확인된 사실 7가지",
+      "score": 94
+    },
+    {
+      "title": "제프 딘도 떠났다: Google DeepMind 인재 이탈과 Gemini 3.5 지연",
+      "score": 92
+    },
+    {
+      "title": "구글은 AI 전쟁에서 밀렸나? 핵심 인재 7명 이탈과 9.5억 사용자의 반전",
+      "score": 93
+    },
+    {
+      "title": "구글 AI 조직 개편 완전 분석: 허사비스·제프 딘·Discovery Loop",
+      "score": 90
+    },
+    {
+      "title": "관료주의에 갇힌 구글 AI, 천재들은 왜 스타트업으로 떠났나",
+      "score": 91
+    },
+    {
+      "title": "Gemini 3.5 지연과 제프 딘 퇴사, 구글의 진짜 문제는 실행 속도다",
+      "score": 94
+    },
+    {
+      "title": "구글 AI 인재 유출 팩트체크: 허사비스는 퇴사하지 않았다",
+      "score": 89
+    },
+    {
+      "title": "AI 천재 7명이 떠난 구글, 한국 기업이 배워야 할 조직 설계 5가지",
+      "score": 92
+    },
+    {
+      "title": "구글 AI 위기인가 재편인가: 인재 이탈·실적·주가를 함께 봤다",
+      "score": 93
+    }
+  ],
+  "lead": "신문 제목만 보면 구글 AI 조직이 무너지는 것 같다. 그런데 이름과 숫자를 하나씩 확인해보니, 핵심 인재 이탈은 사실이지만 허사비스는 회사를 떠난 게 아니고 구글의 AI 사업도 무너진 상태가 아니었다.",
+  "oneLineConclusion": "구글의 진짜 위기는 기술 부족이 아니라, 세계 최고 인재·컴퓨트·유통망을 AI의 속도로 움직이게 만드는 실행력의 위기다.",
+  "thumbnailCopy": {
+    "main": "구글 AI 천재들이 떠난다",
+    "sub": "관료주의인가 전략 재편인가"
+  },
+  "socialCopy": [
+    "제프 딘·노엄 샤지어·존 점퍼까지 떠났다. 그런데 허사비스는 퇴사가 아니고, Gemini는 9.5억 MAU다. 구글 AI 인재 이탈을 팩트체크했다.",
+    "인재는 떠나는데 Cloud는 82% 성장했다. 구글 AI 조직이 무너지는 걸까, 바뀌는 걸까? 문제는 기술보다 속도다."
+  ]
+}

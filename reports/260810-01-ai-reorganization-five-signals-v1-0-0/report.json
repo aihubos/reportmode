@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "260810-01-ai-reorganization-five-signals-v1-0-0",
+  "title": "AI 조직개편, 정말 혁신일까? 이름보다 먼저 봐야 할 5가지 신호",
+  "seoTitle": "AI 조직개편 때 직원이 확인해야 할 5가지 신호",
+  "alternativeTitles": [
+    "AI혁신팀이 생겼다: 조직도보다 먼저 볼 것들",
+    "부서 이동, 성장 기회일까 조용한 퇴출 신호일까",
+    "조직도는 바뀌었는데 일은 그대로인 이유"
+  ],
+  "slug": "ai-reorganization-five-signals",
+  "folder": "260810-01-ai-reorganization-five-signals-v1-0-0",
+  "version": "1.0.0",
+  "status": "Published",
+  "summary": "AI라는 이름의 조직개편이 진짜 혁신인지 판단하려면 팀 명칭보다 예산, 의사결정권, 데이터 접근, KPI, 전담 인력이 실제로 바뀌었는지를 확인해야 한다.",
+  "hook": "AI혁신팀이 생기면 회사도 AI 회사가 될까? 조직도는 선언이고, 실제 운영이 진실이다.",
+  "keywords": [
+    "AI 조직개편",
+    "AI 혁신팀",
+    "AX 조직",
+    "부서 이동",
+    "직장인 커리어",
+    "AI 전환",
+    "운영 모델",
+    "전보"
+  ],
+  "category": "AI",
+  "createdAt": "2026-08-10",
+  "updatedAt": "2026-08-10",
+  "canonical": "https://aihubos.github.io/reportmode/reports/260810-01-ai-reorganization-five-signals-v1-0-0/",
+  "thumbnail": "assets/thumbnail.png",
+  "topicScore": 92,
+  "assumptions": [
+    "사용자는 링크 글과 같은 주제·질문 흐름을 원하며, 직접적인 문장 재작성이나 요약이 아니라 독립 포스팅을 원한다고 해석함.",
+    "AIHUBOS Report Hub의 AI·Tech 독자층에 맞추기 위해 조직개편 주제를 2026년 AI/AX 조직 전환 관점으로 보정함.",
+    "2026-08-10 일일 순번 정보가 없어 01을 사용함.",
+    "사용자의 실제 특정 회사·부서 경험은 제공되지 않아 개인 경험을 새로 만들어 넣지 않음.",
+    "법률 섹션은 일반 정보이며 개별 사건에 대한 법률 자문이 아님.",
+    "사용자의 게시 요청에 따라 공개 상태로 전환함."
+  ],
+  "generation": "AI-assisted",
+  "reviewStatus": "Published",
+  "thumbnailText": {
+    "main": "조직개편, 이름보다 이것을 봐라",
+    "sub": "직원이 확인할 5가지"
+  },
+  "socialCopy": [
+    "AI혁신팀이 생겼다고 회사가 AI 회사가 되는 건 아니다. 이름보다 예산·권한·데이터·KPI·사람을 보자.",
+    "부서 이동이 성장 기회인지 조용한 퇴출 신호인지, 조직개편 공지 뒤 30일 동안 확인해야 할 기준을 정리했다."
+  ]
+}

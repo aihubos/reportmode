@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-09T22:59:53.116Z",
+  "generatedAt": "2026-08-09T23:30:47.517Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
     {
@@ -51,6 +51,57 @@
       "coverImage": "reports/260810-01-demis-hassabis-life-timeline-v1-0-0/assets/thumbnail.png",
       "coverAlt": "데미스 하사비스 인물 사진",
       "subtitle": "체스·게임·뇌과학·DeepMind·AlphaGo·AlphaFold로 이어진 50년"
+    },
+    {
+      "id": "260810-01-ai-reorganization-five-signals-v1-0-0",
+      "slug": "ai-reorganization-five-signals",
+      "title": "AI 조직개편, 정말 혁신일까? 이름보다 먼저 봐야 할 5가지 신호",
+      "category": "AI",
+      "summary": "AI라는 이름의 조직개편이 진짜 혁신인지 판단하려면 팀 명칭보다 예산, 의사결정권, 데이터 접근, KPI, 전담 인력이 실제로 바뀌었는지를 확인해야 한다.",
+      "createdAt": "2026-08-10T08:27:00+09:00",
+      "updatedAt": "2026-08-10T08:27:00+09:00",
+      "status": "published",
+      "path": "reports/260810-01-ai-reorganization-five-signals-v1-0-0/",
+      "url": "https://aihubos.github.io/reportmode/reports/260810-01-ai-reorganization-five-signals-v1-0-0/",
+      "displayDate": "260810",
+      "sourceCount": 9,
+      "tags": [
+        "AI 조직개편",
+        "AI 혁신팀",
+        "AX 조직",
+        "부서 이동",
+        "직장인 커리어",
+        "AI 전환",
+        "운영 모델",
+        "전보"
+      ],
+      "coverImage": "reports/260810-01-ai-reorganization-five-signals-v1-0-0/assets/thumbnail.png",
+      "coverAlt": "AI 조직개편에서 팀 이름보다 예산, 권한, 데이터, KPI, 전담 인력을 확인하라는 의미의 조직도 그래픽",
+      "subtitle": "조직도 변화가 실질적 AI 전환인지 판단하는 예산·권한·데이터·KPI·전담 인력 체크리스트"
+    },
+    {
+      "id": "rh-20260810-google-ai-talent-exodus",
+      "slug": "google-ai-talent-exodus",
+      "title": "구글 AI 천재들이 떠난다: 제프 딘 퇴사와 허사비스 개편, 문제는 관료주의보다 속도다",
+      "category": "AI",
+      "summary": "구글 AI 핵심 인재 이탈은 사실이지만 허사비스는 퇴사한 것이 아니며, Gemini 9.5억 MAU와 Cloud 82% 성장이라는 반대 증거도 강합니다.",
+      "createdAt": "2026-08-10T08:16:00+09:00",
+      "updatedAt": "2026-08-10T08:16:00+09:00",
+      "status": "published",
+      "path": "reports/260810-01-google-ai-talent-exodus-v1-0-0/",
+      "url": "https://aihubos.github.io/reportmode/reports/260810-01-google-ai-talent-exodus-v1-0-0/",
+      "displayDate": "260810",
+      "sourceCount": 14,
+      "tags": [
+        "Google DeepMind",
+        "제프 딘",
+        "데미스 허사비스",
+        "Gemini 3.5 Pro",
+        "AI 인재 전쟁"
+      ],
+      "coverImage": "reports/260810-01-google-ai-talent-exodus-v1-0-0/assets/thumbnail.png",
+      "coverAlt": "Google 공식 워드마크",
+      "subtitle": "핵심 인재 이탈·조직 개편·Gemini 지연을 통해 보는 Google AI 실행력"
     },
     {
       "id": "rh-260809-004-6e35ac46",

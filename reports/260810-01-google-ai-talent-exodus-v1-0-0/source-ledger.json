@@ -1,0 +1,148 @@
+{
+  "schemaVersion": "1.0",
+  "reportId": "rh-20260810-google-ai-talent-exodus",
+  "verifiedAt": "2026-08-10",
+  "basis": "사용자 제공 신문 스크랩 + 공식 발표/실적 + Reuters + 당사자 공개 글",
+  "entries": [
+    {
+      "claim": "신문 기사 프레임: 관료주의, 핵심 인재 이탈, 허사비스 역할 변경, Gemini 3.5 지연, 주가 하락",
+      "url": "https://www.hankyung.com/article/2026080713301",
+      "sourceType": "국내 경제지 기사",
+      "publishedAt": "2026-08-07",
+      "verifiedAt": "2026-08-10",
+      "section": "도입·팩트체크",
+      "confidence": "medium",
+      "caution": "출발 자료로 사용했으며 핵심 수치와 직책 표현은 별도 1차 자료로 재검증함."
+    },
+    {
+      "claim": "Demis Hassabis는 GDM Chair·Alphabet Chief Scientist로 전환하고, Koray Kavukcuoglu가 모델·연구·앱·개발자 조직의 운영을 맡음. Google은 Discovery Loop의 founding investor·Cloud partner.",
+      "url": "https://blog.google/company-news/inside-google/message-ceo/next-chapter-ai-momentum/",
+      "sourceType": "Google 공식 발표",
+      "publishedAt": "2026-08-05",
+      "verifiedAt": "2026-08-10",
+      "section": "팩트체크·타임라인·현재 조직",
+      "confidence": "high",
+      "caution": "회사 발표이므로 개편 취지·성과 서술은 회사 관점임."
+    },
+    {
+      "claim": "Jeff Dean, Sanjay Ghemawat, Oriol Vinyals, Quoc Le가 Discovery Loop를 설립했고, 발표 직후 Alphabet 주가는 약 4% 하락. Gemini 3.5 Pro는 예정된 6월 출시를 넘김.",
+      "url": "https://www.reuters.com/business/google-shakes-up-ai-leadership-deepmind-chief-shifts-role-2026-08-05/",
+      "sourceType": "Reuters",
+      "publishedAt": "2026-08-05",
+      "verifiedAt": "2026-08-10",
+      "section": "요약·타임라인·주가",
+      "confidence": "high",
+      "caution": "주가 반응은 동시 요인이 존재하므로 단일 사건의 순수 인과로 해석하지 않음."
+    },
+    {
+      "claim": "Discovery Loop 창업팀과 미션",
+      "url": "https://www.discoveryloop.com/",
+      "sourceType": "공식 회사 사이트",
+      "publishedAt": "2026-08",
+      "verifiedAt": "2026-08-10",
+      "section": "타임라인·FAQ",
+      "confidence": "high",
+      "caution": "초기 회사의 자체 설명이며 향후 사업 범위가 바뀔 수 있음."
+    },
+    {
+      "claim": "Noam Shazeer가 Google Gemini 공동 리드에서 OpenAI로 이동",
+      "url": "https://www.reuters.com/technology/googles-gemini-co-lead-noam-shazeer-join-openai-2026-06-18/",
+      "sourceType": "Reuters",
+      "publishedAt": "2026-06-18",
+      "verifiedAt": "2026-08-10",
+      "section": "인재 이탈 집계·타임라인",
+      "confidence": "high",
+      "caution": ""
+    },
+    {
+      "claim": "John Jumper가 Google DeepMind에서 Anthropic으로 이동",
+      "url": "https://www.reuters.com/technology/us-scientist-john-jumper-leave-google-deepmind-anthropic-2026-06-19/",
+      "sourceType": "Reuters",
+      "publishedAt": "2026-06-19",
+      "verifiedAt": "2026-08-10",
+      "section": "인재 이탈 집계·타임라인",
+      "confidence": "high",
+      "caution": ""
+    },
+    {
+      "claim": "David Silver가 독립 조직을 세우며 단기 제품·수익 압력에서 벗어난 장기 연구 환경의 필요성을 직접 설명",
+      "url": "https://www.ineffable.ai/",
+      "sourceType": "창업자 1차 글",
+      "publishedAt": "2026-01-15",
+      "verifiedAt": "2026-08-10",
+      "section": "이탈 원인",
+      "confidence": "high",
+      "caution": "개인의 공개 설명이며 Google 전체 이탈자의 공통 원인으로 일반화하지 않음."
+    },
+    {
+      "claim": "Gemini 3.5 Pro가 원래 6월 출시 예정이었지만 7월 21일에도 파트너 테스트 단계",
+      "url": "https://www.reuters.com/business/google-updates-lightweight-gemini-models-flagship-still-delayed-2026-07-21/",
+      "sourceType": "Reuters",
+      "publishedAt": "2026-07-21",
+      "verifiedAt": "2026-08-10",
+      "section": "팩트체크·리스크",
+      "confidence": "high",
+      "caution": "발행 이후 출시 상태가 바뀔 수 있어 재게시 전 재확인 필요."
+    },
+    {
+      "claim": "Gemini app 950M MAU, Google Cloud +82%, APIs 22B tokens/min, Gemini 3.5 Pro testing",
+      "url": "https://blog.google/company-news/inside-google/message-ceo/alphabet-earnings-q2-2026/",
+      "sourceType": "Google 공식 실적 발표",
+      "publishedAt": "2026-07-22",
+      "verifiedAt": "2026-08-10",
+      "section": "반대 증거·요약",
+      "confidence": "high",
+      "caution": "회사 발표 수치이며 독립 측정과 정의가 다를 수 있음."
+    },
+    {
+      "claim": "Alphabet 직원 수 198,933명 및 Q2 2026 공식 재무 수치",
+      "url": "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q2/2026q2-alphabet-earnings-release.pdf",
+      "sourceType": "Alphabet IR 공식 PDF",
+      "publishedAt": "2026-07-22",
+      "verifiedAt": "2026-08-10",
+      "section": "왜 조직 병목이 커지나",
+      "confidence": "high",
+      "caution": ""
+    },
+    {
+      "claim": "전 Google Cloud 임원이 승인·법무·성과평가·회의의 미로를 비판",
+      "url": "https://pravse.medium.com/the-maze-is-in-the-mouse-980c57cfd61a",
+      "sourceType": "당사자 에세이",
+      "publishedAt": "2023-02",
+      "verifiedAt": "2026-08-10",
+      "section": "관료주의 원인",
+      "confidence": "medium-high",
+      "caution": "2023년 개인 경험을 2026년 전체 조직 상태로 곧바로 일반화하지 않음."
+    },
+    {
+      "claim": "DeepMind 장기 과학 미션과 Alphabet 제품·수익화 사이 긴장에 대한 다수 인터뷰 기반 보도",
+      "url": "https://www.reuters.com/investigations/googles-top-ai-executive-seeks-profound-over-profits-prosaic-2025-11-13/",
+      "sourceType": "Reuters 특별보도",
+      "publishedAt": "2025-11-13",
+      "verifiedAt": "2026-08-10",
+      "section": "이탈 원인·반론",
+      "confidence": "high",
+      "caution": "보도 내 내부자 평가에 반론도 존재함을 함께 표시."
+    },
+    {
+      "claim": "GOOGL 종가: 8/4 377.65, 8/5 362.43(-4.03%), 8/6 357.75(-1.29%), 8/7 354.30(-0.96%)",
+      "url": "https://stockanalysis.com/stocks/googl/history/",
+      "sourceType": "시장 데이터 집계",
+      "publishedAt": "2026-08-07",
+      "verifiedAt": "2026-08-10",
+      "section": "주가 팩트체크",
+      "confidence": "medium-high",
+      "caution": "미국 현지 종가 기준. 수정주가·데이터 제공자에 따라 소수점 차이가 날 수 있음."
+    },
+    {
+      "claim": "Google DeepMind가 David Silver의 퇴사를 확인했으며, Silver는 Ineffable Intelligence를 창업",
+      "url": "https://fortune.com/2026/01/30/google-deepmind-ai-researcher-david-silver-leaves-to-found-ai-startup-ineffable-intelligence/",
+      "sourceType": "Fortune 보도·회사 확인",
+      "publishedAt": "2026-01-30",
+      "verifiedAt": "2026-08-10",
+      "section": "인재 이탈 집계·타임라인",
+      "confidence": "high",
+      "caution": "창업 법인은 2025년 11월 설립됐지만 퇴사 확인과 공식 전환은 2026년 1월로 구분함."
+    }
+  ]
+}
