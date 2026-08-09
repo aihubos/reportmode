@@ -57,4 +57,7 @@ test("renders a structured report table with column headers and cells", () => {
   assert.match(html, /report-page-layout\.js\?v=20260809-refresh/);
   assert.match(html, /report-history\.js\?v=20260809/);
   assert.match(html, /id="report-home-button"|class="report-home-button"/);
+  assert.match(html, /href="https:\/\/aireport\.ai-hub-os\.com\/"/);
+  assert.match(html, /Report Hub/);
+  assert.doesNotMatch(html, /Report Mode/);
 });

@@ -21,6 +21,7 @@ import {
   type ReportDocument,
 } from "../schema/report.js";
 import { listUploadedReports, uploadedToManifest } from "../publisher/store.js";
+import { applyReportHubBrand } from "./public-brand.js";
 
 function publicPagePath(root: string, itemPath: string): string {
   return path.join(root, itemPath.endsWith("/") ? `${itemPath}index.html` : itemPath);
@@ -142,7 +143,7 @@ function mergeManifestItems(
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 }
 
-function discoverCoverImage(root: string, item: ManifestItem): ManifestItem {
+export function discoverCoverImage(root: string, item: ManifestItem): ManifestItem {
   const pagePath = item.path.endsWith("/")
     ? `${item.path}index.html`
     : item.path;
@@ -152,7 +153,11 @@ function discoverCoverImage(root: string, item: ManifestItem): ManifestItem {
     const html = readText(absolutePagePath);
     const bodyTag = html.match(/<body\b[^>]*>/i)?.[0] || "";
     const bodyHtml = html.slice(Math.max(0, html.search(/<body\b/i)));
-    const imageTag = bodyHtml.match(/<img\b[^>]*>/i)?.[0];
+    const imageTag = Array.from(bodyHtml.matchAll(/<img\b[^>]*>/gi), (match) => match[0])
+      .find((tag) =>
+        !/\bclass=["'][^"']*\breport-hub-logo\b/i.test(tag) &&
+        !/\bsrc=["'][^"']*\/assets\/favicon\.svg(?:\?[^"']*)?["']/i.test(tag),
+      );
     const source =
       bodyTag.match(/\bdata-report-cover=["']([^"']+)["']/i)?.[1] ||
       imageTag?.match(/\bsrc=["']([^"']+)["']/i)?.[1];
@@ -193,9 +198,25 @@ function syncUploadedPublicFiles(root: string) {
     const source = path.join(root, "content", "uploads", meta.id, "files");
     const destination = path.join(root, "reports", meta.id);
     if (!fs.existsSync(source)) continue;
-    fs.rmSync(destination, { recursive: true, force: true });
+    fs.mkdirSync(destination, { recursive: true });
     fs.cpSync(source, destination, { recursive: true, force: true });
   }
+}
+
+function brandPublicReportFiles(root: string) {
+  const reportsRoot = path.join(root, "reports");
+  const visit = (directory: string) => {
+    for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+      if (entry.name === "assets") continue;
+      const target = path.join(directory, entry.name);
+      if (entry.isDirectory()) visit(target);
+      else if (entry.isFile() && entry.name.endsWith(".html")) {
+        const reportPath = path.relative(root, target).split(path.sep).join("/");
+        writeText(target, applyReportHubBrand(readText(target), reportPath));
+      }
+    }
+  };
+  visit(reportsRoot);
 }
 
 function reportBodySearchText(root: string, item: ManifestItem): string {
@@ -322,12 +343,17 @@ export function buildSite(options?: {
     buildReport(doc);
   }
   syncUploadedPublicFiles(root);
+  brandPublicReportFiles(root);
   const items = mergedItems(root, config.siteBase, docs);
 
   fs.cpSync(path.join(root, "src", "site", "assets"), path.join(root, "assets"), {
     recursive: true,
     force: true,
   });
+  fs.copyFileSync(
+    path.join(root, "src", "site", "site.webmanifest"),
+    path.join(root, "site.webmanifest"),
+  );
   const archiveArtifacts = writeArchiveArtifacts(root, items, config.siteBase);
   const home = writeHomeIndex(root);
 

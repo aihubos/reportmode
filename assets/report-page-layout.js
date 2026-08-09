@@ -4,6 +4,15 @@
   if (!body || body.dataset.reportLayoutEnhanced === "true") return;
   body.dataset.reportLayoutEnhanced = "true";
 
+  var layoutScript = document.currentScript;
+  if (!document.querySelector('script[src*="report-hub-brand.js"]')) {
+    var brandScript = document.createElement("script");
+    brandScript.src = layoutScript && layoutScript.src
+      ? new URL("report-hub-brand.js?v=20260809-rh1", layoutScript.src).href
+      : "https://aihubos.github.io/reportmode/assets/report-hub-brand.js?v=20260809-rh1";
+    document.head.appendChild(brandScript);
+  }
+
   // Always start in wide (가로). Only user click may switch to a4.
   var DEFAULT_LAYOUT = "wide";
 

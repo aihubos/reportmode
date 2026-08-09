@@ -18,7 +18,7 @@ function markdownCell(value) {
 
 function reviewMarkdown(document, records, counts) {
   const lines = [
-    "# Report Mode 내용 검토 결과",
+    "# Report Hub 내용 검토 결과",
     "",
     `- 검토일: ${document.reviewedAt}`,
     `- 전체: ${counts.total}`,

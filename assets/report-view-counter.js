@@ -9,8 +9,8 @@
     favicon.type = "image/svg+xml";
     favicon.setAttribute("sizes", "any");
     favicon.href = script && script.src
-      ? new URL("favicon.svg?v=20260809", script.src).href
-      : "../../assets/favicon.svg?v=20260809";
+      ? new URL("favicon.svg?v=20260809-rh1", script.src).href
+      : "../../assets/favicon.svg?v=20260809-rh1";
     if (!favicon.parentNode) document.head.appendChild(favicon);
   }
 

@@ -63,14 +63,14 @@ function snapshotIndex(snapshotId, reports) {
     .map((report) => `<li><a href="./${report.canonicalPath}">${report.title}</a><small>${report.id}</small></li>`)
     .join("\n");
   return `<!doctype html>
-<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Report Mode 이전판 · ${snapshotId}</title>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Report Hub 이전판 · ${snapshotId}</title>
 <style>body{max-width:920px;margin:0 auto;padding:48px 24px;color:#191f28;background:#f5f7f9;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}h1{font-size:34px}p{color:#6b7684}ul{display:grid;gap:8px;padding:0;list-style:none}li{display:flex;justify-content:space-between;gap:18px;padding:14px 16px;border:1px solid #e5e8eb;border-radius:12px;background:#fff}a{color:#1b64da;font-weight:800;text-decoration:none}small{color:#8b95a1}</style></head><body>
-<h1>Report Mode 이전판</h1><p>${snapshotId} 기준으로 보존한 보고서입니다. 최신 정보는 각 보고서의 현재판을 확인하세요.</p><ul>${links}</ul></body></html>`;
+<h1>Report Hub 이전판</h1><p>${snapshotId} 기준으로 보존한 보고서입니다. 최신 정보는 각 보고서의 현재판을 확인하세요.</p><ul>${links}</ul></body></html>`;
 }
 
 function inventoryMarkdown(snapshotId, counts, reports) {
   const lines = [
-    `# Report Mode 전체 갱신 인벤토리`,
+    `# Report Hub 전체 갱신 인벤토리`,
     "",
     `- 기준 스냅샷: ${snapshotId}`,
     `- 전체 HTML 경로: ${counts.total}`,

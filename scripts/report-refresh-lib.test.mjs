@@ -28,7 +28,8 @@ test("current report enhancement preserves title while adding the shared wide/de
   assert.match(output, /<h1>고정 제목<\/h1>/);
   assert.match(output, /<body[^>]*data-report-view="detail"/);
   assert.match(output, /<body[^>]*data-report-layout="wide"/);
-  assert.match(output, /href="\.\.\/\.\.\/archive\/"/);
+  assert.match(output, /href="https:\/\/aireport\.ai-hub-os\.com\/"/);
+  assert.match(output, /RH · Report Hub/);
   assert.match(output, /report-page-layout\.css\?v=20260809-refresh/);
   assert.match(output, /report-page-layout\.js\?v=20260809-refresh/);
   assert.match(output, /report-history\.js\?v=20260809/);
