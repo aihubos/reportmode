@@ -73,3 +73,16 @@ test("public brand formats the Seoul weekday and second clock", () => {
   assert.equal(output.date, "8월 9일 일요일");
   assert.equal(output.time, "17:25:08");
 });
+
+test("mobile top bars hide after leaving the top and return only at the top", () => {
+  const css = fs.readFileSync(path.join(root, "assets", "report-hub-brand.css"), "utf8");
+  const script = fs.readFileSync(path.join(root, "assets", "report-hub-brand.js"), "utf8");
+
+  assert.match(css, /--rh-mobile-top-threshold:\s*8px/);
+  assert.match(css, /\.report-hub-floating-menu\.is-mobile-scroll-hidden,[\s\S]*?\.archive-topbar\.is-mobile-scroll-hidden\s*{[^}]*transform:\s*translateY\(calc\(-100% - var\(--rh-space-3\)\)\)[^}]*opacity:\s*0[^}]*pointer-events:\s*none/s);
+  assert.match(script, /function installMobileTopBarBehavior\(/);
+  assert.match(script, /--rh-mobile-top-threshold/);
+  assert.match(script, /root\.scrollY/);
+  assert.match(script, /classList\.toggle\("is-mobile-scroll-hidden", hidden\)/);
+  assert.match(script, /root\.addEventListener\("scroll", scheduleMobileTopBar, \{ passive: true \}\)/);
+});

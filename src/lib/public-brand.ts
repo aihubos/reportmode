@@ -1,11 +1,10 @@
 import path from "node:path";
 
 export const REPORT_HUB_HOME = "https://aireport.ai-hub-os.com/";
-export const REPORT_HUB_BRAND_VERSION = "20260809-rh8";
+export const REPORT_HUB_BRAND_VERSION = "20260810-mobile-scroll1";
 export const REPORT_HISTORY_VERSION = "20260809-history2";
 export const REPORT_COMMENTS_VERSION = "20260809-comments1";
 export const REPORT_COUNTER_VERSION = "20260810-counter-d1-1";
-export const REPORT_LAYOUT_SCRIPT_VERSION = "20260810-count-panel1";
 
 function isRedirectHtml(html: string): boolean {
   return /<meta\b[^>]*http-equiv\s*=\s*["']?refresh["']?/i.test(html);
@@ -101,7 +100,7 @@ function upsertSharedScripts(html: string, prefix: string, reportPath: string): 
     hasPrevious ? 'data-has-previous="true"' : "",
   ].filter(Boolean).join(" ");
   const tags = [
-    `<script src="${prefix}/assets/report-page-layout.js?v=${REPORT_LAYOUT_SCRIPT_VERSION}"></script>`,
+    `<script src="${prefix}/assets/report-page-layout.js?v=${REPORT_HUB_BRAND_VERSION}"></script>`,
     `<script src="${prefix}/assets/report-view-counter.js?v=${REPORT_COUNTER_VERSION}" data-report-id="${reportIdFromPath(reportPath)}"></script>`,
     `<script src="${prefix}/assets/report-comments.js?v=${REPORT_COMMENTS_VERSION}" data-report-id="${reportIdFromPath(reportPath)}"></script>`,
     `<script src="${prefix}/assets/report-history.js?v=${REPORT_HISTORY_VERSION}" ${historyAttributes}></script>`,

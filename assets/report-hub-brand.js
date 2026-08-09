@@ -2,7 +2,7 @@
   "use strict";
 
   var HOME = "https://aireport.ai-hub-os.com/";
-  var VERSION = "20260809-rh9";
+  var VERSION = "20260810-mobile-scroll1";
   var SEOUL_TIME_ZONE = "Asia/Seoul";
   var script = document.currentScript;
   var faviconUrl = script && script.src
@@ -11,6 +11,8 @@
   var layoutObserver = null;
   var clockTimer = null;
   var topClearanceFrame = null;
+  var mobileTopBarFrame = null;
+  var mobileTopBarInstalled = false;
 
   function logoMarkup() {
     return '<span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span>';
@@ -223,6 +225,42 @@
     });
   }
 
+  function mobileTopBarThreshold() {
+    var configured = Number.parseFloat(root.getComputedStyle(document.documentElement).getPropertyValue("--rh-mobile-top-threshold"));
+    return Number.isFinite(configured) ? configured : 8;
+  }
+
+  function syncMobileTopBar() {
+    var bar = document.querySelector(".report-hub-floating-menu, .archive-topbar");
+    if (!bar) return;
+    var isMobile = root.matchMedia && root.matchMedia("(max-width: 700px)").matches;
+    var scrollTop = Number(root.scrollY || root.pageYOffset || 0);
+    var focused = bar.contains(document.activeElement);
+    var hidden = Boolean(isMobile && scrollTop > mobileTopBarThreshold() && !focused);
+    bar.classList.toggle("is-mobile-scroll-hidden", hidden);
+  }
+
+  function scheduleMobileTopBar() {
+    if (mobileTopBarFrame) root.cancelAnimationFrame(mobileTopBarFrame);
+    mobileTopBarFrame = root.requestAnimationFrame(function () {
+      mobileTopBarFrame = null;
+      syncMobileTopBar();
+    });
+  }
+
+  function installMobileTopBarBehavior() {
+    if (mobileTopBarInstalled) return;
+    var bar = document.querySelector(".report-hub-floating-menu, .archive-topbar");
+    if (!bar) return;
+    mobileTopBarInstalled = true;
+    bar.addEventListener("focusin", function () {
+      bar.classList.remove("is-mobile-scroll-hidden");
+    });
+    root.addEventListener("scroll", scheduleMobileTopBar, { passive: true });
+    root.addEventListener("resize", scheduleMobileTopBar, { passive: true });
+    scheduleMobileTopBar();
+  }
+
   function watchForLayoutControls() {
     if (attachLayoutControls() || typeof MutationObserver === "undefined" || layoutObserver) return;
     layoutObserver = new MutationObserver(attachLayoutControls);
@@ -265,6 +303,7 @@
       scheduleTopClearance();
       root.addEventListener("resize", scheduleTopClearance, { passive: true });
     }
+    installMobileTopBarBehavior();
   }
 
   root.ReportHubBrand = {

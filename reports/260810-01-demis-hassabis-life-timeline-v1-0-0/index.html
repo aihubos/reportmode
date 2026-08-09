@@ -65,8 +65,8 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260809-rh8">
-  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260809-rh9">
+  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260810-mobile-scroll1">
+  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260810-mobile-scroll1">
   <link rel="stylesheet" href="../../assets/report-comments.css?v=20260809-comments1">
   <style>
 :root {
@@ -1039,10 +1039,10 @@ html, body { max-width:100%; overflow-x:hidden; }
     const timelineItems=[...document.querySelectorAll('#timelineList .timeline-item')];
     filterButtons.forEach((button)=>button.addEventListener('click',()=>{const filter=button.dataset.filter;filterButtons.forEach((b)=>b.setAttribute('aria-pressed',String(b===button)));timelineItems.forEach((item)=>{const domains=(item.dataset.domain||'').split(/\s+/);item.hidden=filter!=='all'&&!domains.includes(filter);});}));
   </script>
-  <script src="../../assets/report-page-layout.js?v=20260810-count-panel1"></script>
+  <script src="../../assets/report-page-layout.js?v=20260810-mobile-scroll1"></script>
   <script src="../../assets/report-view-counter.js?v=20260810-counter-d1-1" data-report-id="260810-01-demis-hassabis-life-timeline-v1-0-0"></script>
   <script src="../../assets/report-comments.js?v=20260809-comments1" data-report-id="260810-01-demis-hassabis-life-timeline-v1-0-0"></script>
   <script src="../../assets/report-history.js?v=20260809-history2" data-report-id="260810-01-demis-hassabis-life-timeline-v1-0-0"></script>
-  <script src="../../assets/report-hub-brand.js?v=20260809-rh9"></script>
+  <script src="../../assets/report-hub-brand.js?v=20260810-mobile-scroll1"></script>
 </body>
 </html>

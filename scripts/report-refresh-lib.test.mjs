@@ -31,8 +31,8 @@ test("current report enhancement preserves title while adding the shared wide/de
   assert.match(output, /href="https:\/\/aireport\.ai-hub-os\.com\/"/);
   assert.match(output, /class="report-hub-wordmark">Report Hub/);
   assert.match(output, /class="report-hub-byline">by Jeremy/);
-  assert.match(output, /report-page-layout\.css\?v=20260809-rh8/);
-  assert.match(output, /report-page-layout\.js\?v=20260809-rh8/);
+  assert.match(output, /report-page-layout\.css\?v=20260810-mobile-scroll1/);
+  assert.match(output, /report-page-layout\.js\?v=20260810-mobile-scroll1/);
   assert.match(output, /report-comments\.css\?v=20260809-comments1/);
   assert.match(output, /report-comments\.js\?v=20260809-comments1/);
   assert.match(output, /report-history\.js\?v=20260809-history2/);

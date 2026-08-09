@@ -36,14 +36,14 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
 @media print{@page{size:A4;margin:12mm}body{background:#fff}.nav-wrap,.progress,.float,.actions,.builder .btn{display:none!important}.container{width:100%;max-width:none}.hero{min-height:auto;grid-template-columns:1fr 1fr;padding:5mm 0 12mm}section{padding:12mm 0}.blue-section{background:#fff!important;color:#000!important;border-top:2px solid var(--blue);border-bottom:2px solid var(--blue)}.blue-section .desc,.principle p{color:#333}.principle{border-color:#ccc;background:#fff}.principle h3{color:#000}.hero-media,.card,.step,.compare{box-shadow:none}.reveal{opacity:1!important;transform:none!important}.history-wrap,.table-shell{overflow:visible}.history-table,.data{min-width:0;font-size:9px}}
 </style>
-  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260809-rh8">
-  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png?v=20260809-rh8">
-  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png?v=20260809-rh8">
-  <link rel="manifest" href="../../site.webmanifest?v=20260809-rh8">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260810-mobile-scroll1">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png?v=20260810-mobile-scroll1">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png?v=20260810-mobile-scroll1">
+  <link rel="manifest" href="../../site.webmanifest?v=20260810-mobile-scroll1">
   <meta name="application-name" content="Report Hub">
   <meta property="og:site_name" content="Report Hub">
-  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260809-rh8">
-  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260809-rh8">
+  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260810-mobile-scroll1">
+  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260810-mobile-scroll1">
   <link rel="stylesheet" href="../../assets/report-comments.css?v=20260809-comments1">
 <style>
 @media(max-width:430px){
@@ -104,9 +104,9 @@ const $=id=>document.getElementById(id);function buildPrompt(){if(!$('privacyChe
 $('buildPrompt').addEventListener('click',buildPrompt);$('copyGenerated').addEventListener('click',()=>copyText($('promptOutput').innerText,$('copyGenerated')));
 function renderMeta(){try{const meta=JSON.parse($('report-metadata').textContent),date=String(meta.updatedAt).replaceAll('-','.');$('reportVersion').textContent='v'+meta.version;$('reportUpdated').textContent='Updated '+date;$('reportGeneration').textContent=meta.generation+' · '+meta.reviewStatus;$('footerTitle').textContent=meta.title;$('footerMeta').textContent='자료 기준일 '+date+' · '+meta.generation+' · '+meta.reviewStatus;const body=$('historyBody');body.innerHTML='';(meta.history||[]).forEach(item=>{const tr=document.createElement('tr');[ 'v'+item.version,String(item.date||'').replaceAll('-','.'),item.type||'',item.summary||'',(item.updatedBy||'')+' · '+(item.reviewStatus||'')].forEach(v=>{const td=document.createElement('td');td.textContent=v;tr.appendChild(td)});body.appendChild(tr)})}catch(e){console.error(e)}}renderMeta();
 </script>
-  <script src="../../assets/report-page-layout.js?v=20260810-count-panel1"></script>
+  <script src="../../assets/report-page-layout.js?v=20260810-mobile-scroll1"></script>
   <script src="../../assets/report-view-counter.js?v=20260810-counter-d1-1" data-report-id="260810-01-chatgpt-worries-thinking-guide-v2-0-0"></script>
   <script src="../../assets/report-comments.js?v=20260809-comments1" data-report-id="260810-01-chatgpt-worries-thinking-guide-v2-0-0"></script>
   <script src="../../assets/report-history.js?v=20260809-history2" data-report-id="260810-01-chatgpt-worries-thinking-guide-v2-0-0"></script>
-  <script src="../../assets/report-hub-brand.js?v=20260809-rh8"></script>
+  <script src="../../assets/report-hub-brand.js?v=20260810-mobile-scroll1"></script>
 </body></html>

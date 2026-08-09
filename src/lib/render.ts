@@ -5,7 +5,7 @@ import { loadConfig } from "./config.js";
 import { escapeHtml, inlineMark, nl2p } from "./html.js";
 import { displayDateFromIso, prettyDateFromIso } from "./time.js";
 import { repoRoot } from "./paths.js";
-import { REPORT_COUNTER_VERSION, REPORT_HISTORY_VERSION, REPORT_HUB_BRAND_VERSION, REPORT_HUB_HOME, REPORT_LAYOUT_SCRIPT_VERSION } from "./public-brand.js";
+import { REPORT_COUNTER_VERSION, REPORT_HISTORY_VERSION, REPORT_HUB_BRAND_VERSION, REPORT_HUB_HOME } from "./public-brand.js";
 
 const ARCHIVE_WEATHER_VERSION = "20260809-weather1";
 
@@ -303,7 +303,7 @@ export function renderReportHtml(doc: ReportDocument): string {
       <span>최종 판단과 검수는 사용자에게 있습니다.</span>
     </div>
   </footer>
-  <script src="../../assets/report-page-layout.js?v=${REPORT_LAYOUT_SCRIPT_VERSION}"></script>
+  <script src="../../assets/report-page-layout.js?v=${REPORT_HUB_BRAND_VERSION}"></script>
   <script src="../../assets/report-view-counter.js?v=${REPORT_COUNTER_VERSION}" data-report-id="${escapeHtml(doc.id)}"></script>
   <script src="../../assets/report-comments.js?v=20260809-comments1" data-report-id="${escapeHtml(doc.id)}"></script>
   <script src="../../assets/report-history.js?v=${REPORT_HISTORY_VERSION}" data-report-id="${escapeHtml(doc.id)}"></script>

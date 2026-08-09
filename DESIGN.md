@@ -66,6 +66,7 @@ Report Hub는 보고서보다 먼저 시선을 빼앗지 않는 임원용 리서
 - 전환 컨트롤 너비: 156px, 모바일 136px
 - 세로 A4 오른쪽 메뉴 너비: 208px
 - 모바일 도서관 상단 메뉴 높이: 112px
+- 모바일 상단 메뉴 표시 경계: 8px (`--rh-mobile-top-threshold`)
 - 세로 A4 장식 궤도 최대 폭: 520px, 부모 폭을 넘지 않음
 - 댓글 최대 너비: 920px
 - 보고서 동작 버튼 최소 높이: 40px, PDF·공유 동일 너비 76px
@@ -98,6 +99,8 @@ Report Hub는 보고서보다 먼저 시선을 빼앗지 않는 임원용 리서
 - 인쇄할 때는 전체를 숨긴다.
 - 1280px 이상 세로 A4에서는 용지 오른쪽 끝에서 16px 떨어진 여백에 208px 세로 메뉴로 배치한다.
 - 1279px 이하에서는 문서 폭을 늘리지 않는 우측 상단 메뉴로 전환한다.
+- 700px 이하에서는 스크롤이 8px을 넘으면 보고서 플로팅 메뉴와 도서관 상단 메뉴를 위로 숨기고, 최상단 8px 범위로 돌아왔을 때만 다시 표시한다.
+- 숨김 전환은 `--rh-motion-fast`와 `--rh-ease`를 사용해 `transform`과 `opacity`만 바꾸며, 키보드 포커스가 메뉴 안으로 이동하면 즉시 다시 표시한다.
 
 ### Layout segmented control
 
@@ -190,6 +193,7 @@ Report Hub는 보고서보다 먼저 시선을 빼앗지 않는 임원용 리서
 - easing `--rh-ease`: ease-out
 - hover/active는 transform과 opacity 또는 color만 사용한다.
 - 최상단 이동은 기본 smooth, `prefers-reduced-motion: reduce`에서는 즉시 이동한다.
+- 모바일 상단 메뉴 숨김·표시는 `--rh-motion-fast` 180ms이며, 모션 감소 설정에서는 전환 없이 즉시 바뀐다.
 
 ## 7. Depth
 
