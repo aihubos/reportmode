@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "rh-260809-085-openai-regulation-us-analysis-085",
+  "title": "[2026년 8월 분석] OpenAI 안전성·규제 대응 (미국 정부 협의)",
+  "seoTitle": "OpenAI 안전성·규제 대응 (미국 정부 협의)",
+  "alternativeTitles": [
+    "ChatGPT·OpenAI 2026년 8월 분석: 숫자·리스크·실전 대응",
+    "OpenAI 안전성·규제 대응 (미국 정부 협의), 지금 확인할 공식 수치와 미확인 영역",
+    "[한국 관점] OpenAI 안전성·규제 대응 (미국 정부 협의): 기업·개발팀에 미치는 영향"
+  ],
+  "slug": "openai-regulation-us-analysis-085",
+  "folder": "260809-85-openai-regulation-us-analysis-085-v1-0-0",
+  "version": "1.0.0",
+  "status": "Draft",
+  "summary": "가장 강한 모델 하나보다 업무별 라우팅과 승인 경계를 가진 조합이 더 실용적입니다.",
+  "hook": "OpenAI 안전성·규제 대응 (미국 정부 협의)—지금 클릭할 이유는 무엇이고, 무엇을 아직 믿으면 안 될까요?",
+  "lead": "OpenAI 안전성·규제 대응 (미국 정부 협의)의 핵심은 모델 이름보다 가격, 사용 한도, 에이전트 권한, 데이터 통제의 조합입니다. 공식 문서 기준으로 실제 업무에서 달라지는 지점을 정리했습니다.",
+  "keywords": [
+    "OpenAI",
+    "openai",
+    "2026년 8월",
+    "Report Hub"
+  ],
+  "category": "AI",
+  "createdAt": "2026-08-09",
+  "updatedAt": "2026-08-09",
+  "canonical": "https://aihubos.github.io/reportmode/reports/260809-85-openai-regulation-us-analysis-085-v1-0-0/",
+  "thumbnail": "assets/thumbnail.png",
+  "topicScore": 76,
+  "scoreBreakdown": {
+    "최신성": 18,
+    "검색 의도": 11,
+    "SNS 공유성": 10,
+    "실무 효용": 11,
+    "한국 연관성": 10,
+    "근거 강도": 9,
+    "시각화 적합성": 7
+  },
+  "generation": "AI-assisted",
+  "reviewStatus": "Human review recommended",
+  "author": "Jeremy Lee",
+  "originalTopicNumber": 85,
+  "originalTitle": "OpenAI 안전성·규제 대응 (미국 정부 협의)",
+  "originalFlow": "과거 제한 → 현재 상태 → 향후",
+  "titleCandidates": [
+    {
+      "title": "[2026년 8월 분석] OpenAI 안전성·규제 대응 (미국 정부 협의)",
+      "score": 95
+    },
+    {
+      "title": "ChatGPT·OpenAI 2026년 8월 분석: 숫자·리스크·실전 대응",
+      "score": 93
+    },
+    {
+      "title": "OpenAI 안전성·규제 대응 (미국 정부 협의), 지금 확인할 공식 수치와 미확인 영역",
+      "score": 90
+    },
+    {
+      "title": "[한국 관점] OpenAI 안전성·규제 대응 (미국 정부 협의): 기업·개발팀에 미치는 영향",
+      "score": 88
+    },
+    {
+      "title": "[팩트체크] OpenAI 안전성·규제 대응 (미국 정부 협의): 과장 없이 보는 핵심 7가지",
+      "score": 87
+    },
+    {
+      "title": "ChatGPT·OpenAI 변화 총정리: 비용·성능·도입 판단",
+      "score": 84
+    },
+    {
+      "title": "OpenAI 안전성·규제 대응 (미국 정부 협의), 누구에게 유리하고 무엇이 위험한가",
+      "score": 82
+    },
+    {
+      "title": "[1분 요약] OpenAI 안전성·규제 대응 (미국 정부 협의)의 결론과 체크리스트",
+      "score": 81
+    },
+    {
+      "title": "ChatGPT·OpenAI 실전 가이드: 30·60·90일 대응안",
+      "score": 79
+    },
+    {
+      "title": "OpenAI 안전성·규제 대응 (미국 정부 협의): 2026년 하반기 시나리오와 반론",
+      "score": 77
+    }
+  ],
+  "thumbnailText": {
+    "main": "OpenAI 안전성·규제 대응 (미국 정부 협의)",
+    "sub": "2026년 8월 팩트체크"
+  },
+  "socialCopy": [
+    "OpenAI 안전성·규제 대응 (미국 정부 협의) 핵심을 공식 수치와 미확인 영역으로 나눴습니다. https://aihubos.github.io/reportmode/reports/260809-85-openai-regulation-us-analysis-085-v1-0-0/",
+    "가장 강한 모델 하나보다 업무별 라우팅과 승인 경계를 가진 조합이 더 실용적입니다. 30·60·90일 대응안까지 확인하세요. https://aihubos.github.io/reportmode/reports/260809-85-openai-regulation-us-analysis-085-v1-0-0/"
+  ],
+  "assumptions": [
+    "자료 기준일은 2026-08-09이며 미국 주식 가격·시가총액은 2026-08-08 종가 스냅샷을 사용함.",
+    "미발표 제품·일정·가격·사양은 확정하지 않고 회사 목표·보도·전망·미확인으로 표시함.",
+    "직접 사용·실측하지 않은 기기와 서비스는 체험했다고 표현하지 않음.",
+    "상태는 Draft이며 외부 게시 전 사람 검토를 권장함.",
+    "투자 관련 내용은 정보 제공 목적이며 투자 권유가 아님."
+  ]
+}

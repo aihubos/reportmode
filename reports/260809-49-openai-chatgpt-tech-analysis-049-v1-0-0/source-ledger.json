@@ -1,0 +1,152 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "rh-260809-049-openai-chatgpt-tech-analysis-049",
+  "verifiedAt": "2026-08-09",
+  "sourcePolicy": "공식 제품·IR·SEC·정부·표준 우선, 보도·시장 데이터 보완",
+  "sources": [
+    {
+      "id": "src-01",
+      "claim": "GPT-5.6 Sol, Terra and Luna positioning, context and API pricing.",
+      "url": "https://openai.com/index/gpt-5-6/",
+      "title": "GPT-5.6",
+      "publisher": "OpenAI",
+      "sourceType": "official",
+      "publishedAt": "2026-07-09",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "회사 자료이므로 성능·효과·전망은 독립 검증이 필요합니다."
+    },
+    {
+      "id": "src-02",
+      "claim": "Luna price cut 80%; Terra 20%.",
+      "url": "https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6/",
+      "title": "GPT-5.6 price-performance update",
+      "publisher": "OpenAI",
+      "sourceType": "official",
+      "publishedAt": "2026-07-30",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "회사 자료이므로 성능·효과·전망은 독립 검증이 필요합니다."
+    },
+    {
+      "id": "src-03",
+      "claim": "Official agent capabilities and controls.",
+      "url": "https://openai.com/chatgpt-work/",
+      "title": "ChatGPT Work",
+      "publisher": "OpenAI",
+      "sourceType": "official",
+      "publishedAt": "2026",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "회사 자료이므로 성능·효과·전망은 독립 검증이 필요합니다."
+    },
+    {
+      "id": "src-04",
+      "claim": "OpenAI says more than 1B active users and 2M businesses.",
+      "url": "https://openai.com/index/building-abundant-intelligence/",
+      "title": "Building abundant intelligence",
+      "publisher": "OpenAI",
+      "sourceType": "official",
+      "publishedAt": "2026-08",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "회사 자료이므로 성능·효과·전망은 독립 검증이 필요합니다."
+    },
+    {
+      "id": "src-05",
+      "claim": "Official rolling product changes.",
+      "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+      "title": "ChatGPT release notes",
+      "publisher": "OpenAI",
+      "sourceType": "official",
+      "publishedAt": "2026-08",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "회사 자료이므로 성능·효과·전망은 독립 검증이 필요합니다."
+    },
+    {
+      "id": "src-06",
+      "claim": "Official Projects, files and context guidance.",
+      "url": "https://help.openai.com/en/articles/10169521-projects-in-chatgpt",
+      "title": "Projects in ChatGPT",
+      "publisher": "OpenAI",
+      "sourceType": "official",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "회사 자료이므로 성능·효과·전망은 독립 검증이 필요합니다."
+    },
+    {
+      "id": "src-07",
+      "claim": "Generative AI risk framework.",
+      "url": "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence",
+      "title": "NIST GenAI Profile",
+      "publisher": "NIST",
+      "sourceType": "standard",
+      "publishedAt": "2024",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "기준일 이후 변경될 수 있어 발행 직전 재확인이 필요합니다."
+    },
+    {
+      "id": "src-08",
+      "claim": "Agentic risks including excessive agency and tool misuse.",
+      "url": "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/",
+      "title": "OWASP Agentic Top 10 2026",
+      "publisher": "OWASP",
+      "sourceType": "standard",
+      "publishedAt": "2026",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "기준일 이후 변경될 수 있어 발행 직전 재확인이 필요합니다."
+    }
+  ]
+}
