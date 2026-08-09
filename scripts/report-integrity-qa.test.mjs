@@ -24,3 +24,13 @@ test("snapshot base points to the original report location", () => {
   assert.equal(expectedReportBase("reports/sample.html"), "/reportmode/reports/");
   assert.equal(expectedReportBase("reports/sample/index.html"), "/reportmode/reports/sample/");
 });
+
+test("integrity scan flags duplicated shared report scripts", () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "report-integrity-script-"));
+  const reportPath = path.join(root, "reports", "sample.html");
+  const html = '<!doctype html><html><head><title>제목</title></head><body><h1>제목</h1><script src="../assets/report-view-counter.js"></script><script src="../assets/report-view-counter.js"></script></body></html>';
+
+  const issues = scanHtml({ root, reportPath, html });
+
+  assert.equal(issues.some((issue) => issue.type === "duplicate-shared-script" && issue.asset === "report-view-counter.js"), true);
+});

@@ -1497,7 +1497,8 @@ footer {
   (function () {
     var PAGE_SIZE = 10;
     var COUNTER_BASE = "https://api.counterapi.dev/v1/aihubos-reportmode/";
-    var COUNTER_ENABLED = window.location.hostname === "aihubos.github.io";
+    // CounterAPI v1 currently returns HTTP 410; keep the visible numeric fallback.
+    var COUNTER_ENABLED = false;
     var posts = Array.prototype.slice.call(document.querySelectorAll("[data-report-item]"));
     var heroCount = document.getElementById("archiveHeroCount");
     var filters = Array.prototype.slice.call(document.querySelectorAll("[data-category-filter]"));
