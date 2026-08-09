@@ -1,7 +1,31 @@
 {
-  "generatedAt": "2026-08-09T12:52:41.102Z",
+  "generatedAt": "2026-08-09T13:25:07.923Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260809-google-adsense-50-step-guide",
+      "slug": "google-adsense-50-step-guide",
+      "title": "구글 애드센스 빠른 승인·수익화 50단계 실전 가이드북",
+      "subtitle": "2026년 한국 사용자를 위한 WordPress 구축·콘텐츠·수익화 실행 가이드",
+      "category": "비즈니스",
+      "summary": "구글 애드센스 신청 준비부터 WordPress 구축, Site Kit, 콘텐츠 운영, ads.txt, 승인 후 수익화까지 50단계로 정리한 실전 가이드입니다.",
+      "createdAt": "2026-08-09T12:00:00+09:00",
+      "updatedAt": "2026-08-09T12:00:00+09:00",
+      "status": "published",
+      "path": "reports/260809-google-adsense-50-step-guide/",
+      "url": "https://aihubos.github.io/reportmode/reports/260809-google-adsense-50-step-guide/",
+      "displayDate": "260809",
+      "sourceCount": 35,
+      "tags": [
+        "Google-AdSense",
+        "WordPress",
+        "수익화",
+        "콘텐츠-운영",
+        "SEO"
+      ],
+      "coverImage": "reports/260809-google-adsense-50-step-guide/assets/google-logo.png",
+      "coverAlt": "Google 공식 로고"
+    },
     {
       "id": "260809-chatgpt-save-one-hour-life-tips",
       "slug": "chatgpt-save-one-hour-life-tips",
