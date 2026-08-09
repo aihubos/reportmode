@@ -1,0 +1,202 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "20260809-palantir-aip-sovereign-ai-valuation-v1-0-0",
+  "checkedAt": "2026-08-09",
+  "policy": "공식 공시·제품 문서를 우선하고, 외부 보도와 시장 데이터는 보완 자료로 사용. 회사 측 주장은 독립 검증과 구분.",
+  "sources": [
+    {
+      "claim": "Q2 매출 19.35억달러(+93%), 미국 상업 7.64억달러(+149%), 조정 영업이익률 62%, FY2026 매출 가이던스 81.50~81.58억달러.",
+      "url": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000039/a2026q2ex991pressrelease.htm",
+      "sourceType": "SEC filing / official earnings release",
+      "publishedAt": "2026-08-03",
+      "checkedAt": "2026-08-09",
+      "usedInSections": [
+        "Hero",
+        "1분 요약",
+        "실적",
+        "밸류에이션",
+        "리스크"
+      ],
+      "confidence": "High",
+      "caution": "조정 지표는 주식보상과 관련 급여세를 제외하며, 가이던스는 미래 전망입니다."
+    },
+    {
+      "claim": "Q2 희석 가중평균 주식수 25.68694억주, 주식보상 2.652억달러(+66%), 총마진 85%.",
+      "url": "https://www.sec.gov/Archives/edgar/data/1321655/000132165526000041/pltr-20260630.htm",
+      "sourceType": "SEC filing / 10-Q",
+      "publishedAt": "2026-08-03",
+      "checkedAt": "2026-08-09",
+      "usedInSections": [
+        "실적",
+        "밸류에이션",
+        "투자 포인트",
+        "리스크"
+      ],
+      "confidence": "High",
+      "caution": "가중평균 주식수는 향후 완전희석 주식수와 다를 수 있습니다."
+    },
+    {
+      "claim": "Q2 2026 공식 자료의 원문 허브.",
+      "url": "https://investors.palantir.com/financials/quarterly-results",
+      "sourceType": "Official investor relations",
+      "publishedAt": "2026-08-03",
+      "checkedAt": "2026-08-09",
+      "usedInSections": [
+        "출처"
+      ],
+      "confidence": "High",
+      "caution": "회사 제공 자료입니다."
+    },
+    {
+      "claim": "AIP는 AI를 기업 데이터·운영과 연결하고 Ontology 위에서 워크플로·에이전트를 구축하며 감사·평가·모델 관리를 제공합니다.",
+      "url": "https://www.palantir.com/docs/foundry/aip/overview",
+      "sourceType": "Official product documentation",
+      "publishedAt": null,
+      "checkedAt": "2026-08-09",
+      "usedInSections": [
+        "AIP",
+        "소버린 AI"
+      ],
+      "confidence": "High",
+      "caution": "기능 가용성은 고객 환경별로 다를 수 있습니다."
+    },
+    {
+      "claim": "AIP 등록 모델은 외부 API 또는 자체 GPU·온프레미스·에어갭 환경을 지원하지만 markings, AIP Assist, 일부 Pipeline Builder 기능은 지원하지 않습니다.",
+      "url": "https://www.palantir.com/docs/foundry/aip/bring-your-own-model/",
+      "sourceType": "Official product documentation",
+      "publishedAt": "2026-03-01",
+      "checkedAt": "2026-08-09",
+      "usedInSections": [
+        "AIP",
+        "소버린 AI",
+        "리스크",
+        "FAQ"
+      ],
+      "confidence": "High",
+      "caution": "2026년 3월 새 구현 기준이며 제품 기능은 변경될 수 있습니다."
+    },
+    {
+      "claim": "Ontology는 데이터만 저장하는 계층이 아니라 데이터·로직·행동·보안을 결합해 사람과 에이전트의 운영 결정을 통제합니다.",
+      "url": "https://blog.palantir.com/connecting-agents-to-decisions-277dee8ddb40",
+      "sourceType": "Official company technical article",
+      "publishedAt": "2026-04-28",
+      "checkedAt": "2026-08-09",
+      "usedInSections": [
+        "AIP",
+        "소버린 AI"
+      ],
+      "confidence": "Medium-High",
+      "caution": "회사 아키텍처 설명이며 경쟁사 대비 우위는 독립 검증이 필요합니다."
+    },
+    {
+      "claim": "팔란티어는 소버린 AI를 데이터·모델·업무 맥락과 운영 결정의 통제권으로 정의합니다.",
+      "url": "https://www.palantir.com/protect-your-sovereignty/",
+      "sourceType": "Official product/strategy page",
+      "publishedAt": null,
+      "checkedAt": "2026-08-09",
+      "usedInSections": [
+        "소버린 AI",
+        "투자 포인트"
+      ],
+      "confidence": "Medium-High",
+      "caution": "회사 전략적 포지셔닝입니다."
+    },
+    {
+      "claim": "참조 아키텍처는 지연 민감, 데이터 주권, 분산 배포를 위해 Palantir 스택을 NVIDIA 인프라에 검증·적격화했습니다.",
+      "url": "https://www.nvidia.com/en-us/technologies/enterprise-reference-architecture/",
+      "sourceType": "Official partner technical page",
+      "publishedAt": "2026-06-29",
+      "checkedAt": "2026-08-09",
+      "usedInSections": [
+        "왜 지금",
+        "소버린 AI"
+      ],
+      "confidence": "High",
+      "caution": "파트너 공동 마케팅 성격이 있습니다."
+    },
+    {
+      "claim": "Nemotron 오픈 모델을 AIP·Foundry·Ontology·Apollo와 결합해 에어갭 NVIDIA 인프라에서 운영할 수 있습니다.",
+      "url": "https://blogs.nvidia.com/blog/palantir-secure-ai-us-agencies-nemotron-open-models/",
+      "sourceType": "Official partner announcement",
+      "publishedAt": "2026-06-29",
+      "checkedAt": "2026-08-09",
+      "usedInSections": [
+        "왜 지금",
+        "소버린 AI"
+      ],
+      "confidence": "High",
+      "caution": "실제 고객별 성능·비용은 공개되지 않았습니다."
+    },
+    {
+      "claim": "Q2 매출은 시장 예상치를 상회했고 회사는 연간 가이던스를 상향했습니다.",
+      "url": "https://www.reuters.com/technology/palantir-raises-annual-revenue-forecast-strong-demand-us-government-commercial-2026-08-03/",
+      "sourceType": "Tier-1 news",
+      "publishedAt": "2026-08-03",
+      "checkedAt": "2026-08-09",
+      "usedInSections": [
+        "왜 지금",
+        "투자 포인트"
+      ],
+      "confidence": "High",
+      "caution": "시장 예상치는 조사 시점에 따라 바뀔 수 있습니다."
+    },
+    {
+      "claim": "HD현대는 2021년부터 협업했고 2026년 수년간 수억달러 규모로 확대했으며, 양사는 선박 생산 속도가 약 30% 빨라졌다고 밝혔습니다.",
+      "url": "https://www.reuters.com/technology/palantir-signs-hd-hyundai-deal-worth-hundreds-millions-dollars-ceo-karp-bullish-2026-01-20/",
+      "sourceType": "Tier-1 news",
+      "publishedAt": "2026-01-20",
+      "checkedAt": "2026-08-09",
+      "usedInSections": [
+        "한국 관점"
+      ],
+      "confidence": "High",
+      "caution": "30% 개선은 양사 주장으로 독립 감사를 거친 수치가 아닙니다."
+    },
+    {
+      "claim": "현재가와 시가총액을 밸류에이션 계산의 기준으로 사용했습니다.",
+      "url": "https://www.nasdaq.com/market-activity/stocks/pltr",
+      "sourceType": "Market data",
+      "publishedAt": "2026-08-07",
+      "checkedAt": "2026-08-09",
+      "usedInSections": [
+        "Hero",
+        "밸류에이션"
+      ],
+      "confidence": "High",
+      "caution": "주가는 실시간 변동합니다."
+    },
+    {
+      "claim": "프랑스 DGSI는 현지 대안으로 점진 전환할 계획을 밝혀, 소버린 AI 수요가 항상 팔란티어 수요로 귀결되지는 않음을 보여줍니다.",
+      "url": "https://www.reuters.com/technology/france-invest-655-mln-ai-set-up-common-chatbot-all-state-services-2026-06-16/",
+      "sourceType": "Tier-1 news",
+      "publishedAt": "2026-06-16",
+      "checkedAt": "2026-08-09",
+      "usedInSections": [
+        "소버린 AI",
+        "리스크"
+      ],
+      "confidence": "High",
+      "caution": "계약 전환은 점진적이며 기존 계약은 일정 기간 유지됩니다."
+    }
+  ],
+  "derivedCalculations": [
+    {
+      "name": "단순 EV/FY2026 매출",
+      "formula": "(시가총액 441.841B - 현금·단기 국채 9.2B) / FY2026 매출 가이던스 중간값 8.154B",
+      "result": 53.06,
+      "unit": "x",
+      "notes": "부채·리스·비지배지분 등 정밀 조정 전 단순 근사치"
+    },
+    {
+      "name": "2027 목표가",
+      "formula": "[FY2026 매출 중간값 × (1+2027 성장률) × EV/매출 배수 + 순현금] / Q2 희석 가중평균 주식수",
+      "result": {
+        "보수": 110.72,
+        "기준": 170.24,
+        "낙관": 239.28
+      },
+      "unit": "USD/share",
+      "notes": "Report Hub 시나리오이며 컨센서스가 아님. 미래 희석·현금 변화 미반영."
+    }
+  ]
+}

@@ -1,7 +1,28 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-09T21:39:49+09:00",
+  "updatedAt": "2026-08-09T21:41:51+09:00",
   "reports": [
+    {
+      "schemaVersion": "1",
+      "id": "260809-palantir-aip-sovereign-ai-valuation",
+      "slug": "palantir-aip-sovereign-ai-valuation",
+      "title": "팔란티어 93% 성장, AIP·소버린 AI는 53배 밸류에이션을 정당화할까",
+      "category": "AI",
+      "tags": [
+        "Palantir",
+        "PLTR",
+        "AIP",
+        "소버린 AI",
+        "밸류에이션"
+      ],
+      "summary": "팔란티어의 Q2 2026 성장, AIP·Ontology 기반 소버린 AI 전략과 밸류에이션 시나리오를 분석한 투자 보고서입니다.",
+      "createdAt": "2026-08-09T21:41:26+09:00",
+      "updatedAt": "2026-08-09T21:41:26+09:00",
+      "status": "published",
+      "sourceName": "palantir-aip-sovereign-ai-valuation-v1.0.0-github-upload.zip",
+      "sourceCount": 13,
+      "entry": "index.html"
+    },
     {
       "schemaVersion": "1",
       "id": "260809-agentic-ai-enterprise-playbook",

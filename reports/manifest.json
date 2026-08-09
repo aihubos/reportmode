@@ -1,7 +1,30 @@
 {
-  "generatedAt": "2026-08-09T12:39:49.789Z",
+  "generatedAt": "2026-08-09T12:41:52.483Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260809-palantir-aip-sovereign-ai-valuation",
+      "slug": "palantir-aip-sovereign-ai-valuation",
+      "title": "팔란티어 93% 성장, AIP·소버린 AI는 53배 밸류에이션을 정당화할까",
+      "category": "AI",
+      "summary": "팔란티어의 Q2 2026 성장, AIP·Ontology 기반 소버린 AI 전략과 밸류에이션 시나리오를 분석한 투자 보고서입니다.",
+      "createdAt": "2026-08-09T21:41:26+09:00",
+      "updatedAt": "2026-08-09T21:41:26+09:00",
+      "status": "published",
+      "path": "reports/260809-palantir-aip-sovereign-ai-valuation/",
+      "url": "https://aihubos.github.io/reportmode/reports/260809-palantir-aip-sovereign-ai-valuation/",
+      "displayDate": "260809",
+      "sourceCount": 13,
+      "tags": [
+        "Palantir",
+        "PLTR",
+        "AIP",
+        "소버린 AI",
+        "밸류에이션"
+      ],
+      "coverImage": "reports/260809-palantir-aip-sovereign-ai-valuation/assets/thumbnail.png",
+      "coverAlt": "팔란티어 AIP와 소버린 AI 밸류에이션 보고서 대표 이미지"
+    },
     {
       "id": "260809-agentic-ai-enterprise-playbook",
       "slug": "agentic-ai-enterprise-playbook",
