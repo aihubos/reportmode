@@ -145,7 +145,7 @@ document.querySelectorAll('.filter').forEach(btn=>btn.addEventListener('click',(
 (function renderMetadata(){try{const m=JSON.parse(document.getElementById('report-metadata').textContent),v='v'+m.version,d=String(m.updatedAt).replaceAll('-','.');document.getElementById('reportVersion').textContent=v;document.getElementById('reportUpdated').textContent='Updated '+d;document.getElementById('historyCurrentVersion').textContent='Current '+v;const b=document.getElementById('historyBody');b.innerHTML='';(m.history||[]).forEach(x=>{const r=document.createElement('tr');[v,String(x.date).replaceAll('-','.'),x.type,x.summary,[x.updatedBy,x.reviewStatus].filter(Boolean).join(' · ')].forEach((t,i)=>{const c=document.createElement('td');if(i===4){const s=document.createElement('span');s.className='history-status';s.textContent=t;c.appendChild(s)}else c.textContent=t;r.appendChild(c)});b.appendChild(r)})}catch(e){console.error('Invalid metadata',e)}})();
 </script>
 <script src="../../assets/report-page-layout.js?v=20260809-rh8"></script>
-<script src="../../assets/report-view-counter.js?v=20260809-counter-fallback2" data-report-id="260809-21-sam-altman-timeline-musk-amodei-v1-0-0"></script>
+<script src="../../assets/report-view-counter.js?v=20260810-counter-d1-1" data-report-id="260809-21-sam-altman-timeline-musk-amodei-v1-0-0"></script>
 <script src="../../assets/report-comments.js?v=20260809-comments1" data-report-id="260809-21-sam-altman-timeline-musk-amodei-v1-0-0"></script>
 <script src="../../assets/report-history.js?v=20260809-history2" data-report-id="260809-21-sam-altman-timeline-musk-amodei-v1-0-0"></script>
 <script src="../../assets/report-hub-brand.js?v=20260809-rh9"></script>

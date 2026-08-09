@@ -29,6 +29,11 @@ type CommentRow = {
   password_hash?: string;
 };
 
+type ReportViewRow = {
+  report_id: string;
+  view_count: number;
+};
+
 const ALLOWED_ORIGINS = new Set([
   "https://aihubos.github.io",
   "https://aireport.ai-hub-os.com",
@@ -78,6 +83,14 @@ function isReservedAdminName(author: string) {
 
 function isAdminPassword(env: Env, password: string) {
   return Boolean(env.ADMIN_PASSWORD) && password === env.ADMIN_PASSWORD;
+}
+
+function isPublicReportId(value: string) {
+  return /^[a-z0-9][a-z0-9-]{0,119}$/i.test(value);
+}
+
+function isVisitorId(value: string) {
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
 }
 
 function seoulDate() {
@@ -156,6 +169,43 @@ export default {
       ).bind(siteId, visitorId, day, createdAt).run();
       const counts = await visitCounts(env, siteId, day);
       return json(request, { siteId, day, counted: Number(inserted.meta?.changes || 0) > 0, ...counts });
+    }
+
+    if (url.pathname === "/report-views" && request.method === "GET") {
+      const rows = await env.DB.prepare(
+        "SELECT report_id, view_count FROM report_view_counts ORDER BY view_count DESC, report_id ASC LIMIT 1000"
+      ).all<ReportViewRow>();
+      const counts = Object.fromEntries(
+        (rows.results || []).map((row) => [row.report_id, Math.max(0, Number(row.view_count || 0))])
+      );
+      return json(request, { counts, checkedAt: new Date().toISOString() });
+    }
+
+    if (url.pathname === "/report-views" && request.method === "POST") {
+      let payload: { reportId?: unknown; visitorId?: unknown };
+      try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+      const reportId = clean(payload.reportId, 120);
+      const visitorId = clean(payload.visitorId, 64);
+      if (!isPublicReportId(reportId) || !isVisitorId(visitorId)) {
+        return json(request, { error: "invalid_report_view" }, 400);
+      }
+      const day = seoulDate();
+      const createdAt = new Date().toISOString();
+      const [inserted, selected] = await env.DB.batch([
+        env.DB.prepare(
+          "INSERT OR IGNORE INTO report_view_daily_visitors (report_id, visitor_id, view_date, created_at) VALUES (?, ?, ?, ?)"
+        ).bind(reportId, visitorId, day, createdAt),
+        env.DB.prepare(
+          "SELECT report_id, view_count FROM report_view_counts WHERE report_id = ?"
+        ).bind(reportId),
+      ]);
+      const row = (selected.results || [])[0] as ReportViewRow | undefined;
+      return json(request, {
+        reportId,
+        day,
+        counted: Number(inserted.meta?.changes || 0) > 0,
+        count: Math.max(0, Number(row?.view_count || 0)),
+      });
     }
 
     if (url.pathname === "/comments" && request.method === "GET") {
@@ -480,7 +530,7 @@ export default {
       return json(request, { ok: true, reportId });
     }
 
-    if (url.pathname === "/comments" || commentId || url.pathname === "/visits" || url.pathname === "/requests" || requestId || replyRequestId || url.pathname.startsWith("/hidden-reports") || url.pathname.startsWith("/featured-reports") || url.pathname.startsWith("/draft-promotions") || url.pathname === "/admin/verify") {
+    if (url.pathname === "/comments" || commentId || url.pathname === "/visits" || url.pathname === "/report-views" || url.pathname === "/requests" || requestId || replyRequestId || url.pathname.startsWith("/hidden-reports") || url.pathname.startsWith("/featured-reports") || url.pathname.startsWith("/draft-promotions") || url.pathname === "/admin/verify") {
       return json(request, { error: "method_not_allowed" }, 405);
     }
     return json(request, { error: "not_found" }, 404);

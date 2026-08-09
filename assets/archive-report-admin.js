@@ -156,8 +156,10 @@
       featuredPosts.push(post);
     });
     var popularPosts = visiblePosts.slice().sort(function (a, b) {
-      var aCount = Number(a.querySelector("[data-view-count]")?.dataset.viewCountFallback || 0);
-      var bCount = Number(b.querySelector("[data-view-count]")?.dataset.viewCountFallback || 0);
+      var aOutput = a.querySelector("[data-view-count]");
+      var bOutput = b.querySelector("[data-view-count]");
+      var aCount = Number(aOutput?.dataset.viewCountLive || aOutput?.dataset.viewCountFallback || 0);
+      var bCount = Number(bOutput?.dataset.viewCountLive || bOutput?.dataset.viewCountFallback || 0);
       return bCount - aCount || visiblePosts.indexOf(a) - visiblePosts.indexOf(b);
     }).slice(0, 3);
     featuredList.replaceChildren.apply(featuredList, featuredPosts.slice(0, 3).map(function (post, index) {
@@ -514,6 +516,7 @@
 
   buildPanel();
   patchArchiveFilter();
+  window.addEventListener("reportmode:view-counts-updated", renderSpotlights);
   Promise.all([loadHidden(), loadFeatured(), loadDraftPromotions()]).then(function () {
     var maybeUnlocked = false;
     try { maybeUnlocked = sessionStorage.getItem(STORAGE_KEY) === "1"; } catch (_) {}

@@ -668,9 +668,9 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
   (function () {
     var DEFAULT_PAGE_SIZE = 30;
     var ALLOWED_PAGE_SIZES = [5, 10, 20, 30];
-    var COUNTER_BASE = "https://api.counterapi.dev/v1/aihubos-reportmode/";
-    // CounterAPI v1 currently returns HTTP 410; keep the visible numeric fallback.
-    var COUNTER_ENABLED = false;
+    var COUNTER_API = "https://reportmode-request-board.report-request-board.workers.dev";
+    var liveViewCounts = null;
+    var viewCountsPromise = null;
     var posts = Array.prototype.slice.call(document.querySelectorAll("[data-report-item]"));
     var filters = Array.prototype.slice.call(document.querySelectorAll("[data-category-filter]"));
     var search = document.getElementById("archiveSearch");
@@ -775,36 +775,13 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
       });
     });
 
-    function viewStorageKey(reportId) {
-      return "reportmode:view:" + reportId;
-    }
-
-    function incrementView(reportId) {
-      if (!COUNTER_ENABLED || !reportId) return;
-      var key = viewStorageKey(reportId);
-      if (window.sessionStorage.getItem(key)) return;
-      window.sessionStorage.setItem(key, "1");
-      fetch(COUNTER_BASE + encodeURIComponent(reportId) + "/up", {
-        cache: "no-store",
-        keepalive: true,
-        mode: "cors"
-      }).catch(function () {
-        window.sessionStorage.removeItem(key);
-      });
-    }
-
-    function wait(delay) {
-      return new Promise(function (resolve) {
-        window.setTimeout(resolve, delay);
-      });
-    }
-
-    function fetchViewCount(reportId, attemptsLeft) {
+    function fetchLiveViewCounts() {
+      if (viewCountsPromise) return viewCountsPromise;
       var controller = new AbortController();
       var timeoutId = window.setTimeout(function () {
         controller.abort();
       }, 5000);
-      return fetch(COUNTER_BASE + encodeURIComponent(reportId) + "/", {
+      viewCountsPromise = fetch(COUNTER_API + "/report-views", {
         cache: "no-store",
         mode: "cors",
         signal: controller.signal
@@ -814,19 +791,24 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
           return response.json();
         })
         .then(function (data) {
-          var value = Number(data.count);
-          if (!Number.isFinite(value)) throw new Error("invalid counter value");
-          return value;
+          if (!data || !data.counts || typeof data.counts !== "object") {
+            throw new Error("invalid counter values");
+          }
+          liveViewCounts = data.counts;
+          posts.forEach(function (post) {
+            applyViewCount(post, liveViewCounts);
+          });
+          window.dispatchEvent(new CustomEvent("reportmode:view-counts-updated"));
+          return liveViewCounts;
         })
         .finally(function () {
           window.clearTimeout(timeoutId);
         })
-        .catch(function (error) {
-          if (attemptsLeft <= 1) throw error;
-          return wait(350).then(function () {
-            return fetchViewCount(reportId, attemptsLeft - 1);
-          });
+        .catch(function () {
+          viewCountsPromise = null;
+          return null;
         });
+      return viewCountsPromise;
     }
 
     function cachedViewCount(reportId) {
@@ -847,45 +829,31 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
       }
     }
 
+    function applyViewCount(post, counts) {
+      var output = post.querySelector("[data-view-count]");
+      var reportId = post.dataset.reportId || "";
+      if (!output || !reportId) return;
+      var fallback = Number(output.dataset.viewCountFallback || "0");
+      var cached = cachedViewCount(reportId);
+      var live = counts && Object.prototype.hasOwnProperty.call(counts, reportId)
+        ? Number(counts[reportId])
+        : null;
+      var displayed = Number.isFinite(live)
+        ? live
+        : cached !== null && Number.isFinite(cached)
+          ? cached
+          : fallback;
+      displayed = Math.max(0, Math.trunc(displayed));
+      output.dataset.viewCountLive = String(displayed);
+      output.textContent = "조회수 " + displayed.toLocaleString("ko-KR");
+      if (Number.isFinite(live)) storeViewCount(reportId, displayed);
+    }
+
     function loadViewCounts(visiblePosts) {
-      var pending = [];
       visiblePosts.forEach(function (post) {
-        var output = post.querySelector("[data-view-count]");
-        var reportId = post.dataset.reportId || "";
-        if (!output || output.dataset.loaded === "true") return;
-        if (!COUNTER_ENABLED) {
-          return;
-        }
-        output.dataset.loaded = "true";
-        var cached = cachedViewCount(reportId);
-        var fallback = Number(output.dataset.viewCountFallback || "0");
-        var displayed = cached === null || !Number.isFinite(cached) ? fallback : cached;
-        output.textContent = "조회수 " + displayed.toLocaleString("ko-KR");
-        pending.push({ output: output, reportId: reportId, cached: cached });
+        applyViewCount(post, liveViewCounts);
       });
-
-      var nextIndex = 0;
-      function loadNextCount() {
-        var task = pending[nextIndex];
-        nextIndex += 1;
-        if (!task) return Promise.resolve();
-        return fetchViewCount(task.reportId, 2)
-          .then(function (value) {
-            task.output.textContent = "조회수 " + value.toLocaleString("ko-KR");
-            storeViewCount(task.reportId, value);
-          })
-          .catch(function () {
-            task.output.dataset.loaded = "false";
-          })
-          .then(function () {
-            return wait(120).then(loadNextCount);
-          });
-      }
-
-      var workerCount = Math.min(1, pending.length);
-      for (var workerIndex = 0; workerIndex < workerCount; workerIndex += 1) {
-        loadNextCount();
-      }
+      fetchLiveViewCounts();
     }
 
     function makePageButton(label, page, active, disabled, className) {
@@ -985,19 +953,12 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
       state.page = 1;
       render(false);
     });
-    posts.forEach(function (post) {
-      var link = post.querySelector(".archive-post-link");
-      if (!link) return;
-      link.addEventListener("click", function () {
-        incrementView(post.dataset.reportId || "");
-      });
-    });
     window.reportmodeArchiveRender = render;
     render(false);
   })();
   </script>
   <script src="../assets/archive-request-board.js"></script>
-  <script src="../assets/archive-report-admin.js?v=20260810-draft1"></script>
+  <script src="../assets/archive-report-admin.js?v=20260810-draft-views1"></script>
   <script src="../assets/archive-visitor-counter.js?v=20260809-visits1"></script>
   <script src="../assets/archive-weather.js?v=${ARCHIVE_WEATHER_VERSION}"></script>
   <script src="../assets/report-hub-brand.js?v=${REPORT_HUB_BRAND_VERSION}"></script>

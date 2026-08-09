@@ -58,7 +58,7 @@ test("renders a structured report table with column headers and cells", () => {
   assert.match(html, /report-page-layout\.js\?v=20260809-rh8/);
   assert.match(html, /report-comments\.css\?v=20260809-comments1/);
   assert.match(html, /report-comments\.js\?v=20260809-comments1" data-report-id="table-test"/);
-  assert.match(html, /report-view-counter\.js\?v=20260809-counter-fallback2" data-report-id="table-test"/);
+  assert.match(html, /report-view-counter\.js\?v=20260810-counter-d1-1" data-report-id="table-test"/);
   assert.match(html, /report-history\.js\?v=20260809-history2/);
   assert.match(html, /id="report-home-button"|class="report-home-button"/);
   assert.match(html, /href="https:\/\/aireport\.ai-hub-os\.com\/"/);

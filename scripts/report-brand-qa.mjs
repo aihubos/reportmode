@@ -44,7 +44,7 @@ for (const file of htmlFiles(path.join(root, "reports"))) {
     [occurrences(html, "report-comments.js") === 1, "공통 댓글 스크립트가 정확히 1개가 아님"],
     [/report-comments\.js\?v=20260809-comments1[^>]*data-report-id=/i.test(html), "댓글 스크립트에 보고서 ID가 없음"],
     [occurrences(html, "report-view-counter.js") === 1, "공통 조회수 스크립트가 정확히 1개가 아님"],
-    [/report-view-counter\.js\?v=20260809-counter-fallback2[^>]*data-report-id=/i.test(html), "조회수 스크립트에 보고서 ID가 없음"],
+    [/report-view-counter\.js\?v=20260810-counter-d1-1[^>]*data-report-id=/i.test(html), "조회수 스크립트에 보고서 ID가 없음"],
     [occurrences(html, "report-history.js") === 1, "공통 변경이력 스크립트가 정확히 1개가 아님"],
     [/report-history\.js\?v=20260809-history2/.test(html), "통합 변경이력 버전이 아님"],
     [!legacyBrand.test(html), "구형 공개 브랜드 이름이 남아 있음"],

@@ -4,7 +4,7 @@ export const REPORT_HUB_HOME = "https://aireport.ai-hub-os.com/";
 export const REPORT_HUB_BRAND_VERSION = "20260809-rh8";
 export const REPORT_HISTORY_VERSION = "20260809-history2";
 export const REPORT_COMMENTS_VERSION = "20260809-comments1";
-export const REPORT_COUNTER_VERSION = "20260809-counter-fallback2";
+export const REPORT_COUNTER_VERSION = "20260810-counter-d1-1";
 
 function isRedirectHtml(html: string): boolean {
   return /<meta\b[^>]*http-equiv\s*=\s*["']?refresh["']?/i.test(html);

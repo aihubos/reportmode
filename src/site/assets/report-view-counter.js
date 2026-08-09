@@ -14,9 +14,8 @@
     if (!favicon.parentNode) document.head.appendChild(favicon);
   }
 
-  // CounterAPI v1 currently returns HTTP 410. Keep the report usable without
-  // repeated network errors until an authenticated replacement is configured.
-  var COUNTER_ENABLED = false;
+  var COUNTER_API = "https://reportmode-request-board.report-request-board.workers.dev";
+  var VISITOR_KEY = "reporthub:visitor-id";
   var reportId = script && script.dataset ? script.dataset.reportId : "";
   var fallbackUrl = script && script.src
     ? new URL("../reports/view-counts.json", script.src).href
@@ -47,27 +46,41 @@
       });
   }
 
-  loadFallbackCount().then(function () {
-    if (!COUNTER_ENABLED || !reportId || window.location.hostname !== "aihubos.github.io") return;
-
-    var storageKey = "reportmode:view:" + reportId;
-    try {
-      if (window.sessionStorage.getItem(storageKey)) return;
-      window.sessionStorage.setItem(storageKey, "1");
-    } catch (_) {
-      // Continue without session de-duplication when browser storage is unavailable.
+  function makeVisitorId() {
+    if (globalThis.crypto && typeof globalThis.crypto.randomUUID === "function") {
+      return globalThis.crypto.randomUUID();
     }
+    return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, function (character) {
+      return (Number(character) ^ Math.random() * 16 >> Number(character) / 4).toString(16);
+    });
+  }
 
-    fetch(
-      "https://api.counterapi.dev/v1/aihubos-reportmode/" +
-        encodeURIComponent(reportId) +
-        "/up",
-      {
-        cache: "no-store",
-        keepalive: true,
-        mode: "cors",
-      },
-    )
+  function visitorId() {
+    try {
+      var current = window.localStorage.getItem(VISITOR_KEY);
+      if (current) return current;
+      current = makeVisitorId();
+      window.localStorage.setItem(VISITOR_KEY, current);
+      return current;
+    } catch (_) {
+      return makeVisitorId();
+    }
+  }
+
+  function isPublicReport() {
+    return window.location.hostname === "aihubos.github.io" || window.location.hostname === "aireport.ai-hub-os.com";
+  }
+
+  function loadLiveCount() {
+    if (!reportId || !isPublicReport()) return Promise.resolve();
+    return fetch(COUNTER_API + "/report-views", {
+      method: "POST",
+      cache: "no-store",
+      keepalive: true,
+      mode: "cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ reportId: reportId, visitorId: visitorId() }),
+    })
       .then(function (response) {
         if (!response.ok) throw new Error("counter unavailable");
         return response.json();
@@ -76,11 +89,9 @@
         writeCount(data.count);
       })
       .catch(function () {
-        try {
-          window.sessionStorage.removeItem(storageKey);
-        } catch (_) {
-          // A later visit can retry when storage is unavailable.
-        }
+        // Keep the visible static fallback when the live service is unavailable.
       });
-  });
+  }
+
+  loadFallbackCount().then(loadLiveCount);
 })();
