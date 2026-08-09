@@ -1,0 +1,108 @@
+{
+  "input": {
+    "topic": "중국 AI의 역습: Kimi K3·Qwen이 미국 모델을 위협하는 이유",
+    "flow": [
+      "가성비",
+      "오픈웨이트",
+      "기업 채택",
+      "라이선스 함정",
+      "앞으로 볼 지표"
+    ],
+    "audience": "AI·IT·Tech에 관심 있는 한국어 일반 독자와 실무자"
+  },
+  "selectedTitle": "중국 AI의 역습: Kimi K3·Qwen3.8이 미국 모델의 가격표를 흔드는 이유",
+  "titleCandidates": [
+    {
+      "title": "중국 AI의 역습: Kimi K3·Qwen3.8이 미국 모델의 가격표를 흔드는 이유",
+      "score": 94,
+      "status": "selected"
+    },
+    {
+      "title": "Kimi K3·Qwen3.8, 중국 AI가 미국 모델의 가격을 무너뜨리는 방식",
+      "score": 91,
+      "status": "runner-up"
+    },
+    {
+      "title": "2.8조 Kimi K3 등장: 기업이 미국 AI만 고집하기 어려워진 이유",
+      "score": 90,
+      "status": "runner-up"
+    },
+    {
+      "title": "중국 AI가 싸기만 하다는 착각 — Kimi K3와 Qwen3.8의 진짜 위협",
+      "score": 89,
+      "status": "runner-up"
+    },
+    {
+      "title": "오픈웨이트 전쟁 2026: Kimi K3·Qwen3.8이 기업 AI 선택을 바꾼다",
+      "score": 88,
+      "status": "runner-up"
+    },
+    {
+      "title": "미국 AI 독주가 흔들린다? Kimi K3와 Qwen3.8을 숫자로 비교했다",
+      "score": 86,
+      "status": "runner-up"
+    },
+    {
+      "title": "Kimi K3 vs GPT-5.6: 토큰 비용 45% 차이가 의미하는 것",
+      "score": 85,
+      "status": "narrower-angle"
+    }
+  ],
+  "hook": "중국 모델이 미국 모델을 전부 이겼다는 이야기가 아니다. 더 현실적인 위협은 기업이 가장 비싼 모델 하나 대신 업무별로 충분히 좋은 모델을 고르기 시작했다는 점이다.",
+  "thumbnail": {
+    "primary": "thumbnail.png",
+    "size": "1280x720",
+    "og": "thumbnail-og.png",
+    "ogSize": "1200x630",
+    "text": [
+      "중국 AI의 역습",
+      "KIMI K3 × QWEN3.8",
+      "2.8T",
+      "1M CTX"
+    ],
+    "rights": "Original abstract graphic; no third-party logos or photos used."
+  },
+  "reportMetadata": {
+    "schemaVersion": "2.0",
+    "reportId": "260809-20-china-ai-kimi-k3-qwen-v1-0-0",
+    "title": "중국 AI의 역습: Kimi K3·Qwen3.8이 미국 모델의 가격표를 흔드는 이유",
+    "slug": "260809-20-china-ai-kimi-k3-qwen-v1-0-0",
+    "version": "1.0.0",
+    "status": "published-draft",
+    "createdAt": "2026-08-09",
+    "updatedAt": "2026-08-09",
+    "language": "ko-KR",
+    "generation": "AI-assisted",
+    "reviewStatus": "Human review recommended",
+    "canonicalUrl": "https://aihubos.github.io/reportmode/reports/260809-20-china-ai-kimi-k3-qwen-v1-0-0/",
+    "articleSection": "AI / Tech Strategy",
+    "keywords": [
+      "Kimi K3",
+      "Qwen3.8-Max",
+      "중국 AI",
+      "오픈웨이트",
+      "AI API 가격",
+      "기업 AI"
+    ],
+    "researchCutoff": "2026-08-09T20:35:00+09:00",
+    "assumptions": [
+      "Qwen3.8-Max open-weight release and final license terms were still developing at the research cutoff.",
+      "API cost examples use list prices and a simplified token mix; total task cost varies by reasoning length, retries, caching and tool calls."
+    ],
+    "history": [
+      {
+        "version": "1.0.0",
+        "date": "2026-08-09",
+        "type": "신규 작성",
+        "summary": "Kimi K3의 공개 사양·가격·라이선스와 Qwen3.8-Max 발표·시장 신호를 비교해 중국 AI의 기업 채택 가능성과 한계를 최초 분석했다.",
+        "status": "AI-assisted · 검토 권장"
+      }
+    ]
+  },
+  "qualityNotes": [
+    "Kimi K3 current release status is separated from Qwen3.8-Max pending/opening conditions.",
+    "Vendor benchmarks are not treated as universal independent proof.",
+    "List-price example is clearly separated from total task cost.",
+    "Commercial license caveats are surfaced before recommendations."
+  ]
+}

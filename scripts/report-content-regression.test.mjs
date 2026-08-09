@@ -76,3 +76,9 @@ test("Hermes Korean AI guide keeps the official Upstage cover", () => {
   assert.match(guide, /data-report-cover="assets\/upstage-official-og\.avif"/);
   assert.match(provenance, /https:\/\/www\.upstage\.ai\//);
 });
+
+test("China AI report keeps its bundled representative thumbnail", () => {
+  const report = read("reports/260809-china-ai-kimi-k3-qwen/index.html");
+
+  assert.match(report, /data-report-cover="thumbnail\.png"/);
+});

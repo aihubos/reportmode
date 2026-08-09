@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="2.8조 파라미터 Kimi K3와 2.4조 파라미터 Qwen3.8-Max가 오픈웨이트·낮은 API 비용으로 미국 프런티어 모델의 가격과 기업 선택을 흔드는 이유, 그리고 라이선스 함정을 분석했다.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="author" content="Jeremy Lee">
+  <link rel="canonical" href="https://aihubos.github.io/reportmode/reports/260809-20-china-ai-kimi-k3-qwen-v1-0-0/">
+
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="중국 AI의 역습: Kimi K3·Qwen3.8이 미국 모델의 가격표를 흔드는 이유">
+  <meta property="og:description" content="2.8조 파라미터 Kimi K3와 2.4조 파라미터 Qwen3.8-Max가 오픈웨이트·낮은 API 비용으로 미국 프런티어 모델의 가격과 기업 선택을 흔드는 이유, 그리고 라이선스 함정을 분석했다.">
+  <meta property="og:url" content="https://aihubos.github.io/reportmode/reports/260809-20-china-ai-kimi-k3-qwen-v1-0-0/">
+  <meta property="og:image" content="https://aihubos.github.io/reportmode/reports/260809-20-china-ai-kimi-k3-qwen-v1-0-0/thumbnail.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="720">
+  <meta property="og:image:alt" content="짙은 파랑 배경에서 Kimi K3와 Qwen3.8이 대결하는 추상 블록, 2.8T와 1M 수치가 표시된 중국 AI 분석 대표 이미지">
+  <meta property="article:published_time" content="2026-08-09T20:35:00+09:00">
+  <meta property="article:modified_time" content="2026-08-09T20:35:00+09:00">
+  <meta property="article:section" content="AI / Tech Strategy">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="중국 AI의 역습: Kimi K3·Qwen3.8이 미국 모델의 가격표를 흔드는 이유">
+  <meta name="twitter:description" content="2.8조 파라미터 Kimi K3와 2.4조 파라미터 Qwen3.8-Max가 오픈웨이트·낮은 API 비용으로 미국 프런티어 모델의 가격과 기업 선택을 흔드는 이유, 그리고 라이선스 함정을 분석했다.">
+  <meta name="twitter:image" content="https://aihubos.github.io/reportmode/reports/260809-20-china-ai-kimi-k3-qwen-v1-0-0/thumbnail.png">
+  <meta name="twitter:image:alt" content="짙은 파랑 배경에서 Kimi K3와 Qwen3.8이 대결하는 추상 블록, 2.8T와 1M 수치가 표시된 중국 AI 분석 대표 이미지">
+
+  <title>중국 AI의 역습: Kimi K3·Qwen3.8이 미국 모델의 가격표를 흔드는 이유 · v1.0.0 | Report Hub</title>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "중국 AI의 역습: Kimi K3·Qwen3.8이 미국 모델의 가격표를 흔드는 이유",
+  "alternativeHeadline": "오픈웨이트와 낮은 가격이 기업의 멀티모델 전략을 바꾸는 이유",
+  "description": "2.8조 파라미터 Kimi K3와 2.4조 파라미터 Qwen3.8-Max가 오픈웨이트·낮은 API 비용으로 미국 프런티어 모델의 가격과 기업 선택을 흔드는 이유, 그리고 라이선스 함정을 분석했다.",
+  "image": [
+    "https://aihubos.github.io/reportmode/reports/260809-20-china-ai-kimi-k3-qwen-v1-0-0/thumbnail.png",
+    "https://aihubos.github.io/reportmode/reports/260809-20-china-ai-kimi-k3-qwen-v1-0-0/thumbnail-og.png"
+  ],
+  "datePublished": "2026-08-09T20:35:00+09:00",
+  "dateModified": "2026-08-09T20:35:00+09:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jeremy Lee"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Report Hub"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://aihubos.github.io/reportmode/reports/260809-20-china-ai-kimi-k3-qwen-v1-0-0/"
+  },
+  "articleSection": "AI / Tech Strategy",
+  "keywords": "Kimi K3, Qwen3.8-Max, 중국 AI, 오픈웨이트, AI API 가격, 기업 AI",
+  "inLanguage": "ko-KR",
+  "isAccessibleForFree": true
+}
+  </script>
+
+  <style>
+    :root {
+      --blue: #3182F6;
+      --blue-strong: #1B64DA;
+      --blue-deep: #124FB5;
+      --blue-soft: #E8F3FF;
+      --ink: #191F28;
+      --ink-2: #333D4B;
+      --muted: #6B7684;
+      --muted-2: #8B95A1;
+      --line: #E5E8EB;
+      --surface: #F7F8FA;
+      --surface-2: #F2F4F6;
+      --white: #FFFFFF;
+      --highlight: #DFFF6A;
+      --highlight-yellow: #FFF184;
+      --mint: #DFFBF2;
+      --violet: #EEE9FF;
+      --rose: #FFF0F0;
+      --shadow-sm: 0 8px 30px rgba(25,31,40,.06);
+      --shadow-md: 0 24px 70px rgba(25,31,40,.10);
+      --radius-sm: 18px;
+      --radius-md: 28px;
+      --radius-lg: 40px;
+      --max: 1180px;
+      --hero-title-min: 36px;
+      --hero-title-fluid: 4.4vw;
+      --hero-title-max: 55px;
+      --section-title-min: 28px;
+      --section-title-fluid: 3.3vw;
+      --section-title-max: 41px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 87% 7%, rgba(49,130,246,.10), transparent 27rem),
+        radial-gradient(circle at 7% 16%, rgba(223,255,106,.10), transparent 23rem),
+        #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", sans-serif;
+      line-height: 1.65;
+      letter-spacing: -.02em;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    img, iframe, svg { display: block; max-width: 100%; }
+    h1, h2, h3, h4, p { margin-top: 0; }
+    strong { color: var(--ink); }
+    mark { color: inherit; background: none; }
+    code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+
+    .skip-link {
+      position: fixed; left: 12px; top: -80px; z-index: 3000;
+      padding: 10px 14px; border-radius: 10px; color: #fff; background: var(--ink);
+      font-weight: 800; transition: top .2s ease;
+    }
+    .skip-link:focus { top: 12px; }
+
+    .scroll-progress {
+      position: fixed; inset: 0 auto auto 0; width: 0; height: 3px; z-index: 1300;
+      background: linear-gradient(90deg, var(--blue), #6AA7FF); transition: width .08s linear;
+    }
+    .container { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+
+    .nav-wrap { position: sticky; top: 0; z-index: 1000; padding: 14px 22px 0; }
+    .nav {
+      max-width: 1240px; min-height: 62px; margin: 0 auto; padding: 10px 12px 10px 18px;
+      display: flex; align-items: center; justify-content: space-between; gap: 18px;
+      border: 1px solid rgba(229,232,235,.86); border-radius: 22px;
+      background: rgba(255,255,255,.84); box-shadow: 0 10px 34px rgba(25,31,40,.05);
+      backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%);
+    }
+    .brand { display: flex; align-items: center; gap: 11px; min-width: max-content; font-size: 14px; font-weight: 850; }
+    .brand-mark {
+      width: 36px; height: 36px; display: grid; place-items: center; border-radius: 12px; color: #fff;
+      background: linear-gradient(145deg, #5CA2FF, var(--blue-strong)); box-shadow: 0 8px 20px rgba(49,130,246,.28);
+    }
+    .brand-mark svg { width: 20px; height: 20px; }
+    .brand-sub { color: var(--muted-2); font-weight: 750; }
+    .nav-links { display: flex; align-items: center; gap: 4px; margin-left: auto; }
+    .nav-links a { padding: 9px 10px; border-radius: 12px; color: var(--muted); font-size: 13px; font-weight: 750; transition: .2s ease; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--ink); background: var(--surface); outline: none; }
+    .nav-actions { display: flex; gap: 8px; }
+
+    .btn {
+      appearance: none; border: 0; cursor: pointer; min-height: 42px; padding: 0 16px;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      border-radius: 14px; font-size: 14px; font-weight: 850; letter-spacing: -.02em;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:focus-visible { outline: 3px solid rgba(49,130,246,.26); outline-offset: 2px; }
+    .btn-primary { color: #fff; background: var(--blue); box-shadow: 0 10px 24px rgba(49,130,246,.24); }
+    .btn-primary:hover { background: var(--blue-strong); }
+    .btn-ghost { color: var(--ink-2); background: var(--surface); }
+    .btn-ghost:hover { background: var(--surface-2); }
+
+    .hero {
+      min-height: 850px; padding: 78px 0 62px; display: grid; grid-template-columns: 1.04fr .96fr;
+      align-items: center; gap: 54px; position: relative;
+    }
+    .hero-copy { position: relative; z-index: 2; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 9px; padding: 8px 13px; margin-bottom: 21px;
+      border-radius: 999px; color: var(--blue-strong); background: var(--blue-soft); font-size: 14px; font-weight: 850;
+    }
+    .eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 5px rgba(49,130,246,.12); }
+    .hero h1 {
+      max-width: 760px; margin-bottom: 24px;
+      font-size: clamp(var(--hero-title-min), var(--hero-title-fluid), var(--hero-title-max));
+      line-height: 1.10; letter-spacing: -.057em; font-weight: 880; text-wrap: balance; overflow-wrap: anywhere;
+    }
+    .blue { color: var(--blue); }
+    .marker { position: relative; z-index: 0; white-space: nowrap; }
+    .marker::after {
+      content: ""; position: absolute; left: -.03em; right: -.03em; bottom: .08em; height: .34em;
+      border-radius: .12em; background: var(--highlight); transform: rotate(-1.2deg); z-index: -1; opacity: .92;
+    }
+    .hero-lead { max-width: 720px; margin-bottom: 26px; color: var(--muted); font-size: clamp(18px, 1.8vw, 22px); line-height: 1.6; font-weight: 620; }
+    .hero-lead strong { color: var(--ink-2); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .hero-note { margin-top: 22px; display: flex; align-items: flex-start; gap: 10px; color: var(--muted); font-size: 13px; font-weight: 650; }
+    .hero-note svg { width: 19px; height: 19px; flex: 0 0 auto; margin-top: 2px; color: var(--blue); }
+    .report-meta { margin-top: 18px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 13px; color: var(--muted-2); font-size: 12px; font-weight: 800; }
+    .version-badge {
+      display: inline-flex; align-items: center; min-height: 28px; padding: 0 10px; border-radius: 999px;
+      color: var(--blue-strong); background: var(--blue-soft); border: 1px solid rgba(49,130,246,.16); font-variant-numeric: tabular-nums;
+    }
+    .report-meta-separator { width: 3px; height: 3px; border-radius: 50%; background: var(--line); }
+
+    .hero-visual { min-height: 620px; display: grid; place-items: center; position: relative; }
+    .hero-orbit { position: absolute; width: 510px; height: 510px; border: 1px dashed rgba(49,130,246,.20); border-radius: 50%; animation: orbit 22s linear infinite; }
+    .hero-orbit::before, .hero-orbit::after { content: ""; position: absolute; width: 13px; height: 13px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 8px rgba(49,130,246,.10); }
+    .hero-orbit::before { top: 64px; right: 72px; }
+    .hero-orbit::after { left: 22px; bottom: 155px; background: var(--highlight); box-shadow: 0 0 0 8px rgba(223,255,106,.20); }
+    @keyframes orbit { to { transform: rotate(360deg); } }
+
+    .evidence-board {
+      width: min(100%, 510px); position: relative; z-index: 2; padding: 22px;
+      border: 1px solid rgba(229,232,235,.94); border-radius: 36px; background: rgba(255,255,255,.95);
+      box-shadow: var(--shadow-md); backdrop-filter: blur(14px);
+    }
+    .board-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+    .board-title { display: flex; align-items: center; gap: 9px; color: var(--ink-2); font-size: 13px; font-weight: 900; }
+    .board-title i { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); }
+    .board-tag { padding: 5px 8px; border-radius: 999px; color: #3F6500; background: var(--highlight); font-size: 10px; font-weight: 900; }
+    .board-verdict { padding: 23px; border-radius: 26px; color: #fff; background: linear-gradient(145deg, #216DDC, #3182F6 58%, #5A9CFF); }
+    .board-verdict span { display: block; margin-bottom: 8px; color: rgba(255,255,255,.76); font-size: 11px; font-weight: 900; letter-spacing: .06em; }
+    .board-verdict strong { display: block; color: #fff; font-size: 22px; line-height: 1.42; letter-spacing: -.04em; }
+    .metric-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+    .metric-card { min-height: 148px; padding: 17px; border-radius: 20px; background: var(--surface); border: 1px solid var(--line); }
+    .metric-card .metric-label { display: block; margin-bottom: 13px; color: var(--muted-2); font-size: 10px; font-weight: 900; letter-spacing: .04em; }
+    .metric-card strong { display: block; margin-bottom: 5px; color: var(--blue-strong); font-size: 29px; line-height: 1; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+    .metric-card p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.55; font-weight: 650; }
+    .metric-card.alert strong { color: #C54545; }
+    .metric-card.neutral strong { color: #6850BF; }
+    .board-foot { margin: 11px 4px 0; color: var(--muted-2); font-size: 10px; line-height: 1.5; font-weight: 700; }
+
+    .executive-strip { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 2px; }
+    .exec-card { padding: 20px 22px; border: 1px solid var(--line); border-radius: 22px; background: #fff; box-shadow: var(--shadow-sm); }
+    .exec-card b { display: inline-flex; margin-bottom: 10px; padding: 5px 8px; border-radius: 999px; color: var(--blue-strong); background: var(--blue-soft); font-size: 10px; font-weight: 900; }
+    .exec-card:nth-child(2) b { color: #6C52CC; background: var(--violet); }
+    .exec-card:nth-child(3) b { color: #517000; background: var(--highlight); }
+    .exec-card h3 { margin-bottom: 6px; font-size: 18px; letter-spacing: -.035em; }
+    .exec-card p { margin: 0; color: var(--muted); font-size: 13px; font-weight: 620; }
+
+    .cover-wrap { padding: 0 0 74px; }
+    .article-cover { margin: 0; overflow: hidden; border-radius: 34px; border: 1px solid var(--line); background: var(--surface); box-shadow: var(--shadow-md); }
+    .article-cover img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+    .article-cover figcaption { padding: 13px 18px; color: var(--muted-2); background: #fff; font-size: 12px; font-weight: 650; }
+
+    section { padding: 102px 0; }
+    .section-soft { background: var(--surface); }
+    .section-blue {
+      color: #fff;
+      background: radial-gradient(circle at 15% 20%, rgba(255,255,255,.18), transparent 25rem), linear-gradient(145deg, #216DDC, #3182F6 58%, #5A9CFF);
+    }
+    .section-kicker { margin-bottom: 10px; color: var(--blue); font-size: 14px; font-weight: 900; letter-spacing: .02em; }
+    .section-blue .section-kicker { color: rgba(255,255,255,.76); }
+    .section-title {
+      max-width: 930px; margin-bottom: 18px;
+      font-size: clamp(var(--section-title-min), var(--section-title-fluid), var(--section-title-max));
+      line-height: 1.20; letter-spacing: -.05em; font-weight: 880; text-wrap: balance; overflow-wrap: anywhere;
+    }
+    .section-desc { max-width: 860px; margin-bottom: 44px; color: var(--muted); font-size: 19px; line-height: 1.62; font-weight: 600; }
+    .section-blue .section-desc { color: rgba(255,255,255,.82); }
+
+    .thesis-card { display: grid; grid-template-columns: 140px 1fr; gap: 28px; align-items: center; padding: 34px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: #fff; box-shadow: var(--shadow-sm); }
+    .thesis-stamp { aspect-ratio: 1; display: grid; place-items: center; border-radius: 34px; color: var(--blue); background: var(--blue-soft); font-size: 34px; font-weight: 950; }
+    .thesis-copy h3 { margin-bottom: 10px; font-size: 25px; line-height: 1.35; letter-spacing: -.04em; }
+    .thesis-copy p { margin-bottom: 0; color: var(--muted); font-size: 18px; font-weight: 600; }
+
+    .insight-grid, .feature-grid, .value-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 22px; }
+    .insight-card, .feature-card, .value-card { min-height: 250px; padding: 26px; border: 1px solid var(--line); border-radius: var(--radius-md); background: #fff; box-shadow: 0 10px 30px rgba(25,31,40,.035); transition: transform .25s ease, box-shadow .25s ease; }
+    .insight-card:hover, .feature-card:hover, .value-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .card-index { display: inline-grid; place-items: center; width: 36px; height: 36px; margin-bottom: 20px; border-radius: 12px; color: var(--blue); background: var(--blue-soft); font-size: 12px; font-weight: 900; }
+    .insight-card:nth-child(2) .card-index, .feature-card:nth-child(2) .card-index { color: #7458D2; background: var(--violet); }
+    .insight-card:nth-child(3) .card-index, .feature-card:nth-child(3) .card-index { color: #15876D; background: var(--mint); }
+    .insight-card h3, .feature-card h3, .value-card h3 { margin-bottom: 10px; font-size: 24px; letter-spacing: -.04em; }
+    .insight-card p, .feature-card p, .value-card p { margin-bottom: 0; color: var(--muted); font-size: 15px; font-weight: 600; }
+    .easy-label, .claim-badge { display: inline-flex; padding: 5px 9px; margin-bottom: 16px; border-radius: 8px; background: var(--highlight); color: #415400; font-size: 12px; font-weight: 900; }
+    .claim-badge.company { color: #6C52CC; background: var(--violet); }
+    .claim-badge.signal { color: #087C65; background: var(--mint); }
+    .claim-badge.outlook { color: #9B5B00; background: var(--highlight-yellow); }
+
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .compare-card { padding: 30px; border-radius: var(--radius-md); border: 1px solid var(--line); background: #fff; }
+    .compare-card.good { border-color: rgba(49,130,246,.25); background: linear-gradient(180deg, #fff, #F5F9FF); }
+    .compare-label { display: inline-flex; padding: 6px 10px; border-radius: 999px; margin-bottom: 18px; color: var(--muted); background: var(--surface-2); font-size: 12px; font-weight: 900; }
+    .compare-card.good .compare-label { color: var(--blue-strong); background: var(--blue-soft); }
+    .compare-card h3 { margin-bottom: 12px; font-size: 24px; letter-spacing: -.04em; }
+    .compare-card p { color: var(--muted); font-weight: 600; }
+    .check-list { display: grid; gap: 10px; margin: 18px 0 0; padding: 0; list-style: none; }
+    .check-list li { display: flex; gap: 10px; align-items: flex-start; color: var(--ink-2); font-size: 14px; font-weight: 650; }
+    .check-list li::before { content: "✓"; flex: 0 0 auto; width: 22px; height: 22px; display: grid; place-items: center; border-radius: 50%; color: var(--blue); background: var(--blue-soft); font-size: 12px; font-weight: 950; }
+
+    .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 24px; background: #fff; box-shadow: var(--shadow-sm); }
+    table { width: 100%; min-width: 760px; border-collapse: collapse; }
+    th, td { padding: 17px 18px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+    th { color: var(--muted); background: var(--surface); font-size: 12px; font-weight: 900; letter-spacing: .02em; }
+    td { color: var(--ink-2); font-size: 14px; font-weight: 620; }
+    tr:last-child td { border-bottom: 0; }
+    .table-em { color: var(--blue-strong); font-weight: 900; }
+    .status { display: inline-flex; align-items: center; padding: 5px 8px; border-radius: 999px; font-size: 11px; font-weight: 900; }
+    .status.confirmed { color: #087C65; background: var(--mint); }
+    .status.pending { color: #9B5B00; background: var(--highlight-yellow); }
+    .status.closed { color: #6C52CC; background: var(--violet); }
+
+    .price-stage { display: grid; grid-template-columns: 1fr auto 1fr; gap: 18px; align-items: stretch; }
+    .price-card { padding: 30px; border-radius: 30px; color: var(--ink); background: #fff; border: 1px solid rgba(255,255,255,.45); box-shadow: 0 18px 48px rgba(15,72,160,.18); }
+    .price-card h3 { margin-bottom: 18px; font-size: 22px; }
+    .price-number { margin-bottom: 8px; color: var(--blue-strong); font-size: 46px; line-height: 1; letter-spacing: -.05em; font-weight: 950; }
+    .price-card p { margin-bottom: 0; color: var(--muted); font-size: 14px; font-weight: 650; }
+    .price-vs { align-self: center; width: 54px; height: 54px; display: grid; place-items: center; border-radius: 50%; color: #fff; background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.25); font-weight: 950; }
+    .price-note { margin-top: 18px; color: rgba(255,255,255,.78); font-size: 13px; font-weight: 650; }
+
+    .flow-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .flow-step { position: relative; min-height: 230px; padding: 24px; border-radius: 26px; color: #fff; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.18); backdrop-filter: blur(8px); }
+    .flow-step::after { content: "→"; position: absolute; right: -19px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,.6); font-size: 28px; font-weight: 900; }
+    .flow-step:last-child::after { display: none; }
+    .flow-step b { display: inline-grid; place-items: center; width: 36px; height: 36px; margin-bottom: 18px; border-radius: 12px; color: var(--blue-deep); background: var(--highlight); font-size: 12px; }
+    .flow-step h3 { margin-bottom: 10px; color: #fff; font-size: 20px; letter-spacing: -.04em; }
+    .flow-step p { margin-bottom: 0; color: rgba(255,255,255,.78); font-size: 14px; font-weight: 620; }
+
+    .callout { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: start; padding: 26px; margin-top: 26px; border-radius: 26px; background: var(--highlight-yellow); }
+    .callout-icon { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 14px; color: #7A5100; background: rgba(255,255,255,.64); font-size: 22px; font-weight: 950; }
+    .callout h3 { margin-bottom: 6px; font-size: 19px; }
+    .callout p { margin: 0; color: #6D5416; font-size: 14px; font-weight: 700; }
+
+    .plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .plan-card { padding: 28px; border-radius: 28px; border: 1px solid var(--line); background: #fff; box-shadow: var(--shadow-sm); }
+    .plan-day { display: inline-flex; margin-bottom: 16px; padding: 6px 10px; border-radius: 999px; color: var(--blue-strong); background: var(--blue-soft); font-size: 12px; font-weight: 900; }
+    .plan-card h3 { margin-bottom: 9px; font-size: 22px; letter-spacing: -.04em; }
+    .plan-card p { margin-bottom: 0; color: var(--muted); font-size: 14px; font-weight: 620; }
+
+    .faq { display: grid; gap: 12px; }
+    details { padding: 20px 22px; border: 1px solid var(--line); border-radius: 20px; background: #fff; }
+    summary { cursor: pointer; color: var(--ink-2); font-weight: 850; }
+    details p { margin: 14px 0 0; color: var(--muted); font-size: 15px; font-weight: 600; }
+
+    .source-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .source-card { display: block; padding: 22px; border: 1px solid var(--line); border-radius: 22px; background: #fff; transition: transform .2s ease, box-shadow .2s ease; }
+    .source-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+    .source-meta { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 10px; }
+    .source-grade { display: inline-flex; padding: 4px 7px; border-radius: 8px; color: var(--blue-strong); background: var(--blue-soft); font-size: 10px; font-weight: 900; }
+    .source-grade.b { color: #6C52CC; background: var(--violet); }
+    .source-date { color: var(--muted-2); font-size: 11px; font-weight: 800; }
+    .source-card h3 { margin-bottom: 7px; font-size: 17px; line-height: 1.4; letter-spacing: -.03em; }
+    .source-card p { margin: 0; color: var(--muted); font-size: 13px; font-weight: 620; }
+
+    .method-card { padding: 28px; border-radius: 28px; border: 1px solid var(--line); background: linear-gradient(135deg, #fff, #F7FAFF); }
+    .method-card h3 { margin-bottom: 12px; font-size: 22px; }
+    .method-card p { margin-bottom: 8px; color: var(--muted); font-size: 14px; font-weight: 620; }
+
+    .history-table { margin-top: 26px; }
+    .footer { padding: 44px 0 62px; color: var(--muted-2); background: var(--ink); }
+    .footer strong { color: #fff; }
+    .footer-row { display: flex; justify-content: space-between; gap: 24px; align-items: flex-start; }
+    .footer p { max-width: 720px; margin: 7px 0 0; font-size: 13px; }
+    .footer-version { padding: 8px 11px; border-radius: 999px; color: #fff; background: rgba(255,255,255,.1); font-size: 12px; font-weight: 900; }
+
+    @media (max-width: 1080px) {
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; min-height: auto; gap: 34px; }
+      .hero-visual { min-height: 560px; }
+      .executive-strip { grid-column: auto; }
+      .flow-grid { grid-template-columns: repeat(2, 1fr); }
+      .flow-step:nth-child(2)::after { display: none; }
+      .price-stage { grid-template-columns: 1fr; }
+      .price-vs { margin: -4px auto; }
+    }
+
+    @media (max-width: 760px) {
+      :root { --hero-title-min: 34px; --hero-title-fluid: 9.8vw; --hero-title-max: 38px; --section-title-min: 27px; --section-title-fluid: 7.6vw; --section-title-max: 32px; }
+      .container { width: min(100% - 32px, var(--max)); }
+      .nav-wrap { padding: 10px 12px 0; }
+      .nav { min-height: 56px; padding: 8px 9px 8px 13px; border-radius: 18px; }
+      .brand-sub, .nav-actions .btn-ghost { display: none; }
+      .btn { min-height: 40px; padding: 0 13px; }
+      .hero { padding: 62px 0 46px; }
+      .hero-visual { min-height: 0; }
+      .hero-orbit { width: 380px; height: 380px; }
+      .evidence-board { padding: 16px; border-radius: 28px; }
+      .metric-card { min-height: 132px; padding: 14px; }
+      .metric-card strong { font-size: 25px; }
+      .executive-strip, .insight-grid, .feature-grid, .value-grid, .plan-grid, .source-grid, .compare-grid { grid-template-columns: 1fr; }
+      section { padding: 78px 0; }
+      .section-desc { margin-bottom: 34px; font-size: 17px; }
+      .thesis-card { grid-template-columns: 1fr; padding: 26px; }
+      .thesis-stamp { width: 92px; }
+      .flow-grid { grid-template-columns: 1fr; }
+      .flow-step::after { display: none; }
+      .footer-row { flex-direction: column; }
+    }
+
+    @media (max-width: 440px) {
+      .container { width: calc(100% - 28px); }
+      .hero h1 { font-size: 35px; }
+      .hero-actions .btn { width: 100%; }
+      .metric-grid { grid-template-columns: 1fr; }
+      .hero-orbit { display: none; }
+      .board-verdict strong { font-size: 19px; }
+      .price-number { font-size: 39px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+
+    @media print {
+      @page { size: A4; margin: 14mm; }
+      .nav-wrap, .scroll-progress, .hero-actions, .skip-link { display: none !important; }
+      body { background: #fff !important; color: #111; }
+      .hero { min-height: auto; padding-top: 0; grid-template-columns: 1fr; }
+      .hero-visual { min-height: auto; }
+      .hero-orbit { display: none; }
+      section { padding: 32px 0; break-inside: auto; }
+      .section-blue { background: #fff !important; color: #111; }
+      .section-blue .section-title, .section-blue .section-desc, .section-blue .section-kicker { color: #111 !important; }
+      .flow-step, .price-card { color: #111; background: #fff; border: 1px solid #ddd; box-shadow: none; }
+      .flow-step h3, .flow-step p { color: #111; }
+      .article-cover, .evidence-board, .exec-card, .insight-card, .feature-card, .value-card, .plan-card, .source-card, .table-wrap { box-shadow: none; break-inside: avoid; }
+      .footer { background: #fff; color: #555; border-top: 1px solid #ddd; }
+      .footer strong { color: #111; }
+    }
+  </style>
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260809-rh8">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png?v=20260809-rh8">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png?v=20260809-rh8">
+  <link rel="manifest" href="../../site.webmanifest?v=20260809-rh8">
+  <meta name="application-name" content="Report Hub">
+  <meta property="og:site_name" content="Report Hub">
+  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260809-rh8">
+  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260809-rh8">
+  <link rel="stylesheet" href="../../assets/report-comments.css?v=20260809-comments1">
+</head>
+<body data-report-view="detail" data-report-layout="wide" data-report-cover="thumbnail.png" data-report-cover-alt="Kimi K3와 Qwen3.8 비교 보고서 대표 이미지">
+  <a class="report-home-button" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span></a>
+  <a class="skip-link" href="#main">본문으로 바로가기</a>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <div class="nav-wrap">
+    <nav class="nav" aria-label="보고서 주요 메뉴">
+      <a class="brand report-hub-brand-link" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span></a>
+      <div class="nav-links">
+        <a href="#verdict">결론</a><a href="#comparison">비교</a><a href="#economics">비용</a><a href="#plan">테스트</a><a href="#sources">출처</a>
+      </div>
+      <div class="nav-actions">
+        <button class="btn btn-ghost" type="button" id="copyLink">링크 복사</button>
+        <button class="btn btn-primary" type="button" onclick="window.print()">PDF 저장</button>
+      </div>
+    </nav>
+  </div>
+
+  <header id="top" class="container">
+    <div class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>CHINA AI · OPEN WEIGHTS · ENTERPRISE COST</div>
+        <h1>중국 AI의 역습:<br><span class="blue">Kimi K3·Qwen3.8</span>이<br>미국 모델의 <span class="marker">가격표</span>를 흔드는 이유</h1>
+        <p class="hero-lead">중국 모델이 미국 모델을 전부 이겼다는 이야기가 아닙니다. 더 현실적인 위협은 기업이 <strong>“가장 비싼 모델 하나” 대신 “업무별로 충분히 좋은 모델”</strong>을 고르기 시작했다는 점입니다.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#verdict">핵심 결론 보기</a>
+          <a class="btn btn-ghost" href="#comparison">모델 비교 보기</a>
+        </div>
+        <div class="hero-note">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 3.7 6.4v5.1c0 4.9 3.5 8.4 8.3 9.5 4.8-1.1 8.3-4.6 8.3-9.5V6.4L12 3Z" stroke="currentColor" stroke-width="1.8"/><path d="m8.7 12 2.1 2.1 4.7-4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>기준일 2026-08-09. Kimi K3는 공개 가중치 기준, Qwen3.8-Max는 Preview 및 공개·라이선스 진행 상태를 구분했습니다.</span>
+        </div>
+        <div class="report-meta">
+          <span class="version-badge" id="reportVersion">v1.0.0</span>
+          <span class="report-meta-separator"></span>
+          <span id="reportUpdated">Updated 2026-08-09</span>
+          <span class="report-meta-separator"></span>
+          <span>AI-assisted · Human review recommended</span>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-label="핵심 근거 요약">
+        <div class="hero-orbit" aria-hidden="true"></div>
+        <div class="evidence-board">
+          <div class="board-top">
+            <div class="board-title"><i></i>AI COMPETITION BOARD</div>
+            <div class="board-tag">FACT-CHECKED</div>
+          </div>
+          <div class="board-verdict">
+            <span>ONE-LINE VERDICT</span>
+            <strong>성능 격차보다 먼저 무너지는 것은 프리미엄 가격과 단일 공급자 관성입니다.</strong>
+          </div>
+          <div class="metric-grid">
+
+            <div class="metric-card ">
+              <span class="metric-label">KIMI K3 SCALE</span>
+              <strong>2.8T</strong>
+              <p>총 파라미터 · 104B 활성</p>
+            </div>
+
+            <div class="metric-card neutral">
+              <span class="metric-label">QWEN3.8 SCALE</span>
+              <strong>2.4T</strong>
+              <p>발표 기준 · 95B 활성</p>
+            </div>
+
+            <div class="metric-card ">
+              <span class="metric-label">KIMI API</span>
+              <strong>$3/$15</strong>
+              <p>입력/출력 · 1M 토큰당</p>
+            </div>
+
+            <div class="metric-card alert">
+              <span class="metric-label">KEY CAVEAT</span>
+              <strong>조건부</strong>
+              <p>오픈웨이트 ≠ 무제한 상업 사용</p>
+            </div>
+
+          </div>
+          <p class="board-foot">출처: Moonshot AI, Alibaba/Qwen, OpenAI, Reuters. 가격은 목록가이며 실제 업무 비용은 달라질 수 있습니다.</p>
+        </div>
+      </div>
+
+      <div class="executive-strip">
+
+        <article class="exec-card">
+          <b>FACT</b>
+          <h3>Kimi K3 가중치는 공개됐다</h3>
+          <p>2.8T MoE, 1M 컨텍스트, 공식 가격과 별도 상업 조건이 확인됩니다.</p>
+        </article>
+
+        <article class="exec-card">
+          <b>SIGNAL</b>
+          <h3>Qwen3.8은 프런티어 경쟁 신호다</h3>
+          <p>2.4T 규모와 높은 Arena 순위가 발표됐지만 최종 공개 조건은 계속 확인해야 합니다.</p>
+        </article>
+
+        <article class="exec-card">
+          <b>DECISION</b>
+          <h3>전면 교체보다 멀티모델 테스트</h3>
+          <p>50~100개 실제 업무로 품질·총비용·법무 위험을 함께 비교하는 것이 우선입니다.</p>
+        </article>
+
+      </div>
+    </div>
+  </header>
+
+  <div class="cover-wrap">
+    <div class="container">
+      <figure class="article-cover">
+        <img src="thumbnail.png" width="1280" height="720" alt="짙은 파랑 배경에서 Kimi K3와 Qwen3.8이 대결하는 추상 블록, 2.8T와 1M 수치가 표시된 중국 AI 분석 대표 이미지" fetchpriority="high">
+        <figcaption>AIHUBOS Tech Blog Report 대표 이미지 · 독자 제작 추상 그래픽 · 2026-08-09</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <main id="main">
+
+<section id="verdict">
+  <div class="container">
+    <div class="section-kicker">EXECUTIVE SNAPSHOT</div>
+    <h2 class="section-title">중국 모델의 위협은 “전부 더 똑똑하다”가 아니라 <span class="blue">선택의 경제학</span>을 바꾼다는 데 있다</h2>
+    <p class="section-desc">Kimi K3와 Qwen 계열이 당장 모든 미국 모델을 대체한다는 결론은 성급합니다. 그러나 충분히 강한 성능, 낮은 목록가, 다운로드 가능한 가중치, API 호환성이 결합되면서 기업이 한 회사의 최고가 모델만 고집할 이유는 빠르게 줄고 있습니다.</p>
+    <div class="thesis-card">
+      <div class="thesis-stamp">↘$</div>
+      <div class="thesis-copy">
+        <h3>먼저 흔들리는 것은 성능 1위가 아니라 <span class="marker">프리미엄 가격</span>과 단일 공급자 관성입니다.</h3>
+        <p>Kimi K3는 공식 목록가 기준 입력 $3·출력 $15/백만 토큰으로 GPT-5.6 Sol의 $5·$30보다 낮습니다. Qwen3.8-Max는 2026년 8월 9일 기준 공개·라이선스 조건이 진행 중이므로, 실제 기업 채택은 최종 조건과 운영 품질을 확인해야 합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="shift" class="section-soft">
+  <div class="container">
+    <div class="section-kicker">WHAT CHANGED</div>
+    <h2 class="section-title">이번 변화가 이전의 “저렴한 중국 모델” 이야기와 다른 3가지</h2>
+    <p class="section-desc">가격만 싼 소형 모델이 아니라, 프런티어급 규모·멀티모달·장문 컨텍스트·에이전트 작업을 앞세운 대형 모델이 오픈웨이트 전략과 함께 등장했습니다.</p>
+    <div class="insight-grid">
+      <article class="insight-card">
+        <span class="card-index">01</span>
+        <span class="claim-badge">확인</span>
+        <h3>규모가 프런티어급</h3>
+        <p>Kimi K3는 총 2.8조 파라미터, 토큰당 1,040억 활성 파라미터, 100만 토큰 컨텍스트를 공개했습니다. Qwen3.8-Max는 2.4조·950억 활성 파라미터로 발표됐습니다.</p>
+      </article>
+      <article class="insight-card">
+        <span class="card-index">02</span>
+        <span class="claim-badge signal">외부 신호</span>
+        <h3>“최고”보다 “충분히 좋음”</h3>
+        <p>Reuters가 인용한 업계 분석은 많은 업무가 절대 1위 모델보다 가격·접근성·투명성이 좋은 모델을 필요로 한다고 봅니다. 바로 이 영역이 기업 물량의 상당 부분입니다.</p>
+      </article>
+      <article class="insight-card">
+        <span class="card-index">03</span>
+        <span class="claim-badge outlook">전망</span>
+        <h3>멀티모델 조달이 기본값</h3>
+        <p>기업은 어려운 추론은 최고급 모델, 반복 업무는 저비용 모델, 민감 데이터는 자체 배포 모델로 나누는 라우팅 전략을 채택할 가능성이 커졌습니다.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="comparison">
+  <div class="container">
+    <div class="section-kicker">MODEL STATUS</div>
+    <h2 class="section-title">Kimi K3와 Qwen3.8은 같은 “중국 오픈웨이트”로 묶으면 안 된다</h2>
+    <p class="section-desc">Kimi K3는 가중치와 라이선스가 공개됐지만, Qwen3.8-Max는 기준일 현재 공개 전략과 상업 조건이 계속 구체화되고 있습니다. 현재 상태를 분리해서 봐야 합니다.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>항목</th><th>Kimi K3</th><th>Qwen3.8-Max</th><th>GPT-5.6 Sol</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>상태</td><td><span class="status confirmed">가중치 공개</span></td><td><span class="status pending">Preview·공개 조건 진행</span></td><td><span class="status closed">폐쇄형 API</span></td></tr>
+          <tr><td>총 / 활성 파라미터</td><td class="table-em">2.8T / 104B</td><td class="table-em">2.4T / 95B 발표</td><td>비공개</td></tr>
+          <tr><td>컨텍스트</td><td>1,048,576 토큰</td><td>최대 1M 토큰 보도·발표</td><td>1,050,000 토큰</td></tr>
+          <tr><td>목록가</td><td>$3 입력 / $15 출력</td><td>최종 K3.8 가격 확인 필요</td><td>$5 입력 / $30 출력</td></tr>
+          <tr><td>강점</td><td>오픈웨이트, 장문, 에이전트·코딩</td><td>Qwen 생태계, 대규모 MoE, 멀티모달</td><td>프런티어 품질, 도구·서비스 통합</td></tr>
+          <tr><td>핵심 주의점</td><td>대규모 MaaS 상업 조건</td><td>최종 가중치·라이선스·가격</td><td>폐쇄형·높은 고급 모델 비용</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <div class="callout-icon">!</div>
+      <div>
+        <h3>“오픈웨이트”는 “조건 없는 오픈소스”와 다릅니다</h3>
+        <p>Kimi K3 라이선스는 일정 매출을 넘는 Model-as-a-Service 사업자에게 Moonshot AI와 별도 계약을 요구합니다. Qwen3.8-Max도 대규모 사용자의 수익 공유 방안을 검토 중이라는 보도가 있어 법무 검토가 필수입니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="economics" class="section-blue">
+  <div class="container">
+    <div class="section-kicker">COST PRESSURE</div>
+    <h2 class="section-title">동일한 토큰 물량이라면 Kimi K3의 목록가는 약 45% 낮다</h2>
+    <p class="section-desc">월 1억 입력 토큰과 2천만 출력 토큰을 단순 가정했습니다. 실제 비용은 추론 길이, 재시도, 캐시, 도구 호출, 품질 때문에 필요한 추가 단계에 따라 달라집니다.</p>
+    <div class="price-stage">
+      <article class="price-card">
+        <h3>Kimi K3</h3>
+        <div class="price-number">$600</div>
+        <p>입력 100M × $3 + 출력 20M × $15</p>
+      </article>
+      <div class="price-vs">VS</div>
+      <article class="price-card">
+        <h3>GPT-5.6 Sol</h3>
+        <div class="price-number">$1,100</div>
+        <p>입력 100M × $5 + 출력 20M × $30</p>
+      </article>
+    </div>
+    <p class="price-note">단순 목록가 차이는 $500, 약 45.5%입니다. 그러나 싸게 호출해도 답을 얻기 위해 더 긴 출력·더 많은 재시도가 필요하면 실제 ‘업무 1건당 비용’ 차이는 줄어들 수 있습니다.</p>
+  </div>
+</section>
+
+<section id="adoption">
+  <div class="container">
+    <div class="section-kicker">WHY ENTERPRISES CARE</div>
+    <h2 class="section-title">기업이 움직이는 이유는 모델 한 개의 점수가 아니라 <span class="blue">조달 선택지</span>가 늘었기 때문이다</h2>
+    <p class="section-desc">DigitalOcean과 Together AI 같은 미국 인프라 사업자가 Kimi 생태계와 상업 협력을 진행한다는 보도는 ‘중국 모델을 미국 기업이 바로 핵심 시스템에 쓴다’는 뜻은 아닙니다. 다만 비용 최적화와 서비스 차별화를 위한 공급망이 형성되고 있다는 신호입니다.</p>
+    <div class="compare-grid">
+      <article class="compare-card good">
+        <span class="compare-label">채택을 밀어주는 힘</span>
+        <h3>가성비 + 배포 선택권</h3>
+        <ul class="check-list">
+          <li>반복 문서 처리와 코딩 보조의 API 단가 압박</li>
+          <li>가중치 다운로드와 자체 인프라 최적화 가능성</li>
+          <li>OpenAI 호환 API와 기존 도구 생태계 연결</li>
+          <li>Qwen의 기존 Apache 2.0 오픈 모델 기반 커뮤니티</li>
+        </ul>
+      </article>
+      <article class="compare-card">
+        <span class="compare-label">채택을 늦추는 힘</span>
+        <h3>법무·보안·운영 품질</h3>
+        <ul class="check-list">
+          <li>대규모 상업 사용의 별도 계약과 수익 공유 가능성</li>
+          <li>데이터 거버넌스, 국가별 규제, 공급망 리스크</li>
+          <li>긴 에이전트 작업의 재현성·실패 복구·지원 SLA</li>
+          <li>초대형 모델 자체 배포에 필요한 GPU와 운영 역량</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="mechanism" class="section-blue">
+  <div class="container">
+    <div class="section-kicker">THE REAL DISRUPTION</div>
+    <h2 class="section-title">미국 모델을 “대체”하기보다 업무를 쪼개서 가격을 압박한다</h2>
+    <p class="section-desc">멀티모델 전략에서는 최고급 모델이 사라지지 않습니다. 대신 가장 비싼 모델이 모든 요청을 독점하던 구조가 바뀝니다.</p>
+    <div class="flow-grid">
+      <article class="flow-step"><b>01</b><h3>업무 분류</h3><p>고난도 추론, 반복 생성, 민감 데이터, 장문 분석으로 요청을 나눕니다.</p></article>
+      <article class="flow-step"><b>02</b><h3>블라인드 평가</h3><p>사내 실제 작업으로 품질, 시간, 재시도, 사실 오류를 동일 기준에서 측정합니다.</p></article>
+      <article class="flow-step"><b>03</b><h3>동적 라우팅</h3><p>간단한 작업은 저비용 모델, 실패하거나 중요한 작업은 프런티어 모델로 올립니다.</p></article>
+      <article class="flow-step"><b>04</b><h3>총비용 관리</h3><p>토큰 단가가 아니라 업무 1건당 성공 비용과 운영 위험으로 공급자를 비교합니다.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="risks" class="section-soft">
+  <div class="container">
+    <div class="section-kicker">WHAT COULD GO WRONG</div>
+    <h2 class="section-title">파라미터 수와 벤치마크 순위만 보고 도입하면 실패할 수 있다</h2>
+    <p class="section-desc">2.8조와 2.4조라는 숫자는 규모를 보여주지만 실제 업무 품질을 보장하지 않습니다. 모델·하네스·추론 예산·도구 사용 조건이 다른 벤치마크는 직접 비교가 어렵습니다.</p>
+    <div class="feature-grid">
+      <article class="feature-card">
+        <span class="card-index">A</span>
+        <span class="claim-badge company">업체 주장</span>
+        <h3>벤치마크의 함정</h3>
+        <p>공식 모델 카드의 성능표는 중요한 출발점이지만, 공급자가 선택한 설정과 평가 방식이 포함됩니다. 사내 블라인드 테스트로 재검증해야 합니다.</p>
+      </article>
+      <article class="feature-card">
+        <span class="card-index">B</span>
+        <span class="claim-badge">확인</span>
+        <h3>자체 배포 비용</h3>
+        <p>오픈웨이트라고 무료 운영은 아닙니다. 1000억 활성 파라미터급 모델은 GPU, 네트워크, 양자화, 장애 대응 역량이 필요합니다.</p>
+      </article>
+      <article class="feature-card">
+        <span class="card-index">C</span>
+        <span class="claim-badge outlook">전망</span>
+        <h3>정책 리스크</h3>
+        <p>국가별 수출 통제와 조달 규정, 데이터 이전 규칙이 기술 성능보다 먼저 도입을 막을 수 있습니다. 지역별 대체 공급자를 준비해야 합니다.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="plan">
+  <div class="container">
+    <div class="section-kicker">30-DAY TEST PLAN</div>
+    <h2 class="section-title">도입 여부는 한 달이면 판단할 수 있다 — 단, 토큰 가격이 아니라 업무 성공률을 재라</h2>
+    <p class="section-desc">대규모 전환보다 50~100개의 실제 작업을 사용한 제한된 파일럿이 안전합니다.</p>
+    <div class="plan-grid">
+      <article class="plan-card"><span class="plan-day">DAY 1–7</span><h3>평가셋 만들기</h3><p>고객 문의, 보고서, 코드 수정, 장문 문서 등 실제 작업 50~100개를 익명화하고 정답 기준을 정의합니다.</p></article>
+      <article class="plan-card"><span class="plan-day">DAY 8–21</span><h3>블라인드 A/B</h3><p>Kimi, Qwen 계열, 기존 미국 모델을 가리고 품질·사실 오류·지연·재시도·출력 길이를 측정합니다.</p></article>
+      <article class="plan-card"><span class="plan-day">DAY 22–30</span><h3>라우팅·법무 결정</h3><p>업무별 승자와 fallback을 정하고 라이선스, 데이터 위치, 지원 SLA, 예상 성장 구간을 검토합니다.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="section-soft">
+  <div class="container">
+    <div class="section-kicker">FAQ</div>
+    <h2 class="section-title">자주 생기는 오해 4가지</h2>
+    <div class="faq">
+      <details><summary>중국 모델이 미국 모델보다 이미 더 뛰어난가?</summary><p>일부 벤치마크와 작업에서는 경쟁력이 높지만 전체 업무에서 일관된 우위가 확정된 것은 아닙니다. 핵심 변화는 우수한 성능과 낮은 가격·배포 선택권이 함께 제공된다는 점입니다.</p></details>
+      <details><summary>오픈웨이트면 기업이 무료로 마음대로 써도 되나?</summary><p>아닙니다. 모델마다 라이선스가 다릅니다. Kimi K3는 대규모 Model-as-a-Service 사업자에게 별도 계약을 요구하는 조건이 있고, Qwen3.8의 최종 조건도 확인해야 합니다.</p></details>
+      <details><summary>API 목록가가 낮으면 실제 비용도 반드시 낮나?</summary><p>아닙니다. 답변 길이, 추론 토큰, 실패율, 재시도, 캐시, 도구 호출, 사람이 수정하는 시간까지 포함한 업무 1건당 비용을 봐야 합니다.</p></details>
+      <details><summary>지금 당장 기존 미국 모델을 교체해야 하나?</summary><p>전면 교체보다 제한된 실제 작업으로 테스트하고, 저위험 반복 업무부터 멀티모델 라우팅에 넣는 접근이 현실적입니다.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="sources">
+  <div class="container">
+    <div class="section-kicker">SOURCES</div>
+    <h2 class="section-title">공식 자료를 중심으로, 시장·계약은 신뢰도 높은 보도로 보완했습니다</h2>
+    <p class="section-desc">기준일은 2026년 8월 9일입니다. Qwen3.8-Max의 공개 시점·가격·라이선스는 변동 가능성이 높아 업데이트 대상입니다.</p>
+    <div class="source-grid">
+
+      <a class="source-card" href="https://github.com/MoonshotAI/Kimi-K3" target="_blank" rel="noopener noreferrer">
+        <div class="source-meta"><span class="source-grade ">A등급 · Moonshot AI</span><span class="source-date">2026-07/08 accessed</span></div>
+        <h3>Kimi K3 official repository and model card</h3>
+        <p>2.8T total parameters, 104B active, 1M context, architecture and open-weight status.</p>
+      </a>
+
+      <a class="source-card" href="https://github.com/MoonshotAI/Kimi-K3/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">
+        <div class="source-meta"><span class="source-grade ">A등급 · Moonshot AI</span><span class="source-date">2026</span></div>
+        <h3>Kimi K3 License</h3>
+        <p>Commercial Model-as-a-Service threshold, separate agreement condition and attribution requirements.</p>
+      </a>
+
+      <a class="source-card" href="https://www.kimi.com/resources/kimi-k3-pricing" target="_blank" rel="noopener noreferrer">
+        <div class="source-meta"><span class="source-grade ">A등급 · Kimi</span><span class="source-date">2026-08 accessed</span></div>
+        <h3>Kimi K3 pricing</h3>
+        <p>$3 input, $0.30 cached input, $15 output per 1M tokens and 1M context.</p>
+      </a>
+
+      <a class="source-card" href="https://www.alibabagroup.com/en-US/document-2016703577908576256" target="_blank" rel="noopener noreferrer">
+        <div class="source-meta"><span class="source-grade ">A등급 · Alibaba Group</span><span class="source-date">2026-07-20</span></div>
+        <h3>Alibaba Cloud Unveils Agent-Native Innovations at WAIC 2026</h3>
+        <p>Qwen3.8-Max-Preview announcement, 2.4T scale and company positioning.</p>
+      </a>
+
+      <a class="source-card" href="https://github.com/QwenLM/Qwen3.6" target="_blank" rel="noopener noreferrer">
+        <div class="source-meta"><span class="source-grade ">A등급 · Qwen Team</span><span class="source-date">2026-04 accessed</span></div>
+        <h3>Qwen3.6 official repository</h3>
+        <p>Existing Qwen open-weight ecosystem, Apache 2.0 licensing for released Qwen3.6 open models.</p>
+      </a>
+
+      <a class="source-card" href="https://help.aliyun.com/en/model-studio/model-pricing" target="_blank" rel="noopener noreferrer">
+        <div class="source-meta"><span class="source-grade ">A등급 · Alibaba Cloud</span><span class="source-date">2026-08 accessed</span></div>
+        <h3>Alibaba Cloud Model Studio pricing</h3>
+        <p>Current Qwen API price structure and context-dependent billing references.</p>
+      </a>
+
+      <a class="source-card" href="https://www.reuters.com/business/retail-consumer/alibaba-unveils-its-most-capable-ai-model-date-not-far-behind-moonshots-size-2026-08-03/" target="_blank" rel="noopener noreferrer">
+        <div class="source-meta"><span class="source-grade b">B등급 · Reuters</span><span class="source-date">2026-08-03</span></div>
+        <h3>Alibaba unveils its largest AI model yet</h3>
+        <p>Qwen3.8-Max 2.4T, 95B active, leaderboard signal, 1M context and third-party task-cost comparison.</p>
+      </a>
+
+      <a class="source-card" href="https://www.reuters.com/business/retail-consumer/alibaba-plans-charge-big-users-its-next-open-source-ai-model-sources-say-2026-08-07/" target="_blank" rel="noopener noreferrer">
+        <div class="source-meta"><span class="source-grade b">B등급 · Reuters</span><span class="source-date">2026-08-07</span></div>
+        <h3>Alibaba plans to charge big users of its next open-source AI model</h3>
+        <p>Kimi commercial agreements, Qwen3.8 planned revenue-sharing terms and DigitalOcean/Together AI adoption signals.</p>
+      </a>
+
+      <a class="source-card" href="https://developers.openai.com/api/docs/models/gpt-5.6-sol" target="_blank" rel="noopener noreferrer">
+        <div class="source-meta"><span class="source-grade ">A등급 · OpenAI</span><span class="source-date">2026-08 accessed</span></div>
+        <h3>GPT-5.6 Sol model and API pricing</h3>
+        <p>$5 input, $30 output per 1M tokens and 1.05M context.</p>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section id="method" class="section-soft">
+  <div class="container">
+    <div class="section-kicker">HOW THIS WAS MADE</div>
+    <h2 class="section-title">AI가 조사·초안·HTML 제작을 보조했고, 공개 전 사람의 확인이 필요합니다</h2>
+    <div class="method-card">
+      <h3>작성 방법과 검토 범위</h3>
+      <p><strong>Who:</strong> Report Hub / Jeremy Lee 명의의 Tech 분석 보고서입니다.</p>
+      <p><strong>How:</strong> AI가 공식 문서와 보도를 조사하고 사실·기업 주장·전망을 분리해 초안, HTML, 대표 이미지를 생성했습니다.</p>
+      <p><strong>Why:</strong> 독자가 중국 AI 모델의 실제 위협을 과장된 승패가 아니라 비용·배포·라이선스 관점에서 판단하도록 돕기 위해 작성했습니다.</p>
+      <p><strong>검토 권장:</strong> Qwen3.8-Max의 최종 공개 상태와 상업 조건, 각 지역의 규제, 실제 사내 테스트 결과를 게시 직전에 다시 확인하세요.</p>
+    </div>
+  </div>
+</section>
+
+<section id="history">
+  <div class="container">
+    <div class="section-kicker">VERSION HISTORY</div>
+    <h2 class="section-title">버전 및 콘텐츠 업데이트 히스토리</h2>
+    <p class="section-desc">AI가 새 자료를 반영하면 무엇이 바뀌었는지 최신 행을 위에 추가합니다.</p>
+    <div class="table-wrap history-table">
+      <table>
+        <thead><tr><th>버전</th><th>업데이트일</th><th>변경 구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr></thead>
+        <tbody id="historyBody"><tr><td><strong>v1.0.0</strong></td><td>2026-08-09</td><td>신규 작성</td><td>Kimi K3의 공개 사양·가격·라이선스와 Qwen3.8-Max 발표·시장 신호를 비교해 중국 AI의 기업 채택 가능성과 한계를 최초 분석했다.</td><td>AI-assisted · 검토 권장</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-row">
+      <div>
+        <strong>AIHUBOS Tech Blog Report</strong>
+        <p>공개 자료를 바탕으로 AI가 작성과 시각화를 보조한 분석 보고서입니다. 투자·법률·조달 결정 전 공식 문서와 최신 조건을 다시 확인하세요.</p>
+      </div>
+      <span class="footer-version" id="footerVersion">v1.0.0</span>
+    </div>
+  </footer>
+
+  <script id="report-metadata" type="application/json">{
+  "schemaVersion": "2.0",
+  "reportId": "260809-20-china-ai-kimi-k3-qwen-v1-0-0",
+  "title": "중국 AI의 역습: Kimi K3·Qwen3.8이 미국 모델의 가격표를 흔드는 이유",
+  "slug": "260809-20-china-ai-kimi-k3-qwen-v1-0-0",
+  "version": "1.0.0",
+  "status": "published-draft",
+  "createdAt": "2026-08-09",
+  "updatedAt": "2026-08-09",
+  "language": "ko-KR",
+  "generation": "AI-assisted",
+  "reviewStatus": "Human review recommended",
+  "canonicalUrl": "https://aihubos.github.io/reportmode/reports/260809-20-china-ai-kimi-k3-qwen-v1-0-0/",
+  "articleSection": "AI / Tech Strategy",
+  "keywords": [
+    "Kimi K3",
+    "Qwen3.8-Max",
+    "중국 AI",
+    "오픈웨이트",
+    "AI API 가격",
+    "기업 AI"
+  ],
+  "researchCutoff": "2026-08-09T20:35:00+09:00",
+  "assumptions": [
+    "Qwen3.8-Max open-weight release and final license terms were still developing at the research cutoff.",
+    "API cost examples use list prices and a simplified token mix; total task cost varies by reasoning length, retries, caching and tool calls."
+  ],
+  "history": [
+    {
+      "version": "1.0.0",
+      "date": "2026-08-09",
+      "type": "신규 작성",
+      "summary": "Kimi K3의 공개 사양·가격·라이선스와 Qwen3.8-Max 발표·시장 신호를 비교해 중국 AI의 기업 채택 가능성과 한계를 최초 분석했다.",
+      "status": "AI-assisted · 검토 권장"
+    }
+  ]
+}</script>
+  <script>
+    const progress = document.getElementById('scrollProgress');
+    const updateProgress = () => {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = scrollable > 0 ? window.scrollY / scrollable : 0;
+      progress.style.width = `${Math.min(100, Math.max(0, ratio * 100))}%`;
+    };
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+
+    const copyButton = document.getElementById('copyLink');
+    copyButton?.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(location.href);
+        const original = copyButton.textContent;
+        copyButton.textContent = '복사 완료';
+        setTimeout(() => copyButton.textContent = original, 1400);
+      } catch {
+        copyButton.textContent = '주소창에서 복사';
+      }
+    });
+
+    try {
+      const meta = JSON.parse(document.getElementById('report-metadata').textContent);
+      document.getElementById('reportVersion').textContent = `v${meta.version}`;
+      document.getElementById('footerVersion').textContent = `v${meta.version}`;
+      document.getElementById('reportUpdated').textContent = `Updated ${meta.updatedAt}`;
+      const historyBody = document.getElementById('historyBody');
+      if (historyBody && Array.isArray(meta.history)) {
+        historyBody.innerHTML = meta.history.map(item => `
+          <tr>
+            <td><strong>v${item.version}</strong></td>
+            <td>${item.date}</td>
+            <td>${item.type}</td>
+            <td>${item.summary}</td>
+            <td>${item.status}</td>
+          </tr>`).join('');
+      }
+    } catch (error) {
+      console.warn('Report metadata could not be loaded.', error);
+    }
+  </script>
+  <script src="../../assets/report-page-layout.js?v=20260809-rh8"></script>
+  <script src="../../assets/report-view-counter.js?v=20260809-counter-fallback2" data-report-id="260809-china-ai-kimi-k3-qwen"></script>
+  <script src="../../assets/report-comments.js?v=20260809-comments1" data-report-id="260809-china-ai-kimi-k3-qwen"></script>
+  <script src="../../assets/report-history.js?v=20260809-history2" data-report-id="260809-china-ai-kimi-k3-qwen"></script>
+  <script src="../../assets/report-hub-brand.js?v=20260809-rh8"></script>
+</body>
+</html>
