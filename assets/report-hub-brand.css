@@ -202,6 +202,30 @@
   body.report-a4-mode .report-hub-floating-menu { right: var(--rh-space-4); left: auto; transform: none; }
 }
 
+@media (min-width: 701px) and (max-width: 900px) {
+  .report-hub-floating-menu {
+    right: var(--rh-space-4);
+    left: var(--rh-space-4);
+    transform: none;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    max-width: none;
+  }
+
+  .report-hub-floating-menu .report-layout-controls {
+    grid-column: 1 / -1;
+    width: 100%;
+    margin: var(--rh-space-2) 0 0;
+    padding: var(--rh-space-2) 0 0;
+    border-top: 1px solid var(--rh-border);
+    border-left: 0;
+  }
+
+  .report-hub-floating-menu .report-layout-buttons { margin: 0 auto; }
+  body.report-a4-mode .report-hub-floating-menu { right: var(--rh-space-4); left: var(--rh-space-4); }
+}
+
 .archive-brand.report-hub-brand-link {
   display: inline-flex;
   align-items: center;

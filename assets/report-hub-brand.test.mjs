@@ -44,6 +44,8 @@ test("public brand uses a large Toss Blue text wordmark and one floating menu", 
   assert.match(script, /function ensureTopClearance/);
   assert.match(script, /report-hub-top-spacer/);
   assert.match(script, /--rh-report-menu-content-gap/);
+  assert.match(script, /menu\.getBoundingClientRect\(\)\.bottom \+ gap;/);
+  assert.doesNotMatch(script, /gap - content\.getBoundingClientRect\(\)\.top/);
   assert.match(script, /\.nav-wrap/);
   assert.match(script, /\.floating-menu:not\(\.report-hub-floating-menu\)/);
   assert.match(script, /nav\.nav:not\(\.report-hub-floating-menu\)/);

@@ -2,7 +2,7 @@
   "use strict";
 
   var HOME = "https://aireport.ai-hub-os.com/";
-  var VERSION = "20260809-rh8";
+  var VERSION = "20260809-rh9";
   var SEOUL_TIME_ZONE = "Asia/Seoul";
   var script = document.currentScript;
   var faviconUrl = script && script.src
@@ -211,7 +211,7 @@
     spacer.style.height = "0px";
     var configuredGap = Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--rh-report-menu-content-gap"));
     var gap = Number.isFinite(configuredGap) ? configuredGap : 24;
-    var requiredSpace = menu.getBoundingClientRect().bottom + gap - content.getBoundingClientRect().top;
+    var requiredSpace = menu.getBoundingClientRect().bottom + gap;
     spacer.style.height = Math.max(0, Math.ceil(requiredSpace)) + "px";
   }
 
