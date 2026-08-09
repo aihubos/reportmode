@@ -1,6 +1,13 @@
 +(function () {
   "use strict";
 
+  if (!document.querySelector('link[rel~="icon"]')) {
+    var favicon = document.createElement("link");
+    favicon.rel = "icon";
+    favicon.href = "data:,";
+    document.head.appendChild(favicon);
+  }
+
   // CounterAPI v1 currently returns HTTP 410. Keep the report usable without
   // repeated network errors until an authenticated replacement is configured.
   var COUNTER_ENABLED = false;

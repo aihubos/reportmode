@@ -3,7 +3,7 @@ import path from "node:path";
 const SITE_PREFIX = "/reportmode/";
 const LAYOUT_VERSION = "20260809-refresh";
 const HISTORY_VERSION = "20260809";
-const COUNTER_VERSION = "20260809-counter-fallback";
+const COUNTER_VERSION = "20260809-counter-fallback2";
 
 export function isRedirectHtml(html) {
   return /<meta\b[^>]*http-equiv\s*=\s*["']?refresh["']?/i.test(html);
@@ -100,6 +100,11 @@ function upsertStylesheet(html, prefix) {
   return html.replace(/<\/head>/i, `  <link rel="stylesheet" href="${href}">\n</head>`);
 }
 
+function upsertFavicon(html) {
+  if (/<link\b[^>]*rel=["'][^"']*\bicon\b[^"']*["'][^>]*>/i.test(html)) return html;
+  return html.replace(/<\/head>/i, '  <link rel="icon" href="data:,">\n</head>');
+}
+
 function upsertHomeButton(html, body, archiveHref) {
   const expression = /<a\b([^>]*\bclass=["'][^"']*\breport-home-button\b[^"']*["'][^>]*)>/i;
   if (expression.test(html)) {
@@ -127,6 +132,7 @@ export function enhanceCurrentReport(html, options) {
   const archiveHref = `${prefix}/archive/`;
   const bodyResult = replaceBodyTag(html);
   let output = bodyResult.html;
+  output = upsertFavicon(output);
   output = upsertStylesheet(output, prefix);
   output = upsertHomeButton(output, bodyResult.body, archiveHref);
   output = upsertScript(
