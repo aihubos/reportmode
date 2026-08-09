@@ -89,6 +89,7 @@ test("renders the simplified archive with one Naver card and a 30-item default s
   assert.match(html, /class="archive-blog-card"/);
   assert.match(html, /id="archiveVisitorCount"/);
   assert.match(html, /class="report-hub-clock"/);
+  assert.match(html, /class="archive-content-layout"/);
   assert.equal(html.match(/class="archive-right-rail"/g)?.length, 1);
   assert.equal(html.match(/data-archive-weather/g)?.length, 1);
   assert.match(html, /id="archive-weather-title">동탄 날씨/);
@@ -116,6 +117,10 @@ test("renders the simplified archive with one Naver card and a 30-item default s
   assert.match(archiveCss, /\.archive-post\s*{[^}]*--archive-cover-width:\s*154px[^}]*--archive-cover-gap:\s*18px/s);
   assert.match(archiveCss, /\.archive-post-copy\s*{[^}]*padding-right:\s*44px/s);
   assert.match(archiveCss, /\.archive-share-button\s*{[^}]*right:\s*calc\(var\(--archive-cover-width\) \+ var\(--archive-cover-gap\) \+ var\(--archive-cover-edge\)\)/s);
+  assert.match(archiveCss, /\.archive-topbar-inner\s*{[^}]*width:\s*min\(var\(--archive-shell-max\),\s*calc\(100% - \(var\(--archive-shell-edge\) \* 2\)\)\)/s);
+  assert.match(archiveCss, /\.archive-content-layout\s*{[^}]*grid-template-columns:\s*minmax\(0, 960px\) var\(--archive-right-rail-width\)/s);
+  assert.doesNotMatch(archiveCss, /\.request-board-list\s*{[^}]*max-height:/s);
+  assert.match(archiveCss, /\.archive-topbar \.report-hub-clock-date\s*{\s*display:\s*none;/s);
 });
 
 test("renders the same fallback count and report-specific share URL on archive cards", () => {

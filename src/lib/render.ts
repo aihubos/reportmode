@@ -496,6 +496,7 @@ export function renderHomeHtml(
   </header>
 
   <main class="archive-shell">
+    <div class="archive-content-layout">
     <aside class="archive-right-rail" aria-label="방문자 참여와 동탄 날씨">
       <section class="request-board" aria-labelledby="request-board-title">
       <div class="request-board-copy">
@@ -601,6 +602,7 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
         </div>
         <nav class="archive-pagination" id="archivePagination" aria-label="보고서 페이지 이동"></nav>
       </section>
+    </div>
     </div>
 
     <footer class="archive-footer">

@@ -46,7 +46,7 @@ test("public brand uses a large Toss Blue text wordmark and one floating menu", 
   assert.doesNotMatch(archive, /class="archive-brand[^>]*>[\s\S]{0,180}report-hub-logo/);
   assert.doesNotMatch(archive, /class="archive-avatar"/);
   assert.doesNotMatch(archive, /Jeremy's AI Report|>RM<|>R<\/span>/);
-  assert.match(archiveCss, /\.archive-topbar-inner\s*{[^}]*width:\s*calc\(100% - 32px\)[^}]*margin:\s*0 16px/s);
+  assert.match(archiveCss, /\.archive-topbar-inner\s*{[^}]*width:\s*min\(var\(--archive-shell-max\),\s*calc\(100% - \(var\(--archive-shell-edge\) \* 2\)\)\)[^}]*margin:\s*0 auto/s);
 });
 
 test("public brand formats the Seoul weekday and second clock", () => {

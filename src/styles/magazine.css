@@ -216,6 +216,11 @@ footer {
   --archive-muted: #6b7684;
   --archive-subtle: #8b95a1;
   --archive-line: #e5e8eb;
+  --archive-shell-max: 1400px;
+  --archive-shell-edge: 20px;
+  --archive-shell-edge-mobile: 14px;
+  --archive-content-gap: 24px;
+  --archive-right-rail-width: 380px;
   margin: 0;
   color: var(--archive-ink);
   background: #f5f7f9;
@@ -231,7 +236,7 @@ footer {
   backdrop-filter: saturate(180%) blur(18px);
 }
 .archive-topbar-inner {
-  width: calc(100% - 32px); height: 100%; margin: 0 16px;
+  width: min(var(--archive-shell-max), calc(100% - (var(--archive-shell-edge) * 2))); height: 100%; margin: 0 auto;
   display: flex; align-items: center; justify-content: space-between; gap: 24px;
 }
 .archive-brand {
@@ -258,7 +263,7 @@ footer {
 .archive-blog-card .archive-blog-mark { width: 28px; height: 28px; font-size: 15px; }
 .archive-blog-card-copy { display: grid; gap: 1px; line-height: 1.1; }
 .archive-blog-card-copy small { color: rgba(255,255,255,.82); font-size: 9px; font-weight: 600; }
-.archive-shell { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+.archive-shell { width: min(1180px, calc(100% - (var(--archive-shell-edge) * 2))); margin: 0 auto; }
 .archive-profile {
   min-height: 240px; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 28px;
   margin: 32px 0 24px; padding: 38px 42px !important;
@@ -475,7 +480,7 @@ footer {
 .request-board-submit { min-height: 38px; border: 0; border-radius: 10px; color: #fff; background: var(--archive-blue); font: inherit; font-size: 13px; font-weight: 800; cursor: pointer; }.request-board-submit:hover { background: var(--archive-blue-deep); }.request-board-submit:disabled { cursor: wait; opacity: .68; }
 .request-board-status, .request-board-item-status { min-height: 16px; margin: 0; color: var(--archive-blue-deep); font-size: 11px; font-weight: 700; }
 .request-board-feed { margin-top: 15px; padding-top: 13px; border-top: 1px solid #edf0f2; }.request-board-feed-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }.request-board-feed-head strong { font-size: 12px; }.request-board-feed-head span { color: var(--archive-subtle); font-size: 11px; }
-.request-board-list { display: grid; gap: 9px; max-height: min(42vh, 410px); padding-right: 2px; overflow: auto; }.request-board-item { padding: 13px; border: 1px solid #e8ebef; border-radius: 12px; background: #fbfcfd; }.request-board-item-head { display: flex; align-items: center; gap: 8px; }.request-board-avatar { width: 27px; height: 27px; display: grid; place-items: center; flex: 0 0 auto; border-radius: 50%; color: #fff; background: #333d4b; font-size: 12px; font-weight: 900; }.request-board-author { min-width: 0; overflow: hidden; color: var(--archive-ink); font-size: 13px; font-weight: 900; text-overflow: ellipsis; white-space: nowrap; }.request-board-item time { margin-left: auto; color: var(--archive-subtle); font-size: 10px; white-space: nowrap; }.request-board-edited { color: var(--archive-subtle); font-size: 9px; white-space: nowrap; }.request-board-topic { margin: 10px 0 0; color: #333d4b; font-size: 13px; font-weight: 650; line-height: 1.55; white-space: pre-wrap; word-break: keep-all; }
+.request-board-list { display: grid; gap: 9px; padding-right: 2px; }.request-board-item { padding: 13px; border: 1px solid #e8ebef; border-radius: 12px; background: #fbfcfd; }.request-board-item-head { display: flex; align-items: center; gap: 8px; }.request-board-avatar { width: 27px; height: 27px; display: grid; place-items: center; flex: 0 0 auto; border-radius: 50%; color: #fff; background: #333d4b; font-size: 12px; font-weight: 900; }.request-board-author { min-width: 0; overflow: hidden; color: var(--archive-ink); font-size: 13px; font-weight: 900; text-overflow: ellipsis; white-space: nowrap; }.request-board-item time { margin-left: auto; color: var(--archive-subtle); font-size: 10px; white-space: nowrap; }.request-board-edited { color: var(--archive-subtle); font-size: 9px; white-space: nowrap; }.request-board-topic { margin: 10px 0 0; color: #333d4b; font-size: 13px; font-weight: 650; line-height: 1.55; white-space: pre-wrap; word-break: keep-all; }
 .request-board-actions, .request-board-inline-actions { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }.request-board-action, .request-board-inline-actions button { min-height: 28px; padding: 0 9px; border: 1px solid #dfe4ea; border-radius: 8px; color: var(--archive-muted); background: #fff; font: inherit; font-size: 10px; font-weight: 800; cursor: pointer; }.request-board-action.is-admin { margin-left: auto; color: var(--archive-blue-deep); border-color: #cfe2ff; }.request-board-reply { margin-top: 11px; padding: 11px 12px; border-left: 3px solid var(--archive-blue); border-radius: 0 9px 9px 0; background: #f0f6ff; }.request-board-reply strong { display: block; color: var(--archive-blue-deep); font-size: 10px; }.request-board-reply p { margin: 5px 0 0; color: #334866; font-size: 12px; line-height: 1.55; white-space: pre-wrap; }.request-board-inline-form { display: grid; gap: 7px; margin-top: 10px; padding: 10px; border: 1px solid #dfe4ea; border-radius: 10px; background: #fff; }.request-board-inline-form textarea { min-height: 66px; }
 .archive-weather-card { padding: 18px !important; border: 1px solid var(--archive-line); border-radius: 18px; color: var(--archive-ink); background: #fff; }
 .archive-weather-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
@@ -498,7 +503,7 @@ footer {
 .archive-weather-day strong small { color: var(--archive-subtle); font-size: inherit; font-weight: 700; }
 .archive-weather-retry { min-height: 38px; margin-top: 12px; padding: 0 14px; border: 1px solid #cfe2ff; border-radius: 10px; color: var(--archive-blue-deep); background: #fff; font: inherit; font-size: 12px; font-weight: 800; cursor: pointer; }
 .archive-weather-retry:hover { background: var(--archive-blue-soft); }
-@media (min-width: 1280px) { .archive-shell { width: min(960px, calc(100% - 444px)); margin-left: max(20px, calc((100vw - 1400px) / 2)); margin-right: auto; }.archive-layout { margin-top: 32px; }.archive-right-rail { position: fixed; top: 88px; right: max(20px, calc((100vw - 1400px) / 2)); z-index: 45; width: 380px; max-height: calc(100vh - 112px); margin: 0; padding-right: 2px; overflow-y: auto; overscroll-behavior: contain; scrollbar-gutter: stable; }.request-board { max-height: clamp(340px, calc(100vh - 430px), 520px); overflow-y: auto; }.request-board, .archive-weather-card { box-shadow: 0 14px 36px rgba(15,23,42,.12); } }
+@media (min-width: 1280px) { .archive-shell { width: min(var(--archive-shell-max), calc(100% - (var(--archive-shell-edge) * 2))); }.archive-content-layout { display: grid; grid-template-columns: minmax(0, 960px) var(--archive-right-rail-width); column-gap: var(--archive-content-gap); align-items: start; justify-content: space-between; }.archive-layout { grid-column: 1; grid-row: 1; margin-top: 32px; }.archive-right-rail { position: sticky; top: 88px; grid-column: 2; grid-row: 1; z-index: 45; width: var(--archive-right-rail-width); margin: 32px 0 24px; align-self: start; }.request-board, .archive-weather-card { box-shadow: 0 14px 36px rgba(15,23,42,.12); } }
 @media (max-width: 860px) {
   .verdict-grid, .duo, .checks, .metrics { grid-template-columns: 1fr 1fr; }
   .metrics { grid-template-columns: 1fr 1fr; }
@@ -519,8 +524,9 @@ footer {
   section { padding: 56px 0; }
   .hero { padding: 72px 0 56px; }
   .archive-topbar { height: 58px; }
-  .archive-topbar-inner { width: calc(100% - 16px); margin: 0 8px; }
-  .archive-shell { width: min(100% - 28px, 1180px); }
+  .archive-page { --archive-shell-edge: var(--archive-shell-edge-mobile); }
+  .archive-shell { width: min(100% - (var(--archive-shell-edge) * 2), 1180px); }
+  .archive-topbar .report-hub-clock-date { display: none; }
   .archive-brand > span:last-child { display: none; }
   .archive-topbar-actions { gap: 4px; }
   .archive-visitor-count { min-height: 38px; padding: 0 7px; font-size: 9px; }
@@ -563,7 +569,7 @@ footer {
   .request-board, .archive-weather-card { width: 100%; padding: 18px !important; border-radius: 16px; }
   .archive-weather-current { align-items: flex-start; }
   .archive-weather-current strong { font-size: 28px; }
-  .request-board-identity { grid-template-columns: 1fr; }.request-board-list { max-height: none; }.request-board-action.is-admin { margin-left: 0; }
+  .request-board-identity { grid-template-columns: 1fr; }.request-board-action.is-admin { margin-left: 0; }
 }
 @media print {
   .nav { display: none; }
