@@ -53,7 +53,8 @@ test("renders a structured report table with column headers and cells", () => {
   assert.match(html, /<table class="report-table">/);
   assert.match(html, /<th scope="col">요금제<\/th>/);
   assert.match(html, /<td>\$20<\/td>/);
-  assert.match(html, /report-page-layout\.css\?v=20260807-controls/);
-  assert.match(html, /report-page-layout\.js\?v=20260807-inputfix/);
+  assert.match(html, /report-page-layout\.css\?v=20260809-refresh/);
+  assert.match(html, /report-page-layout\.js\?v=20260809-refresh/);
+  assert.match(html, /report-history\.js\?v=20260809/);
   assert.match(html, /id="report-home-button"|class="report-home-button"/);
 });

@@ -822,9 +822,10 @@
     }
   </style>
 
-  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260807c-wide-default">
+  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260809-refresh">
 </head>
 <body data-report-view="detail" data-report-layout="wide" data-report-cover="../assets/260807-chatgpt-codex-pricing-api-comparison-02/cover.png" data-report-cover-alt="OpenAI 공식 로고">
+  <a class="report-home-button" href="../../archive/" aria-label="보고서 도서관 메인으로 이동">RM · Report Mode</a>
 
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
@@ -960,8 +961,8 @@
         <div class="metric-grid">
           <article class="metric-card reveal"><small>개인 기본 후보</small><strong>$20<small style="display:inline;font-size:13px;color:var(--muted)">/월</small></strong><span>ChatGPT Plus · API 사용료는 별도</span></article>
           <article class="metric-card reveal"><small>Pro 포함 사용량 정책</small><strong>5× / 20×</strong><span>Plus 대비 사용량 배수. 모델별 절대 작업 수 보장은 아님</span></article>
-          <article class="metric-card reveal"><small>GPT-5.6 Terra</small><strong>$2 / $12</strong><span>1M 입력 / 출력 토큰 현재 표준 단가</span></article>
-          <article class="metric-card reveal"><small>GPT-5.6 Luna</small><strong>$0.20 / $1.20</strong><span>1M 입력 / 출력 토큰 현재 표준 단가</span></article>
+          <article class="metric-card reveal"><small>GPT-5.6 Terra</small><strong>$2.50 / $15</strong><span>1M 입력 / 출력 토큰 현재 표준 단가</span></article>
+          <article class="metric-card reveal"><small>GPT-5.6 Luna</small><strong>$1.00 / $6.00</strong><span>1M 입력 / 출력 토큰 현재 공식 단가</span></article>
         </div>
 
         <div class="decision-quote reveal">
@@ -1219,24 +1220,24 @@
             <div class="model-top"><span class="model-tier">Balanced</span><span class="tag violet">균형형</span></div>
             <h3>GPT-5.6 Terra</h3>
             <div class="model-role">일상 개발·분석에서 성능과 비용의 균형을 노리는 기본 후보</div>
-            <div class="model-total"><small>입력 1M + 출력 1M 단순 예시</small><strong>$14.00 <span>/ 2M tokens</span></strong></div>
+            <div class="model-total"><small>입력 1M + 출력 1M 단순 예시</small><strong>$17.50 <span>/ 2M tokens</span></strong></div>
             <div class="rate-list">
-              <div class="rate-line"><span>입력 / 1M</span><b>$2.00</b></div>
-              <div class="rate-line"><span>캐시 입력 / 1M</span><b>$0.20</b></div>
-              <div class="rate-line"><span>캐시 쓰기 / 1M</span><b>$2.50</b></div>
-              <div class="rate-line"><span>출력 / 1M</span><b>$12.00</b></div>
+              <div class="rate-line"><span>입력 / 1M</span><b>$2.50</b></div>
+              <div class="rate-line"><span>캐시 입력 / 1M</span><b>$0.25</b></div>
+              <div class="rate-line"><span>캐시 쓰기 / 1M</span><b>$3.125</b></div>
+              <div class="rate-line"><span>출력 / 1M</span><b>$15.00</b></div>
             </div>
           </article>
           <article class="model-card luna reveal">
             <div class="model-top"><span class="model-tier">Efficient</span><span class="tag green">저비용</span></div>
             <h3>GPT-5.6 Luna</h3>
             <div class="model-role">대량 요약·분류·초안·단순 변환처럼 비용 민감한 반복 작업</div>
-            <div class="model-total"><small>입력 1M + 출력 1M 단순 예시</small><strong>$1.40 <span>/ 2M tokens</span></strong></div>
+            <div class="model-total"><small>입력 1M + 출력 1M 단순 예시</small><strong>$7.00 <span>/ 2M tokens</span></strong></div>
             <div class="rate-list">
-              <div class="rate-line"><span>입력 / 1M</span><b>$0.20</b></div>
-              <div class="rate-line"><span>캐시 입력 / 1M</span><b>$0.02</b></div>
-              <div class="rate-line"><span>캐시 쓰기 / 1M</span><b>$0.25</b></div>
-              <div class="rate-line"><span>출력 / 1M</span><b>$1.20</b></div>
+              <div class="rate-line"><span>입력 / 1M</span><b>$1.00</b></div>
+              <div class="rate-line"><span>캐시 입력 / 1M</span><b>$0.10</b></div>
+              <div class="rate-line"><span>캐시 쓰기 / 1M</span><b>$1.25</b></div>
+              <div class="rate-line"><span>출력 / 1M</span><b>$6.00</b></div>
             </div>
           </article>
         </div>
@@ -1246,8 +1247,8 @@
           <p>Sol을 100%로 둔 상대 비용입니다. 품질·추론 능력·처리 성공률을 반영한 성능 비교는 아닙니다.</p>
           <div class="bar-list">
             <div class="bar-row"><div class="bar-name">GPT-5.6 Sol</div><div class="bar-track"><div class="bar-fill" style="--w:100%"></div></div><div class="bar-price">$35.00</div></div>
-            <div class="bar-row"><div class="bar-name">GPT-5.6 Terra</div><div class="bar-track"><div class="bar-fill" style="--w:40%"></div></div><div class="bar-price">$14.00</div></div>
-            <div class="bar-row"><div class="bar-name">GPT-5.6 Luna</div><div class="bar-track"><div class="bar-fill" style="--w:4%"></div></div><div class="bar-price">$1.40</div></div>
+            <div class="bar-row"><div class="bar-name">GPT-5.6 Terra</div><div class="bar-track"><div class="bar-fill" style="--w:50%"></div></div><div class="bar-price">$17.50</div></div>
+            <div class="bar-row"><div class="bar-name">GPT-5.6 Luna</div><div class="bar-track"><div class="bar-fill" style="--w:20%"></div></div><div class="bar-price">$7.00</div></div>
           </div>
         </article>
 
@@ -1266,27 +1267,27 @@
     <section id="change" style="background:linear-gradient(180deg,rgba(247,248,250,.8),rgba(255,255,255,0))">
       <div class="container">
         <div class="section-kicker reveal">Price Change</div>
-        <h2 class="section-title reveal">출시 공지 대비 현재 가격은<br />Terra <span style="color:var(--blue)">-20%</span>, Luna <span class="marker">-80%</span></h2>
-        <p class="section-desc reveal">2026-07-09 출시 공지와 현재 API 가격 페이지의 차이를 비교했습니다. 변경 시행일이나 배경은 공식 현재 가격 페이지에 명시되지 않아 이 보고서에서는 추정하지 않습니다.</p>
+        <h2 class="section-title reveal">공식 출시 공지와 현재 모델 문서의<br />Terra·Luna 가격은 <span class="marker">동일합니다</span></h2>
+        <p class="section-desc reveal">2026-07-09 출시 공지와 2026-08-09 현재 API 모델 문서를 대조했습니다. 세 모델의 표준 입력·출력 단가는 동일했으며, 근거 없는 가격 인하 설명은 삭제했습니다.</p>
 
         <div class="change-grid">
           <article class="change-card reveal">
-            <div class="change-head"><h3>GPT-5.6 Terra</h3><span class="change-rate">-20%</span></div>
+            <div class="change-head"><h3>GPT-5.6 Terra</h3><span class="change-rate same">0%</span></div>
             <div class="before-after">
               <div class="price-snapshot"><small>7/09 출시 공지</small><strong>$2.50 / $15</strong></div>
               <svg viewBox="0 0 24 24" fill="none"><path d="m8 5 7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <div class="price-snapshot"><small>현재 API</small><strong>$2.00 / $12</strong></div>
+              <div class="price-snapshot"><small>8/09 공식 문서</small><strong>$2.50 / $15</strong></div>
             </div>
-            <p>입력과 출력 단가 모두 출시 공지 대비 20% 낮아졌습니다.</p>
+            <p>출시 공지와 현재 공식 모델 문서의 입력·출력 단가가 같습니다.</p>
           </article>
           <article class="change-card reveal">
-            <div class="change-head"><h3>GPT-5.6 Luna</h3><span class="change-rate">-80%</span></div>
+            <div class="change-head"><h3>GPT-5.6 Luna</h3><span class="change-rate same">0%</span></div>
             <div class="before-after">
               <div class="price-snapshot"><small>7/09 출시 공지</small><strong>$1.00 / $6</strong></div>
               <svg viewBox="0 0 24 24" fill="none"><path d="m8 5 7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <div class="price-snapshot"><small>현재 API</small><strong>$0.20 / $1.20</strong></div>
+              <div class="price-snapshot"><small>8/09 공식 문서</small><strong>$1.00 / $6</strong></div>
             </div>
-            <p>입력과 출력 단가 모두 출시 공지 대비 80% 낮아졌습니다.</p>
+            <p>출시 공지와 현재 공식 모델 문서의 입력·출력 단가가 같습니다.</p>
           </article>
           <article class="change-card reveal">
             <div class="change-head"><h3>GPT-5.6 Sol</h3><span class="change-rate same">0%</span></div>
@@ -1331,15 +1332,15 @@
             </div>
             <div class="credit-row-card">
               <strong>GPT-5.6 Terra</strong>
-              <div class="credit-cell"><small>입력 / 1M</small><b>50</b></div>
-              <div class="credit-cell"><small>캐시 입력 / 1M</small><b>5</b></div>
-              <div class="credit-cell"><small>출력 / 1M</small><b>300</b></div>
+              <div class="credit-cell"><small>입력 / 1M</small><b>62.5</b></div>
+              <div class="credit-cell"><small>캐시 입력 / 1M</small><b>6.25</b></div>
+              <div class="credit-cell"><small>출력 / 1M</small><b>375</b></div>
             </div>
             <div class="credit-row-card">
               <strong>GPT-5.6 Luna</strong>
-              <div class="credit-cell"><small>입력 / 1M</small><b>5</b></div>
-              <div class="credit-cell"><small>캐시 입력 / 1M</small><b>0.5</b></div>
-              <div class="credit-cell"><small>출력 / 1M</small><b>30</b></div>
+              <div class="credit-cell"><small>입력 / 1M</small><b>25</b></div>
+              <div class="credit-cell"><small>캐시 입력 / 1M</small><b>2.5</b></div>
+              <div class="credit-cell"><small>출력 / 1M</small><b>150</b></div>
             </div>
             <div class="report-note" style="margin:0">
               <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 11v5M12 8v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
@@ -1422,25 +1423,25 @@
           <div class="vendor-chart">
             <article class="vendor-bars reveal visible">
               <h3>비용 민감 모델 · 단순 합계</h3>
-              <p>1M 입력 + 1M 출력 기준. 가장 높은 Claude Haiku 4.5 $6를 100%로 표시했습니다.</p>
+              <p>1M 입력 + 1M 출력 기준. 표본 중 가장 높은 OpenAI Luna $7을 100%로 표시했습니다.</p>
               <div class="vendor-row">
                 <div class="vendor-name"><strong>OpenAI</strong><small>GPT-5.6 Luna</small></div>
-                <div class="vendor-track"><div class="vendor-fill" style="--w:23.3%"></div></div>
-                <div class="vendor-price">$1.40</div>
+                <div class="vendor-track"><div class="vendor-fill" style="--w:100%"></div></div>
+                <div class="vendor-price">$7.00</div>
               </div>
               <div class="vendor-row">
                 <div class="vendor-name"><strong>Anthropic</strong><small>Claude Haiku 4.5</small></div>
-                <div class="vendor-track"><div class="vendor-fill" style="--w:100%"></div></div>
+                <div class="vendor-track"><div class="vendor-fill" style="--w:85.7%"></div></div>
                 <div class="vendor-price">$6.00</div>
               </div>
               <div class="vendor-row">
                 <div class="vendor-name"><strong>Google</strong><small>Gemini 3.5 Flash-Lite</small></div>
-                <div class="vendor-track"><div class="vendor-fill" style="--w:46.7%"></div></div>
+                <div class="vendor-track"><div class="vendor-fill" style="--w:40%"></div></div>
                 <div class="vendor-price">$2.80</div>
               </div>
               <div class="vendor-row">
                 <div class="vendor-name"><strong>xAI</strong><small>Grok Build 0.1</small></div>
-                <div class="vendor-track"><div class="vendor-fill" style="--w:50%"></div></div>
+                <div class="vendor-track"><div class="vendor-fill" style="--w:42.9%"></div></div>
                 <div class="vendor-price">$3.00</div>
               </div>
             </article>
@@ -1449,7 +1450,7 @@
               <h3>저비용 모델을 기본값으로,<br />실패한 작업만 승격</h3>
               <p>대량 요약·분류·초안·간단한 변환은 저비용 모델에서 먼저 처리하고, 정확도 기준을 넘지 못하거나 고난도인 경우에만 상위 모델로 올리는 라우팅이 합리적입니다.</p>
               <ul class="insight-list">
-                <li>Luna가 표본상 가장 낮은 단순 합계</li>
+                <li>Luna는 Sol보다 저렴하지만 이 표본의 최저가는 아님</li>
                 <li>복잡한 코딩·추론 기본값으로 고정할 근거는 아님</li>
                 <li>Batch·Flex·캐시 할인까지 포함해 비교</li>
                 <li>한국어 품질과 도구 연결성은 샘플 검증 필요</li>
@@ -1462,7 +1463,7 @@
               <table>
                 <thead><tr><th>공급사</th><th>비용 민감 모델</th><th>입력 / 1M</th><th>출력 / 1M</th><th>입력+출력</th><th>주요 용도</th></tr></thead>
                 <tbody>
-                  <tr><td><strong>OpenAI</strong></td><td>GPT-5.6 Luna</td><td>$0.20</td><td>$1.20</td><td><strong>$1.40</strong></td><td>고용량·비용 민감 작업</td></tr>
+                  <tr><td><strong>OpenAI</strong></td><td>GPT-5.6 Luna</td><td>$1.00</td><td>$6.00</td><td><strong>$7.00</strong></td><td>고용량·비용 민감 작업</td></tr>
                   <tr><td><strong>Anthropic</strong></td><td>Claude Haiku 4.5</td><td>$1.00</td><td>$5.00</td><td><strong>$6.00</strong></td><td>빠른 저비용 처리</td></tr>
                   <tr><td><strong>Google</strong></td><td>Gemini 3.5 Flash-Lite</td><td>$0.30</td><td>$2.50</td><td><strong>$2.80</strong></td><td>대량 에이전트·번역·단순 처리</td></tr>
                   <tr><td><strong>xAI</strong></td><td>Grok Build 0.1</td><td>$1.00</td><td>$2.00</td><td><strong>$3.00</strong></td><td>코딩 에이전트 기본 모델</td></tr>
@@ -1513,12 +1514,12 @@
           </div>
           <div class="calc-result" aria-live="polite">
             <small id="calcModelLabel">GPT-5.6 Terra · 월간 표준 예상액</small>
-            <div class="calc-total" id="calcTotal">$47.50 <span>/ month</span></div>
+            <div class="calc-total" id="calcTotal">$59.38 <span>/ month</span></div>
             <div class="calc-breakdown">
-              <div class="calc-item"><span>일반 입력</span><strong id="calcInput">$20.00</strong></div>
-              <div class="calc-item"><span>출력</span><strong id="calcOutput">$24.00</strong></div>
-              <div class="calc-item"><span>캐시 읽기</span><strong id="calcCacheRead">$1.00</strong></div>
-              <div class="calc-item"><span>캐시 쓰기</span><strong id="calcCacheWrite">$2.50</strong></div>
+              <div class="calc-item"><span>일반 입력</span><strong id="calcInput">$25.00</strong></div>
+              <div class="calc-item"><span>출력</span><strong id="calcOutput">$30.00</strong></div>
+              <div class="calc-item"><span>캐시 읽기</span><strong id="calcCacheRead">$1.25</strong></div>
+              <div class="calc-item"><span>캐시 쓰기</span><strong id="calcCacheWrite">$3.13</strong></div>
             </div>
             <div class="calc-disclaimer">단순 예산 참고용 계산입니다. 272K 초과 장기 컨텍스트와 데이터 레지던시 가산 등이 발생하면 실제 비용이 더 높아질 수 있습니다.</div>
           </div>
@@ -1573,7 +1574,7 @@
             <div class="trade-head"><span class="trade-icon"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3>얻게 되는 것</h3></div>
             <ul class="trade-list">
               <li>Plus부터 Codex·고급 추론·앱 연동을 한 계정에서 사용할 수 있어 개인 도입이 단순함</li>
-              <li>Terra·Luna의 낮아진 API 단가로 대량 업무의 비용 설계 폭이 넓어짐</li>
+              <li>Sol·Terra·Luna의 단계별 단가로 대량 업무의 비용 설계 폭이 넓어짐</li>
               <li>Business·Enterprise에서 좌석·권한·지출을 조직 단위로 관리 가능</li>
               <li>업무 단계별로 저비용·고성능 모델을 나눠 총비용을 최적화 가능</li>
             </ul>
@@ -1612,12 +1613,12 @@
           <div class="timeline-item reveal">
             <span class="timeline-dot"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v14H4V6a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <div class="timeline-date">2026-07-09</div>
-            <div class="timeline-copy"><strong>GPT-5.6 Sol·Terra·Luna 출시 공지</strong><p>출시 공지의 Terra $2.50/$15, Luna $1/$6 단가가 현재 API 가격 페이지와 다름을 확인했습니다.</p></div>
+            <div class="timeline-copy"><strong>GPT-5.6 Sol·Terra·Luna 출시 공지</strong><p>출시 공지는 Terra $2.50/$15, Luna $1/$6의 표준 단가를 제시했습니다.</p></div>
           </div>
           <div class="timeline-item reveal">
             <span class="timeline-dot"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v14H4V6a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <div class="timeline-date">2026-08-07</div>
-            <div class="timeline-copy"><strong>현재 가격 점검</strong><p>현재 API 페이지의 Terra $2/$12, Luna $0.20/$1.20을 본 보고서의 예산 기준으로 반영했습니다.</p></div>
+            <div class="timeline-date">2026-08-09</div>
+            <div class="timeline-copy"><strong>공식 가격 재검증</strong><p>현재 모델 문서가 출시 공지와 같은 Terra $2.50/$15, Luna $1/$6을 표시하는지 다시 확인하고 잘못된 인하 설명과 계산을 정정했습니다.</p></div>
           </div>
           <div class="timeline-item reveal">
             <span class="timeline-dot"><svg viewBox="0 0 24 24" fill="none"><path d="M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v14H4V6a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -1642,8 +1643,8 @@
           <a class="source-card reveal" href="https://help.openai.com/en/articles/8792828-what-is-chatgpt-team/" target="_blank" rel="noopener"><span class="source-num">05</span><span class="source-copy"><strong>What is ChatGPT Business?</strong><span>OpenAI Help Center · Business 가격, 최소 2석, Codex 좌석 정책, API 별도</span><em>원문 열기 <svg viewBox="0 0 24 24" fill="none"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></em></span></a>
           <a class="source-card reveal" href="https://help.openai.com/en/articles/8265053-what-is-chatgpt-enterprise" target="_blank" rel="noopener"><span class="source-num">06</span><span class="source-copy"><strong>What is ChatGPT Enterprise?</strong><span>OpenAI Help Center · 계약형 Enterprise, Codex 좌석, 관리자 기능과 크레딧 구조</span><em>원문 열기 <svg viewBox="0 0 24 24" fill="none"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></em></span></a>
           <a class="source-card reveal" href="https://developers.openai.com/api/docs/pricing" target="_blank" rel="noopener"><span class="source-num">07</span><span class="source-copy"><strong>Pricing · OpenAI API</strong><span>OpenAI Developers · GPT-5.6 현재 표준·장기 컨텍스트·캐시 단가</span><em>원문 열기 <svg viewBox="0 0 24 24" fill="none"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></em></span></a>
-          <a class="source-card reveal" href="https://developers.openai.com/api/docs/models/gpt-5.6-terra" target="_blank" rel="noopener"><span class="source-num">08</span><span class="source-copy"><strong>GPT-5.6 Terra Model</strong><span>OpenAI Developers · Terra 현재 $2 입력·$12 출력 및 모델 조건</span><em>원문 열기 <svg viewBox="0 0 24 24" fill="none"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></em></span></a>
-          <a class="source-card reveal" href="https://developers.openai.com/api/docs/models/gpt-5.6-luna" target="_blank" rel="noopener"><span class="source-num">09</span><span class="source-copy"><strong>GPT-5.6 Luna Model</strong><span>OpenAI Developers · Luna 현재 $0.20 입력·$1.20 출력 및 모델 조건</span><em>원문 열기 <svg viewBox="0 0 24 24" fill="none"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></em></span></a>
+          <a class="source-card reveal" href="https://developers.openai.com/api/docs/models/gpt-5.6-terra" target="_blank" rel="noopener"><span class="source-num">08</span><span class="source-copy"><strong>GPT-5.6 Terra Model</strong><span>OpenAI Developers · Terra 현재 $2.50 입력·$15 출력 및 모델 조건</span><em>원문 열기 <svg viewBox="0 0 24 24" fill="none"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></em></span></a>
+          <a class="source-card reveal" href="https://developers.openai.com/api/docs/models/gpt-5.6-luna" target="_blank" rel="noopener"><span class="source-num">09</span><span class="source-copy"><strong>GPT-5.6 Luna Model</strong><span>OpenAI Developers · Luna 현재 $1 입력·$6 출력 및 모델 조건</span><em>원문 열기 <svg viewBox="0 0 24 24" fill="none"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></em></span></a>
           <a class="source-card reveal" href="https://openai.com/index/gpt-5-6/" target="_blank" rel="noopener"><span class="source-num">10</span><span class="source-copy"><strong>GPT-5.6: Frontier intelligence that scales</strong><span>OpenAI · 2026-07-09 출시 공지 당시 Terra·Luna 가격과 플랜별 범위</span><em>원문 열기 <svg viewBox="0 0 24 24" fill="none"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></em></span></a>
           <a class="source-card reveal" href="https://help.openai.com/en/articles/20001106" target="_blank" rel="noopener"><span class="source-num">11</span><span class="source-copy"><strong>Codex rate card</strong><span>OpenAI Help Center · 토큰별 크레딧, 작업당 예시, 공유 사용량 풀과 모델 은퇴 일정</span><em>원문 열기 <svg viewBox="0 0 24 24" fill="none"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></em></span></a>
           <a class="source-card reveal" href="https://platform.claude.com/docs/en/about-claude/pricing" target="_blank" rel="noopener"><span class="source-num">12</span><span class="source-copy"><strong>Pricing · Claude Platform Docs</strong><span>Anthropic · Opus·Sonnet·Haiku API 가격, 캐시·Batch·지역 옵션</span><em>원문 열기 <svg viewBox="0 0 24 24" fill="none"><path d="M9 5h10v10M19 5 8 16M15 19H5V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></em></span></a>
@@ -1761,8 +1762,8 @@
 
       const rates = {
         sol: { label: 'GPT-5.6 Sol', input: 5, output: 30, cacheRead: 0.5, cacheWrite: 6.25 },
-        terra: { label: 'GPT-5.6 Terra', input: 2, output: 12, cacheRead: 0.2, cacheWrite: 2.5 },
-        luna: { label: 'GPT-5.6 Luna', input: 0.2, output: 1.2, cacheRead: 0.02, cacheWrite: 0.25 }
+        terra: { label: 'GPT-5.6 Terra', input: 2.5, output: 15, cacheRead: 0.25, cacheWrite: 3.125 },
+        luna: { label: 'GPT-5.6 Luna', input: 1, output: 6, cacheRead: 0.1, cacheWrite: 1.25 }
       };
       const modelSelect = $('#modelSelect');
       const inputs = {
@@ -1794,6 +1795,8 @@
     })();
   </script>
 
-  <script src="../../assets/report-page-layout.js?v=20260807c-wide-default"></script>
+  <script src="../../assets/report-page-layout.js?v=20260809-refresh"></script>
+  <script src="../../assets/report-history.js?v=20260809" data-report-id="260807-chatgpt-codex-pricing-api-comparison-02" data-snapshot-id="2026-08-09-before-refresh" data-has-previous="true"></script>
+  <script src="../../assets/report-view-counter.js" data-report-id="260807-chatgpt-codex-pricing-api-comparison-02"></script>
 </body>
 </html>

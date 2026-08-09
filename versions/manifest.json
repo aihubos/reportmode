@@ -1,0 +1,1250 @@
+{
+  "schemaVersion": 1,
+  "snapshotId": "2026-08-09-before-refresh",
+  "generatedAt": "2026-08-09T00:00:00+09:00",
+  "reports": [
+    {
+      "id": "260802-ai-agent-hermes-openclaw-codex",
+      "title": "Hermes vs OpenClaw vs Codex",
+      "canonicalPath": "reports/260802-ai-agent-hermes-openclaw-codex.html",
+      "currentUrl": "/reportmode/reports/260802-ai-agent-hermes-openclaw-codex.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260802-ai-agent-hermes-openclaw-codex.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "세 도구의 역할·운영 방식·적합 업무를 공식 문서와 저장소 기준으로 다시 확인했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "재검증 완료",
+        "summary": "세 도구의 역할·운영 방식·적합 업무를 공식 문서와 저장소 기준으로 다시 확인했습니다.",
+        "changes": [
+          "기능 경계와 도입 판단 유지",
+          "출처 링크 접근 상태 확인"
+        ],
+        "watchItems": [
+          "에이전트 기능과 지원 채널은 릴리스에 따라 변경 가능"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260802-apple-foldable-iphone",
+      "title": "Apple 폴더블 iPhone",
+      "canonicalPath": "reports/260802-apple-foldable-iphone/",
+      "currentUrl": "/reportmode/reports/260802-apple-foldable-iphone/",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260802-apple-foldable-iphone/"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "Apple 공식 발표를 확인하지 못한 내용은 루머·전망으로 유지하고 구매 가능한 제품처럼 표현하지 않았습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "루머 구분 확인",
+        "summary": "Apple 공식 발표를 확인하지 못한 내용은 루머·전망으로 유지하고 구매 가능한 제품처럼 표현하지 않았습니다.",
+        "changes": [
+          "공식 정보와 공급망·언론 루머의 구분 재확인"
+        ],
+        "watchItems": [
+          "Apple 공식 발표 전 사양·가격·출시일 확정 금지"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260802-galaxy-z-fold8-deep-dive",
+      "title": "갤럭시 Z Fold8 심층분석",
+      "canonicalPath": "reports/260802-galaxy-z-fold8-deep-dive.html",
+      "currentUrl": "/reportmode/reports/260802-galaxy-z-fold8-deep-dive.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260802-galaxy-z-fold8-deep-dive.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "Fold8의 201g, 화면 구성, 배터리와 출시 포지션을 Samsung 공식 발표 기준으로 재확인했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "공식 사양 확인",
+        "summary": "Fold8의 201g, 화면 구성, 배터리와 출시 포지션을 Samsung 공식 발표 기준으로 재확인했습니다.",
+        "changes": [
+          "공식 사양과 초기 독립 검증의 구분 유지"
+        ],
+        "watchItems": [
+          "장기 배터리·힌지·주름·수리 데이터는 출시 초기라 부족"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260802-gpt-5-6-sol-terra-luna-guide",
+      "title": "GPT-5.6 Sol · Terra · Luna 실사용 가이드",
+      "canonicalPath": "reports/260802-gpt-5-6-sol-terra-luna-guide.html",
+      "currentUrl": "/reportmode/reports/260802-gpt-5-6-sol-terra-luna-guide.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260802-gpt-5-6-sol-terra-luna-guide.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "공식 문서와 달랐던 Terra·Luna 단가와 가격 인하 설명을 바로잡고 모든 비용 예시를 다시 계산했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "corrected",
+        "label": "가격·계산 수정",
+        "summary": "공식 문서와 달랐던 Terra·Luna 단가와 가격 인하 설명을 바로잡고 모든 비용 예시를 다시 계산했습니다.",
+        "changes": [
+          "Terra $2.50/$15, Luna $1/$6 반영",
+          "캐시·장문·분업 비용 예시 재계산",
+          "근거 없는 7월 30일 가격 인하 설명 삭제"
+        ],
+        "watchItems": [
+          "API 가격과 장문 컨텍스트 과금은 결제 전 공식 문서 재확인"
+        ],
+        "sourceBasis": "OpenAI 공식 GPT-5.6 발표, 모델 카탈로그와 가격 문서"
+      }
+    },
+    {
+      "id": "260802-iphone-fold-vs-galaxy-fold7-fold8-ultra",
+      "title": "아이폰 폴드 vs 갤럭시 폴드7· 폴드8 울트라",
+      "canonicalPath": "reports/260802-iphone-fold-vs-galaxy-fold7-fold8-ultra.html",
+      "currentUrl": "/reportmode/reports/260802-iphone-fold-vs-galaxy-fold7-fold8-ultra.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260802-iphone-fold-vs-galaxy-fold7-fold8-ultra.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "Samsung Fold8 계열은 공식 발표로, iPhone Fold는 미발표 루머로 분리한 비교 구조를 재확인했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "공식·루머 분리",
+        "summary": "Samsung Fold8 계열은 공식 발표로, iPhone Fold는 미발표 루머로 분리한 비교 구조를 재확인했습니다.",
+        "changes": [
+          "Fold8 Ultra 공식 사양 링크 확인",
+          "iPhone Fold 미확정 표시 유지"
+        ],
+        "watchItems": [
+          "Apple 발표 전 직접 성능·가격 비교는 가정에 불과함"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260802-karpathy-llm-wiki",
+      "title": "Andrej Karpathy의 LLM Wiki란? 지식이 쌓이는 구조",
+      "canonicalPath": "reports/260802-karpathy-llm-wiki.html",
+      "currentUrl": "/reportmode/reports/260802-karpathy-llm-wiki.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260802-karpathy-llm-wiki.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "LLM Wiki의 정의와 ingest·query·lint 구조를 Andrej Karpathy 원문 기준으로 다시 확인했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "원저자 근거 확인",
+        "summary": "LLM Wiki의 정의와 ingest·query·lint 구조를 Andrej Karpathy 원문 기준으로 다시 확인했습니다.",
+        "changes": [
+          "원저자 Gist와 구현 해석의 경계 유지"
+        ],
+        "watchItems": [
+          "개인 지식베이스에 민감정보를 넣기 전 저장·모델 전송 범위 확인"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260802-pokemon-pokopia-deep-dive",
+      "title": "포켓몬 포코피아: 장단점과 인기 요인",
+      "canonicalPath": "reports/260802-pokemon-pokopia-deep-dive.html",
+      "currentUrl": "/reportmode/reports/260802-pokemon-pokopia-deep-dive.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260802-pokemon-pokopia-deep-dive.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "공식 제품 정보와 장르·대상 독자 해석을 분리한 상태를 재확인했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "제품 정보 확인",
+        "summary": "공식 제품 정보와 장르·대상 독자 해석을 분리한 상태를 재확인했습니다.",
+        "changes": [
+          "공식 정보와 인기 요인 분석의 구분 유지"
+        ],
+        "watchItems": [
+          "출시 일정·지원 플랫폼·가격은 공식 스토어에서 재확인"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260802-taki-poo-books-gift-guide",
+      "title": "타키 포오 어린이책 선물 가이드",
+      "canonicalPath": "reports/260802-taki-poo-books-gift-guide.html",
+      "currentUrl": "/reportmode/reports/260802-taki-poo-books-gift-guide.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260802-taki-poo-books-gift-guide.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "도서 선택 기준과 연령별 추천 논리를 유지하고 구매 링크의 접근 상태를 확인했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "구매 정보 확인",
+        "summary": "도서 선택 기준과 연령별 추천 논리를 유지하고 구매 링크의 접근 상태를 확인했습니다.",
+        "changes": [
+          "추천 근거와 선물 선택 기준 재검토"
+        ],
+        "watchItems": [
+          "도서 가격·재고·개정판은 구매 직전 판매처 확인"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260802-tesla-model-y-l-deep-dive",
+      "title": "Tesla Model Y L 심층 분석",
+      "canonicalPath": "reports/260802-tesla-model-y-l-deep-dive.html",
+      "currentUrl": "/reportmode/reports/260802-tesla-model-y-l-deep-dive.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260802-tesla-model-y-l-deep-dive.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "한국 출시가 미확정이라는 오래된 문장을 삭제하고 Tesla Korea의 현재 판매·공식 사양을 추가했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "corrected",
+        "label": "한국 출시 정보 수정",
+        "summary": "한국 출시가 미확정이라는 오래된 문장을 삭제하고 Tesla Korea의 현재 판매·공식 사양을 추가했습니다.",
+        "changes": [
+          "한국 543km MCT·6인승·AWD·5.0초·250kW 공식 사양 추가",
+          "한국·중국·미국·호주 시장 구분 정정"
+        ],
+        "watchItems": [
+          "본문 비교표는 중국 사양이며 한국 가격·보조금과 혼합 금지"
+        ],
+        "sourceBasis": "Tesla Korea 공식 Model Y 제품 페이지와 2026년 7월 한국 가격 보도"
+      }
+    },
+    {
+      "id": "260803-buzz-slack-discord-telegram-guide",
+      "title": "Buzz는 메신저가 아니라 AI 작업공간",
+      "canonicalPath": "reports/260803-buzz-slack-discord-telegram-guide.html",
+      "currentUrl": "/reportmode/reports/260803-buzz-slack-discord-telegram-guide.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260803-buzz-slack-discord-telegram-guide.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "Buzz를 일반 메신저가 아닌 개발자 프리뷰형 AI 작업공간으로 설명한 범위를 공식 저장소 기준으로 확인했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "프리뷰 상태 확인",
+        "summary": "Buzz를 일반 메신저가 아닌 개발자 프리뷰형 AI 작업공간으로 설명한 범위를 공식 저장소 기준으로 확인했습니다.",
+        "changes": [
+          "제품 비전·아키텍처·보안 문서 링크 확인"
+        ],
+        "watchItems": [
+          "pre-1.0 제품이므로 설치법·기능·보안 정책 변동 가능"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260803-chatgpt-desktop-chat-work-codex-guide",
+      "title": "Chat은 대화, Work는 업무, Codex는 구현",
+      "canonicalPath": "reports/260803-chatgpt-desktop-chat-work-codex-guide.html",
+      "currentUrl": "/reportmode/reports/260803-chatgpt-desktop-chat-work-codex-guide.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260803-chatgpt-desktop-chat-work-codex-guide.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "Chat·Work·Codex의 역할 분리와 사용 흐름을 현재 공개된 제품 안내 범위에서 재확인했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "제품 역할 확인",
+        "summary": "Chat·Work·Codex의 역할 분리와 사용 흐름을 현재 공개된 제품 안내 범위에서 재확인했습니다.",
+        "changes": [
+          "기능 구분과 사용 시나리오 유지"
+        ],
+        "watchItems": [
+          "앱 메뉴명·포함 기능·사용 한도는 계정과 버전에 따라 변경 가능"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260803-deepseek-v4-flash-comparison",
+      "title": "DeepSeek V4 Flash — 가격은 압도적 · 선택은 업무별",
+      "canonicalPath": "reports/260803-deepseek-v4-flash-comparison.html",
+      "currentUrl": "/reportmode/reports/260803-deepseek-v4-flash-comparison.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260803-deepseek-v4-flash-comparison.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "GPT-5.6 Luna·Terra의 잘못된 비교 단가와 DeepSeek 대비 배수를 공식 가격으로 다시 계산했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "corrected",
+        "label": "비교 단가 수정",
+        "summary": "GPT-5.6 Luna·Terra의 잘못된 비교 단가와 DeepSeek 대비 배수를 공식 가격으로 다시 계산했습니다.",
+        "changes": [
+          "Luna $1/$6·캐시 $0.10 반영",
+          "Terra $2.50/$15·캐시 $0.25 반영",
+          "V4 Flash 대비 Luna 7.1배·21.4배로 정정"
+        ],
+        "watchItems": [
+          "DeepSeek 피크 요금·모델 별칭·개인정보 조건은 운영 전 재확인"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260803-macbook-m5-max-local-llm-model-fit",
+      "title": "MacBook M5 Max 128GB 로컬 LLM 최적 모델 분석",
+      "canonicalPath": "reports/260803-macbook-m5-max-local-llm-model-fit.html",
+      "currentUrl": "/reportmode/reports/260803-macbook-m5-max-local-llm-model-fit.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260803-macbook-m5-max-local-llm-model-fit.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "128GB Mac의 메모리 한계와 모델 크기별 권고가 절대 성능 보장이 아닌 운영 가이드임을 재확인했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "모델 적합성 확인",
+        "summary": "128GB Mac의 메모리 한계와 모델 크기별 권고가 절대 성능 보장이 아닌 운영 가이드임을 재확인했습니다.",
+        "changes": [
+          "모델 크기·양자화·컨텍스트의 상호작용 설명 유지"
+        ],
+        "watchItems": [
+          "런타임·모델 파일·Metal 지원은 빠르게 변경되므로 실제 로드 전 메모리 추정"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260803-shanghai-disneyland-attractions-crowd-guide",
+      "title": "상하이 디즈니랜드 31개 어트랙션 · 퍼레이드 9–10월 · 월별 비수기 분석",
+      "canonicalPath": "reports/260803-shanghai-disneyland-attractions-crowd-guide.html",
+      "currentUrl": "/reportmode/reports/260803-shanghai-disneyland-attractions-crowd-guide.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260803-shanghai-disneyland-attractions-crowd-guide.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "어트랙션·혼잡도·퍼레이드 정보를 계획용 자료로 유지하고 운영시간 변동 경고를 확인했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "일정 정보 확인",
+        "summary": "어트랙션·혼잡도·퍼레이드 정보를 계획용 자료로 유지하고 운영시간 변동 경고를 확인했습니다.",
+        "changes": [
+          "공식 파크 링크와 시점 표시 확인"
+        ],
+        "watchItems": [
+          "운영 중단·퍼레이드·예약은 방문 당일 공식 앱 확인"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260803-tesla-model-y-l-delivery-decision",
+      "title": "Tesla Model Y L 6,499만원 출고 결정",
+      "canonicalPath": "reports/260803-tesla-model-y-l-delivery-decision.html",
+      "currentUrl": "/reportmode/reports/260803-tesla-model-y-l-delivery-decision.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260803-tesla-model-y-l-delivery-decision.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "Tesla Korea 공식 페이지의 현재 사양을 추가하고 한국 차체 길이·주행거리 기준과 출처 설명을 바로잡았습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "corrected",
+        "label": "공식 사양·시점 수정",
+        "summary": "Tesla Korea 공식 페이지의 현재 사양을 추가하고 한국 차체 길이·주행거리 기준과 출처 설명을 바로잡았습니다.",
+        "changes": [
+          "543km MCT·4,970mm·5.0초·250kW 공식 사양 반영",
+          "출시 당시 인증 보도와 현재 공식 MCT 기준 분리",
+          "7,299만원 가격과 루머 판단 기준 재검증"
+        ],
+        "watchItems": [
+          "6,499만원 계약가·보조금·VIN·옵션은 최종 청구서가 기준"
+        ],
+        "sourceBasis": "Tesla Korea 공식 제품 페이지와 연합뉴스 등 한국 가격 보도"
+      }
+    },
+    {
+      "id": "260804-academy-automation-hermes-obsidian-llm-wiki",
+      "title": "비전공자를 위한 학원 자동화 실행 설계",
+      "canonicalPath": "reports/260804-academy-automation-hermes-obsidian-llm-wiki.html",
+      "currentUrl": "/reportmode/reports/260804-academy-automation-hermes-obsidian-llm-wiki.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260804-academy-automation-hermes-obsidian-llm-wiki.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "학원 자동화 설계의 사람 승인 단계와 개인정보 최소수집 원칙을 공식 법령·지침 기준으로 재검토했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "법·운영 범위 확인",
+        "summary": "학원 자동화 설계의 사람 승인 단계와 개인정보 최소수집 원칙을 공식 법령·지침 기준으로 재검토했습니다.",
+        "changes": [
+          "자동화 범위와 개인정보 처리 경계 유지"
+        ],
+        "watchItems": [
+          "실제 도입 전 위탁·국외이전·보관기간·권한 정책을 사업장 기준으로 확정"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260804-minimax-h3-m5-max-comfyui-guide",
+      "title": "MiniMax H3를 M5 Max 128GB에서 어떻게 쓸까",
+      "canonicalPath": "reports/260804-minimax-h3-m5-max-comfyui-guide.html",
+      "currentUrl": "/reportmode/reports/260804-minimax-h3-m5-max-comfyui-guide.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260804-minimax-h3-m5-max-comfyui-guide.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "M5 Max에서의 모델 사용 조건과 ComfyUI 설치·메모리 주의사항을 현재 문서 링크 기준으로 확인했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "설치 조건 확인",
+        "summary": "M5 Max에서의 모델 사용 조건과 ComfyUI 설치·메모리 주의사항을 현재 문서 링크 기준으로 확인했습니다.",
+        "changes": [
+          "로컬 실행 조건과 대안 경로 유지"
+        ],
+        "watchItems": [
+          "노드·모델·PyTorch·macOS 버전 조합에 따라 설치 절차 변경 가능"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260804-openai-hugging-face-agent-incident",
+      "title": "GPT 신모델이 Hugging Face를 해킹했다?",
+      "canonicalPath": "reports/260804-openai-hugging-face-agent-incident.html",
+      "currentUrl": "/reportmode/reports/260804-openai-hugging-face-agent-incident.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260804-openai-hugging-face-agent-incident.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "사건 설명을 OpenAI·Hugging Face 공식 공지와 후속 보도에 한정하고 과장된 제목과 사실을 분리했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "사고 원문 확인",
+        "summary": "사건 설명을 OpenAI·Hugging Face 공식 공지와 후속 보도에 한정하고 과장된 제목과 사실을 분리했습니다.",
+        "changes": [
+          "공식 사고 범위·후속 분석 링크 접근 상태 확인"
+        ],
+        "watchItems": [
+          "추가 사후분석이 나오면 공격 범위와 책임 설명 갱신 필요"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260804-semiconductor-glass-substrate-scm-tam-sam",
+      "title": "반도체 유리기판, 평평한 유리판이 AI 패키지를 바꿀까",
+      "canonicalPath": "reports/260804-semiconductor-glass-substrate-scm-tam-sam.html",
+      "currentUrl": "/reportmode/reports/260804-semiconductor-glass-substrate-scm-tam-sam.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260804-semiconductor-glass-substrate-scm-tam-sam.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "유리기판의 기술 장점과 공급망·시장규모 전망을 사실과 예측으로 구분한 상태를 재확인했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "시장 전망 구분",
+        "summary": "유리기판의 기술 장점과 공급망·시장규모 전망을 사실과 예측으로 구분한 상태를 재확인했습니다.",
+        "changes": [
+          "시장규모 수치를 전망치로 유지",
+          "공정·공급망 출처 링크 확인"
+        ],
+        "watchItems": [
+          "양산 일정·수율·고객 인증·TAM은 기업 공시 전 확정 금지"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260804-shanghai-disneyland-family-hotel-strategy",
+      "title": "두 가족을 위한 상하이 디즈니랜드 4박 5일 전략",
+      "canonicalPath": "reports/260804-shanghai-disneyland-family-hotel-strategy.html",
+      "currentUrl": "/reportmode/reports/260804-shanghai-disneyland-family-hotel-strategy.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260804-shanghai-disneyland-family-hotel-strategy.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "두 가족 일정·숙소·동선 전략을 계획안으로 유지하고 가격·운영 변동 경고를 확인했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "여행 조건 확인",
+        "summary": "두 가족 일정·숙소·동선 전략을 계획안으로 유지하고 가격·운영 변동 경고를 확인했습니다.",
+        "changes": [
+          "공식 파크·호텔 링크 접근 상태 확인"
+        ],
+        "watchItems": [
+          "항공·호텔·티켓·입장 정책은 예약 직전 공식 채널 재확인"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260806-hermes-second-brain",
+      "title": "Hermes × Second Brain",
+      "canonicalPath": "reports/260806-hermes-second-brain/",
+      "currentUrl": "/reportmode/reports/260806-hermes-second-brain/",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260806-hermes-second-brain/"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "Hermes·Obsidian·LLM Wiki·PARA를 연결하는 설명과 비전공자 실행 흐름을 현재 자료 기준으로 확인했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "구성 요소 확인",
+        "summary": "Hermes·Obsidian·LLM Wiki·PARA를 연결하는 설명과 비전공자 실행 흐름을 현재 자료 기준으로 확인했습니다.",
+        "changes": [
+          "도구별 역할과 사람 검수 단계 유지"
+        ],
+        "watchItems": [
+          "Hermes 설치·채널 연동 방식은 릴리스와 운영 환경에 따라 변경 가능"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260806-palantir-business-ai-analysis",
+      "title": "팔란티어 기업 분석 — AI 기업인가, 경쟁사가 없는가",
+      "canonicalPath": "reports/260806-palantir-business-ai-analysis/",
+      "currentUrl": "/reportmode/reports/260806-palantir-business-ai-analysis/",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260806-palantir-business-ai-analysis/"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "최근 PLTR 주가·시가총액·평가배수를 갱신하고 끊어진 시장 기사 링크를 SEC 10-Q로 교체했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "corrected",
+        "label": "주가·출처 갱신",
+        "summary": "최근 PLTR 주가·시가총액·평가배수를 갱신하고 끊어진 시장 기사 링크를 SEC 10-Q로 교체했습니다.",
+        "changes": [
+          "최근 주가 $172.01·시가총액 약 $441.8B·PER 약 147배 반영",
+          "Q1 2026 SEC 10-Q 추가",
+          "사업 성장과 고평가 위험 분리"
+        ],
+        "watchItems": [
+          "주가·밸류에이션은 매일 변하며 투자 판단 전 최신 시세·공시 재확인"
+        ],
+        "sourceBasis": "Palantir 공시·사업 업데이트, U.S. SEC 10-Q와 최근 시장 데이터"
+      }
+    },
+    {
+      "id": "260807-ai-agent-books-review",
+      "title": "AI 에이전트 3권, 모두 사야 할까? 답은 단계 구매 입니다",
+      "canonicalPath": "reports/260807-ai-agent-books-review.html",
+      "currentUrl": "/reportmode/reports/260807-ai-agent-books-review.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260807-ai-agent-books-review.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "세 권의 난이도·중복 범위·단계 구매 권고를 책 정보와 독자 적합성 기준으로 재검토했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "도서 비교 확인",
+        "summary": "세 권의 난이도·중복 범위·단계 구매 권고를 책 정보와 독자 적합성 기준으로 재검토했습니다.",
+        "changes": [
+          "단계 구매 결론과 중복 설명 유지"
+        ],
+        "watchItems": [
+          "가격·재고·전자책·개정판은 구매 직전 확인"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260807-chatgpt-codex-pricing-api-comparison-02",
+      "title": "ChatGPT 요금제와 Codex·API 비용 을 한 번에 비교",
+      "canonicalPath": "reports/260807-chatgpt-codex-pricing-api-comparison-02/",
+      "currentUrl": "/reportmode/reports/260807-chatgpt-codex-pricing-api-comparison-02/",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260807-chatgpt-codex-pricing-api-comparison-02/"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "Terra·Luna의 공식 단가, 크레딧 표, 계산기와 경쟁 모델 막대를 같은 기준으로 다시 맞췄습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "corrected",
+        "label": "요금표 전면 정정",
+        "summary": "Terra·Luna의 공식 단가, 크레딧 표, 계산기와 경쟁 모델 막대를 같은 기준으로 다시 맞췄습니다.",
+        "changes": [
+          "Terra $2.50/$15, Luna $1/$6 반영",
+          "가격 인하 타임라인을 공식가 동일로 정정",
+          "월 비용 계산기·상대 막대·저비용 모델 해석 수정"
+        ],
+        "watchItems": [
+          "구독 한도·Codex 크레딧·API 가격은 서로 다른 비용이며 구매 직전 재확인"
+        ],
+        "sourceBasis": "OpenAI 공식 가격·모델·Codex 요금 문서"
+      }
+    },
+    {
+      "id": "260807-mac-ai-ecosystem-advantage",
+      "title": "왜 Mac은 AI 생태계 에 유리한가",
+      "canonicalPath": "reports/260807-mac-ai-ecosystem-advantage.html",
+      "currentUrl": "/reportmode/reports/260807-mac-ai-ecosystem-advantage.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260807-mac-ai-ecosystem-advantage.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "Mac의 통합 메모리·개발도구·로컬 AI 장점을 사실과 전략적 해석으로 나눈 구조를 확인했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "근거 구조 확인",
+        "summary": "Mac의 통합 메모리·개발도구·로컬 AI 장점을 사실과 전략적 해석으로 나눈 구조를 확인했습니다.",
+        "changes": [
+          "하드웨어 사실과 생태계 평가의 구분 유지"
+        ],
+        "watchItems": [
+          "동일 가격대 GPU·클라우드 대안과 모델 지원은 빠르게 변동"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260807-paseo-mcp-orchestration-guidebook",
+      "title": "PASEO MCP 로 여러 AI를 한 팀처럼 움직이는 방법",
+      "canonicalPath": "reports/260807-paseo-mcp-orchestration-guidebook.html",
+      "currentUrl": "/reportmode/reports/260807-paseo-mcp-orchestration-guidebook.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260807-paseo-mcp-orchestration-guidebook.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "PASEO MCP의 다중 AI 작업 흐름과 비전공자용 단계 설명을 현재 보고서 범위에서 점검했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "사용 흐름 확인",
+        "summary": "PASEO MCP의 다중 AI 작업 흐름과 비전공자용 단계 설명을 현재 보고서 범위에서 점검했습니다.",
+        "changes": [
+          "설치·역할 분담·결과 확인 흐름 유지"
+        ],
+        "watchItems": [
+          "MCP 도구명·지원 모델·권한 절차는 설치 버전에 따라 달라질 수 있음"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260807-paseo-multi-ai-orchestration-analysis",
+      "title": "여러 AI 코딩 에이전트를 한곳에서 지휘하는 Paseo",
+      "canonicalPath": "reports/260807-paseo-multi-ai-orchestration-analysis.html",
+      "currentUrl": "/reportmode/reports/260807-paseo-multi-ai-orchestration-analysis.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260807-paseo-multi-ai-orchestration-analysis.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "여러 코딩 에이전트를 한곳에서 조정할 때의 장점·비용·실패 지점을 균형 있게 유지했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "운영 논리 확인",
+        "summary": "여러 코딩 에이전트를 한곳에서 조정할 때의 장점·비용·실패 지점을 균형 있게 유지했습니다.",
+        "changes": [
+          "단일 에이전트 대비 장단점과 적용 범위 재검토"
+        ],
+        "watchItems": [
+          "동시 실행 비용·모델 가용성·도구 호환은 실제 환경 파일럿 필요"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260808-adhd-hsp-daily-tips",
+      "title": "ADHD × HSP, 의지보다 환경·회복을 설계해야 편해집니다",
+      "canonicalPath": "reports/260808-adhd-hsp-daily-tips/",
+      "currentUrl": "/reportmode/reports/260808-adhd-hsp-daily-tips/",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260808-adhd-hsp-daily-tips/"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "ADHD·HSP 일상 팁을 교육용 환경 설계로 한정하고 진단·치료 지시로 확대하지 않았습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "건강 정보 범위 확인",
+        "summary": "ADHD·HSP 일상 팁을 교육용 환경 설계로 한정하고 진단·치료 지시로 확대하지 않았습니다.",
+        "changes": [
+          "근거 출처와 비의료적 실천 팁의 경계 확인"
+        ],
+        "watchItems": [
+          "증상 악화·기능 저하·약물 문제는 의료진과 개별 상담"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260808-ai-beginner-hermes-second-brain-50",
+      "title": "AI를 이해하고, 에이전트로 일하게 만드는 첫 번째 교과서",
+      "canonicalPath": "reports/260808-ai-beginner-hermes-second-brain-50/",
+      "currentUrl": "/reportmode/reports/260808-ai-beginner-hermes-second-brain-50/",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260808-ai-beginner-hermes-second-brain-50/"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "AI 기초부터 Hermes·Second Brain 활용까지 50개 항목의 학습 순서와 용어 설명을 점검했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "입문 내용 확인",
+        "summary": "AI 기초부터 Hermes·Second Brain 활용까지 50개 항목의 학습 순서와 용어 설명을 점검했습니다.",
+        "changes": [
+          "비전공자 설명과 단계별 학습 구조 유지"
+        ],
+        "watchItems": [
+          "설치 화면·제품명·요금은 최신 공식 문서 우선"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260808-ai-persona-prompting-intro",
+      "title": "AI에게 ‘말투’ 를 가르칠 수 있을까?",
+      "canonicalPath": "reports/260808-ai-persona-prompting-intro.html",
+      "currentUrl": "/reportmode/reports/260808-ai-persona-prompting-intro.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260808-ai-persona-prompting-intro.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "페르소나 프롬프팅을 말투·역할·금지사항을 명시하는 방법으로 설명한 입문 내용을 확인했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "개념 설명 확인",
+        "summary": "페르소나 프롬프팅을 말투·역할·금지사항을 명시하는 방법으로 설명한 입문 내용을 확인했습니다.",
+        "changes": [
+          "과도한 의인화와 실제 정체성 혼동을 피하는 설명 유지"
+        ],
+        "watchItems": [
+          "민감한 의사결정은 페르소나보다 사실 검증과 사람 승인 우선"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260808-ai-token-lego-guide",
+      "title": "AI의 토큰은 문장을 잘게 나눈 레고 블록 입니다",
+      "canonicalPath": "reports/260808-ai-token-lego-guide.html",
+      "currentUrl": "/reportmode/reports/260808-ai-token-lego-guide.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260808-ai-token-lego-guide.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "토큰·컨텍스트·비용의 관계를 레고 비유로 설명한 핵심 개념과 예시를 점검했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "기초 개념 확인",
+        "summary": "토큰·컨텍스트·비용의 관계를 레고 비유로 설명한 핵심 개념과 예시를 점검했습니다.",
+        "changes": [
+          "문자 수와 토큰 수가 일대일이 아니라는 주의 유지"
+        ],
+        "watchItems": [
+          "모델별 토크나이저·컨텍스트·과금 단위는 공식 문서 확인"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260808-dongtan-car-camping-guide",
+      "title": "동탄에서 떠나는 실패 확률 낮은 차박지 9곳",
+      "canonicalPath": "reports/260808-dongtan-car-camping-guide/",
+      "currentUrl": "/reportmode/reports/260808-dongtan-car-camping-guide/",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260808-dongtan-car-camping-guide/"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "차박지 추천을 확정 예약 정보가 아닌 후보지 비교로 유지하고 현장 규정 확인 항목을 점검했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "현장 조건 확인",
+        "summary": "차박지 추천을 확정 예약 정보가 아닌 후보지 비교로 유지하고 현장 규정 확인 항목을 점검했습니다.",
+        "changes": [
+          "거리·편의·소음·화장실·취사 규정 확인 흐름 유지"
+        ],
+        "watchItems": [
+          "주차·야영·화기·반려동물 규정과 기상은 출발 당일 확인"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260808-dongtan-kids-day-trips",
+      "title": "동탄에서 1시간, 뻔하지 않은 아이 나들이 7선",
+      "canonicalPath": "reports/260808-dongtan-kids-day-trips.html",
+      "currentUrl": "/reportmode/reports/260808-dongtan-kids-day-trips.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260808-dongtan-kids-day-trips.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "아이 나들이 7곳의 이동 부담·실내외 대안·연령 적합성을 계획용 정보로 점검했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "방문 정보 확인",
+        "summary": "아이 나들이 7곳의 이동 부담·실내외 대안·연령 적합성을 계획용 정보로 점검했습니다.",
+        "changes": [
+          "공식·지도 링크 접근 상태 확인"
+        ],
+        "watchItems": [
+          "휴무·예약·주차·체험 시간·날씨는 방문 직전 확인"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260808-dongtan-toddler-hidden-daytrips",
+      "title": "동탄호수공원에서 1시간, 1~3세와 실패 적은 나들이 7선",
+      "canonicalPath": "reports/260808-dongtan-toddler-hidden-daytrips.html",
+      "currentUrl": "/reportmode/reports/260808-dongtan-toddler-hidden-daytrips.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260808-dongtan-toddler-hidden-daytrips.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "1~3세 기준 이동시간·낮잠·기저귀·실내 대체 동선을 중심으로 추천 구조를 재검토했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "유아 동선 확인",
+        "summary": "1~3세 기준 이동시간·낮잠·기저귀·실내 대체 동선을 중심으로 추천 구조를 재검토했습니다.",
+        "changes": [
+          "유아 안전·휴식·짧은 체류 기준 유지"
+        ],
+        "watchItems": [
+          "운영시간·유모차 접근·주차·날씨는 당일 공식 채널 확인"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260808-hbm-ai-memory-beginner",
+      "title": "HBM은 AI 칩 옆에 세운 수직 물류창고 와 수천 차선 출입구 입니다",
+      "canonicalPath": "reports/260808-hbm-ai-memory-beginner.html",
+      "currentUrl": "/reportmode/reports/260808-hbm-ai-memory-beginner.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260808-hbm-ai-memory-beginner.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "HBM 구조와 세대 차이를 공식 표준·기업 자료로 설명하고 2026년 출하 비중은 전망으로 유지했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "기술·전망 구분",
+        "summary": "HBM 구조와 세대 차이를 공식 표준·기업 자료로 설명하고 2026년 출하 비중은 전망으로 유지했습니다.",
+        "changes": [
+          "기술 사실과 시장 전망의 구분 확인"
+        ],
+        "watchItems": [
+          "HBM4 양산·고객 인증·점유율 전망은 기업 실적 발표로 갱신"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260808-hermes-instagram-blog-automation-guide",
+      "title": "Hermes로 만드는 인스타그램·블로그 승인형 자동화",
+      "canonicalPath": "reports/260808-hermes-instagram-blog-automation-guide.html",
+      "currentUrl": "/reportmode/reports/260808-hermes-instagram-blog-automation-guide.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260808-hermes-instagram-blog-automation-guide.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "콘텐츠 생성·검수·게시를 분리하고 사람 승인 없이 외부 게시하지 않는 흐름을 재확인했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "승인형 자동화 확인",
+        "summary": "콘텐츠 생성·검수·게시를 분리하고 사람 승인 없이 외부 게시하지 않는 흐름을 재확인했습니다.",
+        "changes": [
+          "승인 게이트와 채널별 결과 확인 단계 유지"
+        ],
+        "watchItems": [
+          "Instagram·블로그 API·로그인·게시 정책 변경 가능"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260808-hostinger-vps-hermes-24h",
+      "title": "Hermes를 쉬지 않고 움직이는 원격 컴퓨터, VPS Hostinger로 시작하기",
+      "canonicalPath": "reports/260808-hostinger-vps-hermes-24h.html",
+      "currentUrl": "/reportmode/reports/260808-hostinger-vps-hermes-24h.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260808-hostinger-vps-hermes-24h.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "VPS에서 Hermes를 상시 운영하는 설치·재시작·백업·확인 흐름을 현재 가이드 범위에서 점검했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "운영 절차 확인",
+        "summary": "VPS에서 Hermes를 상시 운영하는 설치·재시작·백업·확인 흐름을 현재 가이드 범위에서 점검했습니다.",
+        "changes": [
+          "서비스 상태 확인과 장애 복구 순서 유지"
+        ],
+        "watchItems": [
+          "Hostinger 화면·요금·OS 이미지·Hermes 설치 명령은 변경 가능"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260808-macbook-local-llm-lm-studio-v1-0-0",
+      "title": "MacBook에 Local LLM 설치하기 feat. LM Studio",
+      "canonicalPath": "reports/260808-macbook-local-llm-lm-studio-v1-0-0/",
+      "currentUrl": "/reportmode/reports/260808-macbook-local-llm-lm-studio-v1-0-0/",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260808-macbook-local-llm-lm-studio-v1-0-0/"
+      },
+      "currentVersion": "v1.0.0",
+      "updatedAt": "2026-08-09",
+      "status": "historical",
+      "changeSummary": "v1.0.0 내용은 변경하지 않고 누락됐던 공식 LM Studio 화면 이미지 5개를 복구해 과거판을 정상 열람할 수 있게 했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "historical",
+        "label": "과거판 복구",
+        "summary": "v1.0.0 내용은 변경하지 않고 누락됐던 공식 LM Studio 화면 이미지 5개를 복구해 과거판을 정상 열람할 수 있게 했습니다.",
+        "changes": [
+          "깨진 로컬 이미지 5개 복구",
+          "최신판으로 가는 이력 연결 유지"
+        ],
+        "watchItems": [
+          "설치에는 v1.1.0 이후 최신판 사용"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260808-macbook-local-llm-lm-studio-v1-0-1",
+      "title": "MacBook에 Local LLM 설치하기 feat. LM Studio",
+      "canonicalPath": "reports/260808-macbook-local-llm-lm-studio-v1-0-1/",
+      "currentUrl": "/reportmode/reports/260808-macbook-local-llm-lm-studio-v1-0-1/",
+      "previousVersion": {
+        "version": "v1.0.1",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260808-macbook-local-llm-lm-studio-v1-0-1/"
+      },
+      "currentVersion": "v1.0.1",
+      "updatedAt": "2026-08-09",
+      "status": "historical",
+      "changeSummary": "v1.0.1은 당시 설명을 보존하고 최신판과 직접 비교할 수 있도록 변경 이력에 연결했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "historical",
+        "label": "과거판 보존",
+        "summary": "v1.0.1은 당시 설명을 보존하고 최신판과 직접 비교할 수 있도록 변경 이력에 연결했습니다.",
+        "changes": [
+          "과거판 상태와 제목 유지"
+        ],
+        "watchItems": [
+          "설치에는 v1.1.0 이후 최신판 사용"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260808-macbook-local-llm-lm-studio-v1-1-0",
+      "title": "MacBook에 Local LLM 설치하기 LM Studio 완전 입문",
+      "canonicalPath": "reports/260808-macbook-local-llm-lm-studio-v1-1-0/",
+      "currentUrl": "/reportmode/reports/260808-macbook-local-llm-lm-studio-v1-1-0/",
+      "previousVersion": {
+        "version": "v1.1.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260808-macbook-local-llm-lm-studio-v1-1-0/"
+      },
+      "currentVersion": "v1.2.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "LM Studio 입문 절차, 모델 선택과 메모리 추정 방법을 공식 문서 링크 기준으로 확인했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "최신판 확인",
+        "summary": "LM Studio 입문 절차, 모델 선택과 메모리 추정 방법을 공식 문서 링크 기준으로 확인했습니다.",
+        "changes": [
+          "현재 대표판 표시와 이전판 연결"
+        ],
+        "watchItems": [
+          "앱 UI·모델 카탈로그·CLI 옵션은 업데이트에 따라 변경 가능"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260808-macbook-m5max-comfyui-practical-guide",
+      "title": "MacBook Pro M5 Max 128GB 로 ComfyUI 이미지·영상 만들기",
+      "canonicalPath": "reports/260808-macbook-m5max-comfyui-practical-guide.html",
+      "currentUrl": "/reportmode/reports/260808-macbook-m5max-comfyui-practical-guide.html",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260808-macbook-m5max-comfyui-practical-guide.html"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "보고서에서 내려받도록 안내했지만 없었던 MPS 확인 스크립트를 추가하고 로컬 자산 연결을 복구했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "corrected",
+        "label": "깨진 다운로드 복구",
+        "summary": "보고서에서 내려받도록 안내했지만 없었던 MPS 확인 스크립트를 추가하고 로컬 자산 연결을 복구했습니다.",
+        "changes": [
+          "verify_mps.py 다운로드 파일 추가",
+          "PyTorch MPS 사용 가능 여부와 기본 연산 확인 코드 제공"
+        ],
+        "watchItems": [
+          "ComfyUI·커스텀 노드·PyTorch 버전 조합은 설치 전 호환표 확인"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    },
+    {
+      "id": "260808-stanley-tumbler-analysis",
+      "title": "110년 된 보온병은 어떻게 ‘갖고 싶은 패션 아이템’ 이 되었나",
+      "canonicalPath": "reports/260808-stanley-tumbler-analysis/",
+      "currentUrl": "/reportmode/reports/260808-stanley-tumbler-analysis/",
+      "previousVersion": {
+        "version": "v1.0.0",
+        "date": "2026-08-09",
+        "label": "내용 최신화 전 기준판",
+        "url": "/reportmode/versions/2026-08-09-before-refresh/reports/260808-stanley-tumbler-analysis/"
+      },
+      "currentVersion": "v1.1.0",
+      "updatedAt": "2026-08-09",
+      "status": "content-refreshed",
+      "changeSummary": "Stanley의 역사·브랜드 전환·인기 요인과 지속 가능성 위험을 출처별로 다시 확인했습니다.",
+      "contentReview": {
+        "reviewedAt": "2026-08-09",
+        "verdict": "verified",
+        "label": "기업·브랜드 근거 확인",
+        "summary": "Stanley의 역사·브랜드 전환·인기 요인과 지속 가능성 위험을 출처별로 다시 확인했습니다.",
+        "changes": [
+          "기업 사실과 문화·마케팅 해석의 구분 유지"
+        ],
+        "watchItems": [
+          "매출·시장점유율·유행 지속성은 최신 기업 자료가 공개될 때 갱신"
+        ],
+        "sourceBasis": "보고서 원문 출처와 공개 링크 재검증"
+      }
+    }
+  ],
+  "contentReview": {
+    "reviewedAt": "2026-08-09",
+    "counts": {
+      "total": 42,
+      "corrected": 7,
+      "verified": 33,
+      "historical": 2
+    }
+  }
+}

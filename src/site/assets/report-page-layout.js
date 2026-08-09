@@ -15,15 +15,32 @@
   controls.className = "report-layout-controls";
   controls.setAttribute("aria-label", "보고서 레이아웃");
   controls.innerHTML =
-    '<span class="report-layout-label">레이아웃</span>' +
+    '<span class="report-layout-label">레이아웃 선택</span>' +
     '<div class="report-layout-buttons" role="group" aria-label="가로 또는 세로">' +
-    '<button class="report-layout-button" type="button" data-report-layout="wide" aria-pressed="false">가로</button>' +
-    '<button class="report-layout-button" type="button" data-report-layout="a4" aria-pressed="false">세로</button>' +
+    '<button class="report-layout-button" type="button" data-report-layout="wide" aria-label="가로 보기" aria-pressed="false"><span class="report-layout-icon" aria-hidden="true">▭</span><span>가로</span></button>' +
+    '<button class="report-layout-button" type="button" data-report-layout="a4" aria-label="세로 보기" aria-pressed="false"><span class="report-layout-icon" aria-hidden="true">▯</span><span>세로</span></button>' +
     "</div>";
 
   var switcher = document.querySelector(".report-view-switcher-inner");
   if (switcher) switcher.insertBefore(controls, switcher.firstChild);
-  else document.body.insertBefore(controls, document.body.firstChild);
+  else {
+    controls.classList.add("is-standalone");
+    document.body.insertBefore(controls, document.body.firstChild);
+  }
+
+  var viewIcons = { simple: "▤", detail: "☷" };
+  document.querySelectorAll(".report-view-button[data-report-view-target]").forEach(function (button) {
+    var target = button.dataset.reportViewTarget;
+    if (!button.querySelector(".report-view-icon") && viewIcons[target]) {
+      var icon = document.createElement("span");
+      icon.className = "report-view-icon";
+      icon.setAttribute("aria-hidden", "true");
+      icon.textContent = viewIcons[target];
+      button.insertBefore(icon, button.firstChild);
+    }
+    if (target === "simple") button.setAttribute("aria-label", "간단 보기");
+    if (target === "detail") button.setAttribute("aria-label", "상세 보기");
+  });
 
   var buttons = controls.querySelectorAll("[data-report-layout]");
 

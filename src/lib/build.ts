@@ -276,32 +276,10 @@ function writeArchiveArtifacts(
   return { archive: archivePath, manifest: manifestPath };
 }
 
-function newestItem(items: ManifestItem[]): ManifestItem | undefined {
-  return [...items].sort((a, b) => {
-    const aTime = Date.parse(a.createdAt);
-    const bTime = Date.parse(b.createdAt);
-    if (Number.isFinite(aTime) && Number.isFinite(bTime) && aTime !== bTime) {
-      return bTime - aTime;
-    }
-    return b.createdAt.localeCompare(a.createdAt);
-  })[0];
-}
-
-function writeHomeIndex(root: string, items: ManifestItem[]): string {
+function writeHomeIndex(root: string): string {
   const template = readText(path.join(root, "src", "site", "index.html"));
-  const latest = newestItem(items);
-  const marker = /<a class="ghost-link" data-latest-report href="[^"]*">[\s\S]*?<\/a>/;
-  if (!marker.test(template)) {
-    throw new Error("루트 index의 최신 보고서 링크 표시자를 찾지 못했습니다.");
-  }
-  const html = latest
-    ? template.replace(
-        marker,
-        `<a class="ghost-link" data-latest-report href="${escapeHtml(latest.path)}">최신 보고서 · ${escapeHtml(latest.title)}</a>`,
-      )
-    : template;
   const home = path.join(root, "index.html");
-  writeText(home, html);
+  writeText(home, template);
   return home;
 }
 
@@ -314,7 +292,7 @@ export function buildArchive() {
   const items = mergedItems(root, config.siteBase, docs);
   return {
     reportCount: items.length,
-    home: writeHomeIndex(root, items),
+    home: writeHomeIndex(root),
     ...writeArchiveArtifacts(root, items, config.siteBase),
   };
 }
@@ -351,7 +329,7 @@ export function buildSite(options?: {
     force: true,
   });
   const archiveArtifacts = writeArchiveArtifacts(root, items, config.siteBase);
-  const home = writeHomeIndex(root, items);
+  const home = writeHomeIndex(root);
 
   for (const legacy of options?.legacyRedirects || []) {
     writeText(
