@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "1.0",
+  "reportTopicRank": 109,
+  "verifiedAt": "2026-08-09",
+  "entries": [
+    {
+      "id": 1,
+      "claim": "Projects는 관련 대화와 파일을 한곳에 모아 장기 작업의 맥락을 관리하는 기능이다.",
+      "url": "https://help.openai.com/en/articles/10169521-using-projects-in-chatgpt",
+      "sourceType": "Official documentation",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedIn": [
+        "1분 요약",
+        "정보 입력",
+        "리스크·FAQ"
+      ],
+      "confidence": "High",
+      "notes": "기능·가격·지원 범위는 변경될 수 있으므로 발행 직전 재확인."
+    },
+    {
+      "id": 2,
+      "claim": "ChatGPT 기능과 제공 범위는 지속적으로 업데이트되므로 최신 릴리스 노트를 확인해야 한다.",
+      "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+      "sourceType": "Official documentation",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedIn": [
+        "1분 요약",
+        "비교",
+        "리스크·FAQ"
+      ],
+      "confidence": "High",
+      "notes": "기능·가격·지원 범위는 변경될 수 있으므로 발행 직전 재확인."
+    },
+    {
+      "id": 3,
+      "claim": "텍스트·이미지·파일 등 사용 가능한 기능은 요금제와 환경에 따라 달라질 수 있다.",
+      "url": "https://help.openai.com/en/articles/9260256-chatgpt-capabilities-overview",
+      "sourceType": "Official documentation",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedIn": [
+        "1분 요약",
+        "질문",
+        "리스크·FAQ"
+      ],
+      "confidence": "High",
+      "notes": "기능·가격·지원 범위는 변경될 수 있으므로 발행 직전 재확인."
+    },
+    {
+      "id": 4,
+      "claim": "사용자는 ChatGPT의 데이터 제어 설정과 대화 기록 관련 옵션을 확인할 수 있다.",
+      "url": "https://help.openai.com/en/articles/7730893-data-controls-faq",
+      "sourceType": "Official documentation",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedIn": [
+        "1분 요약",
+        "선택",
+        "리스크·FAQ"
+      ],
+      "confidence": "High",
+      "notes": "기능·가격·지원 범위는 변경될 수 있으므로 발행 직전 재확인."
+    }
+  ]
+}

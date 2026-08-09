@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "1.0",
+  "reportTopicRank": 180,
+  "verifiedAt": "2026-08-09",
+  "entries": [
+    {
+      "id": 1,
+      "claim": "집중 모드는 알림과 홈 화면을 상황별로 제어할 수 있다.",
+      "url": "https://support.apple.com/ko-kr/guide/iphone/iphd6288a67f/ios",
+      "sourceType": "Official support",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedIn": [
+        "1분 요약",
+        "확인",
+        "리스크·FAQ"
+      ],
+      "confidence": "High",
+      "notes": "기능·가격·지원 범위는 변경될 수 있으므로 발행 직전 재확인."
+    },
+    {
+      "id": 2,
+      "claim": "스크린 타임은 앱 사용 시간과 제한 설정을 제공한다.",
+      "url": "https://support.apple.com/ko-kr/guide/iphone/iphbfa595995/ios",
+      "sourceType": "Official support",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedIn": [
+        "1분 요약",
+        "분석",
+        "리스크·FAQ"
+      ],
+      "confidence": "High",
+      "notes": "기능·가격·지원 범위는 변경될 수 있으므로 발행 직전 재확인."
+    },
+    {
+      "id": 3,
+      "claim": "현재 판매 모델과 가격은 Apple 공식 판매 페이지가 기준이다.",
+      "url": "https://www.apple.com/kr/iphone/",
+      "sourceType": "Official product page",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedIn": [
+        "1분 요약",
+        "제한",
+        "리스크·FAQ"
+      ],
+      "confidence": "High",
+      "notes": "기능·가격·지원 범위는 변경될 수 있으므로 발행 직전 재확인."
+    },
+    {
+      "id": 4,
+      "claim": "Apple Intelligence 기능은 기기·언어·지역·OS 버전에 따라 가용성이 다르다.",
+      "url": "https://www.apple.com/kr/apple-intelligence/",
+      "sourceType": "Official product page",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedIn": [
+        "1분 요약",
+        "개선",
+        "리스크·FAQ"
+      ],
+      "confidence": "High",
+      "notes": "기능·가격·지원 범위는 변경될 수 있으므로 발행 직전 재확인."
+    },
+    {
+      "id": 5,
+      "claim": "업데이트 전 백업·전원·저장 공간을 확인하는 것이 권장된다.",
+      "url": "https://support.apple.com/ko-kr/118575",
+      "sourceType": "Official support",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedIn": [
+        "1분 요약",
+        "개선",
+        "리스크·FAQ"
+      ],
+      "confidence": "High",
+      "notes": "기능·가격·지원 범위는 변경될 수 있으므로 발행 직전 재확인."
+    }
+  ]
+}

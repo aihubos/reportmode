@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "1.0",
+  "reportTopicRank": 181,
+  "verifiedAt": "2026-08-09",
+  "entries": [
+    {
+      "id": 1,
+      "claim": "앱·키·디스플레이·공조·주행 기능의 정확한 조작법은 차량 매뉴얼이 기준이다.",
+      "url": "https://www.tesla.com/ownersmanual/modely/ko_kr/",
+      "sourceType": "Official manual",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedIn": [
+        "1분 요약",
+        "설정",
+        "리스크·FAQ"
+      ],
+      "confidence": "High",
+      "notes": "기능·가격·지원 범위는 변경될 수 있으므로 발행 직전 재확인."
+    },
+    {
+      "id": 2,
+      "claim": "현재 차량 사양·가격·인도 예상은 Tesla 공식 주문 페이지에서 확인해야 한다.",
+      "url": "https://www.tesla.com/ko_kr/modely",
+      "sourceType": "Official product page",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedIn": [
+        "1분 요약",
+        "사용",
+        "리스크·FAQ"
+      ],
+      "confidence": "High",
+      "notes": "기능·가격·지원 범위는 변경될 수 있으므로 발행 직전 재확인."
+    },
+    {
+      "id": 3,
+      "claim": "기본 차량과 배터리·구동장치 보증 조건은 모델·거리·기간별로 다르다.",
+      "url": "https://www.tesla.com/ko_kr/support/vehicle-warranty",
+      "sourceType": "Official policy",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedIn": [
+        "1분 요약",
+        "분실 대비",
+        "리스크·FAQ"
+      ],
+      "confidence": "High",
+      "notes": "기능·가격·지원 범위는 변경될 수 있으므로 발행 직전 재확인."
+    },
+    {
+      "id": 4,
+      "claim": "전기차 구매보조금과 충전 관련 최신 정보는 무공해차 통합누리집에서 지역별로 확인해야 한다.",
+      "url": "https://ev.or.kr/nportal/main.do",
+      "sourceType": "Korean government portal",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedIn": [
+        "1분 요약",
+        "팁",
+        "리스크·FAQ"
+      ],
+      "confidence": "Medium",
+      "notes": "기능·가격·지원 범위는 변경될 수 있으므로 발행 직전 재확인."
+    }
+  ]
+}

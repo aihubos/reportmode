@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "1.0",
+  "reportTopicRank": 32,
+  "verifiedAt": "2026-08-09",
+  "entries": [
+    {
+      "id": 1,
+      "claim": "Galaxy AI 기능은 지원 기기·언어·앱과 삼성 계정 조건에 따라 달라진다.",
+      "url": "https://www.samsung.com/sec/galaxy-ai/",
+      "sourceType": "Official product page",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedIn": [
+        "1분 요약",
+        "주요 기능",
+        "리스크·FAQ"
+      ],
+      "confidence": "High",
+      "notes": "기능·가격·지원 범위는 변경될 수 있으므로 발행 직전 재확인."
+    },
+    {
+      "id": 2,
+      "claim": "2026년 삼성 플래그십의 AI·카메라·디스플레이 기능은 공식 제품 페이지에서 확인된다.",
+      "url": "https://www.samsung.com/sec/smartphones/galaxy-s26-ultra/",
+      "sourceType": "Official product page",
+      "publishedAt": "2026",
+      "verifiedAt": "2026-08-09",
+      "usedIn": [
+        "1분 요약",
+        "아이폰과 비교",
+        "리스크·FAQ"
+      ],
+      "confidence": "High",
+      "notes": "기능·가격·지원 범위는 변경될 수 있으므로 발행 직전 재확인."
+    },
+    {
+      "id": 3,
+      "claim": "화면·카메라·저장공간 등 세부 사양은 공식 스펙표가 기준이다.",
+      "url": "https://www.samsung.com/sec/smartphones/galaxy-s26-ultra/specs/",
+      "sourceType": "Official specifications",
+      "publishedAt": "2026",
+      "verifiedAt": "2026-08-09",
+      "usedIn": [
+        "1분 요약",
+        "실생활 예시",
+        "리스크·FAQ"
+      ],
+      "confidence": "High",
+      "notes": "기능·가격·지원 범위는 변경될 수 있으므로 발행 직전 재확인."
+    }
+  ]
+}
