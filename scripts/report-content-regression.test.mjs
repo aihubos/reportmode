@@ -49,3 +49,14 @@ test("root page redirects to the report archive and contains no skill builder", 
     assert.doesNotMatch(html, /Skill Builder|스킬 만들기/);
   }
 });
+
+test("uploaded Hermes and watercourse reports keep their local covers and primary attribution", () => {
+  const executive = read("reports/260809-hermes-agent-ai-does-everything-video-analysis/index.html");
+  const watercourse = read("reports/260809-watercourse-life-choice/index.html");
+  const security = read("reports/260809-hermes-agent-security-youtube/index.html");
+
+  assert.match(executive, /data-report-cover="assets\/OBF2XTHooEU-thumbnail-fallback\.jpg"/);
+  assert.match(watercourse, /원문 출처 · TeaBoard 뉴스레터/);
+  assert.match(watercourse, /https:\/\/newsletter\.teaboard\.link\/post\/2026-08-08-wwt1y2/);
+  assert.match(security, /data-report-cover="assets\/video-cover-fallback\.png"/);
+});

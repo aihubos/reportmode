@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="물 흐르듯이 산다는 태도를 도가철학, 커리어 정체기 연구, 자기결정성이론으로 해석하고 이직·전환 의사결정에 적용하는 비전공자용 보고서" />
+  <meta name="theme-color" content="#ffffff" />
+  <meta property="og:title" content="물 흐르듯이 산다는 것：편안함이 아니라 선택할 때를 아는 삶" />
+  <meta property="og:description" content="흐름은 수동성이 아니라 때를 읽고 방향을 선택하는 능동적 적응입니다." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="assets/hero-river.webp" />
+  <title>물 흐르듯이 산다는 것：편안함이 아니라 선택할 때를 아는 삶 · v1.0.0 | Report Hub</title>
+  <style>
+    :root {
+      --blue:#3182F6;
+      --blue-strong:#1B64DA;
+      --blue-soft:#E8F3FF;
+      --ink:#191F28;
+      --ink-2:#333D4B;
+      --muted:#6B7684;
+      --muted-2:#8B95A1;
+      --line:#E5E8EB;
+      --surface:#F7F8FA;
+      --surface-2:#F2F4F6;
+      --white:#FFFFFF;
+      --highlight:#DFFF6A;
+      --highlight-yellow:#FFF184;
+      --mint:#DFFBF2;
+      --violet:#EEE9FF;
+      --danger-soft:#FFF0F0;
+      --shadow-sm:0 8px 30px rgba(25,31,40,.06);
+      --shadow-md:0 24px 70px rgba(25,31,40,.11);
+      --radius-sm:18px;
+      --radius-md:28px;
+      --radius-lg:40px;
+      --max:1180px;
+      --hero-title-min:36px;
+      --hero-title-fluid:4.4vw;
+      --hero-title-max:55px;
+      --section-title-min:28px;
+      --section-title-fluid:3.3vw;
+      --section-title-max:41px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 88% 5%,rgba(49,130,246,.11),transparent 27rem),
+        radial-gradient(circle at 5% 16%,rgba(223,255,106,.10),transparent 25rem),
+        #fff;
+      font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Segoe UI",sans-serif;
+      line-height:1.65;
+      letter-spacing:-.02em;
+      overflow-x:hidden;
+    }
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    button,input{font:inherit}
+    button{color:inherit}
+    h1,h2,h3,h4,p,figure{margin-top:0}
+    strong{color:var(--ink)}
+    code{font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace}
+    .container{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+    .skip-link{position:fixed;left:16px;top:-80px;z-index:3000;padding:12px 16px;border-radius:12px;background:var(--ink);color:#fff;font-weight:800;transition:.2s}
+    .skip-link:focus{top:16px}
+
+    .scroll-progress{position:fixed;inset:0 auto auto 0;width:0;height:3px;background:linear-gradient(90deg,var(--blue),#6AA7FF);z-index:1600;transition:width .08s linear}
+    .nav-wrap{position:sticky;top:0;z-index:1200;padding:14px 22px 0}
+    .nav{
+      max-width:1240px;margin:0 auto;min-height:62px;display:flex;align-items:center;justify-content:space-between;gap:18px;
+      padding:10px 12px 10px 18px;border:1px solid rgba(229,232,235,.86);border-radius:22px;background:rgba(255,255,255,.83);
+      -webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);box-shadow:0 10px 34px rgba(25,31,40,.05)
+    }
+    .brand{display:flex;align-items:center;gap:11px;min-width:max-content;font-size:14px;font-weight:850}
+    .brand-mark{width:36px;height:36px;display:grid;place-items:center;border-radius:12px;color:#fff;background:linear-gradient(145deg,#5CA2FF,var(--blue-strong));box-shadow:0 8px 20px rgba(49,130,246,.28)}
+    .brand-mark svg{width:20px;height:20px}
+    .brand-sub{color:var(--muted-2);font-weight:750}
+    .nav-links{display:flex;align-items:center;gap:4px;margin-left:auto}
+    .nav-links a{padding:9px 11px;border-radius:12px;color:var(--muted);font-size:13px;font-weight:750;transition:.2s ease}
+    .nav-links a:hover,.nav-links a:focus-visible{color:var(--ink);background:var(--surface);outline:none}
+    .nav-actions{display:flex;gap:8px}
+    .btn{appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:0 16px;border-radius:14px;font-size:14px;font-weight:850;letter-spacing:-.02em;transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+    .btn:hover{transform:translateY(-1px)}
+    .btn:focus-visible{outline:3px solid rgba(49,130,246,.28);outline-offset:2px}
+    .btn-primary{color:#fff;background:var(--blue);box-shadow:0 10px 24px rgba(49,130,246,.24)}
+    .btn-primary:hover{background:var(--blue-strong)}
+    .btn-ghost{color:var(--ink-2);background:var(--surface)}
+    .btn-ghost:hover{background:var(--surface-2)}
+
+    .one-sheet{padding:64px 0 62px;min-height:calc(100svh - 82px);display:grid;align-content:center}
+    .hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:46px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 13px;margin-bottom:20px;border-radius:999px;color:var(--blue-strong);background:var(--blue-soft);font-size:14px;font-weight:850}
+    .eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 5px rgba(49,130,246,.12)}
+    .hero h1{max-width:760px;margin-bottom:22px;font-size:clamp(var(--hero-title-min),var(--hero-title-fluid),var(--hero-title-max));line-height:1.10;letter-spacing:-.057em;font-weight:850;text-wrap:balance;overflow-wrap:anywhere}
+    .hero h1 .blue{color:var(--blue)}
+    .marker{position:relative;white-space:nowrap;z-index:0}
+    .marker::after{content:"";position:absolute;left:-.04em;right:-.04em;bottom:.08em;height:.34em;border-radius:.14em;background:var(--highlight);transform:rotate(-1deg);z-index:-1;opacity:.92}
+    .hero-lead{max-width:690px;margin-bottom:25px;color:var(--muted);font-size:clamp(18px,1.8vw,22px);line-height:1.58;font-weight:620}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:10px}
+    .report-meta{margin-top:18px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 13px;color:var(--muted-2);font-size:12px;font-weight:800}
+    .version-badge{display:inline-flex;align-items:center;min-height:28px;padding:0 10px;border-radius:999px;color:var(--blue-strong);background:var(--blue-soft);border:1px solid rgba(49,130,246,.16);font-variant-numeric:tabular-nums}
+    .report-meta-separator{width:3px;height:3px;border-radius:50%;background:var(--line)}
+
+    .hero-photo-card{position:relative;min-height:520px;border-radius:38px;overflow:hidden;box-shadow:var(--shadow-md);background:#d9e6ef}
+    .hero-photo-card img{width:100%;height:100%;min-height:520px;object-fit:cover}
+    .hero-photo-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,22,36,.02) 35%,rgba(8,22,36,.72) 100%)}
+    .photo-badge{position:absolute;z-index:2;top:20px;right:20px;padding:7px 11px;border-radius:999px;background:rgba(255,255,255,.88);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:var(--blue-strong);font-size:11px;font-weight:900;letter-spacing:.05em}
+    .photo-quote{position:absolute;z-index:2;left:26px;right:26px;bottom:28px;color:#fff}
+    .photo-quote span{display:block;margin-bottom:8px;color:rgba(255,255,255,.72);font-size:12px;font-weight:850;letter-spacing:.05em}
+    .photo-quote strong{display:block;color:#fff;font-size:clamp(23px,2.5vw,32px);line-height:1.25;letter-spacing:-.045em;text-wrap:balance}
+    .photo-credit{position:absolute;z-index:2;right:16px;bottom:10px;color:rgba(255,255,255,.64);font-size:9px;font-weight:700}
+
+    .executive-strip{margin-top:22px;display:grid;grid-template-columns:1.35fr repeat(3,1fr);gap:12px}
+    .summary-main,.summary-mini{padding:19px 20px;border:1px solid var(--line);border-radius:22px;background:#fff;box-shadow:var(--shadow-sm)}
+    .summary-main{background:linear-gradient(145deg,#F2F8FF,#fff);border-color:rgba(49,130,246,.20)}
+    .summary-label{display:block;margin-bottom:7px;color:var(--muted-2);font-size:10px;font-weight:900;letter-spacing:.06em}
+    .summary-main strong{display:block;font-size:17px;line-height:1.45;letter-spacing:-.035em}
+    .summary-mini b{display:inline-grid;place-items:center;width:28px;height:28px;margin-bottom:11px;border-radius:9px;background:var(--blue-soft);color:var(--blue);font-size:11px}
+    .summary-mini h3{margin-bottom:5px;font-size:15px;letter-spacing:-.035em}
+    .summary-mini p{margin-bottom:0;color:var(--muted);font-size:12px;line-height:1.55;font-weight:650}
+
+    section{padding:104px 0}
+    .section-soft{background:var(--surface)}
+    .section-blue{color:#fff;background:radial-gradient(circle at 15% 20%,rgba(255,255,255,.18),transparent 25rem),linear-gradient(145deg,#216DDC,#3182F6 58%,#5A9CFF)}
+    .section-kicker{margin-bottom:10px;color:var(--blue);font-size:14px;font-weight:900;letter-spacing:.025em}
+    .section-blue .section-kicker{color:rgba(255,255,255,.75)}
+    .section-title{max-width:900px;margin-bottom:18px;font-size:clamp(var(--section-title-min),var(--section-title-fluid),var(--section-title-max));line-height:1.20;letter-spacing:-.052em;font-weight:850;text-wrap:balance;overflow-wrap:anywhere}
+    .section-desc{max-width:850px;margin-bottom:43px;color:var(--muted);font-size:19px;line-height:1.62;font-weight:600}
+    .section-blue .section-desc{color:rgba(255,255,255,.80)}
+    .cite{display:inline-flex;vertical-align:super;margin-left:2px;color:var(--blue-strong);font-size:.68em;font-weight:900}
+    .section-blue .cite{color:#fff;text-decoration:underline}
+
+    .thesis-card{display:grid;grid-template-columns:132px 1fr;gap:27px;align-items:center;padding:32px;border:1px solid var(--line);border-radius:var(--radius-lg);background:#fff;box-shadow:var(--shadow-sm)}
+    .thesis-stamp{aspect-ratio:1;display:grid;place-items:center;border-radius:33px;color:var(--blue);background:var(--blue-soft)}
+    .thesis-stamp svg{width:62px;height:62px}
+    .thesis-copy h3{margin-bottom:9px;font-size:25px;line-height:1.35;letter-spacing:-.04em}
+    .thesis-copy p{margin-bottom:0;color:var(--muted);font-size:18px;font-weight:600}
+
+    .source-frame-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
+    .frame-card{padding:27px;border:1px solid var(--line);border-radius:var(--radius-md);background:#fff;box-shadow:0 10px 30px rgba(25,31,40,.035)}
+    .frame-card:nth-child(2){background:linear-gradient(180deg,#fff,#F5F9FF);border-color:rgba(49,130,246,.22)}
+    .frame-card:nth-child(3){background:#FEFFF7;border-color:#E6EFC0}
+    .frame-tag{display:inline-flex;padding:6px 9px;margin-bottom:18px;border-radius:999px;background:var(--surface-2);color:var(--muted);font-size:11px;font-weight:900;letter-spacing:.04em}
+    .frame-card:nth-child(2) .frame-tag{background:var(--blue-soft);color:var(--blue-strong)}
+    .frame-card:nth-child(3) .frame-tag{background:var(--highlight);color:#4B5B00}
+    .frame-card h3{margin-bottom:10px;font-size:23px;letter-spacing:-.04em}
+    .frame-card p{margin-bottom:0;color:var(--muted);font-size:15px;font-weight:600}
+
+    .image-essay{margin-top:26px;display:grid;grid-template-columns:.92fr 1.08fr;gap:20px;align-items:stretch}
+    .image-panel{position:relative;min-height:430px;border-radius:32px;overflow:hidden;background:#dde6ec}
+    .image-panel img{width:100%;height:100%;min-height:430px;object-fit:cover}
+    .image-caption{position:absolute;left:14px;right:14px;bottom:14px;padding:13px 15px;border-radius:16px;background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:var(--ink-2);font-size:12px;font-weight:750}
+    .essay-panel{padding:34px;border-radius:32px;background:#151B24;color:#fff;box-shadow:var(--shadow-md)}
+    .essay-panel .section-kicker{color:#8ABEFF}
+    .essay-panel h3{margin-bottom:18px;color:#fff;font-size:30px;line-height:1.25;letter-spacing:-.05em}
+    .essay-panel p{color:rgba(255,255,255,.74);font-size:17px;font-weight:600}
+    .essay-panel strong{color:#fff}
+    .quote-chip{margin-top:24px;padding:18px 20px;border-radius:20px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.12);color:#fff;font-size:19px;line-height:1.55;font-weight:800}
+    .quote-chip mark{padding:0 .15em;border-radius:4px;background:var(--highlight);color:var(--ink)}
+
+    .philosophy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:25px}
+    .philosophy-card{min-height:280px;padding:27px;border-radius:var(--radius-md);border:1px solid var(--line);background:#fff}
+    .philosophy-icon{width:48px;height:48px;display:grid;place-items:center;margin-bottom:22px;border-radius:16px;background:var(--blue-soft);color:var(--blue);font-size:22px}
+    .philosophy-card:nth-child(2) .philosophy-icon{background:var(--violet);color:#7458D2}
+    .philosophy-card:nth-child(3) .philosophy-icon{background:var(--mint);color:#15876D}
+    .philosophy-card h3{margin-bottom:10px;font-size:23px;letter-spacing:-.04em}
+    .philosophy-card p{margin-bottom:0;color:var(--muted);font-size:15px;font-weight:600}
+    .philosophy-card .easy-label{display:inline-flex;padding:5px 9px;margin-bottom:14px;border-radius:8px;background:var(--highlight);color:#415400;font-size:12px;font-weight:900;transform:rotate(-1deg)}
+
+    .philosophy-visual{margin-top:22px;display:grid;grid-template-columns:.78fr 1.22fr;gap:20px}
+    .art-card,.meander-card{position:relative;min-height:410px;border-radius:32px;overflow:hidden;border:1px solid var(--line);background:#fff}
+    .art-card img,.meander-card img{width:100%;height:100%;min-height:410px;object-fit:cover}
+    .art-card img{object-position:center 23%}
+    .visual-label{position:absolute;left:16px;right:16px;bottom:16px;padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.88);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+    .visual-label strong{display:block;margin-bottom:4px;font-size:14px}
+    .visual-label span{display:block;color:var(--muted);font-size:11px;font-weight:650}
+
+    .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:22px}
+    .metric-card{padding:25px;border-radius:25px;border:1px solid var(--line);background:#fff}
+    .metric-card b{display:block;margin-bottom:4px;color:var(--blue);font-size:38px;line-height:1;font-weight:900;letter-spacing:-.05em}
+    .metric-card strong{display:block;margin-bottom:7px;font-size:17px}
+    .metric-card p{margin-bottom:0;color:var(--muted);font-size:13px;font-weight:650}
+    .metric-card:nth-child(2) b{color:#7458D2}
+    .metric-card:nth-child(3) b{color:#15876D}
+
+    .plateau-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .plateau-card{padding:30px;border-radius:30px;border:1px solid var(--line);background:#fff}
+    .plateau-card.good{background:linear-gradient(180deg,#fff,#F5F9FF);border-color:rgba(49,130,246,.24)}
+    .plateau-label{display:inline-flex;padding:6px 10px;margin-bottom:18px;border-radius:999px;background:var(--surface-2);color:var(--muted);font-size:11px;font-weight:900}
+    .plateau-card.good .plateau-label{background:var(--blue-soft);color:var(--blue-strong)}
+    .plateau-card h3{margin-bottom:12px;font-size:25px;letter-spacing:-.045em}
+    .plateau-card>p{color:var(--muted);font-size:16px;font-weight:600}
+    .signal-list{display:grid;gap:12px;margin-top:20px}
+    .signal-item{display:grid;grid-template-columns:25px 1fr;gap:10px;color:var(--ink-2);font-size:14px;font-weight:700}
+    .signal-item b{width:25px;height:25px;display:grid;place-items:center;border-radius:9px;background:var(--surface-2);color:var(--muted-2);font-size:11px}
+    .plateau-card.good .signal-item b{background:var(--blue-soft);color:var(--blue)}
+
+    .needs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+    .need-card{padding:25px;border-radius:25px;background:#fff;border:1px solid var(--line)}
+    .need-card .need-letter{width:40px;height:40px;display:grid;place-items:center;margin-bottom:18px;border-radius:13px;background:var(--blue-soft);color:var(--blue);font-size:15px;font-weight:900}
+    .need-card:nth-child(2) .need-letter{background:var(--violet);color:#7458D2}
+    .need-card:nth-child(3) .need-letter{background:var(--mint);color:#15876D}
+    .need-card h3{margin-bottom:8px;font-size:21px}
+    .need-card p{margin-bottom:0;color:var(--muted);font-size:14px;font-weight:600}
+    .research-note{margin-top:22px;padding:22px 24px;border-radius:22px;background:#FFF8CE;border:1px solid #F4E28E;color:#635300;font-size:15px;font-weight:700}
+    .research-note strong{color:#514300}
+
+    .matrix-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
+    .matrix-card{position:relative;padding:34px 34px 50px 58px;border-radius:34px;border:1px solid var(--line);background:#fff;box-shadow:var(--shadow-sm)}
+    .matrix{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px;min-height:430px}
+    .quadrant{padding:23px;border-radius:22px;border:1px solid var(--line);background:var(--surface)}
+    .quadrant:nth-child(2){background:#F3F8FF;border-color:rgba(49,130,246,.18)}
+    .quadrant:nth-child(3){background:#FFF9E6;border-color:#F4E3A0}
+    .quadrant:nth-child(4){background:#EAF8F3;border-color:#CBE8DE}
+    .quadrant b{display:inline-grid;place-items:center;width:29px;height:29px;margin-bottom:13px;border-radius:9px;background:#fff;color:var(--blue);font-size:11px;box-shadow:0 5px 15px rgba(25,31,40,.06)}
+    .quadrant h3{margin-bottom:7px;font-size:18px;letter-spacing:-.04em}
+    .quadrant p{margin-bottom:0;color:var(--muted);font-size:12px;line-height:1.55;font-weight:650}
+    .axis-x{position:absolute;left:58px;right:34px;bottom:18px;display:flex;justify-content:space-between;color:var(--muted-2);font-size:10px;font-weight:900}
+    .axis-y{position:absolute;left:14px;top:40px;bottom:51px;display:flex;flex-direction:column;justify-content:space-between;color:var(--muted-2);font-size:10px;font-weight:900;writing-mode:vertical-rl;transform:rotate(180deg)}
+    .matrix-explain{display:grid;gap:14px}
+    .decision-card{padding:25px;border-radius:25px;border:1px solid var(--line);background:#fff}
+    .decision-card h3{margin-bottom:8px;font-size:20px}
+    .decision-card p{margin-bottom:0;color:var(--muted);font-size:14px;font-weight:600}
+    .decision-card.highlight{background:var(--blue-soft);border-color:rgba(49,130,246,.22)}
+    .decision-card.highlight h3{color:var(--blue-strong)}
+
+    .choice-compare{margin-top:24px;overflow:hidden;border:1px solid var(--line);border-radius:28px;background:#fff}
+    .choice-row{display:grid;grid-template-columns:.78fr 1.22fr;border-bottom:1px solid var(--line)}
+    .choice-row:last-child{border-bottom:0}
+    .choice-cell{display:flex;align-items:flex-start;gap:12px;padding:23px 26px;font-size:15px;font-weight:720}
+    .choice-cell:first-child{background:#FBFBFC;color:var(--muted)}
+    .choice-cell+.choice-cell{border-left:1px solid var(--line)}
+    .choice-icon{width:29px;height:29px;flex:0 0 auto;display:grid;place-items:center;border-radius:50%;font-size:13px;font-weight:900}
+    .choice-cell:first-child .choice-icon{background:var(--danger-soft);color:#D45454}
+    .choice-cell:last-child .choice-icon{background:var(--blue-soft);color:var(--blue)}
+
+    .flow-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:13px}
+    .flow-step{position:relative;min-height:245px;padding:23px;border-radius:25px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.20);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+    .flow-step::after{content:"";position:absolute;top:50%;right:-10px;width:8px;height:8px;border-top:2px solid rgba(255,255,255,.55);border-right:2px solid rgba(255,255,255,.55);transform:rotate(45deg)}
+    .flow-step:last-child::after{display:none}
+    .flow-num{width:36px;height:36px;display:grid;place-items:center;margin-bottom:33px;border-radius:12px;color:var(--blue-strong);background:#fff;font-size:12px;font-weight:900}
+    .flow-step h3{margin-bottom:9px;font-size:19px;color:#fff}
+    .flow-step p{margin-bottom:0;color:rgba(255,255,255,.75);font-size:13px;font-weight:620}
+    .flow-step small{display:block;margin-top:13px;padding-top:12px;border-top:1px solid rgba(255,255,255,.14);color:#fff;font-size:11px;font-weight:800}
+
+    .assessment-layout{display:grid;grid-template-columns:1.28fr .72fr;gap:24px;align-items:start}
+    .assessment-panel{padding:31px;border:1px solid var(--line);border-radius:32px;background:#fff;box-shadow:var(--shadow-sm)}
+    .assessment-note{margin-bottom:22px;padding:16px 18px;border-radius:17px;background:var(--surface);color:var(--muted);font-size:13px;font-weight:650}
+    .question-group{margin-bottom:26px}
+    .question-group:last-child{margin-bottom:0}
+    .question-group h3{margin-bottom:12px;font-size:19px}
+    .question{display:grid;grid-template-columns:1fr 180px;gap:18px;align-items:center;padding:15px 0;border-bottom:1px solid var(--line)}
+    .question:last-child{border-bottom:0}
+    .question label{color:var(--ink-2);font-size:14px;font-weight:700}
+    .scale{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+    .scale input{position:absolute;opacity:0;pointer-events:none}
+    .scale label{cursor:pointer;display:grid;place-items:center;min-height:36px;border-radius:10px;background:var(--surface);color:var(--muted);font-size:11px;font-weight:850;border:1px solid transparent;transition:.18s}
+    .scale input:checked+label{background:var(--blue-soft);border-color:rgba(49,130,246,.30);color:var(--blue-strong)}
+    .scale input:focus-visible+label{outline:3px solid rgba(49,130,246,.25);outline-offset:2px}
+    .result-panel{position:sticky;top:92px;padding:29px;border-radius:32px;background:linear-gradient(145deg,#216DDC,#3182F6);color:#fff;box-shadow:var(--shadow-md)}
+    .result-panel h3{margin-bottom:7px;color:#fff;font-size:24px}
+    .result-panel>p{color:rgba(255,255,255,.74);font-size:13px;font-weight:650}
+    .score-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px 0}
+    .score-box{padding:18px;border-radius:18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.17)}
+    .score-box span{display:block;margin-bottom:6px;color:rgba(255,255,255,.70);font-size:10px;font-weight:900;letter-spacing:.05em}
+    .score-box strong{color:#fff;font-size:30px;line-height:1}
+    .result-message{padding:18px;border-radius:19px;background:#fff;color:var(--ink)}
+    .result-message strong{display:block;margin-bottom:7px;color:var(--blue-strong);font-size:17px}
+    .result-message p{margin-bottom:0;color:var(--muted);font-size:13px;font-weight:650}
+    .result-disclaimer{margin-top:14px;color:rgba(255,255,255,.68);font-size:10px;font-weight:650}
+
+    .roadmap-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .roadmap-card{padding:27px;border-radius:28px;border:1px solid var(--line);background:#fff}
+    .week-badge{display:inline-flex;padding:6px 9px;margin-bottom:19px;border-radius:999px;background:var(--blue-soft);color:var(--blue-strong);font-size:11px;font-weight:900}
+    .roadmap-card:nth-child(2) .week-badge{background:var(--violet);color:#7458D2}
+    .roadmap-card:nth-child(3) .week-badge{background:#FFF5CF;color:#A66D00}
+    .roadmap-card:nth-child(4) .week-badge{background:var(--mint);color:#15876D}
+    .roadmap-card h3{margin-bottom:10px;font-size:21px}
+    .roadmap-card p{margin-bottom:14px;color:var(--muted);font-size:14px;font-weight:600}
+    .roadmap-output{padding-top:13px;border-top:1px solid var(--line);color:var(--ink-2);font-size:12px;font-weight:800}
+    .roadmap-output span{color:var(--blue)}
+
+    .media-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .video-card{overflow:hidden;border:1px solid var(--line);border-radius:30px;background:#fff;box-shadow:var(--shadow-sm)}
+    .video-wrap{position:relative;aspect-ratio:16/9;background:#10151D}
+    .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+    .video-copy{padding:23px}
+    .video-copy span{display:inline-flex;padding:5px 8px;margin-bottom:12px;border-radius:999px;background:var(--blue-soft);color:var(--blue-strong);font-size:10px;font-weight:900}
+    .video-copy h3{margin-bottom:8px;font-size:20px}
+    .video-copy p{margin-bottom:14px;color:var(--muted);font-size:13px;font-weight:620}
+    .text-link{display:inline-flex;align-items:center;gap:6px;color:var(--blue-strong);font-size:13px;font-weight:850}
+    .gallery-grid{display:grid;grid-template-columns:1.08fr .92fr .92fr;gap:14px;margin-top:20px}
+    .gallery-card{position:relative;min-height:340px;border-radius:26px;overflow:hidden;background:#dce5ea}
+    .gallery-card img{width:100%;height:100%;min-height:340px;object-fit:cover}
+    .gallery-card:nth-child(2) img{object-position:center 25%}
+    .gallery-credit{position:absolute;left:11px;right:11px;bottom:11px;padding:10px 12px;border-radius:13px;background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:var(--muted);font-size:10px;font-weight:700}
+
+    .risk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .risk-card{padding:27px;border-radius:28px;border:1px solid var(--line);background:#fff}
+    .risk-card b{display:grid;place-items:center;width:40px;height:40px;margin-bottom:18px;border-radius:13px;background:#FFF0F0;color:#D45454;font-size:16px}
+    .risk-card:nth-child(2) b{background:#FFF8CE;color:#9A7600}
+    .risk-card:nth-child(3) b{background:var(--blue-soft);color:var(--blue)}
+    .risk-card h3{margin-bottom:9px;font-size:21px}
+    .risk-card p{margin-bottom:0;color:var(--muted);font-size:14px;font-weight:600}
+    .governance-note{margin-top:22px;display:flex;align-items:flex-start;gap:14px;padding:22px 24px;border-radius:22px;color:#635300;background:#FFF8CE;border:1px solid #F4E28E;font-size:15px;font-weight:700}
+    .governance-note svg{width:22px;height:22px;flex:0 0 auto;margin-top:2px}
+
+    .sources{padding:78px 0 40px;border-top:1px solid var(--line);background:#fff}
+    .source-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:26px}
+    .source-head h2{margin-bottom:5px;font-size:29px;letter-spacing:-.04em}
+    .source-head p{margin-bottom:0;color:var(--muted);font-size:14px;font-weight:650}
+    .source-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .source-link{padding:18px;border-radius:18px;border:1px solid var(--line);background:var(--surface);transition:.2s ease;overflow-wrap:anywhere}
+    .source-link:hover,.source-link:focus-visible{transform:translateY(-2px);border-color:rgba(49,130,246,.25);background:var(--blue-soft);outline:none}
+    .source-link span{display:block;margin-bottom:6px;color:var(--muted-2);font-size:10px;font-weight:900;letter-spacing:.05em}
+    .source-link strong{display:block;font-size:14px;line-height:1.45}
+    .source-link small{display:block;margin-top:7px;color:var(--muted);font-size:10px;font-weight:650}
+    .footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:36px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted-2);font-size:12px;font-weight:650}
+    .report-history{margin-top:44px;padding-top:34px;border-top:1px solid var(--line)}
+    .history-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:18px}
+    .history-head h2{margin-bottom:4px;font-size:26px;letter-spacing:-.04em}
+    .history-head p{margin-bottom:0;color:var(--muted);font-size:13px;font-weight:650}
+    .history-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:20px;background:#fff}
+    .history-table{width:100%;min-width:780px;border-collapse:collapse;font-size:13px}
+    .history-table th,.history-table td{padding:15px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+    .history-table tr:last-child td{border-bottom:0}
+    .history-table th{color:var(--muted);background:var(--surface);font-size:11px;font-weight:900;letter-spacing:.03em;white-space:nowrap}
+    .history-table td{color:var(--ink-2);font-weight:650}
+    .history-table td:first-child{color:var(--blue-strong);font-weight:900;white-space:nowrap}
+    .history-table td:nth-child(2),.history-table td:nth-child(3){white-space:nowrap}
+    .history-status{display:inline-flex;padding:5px 8px;border-radius:999px;color:var(--muted);background:var(--surface-2);font-size:11px;font-weight:850}
+    .history-empty{padding:22px;color:var(--muted);text-align:center}
+
+    .floating-actions{position:fixed;right:22px;bottom:22px;z-index:900;display:grid;gap:10px}
+    .float-btn{width:48px;height:48px;display:grid;place-items:center;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.92);box-shadow:var(--shadow-sm);cursor:pointer;color:var(--ink-2);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:.2s ease}
+    .float-btn:hover{transform:translateY(-2px);color:var(--blue);border-color:rgba(49,130,246,.25)}
+    .float-btn:focus-visible{outline:3px solid rgba(49,130,246,.28);outline-offset:2px}
+    .float-btn svg{width:20px;height:20px}
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease}
+    .reveal.visible{opacity:1;transform:none}
+
+    @media (max-width:1040px){
+      .nav-links{display:none}
+      .hero-grid{grid-template-columns:1fr;gap:28px}
+      .hero-copy{text-align:center}
+      .hero-lead{margin-left:auto;margin-right:auto}
+      .hero-actions,.report-meta{justify-content:center}
+      .hero-photo-card,.hero-photo-card img{min-height:500px}
+      .executive-strip{grid-template-columns:1fr 1fr}
+      .summary-main{grid-column:1/-1}
+      .source-frame-grid,.philosophy-grid,.needs-grid,.metrics,.risk-grid{grid-template-columns:repeat(2,1fr)}
+      .source-frame-grid .frame-card:last-child,.philosophy-grid .philosophy-card:last-child,.needs-grid .need-card:last-child,.metrics .metric-card:last-child,.risk-grid .risk-card:last-child{grid-column:1/-1}
+      .image-essay,.matrix-wrap,.assessment-layout{grid-template-columns:1fr}
+      .result-panel{position:static}
+      .flow-grid{grid-template-columns:repeat(2,1fr)}
+      .flow-step::after{display:none}
+      .roadmap-grid{grid-template-columns:repeat(2,1fr)}
+      .source-grid{grid-template-columns:repeat(2,1fr)}
+    }
+
+    @media (max-width:720px){
+      .container{width:min(100% - 28px,var(--max))}
+      .nav-wrap{padding:9px 10px 0}
+      .nav{min-height:56px;padding-left:12px;border-radius:18px}
+      .brand-sub,.nav-actions .btn-ghost{display:none}
+      .btn{min-height:40px;padding:0 13px}
+      .one-sheet{padding:50px 0 50px;min-height:auto}
+      .hero h1{font-size:38px}
+      .hero-lead{font-size:18px}
+      .hero-photo-card,.hero-photo-card img{min-height:430px}
+      .photo-quote strong{font-size:24px}
+      .executive-strip{grid-template-columns:1fr}
+      .summary-main{grid-column:auto}
+      section{padding:82px 0}
+      .section-title{font-size:32px}
+      .section-desc{margin-bottom:34px;font-size:17px}
+      .thesis-card{grid-template-columns:1fr;padding:27px}
+      .thesis-stamp{width:94px;border-radius:24px}
+      .source-frame-grid,.philosophy-grid,.metrics,.plateau-grid,.needs-grid,.flow-grid,.roadmap-grid,.media-grid,.gallery-grid,.risk-grid,.source-grid{grid-template-columns:1fr}
+      .source-frame-grid .frame-card:last-child,.philosophy-grid .philosophy-card:last-child,.needs-grid .need-card:last-child,.metrics .metric-card:last-child,.risk-grid .risk-card:last-child{grid-column:auto}
+      .image-essay,.philosophy-visual{grid-template-columns:1fr}
+      .image-panel,.image-panel img,.art-card,.art-card img,.meander-card,.meander-card img{min-height:360px}
+      .essay-panel{padding:28px}
+      .essay-panel h3{font-size:27px}
+      .matrix-card{padding:28px 20px 46px 43px}
+      .matrix{min-height:auto;grid-template-columns:1fr;grid-template-rows:auto;gap:9px}
+      .axis-x{left:43px;right:20px}
+      .axis-y{left:8px;top:30px;bottom:48px}
+      .choice-row{grid-template-columns:1fr}
+      .choice-cell+.choice-cell{border-left:0;border-top:1px solid var(--line)}
+      .question{grid-template-columns:1fr;gap:10px}
+      .scale{max-width:260px}
+      .gallery-card,.gallery-card img{min-height:300px}
+      .source-head,.footer-bottom,.history-head{align-items:flex-start;flex-direction:column}
+      .floating-actions{right:12px;bottom:12px}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+      .reveal{opacity:1;transform:none}
+    }
+
+    @media print{
+      @page{size:A4;margin:12mm}
+      body{background:#fff!important;color:#000;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      .nav-wrap,.floating-actions,.scroll-progress,.hero-actions{display:none!important}
+      .container{width:100%;max-width:none}
+      .one-sheet{min-height:272mm;padding:5mm 0 0;break-after:page;page-break-after:always;display:block}
+      .hero-grid{grid-template-columns:1.08fr .92fr;gap:8mm;align-items:center}
+      .hero h1{font-size:36px;margin-bottom:10px}
+      .hero-lead{font-size:15px;margin-bottom:9px}
+      .report-meta{margin-top:8px;font-size:9px}
+      .hero-photo-card,.hero-photo-card img{min-height:118mm;max-height:118mm;border-radius:22px}
+      .photo-quote strong{font-size:20px}
+      .executive-strip{margin-top:5mm;grid-template-columns:1.35fr repeat(3,1fr);gap:3mm}
+      .summary-main,.summary-mini{padding:4mm;border-radius:14px;box-shadow:none}
+      .summary-main strong{font-size:12px}
+      .summary-mini h3{font-size:11px}.summary-mini p{font-size:8.5px}.summary-mini b{margin-bottom:4px;width:22px;height:22px}
+      section{padding:13mm 0;break-inside:auto}
+      .section-blue{background:#fff!important;color:#000!important;border-top:2px solid var(--blue);border-bottom:2px solid var(--blue)}
+      .section-blue .section-desc,.flow-step p,.flow-step small{color:#333!important}
+      .flow-step{background:#fff!important;color:#000;border:1px solid #ccc;break-inside:avoid}
+      .flow-step h3{color:#000}.flow-num{border:1px solid #ccc}
+      .essay-panel,.result-panel{background:#F4F6F8!important;color:#000!important;box-shadow:none}
+      .essay-panel h3,.essay-panel strong,.quote-chip,.result-panel h3,.score-box strong{color:#000!important}
+      .essay-panel p,.result-panel>p,.result-disclaimer{color:#444!important}
+      .quote-chip,.score-box{background:#fff!important;border:1px solid #ccc}
+      .result-message{border:1px solid #ccc}
+      .reveal{opacity:1!important;transform:none!important}
+      .frame-card,.philosophy-card,.metric-card,.plateau-card,.need-card,.matrix-card,.decision-card,.roadmap-card,.video-card,.risk-card,.thesis-card{box-shadow:none;break-inside:avoid}
+      .video-wrap{display:none}
+      .video-copy::before{content:"영상 링크: ";display:block;color:#555;font-size:9px}
+      .history-table-wrap{overflow:visible}
+      .history-table{min-width:0;font-size:9px}
+      .source-grid{grid-template-columns:repeat(2,1fr)}
+      a{text-decoration:none}
+    }
+  </style>
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260809-rh3">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png?v=20260809-rh3">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png?v=20260809-rh3">
+  <link rel="manifest" href="../../site.webmanifest?v=20260809-rh3">
+  <meta name="application-name" content="Report Hub">
+  <meta property="og:site_name" content="Report Hub">
+  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260809-rh3">
+  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260809-rh3">
+  <link rel="stylesheet" href="../../assets/report-comments.css?v=20260809-comments1">
+</head>
+<body data-report-cover="assets/hero-river.webp" data-report-cover-alt="바위 사이로 흐르는 강물을 담은 삶과 선택 보고서 대표 이미지">
+  <a class="report-home-button" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-wordmark">Report Hub</span></a>
+  <a class="skip-link" href="#main">본문으로 바로가기</a>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <div class="nav-wrap">
+    <nav class="nav" aria-label="주요 메뉴">
+      <a class="brand" href="#top" aria-label="보고서 처음으로">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 16c3-1 5.2-3.3 6.2-6.7 1.1 2.2 3.2 3.7 6.3 4.5-1.5 2.7-4 4.7-7.5 5.7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.5 5.2c.3 2.1 1.6 3.8 4.1 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </span>
+        <span>WATERCOURSE LIFE</span>
+        <span class="brand-sub">Reflection Report</span>
+      </a>
+      <div class="nav-links">
+        <a href="#summary">핵심 해석</a>
+        <a href="#philosophy">철학</a>
+        <a href="#career">커리어 정체</a>
+        <a href="#decision">선택 기준</a>
+        <a href="#assessment">자가 점검</a>
+        <a href="#media">영상·사진</a>
+        <a href="#sources">출처</a>
+      </div>
+      <div class="nav-actions">
+        <a class="btn btn-ghost" href="#history">변경 이력</a>
+        <button class="btn btn-primary" type="button" onclick="window.print()">PDF 저장</button>
+      </div>
+    </nav>
+  </div>
+
+  <main id="main">
+    <div class="container" id="top">
+      <section class="one-sheet hero" aria-labelledby="hero-title">
+        <div class="hero-grid">
+          <div class="hero-copy reveal">
+            <div class="eyebrow"><span class="eyebrow-dot"></span>삶의 전환과 커리어 선택을 위한 1페이지 요약</div>
+            <h1 id="hero-title">물 흐르듯이 산다는 것：<br><span class="blue">편안함이 아니라</span><br><span class="marker">선택할 때를 아는 삶</span></h1>
+            <p class="hero-lead">흐름은 아무 결정도 하지 않는 상태가 아닙니다. 현재의 지형을 읽고, <strong>멈춤·우회·전진 중 무엇이 필요한지 제때 선택하는 능동적 적응</strong>에 가깝습니다.</p>
+            <a class="text-link" href="https://newsletter.teaboard.link/post/2026-08-08-wwt1y2" target="_blank" rel="noopener noreferrer">원문 출처 · TeaBoard 뉴스레터</a>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#summary">결론부터 보기</a>
+              <a class="btn btn-ghost" href="#assessment">물길 자가 점검</a>
+            </div>
+            <div class="report-meta" aria-label="보고서 버전 정보">
+              <span class="version-badge" id="reportVersion">v1.0.0</span>
+              <span id="reportUpdated">Updated 2026.08.09</span>
+              <span class="report-meta-separator" aria-hidden="true"></span>
+              <span id="reportGeneration">AI-assisted · Human review recommended</span>
+            </div>
+          </div>
+
+          <figure class="hero-photo-card reveal">
+            <img src="assets/hero-river.webp" alt="바위 사이로 끊임없이 흐르는 산악 계곡의 물줄기" width="1800" height="2700" fetchpriority="high" />
+            <span class="photo-badge">ONE-LINE CONCLUSION</span>
+            <figcaption class="photo-quote">
+              <span>흐름의 핵심</span>
+              <strong>물은 직선으로 가지 않지만,<br>앞으로 갑니다.</strong>
+            </figcaption>
+            <a class="photo-credit" href="https://unsplash.com/photos/a-stream-of-water-running-through-a-rocky-mountain-valley-etEp5CX9V-0" target="_blank" rel="noopener noreferrer">Photo: Nicholas Bullett · Unsplash</a>
+          </figure>
+        </div>
+
+        <div class="executive-strip reveal" aria-label="Executive Summary">
+          <article class="summary-main">
+            <span class="summary-label">EXECUTIVE SUMMARY</span>
+            <strong>즉시 떠나는 것이 답이라는 뜻은 아닙니다. <mark style="background:var(--highlight);padding:0 .12em;border-radius:4px">4주 관찰 → 역할 재설계 → 작은 실험 → 안전한 전환</mark> 순서로 ‘막힘이 일시적인지 구조적인지’를 확인하는 것이 핵심입니다.</strong>
+          </article>
+          <article class="summary-mini"><b>01</b><h3>오해</h3><p>‘물처럼’은 무조건 참고 수용한다는 뜻이 아닙니다.</p></article>
+          <article class="summary-mini"><b>02</b><h3>신호</h3><p>배움·자율성·관계가 장기간 막히면 정체를 의심합니다.</p></article>
+          <article class="summary-mini"><b>03</b><h3>행동</h3><p>감정만으로 결론 내리지 말고 대안과 준비도를 함께 봅니다.</p></article>
+        </div>
+      </section>
+    </div>
+
+    <section id="summary" class="section-soft">
+      <div class="container">
+        <div class="section-kicker reveal">SOURCE → RESEARCH → JUDGMENT</div>
+        <h2 class="section-title reveal">원문은 ‘이직 경험’을 말하고,<br>연구는 ‘정체의 구조’를 보완합니다</h2>
+        <p class="section-desc reveal">첨부 글은 개인의 전환 경험을 통해 ‘물 흐르듯이 산다’를 재해석한 에세이입니다. 보고서는 그 메시지를 존중하되, 모든 불편을 퇴사의 신호로 오해하지 않도록 커리어 정체 연구와 동기 이론을 덧붙였습니다.<a class="cite" href="#source-1" aria-label="출처 1">[1]</a></p>
+
+        <article class="thesis-card reveal">
+          <div class="thesis-stamp" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none"><path d="M12 37c7.2-1.8 12.5-7.1 14.7-15.5 3.6 7.1 10.2 11.5 20.3 13.4-4.3 8.7-12.4 14.8-24.2 17.6" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M39 12c.8 6.3 4.8 11.2 12.6 15" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg>
+          </div>
+          <div class="thesis-copy">
+            <h3>한 문장 결론</h3>
+            <p><strong>‘흐름’은 수동적 순응이 아니라 상황과 자기 욕구를 함께 읽는 판단 능력</strong>입니다. 머무름도 움직임도 자동으로 옳지 않으며, 무엇이 더 살아 있게 만드는지 검증해야 합니다.</p>
+          </div>
+        </article>
+
+        <div class="source-frame-grid">
+          <article class="frame-card reveal"><span class="frame-tag">원문에서 확인</span><h3>천장이 느껴질 때 방향을 바꿀 수 있다</h3><p>글쓴이는 현재 자리가 가능성을 더 담지 못한다고 느끼며, 떠남을 포기가 아니라 ‘다른 방향으로 다시 흐르는 선택’으로 설명합니다.<a class="cite" href="#source-1" aria-label="출처 1">[1]</a></p></article>
+          <article class="frame-card reveal"><span class="frame-tag">연구가 보완</span><h3>정체는 승진뿐 아니라 업무 내용에서도 생긴다</h3><p>커리어 플래토는 승진 가능성이 낮은 ‘위계 정체’와 새 책임·도전이 부족한 ‘내용 정체’로 구분됩니다.<a class="cite" href="#source-6" aria-label="출처 6">[6]</a></p></article>
+          <article class="frame-card reveal"><span class="frame-tag">보고서의 판단</span><h3>떠나기 전, 변화 가능성과 준비도를 함께 본다</h3><p>구조적 막힘이 반복되고 내부 재설계가 실패했으며 외부 대안이 검증됐을 때, 전환은 충동이 아니라 준비된 선택에 가까워집니다.</p></article>
+        </div>
+
+        <div class="image-essay">
+          <figure class="image-panel reveal">
+            <img src="assets/waterfall-rocks.webp" alt="큰 바위 사이로 우회하며 흐르는 작은 폭포와 계류" loading="lazy" width="960" height="1280" />
+            <figcaption class="image-caption">바위는 흐름을 멈추게도 하지만, 새로운 경로를 만들게도 합니다. Photo: Jon Sullivan · Public Domain.</figcaption>
+          </figure>
+          <article class="essay-panel reveal">
+            <div class="section-kicker">THE CORE DISTINCTION</div>
+            <h3>포기와 선택은<br>겉모습보다 ‘내부 구조’가 다릅니다</h3>
+            <p><strong>포기</strong>는 학습과 대안을 닫는 방향일 수 있습니다. 반면 <strong>선택</strong>은 현재 조건을 확인하고 다른 가능성을 시험한 뒤 책임 있게 경로를 바꾸는 과정입니다.</p>
+            <div class="quote-chip">“<mark>막히는 일은 끝이 아니라 방향 전환의 신호</mark>”라는 원문의 문장은, ‘무조건 떠나라’보다 ‘신호를 읽어라’에 가깝습니다.<a class="cite" href="#source-1" aria-label="출처 1">[1]</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="philosophy">
+      <div class="container">
+        <div class="section-kicker reveal">PHILOSOPHICAL ROOTS</div>
+        <h2 class="section-title reveal">상선약수와 무위는<br>‘아무것도 하지 않음’이 아닙니다</h2>
+        <p class="section-desc reveal">『도덕경』 8장의 물은 만물을 이롭게 하고 다투지 않으며 낮은 곳에 머뭅니다. Parker J. Palmer는 이를 수동적인 “그냥 흘러감”이 아니라, 장애물 주위를 조용하고 끈질기게 흐르는 비폭력적 행동으로 읽습니다.<a class="cite" href="#source-2" aria-label="출처 2">[2]</a><a class="cite" href="#source-3" aria-label="출처 3">[3]</a></p>
+
+        <div class="philosophy-grid">
+          <article class="philosophy-card reveal"><div class="philosophy-icon" aria-hidden="true">水</div><div class="easy-label">이롭게 하되 다투지 않기</div><h3>힘을 줄이는 것이 아니라 낭비를 줄입니다</h3><p>정면충돌만을 유일한 해결법으로 보지 않고, 문제의 지형을 읽어 더 적은 마찰로 결과를 만드는 태도입니다.</p></article>
+          <article class="philosophy-card reveal"><div class="philosophy-icon" aria-hidden="true">↝</div><div class="easy-label">형태를 바꾸는 적응</div><h3>원칙은 지키고 경로는 바꿀 수 있습니다</h3><p>도(道)는 하나의 고정 명령보다 가능한 길들의 구조에 가깝다는 현대적 해석이 있습니다. 자연의 길은 계속 변하고, 우리는 그 가능성 중 하나를 선택합니다.<a class="cite" href="#source-4" aria-label="출처 4">[4]</a></p></article>
+          <article class="philosophy-card reveal"><div class="philosophy-icon" aria-hidden="true">時</div><div class="easy-label">때를 읽는 행동</div><h3>무위는 무기력이 아니라 맞는 힘을 쓰는 기술입니다</h3><p>무위(無爲)는 게으름보다 상황의 실제 요구에 맞춘 ‘억지 없는 행동’으로 설명됩니다. 필요할 때는 바꾸고, 불필요한 강제는 덜어냅니다.<a class="cite" href="#source-5" aria-label="출처 5">[5]</a></p></article>
+        </div>
+
+        <div class="philosophy-visual">
+          <figure class="art-card reveal">
+            <img src="assets/laozi-riding-ox.webp" alt="소를 타고 있는 노자를 그린 명나라 장로의 회화" loading="lazy" width="926" height="1688" />
+            <figcaption class="visual-label"><strong>장로(張路), 「노자기우도」</strong><span>명나라 회화 · Public Domain · Wikimedia Commons</span></figcaption>
+          </figure>
+          <figure class="meander-card reveal">
+            <img src="assets/meandering-river.webp" alt="평야의 지형을 따라 굽이치며 여러 갈래로 흐르는 강의 항공 사진" loading="lazy" width="1800" height="1198" />
+            <figcaption class="visual-label"><strong>흐름은 직선이 아니라 경로 탐색입니다</strong><span>Hillebrand Steve, U.S. Fish &amp; Wildlife Service · Public Domain</span></figcaption>
+          </figure>
+        </div>
+
+        <div class="research-note reveal"><strong>중요한 경계:</strong> Palmer 역시 도가가 모든 상황의 완전한 답이라고 보지 않습니다. 부당함·폭력·거짓에 맞서 때로는 ‘물살을 거슬러야’ 한다고 분명히 적습니다. 그러므로 물의 비유는 책임 회피나 침묵을 정당화하는 면허가 아닙니다.<a class="cite" href="#source-3" aria-label="출처 3">[3]</a></div>
+      </div>
+    </section>
+
+    <section id="career" class="section-soft">
+      <div class="container">
+        <div class="section-kicker reveal">CAREER PLATEAU</div>
+        <h2 class="section-title reveal">‘천장’은 기분만의 문제가 아니지만,<br>한 가지 신호로 단정할 수도 없습니다</h2>
+        <p class="section-desc reveal">40년간의 커리어 플래토 연구를 정리한 2019년 리뷰는 72개의 실증 연구를 검토했습니다. 정체는 대체로 만족·웰빙·조직몰입 저하와 이직 의도 증가 등과 연관됐지만, 개인과 조직의 대응 및 승진 중요도에 따라 효과가 달라질 수 있었습니다.<a class="cite" href="#source-6" aria-label="출처 6">[6]</a></p>
+
+        <div class="metrics">
+          <article class="metric-card reveal"><b>72</b><strong>검토된 실증 연구</strong><p>Yang·Niven·Johnson의 2019년 체계적 개관이 포함한 연구 수입니다.</p></article>
+          <article class="metric-card reveal"><b>2</b><strong>핵심 정체 유형</strong><p>승진 경로가 막힌 위계 정체와, 새 도전이 사라진 업무 내용 정체입니다.</p></article>
+          <article class="metric-card reveal"><b>3</b><strong>기본 심리 욕구</strong><p>자율성·유능감·관계성이 동기와 웰빙을 진단하는 보조 렌즈가 됩니다.<a class="cite" href="#source-10" aria-label="출처 10">[10]</a></p></article>
+        </div>
+
+        <div class="plateau-grid">
+          <article class="plateau-card reveal">
+            <span class="plateau-label">HIERARCHICAL PLATEAU</span>
+            <h3>위계 정체</h3>
+            <p>앞으로의 승진 가능성이 낮다고 지각하는 상태입니다. 직함·보상·권한의 경로가 사실상 닫혔다고 느낄 때 나타납니다.</p>
+            <div class="signal-list">
+              <div class="signal-item"><b>1</b><div>승진 기준과 기회가 불투명하거나 반복적으로 연기됩니다.</div></div>
+              <div class="signal-item"><b>2</b><div>성과가 역할·권한의 확장으로 이어지지 않습니다.</div></div>
+              <div class="signal-item"><b>3</b><div>유사 직무의 내부 이동도 제한됩니다.</div></div>
+            </div>
+          </article>
+          <article class="plateau-card good reveal">
+            <span class="plateau-label">JOB CONTENT PLATEAU</span>
+            <h3>업무 내용 정체</h3>
+            <p>새로운 책임과 도전이 부족하거나 일이 더 이상 배우게 하지 않는다고 느끼는 상태입니다. 승진과 별개로 발생할 수 있습니다.</p>
+            <div class="signal-list">
+              <div class="signal-item"><b>✓</b><div>예측 가능한 반복 업무가 대부분을 차지합니다.</div></div>
+              <div class="signal-item"><b>✓</b><div>새 기술·문제·고객을 경험할 기회가 거의 없습니다.</div></div>
+              <div class="signal-item"><b>✓</b><div>잘하고는 있지만 성장하고 있다는 감각이 약합니다.</div></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="needs-grid">
+          <article class="need-card reveal"><div class="need-letter">A</div><h3>자율성 Autonomy</h3><p>내가 중요하게 여기는 방향과 방법을 어느 정도 선택할 수 있는가?</p></article>
+          <article class="need-card reveal"><div class="need-letter">C</div><h3>유능감 Competence</h3><p>도전하고 배우며, 더 잘할 수 있다는 감각이 살아 있는가?</p></article>
+          <article class="need-card reveal"><div class="need-letter">R</div><h3>관계성 Relatedness</h3><p>존중받고 연결되어 있으며, 도움을 주고받을 수 있는가?</p></article>
+        </div>
+
+        <div class="research-note reveal"><strong>최근 연구가 주는 주의점:</strong> 2025년 다단계·다원자료 연구에서는 위계 정체가 특정 경력 단계에서 자기효능감과 성과 저하로 연결된 반면, 업무 내용 정체는 자기효능감과 평가 성과가 높게 나타나는 결과도 보고됐습니다. 이는 ‘성과가 좋다 = 성장하고 있다’가 아닐 수 있음을 시사하며, 한 연구의 결과를 모든 직장에 일반화해서는 안 됩니다.<a class="cite" href="#source-7" aria-label="출처 7">[7]</a> 같은 해의 또 다른 연구는 조직의 선제적 커리어 지원이 업무 내용 정체를 줄이고 성장감(thriving)에 기여할 수 있음을 보고했습니다.<a class="cite" href="#source-8" aria-label="출처 8">[8]</a></div>
+      </div>
+    </section>
+
+    <section id="decision">
+      <div class="container">
+        <div class="section-kicker reveal">STAY, REDESIGN, OR MOVE</div>
+        <h2 class="section-title reveal">선택은 ‘남을까 떠날까’보다<br>회복 가능성과 방향 일치도를 함께 보는 일입니다</h2>
+        <p class="section-desc reveal">아래 2×2는 연구 검사지가 아니라 의사결정을 구조화하기 위한 실무용 프레임입니다. 감정의 강도보다, 현재 환경이 바뀔 수 있는지와 내가 원하는 성장 방향이 무엇인지 분리해 봅니다.</p>
+
+        <div class="matrix-wrap">
+          <div class="matrix-card reveal" role="img" aria-label="회복 가능성과 방향 일치도를 기준으로 한 네 가지 선택 매트릭스">
+            <div class="matrix">
+              <article class="quadrant"><b>01</b><h3>회복하고 관찰</h3><p>방향 일치도와 회복 가능성이 모두 낮거나 불명확합니다. 휴식·건강·단기 갈등을 먼저 정리합니다.</p></article>
+              <article class="quadrant"><b>02</b><h3>머물며 재설계</h3><p>하고 싶은 방향은 맞고 환경도 바뀔 수 있습니다. 역할·프로젝트·학습 기회를 구체적으로 협상합니다.</p></article>
+              <article class="quadrant"><b>03</b><h3>전환을 준비</h3><p>현재 방향이 맞지 않고 내부 변화 가능성도 낮습니다. 외부 탐색과 재정·관계 준비를 병행합니다.</p></article>
+              <article class="quadrant"><b>04</b><h3>기한 있는 실험</h3><p>방향은 맞지만 구조가 잘 바뀌지 않습니다. 4~8주 시한을 두고 재설계 결과를 검증합니다.</p></article>
+            </div>
+            <div class="axis-x"><span>회복 가능성 낮음</span><span>회복 가능성 높음 →</span></div>
+            <div class="axis-y"><span>방향 일치도 높음</span><span>방향 일치도 낮음</span></div>
+          </div>
+
+          <div class="matrix-explain">
+            <article class="decision-card reveal"><h3>① 일시적 통증인가?</h3><p>한 명의 상사, 한 프로젝트, 건강 악화, 특정 분기처럼 범위와 기간이 제한된 문제라면 회복 후 판단이 달라질 수 있습니다.</p></article>
+            <article class="decision-card reveal"><h3>② 구조적 천장인가?</h3><p>역할 재설계를 요청해도 반복적으로 기회가 닫히고, 팀·부서 이동으로도 바뀌지 않는다면 구조적 신호에 가깝습니다.</p></article>
+            <article class="decision-card highlight reveal"><h3>③ 다음 물길은 검증됐는가?</h3><p>새 분야를 실제 프로젝트·멘토 대화·단기 협업으로 시험하지 않았다면, 현재의 불만을 미래의 적합성으로 착각할 수 있습니다.</p></article>
+          </div>
+        </div>
+
+        <div class="choice-compare reveal" aria-label="포기와 선택의 차이">
+          <div class="choice-row"><div class="choice-cell"><span class="choice-icon">×</span>감정이 가장 큰 날에 즉시 결론을 냅니다.</div><div class="choice-cell"><span class="choice-icon">✓</span>반복되는 패턴을 기록하고, 변화 요청과 작은 실험을 거친 뒤 판단합니다.</div></div>
+          <div class="choice-row"><div class="choice-cell"><span class="choice-icon">×</span>현재를 벗어나는 것만 목표로 삼습니다.</div><div class="choice-cell"><span class="choice-icon">✓</span>다음 환경에서 필요한 자율성·학습·관계 조건을 명시합니다.</div></div>
+          <div class="choice-row"><div class="choice-cell"><span class="choice-icon">×</span>기존 관계와 경험을 모두 끊어버립니다.</div><div class="choice-cell"><span class="choice-icon">✓</span>배운 것을 정리하고 다리를 보존하며, 재정·건강·가족 영향을 준비합니다.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-blue" id="flow">
+      <div class="container">
+        <div class="section-kicker reveal">A FOUR-WEEK WATERCOURSE TEST</div>
+        <h2 class="section-title reveal">결정 전에 다섯 단계를<br>한 바퀴 돌려보세요</h2>
+        <p class="section-desc reveal">핵심은 ‘기분을 무시하라’가 아니라, 그 기분이 무엇을 알려주는지 검증하는 것입니다. 관찰과 실험을 거치면 머무름도 전환도 더 책임 있는 선택이 됩니다.</p>
+
+        <div class="flow-grid">
+          <article class="flow-step reveal"><div class="flow-num">01</div><h3>신호 기록</h3><p>에너지, 학습, 자율성, 관계, 반복되는 막힘을 2주 이상 기록합니다.</p><small>결과: 감정 → 패턴</small></article>
+          <article class="flow-step reveal"><div class="flow-num">02</div><h3>원인 구분</h3><p>일시적 피로·특정 갈등·업무 구조·가치 불일치 중 무엇인지 분리합니다.</p><small>결과: 증상 → 원인 가설</small></article>
+          <article class="flow-step reveal"><div class="flow-num">03</div><h3>재설계 요청</h3><p>새 책임, 프로젝트 이동, 학습 예산, 의사결정 참여를 구체적으로 제안합니다.</p><small>결과: 추측 → 조직 반응</small></article>
+          <article class="flow-step reveal"><div class="flow-num">04</div><h3>작은 실험</h3><p>외부 멘토, 사이드 프로젝트, 단기 협업으로 다음 방향을 실제로 시험합니다.</p><small>결과: 환상 → 경험 데이터</small></article>
+          <article class="flow-step reveal"><div class="flow-num">05</div><h3>안전한 결정</h3><p>기한, 재정, 건강, 가족, 인수인계와 성공 기준을 포함한 선택 메모를 씁니다.</p><small>결과: 충동 → 실행 계획</small></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="assessment" class="section-soft">
+      <div class="container">
+        <div class="section-kicker reveal">SELF-CHECK</div>
+        <h2 class="section-title reveal">지금은 버틸 때인가,<br>물길을 바꿀 때인가?</h2>
+        <p class="section-desc reveal">아래 점검은 진단 도구가 아닌 대화용 휴리스틱입니다. ‘막힘의 구조성’과 ‘전환 준비도’를 분리해 점수화하면, 당장 퇴사할지보다 무엇을 먼저 준비해야 하는지가 보입니다.</p>
+
+        <div class="assessment-layout">
+          <form class="assessment-panel reveal" id="assessmentForm">
+            <div class="assessment-note">각 문항에 대해 <strong>아니다(0) · 일부 그렇다(1) · 매우 그렇다(2)</strong>를 선택하세요. 모든 선택은 브라우저 안에서만 계산되며 저장되지 않습니다.</div>
+
+            <fieldset class="question-group" style="border:0;padding:0">
+              <legend><h3>막힘의 구조성</h3></legend>
+              <div class="question"><label id="q1-label">1. 최근 8주 이상 새 학습·도전·책임이 거의 없었습니다.</label><div class="scale" role="radiogroup" aria-labelledby="q1-label"><input type="radio" id="q1-0" name="q1" value="0" checked><label for="q1-0">아니다</label><input type="radio" id="q1-1" name="q1" value="1"><label for="q1-1">일부</label><input type="radio" id="q1-2" name="q1" value="2"><label for="q1-2">매우</label></div></div>
+              <div class="question"><label id="q2-label">2. 중요한 일의 방법과 우선순위를 스스로 조정하기 어렵습니다.</label><div class="scale" role="radiogroup" aria-labelledby="q2-label"><input type="radio" id="q2-0" name="q2" value="0" checked><label for="q2-0">아니다</label><input type="radio" id="q2-1" name="q2" value="1"><label for="q2-1">일부</label><input type="radio" id="q2-2" name="q2" value="2"><label for="q2-2">매우</label></div></div>
+              <div class="question"><label id="q3-label">3. 성과를 내도 성장감이나 유능감이 거의 생기지 않습니다.</label><div class="scale" role="radiogroup" aria-labelledby="q3-label"><input type="radio" id="q3-0" name="q3" value="0" checked><label for="q3-0">아니다</label><input type="radio" id="q3-1" name="q3" value="1"><label for="q3-1">일부</label><input type="radio" id="q3-2" name="q3" value="2"><label for="q3-2">매우</label></div></div>
+              <div class="question"><label id="q4-label">4. 역할 재설계나 이동을 요청했지만 반복적으로 변화가 없었습니다.</label><div class="scale" role="radiogroup" aria-labelledby="q4-label"><input type="radio" id="q4-0" name="q4" value="0" checked><label for="q4-0">아니다</label><input type="radio" id="q4-1" name="q4" value="1"><label for="q4-1">일부</label><input type="radio" id="q4-2" name="q4" value="2"><label for="q4-2">매우</label></div></div>
+              <div class="question"><label id="q5-label">5. 문제의 핵심이 한 사람·한 프로젝트보다 조직 구조에 가깝습니다.</label><div class="scale" role="radiogroup" aria-labelledby="q5-label"><input type="radio" id="q5-0" name="q5" value="0" checked><label for="q5-0">아니다</label><input type="radio" id="q5-1" name="q5" value="1"><label for="q5-1">일부</label><input type="radio" id="q5-2" name="q5" value="2"><label for="q5-2">매우</label></div></div>
+            </fieldset>
+
+            <fieldset class="question-group" style="border:0;padding:0">
+              <legend><h3>전환 준비도</h3></legend>
+              <div class="question"><label id="q6-label">6. 관심 있는 다음 방향을 실제 프로젝트나 대화로 시험했습니다.</label><div class="scale" role="radiogroup" aria-labelledby="q6-label"><input type="radio" id="q6-0" name="q6" value="0" checked><label for="q6-0">아니다</label><input type="radio" id="q6-1" name="q6" value="1"><label for="q6-1">일부</label><input type="radio" id="q6-2" name="q6" value="2"><label for="q6-2">매우</label></div></div>
+              <div class="question"><label id="q7-label">7. 전환 중 소득·건강·가족 부담을 감당할 계획이 있습니다.</label><div class="scale" role="radiogroup" aria-labelledby="q7-label"><input type="radio" id="q7-0" name="q7" value="0" checked><label for="q7-0">아니다</label><input type="radio" id="q7-1" name="q7" value="1"><label for="q7-1">일부</label><input type="radio" id="q7-2" name="q7" value="2"><label for="q7-2">매우</label></div></div>
+              <div class="question"><label id="q8-label">8. 조언할 멘토·동료와 인수인계·관계 보존 계획이 있습니다.</label><div class="scale" role="radiogroup" aria-labelledby="q8-label"><input type="radio" id="q8-0" name="q8" value="0" checked><label for="q8-0">아니다</label><input type="radio" id="q8-1" name="q8" value="1"><label for="q8-1">일부</label><input type="radio" id="q8-2" name="q8" value="2"><label for="q8-2">매우</label></div></div>
+            </fieldset>
+          </form>
+
+          <aside class="result-panel reveal" aria-live="polite">
+            <h3>현재 물길 스냅샷</h3>
+            <p>점수 자체보다 두 축의 조합을 보세요.</p>
+            <div class="score-grid">
+              <div class="score-box"><span>STRUCTURAL BLOCKAGE</span><strong id="blockageScore">0/10</strong></div>
+              <div class="score-box"><span>TRANSITION READINESS</span><strong id="readinessScore">0/6</strong></div>
+            </div>
+            <div class="result-message" id="resultMessage"><strong>먼저 관찰할 단계</strong><p>구조적 막힘과 준비도가 아직 낮습니다. 휴식·업무 조정·2주 기록으로 일시적 피로인지 확인하세요.</p></div>
+            <div class="result-disclaimer">※ 임상·법률·재무 진단이 아닙니다. 괴롭힘·안전·건강 위기라면 점수와 무관하게 전문 지원과 보호 절차를 우선하세요.</div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="roadmap">
+      <div class="container">
+        <div class="section-kicker reveal">30-DAY ACTION PLAN</div>
+        <h2 class="section-title reveal">한 달이면 ‘감정’에서<br>‘판단 가능한 데이터’로 이동할 수 있습니다</h2>
+        <p class="section-desc reveal">목표는 30일 안에 퇴사를 결정하는 것이 아니라, 머무름·내부 이동·단계적 전환·외부 이동 중 어떤 경로가 합리적인지 설명 가능한 상태가 되는 것입니다.</p>
+
+        <div class="roadmap-grid">
+          <article class="roadmap-card reveal"><span class="week-badge">WEEK 1</span><h3>신호 일지</h3><p>업무별 에너지, 배움, 자율성, 관계, 불공정, 회복 시간을 매일 3분 기록합니다.</p><div class="roadmap-output"><span>산출물</span> · 반복 패턴 3개</div></article>
+          <article class="roadmap-card reveal"><span class="week-badge">WEEK 2</span><h3>재설계 대화</h3><p>“성장하고 싶다”보다 원하는 책임·프로젝트·권한·기한을 구체적으로 제안합니다.</p><div class="roadmap-output"><span>산출물</span> · 조직 반응과 약속</div></article>
+          <article class="roadmap-card reveal"><span class="week-badge">WEEK 3</span><h3>외부 실험</h3><p>관심 분야 사람 3명과 대화하고, 작은 과제 하나를 직접 수행해 실제 적합성을 확인합니다.</p><div class="roadmap-output"><span>산출물</span> · 기대와 현실의 차이</div></article>
+          <article class="roadmap-card reveal"><span class="week-badge">WEEK 4</span><h3>선택 메모</h3><p>선택 이유, 반대 근거, 비용, 준비, 중단 기준, 첫 90일 계획을 한 장으로 정리합니다.</p><div class="roadmap-output"><span>산출물</span> · Stay / Shift / Move</div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="media" class="section-soft">
+      <div class="container">
+        <div class="section-kicker reveal">WATCH &amp; REFLECT</div>
+        <h2 class="section-title reveal">철학은 영상으로,<br>전환은 실제 사례로 보세요</h2>
+        <p class="section-desc reveal">아래 영상은 원문에 포함된 자막이 아니라 보고서에서 추가한 보조 자료입니다. 첫 영상은 ‘직업의 부름을 듣는 법’, 둘째 영상은 ‘커리어를 바꿀 시점과 준비’를 다룹니다.</p>
+
+        <div class="media-grid">
+          <article class="video-card reveal">
+            <div class="video-wrap"><iframe src="https://www.youtube-nocookie.com/embed/RftLnlrGLNc" title="Parker J. Palmer와 직업적 소명을 듣는 방법에 관한 인터뷰" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-copy"><span>SUPPLEMENTARY VIDEO</span><h3>Listening To Your Vocation with Parker J. Palmer</h3><p>직업 선택을 외부 기준만이 아니라 삶이 보내는 신호를 듣는 과정으로 바라보는 긴 인터뷰입니다.<a class="cite" href="#source-13" aria-label="출처 13">[13]</a></p><a class="text-link" href="https://www.youtube.com/watch?v=RftLnlrGLNc" target="_blank" rel="noopener noreferrer">YouTube에서 열기 →</a></div>
+          </article>
+          <article class="video-card reveal">
+            <div class="video-wrap"><iframe src="https://www.youtube-nocookie.com/embed/_8vLkIj_Lsk" title="TED의 커리어를 바꿀 시점을 판단하는 방법 영상" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-copy"><span>TED · PRACTICAL</span><h3>How to know if it’s time to change careers</h3><p>배움의 소진, 직감, 단기 통증을 구분하고 네트워크·재정·사이드 프로젝트로 전환을 준비하는 짧은 실무 영상입니다.<a class="cite" href="#source-9" aria-label="출처 9">[9]</a></p><a class="text-link" href="https://www.youtube.com/watch?v=_8vLkIj_Lsk" target="_blank" rel="noopener noreferrer">YouTube에서 열기 →</a></div>
+          </article>
+        </div>
+
+        <div class="gallery-grid">
+          <figure class="gallery-card reveal"><img src="assets/valley-stream.webp" alt="푸른 계곡 사이로 굽이치며 내려오는 산악 계류" loading="lazy" width="1800" height="3200"><figcaption class="gallery-credit">적응은 멈춤이 아니라 지형에 맞춘 진행입니다 · Yoad Shejtman / Unsplash</figcaption></figure>
+          <figure class="gallery-card reveal"><img src="assets/laozi-riding-ox.webp" alt="소를 타고 길을 떠나는 노자를 표현한 고전 회화" loading="lazy" width="926" height="1688"><figcaption class="gallery-credit">노자와 『도덕경』의 상징 · Zhang Lu / Public Domain</figcaption></figure>
+          <figure class="gallery-card reveal"><img src="assets/meandering-river.webp" alt="넓은 평야에서 방향을 바꾸며 흐르는 강" loading="lazy" width="1800" height="1198"><figcaption class="gallery-credit">우회는 후퇴가 아니라 경로 최적화일 수 있습니다 · U.S. FWS / Public Domain</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="risks">
+      <div class="container">
+        <div class="section-kicker reveal">RISKS &amp; LIMITS</div>
+        <h2 class="section-title reveal">물의 비유가 아름다운 만큼,<br>오용 위험도 분명합니다</h2>
+        <p class="section-desc reveal">원문은 한 개인의 성찰이고, 커리어 연구 역시 평균적 경향을 다룹니다. 개인의 건강·재정·가족·법적 조건을 대신 판단해 주지는 않습니다.</p>
+
+        <div class="risk-grid">
+          <article class="risk-card reveal"><b>!</b><h3>수동성의 미화</h3><p>“흐름에 맡긴다”가 갈등 회피·책임 회피·부당함에 대한 침묵으로 변하면 원문의 핵심과 반대가 됩니다.</p></article>
+          <article class="risk-card reveal"><b>?</b><h3>단기 통증의 과대해석</h3><p>힘든 한 주, 한 명의 상사, 일시적 건강 문제를 영구적 천장으로 단정하면 성급한 선택이 될 수 있습니다.</p></article>
+          <article class="risk-card reveal"><b>✓</b><h3>성과와 성장의 혼동</h3><p>익숙한 일에서 성과가 높아도 배움은 멈출 수 있고, 새 도전에서 단기 성과가 낮아도 성장 중일 수 있습니다.</p></article>
+        </div>
+
+        <div class="governance-note reveal">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 20 6v5.7c0 4.6-3.2 7.6-8 9.3-4.8-1.7-8-4.7-8-9.3V6z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div><strong>안전 우선 원칙:</strong> 괴롭힘, 차별, 폭력, 자해 위험, 심각한 번아웃, 임금·계약 분쟁이 있는 경우에는 ‘4주 실험’을 기다리지 말고 회사의 공식 보호 절차, 노동·법률·의료·심리 전문가의 도움을 우선합니다.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sources" id="sources">
+    <div class="container">
+      <div class="source-head">
+        <div><h2>참고 자료와 출처</h2><p>원문·공식 이론 페이지·동료평가 연구·보조 영상·이미지 라이선스 중 실제 사용한 자료만 표시했습니다.</p></div>
+        <button class="btn btn-ghost" type="button" onclick="window.print()">전체 PDF 저장</button>
+      </div>
+
+      <div class="source-grid">
+        <a class="source-link" id="source-1" href="https://newsletter.teaboard.link/post/2026-08-08-wwt1y2" target="_blank" rel="noopener noreferrer"><span>PRIMARY SOURCE · 2026-08-08</span><strong>물 흐르듯이 산다는 것：편안함이 아니라 선택할 때를 아는 삶</strong><small>TeaBoard 뉴스레터 원문 · 첨부 요약자료와 대조</small></a>
+        <a class="source-link" id="source-2" href="https://www.wussu.com/laotzu/laotzu08.html" target="_blank" rel="noopener noreferrer"><span>CLASSIC TEXT · CHAPTER 8</span><strong>Tao Te Ching — Chapter 8 Comparative Study</strong><small>물의 덕목과 행동의 시의성을 확인한 번역 비교 자료</small></a>
+        <a class="source-link" id="source-3" href="https://onbeing.org/blog/to-live-our-lives-like-water/" target="_blank" rel="noopener noreferrer"><span>PRIMARY ESSAY · 2015-07-15</span><strong>Parker J. Palmer, To Live Our Lives Like Water</strong><small>수동적 순응이 아닌 비폭력적·지속적 행동의 해석</small></a>
+        <a class="source-link" id="source-4" href="https://plato.stanford.edu/entries/daoism/" target="_blank" rel="noopener noreferrer"><span>ACADEMIC REFERENCE · 2025</span><strong>Stanford Encyclopedia of Philosophy — Daoism</strong><small>도(道)를 자연적 가능성과 경로의 구조로 설명</small></a>
+        <a class="source-link" id="source-5" href="https://www.theschooloflife.com/article/wu-wei-doing-nothing/" target="_blank" rel="noopener noreferrer"><span>SUPPORTING EXPLAINER · UPDATED 2025</span><strong>Wu Wei – Doing Nothing 無爲</strong><small>The School of Life · 무위를 억지 없는 행동으로 설명</small></a>
+        <a class="source-link" id="source-6" href="https://kclpure.kcl.ac.uk/portal/en/publications/career-plateau-a-review-of-40years-of-research/" target="_blank" rel="noopener noreferrer"><span>PEER-REVIEWED REVIEW · 2019</span><strong>Career plateau: A review of 40 years of research</strong><small>Journal of Vocational Behavior · 72개 실증 연구 개관</small></a>
+        <a class="source-link" id="source-7" href="https://kclpure.kcl.ac.uk/portal/en/publications/revisiting-the-relationship-between-career-plateau-and-job-perfor/" target="_blank" rel="noopener noreferrer"><span>PEER-REVIEWED STUDY · 2025</span><strong>Revisiting the relationship between career plateau and job performance</strong><small>Applied Psychology · 자기효능감과 경력 단계의 역할</small></a>
+        <a class="source-link" id="source-8" href="https://research.aston.ac.uk/en/publications/proactive-career-support-and-employee-thriving-the-mediating-role/" target="_blank" rel="noopener noreferrer"><span>PEER-REVIEWED STUDY · 2025</span><strong>Proactive career support and employee thriving</strong><small>Applied Psychology · 업무 내용 정체의 매개 역할</small></a>
+        <a class="source-link" id="source-9" href="https://www.ted.com/talks/chieh_huang_how_to_know_if_it_s_time_to_change_careers" target="_blank" rel="noopener noreferrer"><span>SUPPLEMENTARY VIDEO · TED</span><strong>How to know if it’s time to change careers</strong><small>Chieh Huang · 전환 시점과 준비에 관한 4분 영상</small></a>
+        <a class="source-link" id="source-10" href="https://selfdeterminationtheory.org/theory/" target="_blank" rel="noopener noreferrer"><span>OFFICIAL THEORY OVERVIEW</span><strong>Self-Determination Theory — Theory Overview</strong><small>자율성·유능감·관계성과 동기·웰빙의 관계</small></a>
+        <a class="source-link" id="source-11" href="https://commons.wikimedia.org/wiki/File:Meandering_river_aerial_photography.jpg" target="_blank" rel="noopener noreferrer"><span>IMAGE · PUBLIC DOMAIN</span><strong>Meandering river aerial photography</strong><small>Hillebrand Steve · U.S. Fish and Wildlife Service</small></a>
+        <a class="source-link" id="source-12" href="https://commons.wikimedia.org/wiki/File:Zhang_Lu-Laozi_Riding_an_Ox.jpg" target="_blank" rel="noopener noreferrer"><span>ARTWORK · PUBLIC DOMAIN</span><strong>Zhang Lu — Laozi Riding an Ox</strong><small>Wikimedia Commons · 고전 회화 이미지</small></a>
+        <a class="source-link" id="source-13" href="https://www.youtube.com/watch?v=RftLnlrGLNc" target="_blank" rel="noopener noreferrer"><span>SUPPLEMENTARY VIDEO · YOUTUBE</span><strong>Listening To Your Vocation with Parker J. Palmer</strong><small>직업적 소명과 삶의 신호를 다룬 보조 인터뷰</small></a>
+        <a class="source-link" id="source-14" href="https://unsplash.com/photos/a-stream-of-water-running-through-a-rocky-mountain-valley-etEp5CX9V-0" target="_blank" rel="noopener noreferrer"><span>IMAGE · UNSPLASH LICENSE</span><strong>Rocky mountain valley stream — Nicholas Bullett</strong><small>히어로 사진 · Alberta, Canada</small></a>
+        <a class="source-link" id="source-15" href="https://unsplash.com/photos/a-stream-running-through-a-lush-green-valley-CuhovW-laUc" target="_blank" rel="noopener noreferrer"><span>IMAGE · UNSPLASH LICENSE</span><strong>Green valley stream — Yoad Shejtman</strong><small>사진 갤러리 · Stubai Alps, Austria</small></a>
+        <a class="source-link" id="source-16" href="https://commons.wikimedia.org/wiki/File:Waterfalls_streams_rocks.jpg" target="_blank" rel="noopener noreferrer"><span>IMAGE · PUBLIC DOMAIN</span><strong>Waterfalls streams rocks — Jon Sullivan</strong><small>Wikimedia Commons · 공개 도메인 사진</small></a>
+      </div>
+
+      <div class="footer-bottom"><span id="footerTitle">물 흐르듯이 산다는 것：편안함이 아니라 선택할 때를 아는 삶 · Report Hub</span><span id="footerMeta">AI-assisted · 2026.08</span></div>
+
+      <div class="report-history" id="history" aria-labelledby="history-title">
+        <div class="history-head">
+          <div><h2 id="history-title">버전 및 업데이트 히스토리</h2><p>보고서의 결론·근거·디자인 변경을 누적 기록합니다.</p></div>
+          <span class="version-badge" id="historyCurrentVersion">Current v1.0.0</span>
+        </div>
+        <div class="history-table-wrap">
+          <table class="history-table">
+            <thead><tr><th>버전</th><th>업데이트일</th><th>변경 구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr></thead>
+            <tbody id="historyBody"><tr><td colspan="5" class="history-empty">변경 이력을 불러오는 중입니다.</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="floating-actions" aria-label="빠른 작업">
+    <button class="float-btn" type="button" id="toTop" aria-label="맨 위로 이동"><svg viewBox="0 0 24 24" fill="none"><path d="m6 14 6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="float-btn" type="button" onclick="window.print()" aria-label="PDF로 저장"><svg viewBox="0 0 24 24" fill="none"><path d="M7 9V4h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M7 14h10v6H7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></button>
+  </div>
+
+  <script id="report-metadata" type="application/json">
+  {
+    "schemaVersion":"1.0",
+    "reportId":"260809-watercourse-life-choice",
+    "title":"물 흐르듯이 산다는 것：편안함이 아니라 선택할 때를 아는 삶",
+    "version":"1.0.0",
+    "status":"Published",
+    "createdAt":"2026-08-09",
+    "updatedAt":"2026-08-09",
+    "language":"ko-KR",
+    "author":"Jeremy Lee",
+    "generation":"AI-assisted",
+    "reviewStatus":"Human review recommended",
+    "history":[
+      {
+        "version":"1.0.0",
+        "date":"2026-08-09",
+        "type":"신규 작성",
+        "summary":"첨부 에세이를 중심으로 상선약수·무위의 철학적 배경, 2019·2025 커리어 플래토 연구, 자기결정성이론을 구분해 재구성하고, 첫 페이지 1장 요약·2×2 선택 매트릭스·4주 검증 흐름·인터랙티브 자가 점검·사진 및 영상 섹션을 추가함.",
+        "sections":["Executive Summary","Philosophy","Career Plateau","Decision Matrix","Self-check","Media","Sources"],
+        "updatedBy":"AI-assisted",
+        "reviewStatus":"검토 권장"
+      }
+    ]
+  }
+  </script>
+
+  <script>
+    const progress=document.getElementById('scrollProgress');
+    const toTop=document.getElementById('toTop');
+    function updateProgress(){
+      const max=document.documentElement.scrollHeight-window.innerHeight;
+      const percent=max>0?(window.scrollY/max)*100:0;
+      progress.style.width=percent+'%';
+      const show=window.scrollY>600;
+      toTop.style.opacity=show?'1':'0';
+      toTop.style.pointerEvents=show?'auto':'none';
+    }
+    window.addEventListener('scroll',updateProgress,{passive:true});
+    updateProgress();
+    toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+    if('IntersectionObserver' in window){
+      const observer=new IntersectionObserver((entries)=>{entries.forEach((entry)=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}})},{threshold:.08});
+      document.querySelectorAll('.reveal').forEach((el)=>observer.observe(el));
+    }else{
+      document.querySelectorAll('.reveal').forEach((el)=>el.classList.add('visible'));
+    }
+
+    function renderReportMetadata(){
+      const node=document.getElementById('report-metadata');
+      if(!node)return;
+      try{
+        const meta=JSON.parse(node.textContent);
+        const version=`v${meta.version}`;
+        const date=String(meta.updatedAt||'').replaceAll('-','.');
+        const month=date.slice(0,7);
+        const setText=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value};
+        setText('reportVersion',version);
+        setText('reportUpdated',`Updated ${date}`);
+        setText('reportGeneration',`${meta.generation} · ${meta.reviewStatus}`);
+        setText('historyCurrentVersion',`Current ${version}`);
+        setText('footerTitle',`${meta.title} · Report Hub`);
+        setText('footerMeta',`${meta.generation} · ${month}`);
+        document.title=`${meta.title} · ${version}`;
+        const body=document.getElementById('historyBody');
+        if(!body)return;
+        body.innerHTML='';
+        const history=Array.isArray(meta.history)?meta.history:[];
+        if(!history.length){body.innerHTML='<tr><td colspan="5" class="history-empty">기록된 변경 이력이 없습니다.</td></tr>';return}
+        history.forEach((item)=>{
+          const row=document.createElement('tr');
+          const values=[`v${item.version}`,String(item.date||'').replaceAll('-','.'),item.type||'',item.summary||'',[item.updatedBy,item.reviewStatus].filter(Boolean).join(' · ')];
+          values.forEach((value,index)=>{
+            const cell=document.createElement('td');
+            if(index===4){const badge=document.createElement('span');badge.className='history-status';badge.textContent=value;cell.appendChild(badge)}else{cell.textContent=value}
+            row.appendChild(cell);
+          });
+          body.appendChild(row);
+        });
+      }catch(error){console.error('Invalid report metadata:',error)}
+    }
+    renderReportMetadata();
+
+    const form=document.getElementById('assessmentForm');
+    const blockageNode=document.getElementById('blockageScore');
+    const readinessNode=document.getElementById('readinessScore');
+    const messageNode=document.getElementById('resultMessage');
+    function selectedValue(name){const item=form.querySelector(`input[name="${name}"]:checked`);return item?Number(item.value):0}
+    function updateAssessment(){
+      const blockage=['q1','q2','q3','q4','q5'].reduce((sum,name)=>sum+selectedValue(name),0);
+      const readiness=['q6','q7','q8'].reduce((sum,name)=>sum+selectedValue(name),0);
+      blockageNode.textContent=`${blockage}/10`;
+      readinessNode.textContent=`${readiness}/6`;
+      let title='먼저 관찰할 단계';
+      let text='구조적 막힘과 준비도가 아직 낮습니다. 휴식·업무 조정·2주 기록으로 일시적 피로인지 확인하세요.';
+      if(blockage>=6&&readiness<4){title='막힘은 크지만 준비가 먼저';text='즉시 이탈보다 역할 재설계 요청, 외부 실험, 재정·건강·관계 준비를 우선하세요. ‘떠날 이유’만큼 ‘갈 곳의 증거’가 필요합니다.'}
+      else if(blockage<6&&readiness>=4){title='선택지는 충분하지만 서두를 필요는 없음';text='대안이 검증되어 협상력이 있습니다. 현재 환경의 회복 가능성을 마지막으로 시험하고, 더 나은 쪽을 비교하세요.'}
+      else if(blockage>=6&&readiness>=4){title='준비된 방향 전환을 검토할 단계';text='구조적 막힘이 반복되고 대안도 검증되었습니다. 최종적으로 건강·재정·가족 영향과 인수인계를 확인해 단계적 전환안을 작성하세요.'}
+      messageNode.innerHTML=`<strong>${title}</strong><p>${text}</p>`;
+    }
+    form.addEventListener('change',updateAssessment);
+    updateAssessment();
+  </script>
+  <script src="../../assets/report-page-layout.js?v=20260809-rh3"></script>
+  <script src="../../assets/report-comments.js?v=20260809-comments1" data-report-id="260809-watercourse-life-choice"></script>
+  <script src="../../assets/report-history.js?v=20260809-history2" data-report-id="260809-watercourse-life-choice"></script>
+  <script src="../../assets/report-hub-brand.js?v=20260809-rh3"></script>
+</body>
+</html>

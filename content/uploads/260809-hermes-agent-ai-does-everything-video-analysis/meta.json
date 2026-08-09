@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1",
+  "id": "260809-hermes-agent-ai-does-everything-video-analysis",
+  "slug": "hermes-agent-ai-does-everything-video-analysis",
+  "title": "Hermes Agent 관점에서 본 ‘AI가 다 해준다’ — 임원 업무 재설계 보고서",
+  "category": "AI",
+  "tags": [
+    "Hermes",
+    "AI Agent",
+    "임원",
+    "업무재설계"
+  ],
+  "summary": "유호현 대표의 ‘AI가 다 해준다’ 인터뷰를 Hermes Agent의 실제 기능, 설치 방식, 운영 통제 관점에서 분석한 비전공자 임원용 보고서입니다.",
+  "createdAt": "2026-08-09T17:37:12+09:00",
+  "updatedAt": "2026-08-09T17:37:12+09:00",
+  "status": "published",
+  "sourceName": "Hermes Agent 관점에서 본 ‘AI가 다 해준다’ — 임원 업무 재설계 보고서.zip",
+  "sourceCount": 12,
+  "entry": "index.html"
+}

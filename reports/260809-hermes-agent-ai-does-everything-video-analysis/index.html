@@ -1,0 +1,815 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#3182F6">
+  <meta name="description" content="유호현 대표의 ‘AI가 다 해준다’ 인터뷰를 Hermes Agent의 실제 기능, 설치 방식, 운영 통제 관점에서 분석한 임원용 보고서">
+  <title>Hermes Agent 관점에서 본 ‘AI가 다 해준다’ — 임원 업무 재설계 보고서 | Report Hub</title>
+  <style>
+    :root{
+      --blue:#3182F6;
+      --blue-strong:#1B64DA;
+      --blue-deep:#0B3B85;
+      --blue-soft:#E8F3FF;
+      --ink:#191F28;
+      --ink-2:#333D4B;
+      --muted:#6B7684;
+      --muted-2:#8B95A1;
+      --line:#E5E8EB;
+      --surface:#F7F8FA;
+      --surface-2:#F2F4F6;
+      --lime:#DFFF6A;
+      --yellow:#FFF184;
+      --danger:#E5484D;
+      --success:#12B886;
+      --warning:#F59F00;
+      --radius-xl:40px;
+      --radius-lg:28px;
+      --radius-md:20px;
+      --shadow:0 18px 48px rgba(27,100,218,.10);
+      --shadow-soft:0 10px 30px rgba(25,31,40,.06);
+      --max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:88px}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:#fff;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Noto Sans KR",Arial,sans-serif;
+      line-height:1.62;
+      overflow-x:hidden;
+      word-break:keep-all;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    a{color:inherit}
+    img{display:block;max-width:100%}
+    button,input,textarea,select{font:inherit}
+    code{overflow-wrap:anywhere;word-break:break-word}
+    .skip-link{position:fixed;left:16px;top:-80px;z-index:9999;background:var(--ink);color:#fff;padding:12px 18px;border-radius:14px;text-decoration:none;font-weight:800;transition:top .2s}
+    .skip-link:focus{top:16px}
+    .progress{position:fixed;inset:0 0 auto 0;height:3px;z-index:1000;background:transparent}
+    .progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--lime));transform-origin:left center}
+    .nav-shell{
+      position:sticky;top:0;z-index:900;
+      backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+      background:rgba(255,255,255,.82);
+      border-bottom:1px solid rgba(229,232,235,.8);
+    }
+    .nav{max-width:var(--max);margin:auto;padding:13px 22px;display:flex;align-items:center;gap:18px;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:900;letter-spacing:-.02em;white-space:nowrap}
+    .brand-mark{width:34px;height:34px;border-radius:12px;background:var(--blue);display:grid;place-items:center;color:#fff;box-shadow:0 8px 20px rgba(49,130,246,.25)}
+    .brand-mark svg{width:20px;height:20px}
+    .nav-links{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+    .nav-links a{font-size:13px;color:var(--muted);text-decoration:none;font-weight:800;padding:8px 10px;border-radius:10px}
+    .nav-links a:hover,.nav-links a:focus-visible{color:var(--blue-strong);background:var(--blue-soft);outline:none}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+    .cover-page{position:relative;min-height:calc(100svh - 61px);display:flex;align-items:center;padding:54px 0 50px;overflow:hidden}
+    .cover-page::before{content:"";position:absolute;width:620px;height:620px;border-radius:50%;right:-270px;top:-310px;background:radial-gradient(circle,rgba(49,130,246,.18),rgba(49,130,246,0) 66%);pointer-events:none}
+    .cover-page::after{content:"";position:absolute;width:460px;height:460px;border-radius:50%;left:-260px;bottom:-250px;background:radial-gradient(circle,rgba(223,255,106,.22),rgba(223,255,106,0) 70%);pointer-events:none}
+    .hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.04fr) minmax(410px,.96fr);gap:46px;align-items:center}
+    .eyebrow,.section-kicker{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:950;color:var(--blue-strong);display:flex;align-items:center;gap:9px}
+    .eyebrow::before,.section-kicker::before{content:"";width:22px;height:3px;border-radius:99px;background:var(--blue)}
+    .hero h1{font-size:clamp(40px,4.6vw,55px);line-height:1.08;letter-spacing:-.052em;margin:18px 0 20px;text-wrap:balance;max-width:730px}
+    .hero h1 .accent{background:linear-gradient(transparent 62%,var(--lime) 62%);padding:0 .04em}
+    .hero-lead{font-size:20px;color:var(--ink-2);max-width:670px;margin:0 0 24px;line-height:1.65;letter-spacing:-.018em}
+    .report-meta{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px;align-items:center}
+    .report-meta span{font-size:12px;font-weight:850;color:var(--muted);background:var(--surface);padding:8px 11px;border-radius:99px;border:1px solid var(--line)}
+    .report-meta .version-badge{background:var(--blue);color:#fff;border-color:var(--blue)}
+    .hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .button{appearance:none;border:0;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 17px;border-radius:15px;font-size:14px;font-weight:900;cursor:pointer;transition:transform .18s,box-shadow .18s,background .18s}
+    .button:hover{transform:translateY(-1px)}
+    .button.primary{background:var(--blue);color:#fff;box-shadow:0 10px 24px rgba(49,130,246,.24)}
+    .button.secondary{background:#fff;color:var(--ink-2);border:1px solid var(--line)}
+    .button svg{width:17px;height:17px}
+    .hero-panel{background:linear-gradient(155deg,#081B3A,#1B64DA);padding:14px;border-radius:34px;box-shadow:0 26px 70px rgba(27,100,218,.24);position:relative}
+    .video-shell{position:relative;aspect-ratio:16/9;border-radius:24px;overflow:hidden;background:#0b1730;isolation:isolate}
+    .video-shell img{width:100%;height:100%;object-fit:cover}
+    .video-shell::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 52%,rgba(4,17,43,.68));pointer-events:none}
+    .play-button{position:absolute;inset:0;z-index:4;display:grid;place-items:center;background:transparent;border:0;cursor:pointer;color:#fff}
+    .play-disc{width:78px;height:78px;border-radius:50%;display:grid;place-items:center;background:#FF334B;box-shadow:0 18px 38px rgba(0,0,0,.28);transition:transform .18s}
+    .play-button:hover .play-disc,.play-button:focus-visible .play-disc{transform:scale(1.05)}
+    .play-button:focus-visible{outline:3px solid var(--lime);outline-offset:-6px}
+    .play-disc svg{width:30px;height:30px;margin-left:4px}
+    .video-caption{display:flex;justify-content:space-between;gap:14px;align-items:flex-end;padding:17px 12px 8px;color:#fff}
+    .video-caption strong{display:block;font-size:15px;line-height:1.35}
+    .video-caption span{font-size:11px;color:#C7D8F3}
+    .cover-decision{grid-column:1/-1;margin-top:6px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .decision-card{border:1px solid var(--line);border-radius:22px;padding:19px 20px;background:rgba(255,255,255,.88);box-shadow:var(--shadow-soft);min-height:128px}
+    .decision-card .label{font-size:11px;font-weight:950;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+    .decision-card strong{display:block;font-size:17px;line-height:1.35;margin:8px 0 5px;letter-spacing:-.02em}
+    .decision-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}
+    .decision-card.highlight{background:var(--blue-soft);border-color:#B7D8FF}
+    .decision-card.conclusion{background:var(--ink);color:#fff;border-color:var(--ink)}
+    .decision-card.conclusion .label{color:var(--lime)}
+    .decision-card.conclusion p{color:#C5CEDA}
+    section.content{padding:96px 0}
+    section.alt{background:var(--surface)}
+    .section-head{max-width:800px;margin-bottom:38px}
+    .section-title{font-size:clamp(31px,3.6vw,41px);line-height:1.18;letter-spacing:-.045em;margin:14px 0 14px;text-wrap:balance}
+    .section-desc{font-size:17px;color:var(--muted);margin:0;max-width:790px}
+    .thesis-card{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:start;padding:30px;border-radius:30px;background:var(--ink);color:#fff;box-shadow:var(--shadow)}
+    .thesis-stamp{width:68px;height:68px;border-radius:22px;background:var(--lime);color:var(--ink);display:grid;place-items:center;font-weight:950;font-size:13px;text-align:center;line-height:1.1}
+    .thesis-copy h3{font-size:27px;line-height:1.3;letter-spacing:-.035em;margin:0 0 10px;text-wrap:balance}
+    .thesis-copy p{margin:0;color:#C8D0DB;font-size:16px}
+    .cite{font-size:.72em;vertical-align:super;text-decoration:none;color:var(--blue-strong);font-weight:950;margin-left:2px}
+    .thesis-card .cite{color:var(--lime)}
+    .metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
+    .metric{padding:22px;border:1px solid var(--line);border-radius:22px;background:#fff}
+    .metric .value{font-size:31px;font-weight:950;color:var(--blue-strong);line-height:1}
+    .metric .unit{font-size:13px;font-weight:900;color:var(--muted);margin-left:4px}
+    .metric strong{display:block;margin:12px 0 5px;font-size:15px}
+    .metric p{margin:0;font-size:13px;color:var(--muted)}
+    .scope-note{margin-top:18px;padding:18px 20px;background:#FFF9DB;border:1px solid #FFE066;border-radius:18px;color:#5F4B00;font-size:14px}
+    .scope-note strong{color:#3F3300}
+    .timeline{display:grid;gap:14px}
+    .claim-card{display:grid;grid-template-columns:122px 1fr 150px;gap:20px;align-items:center;border:1px solid var(--line);border-radius:24px;padding:21px 22px;background:#fff;box-shadow:0 8px 24px rgba(25,31,40,.035)}
+    .time-link{display:inline-flex;align-items:center;justify-content:center;min-height:42px;border-radius:14px;background:var(--blue-soft);color:var(--blue-strong);font-weight:950;text-decoration:none;font-variant-numeric:tabular-nums}
+    .claim-card h3{font-size:18px;line-height:1.35;margin:0 0 6px;letter-spacing:-.02em}
+    .claim-card p{margin:0;color:var(--muted);font-size:14px}
+    .verdict{justify-self:end;display:inline-flex;align-items:center;gap:7px;padding:9px 12px;border-radius:99px;font-size:12px;font-weight:950;white-space:nowrap}
+    .verdict::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+    .verdict.verified{background:#E7F8F1;color:#087F5B}
+    .verdict.conditional{background:#FFF3BF;color:#8F5C00}
+    .verdict.experience{background:#F1F3F5;color:#495057}
+    .verdict.outlook{background:#F3F0FF;color:#6741D9}
+    .lens-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:stretch}
+    .agent-anatomy{border-radius:32px;background:linear-gradient(145deg,#E8F3FF,#fff);border:1px solid #CFE5FF;padding:28px;position:relative;overflow:hidden}
+    .agent-anatomy h3,.interpretation h3{font-size:23px;margin:0 0 7px;letter-spacing:-.025em}
+    .agent-anatomy>p,.interpretation>p{margin:0;color:var(--muted);font-size:14px}
+    .anatomy-stack{display:grid;gap:11px;margin-top:22px}
+    .anatomy-row{display:grid;grid-template-columns:52px 116px 1fr;gap:13px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:18px;padding:13px}
+    .anatomy-icon{width:42px;height:42px;border-radius:14px;background:var(--blue-soft);display:grid;place-items:center;color:var(--blue-strong);font-weight:950}
+    .anatomy-row strong{font-size:14px}
+    .anatomy-row span{font-size:13px;color:var(--muted)}
+    .interpretation{border-radius:32px;background:#fff;border:1px solid var(--line);padding:28px;box-shadow:var(--shadow-soft)}
+    .interpret-list{display:grid;gap:12px;margin-top:22px}
+    .interpret-item{padding:16px 17px;border-radius:17px;background:var(--surface);border-left:4px solid var(--blue)}
+    .interpret-item strong{font-size:14px;display:block;margin-bottom:4px}
+    .interpret-item p{font-size:13px;color:var(--muted);margin:0}
+    .correction-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:24px;background:#fff}
+    .correction-table{width:100%;min-width:920px;border-collapse:collapse}
+    .correction-table th,.correction-table td{padding:18px 19px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+    .correction-table tr:last-child td{border-bottom:0}
+    .correction-table th{background:var(--surface);font-size:12px;color:var(--muted);letter-spacing:.04em;white-space:nowrap}
+    .correction-table td{font-size:14px;color:var(--ink-2)}
+    .correction-table td:first-child{font-weight:900;color:var(--ink);width:20%}
+    .status-pill{display:inline-flex;padding:5px 9px;border-radius:99px;font-size:11px;font-weight:950;margin-bottom:7px}
+    .status-pill.fix{background:#FFE3E3;color:#C92A2A}
+    .status-pill.keep{background:#D3F9D8;color:#2B8A3E}
+    .status-pill.limit{background:#FFF3BF;color:#8F5C00}
+    .status-pill.outlook{background:#E5DBFF;color:#5F3DC4}
+    .blue-section{background:var(--blue);color:#fff;padding:92px 0;position:relative;overflow:hidden}
+    .blue-section::before{content:"";position:absolute;inset:auto -180px -310px auto;width:620px;height:620px;border-radius:50%;background:rgba(255,255,255,.09)}
+    .blue-section .section-kicker{color:var(--lime)}
+    .blue-section .section-kicker::before{background:var(--lime)}
+    .blue-section .section-desc{color:#D9E9FF}
+    .flow-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;position:relative;margin-top:38px}
+    .flow-step{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.19);border-radius:22px;padding:20px 16px;min-height:205px;backdrop-filter:blur(8px)}
+    .flow-step .num{width:38px;height:38px;border-radius:13px;background:#fff;color:var(--blue-strong);display:grid;place-items:center;font-weight:950;margin-bottom:22px}
+    .flow-step h3{font-size:15px;margin:0 0 8px;line-height:1.35}
+    .flow-step p{font-size:12px;color:#D6E7FF;margin:0;line-height:1.55}
+    .flow-step.guard{background:var(--lime);color:var(--ink);border-color:var(--lime)}
+    .flow-step.guard .num{background:var(--ink);color:var(--lime)}
+    .flow-step.guard p{color:#48521B}
+    .flow-callout{margin-top:18px;display:flex;gap:12px;align-items:flex-start;background:rgba(8,27,58,.34);border:1px solid rgba(255,255,255,.22);padding:18px 20px;border-radius:20px;color:#fff}
+    .flow-callout strong{color:var(--lime)}
+    .pilot-grid{display:grid;grid-template-columns:.83fr 1.17fr;gap:22px}
+    .pilot-case,.pilot-plan{border-radius:30px;padding:28px;border:1px solid var(--line)}
+    .pilot-case{background:#fff}
+    .pilot-plan{background:var(--blue);color:#fff;border-color:var(--blue);box-shadow:var(--shadow)}
+    .pilot-case h3,.pilot-plan h3{font-size:23px;margin:0 0 8px;letter-spacing:-.025em}
+    .pilot-case>p{color:var(--muted);margin:0}
+    .pilot-plan>p{color:#D9E9FF;margin:0}
+    .checklist{display:grid;gap:10px;margin-top:21px}
+    .check{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start;font-size:14px}
+    .check i{font-style:normal;width:24px;height:24px;border-radius:8px;background:var(--blue-soft);color:var(--blue-strong);display:grid;place-items:center;font-size:12px;font-weight:950}
+    .pilot-plan .check i{background:var(--lime);color:var(--ink)}
+    .week-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:22px}
+    .week{border-radius:18px;padding:15px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.16)}
+    .week b{display:block;color:var(--lime);font-size:12px;letter-spacing:.06em;margin-bottom:5px}
+    .week strong{display:block;font-size:14px;margin-bottom:5px}
+    .week span{font-size:12px;color:#DCEAFF}
+    .kpi-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:18px}
+    .kpi{padding:15px;background:var(--surface);border:1px solid var(--line);border-radius:17px;text-align:center}
+    .kpi strong{font-size:13px;display:block}
+    .kpi span{font-size:11px;color:var(--muted)}
+    .prompt-block{margin-top:22px;background:#0E172A;color:#E5ECF8;border-radius:22px;padding:20px;position:relative;overflow:hidden}
+    .prompt-block pre{white-space:pre-wrap;margin:0;font:13px/1.65 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+    .copy-btn{position:absolute;top:12px;right:12px;background:#25334B;color:#fff;border:1px solid #3D4D68;border-radius:10px;padding:7px 10px;font-size:11px;font-weight:850;cursor:pointer}
+    .risk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .risk-card{border:1px solid var(--line);border-radius:23px;background:#fff;padding:22px;box-shadow:0 8px 20px rgba(25,31,40,.035)}
+    .risk-level{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:950;padding:6px 9px;border-radius:99px;background:#FFE3E3;color:#C92A2A}
+    .risk-card h3{font-size:17px;margin:14px 0 7px}
+    .risk-card p{font-size:13px;color:var(--muted);margin:0 0 14px}
+    .control{padding-top:13px;border-top:1px dashed var(--line);font-size:13px;color:var(--ink-2)}
+    .control strong{color:var(--blue-strong)}
+    .governance-note{margin-top:18px;background:#FFF9DB;border:1px solid #FFE066;border-radius:22px;padding:21px 22px;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
+    .governance-note .icon{width:42px;height:42px;border-radius:14px;background:var(--yellow);display:grid;place-items:center;font-size:20px}
+    .governance-note h3{font-size:16px;margin:0 0 5px}
+    .governance-note p{font-size:13px;color:#6A5700;margin:0}
+    .source-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .source-link{display:block;text-decoration:none;border:1px solid var(--line);background:#fff;border-radius:19px;padding:17px 18px;transition:transform .18s,border-color .18s,box-shadow .18s}
+    .source-link:hover,.source-link:focus-visible{transform:translateY(-2px);border-color:#A7D0FF;box-shadow:var(--shadow-soft);outline:none}
+    .source-link span{display:block;font-size:10px;font-weight:950;letter-spacing:.06em;color:var(--blue-strong);margin-bottom:5px}
+    .source-link strong{font-size:14px;line-height:1.4;display:block}
+    .source-link small{display:block;color:var(--muted);font-size:11px;margin-top:5px}
+    .source-note{font-size:12px;color:var(--muted);margin-top:14px}
+    .history-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:20px;background:#fff}
+    .history-table{width:100%;min-width:860px;border-collapse:collapse;font-size:13px}
+    .history-table th,.history-table td{padding:15px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+    .history-table tr:last-child td{border-bottom:0}
+    .history-table th{color:var(--muted);background:var(--surface);font-size:11px;font-weight:900;letter-spacing:.03em;white-space:nowrap}
+    .history-table td{color:var(--ink-2);font-weight:650}
+    .history-table td:first-child{color:var(--blue-strong);font-weight:950;white-space:nowrap}
+    footer{background:var(--ink);color:#fff;padding:36px 0 42px}
+    .footer-grid{display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
+    .footer-grid strong{font-size:16px}
+    .footer-grid p{font-size:12px;color:#ADB7C5;margin:7px 0 0;max-width:680px}
+    .footer-badge{font-size:11px;font-weight:900;color:var(--lime);border:1px solid rgba(223,255,106,.4);padding:8px 10px;border-radius:99px;white-space:nowrap}
+    .no-print{display:initial}
+    @media (max-width:1000px){
+      .hero-grid{grid-template-columns:1fr;gap:30px}
+      .hero-panel{max-width:760px}
+      .cover-decision{grid-template-columns:1fr 1fr}
+      .cover-decision .conclusion{grid-column:1/-1}
+      .metric-grid{grid-template-columns:1fr 1fr}
+      .lens-grid,.pilot-grid{grid-template-columns:1fr}
+      .flow-grid{grid-template-columns:repeat(3,1fr)}
+      .risk-grid{grid-template-columns:1fr 1fr}
+      .kpi-grid{grid-template-columns:repeat(3,1fr)}
+    }
+    @media (max-width:760px){
+      html{scroll-padding-top:70px}
+      .nav{padding:11px 16px}
+      .nav-links a:nth-child(n+4){display:none}
+      .brand span:last-child{font-size:13px}
+      .wrap{padding:0 18px}
+      .cover-page{min-height:auto;padding:40px 0 46px}
+      .hero h1{font-size:clamp(34px,10vw,38px);line-height:1.13}
+      .hero-lead{font-size:17px}
+      .hero-grid{grid-template-columns:minmax(0,1fr)}
+      .hero-panel{border-radius:26px;padding:10px}
+      .video-shell{border-radius:19px}
+      .video-caption{padding:14px 8px 6px}
+      .cover-decision{grid-template-columns:1fr}
+      .cover-decision .conclusion{grid-column:auto}
+      section.content,.blue-section{padding:70px 0}
+      .section-title{font-size:clamp(29px,8.6vw,32px)}
+      .section-desc{font-size:15px}
+      .thesis-card{grid-template-columns:1fr;padding:24px}
+      .thesis-stamp{width:58px;height:58px;border-radius:18px}
+      .thesis-copy h3{font-size:23px}
+      .metric-grid{grid-template-columns:1fr}
+      .claim-card{grid-template-columns:1fr;gap:11px;padding:18px}
+      .time-link{justify-self:start;padding:0 13px;min-height:36px}
+      .verdict{justify-self:start}
+      .anatomy-row{grid-template-columns:46px 1fr}
+      .anatomy-row span{grid-column:2}
+      .flow-grid{grid-template-columns:1fr}
+      .flow-step{min-height:auto}
+      .week-grid{grid-template-columns:1fr}
+      .kpi-grid{grid-template-columns:1fr 1fr}
+      .risk-grid,.source-grid{grid-template-columns:1fr}
+      .governance-note{grid-template-columns:1fr}
+      .footer-grid{align-items:flex-start;flex-direction:column}
+      .correction-wrap,.history-table-wrap{overflow:visible;border:0;background:transparent;border-radius:0}
+      .correction-table,.history-table{display:block;width:100%;min-width:0}
+      .correction-table thead,.history-table thead{display:none}
+      .correction-table tbody,.history-table tbody{display:grid;gap:14px}
+      .correction-table tr,.history-table tr{display:block;overflow:hidden;border:1px solid var(--line);border-radius:20px;background:#fff;box-shadow:0 10px 28px rgba(25,31,40,.035)}
+      .correction-table td,.history-table td{display:grid;grid-template-columns:1fr;gap:6px;width:auto!important;padding:15px 16px;border-bottom:1px solid var(--line);white-space:normal!important}
+      .correction-table tr td:last-child,.history-table tr td:last-child{border-bottom:0}
+      .correction-table td::before,.history-table td::before{content:attr(data-label);display:block;color:var(--blue-strong);font-size:10px;font-weight:950;letter-spacing:.05em;text-transform:uppercase}
+      .footer-badge{max-width:100%;white-space:normal;overflow-wrap:anywhere;line-height:1.45}
+    }
+    @media (max-width:390px){
+      .brand span:last-child{display:none}
+      .nav-links a:nth-child(n+3){display:none}
+      .hero-actions .button{width:100%}
+      .kpi-grid{grid-template-columns:1fr}
+    }
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+    }
+    @page{size:A4;margin:12mm 11mm 14mm}
+    @media print{
+      body{font-size:10.5pt;color:#111;background:#fff}
+      .nav-shell,.progress,.hero-actions,.copy-btn,.no-print{display:none!important}
+      .wrap{max-width:none;padding:0}
+      .cover-page{min-height:0;padding:0;display:block;break-after:page}
+      .cover-page::before,.cover-page::after{display:none}
+      .hero-grid{grid-template-columns:1.05fr .95fr;gap:8mm;align-items:center}
+      .hero h1{font-size:28pt;margin:4mm 0}
+      .hero-lead{font-size:11pt;margin-bottom:4mm}
+      .report-meta{margin-bottom:4mm}
+      .hero-panel{padding:3mm;border-radius:7mm;box-shadow:none}
+      .video-caption{padding:3mm 2mm 1mm}
+      .cover-decision{grid-template-columns:repeat(3,1fr);gap:3mm;margin-top:5mm}
+      .cover-decision .conclusion{grid-column:auto}
+      .decision-card{min-height:0;padding:4mm;border-radius:5mm;box-shadow:none}
+      .decision-card strong{font-size:10.5pt}
+      .decision-card p{font-size:8.5pt}
+      section.content,.blue-section{padding:15mm 0;break-inside:auto}
+      .section-title{font-size:23pt}
+      .section-desc{font-size:10.5pt}
+      .thesis-card,.agent-anatomy,.interpretation,.pilot-case,.pilot-plan,.risk-card,.source-link,.claim-card,.metric,.flow-step{box-shadow:none;break-inside:avoid}
+      .blue-section{background:#1B64DA!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;color:#fff}
+      .flow-grid{grid-template-columns:repeat(3,1fr)}
+      .metric-grid{grid-template-columns:repeat(4,1fr)}
+      .risk-grid{grid-template-columns:repeat(3,1fr)}
+      .source-grid{grid-template-columns:repeat(2,1fr)}
+      a{text-decoration:none}
+      .correction-wrap,.history-table-wrap{overflow:visible;border:1px solid var(--line);border-radius:5mm;background:#fff}
+      .correction-table,.history-table{display:table;width:100%;min-width:0;font-size:8.5pt}
+      .correction-table thead,.history-table thead{display:table-header-group}
+      .correction-table tbody,.history-table tbody{display:table-row-group}
+      .correction-table tr,.history-table tr{display:table-row;border:0;border-radius:0;box-shadow:none;background:transparent}
+      .correction-table th,.correction-table td,.history-table th,.history-table td{display:table-cell;width:auto!important;padding:2.5mm;white-space:normal!important}
+      .correction-table td::before,.history-table td::before{content:none!important;display:none!important}
+      footer{background:#191F28!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;padding:8mm 0}
+    }
+  </style>
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260809-rh3">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png?v=20260809-rh3">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png?v=20260809-rh3">
+  <link rel="manifest" href="../../site.webmanifest?v=20260809-rh3">
+  <meta name="application-name" content="Report Hub">
+  <meta property="og:site_name" content="Report Hub">
+  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260809-rh3">
+  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260809-rh3">
+  <link rel="stylesheet" href="../../assets/report-comments.css?v=20260809-comments1">
+</head>
+<body data-report-cover="assets/OBF2XTHooEU-thumbnail-fallback.jpg" data-report-cover-alt="AI가 다 해준다 인터뷰를 Hermes Agent 관점에서 분석한 보고서 대표 이미지">
+  <a class="report-home-button" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-wordmark">Report Hub</span></a>
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+  <header class="nav-shell">
+    <nav class="nav" aria-label="보고서 주요 섹션">
+      <a class="brand report-hub-brand-link" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-wordmark">Report Hub</span></a>
+      <div class="nav-links">
+        <a href="#claims">영상 주장</a>
+        <a href="#lens">Hermes 해석</a>
+        <a href="#verification">팩트체크</a>
+        <a href="#pilot">도입안</a>
+        <a href="#sources">출처</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <article id="top" class="cover-page" aria-labelledby="report-title">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div class="hero">
+            <div class="eyebrow">VIDEO INTELLIGENCE × HERMES AGENT</div>
+            <h1 id="report-title">Hermes Agent 관점에서 본 <span class="accent">‘AI가 다 해준다’</span><br>임원 업무 재설계 보고서</h1>
+            <p class="hero-lead">유호현 대표의 인터뷰를 “AI 직원”이라는 비유가 아니라, <strong>기억·도구·승인·재사용</strong>으로 구성된 실제 운영체계 관점에서 다시 읽었습니다.</p>
+            <div class="report-meta" aria-label="보고서 메타 정보">
+              <span class="version-badge" id="reportVersion">v1.0.0</span>
+              <span id="reportUpdated">Updated 2026.08.09</span>
+              <span id="reportGeneration">AI 작성 · 공식문서 교차검토</span>
+            </div>
+            <div class="hero-actions no-print">
+              <a class="button primary" href="https://www.youtube.com/watch?v=OBF2XTHooEU" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8.5 7.2v9.6L17 12 8.5 7.2Z" fill="currentColor"/><rect x="2.5" y="4.5" width="19" height="15" rx="4" stroke="currentColor" stroke-width="2"/></svg>
+                원본 영상 보기
+              </a>
+              <a class="button secondary" href="#summary">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v16m0 0-6-6m6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                결론부터 읽기
+              </a>
+            </div>
+          </div>
+
+          <aside class="hero-panel" aria-label="영상 미리보기">
+            <div class="video-shell" id="videoShell">
+              <img id="videoThumb" src="https://img.youtube.com/vi/OBF2XTHooEU/maxresdefault.jpg" alt="유호현 대표의 AI 에이전트 인터뷰 YouTube 썸네일" width="1280" height="720" loading="eager" onerror="this.onerror=null;this.src='assets/OBF2XTHooEU-thumbnail-fallback.jpg';this.dataset.fallback='true';">
+              <button class="play-button" id="playVideo" type="button" aria-label="YouTube 영상 재생">
+                <span class="play-disc" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M10 7.5v17L25 16 10 7.5Z" fill="currentColor"/></svg></span>
+              </button>
+            </div>
+            <div class="video-caption">
+              <div>
+                <strong>AI가 다 해준다 CEO 회장님까지 당신도 될 수 있다</strong>
+                <span>와이스트릿 · 유호현 토블 AI 대표</span>
+              </div>
+              <span>원본 썸네일 자동 로드<br>오프라인 대체 자산 포함</span>
+            </div>
+          </aside>
+
+          <div class="cover-decision" id="summary" aria-label="1페이지 핵심 요약">
+            <article class="decision-card">
+              <span class="label">영상의 핵심 주장</span>
+              <strong>에이전트는 1인이 여러 사업과 팀을 운영하게 만드는 레버리지다.</strong>
+              <p>작은 지시보다 큰 업무 단위를 맡기고, 팀별 정보 경계에 따라 에이전트를 운영하자는 제안입니다.</p>
+            </article>
+            <article class="decision-card highlight">
+              <span class="label">Hermes 판정</span>
+              <strong>방향은 타당하지만 “자동 대체”보다 “통제된 실행 시스템”이 정확합니다.</strong>
+              <p>Hermes는 기억·파일·터미널·브라우저·메시징·스킬·MCP를 제공하지만 권한과 설정에 따라 범위가 달라집니다.<a class="cite" href="#source-tools">[5]</a></p>
+            </article>
+            <article class="decision-card conclusion">
+              <span class="label">임원 의사결정</span>
+              <strong>전사 도입보다 ‘반복되는 큰 업무 1개’를 4주간 파일럿하십시오.</strong>
+              <p>읽기 전용부터 시작하고, 외부 발송·결제·삭제는 반드시 사람이 승인하도록 설계하는 것이 핵심입니다.<a class="cite" href="#source-security">[10]</a></p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <section class="content" aria-labelledby="summary-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">EXECUTIVE SUMMARY</div>
+          <h2 class="section-title" id="summary-title">결론: AI 직원 수가 아니라, <span style="background:linear-gradient(transparent 63%,var(--yellow) 63%)">업무 단위와 승인 구조</span>가 성패를 가릅니다.</h2>
+          <p class="section-desc">영상은 에이전트 시대의 레버리지를 설득력 있게 보여줍니다. 다만 Hermes를 실제로 쓰려면 “무엇이든 해주는 직원”보다 “권한이 제한된 운영 시스템”으로 보는 편이 안전하고 재현 가능합니다.</p>
+        </div>
+        <article class="thesis-card">
+          <div class="thesis-stamp">ONE<br>LINE</div>
+          <div class="thesis-copy">
+            <h3>Hermes Agent는 임원을 대신하는 CEO가 아니라, 임원이 정의한 미션을 반복 실행하고 증거를 남기는 <span style="color:var(--lime)">디지털 운영 레이어</span>입니다.</h3>
+            <p>공식 문서상 Hermes는 지속 메모리, 파일·터미널·브라우저 도구, 메시징 게이트웨이, 스케줄 자동화, 재사용 스킬, MCP 확장을 결합합니다. 그러나 도구 가용성은 플랫폼·자격증명·설정에 따라 달라지며, 파괴적 작업에는 승인과 격리가 필요합니다.<a class="cite" href="#source-hermes">[3]</a><a class="cite" href="#source-security">[10]</a></p>
+          </div>
+        </article>
+        <div class="metric-grid" aria-label="핵심 판단 지표">
+          <article class="metric"><span class="value">6</span><span class="unit">단계</span><strong>영상이 제시한 AI 활용 성숙도</strong><p>검색 → 생성 → 자동화 → 개인 에이전트 → 팀 에이전트 → 에이전트 네트워크.</p></article>
+          <article class="metric"><span class="value">7</span><span class="unit">요소</span><strong>Hermes 운영 구성</strong><p>모델·메모리·도구·스킬·채널·스케줄·통제장치가 함께 작동합니다.</p></article>
+          <article class="metric"><span class="value">4</span><span class="unit">주</span><strong>권장 파일럿 기간</strong><p>한 업무를 기준선과 비교하기에 충분하면서 전사 리스크는 제한합니다.</p></article>
+          <article class="metric"><span class="value">1</span><span class="unit">원칙</span><strong>되돌릴 수 없는 행동은 사람 승인</strong><p>발송·삭제·결제·배포·계정 변경은 자동 실행 범위에서 분리합니다.</p></article>
+        </div>
+        <div class="scope-note"><strong>분석 범위:</strong> 업로드된 타임스탬프 전사와 2026년 8월 9일 기준 Hermes Agent·MCP 공식 문서를 교차검토했습니다. 영상 게시일, 출연자의 비용·인력 절감 수치, 개별 사업 성과는 전사만으로 독립 검증할 수 없어 “경험·사례 주장”으로 표시했습니다.</div>
+      </div>
+    </section>
+
+    <section class="content alt" id="claims" aria-labelledby="claims-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">VIDEO THESIS MAP</div>
+          <h2 class="section-title" id="claims-title">42분 인터뷰의 핵심을 여섯 개 주장으로 압축했습니다.</h2>
+          <p class="section-desc">각 시간표시는 원본 영상의 해당 구간으로 연결됩니다. 오른쪽 판정은 “사실 여부”보다 현재 Hermes에서 어느 정도 운영 가능한지를 나타냅니다.</p>
+        </div>
+        <div class="timeline">
+          <article class="claim-card">
+            <a class="time-link" href="https://www.youtube.com/watch?v=OBF2XTHooEU&t=61s" target="_blank" rel="noopener noreferrer">00:01–04:36</a>
+            <div><h3>한 사람이 여러 프로젝트·니치 사업을 운영할 수 있다.</h3><p>출연자는 약 15개 프로젝트와 “AI 직원” 중심 운영을 소개하고, 제품 개발의 인력·비용 장벽이 크게 낮아졌다고 주장합니다.</p></div>
+            <span class="verdict experience">경험·사례 주장</span>
+          </article>
+          <article class="claim-card">
+            <a class="time-link" href="https://www.youtube.com/watch?v=OBF2XTHooEU&t=403s" target="_blank" rel="noopener noreferrer">00:06:43–07:42</a>
+            <div><h3>AI에는 작은 심부름보다 큰 업무 묶음을 맡겨야 한다.</h3><p>100m 달리기보다 100km 운송에 트럭을 쓰듯, 웹사이트 20개처럼 충분히 큰 단위로 지시해야 검수 비용을 상쇄한다는 비유입니다.</p></div>
+            <span class="verdict verified">운영 원칙 타당</span>
+          </article>
+          <article class="claim-card">
+            <a class="time-link" href="https://www.youtube.com/watch?v=OBF2XTHooEU&t=524s" target="_blank" rel="noopener noreferrer">00:08:44–11:38</a>
+            <div><h3>에이전트는 LLM에 기억과 손발을 붙인 존재다.</h3><p>Hermes가 파일을 찾고 이름을 바꾸며 브라우저를 조작하고, Telegram을 통해 원격으로 지시받는 사례가 제시됩니다.</p></div>
+            <span class="verdict verified">기능 방향 확인</span>
+          </article>
+          <article class="claim-card">
+            <a class="time-link" href="https://www.youtube.com/watch?v=OBF2XTHooEU&t=797s" target="_blank" rel="noopener noreferrer">00:13:17–18:26</a>
+            <div><h3>직무가 아니라 정보 경계별로 에이전트를 나누고 협업시킨다.</h3><p>엔지니어·디자이너가 아니라 팀·프로젝트별 컨텍스트를 분리하며, 에이전트 간 협업으로 운영 규모를 키운다는 제안입니다.</p></div>
+            <span class="verdict conditional">설계 선택 사항</span>
+          </article>
+          <article class="claim-card">
+            <a class="time-link" href="https://www.youtube.com/watch?v=OBF2XTHooEU&t=1230s" target="_blank" rel="noopener noreferrer">00:20:30–29:40</a>
+            <div><h3>MCP·온디바이스 AI·에이전트 네트워크가 앱 중심 질서를 바꾼다.</h3><p>플랫폼이 에이전트용 API를 제공하고, 개인 에이전트끼리 예약·추천·협상을 처리하면서 앱 UI의 비중이 줄어들 것이라는 전망입니다.</p></div>
+            <span class="verdict outlook">전망·가설</span>
+          </article>
+          <article class="claim-card">
+            <a class="time-link" href="https://www.youtube.com/watch?v=OBF2XTHooEU&t=2021s" target="_blank" rel="noopener noreferrer">00:33:41–42:00</a>
+            <div><h3>아이템보다 미션과 정체성이 중요하며, 열린 질문이 AI의 잠재력을 넓힌다.</h3><p>무엇을 만들지보다 왜 존재하는지를 정하고, 답을 가두는 세부 지시와 “베스트 프랙티스를 제안하라”는 탐색 지시를 구분하자는 메시지입니다.</p></div>
+            <span class="verdict verified">전략 원칙 유효</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content" id="lens" aria-labelledby="lens-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">HERMES AGENT LENS</div>
+          <h2 class="section-title" id="lens-title">“뇌에 손발을 붙인다”를 실제 시스템 구성으로 번역하면 이렇습니다.</h2>
+          <p class="section-desc">영상의 비유는 이해하기 쉽지만, 운영에서는 구성요소별 역할과 경계를 분리해야 합니다.</p>
+        </div>
+        <div class="lens-grid">
+          <article class="agent-anatomy">
+            <h3>Hermes의 7개 운영 요소</h3>
+            <p>한 요소만 갖춰서는 “에이전트 조직”이 되지 않습니다.</p>
+            <div class="anatomy-stack">
+              <div class="anatomy-row"><div class="anatomy-icon">01</div><strong>모델</strong><span>판단·작성·계획을 담당하는 추론 엔진. 공급자와 모델을 교체할 수 있습니다.</span></div>
+              <div class="anatomy-row"><div class="anatomy-icon">02</div><strong>메모리</strong><span>사용자·환경·프로젝트의 지속 정보와 과거 세션을 보존합니다.<a class="cite" href="#source-memory">[6]</a></span></div>
+              <div class="anatomy-row"><div class="anatomy-icon">03</div><strong>도구</strong><span>파일·터미널·웹·브라우저·코드 실행 등 실제 행동을 수행합니다.<a class="cite" href="#source-tools">[5]</a></span></div>
+              <div class="anatomy-row"><div class="anatomy-icon">04</div><strong>스킬</strong><span>성공한 절차를 문서화해 다음 작업에 필요할 때 불러옵니다.<a class="cite" href="#source-skills">[7]</a></span></div>
+              <div class="anatomy-row"><div class="anatomy-icon">05</div><strong>채널</strong><span>CLI·Desktop·Telegram 등에서 같은 에이전트와 대화합니다.<a class="cite" href="#source-telegram">[8]</a></span></div>
+              <div class="anatomy-row"><div class="anatomy-icon">06</div><strong>스케줄</strong><span>cron으로 반복 업무를 예약하고 결과를 지정 채널에 전달합니다.<a class="cite" href="#source-hermes">[3]</a></span></div>
+              <div class="anatomy-row"><div class="anatomy-icon">07</div><strong>통제</strong><span>사용자 허용목록·위험 명령 승인·파일 샌드박스·컨테이너 격리를 적용합니다.<a class="cite" href="#source-security">[10]</a></span></div>
+            </div>
+          </article>
+          <article class="interpretation">
+            <h3>임원 관점의 올바른 해석</h3>
+            <p>“AI 직원”은 동기부여용 비유로는 유용하지만 책임 구조를 흐릴 수 있습니다.</p>
+            <div class="interpret-list">
+              <div class="interpret-item"><strong>직원 수가 아니라 처리 가능한 업무 묶음이 늘어납니다.</strong><p>에이전트가 늘어날수록 업무 정의·우선순위·품질 기준·예외 처리 부담도 커집니다.</p></div>
+              <div class="interpret-item"><strong>자율성은 권한과 검증 비용의 함수입니다.</strong><p>읽기·초안·분석은 높은 자율성, 외부 발송·결제·삭제는 낮은 자율성이 적합합니다.</p></div>
+              <div class="interpret-item"><strong>팀별 에이전트는 ‘정보 격리’가 목적이어야 합니다.</strong><p>역할극보다 데이터 접근 범위, 작업 폴더, 계정, 승인권자를 분리하는 것이 실효성이 큽니다.</p></div>
+              <div class="interpret-item"><strong>열린 질문과 명확한 제약은 함께 써야 합니다.</strong><p>해법 탐색은 열어두되 목적, 금지사항, 근거 기준, 완료 조건은 구체적으로 고정합니다.</p></div>
+              <div class="interpret-item"><strong>성과는 한 번의 데모가 아니라 반복 재현성으로 판단합니다.</strong><p>같은 입력에서 품질 편차, 수정률, 비용, 처리시간, 위험 행동을 측정해야 합니다.</p></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content alt" id="verification" aria-labelledby="verify-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">CLAIM CHECK</div>
+          <h2 class="section-title" id="verify-title">영상의 표현과 2026년 8월 현재 공식 Hermes 정보를 구분했습니다.</h2>
+          <p class="section-desc">핵심은 영상의 비전을 깎아내리는 것이 아니라, 지금 실행 가능한 범위와 전망을 분리하는 것입니다.</p>
+        </div>
+        <div class="correction-wrap" role="region" aria-label="영상 주장 검증표" tabindex="0">
+          <table class="correction-table">
+            <thead><tr><th>영상 표현</th><th>현재 확인</th><th>임원용 판정</th><th>실행 시 표현</th></tr></thead>
+            <tbody>
+              <tr><td>Claude Desktop·Claude Code로 Hermes를 설치</td><td><span class="status-pill fix">최신화 필요</span><br>현재 공식 권장 경로는 macOS·Windows용 Hermes Desktop 설치 프로그램 또는 CLI 설치 스크립트입니다. Claude Desktop/Claude Code는 필수 선행조건이 아닙니다.<a class="cite" href="#source-install">[4]</a></td><td>영상의 설치 설명은 현재 기준으로 사용하지 않는 편이 안전합니다.</td><td>“Hermes Desktop 설치 → 모델 설정 → <code>hermes gateway setup</code>으로 Telegram 연결”로 안내합니다.</td></tr>
+              <tr><td>노트북 전체를 주면 컴퓨터가 하는 모든 일을 수행</td><td><span class="status-pill limit">조건부</span><br>파일·터미널·브라우저·웹·MCP 등 광범위한 도구를 제공하지만, 실제 가용성은 플랫폼·자격증명·활성 도구셋·사이트 정책에 따라 달라집니다.<a class="cite" href="#source-tools">[5]</a></td><td>“모든 것”은 과장입니다. 허용된 도구와 권한 안에서만 행동합니다.</td><td>도구 목록, 접근 폴더, 계정, 금지 행동을 배포 문서에 명시합니다.</td></tr>
+              <tr><td>Telegram에서 언제 어디서든 컴퓨터에 지시</td><td><span class="status-pill keep">공식 지원</span><br>Telegram 봇은 텍스트·음성·이미지·파일 첨부, 예약 결과 전달, 허용 사용자 ID 설정을 지원합니다.<a class="cite" href="#source-telegram">[8]</a></td><td>가능합니다. 단 봇 토큰 유출과 허용 사용자 설정이 핵심 위험입니다.</td><td>개인·업무 봇 분리, 숫자형 사용자 ID 허용목록, 토큰 비밀관리, 테스트 채널부터 적용합니다.</td></tr>
+              <tr><td>Hermes는 기억하고 스스로 학습한다</td><td><span class="status-pill keep">기능 확인</span><br>지속 메모리는 제한된 용량의 큐레이션 저장소이며, 스킬은 절차적 지식을 필요할 때 불러오는 구조입니다. 무제한 자동학습은 아닙니다.<a class="cite" href="#source-memory">[6]</a><a class="cite" href="#source-skills">[7]</a></td><td>“경험을 구조화해 재사용”은 맞지만, 기억·스킬 변경도 검토 대상입니다.</td><td>메모리와 스킬을 버전 관리하고, 중요한 스킬 변경은 인간 승인을 둡니다.</td></tr>
+              <tr><td>MCP를 제공하지 않는 서비스는 외면받는다</td><td><span class="status-pill limit">방향성 타당</span><br>MCP는 AI 앱과 외부 데이터·도구·워크플로를 연결하는 공개 표준이며 Hermes도 stdio·원격 서버와 도구 필터링을 지원합니다.<a class="cite" href="#source-mcp">[9]</a><a class="cite" href="#source-mcp-standard">[11]</a></td><td>채택 확대는 확인되지만, 모든 서비스의 생존 조건이라고 단정할 근거는 부족합니다.</td><td>API·MCP 제공 여부를 “에이전트 친화성” 평가 항목 중 하나로 사용합니다.</td></tr>
+              <tr><td>맥미니가 최적의 에이전트 서버</td><td><span class="status-pill limit">선택지 중 하나</span><br>Hermes는 로컬, Docker, SSH, Modal, Daytona 등 다양한 실행 백엔드를 지원합니다. Mac mini는 저전력 상시 구동용 선택일 뿐 필수는 아닙니다.<a class="cite" href="#source-hermes">[3]</a></td><td>업무 민감도·가용성·원격 관리·비용에 따라 VPS·사내 서버·클라우드와 비교해야 합니다.</td><td>개인 파일은 로컬, 팀 자동화는 격리된 서버 등 하이브리드 구성을 우선 검토합니다.</td></tr>
+              <tr><td>온디바이스 AI는 토큰 비용이 없고 보안이 보장</td><td><span class="status-pill fix">과도한 단순화</span><br>로컬 추론은 외부 API 토큰 비용을 줄일 수 있지만 기기·전력·운영 비용이 남고, 앱 권한·로그·백업·모델 공급망에 따라 데이터가 외부로 나갈 수 있습니다.</td><td>“비용 0·보안 보장”으로 보고하면 안 됩니다.</td><td>총소유비용과 데이터 흐름을 별도 검토하고, 민감 데이터 처리 범위를 문서화합니다.</td></tr>
+              <tr><td>앱은 사라지고 에이전트만 남는다 / 2026년은 마지막 해</td><td><span class="status-pill outlook">전망</span><br>인터페이스가 대화·자동실행 중심으로 이동할 가능성은 있지만 시점, 범위, 산업별 속도는 확인되지 않았습니다.</td><td>전략 시나리오로는 가치가 있으나 예산·인력 계획의 확정 전제로 쓰기 어렵습니다.</td><td>“앱 소멸”보다 “앱 UI와 에이전트 인터페이스가 병존”하는 시나리오를 기본값으로 둡니다.</td></tr>
+              <tr><td>1억 원짜리 앱을 100만 원 이하로 제작</td><td><span class="status-pill limit">개별 사례</span><br>프로토타입 비용은 급감할 수 있으나 요구사항, 보안, 운영, 품질보증, 유지보수 비용이 빠진 비교일 수 있습니다.</td><td>일반화된 100배 절감률로 사용하지 않습니다.</td><td>프로토타입·출시·운영 3단계 비용을 분리하고, 기존 기준선과 동일 범위로 비교합니다.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="blue-section" id="flow" aria-labelledby="flow-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">OPERATING FLOW</div>
+          <h2 class="section-title" id="flow-title">Hermes가 “AI 직원”처럼 보이게 만드는 실제 작동 흐름</h2>
+          <p class="section-desc">자율성을 크게 주기 전에, 경계·증거·승인·학습을 하나의 반복 루프로 설계합니다.</p>
+        </div>
+        <div class="flow-grid">
+          <article class="flow-step"><div class="num">1</div><h3>미션과 완료 조건</h3><p>무엇을 왜 하는지, 산출물·기한·품질 기준·금지사항을 선언합니다.</p></article>
+          <article class="flow-step"><div class="num">2</div><h3>정보 경계</h3><p>읽을 폴더·계정·데이터 소스와 접근하지 않을 범위를 분리합니다.</p></article>
+          <article class="flow-step"><div class="num">3</div><h3>계획·도구 선택</h3><p>모델이 작업을 나누고 파일·웹·브라우저·MCP 중 최소 도구를 선택합니다.</p></article>
+          <article class="flow-step"><div class="num">4</div><h3>실행과 증거</h3><p>초안·분석·파일을 만들고 출처, 변경 내역, 도구 결과를 함께 남깁니다.</p></article>
+          <article class="flow-step guard"><div class="num">5</div><h3>사람 승인</h3><p>발송·삭제·결제·배포 등 되돌리기 어려운 행동은 사람이 최종 결정합니다.</p></article>
+          <article class="flow-step"><div class="num">6</div><h3>기억·스킬·스케줄</h3><p>검증된 절차를 스킬로 보존하고, 반복 업무만 일정에 등록합니다.</p></article>
+        </div>
+        <div class="flow-callout"><span aria-hidden="true">✦</span><div><strong>핵심 전환:</strong> “한 번 잘 답하는 챗봇”에서 “같은 기준으로 반복 실행하고, 실패를 통제하며, 다음 작업에 절차를 재사용하는 운영 루프”로 바뀝니다. MCP는 이 루프에 외부 시스템을 연결하지만, 공식 표준도 민감한 도구 호출에는 사용자 동의와 통제를 강조합니다.<a class="cite" href="#source-mcp-standard">[11]</a></div></div>
+      </div>
+    </section>
+
+    <section class="content" id="pilot" aria-labelledby="pilot-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">4-WEEK PILOT</div>
+          <h2 class="section-title" id="pilot-title">첫 파일럿은 “임원 브리핑 자동화”가 가장 적합합니다.</h2>
+          <p class="section-desc">영상·문서·URL을 받아 핵심 주장, 공식 근거, 리스크, 실행안을 한 형식으로 정리하는 업무는 크기가 충분하고 결과 검토도 쉽습니다.</p>
+        </div>
+        <div class="pilot-grid">
+          <article class="pilot-case">
+            <h3>권장 유스케이스</h3>
+            <p><strong>주 3~5건의 외부 콘텐츠를 임원용 브리핑으로 변환</strong></p>
+            <div class="checklist">
+              <div class="check"><i>1</i><div><strong>입력</strong><br>영상 URL, 전사, 기사, 내부 메모</div></div>
+              <div class="check"><i>2</i><div><strong>처리</strong><br>주장 추출 → 공식 출처 교차검증 → Hermes 관점 해석</div></div>
+              <div class="check"><i>3</i><div><strong>출력</strong><br>1페이지 요약 + 상세 반응형 HTML + 출처·버전 이력</div></div>
+              <div class="check"><i>4</i><div><strong>사람 역할</strong><br>우선순위, 민감도, 핵심 결론, 외부 공유 승인</div></div>
+              <div class="check"><i>5</i><div><strong>자동화 범위</strong><br>읽기·초안·형식화까지. 외부 게시와 전송은 초기에는 제외</div></div>
+            </div>
+          </article>
+          <article class="pilot-plan">
+            <h3>4주 실행 계획</h3>
+            <p>“에이전트를 많이 만들기”보다 한 루프의 재현성을 먼저 증명합니다.</p>
+            <div class="week-grid">
+              <div class="week"><b>WEEK 1</b><strong>경계와 기준선</strong><span>기존 수작업 시간·수정 횟수 측정, 읽기 전용 폴더와 허용 출처 정의, 금지 행동 목록 확정.</span></div>
+              <div class="week"><b>WEEK 2</b><strong>5건 실전 제작</strong><span>동일 템플릿으로 5개 브리핑 제작, 사실 오류·출처 누락·모바일·인쇄 품질 기록.</span></div>
+              <div class="week"><b>WEEK 3</b><strong>스킬화와 반복</strong><span>성공 절차를 스킬로 고정하고 실패 패턴을 체크리스트에 반영. 필요 시 Telegram 입력만 연결.</span></div>
+              <div class="week"><b>WEEK 4</b><strong>비교와 의사결정</strong><span>수작업 기준선과 시간·품질·비용·위험을 비교해 확대, 유지, 중단 중 하나를 결정.</span></div>
+            </div>
+          </article>
+        </div>
+        <div class="kpi-grid" aria-label="파일럿 성공 지표">
+          <div class="kpi"><strong>리드타임</strong><span>수작업 대비 50% 이상 단축</span></div>
+          <div class="kpi"><strong>근거 연결률</strong><span>핵심 사실 100% 출처</span></div>
+          <div class="kpi"><strong>중대 오류</strong><span>0건</span></div>
+          <div class="kpi"><strong>재작성률</strong><span>전체 문단 20% 미만</span></div>
+          <div class="kpi"><strong>무단 행동</strong><span>0건</span></div>
+        </div>
+        <div class="prompt-block" aria-label="Hermes 실행 프롬프트 예시">
+          <button class="copy-btn no-print" type="button" data-copy-target="pilotPrompt">복사</button>
+          <pre id="pilotPrompt">역할: 임원 브리핑 에이전트
+목표: 제공된 영상·전사를 바탕으로 의사결정용 HTML 보고서를 작성한다.
+필수: ① 첫 화면 1페이지 요약 ② 영상 주장과 검증 사실 분리 ③ 공식 1차 출처 우선
+      ④ 확인 불가 항목은 ‘경험·전망·미확인’ 표시 ⑤ 외부 게시·발송 금지
+완료 조건: 모바일 360px, A4 인쇄, 로컬 자산, 출처 링크, report-metadata와 변경 이력 검증.
+먼저 작업 계획과 필요한 도구를 제시하고, 되돌릴 수 없는 행동 전에 승인을 요청하라.</pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="content alt" id="risks" aria-labelledby="risks-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">RISKS & GUARDRAILS</div>
+          <h2 class="section-title" id="risks-title">“혼자 20인분”을 목표로 하기 전에 여섯 가지 통제를 먼저 준비하십시오.</h2>
+          <p class="section-desc">에이전트의 속도는 오류와 권한 남용도 함께 확대합니다. 아래 통제는 기능을 줄이는 것이 아니라 안전하게 위임할 수 있는 범위를 넓힙니다.</p>
+        </div>
+        <div class="risk-grid">
+          <article class="risk-card"><span class="risk-level">HIGH</span><h3>과도한 권한</h3><p>개인 파일·회사 계정·브라우저 세션을 한 에이전트에 모두 주면 한 번의 오판이 크게 번집니다.</p><div class="control"><strong>통제:</strong> 최소권한, 전용 작업 폴더, 읽기/쓰기 분리, 계정별 프로필.</div></article>
+          <article class="risk-card"><span class="risk-level">HIGH</span><h3>프롬프트 인젝션</h3><p>웹페이지나 문서 안의 악성 지시가 에이전트의 목표를 바꾸거나 데이터를 유출하도록 유도할 수 있습니다.</p><div class="control"><strong>통제:</strong> 외부 콘텐츠 불신, 컨텍스트 스캔, 민감 도구 비활성화, 결과 검토.</div></article>
+          <article class="risk-card"><span class="risk-level">HIGH</span><h3>되돌릴 수 없는 행동</h3><p>삭제·발송·결제·배포·권한 변경은 작은 오류도 외부 손실로 이어집니다.</p><div class="control"><strong>통제:</strong> dry-run, 명시적 승인, 2인 검토, 테스트 계정, 롤백 계획.</div></article>
+          <article class="risk-card"><span class="risk-level">MEDIUM</span><h3>사실 오류와 근거 누락</h3><p>유창한 요약이 원문과 다르거나, 최신 정보가 아닌데 단정적으로 표현될 수 있습니다.</p><div class="control"><strong>통제:</strong> 출처 링크, 사실/해석 태그, 기준일, 핵심 수치 교차검증.</div></article>
+          <article class="risk-card"><span class="risk-level">MEDIUM</span><h3>스킬·메모리 드리프트</h3><p>잘못된 경험이 스킬로 고정되거나 오래된 사용자 정보가 반복 결과에 영향을 줄 수 있습니다.</p><div class="control"><strong>통제:</strong> 변경 승인, 버전 이력, 정기 리뷰, 폐기 기준, 민감 정보 최소화.</div></article>
+          <article class="risk-card"><span class="risk-level">MEDIUM</span><h3>관리자 병목</h3><p>에이전트가 많은 초안을 쏟아내면 검토와 우선순위 결정이 오히려 임원에게 집중될 수 있습니다.</p><div class="control"><strong>통제:</strong> 동시 업무 제한, 완료 기준, 예외만 보고, 중단 조건과 큐 관리.</div></article>
+        </div>
+        <div class="governance-note">
+          <div class="icon" aria-hidden="true">⚠</div>
+          <div><h3>보안 설계의 기준점</h3><p>Hermes 공식 문서는 사용자 허용목록, 위험 명령 승인, 파일 쓰기 안전, 컨테이너 격리, MCP 자격증명 필터링 등 다층 통제를 설명합니다. MCP 표준도 민감 작업 전에 사용자가 무엇을 공유하고 어떤 도구를 실행하는지 이해·승인해야 한다고 명시합니다.<a class="cite" href="#source-security">[10]</a><a class="cite" href="#source-mcp-standard">[11]</a></p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content" id="sources" aria-labelledby="sources-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">SOURCES</div>
+          <h2 class="section-title" id="sources-title">실제 분석에 사용한 원문과 공식 문서</h2>
+          <p class="section-desc">영상 내용은 전사에 근거했고, Hermes 기능·설치·보안은 Nous Research 공식 문서를 우선했습니다.</p>
+        </div>
+        <div class="source-grid">
+          <a class="source-link" id="source-video" href="https://www.youtube.com/watch?v=OBF2XTHooEU" target="_blank" rel="noopener noreferrer"><span>PRIMARY · YOUTUBE</span><strong>AI가 다 해준다 CEO 회장님까지 당신도 될 수 있다 / 유호현 대표</strong><small>와이스트릿 · 원본 영상 및 타임스탬프</small></a>
+          <a class="source-link" id="source-transcript" href="assets/transcript_OBF2XTHooEU.md"><span>PRIMARY · USER-PROVIDED TRANSCRIPT</span><strong>transcript_OBF2XTHooEU.md</strong><small>업로드된 타임스탬프 요약 전사</small></a>
+          <a class="source-link" id="source-hermes" href="https://hermes-agent.nousresearch.com/docs/" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · NOUS RESEARCH · 2026-08-09 확인</span><strong>Hermes Agent Documentation — Overview & Key Features</strong><small>메모리, 스킬, 메시징, 스케줄, 실행 백엔드 개요</small></a>
+          <a class="source-link" id="source-install" href="https://hermes-agent.nousresearch.com/docs/getting-started/installation" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · NOUS RESEARCH · 2026-08-09 확인</span><strong>Installation — Hermes Desktop 및 CLI 공식 설치 방식</strong><small>영상의 Claude 선행 설치 설명 교정에 사용</small></a>
+          <a class="source-link" id="source-tools" href="https://hermes-agent.nousresearch.com/docs/user-guide/features/tools/" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · NOUS RESEARCH · 2026-08-09 확인</span><strong>Tools & Toolsets — 파일·터미널·브라우저·자동화 도구</strong><small>도구 가용성은 플랫폼·자격증명·활성 설정에 따라 다름</small></a>
+          <a class="source-link" id="source-memory" href="https://hermes-agent.nousresearch.com/docs/user-guide/features/memory/" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · NOUS RESEARCH · 2026-08-09 확인</span><strong>Persistent Memory — 세션 간 지속되는 큐레이션 메모리</strong><small>MEMORY.md·USER.md의 목적과 용량 제한</small></a>
+          <a class="source-link" id="source-skills" href="https://hermes-agent.nousresearch.com/docs/user-guide/features/skills" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · NOUS RESEARCH · 2026-08-09 확인</span><strong>Skills System — 절차적 지식의 생성·수정·재사용</strong><small>에이전트 관리 스킬과 검토 필요성</small></a>
+          <a class="source-link" id="source-telegram" href="https://hermes-agent.nousresearch.com/docs/user-guide/messaging/telegram/" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · NOUS RESEARCH · 2026-08-09 확인</span><strong>Telegram Setup — BotFather, 사용자 허용목록, 게이트웨이</strong><small>원격 입력·파일·음성·예약 결과 전달 설정</small></a>
+          <a class="source-link" id="source-mcp" href="https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · NOUS RESEARCH · 2026-08-09 확인</span><strong>MCP Integration — 외부 도구 서버 연결과 도구 필터링</strong><small>stdio·원격 HTTP MCP 및 최소 노출 원칙</small></a>
+          <a class="source-link" id="source-security" href="https://hermes-agent.nousresearch.com/docs/user-guide/security/" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · NOUS RESEARCH · 2026-08-09 확인</span><strong>Security — 승인·파일 안전·격리·권한 통제</strong><small>Hermes의 다층 방어 모델</small></a>
+          <a class="source-link" id="source-mcp-standard" href="https://modelcontextprotocol.io/docs/getting-started/intro" target="_blank" rel="noopener noreferrer"><span>OFFICIAL STANDARD · MCP · 2026-08-09 확인</span><strong>What is the Model Context Protocol?</strong><small>AI 애플리케이션과 외부 데이터·도구·워크플로를 잇는 공개 표준</small></a>
+          <a class="source-link" href="https://modelcontextprotocol.io/specification/2025-11-25" target="_blank" rel="noopener noreferrer"><span>OFFICIAL STANDARD · MCP SPEC · 2026-08-09 확인</span><strong>MCP Specification — Security and Trust & Safety</strong><small>사용자 동의, 데이터 통제, 도구 안전 원칙</small></a>
+        </div>
+        <p class="source-note">썸네일: YouTube 공개 썸네일 URL(<code>img.youtube.com/vi/OBF2XTHooEU/maxresdefault.jpg</code>)을 사용하며, 네트워크가 없거나 원본이 응답하지 않을 때 깨진 이미지 대신 로컬 대체 포스터가 표시됩니다. Canva 자산 가져오기로 원본이 1280×720임을 확인했습니다.</p>
+      </div>
+    </section>
+
+    <section class="content alt" id="history" aria-labelledby="history-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">VERSION HISTORY</div>
+          <h2 class="section-title" id="history-title">버전과 변경 이력</h2>
+          <p class="section-desc">화면의 버전 배지와 아래 표는 동일한 <code>report-metadata</code> JSON에서 렌더링됩니다.</p>
+        </div>
+        <div class="history-table-wrap" role="region" aria-label="보고서 변경 이력" tabindex="0">
+          <table class="history-table">
+            <thead><tr><th>버전</th><th>날짜</th><th>구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr></thead>
+            <tbody id="historyBody"><tr><td>v1.0.0</td><td>2026-08-09</td><td>MAJOR</td><td>신규 보고서 작성</td><td>AI 작성</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-grid">
+      <div><strong>Hermes Agent 관점에서 본 ‘AI가 다 해준다’ — 임원 업무 재설계 보고서</strong><p>본 문서는 의사결정 지원용 AI 분석물입니다. 영상 속 경험·전망과 공식 확인 사실을 구분했으나, 실제 도입 전에는 조직의 보안·법무·IT 정책과 담당자의 최종 검토가 필요합니다.</p></div>
+      <span class="footer-badge" id="footerVersion">v1.0.0 · AI-assisted</span>
+    </div>
+  </footer>
+
+  <script id="report-metadata" type="application/json">
+  {
+    "schemaVersion": "1.0",
+    "reportId": "260809-hermes-agent-ai-does-everything-video-analysis",
+    "title": "Hermes Agent 관점에서 본 ‘AI가 다 해준다’ — 임원 업무 재설계 보고서",
+    "version": "1.0.0",
+    "status": "Published",
+    "createdAt": "2026-08-09",
+    "updatedAt": "2026-08-09",
+    "language": "ko-KR",
+    "author": "Jeremy Lee",
+    "generation": "AI-assisted · 공식문서 교차검토",
+    "reviewStatus": "자동 QA 완료 · 인간 최종 검토 권장",
+    "history": [
+      {
+        "version": "1.0.0",
+        "date": "2026-08-09",
+        "type": "신규 작성 · MAJOR",
+        "summary": "영상 전사의 6개 핵심 주장을 구조화하고, Hermes 공식 문서와 대조해 설치 경로·도구 범위·메모리·스킬·Telegram·MCP·보안 내용을 교정했다. 4주 임원 브리핑 파일럿과 위험 통제안을 추가했다.",
+        "sections": ["1페이지 요약", "영상 주장 분석", "Hermes 운영 구조", "팩트체크", "4주 파일럿", "위험 통제"],
+        "updatedBy": "AI-assisted",
+        "reviewStatus": "공식문서 교차검토 · 자동 QA 완료 · 인간 최종 검토 권장"
+      }
+    ]
+  }
+  </script>
+  <script>
+    (() => {
+      const metadataNode = document.getElementById('report-metadata');
+      let meta;
+      try { meta = JSON.parse(metadataNode.textContent); } catch (error) { console.error('Invalid report metadata', error); return; }
+      const version = `v${meta.version}`;
+      const updated = `Updated ${String(meta.updatedAt || '').replaceAll('-', '.')}`;
+      const setText = (id, value) => { const el = document.getElementById(id); if (el) el.textContent = value; };
+      setText('reportVersion', version);
+      setText('reportUpdated', updated);
+      setText('reportGeneration', `${meta.generation} · ${meta.reviewStatus}`);
+      setText('footerVersion', `${version} · ${meta.generation} · ${meta.reviewStatus}`);
+      document.title = meta.title;
+
+      const historyBody = document.getElementById('historyBody');
+      if (historyBody && Array.isArray(meta.history)) {
+        historyBody.innerHTML = '';
+        meta.history.forEach(item => {
+          const row = document.createElement('tr');
+          [
+            `v${item.version}`,
+            item.date,
+            item.type,
+            item.summary,
+            [item.updatedBy, item.reviewStatus].filter(Boolean).join(' · ')
+          ].forEach(text => {
+            const cell = document.createElement('td');
+            cell.textContent = text;
+            row.appendChild(cell);
+          });
+          historyBody.appendChild(row);
+        });
+      }
+
+      document.querySelectorAll('table').forEach(table => {
+        const labels = Array.from(table.querySelectorAll('thead th'), th => th.textContent.trim());
+        table.querySelectorAll('tbody tr').forEach(row => {
+          Array.from(row.children).forEach((cell, index) => {
+            const label = labels[index] || '';
+            cell.dataset.label = label;
+            if (label) cell.setAttribute('aria-label', label);
+          });
+        });
+      });
+
+      const progressBar = document.getElementById('progressBar');
+      const updateProgress = () => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const ratio = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+        progressBar.style.width = `${ratio * 100}%`;
+      };
+      updateProgress();
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      window.addEventListener('resize', updateProgress);
+
+      const play = document.getElementById('playVideo');
+      const shell = document.getElementById('videoShell');
+      if (play && shell) {
+        play.addEventListener('click', () => {
+          const iframe = document.createElement('iframe');
+          iframe.src = 'https://www.youtube-nocookie.com/embed/OBF2XTHooEU?autoplay=1&rel=0';
+          iframe.title = 'AI가 다 해준다 CEO 회장님까지 당신도 될 수 있다 — YouTube 영상';
+          iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+          iframe.allowFullscreen = true;
+          iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+          iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;z-index:5;background:#000';
+          shell.appendChild(iframe);
+          play.remove();
+        }, { once: true });
+      }
+
+      document.querySelectorAll('[data-copy-target]').forEach(button => {
+        button.addEventListener('click', async () => {
+          const target = document.getElementById(button.dataset.copyTarget);
+          if (!target) return;
+          try {
+            await navigator.clipboard.writeText(target.textContent);
+            const original = button.textContent;
+            button.textContent = '복사됨';
+            setTimeout(() => { button.textContent = original; }, 1400);
+          } catch (_) {
+            const range = document.createRange();
+            range.selectNodeContents(target);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            button.textContent = '선택됨';
+          }
+        });
+      });
+    })();
+  </script>
+  <script src="../../assets/report-page-layout.js?v=20260809-rh3"></script>
+  <script src="../../assets/report-comments.js?v=20260809-comments1" data-report-id="260809-hermes-agent-ai-does-everything-video-analysis"></script>
+  <script src="../../assets/report-history.js?v=20260809-history2" data-report-id="260809-hermes-agent-ai-does-everything-video-analysis"></script>
+  <script src="../../assets/report-hub-brand.js?v=20260809-rh3"></script>
+</body>
+</html>

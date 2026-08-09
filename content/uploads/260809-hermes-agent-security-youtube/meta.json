@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1",
+  "id": "260809-hermes-agent-security-youtube",
+  "slug": "hermes-agent-security-youtube",
+  "title": "AI 에이전트에 권한을 다 열면 어떻게 뚫리는가 — Hermes Agent 보안 설계 보고서",
+  "category": "AI",
+  "tags": [
+    "Hermes",
+    "AI Agent",
+    "보안",
+    "권한설계"
+  ],
+  "summary": "빌더 조쉬의 AI 에이전트 보안 인터뷰를 Hermes Agent 관점에서 재해석한 권한·승인·격리·감사 설계 보고서입니다.",
+  "createdAt": "2026-08-09T17:37:14+09:00",
+  "updatedAt": "2026-08-09T17:37:14+09:00",
+  "status": "published",
+  "sourceName": "AI 에이전트에 권한을 다 열면 어떻게 뚫리는가 — Hermes Agent 보안 설계 보고서 v1.0.0.zip",
+  "sourceCount": 6,
+  "entry": "index.html"
+}

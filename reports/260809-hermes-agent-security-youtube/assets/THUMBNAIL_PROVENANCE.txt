@@ -1,0 +1,10 @@
+YouTube video: https://www.youtube.com/watch?v=xW3egX7Vo-E
+Video ID: xW3egX7Vo-E
+Original thumbnail candidates used by the report at runtime:
+- https://i.ytimg.com/vi/xW3egX7Vo-E/maxresdefault.jpg
+- https://i.ytimg.com/vi/xW3egX7Vo-E/hqdefault.jpg
+
+The execution environment could not persist the remote YouTube thumbnail as a local binary.
+To avoid broken images in offline or firewalled environments, assets/video-cover-fallback.png is bundled as a local cover.
+When online, index.html attempts to replace the local cover with the original YouTube thumbnail.
+Generated: 2026-08-09
