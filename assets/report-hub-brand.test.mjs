@@ -35,6 +35,12 @@ test("public brand uses a large Toss Blue text wordmark and one floating menu", 
   assert.match(script, /report-hub-floating-menu/);
   assert.match(script, /function installTitleLinks/);
   assert.match(script, /function normalizeReportHubLinks/);
+  assert.match(script, /function removeLegacyTopMenus/);
+  assert.match(script, /\.nav-wrap/);
+  assert.match(script, /\.floating-menu:not\(\.report-hub-floating-menu\)/);
+  assert.match(script, /nav\.nav:not\(\.report-hub-floating-menu\)/);
+  assert.match(script, /\.report-view-switcher \.report-view-buttons/);
+  assert.match(script, /\.report-view-switcher \.report-utility-controls/);
   assert.match(script, /window\.scrollTo/);
   assert.doesNotMatch(script, /<img class="report-hub-logo"/);
   assert.match(archive, /<title>Report Hub \| AI 리서치 라이브러리<\/title>/);

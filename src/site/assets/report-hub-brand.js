@@ -2,7 +2,7 @@
   "use strict";
 
   var HOME = "https://aireport.ai-hub-os.com/";
-  var VERSION = "20260809-rh5";
+  var VERSION = "20260809-rh6";
   var SEOUL_TIME_ZONE = "Asia/Seoul";
   var script = document.currentScript;
   var faviconUrl = script && script.src
@@ -129,6 +129,10 @@
     controls.classList.remove("is-standalone");
     ensureClock(menu, controls);
     if (controls.parentNode !== menu) menu.appendChild(controls);
+    var viewButtons = document.querySelector(".report-view-switcher .report-view-buttons");
+    if (viewButtons && viewButtons.parentNode !== menu) menu.appendChild(viewButtons);
+    var utilityControls = document.querySelector(".report-view-switcher .report-utility-controls");
+    if (utilityControls && utilityControls.parentNode !== menu) menu.appendChild(utilityControls);
     if (layoutObserver) {
       layoutObserver.disconnect();
       layoutObserver = null;
@@ -162,6 +166,20 @@
       if ((link.textContent || "").trim() !== "Report Hub") return;
       link.href = HOME;
       link.setAttribute("aria-label", "Report Hub 메인으로 이동");
+    });
+  }
+
+  function removeLegacyTopMenus() {
+    var selectors = [
+      ".nav-wrap",
+      ".floating-menu:not(.report-hub-floating-menu)",
+      ".report-view-switcher",
+      ".topbar",
+      ".toolbar",
+      "nav.nav:not(.report-hub-floating-menu)"
+    ];
+    document.querySelectorAll(selectors.join(",")).forEach(function (menu) {
+      menu.remove();
     });
   }
 
@@ -202,6 +220,7 @@
       ensureClock(menu, menu.querySelector(".report-layout-controls"));
       installTitleLinks();
       watchForLayoutControls();
+      removeLegacyTopMenus();
     }
   }
 

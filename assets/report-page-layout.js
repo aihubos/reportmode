@@ -8,8 +8,8 @@
   if (!document.querySelector('script[src*="report-hub-brand.js"]')) {
     var brandScript = document.createElement("script");
     brandScript.src = layoutScript && layoutScript.src
-      ? new URL("report-hub-brand.js?v=20260809-rh5", layoutScript.src).href
-      : "https://aihubos.github.io/reportmode/assets/report-hub-brand.js?v=20260809-rh5";
+      ? new URL("report-hub-brand.js?v=20260809-rh6", layoutScript.src).href
+      : "https://aihubos.github.io/reportmode/assets/report-hub-brand.js?v=20260809-rh6";
     document.head.appendChild(brandScript);
   }
 
@@ -64,7 +64,7 @@
     var candidates = document.querySelectorAll("button, a");
     for (var index = 0; index < candidates.length; index += 1) {
       var label = (candidates[index].textContent || "").replace(/\s+/g, " ").trim();
-      if (label === "PDF 저장") return candidates[index];
+      if (label === "PDF 저장" && !candidates[index].closest(".nav-wrap, .floating-menu, .topbar, .toolbar, nav.nav")) return candidates[index];
     }
     return null;
   }

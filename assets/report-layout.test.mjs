@@ -12,10 +12,11 @@ test("shared layout starts wide and uses equal-size icon segmented controls", ()
   assert.match(script, /data-report-view-target/);
   assert.match(script, /aria-label="가로 보기"/);
   assert.match(script, /aria-label="세로 보기"/);
-  assert.match(script, /report-hub-brand\.js\?v=20260809-rh5/);
+  assert.match(script, /report-hub-brand\.js\?v=20260809-rh6/);
   assert.match(script, /querySelector\("\.report-hub-floating-menu"\)/);
   assert.match(css, /\.report-layout-buttons[^}]*width:\s*156px/);
   assert.match(css, /report-view-switcher-inner\s*>\s*\.report-view-buttons[^}]*width:\s*180px/);
+  assert.match(css, /report-hub-floating-menu\s*>\s*\.report-view-buttons/);
   assert.match(css, /report-view-switcher-inner\s*>\s*\.report-view-buttons[^}]*padding:\s*3px/);
   assert.match(css, /report-view-buttons\s+\.report-view-button[^}]*width:\s*50%/);
 });
@@ -39,6 +40,7 @@ test("shared report actions place copy beside PDF and expose the report view cou
   assert.match(script, /url\.search = ""/);
   assert.match(script, /url\.hash = ""/);
   assert.match(script, /data-report-view-count/);
+  assert.match(script, /closest\("\.nav-wrap, \.floating-menu, \.topbar, \.toolbar, nav\.nav"\)/);
   assert.match(css, /\.report-sharing-tools/);
   assert.match(css, /\.report-share-button/);
   assert.match(css, /\.report-view-count-panel/);

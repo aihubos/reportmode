@@ -132,7 +132,8 @@
   padding: 7px 0 !important;
 }
 .report-view-switcher-inner > .report-view-label { font-size: 10px !important; }
-.report-view-switcher-inner > .report-view-buttons {
+.report-view-switcher-inner > .report-view-buttons,
+.report-hub-floating-menu > .report-view-buttons {
   display: inline-flex !important;
   gap: 0 !important;
   width: 180px !important;
@@ -144,7 +145,8 @@
   background: rgba(118, 118, 128, .12) !important;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, .03) !important;
 }
-.report-view-switcher-inner > .report-view-buttons .report-view-button {
+.report-view-switcher-inner > .report-view-buttons .report-view-button,
+.report-hub-floating-menu > .report-view-buttons .report-view-button {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -162,7 +164,9 @@
   box-shadow: none !important;
 }
 .report-view-switcher-inner > .report-view-buttons .report-view-button.is-active,
-.report-view-switcher-inner > .report-view-buttons .report-view-button[aria-pressed="true"] {
+.report-view-switcher-inner > .report-view-buttons .report-view-button[aria-pressed="true"],
+.report-hub-floating-menu > .report-view-buttons .report-view-button.is-active,
+.report-hub-floating-menu > .report-view-buttons .report-view-button[aria-pressed="true"] {
   color: #fff !important;
   background: #3182f6 !important;
   box-shadow: 0 2px 7px rgba(49, 130, 246, .28) !important;
@@ -276,7 +280,8 @@
   .report-view-switcher-inner { gap: 6px !important; }
   .report-view-switcher-inner > .report-view-label { display: none; }
   .report-layout-buttons { width: 136px !important; }
-  .report-view-switcher-inner > .report-view-buttons { width: 148px !important; }
+  .report-view-switcher-inner > .report-view-buttons,
+  .report-hub-floating-menu > .report-view-buttons { width: 148px !important; }
   .report-view-switcher-inner > .report-utility-controls { width: 120px; }
   .report-sharing-tools,
   .report-view-switcher-inner > .report-utility-controls.report-sharing-tools,

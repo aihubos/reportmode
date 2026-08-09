@@ -1,7 +1,7 @@
 import path from "node:path";
 
 const SITE_PREFIX = "/reportmode/";
-const LAYOUT_VERSION = "20260809-rh5";
+const LAYOUT_VERSION = "20260809-rh6";
 const HISTORY_VERSION = "20260809-history2";
 const COUNTER_VERSION = "20260809-counter-fallback2";
 const COMMENTS_VERSION = "20260809-comments1";

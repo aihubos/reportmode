@@ -81,14 +81,14 @@
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
     @media print{@page{size:A4;margin:12mm}body{background:#fff!important;color:#000}.nav-wrap,.floating-actions,.scroll-progress,.hero-actions,.filter-bar,.toast{display:none!important}.container{width:100%;max-width:none}.hero{min-height:auto;grid-template-columns:1fr 1fr;padding:8mm 0 14mm}.hero-orbit{display:none}section{padding:12mm 0}.section-blue{background:#fff!important;color:#000!important;border-top:2px solid var(--blue);border-bottom:2px solid var(--blue)}.section-blue .section-desc,.flow-step p{color:#333!important}.flow-step{border:1px solid #ccc;background:#fff;color:#000}.flow-step code{color:#000;background:#eee}.spot-card,.course-card,.video-card,.pack-card,.thesis-card,.insight-card,.criterion-card{box-shadow:none;break-inside:avoid}.spot-grid{grid-template-columns:1fr 1fr;gap:8mm}.spot-body{padding:16px}.spot-media{aspect-ratio:2/1}.video-frame{display:none}.video-print{display:block;color:#333;font-size:10px;overflow-wrap:anywhere}.map-shell{box-shadow:none}.reveal{opacity:1!important;transform:none!important}.history-table-wrap,.table-wrap{overflow:visible}.history-table,.compare-table{min-width:0;font-size:8px}.source-grid{grid-template-columns:repeat(2,1fr)}a{text-decoration:none}}
   </style>
-  <link rel="icon" type="image/svg+xml" sizes="any" href="../assets/favicon.svg?v=20260809-rh5">
-  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png?v=20260809-rh5">
-  <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png?v=20260809-rh5">
-  <link rel="manifest" href="../site.webmanifest?v=20260809-rh5">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../assets/favicon.svg?v=20260809-rh6">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png?v=20260809-rh6">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png?v=20260809-rh6">
+  <link rel="manifest" href="../site.webmanifest?v=20260809-rh6">
   <meta name="application-name" content="Report Hub">
   <meta property="og:site_name" content="Report Hub">
-  <link rel="stylesheet" href="../assets/report-page-layout.css?v=20260809-rh5">
-  <link rel="stylesheet" href="../assets/report-hub-brand.css?v=20260809-rh5">
+  <link rel="stylesheet" href="../assets/report-page-layout.css?v=20260809-rh6">
+  <link rel="stylesheet" href="../assets/report-hub-brand.css?v=20260809-rh6">
   <link rel="stylesheet" href="../assets/report-comments.css?v=20260809-comments1">
 </head>
 <body data-report-view="detail" data-report-layout="wide" data-report-cover="assets/260808-dongtan-kids-day-trips/cover.png" data-report-cover-alt="아이 나들이 대표 이미지 · 식물원/체험 공간">
@@ -498,10 +498,10 @@
     function renderReportMetadata(){const node=document.getElementById('report-metadata');if(!node)return;try{const meta=JSON.parse(node.textContent);const version=`v${meta.version}`;const date=String(meta.updatedAt||'').replaceAll('-','.');const setText=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value};setText('reportVersion',version);setText('reportUpdated',`Updated ${date}`);setText('reportGeneration',`${meta.generation} · ${meta.reviewStatus}`);setText('historyCurrentVersion',`Current ${version}`);setText('footerTitle',`${meta.title} · Report Hub`);document.title=`${meta.title} · ${version}`;const body=document.getElementById('historyBody');if(!body)return;body.innerHTML='';const history=Array.isArray(meta.history)?meta.history:[];if(!history.length){const row=document.createElement('tr');const cell=document.createElement('td');cell.colSpan=5;cell.className='history-empty';cell.textContent='기록된 변경 이력이 없습니다.';row.appendChild(cell);body.appendChild(row);return}history.forEach(item=>{const row=document.createElement('tr');const values=[`v${item.version}`,String(item.date||'').replaceAll('-','.'),item.type||'',item.summary||'',[item.updatedBy,item.reviewStatus].filter(Boolean).join(' · ')];values.forEach((value,index)=>{const cell=document.createElement('td');if(index===4){const badge=document.createElement('span');badge.className='history-status';badge.textContent=value;cell.appendChild(badge)}else{cell.textContent=value}row.appendChild(cell)});body.appendChild(row)})}catch(error){console.error('Invalid report metadata:',error)}}
     renderReportMetadata();
   </script>
-  <script src="../assets/report-page-layout.js?v=20260809-rh5"></script>
+  <script src="../assets/report-page-layout.js?v=20260809-rh6"></script>
   <script src="../assets/report-view-counter.js?v=20260809-counter-fallback2" data-report-id="260808-dongtan-kids-day-trips"></script>
   <script src="../assets/report-comments.js?v=20260809-comments1" data-report-id="260808-dongtan-kids-day-trips"></script>
   <script src="../assets/report-history.js?v=20260809-history2" data-report-id="260808-dongtan-kids-day-trips" data-snapshot-id="2026-08-09-before-refresh" data-has-previous="true"></script>
-  <script src="../assets/report-hub-brand.js?v=20260809-rh5"></script>
+  <script src="../assets/report-hub-brand.js?v=20260809-rh6"></script>
 </body>
 </html>

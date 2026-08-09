@@ -58,7 +58,7 @@ for (const relative of ["index.html", "archive/index.html", "archive/upload.html
   const html = fs.readFileSync(path.join(root, relative), "utf8");
   if (!/Report Hub/.test(html)) failures.push(`${relative}: Report Hub 이름이 없음`);
   if (legacyBrand.test(html)) failures.push(`${relative}: 구형 공개 브랜드 이름이 남아 있음`);
-  if (!/favicon\.svg\?v=20260809-rh5/.test(html)) failures.push(`${relative}: 최신 RH 파비콘이 없음`);
+  if (!/favicon\.svg\?v=20260809-rh6/.test(html)) failures.push(`${relative}: 최신 RH 파비콘이 없음`);
 }
 
 const archive = fs.readFileSync(path.join(root, "archive/index.html"), "utf8");
