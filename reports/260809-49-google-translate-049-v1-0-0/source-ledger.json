@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "1.0",
+  "reportTopicRank": 49,
+  "verifiedAt": "2026-08-09",
+  "entries": [
+    {
+      "id": 1,
+      "claim": "Google 번역은 카메라 이미지 속 텍스트 번역을 지원하지만 중요 문서는 재검토가 필요하다.",
+      "url": "https://support.google.com/translate/answer/6142483?hl=ko",
+      "sourceType": "Official support",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedIn": [
+        "1분 요약",
+        "기능 활용",
+        "리스크·FAQ"
+      ],
+      "confidence": "High",
+      "notes": "기능·가격·지원 범위는 변경될 수 있으므로 발행 직전 재확인."
+    },
+    {
+      "id": 2,
+      "claim": "Gemini 기능과 지원 범위는 계정·지역·기기·요금제에 따라 달라질 수 있다.",
+      "url": "https://support.google.com/gemini/?hl=ko",
+      "sourceType": "Official documentation",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedIn": [
+        "1분 요약",
+        "대화 연습",
+        "리스크·FAQ"
+      ],
+      "confidence": "High",
+      "notes": "기능·가격·지원 범위는 변경될 수 있으므로 발행 직전 재확인."
+    },
+    {
+      "id": 3,
+      "claim": "Drive는 파일 저장·검색·공유·복구 기능을 제공하며 저장 용량과 권한을 관리해야 한다.",
+      "url": "https://support.google.com/drive/?hl=ko",
+      "sourceType": "Official support",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedIn": [
+        "1분 요약",
+        "발음",
+        "리스크·FAQ"
+      ],
+      "confidence": "High",
+      "notes": "기능·가격·지원 범위는 변경될 수 있으므로 발행 직전 재확인."
+    },
+    {
+      "id": 4,
+      "claim": "캘린더 공유 시 상대방 권한 수준을 구분해 설정해야 한다.",
+      "url": "https://support.google.com/calendar/answer/37082?hl=ko",
+      "sourceType": "Official support",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedIn": [
+        "1분 요약",
+        "실전",
+        "리스크·FAQ"
+      ],
+      "confidence": "High",
+      "notes": "기능·가격·지원 범위는 변경될 수 있으므로 발행 직전 재확인."
+    }
+  ]
+}
