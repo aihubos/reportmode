@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "rh-260809-154-enterprise-analysis-policy-154",
+  "verifiedAt": "2026-08-09",
+  "sourcePolicy": "공식 제품·IR·SEC·정부·표준 우선, 보도·시장 데이터 보완",
+  "sources": [
+    {
+      "id": "src-01",
+      "claim": "Official agent capabilities and controls.",
+      "url": "https://openai.com/chatgpt-work/",
+      "title": "ChatGPT Work",
+      "publisher": "OpenAI",
+      "sourceType": "official",
+      "publishedAt": "2026",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "회사 자료이므로 성능·효과·전망은 독립 검증이 필요합니다."
+    },
+    {
+      "id": "src-02",
+      "claim": "Official Bedrock models, agents and security description.",
+      "url": "https://aws.amazon.com/bedrock/",
+      "title": "Amazon Bedrock",
+      "publisher": "AWS",
+      "sourceType": "official",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "회사 자료이므로 성능·효과·전망은 독립 검증이 필요합니다."
+    },
+    {
+      "id": "src-03",
+      "claim": "Official Android AI agent framework.",
+      "url": "https://developers.googleblog.com/adk-kotlin-android-building-ai-agents/",
+      "title": "Android Agent Development Kit",
+      "publisher": "Google Developers",
+      "sourceType": "official",
+      "publishedAt": "2026",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "회사 자료이므로 성능·효과·전망은 독립 검증이 필요합니다."
+    },
+    {
+      "id": "src-04",
+      "claim": "Revenue $90B (+18%), Azure annual revenue above $100B, Copilot over 30M paid seats.",
+      "url": "https://www.microsoft.com/en-us/investor/earnings/fy-2026-q4/press-release-webcast",
+      "title": "Microsoft FY2026 Q4 earnings",
+      "publisher": "Microsoft IR",
+      "sourceType": "official",
+      "publishedAt": "2026-07",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "회사 자료이므로 성능·효과·전망은 독립 검증이 필요합니다."
+    },
+    {
+      "id": "src-05",
+      "claim": "Generative AI risk framework.",
+      "url": "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence",
+      "title": "NIST GenAI Profile",
+      "publisher": "NIST",
+      "sourceType": "standard",
+      "publishedAt": "2024",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "기준일 이후 변경될 수 있어 발행 직전 재확인이 필요합니다."
+    },
+    {
+      "id": "src-06",
+      "claim": "Govern, Map, Measure and Manage framework.",
+      "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+      "title": "NIST AI RMF",
+      "publisher": "NIST",
+      "sourceType": "standard",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "기준일 이후 변경될 수 있어 발행 직전 재확인이 필요합니다."
+    },
+    {
+      "id": "src-07",
+      "claim": "Agentic risks including excessive agency and tool misuse.",
+      "url": "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/",
+      "title": "OWASP Agentic Top 10 2026",
+      "publisher": "OWASP",
+      "sourceType": "standard",
+      "publishedAt": "2026",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "기준일 이후 변경될 수 있어 발행 직전 재확인이 필요합니다."
+    }
+  ]
+}

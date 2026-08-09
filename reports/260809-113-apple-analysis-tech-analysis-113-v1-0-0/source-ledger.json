@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "rh-260809-113-apple-analysis-tech-analysis-113",
+  "verifiedAt": "2026-08-09",
+  "sourcePolicy": "공식 제품·IR·SEC·정부·표준 우선, 보도·시장 데이터 보완",
+  "sources": [
+    {
+      "id": "src-01",
+      "claim": "Revenue $109.4B (+16%), gross margin 50.1%, EPS $2.02; iPhone revenue +22%.",
+      "url": "https://www.apple.com/newsroom/2026/07/apple-reports-third-quarter-results/",
+      "title": "Apple Q3 2026 results",
+      "publisher": "Apple",
+      "sourceType": "official",
+      "publishedAt": "2026-07-30",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "회사 자료이므로 성능·효과·전망은 독립 검증이 필요합니다."
+    },
+    {
+      "id": "src-02",
+      "claim": "Official Apple Intelligence features and availability.",
+      "url": "https://www.apple.com/newsroom/2026/06/apple-intelligence-brings-powerful-ai-capabilities-into-everyday-experiences/",
+      "title": "Apple Intelligence 2026 update",
+      "publisher": "Apple",
+      "sourceType": "official",
+      "publishedAt": "2026-06",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "회사 자료이므로 성능·효과·전망은 독립 검증이 필요합니다."
+    },
+    {
+      "id": "src-03",
+      "claim": "Official Siri AI and privacy architecture.",
+      "url": "https://www.apple.com/newsroom/2026/06/apple-introduces-siri-ai-a-profoundly-more-capable-and-personal-assistant/",
+      "title": "Apple introduces Siri AI",
+      "publisher": "Apple",
+      "sourceType": "official",
+      "publishedAt": "2026-06",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "회사 자료이므로 성능·효과·전망은 독립 검증이 필요합니다."
+    },
+    {
+      "id": "src-04",
+      "claim": "Official iPhone 17 specifications.",
+      "url": "https://www.apple.com/newsroom/2025/09/apple-debuts-iphone-17/",
+      "title": "Apple debuts iPhone 17",
+      "publisher": "Apple",
+      "sourceType": "official",
+      "publishedAt": "2025-09",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "회사 자료이므로 성능·효과·전망은 독립 검증이 필요합니다."
+    },
+    {
+      "id": "src-05",
+      "claim": "Official on-device foundation model developer framework.",
+      "url": "https://developer.apple.com/documentation/foundationmodels",
+      "title": "Foundation Models framework",
+      "publisher": "Apple Developer",
+      "sourceType": "official",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "회사 자료이므로 성능·효과·전망은 독립 검증이 필요합니다."
+    },
+    {
+      "id": "src-06",
+      "claim": "Reported engineering and shipment uncertainty; not an Apple announcement.",
+      "url": "https://www.reuters.com/business/apples-foldable-iphone-encounters-engineering-snags-faces-potential-shipment-2026-04-07/",
+      "title": "Foldable iPhone engineering report",
+      "publisher": "Reuters",
+      "sourceType": "news",
+      "publishedAt": "2026-04-07",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "medium",
+      "caution": "기준일 이후 변경될 수 있어 발행 직전 재확인이 필요합니다."
+    },
+    {
+      "id": "src-07",
+      "claim": "2026-08-08 close snapshot; market cap approximately $4.61T.",
+      "url": "https://www.nasdaq.com/market-activity/stocks/aapl",
+      "title": "AAPL market data",
+      "publisher": "Nasdaq",
+      "sourceType": "market-data",
+      "publishedAt": "2026-08-08",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "medium",
+      "caution": "기준일 이후 변경될 수 있어 발행 직전 재확인이 필요합니다."
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "rh-260809-064-enterprise-earnings-analysis-064",
+  "title": "[2026년 8월 분석] Big Tech 실적 시즌 핵심 지표 (Capex·Cloud·AI 매출)",
+  "seoTitle": "Big Tech 실적 시즌 핵심 지표 (Capex·Cloud·AI 매출)",
+  "alternativeTitles": [
+    "기업 AI 2026년 8월 분석: 숫자·리스크·실전 대응",
+    "Big Tech 실적 시즌 핵심 지표 (Capex·Cloud·AI 매출), 지금 확인할 공식 수치와 미확인 영역",
+    "[한국 관점] Big Tech 실적 시즌 핵심 지표 (Capex·Cloud·AI 매출): 기업·개발팀에 미치는 영향"
+  ],
+  "slug": "enterprise-earnings-analysis-064",
+  "folder": "260809-64-enterprise-earnings-analysis-064-v1-0-0",
+  "version": "1.0.0",
+  "status": "Draft",
+  "summary": "30일 안에 작은 평가 세트를 만들고 90일 안에 교체 가능한 운영 구조를 갖추는 것이 안전합니다.",
+  "hook": "Big Tech 실적 시즌 핵심 지표 (Capex·Cloud·AI 매출)—지금 클릭할 이유는 무엇이고, 무엇을 아직 믿으면 안 될까요?",
+  "lead": "Big Tech 실적 시즌 핵심 지표 (Capex·Cloud·AI 매출)를 도구 소개에서 끝내지 않고 업무 정의→평가→권한→운영→중단 기준의 순서로 재구성했습니다.",
+  "keywords": [
+    "enterprise",
+    "2026년 8월",
+    "Report Hub"
+  ],
+  "category": "AI",
+  "createdAt": "2026-08-09",
+  "updatedAt": "2026-08-09",
+  "canonical": "https://aihubos.github.io/reportmode/reports/260809-64-enterprise-earnings-analysis-064-v1-0-0/",
+  "thumbnail": "assets/thumbnail.png",
+  "topicScore": 80,
+  "scoreBreakdown": {
+    "최신성": 19,
+    "검색 의도": 13,
+    "SNS 공유성": 10,
+    "실무 효용": 11,
+    "한국 연관성": 10,
+    "근거 강도": 8,
+    "시각화 적합성": 9
+  },
+  "generation": "AI-assisted",
+  "reviewStatus": "Human review recommended",
+  "author": "Jeremy Lee",
+  "originalTopicNumber": 64,
+  "originalTitle": "Big Tech 실적 시즌 핵심 지표 (Capex·Cloud·AI 매출)",
+  "originalFlow": "추적해야 할 숫자 → 해석법 → 투자 결정",
+  "titleCandidates": [
+    {
+      "title": "[2026년 8월 분석] Big Tech 실적 시즌 핵심 지표 (Capex·Cloud·AI 매출)",
+      "score": 95
+    },
+    {
+      "title": "기업 AI 2026년 8월 분석: 숫자·리스크·실전 대응",
+      "score": 93
+    },
+    {
+      "title": "Big Tech 실적 시즌 핵심 지표 (Capex·Cloud·AI 매출), 지금 확인할 공식 수치와 미확인 영역",
+      "score": 90
+    },
+    {
+      "title": "[한국 관점] Big Tech 실적 시즌 핵심 지표 (Capex·Cloud·AI 매출): 기업·개발팀에 미치는 영향",
+      "score": 88
+    },
+    {
+      "title": "[팩트체크] Big Tech 실적 시즌 핵심 지표 (Capex·Cloud·AI 매출): 과장 없이 보는 핵심 7가지",
+      "score": 87
+    },
+    {
+      "title": "기업 AI 변화 총정리: 비용·성능·도입 판단",
+      "score": 84
+    },
+    {
+      "title": "Big Tech 실적 시즌 핵심 지표 (Capex·Cloud·AI 매출), 누구에게 유리하고 무엇이 위험한가",
+      "score": 82
+    },
+    {
+      "title": "[1분 요약] Big Tech 실적 시즌 핵심 지표 (Capex·Cloud·AI 매출)의 결론과 체크리스트",
+      "score": 81
+    },
+    {
+      "title": "기업 AI 실전 가이드: 30·60·90일 대응안",
+      "score": 79
+    },
+    {
+      "title": "Big Tech 실적 시즌 핵심 지표 (Capex·Cloud·AI 매출): 2026년 하반기 시나리오와 반론",
+      "score": 77
+    }
+  ],
+  "thumbnailText": {
+    "main": "Big Tech 실적 시즌 핵심 지표 (Capex·Cloud·AI 매출)",
+    "sub": "2026년 8월 팩트체크"
+  },
+  "socialCopy": [
+    "Big Tech 실적 시즌 핵심 지표 (Capex·Cloud·AI 매출) 핵심을 공식 수치와 미확인 영역으로 나눴습니다. https://aihubos.github.io/reportmode/reports/260809-64-enterprise-earnings-analysis-064-v1-0-0/",
+    "30일 안에 작은 평가 세트를 만들고 90일 안에 교체 가능한 운영 구조를 갖추는 것이 안전합니다. 30·60·90일 대응안까지 확인하세요. https://aihubos.github.io/reportmode/reports/260809-64-enterprise-earnings-analysis-064-v1-0-0/"
+  ],
+  "assumptions": [
+    "자료 기준일은 2026-08-09이며 미국 주식 가격·시가총액은 2026-08-08 종가 스냅샷을 사용함.",
+    "미발표 제품·일정·가격·사양은 확정하지 않고 회사 목표·보도·전망·미확인으로 표시함.",
+    "직접 사용·실측하지 않은 기기와 서비스는 체험했다고 표현하지 않음.",
+    "상태는 Draft이며 외부 게시 전 사람 검토를 권장함.",
+    "투자 관련 내용은 정보 제공 목적이며 투자 권유가 아님."
+  ]
+}

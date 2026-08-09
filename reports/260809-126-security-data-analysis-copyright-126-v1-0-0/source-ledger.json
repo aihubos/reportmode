@@ -1,0 +1,116 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "rh-260809-126-security-data-analysis-copyright-126",
+  "verifiedAt": "2026-08-09",
+  "sourcePolicy": "공식 제품·IR·SEC·정부·표준 우선, 보도·시장 데이터 보완",
+  "sources": [
+    {
+      "id": "src-01",
+      "claim": "Current consolidated EU AI Act.",
+      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX%3A02024R1689-20260727",
+      "title": "EU AI Act consolidated text",
+      "publisher": "EUR-Lex",
+      "sourceType": "law",
+      "publishedAt": "2026-07-27",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "기준일 이후 변경될 수 있어 발행 직전 재확인이 필요합니다."
+    },
+    {
+      "id": "src-02",
+      "claim": "Generative AI risk framework.",
+      "url": "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence",
+      "title": "NIST GenAI Profile",
+      "publisher": "NIST",
+      "sourceType": "standard",
+      "publishedAt": "2024",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "기준일 이후 변경될 수 있어 발행 직전 재확인이 필요합니다."
+    },
+    {
+      "id": "src-03",
+      "claim": "Govern, Map, Measure and Manage framework.",
+      "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+      "title": "NIST AI RMF",
+      "publisher": "NIST",
+      "sourceType": "standard",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "기준일 이후 변경될 수 있어 발행 직전 재확인이 필요합니다."
+    },
+    {
+      "id": "src-04",
+      "claim": "Current LLM application risks.",
+      "url": "https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/",
+      "title": "OWASP LLM Top 10 2026",
+      "publisher": "OWASP",
+      "sourceType": "standard",
+      "publishedAt": "2026",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "기준일 이후 변경될 수 있어 발행 직전 재확인이 필요합니다."
+    },
+    {
+      "id": "src-05",
+      "claim": "Agentic risks including excessive agency and tool misuse.",
+      "url": "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/",
+      "title": "OWASP Agentic Top 10 2026",
+      "publisher": "OWASP",
+      "sourceType": "standard",
+      "publishedAt": "2026",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "기준일 이후 변경될 수 있어 발행 직전 재확인이 필요합니다."
+    },
+    {
+      "id": "src-06",
+      "claim": "IEA projects data-center electricity demand near 945 TWh in 2030.",
+      "url": "https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai",
+      "title": "Energy and AI",
+      "publisher": "IEA",
+      "sourceType": "research",
+      "publishedAt": "2025",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "medium",
+      "caution": "기준일 이후 변경될 수 있어 발행 직전 재확인이 필요합니다."
+    }
+  ]
+}

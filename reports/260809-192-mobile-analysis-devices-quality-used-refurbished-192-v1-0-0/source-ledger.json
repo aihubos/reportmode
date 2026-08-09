@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "rh-260809-192-mobile-analysis-devices-quality-used-refurbished-192",
+  "verifiedAt": "2026-08-09",
+  "sourcePolicy": "공식 제품·IR·SEC·정부·표준 우선, 보도·시장 데이터 보완",
+  "sources": [
+    {
+      "id": "src-01",
+      "claim": "Official Apple Intelligence features and availability.",
+      "url": "https://www.apple.com/newsroom/2026/06/apple-intelligence-brings-powerful-ai-capabilities-into-everyday-experiences/",
+      "title": "Apple Intelligence 2026 update",
+      "publisher": "Apple",
+      "sourceType": "official",
+      "publishedAt": "2026-06",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "회사 자료이므로 성능·효과·전망은 독립 검증이 필요합니다."
+    },
+    {
+      "id": "src-02",
+      "claim": "Official on-device foundation model developer framework.",
+      "url": "https://developer.apple.com/documentation/foundationmodels",
+      "title": "Foundation Models framework",
+      "publisher": "Apple Developer",
+      "sourceType": "official",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "회사 자료이므로 성능·효과·전망은 독립 검증이 필요합니다."
+    },
+    {
+      "id": "src-03",
+      "claim": "Official on-device AI framework and hardware ecosystem.",
+      "url": "https://developers.googleblog.com/litert-the-universal-framework-for-on-device-ai/",
+      "title": "LiteRT on-device AI",
+      "publisher": "Google Developers",
+      "sourceType": "official",
+      "publishedAt": "2026",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "회사 자료이므로 성능·효과·전망은 독립 검증이 필요합니다."
+    },
+    {
+      "id": "src-04",
+      "claim": "Official Android AI agent framework.",
+      "url": "https://developers.googleblog.com/adk-kotlin-android-building-ai-agents/",
+      "title": "Android Agent Development Kit",
+      "publisher": "Google Developers",
+      "sourceType": "official",
+      "publishedAt": "2026",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "회사 자료이므로 성능·효과·전망은 독립 검증이 필요합니다."
+    },
+    {
+      "id": "src-05",
+      "claim": "Official XR and on-device AI platform announcement.",
+      "url": "https://www.qualcomm.com/news/releases/2026/06/qualcomm-takes-spatial-computing-into-the-ai-era-with-snapdragon",
+      "title": "Snapdragon spatial computing AI",
+      "publisher": "Qualcomm",
+      "sourceType": "official",
+      "publishedAt": "2026-06",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "회사 자료이므로 성능·효과·전망은 독립 검증이 필요합니다."
+    },
+    {
+      "id": "src-06",
+      "claim": "Industry framework for mobile AI value.",
+      "url": "https://www.gsma.com/solutions-and-impact/technologies/networks/gsma_resources/the-value-of-mobile-ai-whitepaper/",
+      "title": "Value of Mobile AI",
+      "publisher": "GSMA",
+      "sourceType": "industry",
+      "publishedAt": "2026",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "medium",
+      "caution": "기준일 이후 변경될 수 있어 발행 직전 재확인이 필요합니다."
+    },
+    {
+      "id": "src-07",
+      "claim": "6G terminal and edge-AI considerations.",
+      "url": "https://www.gsma.com/solutions-and-impact/technologies/networks/gsma_resources/6g-terminals-study-report/",
+      "title": "6G Terminals Study",
+      "publisher": "GSMA",
+      "sourceType": "industry",
+      "publishedAt": "2026",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "medium",
+      "caution": "기준일 이후 변경될 수 있어 발행 직전 재확인이 필요합니다."
+    }
+  ]
+}

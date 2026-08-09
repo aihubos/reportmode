@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "rh-260809-089-palantir-analysis-competition-089",
+  "verifiedAt": "2026-08-09",
+  "sourcePolicy": "공식 제품·IR·SEC·정부·표준 우선, 보도·시장 데이터 보완",
+  "sources": [
+    {
+      "id": "src-01",
+      "claim": "Q2 revenue $1.935B (+93%), U.S. commercial +149%, U.S. government +90%, TCV $3.373B.",
+      "url": "https://investors.palantir.com/news-details/2026/Palantir-Reports-Q2-2026-U-S--Comm-Revenue-Growth-of-149-YY-and-Revenue-Growth-of-93-YY-Raises-FY-2026-Revenue-Guidance-to-82-YY-Growth-and-U-S--Comm-Revenue-Guidance-to-134-YY-Crushing-Consensus-Expectations/",
+      "title": "Palantir Q2 2026 earnings",
+      "publisher": "Palantir IR",
+      "sourceType": "official",
+      "publishedAt": "2026-08-03",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "회사 자료이므로 성능·효과·전망은 독립 검증이 필요합니다."
+    },
+    {
+      "id": "src-02",
+      "claim": "Deal, customer, TCV and guidance detail.",
+      "url": "https://investors.palantir.com/files/Palantir%20-%20Q2%202026%20Business%20Update.pdf",
+      "title": "Palantir Q2 business update",
+      "publisher": "Palantir",
+      "sourceType": "official",
+      "publishedAt": "2026-08-03",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "회사 자료이므로 성능·효과·전망은 독립 검증이 필요합니다."
+    },
+    {
+      "id": "src-03",
+      "claim": "Official Foundry product description.",
+      "url": "https://www.palantir.com/platforms/foundry/",
+      "title": "Palantir Foundry",
+      "publisher": "Palantir",
+      "sourceType": "official",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "회사 자료이므로 성능·효과·전망은 독립 검증이 필요합니다."
+    },
+    {
+      "id": "src-04",
+      "claim": "Official Ontology product description.",
+      "url": "https://www.palantir.com/platforms/ontology/",
+      "title": "Palantir Ontology",
+      "publisher": "Palantir",
+      "sourceType": "official",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "회사 자료이므로 성능·효과·전망은 독립 검증이 필요합니다."
+    },
+    {
+      "id": "src-05",
+      "claim": "Business model, risks, concentration and stock compensation.",
+      "url": "https://investors.palantir.com/files/2025%20FY%20PLTR%2010-K.pdf",
+      "title": "Palantir FY2025 Form 10-K",
+      "publisher": "Palantir / SEC",
+      "sourceType": "primary",
+      "publishedAt": "2026-02",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "기준일 이후 변경될 수 있어 발행 직전 재확인이 필요합니다."
+    },
+    {
+      "id": "src-06",
+      "claim": "Generative AI risk framework.",
+      "url": "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence",
+      "title": "NIST GenAI Profile",
+      "publisher": "NIST",
+      "sourceType": "standard",
+      "publishedAt": "2024",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "high",
+      "caution": "기준일 이후 변경될 수 있어 발행 직전 재확인이 필요합니다."
+    },
+    {
+      "id": "src-07",
+      "claim": "2026-08-08 close snapshot; market cap approximately $441.8B.",
+      "url": "https://www.nasdaq.com/market-activity/stocks/pltr",
+      "title": "PLTR market data",
+      "publisher": "Nasdaq",
+      "sourceType": "market-data",
+      "publishedAt": "2026-08-08",
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero·핵심 지표",
+        "팩트 게이트",
+        "본문 흐름",
+        "출처 카드"
+      ],
+      "confidence": "medium",
+      "caution": "기준일 이후 변경될 수 있어 발행 직전 재확인이 필요합니다."
+    }
+  ]
+}
