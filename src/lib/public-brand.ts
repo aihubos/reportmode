@@ -1,8 +1,9 @@
 import path from "node:path";
 
 export const REPORT_HUB_HOME = "https://aireport.ai-hub-os.com/";
-export const REPORT_HUB_BRAND_VERSION = "20260809-rh2";
+export const REPORT_HUB_BRAND_VERSION = "20260809-rh3";
 export const REPORT_HISTORY_VERSION = "20260809-history2";
+export const REPORT_COMMENTS_VERSION = "20260809-comments1";
 
 function isRedirectHtml(html: string): boolean {
   return /<meta\b[^>]*http-equiv\s*=\s*["']?refresh["']?/i.test(html);
@@ -35,7 +36,7 @@ function replaceHeadAssets(html: string, prefix: string): string {
   let output = html
     .replace(/\s*<link\b[^>]*rel=["'][^"']*(?:icon|apple-touch-icon|manifest)[^"']*["'][^>]*>/gi, "")
     .replace(/\s*<meta\b[^>]*(?:name|property)=["'](?:application-name|og:site_name)["'][^>]*>/gi, "")
-    .replace(/\s*<link\b[^>]*href=["'][^"']*report-(?:hub-brand|page-layout)\.css(?:\?[^"']*)?["'][^>]*>/gi, "");
+    .replace(/\s*<link\b[^>]*href=["'][^"']*report-(?:hub-brand|page-layout|comments)\.css(?:\?[^"']*)?["'][^>]*>/gi, "");
   const tags = [
     `<link rel="icon" type="image/svg+xml" sizes="any" href="${prefix}/assets/favicon.svg?v=${version}">`,
     `<link rel="icon" type="image/png" sizes="32x32" href="${prefix}/assets/favicon-32x32.png?v=${version}">`,
@@ -45,6 +46,7 @@ function replaceHeadAssets(html: string, prefix: string): string {
     '<meta property="og:site_name" content="Report Hub">',
     `<link rel="stylesheet" href="${prefix}/assets/report-page-layout.css?v=${version}">`,
     `<link rel="stylesheet" href="${prefix}/assets/report-hub-brand.css?v=${version}">`,
+    `<link rel="stylesheet" href="${prefix}/assets/report-comments.css?v=${REPORT_COMMENTS_VERSION}">`,
   ].join("\n  ");
   output = output.replace(/<\/head>/i, `  ${tags}\n</head>`);
   return output;
@@ -75,7 +77,7 @@ function upsertSharedScripts(html: string, prefix: string, reportPath: string): 
   const snapshotId = existingHistory.match(/\bdata-snapshot-id=["']([^"']+)["']/i)?.[1];
   const hasPrevious = /\bdata-has-previous=["']true["']/i.test(existingHistory);
   let output = html
-    .replace(/\s*<script\b[^>]*src=["'][^"']*report-(?:hub-brand|page-layout)\.js(?:\?[^"']*)?["'][^>]*><\/script>/gi, "")
+    .replace(/\s*<script\b[^>]*src=["'][^"']*report-(?:hub-brand|page-layout|comments)\.js(?:\?[^"']*)?["'][^>]*><\/script>/gi, "")
     .replace(historyExpression, "");
   const historyAttributes = [
     `data-report-id="${reportIdFromPath(reportPath)}"`,
@@ -84,6 +86,7 @@ function upsertSharedScripts(html: string, prefix: string, reportPath: string): 
   ].filter(Boolean).join(" ");
   const tags = [
     `<script src="${prefix}/assets/report-page-layout.js?v=${REPORT_HUB_BRAND_VERSION}"></script>`,
+    `<script src="${prefix}/assets/report-comments.js?v=${REPORT_COMMENTS_VERSION}" data-report-id="${reportIdFromPath(reportPath)}"></script>`,
     `<script src="${prefix}/assets/report-history.js?v=${REPORT_HISTORY_VERSION}" ${historyAttributes}></script>`,
     `<script src="${prefix}/assets/report-hub-brand.js?v=${REPORT_HUB_BRAND_VERSION}"></script>`,
   ].join("\n  ");

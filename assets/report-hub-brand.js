@@ -2,7 +2,7 @@
   "use strict";
 
   var HOME = "https://aireport.ai-hub-os.com/";
-  var VERSION = "20260809-rh2";
+  var VERSION = "20260809-rh3";
   var script = document.currentScript;
   var faviconUrl = script && script.src
     ? new URL("favicon.svg?v=" + VERSION, script.src).href

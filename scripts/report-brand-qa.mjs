@@ -40,6 +40,9 @@ for (const file of htmlFiles(path.join(root, "reports"))) {
     [occurrences(html, "report-hub-brand.js") === 1, "공통 브랜드 스크립트가 정확히 1개가 아님"],
     [occurrences(html, "report-page-layout.css") === 1, "공통 레이아웃 스타일이 정확히 1개가 아님"],
     [occurrences(html, "report-page-layout.js") === 1, "공통 레이아웃 스크립트가 정확히 1개가 아님"],
+    [occurrences(html, "report-comments.css") === 1, "공통 댓글 스타일이 정확히 1개가 아님"],
+    [occurrences(html, "report-comments.js") === 1, "공통 댓글 스크립트가 정확히 1개가 아님"],
+    [/report-comments\.js\?v=20260809-comments1[^>]*data-report-id=/i.test(html), "댓글 스크립트에 보고서 ID가 없음"],
     [occurrences(html, "report-history.js") === 1, "공통 변경이력 스크립트가 정확히 1개가 아님"],
     [/report-history\.js\?v=20260809-history2/.test(html), "통합 변경이력 버전이 아님"],
     [!legacyBrand.test(html), "구형 공개 브랜드 이름이 남아 있음"],
@@ -53,8 +56,15 @@ for (const relative of ["index.html", "archive/index.html", "archive/upload.html
   const html = fs.readFileSync(path.join(root, relative), "utf8");
   if (!/Report Hub/.test(html)) failures.push(`${relative}: Report Hub 이름이 없음`);
   if (legacyBrand.test(html)) failures.push(`${relative}: 구형 공개 브랜드 이름이 남아 있음`);
-  if (!/favicon\.svg\?v=20260809-rh2/.test(html)) failures.push(`${relative}: RH 파비콘이 없음`);
+  if (!/favicon\.svg\?v=20260809-rh3/.test(html)) failures.push(`${relative}: 최신 RH 파비콘이 없음`);
 }
+
+const archive = fs.readFileSync(path.join(root, "archive/index.html"), "utf8");
+if ((archive.match(/https:\/\/blog\.naver\.com\/jeremylee0213/g) || []).length !== 1) failures.push("archive/index.html: 네이버 블로그 링크가 1개가 아님");
+if (!archive.includes('class="archive-blog-card"')) failures.push("archive/index.html: 초록색 네이버 블로그 카드가 없음");
+if (/class="archive-profile"|읽고 판단하기 좋은/.test(archive)) failures.push("archive/index.html: 삭제 요청한 소개 카드가 남아 있음");
+if (!/var DEFAULT_PAGE_SIZE = 30/.test(archive) || !/id="archivePageSize"/.test(archive)) failures.push("archive/index.html: 기본 30개 표시 선택기가 없음");
+if (!/archive-visitor-counter\.js\?v=20260809-visits1/.test(archive)) failures.push("archive/index.html: 방문자 집계 스크립트가 없음");
 
 for (const relative of ["archive/index.html", "archive/upload.html"]) {
   const html = fs.readFileSync(path.join(root, relative), "utf8");

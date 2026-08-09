@@ -212,6 +212,7 @@ export function renderReportHtml(doc: ReportDocument): string {
   <style>${css()}</style>
   <link rel="stylesheet" href="../../assets/report-page-layout.css?v=${REPORT_HUB_BRAND_VERSION}">
   <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=${REPORT_HUB_BRAND_VERSION}">
+  <link rel="stylesheet" href="../../assets/report-comments.css?v=20260809-comments1">
 </head>
 <body data-report-view="detail" data-report-layout="wide">
   <a class="report-home-button" href="${REPORT_HUB_HOME}" aria-label="Report Hub 메인으로 이동"><span class="report-hub-wordmark">Report Hub</span></a>
@@ -293,6 +294,7 @@ export function renderReportHtml(doc: ReportDocument): string {
   </footer>
   <script src="../../assets/report-page-layout.js?v=${REPORT_HUB_BRAND_VERSION}"></script>
   <script src="../../assets/report-view-counter.js?v=20260809-counter-fallback2" data-report-id="${escapeHtml(doc.id)}"></script>
+  <script src="../../assets/report-comments.js?v=20260809-comments1" data-report-id="${escapeHtml(doc.id)}"></script>
   <script src="../../assets/report-history.js?v=${REPORT_HISTORY_VERSION}" data-report-id="${escapeHtml(doc.id)}"></script>
   <script src="../../assets/report-hub-brand.js?v=${REPORT_HUB_BRAND_VERSION}"></script>
 </body>
@@ -446,8 +448,6 @@ export function renderHomeHtml(
     })
     .join("\n");
 
-  const latestDate = items[0]?.displayDate || "—";
-
   return `<!doctype html>
 <html lang="ko">
 <head>
@@ -472,28 +472,14 @@ export function renderHomeHtml(
       <a class="archive-brand report-hub-brand-link" href="${REPORT_HUB_HOME}" aria-label="Report Hub 메인으로 이동">
         <span class="report-hub-wordmark">Report Hub</span>
       </a>
-      <nav aria-label="주요 메뉴">
-        <a class="is-current" href="./">보고서 도서관</a>
-        <a href="https://blog.naver.com/jeremylee0213" target="_blank" rel="noopener">Jeremy's Blog</a>
-      </nav>
+      <div class="archive-topbar-actions">
+        <span class="archive-visitor-count" id="archiveVisitorCount" aria-live="polite">방문 집계 중</span>
+        <a class="archive-blog-card" href="https://blog.naver.com/jeremylee0213" target="_blank" rel="noopener"><span class="archive-blog-mark">N</span><span class="archive-blog-card-copy"><b>Jeremy's Blog</b><small>네이버 블로그</small></span></a>
+      </div>
     </div>
   </header>
 
   <main class="archive-shell">
-    <section class="archive-profile" aria-labelledby="archive-title">
-      <div class="archive-profile-copy">
-        <div class="archive-eyebrow">AI RESEARCH HUB</div>
-        <h1 id="archive-title">Report Hub</h1>
-        <p>원자료를 조사하고 사실과 해석을 나눠 기록하는 AI·비즈니스 보고서 허브입니다.</p>
-        <div class="archive-profile-meta">
-          <span>전체 보고서 <b id="archiveHeroCount">${items.length}</b></span>
-          <span>최근 작성 <b>${escapeHtml(latestDate)}</b></span>
-          <span>자동 업데이트</span>
-        </div>
-      </div>
-      <a class="archive-primary-action archive-blog-action" href="https://blog.naver.com/jeremylee0213" target="_blank" rel="noopener"><span class="archive-blog-mark">N</span><span><b>Jeremy's Blog</b><small>blog.naver.com/jeremylee0213</small></span><i aria-hidden="true">↗</i></a>
-    </section>
-
     <section class="request-board" aria-labelledby="request-board-title">
       <div class="request-board-copy">
         <div class="request-board-kicker">REPORT WISHLIST</div>
@@ -518,11 +504,6 @@ export function renderHomeHtml(
 
     <div class="archive-layout">
       <aside class="archive-sidebar" aria-label="도서관 안내와 분류">
-        <section class="archive-side-card">
-          <div class="archive-side-label">ABOUT</div>
-          <h2>읽고 판단하기 좋은<br>리서치만 모았습니다.</h2>
-          <p>모든 보고서는 작성일, 판단 근거, 사실·분석 구분과 전체 출처를 포함합니다.</p>
-        </section>
         <section class="archive-side-card archive-side-categories">
           <div class="archive-side-label">CATEGORY</div>
           <div class="archive-category-list">
@@ -549,11 +530,14 @@ ${tagLinks}
             <h2 id="board-title">전체 보고서</h2>
             <p id="archiveResultCount">총 ${items.length}개의 글</p>
           </div>
-          <label class="archive-search">
-            <span class="sr-only">보고서 검색</span>
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.1-5.4a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"/></svg>
-            <input id="archiveSearch" type="search" placeholder="제목, 본문, 태그 검색" autocomplete="off">
-          </label>
+          <div class="archive-board-controls">
+            <label class="archive-search">
+              <span class="sr-only">보고서 검색</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.1-5.4a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"/></svg>
+              <input id="archiveSearch" type="search" placeholder="제목, 본문, 태그 검색" autocomplete="off">
+            </label>
+            <label class="archive-page-size">표시 개수<select id="archivePageSize" aria-label="페이지당 보고서 수"><option value="5">5개</option><option value="10">10개</option><option value="20">20개</option><option value="30" selected>30개</option></select></label>
+          </div>
         </div>
 
         <div class="archive-mobile-categories" aria-label="보고서 분류">
@@ -577,34 +561,35 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
 
     <footer class="archive-footer">
       <span>Report Hub</span>
-      <a href="https://blog.naver.com/jeremylee0213" target="_blank" rel="noopener">blog.naver.com/jeremylee0213</a>
     </footer>
   </main>
 
   <script>
   (function () {
-    var PAGE_SIZE = 10;
+    var DEFAULT_PAGE_SIZE = 30;
+    var ALLOWED_PAGE_SIZES = [5, 10, 20, 30];
     var COUNTER_BASE = "https://api.counterapi.dev/v1/aihubos-reportmode/";
     // CounterAPI v1 currently returns HTTP 410; keep the visible numeric fallback.
     var COUNTER_ENABLED = false;
     var posts = Array.prototype.slice.call(document.querySelectorAll("[data-report-item]"));
-    var heroCount = document.getElementById("archiveHeroCount");
     var filters = Array.prototype.slice.call(document.querySelectorAll("[data-category-filter]"));
     var search = document.getElementById("archiveSearch");
     var count = document.getElementById("archiveResultCount");
     var pagination = document.getElementById("archivePagination");
+    var pageSizeSelect = document.getElementById("archivePageSize");
     var empty = document.getElementById("archiveEmpty");
     var tagCloud = document.querySelector("[data-report-tag-cloud]");
     var params = new URLSearchParams(window.location.search);
+    var requestedPageSize = parseInt(params.get("size") || String(DEFAULT_PAGE_SIZE), 10);
     var state = {
       query: params.get("q") || "",
       category: params.get("category") || "all",
-      page: Math.max(1, parseInt(params.get("page") || "1", 10) || 1)
+      page: Math.max(1, parseInt(params.get("page") || "1", 10) || 1),
+      pageSize: ALLOWED_PAGE_SIZES.indexOf(requestedPageSize) >= 0 ? requestedPageSize : DEFAULT_PAGE_SIZE
     };
 
-    if (heroCount) heroCount.textContent = String(posts.length);
-
     search.value = state.query;
+    pageSizeSelect.value = String(state.pageSize);
 
     if (tagCloud) {
       var shuffledTags = Array.prototype.slice.call(tagCloud.children);
@@ -751,6 +736,7 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
       if (state.query) next.set("q", state.query);
       if (state.category !== "all") next.set("category", state.category);
       if (state.page > 1) next.set("page", String(state.page));
+      if (state.pageSize !== DEFAULT_PAGE_SIZE) next.set("size", String(state.pageSize));
       var query = next.toString();
       window.history.replaceState(null, "", window.location.pathname + (query ? "?" + query : ""));
     }
@@ -766,10 +752,10 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
         var queryMatches = !normalizedQuery || (post.dataset.search || "").indexOf(normalizedQuery) !== -1;
         return categoryMatches && queryMatches;
       });
-      var totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+      var totalPages = Math.max(1, Math.ceil(filtered.length / state.pageSize));
       state.page = Math.min(state.page, totalPages);
-      var start = (state.page - 1) * PAGE_SIZE;
-      var visible = filtered.slice(start, start + PAGE_SIZE);
+      var start = (state.page - 1) * state.pageSize;
+      var visible = filtered.slice(start, start + state.pageSize);
 
       posts.forEach(function (post) { post.hidden = true; });
       visible.forEach(function (post) { post.hidden = false; });
@@ -815,6 +801,12 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
       state.page = 1;
       render(false);
     });
+    pageSizeSelect.addEventListener("change", function () {
+      var selected = parseInt(pageSizeSelect.value, 10);
+      state.pageSize = ALLOWED_PAGE_SIZES.indexOf(selected) >= 0 ? selected : DEFAULT_PAGE_SIZE;
+      state.page = 1;
+      render(false);
+    });
     posts.forEach(function (post) {
       var link = post.querySelector(".archive-post-link");
       if (!link) return;
@@ -828,6 +820,7 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
   </script>
   <script src="../assets/archive-request-board.js"></script>
   <script src="../assets/archive-report-admin.js"></script>
+  <script src="../assets/archive-visitor-counter.js?v=20260809-visits1"></script>
   <script src="../assets/report-hub-brand.js?v=${REPORT_HUB_BRAND_VERSION}"></script>
 </body>
 </html>

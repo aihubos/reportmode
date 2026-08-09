@@ -5,6 +5,7 @@
     max-width: 210mm;
     margin: 24px auto !important;
     padding: 0 !important;
+    overflow-x: clip !important;
     background: #fff !important;
     border-radius: 4px;
     box-shadow: 0 2px 24px rgba(0, 0, 0, .12);
@@ -13,13 +14,63 @@
   body.report-a4-mode .wrap,
   body.report-a4-mode .report-section,
   body.report-a4-mode main { max-width: 100% !important; }
-  body.report-a4-mode h1 { font-size: clamp(28px,5vw,40px) !important; line-height: 1.12 !important; }
-  body.report-a4-mode h2 { font-size: clamp(22px,3.5vw,32px) !important; line-height: 1.2 !important; }
-  body.report-a4-mode h3 { font-size: clamp(18px,2.6vw,25px) !important; }
+  body.report-a4-mode h1 { font-size: clamp(26px,4vw,36px) !important; line-height: 1.12 !important; }
+  body.report-a4-mode h2 { font-size: clamp(20px,3vw,28px) !important; line-height: 1.2 !important; }
+  body.report-a4-mode h3 { font-size: clamp(17px,2.4vw,22px) !important; }
   body.report-a4-mode .hero h1,
   body.report-a4-mode .hero-title,
   body.report-a4-mode .cover-title { max-width: 100% !important; }
+  body.report-a4-mode :where(main, section, article, aside, header, footer, div, figure) { min-width: 0; }
+  body.report-a4-mode :where(a, button) { min-width: 0; }
+  body.report-a4-mode :where(h1, h2, h3, h4, p, li, a, span, strong, em) { overflow-wrap: anywhere; }
+  body.report-a4-mode :where(.usage-step h3, .source-link, .source-card, .nav-links a) { white-space: normal !important; }
+  body.report-a4-mode .nav-links { max-width: 100%; flex-wrap: wrap; }
+  body.report-a4-mode .source-grid { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+  body.report-a4-mode .usage-flow { grid-template-columns: repeat(3,minmax(0,1fr)) !important; }
+  body.report-a4-mode .visual-glow { inset-inline: 0 !important; max-width: 100% !important; transform: none !important; }
+  body.report-a4-mode :where(.table-wrap, [class*="table-wrap"], [class*="table-scroll"]) {
+    width: 100%;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    overscroll-behavior-inline: contain;
+    contain: inline-size;
+  }
+  body.report-a4-mode .report-overflow-shell {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+  body.report-a4-mode .report-overflow-shell:focus-visible {
+    outline: 3px solid var(--rh-ring, rgba(49, 130, 246, .22));
+    outline-offset: 2px;
+  }
+  body.report-a4-mode img,
+  body.report-a4-mode video,
+  body.report-a4-mode canvas,
+  body.report-a4-mode iframe { max-width: 100% !important; }
+  body.report-a4-mode img,
+  body.report-a4-mode video { height: auto !important; }
+  body.report-a4-mode .hero-orbit {
+    width: min(100%, var(--rh-a4-orbit-max, 520px)) !important;
+    height: auto !important;
+    aspect-ratio: 1;
+    animation: none !important;
+    transform: none !important;
+  }
+  body.report-a4-mode .orbit {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    animation: none !important;
+  }
+  body.report-a4-mode .floating-note { right: 0 !important; transform: none !important; }
+  body.report-a4-mode .float-chip { display: none !important; }
+  body.report-a4-mode .hero-specs { left: 0 !important; right: 0 !important; max-width: 100% !important; }
 }
+
+.report-overflow-shell { display: contents; }
 
 .report-layout-controls { display: flex; align-items: center; justify-content: center; flex: 0 0 auto; }
 .report-layout-controls.is-standalone { position: fixed; top: 16px; left: 16px; z-index: 2147482999; }
@@ -165,6 +216,8 @@
   .report-history-shared-head { align-items: flex-start; }
   .report-history-shared-head p { display: none; }
   .report-content-review-shared-grid { grid-template-columns: 1fr; }
+  body.report-a4-mode .source-grid,
+  body.report-a4-mode .usage-flow { grid-template-columns: 1fr !important; }
 }
 
 @media print {
@@ -175,6 +228,7 @@
   .floating-menu,
   .report-view-switcher,
   .report-share-button,
+  .report-comments,
   #report-pdf-button { display: none !important; }
   body { background: #fff !important; color: #000 !important; font-size: 11pt !important; }
   .wrap, main { width: 100% !important; max-width: 100% !important; }
