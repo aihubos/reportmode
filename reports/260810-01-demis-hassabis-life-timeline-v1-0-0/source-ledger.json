@@ -1,0 +1,461 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "260810-01-demis-hassabis-life-timeline-v1-0-0",
+  "checkedAt": "2026-08-10",
+  "method": "공식 발표·기관 프로필·1차 논문 우선. 사적·어린 시절 일화는 당사자 장문 인터뷰로 보완하고 성격을 표시.",
+  "sources": [
+    {
+      "id": "src-01",
+      "url": "https://blog.google/company-news/inside-google/message-ceo/next-chapter-ai-momentum/",
+      "publisher": "Google",
+      "sourceType": "공식 발표",
+      "publishedAt": "2026-08-06",
+      "checkedAt": "2026-08-10",
+      "title": "The next chapter of our AI momentum",
+      "confidence": "high",
+      "caution": "2026년 8월 Chair of Google DeepMind·Chief Scientist of Alphabet 전환과 Isomorphic Labs 지속 리드."
+    },
+    {
+      "id": "src-02",
+      "url": "https://www.nobelprize.org/prizes/chemistry/2024/hassabis/facts/",
+      "publisher": "Nobel Prize",
+      "sourceType": "공식 수상자 정보",
+      "publishedAt": "2024-10-09",
+      "checkedAt": "2026-08-10",
+      "title": "Demis Hassabis – Facts – 2024",
+      "confidence": "high",
+      "caution": "출생일·출생지·2024년 노벨 화학상 수상 정보."
+    },
+    {
+      "id": "src-03",
+      "url": "https://www.nobelprize.org/prizes/chemistry/2024/summary/",
+      "publisher": "Nobel Prize",
+      "sourceType": "공식 수상 요약",
+      "publishedAt": "2024-10-09",
+      "checkedAt": "2026-08-10",
+      "title": "The Nobel Prize in Chemistry 2024 – Summary",
+      "confidence": "high",
+      "caution": "데이비드 베이커와 데미스 하사비스·존 점퍼 사이의 상 배분과 공적 구분."
+    },
+    {
+      "id": "src-04",
+      "url": "https://royalsociety.org/people/demis-hassabis-13817/",
+      "publisher": "Royal Society",
+      "sourceType": "기관 인물 프로필",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "title": "Sir Demis Hassabis CBE FREng FRS",
+      "confidence": "medium-high",
+      "caution": "체스 신동, 17세 Theme Park, 케임브리지, Elixir Studios, UCL 박사, 2007년 연구."
+    },
+    {
+      "id": "src-05",
+      "url": "https://www.wired.com/story/deepmind/",
+      "publisher": "WIRED",
+      "sourceType": "장문 인터뷰·프로필",
+      "publishedAt": "2015-06-22",
+      "checkedAt": "2026-08-10",
+      "title": "DeepMind: inside Google's super-brain",
+      "confidence": "medium-high",
+      "caution": "어린 시절 체스·컴퓨터, 30! 면접, Theme Park, Elixir, 피터 틸 투자 일화. 회고 인터뷰 기반."
+    },
+    {
+      "id": "src-06",
+      "url": "https://achievement.org/achiever/demis-hassabis-ph-d/",
+      "publisher": "Academy of Achievement",
+      "sourceType": "당사자 인터뷰",
+      "publishedAt": "2017-09-07",
+      "checkedAt": "2026-08-10",
+      "title": "Sir Demis Hassabis – Biography and Interview",
+      "confidence": "medium-high",
+      "caution": "체스 경력, 게임·뇌과학·DeepMind로 이어진 진로 전환에 대한 장문 구술."
+    },
+    {
+      "id": "src-07",
+      "url": "https://achievement.org/video/demis-hassabis-3/",
+      "publisher": "Academy of Achievement",
+      "sourceType": "당사자 인터뷰",
+      "publishedAt": "2017-09-07",
+      "checkedAt": "2026-08-10",
+      "title": "Demis Hassabis, Part 3 – The 10-hour chess match",
+      "confidence": "medium-high",
+      "caution": "리히텐슈타인 대회 10~12시간 패배 뒤 체스보다 넓은 문제를 풀기로 결심한 일화."
+    },
+    {
+      "id": "src-08",
+      "url": "https://ratings.fide.com/profile/401307",
+      "publisher": "FIDE",
+      "sourceType": "공식 선수 프로필",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "title": "Hassabis, Demis – FIDE Profile",
+      "confidence": "high",
+      "caution": "FIDE 타이틀 Candidate Master. 그랜드마스터로 표기하지 않기 위한 검증 자료."
+    },
+    {
+      "id": "src-09",
+      "url": "https://www.pnas.org/doi/10.1073/pnas.0610561104",
+      "publisher": "PNAS",
+      "sourceType": "1차 학술 논문",
+      "publishedAt": "2007-01-30",
+      "checkedAt": "2026-08-10",
+      "title": "Patients with hippocampal amnesia cannot imagine new experiences",
+      "confidence": "high",
+      "caution": "해마 기억상실 환자의 새로운 경험 상상 능력 저하를 보고한 하사비스 공동 저자 연구."
+    },
+    {
+      "id": "src-10",
+      "url": "https://discovery.ucl.ac.uk/16126/1/16126.pdf",
+      "publisher": "UCL Discovery",
+      "sourceType": "박사학위 논문",
+      "publishedAt": "2009-02-01",
+      "checkedAt": "2026-08-10",
+      "title": "Neural processes underpinning episodic memory",
+      "confidence": "high",
+      "caution": "2009년 UCL 인지신경과학 박사학위 논문."
+    },
+    {
+      "id": "src-11",
+      "url": "https://deepmind.google/about/",
+      "publisher": "Google DeepMind",
+      "sourceType": "공식 기관 연혁",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "title": "Our mission is to build AI responsibly to benefit humanity",
+      "confidence": "high",
+      "caution": "2010년 시작, 학제 간 접근, Atari DQN 등 공식 조직 연혁. 일부 직함 표기는 2026년 8월 개편 전 상태일 수 있음."
+    },
+    {
+      "id": "src-12",
+      "url": "https://deepmind.google/research/alphago/",
+      "publisher": "Google DeepMind",
+      "sourceType": "공식 프로젝트 설명",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "title": "AlphaGo",
+      "confidence": "high",
+      "caution": "판후이전 5:0, 이세돌전 4:1, Move 37·Move 78 등 AlphaGo 주요 기록."
+    },
+    {
+      "id": "src-13",
+      "url": "https://deepmind.google/blog/10-years-of-alphago/",
+      "publisher": "Google DeepMind",
+      "sourceType": "공식 10주년 회고",
+      "publishedAt": "2026-03-10",
+      "checkedAt": "2026-08-10",
+      "title": "From games to biology and beyond: 10 years of AlphaGo’s impact",
+      "confidence": "medium-high",
+      "caution": "서울 대국 2억 명 시청, Move 37, AlphaGo 기술이 과학 문제로 확장된 공식 회고."
+    },
+    {
+      "id": "src-14",
+      "url": "https://www.nature.com/articles/s41586-021-03819-2",
+      "publisher": "Nature",
+      "sourceType": "1차 학술 논문",
+      "publishedAt": "2021-07-15",
+      "checkedAt": "2026-08-10",
+      "title": "Highly accurate protein structure prediction with AlphaFold",
+      "confidence": "high",
+      "caution": "AlphaFold2의 구조와 단백질 3차원 구조 예측 성능을 보고한 대표 논문."
+    },
+    {
+      "id": "src-15",
+      "url": "https://deepmind.google/science/alphafold/",
+      "publisher": "Google DeepMind",
+      "sourceType": "공식 프로젝트 연혁",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "title": "AlphaFold",
+      "confidence": "high",
+      "caution": "2020년 돌파, 2022년 2억 개 구조, AlphaFold 3, 노벨상 및 사용자 확산 연혁."
+    },
+    {
+      "id": "src-16",
+      "url": "https://blog.google/intl/ko-kr/company-news/inside-google/google-for-korea-2026-kr/",
+      "publisher": "Google Korea",
+      "sourceType": "공식 행사 기록",
+      "publishedAt": "2026-04-29",
+      "checkedAt": "2026-08-10",
+      "title": "구글 포 코리아 2026: 알파고 10주년과 AI의 다음 10년",
+      "confidence": "high",
+      "caution": "하사비스·이세돌 10주년 대담과 한국 AI·과학 협력 발표."
+    },
+    {
+      "id": "src-17",
+      "url": "https://deepmind.google/blog/announcing-our-partnership-with-the-republic-of-korea/",
+      "publisher": "Google DeepMind",
+      "sourceType": "공식 한국 파트너십 발표",
+      "publishedAt": "2026-04-27",
+      "checkedAt": "2026-08-10",
+      "title": "Announcing our partnership with the Republic of Korea",
+      "confidence": "high",
+      "caution": "한국 과기정통부 파트너십, 서울 AI Campus, 한국 내 AlphaFold 연구자 8만5천 명 이상."
+    },
+    {
+      "id": "src-18",
+      "url": "https://time.com/7277608/demis-hassabis-interview-time100-2025/",
+      "publisher": "TIME",
+      "sourceType": "장문 인터뷰",
+      "publishedAt": "2025-04-16",
+      "checkedAt": "2026-08-10",
+      "title": "Demis Hassabis Is Preparing for AI's Endgame",
+      "confidence": "medium-high",
+      "caution": "노벨위원회 연락처 문제로 공개 약 20분 전에 수상 소식을 들었다는 일화. 인터뷰 회고 기반."
+    },
+    {
+      "id": "src-19",
+      "url": "https://www.forbes.com/sites/samshead/2018/11/07/deepmind-ceo-opens-up-on-dark-hours-at-his-video-game-company/",
+      "publisher": "Forbes",
+      "sourceType": "인터뷰 기사",
+      "publishedAt": "2018-11-07",
+      "checkedAt": "2026-08-10",
+      "title": "DeepMind CEO opens up on dark hours at his video game company",
+      "confidence": "medium-high",
+      "caution": "Elixir Studios의 80~90시간 노동, 번아웃, 자금난에 대한 회고. 기사 내 chess grandmaster 표현은 FIDE와 불일치."
+    },
+    {
+      "id": "src-20",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/april-ai-update/",
+      "publisher": "Google",
+      "sourceType": "공식 조직 발표",
+      "publishedAt": "2023-04-20",
+      "checkedAt": "2026-08-10",
+      "title": "Google Brain and DeepMind join forces as Google DeepMind",
+      "confidence": "high",
+      "caution": "2023년 Google Brain과 DeepMind 통합 및 하사비스의 Google DeepMind 리드."
+    },
+    {
+      "id": "src-21",
+      "url": "https://www.nature.com/articles/s41592-023-02087-4",
+      "publisher": "Nature Methods",
+      "sourceType": "학술 논평",
+      "publishedAt": "2024-01-02",
+      "checkedAt": "2026-08-10",
+      "title": "AlphaFold predictions are valuable hypotheses and accelerate but do not replace experimental structure determination",
+      "confidence": "medium-high",
+      "caution": "AlphaFold 예측의 가치와 실험 검증을 대체할 수 없는 한계를 설명하는 균형 자료."
+    },
+    {
+      "id": "src-22",
+      "url": "https://www.isomorphiclabs.com/press/isomorphic-labs-funding",
+      "publisher": "Isomorphic Labs",
+      "sourceType": "공식 회사 발표",
+      "publishedAt": "2026-05-12",
+      "checkedAt": "2026-08-10",
+      "title": "Isomorphic Labs secures funding to scale its AI drug design engine",
+      "confidence": "medium-high",
+      "caution": "2021년 설립, Demis Hassabis 창업자·CEO, AI 기반 신약 발견 임무를 확인하는 공식 자료."
+    }
+  ],
+  "claims": [
+    {
+      "id": "C01",
+      "claim": "공식 이름은 Demis Hassabis이며 1976년 7월 27일 런던 출생이다.",
+      "sourceId": "src-02",
+      "usedIn": [
+        "Hero",
+        "Timeline",
+        "FAQ"
+      ],
+      "confidence": "high",
+      "caution": "없음"
+    },
+    {
+      "id": "C02",
+      "claim": "2024년 노벨 화학상은 절반이 David Baker, 나머지 절반이 Demis Hassabis와 John Jumper에게 배분됐다.",
+      "sourceId": "src-03",
+      "usedIn": [
+        "Hero",
+        "Timeline",
+        "Fact Check"
+      ],
+      "confidence": "high",
+      "caution": "수상 공적을 혼동하지 않음"
+    },
+    {
+      "id": "C03",
+      "claim": "2026년 8월 Chair of Google DeepMind·Chief Scientist of Alphabet로 역할이 바뀌었고 Isomorphic Labs를 계속 이끈다.",
+      "sourceId": "src-01",
+      "usedIn": [
+        "Hero",
+        "Why Now",
+        "Timeline",
+        "FAQ"
+      ],
+      "confidence": "high",
+      "caution": "일부 정적 프로필은 업데이트 지연 가능"
+    },
+    {
+      "id": "C04",
+      "claim": "4세 체스, 약 2주 뒤 성인 승리, 8세 ZX Spectrum, 11세 오셀로 AI, 15세 30! 면접, 17세 Theme Park 일화.",
+      "sourceId": "src-05",
+      "usedIn": [
+        "Timeline",
+        "Anecdotes"
+      ],
+      "confidence": "medium-high",
+      "caution": "어린 시절과 면접은 당사자 회고 인터뷰 기반"
+    },
+    {
+      "id": "C05",
+      "claim": "FIDE 공식 타이틀은 Candidate Master다.",
+      "sourceId": "src-08",
+      "usedIn": [
+        "Timeline",
+        "Fact Check",
+        "FAQ"
+      ],
+      "confidence": "high",
+      "caution": "그랜드마스터로 표기하지 않음"
+    },
+    {
+      "id": "C06",
+      "claim": "10~12시간 체스 패배 뒤 더 넓은 문제에 두뇌를 쓰기로 결심했다고 회고했다.",
+      "sourceId": "src-07",
+      "usedIn": [
+        "Anecdotes"
+      ],
+      "confidence": "medium-high",
+      "caution": "당사자 회고의 의미 해석"
+    },
+    {
+      "id": "C07",
+      "claim": "2007년 해마 기억상실 환자가 새로운 경험을 상상하는 데 현저한 어려움을 보였다는 연구를 발표했다.",
+      "sourceId": "src-09",
+      "usedIn": [
+        "Timeline",
+        "Pattern"
+      ],
+      "confidence": "high",
+      "caution": "연구 결과를 모든 기억 환자에게 일반화하지 않음"
+    },
+    {
+      "id": "C08",
+      "claim": "2009년 UCL 인지신경과학 박사학위 논문을 제출했다.",
+      "sourceId": "src-10",
+      "usedIn": [
+        "Timeline"
+      ],
+      "confidence": "high",
+      "caution": "없음"
+    },
+    {
+      "id": "C09",
+      "claim": "DeepMind는 2010년에 시작됐다.",
+      "sourceId": "src-11",
+      "usedIn": [
+        "Timeline"
+      ],
+      "confidence": "high",
+      "caution": "정적 페이지의 현재 직함은 2026년 공지와 다를 수 있음"
+    },
+    {
+      "id": "C10",
+      "claim": "AlphaGo는 판후이를 5:0, 이세돌을 4:1로 이겼고 Move 37과 Move 78이 상징적 장면이다.",
+      "sourceId": "src-12",
+      "usedIn": [
+        "Timeline",
+        "Anecdotes",
+        "FAQ"
+      ],
+      "confidence": "high",
+      "caution": "시스템은 대규모 팀의 성과"
+    },
+    {
+      "id": "C11",
+      "claim": "2016년 서울 대국은 2억 명 이상이 시청했다.",
+      "sourceId": "src-13",
+      "usedIn": [
+        "Summary",
+        "Korea"
+      ],
+      "confidence": "high",
+      "caution": "Google DeepMind 공식 회고 수치"
+    },
+    {
+      "id": "C12",
+      "claim": "AlphaFold2 대표 논문은 2021년 Nature에 발표됐다.",
+      "sourceId": "src-14",
+      "usedIn": [
+        "Timeline",
+        "Pattern"
+      ],
+      "confidence": "high",
+      "caution": "단백질 구조 예측과 실험적 확정을 구분"
+    },
+    {
+      "id": "C13",
+      "claim": "2022년 약 2억 개 단백질 구조 예측 데이터가 공개됐다.",
+      "sourceId": "src-15",
+      "usedIn": [
+        "Timeline"
+      ],
+      "confidence": "high",
+      "caution": "예측 구조이며 모두 동일한 신뢰도를 갖지 않음"
+    },
+    {
+      "id": "C14",
+      "claim": "2026년 서울에서 하사비스와 이세돌이 AlphaGo 10주년 대담을 했다.",
+      "sourceId": "src-16",
+      "usedIn": [
+        "Why Now",
+        "Korea"
+      ],
+      "confidence": "high",
+      "caution": "행사 당시 직함은 8월 역할 개편 전 표기"
+    },
+    {
+      "id": "C15",
+      "claim": "2026년 공식 발표 기준 한국 내 AlphaFold 이용 연구자는 8만5천 명 이상이다.",
+      "sourceId": "src-17",
+      "usedIn": [
+        "Korea"
+      ],
+      "confidence": "high",
+      "caution": "회사 공식 집계이며 방법론 미공개"
+    },
+    {
+      "id": "C16",
+      "claim": "노벨상 소식을 공식 발표 약 20분 전에 들었다고 TIME에 회고했다.",
+      "sourceId": "src-18",
+      "usedIn": [
+        "Anecdotes"
+      ],
+      "confidence": "medium",
+      "caution": "인터뷰 회고 기반"
+    },
+    {
+      "id": "C17",
+      "claim": "Elixir 시절 80~90시간 노동과 번아웃·자금난을 회고했다.",
+      "sourceId": "src-19",
+      "usedIn": [
+        "Timeline",
+        "Anecdotes"
+      ],
+      "confidence": "medium-high",
+      "caution": "기사의 chess grandmaster 표현은 FIDE와 불일치하여 사용하지 않음"
+    },
+    {
+      "id": "C18",
+      "claim": "AlphaFold 예측은 가치 있는 가설이지만 실험적 구조 결정을 완전히 대체하지 않는다.",
+      "sourceId": "src-21",
+      "usedIn": [
+        "Fact Check",
+        "FAQ"
+      ],
+      "confidence": "high",
+      "caution": "응용별 신뢰도 차이 존재"
+    },
+    {
+      "id": "C19",
+      "claim": "Isomorphic Labs는 2021년 설립됐고 Demis Hassabis가 창업자·CEO로 이끌고 있다.",
+      "sourceId": "src-22",
+      "usedIn": [
+        "Timeline",
+        "Why Now"
+      ],
+      "confidence": "high",
+      "caution": "Google DeepMind 직책과 별도 역할"
+    }
+  ]
+}

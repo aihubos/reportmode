@@ -1,0 +1,276 @@
+{
+  "schemaVersion": "1.0",
+  "reportId": "260809-21-dario-amodei-claude-altman-rivalry-v1-0-0",
+  "verifiedAt": "2026-08-09",
+  "entries": [
+    {
+      "claim": "2000년 미국 물리 올림피아드 팀 명단에 Dario Amodei 포함",
+      "url": "https://www.aapt.org/olympiad2000/team2000.html",
+      "sourceType": "공식 교육기관 기록",
+      "publishedAt": "2000",
+      "verifiedAt": "2026-08-09",
+      "sections": [
+        "Hero",
+        "연대기",
+        "일화"
+      ],
+      "confidence": "high",
+      "caution": "팀 선발 단계와 국제대회 최종 출전 여부는 이 페이지 하나로 추가 단정하지 않음."
+    },
+    {
+      "claim": "Princeton 생물물리학 박사, Hertz Fellow·Thesis Prize",
+      "url": "https://www.hertzfoundation.org/people/dario-amodei/",
+      "sourceType": "공식 재단 프로필",
+      "publishedAt": "상시",
+      "verifiedAt": "2026-08-09",
+      "sections": [
+        "1분 요약",
+        "연대기"
+      ],
+      "confidence": "high",
+      "caution": "Hertz 페이지의 수상 연도 표기가 2011/2012로 혼재해 본문은 2011–12로 표기."
+    },
+    {
+      "claim": "OpenAI VP Research, GPT-2·GPT-3 기여, 약 5년 근무 후 퇴사",
+      "url": "https://openai.com/index/organizational-update/",
+      "sourceType": "회사 공식 발표",
+      "publishedAt": "2020-12-29",
+      "verifiedAt": "2026-08-09",
+      "sections": [
+        "Hero",
+        "연대기",
+        "불화",
+        "FAQ"
+      ],
+      "confidence": "high",
+      "caution": "공식 공지는 갈등의 구체적 이유를 밝히지 않음."
+    },
+    {
+      "claim": "RLHF 계보의 2017년 인간 선호 연구, 약 900 bits와 1시간 미만 사람 평가",
+      "url": "https://openai.com/index/learning-from-human-preferences/",
+      "sourceType": "1차 연구·공식 연구 블로그",
+      "publishedAt": "2017-06-13",
+      "verifiedAt": "2026-08-09",
+      "sections": [
+        "1분 요약",
+        "연대기",
+        "일화"
+      ],
+      "confidence": "high",
+      "caution": "아모데이 단독 발명이 아니라 OpenAI·DeepMind 공동 연구."
+    },
+    {
+      "claim": "Anthropic은 다리오 CEO·다니엘라 President가 이끄는 신뢰성·안전 연구 회사로 2021년 공식 발표",
+      "url": "https://www.anthropic.com/news/anthropic-raises-124-million-to-build-more-reliable-general-ai-systems",
+      "sourceType": "회사 공식 발표",
+      "publishedAt": "2021-05-28",
+      "verifiedAt": "2026-08-09",
+      "sections": [
+        "연대기",
+        "FAQ"
+      ],
+      "confidence": "high",
+      "caution": "창업진 전체 수와 역할은 시점별 공식 자료가 다를 수 있어 핵심 두 역할만 확정."
+    },
+    {
+      "claim": "첫 Claude는 2022년 봄 훈련됐으나 공개보다 안전 연구에 우선 사용",
+      "url": "https://www.anthropic.com/news/core-views-on-ai-safety",
+      "sourceType": "회사 공식 설명",
+      "publishedAt": "2023-03-08",
+      "verifiedAt": "2026-08-09",
+      "sections": [
+        "연대기",
+        "일화",
+        "불화",
+        "FAQ"
+      ],
+      "confidence": "high",
+      "caution": "회사 자체 설명이며 당시 모델 완성도·상용성은 독립 검증 불가."
+    },
+    {
+      "claim": "Claude는 2023년 3월 14일 broader launch",
+      "url": "https://www.anthropic.com/news/introducing-claude",
+      "sourceType": "회사 공식 출시 발표",
+      "publishedAt": "2023-03-14",
+      "verifiedAt": "2026-08-09",
+      "sections": [
+        "연대기",
+        "FAQ"
+      ],
+      "confidence": "high",
+      "caution": "closed alpha는 그보다 앞서 진행."
+    },
+    {
+      "claim": "Anthropic 챗봇 소문이 2022년 ChatGPT 긴급 출시를 촉진했다는 취재",
+      "url": "https://www.reuters.com/legal/transactional/anthropic-v-openai-behind-bitter-battle-future-ai-2026-06-11/",
+      "sourceType": "Reuters 복수 취재원 보도",
+      "publishedAt": "2026-06-11",
+      "verifiedAt": "2026-08-09",
+      "sections": [
+        "연대기",
+        "불화"
+      ],
+      "confidence": "medium-high",
+      "caution": "당사자 공식 문서가 아니라 익명 취재원 기반 보도임을 본문에 표시."
+    },
+    {
+      "claim": "2023년 OpenAI 이사회가 아모데이 지도 아래 합병을 잠깐 검토",
+      "url": "https://www.reuters.com/legal/transactional/anthropic-v-openai-behind-bitter-battle-future-ai-2026-06-11/",
+      "sourceType": "Reuters 취재·증언 인용",
+      "publishedAt": "2026-06-11",
+      "verifiedAt": "2026-08-09",
+      "sections": [
+        "연대기",
+        "불화"
+      ],
+      "confidence": "medium-high",
+      "caution": "“extremely briefly” 검토된 미성사 아이디어."
+    },
+    {
+      "claim": "2025년 말 Claude Code 경쟁력이 OpenAI의 Codex·기업 소프트웨어 집중에 영향을 줌",
+      "url": "https://www.reuters.com/legal/transactional/anthropic-v-openai-behind-bitter-battle-future-ai-2026-06-11/",
+      "sourceType": "Reuters 취재",
+      "publishedAt": "2026-06-11",
+      "verifiedAt": "2026-08-09",
+      "sections": [
+        "연대기",
+        "불화"
+      ],
+      "confidence": "medium-high",
+      "caution": "인과관계는 취재원 평가이며 제품 성능의 절대 우위를 의미하지 않음."
+    },
+    {
+      "claim": "2026년 인도 AI 정상회의에서 두 CEO가 나란히 서고도 손을 연결하지 않음",
+      "url": "https://www.reuters.com/business/media-telecom/modis-ai-unity-pose-turns-awkward-altman-amodei-2026-02-19/",
+      "sourceType": "Reuters 영상·현장 보도",
+      "publishedAt": "2026-02-19",
+      "verifiedAt": "2026-08-09",
+      "sections": [
+        "Hero",
+        "연대기",
+        "사진",
+        "FAQ"
+      ],
+      "confidence": "high",
+      "caution": "올트먼은 무대 지시를 이해하지 못했다고 설명. 개인 감정의 직접 증거로 과잉 해석하지 않음."
+    },
+    {
+      "claim": "Anthropic Super Bowl 광고가 ChatGPT 광고 계획을 풍자했고 올트먼이 deceptive라고 비판",
+      "url": "https://www.reuters.com/business/media-telecom/anthropic-buys-super-bowl-ads-slap-openai-selling-ads-chatgpt-2026-02-07/",
+      "sourceType": "Reuters 보도·공개 발언",
+      "publishedAt": "2026-02-07",
+      "verifiedAt": "2026-08-09",
+      "sections": [
+        "연대기",
+        "불화"
+      ],
+      "confidence": "high",
+      "caution": "광고의 표현과 OpenAI의 실제 광고 정책은 별도 평가 필요."
+    },
+    {
+      "claim": "어린 시절 계산기, 남매의 세계 구하기 놀이, Rosewood 만찬의 초기 반감",
+      "url": "https://www.wired.com/story/anthropic-benevolent-artificial-intelligence/",
+      "sourceType": "WIRED 프로필 인터뷰",
+      "publishedAt": "2025",
+      "verifiedAt": "2026-08-09",
+      "sections": [
+        "연대기",
+        "일화"
+      ],
+      "confidence": "medium",
+      "caution": "가족·당사자 회고 기반 일화로 공식 경력과 구분."
+    },
+    {
+      "claim": "아버지의 죽음이 이론물리에서 생물학으로의 전환과 과학 가속 동기에 영향",
+      "url": "https://www.bigtechnology.com/p/the-making-of-dario-amodei",
+      "sourceType": "Big Technology 장기 인터뷰 프로필",
+      "publishedAt": "2025",
+      "verifiedAt": "2026-08-09",
+      "sections": [
+        "1분 요약",
+        "연대기",
+        "일화",
+        "인물 해석"
+      ],
+      "confidence": "medium-high",
+      "caution": "동기 해석은 당사자·지인 인터뷰 기반."
+    },
+    {
+      "claim": "AI의 긍정적 가능성을 생물학·신경과학·빈곤·평화·일과 의미로 제시",
+      "url": "https://darioamodei.com/essay/machines-of-loving-grace",
+      "sourceType": "당사자 에세이",
+      "publishedAt": "2024-10",
+      "verifiedAt": "2026-08-09",
+      "sections": [
+        "연대기",
+        "인물 해석"
+      ],
+      "confidence": "high",
+      "caution": "미래 전망이며 사실 예측이 아니라 저자의 비전."
+    },
+    {
+      "claim": "국방 AI 사용에서 대규모 국내 감시와 완전 자율무기에 두 경계를 요구",
+      "url": "https://www.anthropic.com/news/statement-department-of-war",
+      "sourceType": "Anthropic CEO 공식 성명",
+      "publishedAt": "2026-02-26",
+      "verifiedAt": "2026-08-09",
+      "sections": [
+        "연대기",
+        "불화"
+      ],
+      "confidence": "high",
+      "caution": "Anthropic 당사자 입장이며 정부·OpenAI의 관점과 다를 수 있음."
+    },
+    {
+      "claim": "Dario Amodei 사진 라이선스 CC BY 2.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Dario_Amodei_at_TechCrunch_Disrupt_2023_03.jpg",
+      "sourceType": "Wikimedia Commons 라이선스 메타데이터",
+      "publishedAt": "2023-09-20",
+      "verifiedAt": "2026-08-09",
+      "sections": [
+        "Hero",
+        "사진",
+        "썸네일"
+      ],
+      "confidence": "high",
+      "caution": "TechCrunch 저작자 표기, CC BY 2.0 링크, 변경 표시 필요."
+    },
+    {
+      "claim": "Sam Altman TED 사진 라이선스 CC BY 2.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Sam_Altman_speaking_at_TED.jpg",
+      "sourceType": "Wikimedia Commons 라이선스 메타데이터",
+      "publishedAt": "2025-04-11",
+      "verifiedAt": "2026-08-09",
+      "sections": [
+        "사진",
+        "썸네일"
+      ],
+      "confidence": "high",
+      "caution": "Steve Jurvetson 저작자 표기, CC BY 2.0 링크, 변경 표시 필요."
+    },
+    {
+      "claim": "2023 Downing Street AI 개발자 회의 사진 라이선스 CC BY 2.0",
+      "url": "https://commons.wikimedia.org/wiki/File:The_Prime_Minister_meets_with_AI_developers.jpg",
+      "sourceType": "Wikimedia Commons 라이선스 메타데이터",
+      "publishedAt": "2023-05-24",
+      "verifiedAt": "2026-08-09",
+      "sections": [
+        "사진"
+      ],
+      "confidence": "high",
+      "caution": "Simon Walker / No 10 Downing Street 표기, 리사이즈 표시."
+    },
+    {
+      "claim": "2026 India AI summit 단체 사진 라이선스 GODL-India",
+      "url": "https://commons.wikimedia.org/wiki/File:Prime_Minister_of_Bharat,_Shri_Narendra_Damodardas_Modi_in_a_group_photograph_along_with_global_tech_leaders_at_the_Opening_Ceremony_of_India_AI_Impact_Summit.jpg",
+      "sourceType": "정부 공개 데이터 라이선스",
+      "publishedAt": "2026-02-19",
+      "verifiedAt": "2026-08-09",
+      "sections": [
+        "사진"
+      ],
+      "confidence": "high",
+      "caution": "Prime Minister’s Office, Government of India 출처·GODL-India 표기, 크롭 표시."
+    }
+  ]
+}

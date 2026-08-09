@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">체스 신동이 노벨상까지</title>
+<desc id="desc">체스, 인공지능 신경망, 단백질 구조가 하나의 궤도로 연결된 추상 그래픽</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFFFFF"/><stop offset="1" stop-color="#E8F3FF"/></linearGradient>
+  <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#5CA2FF"/><stop offset="1" stop-color="#1B64DA"/></linearGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#191F28" flood-opacity=".16"/></filter>
+</defs>
+<rect width="1200" height="630" fill="url(#bg)"/>
+<circle cx="1070" cy="75" r="205" fill="#3182F6" opacity=".08"/>
+<circle cx="101" cy="560" r="175" fill="#DFFF6A" opacity=".25"/>
+<path d="M545 125 C765 55 970 115 1080 295 C985 475 782 534 555 485" fill="none" stroke="#3182F6" stroke-width="3" stroke-dasharray="9 13" opacity=".32"/>
+<g transform="translate(725 105)" filter="url(#shadow)">
+  <rect width="392" height="410" rx="48" fill="#191F28"/>
+  <circle cx="72" cy="78" r="33" fill="#DFFF6A"/>
+  <circle cx="196" cy="62" r="18" fill="#3182F6"/>
+  <circle cx="314" cy="92" r="27" fill="#FFFFFF" opacity=".92"/>
+  <circle cx="94" cy="202" r="20" fill="#FFFFFF" opacity=".85"/>
+  <circle cx="215" cy="185" r="31" fill="#3182F6"/>
+  <circle cx="326" cy="222" r="16" fill="#DFFF6A"/>
+  <circle cx="118" cy="328" r="28" fill="#3182F6"/>
+  <circle cx="244" cy="315" r="18" fill="#FFFFFF" opacity=".9"/>
+  <circle cx="330" cy="345" r="30" fill="#3182F6" opacity=".8"/>
+  <g stroke="#FFFFFF" stroke-width="4" opacity=".62">
+    <path d="M72 78 196 62 314 92M72 78 94 202 215 185 314 92M94 202 118 328 244 315 326 222M215 185 244 315 330 345M326 222 330 345" fill="none"/>
+  </g>
+  <g transform="translate(24 110)">
+    <path d="M310 38c-48 15-82 52-86 98-4 44 22 73 19 116-3 37-30 66-66 77" fill="none" stroke="#DFFF6A" stroke-width="18" stroke-linecap="round"/>
+    <path d="M281 42c-38 25-54 64-45 103 8 37 38 58 45 94 8 40-10 75-42 98" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" opacity=".7"/>
+  </g>
+</g>
+<g transform="translate(70 82)">
+  <rect width="600" height="470" rx="42" fill="#FFFFFF" opacity=".92" filter="url(#shadow)"/>
+  <text x="42" y="153" font-family="NanumSquare, Noto Sans CJK KR, sans-serif" font-size="60" font-weight="900" letter-spacing="-3" fill="#191F28">체스 신동이</text>
+  <text x="42" y="228" font-family="NanumSquare, Noto Sans CJK KR, sans-serif" font-size="60" font-weight="900" letter-spacing="-3" fill="#3182F6">노벨상까지</text>
+  <rect x="40" y="254" width="314" height="18" rx="9" fill="#DFFF6A" transform="rotate(-1 40 254)"/>
+  <text x="42" y="324" font-family="NanumSquare, Noto Sans CJK KR, sans-serif" font-size="27" font-weight="800" letter-spacing="-1" fill="#333D4B">데미스 하사비스 연대기</text>
+  <g transform="translate(42 364)">
+    <rect width="118" height="60" rx="18" fill="url(#blue)"/>
+    <path d="M35 41h47l-5-8 2-17-12-9-9 10-9-8-7 13 7 11z" fill="#fff"/>
+    <circle cx="76" cy="16" r="3" fill="#191F28"/>
+    <path d="M142 30h270" stroke="#3182F6" stroke-width="3" stroke-linecap="round" stroke-dasharray="7 11" opacity=".34"/>
+  </g>
+</g>
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">샘 알트만, AI 권력의 연대기</title>
+<desc id="desc">머스크와 아모데이로 갈라지는 AI 권력 관계를 추상적인 노드와 선으로 표현한 썸네일</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e8f3ff"/></linearGradient>
+  <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1b64da"/><stop offset="1" stop-color="#5ca2ff"/></linearGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#191f28" flood-opacity=".15"/></filter>
+</defs>
+<rect width="1200" height="630" rx="0" fill="url(#bg)"/>
+<circle cx="1115" cy="76" r="205" fill="#3182f6" opacity=".10"/>
+<circle cx="103" cy="575" r="175" fill="#dfff6a" opacity=".24"/>
+<path d="M722 127 C865 62 1044 121 1100 251 C1154 377 1079 512 928 533 C779 554 686 470 695 349" fill="none" stroke="#3182f6" stroke-width="3" stroke-dasharray="11 14" opacity=".34"/>
+<path d="M770 311 C848 228 933 211 1034 243" fill="none" stroke="#191f28" stroke-width="6" stroke-linecap="round" opacity=".85"/>
+<path d="M770 330 C862 397 949 426 1065 395" fill="none" stroke="#3182f6" stroke-width="6" stroke-linecap="round" opacity=".88"/>
+<circle cx="769" cy="320" r="92" fill="url(#blue)" filter="url(#shadow)"/>
+<circle cx="769" cy="320" r="52" fill="#ffffff" opacity=".95"/>
+<path d="M745 335c9-29 39-48 63-27 11 10 13 27 8 42-9 27-40 39-63 20-10-8-14-22-8-35Z" fill="#191f28"/>
+<circle cx="1043" cy="244" r="49" fill="#191f28" filter="url(#shadow)"/>
+<circle cx="1063" cy="397" r="49" fill="#dfff6a" stroke="#191f28" stroke-width="5" filter="url(#shadow)"/>
+<circle cx="866" cy="111" r="18" fill="#3182f6"/>
+<circle cx="944" cy="510" r="18" fill="#191f28"/>
+<rect x="70" y="76" width="472" height="9" rx="4.5" fill="#3182f6"/>
+<text x="70" y="179" fill="#191f28" font-family="Noto Sans CJK KR, NanumGothic, sans-serif" font-size="76" font-weight="900" letter-spacing="-4">샘 알트만,</text>
+<text x="70" y="278" fill="#191f28" font-family="Noto Sans CJK KR, NanumGothic, sans-serif" font-size="76" font-weight="900" letter-spacing="-4">AI 권력의 연대기</text>
+<rect x="70" y="352" width="390" height="64" rx="18" fill="#dfff6a"/>
+<text x="94" y="396" fill="#191f28" font-family="Noto Sans CJK KR, NanumGothic, sans-serif" font-size="34" font-weight="800" letter-spacing="-1.5">머스크·아모데이 뒷이야기</text>
+</svg>

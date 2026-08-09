@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "260810-01-elon-musk-timeline-altman-lawsuit-v1-0-0",
+  "title": "일론 머스크 연대기: 12살 게임 코드에서 알트만 법정전쟁까지",
+  "seoTitle": "일론 머스크 연대기와 샘 알트만 법정싸움 총정리",
+  "alternativeTitles": [
+    "일론 머스크 55년 타임라인: PayPal 쿠데타, 로켓 3연패, OpenAI 패소",
+    "친구에서 법정 적수로: 머스크와 알트만 11년 전쟁",
+    "머스크는 어떻게 머스크가 됐나: 테슬라·스페이스X·X·OpenAI 연대기"
+  ],
+  "slug": "elon-musk-timeline-altman-lawsuit",
+  "folder": "260810-01-elon-musk-timeline-altman-lawsuit-v1-0-0",
+  "version": "1.0.0",
+  "status": "Published",
+  "summary": "일론 머스크의 1971~2026년 주요 사건을 Zip2·PayPal·Tesla·SpaceX·X·Neuralink·xAI·OpenAI 순으로 정리하고, 전기적 일화의 신뢰 수준과 Sam Altman·OpenAI 소송의 양측 주장·시효 평결을 분리해 설명한 인물 연대기.",
+  "hook": "12살에 500달러짜리 게임 코드를 팔던 소년은 로켓 세 번 실패 뒤 네 번째에 회사를 살렸고, 2026년에는 함께 OpenAI를 만든 Sam Altman과의 재판에서 “너무 늦었다”는 이유로 패했습니다.",
+  "keywords": [
+    "일론 머스크",
+    "Elon Musk",
+    "샘 알트만",
+    "Sam Altman",
+    "OpenAI 소송",
+    "SpaceX",
+    "Tesla",
+    "X",
+    "xAI",
+    "연대기"
+  ],
+  "category": "Tech",
+  "createdAt": "2026-08-10",
+  "updatedAt": "2026-08-10",
+  "canonical": "https://aihubos.github.io/reportmode/reports/260810-01-elon-musk-timeline-altman-lawsuit-v1-0-0/",
+  "thumbnail": "assets/thumbnail.png",
+  "topicScore": 92,
+  "assumptions": [
+    "2026-08-10 일일 아카이브 원문을 제공받지 않아 dailySequence 01을 안전한 가정으로 사용함.",
+    "사용자가 제공한 일론 머스크 사진을 썸네일과 본문 대표 이미지로 사용함.",
+    "Blastar·사무실 숙식·PayPal 신혼여행 축출·러시아 로켓 협상은 공식 기록이 아닌 전기·회고록·보도 기반으로 별도 표기함.",
+    "Musk 측은 2026-05-18 항소 의사를 밝혔으나 2026-08-10 확인 범위에서 최종 항소심 판단은 확인되지 않음.",
+    "법정 설명은 일반 정보이며 법률 자문이 아님."
+  ],
+  "generation": "AI-assisted",
+  "reviewStatus": "Human review recommended",
+  "thumbnailText": {
+    "main": "일론 머스크 55년 연대기",
+    "sub": "알트만 법정전쟁까지"
+  },
+  "socialCopy": [
+    "12살 게임 코드 500달러 → PayPal 신혼여행 쿠데타 → 로켓 3연패 → OpenAI 법정 패소. 일론 머스크의 55년은 성공담보다 통제권과 생존 베팅의 반복이었습니다.",
+    "OpenAI가 이겼습니다. 하지만 법원이 “사명 변경이 옳다”고 판정한 건 아닙니다. 머스크 vs 알트만 11년 전쟁을 날짜 순서로 정리했습니다."
+  ]
+}
