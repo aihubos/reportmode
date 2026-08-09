@@ -115,7 +115,7 @@ function upsertHomeButton(html, body, archiveHref) {
       return whole.replace(/>$/, ` href="${archiveHref}">`);
     });
   }
-  const button = `<a class="report-home-button" href="${archiveHref}" aria-label="보고서 도서관 메인으로 이동">RM · Report Mode</a>`;
+  const button = `<a class="report-home-button" href="${archiveHref}" aria-label="Report Hub 메인으로 이동">RH · Report Hub</a>`;
   return html.replace(body, `${body}\n  ${button}`);
 }
 
@@ -129,7 +129,7 @@ export function enhanceCurrentReport(html, options) {
 
   const { reportPath, reportId, snapshotId } = options;
   const prefix = relativePrefix(reportPath);
-  const archiveHref = `${prefix}/archive/`;
+  const archiveHref = "https://aireport.ai-hub-os.com/";
   const bodyResult = replaceBodyTag(html);
   let output = bodyResult.html;
   output = upsertFavicon(output);

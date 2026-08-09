@@ -8,7 +8,7 @@
   <meta property="og:title" content="AI 시대 인재 격차와 조직 대응 전략 | 임원 브리핑" />
   <meta property="og:description" content="AI 도입 여부가 아니라 업무를 쪼개고, 위임하고, 검증하고, 학습하는 조직 능력이 격차를 만듭니다." />
   <meta property="og:type" content="article" />
-  <title>AI 시대 인재 격차와 조직 대응 전략 | 임원 브리핑 · v1.0.0</title>
+  <title>AI 시대 인재 격차와 조직 대응 전략 | 임원 브리핑 · v1.0.0 | Report Hub</title>
   <style>
     :root {
       --blue: #3182F6;
@@ -530,8 +530,16 @@
       a { text-decoration: none; }
     }
   </style>
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260809-rh1">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png?v=20260809-rh1">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png?v=20260809-rh1">
+  <link rel="manifest" href="../../site.webmanifest?v=20260809-rh1">
+  <meta name="application-name" content="Report Hub">
+  <meta property="og:site_name" content="Report Hub">
+  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260809-rh1">
 </head>
 <body>
+  <a class="report-home-button" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><img class="report-hub-logo" src="../../assets/favicon.svg?v=20260809-rh1" alt=""><span class="report-hub-wordmark">Report Hub</span></a>
   <div class="scroll-progress" id="scrollProgress"></div>
 
   <div class="nav-wrap">
@@ -928,7 +936,7 @@
       </div>
 
       <div class="footer-bottom">
-        <span id="footerTitle">AI 시대 인재 격차와 조직 대응 전략 | 임원 브리핑 · AIHUBOS ReportMode</span>
+        <span id="footerTitle">AI 시대 인재 격차와 조직 대응 전략 | 임원 브리핑 · Report Hub</span>
         <span id="footerMeta">AI-assisted · 2026.08</span>
       </div>
 
@@ -1048,7 +1056,7 @@
         setText('reportUpdated', `Updated ${date}`);
         setText('reportGeneration', `${meta.generation} · ${meta.reviewStatus}`);
         setText('historyCurrentVersion', `Current ${version}`);
-        setText('footerTitle', `${meta.title} · AIHUBOS ReportMode`);
+        setText('footerTitle', `${meta.title} · Report Hub`);
         setText('footerMeta', `${meta.generation} · ${month}`);
         document.title = `${meta.title} · ${version}`;
 
@@ -1095,5 +1103,6 @@
     }
     renderReportMetadata();
   </script>
+  <script src="../../assets/report-hub-brand.js?v=20260809-rh1"></script>
 </body>
 </html>

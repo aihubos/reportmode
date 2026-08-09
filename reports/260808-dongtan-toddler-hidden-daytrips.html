@@ -8,7 +8,7 @@
   <meta property="og:title" content="동탄에서 1시간, 1~3세와 실패 적은 나들이 7선" />
   <meta property="og:description" content="낮잠·기저귀·유모차 동선을 우선해 고른 1~3세용 근거리 나들이 보고서. 첫 페이지 1장 요약 포함." />
   <meta property="og:type" content="article" />
-  <title>동탄에서 1시간, 1~3세와 실패 적은 나들이 7선 · v1.0.0</title>
+  <title>동탄에서 1시간, 1~3세와 실패 적은 나들이 7선 · v1.0.0 | Report Hub</title>
   <style>
 
     :root {
@@ -217,10 +217,16 @@
   <link rel="stylesheet" href="../assets/report-page-layout.css?v=20260809-refresh">
   <script src="../assets/report-view-counter.js?v=20260809-counter-fallback2" data-report-id="260808-dongtan-toddler-hidden-daytrips"></script>
   <script src="../assets/report-page-layout.js?v=20260809-refresh"></script>
-  <link rel="icon" href="data:,">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../assets/favicon.svg?v=20260809-rh1">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png?v=20260809-rh1">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png?v=20260809-rh1">
+  <link rel="manifest" href="../site.webmanifest?v=20260809-rh1">
+  <meta name="application-name" content="Report Hub">
+  <meta property="og:site_name" content="Report Hub">
+  <link rel="stylesheet" href="../assets/report-hub-brand.css?v=20260809-rh1">
 </head>
 <body data-report-view="detail" data-report-layout="wide" data-report-cover="assets/260808-dongtan-toddler-hidden-daytrips/cover.png" data-report-cover-alt="동탄 1~3세 나들이 대표 이미지 · 오산 에코리움/맑음터공원">
-    <a class="report-home-button" href="../archive/" aria-label="보고서 도서관 메인으로 이동">🏠 메인</a>
+    <a class="report-home-button" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><img class="report-hub-logo" src="../assets/favicon.svg?v=20260809-rh1" alt=""><span class="report-hub-wordmark">Report Hub</span></a>
 <a class="skip-link" href="#main">본문으로 건너뛰기</a>
   <div class="scroll-progress" id="scrollProgress"></div>
 
@@ -605,7 +611,7 @@
         <a class="source-link" href="https://tong.visitkorea.or.kr/cms/resource/51/2733051_image2_1.png" target="_blank" rel="noopener noreferrer"><span>PHOTO · 한국관광공사</span><strong>오산 맑음터공원·에코리움 사진</strong><small>장소 카드 이미지</small></a>
         <a class="source-link" href="https://news.suwon.go.kr/_File/news2025/202509/thumb710_1765675615_7685.jpg" target="_blank" rel="noopener noreferrer"><span>PHOTO · 수원시 인터넷신문</span><strong>국립농업박물관 어린이 공간 사진</strong><small>장소 카드 이미지</small></a>
       </div>
-      <div class="footer-bottom"><span id="footerTitle">동탄호수공원 1시간 내 1~3세 숨은 나들이 7선 · AIHUBOS ReportMode</span><span>기준일 2026.08.08 · 이동시간은 비혼잡 시 추정 · 출발 전 공식 공지 재확인</span></div>
+      <div class="footer-bottom"><span id="footerTitle">동탄호수공원 1시간 내 1~3세 숨은 나들이 7선 · Report Hub</span><span>기준일 2026.08.08 · 이동시간은 비혼잡 시 추정 · 출발 전 공식 공지 재확인</span></div>
       <div class="report-history" id="history" aria-labelledby="history-title">
         <div class="history-head"><div><h2 id="history-title">버전 및 업데이트 히스토리</h2><p>연령 적합성, 운영·요금·예약 방식이 바뀔 때 변경 이유와 범위를 누적 기록합니다.</p></div><span class="version-badge" id="historyCurrentVersion">Current v1.0.0</span></div>
         <div class="history-table-wrap"><table class="history-table"><thead><tr><th>버전</th><th>업데이트일</th><th>변경 구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr></thead><tbody id="historyBody"><tr><td colspan="5" class="history-empty">변경 이력을 불러오는 중입니다.</td></tr></tbody></table></div>
@@ -657,10 +663,11 @@
     let toastTimer;function showToast(message){toast.textContent=message;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),1700)}
     async function copyText(text){try{await navigator.clipboard.writeText(text);showToast('준비물 목록을 복사했습니다.')}catch(error){const area=document.createElement('textarea');area.value=text;area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();document.execCommand('copy');area.remove();showToast('준비물 목록을 복사했습니다.')}}
     document.getElementById('copyPacking').addEventListener('click',()=>{const items=[...document.querySelectorAll('#commonPacking .check-item span:last-child')].map(el=>'□ '+el.textContent.trim()).join('\n');copyText('동탄 1~3세 나들이 공통 준비물\n'+items+'\n\n방문일 공식 공지·예약·실시간 길찾기 확인')});
-    function renderReportMetadata(){const node=document.getElementById('report-metadata');if(!node)return;try{const meta=JSON.parse(node.textContent);const version=`v${meta.version}`;const date=String(meta.updatedAt||'').replaceAll('-','.');const setText=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value};setText('reportVersion',version);setText('reportUpdated',`Updated ${date}`);setText('reportGeneration',`${meta.generation} · ${meta.reviewStatus}`);setText('historyCurrentVersion',`Current ${version}`);setText('footerTitle',`${meta.title} · AIHUBOS ReportMode`);document.title=`${meta.title} · ${version}`;const body=document.getElementById('historyBody');if(!body)return;body.innerHTML='';const history=Array.isArray(meta.history)?meta.history:[];if(!history.length){const row=document.createElement('tr');const cell=document.createElement('td');cell.colSpan=5;cell.className='history-empty';cell.textContent='기록된 변경 이력이 없습니다.';row.appendChild(cell);body.appendChild(row);return}history.forEach(item=>{const row=document.createElement('tr');const values=[`v${item.version}`,String(item.date||'').replaceAll('-','.'),item.type||'',item.summary||'',[item.updatedBy,item.reviewStatus].filter(Boolean).join(' · ')];values.forEach((value,index)=>{const cell=document.createElement('td');if(index===4){const badge=document.createElement('span');badge.className='history-status';badge.textContent=value;cell.appendChild(badge)}else{cell.textContent=value}row.appendChild(cell)});body.appendChild(row)})}catch(error){console.error('Invalid report metadata:',error)}}
+    function renderReportMetadata(){const node=document.getElementById('report-metadata');if(!node)return;try{const meta=JSON.parse(node.textContent);const version=`v${meta.version}`;const date=String(meta.updatedAt||'').replaceAll('-','.');const setText=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value};setText('reportVersion',version);setText('reportUpdated',`Updated ${date}`);setText('reportGeneration',`${meta.generation} · ${meta.reviewStatus}`);setText('historyCurrentVersion',`Current ${version}`);setText('footerTitle',`${meta.title} · Report Hub`);document.title=`${meta.title} · ${version}`;const body=document.getElementById('historyBody');if(!body)return;body.innerHTML='';const history=Array.isArray(meta.history)?meta.history:[];if(!history.length){const row=document.createElement('tr');const cell=document.createElement('td');cell.colSpan=5;cell.className='history-empty';cell.textContent='기록된 변경 이력이 없습니다.';row.appendChild(cell);body.appendChild(row);return}history.forEach(item=>{const row=document.createElement('tr');const values=[`v${item.version}`,String(item.date||'').replaceAll('-','.'),item.type||'',item.summary||'',[item.updatedBy,item.reviewStatus].filter(Boolean).join(' · ')];values.forEach((value,index)=>{const cell=document.createElement('td');if(index===4){const badge=document.createElement('span');badge.className='history-status';badge.textContent=value;cell.appendChild(badge)}else{cell.textContent=value}row.appendChild(cell)});body.appendChild(row)})}catch(error){console.error('Invalid report metadata:',error)}}
     window.addEventListener('beforeprint',()=>document.querySelectorAll('img').forEach(img=>{img.loading='eager'}));
     renderReportMetadata();
   </script>
   <script src="../assets/report-history.js?v=20260809" data-report-id="260808-dongtan-toddler-hidden-daytrips" data-snapshot-id="2026-08-09-before-refresh" data-has-previous="true"></script>
+  <script src="../assets/report-hub-brand.js?v=20260809-rh1"></script>
 </body>
 </html>

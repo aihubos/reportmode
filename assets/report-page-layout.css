@@ -1,4 +1,4 @@
-/* Shared Report Mode layout. Keep the source copy in /src/site/assets in sync. */
+/* Shared Report Hub layout. Keep the source copy in /src/site/assets in sync. */
 @media screen {
   html:has(body.report-a4-mode) { background: #e8ecf1; }
   body.report-a4-mode {
