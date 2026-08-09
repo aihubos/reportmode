@@ -8,8 +8,8 @@
   if (!document.querySelector('script[src*="report-hub-brand.js"]')) {
     var brandScript = document.createElement("script");
     brandScript.src = layoutScript && layoutScript.src
-      ? new URL("report-hub-brand.js?v=20260809-rh2", layoutScript.src).href
-      : "https://aihubos.github.io/reportmode/assets/report-hub-brand.js?v=20260809-rh2";
+      ? new URL("report-hub-brand.js?v=20260809-rh3", layoutScript.src).href
+      : "https://aihubos.github.io/reportmode/assets/report-hub-brand.js?v=20260809-rh3";
     document.head.appendChild(brandScript);
   }
 
@@ -58,6 +58,21 @@
 
   var buttons = controls.querySelectorAll("[data-report-layout]");
 
+  function wrapWideContent() {
+    document.querySelectorAll("table, pre, iframe, canvas, video").forEach(function (element) {
+      if (element.closest(".report-overflow-shell, .table-wrap, .report-history-shared-table-wrap, [class*='table-wrap'], [class*='table-scroll']")) return;
+      var parent = element.parentNode;
+      if (!parent) return;
+      var shell = document.createElement("div");
+      shell.className = "report-overflow-shell";
+      shell.setAttribute("role", "region");
+      shell.setAttribute("tabindex", "0");
+      shell.setAttribute("aria-label", element.tagName === "TABLE" ? "표 좌우 이동" : "넓은 콘텐츠 좌우 이동");
+      parent.insertBefore(shell, element);
+      shell.appendChild(element);
+    });
+  }
+
   function setPrintPage(layout) {
     printStyle.textContent =
       "@page { size: A4 " + (layout === "wide" ? "landscape" : "portrait") + "; margin: 15mm; }";
@@ -81,6 +96,9 @@
       setLayout(button.dataset.reportLayout);
     });
   });
+
+  wrapWideContent();
+  window.addEventListener("load", wrapWideContent, { once: true });
 
   // Force wide on load even if HTML or cached state says otherwise.
   setLayout(DEFAULT_LAYOUT);

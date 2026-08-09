@@ -12,10 +12,12 @@ test("applies the Report Hub brand without changing the report subject", () => {
   assert.match(output, new RegExp(`href="${REPORT_HUB_HOME}"`));
   assert.doesNotMatch(output, /class="report-hub-logo"/);
   assert.match(output, /class="report-hub-wordmark">Report Hub<\/span><\/a>/);
-  assert.match(output, /report-hub-brand\.css\?v=20260809-rh2/);
-  assert.match(output, /report-hub-brand\.js\?v=20260809-rh2/);
-  assert.match(output, /report-page-layout\.css\?v=20260809-rh2/);
-  assert.match(output, /report-page-layout\.js\?v=20260809-rh2/);
+  assert.match(output, /report-hub-brand\.css\?v=20260809-rh3/);
+  assert.match(output, /report-hub-brand\.js\?v=20260809-rh3/);
+  assert.match(output, /report-page-layout\.css\?v=20260809-rh3/);
+  assert.match(output, /report-page-layout\.js\?v=20260809-rh3/);
+  assert.match(output, /report-comments\.css\?v=20260809-comments1/);
+  assert.match(output, /report-comments\.js\?v=20260809-comments1" data-report-id="260809-sample"/);
   assert.match(output, /report-history\.js\?v=20260809-history2/);
   assert.match(output, /data-report-id="260809-sample"/);
   assert.match(output, /<h1>샘플 기업 분석<\/h1>/);
@@ -26,6 +28,8 @@ test("applies the Report Hub brand without changing the report subject", () => {
   assert.equal(secondPass.match(/report-hub-brand\.js/g)?.length, 1);
   assert.equal(secondPass.match(/report-page-layout\.css/g)?.length, 1);
   assert.equal(secondPass.match(/report-page-layout\.js/g)?.length, 1);
+  assert.equal(secondPass.match(/report-comments\.css/g)?.length, 1);
+  assert.equal(secondPass.match(/report-comments\.js/g)?.length, 1);
   assert.equal(secondPass.match(/report-history\.js/g)?.length, 1);
 });
 
@@ -37,7 +41,9 @@ test("keeps redirect-only report pages byte-for-byte unchanged", () => {
 test("uses the correct asset depth for folder reports", () => {
   const source = "<!doctype html><html><head><title>폴더 보고서</title></head><body><h1>폴더 보고서</h1></body></html>";
   const output = applyReportHubBrand(source, "reports/folder-report/index.html");
-  assert.match(output, /href="\.\.\/\.\.\/assets\/report-hub-brand\.css\?v=20260809-rh2"/);
-  assert.match(output, /src="\.\.\/\.\.\/assets\/report-page-layout\.js\?v=20260809-rh2"/);
+  assert.match(output, /href="\.\.\/\.\.\/assets\/report-hub-brand\.css\?v=20260809-rh3"/);
+  assert.match(output, /href="\.\.\/\.\.\/assets\/report-comments\.css\?v=20260809-comments1"/);
+  assert.match(output, /src="\.\.\/\.\.\/assets\/report-page-layout\.js\?v=20260809-rh3"/);
+  assert.match(output, /src="\.\.\/\.\.\/assets\/report-comments\.js\?v=20260809-comments1" data-report-id="folder-report"/);
   assert.match(output, /src="\.\.\/\.\.\/assets\/report-history\.js\?v=20260809-history2" data-report-id="folder-report"/);
 });

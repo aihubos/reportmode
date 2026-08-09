@@ -23,12 +23,15 @@ type CommentRow = {
   author: string;
   content: string;
   created_at: string;
+  updated_at?: string | null;
+  is_admin?: number;
   password_salt?: string;
   password_hash?: string;
 };
 
 const ALLOWED_ORIGINS = new Set([
   "https://aihubos.github.io",
+  "https://aireport.ai-hub-os.com",
   "http://127.0.0.1:8799",
   "http://localhost:8799",
 ]);
@@ -68,6 +71,34 @@ function passwordValue(value: unknown) {
   return typeof value === "string" ? value.slice(0, 80) : "";
 }
 
+function isReservedAdminName(author: string) {
+  const normalized = author.replace(/\s+/g, "").toLocaleLowerCase("en-US");
+  return normalized === "jeremy" || normalized === "제레미";
+}
+
+function isAdminPassword(env: Env, password: string) {
+  return Boolean(env.ADMIN_PASSWORD) && password === env.ADMIN_PASSWORD;
+}
+
+function seoulDate() {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Seoul",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date());
+}
+
+async function visitCounts(env: Env, siteId: string, day: string) {
+  const total = await env.DB.prepare(
+    "SELECT COUNT(*) AS count FROM report_site_visits WHERE site_id = ?"
+  ).bind(siteId).first<{ count: number }>();
+  const today = await env.DB.prepare(
+    "SELECT COUNT(*) AS count FROM report_site_visits WHERE site_id = ? AND visit_date = ?"
+  ).bind(siteId, day).first<{ count: number }>();
+  return { total: Number(total?.count || 0), today: Number(today?.count || 0) };
+}
+
 async function requestForPassword(env: Env, id: string) {
   return env.DB.prepare(
     "SELECT id, password_salt, password_hash FROM report_requests WHERE id = ? AND status = 'pending'"
@@ -88,11 +119,36 @@ export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: cors(request) });
     const url = new URL(request.url);
+    if (url.pathname === "/visits" && request.method === "GET") {
+      const siteId = clean(url.searchParams.get("site"), 64);
+      if (!siteId || !/^[a-z0-9-]+$/i.test(siteId)) return json(request, { error: "invalid_site" }, 400);
+      const day = seoulDate();
+      return json(request, { siteId, day, ...await visitCounts(env, siteId, day) });
+    }
+
+    if (url.pathname === "/visits" && request.method === "POST") {
+      let payload: { siteId?: unknown; visitorId?: unknown };
+      try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+      const siteId = clean(payload.siteId, 64);
+      const visitorId = clean(payload.visitorId, 64);
+      if (!siteId || !/^[a-z0-9-]+$/i.test(siteId)) return json(request, { error: "invalid_site" }, 400);
+      if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(visitorId)) {
+        return json(request, { error: "invalid_visitor" }, 400);
+      }
+      const day = seoulDate();
+      const createdAt = new Date().toISOString();
+      const inserted = await env.DB.prepare(
+        "INSERT OR IGNORE INTO report_site_visits (site_id, visitor_id, visit_date, created_at) VALUES (?, ?, ?, ?)"
+      ).bind(siteId, visitorId, day, createdAt).run();
+      const counts = await visitCounts(env, siteId, day);
+      return json(request, { siteId, day, counted: Number(inserted.meta?.changes || 0) > 0, ...counts });
+    }
+
     if (url.pathname === "/comments" && request.method === "GET") {
       const reportId = clean(url.searchParams.get("report"), 120);
       if (!reportId) return json(request, { error: "missing_report" }, 400);
       const rows = await env.DB.prepare(
-        "SELECT id, report_id, author, content, created_at FROM report_comments WHERE report_id = ? ORDER BY created_at DESC LIMIT 50"
+        "SELECT id, report_id, author, content, created_at, updated_at, is_admin FROM report_comments WHERE report_id = ? ORDER BY created_at DESC LIMIT 50"
       ).bind(reportId).all<CommentRow>();
       return json(request, { comments: rows.results || [] });
     }
@@ -101,26 +157,78 @@ export default {
       let payload: { reportId?: unknown; author?: unknown; content?: unknown; password?: unknown };
       try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
       const reportId = clean(payload.reportId, 120);
-      const author = clean(payload.author, 24) || "익명";
+      const author = clean(payload.author, 24);
       const content = clean(payload.content, 500);
-      const password = typeof payload.password === "string" ? payload.password : "";
-      if (!reportId || content.length < 2 || password.length < 4) return json(request, { error: "invalid_comment" }, 400);
+      const password = passwordValue(payload.password);
+      if (!author) return json(request, { error: "author_required" }, 400);
+      if (password.length < 4) return json(request, { error: "password_too_short" }, 400);
+      if (!reportId || content.length < 2) return json(request, { error: "invalid_comment" }, 400);
+      const reservedName = isReservedAdminName(author);
+      if (reservedName && !isAdminPassword(env, password)) return json(request, { error: "reserved_admin_name" }, 403);
       const salt = crypto.randomUUID();
-      const row: CommentRow = { id: crypto.randomUUID(), report_id: reportId, author, content, created_at: new Date().toISOString() };
+      const row: CommentRow = {
+        id: crypto.randomUUID(),
+        report_id: reportId,
+        author,
+        content,
+        created_at: new Date().toISOString(),
+        updated_at: null,
+        is_admin: reservedName ? 1 : 0,
+      };
       const passwordHash = await hashPassword(password, salt);
       await env.DB.prepare(
-        "INSERT INTO report_comments (id, report_id, author, content, password_salt, password_hash, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)"
-      ).bind(row.id, row.report_id, row.author, row.content, salt, passwordHash, row.created_at).run();
+        "INSERT INTO report_comments (id, report_id, author, content, password_salt, password_hash, created_at, updated_at, is_admin) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
+      ).bind(row.id, row.report_id, row.author, row.content, salt, passwordHash, row.created_at, row.updated_at, row.is_admin).run();
       return json(request, { comment: row }, 201);
     }
 
     var commentId = url.pathname.match(/^\/comments\/([0-9a-f-]{36})$/i)?.[1];
+    if (commentId && request.method === "PATCH") {
+      let payload: { author?: unknown; content?: unknown; password?: unknown; adminPassword?: unknown };
+      try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+      const author = clean(payload.author, 24);
+      const content = clean(payload.content, 500);
+      const password = passwordValue(payload.password);
+      const adminPassword = passwordValue(payload.adminPassword);
+      if (!author) return json(request, { error: "author_required" }, 400);
+      if (content.length < 2) return json(request, { error: "invalid_comment" }, 400);
+      if (password.length < 4 && adminPassword.length < 4) return json(request, { error: "password_too_short" }, 400);
+      const comment = await env.DB.prepare(
+        "SELECT id, report_id, author, content, created_at, updated_at, is_admin, password_salt, password_hash FROM report_comments WHERE id = ?"
+      ).bind(commentId).first<CommentRow>();
+      if (!comment) return json(request, { error: "not_found" }, 404);
+      const admin = isAdminPassword(env, adminPassword) || isAdminPassword(env, password);
+      if (!admin) {
+        if (!comment.password_salt || !comment.password_hash || await hashPassword(password, comment.password_salt) !== comment.password_hash) {
+          return json(request, { error: "wrong_password" }, 403);
+        }
+      }
+      const reservedName = isReservedAdminName(author);
+      if (reservedName && !admin) return json(request, { error: "reserved_admin_name" }, 403);
+      const updatedAt = new Date().toISOString();
+      const isAdmin = reservedName ? 1 : 0;
+      await env.DB.prepare(
+        "UPDATE report_comments SET author = ?, content = ?, updated_at = ?, is_admin = ? WHERE id = ?"
+      ).bind(author, content, updatedAt, isAdmin, commentId).run();
+      return json(request, {
+        comment: {
+          id: commentId,
+          report_id: comment.report_id,
+          author,
+          content,
+          created_at: comment.created_at,
+          updated_at: updatedAt,
+          is_admin: isAdmin,
+        },
+      });
+    }
+
     if (commentId && request.method === "DELETE") {
       let payload: { password?: unknown; adminPassword?: unknown };
       try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
       const password = passwordValue(payload.password);
       const adminPassword = passwordValue(payload.adminPassword);
-      const isAdmin = Boolean(env.ADMIN_PASSWORD) && (adminPassword === env.ADMIN_PASSWORD || password === env.ADMIN_PASSWORD);
+      const isAdmin = isAdminPassword(env, adminPassword) || isAdminPassword(env, password);
       const comment = await env.DB.prepare(
         "SELECT id, password_salt, password_hash FROM report_comments WHERE id = ?"
       ).bind(commentId).first<CommentRow>();
@@ -289,7 +397,7 @@ export default {
       return json(request, { ok: true, reportId });
     }
 
-    if (url.pathname === "/requests" || requestId || replyRequestId || url.pathname.startsWith("/hidden-reports") || url.pathname === "/admin/verify") {
+    if (url.pathname === "/comments" || commentId || url.pathname === "/visits" || url.pathname === "/requests" || requestId || replyRequestId || url.pathname.startsWith("/hidden-reports") || url.pathname === "/admin/verify") {
       return json(request, { error: "method_not_allowed" }, 405);
     }
     return json(request, { error: "not_found" }, 404);

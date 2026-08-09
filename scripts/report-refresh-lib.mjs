@@ -1,9 +1,10 @@
 import path from "node:path";
 
 const SITE_PREFIX = "/reportmode/";
-const LAYOUT_VERSION = "20260809-rh2";
+const LAYOUT_VERSION = "20260809-rh3";
 const HISTORY_VERSION = "20260809-history2";
 const COUNTER_VERSION = "20260809-counter-fallback2";
+const COMMENTS_VERSION = "20260809-comments1";
 
 export function isRedirectHtml(html) {
   return /<meta\b[^>]*http-equiv\s*=\s*["']?refresh["']?/i.test(html);
@@ -100,6 +101,13 @@ function upsertStylesheet(html, prefix) {
   return html.replace(/<\/head>/i, `  <link rel="stylesheet" href="${href}">\n</head>`);
 }
 
+function upsertCommentsStylesheet(html, prefix) {
+  const href = `${prefix}/assets/report-comments.css?v=${COMMENTS_VERSION}`;
+  const expression = /<link\b[^>]*href=["'][^"']*report-comments\.css(?:\?[^"']*)?["'][^>]*>/i;
+  if (expression.test(html)) return html.replace(expression, `<link rel="stylesheet" href="${href}">`);
+  return html.replace(/<\/head>/i, `  <link rel="stylesheet" href="${href}">\n</head>`);
+}
+
 function upsertFavicon(html) {
   if (/<link\b[^>]*rel=["'][^"']*\bicon\b[^"']*["'][^>]*>/i.test(html)) return html;
   return html.replace(/<\/head>/i, '  <link rel="icon" href="data:,">\n</head>');
@@ -134,11 +142,17 @@ export function enhanceCurrentReport(html, options) {
   let output = bodyResult.html;
   output = upsertFavicon(output);
   output = upsertStylesheet(output, prefix);
+  output = upsertCommentsStylesheet(output, prefix);
   output = upsertHomeButton(output, bodyResult.body, archiveHref);
   output = upsertScript(
     output,
     /<script\b[^>]*src=["'][^"']*report-page-layout\.js(?:\?[^"']*)?["'][^>]*><\/script>/i,
     `<script src="${prefix}/assets/report-page-layout.js?v=${LAYOUT_VERSION}"></script>`,
+  );
+  output = upsertScript(
+    output,
+    /<script\b[^>]*src=["'][^"']*report-comments\.js(?:\?[^"']*)?["'][^>]*><\/script>/i,
+    `<script src="${prefix}/assets/report-comments.js?v=${COMMENTS_VERSION}" data-report-id="${escapeAttribute(reportId)}"></script>`,
   );
   output = upsertScript(
     output,

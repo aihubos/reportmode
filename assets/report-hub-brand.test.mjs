@@ -26,8 +26,9 @@ test("public brand uses a large Toss Blue text wordmark and one floating menu", 
   assert.match(script, /window\.scrollTo/);
   assert.doesNotMatch(script, /<img class="report-hub-logo"/);
   assert.match(archive, /<title>Report Hub \| AI 리서치 라이브러리<\/title>/);
-  assert.match(archive, /<h1 id="archive-title">Report Hub<\/h1>/);
+  assert.doesNotMatch(archive, /class="archive-profile"|<h1 id="archive-title">/);
   assert.match(archive, /class="archive-brand report-hub-brand-link"[^>]*>[\s\S]*class="report-hub-wordmark">Report Hub/);
+  assert.match(archive, /class="archive-blog-card"/);
   assert.doesNotMatch(archive, /class="archive-brand[^>]*>[\s\S]{0,180}report-hub-logo/);
   assert.doesNotMatch(archive, /class="archive-avatar"/);
   assert.doesNotMatch(archive, /Jeremy's AI Report|>RM<|>R<\/span>/);
