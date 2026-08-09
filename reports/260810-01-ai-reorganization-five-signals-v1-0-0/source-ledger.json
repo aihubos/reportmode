@@ -1,0 +1,120 @@
+{
+  "schemaVersion": "1.0",
+  "reportId": "260810-01-ai-reorganization-five-signals-v1-0-0",
+  "verifiedAt": "2026-08-10",
+  "sources": [
+    {
+      "claim": "참고 글의 전개는 혁신 명분에서 시작해 자리·권력·직원 이동을 거쳐 장기 혁신과 개인 판단으로 마무리된다.",
+      "url": "https://brunch.co.kr/@notepod/60",
+      "sourceType": "참고 글",
+      "publishedAt": "2024-08-14",
+      "verifiedAt": "2026-08-10",
+      "usedInSections": [
+        "전체 흐름"
+      ],
+      "confidence": "high",
+      "caveat": "문장·비유·사례는 복제하지 않고 질문 순서만 참고."
+    },
+    {
+      "claim": "2025년 운영 모델 재설계 연구는 2,000명 경영진을 조사했고 리더 정렬, 핵심 프로세스, 사람 투자, 성과 문화를 주요 테마로 제시한다.",
+      "url": "https://www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/the-new-rules-for-getting-your-operating-model-redesign-right",
+      "sourceType": "경영 연구/설문",
+      "publishedAt": "2025-06-25",
+      "verifiedAt": "2026-08-10",
+      "usedInSections": [
+        "1분 요약",
+        "책임선과 결정권"
+      ],
+      "confidence": "medium-high",
+      "caveat": "컨설팅사 설문으로 인과관계가 아닌 상관관계 중심."
+    },
+    {
+      "claim": "AI-first 운영 모델은 기존 프로세스 위에 AI를 얹기보다 업무 흐름과 의사결정에 지능을 내장하는 접근이다.",
+      "url": "https://www.weforum.org/stories/artificial-intelligence/how-ai-first-operating-models-unlock-scalable-value/",
+      "sourceType": "산업 인사이트",
+      "publishedAt": "2026-02-12",
+      "verifiedAt": "2026-08-10",
+      "usedInSections": [
+        "왜 지금인가",
+        "진짜 AI 전환"
+      ],
+      "confidence": "medium-high",
+      "caveat": "WEF 이해관계자 논의와 사례 기반."
+    },
+    {
+      "claim": "변화가 상시화됐지만 많은 변화 프로그램이 의도한 결과를 달성하지 못하며 사람 중심 변화관리가 필요하다.",
+      "url": "https://www.cipd.org/en/knowledge/factsheets/change-management-factsheet/",
+      "sourceType": "전문기관 가이드",
+      "publishedAt": "2025-06-17",
+      "verifiedAt": "2026-08-10",
+      "usedInSections": [
+        "변화 피로"
+      ],
+      "confidence": "high",
+      "caveat": "일부 상세 내용은 회원 전용."
+    },
+    {
+      "claim": "반복적인 조직 변화 노출은 변화 피로와 냉소를 키울 수 있다.",
+      "url": "https://doi.org/10.1007/s12144-022-03070-6",
+      "sourceType": "체계적 문헌 검토",
+      "publishedAt": "2022-03-30",
+      "verifiedAt": "2026-08-10",
+      "usedInSections": [
+        "변화 피로"
+      ],
+      "confidence": "high",
+      "caveat": "산업·상황별 효과 크기는 다를 수 있음."
+    },
+    {
+      "claim": "한국의 AI 도입에는 직원 재교육과 관리자 역량이 중요하며 기업과 직원의 체감에 차이가 존재한다.",
+      "url": "https://www.oecd.org/en/publications/artificial-intelligence-and-the-labour-market-in-korea_68ab1a5a-en/full-report/the-impact-of-ai-on-the-labour-market_69793977.html",
+      "sourceType": "국제기구 보고서",
+      "publishedAt": "2025-10-27",
+      "verifiedAt": "2026-08-10",
+      "usedInSections": [
+        "진짜 AI 전환",
+        "한국 관점"
+      ],
+      "confidence": "high",
+      "caveat": "보고서 내 조사별 AI 도입률 정의가 다름."
+    },
+    {
+      "claim": "근로기준법 제23조는 정당한 이유 없는 전직 등을 제한한다.",
+      "url": "https://www.law.go.kr/lsLinkProc.do?chrClsCd=010202&datClsCd=010102&gubun=admRul&joNo=002300000%5E002400000%5E002500000%5E002600000%5E002700000&lsId=61380&lsNm=%EA%B7%BC%EB%A1%9C%EA%B8%B0%EC%A4%80%EB%B2%95&mode=10",
+      "sourceType": "공식 법령",
+      "publishedAt": "2025-10-23 시행",
+      "verifiedAt": "2026-08-10",
+      "usedInSections": [
+        "한국 실무 노트"
+      ],
+      "confidence": "very high",
+      "caveat": "개별 사건 적용은 계약과 사실관계에 따라 달라짐."
+    },
+    {
+      "claim": "대법원은 전보·전직의 정당성 판단에서 업무상 필요성과 근로자의 생활상 불이익을 비교한다.",
+      "url": "https://www.law.go.kr/LSW/precInfoR.do?precSeq=69001&vSct=%2A",
+      "sourceType": "공식 판례",
+      "publishedAt": "2007-10-11",
+      "verifiedAt": "2026-08-10",
+      "usedInSections": [
+        "한국 실무 노트"
+      ],
+      "confidence": "very high",
+      "caveat": "후속 판례와 개별 사실관계를 함께 검토해야 함."
+    },
+    {
+      "claim": "고용노동부는 5인 이상 사업장의 부당해고등 구제신청을 처분일로부터 3개월 이내로 안내한다.",
+      "url": "https://www.moel.go.kr/faq/faqView.do?seqRepeat=155",
+      "sourceType": "정부 안내",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-10",
+      "usedInSections": [
+        "1분 요약",
+        "한국 실무 노트",
+        "FAQ"
+      ],
+      "confidence": "very high",
+      "caveat": "적용 대상과 기산일은 사안에 따라 확인 필요."
+    }
+  ]
+}
