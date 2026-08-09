@@ -1,26 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-09T14:57:07+09:00",
+  "updatedAt": "2026-08-09T14:58:37+09:00",
   "reports": [
-    {
-      "schemaVersion": "1",
-      "id": "260809-blog-hub-v2",
-      "slug": "blog-hub-v2",
-      "title": "Blog Hub v2 게시 파이프라인 검증",
-      "category": "기타",
-      "tags": [
-        "Blog Hub",
-        "게시 파이프라인",
-        "검증"
-      ],
-      "summary": "Blog Hub v2의 가져오기, 자산검수, 게시, 공개 검증 파이프라인을 확인하기 위한 임시 보고서입니다.",
-      "createdAt": "2026-08-09T14:57:01+09:00",
-      "updatedAt": "2026-08-09T14:57:01+09:00",
-      "status": "published",
-      "sourceName": "preflight_20260809055640539_80a7bb13.zip",
-      "sourceCount": 1,
-      "entry": "index.html"
-    },
     {
       "schemaVersion": "1",
       "id": "260809-19-ai-v1-0-0",
