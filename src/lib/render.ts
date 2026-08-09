@@ -461,6 +461,44 @@ export function renderHomeHtml(
     })
     .join("\n");
 
+  const spotlightItem = (
+    item: ManifestItem,
+    index: number,
+    kind: "featured" | "popular",
+  ) => {
+    const reportHref = linkPrefix + item.path;
+    const rawCount = Number(fallbackViewCountsById[item.id] || 0);
+    const viewCount = Number.isFinite(rawCount) ? Math.max(0, Math.trunc(rawCount)) : 0;
+    const coverSource = item.coverImage
+      ? /^(?:https?:|data:)/i.test(item.coverImage)
+        ? item.coverImage
+        : linkPrefix + item.coverImage
+      : "";
+    const cover = coverSource
+      ? `<img src="${escapeHtml(coverSource)}" alt="" loading="lazy">`
+      : `<span class="archive-spotlight-cover-fallback" aria-hidden="true">RH</span>`;
+    const attribute = kind === "featured"
+      ? "data-featured-fallback-item"
+      : "data-popular-report";
+    const meta = kind === "popular"
+      ? `조회수 ${viewCount.toLocaleString("ko-KR")}`
+      : `${escapeHtml(categoryFor(item))} · ${escapeHtml(item.displayDate)}`;
+    return `<a class="archive-spotlight-item" ${attribute} data-spotlight-report-id="${escapeHtml(item.id)}" href="${escapeHtml(reportHref)}">
+      <span class="archive-spotlight-rank" aria-hidden="true">${String(index + 1).padStart(2, "0")}</span>
+      <span class="archive-spotlight-copy"><small>${meta}</small><strong>${escapeHtml(item.title)}</strong></span>
+      <span class="archive-spotlight-cover">${cover}</span>
+    </a>`;
+  };
+  const featuredItems = items.slice(0, 3)
+    .map((item, index) => spotlightItem(item, index, "featured"))
+    .join("\n");
+  const popularItems = items
+    .map((item, index) => ({ item, index, count: Number(fallbackViewCountsById[item.id] || 0) }))
+    .sort((a, b) => b.count - a.count || a.index - b.index)
+    .slice(0, 3)
+    .map(({ item }, index) => spotlightItem(item, index, "popular"))
+    .join("\n");
+
   return `<!doctype html>
 <html lang="ko">
 <head>
@@ -496,6 +534,22 @@ export function renderHomeHtml(
   </header>
 
   <main class="archive-shell">
+    <section class="archive-spotlight" id="archiveSpotlight" aria-labelledby="spotlight-title">
+      <div class="archive-spotlight-head">
+        <div><span>먼저 볼 리포트</span><h1 id="spotlight-title">지금 읽을 보고서</h1></div>
+        <p>관리자 추천과 저장된 조회수 기준 인기글을 모았습니다.</p>
+      </div>
+      <div class="archive-spotlight-grid">
+        <section class="archive-spotlight-column" aria-labelledby="featured-title">
+          <div class="archive-spotlight-column-head"><span class="archive-spotlight-star" aria-hidden="true">★</span><h2 id="featured-title">관리자 추천</h2><small>최대 3개</small></div>
+          <div class="archive-spotlight-list" id="archiveFeaturedList">${featuredItems}</div>
+        </section>
+        <section class="archive-spotlight-column" aria-labelledby="popular-title">
+          <div class="archive-spotlight-column-head"><span class="archive-spotlight-chart" aria-hidden="true">1</span><h2 id="popular-title">인기글</h2><small>조회수 기준</small></div>
+          <div class="archive-spotlight-list" id="archivePopularList">${popularItems}</div>
+        </section>
+      </div>
+    </section>
     <div class="archive-content-layout">
     <aside class="archive-right-rail" aria-label="방문자 참여와 동탄 날씨">
       <section class="request-board" aria-labelledby="request-board-title">
@@ -936,7 +990,7 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
   })();
   </script>
   <script src="../assets/archive-request-board.js"></script>
-  <script src="../assets/archive-report-admin.js"></script>
+  <script src="../assets/archive-report-admin.js?v=20260809-featured1"></script>
   <script src="../assets/archive-visitor-counter.js?v=20260809-visits1"></script>
   <script src="../assets/archive-weather.js?v=${ARCHIVE_WEATHER_VERSION}"></script>
   <script src="../assets/report-hub-brand.js?v=${REPORT_HUB_BRAND_VERSION}"></script>

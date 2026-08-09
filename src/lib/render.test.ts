@@ -141,3 +141,39 @@ test("renders the same fallback count and report-specific share URL on archive c
   assert.match(html, /data-view-count-fallback="17">조회수 17<\/span>/);
   assert.match(html, /data-report-share[^>]*data-report-share-url="reports\/sample-count\.html"/);
 });
+
+test("renders a top spotlight with three curated defaults and three view-ranked reports", () => {
+  const items = Array.from({ length: 6 }, (_, index) => ({
+    id: `spotlight-${index + 1}`,
+    path: `reports/spotlight-${index + 1}/`,
+    title: `추천 후보 ${index + 1}`,
+    subtitle: "",
+    summary: `추천 후보 ${index + 1} 요약`,
+    category: index % 2 ? "비즈니스" : "AI",
+    tags: [],
+    displayDate: `26080${9 - index}`,
+    sourceCount: index + 1,
+    coverImage: `assets/spotlight-${index + 1}.png`,
+  })) as any;
+  const counts = {
+    "spotlight-1": 3,
+    "spotlight-2": 21,
+    "spotlight-3": 8,
+    "spotlight-4": 34,
+    "spotlight-5": 13,
+    "spotlight-6": 1,
+  };
+
+  const html = renderHomeHtml(items, "../", {}, counts);
+
+  assert.ok(html.indexOf('class="archive-spotlight"') < html.indexOf('class="archive-content-layout"'));
+  assert.match(html, /id="archiveSpotlight"/);
+  assert.match(html, /id="archiveFeaturedList"/);
+  assert.match(html, /id="archivePopularList"/);
+  assert.equal(html.match(/data-featured-fallback-item/g)?.length, 3);
+  assert.equal(html.match(/data-popular-report/g)?.length, 3);
+  const popular = html.slice(html.indexOf('id="archivePopularList"'));
+  assert.ok(popular.indexOf("추천 후보 4") < popular.indexOf("추천 후보 2"));
+  assert.ok(popular.indexOf("추천 후보 2") < popular.indexOf("추천 후보 5"));
+  assert.match(popular, /조회수 34/);
+});

@@ -99,6 +99,13 @@ async function visitCounts(env: Env, siteId: string, day: string) {
   return { total: Number(total?.count || 0), today: Number(today?.count || 0) };
 }
 
+async function featuredReportIds(env: Env) {
+  const rows = await env.DB.prepare(
+    "SELECT report_id, selected_at FROM report_featured ORDER BY selected_at DESC LIMIT 3"
+  ).all<{ report_id: string; selected_at: string }>();
+  return (rows.results || []).map((row) => row.report_id);
+}
+
 async function requestForPassword(env: Env, id: string) {
   return env.DB.prepare(
     "SELECT id, password_salt, password_hash FROM report_requests WHERE id = ? AND status = 'pending'"
@@ -364,6 +371,41 @@ export default {
       return json(request, { reportIds: (rows.results || []).map((row) => row.report_id) });
     }
 
+    if (url.pathname === "/featured-reports" && request.method === "GET") {
+      return json(request, { reportIds: await featuredReportIds(env) });
+    }
+
+    if (url.pathname === "/featured-reports" && request.method === "POST") {
+      let payload: { reportId?: unknown; adminPassword?: unknown };
+      try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+      if (!env.ADMIN_PASSWORD) return json(request, { error: "admin_not_configured" }, 503);
+      if (passwordValue(payload.adminPassword) !== env.ADMIN_PASSWORD) {
+        return json(request, { error: "wrong_admin_password" }, 403);
+      }
+      const reportId = clean(payload.reportId, 120);
+      if (!reportId) return json(request, { error: "missing_report" }, 400);
+      const count = await env.DB.prepare("SELECT COUNT(*) AS count FROM report_featured").first<{ count: number }>();
+      if (Number(count?.count || 0) >= 3) return json(request, { error: "featured_limit_reached" }, 409);
+      await env.DB.prepare(
+        "INSERT INTO report_featured (report_id, selected_at) VALUES (?, ?)"
+      ).bind(reportId, new Date().toISOString()).run();
+      return json(request, { ok: true, reportIds: await featuredReportIds(env) }, 201);
+    }
+
+    const featuredId = url.pathname.match(/^\/featured-reports\/([^/]+)$/i)?.[1];
+    if (featuredId && request.method === "DELETE") {
+      let payload: { adminPassword?: unknown };
+      try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+      if (!env.ADMIN_PASSWORD) return json(request, { error: "admin_not_configured" }, 503);
+      if (passwordValue(payload.adminPassword) !== env.ADMIN_PASSWORD) {
+        return json(request, { error: "wrong_admin_password" }, 403);
+      }
+      const reportId = decodeURIComponent(featuredId).slice(0, 120);
+      if (!reportId) return json(request, { error: "missing_report" }, 400);
+      await env.DB.prepare("DELETE FROM report_featured WHERE report_id = ?").bind(reportId).run();
+      return json(request, { ok: true, reportIds: await featuredReportIds(env) });
+    }
+
     if (url.pathname === "/hidden-reports" && request.method === "POST") {
       let payload: { reportId?: unknown; adminPassword?: unknown; note?: unknown };
       try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
@@ -397,7 +439,7 @@ export default {
       return json(request, { ok: true, reportId });
     }
 
-    if (url.pathname === "/comments" || commentId || url.pathname === "/visits" || url.pathname === "/requests" || requestId || replyRequestId || url.pathname.startsWith("/hidden-reports") || url.pathname === "/admin/verify") {
+    if (url.pathname === "/comments" || commentId || url.pathname === "/visits" || url.pathname === "/requests" || requestId || replyRequestId || url.pathname.startsWith("/hidden-reports") || url.pathname.startsWith("/featured-reports") || url.pathname === "/admin/verify") {
       return json(request, { error: "method_not_allowed" }, 405);
     }
     return json(request, { error: "not_found" }, 404);
