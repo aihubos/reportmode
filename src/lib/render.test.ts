@@ -179,3 +179,23 @@ test("renders a top spotlight with three curated defaults and three view-ranked 
   assert.ok(popular.indexOf("추천 후보 2") < popular.indexOf("추천 후보 5"));
   assert.match(popular, /조회수 34/);
 });
+
+test("Draft reports use a separate category and stay out of the default total", () => {
+  const base = {
+    path: "reports/sample/",
+    title: "보고서",
+    subtitle: "",
+    summary: "요약",
+    tags: [],
+    displayDate: "260809",
+    sourceCount: 1,
+  };
+  const html = renderHomeHtml([
+    { ...base, id: "published-one", category: "AI" },
+    { ...base, id: "draft-one", category: "Draft", title: "초안 보고서" },
+  ] as any);
+  assert.match(html, /data-category-filter="Draft"><span>Draft<\/span><b>1<\/b>/);
+  assert.match(html, /data-report-id="draft-one"[^>]*data-report-draft="true"/);
+  assert.match(html, /!isDraft \|\| isPromoted/);
+  assert.match(html, /data-category-filter="all"><span>전체<\/span><b>1<\/b>/);
+});
