@@ -360,7 +360,7 @@ footer {
   color: var(--archive-subtle); font-size: 11px; font-weight: 800; letter-spacing: .04em; text-align: center;
 }
 .archive-list-head span:nth-child(2) { text-align: left; }
-.archive-post { border-bottom: 1px solid #edf0f2; }
+.archive-post { position: relative; border-bottom: 1px solid #edf0f2; }
 .archive-post[hidden] { display: none; }
 .archive-post-link {
   display: grid; grid-template-columns: 64px minmax(0, 1fr) 154px; gap: 18px; align-items: center;
@@ -368,6 +368,26 @@ footer {
   transition: background .18s ease, transform .18s ease;
 }
 .archive-post-link:hover { color: inherit; background: #fbfcfd; transform: translateX(3px); }
+.archive-share-button {
+  position: absolute;
+  top: 30px;
+  right: 16px;
+  z-index: 3;
+  min-width: 58px;
+  min-height: 34px;
+  padding: 0 11px;
+  border: 1px solid rgba(49,130,246,.2);
+  border-radius: 10px;
+  color: var(--archive-blue-deep);
+  background: rgba(255,255,255,.94);
+  box-shadow: 0 4px 12px rgba(25,31,40,.1);
+  backdrop-filter: blur(10px);
+  font: 800 11px/1 var(--sans);
+  cursor: pointer;
+  transition: border-color .18s ease, background .18s ease, transform .18s ease;
+}
+.archive-share-button:hover { border-color: rgba(49,130,246,.46); background: #fff; transform: translateY(-1px); }
+.archive-share-button:focus-visible { outline: 3px solid rgba(49,130,246,.22); outline-offset: 2px; }
 .archive-post-number { color: #a7b0ba; font-size: 12px; font-variant-numeric: tabular-nums; text-align: center; }
 .archive-post-copy { min-width: 0; }
 .archive-post-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 13px; color: var(--archive-subtle); font-size: 12px; }
@@ -500,6 +520,7 @@ footer {
   .archive-post p { -webkit-line-clamp: 1; }
   .archive-tags { display: none; }
   .archive-post-cover { width: 96px; height: 80px; border-radius: 11px; }
+  .archive-share-button { top: 24px; right: 5px; min-width: 52px; min-height: 30px; padding: 0 8px; font-size: 10px; }
   .archive-post-cover-fallback { padding: 10px; }
   .archive-post-cover-fallback span { left: 10px; top: 9px; font-size: 7px; }
   .archive-post-cover-fallback strong { font-size: 21px; }
@@ -516,7 +537,7 @@ footer {
   body { background: #fff; }
   .hero { break-inside: avoid; }
   section { break-inside: avoid; }
-  .archive-topbar, .archive-sidebar, .archive-primary-action, .archive-search, .archive-mobile-categories, .archive-pagination { display: none !important; }
+  .archive-topbar, .archive-sidebar, .archive-primary-action, .archive-search, .archive-mobile-categories, .archive-pagination, .archive-share-button { display: none !important; }
   .request-board { display: none !important; }
   .archive-shell { width: 100%; }
   .archive-profile, .archive-board { box-shadow: none; }

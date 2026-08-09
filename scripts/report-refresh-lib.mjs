@@ -1,7 +1,7 @@
 import path from "node:path";
 
 const SITE_PREFIX = "/reportmode/";
-const LAYOUT_VERSION = "20260809-rh3";
+const LAYOUT_VERSION = "20260809-rh4";
 const HISTORY_VERSION = "20260809-history2";
 const COUNTER_VERSION = "20260809-counter-fallback2";
 const COMMENTS_VERSION = "20260809-comments1";
@@ -123,7 +123,7 @@ function upsertHomeButton(html, body, archiveHref) {
       return whole.replace(/>$/, ` href="${archiveHref}">`);
     });
   }
-  const button = `<a class="report-home-button" href="${archiveHref}" aria-label="Report Hub 메인으로 이동"><span class="report-hub-wordmark">Report Hub</span></a>`;
+  const button = `<a class="report-home-button" href="${archiveHref}" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span></a>`;
   return html.replace(body, `${body}\n  ${button}`);
 }
 

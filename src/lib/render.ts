@@ -5,7 +5,7 @@ import { loadConfig } from "./config.js";
 import { escapeHtml, inlineMark, nl2p } from "./html.js";
 import { displayDateFromIso, prettyDateFromIso } from "./time.js";
 import { repoRoot } from "./paths.js";
-import { REPORT_HISTORY_VERSION, REPORT_HUB_BRAND_VERSION, REPORT_HUB_HOME } from "./public-brand.js";
+import { REPORT_COUNTER_VERSION, REPORT_HISTORY_VERSION, REPORT_HUB_BRAND_VERSION, REPORT_HUB_HOME } from "./public-brand.js";
 
 const KIND_LABEL: Record<SectionKind, string> = {
   fact: "사실",
@@ -215,7 +215,7 @@ export function renderReportHtml(doc: ReportDocument): string {
   <link rel="stylesheet" href="../../assets/report-comments.css?v=20260809-comments1">
 </head>
 <body data-report-view="detail" data-report-layout="wide">
-  <a class="report-home-button" href="${REPORT_HUB_HOME}" aria-label="Report Hub 메인으로 이동"><span class="report-hub-wordmark">Report Hub</span></a>
+  <a class="report-home-button" href="${REPORT_HUB_HOME}" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span></a>
   <nav class="nav" aria-label="보고서 탐색">
     <div class="nav-inner">
       <a href="${REPORT_HUB_HOME}">Report Hub</a>
@@ -293,7 +293,7 @@ export function renderReportHtml(doc: ReportDocument): string {
     </div>
   </footer>
   <script src="../../assets/report-page-layout.js?v=${REPORT_HUB_BRAND_VERSION}"></script>
-  <script src="../../assets/report-view-counter.js?v=20260809-counter-fallback2" data-report-id="${escapeHtml(doc.id)}"></script>
+  <script src="../../assets/report-view-counter.js?v=${REPORT_COUNTER_VERSION}" data-report-id="${escapeHtml(doc.id)}"></script>
   <script src="../../assets/report-comments.js?v=20260809-comments1" data-report-id="${escapeHtml(doc.id)}"></script>
   <script src="../../assets/report-history.js?v=${REPORT_HISTORY_VERSION}" data-report-id="${escapeHtml(doc.id)}"></script>
   <script src="../../assets/report-hub-brand.js?v=${REPORT_HUB_BRAND_VERSION}"></script>
@@ -427,9 +427,10 @@ export function renderHomeHtml(
       const cover = coverSource
         ? `<figure class="archive-post-cover"><img src="${escapeHtml(coverSource)}" alt="${escapeHtml(coverAlt)}" loading="lazy"><figcaption>${escapeHtml(item.displayDate)}</figcaption></figure>`
         : `<div class="archive-post-cover archive-post-cover-fallback" aria-hidden="true"><span>REPORT</span><strong>${escapeHtml(item.displayDate.slice(0, 2))}</strong><small>${escapeHtml(item.category)}</small></div>`;
+      const reportHref = linkPrefix + item.path;
       return `
       <article class="archive-post" data-report-item data-report-id="${escapeHtml(item.id)}" data-category="${escapeHtml(archiveCategory)}" data-search="${escapeHtml(searchText)}">
-        <a class="archive-post-link" href="${escapeHtml(linkPrefix + item.path)}">
+        <a class="archive-post-link" href="${escapeHtml(reportHref)}">
           <div class="archive-post-number" aria-label="게시글 번호">${String(items.length - index).padStart(3, "0")}</div>
           <div class="archive-post-copy">
             <div class="archive-post-meta">
@@ -444,6 +445,7 @@ export function renderHomeHtml(
           </div>
           ${cover}
         </a>
+        <button class="archive-share-button" type="button" data-report-share data-report-share-url="${escapeHtml(reportHref)}" aria-label="${escapeHtml(item.title)} 보고서 링크 복사">공유</button>
       </article>`;
     })
     .join("\n");
@@ -469,9 +471,12 @@ export function renderHomeHtml(
 <body class="archive-page">
   <header class="archive-topbar">
     <div class="archive-topbar-inner">
-      <a class="archive-brand report-hub-brand-link" href="${REPORT_HUB_HOME}" aria-label="Report Hub 메인으로 이동">
-        <span class="report-hub-wordmark">Report Hub</span>
-      </a>
+      <div class="report-hub-brand-cluster">
+        <a class="archive-brand report-hub-brand-link" href="${REPORT_HUB_HOME}" aria-label="Report Hub 메인으로 이동">
+          <span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span>
+        </a>
+        <time class="report-hub-clock" data-report-hub-clock="true" aria-label="서울 현재 날짜와 시각"><span class="report-hub-clock-date"></span><span class="report-hub-clock-time"></span></time>
+      </div>
       <div class="archive-topbar-actions">
         <span class="archive-visitor-count" id="archiveVisitorCount" aria-live="polite">방문 집계 중</span>
         <a class="archive-blog-card" href="https://blog.naver.com/jeremylee0213" target="_blank" rel="noopener"><span class="archive-blog-mark">N</span><span class="archive-blog-card-copy"><b>Jeremy's Blog</b><small>네이버 블로그</small></span></a>
@@ -603,6 +608,57 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
         tagCloud.appendChild(tag);
       });
     }
+
+    function legacyCopyReportLink(value) {
+      return new Promise(function (resolve, reject) {
+        var input = document.createElement("textarea");
+        input.value = value;
+        input.setAttribute("readonly", "");
+        input.style.position = "fixed";
+        input.style.opacity = "0";
+        document.body.appendChild(input);
+        input.select();
+        input.setSelectionRange(0, value.length);
+        var copied = false;
+        try {
+          copied = document.execCommand("copy");
+        } catch (_) {
+          copied = false;
+        }
+        input.remove();
+        if (copied) resolve();
+        else reject(new Error("copy unavailable"));
+      });
+    }
+
+    function copyReportLink(button) {
+      var url = new URL(button.dataset.reportShareUrl || "", window.location.href);
+      url.search = "";
+      url.hash = "";
+      var copy = navigator.clipboard && typeof navigator.clipboard.writeText === "function"
+        ? navigator.clipboard.writeText(url.href).catch(function () { return legacyCopyReportLink(url.href); })
+        : legacyCopyReportLink(url.href);
+      return copy.then(function () {
+        button.textContent = "복사됨";
+        button.setAttribute("aria-label", "보고서 링크가 복사되었습니다");
+        window.clearTimeout(button.reportHubResetTimer);
+        button.reportHubResetTimer = window.setTimeout(function () {
+          button.textContent = "공유";
+          button.setAttribute("aria-label", "보고서 링크 복사");
+        }, 1800);
+      });
+    }
+
+    document.addEventListener("click", function (event) {
+      var button = event.target.closest("[data-report-share]");
+      if (!button) return;
+      event.preventDefault();
+      event.stopPropagation();
+      copyReportLink(button).catch(function () {
+        button.textContent = "복사 실패";
+        window.setTimeout(function () { button.textContent = "공유"; }, 1800);
+      });
+    });
 
     function viewStorageKey(reportId) {
       return "reportmode:view:" + reportId;

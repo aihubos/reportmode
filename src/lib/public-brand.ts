@@ -1,9 +1,10 @@
 import path from "node:path";
 
 export const REPORT_HUB_HOME = "https://aireport.ai-hub-os.com/";
-export const REPORT_HUB_BRAND_VERSION = "20260809-rh3";
+export const REPORT_HUB_BRAND_VERSION = "20260809-rh4";
 export const REPORT_HISTORY_VERSION = "20260809-history2";
 export const REPORT_COMMENTS_VERSION = "20260809-comments1";
+export const REPORT_COUNTER_VERSION = "20260809-counter-fallback2";
 
 function isRedirectHtml(html: string): boolean {
   return /<meta\b[^>]*http-equiv\s*=\s*["']?refresh["']?/i.test(html);
@@ -17,6 +18,20 @@ function reportIdFromPath(reportPath: string): string {
   const normalized = reportPath.replaceAll("\\", "/");
   if (normalized.endsWith("/index.html")) return path.posix.basename(path.posix.dirname(normalized));
   return path.posix.basename(normalized, ".html");
+}
+
+function replaceBodyDefaults(html: string): string {
+  return html.replace(/<body\b[^>]*>/i, (body) => {
+    let output = body;
+    const upsert = (name: string, value: string) => {
+      const expression = new RegExp(`\\s${name}=(['"])[^'"]*\\1`, "i");
+      if (expression.test(output)) output = output.replace(expression, ` ${name}="${value}"`);
+      else output = output.replace(/>$/, ` ${name}="${value}">`);
+    };
+    upsert("data-report-view", "detail");
+    upsert("data-report-layout", "wide");
+    return output;
+  });
 }
 
 function replaceTitle(html: string): string {
@@ -53,7 +68,7 @@ function replaceHeadAssets(html: string, prefix: string): string {
 }
 
 function homeButton(): string {
-  return `<a class="report-home-button" href="${REPORT_HUB_HOME}" aria-label="Report Hub 메인으로 이동"><span class="report-hub-wordmark">Report Hub</span></a>`;
+  return `<a class="report-home-button" href="${REPORT_HUB_HOME}" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span></a>`;
 }
 
 function replaceHomeButton(html: string): string {
@@ -77,7 +92,7 @@ function upsertSharedScripts(html: string, prefix: string, reportPath: string): 
   const snapshotId = existingHistory.match(/\bdata-snapshot-id=["']([^"']+)["']/i)?.[1];
   const hasPrevious = /\bdata-has-previous=["']true["']/i.test(existingHistory);
   let output = html
-    .replace(/\s*<script\b[^>]*src=["'][^"']*report-(?:hub-brand|page-layout|comments)\.js(?:\?[^"']*)?["'][^>]*><\/script>/gi, "")
+    .replace(/\s*<script\b[^>]*src=["'][^"']*report-(?:hub-brand|page-layout|comments|view-counter)\.js(?:\?[^"']*)?["'][^>]*><\/script>/gi, "")
     .replace(historyExpression, "");
   const historyAttributes = [
     `data-report-id="${reportIdFromPath(reportPath)}"`,
@@ -86,6 +101,7 @@ function upsertSharedScripts(html: string, prefix: string, reportPath: string): 
   ].filter(Boolean).join(" ");
   const tags = [
     `<script src="${prefix}/assets/report-page-layout.js?v=${REPORT_HUB_BRAND_VERSION}"></script>`,
+    `<script src="${prefix}/assets/report-view-counter.js?v=${REPORT_COUNTER_VERSION}" data-report-id="${reportIdFromPath(reportPath)}"></script>`,
     `<script src="${prefix}/assets/report-comments.js?v=${REPORT_COMMENTS_VERSION}" data-report-id="${reportIdFromPath(reportPath)}"></script>`,
     `<script src="${prefix}/assets/report-history.js?v=${REPORT_HISTORY_VERSION}" ${historyAttributes}></script>`,
     `<script src="${prefix}/assets/report-hub-brand.js?v=${REPORT_HUB_BRAND_VERSION}"></script>`,
@@ -109,6 +125,7 @@ export function applyReportHubBrand(html: string, reportPath: string): string {
     .replaceAll("보고서 도서관 메인으로 이동", "Report Hub 메인으로 이동");
   output = replaceTitle(output);
   output = replaceHeadAssets(output, prefix);
+  output = replaceBodyDefaults(output);
   output = replaceHomeButton(output);
   output = replaceLegacyBrandLinks(output);
   output = upsertSharedScripts(output, prefix, reportPath);

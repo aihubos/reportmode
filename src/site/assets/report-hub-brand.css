@@ -26,7 +26,14 @@
   --rh-radius-4: 16px;
   --rh-motion-fast: 180ms;
   --rh-ease: ease-out;
-  --rh-a4-menu-width: 160px;
+  --rh-wordmark-size: 36px;
+  --rh-wordmark-size-compact: 30px;
+  --rh-byline-size: 11px;
+  --rh-clock-date-size: 11px;
+  --rh-clock-time-size: 16px;
+  --rh-menu-min-height: 72px;
+  --rh-archive-mobile-height: 112px;
+  --rh-a4-menu-width: 208px;
   --rh-a4-orbit-max: 520px;
 }
 
@@ -37,9 +44,9 @@
   z-index: 2147483000;
   display: flex;
   align-items: center;
-  min-height: 56px;
+  min-height: var(--rh-menu-min-height);
   max-width: calc(100vw - 32px);
-  padding: 7px 9px 7px 15px;
+  padding: var(--rh-space-2) var(--rh-space-3);
   border: 1px solid var(--rh-border);
   border-radius: var(--rh-radius-4);
   background: var(--rh-paper);
@@ -54,7 +61,7 @@
   align-items: center !important;
   flex: 0 0 auto !important;
   min-width: 0 !important;
-  min-height: 44px !important;
+  min-height: 56px !important;
   margin: 0 !important;
   padding: 0 var(--rh-space-1) !important;
   overflow: visible !important;
@@ -71,14 +78,71 @@
   -webkit-backdrop-filter: none !important;
 }
 
+.report-hub-brand-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
 .report-hub-wordmark {
   color: inherit;
   font-family: var(--rh-sans);
-  font-size: 24px;
+  font-size: var(--rh-wordmark-size);
   font-weight: 850;
-  line-height: 1.05;
+  line-height: 1.02;
   letter-spacing: -.05em;
   white-space: nowrap;
+}
+
+.report-hub-byline {
+  margin-top: var(--rh-space-1);
+  color: var(--rh-muted);
+  font-family: var(--rh-sans);
+  font-size: var(--rh-byline-size);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: .01em;
+  white-space: nowrap;
+}
+
+.report-hub-brand-cluster {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+}
+
+.report-hub-clock {
+  display: grid;
+  flex: 0 0 auto;
+  gap: var(--rh-space-1);
+  margin-left: var(--rh-space-3);
+  padding-left: var(--rh-space-3);
+  border-left: 1px solid var(--rh-border);
+  color: var(--rh-ink);
+  font-family: var(--rh-sans);
+  font-style: normal;
+  line-height: 1;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.report-hub-clock-date {
+  color: var(--rh-muted);
+  font-size: var(--rh-clock-date-size);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -.01em;
+}
+
+.report-hub-clock-time {
+  color: var(--rh-ink);
+  font-size: var(--rh-clock-time-size);
+  font-variant-numeric: tabular-nums;
+  font-weight: 650;
+  line-height: 1.1;
+  letter-spacing: 0;
 }
 
 .report-home-button:hover { color: var(--rh-primary-hover) !important; }
@@ -95,7 +159,7 @@
   border-left: 1px solid var(--rh-border);
 }
 
-@media (min-width: 1180px) {
+@media (min-width: 1280px) {
   body.report-a4-mode .report-hub-floating-menu {
     left: calc(50% + 105mm + var(--rh-space-4));
     width: var(--rh-a4-menu-width);
@@ -105,8 +169,15 @@
     padding: var(--rh-space-3);
   }
 
-  body.report-a4-mode .report-home-button { justify-content: center !important; }
-  body.report-a4-mode .report-hub-wordmark { font-size: 20px; }
+  body.report-a4-mode .report-home-button { justify-content: flex-start !important; }
+  body.report-a4-mode .report-hub-wordmark { font-size: var(--rh-wordmark-size-compact); }
+  body.report-a4-mode .report-hub-clock {
+    width: 100%;
+    margin: var(--rh-space-2) 0 0;
+    padding: var(--rh-space-2) 0 0;
+    border-top: 1px solid var(--rh-border);
+    border-left: 0;
+  }
   body.report-a4-mode .report-hub-floating-menu .report-layout-controls {
     width: 100%;
     margin: var(--rh-space-2) 0 0;
@@ -117,14 +188,14 @@
   body.report-a4-mode .report-hub-floating-menu .report-layout-buttons { width: 100% !important; }
 }
 
-@media (min-width: 431px) and (max-width: 1179px) {
+@media (min-width: 701px) and (max-width: 1279px) {
   body.report-a4-mode .report-hub-floating-menu { right: var(--rh-space-4); left: auto; }
 }
 
 .archive-brand.report-hub-brand-link {
   display: inline-flex;
   align-items: center;
-  min-height: 44px;
+  min-height: 56px;
   padding: 0 var(--rh-space-1);
   border-radius: var(--rh-radius-2);
   color: var(--rh-primary) !important;
@@ -150,20 +221,52 @@
   border-radius: var(--rh-radius-2);
 }
 
+@media (max-width: 700px) {
+  .report-hub-floating-menu {
+    right: var(--rh-space-4);
+    left: var(--rh-space-4);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    max-width: none;
+  }
+
+  .report-hub-wordmark { font-size: var(--rh-wordmark-size-compact); letter-spacing: -.045em; }
+  .report-hub-floating-menu .report-layout-controls {
+    grid-column: 1 / -1;
+    width: 100%;
+    margin: var(--rh-space-2) 0 0;
+    padding: var(--rh-space-2) 0 0;
+    border-top: 1px solid var(--rh-border);
+    border-left: 0;
+  }
+  .report-hub-floating-menu .report-layout-buttons { margin: 0 auto; }
+
+  .archive-topbar { height: var(--rh-archive-mobile-height); }
+  .archive-topbar-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-content: center;
+    gap: var(--rh-space-2);
+  }
+  .archive-topbar .report-hub-brand-cluster { justify-content: space-between; }
+  .archive-topbar-actions { justify-content: flex-end; }
+  .archive-brand.report-hub-brand-link .report-hub-brand-copy { display: flex !important; }
+}
+
 @media (max-width: 430px) {
   .report-hub-floating-menu {
     top: var(--rh-space-2);
+    right: var(--rh-space-2);
     left: var(--rh-space-2);
-    min-height: 52px;
-    max-width: calc(100vw - 16px);
-    padding: 5px 7px 5px 11px;
+    max-width: none;
+    padding: var(--rh-space-2);
     border-radius: var(--rh-radius-3);
   }
 
-  .report-hub-wordmark { font-size: 20px; letter-spacing: -.045em; }
-  .report-hub-floating-menu .report-layout-controls { margin-left: var(--rh-space-2); padding-left: var(--rh-space-2); }
-  .archive-brand.report-hub-brand-link .report-hub-wordmark { display: inline !important; font-size: 20px; }
-  body.report-a4-mode .report-hub-floating-menu { right: var(--rh-space-2); left: auto; }
+  .archive-brand.report-hub-brand-link .report-hub-wordmark { display: inline !important; font-size: var(--rh-wordmark-size-compact); }
+  body.report-a4-mode .report-hub-floating-menu { right: var(--rh-space-2); left: var(--rh-space-2); }
 }
 
 @media (prefers-reduced-motion: reduce) {

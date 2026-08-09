@@ -12,12 +12,32 @@ test("shared layout starts wide and uses equal-size icon segmented controls", ()
   assert.match(script, /data-report-view-target/);
   assert.match(script, /aria-label="가로 보기"/);
   assert.match(script, /aria-label="세로 보기"/);
-  assert.match(script, /report-hub-brand\.js\?v=20260809-rh3/);
+  assert.match(script, /report-hub-brand\.js\?v=20260809-rh4/);
   assert.match(script, /querySelector\("\.report-hub-floating-menu"\)/);
   assert.match(css, /\.report-layout-buttons[^}]*width:\s*156px/);
   assert.match(css, /report-view-switcher-inner\s*>\s*\.report-view-buttons[^}]*width:\s*180px/);
   assert.match(css, /report-view-switcher-inner\s*>\s*\.report-view-buttons[^}]*padding:\s*3px/);
   assert.match(css, /report-view-buttons\s+\.report-view-button[^}]*width:\s*50%/);
+});
+
+test("shared report actions place copy beside PDF and expose the report view count", () => {
+  const script = fs.readFileSync(new URL("./report-page-layout.js", import.meta.url), "utf8");
+  const css = fs.readFileSync(new URL("./report-page-layout.css", import.meta.url), "utf8");
+
+  assert.match(script, /function ensureReportActions\(/);
+  assert.match(script, /id = "report-pdf-button"/);
+  assert.match(script, /id = "report-share-button"/);
+  assert.match(script, /textContent = "공유"/);
+  assert.match(script, /navigator\.clipboard\.writeText/);
+  assert.match(script, /document\.execCommand\("copy"\)/);
+  assert.match(script, /url\.search = ""/);
+  assert.match(script, /url\.hash = ""/);
+  assert.match(script, /data-report-view-count/);
+  assert.match(css, /\.report-sharing-tools/);
+  assert.match(css, /\.report-share-button/);
+  assert.match(css, /\.report-view-count-panel/);
+  assert.match(css, /\.report-sharing-tools[^}]*grid-template-columns:\s*minmax\(76px,1fr\) minmax\(76px,1fr\) minmax\(86px,auto\)/s);
+  assert.match(css, /@media \(max-width:\s*700px\)[\s\S]*\.report-view-switcher\s*{[^}]*margin-top:\s*96px\s*!important;[^}]*top:\s*154px\s*!important;/);
 });
 
 test("portrait mode deliberately reduces large report headings", () => {
@@ -29,7 +49,7 @@ test("portrait mode deliberately reduces large report headings", () => {
 
 test("portrait mode moves the shared menu into the right A4 gutter", () => {
   const css = fs.readFileSync(new URL("./report-hub-brand.css", import.meta.url), "utf8");
-  assert.match(css, /@media \(min-width:\s*1180px\)[\s\S]*body\.report-a4-mode \.report-hub-floating-menu/);
+  assert.match(css, /@media \(min-width:\s*1280px\)[\s\S]*body\.report-a4-mode \.report-hub-floating-menu/);
   assert.match(css, /left:\s*calc\(50% \+ 105mm \+ var\(--rh-space-4\)\)/);
   assert.match(css, /width:\s*var\(--rh-a4-menu-width\)/);
   assert.match(css, /flex-direction:\s*column/);
