@@ -1,7 +1,27 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-09T19:20:45+09:00",
+  "updatedAt": "2026-08-09T19:35:23+09:00",
   "reports": [
+    {
+      "schemaVersion": "1",
+      "id": "260809-hermes-agent-korean-ai-guide",
+      "slug": "hermes-agent-korean-ai-guide",
+      "title": "Hermes Agent에 한국 AI를 붙이면 생기는 일!",
+      "category": "AI",
+      "tags": [
+        "Hermes",
+        "Upstage",
+        "Solar",
+        "MOA"
+      ],
+      "summary": "Hermes Agent에 Upstage Solar를 연결해 한국어 업무 보고서를 만드는 방법과 Mixture of Agents 운영 원칙을 정리한 실습 가이드입니다.",
+      "createdAt": "2026-08-09T19:34:31+09:00",
+      "updatedAt": "2026-08-09T19:34:31+09:00",
+      "status": "published",
+      "sourceName": "Hermes Agent에 한국 AI를 붙이면 생기는 일!.zip",
+      "sourceCount": 8,
+      "entry": "index.html"
+    },
     {
       "schemaVersion": "1",
       "id": "260809-graphify-llm-wiki-guide",
