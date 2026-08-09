@@ -8,8 +8,8 @@
   if (!document.querySelector('script[src*="report-hub-brand.js"]')) {
     var brandScript = document.createElement("script");
     brandScript.src = layoutScript && layoutScript.src
-      ? new URL("report-hub-brand.js?v=20260809-rh6", layoutScript.src).href
-      : "https://aihubos.github.io/reportmode/assets/report-hub-brand.js?v=20260809-rh6";
+      ? new URL("report-hub-brand.js?v=20260809-rh7", layoutScript.src).href
+      : "https://aihubos.github.io/reportmode/assets/report-hub-brand.js?v=20260809-rh7";
     document.head.appendChild(brandScript);
   }
 

@@ -38,14 +38,14 @@
     @media(prefers-reduced-motion:reduce){.report-view-buttons::before,.report-view-button,.simple-detail-button{transition:none!important}}
     @media print{.report-view-switcher,.report-utility-controls{display:none!important}body[data-report-view="simple"] .hero,body[data-report-view="simple"] .detail-report,body[data-report-view="simple"] #sources{display:none!important}body[data-report-view="simple"] .simple-report{display:block!important;padding:0;break-before:auto;page-break-before:auto}body[data-report-view="simple"] .simple-overview{padding:0;border:0;box-shadow:none}body[data-report-view="simple"] .simple-overview>.eyebrow,body[data-report-view="simple"] .simple-overview>h2,body[data-report-view="simple"] .simple-detail-button{display:none!important}body[data-report-view="simple"] .simple-summary-content{display:block}body[data-report-view="simple"] .simple-slide{height:252mm;min-height:0;margin:0;padding:9mm 9mm 14mm;border:0;border-radius:0;box-shadow:none;break-inside:avoid;break-after:page;page-break-after:always}body[data-report-view="simple"] .simple-slide:last-child{break-after:auto;page-break-after:auto}body[data-report-view="simple"] .simple-slide::before{height:2mm}body[data-report-view="simple"] .simple-slide-title{font-size:23pt}body[data-report-view="simple"] .simple-slide-head{margin-bottom:5mm}body[data-report-view="simple"] .simple-product-photo{min-height:0;height:88mm;max-height:88mm}body[data-report-view="simple"] .simple-infographic-image{height:72mm;max-height:72mm;object-fit:contain}body[data-report-view="simple"] .simple-verdict{padding:4mm 5mm;font-size:17pt}body[data-report-view="simple"] .simple-metric-strip{gap:3mm;margin-top:4mm}body[data-report-view="simple"] .simple-metric-card{padding:4mm}body[data-report-view="simple"] .simple-metric-card b{font-size:20pt}body[data-report-view="simple"] .simple-metric-card span,body[data-report-view="simple"] .simple-bar-row,body[data-report-view="simple"] .simple-flow-step,body[data-report-view="simple"] .simple-slide-note{font-size:8.5pt}body[data-report-view="simple"] .simple-decision-card{padding:4mm}body[data-report-view="simple"] .simple-decision-card h3{font-size:13pt}body[data-report-view="simple"] .simple-slide-footer{left:9mm;right:9mm;bottom:5mm}body[data-report-view="detail"] .simple-report{display:none!important}body[data-report-view="detail"] .detail-report{display:block!important}}
   </style>
-  <link rel="icon" type="image/svg+xml" sizes="any" href="../assets/favicon.svg?v=20260809-rh6">
-  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png?v=20260809-rh6">
-  <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png?v=20260809-rh6">
-  <link rel="manifest" href="../site.webmanifest?v=20260809-rh6">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../assets/favicon.svg?v=20260809-rh7">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png?v=20260809-rh7">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png?v=20260809-rh7">
+  <link rel="manifest" href="../site.webmanifest?v=20260809-rh7">
   <meta name="application-name" content="Report Hub">
   <meta property="og:site_name" content="Report Hub">
-  <link rel="stylesheet" href="../assets/report-page-layout.css?v=20260809-rh6">
-  <link rel="stylesheet" href="../assets/report-hub-brand.css?v=20260809-rh6">
+  <link rel="stylesheet" href="../assets/report-page-layout.css?v=20260809-rh7">
+  <link rel="stylesheet" href="../assets/report-hub-brand.css?v=20260809-rh7">
   <link rel="stylesheet" href="../assets/report-comments.css?v=20260809-comments1">
 </head>
 <body data-report-view="detail" data-report-layout="wide" data-report-cover="assets/260803-shanghai-disneyland-attractions-crowd-guide/cover.png" data-report-cover-alt="상하이 디즈니랜드 캐슬 실사 이미지">
@@ -148,10 +148,10 @@
   <script id="report-share-script">
   (()=>{const button=document.getElementById('report-share-button');if(!button)return;const original=button.textContent;const shareUrl=()=>{const url=new URL(location.href);if(document.body.dataset.reportView==='simple')url.searchParams.set('view','simple');else url.searchParams.delete('view');url.hash='';return url.toString()};const copied=()=>{button.textContent='링크 복사됨';button.setAttribute('aria-label','보고서 링크가 복사되었습니다');setTimeout(()=>{button.textContent=original;button.setAttribute('aria-label','현재 보고서 링크 공유')},1800)};button.addEventListener('click',async()=>{const data={title:document.title,text:document.querySelector('meta[name="description"]')?.content||document.title,url:shareUrl()};try{if(navigator.share){await navigator.share(data)}else{await navigator.clipboard.writeText(data.url);copied()}}catch(error){if(error?.name==='AbortError')return;try{await navigator.clipboard.writeText(data.url);copied()}catch{button.textContent='주소창에서 복사';setTimeout(()=>button.textContent=original,2200)}}})})();
   </script>
-  <script src="../assets/report-page-layout.js?v=20260809-rh6"></script>
+  <script src="../assets/report-page-layout.js?v=20260809-rh7"></script>
   <script src="../assets/report-view-counter.js?v=20260809-counter-fallback2" data-report-id="260803-shanghai-disneyland-attractions-crowd-guide"></script>
   <script src="../assets/report-comments.js?v=20260809-comments1" data-report-id="260803-shanghai-disneyland-attractions-crowd-guide"></script>
   <script src="../assets/report-history.js?v=20260809-history2" data-report-id="260803-shanghai-disneyland-attractions-crowd-guide" data-snapshot-id="2026-08-09-before-refresh" data-has-previous="true"></script>
-  <script src="../assets/report-hub-brand.js?v=20260809-rh6"></script>
+  <script src="../assets/report-hub-brand.js?v=20260809-rh7"></script>
 </body>
 </html>

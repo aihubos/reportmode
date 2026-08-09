@@ -2,7 +2,7 @@
   "use strict";
 
   var HOME = "https://aireport.ai-hub-os.com/";
-  var VERSION = "20260809-rh6";
+  var VERSION = "20260809-rh7";
   var SEOUL_TIME_ZONE = "Asia/Seoul";
   var script = document.currentScript;
   var faviconUrl = script && script.src
@@ -10,6 +10,7 @@
     : "https://aihubos.github.io/reportmode/assets/favicon.svg?v=" + VERSION;
   var layoutObserver = null;
   var clockTimer = null;
+  var topClearanceFrame = null;
 
   function logoMarkup() {
     return '<span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span>';
@@ -183,6 +184,40 @@
     });
   }
 
+  function firstReportContent() {
+    var children = Array.prototype.slice.call(document.body.children);
+    return children.find(function (element) {
+      return /^(MAIN|HEADER|SECTION)$/i.test(element.tagName) &&
+        !element.matches(".report-hub-floating-menu, .report-hub-top-spacer");
+    }) || document.querySelector("main, header, section");
+  }
+
+  function ensureTopClearance() {
+    var menu = document.querySelector(".report-hub-floating-menu");
+    var content = firstReportContent();
+    if (!menu || !content || menu.contains(content)) return;
+    var spacer = document.querySelector(".report-hub-top-spacer");
+    if (!spacer) {
+      spacer = document.createElement("div");
+      spacer.className = "report-hub-top-spacer";
+      spacer.setAttribute("aria-hidden", "true");
+      content.parentNode.insertBefore(spacer, content);
+    }
+    spacer.style.height = "0px";
+    var configuredGap = Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--rh-report-menu-content-gap"));
+    var gap = Number.isFinite(configuredGap) ? configuredGap : 24;
+    var requiredSpace = menu.getBoundingClientRect().bottom + gap - content.getBoundingClientRect().top;
+    spacer.style.height = Math.max(0, Math.ceil(requiredSpace)) + "px";
+  }
+
+  function scheduleTopClearance() {
+    if (topClearanceFrame) root.cancelAnimationFrame(topClearanceFrame);
+    topClearanceFrame = root.requestAnimationFrame(function () {
+      topClearanceFrame = null;
+      ensureTopClearance();
+    });
+  }
+
   function watchForLayoutControls() {
     if (attachLayoutControls() || typeof MutationObserver === "undefined" || layoutObserver) return;
     layoutObserver = new MutationObserver(attachLayoutControls);
@@ -221,6 +256,8 @@
       installTitleLinks();
       watchForLayoutControls();
       removeLegacyTopMenus();
+      scheduleTopClearance();
+      root.addEventListener("resize", scheduleTopClearance, { passive: true });
     }
   }
 

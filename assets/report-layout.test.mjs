@@ -12,7 +12,7 @@ test("shared layout starts wide and uses equal-size icon segmented controls", ()
   assert.match(script, /data-report-view-target/);
   assert.match(script, /aria-label="가로 보기"/);
   assert.match(script, /aria-label="세로 보기"/);
-  assert.match(script, /report-hub-brand\.js\?v=20260809-rh6/);
+  assert.match(script, /report-hub-brand\.js\?v=20260809-rh7/);
   assert.match(script, /querySelector\("\.report-hub-floating-menu"\)/);
   assert.match(css, /\.report-layout-buttons[^}]*width:\s*156px/);
   assert.match(css, /report-view-switcher-inner\s*>\s*\.report-view-buttons[^}]*width:\s*180px/);

@@ -17,6 +17,8 @@ test("public brand uses a large Toss Blue text wordmark and one floating menu", 
   assert.doesNotMatch(svg, />RM<\/text>/);
   assert.match(css, /--rh-primary:\s*#3182F6/);
   assert.match(css, /\.report-hub-floating-menu\s*{[^}]*position:\s*fixed/s);
+  assert.match(css, /\.report-hub-floating-menu\s*{[^}]*left:\s*50%[^}]*transform:\s*translateX\(-50%\)/s);
+  assert.match(css, /--rh-report-menu-content-gap:\s*24px/);
   assert.match(css, /\.report-home-button/);
   assert.match(css, /\.report-hub-wordmark\s*{[^}]*font-size:\s*var\(--rh-wordmark-size\)/s);
   assert.match(css, /--rh-wordmark-size:\s*36px/);
@@ -36,6 +38,9 @@ test("public brand uses a large Toss Blue text wordmark and one floating menu", 
   assert.match(script, /function installTitleLinks/);
   assert.match(script, /function normalizeReportHubLinks/);
   assert.match(script, /function removeLegacyTopMenus/);
+  assert.match(script, /function ensureTopClearance/);
+  assert.match(script, /report-hub-top-spacer/);
+  assert.match(script, /--rh-report-menu-content-gap/);
   assert.match(script, /\.nav-wrap/);
   assert.match(script, /\.floating-menu:not\(\.report-hub-floating-menu\)/);
   assert.match(script, /nav\.nav:not\(\.report-hub-floating-menu\)/);
