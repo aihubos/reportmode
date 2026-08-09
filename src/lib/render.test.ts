@@ -170,6 +170,8 @@ test("renders a top spotlight with three curated defaults and three view-ranked 
   assert.match(html, /id="archiveSpotlight"/);
   assert.match(html, /id="archiveFeaturedList"/);
   assert.match(html, /id="archivePopularList"/);
+  assert.match(html, /<h2 id="featured-title">Jeremy's Pick<\/h2>/);
+  assert.doesNotMatch(html, /관리자 추천/);
   assert.equal(html.match(/data-featured-fallback-item/g)?.length, 3);
   assert.equal(html.match(/data-popular-report/g)?.length, 3);
   const popular = html.slice(html.indexOf('id="archivePopularList"'));
