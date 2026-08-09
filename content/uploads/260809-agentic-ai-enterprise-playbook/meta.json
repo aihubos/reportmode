@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1",
+  "id": "260809-agentic-ai-enterprise-playbook",
+  "slug": "agentic-ai-enterprise-playbook",
+  "title": "Agentic AI 완전 정복: 2026년 기업이 실제로 쓰는 7가지 방법과 90일 도입 가이드",
+  "category": "AI",
+  "tags": [
+    "Agentic AI",
+    "AI 에이전트",
+    "기업 AI",
+    "AI 거버넌스",
+    "AI ROI"
+  ],
+  "summary": "Agentic AI의 정의, 주요 기업 도구, 실제 사례, 권한·로그·승인 중심 거버넌스와 한국 기업 90일 도입 순서를 정리한 실무 보고서입니다.",
+  "createdAt": "2026-08-09T21:38:54+09:00",
+  "updatedAt": "2026-08-09T21:38:54+09:00",
+  "status": "published",
+  "sourceName": "260809-21-agentic-ai-enterprise-playbook-v1-0-0-github-upload.zip",
+  "sourceCount": 17,
+  "entry": "index.html"
+}

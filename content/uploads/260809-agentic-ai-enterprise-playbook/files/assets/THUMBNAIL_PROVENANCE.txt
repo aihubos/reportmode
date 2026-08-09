@@ -1,0 +1,2 @@
+Representative image source: bundled report asset assets/thumbnail.png
+Purpose: Report Hub archive thumbnail for this Agentic AI enterprise playbook.

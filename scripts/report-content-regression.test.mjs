@@ -82,3 +82,9 @@ test("China AI report keeps its bundled representative thumbnail", () => {
 
   assert.match(report, /data-report-cover="thumbnail\.png"/);
 });
+
+test("Agentic AI enterprise playbook keeps its bundled representative thumbnail", () => {
+  const report = read("reports/260809-agentic-ai-enterprise-playbook/index.html");
+
+  assert.match(report, /data-report-cover="assets\/thumbnail\.png"/);
+});
