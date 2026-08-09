@@ -2,7 +2,7 @@
   "use strict";
 
   var HOME = "https://aireport.ai-hub-os.com/";
-  var VERSION = "20260809-rh7";
+  var VERSION = "20260809-rh8";
   var SEOUL_TIME_ZONE = "Asia/Seoul";
   var script = document.currentScript;
   var faviconUrl = script && script.src
@@ -130,8 +130,6 @@
     controls.classList.remove("is-standalone");
     ensureClock(menu, controls);
     if (controls.parentNode !== menu) menu.appendChild(controls);
-    var viewButtons = document.querySelector(".report-view-switcher .report-view-buttons");
-    if (viewButtons && viewButtons.parentNode !== menu) menu.appendChild(viewButtons);
     var utilityControls = document.querySelector(".report-view-switcher .report-utility-controls");
     if (utilityControls && utilityControls.parentNode !== menu) menu.appendChild(utilityControls);
     if (layoutObserver) {
@@ -181,6 +179,13 @@
     ];
     document.querySelectorAll(selectors.join(",")).forEach(function (menu) {
       menu.remove();
+    });
+  }
+
+  function removeLegacyViewModes() {
+    document.body.dataset.reportView = "detail";
+    document.querySelectorAll(".report-view-buttons, .simple-report").forEach(function (element) {
+      element.remove();
     });
   }
 
@@ -255,6 +260,7 @@
       ensureClock(menu, menu.querySelector(".report-layout-controls"));
       installTitleLinks();
       watchForLayoutControls();
+      removeLegacyViewModes();
       removeLegacyTopMenus();
       scheduleTopClearance();
       root.addEventListener("resize", scheduleTopClearance, { passive: true });
