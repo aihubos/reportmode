@@ -5,7 +5,7 @@ import { loadConfig } from "./config.js";
 import { escapeHtml, inlineMark, nl2p } from "./html.js";
 import { displayDateFromIso, prettyDateFromIso } from "./time.js";
 import { repoRoot } from "./paths.js";
-import { REPORT_HUB_BRAND_VERSION, REPORT_HUB_HOME } from "./public-brand.js";
+import { REPORT_HISTORY_VERSION, REPORT_HUB_BRAND_VERSION, REPORT_HUB_HOME } from "./public-brand.js";
 
 const KIND_LABEL: Record<SectionKind, string> = {
   fact: "사실",
@@ -210,11 +210,11 @@ export function renderReportHtml(doc: ReportDocument): string {
   <meta name="color-scheme" content="light">
   <title>${escapeHtml(dateCode)} · ${escapeHtml(doc.title)} | Report Hub</title>
   <style>${css()}</style>
-  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260809-refresh">
+  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=${REPORT_HUB_BRAND_VERSION}">
   <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=${REPORT_HUB_BRAND_VERSION}">
 </head>
 <body data-report-view="detail" data-report-layout="wide">
-  <a class="report-home-button" href="${REPORT_HUB_HOME}" aria-label="Report Hub 메인으로 이동"><img class="report-hub-logo" src="../../assets/favicon.svg?v=${REPORT_HUB_BRAND_VERSION}" alt=""><span class="report-hub-wordmark">Report Hub</span></a>
+  <a class="report-home-button" href="${REPORT_HUB_HOME}" aria-label="Report Hub 메인으로 이동"><span class="report-hub-wordmark">Report Hub</span></a>
   <nav class="nav" aria-label="보고서 탐색">
     <div class="nav-inner">
       <a href="${REPORT_HUB_HOME}">Report Hub</a>
@@ -291,9 +291,9 @@ export function renderReportHtml(doc: ReportDocument): string {
       <span>최종 판단과 검수는 사용자에게 있습니다.</span>
     </div>
   </footer>
-  <script src="../../assets/report-page-layout.js?v=20260809-refresh"></script>
+  <script src="../../assets/report-page-layout.js?v=${REPORT_HUB_BRAND_VERSION}"></script>
   <script src="../../assets/report-view-counter.js?v=20260809-counter-fallback2" data-report-id="${escapeHtml(doc.id)}"></script>
-  <script src="../../assets/report-history.js?v=20260809" data-report-id="${escapeHtml(doc.id)}"></script>
+  <script src="../../assets/report-history.js?v=${REPORT_HISTORY_VERSION}" data-report-id="${escapeHtml(doc.id)}"></script>
   <script src="../../assets/report-hub-brand.js?v=${REPORT_HUB_BRAND_VERSION}"></script>
 </body>
 </html>
@@ -470,7 +470,6 @@ export function renderHomeHtml(
   <header class="archive-topbar">
     <div class="archive-topbar-inner">
       <a class="archive-brand report-hub-brand-link" href="${REPORT_HUB_HOME}" aria-label="Report Hub 메인으로 이동">
-        <img class="report-hub-logo" src="../assets/favicon.svg?v=${REPORT_HUB_BRAND_VERSION}" alt="">
         <span class="report-hub-wordmark">Report Hub</span>
       </a>
       <nav aria-label="주요 메뉴">
@@ -482,7 +481,6 @@ export function renderHomeHtml(
 
   <main class="archive-shell">
     <section class="archive-profile" aria-labelledby="archive-title">
-      <div class="archive-avatar" aria-hidden="true"><img class="report-hub-logo" src="../assets/favicon.svg?v=${REPORT_HUB_BRAND_VERSION}" alt=""></div>
       <div class="archive-profile-copy">
         <div class="archive-eyebrow">AI RESEARCH HUB</div>
         <h1 id="archive-title">Report Hub</h1>

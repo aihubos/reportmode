@@ -2,9 +2,9 @@
 
 > **For agentic workers:** REQUIRED: Use superpowers:subagent-driven-development (if subagents available) or superpowers:executing-plans to implement this plan. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** 모든 실제 보고서에 토스 블루 텍스트 워드마크, 가로·세로 전환, 제목 최상단 이동을 제공하는 공통 플로팅 메뉴를 배포한다.
+**Goal:** 모든 실제 보고서에 토스 블루 텍스트 워드마크, 가로·세로 전환, 제목 최상단 이동을 제공하고 중복 버전 이력을 하나로 통합한다.
 
-**Architecture:** `report-hub-brand.js`가 홈 링크와 제목 이동, 플로팅 메뉴 조립을 담당한다. `report-page-layout.js`는 레이아웃 전환 버튼을 만들고 플로팅 메뉴에 결합한다. `public-brand.ts`는 현재와 향후 보고서에 두 공통 자산을 중복 없이 주입한다.
+**Architecture:** `report-hub-brand.js`가 홈 링크와 제목 이동, 플로팅 메뉴 조립을 담당한다. `report-page-layout.js`는 레이아웃 전환 버튼을 만들고 플로팅 메뉴에 결합한다. `report-history.js`는 기존 이력 영역을 공통 카드 하나로 교체한다. `public-brand.ts`는 현재와 향후 보고서에 공통 자산을 중복 없이 주입한다.
 
 **Tech Stack:** 정적 HTML, CSS, 브라우저 JavaScript, TypeScript 변환기, Node test, GitHub Pages
 
@@ -76,3 +76,15 @@
 - [ ] GitHub PR을 병합하고 Pages 성공 SHA를 확인한다.
 - [ ] 실제 도메인과 현재·최신·이전판 URL에서 공개 동작을 다시 확인한다.
 
+### Task 5A: 변경 이력 단일화
+
+**Files:**
+- Modify: `assets/report-history.js`
+- Modify: `src/site/assets/report-history.js`
+- Modify: `assets/report-history.test.mjs`
+- Modify: `src/lib/public-brand.ts`
+
+- [ ] 기존 이력 아래에 새 카드를 덧붙이지 않고 같은 영역을 공통 카드로 교체한다.
+- [ ] 제목을 `버전 및 업데이트 이력` 하나로 통일한다.
+- [ ] 이전판이 없는 신규 보고서는 현재판 행만 표시한다.
+- [ ] 모든 실제 보고서가 통합 이력 스크립트를 정확히 하나만 가지는지 검사한다.

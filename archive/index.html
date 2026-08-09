@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="검증 가능한 AI·비즈니스 보고서 허브">
-  <link rel="icon" type="image/svg+xml" sizes="any" href="../assets/favicon.svg?v=20260809-rh1">
-  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png?v=20260809-rh1">
-  <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png?v=20260809-rh1">
-  <link rel="manifest" href="../site.webmanifest?v=20260809-rh1">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../assets/favicon.svg?v=20260809-rh2">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png?v=20260809-rh2">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png?v=20260809-rh2">
+  <link rel="manifest" href="../site.webmanifest?v=20260809-rh2">
   <link rel="canonical" href="https://aireport.ai-hub-os.com/">
   <meta name="application-name" content="Report Hub">
   <meta property="og:site_name" content="Report Hub">
@@ -266,7 +266,7 @@ footer {
 .archive-topbar nav a:hover, .archive-topbar nav a.is-current { color: var(--archive-blue-deep); background: var(--archive-blue-soft); }
 .archive-shell { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
 .archive-profile {
-  min-height: 240px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 28px;
+  min-height: 240px; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 28px;
   margin: 32px 0 24px; padding: 38px 42px !important;
   border: 1px solid #edf0f2; border-radius: 26px; background: #fff;
   box-shadow: 0 14px 38px rgba(15,23,42,.045);
@@ -453,8 +453,8 @@ footer {
   .verdict-grid, .duo, .checks, .metrics { grid-template-columns: 1fr 1fr; }
   .metrics { grid-template-columns: 1fr 1fr; }
   .t-item { grid-template-columns: 1fr; }
-  .archive-profile { grid-template-columns: auto 1fr; }
-  .archive-primary-action { grid-column: 2; justify-self: start; }
+  .archive-profile { grid-template-columns: 1fr auto; }
+  .archive-primary-action { grid-column: auto; justify-self: start; }
   .archive-layout { grid-template-columns: 1fr; }
   .archive-sidebar { position: static; grid-template-columns: 1fr; }
   .archive-side-categories, .archive-side-tags, .archive-side-note { display: none; }
@@ -556,13 +556,12 @@ footer {
   .archive-admin-actions { right: 8px; top: 8px; }
 }
 </style>
-  <link rel="stylesheet" href="../assets/report-hub-brand.css?v=20260809-rh1">
+  <link rel="stylesheet" href="../assets/report-hub-brand.css?v=20260809-rh2">
 </head>
 <body class="archive-page">
   <header class="archive-topbar">
     <div class="archive-topbar-inner">
       <a class="archive-brand report-hub-brand-link" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동">
-        <img class="report-hub-logo" src="../assets/favicon.svg?v=20260809-rh1" alt="">
         <span class="report-hub-wordmark">Report Hub</span>
       </a>
       <nav aria-label="주요 메뉴">
@@ -574,7 +573,6 @@ footer {
 
   <main class="archive-shell">
     <section class="archive-profile" aria-labelledby="archive-title">
-      <div class="archive-avatar" aria-hidden="true"><img class="report-hub-logo" src="../assets/favicon.svg?v=20260809-rh1" alt=""></div>
       <div class="archive-profile-copy">
         <div class="archive-eyebrow">AI RESEARCH HUB</div>
         <h1 id="archive-title">Report Hub</h1>
@@ -1802,6 +1800,6 @@ footer {
   </script>
   <script src="../assets/archive-request-board.js"></script>
   <script src="../assets/archive-report-admin.js"></script>
-  <script src="../assets/report-hub-brand.js?v=20260809-rh1"></script>
+  <script src="../assets/report-hub-brand.js?v=20260809-rh2"></script>
 </body>
 </html>

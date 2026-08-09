@@ -8,8 +8,8 @@
   if (!document.querySelector('script[src*="report-hub-brand.js"]')) {
     var brandScript = document.createElement("script");
     brandScript.src = layoutScript && layoutScript.src
-      ? new URL("report-hub-brand.js?v=20260809-rh1", layoutScript.src).href
-      : "https://aihubos.github.io/reportmode/assets/report-hub-brand.js?v=20260809-rh1";
+      ? new URL("report-hub-brand.js?v=20260809-rh2", layoutScript.src).href
+      : "https://aihubos.github.io/reportmode/assets/report-hub-brand.js?v=20260809-rh2";
     document.head.appendChild(brandScript);
   }
 
@@ -26,15 +26,20 @@
   controls.innerHTML =
     '<span class="report-layout-label">레이아웃 선택</span>' +
     '<div class="report-layout-buttons" role="group" aria-label="가로 또는 세로">' +
-    '<button class="report-layout-button" type="button" data-report-layout="wide" aria-label="가로 보기" aria-pressed="false"><span class="report-layout-icon" aria-hidden="true">▭</span><span>가로</span></button>' +
-    '<button class="report-layout-button" type="button" data-report-layout="a4" aria-label="세로 보기" aria-pressed="false"><span class="report-layout-icon" aria-hidden="true">▯</span><span>세로</span></button>' +
+    '<button class="report-layout-button" type="button" data-report-layout="wide" aria-label="가로 보기" aria-pressed="false"><span class="report-layout-icon" aria-hidden="true"><svg viewBox="0 0 20 16" focusable="false"><rect x="1.5" y="2.5" width="17" height="11" rx="2"></rect></svg></span><span>가로</span></button>' +
+    '<button class="report-layout-button" type="button" data-report-layout="a4" aria-label="세로 보기" aria-pressed="false"><span class="report-layout-icon" aria-hidden="true"><svg viewBox="0 0 16 20" focusable="false"><rect x="2.5" y="1.5" width="11" height="17" rx="2"></rect></svg></span><span>세로</span></button>' +
     "</div>";
 
+  var floatingMenu = document.querySelector(".report-hub-floating-menu");
   var switcher = document.querySelector(".report-view-switcher-inner");
-  if (switcher) switcher.insertBefore(controls, switcher.firstChild);
+  if (floatingMenu) floatingMenu.appendChild(controls);
+  else if (switcher) switcher.insertBefore(controls, switcher.firstChild);
   else {
     controls.classList.add("is-standalone");
     document.body.insertBefore(controls, document.body.firstChild);
+  }
+  if (window.ReportHubBrand && window.ReportHubBrand.attachLayoutControls) {
+    window.ReportHubBrand.attachLayoutControls();
   }
 
   var viewIcons = { simple: "▤", detail: "☷" };

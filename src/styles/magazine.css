@@ -251,7 +251,7 @@ footer {
 .archive-topbar nav a:hover, .archive-topbar nav a.is-current { color: var(--archive-blue-deep); background: var(--archive-blue-soft); }
 .archive-shell { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
 .archive-profile {
-  min-height: 240px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 28px;
+  min-height: 240px; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 28px;
   margin: 32px 0 24px; padding: 38px 42px !important;
   border: 1px solid #edf0f2; border-radius: 26px; background: #fff;
   box-shadow: 0 14px 38px rgba(15,23,42,.045);
@@ -438,8 +438,8 @@ footer {
   .verdict-grid, .duo, .checks, .metrics { grid-template-columns: 1fr 1fr; }
   .metrics { grid-template-columns: 1fr 1fr; }
   .t-item { grid-template-columns: 1fr; }
-  .archive-profile { grid-template-columns: auto 1fr; }
-  .archive-primary-action { grid-column: 2; justify-self: start; }
+  .archive-profile { grid-template-columns: 1fr auto; }
+  .archive-primary-action { grid-column: auto; justify-self: start; }
   .archive-layout { grid-template-columns: 1fr; }
   .archive-sidebar { position: static; grid-template-columns: 1fr; }
   .archive-side-categories, .archive-side-tags, .archive-side-note { display: none; }

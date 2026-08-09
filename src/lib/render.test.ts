@@ -53,11 +53,12 @@ test("renders a structured report table with column headers and cells", () => {
   assert.match(html, /<table class="report-table">/);
   assert.match(html, /<th scope="col">요금제<\/th>/);
   assert.match(html, /<td>\$20<\/td>/);
-  assert.match(html, /report-page-layout\.css\?v=20260809-refresh/);
-  assert.match(html, /report-page-layout\.js\?v=20260809-refresh/);
-  assert.match(html, /report-history\.js\?v=20260809/);
+  assert.match(html, /report-page-layout\.css\?v=20260809-rh2/);
+  assert.match(html, /report-page-layout\.js\?v=20260809-rh2/);
+  assert.match(html, /report-history\.js\?v=20260809-history2/);
   assert.match(html, /id="report-home-button"|class="report-home-button"/);
   assert.match(html, /href="https:\/\/aireport\.ai-hub-os\.com\/"/);
   assert.match(html, /Report Hub/);
+  assert.doesNotMatch(html, /class="report-hub-logo"/);
   assert.doesNotMatch(html, /Report Mode/);
 });
