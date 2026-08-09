@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">팔란티어 93% 성장의 가격</title>
+  <desc id="desc">AIP·소버린 AI 분석</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/><stop offset="0.62" stop-color="#f4f8ff"/><stop offset="1" stop-color="#e8f3ff"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#1b64da"/><stop offset="1" stop-color="#5ca2ff"/></linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#191f28" flood-opacity=".13"/></filter>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="28"/></filter>
+  </defs>
+  <rect width="1200" height="630" rx="0" fill="url(#bg)"/>
+  <circle cx="1040" cy="74" r="220" fill="#3182f6" opacity=".08" filter="url(#soft)"/>
+  <circle cx="180" cy="600" r="240" fill="#dfff6a" opacity=".12" filter="url(#soft)"/>
+  <g transform="translate(78,128)">
+    <text x="0" y="0" dominant-baseline="hanging" font-family="Noto Sans CJK KR, NanumGothic, sans-serif" font-size="66" font-weight="900" letter-spacing="-3.5" fill="#191f28">
+      <tspan x="0" dy="0">팔란티어 93%</tspan><tspan x="0" dy="84">성장의 가격</tspan>
+    </text>
+    <rect x="0" y="196" width="370" height="58" rx="16" fill="#dfff6a" transform="rotate(-1 0 196)"/>
+    <text x="22" y="212" dominant-baseline="hanging" font-family="Noto Sans CJK KR, NanumGothic, sans-serif" font-size="29" font-weight="850" letter-spacing="-1.2" fill="#304300">AIP·소버린 AI 분석</text>
+  </g>
+  <g transform="translate(690,92)" filter="url(#shadow)">
+    <rect width="420" height="448" rx="42" fill="#ffffff" stroke="#e5e8eb" stroke-width="2"/>
+    <g transform="translate(42,48)">
+      <circle cx="42" cy="38" r="30" fill="#e8f3ff"/><path d="M31 38h22M42 27v22" stroke="#3182f6" stroke-width="7" stroke-linecap="round"/>
+      <path d="M14 126H322" stroke="#e5e8eb" stroke-width="2"/>
+      <rect x="18" y="244" width="66" height="108" rx="18" fill="#dbeaff"/>
+      <rect x="110" y="190" width="66" height="162" rx="18" fill="#8ebcff"/>
+      <rect x="202" y="112" width="66" height="240" rx="18" fill="url(#blue)"/>
+      <path d="M51 226 C112 196 139 144 235 82" fill="none" stroke="#191f28" stroke-width="8" stroke-linecap="round"/>
+      <path d="m218 78 24 2-8 23" fill="none" stroke="#191f28" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+      <g transform="translate(288,68)">
+        <circle r="30" fill="#dfff6a"/><circle cx="-75" cy="38" r="18" fill="#3182f6"/><circle cx="-54" cy="112" r="22" fill="#191f28"/>
+        <path d="M-65 43-12 8M-49 99-12 18M-54 90-70 54" stroke="#6b7684" stroke-width="5" stroke-linecap="round" opacity=".65"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,153 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "20260809-palantir-aip-sovereign-ai-valuation-v1-0-0",
+  "title": "팔란티어 93% 성장, AIP·소버린 AI는 53배 밸류에이션을 정당화할까",
+  "seoTitle": "팔란티어 PLTR 실적·AIP·소버린 AI·목표가 분석",
+  "alternativeTitles": [
+    "팔란티어 목표가 시나리오: 111·170·239달러를 가르는 조건",
+    "팔란티어는 비싼가: 93% 성장과 53배 선행 매출가치의 충돌",
+    "팔란티어 실적 폭증, 주가 172달러는 어디까지 선반영했나"
+  ],
+  "slug": "palantir-aip-sovereign-ai-valuation",
+  "folder": "260809-01-palantir-aip-sovereign-ai-valuation-v1-0-0",
+  "version": "1.0.0",
+  "status": "Draft",
+  "summary": "Q2 2026의 93% 매출 성장과 149% 미국 상업 성장, AIP·Ontology 기반 소버린 AI 전략을 검증하고 현재 주가가 요구하는 성장률과 2027년 목표가 시나리오를 계산한 투자 분석입니다.",
+  "hook": "93% 성장보다 더 어려운 질문은, 그 성장에 얼마까지 지불할 것인가입니다.",
+  "lead": "팔란티어는 Q2 2026 매출을 전년 대비 93% 늘리고 미국 상업 부문을 149% 키우면서, 성장과 수익성을 동시에 증명했습니다. 그러나 2026년 8월 7일 종가 172.01달러는 FY2026 가이던스 기준 약 53배의 단순 EV/매출을 뜻해, 투자 판단은 AIP와 소버린 AI의 해자가 얼마나 오래 유지되는지에 달려 있습니다.",
+  "verdict": "사업은 실적이 증명했지만, 주가는 이미 2027년 50% 안팎 성장과 장기간 프리미엄을 상당 부분 선반영했습니다.",
+  "thumbnailCopy": {
+    "main": "팔란티어 93% 성장의 가격",
+    "sub": "AIP·소버린 AI 분석",
+    "alt": "팔란티어 93% 성장의 가격과 AIP·소버린 AI 전략을 표현한 Report Hub 추상 그래픽"
+  },
+  "snsCopy": [
+    "팔란티어 Q2 매출 +93%, 미국 상업 +149%. 숫자는 압도적이지만 주가 172달러는 FY26 매출의 약 53배입니다. AIP·소버린 AI의 진짜 해자와 111·170·239달러 시나리오를 분리해 봤습니다.",
+    "PLTR의 핵심은 ‘최고의 모델’이 아니라 모델을 바꿔도 기업의 데이터·권한·업무 맥락을 유지하는 운영 계층입니다. 다만 현재가는 이미 2027년 50% 성장에 가까운 기준 시나리오를 반영합니다."
+  ],
+  "keywords": [
+    "Palantir",
+    "PLTR",
+    "AIP",
+    "소버린 AI",
+    "Palantir Ontology",
+    "미국 상업 매출",
+    "팔란티어 밸류에이션",
+    "팔란티어 목표가",
+    "HD현대",
+    "AI 소프트웨어"
+  ],
+  "category": "Tech",
+  "createdAt": "2026-08-09",
+  "updatedAt": "2026-08-09",
+  "canonical": "https://aihubos.github.io/reportmode/reports/260809-01-palantir-aip-sovereign-ai-valuation-v1-0-0/",
+  "thumbnail": "assets/thumbnail.png",
+  "topicScore": 94,
+  "topicScoreBreakdown": {
+    "최신성": 20,
+    "검색 의도": 14,
+    "SNS 공유성": 14,
+    "실무 효용": 14,
+    "한국 연관성": 13,
+    "근거 강도": 10,
+    "시각화 적합성": 9
+  },
+  "titleCandidates": [
+    {
+      "title": "팔란티어 93% 성장, AIP·소버린 AI는 53배 밸류에이션을 정당화할까",
+      "score": 96
+    },
+    {
+      "title": "팔란티어 목표가 시나리오: 111·170·239달러를 가르는 조건",
+      "score": 95
+    },
+    {
+      "title": "팔란티어는 비싼가: 93% 성장과 53배 선행 매출가치의 충돌",
+      "score": 94
+    },
+    {
+      "title": "팔란티어 실적 폭증, 주가 172달러는 어디까지 선반영했나",
+      "score": 93
+    },
+    {
+      "title": "AI 소프트웨어의 극단적 프리미엄: PLTR 53배 매출가치 점검",
+      "score": 93
+    },
+    {
+      "title": "PLTR 미국 상업 149% 성장: AIP가 만든 운영형 AI의 해자",
+      "score": 92
+    },
+    {
+      "title": "PLTR Q2 2026 완전 분석: 실적·소버린 AI·2027 목표가",
+      "score": 91
+    },
+    {
+      "title": "팔란티어 149% 성장의 진짜 엔진: 모델이 아닌 운영체계",
+      "score": 90
+    },
+    {
+      "title": "AIP에서 소버린 AI까지: 팔란티어가 기업 AI를 장악하는 방식",
+      "score": 89
+    },
+    {
+      "title": "한국 기업 관점: 팔란티어·HD현대와 소버린 AI의 기회·잠금효과",
+      "score": 88
+    }
+  ],
+  "valuation": {
+    "asOf": "2026-08-07",
+    "price": 172.01,
+    "marketCapB": 441.841,
+    "cashAndTreasuriesB": 9.2,
+    "simpleEnterpriseValueB": 432.641,
+    "fy2026RevenueMidpointB": 8.154,
+    "simpleEVToFY2026Sales": 53.1,
+    "fy2026AdjustedFCFMidpointB": 4.6,
+    "marketCapToAdjustedFCF": 96.1,
+    "scenarios": [
+      {
+        "name": "보수",
+        "growth": 35,
+        "multiple": 25,
+        "tone": "warning",
+        "rev27": 11.008,
+        "ev": 275.198,
+        "equity": 284.398,
+        "target": 110.717,
+        "upside": -35.634
+      },
+      {
+        "name": "기준",
+        "growth": 50,
+        "multiple": 35,
+        "tone": "confirmed",
+        "rev27": 12.231,
+        "ev": 428.085,
+        "equity": 437.285,
+        "target": 170.236,
+        "upside": -1.031
+      },
+      {
+        "name": "낙관",
+        "growth": 65,
+        "multiple": 45,
+        "tone": "preview",
+        "rev27": 13.454,
+        "ev": 605.434,
+        "equity": 614.635,
+        "target": 239.279,
+        "upside": 39.108
+      }
+    ],
+    "method": "Report Hub scenario valuation; not Wall Street consensus"
+  },
+  "assumptions": [
+    "현재 주가 172.01달러와 시가총액 4,418.41억달러는 2026년 8월 7일 미국 시장 종가 스냅샷이며 2026년 8월 9일 확인했습니다.",
+    "2027년 목표가는 월가 컨센서스가 아니라 FY2026 매출 가이던스 중간값, Q2 희석 가중평균 주식수, 순현금 92억달러를 사용한 Report Hub 시나리오입니다.",
+    "시나리오는 향후 주식보상에 따른 희석, 인수·자사주, 순현금 변화, 금리·세금·환율을 반영하지 않습니다.",
+    "저장소의 당일 기존 보고서 순번을 조회하지 못해 폴더 순번을 01로 가정했습니다.",
+    "팔란티어·NVIDIA·고객사가 제시한 성능·효율 주장은 회사 측 설명으로 표시했으며 독립 실측으로 간주하지 않았습니다."
+  ],
+  "generation": "AI-assisted",
+  "reviewStatus": "Human review recommended"
+}
