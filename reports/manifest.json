@@ -1,7 +1,29 @@
 {
-  "generatedAt": "2026-08-09T12:41:52.483Z",
+  "generatedAt": "2026-08-09T12:52:41.102Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260809-chatgpt-save-one-hour-life-tips",
+      "slug": "chatgpt-save-one-hour-life-tips",
+      "title": "ChatGPT로 하루 1시간 아끼는 생활 꿀팁 10가지: 바로 쓰는 실전 프롬프트",
+      "category": "AI",
+      "summary": "ChatGPT의 검색, 음성, 파일·이미지 분석, 프로젝트와 예약 작업을 생활 루틴에 적용하는 실전 가이드입니다.",
+      "createdAt": "2026-08-09T21:52:13+09:00",
+      "updatedAt": "2026-08-09T21:52:13+09:00",
+      "status": "published",
+      "path": "reports/260809-chatgpt-save-one-hour-life-tips/",
+      "url": "https://aihubos.github.io/reportmode/reports/260809-chatgpt-save-one-hour-life-tips/",
+      "displayDate": "260809",
+      "sourceCount": 13,
+      "tags": [
+        "ChatGPT",
+        "생활 꿀팁",
+        "프롬프트",
+        "시간 절약"
+      ],
+      "coverImage": "reports/260809-chatgpt-save-one-hour-life-tips/assets/thumbnail.png",
+      "coverAlt": "ChatGPT 생활시간 절약 가이드 대표 이미지"
+    },
     {
       "id": "260809-palantir-aip-sovereign-ai-valuation",
       "slug": "palantir-aip-sovereign-ai-valuation",

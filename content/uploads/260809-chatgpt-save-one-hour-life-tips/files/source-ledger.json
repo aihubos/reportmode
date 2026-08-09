@@ -1,0 +1,196 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "rh-260809-21-chatgpt-life-tips",
+  "verifiedAt": "2026-08-09",
+  "verificationScope": "ChatGPT의 현재 기능, 사용 가능성, 데이터·메모리·임시 채팅 주의사항을 OpenAI 공식 도움말로 검증",
+  "sources": [
+    {
+      "claim": "ChatGPT는 일상 작업, 파일·이미지 분석, 웹 검색과 출처 제시를 지원하며 임시 채팅은 기록·메모리·학습에 사용되지 않는다.",
+      "url": "https://help.openai.com/en/articles/12677804-what-is-chatgpt-faq",
+      "sourceType": "Official product/help documentation",
+      "publisher": "OpenAI",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "Hero",
+        "1분 요약",
+        "FAQ"
+      ],
+      "confidence": "high",
+      "caution": "도구별 사용 가능 범위와 메시지 한도는 플랜·모델·지역에 따라 달라질 수 있음."
+    },
+    {
+      "claim": "예약 작업은 리마인더·반복 브리핑·변경 모니터링을 수행하고 알림을 보낼 수 있다.",
+      "url": "https://help.openai.com/en/articles/10291617-tasks-in-chatgpt",
+      "sourceType": "Official product/help documentation",
+      "publisher": "OpenAI",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "왜 지금",
+        "팁 1",
+        "FAQ"
+      ],
+      "confidence": "high",
+      "caution": "동일 도움말 내부에 활성 작업 수 설명이 서로 다르게 보이는 구간이 있어 본문에서는 구체 숫자를 인용하지 않고 계정 화면 확인을 권고함."
+    },
+    {
+      "claim": "프로젝트는 관련 대화·파일·지침을 한곳에 보관해 반복되고 장기적인 계획을 이어가게 한다.",
+      "url": "https://help.openai.com/en/articles/10169521-projects-in-chatgpt",
+      "sourceType": "Official product/help documentation",
+      "publisher": "OpenAI",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "왜 지금",
+        "팁 8",
+        "실행 가이드"
+      ],
+      "confidence": "high",
+      "caution": "파일 한도와 공유 기능은 플랜·워크스페이스 설정에 따라 달라짐."
+    },
+    {
+      "claim": "음성 대화는 말로 입력하고 음성·텍스트 응답을 받을 수 있으며, 단일 녹음의 텍스트화에는 받아쓰기를 사용할 수 있다.",
+      "url": "https://help.openai.com/ko-kr/articles/20001274-chatgpt-voice",
+      "sourceType": "Official product/help documentation",
+      "publisher": "OpenAI",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "왜 지금",
+        "팁 2",
+        "주의사항"
+      ],
+      "confidence": "high",
+      "caution": "날짜·시간·위치 민감 정보는 정확한 날짜와 시간대를 넣고 확인해야 하며 옵션은 지역·플랜·앱 버전에 따라 다름."
+    },
+    {
+      "claim": "파일 업로드는 문서 요약, 비교, 특정 정보 추출, 스프레드시트 분석 등에 활용할 수 있다.",
+      "url": "https://help.openai.com/en/articles/8555545-file-uploads-faq",
+      "sourceType": "Official product/help documentation",
+      "publisher": "OpenAI",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "왜 지금",
+        "팁 5"
+      ],
+      "confidence": "high",
+      "caution": "지원 플랜·파일 크기·사용량 한도는 계정과 환경에 따라 다름."
+    },
+    {
+      "claim": "ChatGPT는 업로드한 데이터에서 추세·이상치·표·차트·계산을 만들 수 있다.",
+      "url": "https://help.openai.com/en/articles/8437071-data-analysis-with-chatgpt",
+      "sourceType": "Official product/help documentation",
+      "publisher": "OpenAI",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "팁 7",
+        "FAQ"
+      ],
+      "confidence": "high",
+      "caution": "정확한 분석을 위해 열 이름·한 행 한 기록 구조가 필요하며 민감 식별자는 제거해야 함."
+    },
+    {
+      "claim": "이미지 입력은 사진 속 대상·문서·시각 정보를 해석할 수 있다.",
+      "url": "https://help.openai.com/en/articles/8400551-chatgpt-image-inputs-faq",
+      "sourceType": "Official product/help documentation",
+      "publisher": "OpenAI",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "팁 4",
+        "한국 사용자 주의"
+      ],
+      "confidence": "high",
+      "caution": "공식 문서는 한국어 등 비라틴 문자 텍스트가 포함된 이미지의 정확도가 낮을 수 있다고 안내함."
+    },
+    {
+      "claim": "ChatGPT Images는 새 이미지를 만들거나 기존 이미지를 편집할 수 있다.",
+      "url": "https://help.openai.com/en/articles/11084440-images-in-chatgpt",
+      "sourceType": "Official product/help documentation",
+      "publisher": "OpenAI",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "팁 10",
+        "FAQ"
+      ],
+      "confidence": "high",
+      "caution": "편집 선택 영역이 정확하지 않을 수 있으므로 실제 제품·거래 사진은 결과를 원본과 대조해야 함."
+    },
+    {
+      "claim": "메모리는 반복해서 말해야 하는 맥락을 줄일 수 있지만 민감정보가 포함될 수 있어 관리가 필요하다.",
+      "url": "https://help.openai.com/en/articles/8590148-memory-faq",
+      "sourceType": "Official product/help documentation",
+      "publisher": "OpenAI",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "팁 9",
+        "개인정보"
+      ],
+      "confidence": "high",
+      "caution": "민감정보를 공유했다면 메모리 요약을 검토하거나 메모리를 끄고 임시 채팅을 사용해야 함."
+    },
+    {
+      "claim": "사용자 지정 지침은 선호하는 형식과 기준을 모든 채팅에 즉시 적용할 수 있다.",
+      "url": "https://help.openai.com/en/articles/8096356-chatgpt-custom-instructions",
+      "sourceType": "Official product/help documentation",
+      "publisher": "OpenAI",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "팁 3",
+        "팁 9",
+        "실행 가이드"
+      ],
+      "confidence": "high",
+      "caution": "플러그인·앱 사용 시 관련 지침 일부가 제3자 서비스에 전달될 수 있어 민감정보를 넣지 않는 편이 안전함."
+    },
+    {
+      "claim": "모델 개선 사용을 끌 수 있고 임시 채팅은 기록·메모리에 남지 않으며 30일 이내 삭제된다.",
+      "url": "https://help.openai.com/en/articles/7730893-data-controls-faq",
+      "sourceType": "Official product/help documentation",
+      "publisher": "OpenAI",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "개인정보",
+        "FAQ"
+      ],
+      "confidence": "high",
+      "caution": "임시 채팅도 남용 모니터링을 위해 제한적으로 검토될 수 있음."
+    },
+    {
+      "claim": "앱은 ChatGPT가 외부 서비스의 정보를 검색·참조하거나 허용된 행동을 수행하게 할 수 있다.",
+      "url": "https://help.openai.com/en/articles/11487775-connectors-in-chatgpt",
+      "sourceType": "Official product/help documentation",
+      "publisher": "OpenAI",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "왜 지금",
+        "팁 1",
+        "개인정보"
+      ],
+      "confidence": "high",
+      "caution": "권한 범위와 관리 정책을 확인해야 하며 개인 계정과 관리형 워크스페이스의 설정이 다름."
+    },
+    {
+      "claim": "무료 플랜에서도 ChatGPT를 사용할 수 있지만 파일·이미지·데이터 분석에는 더 엄격한 별도 한도가 적용될 수 있다.",
+      "url": "https://help.openai.com/en/articles/9275245-chatgpt-free-tier-faq",
+      "sourceType": "Official product/help documentation",
+      "publisher": "OpenAI",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedSections": [
+        "기능 표",
+        "FAQ"
+      ],
+      "confidence": "high",
+      "caution": "한도는 변경될 수 있으므로 현재 계정 화면을 기준으로 확인해야 함."
+    }
+  ]
+}

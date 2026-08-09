@@ -1,7 +1,27 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-09T21:41:51+09:00",
+  "updatedAt": "2026-08-09T21:52:40+09:00",
   "reports": [
+    {
+      "schemaVersion": "1",
+      "id": "260809-chatgpt-save-one-hour-life-tips",
+      "slug": "chatgpt-save-one-hour-life-tips",
+      "title": "ChatGPT로 하루 1시간 아끼는 생활 꿀팁 10가지: 바로 쓰는 실전 프롬프트",
+      "category": "AI",
+      "tags": [
+        "ChatGPT",
+        "생활 꿀팁",
+        "프롬프트",
+        "시간 절약"
+      ],
+      "summary": "ChatGPT의 검색, 음성, 파일·이미지 분석, 프로젝트와 예약 작업을 생활 루틴에 적용하는 실전 가이드입니다.",
+      "createdAt": "2026-08-09T21:52:13+09:00",
+      "updatedAt": "2026-08-09T21:52:13+09:00",
+      "status": "published",
+      "sourceName": "260809-21-chatgpt-save-one-hour-life-tips-v1-0-0.zip",
+      "sourceCount": 13,
+      "entry": "index.html"
+    },
     {
       "schemaVersion": "1",
       "id": "260809-palantir-aip-sovereign-ai-valuation",
