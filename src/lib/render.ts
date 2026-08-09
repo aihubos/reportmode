@@ -199,7 +199,9 @@ export function renderReportHtml(doc: ReportDocument): string {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="data:,">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260809">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png?v=20260809">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png?v=20260809">
   <meta name="description" content="${escapeHtml(doc.summary)}">
   <meta name="color-scheme" content="light">
   <title>${escapeHtml(dateCode)} · ${escapeHtml(doc.title)} — Report Mode</title>
@@ -446,7 +448,9 @@ export function renderHomeHtml(
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Jeremy를 위한 검증 가능한 웹 보고서 아카이브">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%233182f6'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial' font-size='34' font-weight='800' fill='white'%3ER%3C/text%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../assets/favicon.svg?v=20260809">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png?v=20260809">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png?v=20260809">
   <title>Jeremy's AI Report 도서관</title>
   <style>${css()}</style>
 </head>
