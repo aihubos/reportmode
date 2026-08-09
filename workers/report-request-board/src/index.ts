@@ -106,6 +106,13 @@ async function featuredReportIds(env: Env) {
   return (rows.results || []).map((row) => row.report_id);
 }
 
+async function draftPromotionIds(env: Env) {
+  const rows = await env.DB.prepare(
+    "SELECT report_id FROM report_draft_promotions ORDER BY promoted_at DESC LIMIT 500"
+  ).all<{ report_id: string }>();
+  return (rows.results || []).map((row) => row.report_id);
+}
+
 async function requestForPassword(env: Env, id: string) {
   return env.DB.prepare(
     "SELECT id, password_salt, password_hash FROM report_requests WHERE id = ? AND status = 'pending'"
@@ -375,6 +382,40 @@ export default {
       return json(request, { reportIds: await featuredReportIds(env) });
     }
 
+    if (url.pathname === "/draft-promotions" && request.method === "GET") {
+      return json(request, { reportIds: await draftPromotionIds(env) });
+    }
+
+    if (url.pathname === "/draft-promotions" && request.method === "POST") {
+      let payload: { reportId?: unknown; adminPassword?: unknown };
+      try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+      if (!env.ADMIN_PASSWORD) return json(request, { error: "admin_not_configured" }, 503);
+      if (passwordValue(payload.adminPassword) !== env.ADMIN_PASSWORD) {
+        return json(request, { error: "wrong_admin_password" }, 403);
+      }
+      const reportId = clean(payload.reportId, 120);
+      if (!reportId) return json(request, { error: "missing_report" }, 400);
+      await env.DB.prepare(
+        `INSERT INTO report_draft_promotions (report_id, promoted_at) VALUES (?, ?)
+         ON CONFLICT(report_id) DO UPDATE SET promoted_at = excluded.promoted_at`
+      ).bind(reportId, new Date().toISOString()).run();
+      return json(request, { ok: true, reportIds: await draftPromotionIds(env) }, 201);
+    }
+
+    const draftPromotionId = url.pathname.match(/^\/draft-promotions\/([^/]+)$/i)?.[1];
+    if (draftPromotionId && request.method === "DELETE") {
+      let payload: { adminPassword?: unknown };
+      try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+      if (!env.ADMIN_PASSWORD) return json(request, { error: "admin_not_configured" }, 503);
+      if (passwordValue(payload.adminPassword) !== env.ADMIN_PASSWORD) {
+        return json(request, { error: "wrong_admin_password" }, 403);
+      }
+      const reportId = decodeURIComponent(draftPromotionId).slice(0, 120);
+      if (!reportId) return json(request, { error: "missing_report" }, 400);
+      await env.DB.prepare("DELETE FROM report_draft_promotions WHERE report_id = ?").bind(reportId).run();
+      return json(request, { ok: true, reportIds: await draftPromotionIds(env) });
+    }
+
     if (url.pathname === "/featured-reports" && request.method === "POST") {
       let payload: { reportId?: unknown; adminPassword?: unknown };
       try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
@@ -439,7 +480,7 @@ export default {
       return json(request, { ok: true, reportId });
     }
 
-    if (url.pathname === "/comments" || commentId || url.pathname === "/visits" || url.pathname === "/requests" || requestId || replyRequestId || url.pathname.startsWith("/hidden-reports") || url.pathname.startsWith("/featured-reports") || url.pathname === "/admin/verify") {
+    if (url.pathname === "/comments" || commentId || url.pathname === "/visits" || url.pathname === "/requests" || requestId || replyRequestId || url.pathname.startsWith("/hidden-reports") || url.pathname.startsWith("/featured-reports") || url.pathname.startsWith("/draft-promotions") || url.pathname === "/admin/verify") {
       return json(request, { error: "method_not_allowed" }, 405);
     }
     return json(request, { error: "not_found" }, 404);

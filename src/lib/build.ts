@@ -243,7 +243,10 @@ function reportSearchTextById(
   items: ManifestItem[],
 ): Record<string, string> {
   return Object.fromEntries(
-    items.map((item) => [item.id, reportBodySearchText(root, item)]),
+    items.map((item) => [
+      item.id,
+      item.category === "Draft" ? "" : reportBodySearchText(root, item),
+    ]),
   );
 }
 

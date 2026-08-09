@@ -9,6 +9,7 @@
     password: "",
     hidden: new Set(),
     featured: new Set(),
+    promotedDrafts: new Set(),
   };
 
   function posts() {
@@ -142,7 +143,7 @@
     var popularList = document.getElementById("archivePopularList");
     if (!featuredList || !popularList) return;
     var visiblePosts = posts().filter(function (post) {
-      return !state.hidden.has(post.dataset.reportId || "");
+      return !state.hidden.has(post.dataset.reportId || "") && post.dataset.reportDraft !== "true";
     });
     var byId = new Map(visiblePosts.map(function (post) {
       return [post.dataset.reportId || "", post];
@@ -180,6 +181,8 @@
       var id = post.dataset.reportId || "";
       var isHidden = state.hidden.has(id);
       var isFeatured = state.featured.has(id);
+      var isDraft = post.dataset.reportDraft === "true";
+      var isPromoted = state.promotedDrafts.has(id);
       var featureButton = document.createElement("button");
       featureButton.type = "button";
       featureButton.className = "archive-admin-feature" + (isFeatured ? " is-featured" : "");
@@ -201,9 +204,57 @@
         event.stopPropagation();
         handleToggle(post, id, isHidden);
       });
+      if (isDraft) {
+        var promoteButton = document.createElement("button");
+        promoteButton.type = "button";
+        promoteButton.className = "archive-admin-promote" + (isPromoted ? " is-promoted" : "");
+        promoteButton.textContent = isPromoted ? "메인 제외" : "메인 등록";
+        promoteButton.addEventListener("click", function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+          handleDraftPromotion(id, isPromoted, promoteButton);
+        });
+        actions.appendChild(promoteButton);
+      }
       actions.append(featureButton, button);
       post.classList.add("has-admin-actions");
       post.appendChild(actions);
+    });
+  }
+
+  function handleDraftPromotion(reportId, currentlyPromoted, button) {
+    if (!state.password) {
+      setStatus("먼저 관리자 비밀번호로 잠금을 해제해 주세요.", true);
+      return;
+    }
+    button.disabled = true;
+    setStatus(currentlyPromoted ? "메인 목록에서 제외 중입니다…" : "메인 목록에 등록 중입니다…");
+    var request = currentlyPromoted
+      ? requestJson(API + "/draft-promotions/" + encodeURIComponent(reportId), {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ adminPassword: state.password }),
+        })
+      : requestJson(API + "/draft-promotions", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ reportId: reportId, adminPassword: state.password }),
+        });
+    request.then(function (body) {
+      state.promotedDrafts = new Set(Array.isArray(body.reportIds) ? body.reportIds : []);
+      window.reportmodeDraftPromotions = state.promotedDrafts;
+      posts().forEach(function (post) {
+        var actions = post.querySelector(".archive-admin-actions");
+        if (actions) actions.remove();
+        post.classList.remove("has-admin-actions");
+      });
+      ensureDeleteButtons();
+      if (typeof window.reportmodeArchiveRender === "function") window.reportmodeArchiveRender(false);
+      setStatus(currentlyPromoted ? "메인 목록에서 제외했습니다." : "메인 목록에 등록했습니다.");
+    }).catch(function (error) {
+      setStatus(message(error.message), true);
+    }).finally(function () {
+      button.disabled = false;
     });
   }
 
@@ -348,7 +399,7 @@
       '  </label>',
       '  <button type="submit" class="archive-admin-submit">확인</button>',
       '</form>',
-      '<p class="archive-admin-help">관리자 비밀번호를 입력하면 각 보고서에 별표와 삭제 버튼이 나타납니다. 별표는 최대 3개이며 상단 추천 글에 바로 반영됩니다.</p>',
+      '<p class="archive-admin-help">관리자 비밀번호를 입력하면 추천·삭제 기능이 나타납니다. Draft 카드의 메인 등록 버튼으로 전체 목록 노출을 선택할 수 있습니다.</p>',
       '<p class="archive-admin-status" id="archiveAdminStatus" role="status"></p>',
       '</div>',
     ].join("");
@@ -423,6 +474,18 @@
       });
   }
 
+  function loadDraftPromotions() {
+    return requestJson(API + "/draft-promotions", { method: "GET", cache: "no-store" })
+      .then(function (body) {
+        state.promotedDrafts = new Set(Array.isArray(body.reportIds) ? body.reportIds : []);
+        window.reportmodeDraftPromotions = state.promotedDrafts;
+      })
+      .catch(function () {
+        state.promotedDrafts = new Set();
+        window.reportmodeDraftPromotions = state.promotedDrafts;
+      });
+  }
+
   // Hook archive render if present later: patch after DOM ready by wrapping filter
   function patchArchiveFilter() {
     // monkey-patch by intercepting posts visibility in Mutation? Better: patch render via exposed function.
@@ -451,7 +514,7 @@
 
   buildPanel();
   patchArchiveFilter();
-  Promise.all([loadHidden(), loadFeatured()]).then(function () {
+  Promise.all([loadHidden(), loadFeatured(), loadDraftPromotions()]).then(function () {
     var maybeUnlocked = false;
     try { maybeUnlocked = sessionStorage.getItem(STORAGE_KEY) === "1"; } catch (_) {}
     // session only remembers unlock UI intent; password must be re-entered after refresh for safety

@@ -319,7 +319,7 @@ export function renderHomeHtml(
   bodySearchTextById: Record<string, string> = {},
   fallbackViewCountsById: Record<string, number> = {},
 ): string {
-  const categoryOrder = ["AI", "게임", "자동차", "IT 기기", "비즈니스", "라이프", "기타"];
+  const categoryOrder = ["AI", "게임", "자동차", "IT 기기", "비즈니스", "라이프", "기타", "Draft"];
   const categoryFor = (item: ManifestItem) => {
     const selectedCategory = String(item.category || "").trim();
     if (categoryOrder.includes(selectedCategory)) return selectedCategory;
@@ -350,7 +350,7 @@ export function renderHomeHtml(
         const value = category === "전체" ? "all" : category;
         const count =
           value === "all"
-            ? items.length
+            ? items.filter((item) => categoryFor(item) !== "Draft").length
             : items.filter((item) => categoryFor(item) === category).length;
         return `<button class="archive-category" type="button" data-category-filter="${escapeHtml(value)}"><span>${escapeHtml(category)}</span><b>${count}</b></button>`;
       },
@@ -440,12 +440,12 @@ export function renderHomeHtml(
         : `<div class="archive-post-cover archive-post-cover-fallback" aria-hidden="true"><span>REPORT</span><strong>${escapeHtml(item.displayDate.slice(0, 2))}</strong><small>${escapeHtml(item.category)}</small></div>`;
       const reportHref = linkPrefix + item.path;
       return `
-      <article class="archive-post" data-report-item data-report-id="${escapeHtml(item.id)}" data-category="${escapeHtml(archiveCategory)}" data-search="${escapeHtml(searchText)}">
+      <article class="archive-post" data-report-item data-report-id="${escapeHtml(item.id)}" data-category="${escapeHtml(archiveCategory)}"${archiveCategory === "Draft" ? ' data-report-draft="true"' : ""} data-search="${escapeHtml(searchText)}">
         <a class="archive-post-link" href="${escapeHtml(reportHref)}">
           <div class="archive-post-number" aria-label="게시글 번호">${String(items.length - index).padStart(3, "0")}</div>
           <div class="archive-post-copy">
             <div class="archive-post-meta">
-              <span class="archive-post-category">${escapeHtml(archiveCategory)}</span>
+              <span class="archive-post-category">${escapeHtml(archiveCategory)}</span>${archiveCategory === "Draft" ? '<span class="archive-draft-badge">초안</span>' : ""}
               <span>${escapeHtml(item.displayDate)}</span>
               <span>출처 ${item.sourceCount}개</span>
               <span class="archive-view-count" data-view-count data-view-count-fallback="${fallbackViewCount}">조회수 ${fallbackViewCount.toLocaleString("ko-KR")}</span>
@@ -919,7 +919,14 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
         var hiddenSet = window.reportmodeHiddenReports;
         var isHidden = (hiddenSet && typeof hiddenSet.has === "function" && hiddenSet.has(reportId)) || post.dataset.adminForceHidden === "true";
         if (isHidden && !window.reportmodeAdminUnlocked) return false;
-        var categoryMatches = state.category === "all" || post.dataset.category === state.category;
+        var isDraft = post.dataset.reportDraft === "true";
+        var promotedSet = window.reportmodeDraftPromotions;
+        var isPromoted = promotedSet && typeof promotedSet.has === "function" && promotedSet.has(reportId);
+        var categoryMatches = state.category === "Draft"
+          ? isDraft
+          : state.category === "all"
+            ? (!isDraft || isPromoted)
+            : post.dataset.category === state.category;
         var queryMatches = !normalizedQuery || (post.dataset.search || "").indexOf(normalizedQuery) !== -1;
         return categoryMatches && queryMatches;
       });
@@ -990,7 +997,7 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
   })();
   </script>
   <script src="../assets/archive-request-board.js"></script>
-  <script src="../assets/archive-report-admin.js?v=20260809-featured1"></script>
+  <script src="../assets/archive-report-admin.js?v=20260810-draft1"></script>
   <script src="../assets/archive-visitor-counter.js?v=20260809-visits1"></script>
   <script src="../assets/archive-weather.js?v=${ARCHIVE_WEATHER_VERSION}"></script>
   <script src="../assets/report-hub-brand.js?v=${REPORT_HUB_BRAND_VERSION}"></script>

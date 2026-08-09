@@ -15,6 +15,14 @@ test("archive admin exposes persistent three-item star controls", () => {
   assert.match(script, /renderSpotlights/);
 });
 
+test("archive admin exposes Draft main-list promotion controls", () => {
+  const script = fs.readFileSync(path.join(root, "archive-report-admin.js"), "utf8");
+  assert.match(script, /\/draft-promotions/);
+  assert.match(script, /메인 등록/);
+  assert.match(script, /메인 제외/);
+  assert.match(script, /reportmodeDraftPromotions/);
+});
+
 test("spotlight layout has responsive and selected-star states", () => {
   const css = fs.readFileSync(path.join(root, "../src/styles/magazine.css"), "utf8");
   assert.match(css, /\.archive-spotlight\s*{/);
