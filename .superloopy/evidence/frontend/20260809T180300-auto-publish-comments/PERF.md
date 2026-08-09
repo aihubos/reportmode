@@ -6,4 +6,3 @@
 - Total shared comment assets: 21,651 bytes before transfer compression
 - No new font, image, framework, or runtime dependency was added.
 - Public report verification now checks the comments hook before reporting completion.
-
