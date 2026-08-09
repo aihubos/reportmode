@@ -1,0 +1,1058 @@
+<!DOCTYPE html><html lang="ko"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="안될공학 YouTube 자막을 검증하고 SpaceX의 10GW AI 데이터센터 계획, SemiAnalysis의 전력당 매출 모델, Microsoft 고객 가설을 임원 관점에서 분석한 보고서">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:title" content="AI 데이터센터 10GW 경제학 — SpaceX는 GPU가 아니라 시간을 판다">
+  <meta property="og:description" content="SpaceX 10GW 계획과 1GW당 매출 논리를 사실·추정·미확인으로 구분한 임원용 보고서">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="assets/colossus-aerial.jpg">
+  <title>AI 데이터센터 10GW 경제학 — SpaceX는 GPU가 아니라 시간을 판다 · v1.0.0 | Report Hub</title>
+  <style>
+    :root {
+      --blue: #3182F6;
+      --blue-strong: #1B64DA;
+      --blue-soft: #E8F3FF;
+      --ink: #191F28;
+      --ink-2: #333D4B;
+      --muted: #6B7684;
+      --muted-2: #8B95A1;
+      --line: #E5E8EB;
+      --surface: #F7F8FA;
+      --surface-2: #F2F4F6;
+      --white: #FFFFFF;
+      --highlight: #DFFF6A;
+      --highlight-yellow: #FFF184;
+      --mint: #DFFBF2;
+      --violet: #EEE9FF;
+      --red-soft: #FFF0F0;
+      --red: #D45454;
+      --green: #15876D;
+      --amber: #8A6700;
+      --shadow-sm: 0 8px 30px rgba(25,31,40,.06);
+      --shadow-md: 0 24px 70px rgba(25,31,40,.10);
+      --radius-sm: 18px;
+      --radius-md: 28px;
+      --radius-lg: 40px;
+      --max: 1180px;
+      --hero-title-min: 36px;
+      --hero-title-fluid: 4.4vw;
+      --hero-title-max: 55px;
+      --section-title-min: 28px;
+      --section-title-fluid: 3.3vw;
+      --section-title-max: 41px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 88% 3%, rgba(49,130,246,.11), transparent 27rem),
+        radial-gradient(circle at 7% 17%, rgba(223,255,106,.10), transparent 24rem),
+        #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", "Segoe UI", sans-serif;
+      line-height: 1.65;
+      letter-spacing: -.02em;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button { color: inherit; }
+    h1, h2, h3, h4, p { margin-top: 0; }
+    img, svg, iframe { display: block; max-width: 100%; }
+    strong { color: var(--ink); }
+    code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+    .container { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+    .skip-link { position: fixed; left: 14px; top: -60px; z-index: 3000; padding: 10px 14px; border-radius: 12px; color: #fff; background: var(--ink); font-weight: 800; }
+    .skip-link:focus { top: 14px; }
+    .scroll-progress { position: fixed; inset: 0 auto auto 0; width: 0; height: 3px; background: linear-gradient(90deg, var(--blue), #6AA7FF); z-index: 1500; }
+
+    .nav-wrap { position: sticky; top: 0; z-index: 1000; padding: 14px 22px 0; }
+    .nav {
+      max-width: 1240px; margin: 0 auto; min-height: 62px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 10px 12px 10px 18px; border: 1px solid rgba(229,232,235,.86); border-radius: 22px;
+      background: rgba(255,255,255,.84); backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%);
+      box-shadow: 0 10px 34px rgba(25,31,40,.05);
+    }
+    .brand { display: flex; align-items: center; gap: 11px; min-width: max-content; font-size: 14px; font-weight: 850; }
+    .brand-mark { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 12px; color: #fff; background: linear-gradient(145deg, #5CA2FF, var(--blue-strong)); box-shadow: 0 8px 20px rgba(49,130,246,.28); }
+    .brand-mark svg { width: 20px; height: 20px; }
+    .brand-sub { color: var(--muted-2); font-weight: 750; }
+    .nav-links { display: flex; align-items: center; gap: 4px; margin-left: auto; }
+    .nav-links a { padding: 9px 11px; border-radius: 12px; color: var(--muted); font-size: 13px; font-weight: 750; transition: .2s ease; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--ink); background: var(--surface); outline: none; }
+    .nav-actions { display: flex; gap: 8px; }
+    .btn {
+      appearance: none; border: 0; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 42px; padding: 0 16px; border-radius: 14px; font-size: 14px; font-weight: 850; letter-spacing: -.02em;
+      transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:focus-visible, .float-btn:focus-visible, .preset-btn:focus-visible { outline: 3px solid rgba(49,130,246,.28); outline-offset: 3px; }
+    .btn-primary { color: #fff; background: var(--blue); box-shadow: 0 10px 24px rgba(49,130,246,.24); }
+    .btn-primary:hover { background: var(--blue-strong); }
+    .btn-ghost { color: var(--ink-2); background: var(--surface); }
+    .btn-ghost:hover { background: var(--surface-2); }
+
+    .executive-cover { min-height: 900px; padding: 78px 0 72px; }
+    .hero-grid { display: grid; grid-template-columns: 1.02fr .98fr; gap: 58px; align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; padding: 8px 13px; margin-bottom: 21px; border-radius: 999px; color: var(--blue-strong); background: var(--blue-soft); font-size: 14px; font-weight: 850; }
+    .eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 5px rgba(49,130,246,.12); }
+    .hero h1 { max-width: 760px; margin-bottom: 24px; font-size: clamp(var(--hero-title-min), var(--hero-title-fluid), var(--hero-title-max)); line-height: 1.10; letter-spacing: -.058em; font-weight: 850; text-wrap: balance; overflow-wrap: anywhere; }
+    .blue { color: var(--blue); }
+    .marker { position: relative; z-index: 0; white-space: nowrap; }
+    .marker::after { content: ""; position: absolute; left: -.03em; right: -.03em; bottom: .08em; height: .34em; border-radius: .12em; background: var(--highlight); transform: rotate(-1.3deg); z-index: -1; opacity: .9; }
+    .hero-lead { max-width: 720px; margin-bottom: 28px; color: var(--muted); font-size: clamp(18px, 1.8vw, 22px); line-height: 1.62; font-weight: 620; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .hero-note { margin-top: 23px; display: flex; align-items: flex-start; gap: 10px; color: var(--muted); font-size: 14px; font-weight: 650; }
+    .hero-note svg { width: 19px; height: 19px; flex: 0 0 auto; margin-top: 2px; color: var(--blue); }
+    .report-meta { margin-top: 18px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; color: var(--muted-2); font-size: 12px; font-weight: 800; }
+    .version-badge { display: inline-flex; align-items: center; min-height: 28px; padding: 0 10px; border-radius: 999px; color: var(--blue-strong); background: var(--blue-soft); border: 1px solid rgba(49,130,246,.16); font-variant-numeric: tabular-nums; }
+    .report-meta-separator { width: 3px; height: 3px; border-radius: 50%; background: var(--line); }
+
+    .hero-visual { position: relative; min-height: 560px; display: grid; place-items: center; }
+    .hero-orbit { position: absolute; width: 510px; height: 510px; border: 1px dashed rgba(49,130,246,.20); border-radius: 50%; animation: orbit 24s linear infinite; }
+    .hero-orbit::before, .hero-orbit::after { content: ""; position: absolute; width: 13px; height: 13px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 8px rgba(49,130,246,.10); }
+    .hero-orbit::before { top: 64px; right: 65px; }
+    .hero-orbit::after { left: 25px; bottom: 152px; background: var(--highlight); box-shadow: 0 0 0 8px rgba(223,255,106,.18); }
+    @keyframes orbit { to { transform: rotate(360deg); } }
+    .snapshot { width: min(100%, 500px); position: relative; z-index: 2; padding: 22px; border: 1px solid rgba(229,232,235,.9); border-radius: 36px; background: rgba(255,255,255,.95); box-shadow: var(--shadow-md); backdrop-filter: blur(14px); }
+    .snapshot-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+    .snapshot-title { display: flex; align-items: center; gap: 9px; color: var(--ink-2); font-size: 13px; font-weight: 900; }
+    .snapshot-title i { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); }
+    .snapshot-tag { padding: 5px 8px; border-radius: 999px; color: var(--blue-strong); background: var(--blue-soft); font-size: 10px; font-weight: 900; }
+    .snapshot-main { padding: 24px; border-radius: 26px; color: #fff; background: linear-gradient(145deg, #216DDC, #3182F6 58%, #5A9CFF); }
+    .snapshot-main span { display: block; margin-bottom: 9px; color: rgba(255,255,255,.75); font-size: 11px; font-weight: 900; letter-spacing: .06em; }
+    .snapshot-main strong { display: block; color: #fff; font-size: 23px; line-height: 1.38; letter-spacing: -.04em; }
+    .snapshot-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 10px; }
+    .snapshot-card { min-height: 132px; padding: 16px; border-radius: 20px; background: var(--surface); border: 1px solid var(--line); }
+    .snapshot-card b { display: inline-grid; place-items: center; min-width: 30px; height: 28px; padding: 0 8px; margin-bottom: 13px; border-radius: 10px; color: var(--blue); background: var(--blue-soft); font-size: 11px; font-weight: 900; }
+    .snapshot-card b.estimate { color: var(--amber); background: #FFF8CE; }
+    .snapshot-card b.unconfirmed { color: var(--red); background: var(--red-soft); }
+    .snapshot-card strong { display: block; margin-bottom: 5px; font-size: 15px; }
+    .snapshot-card p { margin-bottom: 0; color: var(--muted); font-size: 12px; line-height: 1.55; font-weight: 650; }
+
+    .executive-strip { margin-top: 48px; padding: 24px; border: 1px solid var(--line); border-radius: 30px; background: rgba(255,255,255,.92); box-shadow: var(--shadow-sm); }
+    .strip-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; margin-bottom: 18px; }
+    .strip-head h2 { margin-bottom: 4px; font-size: 25px; letter-spacing: -.045em; }
+    .strip-head p { margin-bottom: 0; color: var(--muted); font-size: 13px; font-weight: 650; }
+    .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .metric-card { min-height: 145px; padding: 18px; border-radius: 21px; background: var(--surface); border: 1px solid var(--line); }
+    .metric-label { margin-bottom: 12px; color: var(--muted-2); font-size: 10px; font-weight: 900; letter-spacing: .06em; }
+    .metric-value { margin-bottom: 6px; color: var(--ink); font-size: 29px; line-height: 1.05; letter-spacing: -.05em; font-weight: 900; font-variant-numeric: tabular-nums; }
+    .metric-value.blue-number { color: var(--blue); }
+    .metric-card p { margin-bottom: 0; color: var(--muted); font-size: 12px; line-height: 1.55; font-weight: 650; }
+    .decision-row { display: grid; grid-template-columns: 1.1fr .9fr; gap: 12px; margin-top: 12px; }
+    .decision-card { padding: 18px 20px; border-radius: 21px; background: var(--ink); color: #fff; }
+    .decision-card strong { color: #fff; }
+    .decision-card p { margin-bottom: 0; color: rgba(255,255,255,.72); font-size: 14px; font-weight: 650; }
+    .decision-card mark { padding: 0 .18em; border-radius: 5px; color: var(--ink); background: var(--highlight); }
+    .decision-actions { padding: 18px 20px; border-radius: 21px; background: var(--blue-soft); border: 1px solid rgba(49,130,246,.18); }
+    .decision-actions strong { display: block; margin-bottom: 7px; color: var(--blue-strong); font-size: 14px; }
+    .decision-actions p { margin-bottom: 0; color: var(--ink-2); font-size: 13px; font-weight: 700; }
+
+    section.content-section { padding: 104px 0; }
+    .section-soft { background: var(--surface); }
+    .section-blue { color: #fff; background: radial-gradient(circle at 15% 20%, rgba(255,255,255,.18), transparent 25rem), linear-gradient(145deg, #216DDC, #3182F6 58%, #5A9CFF); }
+    .section-kicker { margin-bottom: 10px; color: var(--blue); font-size: 14px; font-weight: 900; letter-spacing: .02em; }
+    .section-blue .section-kicker { color: rgba(255,255,255,.74); }
+    .section-title { max-width: 930px; margin-bottom: 18px; font-size: clamp(var(--section-title-min), var(--section-title-fluid), var(--section-title-max)); line-height: 1.20; letter-spacing: -.05em; font-weight: 850; text-wrap: balance; overflow-wrap: anywhere; }
+    .section-desc { max-width: 860px; margin-bottom: 44px; color: var(--muted); font-size: 19px; line-height: 1.63; font-weight: 600; }
+    .section-blue .section-desc { color: rgba(255,255,255,.80); }
+    .cite { display: inline-flex; align-items: center; justify-content: center; min-width: 22px; height: 22px; padding: 0 6px; margin-left: 2px; border-radius: 999px; color: var(--blue-strong); background: var(--blue-soft); font-size: 10px; font-weight: 900; vertical-align: .12em; }
+    .section-blue .cite { color: #fff; background: rgba(255,255,255,.17); }
+
+    .thesis-card { display: grid; grid-template-columns: 140px 1fr; gap: 28px; align-items: center; padding: 34px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: #fff; box-shadow: var(--shadow-sm); }
+    .thesis-stamp { aspect-ratio: 1; display: grid; place-items: center; border-radius: 34px; color: var(--blue); background: var(--blue-soft); }
+    .thesis-stamp svg { width: 64px; height: 64px; }
+    .thesis-copy h3 { margin-bottom: 10px; font-size: 25px; line-height: 1.35; letter-spacing: -.04em; }
+    .thesis-copy p { margin-bottom: 0; color: var(--muted); font-size: 18px; font-weight: 600; }
+
+    .fact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 22px; }
+    .fact-card { min-height: 250px; padding: 26px; border: 1px solid var(--line); border-radius: var(--radius-md); background: #fff; box-shadow: 0 10px 30px rgba(25,31,40,.035); }
+    .status-pill { display: inline-flex; align-items: center; gap: 7px; padding: 6px 10px; margin-bottom: 18px; border-radius: 999px; font-size: 11px; font-weight: 900; }
+    .status-pill.verified { color: var(--green); background: var(--mint); }
+    .status-pill.estimate { color: var(--amber); background: #FFF8CE; }
+    .status-pill.unconfirmed { color: var(--red); background: var(--red-soft); }
+    .fact-card h3 { margin-bottom: 10px; font-size: 23px; letter-spacing: -.04em; }
+    .fact-card p { margin-bottom: 0; color: var(--muted); font-size: 15px; font-weight: 600; }
+    .fact-card .big { display: block; margin-bottom: 8px; color: var(--blue); font-size: 34px; line-height: 1.05; font-weight: 900; letter-spacing: -.055em; }
+
+    .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 26px; background: #fff; box-shadow: var(--shadow-sm); }
+    .fact-table { width: 100%; min-width: 920px; border-collapse: collapse; font-size: 14px; }
+    .fact-table th, .fact-table td { padding: 18px 17px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+    .fact-table th { color: var(--muted); background: var(--surface); font-size: 11px; font-weight: 900; letter-spacing: .04em; }
+    .fact-table tr:last-child td { border-bottom: 0; }
+    .fact-table td { color: var(--ink-2); font-weight: 650; }
+    .fact-table td:first-child { width: 21%; color: var(--ink); font-weight: 800; }
+    .fact-table td:nth-child(2) { width: 18%; }
+    .table-status { display: inline-flex; align-items: center; gap: 6px; padding: 6px 9px; border-radius: 999px; white-space: nowrap; font-size: 11px; font-weight: 900; }
+    .table-status.ok { color: var(--green); background: var(--mint); }
+    .table-status.model { color: var(--amber); background: #FFF8CE; }
+    .table-status.no { color: var(--red); background: var(--red-soft); }
+    .table-status.mixed { color: #6C52CC; background: var(--violet); }
+    .source-inline { color: var(--blue-strong); text-decoration: underline; text-decoration-color: rgba(49,130,246,.25); text-underline-offset: 3px; }
+
+    .correction-table { margin-top: 22px; overflow: hidden; border: 1px solid var(--line); border-radius: 28px; background: #fff; }
+    .correction-row { display: grid; grid-template-columns: .88fr 1.12fr; border-bottom: 1px solid var(--line); }
+    .correction-row:last-child { border-bottom: 0; }
+    .correction-cell { display: flex; align-items: flex-start; gap: 12px; padding: 22px 24px; color: var(--ink-2); font-size: 15px; font-weight: 700; }
+    .correction-cell.wrong { background: #FBFBFC; color: var(--muted); }
+    .correction-cell + .correction-cell { border-left: 1px solid var(--line); }
+    .correction-icon { width: 29px; height: 29px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 50%; font-size: 13px; font-weight: 900; }
+    .wrong .correction-icon { color: var(--red); background: var(--red-soft); }
+    .right .correction-icon { color: var(--blue); background: var(--blue-soft); }
+
+    .flow-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 13px; }
+    .flow-step { position: relative; min-height: 245px; padding: 22px; border-radius: 24px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.20); backdrop-filter: blur(10px); }
+    .flow-step::after { content: ""; position: absolute; top: 50%; right: -10px; width: 8px; height: 8px; border-right: 2px solid rgba(255,255,255,.55); border-top: 2px solid rgba(255,255,255,.55); transform: rotate(45deg); }
+    .flow-step:last-child::after { display: none; }
+    .flow-num { width: 36px; height: 36px; display: grid; place-items: center; margin-bottom: 35px; border-radius: 12px; color: var(--blue-strong); background: #fff; font-size: 12px; font-weight: 900; }
+    .flow-step h3 { margin-bottom: 10px; font-size: 19px; }
+    .flow-step p { margin-bottom: 0; color: rgba(255,255,255,.75); font-size: 14px; font-weight: 600; }
+    .flow-metric { margin-top: 14px; padding: 10px 11px; border-radius: 12px; background: rgba(0,0,0,.14); color: #fff; font-size: 12px; font-weight: 800; }
+    .concept-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 22px; }
+    .concept-card { padding: 22px; border-radius: 23px; background: rgba(255,255,255,.11); border: 1px solid rgba(255,255,255,.19); }
+    .concept-card strong { display: block; margin-bottom: 7px; color: #fff; font-size: 16px; }
+    .concept-card p { margin-bottom: 0; color: rgba(255,255,255,.72); font-size: 13px; font-weight: 650; }
+
+    .economics-layout { display: grid; grid-template-columns: 1.06fr .94fr; gap: 24px; align-items: stretch; }
+    .econ-chart, .calculator-card { padding: 32px; border-radius: 32px; border: 1px solid var(--line); background: #fff; box-shadow: var(--shadow-sm); }
+    .econ-chart h3, .calculator-card h3 { margin-bottom: 8px; font-size: 25px; letter-spacing: -.04em; }
+    .econ-chart > p, .calculator-card > p { margin-bottom: 24px; color: var(--muted); font-size: 14px; font-weight: 650; }
+    .bar-list { display: grid; gap: 18px; }
+    .bar-row { display: grid; grid-template-columns: 142px 1fr 105px; gap: 12px; align-items: center; }
+    .bar-label strong { display: block; margin-bottom: 2px; font-size: 14px; }
+    .bar-label span { color: var(--muted-2); font-size: 11px; font-weight: 750; }
+    .bar-track { height: 22px; overflow: hidden; border-radius: 999px; background: var(--surface-2); }
+    .bar-fill { height: 100%; border-radius: inherit; background: linear-gradient(90deg, #9EC7FF, var(--blue)); }
+    .bar-fill.premium { background: linear-gradient(90deg, #FFE987, #FFC84A); }
+    .bar-fill.service { background: linear-gradient(90deg, #BEE5D8, #2EB58F); }
+    .bar-value { text-align: right; font-size: 15px; font-weight: 900; font-variant-numeric: tabular-nums; }
+    .not-comparable { margin-top: 22px; padding: 16px 18px; border-radius: 18px; color: #635300; background: #FFF8CE; border: 1px solid #F4E28E; font-size: 13px; font-weight: 700; }
+    .formula { margin-top: 18px; padding: 18px; border-radius: 18px; color: #F4F7FB; background: #161B22; font-size: 13px; line-height: 1.75; overflow-wrap: anywhere; }
+    .calculator-controls { display: grid; gap: 17px; }
+    .range-row label { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; color: var(--ink-2); font-size: 13px; font-weight: 800; }
+    .range-row output { color: var(--blue-strong); font-weight: 900; font-variant-numeric: tabular-nums; }
+    input[type="range"] { width: 100%; accent-color: var(--blue); }
+    .preset-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+    .preset-btn { cursor: pointer; border: 1px solid var(--line); padding: 8px 10px; border-radius: 10px; color: var(--muted); background: var(--surface); font-size: 11px; font-weight: 850; }
+    .preset-btn:hover { color: var(--blue); border-color: rgba(49,130,246,.28); background: var(--blue-soft); }
+    .calc-result { margin-top: 22px; padding: 22px; border-radius: 24px; color: #fff; background: linear-gradient(145deg, #216DDC, #3182F6); }
+    .calc-result span { display: block; margin-bottom: 7px; color: rgba(255,255,255,.75); font-size: 11px; font-weight: 900; letter-spacing: .05em; }
+    .calc-result strong { display: block; color: #fff; font-size: 34px; line-height: 1.1; letter-spacing: -.055em; font-variant-numeric: tabular-nums; }
+    .calc-result p { margin: 9px 0 0; color: rgba(255,255,255,.76); font-size: 12px; font-weight: 650; }
+
+    .media-layout { display: grid; grid-template-columns: 1.05fr .95fr; gap: 24px; align-items: stretch; }
+    .photo-card { overflow: hidden; border: 1px solid var(--line); border-radius: 32px; background: #fff; box-shadow: var(--shadow-sm); }
+    .photo-card img { width: 100%; aspect-ratio: 2.25 / 1; object-fit: cover; }
+    .photo-copy { padding: 23px 25px 26px; }
+    .photo-copy h3 { margin-bottom: 8px; font-size: 24px; letter-spacing: -.04em; }
+    .photo-copy p { margin-bottom: 12px; color: var(--muted); font-size: 14px; font-weight: 650; }
+    .photo-caption { color: var(--muted-2); font-size: 11px; font-weight: 700; }
+    .timeline-card { padding: 30px; border-radius: 32px; border: 1px solid var(--line); background: #fff; }
+    .timeline-card h3 { margin-bottom: 22px; font-size: 25px; letter-spacing: -.04em; }
+    .timeline { position: relative; display: grid; gap: 18px; }
+    .timeline::before { content: ""; position: absolute; left: 17px; top: 12px; bottom: 12px; width: 2px; background: var(--line); }
+    .timeline-item { position: relative; display: grid; grid-template-columns: 36px 1fr; gap: 13px; }
+    .timeline-dot { z-index: 1; width: 36px; height: 36px; display: grid; place-items: center; border-radius: 12px; color: var(--blue); background: var(--blue-soft); border: 3px solid #fff; font-size: 11px; font-weight: 900; }
+    .timeline-item strong { display: block; margin-bottom: 3px; font-size: 15px; }
+    .timeline-item p { margin-bottom: 0; color: var(--muted); font-size: 13px; font-weight: 650; }
+    .playbook-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 22px; }
+    .playbook-card { padding: 24px; border-radius: 25px; border: 1px solid var(--line); background: #fff; }
+    .playbook-card .num { width: 34px; height: 34px; display: grid; place-items: center; margin-bottom: 19px; border-radius: 11px; color: var(--blue); background: var(--blue-soft); font-size: 12px; font-weight: 900; }
+    .playbook-card h3 { margin-bottom: 8px; font-size: 20px; letter-spacing: -.035em; }
+    .playbook-card p { margin-bottom: 0; color: var(--muted); font-size: 14px; font-weight: 650; }
+
+    .cloud-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .cloud-card { position: relative; overflow: hidden; min-height: 300px; padding: 28px; border-radius: 30px; border: 1px solid var(--line); background: #fff; box-shadow: var(--shadow-sm); }
+    .cloud-card::after { content: ""; position: absolute; right: -42px; top: -42px; width: 125px; height: 125px; border-radius: 50%; background: var(--blue-soft); }
+    .cloud-card h3 { position: relative; z-index: 1; margin-bottom: 22px; font-size: 24px; letter-spacing: -.04em; }
+    .cloud-growth { position: relative; z-index: 1; margin-bottom: 10px; color: var(--blue); font-size: 46px; line-height: 1; letter-spacing: -.06em; font-weight: 900; }
+    .cloud-card p { position: relative; z-index: 1; margin-bottom: 0; color: var(--muted); font-size: 15px; font-weight: 650; }
+    .cloud-note { position: relative; z-index: 1; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--ink-2); font-size: 13px; font-weight: 800; }
+    .hypothesis { margin-top: 22px; display: grid; grid-template-columns: .92fr 1.08fr; gap: 20px; }
+    .hypothesis-card { padding: 30px; border-radius: 30px; border: 1px solid var(--line); background: #fff; }
+    .hypothesis-card.blue-card { color: #fff; background: linear-gradient(145deg, #216DDC, #3182F6); border-color: transparent; }
+    .hypothesis-card h3 { margin-bottom: 13px; font-size: 24px; letter-spacing: -.04em; }
+    .hypothesis-card.blue-card h3, .hypothesis-card.blue-card strong { color: #fff; }
+    .hypothesis-card p { margin-bottom: 0; color: var(--muted); font-size: 15px; font-weight: 650; }
+    .hypothesis-card.blue-card p { color: rgba(255,255,255,.76); }
+    .hypothesis-list { display: grid; gap: 12px; margin-top: 20px; }
+    .hypothesis-item { display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: start; font-size: 14px; font-weight: 700; }
+    .hypothesis-item b { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 9px; color: var(--blue); background: var(--blue-soft); font-size: 11px; }
+    .blue-card .hypothesis-item b { color: var(--blue-strong); background: #fff; }
+
+    .risk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .risk-card { min-height: 250px; padding: 26px; border-radius: 28px; border: 1px solid var(--line); background: #fff; }
+    .risk-card .risk-code { display: inline-flex; padding: 6px 9px; margin-bottom: 18px; border-radius: 9px; color: var(--red); background: var(--red-soft); font-size: 11px; font-weight: 900; }
+    .risk-card h3 { margin-bottom: 9px; font-size: 21px; letter-spacing: -.04em; }
+    .risk-card p { margin-bottom: 0; color: var(--muted); font-size: 14px; font-weight: 650; }
+    .scenario-wrap { margin-top: 22px; overflow-x: auto; border: 1px solid var(--line); border-radius: 26px; background: #fff; }
+    .scenario-table { width: 100%; min-width: 820px; border-collapse: collapse; }
+    .scenario-table th, .scenario-table td { padding: 17px; text-align: left; border-bottom: 1px solid var(--line); }
+    .scenario-table tr:last-child td { border-bottom: 0; }
+    .scenario-table th { color: var(--muted); background: var(--surface); font-size: 11px; font-weight: 900; letter-spacing: .04em; }
+    .scenario-table td { color: var(--ink-2); font-size: 14px; font-weight: 700; }
+    .scenario-table td:last-child { color: var(--blue-strong); font-size: 17px; font-weight: 900; }
+    .scenario-label { display: inline-flex; padding: 5px 8px; border-radius: 9px; font-size: 11px; font-weight: 900; }
+    .scenario-label.bear { color: var(--red); background: var(--red-soft); }
+    .scenario-label.base { color: var(--blue-strong); background: var(--blue-soft); }
+    .scenario-label.bull { color: var(--green); background: var(--mint); }
+    .governance-note { margin-top: 22px; display: flex; align-items: flex-start; gap: 14px; padding: 22px 24px; border-radius: 22px; color: #635300; background: #FFF8CE; border: 1px solid #F4E28E; font-size: 15px; font-weight: 700; }
+    .governance-note svg { width: 22px; height: 22px; flex: 0 0 auto; margin-top: 2px; }
+
+    .recommend-grid { display: grid; grid-template-columns: .92fr 1.08fr; gap: 22px; }
+    .recommend-card { padding: 32px; border-radius: 32px; border: 1px solid var(--line); background: #fff; }
+    .recommend-card.blue-card { color: #fff; background: linear-gradient(145deg, #216DDC, #3182F6); border-color: transparent; }
+    .recommend-card h3 { margin-bottom: 20px; font-size: 27px; letter-spacing: -.04em; }
+    .recommend-card.blue-card h3, .recommend-card.blue-card strong { color: #fff; }
+    .recommend-list { display: grid; gap: 16px; }
+    .recommend-item { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; }
+    .recommend-num { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 11px; color: var(--blue); background: var(--blue-soft); font-size: 13px; font-weight: 900; }
+    .blue-card .recommend-num { color: var(--blue-strong); background: #fff; }
+    .recommend-item strong { display: block; margin-bottom: 3px; font-size: 16px; }
+    .recommend-item p { margin-bottom: 0; color: var(--muted); font-size: 14px; font-weight: 650; }
+    .blue-card .recommend-item p { color: rgba(255,255,255,.75); }
+    .dashboard-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 22px; }
+    .dashboard-item { padding: 18px; border-radius: 20px; background: var(--surface); border: 1px solid var(--line); }
+    .dashboard-item strong { display: block; margin-bottom: 4px; font-size: 14px; }
+    .dashboard-item span { color: var(--muted); font-size: 12px; font-weight: 650; }
+
+    .video-section { padding: 92px 0; background: var(--ink); color: #fff; }
+    .video-layout { display: grid; grid-template-columns: .78fr 1.22fr; gap: 28px; align-items: center; }
+    .video-copy .section-kicker { color: #8BBDFF; }
+    .video-copy h2 { margin-bottom: 18px; font-size: clamp(28px, 3.2vw, 39px); line-height: 1.2; letter-spacing: -.05em; }
+    .video-copy p { margin-bottom: 24px; color: rgba(255,255,255,.72); font-size: 17px; font-weight: 600; }
+    .video-copy strong { color: #fff; }
+    .video-frame { overflow: hidden; border-radius: 28px; border: 1px solid rgba(255,255,255,.16); background: #000; box-shadow: 0 24px 70px rgba(0,0,0,.28); }
+    .video-frame iframe { width: 100%; aspect-ratio: 16/9; border: 0; }
+    .video-fallback { display: none; padding: 28px; color: rgba(255,255,255,.75); }
+
+    .sources { padding: 80px 0 40px; border-top: 1px solid var(--line); background: #fff; }
+    .source-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 26px; }
+    .source-head h2 { margin-bottom: 5px; font-size: 29px; letter-spacing: -.04em; }
+    .source-head p { margin-bottom: 0; color: var(--muted); font-size: 14px; font-weight: 650; }
+    .source-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .source-link { padding: 18px; border-radius: 18px; border: 1px solid var(--line); background: var(--surface); transition: .2s ease; overflow-wrap: anywhere; }
+    .source-link:hover, .source-link:focus-visible { transform: translateY(-2px); border-color: rgba(49,130,246,.25); background: var(--blue-soft); outline: none; }
+    .source-link span { display: block; margin-bottom: 6px; color: var(--muted-2); font-size: 10px; font-weight: 900; letter-spacing: .06em; }
+    .source-link strong { display: block; font-size: 14px; }
+    .source-link small { display: block; margin-top: 7px; color: var(--muted); font-size: 11px; font-weight: 650; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-top: 36px; padding-top: 22px; border-top: 1px solid var(--line); color: var(--muted-2); font-size: 12px; font-weight: 650; }
+    .report-history { margin-top: 44px; padding-top: 34px; border-top: 1px solid var(--line); }
+    .history-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 18px; }
+    .history-head h2 { margin-bottom: 4px; font-size: 26px; letter-spacing: -.04em; }
+    .history-head p { margin-bottom: 0; color: var(--muted); font-size: 13px; font-weight: 650; }
+    .history-table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 20px; background: #fff; }
+    .history-table { width: 100%; min-width: 780px; border-collapse: collapse; font-size: 13px; }
+    .history-table th, .history-table td { padding: 15px 16px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+    .history-table tr:last-child td { border-bottom: 0; }
+    .history-table th { color: var(--muted); background: var(--surface); font-size: 11px; font-weight: 900; letter-spacing: .03em; white-space: nowrap; }
+    .history-table td { color: var(--ink-2); font-weight: 650; }
+    .history-table td:first-child { color: var(--blue-strong); font-weight: 900; white-space: nowrap; }
+    .history-table td:nth-child(2), .history-table td:nth-child(3) { white-space: nowrap; }
+    .history-status { display: inline-flex; padding: 5px 8px; border-radius: 999px; color: var(--muted); background: var(--surface-2); font-size: 11px; font-weight: 850; }
+    .history-empty { padding: 22px; color: var(--muted); text-align: center; }
+
+    .floating-actions { position: fixed; right: 22px; bottom: 22px; z-index: 800; display: grid; gap: 10px; }
+    .float-btn { width: 48px; height: 48px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 16px; background: rgba(255,255,255,.92); box-shadow: var(--shadow-sm); cursor: pointer; color: var(--ink-2); backdrop-filter: blur(12px); transition: .2s ease; }
+    .float-btn:hover { transform: translateY(-2px); color: var(--blue); border-color: rgba(49,130,246,.25); }
+    .float-btn svg { width: 20px; height: 20px; }
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 1040px) {
+      .nav-links { display: none; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-copy { text-align: center; }
+      .hero-lead { margin-left: auto; margin-right: auto; }
+      .hero-actions, .report-meta, .hero-note { justify-content: center; }
+      .hero-note { text-align: left; }
+      .hero-visual { min-height: 550px; }
+      .metric-grid { grid-template-columns: repeat(2, 1fr); }
+      .fact-grid { grid-template-columns: repeat(2, 1fr); }
+      .flow-grid { grid-template-columns: repeat(2, 1fr); }
+      .flow-step::after { display: none; }
+      .concept-grid { grid-template-columns: repeat(2, 1fr); }
+      .economics-layout, .media-layout, .video-layout { grid-template-columns: 1fr; }
+      .playbook-grid { grid-template-columns: repeat(2, 1fr); }
+      .cloud-grid { grid-template-columns: 1fr; }
+      .risk-grid { grid-template-columns: repeat(2, 1fr); }
+      .source-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 720px) {
+      .container { width: min(100% - 28px, var(--max)); }
+      .nav-wrap { padding: 9px 10px 0; }
+      .nav { min-height: 56px; padding-left: 12px; border-radius: 18px; }
+      .brand-sub, .nav-actions .btn-ghost { display: none; }
+      .btn { min-height: 40px; padding: 0 13px; }
+      .executive-cover { min-height: auto; padding: 58px 0 54px; }
+      .hero h1 { font-size: 38px; }
+      .hero-lead { font-size: 18px; }
+      .hero-visual { min-height: 500px; }
+      .hero-orbit { width: 340px; height: 340px; animation: none; }
+      .snapshot { padding: 15px; border-radius: 28px; }
+      .snapshot-grid, .metric-grid, .decision-row, .fact-grid, .flow-grid, .concept-grid, .playbook-grid, .risk-grid, .dashboard-grid, .source-grid { grid-template-columns: 1fr; }
+      .executive-strip { padding: 18px; }
+      section.content-section { padding: 82px 0; }
+      .section-title { font-size: 32px; }
+      .section-desc { margin-bottom: 34px; font-size: 17px; }
+      .thesis-card { grid-template-columns: 1fr; padding: 28px; }
+      .thesis-stamp { width: 94px; border-radius: 24px; }
+      .correction-row { grid-template-columns: 1fr; }
+      .correction-cell + .correction-cell { border-left: 0; border-top: 1px solid var(--line); }
+      .econ-chart, .calculator-card, .timeline-card, .recommend-card, .hypothesis-card { padding: 24px; }
+      .bar-row { grid-template-columns: 1fr; gap: 7px; }
+      .bar-value { text-align: left; }
+      .hypothesis, .recommend-grid { grid-template-columns: 1fr; }
+      .video-section { padding: 76px 0; }
+      .source-head, .footer-bottom, .history-head, .strip-head { align-items: flex-start; flex-direction: column; }
+      .floating-actions { right: 12px; bottom: 12px; }
+    }
+
+    @media (max-width: 380px) {
+      .hero h1 { font-size: 35px; }
+      .snapshot-main strong { font-size: 20px; }
+      .metric-value { font-size: 26px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    @media print {
+      @page { size: A4; margin: 12mm; }
+      body { background: #fff !important; color: #000; font-size: 10pt; }
+      .nav-wrap, .floating-actions, .scroll-progress, .hero-actions, .video-section, .calculator-card, .preset-row { display: none !important; }
+      .container { width: 100%; max-width: none; }
+      .executive-cover { min-height: 0; padding: 5mm 0 6mm; break-after: page; }
+      .hero-grid { grid-template-columns: 1.05fr .95fr; gap: 8mm; }
+      .hero h1 { font-size: 30pt; }
+      .hero-lead { font-size: 12pt; }
+      .hero-visual { min-height: 0; }
+      .hero-orbit { display: none; }
+      .snapshot { box-shadow: none; }
+      .executive-strip { margin-top: 5mm; padding: 4mm; box-shadow: none; }
+      .metric-card { min-height: 0; }
+      .metric-value { font-size: 20pt; }
+      section.content-section { padding: 12mm 0; break-inside: avoid; }
+      .section-title { font-size: 24pt; }
+      .section-blue { color: #000 !important; background: #fff !important; border-top: 2px solid var(--blue); border-bottom: 2px solid var(--blue); }
+      .section-blue .section-kicker { color: var(--blue) !important; }
+      .section-blue .section-desc, .flow-step p, .concept-card p { color: #333 !important; }
+      .flow-step, .concept-card { color: #000 !important; background: #fff !important; border: 1px solid #ccc; }
+      .flow-step h3, .concept-card strong { color: #000 !important; }
+      .flow-num { border: 1px solid #ccc; }
+      .photo-card, .fact-card, .cloud-card, .risk-card, .recommend-card, .hypothesis-card, .econ-chart, .thesis-card { box-shadow: none; break-inside: avoid; }
+      .photo-card img { max-height: 70mm; }
+      .source-grid { grid-template-columns: repeat(2, 1fr); }
+      .history-table-wrap, .table-wrap, .scenario-wrap { overflow: visible; }
+      .history-table, .fact-table, .scenario-table { min-width: 0; font-size: 7.5pt; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      a { text-decoration: none; }
+    }
+  </style>
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260809-rh4">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png?v=20260809-rh4">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png?v=20260809-rh4">
+  <link rel="manifest" href="../../site.webmanifest?v=20260809-rh4">
+  <meta name="application-name" content="Report Hub">
+  <meta property="og:site_name" content="Report Hub">
+  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260809-rh4">
+  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260809-rh4">
+  <link rel="stylesheet" href="../../assets/report-comments.css?v=20260809-comments1">
+</head>
+<body data-report-cover="assets/colossus-aerial.jpg" data-report-cover-alt="AI 데이터센터 10GW 경제학 — SpaceX는 GPU가 아니라 시간을 판다" data-report-view="detail" data-report-layout="wide">
+  <a class="report-home-button" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span></a>
+  <a class="skip-link" href="#main">본문으로 바로가기</a>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <div class="nav-wrap">
+    <nav class="nav" aria-label="보고서 주요 메뉴">
+      <a class="brand" href="#top" aria-label="보고서 처음으로">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12.2 9.1 16 19 6.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </span>
+        <span>AI DATACENTER 10GW</span>
+        <span class="brand-sub">Executive Report</span>
+      </a>
+      <div class="nav-links">
+        <a href="#verification">검증</a>
+        <a href="#economics">경제성</a>
+        <a href="#speed">구축 속도</a>
+        <a href="#customer">고객 가설</a>
+        <a href="#risks">리스크</a>
+        <a href="#recommendation">권고안</a>
+      </div>
+      <div class="nav-actions">
+        <a class="btn btn-ghost" href="#sources">출처</a>
+        <button class="btn btn-primary" type="button" onclick="window.print()">PDF 저장</button>
+      </div>
+    </nav>
+  </div>
+
+  <main id="main">
+    <div id="top" class="container">
+      <section class="executive-cover hero" aria-labelledby="hero-title">
+        <div class="hero-grid">
+          <div class="hero-copy reveal">
+            <div class="eyebrow"><span class="eyebrow-dot"></span>YouTube 자막 검증 · 임원용 1페이지 요약</div>
+            <h1 id="hero-title">
+              AI 데이터센터 <span class="blue">10GW 경제학</span><br>
+              SpaceX는 GPU가 아니라<br><span class="marker">가동 시점</span>을 판다
+            </h1>
+            <p class="hero-lead">
+              영상의 큰 방향은 맞습니다. AI 컴퓨팅 공급이 부족한 동안에는 <strong>전력·GPU·부지를 먼저 켜는 능력</strong> 자체가 상품이 됩니다. 다만 <strong>“1GW당 연 1,000억 달러”는 SemiAnalysis의 서비스 매출 잠재치</strong>이며, SpaceX의 확정 매출이나 이익이 아닙니다.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#verification">주장 검증부터 보기</a>
+              <a class="btn btn-ghost" href="#economics">1GW 경제성 보기</a>
+              <a class="btn btn-ghost" href="#video">원본 영상 보기</a>
+            </div>
+            <div class="hero-note">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"></circle><path d="M12 10v6M12 7.2v.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+              <span>기준일 2026.08.09. 공식 실적, 기업 IR, 기술 문서와 SemiAnalysis 원문을 대조했습니다. <strong>사실·분석·미확인</strong>을 분리해 표시합니다.</span>
+            </div>
+            <div class="report-meta reveal" aria-label="보고서 버전 정보">
+              <span class="version-badge" id="reportVersion">v1.0.0</span>
+              <span id="reportUpdated">Updated 2026.08.09</span>
+              <span class="report-meta-separator" aria-hidden="true"></span>
+              <span id="reportGeneration">AI-assisted · Human review recommended</span>
+            </div>
+          </div>
+
+          <div class="hero-visual reveal" aria-label="핵심 판단 스냅샷">
+            <div class="hero-orbit" aria-hidden="true"></div>
+            <article class="snapshot">
+              <div class="snapshot-top">
+                <div class="snapshot-title"><i></i>REPORT SNAPSHOT</div>
+                <div class="snapshot-tag">FACT ≠ MODEL</div>
+              </div>
+              <div class="snapshot-main">
+                <span>ONE-LINE CONCLUSION</span>
+                <strong>AI 데이터센터의 핵심 자산은 GPU 수가 아니라 “언제 전력과 냉각을 붙여 유료 토큰을 만들 수 있느냐”입니다.</strong>
+              </div>
+              <div class="snapshot-grid">
+                <div class="snapshot-card"><b>공식</b><strong>Q2 용량 1.4GW</strong><p>SpaceX 공식 실적의 AI nameplate compute. AI 설비투자는 158.28억 달러.</p></div>
+                <div class="snapshot-card"><b class="estimate">모델</b><strong>&gt;$100B/GW·년</strong><p>GB300에서 API 추론을 판매할 때의 SemiAnalysis 잠재 매출 시뮬레이션.</p></div>
+                <div class="snapshot-card"><b class="unconfirmed">미확인</b><strong>Microsoft 3GW</strong><p>가능성 시나리오일 뿐, 검토한 공개 자료에서 계약 발표는 확인되지 않음.</p></div>
+                <div class="snapshot-card"><b>판단</b><strong>시간 프리미엄</strong><p>3~5개월 내 대형 용량을 켜 주는 공급자는 일반 임대보다 높은 가격을 요구할 수 있음.</p></div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="executive-strip reveal" aria-labelledby="summary-title">
+          <div class="strip-head">
+            <div>
+              <h2 id="summary-title">Executive Summary · 3분 의사결정</h2>
+              <p>결론, 근거, 리스크, 다음 행동을 첫 페이지에 압축했습니다.</p>
+            </div>
+            <span class="version-badge">검증 강도: 공식 5 · 분석 3 · 미확인 2</span>
+          </div>
+          <div class="metric-grid">
+            <article class="metric-card"><div class="metric-label">SPACEX Q2 2026 REVENUE</div><div class="metric-value">$7.8B</div><p>전년 대비 92% 증가. 공식 실적 발표 기준.<a class="cite" href="#source-2" aria-label="출처 2">2</a></p></article>
+            <article class="metric-card"><div class="metric-label">AI CAPEX · QUARTER</div><div class="metric-value blue-number">$15.8B</div><p>회사 분기 매출의 약 2.0배. AI 영업손실은 12.57억 달러.<a class="cite" href="#source-2" aria-label="출처 2">2</a></p></article>
+            <article class="metric-card"><div class="metric-label">NAMEPLATE COMPUTE</div><div class="metric-value">1.4GW</div><p>2025년 2분기 0.4GW에서 3.5배로 확대.<a class="cite" href="#source-2" aria-label="출처 2">2</a></p></article>
+            <article class="metric-card"><div class="metric-label">2027 MANAGEMENT AMBITION</div><div class="metric-value blue-number">≈10GW</div><p>연말 5GW보다 10GW에 가깝다는 경영진 가이던스. 실행 위험이 큼.<a class="cite" href="#source-3" aria-label="출처 3">3</a></p></article>
+          </div>
+          <div class="decision-row">
+            <div class="decision-card"><p><strong>임원 판단:</strong> “짓는 대로 돈 된다”보다 정확한 표현은 <mark>“공급 부족이 지속되는 동안, 빨리 켠 용량에 프리미엄이 붙는다”</mark>입니다. 수요는 강하지만 가격·가동률·계약 조건이 수익을 결정합니다.</p></div>
+            <div class="decision-actions"><strong>지금 볼 KPI</strong><p>① MW 가동일 ② 계약된 MW와 취소 조건 ③ 매출/MW ④ GPU 가동률·TTFT ⑤ 허가받은 전력·냉각 용량 ⑥ 영업현금흐름</p></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section id="verification" class="content-section section-soft">
+      <div class="container">
+        <div class="section-kicker reveal">CLAIM VERIFICATION</div>
+        <h2 class="section-title reveal">영상의 방향은 맞지만, 숫자는 세 층으로 나눠 봐야 합니다</h2>
+        <p class="section-desc reveal">SpaceX 공식 실적은 이미 대규모 AI 인프라 투자와 매출을 보여줍니다. 반면 전력당 1,000억 달러, Microsoft 3GW 계약, 2027년 10GW 완공은 각각 <strong>모델·가설·경영진 목표</strong>입니다.</p>
+
+        <article class="thesis-card reveal">
+          <div class="thesis-stamp" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none"><path d="M14 17h36v30H14z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path><path d="m21 31 7 7 15-16" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </div>
+          <div class="thesis-copy">
+            <h3>한 문장 결론</h3>
+            <p><strong>공급 부족과 시간 프리미엄은 공식 실적이 뒷받침</strong>하지만, <strong>1GW당 1,000억 달러는 특정 워크로드·가격·지연시간을 가정한 분석 모델</strong>이므로 사업계획에는 민감도 분석이 필요합니다.</p>
+          </div>
+        </article>
+
+        <div class="fact-grid">
+          <article class="fact-card reveal"><span class="status-pill verified">✓ 공식 확인</span><span class="big">$2.56B</span><h3>SpaceX AI 분기 매출</h3><p>Q2 AI 매출은 25.61억 달러, 이 중 AI 솔루션·인프라 매출은 21.94억 달러였습니다. 동시에 영업손실 12.57억 달러를 기록했습니다.<a class="cite" href="#source-2" aria-label="출처 2">2</a></p></article>
+          <article class="fact-card reveal"><span class="status-pill estimate">△ 분석 모델</span><span class="big">&gt;$100B</span><h3>1GW당 서비스 매출</h3><p>SemiAnalysis는 GB300, 실제 코딩 트레이스, API 가격, TTFT 조건을 넣어 OpenAI·Anthropic급 서비스의 연 매출 잠재치를 계산했습니다.<a class="cite" href="#source-5" aria-label="출처 5">5</a></p></article>
+          <article class="fact-card reveal"><span class="status-pill unconfirmed">? 공개 계약 미확인</span><span class="big">3GW</span><h3>Microsoft 구매 가설</h3><p>SemiAnalysis가 “가능한 시나리오”로 제시했습니다. 2026.08.09 기준 검토한 Microsoft·SpaceX 공식 자료에는 해당 계약 발표가 없습니다.<a class="cite" href="#source-5" aria-label="출처 5">5</a></p></article>
+        </div>
+
+        <div class="table-wrap reveal" style="margin-top:22px">
+          <table class="fact-table">
+            <thead><tr><th>영상의 핵심 주장</th><th>판정</th><th>검증 결과와 해석</th><th>의사결정 시 주의</th></tr></thead>
+            <tbody>
+              <tr><td>SpaceX Q2 매출 78억 달러, 전년 대비 92%</td><td><span class="table-status ok">✓ 공식 확인</span></td><td>SpaceX Q2 2026 공식 실적과 일치합니다.<a class="cite" href="#source-2" aria-label="출처 2">2</a></td><td>분기 순손실은 5.41억 달러였습니다.</td></tr>
+              <tr><td>AI 인프라 분기 지출 158억 달러</td><td><span class="table-status ok">✓ 공식 확인</span></td><td>AI Capex 158.28억 달러, 전체 Capex 183.69억 달러입니다.<a class="cite" href="#source-2" aria-label="출처 2">2</a></td><td>Capex는 비용이 아니라 자산 취득도 포함하므로 당기 손익과 동일하지 않습니다.</td></tr>
+              <tr><td>2026년 말 &gt;2GW, 2027년 말 10GW 근접</td><td><span class="table-status mixed">◐ 목표·가이던스</span></td><td>Q2 실제 1.4GW는 공식 확인. 연말 목표는 실적 콜에서 제시된 경영진 계획입니다.<a class="cite" href="#source-2" aria-label="출처 2">2</a><a class="cite" href="#source-3" aria-label="출처 3">3</a></td><td>6~8GW를 1년 안에 추가하는 실행 난도는 이전 300MW 구축과 차원이 다릅니다.</td></tr>
+              <tr><td>1GW에서 연 1,000억 달러 이상 매출</td><td><span class="table-status model">△ SemiAnalysis 모델</span></td><td>정확한 단위는 <strong>1MW당 &gt;$100M, 1GW당 &gt;$100B/년</strong>입니다. 영상 자막의 일부 “1억 달러/GW” 표현은 단위 오류입니다.<a class="cite" href="#source-5" aria-label="출처 5">5</a></td><td>모델 가격·워크로드·가동률·지연시간이 바뀌면 결과가 크게 달라집니다.</td></tr>
+              <tr><td>GB300은 전력당 토큰 처리량 5배</td><td><span class="table-status ok">✓ 조건부 공식</span></td><td>NVIDIA는 Hopper 대비 TPS/MW 최대 5배, 사용자 TPS 최대 10배, 결합 출력 최대 50배를 설명합니다.<a class="cite" href="#source-6" aria-label="출처 6">6</a></td><td>“최대” 수치이며 모델·배치·지연시간 목표에 따라 실제 성능이 다릅니다.</td></tr>
+              <tr><td>Microsoft가 최대 고객, 3GW 계약 가능</td><td><span class="table-status no">? 미확인</span></td><td>Microsoft의 공급 부족은 공식 확인되지만, SpaceX 3GW 계약은 SemiAnalysis의 추정입니다.<a class="cite" href="#source-7" aria-label="출처 7">7</a></td><td>고객명, 계약기간, 취소권, take-or-pay 여부가 공개되기 전까지 확정 매출로 보면 안 됩니다.</td></tr>
+              <tr><td>Colossus 1은 122일 만에 구축</td><td><span class="table-status ok">✓ 회사 공개</span></td><td>SpaceXAI 공식 페이지는 122일 구축과 200,000 H100 클러스터를 설명합니다.<a class="cite" href="#source-10" aria-label="출처 10">10</a></td><td>300MW급 경험을 여러 GW 동시 구축으로 단순 외삽하면 안 됩니다.</td></tr>
+              <tr><td>Southaven 69기 ≈1.2GW</td><td><span class="table-status mixed">◐ 수치 불일치</span></td><td>영상 자막은 1.2GW, SemiAnalysis 원문은 2026년 7월 69기 ≈1.7GW로 적었습니다.<a class="cite" href="#source-5" aria-label="출처 5">5</a></td><td>설치·가동·허가 용량의 정의가 다를 수 있어 규제 문서와 설비 목록 확인이 필요합니다.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="correction-table reveal">
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>“GB300 MB링크 72”</div><div class="correction-cell right"><span class="correction-icon">✓</span><strong>GB300 NVL72</strong> · 72개의 Blackwell Ultra GPU를 NVLink 도메인으로 묶은 랙 스케일 시스템</div></div>
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>“KB 캐시”</div><div class="correction-cell right"><span class="correction-icon">✓</span><strong>KV cache</strong> · 이미 읽은 문맥의 핵심 정보를 저장해 다음 토큰 생성에 재사용하는 메모리</div></div>
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>“투 first token”</div><div class="correction-cell right"><span class="correction-icon">✓</span><strong>TTFT(Time To First Token)</strong> · 사용자가 질문한 뒤 첫 글자를 받기까지 걸리는 시간</div></div>
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>“1GW = 1억 달러/년”</div><div class="correction-cell right"><span class="correction-icon">✓</span>SemiAnalysis 주장은 <strong>1MW당 1억 달러 이상, 1GW당 1,000억 달러 이상</strong>의 API 서비스 매출 잠재치</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="flow" class="content-section section-blue">
+      <div class="container">
+        <div class="section-kicker reveal">FROM POWER TO REVENUE</div>
+        <h2 class="section-title reveal">전기가 토큰이 되고, 토큰이 매출이 되는 다섯 단계</h2>
+        <p class="section-desc reveal">데이터센터 경제성은 GPU의 이론 성능보다 <strong>같은 전력으로 얼마나 많은 유료 토큰을, 사용자가 기다릴 수 있는 속도로, 안정적으로 제공하느냐</strong>에 달려 있습니다.</p>
+        <div class="flow-grid">
+          <article class="flow-step reveal"><div class="flow-num">01</div><h3>전력·냉각 확보</h3><p>전력망, 현장 발전, 변전, 냉각이 준비되어야 GPU를 켤 수 있습니다.</p><div class="flow-metric">핵심 KPI · MW 가동일</div></article>
+          <article class="flow-step reveal"><div class="flow-num">02</div><h3>GPU 랙 가동</h3><p>GB300 NVL72 같은 랙을 네트워크와 스토리지에 연결해 클러스터를 구성합니다.</p><div class="flow-metric">핵심 KPI · 가용률</div></article>
+          <article class="flow-step reveal"><div class="flow-num">03</div><h3>Prefill + Decode</h3><p>질문·문서를 읽는 prefill과 답을 한 토큰씩 만드는 decode를 최적화합니다.</p><div class="flow-metric">핵심 KPI · TPS/MW</div></article>
+          <article class="flow-step reveal"><div class="flow-num">04</div><h3>응답 품질·지연 보장</h3><p>배치를 키우면 처리량은 늘지만 첫 응답이 늦어질 수 있어 TTFT와 균형을 맞춥니다.</p><div class="flow-metric">핵심 KPI · TTFT/SLA</div></article>
+          <article class="flow-step reveal"><div class="flow-num">05</div><h3>API·Copilot 판매</h3><p>토큰을 API, 코딩 에이전트, 업무용 Copilot, 소비자 앱으로 판매합니다.</p><div class="flow-metric">핵심 KPI · $/MW·년</div></article>
+        </div>
+        <div class="concept-grid">
+          <article class="concept-card reveal"><strong>TPS/MW</strong><p>전력 1MW에서 초당 생성하는 토큰 수. 전력 제약 시대의 “공장 생산성” 지표입니다.</p></article>
+          <article class="concept-card reveal"><strong>Prefill</strong><p>질문·코드·문서를 먼저 읽는 단계. 연산 성능의 영향을 많이 받습니다.</p></article>
+          <article class="concept-card reveal"><strong>Decode</strong><p>답변을 한 토큰씩 만드는 단계. KV cache와 메모리 대역폭이 중요합니다.</p></article>
+          <article class="concept-card reveal"><strong>Agentic load</strong><p>에이전트는 한 번의 지시 뒤 파일 읽기·실행·재시도를 반복해 총 토큰 수요를 키웁니다.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="economics" class="content-section">
+      <div class="container">
+        <div class="section-kicker reveal">1GW ECONOMICS</div>
+        <h2 class="section-title reveal">12B → 30~50B → 100B 달러는 서로 다른 층의 숫자입니다</h2>
+        <p class="section-desc reveal">SemiAnalysis의 논리는 “싼 컴퓨팅을 사서 비싼 AI 서비스를 판다”는 가치 사슬입니다. 아래 세 숫자는 <strong>비용, 인프라 공급자 매출, 모델·서비스 사업자 매출</strong>이므로 같은 이익률로 비교하면 안 됩니다.</p>
+
+        <div class="economics-layout">
+          <article class="econ-chart reveal">
+            <h3>전력 1GW당 연간 경제성 계단</h3>
+            <p>SemiAnalysis 원문의 가정과 추정치를 단순화한 비교입니다.<a class="cite" href="#source-5" aria-label="출처 5">5</a></p>
+            <div class="bar-list" role="img" aria-label="1GW당 연간 비용과 매출 비교. 네오클라우드 임차비 120억 달러, SpaceX 프리미엄 인프라 매출 300억에서 500억 달러, AI 서비스 매출 잠재치 1,000억 달러 이상">
+              <div class="bar-row"><div class="bar-label"><strong>GB300 임차 비용</strong><span>AI 서비스 사업자가 지불</span></div><div class="bar-track"><div class="bar-fill" style="width:12%"></div></div><div class="bar-value">≈$12B</div></div>
+              <div class="bar-row"><div class="bar-label"><strong>SpaceX 프리미엄</strong><span>빠른 공급의 도매 매출</span></div><div class="bar-track"><div class="bar-fill premium" style="width:40%"></div></div><div class="bar-value">$30–50B</div></div>
+              <div class="bar-row"><div class="bar-label"><strong>AI 서비스 매출</strong><span>API·에이전트 소매 매출</span></div><div class="bar-track"><div class="bar-fill service" style="width:100%"></div></div><div class="bar-value">&gt;$100B</div></div>
+            </div>
+            <div class="not-comparable"><strong>중요:</strong> 위 막대는 “마진”이 아닙니다. 인프라 운영, 모델 개발, 네트워크, 인력, 판매, 지원, 감가상각, 금융비용, 미사용 용량을 차감하기 전 서로 다른 가치사슬 단계의 금액입니다.</div>
+            <div class="formula"><code>연간 서비스 매출 ≈ 유효 TPS/MW × 31,536,000초 × 실현 단가/토큰 × 가동률 × 1,000MW</code><br>여기에 입력·출력·캐시 읽기·쓰기의 가격 차이, TTFT 목표, 모델 구조, 배치 크기가 들어갑니다.</div>
+          </article>
+
+          <article class="calculator-card reveal" aria-labelledby="calc-title">
+            <h3 id="calc-title">$100B 헤드라인 민감도 계산기</h3>
+            <p>정확한 예측이 아니라, 1GW당 $100B 최대 잠재치가 가동률·가격·서비스 비중에 얼마나 민감한지 보는 도구입니다.</p>
+            <div class="calculator-controls">
+              <div class="range-row"><label for="capacity">용량 <output id="capacityOut">1.0GW</output></label><input id="capacity" type="range" min="0.1" max="10" step="0.1" value="1"></div>
+              <div class="range-row"><label for="utilization">유효 가동률 <output id="utilizationOut">70%</output></label><input id="utilization" type="range" min="20" max="100" step="5" value="70"></div>
+              <div class="range-row"><label for="price">API 가격 실현율 <output id="priceOut">70%</output></label><input id="price" type="range" min="20" max="100" step="5" value="70"></div>
+              <div class="range-row"><label for="serviceMix">유료 추론 배정 비중 <output id="serviceMixOut">60%</output></label><input id="serviceMix" type="range" min="10" max="100" step="5" value="60"></div>
+              <div class="preset-row" aria-label="계산기 시나리오 선택">
+                <button class="preset-btn" type="button" data-preset="conservative">보수적</button>
+                <button class="preset-btn" type="button" data-preset="base">기준</button>
+                <button class="preset-btn" type="button" data-preset="upside">상향</button>
+              </div>
+            </div>
+            <div class="calc-result" role="status" aria-live="polite">
+              <span>ILLUSTRATIVE GROSS SERVICE REVENUE</span>
+              <strong id="calcValue">$29.4B/년</strong>
+              <p id="calcNote">1.0GW × $100B × 70% × 70% × 60%. 비용과 마진은 반영하지 않습니다.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="speed" class="content-section section-soft">
+      <div class="container">
+        <div class="section-kicker reveal">WHY SPEED EARNS A PREMIUM</div>
+        <h2 class="section-title reveal">SpaceX의 상품은 “최고 효율”보다 “몇 달 먼저 켜지는 대형 용량”입니다</h2>
+        <p class="section-desc reveal">SpaceXAI는 기존 산업시설 개조, 현장 발전, 병렬 시공, 공급망 우회로 구축 속도를 높였습니다. 이 방식은 공급 부족기에 강하지만, 10GW로 확대될수록 전력·가스·변전·냉각·허가·지역사회 리스크가 동시에 커집니다.</p>
+
+        <div class="media-layout">
+          <figure class="photo-card reveal">
+            <img src="assets/colossus-aerial.jpg" alt="미국 멤피스 지역의 xAI Colossus 데이터센터와 외부 발전·냉각 설비를 위에서 본 모습" loading="lazy" width="1004" height="418">
+            <figcaption class="photo-copy"><h3>“데이터센터 + 자체 전력”을 한 일정으로 묶는다</h3><p>전력망 연결만 기다리지 않고 현장 발전을 붙이면 GPU 가동일을 앞당길 수 있습니다. 반대로 대기오염, 허가, 소음, 가스 공급과 지역사회 갈등이 사업 일정의 핵심 변수가 됩니다.</p><div class="photo-caption">이미지: NBC News 항공 영상 화면을 연합뉴스 보도에서 인용·크롭 · 분석 목적 사용<a class="cite" href="#source-14" aria-label="출처 14">14</a></div></figcaption>
+          </figure>
+
+          <article class="timeline-card reveal">
+            <h3>용량 확장 타임라인</h3>
+            <div class="timeline">
+              <div class="timeline-item"><div class="timeline-dot">122일</div><div><strong>Colossus 1 구축</strong><p>SpaceXAI는 122일 만에 클러스터를 구축했다고 공개합니다.<a class="cite" href="#source-10" aria-label="출처 10">10</a></p></div></div>
+              <div class="timeline-item"><div class="timeline-dot">Q2</div><div><strong>2026년 6월 1.4GW</strong><p>SpaceX 공식 실적의 nameplate compute 기준.<a class="cite" href="#source-2" aria-label="출처 2">2</a></p></div></div>
+              <div class="timeline-item"><div class="timeline-dot">2026</div><div><strong>연말 &gt;2GW 목표</strong><p>실적 콜에서 제시된 관리 목표. Q2 대비 최소 0.6GW 추가가 필요합니다.<a class="cite" href="#source-3" aria-label="출처 3">3</a></p></div></div>
+              <div class="timeline-item"><div class="timeline-dot">2027</div><div><strong>연말 약 10GW 야심</strong><p>5GW보다 10GW에 가깝다는 가이던스. SemiAnalysis는 6~8GW 순증을 예상합니다.<a class="cite" href="#source-5" aria-label="출처 5">5</a></p></div></div>
+              <div class="timeline-item"><div class="timeline-dot">≈7기</div><div><strong>규모 감각</strong><p>10GW는 1.4GW급 APR1400 약 7기 출력과 비슷한 명목 전력 규모입니다.<a class="cite" href="#source-13" aria-label="출처 13">13</a></p></div></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="playbook-grid">
+          <article class="playbook-card reveal"><div class="num">01</div><h3>Brownfield 개조</h3><p>새 건물을 처음부터 짓기보다 기존 공장·창고의 골조와 부지를 활용해 착공 시간을 줄입니다.</p></article>
+          <article class="playbook-card reveal"><div class="num">02</div><h3>현장 발전</h3><p>송전망 증설을 기다리지 않고 가스터빈을 배치해 초기 GPU 가동을 앞당깁니다.</p></article>
+          <article class="playbook-card reveal"><div class="num">03</div><h3>병렬 시공</h3><p>건물·전력·냉각·네트워크 공정을 겹쳐 진행하고 모듈을 사전 조립합니다.</p></article>
+          <article class="playbook-card reveal"><div class="num">04</div><h3>유연한 계약</h3><p>SemiAnalysis는 3~5개월 리드타임과 취소권이 있는 대형 용량이 높은 가격을 받을 수 있다고 봅니다.<a class="cite" href="#source-5" aria-label="출처 5">5</a></p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="customer" class="content-section">
+      <div class="container">
+        <div class="section-kicker reveal">WHO PAYS THE PREMIUM?</div>
+        <h2 class="section-title reveal">Microsoft 가설이 설득력 있는 이유는 “계약 발표”가 아니라 “공급 부족”입니다</h2>
+        <p class="section-desc reveal">세 회사의 최신 공식 실적은 새 AI 용량이 놀고 있지 않다는 점을 보여줍니다. 그러나 강한 수요가 곧 Microsoft–SpaceX 3GW 계약을 뜻하지는 않습니다.</p>
+
+        <div class="cloud-grid">
+          <article class="cloud-card reveal"><h3>Microsoft Azure</h3><div class="cloud-growth">+43%</div><p>FY2026 Q4 Azure·기타 클라우드 성장률. 고객 수요가 가용 용량을 계속 초과했고, 분기 중 추가된 용량은 빠르게 매출화됐다고 설명했습니다.<a class="cite" href="#source-7" aria-label="출처 7">7</a></p><div class="cloud-note">Azure 연 매출은 처음으로 $100B를 돌파.</div></article>
+          <article class="cloud-card reveal"><h3>Amazon AWS</h3><div class="cloud-growth">+37%</div><p>Q2 2026 AWS 매출은 422억 달러, 연환산 1,690억 달러. AWS AI 사업도 연환산 250억 달러를 넘었습니다.<a class="cite" href="#source-8" aria-label="출처 8">8</a></p><div class="cloud-note">Amazon은 투자 확대 후에도 수요를 모두 충족하기 어렵다고 설명.</div></article>
+          <article class="cloud-card reveal"><h3>Google Cloud</h3><div class="cloud-growth">+82%</div><p>Q2 2026 Cloud 성장률. AI 인프라·AI 솔루션 수요가 성장을 이끌었고 backlog는 5,140억 달러로 증가했습니다.<a class="cite" href="#source-9" aria-label="출처 9">9</a></p><div class="cloud-note">모델 토큰 사용량 증가와 공급 제약을 동시에 언급.</div></article>
+        </div>
+
+        <div class="hypothesis">
+          <article class="hypothesis-card reveal"><span class="status-pill verified">✓ 확인되는 사실</span><h3>Microsoft에는 “가까운 시점의 대형 용량”이 가치가 있습니다</h3><p>Azure 수요가 공급을 초과하고, 용량을 앞당기면 같은 분기 안에 매출화되는 모습이 공식 실적에서 확인됩니다. 따라서 2027년 용량을 2028년보다 비싸게 사는 경제적 유인은 존재할 수 있습니다.</p><div class="hypothesis-list"><div class="hypothesis-item"><b>1</b><div>Azure·Copilot·Foundry가 같은 GPU 공급을 두고 경쟁</div></div><div class="hypothesis-item"><b>2</b><div>가동 시점이 6~12개월 빨라지면 매출 시점도 앞당겨짐</div></div><div class="hypothesis-item"><b>3</b><div>대형·단기 용량은 일반 장기 임대보다 희소함</div></div></div></article>
+          <article class="hypothesis-card blue-card reveal"><span class="status-pill unconfirmed">? SemiAnalysis 가설</span><h3>“Microsoft가 최대 구매자, 3GW 가능”은 아직 계약 사실이 아닙니다</h3><p>SemiAnalysis는 Microsoft가 2026년에 10GW 이상을 계약했고, 상당 부분이 2027년 말~2028년에 들어와 단기 공백이 생긴다고 추정합니다. 여기에서 SpaceX 3GW 시나리오를 도출하지만, 공개 계약 발표는 확인되지 않았습니다.<a class="cite" href="#source-5" aria-label="출처 5">5</a></p><div class="hypothesis-list"><div class="hypothesis-item"><b>?</b><div><strong>미공개:</strong> 고객명, 실제 MW, 가격, 기간</div></div><div class="hypothesis-item"><b>?</b><div><strong>미공개:</strong> 90일 취소권과 take-or-pay 조건</div></div><div class="hypothesis-item"><b>!</b><div><strong>확인 필요:</strong> 계약 매출과 실제 가동 매출의 차이</div></div></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="risks" class="content-section section-soft">
+      <div class="container">
+        <div class="section-kicker reveal">RISKS &amp; SCENARIOS</div>
+        <h2 class="section-title reveal">10GW는 전력 숫자가 아니라 여섯 가지 실행 리스크의 묶음입니다</h2>
+        <p class="section-desc reveal">수요가 강해도 모든 MW가 같은 가격으로 팔리거나 24시간 유료 토큰을 만들지는 않습니다. 특히 영업이익, 현금흐름, 규제, 고객 집중도를 함께 봐야 합니다.</p>
+
+        <div class="risk-grid">
+          <article class="risk-card reveal"><span class="risk-code">R1 · PRICE</span><h3>API 가격 하락</h3><p>경쟁·오픈모델·하드웨어 효율 향상으로 토큰 가격이 내려가면 같은 TPS에서도 매출/MW가 줄어듭니다.</p></article>
+          <article class="risk-card reveal"><span class="risk-code">R2 · UTILIZATION</span><h3>가동률과 지연시간</h3><p>배치를 무리하게 키우면 TTFT가 악화되고, 낮추면 GPU가 놀 수 있습니다. 명목 GW와 청구 가능한 토큰은 다릅니다.</p></article>
+          <article class="risk-card reveal"><span class="risk-code">R3 · CASH</span><h3>Capex와 현금흐름</h3><p>SpaceX AI 부문은 Q2 조정 EBITDA가 플러스였지만 영업손실은 12.57억 달러였습니다. 감가상각과 자본비용이 큽니다.<a class="cite" href="#source-2" aria-label="출처 2">2</a></p></article>
+          <article class="risk-card reveal"><span class="risk-code">R4 · BUILD</span><h3>여러 사이트 동시 구축</h3><p>10GW는 단일 캠퍼스보다 여러 부지의 합계에 가깝습니다. 가스, 변압기, 냉각, 광섬유, 인력의 병목이 동시에 발생합니다.</p></article>
+          <article class="risk-card reveal"><span class="risk-code">R5 · PERMIT</span><h3>환경·허가·지역사회</h3><p>Southaven 현장 발전은 대기 허가와 지역사회 반발의 대상이 됐습니다. 빠른 가동이 법적 중단 위험을 높일 수 있습니다.<a class="cite" href="#source-11" aria-label="출처 11">11</a><a class="cite" href="#source-12" aria-label="출처 12">12</a></p></article>
+          <article class="risk-card reveal"><span class="risk-code">R6 · CONTRACT</span><h3>고객 집중과 취소권</h3><p>소수 AI 랩·하이퍼스케일러에 매출이 집중되고 단기 취소권이 있으면 이름뿐인 ARR가 빠르게 줄 수 있습니다.</p></article>
+        </div>
+
+        <div class="scenario-wrap reveal">
+          <table class="scenario-table">
+            <thead><tr><th>민감도 시나리오</th><th>2027년 가동 용량</th><th>외부 판매 비중</th><th>인프라 매출/GW·년</th><th>예시 ARR</th></tr></thead>
+            <tbody>
+              <tr><td><span class="scenario-label bear">보수적</span></td><td>5GW</td><td>40%</td><td>$15B</td><td>$30B</td></tr>
+              <tr><td><span class="scenario-label base">기준</span></td><td>8GW</td><td>50%</td><td>$35B</td><td>$140B</td></tr>
+              <tr><td><span class="scenario-label bull">상향</span></td><td>10GW</td><td>60%</td><td>$50B</td><td>$300B</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="governance-note reveal">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 20 6v5.7c0 4.6-3.2 7.6-8 9.3-4.8-1.7-8-4.7-8-9.3V6z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><path d="M12 8v5M12 16.5v.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+          <div><strong>시나리오 주의:</strong> 위 ARR는 보고서가 만든 단순 민감도 예시이며 SpaceX 가이던스가 아닙니다. “가동 용량 × 외부 판매 비중 × 인프라 가격”만 계산했고 비용·세금·금융·취소·램프업을 반영하지 않았습니다.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="recommendation" class="content-section">
+      <div class="container">
+        <div class="section-kicker reveal">EXECUTIVE RECOMMENDATION</div>
+        <h2 class="section-title reveal">투자액보다 “MW가 언제, 누구에게, 어떤 조건으로 팔리는가”를 추적하십시오</h2>
+        <p class="section-desc reveal">AI 데이터센터를 평가할 때 GPU 수나 총 GW만 보면 과대평가하기 쉽습니다. 아래 지표가 공개될수록 10GW 계획의 현실성과 경제성을 판단할 수 있습니다.</p>
+
+        <div class="recommend-grid">
+          <article class="recommend-card reveal">
+            <h3>의사결정 전 확인할 5가지</h3>
+            <div class="recommend-list">
+              <div class="recommend-item"><div class="recommend-num">1</div><div><strong>Nameplate vs 실제 가동 MW</strong><p>전력이 연결된 용량, GPU가 설치된 용량, 고객이 쓰는 용량을 구분합니다.</p></div></div>
+              <div class="recommend-item"><div class="recommend-num">2</div><div><strong>계약의 질</strong><p>고객명, 기간, 선급금, 취소권, 최소 사용량, take-or-pay를 확인합니다.</p></div></div>
+              <div class="recommend-item"><div class="recommend-num">3</div><div><strong>매출/MW와 현금 회수</strong><p>계약 총액보다 실제 분기 매출, 영업현금흐름, capex 회수기간을 봅니다.</p></div></div>
+              <div class="recommend-item"><div class="recommend-num">4</div><div><strong>서비스 층</strong><p>단순 GPU 임대인지, API·모델·앱까지 판매하는지에 따라 매출/MW가 크게 달라집니다.</p></div></div>
+              <div class="recommend-item"><div class="recommend-num">5</div><div><strong>허가된 전력</strong><p>설치된 터빈 수가 아니라 허가·가스 공급·변전·냉각이 확보된 지속 가능 용량을 확인합니다.</p></div></div>
+            </div>
+          </article>
+          <article class="recommend-card blue-card reveal">
+            <h3>향후 90일 모니터링 대시보드</h3>
+            <div class="recommend-list">
+              <div class="recommend-item"><div class="recommend-num">1</div><div><strong>SpaceX Q3 용량·AI 인프라 매출</strong><p>1.4GW에서 2GW로 가는 속도와 매출/MW가 함께 상승하는지 확인합니다.</p></div></div>
+              <div class="recommend-item"><div class="recommend-num">2</div><div><strong>고객 계약 공개</strong><p>Microsoft 3GW 가설, Google·Anthropic 계약의 실제 규모와 취소 조건을 점검합니다.</p></div></div>
+              <div class="recommend-item"><div class="recommend-num">3</div><div><strong>Southaven 허가·터빈 전환</strong><p>임시 발전에서 허가된 상시 전력으로 전환되는 일정과 소송 결과를 추적합니다.</p></div></div>
+              <div class="recommend-item"><div class="recommend-num">4</div><div><strong>토큰 가격과 에이전트 사용량</strong><p>가격 하락보다 작업당 토큰 소비 증가가 더 빠른지 관찰합니다.</p></div></div>
+            </div>
+            <div class="dashboard-grid">
+              <div class="dashboard-item"><strong>Capacity</strong><span>Online MW / Planned MW</span></div>
+              <div class="dashboard-item"><strong>Monetization</strong><span>AI infra revenue / GW</span></div>
+              <div class="dashboard-item"><strong>Cash</strong><span>OCF / AI capex / payback</span></div>
+              <div class="dashboard-item"><strong>Contract</strong><span>Backlog / cancellation</span></div>
+              <div class="dashboard-item"><strong>Operations</strong><span>Utilization / TTFT / uptime</span></div>
+              <div class="dashboard-item"><strong>Power</strong><span>Permitted MW / gas / cooling</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="video" class="video-section">
+      <div class="container">
+        <div class="video-layout">
+          <div class="video-copy reveal">
+            <div class="section-kicker">SOURCE VIDEO</div>
+            <h2>원본 영상과 보고서를 함께 보세요</h2>
+            <p>영상은 복잡한 AI 데이터센터 경제성을 쉽게 설명합니다. 이 보고서는 자막 오류를 바로잡고, <strong>공식 실적과 분석 가설의 경계</strong>를 추가했습니다.</p>
+            <a class="btn btn-primary" href="https://www.youtube.com/watch?v=wGxYJRtncEk" target="_blank" rel="noopener noreferrer">YouTube에서 열기</a>
+          </div>
+          <div class="video-frame reveal">
+            <iframe src="https://www.youtube-nocookie.com/embed/wGxYJRtncEk?rel=0&amp;cc_load_policy=1&amp;cc_lang_pref=ko" title="안될공학 AI 데이터센터 10GW 경제학 영상" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
+            <div class="video-fallback">영상이 보이지 않으면 ‘YouTube에서 열기’ 버튼을 사용하세요.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="sources" class="sources">
+    <div class="container">
+      <div class="source-head">
+        <div>
+          <h2>참고 자료와 출처</h2>
+          <p>실제 보고서 작성에 사용한 공식·1차·분석·보조 자료만 수록했습니다. 확인일: 2026.08.09.</p>
+        </div>
+        <button class="btn btn-ghost" type="button" onclick="window.print()">전체 PDF 저장</button>
+      </div>
+
+      <div class="source-grid">
+        <a class="source-link" id="source-1" href="https://www.youtube.com/watch?v=wGxYJRtncEk" target="_blank" rel="noopener noreferrer"><span>PRIMARY VIDEO · 2026-08-09 확인</span><strong>안될공학 — AI 데이터센터 10GW와 전력당 매출 분석</strong><small>사용자 제공 자동 자막의 원본 영상</small></a>
+        <a class="source-link" id="source-2" href="https://ir.spacex.com/files/doc_financials/2026/q2/SpaceX-Reports-Second-Quarter-2026-Results.pdf" target="_blank" rel="noopener noreferrer"><span>OFFICIAL IR · 2026-08-04</span><strong>SpaceX Reports Second Quarter 2026 Results</strong><small>매출, AI 매출·Capex·영업손실, 1.4GW 용량, 계약 매출</small></a>
+        <a class="source-link" id="source-3" href="https://questiontime.ir.spacex.com/" target="_blank" rel="noopener noreferrer"><span>OFFICIAL EARNINGS CALL · 2026-08-04</span><strong>SpaceX Q2 2026 Earnings Q&amp;A</strong><small>2026년 말 2GW 이상·2027년 대규모 확장 가이던스</small></a>
+        <a class="source-link" id="source-4" href="https://www.spacex.com/updates" target="_blank" rel="noopener noreferrer"><span>OFFICIAL UPDATE · 2026-02-02</span><strong>xAI joins SpaceX to Accelerate</strong><small>SpaceX의 xAI 인수·AI 사업 통합 배경</small></a>
+        <a class="source-link" id="source-5" href="https://newsletter.semianalysis.com/p/spacex-10gw-in-2027-why-its-real" target="_blank" rel="noopener noreferrer"><span>INDUSTRY ANALYSIS · 2026-08-07</span><strong>SemiAnalysis — SpaceX 10GW in 2027</strong><small>$100B/GW·년 모델, $12B 임차비, $30–50B 프리미엄, Microsoft 가설</small></a>
+        <a class="source-link" id="source-6" href="https://developer.nvidia.com/blog/nvidia-blackwell-ultra-for-the-era-of-ai-reasoning/" target="_blank" rel="noopener noreferrer"><span>OFFICIAL TECH · 2025-03-19</span><strong>NVIDIA Blackwell Ultra for the Era of AI Reasoning</strong><small>GB300 NVL72, TPS/MW, TTFT·처리량의 경제성</small></a>
+        <a class="source-link" id="source-7" href="https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q4" target="_blank" rel="noopener noreferrer"><span>OFFICIAL IR · 2026-07-29</span><strong>Microsoft FY2026 Q4 Earnings</strong><small>Azure +43%, 수요가 공급 초과, 추가 용량의 빠른 매출화</small></a>
+        <a class="source-link" id="source-8" href="https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Second-Quarter-Results/" target="_blank" rel="noopener noreferrer"><span>OFFICIAL IR · 2026-07-30</span><strong>Amazon Q2 2026 Results</strong><small>AWS +37%, $169B run rate, AI 사업 $25B+ run rate</small></a>
+        <a class="source-link" id="source-9" href="https://abc.xyz/investor/events/event-details/2026/2026-Q2-Earnings-Call-2026-GgTAq7Is0z/default.aspx" target="_blank" rel="noopener noreferrer"><span>OFFICIAL IR · 2026-07</span><strong>Alphabet Q2 2026 Earnings Call</strong><small>Google Cloud +82%, AI 인프라·솔루션 수요, $514B backlog</small></a>
+        <a class="source-link" id="source-10" href="https://x.ai/colossus" target="_blank" rel="noopener noreferrer"><span>OFFICIAL COMPANY · 2026-08-09 확인</span><strong>SpaceXAI — Colossus</strong><small>122일 구축, 200,000 H100, 대형 클러스터 설명</small></a>
+        <a class="source-link" id="source-11" href="https://www.mdeq.ms.gov/wp-content/uploads/2026/04/Signed-Minutes-of-the-March-2026-Permit-Board-Meeting.pdf" target="_blank" rel="noopener noreferrer"><span>REGULATORY · 2026-03</span><strong>Mississippi Environmental Quality Permit Board Minutes</strong><small>Southaven 발전 시설 허가 절차 관련 공식 기록</small></a>
+        <a class="source-link" id="source-12" href="https://www.reuters.com/business/energy/pollution-musks-unpermitted-xai-power-project-hits-hardest-black-communities-2026-07-14/" target="_blank" rel="noopener noreferrer"><span>NEWS / INVESTIGATION · 2026-07-14</span><strong>Reuters — xAI Southaven power project pollution dispute</strong><small>현장 가스터빈·허가·지역사회 리스크</small></a>
+        <a class="source-link" id="source-13" href="https://www.oecd-nea.org/mdep/documents/TR-APR1400-01%20Design%20Description%20and%20Comparison%20of%20Design%20Differences.pdf" target="_blank" rel="noopener noreferrer"><span>TECHNICAL REFERENCE · OECD/NEA</span><strong>MDEP — APR1400 Design Description</strong><small>APR1400의 명목 전기출력 1,400MWe · 10GW 규모 비교 기준</small></a>
+        <a class="source-link" id="source-14" href="https://www.yna.co.kr/view/AKR20250520003100075" target="_blank" rel="noopener noreferrer"><span>IMAGE / NEWS · 2025-05-20</span><strong>연합뉴스 — xAI 콜로서스 공해 논란과 항공 화면</strong><small>NBC 보도 기반 데이터센터·가스터빈 항공 영상 참고 이미지</small></a>
+      </div>
+
+      <div class="footer-bottom">
+        <span id="footerTitle">AI 데이터센터 10GW 경제학 — SpaceX는 GPU가 아니라 시간을 판다 · Report Hub</span>
+        <span id="footerMeta">AI-assisted · 2026.08</span>
+      </div>
+
+      <div class="report-history" id="history" aria-labelledby="history-title">
+        <div class="history-head">
+          <div>
+            <h2 id="history-title">버전 및 업데이트 히스토리</h2>
+            <p>내용이 수정될 때 변경 이유와 범위를 누적 기록합니다.</p>
+          </div>
+          <span class="version-badge" id="historyCurrentVersion">Current v1.0.0</span>
+        </div>
+        <div class="history-table-wrap">
+          <table class="history-table">
+            <thead><tr><th>버전</th><th>업데이트일</th><th>변경 구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr></thead>
+            <tbody id="historyBody"><tr><td colspan="5" class="history-empty">변경 이력을 불러오는 중입니다.</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="floating-actions" aria-label="빠른 작업">
+    <button class="float-btn" type="button" id="toTop" aria-label="맨 위로 이동">
+      <svg viewBox="0 0 24 24" fill="none"><path d="m6 14 6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    </button>
+    <button class="float-btn" type="button" onclick="window.print()" aria-label="PDF로 저장">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M7 9V4h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><path d="M7 14h10v6H7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg>
+    </button>
+  </div>
+
+  <script id="report-metadata" type="application/json">
+  {
+    "schemaVersion": "1.0",
+    "reportId": "260809-ai-datacenter-10gw-spacex-time-premium",
+    "title": "AI 데이터센터 10GW 경제학 — SpaceX는 GPU가 아니라 시간을 판다",
+    "version": "1.0.0",
+    "status": "Published",
+    "createdAt": "2026-08-09",
+    "updatedAt": "2026-08-09",
+    "language": "ko-KR",
+    "author": "Jeremy Lee",
+    "generation": "AI-assisted",
+    "reviewStatus": "Human review recommended",
+    "history": [
+      {
+        "version": "1.0.0",
+        "date": "2026-08-09",
+        "type": "신규 작성",
+        "summary": "사용자 제공 YouTube 자동 자막을 기준으로 SpaceX Q2 2026 공식 실적, SemiAnalysis의 전력당 매출 모델, Microsoft·AWS·Google Cloud 수요, Colossus 구축·전력 허가 리스크를 대조해 임원용 반응형 보고서를 최초 작성함. 자막의 단위·용어 오류와 확인되지 않은 Microsoft 3GW 계약 가설을 별도 표시함.",
+        "sections": ["1페이지 요약", "주장 검증", "1GW 경제성", "구축 속도", "고객 가설", "리스크", "권고안"],
+        "updatedBy": "AI-assisted",
+        "reviewStatus": "검토 권장"
+      }
+    ]
+  }
+  </script>
+
+  <script>
+    const progress = document.getElementById('scrollProgress');
+    const toTop = document.getElementById('toTop');
+
+    function updateProgress() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const percent = max > 0 ? (window.scrollY / max) * 100 : 0;
+      progress.style.width = percent + '%';
+      toTop.style.opacity = window.scrollY > 600 ? '1' : '0';
+      toTop.style.pointerEvents = window.scrollY > 600 ? 'auto' : 'none';
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach((el) => el.classList.add('visible'));
+    }
+
+    const capacity = document.getElementById('capacity');
+    const utilization = document.getElementById('utilization');
+    const price = document.getElementById('price');
+    const serviceMix = document.getElementById('serviceMix');
+    const capacityOut = document.getElementById('capacityOut');
+    const utilizationOut = document.getElementById('utilizationOut');
+    const priceOut = document.getElementById('priceOut');
+    const serviceMixOut = document.getElementById('serviceMixOut');
+    const calcValue = document.getElementById('calcValue');
+    const calcNote = document.getElementById('calcNote');
+
+    function formatBillions(value) {
+      if (value >= 1000) return `$${(value / 1000).toFixed(value % 1000 === 0 ? 0 : 1)}T/년`;
+      return `$${value.toFixed(value < 10 ? 1 : 0)}B/년`;
+    }
+
+    function updateCalculator() {
+      const c = Number(capacity.value);
+      const u = Number(utilization.value);
+      const p = Number(price.value);
+      const s = Number(serviceMix.value);
+      const result = c * 100 * (u / 100) * (p / 100) * (s / 100);
+      capacityOut.textContent = `${c.toFixed(1)}GW`;
+      utilizationOut.textContent = `${u}%`;
+      priceOut.textContent = `${p}%`;
+      serviceMixOut.textContent = `${s}%`;
+      calcValue.textContent = formatBillions(result);
+      calcNote.textContent = `${c.toFixed(1)}GW × $100B × ${u}% × ${p}% × ${s}%. 비용과 마진은 반영하지 않습니다.`;
+    }
+
+    [capacity, utilization, price, serviceMix].forEach((input) => input.addEventListener('input', updateCalculator));
+    document.querySelectorAll('[data-preset]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const presets = {
+          conservative: { c: 1, u: 50, p: 60, s: 50 },
+          base: { c: 1, u: 70, p: 70, s: 60 },
+          upside: { c: 1, u: 85, p: 90, s: 80 }
+        };
+        const preset = presets[button.dataset.preset];
+        capacity.value = preset.c;
+        utilization.value = preset.u;
+        price.value = preset.p;
+        serviceMix.value = preset.s;
+        updateCalculator();
+      });
+    });
+    updateCalculator();
+
+    function renderReportMetadata() {
+      const node = document.getElementById('report-metadata');
+      if (!node) return;
+      try {
+        const meta = JSON.parse(node.textContent);
+        const version = `v${meta.version}`;
+        const date = String(meta.updatedAt || '').replaceAll('-', '.');
+        const month = date.slice(0, 7);
+        const setText = (id, value) => {
+          const element = document.getElementById(id);
+          if (element) element.textContent = value;
+        };
+        setText('reportVersion', version);
+        setText('reportUpdated', `Updated ${date}`);
+        setText('reportGeneration', `${meta.generation} · ${meta.reviewStatus}`);
+        setText('historyCurrentVersion', `Current ${version}`);
+        setText('footerTitle', `${meta.title} · Report Hub`);
+        setText('footerMeta', `${meta.generation} · ${month}`);
+        document.title = `${meta.title} · ${version}`;
+
+        const body = document.getElementById('historyBody');
+        if (!body) return;
+        body.innerHTML = '';
+        const history = Array.isArray(meta.history) ? meta.history : [];
+        if (!history.length) {
+          const row = document.createElement('tr');
+          const cell = document.createElement('td');
+          cell.colSpan = 5;
+          cell.className = 'history-empty';
+          cell.textContent = '기록된 변경 이력이 없습니다.';
+          row.appendChild(cell);
+          body.appendChild(row);
+          return;
+        }
+        history.forEach((item) => {
+          const row = document.createElement('tr');
+          const values = [
+            `v${item.version}`,
+            String(item.date || '').replaceAll('-', '.'),
+            item.type || '',
+            item.summary || '',
+            [item.updatedBy, item.reviewStatus].filter(Boolean).join(' · ')
+          ];
+          values.forEach((value, index) => {
+            const cell = document.createElement('td');
+            if (index === 4) {
+              const badge = document.createElement('span');
+              badge.className = 'history-status';
+              badge.textContent = value;
+              cell.appendChild(badge);
+            } else {
+              cell.textContent = value;
+            }
+            row.appendChild(cell);
+          });
+          body.appendChild(row);
+        });
+      } catch (error) {
+        console.error('Invalid report metadata:', error);
+      }
+    }
+    renderReportMetadata();
+  </script>
+
+
+  <script src="../../assets/report-page-layout.js?v=20260809-rh4"></script>
+  <script src="../../assets/report-view-counter.js?v=20260809-counter-fallback2" data-report-id="260809-ai-10gw-spacex-gpu-v1-0-0"></script>
+  <script src="../../assets/report-comments.js?v=20260809-comments1" data-report-id="260809-ai-10gw-spacex-gpu-v1-0-0"></script>
+  <script src="../../assets/report-history.js?v=20260809-history2" data-report-id="260809-ai-10gw-spacex-gpu-v1-0-0"></script>
+  <script src="../../assets/report-hub-brand.js?v=20260809-rh4"></script>
+</body></html>
