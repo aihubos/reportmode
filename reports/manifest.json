@@ -1,7 +1,30 @@
 {
-  "generatedAt": "2026-08-09T12:15:59.132Z",
+  "generatedAt": "2026-08-09T12:39:49.789Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260809-agentic-ai-enterprise-playbook",
+      "slug": "agentic-ai-enterprise-playbook",
+      "title": "Agentic AI 완전 정복: 2026년 기업이 실제로 쓰는 7가지 방법과 90일 도입 가이드",
+      "category": "AI",
+      "summary": "Agentic AI의 정의, 주요 기업 도구, 실제 사례, 권한·로그·승인 중심 거버넌스와 한국 기업 90일 도입 순서를 정리한 실무 보고서입니다.",
+      "createdAt": "2026-08-09T21:38:54+09:00",
+      "updatedAt": "2026-08-09T21:38:54+09:00",
+      "status": "published",
+      "path": "reports/260809-agentic-ai-enterprise-playbook/",
+      "url": "https://aihubos.github.io/reportmode/reports/260809-agentic-ai-enterprise-playbook/",
+      "displayDate": "260809",
+      "sourceCount": 17,
+      "tags": [
+        "Agentic AI",
+        "AI 에이전트",
+        "기업 AI",
+        "AI 거버넌스",
+        "AI ROI"
+      ],
+      "coverImage": "reports/260809-agentic-ai-enterprise-playbook/assets/thumbnail.png",
+      "coverAlt": "Agentic AI 기업 도입 플레이북 대표 이미지"
+    },
     {
       "id": "260809-china-ai-kimi-k3-qwen",
       "slug": "china-ai-kimi-k3-qwen",

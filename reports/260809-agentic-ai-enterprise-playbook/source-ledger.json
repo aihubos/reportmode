@@ -1,0 +1,267 @@
+{
+  "schemaVersion": "1.0",
+  "reportId": "rh-260809-21-agentic-ai-enterprise-playbook",
+  "verifiedAt": "2026-08-09",
+  "verificationPolicy": "Official product/documentation and government sources first; vendor customer metrics labeled as vendor/customer-published and not independently audited.",
+  "sources": [
+    {
+      "claimId": "CLM-01",
+      "claim": "ChatGPT Work의 공식 명칭, 앱·파일·플러그인 연계, 장시간 작업, 완성 산출물, Enterprise/Edu 지출 통제.",
+      "url": "https://openai.com/index/chatgpt-for-your-most-ambitious-work/",
+      "sourceType": "Official product announcement",
+      "publisher": "OpenAI",
+      "publishedAt": "2026-07-09",
+      "verifiedAt": "2026-08-09",
+      "usedInSections": [
+        "Hero",
+        "도구 비교",
+        "선택 가이드"
+      ],
+      "confidence": "High",
+      "caveat": "기능·가용성은 플랜, 지역, 관리자 설정에 따라 달라질 수 있음."
+    },
+    {
+      "claimId": "CLM-02",
+      "claim": "공유형 Workspace Agents의 반복 워크플로, 일정 실행, Slack 연계, 승인 게이트, Compliance API와 연구 프리뷰 상태.",
+      "url": "https://openai.com/index/introducing-workspace-agents-in-chatgpt/",
+      "sourceType": "Official product announcement",
+      "publisher": "OpenAI",
+      "publishedAt": "2026-04-22",
+      "verifiedAt": "2026-08-09",
+      "usedInSections": [
+        "왜 지금",
+        "도구 비교",
+        "업무 사례",
+        "거버넌스"
+      ],
+      "confidence": "High",
+      "caveat": "연구 프리뷰 기능은 변동 가능. 고객 인용 수치는 초기 사용자 피드백."
+    },
+    {
+      "claimId": "CLM-03",
+      "claim": "HP 파일럿에서 한 엔지니어가 수주 내 43개 프로젝트의 122개 PR을 처리했고 보안 버그 수정이 하루로 단축됐다는 공개 사례.",
+      "url": "https://openai.com/index/hp-frontier-partnership/",
+      "sourceType": "Official customer story",
+      "publisher": "OpenAI / HP",
+      "publishedAt": "2026-06-28",
+      "verifiedAt": "2026-08-09",
+      "usedInSections": [
+        "실전 사례"
+      ],
+      "confidence": "Medium-High",
+      "caveat": "회사·공급사 공개 사례이며 독립 감사 수치가 아님."
+    },
+    {
+      "claimId": "CLM-04",
+      "claim": "AI 경제성은 토큰 단가보다 성공 업무당 총비용, 신뢰도, 재시도·사람 검토·재작업을 포함해 측정해야 한다는 방법론.",
+      "url": "https://openai.com/index/a-scorecard-for-the-ai-age/",
+      "sourceType": "Official methodology",
+      "publisher": "OpenAI",
+      "publishedAt": "2026-07-17",
+      "verifiedAt": "2026-08-09",
+      "usedInSections": [
+        "ROI 계산기",
+        "측정 지표"
+      ],
+      "confidence": "High",
+      "caveat": "공급사 관점의 방법론이나 계산식은 일반화 가능."
+    },
+    {
+      "claimId": "CLM-05",
+      "claim": "Claude Cowork 유료 플랜 GA, Enterprise RBAC·그룹 지출 한도·OpenTelemetry·사용 분석, 비개발 부서의 주변 업무 활용 패턴.",
+      "url": "https://claude.com/blog/cowork-for-enterprise",
+      "sourceType": "Official product announcement",
+      "publisher": "Anthropic",
+      "publishedAt": "2026-04-09",
+      "verifiedAt": "2026-08-09",
+      "usedInSections": [
+        "왜 지금",
+        "도구 비교",
+        "업무 선택"
+      ],
+      "confidence": "High",
+      "caveat": "조기 이용 패턴은 Anthropic 관찰치."
+    },
+    {
+      "claimId": "CLM-06",
+      "claim": "Slack 채널에서 @Claude로 업무를 위임하고 선택된 도구·데이터·코드베이스를 연결하는 Team/Enterprise 베타.",
+      "url": "https://www.anthropic.com/news/introducing-claude-tag",
+      "sourceType": "Official product announcement",
+      "publisher": "Anthropic",
+      "publishedAt": "2026-06-23",
+      "verifiedAt": "2026-08-09",
+      "usedInSections": [
+        "왜 지금",
+        "도구 비교",
+        "협업 방식"
+      ],
+      "confidence": "High",
+      "caveat": "Anthropic 내부 65% 코드 수치는 회사 자체 사용 지표."
+    },
+    {
+      "claimId": "CLM-07",
+      "claim": "에이전트 정의, Agent SDK·Client SDK·Managed Agents의 역할과 제어·관측성 기능.",
+      "url": "https://code.claude.com/docs/en/agent-sdk/overview",
+      "sourceType": "Official documentation",
+      "publisher": "Anthropic",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedInSections": [
+        "정의",
+        "도구 비교",
+        "구축 방식"
+      ],
+      "confidence": "High",
+      "caveat": "문서는 수시 갱신됨. 확인일 기준."
+    },
+    {
+      "claimId": "CLM-08",
+      "claim": "Spotify 배경 코딩 에이전트가 복잡한 마이그레이션 시간을 최대 90% 줄이고 월 650개 이상 PR을 병합했다는 공개 사례.",
+      "url": "https://claude.com/customers/spotify",
+      "sourceType": "Official customer story",
+      "publisher": "Anthropic / Spotify",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedInSections": [
+        "실전 사례"
+      ],
+      "confidence": "Medium-High",
+      "caveat": "회사·공급사 공개 사례이며 범위·기준은 원문 설명에 의존."
+    },
+    {
+      "claimId": "CLM-09",
+      "claim": "Notion이 단일 작업 보드에서 30개 이상 동시 에이전트 작업을 실행하고 검토자에게 결과를 라우팅하는 사례.",
+      "url": "https://claude.com/customers/notion",
+      "sourceType": "Official customer story",
+      "publisher": "Anthropic / Notion",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedInSections": [
+        "실전 사례",
+        "사람 검토"
+      ],
+      "confidence": "Medium-High",
+      "caveat": "비용 90%·지연 85% 감소는 프롬프트 캐싱 최적화 맥락의 공급사 사례."
+    },
+    {
+      "claimId": "CLM-10",
+      "claim": "Agent Platform의 구축·확장·거버넌스·최적화, Agent Identity·Registry·Gateway·Observability 등 중앙 통제 구성.",
+      "url": "https://cloud.google.com/blog/products/ai-machine-learning/introducing-gemini-enterprise-agent-platform",
+      "sourceType": "Official product announcement",
+      "publisher": "Google Cloud",
+      "publishedAt": "2026-04-22",
+      "verifiedAt": "2026-08-09",
+      "usedInSections": [
+        "왜 지금",
+        "도구 비교",
+        "거버넌스"
+      ],
+      "confidence": "High",
+      "caveat": "개별 기능의 GA/프리뷰 상태는 별도 확인 필요."
+    },
+    {
+      "claimId": "CLM-11",
+      "claim": "Capcom·Citi Wealth·Home Depot 등 대기업이 테스트, 고객 서비스, 연구 등에서 에이전트를 운영한다는 사례 모음.",
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/cloud-next-2026-customer-round-up/",
+      "sourceType": "Official customer roundup",
+      "publisher": "Google",
+      "publishedAt": "2026-04-22",
+      "verifiedAt": "2026-08-09",
+      "usedInSections": [
+        "왜 지금",
+        "실전 사례"
+      ],
+      "confidence": "Medium-High",
+      "caveat": "공급사 큐레이션 사례 모음이며 효과 수치의 독립 검증은 제한적."
+    },
+    {
+      "claimId": "CLM-12",
+      "claim": "Huge가 신규 비즈니스 심사를 수일에서 수분으로 줄이고 기업·경쟁사·시장·재무 조사 파이프라인을 자동화한 사례.",
+      "url": "https://cloud.google.com/customers/huge",
+      "sourceType": "Official customer story",
+      "publisher": "Google Cloud / Huge",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedInSections": [
+        "실전 사례"
+      ],
+      "confidence": "Medium-High",
+      "caveat": "회사·공급사 공개 사례."
+    },
+    {
+      "claimId": "CLM-13",
+      "claim": "자율 행동 에이전트의 신뢰성·상호운용성·보안을 위한 산업 주도 표준과 개방형 프로토콜 추진.",
+      "url": "https://www.nist.gov/artificial-intelligence/ai-agent-standards-initiative",
+      "sourceType": "Government standard initiative",
+      "publisher": "NIST",
+      "publishedAt": "2026-02-17",
+      "verifiedAt": "2026-08-09",
+      "usedInSections": [
+        "왜 지금",
+        "거버넌스"
+      ],
+      "confidence": "High",
+      "caveat": "표준화 이니셔티브이며 구체적 의무 규정은 아님."
+    },
+    {
+      "claimId": "CLM-14",
+      "claim": "간접 프롬프트 인젝션, 데이터 포이즈닝, 명세 게임, 환경 접근 제약·모니터링을 에이전트 고유 보안 과제로 제시.",
+      "url": "https://www.nist.gov/news-events/news/2026/01/caisi-issues-request-information-about-securing-ai-agent-systems",
+      "sourceType": "Government security guidance process",
+      "publisher": "NIST CAISI",
+      "publishedAt": "2026-01-12",
+      "verifiedAt": "2026-08-09",
+      "usedInSections": [
+        "리스크",
+        "거버넌스"
+      ],
+      "confidence": "High",
+      "caveat": "RFI 단계의 문제 정의로, 최종 표준이 아님."
+    },
+    {
+      "claimId": "CLM-15",
+      "claim": "목표 탈취, 도구 오용, 권한 남용, 공급망, 메모리 포이즈닝, 연쇄 실패, 인간 신뢰 악용 등 에이전트 보안 위험 분류.",
+      "url": "https://genai.owasp.org/2025/12/09/owasp-top-10-for-agentic-applications-the-benchmark-for-agentic-security-in-the-age-of-autonomous-ai/",
+      "sourceType": "Industry security framework",
+      "publisher": "OWASP GenAI Security Project",
+      "publishedAt": "2025-12-09",
+      "verifiedAt": "2026-08-09",
+      "usedInSections": [
+        "리스크",
+        "거버넌스 체크리스트"
+      ],
+      "confidence": "High",
+      "caveat": "커뮤니티 프레임워크이며 법적 의무가 아님."
+    },
+    {
+      "claimId": "CLM-16",
+      "claim": "2026년 1월 22일 시행. 고영향·생성형 AI 기반 운용 사실 사전 고지와 생성 결과물 표시 의무 규정.",
+      "url": "https://www.law.go.kr/LSW//lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0031&lsiSeq=282791&urlMode=lsScJoRltInfoR",
+      "sourceType": "Korean law",
+      "publisher": "국가법령정보센터",
+      "publishedAt": "2026-01-20",
+      "verifiedAt": "2026-08-09",
+      "usedInSections": [
+        "한국 관점",
+        "법·컴플라이언스"
+      ],
+      "confidence": "High",
+      "caveat": "구체 적용 여부와 예외는 시행령·개별 사실관계 및 법률 검토 필요."
+    },
+    {
+      "claimId": "CLM-17",
+      "claim": "생성형 AI 수명주기 단계별 개인정보 처리·보호 이슈, 법적 기준과 안전조치 안내.",
+      "url": "https://www.pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS217&mCode=D010030020&nttId=11439",
+      "sourceType": "Government privacy guide",
+      "publisher": "개인정보보호위원회",
+      "publishedAt": "2025-08-22",
+      "verifiedAt": "2026-08-09",
+      "usedInSections": [
+        "한국 관점",
+        "개인정보"
+      ],
+      "confidence": "High",
+      "caveat": "에이전트 연결 데이터·로그·메모리 설계에도 적용 검토 필요."
+    }
+  ]
+}
