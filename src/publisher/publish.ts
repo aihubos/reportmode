@@ -5,6 +5,7 @@ import path from "node:path";
 import { loadConfig } from "../lib/config.js";
 import { ensureDir, readText, writeText } from "../lib/fs.js";
 import { repoRoot, runtimeDir } from "../lib/paths.js";
+import { applyReportHubBrand } from "../lib/public-brand.js";
 import { appendRevision } from "../lib/revisions.js";
 import { nowIsoKst } from "../lib/time.js";
 import {
@@ -65,7 +66,11 @@ function cloneLatest(): { tmp: string; repository: string } {
   return { tmp, repository };
 }
 
-function writePreparedToClone(tmp: string, prepared: PreparedUpload) {
+function preparePublicReportHtml(id: string, html: string): string {
+  return applyReportHubBrand(html, `reports/${id}/index.html`);
+}
+
+export function writePreparedToClone(tmp: string, prepared: PreparedUpload) {
   const contentDir = path.join(tmp, "content", "uploads", prepared.meta.id);
   const publicDir = path.join(tmp, "reports", prepared.meta.id);
   fs.rmSync(contentDir, { recursive: true, force: true });
@@ -77,13 +82,29 @@ function writePreparedToClone(tmp: string, prepared: PreparedUpload) {
     JSON.stringify(prepared.meta, null, 2) + "\n",
   );
   for (const [relative, data] of prepared.files) {
-    for (const base of [path.join(contentDir, "files"), publicDir]) {
+    const destinations = [
+      { base: path.join(contentDir, "files"), data },
+      {
+        base: publicDir,
+        data: relative === prepared.meta.entry
+          ? Buffer.from(
+              preparePublicReportHtml(
+                prepared.meta.id,
+                Buffer.from(data).toString("utf8"),
+              ),
+              "utf8",
+            )
+          : data,
+      },
+    ];
+    for (const destination of destinations) {
+      const { base } = destination;
       const target = path.resolve(base, relative);
       if (target !== base && !target.startsWith(base + path.sep)) {
         throw new Error("업로드 경로가 게시 폴더를 벗어났습니다.");
       }
       ensureDir(path.dirname(target));
-      fs.writeFileSync(target, data);
+      fs.writeFileSync(target, destination.data);
     }
   }
 }
@@ -162,6 +183,16 @@ async function waitForPages(repository: string, commitSha: string): Promise<"bui
   throw new Error(`Pages 반영 대기 시간 초과: commit=${lastCommit}, status=${lastStatus}`);
 }
 
+export function hasPublishedReportComments(html: string, reportId: string): boolean {
+  if (!/report-comments\.css(?:\?[^"']*)?["']/i.test(html)) return false;
+  const escapedId = reportId.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return Array.from(html.matchAll(/<script\b[^>]*>/gi), (match) => match[0]).some(
+    (tag) =>
+      /\bsrc=["'][^"']*report-comments\.js(?:\?[^"']*)?["']/i.test(tag) &&
+      new RegExp(`\\bdata-report-id=["']${escapedId}["']`, "i").test(tag),
+  );
+}
+
 async function waitForPublicState(args: {
   id: string;
   deleted: boolean;
@@ -188,9 +219,10 @@ async function waitForPublicState(args: {
           archive.ok &&
           report.ok &&
           archiveHtml.includes(`data-report-id="${args.id}"`) &&
-          /<html\b|<!doctype\s+html/i.test(reportHtml)
+          /<html\b|<!doctype\s+html/i.test(reportHtml) &&
+          hasPublishedReportComments(reportHtml, args.id)
         ) return;
-        last = `archive=${archive.status}, report=${report.status}`;
+        last = `archive=${archive.status}, report=${report.status}, comments=${hasPublishedReportComments(reportHtml, args.id) ? "ready" : "missing"}`;
       }
     } catch (error) {
       last = (error as Error).message;
@@ -283,10 +315,14 @@ export async function updateUploadedReport(
       historyFiles,
     );
     writeText(metaPath, JSON.stringify(next, null, 2) + "\n");
+    const nextHtml = html ?? readText(currentHtmlPath);
     if (html !== undefined) {
-      writeText(path.join(contentDir, "files", "index.html"), html);
-      writeText(path.join(publicDir, "index.html"), html);
+      writeText(currentHtmlPath, html);
     }
+    writeText(
+      path.join(publicDir, "index.html"),
+      preparePublicReportHtml(id, nextHtml),
+    );
     writeRegistry(tmp);
     rebuildArchive(tmp);
     const commitSha = commitAndPush(tmp, id, "update");
