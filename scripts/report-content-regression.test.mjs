@@ -68,3 +68,11 @@ test("Graphify LLM Wiki guide keeps the official Graphify cover", () => {
   assert.match(graphify, /data-report-cover="assets\/graphify-official-og\.png"/);
   assert.match(provenance, /https:\/\/graphify\.net\/og\.png/);
 });
+
+test("Hermes Korean AI guide keeps the official Upstage cover", () => {
+  const guide = read("reports/260809-hermes-agent-korean-ai-guide/index.html");
+  const provenance = read("reports/260809-hermes-agent-korean-ai-guide/assets/THUMBNAIL_PROVENANCE.txt");
+
+  assert.match(guide, /data-report-cover="assets\/upstage-official-og\.avif"/);
+  assert.match(provenance, /https:\/\/www\.upstage\.ai\//);
+});
