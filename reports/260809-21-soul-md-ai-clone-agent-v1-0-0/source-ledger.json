@@ -5,9 +5,9 @@
   "sources": [
     {
       "id": "src-01",
-      "claim": "사용자가 제시한 100문 100답 기반 Soul.md 생성 흐름과 공유 대화",
-      "url": "https://chatgpt.com/share/6a788ab5-2040-83e8-87d2-43a933c41ac4",
-      "sourceType": "사용자 제공 공유 대화",
+      "claim": "사용자가 제공한 100문 100답 기반 Soul.md 제작용 Custom GPT",
+      "url": "https://chatgpt.com/g/g-6a7886bc1f1c8191a8eb128a06b09f63-namanyi-soul-md-mandeulgi",
+      "sourceType": "사용자 제공 Custom GPT",
       "publishedAt": null,
       "verifiedAt": "2026-08-09",
       "usedIn": [
@@ -16,7 +16,7 @@
         "출처"
       ],
       "confidence": "high",
-      "notes": "URL은 /share/ 형식. 직접 GPT 링크로 오인하지 않도록 표기."
+      "notes": "보고서의 주요 CTA와 출처 카드에 동일한 GPT 링크를 사용함."
     },
     {
       "id": "src-02",
