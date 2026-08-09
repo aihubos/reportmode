@@ -199,6 +199,7 @@ export function renderReportHtml(doc: ReportDocument): string {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
   <meta name="description" content="${escapeHtml(doc.summary)}">
   <meta name="color-scheme" content="light">
   <title>${escapeHtml(dateCode)} · ${escapeHtml(doc.title)} — Report Mode</title>
@@ -284,7 +285,7 @@ export function renderReportHtml(doc: ReportDocument): string {
     </div>
   </footer>
   <script src="../../assets/report-page-layout.js?v=20260809-refresh"></script>
-  <script src="../../assets/report-view-counter.js?v=20260809-counter-fallback" data-report-id="${escapeHtml(doc.id)}"></script>
+  <script src="../../assets/report-view-counter.js?v=20260809-counter-fallback2" data-report-id="${escapeHtml(doc.id)}"></script>
   <script src="../../assets/report-history.js?v=20260809" data-report-id="${escapeHtml(doc.id)}"></script>
 </body>
 </html>
