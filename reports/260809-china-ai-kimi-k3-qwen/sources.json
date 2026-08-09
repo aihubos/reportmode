@@ -1,0 +1,86 @@
+{
+  "researchCutoff": "2026-08-09T20:35:00+09:00",
+  "sources": [
+    {
+      "id": "S1",
+      "grade": "A",
+      "publisher": "Moonshot AI",
+      "date": "2026-07/08 accessed",
+      "title": "Kimi K3 official repository and model card",
+      "url": "https://github.com/MoonshotAI/Kimi-K3",
+      "used_for": "2.8T total parameters, 104B active, 1M context, architecture and open-weight status."
+    },
+    {
+      "id": "S2",
+      "grade": "A",
+      "publisher": "Moonshot AI",
+      "date": "2026",
+      "title": "Kimi K3 License",
+      "url": "https://github.com/MoonshotAI/Kimi-K3/blob/main/LICENSE",
+      "used_for": "Commercial Model-as-a-Service threshold, separate agreement condition and attribution requirements."
+    },
+    {
+      "id": "S3",
+      "grade": "A",
+      "publisher": "Kimi",
+      "date": "2026-08 accessed",
+      "title": "Kimi K3 pricing",
+      "url": "https://www.kimi.com/resources/kimi-k3-pricing",
+      "used_for": "$3 input, $0.30 cached input, $15 output per 1M tokens and 1M context."
+    },
+    {
+      "id": "S4",
+      "grade": "A",
+      "publisher": "Alibaba Group",
+      "date": "2026-07-20",
+      "title": "Alibaba Cloud Unveils Agent-Native Innovations at WAIC 2026",
+      "url": "https://www.alibabagroup.com/en-US/document-2016703577908576256",
+      "used_for": "Qwen3.8-Max-Preview announcement, 2.4T scale and company positioning."
+    },
+    {
+      "id": "S5",
+      "grade": "A",
+      "publisher": "Qwen Team",
+      "date": "2026-04 accessed",
+      "title": "Qwen3.6 official repository",
+      "url": "https://github.com/QwenLM/Qwen3.6",
+      "used_for": "Existing Qwen open-weight ecosystem, Apache 2.0 licensing for released Qwen3.6 open models."
+    },
+    {
+      "id": "S6",
+      "grade": "A",
+      "publisher": "Alibaba Cloud",
+      "date": "2026-08 accessed",
+      "title": "Alibaba Cloud Model Studio pricing",
+      "url": "https://help.aliyun.com/en/model-studio/model-pricing",
+      "used_for": "Current Qwen API price structure and context-dependent billing references."
+    },
+    {
+      "id": "S7",
+      "grade": "B",
+      "publisher": "Reuters",
+      "date": "2026-08-03",
+      "title": "Alibaba unveils its largest AI model yet",
+      "url": "https://www.reuters.com/business/retail-consumer/alibaba-unveils-its-most-capable-ai-model-date-not-far-behind-moonshots-size-2026-08-03/",
+      "used_for": "Qwen3.8-Max 2.4T, 95B active, leaderboard signal, 1M context and third-party task-cost comparison."
+    },
+    {
+      "id": "S8",
+      "grade": "B",
+      "publisher": "Reuters",
+      "date": "2026-08-07",
+      "title": "Alibaba plans to charge big users of its next open-source AI model",
+      "url": "https://www.reuters.com/business/retail-consumer/alibaba-plans-charge-big-users-its-next-open-source-ai-model-sources-say-2026-08-07/",
+      "used_for": "Kimi commercial agreements, Qwen3.8 planned revenue-sharing terms and DigitalOcean/Together AI adoption signals."
+    },
+    {
+      "id": "S9",
+      "grade": "A",
+      "publisher": "OpenAI",
+      "date": "2026-08 accessed",
+      "title": "GPT-5.6 Sol model and API pricing",
+      "url": "https://developers.openai.com/api/docs/models/gpt-5.6-sol",
+      "used_for": "$5 input, $30 output per 1M tokens and 1.05M context."
+    }
+  ]
+}

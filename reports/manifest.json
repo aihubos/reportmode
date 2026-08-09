@@ -1,7 +1,30 @@
 {
-  "generatedAt": "2026-08-09T11:17:41.578Z",
+  "generatedAt": "2026-08-09T12:15:59.132Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260809-china-ai-kimi-k3-qwen",
+      "slug": "china-ai-kimi-k3-qwen",
+      "title": "중국 AI의 역습: Kimi K3·Qwen3.8이 미국 모델의 가격표를 흔드는 이유",
+      "category": "AI",
+      "summary": "Kimi K3와 Qwen3.8이 모델 성능보다 가격·라이선스·조달 선택지에서 기업 AI 전략을 어떻게 바꾸는지 분석한 보고서입니다.",
+      "createdAt": "2026-08-09T21:15:28+09:00",
+      "updatedAt": "2026-08-09T21:15:28+09:00",
+      "status": "published",
+      "path": "reports/260809-china-ai-kimi-k3-qwen/",
+      "url": "https://aihubos.github.io/reportmode/reports/260809-china-ai-kimi-k3-qwen/",
+      "displayDate": "260809",
+      "sourceCount": 9,
+      "tags": [
+        "AI",
+        "Kimi K3",
+        "Qwen3.8",
+        "Open Weight",
+        "Enterprise AI"
+      ],
+      "coverImage": "reports/260809-china-ai-kimi-k3-qwen/thumbnail.png",
+      "coverAlt": "Kimi K3와 Qwen3.8 비교 보고서 대표 이미지"
+    },
     {
       "id": "260809-hermes-agent-korean-ai-guide",
       "slug": "hermes-agent-korean-ai-guide",
