@@ -284,7 +284,7 @@ export function renderReportHtml(doc: ReportDocument): string {
     </div>
   </footer>
   <script src="../../assets/report-page-layout.js?v=20260809-refresh"></script>
-  <script src="../../assets/report-view-counter.js" data-report-id="${escapeHtml(doc.id)}"></script>
+  <script src="../../assets/report-view-counter.js?v=20260809-counter-fallback" data-report-id="${escapeHtml(doc.id)}"></script>
   <script src="../../assets/report-history.js?v=20260809" data-report-id="${escapeHtml(doc.id)}"></script>
 </body>
 </html>
@@ -570,7 +570,8 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
   (function () {
     var PAGE_SIZE = 10;
     var COUNTER_BASE = "https://api.counterapi.dev/v1/aihubos-reportmode/";
-    var COUNTER_ENABLED = window.location.hostname === "aihubos.github.io";
+    // CounterAPI v1 currently returns HTTP 410; keep the visible numeric fallback.
+    var COUNTER_ENABLED = false;
     var posts = Array.prototype.slice.call(document.querySelectorAll("[data-report-item]"));
     var heroCount = document.getElementById("archiveHeroCount");
     var filters = Array.prototype.slice.call(document.querySelectorAll("[data-category-filter]"));

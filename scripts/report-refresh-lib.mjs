@@ -3,6 +3,7 @@ import path from "node:path";
 const SITE_PREFIX = "/reportmode/";
 const LAYOUT_VERSION = "20260809-refresh";
 const HISTORY_VERSION = "20260809";
+const COUNTER_VERSION = "20260809-counter-fallback";
 
 export function isRedirectHtml(html) {
   return /<meta\b[^>]*http-equiv\s*=\s*["']?refresh["']?/i.test(html);
@@ -141,7 +142,7 @@ export function enhanceCurrentReport(html, options) {
   output = upsertScript(
     output,
     /<script\b[^>]*src=["'][^"']*report-view-counter\.js(?:\?[^"']*)?["'][^>]*><\/script>/i,
-    `<script src="${prefix}/assets/report-view-counter.js" data-report-id="${escapeAttribute(reportId)}"></script>`,
+    `<script src="${prefix}/assets/report-view-counter.js?v=${COUNTER_VERSION}" data-report-id="${escapeAttribute(reportId)}"></script>`,
   );
   return output;
 }
@@ -193,6 +194,7 @@ export function buildVersionRecord(options) {
 }
 
 export const REPORT_REFRESH_CONSTANTS = {
+  COUNTER_VERSION,
   HISTORY_VERSION,
   LAYOUT_VERSION,
   SITE_PREFIX,

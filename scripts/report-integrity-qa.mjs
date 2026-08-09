@@ -20,6 +20,12 @@ function localTarget(root, reportPath, value) {
 
 export function scanHtml({ root, reportPath, html }) {
   const issues = [];
+  for (const asset of ["report-page-layout.js", "report-view-counter.js", "report-history.js"]) {
+    const escaped = asset.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const expression = new RegExp(`<script\\b[^>]*src=["'][^"']*${escaped}(?:\\?[^"']*)?["'][^>]*><\\/script>`, "gi");
+    const count = Array.from(html.matchAll(expression)).length;
+    if (count > 1) issues.push({ type: "duplicate-shared-script", asset, count });
+  }
   const ids = Array.from(html.matchAll(/(?:^|\s)id=["']([^"']+)["']/gi), (match) => match[1]);
   const counts = new Map();
   for (const id of ids) counts.set(id, (counts.get(id) || 0) + 1);

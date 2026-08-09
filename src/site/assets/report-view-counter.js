@@ -1,9 +1,12 @@
 +(function () {
   "use strict";
 
+  // CounterAPI v1 currently returns HTTP 410. Keep the report usable without
+  // repeated network errors until an authenticated replacement is configured.
+  var COUNTER_ENABLED = false;
   var script = document.currentScript;
   var reportId = script && script.dataset ? script.dataset.reportId : "";
-  if (!reportId || window.location.hostname !== "aihubos.github.io") return;
+  if (!COUNTER_ENABLED || !reportId || window.location.hostname !== "aihubos.github.io") return;
 
   var storageKey = "reportmode:view:" + reportId;
   try {
@@ -42,4 +45,3 @@
       }
     });
 })();
-
