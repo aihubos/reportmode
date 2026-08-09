@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
 import test from "node:test";
 import { renderHomeHtml, renderReportHtml } from "./render.js";
 
@@ -53,8 +54,8 @@ test("renders a structured report table with column headers and cells", () => {
   assert.match(html, /<table class="report-table">/);
   assert.match(html, /<th scope="col">요금제<\/th>/);
   assert.match(html, /<td>\$20<\/td>/);
-  assert.match(html, /report-page-layout\.css\?v=20260809-rh4/);
-  assert.match(html, /report-page-layout\.js\?v=20260809-rh4/);
+  assert.match(html, /report-page-layout\.css\?v=20260809-rh5/);
+  assert.match(html, /report-page-layout\.js\?v=20260809-rh5/);
   assert.match(html, /report-comments\.css\?v=20260809-comments1/);
   assert.match(html, /report-comments\.js\?v=20260809-comments1" data-report-id="table-test"/);
   assert.match(html, /report-view-counter\.js\?v=20260809-counter-fallback2" data-report-id="table-test"/);
@@ -88,6 +89,12 @@ test("renders the simplified archive with one Naver card and a 30-item default s
   assert.match(html, /class="archive-blog-card"/);
   assert.match(html, /id="archiveVisitorCount"/);
   assert.match(html, /class="report-hub-clock"/);
+  assert.equal(html.match(/class="archive-right-rail"/g)?.length, 1);
+  assert.equal(html.match(/data-archive-weather/g)?.length, 1);
+  assert.match(html, /id="archive-weather-title">동탄 날씨/);
+  assert.match(html, /data-weather-retry/);
+  assert.match(html, /archive-weather\.js\?v=20260809-weather1/);
+  assert.ok(html.indexOf('class="request-board"') < html.indexOf("data-archive-weather"));
   assert.match(html, /archive-visitor-counter\.js\?v=20260809-visits1/);
   assert.match(html, /id="archivePageSize"/);
   assert.match(html, /<option value="5">5개<\/option>/);
@@ -97,9 +104,18 @@ test("renders the simplified archive with one Naver card and a 30-item default s
   assert.match(html, /var DEFAULT_PAGE_SIZE = 30/);
   assert.match(html, /state\.pageSize/);
   assert.equal(html.match(/data-report-share(?=[ >])/g)?.length, 31);
+  assert.equal(html.match(/class="archive-share-button"[^>]*>[\s\S]*?class="archive-share-icon"/g)?.length, 31);
+  assert.doesNotMatch(html, />공유<\/button>/);
+  assert.match(html, /function archiveShareIconMarkup\(/);
+  assert.match(html, /setArchiveShareState\(button, "check"/);
   assert.match(html, /function copyReportLink\(/);
   assert.match(html, /navigator\.clipboard\.writeText/);
   assert.match(html, /document\.execCommand\("copy"\)/);
+
+  const archiveCss = fs.readFileSync(new URL("../styles/magazine.css", import.meta.url), "utf8");
+  assert.match(archiveCss, /\.archive-post\s*{[^}]*--archive-cover-width:\s*154px[^}]*--archive-cover-gap:\s*18px/s);
+  assert.match(archiveCss, /\.archive-post-copy\s*{[^}]*padding-right:\s*44px/s);
+  assert.match(archiveCss, /\.archive-share-button\s*{[^}]*right:\s*calc\(var\(--archive-cover-width\) \+ var\(--archive-cover-gap\) \+ var\(--archive-cover-edge\)\)/s);
 });
 
 test("renders the same fallback count and report-specific share URL on archive cards", () => {

@@ -11,6 +11,7 @@ test("public brand uses a large Toss Blue text wordmark and one floating menu", 
   const css = fs.readFileSync(path.join(root, "assets", "report-hub-brand.css"), "utf8");
   const script = fs.readFileSync(path.join(root, "assets", "report-hub-brand.js"), "utf8");
   const archive = fs.readFileSync(path.join(root, "archive", "index.html"), "utf8");
+  const archiveCss = fs.readFileSync(path.join(root, "src", "styles", "magazine.css"), "utf8");
 
   assert.match(svg, />RH<\/text>/);
   assert.doesNotMatch(svg, />RM<\/text>/);
@@ -20,6 +21,12 @@ test("public brand uses a large Toss Blue text wordmark and one floating menu", 
   assert.match(css, /\.report-hub-wordmark\s*{[^}]*font-size:\s*var\(--rh-wordmark-size\)/s);
   assert.match(css, /--rh-wordmark-size:\s*36px/);
   assert.match(css, /--rh-wordmark-size-compact:\s*30px/);
+  assert.match(css, /--rh-clock-date-size:\s*13px/);
+  assert.match(css, /--rh-clock-time-size:\s*22px/);
+  assert.match(css, /--rh-clock-date-size-compact:\s*11px/);
+  assert.match(css, /--rh-clock-time-size-compact:\s*18px/);
+  assert.match(css, /\.report-hub-brand-copy\s*{[^}]*align-items:\s*flex-start[^}]*text-align:\s*left/s);
+  assert.match(css, /\.report-hub-clock\s*{[^}]*display:\s*flex[^}]*align-items:\s*baseline/s);
   assert.match(css, /\.report-hub-byline\s*{[^}]*color:\s*var\(--rh-muted\)/s);
   assert.match(css, /\.report-hub-clock-time\s*{[^}]*font-variant-numeric:\s*tabular-nums/s);
   assert.doesNotMatch(css, /gradient|glow/i);
@@ -39,6 +46,7 @@ test("public brand uses a large Toss Blue text wordmark and one floating menu", 
   assert.doesNotMatch(archive, /class="archive-brand[^>]*>[\s\S]{0,180}report-hub-logo/);
   assert.doesNotMatch(archive, /class="archive-avatar"/);
   assert.doesNotMatch(archive, /Jeremy's AI Report|>RM<|>R<\/span>/);
+  assert.match(archiveCss, /\.archive-topbar-inner\s*{[^}]*width:\s*calc\(100% - 32px\)[^}]*margin:\s*0 16px/s);
 });
 
 test("public brand formats the Seoul weekday and second clock", () => {
