@@ -104,7 +104,7 @@ const $=id=>document.getElementById(id);function buildPrompt(){if(!$('privacyChe
 $('buildPrompt').addEventListener('click',buildPrompt);$('copyGenerated').addEventListener('click',()=>copyText($('promptOutput').innerText,$('copyGenerated')));
 function renderMeta(){try{const meta=JSON.parse($('report-metadata').textContent),date=String(meta.updatedAt).replaceAll('-','.');$('reportVersion').textContent='v'+meta.version;$('reportUpdated').textContent='Updated '+date;$('reportGeneration').textContent=meta.generation+' · '+meta.reviewStatus;$('footerTitle').textContent=meta.title;$('footerMeta').textContent='자료 기준일 '+date+' · '+meta.generation+' · '+meta.reviewStatus;const body=$('historyBody');body.innerHTML='';(meta.history||[]).forEach(item=>{const tr=document.createElement('tr');[ 'v'+item.version,String(item.date||'').replaceAll('-','.'),item.type||'',item.summary||'',(item.updatedBy||'')+' · '+(item.reviewStatus||'')].forEach(v=>{const td=document.createElement('td');td.textContent=v;tr.appendChild(td)});body.appendChild(tr)})}catch(e){console.error(e)}}renderMeta();
 </script>
-  <script src="../../assets/report-page-layout.js?v=20260809-rh8"></script>
+  <script src="../../assets/report-page-layout.js?v=20260810-count-panel1"></script>
   <script src="../../assets/report-view-counter.js?v=20260810-counter-d1-1" data-report-id="260810-01-chatgpt-worries-thinking-guide-v2-0-0"></script>
   <script src="../../assets/report-comments.js?v=20260809-comments1" data-report-id="260810-01-chatgpt-worries-thinking-guide-v2-0-0"></script>
   <script src="../../assets/report-history.js?v=20260809-history2" data-report-id="260810-01-chatgpt-worries-thinking-guide-v2-0-0"></script>

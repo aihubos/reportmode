@@ -60,7 +60,7 @@
 
   function findPrimaryPdfButton() {
     var direct = document.getElementById("report-pdf-button");
-    if (direct) return direct;
+    if (direct && !direct.closest(".nav-wrap, .floating-menu, .topbar, .toolbar, nav.nav")) return direct;
     var candidates = document.querySelectorAll("button, a");
     for (var index = 0; index < candidates.length; index += 1) {
       var label = (candidates[index].textContent || "").replace(/\s+/g, " ").trim();

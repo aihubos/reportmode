@@ -36,6 +36,10 @@ test("shared report actions place copy beside PDF and expose the report view cou
   assert.match(script, /url\.search = ""/);
   assert.match(script, /url\.hash = ""/);
   assert.match(script, /data-report-view-count/);
+  assert.match(
+    script,
+    /var direct = document\.getElementById\("report-pdf-button"\);\s*if \(direct && !direct\.closest\("\.nav-wrap, \.floating-menu, \.topbar, \.toolbar, nav\.nav"\)\) return direct;/,
+  );
   assert.match(script, /closest\("\.nav-wrap, \.floating-menu, \.topbar, \.toolbar, nav\.nav"\)/);
   assert.match(css, /\.report-sharing-tools/);
   assert.match(css, /\.report-share-button/);

@@ -15,7 +15,7 @@ test("applies the Report Hub brand without changing the report subject", () => {
   assert.match(output, /report-hub-brand\.css\?v=20260809-rh8/);
   assert.match(output, /report-hub-brand\.js\?v=20260809-rh8/);
   assert.match(output, /report-page-layout\.css\?v=20260809-rh8/);
-  assert.match(output, /report-page-layout\.js\?v=20260809-rh8/);
+  assert.match(output, /report-page-layout\.js\?v=20260810-count-panel1/);
   assert.match(output, /report-comments\.css\?v=20260809-comments1/);
   assert.match(output, /report-comments\.js\?v=20260809-comments1" data-report-id="260809-sample"/);
   assert.match(output, /report-view-counter\.js\?v=20260810-counter-d1-1" data-report-id="260809-sample"/);
@@ -46,7 +46,7 @@ test("uses the correct asset depth for folder reports", () => {
   const output = applyReportHubBrand(source, "reports/folder-report/index.html");
   assert.match(output, /href="\.\.\/\.\.\/assets\/report-hub-brand\.css\?v=20260809-rh8"/);
   assert.match(output, /href="\.\.\/\.\.\/assets\/report-comments\.css\?v=20260809-comments1"/);
-  assert.match(output, /src="\.\.\/\.\.\/assets\/report-page-layout\.js\?v=20260809-rh8"/);
+  assert.match(output, /src="\.\.\/\.\.\/assets\/report-page-layout\.js\?v=20260810-count-panel1"/);
   assert.match(output, /src="\.\.\/\.\.\/assets\/report-comments\.js\?v=20260809-comments1" data-report-id="folder-report"/);
   assert.match(output, /src="\.\.\/\.\.\/assets\/report-view-counter\.js\?v=20260810-counter-d1-1" data-report-id="folder-report"/);
   assert.match(output, /src="\.\.\/\.\.\/assets\/report-history\.js\?v=20260809-history2" data-report-id="folder-report"/);
