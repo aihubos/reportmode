@@ -1,27 +1,7 @@
 {
-  "generatedAt": "2026-08-09T00:46:57.515Z",
+  "generatedAt": "2026-08-09T00:48:38.655Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
-    {
-      "id": "260809-blog-hub-v2",
-      "slug": "blog-hub-v2",
-      "title": "Blog Hub v2 게시 파이프라인 검증",
-      "category": "AI",
-      "summary": "게시 전후 이중 검증을 실제로 확인하는 임시 보고서입니다.",
-      "createdAt": "2026-08-09T09:46:40+09:00",
-      "updatedAt": "2026-08-09T09:46:40+09:00",
-      "status": "published",
-      "path": "reports/260809-blog-hub-v2/",
-      "url": "https://aihubos.github.io/reportmode/reports/260809-blog-hub-v2/",
-      "displayDate": "260809",
-      "sourceCount": 1,
-      "tags": [
-        "Blog Hub",
-        "게시 검증"
-      ],
-      "coverImage": "reports/260809-blog-hub-v2/assets/blog-hub-thumbnail.png",
-      "coverAlt": "Blog Hub v2 실제 교체 썸네일"
-    },
     {
       "id": "260808-stanley-tumbler-analysis",
       "slug": "stanley-tumbler-analysis",
