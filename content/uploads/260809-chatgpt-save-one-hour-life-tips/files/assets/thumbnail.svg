@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">하루 1시간 아끼는 ChatGPT 생활 꿀팁 10가지 썸네일</title>
+<desc id="desc">파란 시계와 채팅 카드를 활용한 Report Hub 스타일의 추상 썸네일</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F8FBFF"/><stop offset="1" stop-color="#E8F3FF"/></linearGradient>
+  <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1B64DA"/><stop offset="1" stop-color="#5A9CFF"/></linearGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#191F28" flood-opacity="0.14"/></filter>
+</defs>
+<rect width="1200" height="630" rx="0" fill="url(#bg)"/>
+<circle cx="1075" cy="95" r="190" fill="#3182F6" opacity="0.08"/>
+<circle cx="90" cy="570" r="180" fill="#DFFF6A" opacity="0.25"/>
+<g font-family="NanumSquare, 'Noto Sans KR', sans-serif">
+  <rect x="70" y="68" width="214" height="48" rx="24" fill="#E8F3FF"/>
+  <circle cx="96" cy="92" r="7" fill="#3182F6"/>
+  <text x="116" y="99" font-size="22" font-weight="800" fill="#1B64DA">REPORT HUB · AI</text>
+  <text x="72" y="210" font-size="70" font-weight="800" letter-spacing="-3" fill="#191F28">하루 1시간 아끼는</text>
+  <text x="72" y="296" font-size="82" font-weight="900" letter-spacing="-4" fill="#3182F6">ChatGPT</text>
+  <rect x="72" y="337" width="330" height="58" rx="12" fill="#DFFF6A" transform="rotate(-1 72 337)"/>
+  <text x="94" y="379" font-size="34" font-weight="900" fill="#344500">생활 꿀팁 10가지</text>
+  <text x="73" y="456" font-size="25" font-weight="700" fill="#6B7684">검색 · 음성 · 파일 · 사진 · 프로젝트 · 예약 작업</text>
+  <text x="73" y="510" font-size="20" font-weight="700" fill="#8B95A1">실전 프롬프트 + 시간 절약 계산기</text>
+</g>
+<g transform="translate(770 120)" filter="url(#shadow)">
+  <rect width="350" height="390" rx="56" fill="#FFFFFF"/>
+  <rect x="28" y="28" width="294" height="198" rx="42" fill="url(#blue)"/>
+  <circle cx="175" cy="127" r="68" fill="#FFFFFF" fill-opacity="0.14" stroke="#FFFFFF" stroke-width="8"/>
+  <path d="M175 84v46l35 21" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="175" cy="127" r="8" fill="#DFFF6A"/>
+  <g font-family="NanumSquare, 'Noto Sans KR', sans-serif">
+    <text x="56" y="276" font-size="18" font-weight="800" fill="#6B7684">DAILY SAVINGS GOAL</text>
+    <text x="55" y="338" font-size="58" font-weight="900" fill="#191F28">60분</text>
+    <rect x="215" y="292" width="82" height="42" rx="21" fill="#E8F3FF"/>
+    <text x="238" y="320" font-size="18" font-weight="900" fill="#1B64DA">예시</text>
+  </g>
+</g>
+<g fill="#3182F6">
+  <circle cx="720" cy="94" r="9"/><circle cx="1140" cy="540" r="12" opacity="0.5"/><circle cx="690" cy="540" r="7" opacity="0.45"/>
+</g>
+</svg>
