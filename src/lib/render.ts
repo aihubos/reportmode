@@ -7,6 +7,8 @@ import { displayDateFromIso, prettyDateFromIso } from "./time.js";
 import { repoRoot } from "./paths.js";
 import { REPORT_COUNTER_VERSION, REPORT_HISTORY_VERSION, REPORT_HUB_BRAND_VERSION, REPORT_HUB_HOME } from "./public-brand.js";
 
+const ARCHIVE_WEATHER_VERSION = "20260809-weather1";
+
 const KIND_LABEL: Record<SectionKind, string> = {
   fact: "사실",
   analysis: "분석",
@@ -19,6 +21,15 @@ function css(): string {
     path.join(repoRoot(), "src/styles/magazine.css"),
     "utf8",
   );
+}
+
+function archiveShareIconMarkup(state: "share" | "check" | "error" = "share"): string {
+  const paths = {
+    share: '<path d="M12 15V3"></path><path d="m8 7 4-4 4 4"></path><path d="M5 10v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-9"></path>',
+    check: '<path d="m5 12 4 4L19 6"></path>',
+    error: '<path d="M6 6l12 12"></path><path d="M18 6 6 18"></path>',
+  };
+  return `<span class="archive-share-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false">${paths[state]}</svg></span><span class="archive-share-status" aria-live="polite"></span>`;
 }
 
 function sourceMap(doc: ReportDocument): Map<string, ReportDocument["sources"][number]> {
@@ -445,7 +456,7 @@ export function renderHomeHtml(
           </div>
           ${cover}
         </a>
-        <button class="archive-share-button" type="button" data-report-share data-report-share-url="${escapeHtml(reportHref)}" aria-label="${escapeHtml(item.title)} 보고서 링크 복사">공유</button>
+        <button class="archive-share-button" type="button" data-report-share data-report-share-url="${escapeHtml(reportHref)}" data-share-state="share" aria-label="${escapeHtml(item.title)} 보고서 링크 복사" title="링크 복사">${archiveShareIconMarkup()}</button>
       </article>`;
     })
     .join("\n");
@@ -485,7 +496,8 @@ export function renderHomeHtml(
   </header>
 
   <main class="archive-shell">
-    <section class="request-board" aria-labelledby="request-board-title">
+    <aside class="archive-right-rail" aria-label="방문자 참여와 동탄 날씨">
+      <section class="request-board" aria-labelledby="request-board-title">
       <div class="request-board-copy">
         <div class="request-board-kicker">REPORT WISHLIST</div>
         <h2 id="request-board-title"><span class="request-board-highlight">다음 리포트,</span><br>무엇이 궁금하신가요?</h2>
@@ -505,7 +517,34 @@ export function renderHomeHtml(
         <div class="request-board-feed-head"><strong>최근 희망 리포트</strong><span id="requestBoardCount">불러오는 중</span></div>
         <div class="request-board-list" id="requestBoardList"><div class="request-board-empty">아직 제안된 주제가 없습니다. 첫 번째 주제를 남겨 주세요.</div></div>
       </div>
-    </section>
+      </section>
+
+      <section class="archive-weather-card is-loading" data-archive-weather aria-labelledby="archive-weather-title" aria-busy="true">
+        <div class="archive-weather-head">
+          <div>
+            <div class="archive-weather-kicker">WEEKLY WEATHER</div>
+            <h2 id="archive-weather-title">동탄 날씨</h2>
+            <p data-weather-location>경기도 화성시 동탄8동</p>
+          </div>
+          <span class="archive-weather-updated" data-weather-updated>업데이트 중</span>
+        </div>
+        <div class="archive-weather-status" data-weather-status role="status">날씨를 불러오는 중입니다.</div>
+        <div class="archive-weather-content" data-weather-content hidden>
+          <div class="archive-weather-current">
+            <div>
+              <strong data-weather-temperature>--°</strong>
+              <span data-weather-condition>날씨 확인 중</span>
+            </div>
+            <div class="archive-weather-current-meta">
+              <span data-weather-high-low>최고 --° · 최저 --°</span>
+              <span data-weather-precipitation>강수 --%</span>
+            </div>
+          </div>
+          <ol class="archive-weather-forecast" data-weather-forecast aria-label="향후 4일 예보"></ol>
+        </div>
+        <button class="archive-weather-retry" type="button" data-weather-retry hidden>다시 시도</button>
+      </section>
+    </aside>
 
     <div class="archive-layout">
       <aside class="archive-sidebar" aria-label="도서관 안내와 분류">
@@ -639,14 +678,31 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
         ? navigator.clipboard.writeText(url.href).catch(function () { return legacyCopyReportLink(url.href); })
         : legacyCopyReportLink(url.href);
       return copy.then(function () {
-        button.textContent = "복사됨";
-        button.setAttribute("aria-label", "보고서 링크가 복사되었습니다");
+        setArchiveShareState(button, "check", "보고서 링크가 복사되었습니다", "복사 완료", "링크가 복사되었습니다");
         window.clearTimeout(button.reportHubResetTimer);
         button.reportHubResetTimer = window.setTimeout(function () {
-          button.textContent = "공유";
-          button.setAttribute("aria-label", "보고서 링크 복사");
+          setArchiveShareState(button, "share", "보고서 링크 복사", "링크 복사", "");
         }, 1800);
       });
+    }
+
+    function archiveShareIconMarkup(state) {
+      var paths = {
+        share: '<path d="M12 15V3"></path><path d="m8 7 4-4 4 4"></path><path d="M5 10v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-9"></path>',
+        check: '<path d="m5 12 4 4L19 6"></path>',
+        error: '<path d="M6 6l12 12"></path><path d="M18 6 6 18"></path>'
+      };
+      return '<span class="archive-share-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false">' + (paths[state] || paths.share) + '</svg></span>' +
+        '<span class="archive-share-status" aria-live="polite"></span>';
+    }
+
+    function setArchiveShareState(button, state, ariaLabel, title, status) {
+      button.dataset.shareState = state;
+      button.innerHTML = archiveShareIconMarkup(state);
+      button.setAttribute("aria-label", ariaLabel);
+      button.setAttribute("title", title);
+      var output = button.querySelector(".archive-share-status");
+      if (output) output.textContent = status || "";
     }
 
     document.addEventListener("click", function (event) {
@@ -655,8 +711,11 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
       event.preventDefault();
       event.stopPropagation();
       copyReportLink(button).catch(function () {
-        button.textContent = "복사 실패";
-        window.setTimeout(function () { button.textContent = "공유"; }, 1800);
+        setArchiveShareState(button, "error", "보고서 링크 복사에 실패했습니다", "복사 실패", "링크 복사에 실패했습니다");
+        window.clearTimeout(button.reportHubResetTimer);
+        button.reportHubResetTimer = window.setTimeout(function () {
+          setArchiveShareState(button, "share", "보고서 링크 복사", "링크 복사", "");
+        }, 1800);
       });
     });
 
@@ -877,6 +936,7 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
   <script src="../assets/archive-request-board.js"></script>
   <script src="../assets/archive-report-admin.js"></script>
   <script src="../assets/archive-visitor-counter.js?v=20260809-visits1"></script>
+  <script src="../assets/archive-weather.js?v=${ARCHIVE_WEATHER_VERSION}"></script>
   <script src="../assets/report-hub-brand.js?v=${REPORT_HUB_BRAND_VERSION}"></script>
 </body>
 </html>

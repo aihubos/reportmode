@@ -12,7 +12,7 @@ test("shared layout starts wide and uses equal-size icon segmented controls", ()
   assert.match(script, /data-report-view-target/);
   assert.match(script, /aria-label="가로 보기"/);
   assert.match(script, /aria-label="세로 보기"/);
-  assert.match(script, /report-hub-brand\.js\?v=20260809-rh4/);
+  assert.match(script, /report-hub-brand\.js\?v=20260809-rh5/);
   assert.match(script, /querySelector\("\.report-hub-floating-menu"\)/);
   assert.match(css, /\.report-layout-buttons[^}]*width:\s*156px/);
   assert.match(css, /report-view-switcher-inner\s*>\s*\.report-view-buttons[^}]*width:\s*180px/);
@@ -27,7 +27,13 @@ test("shared report actions place copy beside PDF and expose the report view cou
   assert.match(script, /function ensureReportActions\(/);
   assert.match(script, /id = "report-pdf-button"/);
   assert.match(script, /id = "report-share-button"/);
-  assert.match(script, /textContent = "공유"/);
+  assert.match(script, /function reportActionIconMarkup\(/);
+  assert.match(script, /report-action-icon/);
+  assert.match(script, /setReportActionIcon\(pdf, "pdf"\)/);
+  assert.match(script, /setReportActionIcon\(share, "share"\)/);
+  assert.match(script, /setShareState\(share, "check"/);
+  assert.doesNotMatch(script, /button\.textContent = "PDF 저장"/);
+  assert.doesNotMatch(script, /share\.textContent = "공유"/);
   assert.match(script, /navigator\.clipboard\.writeText/);
   assert.match(script, /document\.execCommand\("copy"\)/);
   assert.match(script, /url\.search = ""/);
@@ -36,7 +42,8 @@ test("shared report actions place copy beside PDF and expose the report view cou
   assert.match(css, /\.report-sharing-tools/);
   assert.match(css, /\.report-share-button/);
   assert.match(css, /\.report-view-count-panel/);
-  assert.match(css, /\.report-sharing-tools[^}]*grid-template-columns:\s*minmax\(76px,1fr\) minmax\(76px,1fr\) minmax\(86px,auto\)/s);
+  assert.match(css, /\.report-sharing-tools[^}]*grid-template-columns:\s*40px 40px minmax\(86px,auto\)/s);
+  assert.match(css, /\.report-sharing-tools\s*>\s*#report-pdf-button,[\s\S]*?width:\s*40px\s*!important;[\s\S]*?height:\s*40px\s*!important;/);
   assert.match(css, /@media \(max-width:\s*700px\)[\s\S]*\.report-view-switcher\s*{[^}]*margin-top:\s*96px\s*!important;[^}]*top:\s*154px\s*!important;/);
 });
 

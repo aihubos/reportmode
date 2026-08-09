@@ -8,8 +8,8 @@
   if (!document.querySelector('script[src*="report-hub-brand.js"]')) {
     var brandScript = document.createElement("script");
     brandScript.src = layoutScript && layoutScript.src
-      ? new URL("report-hub-brand.js?v=20260809-rh4", layoutScript.src).href
-      : "https://aihubos.github.io/reportmode/assets/report-hub-brand.js?v=20260809-rh4";
+      ? new URL("report-hub-brand.js?v=20260809-rh5", layoutScript.src).href
+      : "https://aihubos.github.io/reportmode/assets/report-hub-brand.js?v=20260809-rh5";
     document.head.appendChild(brandScript);
   }
 
@@ -69,13 +69,32 @@
     return null;
   }
 
+  function reportActionIconMarkup(kind) {
+    var paths = {
+      pdf: '<path d="M14 2H6a2 2 0 0 0-2 2v16h16V8z"></path><path d="M14 2v6h6"></path><path d="M12 11v6"></path><path d="m9 14 3 3 3-3"></path>',
+      share: '<path d="M12 15V3"></path><path d="m8 7 4-4 4 4"></path><path d="M5 10v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-9"></path>',
+      check: '<path d="m5 12 4 4L19 6"></path>',
+      error: '<path d="M6 6l12 12"></path><path d="M18 6 6 18"></path>'
+    };
+    return '<span class="report-action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false">' + (paths[kind] || paths.share) + '</svg></span>' +
+      '<span class="report-action-status" aria-live="polite"></span>';
+  }
+
+  function setReportActionIcon(button, kind, status) {
+    button.dataset.reportActionState = kind;
+    button.innerHTML = reportActionIconMarkup(kind);
+    var output = button.querySelector(".report-action-status");
+    if (output) output.textContent = status || "";
+  }
+
   function createPdfButton() {
     var button = document.createElement("button");
     button.id = "report-pdf-button";
     button.className = "pdf-save-button report-shared-pdf-button";
     button.type = "button";
-    button.textContent = "PDF 저장";
     button.setAttribute("aria-label", "현재 보고서를 PDF로 저장");
+    button.setAttribute("title", "PDF 저장");
+    setReportActionIcon(button, "pdf");
     return button;
   }
 
@@ -117,13 +136,15 @@
     return legacyCopy(value);
   }
 
-  function setShareState(button, label, ariaLabel) {
-    button.textContent = label;
+  function setShareState(button, state, ariaLabel, title, status) {
+    setReportActionIcon(button, state, status);
     button.setAttribute("aria-label", ariaLabel);
+    button.setAttribute("title", title);
     window.clearTimeout(button.reportHubResetTimer);
     button.reportHubResetTimer = window.setTimeout(function () {
-      button.textContent = "공유";
+      setReportActionIcon(button, "share");
       button.setAttribute("aria-label", "현재 보고서 링크 복사");
+      button.setAttribute("title", "링크 복사");
     }, 1800);
   }
 
@@ -150,6 +171,10 @@
       host.appendChild(pdf);
     }
     if (!host) return;
+    pdf.classList.add("report-shared-pdf-button");
+    pdf.setAttribute("aria-label", "현재 보고서를 PDF로 저장");
+    pdf.setAttribute("title", "PDF 저장");
+    setReportActionIcon(pdf, "pdf");
 
     var legacyShare = document.querySelector("#report-share-button, .share-report-button, .report-share-button");
     if (legacyShare && legacyShare.parentNode) legacyShare.parentNode.removeChild(legacyShare);
@@ -158,15 +183,16 @@
     share.id = "report-share-button";
     share.className = "report-share-button share-report-button";
     share.type = "button";
-    share.textContent = "공유";
     share.setAttribute("aria-label", "현재 보고서 링크 복사");
+    share.setAttribute("title", "링크 복사");
+    setReportActionIcon(share, "share");
     share.addEventListener("click", function () {
       copyReportLink(stableReportUrl())
         .then(function () {
-          setShareState(share, "복사됨", "보고서 링크가 복사되었습니다");
+          setShareState(share, "check", "보고서 링크가 복사되었습니다", "복사 완료", "링크가 복사되었습니다");
         })
         .catch(function () {
-          setShareState(share, "복사 실패", "보고서 링크 복사에 실패했습니다");
+          setShareState(share, "error", "보고서 링크 복사에 실패했습니다", "복사 실패", "링크 복사에 실패했습니다");
         });
     });
 
