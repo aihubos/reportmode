@@ -1,7 +1,67 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-09T14:58:37+09:00",
+  "updatedAt": "2026-08-09T17:37:14+09:00",
   "reports": [
+    {
+      "schemaVersion": "1",
+      "id": "260809-hermes-agent-security-youtube",
+      "slug": "hermes-agent-security-youtube",
+      "title": "AI 에이전트에 권한을 다 열면 어떻게 뚫리는가 — Hermes Agent 보안 설계 보고서",
+      "category": "AI",
+      "tags": [
+        "Hermes",
+        "AI Agent",
+        "보안",
+        "권한설계"
+      ],
+      "summary": "빌더 조쉬의 AI 에이전트 보안 인터뷰를 Hermes Agent 관점에서 재해석한 권한·승인·격리·감사 설계 보고서입니다.",
+      "createdAt": "2026-08-09T17:37:14+09:00",
+      "updatedAt": "2026-08-09T17:37:14+09:00",
+      "status": "published",
+      "sourceName": "AI 에이전트에 권한을 다 열면 어떻게 뚫리는가 — Hermes Agent 보안 설계 보고서 v1.0.0.zip",
+      "sourceCount": 6,
+      "entry": "index.html"
+    },
+    {
+      "schemaVersion": "1",
+      "id": "260809-watercourse-life-choice",
+      "slug": "watercourse-life-choice",
+      "title": "물 흐르듯이 산다는 것：편안함이 아니라 선택할 때를 아는 삶",
+      "category": "라이프",
+      "tags": [
+        "삶",
+        "커리어",
+        "선택",
+        "도가철학"
+      ],
+      "summary": "물 흐르듯이 산다는 태도를 도가철학, 커리어 정체기 연구, 자기결정성이론으로 해석하고 이직·전환 의사결정에 적용하는 비전공자용 보고서입니다.",
+      "createdAt": "2026-08-09T17:37:14+09:00",
+      "updatedAt": "2026-08-09T17:37:14+09:00",
+      "status": "published",
+      "sourceName": "물 흐르듯이 산다는 것：편안함이 아니라 선택할 때를 아는 삶_v1.0.0.zip",
+      "sourceCount": 16,
+      "entry": "index.html"
+    },
+    {
+      "schemaVersion": "1",
+      "id": "260809-hermes-agent-ai-does-everything-video-analysis",
+      "slug": "hermes-agent-ai-does-everything-video-analysis",
+      "title": "Hermes Agent 관점에서 본 ‘AI가 다 해준다’ — 임원 업무 재설계 보고서",
+      "category": "AI",
+      "tags": [
+        "Hermes",
+        "AI Agent",
+        "임원",
+        "업무재설계"
+      ],
+      "summary": "유호현 대표의 ‘AI가 다 해준다’ 인터뷰를 Hermes Agent의 실제 기능, 설치 방식, 운영 통제 관점에서 분석한 비전공자 임원용 보고서입니다.",
+      "createdAt": "2026-08-09T17:37:12+09:00",
+      "updatedAt": "2026-08-09T17:37:12+09:00",
+      "status": "published",
+      "sourceName": "Hermes Agent 관점에서 본 ‘AI가 다 해준다’ — 임원 업무 재설계 보고서.zip",
+      "sourceCount": 12,
+      "entry": "index.html"
+    },
     {
       "schemaVersion": "1",
       "id": "260809-19-ai-v1-0-0",
