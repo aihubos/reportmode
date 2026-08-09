@@ -1,7 +1,24 @@
 {
-  "generatedAt": "2026-08-09T02:14:25.883Z",
+  "generatedAt": "2026-08-09T03:58:23.875Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260809-19-ai-v1-0-0",
+      "slug": "19-ai-v1-0-0",
+      "title": "전 세계 아동 학습 성취도 하락의 원인 — 코로나19와 AI의 실제 영향 · v1.0.0",
+      "category": "기타",
+      "summary": "2026년 공개 자료를 중심으로 전 세계 아동 학습 성취도 하락의 객관적 근거, 코로나19의 인과 영향, 생성형 AI의 위험과 회복 가능성을 분석한 임원용 반응형 보고서",
+      "createdAt": "2026-08-09T12:58:12+09:00",
+      "updatedAt": "2026-08-09T12:58:12+09:00",
+      "status": "published",
+      "path": "reports/260809-19-ai-v1-0-0/",
+      "url": "https://aihubos.github.io/reportmode/reports/260809-19-ai-v1-0-0/",
+      "displayDate": "260809",
+      "sourceCount": 22,
+      "tags": [],
+      "coverImage": "reports/260809-19-ai-v1-0-0/assets/blog-hub-thumbnail.png",
+      "coverAlt": "전 세계 아동 학습 성취도 하락의 원인 — 코로나19와 AI의 실제 영향 · v1.0.0 대표 이미지"
+    },
     {
       "id": "260809-ai-v1-0-0-02",
       "slug": "ai-v1-0-0",

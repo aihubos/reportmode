@@ -1,7 +1,22 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-09T11:14:21+09:00",
+  "updatedAt": "2026-08-09T12:58:19+09:00",
   "reports": [
+    {
+      "schemaVersion": "1",
+      "id": "260809-19-ai-v1-0-0",
+      "slug": "19-ai-v1-0-0",
+      "title": "전 세계 아동 학습 성취도 하락의 원인 — 코로나19와 AI의 실제 영향 · v1.0.0",
+      "category": "기타",
+      "tags": [],
+      "summary": "2026년 공개 자료를 중심으로 전 세계 아동 학습 성취도 하락의 객관적 근거, 코로나19의 인과 영향, 생성형 AI의 위험과 회복 가능성을 분석한 임원용 반응형 보고서",
+      "createdAt": "2026-08-09T12:58:12+09:00",
+      "updatedAt": "2026-08-09T12:58:12+09:00",
+      "status": "published",
+      "sourceName": "preflight_20260809035753912_af080ee3.zip",
+      "sourceCount": 22,
+      "entry": "index.html"
+    },
     {
       "schemaVersion": "1",
       "id": "260809-ai-v1-0-0-02",
