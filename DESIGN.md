@@ -2,28 +2,31 @@
 
 ## 1. Atmosphere / signature
 
-Report Hub는 임원이 빠르게 신뢰하고 다시 찾는 편집형 리서치 허브다. 기존 보고서의 개별 디자인은 유지하고, 사이트 공통 표식만 검정 라운드 사각형 안의 `RH`로 고정한다. 장식보다 식별성과 일관성이 우선이며, 브랜드 영역에는 그라데이션·광택·글로우를 사용하지 않는다.
+Report Hub는 보고서보다 먼저 시선을 빼앗지 않는 임원용 리서치 내비게이션이다. Apple처럼 표면은 사라지고 동작만 남기며, 기존 Eduflex Toss Blue 프로젝트처럼 한 가지 파란색을 이동과 선택에만 사용한다. 공통 브랜드는 아이콘 없이 큰 `Report Hub` 글자만 사용한다. 파비콘은 작은 브라우저 탭에서 식별이 필요하므로 RH 심벌을 유지한다.
 
 ## 2. Color
 
-- `#111111` · `--rh-ink` · 로고 바탕, 브랜드 텍스트, 기본 전경
-- `#FFFFFF` · `--rh-paper` · 로고 문자, 역상 텍스트
-- `#F2F4F6` · `--rh-soft` · 밝은 호버 배경
+- `#3182F6` · `--rh-primary` · 워드마크, 선택 상태, 포커스
+- `#1B64DA` · `--rh-primary-hover` · 호버와 활성 상태
+- `#E8F3FF` · `--rh-primary-soft` · 선택 전환 배경
+- `#191F28` · `--rh-ink` · 기본 전경
+- `#4E5968` · `--rh-sub` · 비활성 컨트롤
 - `#8B95A1` · `--rh-muted` · 보조 텍스트
-- `#D1D6DB` · `--rh-border` · 밝은 배경의 경계선
-- `#FFFFFF` · `--rh-focus` · 어두운 버튼의 키보드 포커스 링
-- `rgba(17,17,17,.88)` · `--rh-floating` · 보고서 플로팅 버튼 배경
-- `rgba(255,255,255,.18)` · `--rh-floating-border` · 보고서 플로팅 버튼 경계
+- `#FFFFFF` · `--rh-paper` · 플로팅 표면과 선택 글자
+- `#F2F4F6` · `--rh-soft` · 세그먼트 배경
+- `#E5E8EB` · `--rh-border` · 표면 경계선
+- `rgba(49,130,246,.22)` · `--rh-ring` · 키보드 포커스 링
+- `rgba(25,31,40,.12)` · `--rh-shadow-color` · 플로팅 표면 깊이
 
-대비 기준: `--rh-paper`/`--rh-ink`와 `--rh-ink`/`--rh-paper` 조합은 일반 텍스트 AA 기준을 넘는다. 브랜드 색상은 흑백 한 체계만 사용한다.
+대비 기준: `--rh-primary-hover`/`--rh-paper`, `--rh-ink`/`--rh-paper` 조합은 일반 텍스트 AA 기준을 충족한다. 기본 `--rh-primary` 텍스트는 20px 이상의 굵은 워드마크에만 사용한다.
 
 ## 3. Typography
 
-- 공통 스택 `--rh-sans`: `Avenir Next`, `Segoe UI`, `Apple SD Gothic Neo`, `Noto Sans KR`, sans-serif
-- 워드마크 `--rh-type-wordmark`: 13px · 800 · 1.2 · -0.02em
-- 모바일 워드마크 `--rh-type-wordmark-mobile`: 12px · 800 · 1.2 · -0.02em
-- 보조 라벨 `--rh-type-label`: 11px · 700 · 1.2 · 0
-- SVG 모노그램: 24px 상당 · 900 · 중앙 정렬
+- 공통 스택 `--rh-sans`: `Pretendard Variable`, `Pretendard`, `SF Pro Display`, `SF Pro Text`, `Apple SD Gothic Neo`, `-apple-system`, `BlinkMacSystemFont`, `Segoe UI`, sans-serif
+- 워드마크 `--rh-type-wordmark`: 24px · 850 · 1.05 · -0.05em
+- 모바일 워드마크 `--rh-type-wordmark-mobile`: 20px · 850 · 1.05 · -0.045em
+- 전환 버튼 `--rh-type-control`: 12px · 800 · 1.2 · -0.02em
+- 접근성 라벨 `--rh-type-label`: 11px · 700 · 1.2 · 0
 
 ## 4. Spacing
 
@@ -33,47 +36,58 @@ Report Hub는 임원이 빠르게 신뢰하고 다시 찾는 편집형 리서치
 - `--rh-space-2`: 8px
 - `--rh-space-3`: 12px
 - `--rh-space-4`: 16px
+- `--rh-space-5`: 20px
 - `--rh-space-6`: 24px
-- 로고 크기: 32px, 보고서 플로팅 버튼에서는 28px
-- 최소 터치 높이: 40px
+- 데스크톱 화면 여백: 16px
+- 모바일 화면 여백: 8px
+- 플로팅 메뉴 최소 높이: 56px
+- 전환 컨트롤 너비: 156px, 모바일 136px
 
 ## 5. Components
 
-### RH logo
+### Report Hub wordmark
 
-- 64×64 viewBox의 검정 라운드 사각형과 흰색 `RH` 모노그램
-- 라운드 반경은 16px 상당
-- 헤더·보고서 버튼·favicon·Apple Touch Icon에 같은 원본 SVG를 사용
+- 아이콘 없이 `Report Hub` 글자만 사용한다.
+- 24px/850 Toss Blue, 모바일 20px/850이다.
+- 배경은 투명하고 최소 터치 높이는 44px이다.
+- hover는 `--rh-primary-hover`, active는 `scale(.98)`, focus는 `--rh-ring`을 사용한다.
 
-### Report Hub brand link
+### Floating navigation
 
-- 기본: 투명 배경, 검정 텍스트, 32px 로고, 8px 간격
-- hover: `--rh-soft` 배경
-- focus: 3px 포커스 링과 3px 바깥 여백
-- active: `transform: scale(.98)`
-- disabled 상태는 사용하지 않음
+- 화면 왼쪽 상단에 fixed로 유지한다.
+- 흰색 표면, 1px 경계선, 16px 반경, 16px 간격의 한 단계 그림자를 사용한다.
+- 워드마크와 가로·세로 세그먼트를 한 줄에 배치한다.
+- 390px에서도 한 줄을 유지하며 가로 스크롤을 만들지 않는다.
+- 인쇄할 때는 전체를 숨긴다.
 
-### Report home button
+### Layout segmented control
 
-- 고정 위치의 40px 높이 버튼
-- `--rh-floating` 배경, `--rh-paper` 텍스트, 28px 로고
-- 12px 모서리, 4px/12px 내부 여백
-- 430px 이하에서는 워드마크를 숨기고 RH 심벌만 유지
+- 156px 너비, 4px 안쪽 여백, 12px 반경을 사용한다.
+- 비활성은 `--rh-soft`/`--rh-sub`, 활성은 `--rh-primary`/`--rh-paper`다.
+- 가로·세로 아이콘과 텍스트를 함께 표시한다.
+
+### Report title top link
+
+- 보고서의 대표 h1 내용은 유지하고 링크만 감싼다.
+- 색상과 타이포그래피는 기존 보고서를 그대로 상속한다.
+- hover는 투명도 변화, focus는 `--rh-primary` 윤곽선으로 표시한다.
 
 ## 6. Motion
 
-- 지속시간 `--rh-motion-fast`: 160ms
+- 지속시간 `--rh-motion-fast`: 180ms
 - easing `--rh-ease`: ease-out
-- hover/active는 transform과 opacity만 사용
-- `prefers-reduced-motion: reduce`에서는 전환을 제거
+- hover/active는 transform과 opacity 또는 color만 사용한다.
+- 최상단 이동은 기본 smooth, `prefers-reduced-motion: reduce`에서는 즉시 이동한다.
 
 ## 7. Depth
 
-경계선 중심 전략을 사용한다. 밝은 헤더는 1px 경계선과 배경 변화만 사용한다. 보고서 플로팅 버튼은 기존 가독성을 위해 어두운 반투명 면과 블러를 유지하되 별도 그림자는 추가하지 않는다.
+Apple식 경계선 중심 표면을 사용한다. 플로팅 메뉴에만 `0 8px 24px var(--rh-shadow-color)` 한 단계를 허용한다. 글로우, 그라데이션, 중첩 그림자는 사용하지 않는다.
 
 ## Do / Don't
 
 - Do: 모든 공통 브랜드 링크는 `https://aireport.ai-hub-os.com/`로 연결한다.
-- Do: 공개 표기는 `RH`와 `Report Hub` 두 형태만 사용한다.
-- Don't: `RM`, `Report Mode`, `Jeremy's AI Report`를 공개 브랜드 영역에 혼용하지 않는다.
-- Don't: 보고서 고유 제목·본문·URL·카테고리는 브랜드 변경 때문에 수정하지 않는다.
+- Do: 모든 실제 보고서가 같은 플로팅 메뉴와 가로·세로 전환을 사용한다.
+- Do: 보고서 제목을 누르면 최상단으로 이동한다.
+- Don't: 공개 플로팅 브랜드에 RH 사각 아이콘을 사용하지 않는다.
+- Don't: 보고서 고유 제목·본문·URL·카테고리를 변경하지 않는다.
+- Don't: 리다이렉트 전용 페이지에 UI를 삽입하지 않는다.

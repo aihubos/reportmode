@@ -74,3 +74,63 @@ test("history widget ignores footers nested inside summary slides", () => {
   };
   assert.equal(context.ReportModeHistory.findPageFooter(doc), pageFooter);
 });
+
+test("history widget replaces a legacy history block instead of appending a duplicate", () => {
+  const source = fs.readFileSync(new URL("./report-history.js", import.meta.url), "utf8");
+  const context = { console, URL };
+  context.globalThis = context;
+  vm.runInNewContext(source, context);
+
+  const existing = {
+    className: "report-history legacy-history",
+    id: "history",
+    innerHTML: "<h2>버전 및 업데이트 히스토리</h2><p>기존 변경 이력</p>",
+    setAttribute(name, value) { this[name] = value; },
+  };
+  const doc = {
+    body: { dataset: {} },
+    getElementById() { return null; },
+    querySelector(selector) {
+      assert.equal(selector, ".report-history");
+      return existing;
+    },
+  };
+
+  context.ReportModeHistory.mount(doc, {
+    title: "샘플 보고서",
+    currentVersion: "v1.1.0",
+    updatedAt: "2026-08-09",
+    changeSummary: "내용과 출처를 재검증했습니다.",
+    status: "content-refreshed",
+    previousVersion: {
+      version: "v1.0.0",
+      date: "2026-08-08",
+      label: "업데이트 전 기준판",
+      url: "/previous/",
+    },
+  });
+
+  assert.equal(existing.className, "report-history report-history-shared");
+  assert.equal(existing.id, "history");
+  assert.equal(existing["aria-label"], "버전 및 업데이트 이력");
+  assert.equal((existing.innerHTML.match(/report-history-shared-card/g) || []).length, 1);
+  assert.equal((existing.innerHTML.match(/<h2>버전 및 업데이트 이력<\/h2>/g) || []).length, 1);
+  assert.doesNotMatch(existing.innerHTML, /버전 및 업데이트 히스토리|기존 변경 이력|report-history-shared-extension/);
+});
+
+test("history widget omits the previous-version row when no previous report exists", () => {
+  const source = fs.readFileSync(new URL("./report-history.js", import.meta.url), "utf8");
+  const context = { console, URL };
+  context.globalThis = context;
+  vm.runInNewContext(source, context);
+
+  const markup = context.ReportModeHistory.buildMarkup({
+    title: "신규 보고서",
+    currentVersion: "v1.0.0",
+    updatedAt: "2026-08-09",
+    changeSummary: "최초 등록",
+  });
+
+  assert.match(markup, /버전 및 업데이트 이력/);
+  assert.doesNotMatch(markup, /이전 보고서 보기|report-history-shared-status is-previous/);
+});

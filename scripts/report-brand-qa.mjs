@@ -33,10 +33,15 @@ for (const file of htmlFiles(path.join(root, "reports"))) {
   const checks = [
     [occurrences(html, 'class="report-home-button"') === 1, "메인 로고 버튼이 정확히 1개가 아님"],
     [html.includes(`class="report-home-button" href="${home}"`), "메인 로고 링크 주소가 다름"],
-    [html.includes("report-hub-logo"), "RH 로고가 없음"],
+    [html.includes('class="report-hub-wordmark">Report Hub</span>'), "텍스트 워드마크가 없음"],
+    [!html.includes('class="report-hub-logo"'), "보고서 홈 버튼에 구형 RH 아이콘이 남아 있음"],
     [/<title>[\s\S]*Report Hub[\s\S]*<\/title>/i.test(html), "브라우저 제목에 Report Hub가 없음"],
     [occurrences(html, "report-hub-brand.css") === 1, "공통 브랜드 스타일이 정확히 1개가 아님"],
     [occurrences(html, "report-hub-brand.js") === 1, "공통 브랜드 스크립트가 정확히 1개가 아님"],
+    [occurrences(html, "report-page-layout.css") === 1, "공통 레이아웃 스타일이 정확히 1개가 아님"],
+    [occurrences(html, "report-page-layout.js") === 1, "공통 레이아웃 스크립트가 정확히 1개가 아님"],
+    [occurrences(html, "report-history.js") === 1, "공통 변경이력 스크립트가 정확히 1개가 아님"],
+    [/report-history\.js\?v=20260809-history2/.test(html), "통합 변경이력 버전이 아님"],
     [!legacyBrand.test(html), "구형 공개 브랜드 이름이 남아 있음"],
   ];
   for (const [passed, message] of checks) {
@@ -48,12 +53,13 @@ for (const relative of ["index.html", "archive/index.html", "archive/upload.html
   const html = fs.readFileSync(path.join(root, relative), "utf8");
   if (!/Report Hub/.test(html)) failures.push(`${relative}: Report Hub 이름이 없음`);
   if (legacyBrand.test(html)) failures.push(`${relative}: 구형 공개 브랜드 이름이 남아 있음`);
-  if (!/favicon\.svg\?v=20260809-rh1/.test(html)) failures.push(`${relative}: RH 파비콘이 없음`);
+  if (!/favicon\.svg\?v=20260809-rh2/.test(html)) failures.push(`${relative}: RH 파비콘이 없음`);
 }
 
 for (const relative of ["archive/index.html", "archive/upload.html"]) {
   const html = fs.readFileSync(path.join(root, relative), "utf8");
   if (!html.includes(`href="${home}"`)) failures.push(`${relative}: 좌측 상단 로고 링크 주소가 다름`);
+  if (!html.includes('class="report-hub-wordmark">Report Hub</span>')) failures.push(`${relative}: 텍스트 워드마크가 없음`);
 }
 
 const favicon = fs.readFileSync(path.join(root, "assets/favicon.svg"), "utf8");

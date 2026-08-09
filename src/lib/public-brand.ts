@@ -1,7 +1,8 @@
 import path from "node:path";
 
 export const REPORT_HUB_HOME = "https://aireport.ai-hub-os.com/";
-export const REPORT_HUB_BRAND_VERSION = "20260809-rh1";
+export const REPORT_HUB_BRAND_VERSION = "20260809-rh2";
+export const REPORT_HISTORY_VERSION = "20260809-history2";
 
 function isRedirectHtml(html: string): boolean {
   return /<meta\b[^>]*http-equiv\s*=\s*["']?refresh["']?/i.test(html);
@@ -9,6 +10,12 @@ function isRedirectHtml(html: string): boolean {
 
 function relativePrefix(reportPath: string): string {
   return path.posix.relative(path.posix.dirname(reportPath), ".") || ".";
+}
+
+function reportIdFromPath(reportPath: string): string {
+  const normalized = reportPath.replaceAll("\\", "/");
+  if (normalized.endsWith("/index.html")) return path.posix.basename(path.posix.dirname(normalized));
+  return path.posix.basename(normalized, ".html");
 }
 
 function replaceTitle(html: string): string {
@@ -28,7 +35,7 @@ function replaceHeadAssets(html: string, prefix: string): string {
   let output = html
     .replace(/\s*<link\b[^>]*rel=["'][^"']*(?:icon|apple-touch-icon|manifest)[^"']*["'][^>]*>/gi, "")
     .replace(/\s*<meta\b[^>]*(?:name|property)=["'](?:application-name|og:site_name)["'][^>]*>/gi, "")
-    .replace(/\s*<link\b[^>]*href=["'][^"']*report-hub-brand\.css(?:\?[^"']*)?["'][^>]*>/gi, "");
+    .replace(/\s*<link\b[^>]*href=["'][^"']*report-(?:hub-brand|page-layout)\.css(?:\?[^"']*)?["'][^>]*>/gi, "");
   const tags = [
     `<link rel="icon" type="image/svg+xml" sizes="any" href="${prefix}/assets/favicon.svg?v=${version}">`,
     `<link rel="icon" type="image/png" sizes="32x32" href="${prefix}/assets/favicon-32x32.png?v=${version}">`,
@@ -36,36 +43,51 @@ function replaceHeadAssets(html: string, prefix: string): string {
     `<link rel="manifest" href="${prefix}/site.webmanifest?v=${version}">`,
     '<meta name="application-name" content="Report Hub">',
     '<meta property="og:site_name" content="Report Hub">',
+    `<link rel="stylesheet" href="${prefix}/assets/report-page-layout.css?v=${version}">`,
     `<link rel="stylesheet" href="${prefix}/assets/report-hub-brand.css?v=${version}">`,
   ].join("\n  ");
   output = output.replace(/<\/head>/i, `  ${tags}\n</head>`);
   return output;
 }
 
-function homeButton(prefix: string): string {
-  return `<a class="report-home-button" href="${REPORT_HUB_HOME}" aria-label="Report Hub 메인으로 이동"><img class="report-hub-logo" src="${prefix}/assets/favicon.svg?v=${REPORT_HUB_BRAND_VERSION}" alt=""><span class="report-hub-wordmark">Report Hub</span></a>`;
+function homeButton(): string {
+  return `<a class="report-home-button" href="${REPORT_HUB_HOME}" aria-label="Report Hub 메인으로 이동"><span class="report-hub-wordmark">Report Hub</span></a>`;
 }
 
-function replaceHomeButton(html: string, prefix: string): string {
-  const button = homeButton(prefix);
+function replaceHomeButton(html: string): string {
+  const button = homeButton();
   const expression = /<a\b[^>]*class=["'][^"']*\breport-home-button\b[^"']*["'][^>]*>[\s\S]*?<\/a>/i;
   if (expression.test(html)) return html.replace(expression, button);
   return html.replace(/<body\b[^>]*>/i, (body) => `${body}\n  ${button}`);
 }
 
-function replaceLegacyBrandLinks(html: string, prefix: string): string {
+function replaceLegacyBrandLinks(html: string): string {
   return html.replace(/<a\b[^>]*class=["'][^"']*\bbrand\b[^"']*["'][^>]*>[\s\S]*?<\/a>/gi, (link) => {
     const plain = link.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
     if (!/\b(?:RM|RH)\b|Report (?:Mode|Hub)/i.test(plain)) return link;
-    return homeButton(prefix).replace('class="report-home-button"', 'class="brand report-hub-brand-link"');
+    return homeButton().replace('class="report-home-button"', 'class="brand report-hub-brand-link"');
   });
 }
 
-function upsertBrandScript(html: string, prefix: string): string {
-  const tag = `<script src="${prefix}/assets/report-hub-brand.js?v=${REPORT_HUB_BRAND_VERSION}"></script>`;
-  const expression = /<script\b[^>]*src=["'][^"']*report-hub-brand\.js(?:\?[^"']*)?["'][^>]*><\/script>/i;
-  if (expression.test(html)) return html.replace(expression, tag);
-  return html.replace(/<\/body>/i, `  ${tag}\n</body>`);
+function upsertSharedScripts(html: string, prefix: string, reportPath: string): string {
+  const historyExpression = /\s*<script\b[^>]*src=["'][^"']*report-history\.js(?:\?[^"']*)?["'][^>]*><\/script>/gi;
+  const existingHistory = html.match(historyExpression)?.[0] || "";
+  const snapshotId = existingHistory.match(/\bdata-snapshot-id=["']([^"']+)["']/i)?.[1];
+  const hasPrevious = /\bdata-has-previous=["']true["']/i.test(existingHistory);
+  let output = html
+    .replace(/\s*<script\b[^>]*src=["'][^"']*report-(?:hub-brand|page-layout)\.js(?:\?[^"']*)?["'][^>]*><\/script>/gi, "")
+    .replace(historyExpression, "");
+  const historyAttributes = [
+    `data-report-id="${reportIdFromPath(reportPath)}"`,
+    snapshotId ? `data-snapshot-id="${snapshotId}"` : "",
+    hasPrevious ? 'data-has-previous="true"' : "",
+  ].filter(Boolean).join(" ");
+  const tags = [
+    `<script src="${prefix}/assets/report-page-layout.js?v=${REPORT_HUB_BRAND_VERSION}"></script>`,
+    `<script src="${prefix}/assets/report-history.js?v=${REPORT_HISTORY_VERSION}" ${historyAttributes}></script>`,
+    `<script src="${prefix}/assets/report-hub-brand.js?v=${REPORT_HUB_BRAND_VERSION}"></script>`,
+  ].join("\n  ");
+  return output.replace(/<\/body>/i, `  ${tags}\n</body>`);
 }
 
 export function applyReportHubBrand(html: string, reportPath: string): string {
@@ -84,8 +106,8 @@ export function applyReportHubBrand(html: string, reportPath: string): string {
     .replaceAll("보고서 도서관 메인으로 이동", "Report Hub 메인으로 이동");
   output = replaceTitle(output);
   output = replaceHeadAssets(output, prefix);
-  output = replaceHomeButton(output, prefix);
-  output = replaceLegacyBrandLinks(output, prefix);
-  output = upsertBrandScript(output, prefix);
+  output = replaceHomeButton(output);
+  output = replaceLegacyBrandLinks(output);
+  output = upsertSharedScripts(output, prefix, reportPath);
   return output;
 }
