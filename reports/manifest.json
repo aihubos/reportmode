@@ -1,24 +1,7 @@
 {
-  "generatedAt": "2026-08-09T09:02:07.542Z",
+  "generatedAt": "2026-08-09T09:07:06.693Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
-    {
-      "id": "260809-blog-hub-02",
-      "slug": "blog-hub",
-      "title": "Blog Hub 댓글 자동 게시 검증",
-      "category": "기타",
-      "summary": "Blog Hub 게시 시 댓글 기능이 자동으로 추가되는지 확인하는 임시 보고서입니다.",
-      "createdAt": "2026-08-09T18:00:56+09:00",
-      "updatedAt": "2026-08-09T18:00:56+09:00",
-      "status": "published",
-      "path": "reports/260809-blog-hub-02/",
-      "url": "https://aihubos.github.io/reportmode/reports/260809-blog-hub-02/",
-      "displayDate": "260809",
-      "sourceCount": 0,
-      "tags": [],
-      "coverImage": "reports/260809-blog-hub-02/assets/blog-hub-thumbnail.png",
-      "coverAlt": "Blog Hub 댓글 자동 게시 검증 대표 이미지"
-    },
     {
       "id": "260809-hermes-agent-security-youtube",
       "slug": "hermes-agent-security-youtube",
