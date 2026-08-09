@@ -29,13 +29,18 @@ Report Hub는 보고서보다 먼저 시선을 빼앗지 않는 임원용 리서
 ## 3. Typography
 
 - 공통 스택 `--rh-sans`: `Pretendard Variable`, `Pretendard`, `SF Pro Display`, `SF Pro Text`, `Apple SD Gothic Neo`, `-apple-system`, `BlinkMacSystemFont`, `Segoe UI`, sans-serif
-- 워드마크 `--rh-type-wordmark`: 24px · 850 · 1.05 · -0.05em
-- 모바일 워드마크 `--rh-type-wordmark-mobile`: 20px · 850 · 1.05 · -0.045em
+- 워드마크 `--rh-type-wordmark`: 36px · 850 · 1.02 · -0.05em
+- 모바일·세로 A4 워드마크 `--rh-type-wordmark-compact`: 30px · 850 · 1.02 · -0.045em
+- 제작자 서명 `--rh-type-byline`: 11px · 600 · 1.2 · 0.01em
+- 시계 날짜 `--rh-type-clock-date`: 11px · 600 · 1.2 · -0.01em
+- 시계 시간 `--rh-type-clock-time`: 16px · 650 · 1.1 · 0, `tabular-nums`
 - 전환 버튼 `--rh-type-control`: 12px · 800 · 1.2 · -0.02em
 - 접근성 라벨 `--rh-type-label`: 11px · 700 · 1.2 · 0
 - 댓글 제목 `--rh-type-comments-title`: 24px · 850 · 1.2 · -0.04em
 - 댓글 본문 `--rh-type-comments-body`: 14px · 400 · 1.6 · -0.01em
 - 방문자 수 `--rh-type-visitor`: 11px · 800 · 1.2 · 0
+- 보고서 조회수 `--rh-type-report-count`: 11px · 800 · 1.2 · 0, `tabular-nums`
+- 공유·PDF 동작 버튼 `--rh-type-report-action`: 12px · 800 · 1.2 · -0.01em
 - 세로 A4 제목: h1 최대 36px, h2 최대 28px, h3 최대 22px
 
 ## 4. Spacing
@@ -53,18 +58,22 @@ Report Hub는 보고서보다 먼저 시선을 빼앗지 않는 임원용 리서
 - `--rh-space-12`: 48px
 - 데스크톱 화면 여백: 16px
 - 모바일 화면 여백: 8px
-- 플로팅 메뉴 최소 높이: 56px
+- 플로팅 메뉴 최소 높이: 72px
 - 전환 컨트롤 너비: 156px, 모바일 136px
-- 세로 A4 오른쪽 메뉴 너비: 160px
+- 세로 A4 오른쪽 메뉴 너비: 208px
+- 모바일 도서관 상단 메뉴 높이: 112px
 - 세로 A4 장식 궤도 최대 폭: 520px, 부모 폭을 넘지 않음
 - 댓글 최대 너비: 920px
+- 보고서 동작 버튼 최소 높이: 40px, PDF·공유 동일 너비 76px
+- 보고서 조회수 영역 최소 높이: 40px, 최소 너비 86px
 
 ## 5. Components
 
 ### Report Hub wordmark
 
 - 아이콘 없이 `Report Hub` 글자만 사용한다.
-- 24px/850 Toss Blue, 모바일 20px/850이다.
+- 36px/850 Toss Blue, 모바일·세로 A4는 30px/850이다.
+- `by Jeremy`는 워드마크 바로 아래 11px/600 `--rh-muted`로 표시한다.
 - 배경은 투명하고 최소 터치 높이는 44px이다.
 - hover는 `--rh-primary-hover`, active는 `scale(.98)`, focus는 `--rh-ring`을 사용한다.
 
@@ -73,10 +82,11 @@ Report Hub는 보고서보다 먼저 시선을 빼앗지 않는 임원용 리서
 - 화면 왼쪽 상단에 fixed로 유지한다.
 - 흰색 표면, 1px 경계선, 16px 반경, 16px 간격의 한 단계 그림자를 사용한다.
 - 워드마크와 가로·세로 세그먼트를 한 줄에 배치한다.
-- 390px에서도 한 줄을 유지하며 가로 스크롤을 만들지 않는다.
+- 날짜·요일·초 단위 서울 시계를 워드마크와 보기 전환 사이에 둔다.
+- 390px에서는 브랜드·시계를 첫 줄, 보기 전환을 두 번째 줄에 배치해 가로 스크롤을 만들지 않는다.
 - 인쇄할 때는 전체를 숨긴다.
-- 1180px 이상 세로 A4에서는 용지 오른쪽 끝에서 16px 떨어진 여백에 160px 세로 메뉴로 배치한다.
-- 1179px 이하에서는 문서 폭을 늘리지 않는 우측 상단 한 줄 메뉴로 전환한다.
+- 1280px 이상 세로 A4에서는 용지 오른쪽 끝에서 16px 떨어진 여백에 208px 세로 메뉴로 배치한다.
+- 1279px 이하에서는 문서 폭을 늘리지 않는 우측 상단 메뉴로 전환한다.
 
 ### Layout segmented control
 
@@ -114,6 +124,24 @@ Report Hub는 보고서보다 먼저 시선을 빼앗지 않는 임원용 리서
 - 메인 상단에서 네이버 카드 옆에 작은 중립색 정보 영역으로 표시한다.
 - `누적 방문`과 `오늘` 수치를 함께 보여주고 숫자는 tabular-nums를 사용한다.
 - 같은 브라우저의 반복 새로고침은 서울 날짜 기준 하루 한 번만 집계한다.
+
+### Seoul date and clock
+
+- `8월 9일 일요일`과 `17:25:08`을 두 줄로 표시한다.
+- 날짜는 `--rh-muted`, 시간은 `--rh-ink`를 사용하고 숫자는 `tabular-nums`로 고정한다.
+- `Asia/Seoul` 기준으로 1초마다 갱신하며 화면 읽기 프로그램의 반복 알림은 만들지 않는다.
+- 메인 도서관에서는 브랜드와 시계를 하나의 왼쪽 묶음으로 유지한다.
+
+### Report actions and view count
+
+- 기존 `PDF 저장` 버튼을 기준으로 바로 옆에 같은 크기의 `공유` 버튼을 둔다.
+- `공유`는 보고서의 쿼리·해시를 제외한 고정 URL을 복사하고 `복사됨` 상태를 잠시 표시한다.
+- 같은 도구 묶음에 `조회수 N`을 `--rh-primary-soft` 배경의 작은 정보 영역으로 표시한다.
+- 조회수는 메인 카드와 동일한 `reports/view-counts.json` 값을 사용하고 데이터가 없으면 0이다.
+- PDF 버튼이 없는 보고서는 공통 플로팅 도구가 PDF·공유·조회수를 함께 만든다.
+- 메인 보고서 카드에는 카드 링크와 분리된 `공유` 버튼을 둬 복사 클릭이 페이지 이동을 일으키지 않게 한다.
+- 390px에서는 PDF·공유를 같은 줄에 유지하고 조회수는 필요하면 다음 줄 전체 폭으로 내려간다.
+- 인쇄에서는 공유·조회수 UI를 숨긴다.
 
 ## 6. Motion
 

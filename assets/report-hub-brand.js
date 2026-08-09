@@ -2,15 +2,85 @@
   "use strict";
 
   var HOME = "https://aireport.ai-hub-os.com/";
-  var VERSION = "20260809-rh3";
+  var VERSION = "20260809-rh4";
+  var SEOUL_TIME_ZONE = "Asia/Seoul";
   var script = document.currentScript;
   var faviconUrl = script && script.src
     ? new URL("favicon.svg?v=" + VERSION, script.src).href
     : "https://aihubos.github.io/reportmode/assets/favicon.svg?v=" + VERSION;
   var layoutObserver = null;
+  var clockTimer = null;
 
   function logoMarkup() {
-    return '<span class="report-hub-wordmark">Report Hub</span>';
+    return '<span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span>';
+  }
+
+  function formatClock(value) {
+    var date = value instanceof Date ? value : new Date(value || Date.now());
+    return {
+      date: new Intl.DateTimeFormat("ko-KR", {
+        timeZone: SEOUL_TIME_ZONE,
+        month: "long",
+        day: "numeric",
+        weekday: "long"
+      }).format(date),
+      time: new Intl.DateTimeFormat("en-GB", {
+        timeZone: SEOUL_TIME_ZONE,
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hourCycle: "h23"
+      }).format(date)
+    };
+  }
+
+  function updateClock(clock, value) {
+    if (!clock) return;
+    var now = value instanceof Date ? value : new Date();
+    var formatted = formatClock(now);
+    var dateOutput = clock.querySelector(".report-hub-clock-date");
+    var timeOutput = clock.querySelector(".report-hub-clock-time");
+    if (dateOutput) dateOutput.textContent = formatted.date;
+    if (timeOutput) timeOutput.textContent = formatted.time;
+    clock.dateTime = now.toISOString();
+    clock.title = formatted.date + " " + formatted.time + " (서울)";
+  }
+
+  function tickClocks() {
+    document.querySelectorAll("[data-report-hub-clock]").forEach(function (clock) {
+      updateClock(clock);
+    });
+  }
+
+  function ensureClock(container, before) {
+    if (!container) return null;
+    var clock = container.querySelector("[data-report-hub-clock]");
+    if (!clock) {
+      clock = document.createElement("time");
+      clock.className = "report-hub-clock";
+      clock.setAttribute("data-report-hub-clock", "true");
+      clock.setAttribute("aria-label", "서울 현재 날짜와 시각");
+      clock.innerHTML = '<span class="report-hub-clock-date"></span><span class="report-hub-clock-time"></span>';
+      container.insertBefore(clock, before || null);
+    }
+    updateClock(clock);
+    if (!clockTimer && typeof root.setInterval === "function") {
+      clockTimer = root.setInterval(tickClocks, 1000);
+    }
+    return clock;
+  }
+
+  function ensureArchiveBrandCluster(archiveBrand) {
+    if (!archiveBrand || !archiveBrand.parentNode) return null;
+    var cluster = archiveBrand.closest(".report-hub-brand-cluster");
+    if (!cluster) {
+      cluster = document.createElement("div");
+      cluster.className = "report-hub-brand-cluster";
+      archiveBrand.parentNode.insertBefore(cluster, archiveBrand);
+      cluster.appendChild(archiveBrand);
+    }
+    ensureClock(cluster);
+    return cluster;
   }
 
   function setLink(link) {
@@ -57,6 +127,7 @@
     var controls = document.querySelector(".report-layout-controls");
     if (!controls) return false;
     controls.classList.remove("is-standalone");
+    ensureClock(menu, controls);
     if (controls.parentNode !== menu) menu.appendChild(controls);
     if (layoutObserver) {
       layoutObserver.disconnect();
@@ -109,6 +180,7 @@
     if (archiveBrand) {
       archiveBrand.classList.add("report-hub-brand-link");
       setLink(archiveBrand);
+      ensureArchiveBrandCluster(archiveBrand);
     }
 
     var home = document.querySelector(".report-home-button");
@@ -127,11 +199,17 @@
     if (!archiveBrand) {
       var menu = ensureFloatingMenu();
       if (home && home.parentNode !== menu) menu.insertBefore(home, menu.firstChild);
+      ensureClock(menu, menu.querySelector(".report-layout-controls"));
       installTitleLinks();
       watchForLayoutControls();
     }
   }
 
-  root.ReportHubBrand = { HOME: HOME, install: install, attachLayoutControls: attachLayoutControls };
+  root.ReportHubBrand = {
+    HOME: HOME,
+    install: install,
+    attachLayoutControls: attachLayoutControls,
+    formatClock: formatClock
+  };
   install();
 })(typeof globalThis !== "undefined" ? globalThis : this);

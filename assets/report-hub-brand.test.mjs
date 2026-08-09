@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import test from "node:test";
+import vm from "node:vm";
 
 const root = path.resolve(import.meta.dirname, "..");
 
@@ -16,7 +17,11 @@ test("public brand uses a large Toss Blue text wordmark and one floating menu", 
   assert.match(css, /--rh-primary:\s*#3182F6/);
   assert.match(css, /\.report-hub-floating-menu\s*{[^}]*position:\s*fixed/s);
   assert.match(css, /\.report-home-button/);
-  assert.match(css, /\.report-hub-wordmark\s*{[^}]*font-size:\s*24px/s);
+  assert.match(css, /\.report-hub-wordmark\s*{[^}]*font-size:\s*var\(--rh-wordmark-size\)/s);
+  assert.match(css, /--rh-wordmark-size:\s*36px/);
+  assert.match(css, /--rh-wordmark-size-compact:\s*30px/);
+  assert.match(css, /\.report-hub-byline\s*{[^}]*color:\s*var\(--rh-muted\)/s);
+  assert.match(css, /\.report-hub-clock-time\s*{[^}]*font-variant-numeric:\s*tabular-nums/s);
   assert.doesNotMatch(css, /gradient|glow/i);
   assert.match(script, /https:\/\/aireport\.ai-hub-os\.com\//);
   assert.match(script, /if \(!home && !archiveBrand\)/);
@@ -28,8 +33,20 @@ test("public brand uses a large Toss Blue text wordmark and one floating menu", 
   assert.match(archive, /<title>Report Hub \| AI 리서치 라이브러리<\/title>/);
   assert.doesNotMatch(archive, /class="archive-profile"|<h1 id="archive-title">/);
   assert.match(archive, /class="archive-brand report-hub-brand-link"[^>]*>[\s\S]*class="report-hub-wordmark">Report Hub/);
+  assert.match(archive, /class="report-hub-byline">by Jeremy/);
+  assert.match(archive, /class="report-hub-clock"/);
   assert.match(archive, /class="archive-blog-card"/);
   assert.doesNotMatch(archive, /class="archive-brand[^>]*>[\s\S]{0,180}report-hub-logo/);
   assert.doesNotMatch(archive, /class="archive-avatar"/);
   assert.doesNotMatch(archive, /Jeremy's AI Report|>RM<|>R<\/span>/);
+});
+
+test("public brand formats the Seoul weekday and second clock", () => {
+  const script = fs.readFileSync(path.join(root, "assets", "report-hub-brand.js"), "utf8");
+  const context = { document: { body: null, currentScript: null } };
+  vm.runInNewContext(script, context);
+
+  const output = context.ReportHubBrand.formatClock(new Date("2026-08-09T08:25:08.000Z"));
+  assert.equal(output.date, "8월 9일 일요일");
+  assert.equal(output.time, "17:25:08");
 });

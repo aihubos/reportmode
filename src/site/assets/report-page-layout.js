@@ -8,8 +8,8 @@
   if (!document.querySelector('script[src*="report-hub-brand.js"]')) {
     var brandScript = document.createElement("script");
     brandScript.src = layoutScript && layoutScript.src
-      ? new URL("report-hub-brand.js?v=20260809-rh3", layoutScript.src).href
-      : "https://aihubos.github.io/reportmode/assets/report-hub-brand.js?v=20260809-rh3";
+      ? new URL("report-hub-brand.js?v=20260809-rh4", layoutScript.src).href
+      : "https://aihubos.github.io/reportmode/assets/report-hub-brand.js?v=20260809-rh4";
     document.head.appendChild(brandScript);
   }
 
@@ -57,6 +57,128 @@
   });
 
   var buttons = controls.querySelectorAll("[data-report-layout]");
+
+  function findPrimaryPdfButton() {
+    var direct = document.getElementById("report-pdf-button");
+    if (direct) return direct;
+    var candidates = document.querySelectorAll("button, a");
+    for (var index = 0; index < candidates.length; index += 1) {
+      var label = (candidates[index].textContent || "").replace(/\s+/g, " ").trim();
+      if (label === "PDF 저장") return candidates[index];
+    }
+    return null;
+  }
+
+  function createPdfButton() {
+    var button = document.createElement("button");
+    button.id = "report-pdf-button";
+    button.className = "pdf-save-button report-shared-pdf-button";
+    button.type = "button";
+    button.textContent = "PDF 저장";
+    button.setAttribute("aria-label", "현재 보고서를 PDF로 저장");
+    return button;
+  }
+
+  function stableReportUrl() {
+    var url = new URL(window.location.href);
+    url.search = "";
+    url.hash = "";
+    return url.toString();
+  }
+
+  function legacyCopy(value) {
+    return new Promise(function (resolve, reject) {
+      var input = document.createElement("textarea");
+      input.value = value;
+      input.setAttribute("readonly", "");
+      input.style.position = "fixed";
+      input.style.opacity = "0";
+      document.body.appendChild(input);
+      input.select();
+      input.setSelectionRange(0, value.length);
+      var copied = false;
+      try {
+        copied = document.execCommand("copy");
+      } catch (_) {
+        copied = false;
+      }
+      input.remove();
+      if (copied) resolve();
+      else reject(new Error("copy unavailable"));
+    });
+  }
+
+  function copyReportLink(value) {
+    if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+      return navigator.clipboard.writeText(value).catch(function () {
+        return legacyCopy(value);
+      });
+    }
+    return legacyCopy(value);
+  }
+
+  function setShareState(button, label, ariaLabel) {
+    button.textContent = label;
+    button.setAttribute("aria-label", ariaLabel);
+    window.clearTimeout(button.reportHubResetTimer);
+    button.reportHubResetTimer = window.setTimeout(function () {
+      button.textContent = "공유";
+      button.setAttribute("aria-label", "현재 보고서 링크 복사");
+    }, 1800);
+  }
+
+  function ensureReportActions() {
+    var pdf = findPrimaryPdfButton();
+    var host;
+    if (pdf) {
+      pdf.id = "report-pdf-button";
+      host = pdf.closest(".report-utility-controls");
+      if (host) {
+        host.classList.add("report-sharing-tools");
+      } else if (pdf.parentNode) {
+        host = document.createElement("span");
+        host.className = "report-sharing-tools";
+        pdf.parentNode.insertBefore(host, pdf);
+        host.appendChild(pdf);
+      }
+    } else {
+      pdf = createPdfButton();
+      host = document.createElement("div");
+      host.className = "report-sharing-tools is-floating-fallback";
+      controls.classList.add("has-report-actions");
+      controls.appendChild(host);
+      host.appendChild(pdf);
+    }
+    if (!host) return;
+
+    var legacyShare = document.querySelector("#report-share-button, .share-report-button, .report-share-button");
+    if (legacyShare && legacyShare.parentNode) legacyShare.parentNode.removeChild(legacyShare);
+
+    var share = document.createElement("button");
+    share.id = "report-share-button";
+    share.className = "report-share-button share-report-button";
+    share.type = "button";
+    share.textContent = "공유";
+    share.setAttribute("aria-label", "현재 보고서 링크 복사");
+    share.addEventListener("click", function () {
+      copyReportLink(stableReportUrl())
+        .then(function () {
+          setShareState(share, "복사됨", "보고서 링크가 복사되었습니다");
+        })
+        .catch(function () {
+          setShareState(share, "복사 실패", "보고서 링크 복사에 실패했습니다");
+        });
+    });
+
+    var countPanel = document.createElement("span");
+    countPanel.className = "report-view-count-panel";
+    countPanel.setAttribute("aria-label", "보고서 조회수");
+    countPanel.innerHTML = '<span>조회수</span><strong data-report-view-count>0</strong>';
+    host.appendChild(share);
+    host.appendChild(countPanel);
+  }
+
+  ensureReportActions();
 
   function wrapWideContent() {
     document.querySelectorAll("table, pre, iframe, canvas, video").forEach(function (element) {

@@ -170,6 +170,71 @@
 .report-view-icon { font-size: 16px; line-height: 1; }
 .report-view-switcher-inner > .report-utility-controls { width: 140px; margin-left: 0 !important; flex-shrink: 0; }
 
+.report-sharing-tools {
+  display: grid !important;
+  grid-template-columns: minmax(76px,1fr) minmax(76px,1fr) minmax(86px,auto);
+  align-items: stretch !important;
+  gap: 6px !important;
+  width: max-content;
+  max-width: 100%;
+  font-family: var(--rh-sans, var(--sans, sans-serif));
+}
+.report-view-switcher-inner > .report-utility-controls.report-sharing-tools { width: 260px !important; }
+.report-sharing-tools > #report-pdf-button,
+.report-sharing-tools > .report-share-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 40px !important;
+  margin: 0 !important;
+  padding: 0 10px !important;
+  border: 1px solid rgba(49, 130, 246, .2) !important;
+  border-radius: 10px !important;
+  color: #1b64da !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  font: 800 12px/1.2 var(--rh-sans, var(--sans, sans-serif)) !important;
+  letter-spacing: -.01em !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  cursor: pointer !important;
+}
+.report-sharing-tools > .report-share-button { color: #4e5968 !important; }
+.report-sharing-tools > #report-pdf-button:hover,
+.report-sharing-tools > .report-share-button:hover { border-color: rgba(49, 130, 246, .44) !important; background: #f8fbff !important; transform: none !important; }
+.report-sharing-tools > #report-pdf-button:focus-visible,
+.report-sharing-tools > .report-share-button:focus-visible { outline: 3px solid rgba(49, 130, 246, .22) !important; outline-offset: 2px !important; }
+.report-view-count-panel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 86px;
+  min-height: 40px;
+  padding: 0 10px;
+  border: 1px solid rgba(49, 130, 246, .12);
+  border-radius: 10px;
+  color: #1b64da;
+  background: #e8f3ff;
+  font: 800 11px/1.2 var(--rh-sans, var(--sans, sans-serif));
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.report-view-count-panel strong { font: inherit; }
+.report-layout-controls.has-report-actions { flex-wrap: wrap; gap: 8px; }
+.report-layout-controls.has-report-actions .report-sharing-tools { width: 260px; }
+
+@media (min-width: 1280px) {
+  body.report-a4-mode .report-layout-controls.has-report-actions .report-sharing-tools {
+    grid-template-columns: minmax(70px, 1fr) minmax(70px, 1fr) !important;
+    width: 100% !important;
+  }
+  body.report-a4-mode .report-layout-controls.has-report-actions .report-view-count-panel { grid-column: 1 / -1; }
+}
+
 .report-history-shared { width: min(1120px, calc(100% - 40px)); margin: 48px auto 0; padding: 0 0 44px; }
 .report-history-shared-card { padding: 22px; border: 1px solid #e5e8eb; border-radius: 18px; color: #191f28; background: #fff; box-shadow: 0 8px 24px rgba(15, 23, 42, .05); }
 .report-history-shared-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 15px; }
@@ -205,12 +270,19 @@
 
 @media (max-width: 700px) {
   body.report-a4-mode { max-width: 100%; margin: 0 !important; border-radius: 0; box-shadow: none; }
+  .report-view-switcher { margin-top: 96px !important; top: 154px !important; }
   .report-layout-controls.is-standalone { top: 8px; left: 8px; }
   .report-view-switcher-inner { gap: 6px !important; }
   .report-view-switcher-inner > .report-view-label { display: none; }
   .report-layout-buttons { width: 136px !important; }
   .report-view-switcher-inner > .report-view-buttons { width: 148px !important; }
   .report-view-switcher-inner > .report-utility-controls { width: 120px; }
+  .report-sharing-tools,
+  .report-view-switcher-inner > .report-utility-controls.report-sharing-tools,
+  .report-layout-controls.has-report-actions .report-sharing-tools {
+    grid-template-columns: minmax(70px, 1fr) minmax(70px, 1fr) minmax(78px, auto) !important;
+    width: min(100%, 260px) !important;
+  }
   .report-history-shared { width: min(100% - 24px, 1120px); margin-top: 28px; padding-bottom: 28px; }
   .report-history-shared-card { padding: 16px; border-radius: 14px; }
   .report-history-shared-head { align-items: flex-start; }
@@ -228,6 +300,7 @@
   .floating-menu,
   .report-view-switcher,
   .report-share-button,
+  .report-view-count-panel,
   .report-comments,
   #report-pdf-button { display: none !important; }
   body { background: #fff !important; color: #000 !important; font-size: 11pt !important; }
