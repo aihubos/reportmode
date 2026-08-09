@@ -1,12 +1,31 @@
 {
-  "generatedAt": "2026-08-08T17:31:00+09:00",
+  "generatedAt": "2026-08-09T00:46:57.515Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260809-blog-hub-v2",
+      "slug": "blog-hub-v2",
+      "title": "Blog Hub v2 게시 파이프라인 검증",
+      "category": "AI",
+      "summary": "게시 전후 이중 검증을 실제로 확인하는 임시 보고서입니다.",
+      "createdAt": "2026-08-09T09:46:40+09:00",
+      "updatedAt": "2026-08-09T09:46:40+09:00",
+      "status": "published",
+      "path": "reports/260809-blog-hub-v2/",
+      "url": "https://aihubos.github.io/reportmode/reports/260809-blog-hub-v2/",
+      "displayDate": "260809",
+      "sourceCount": 1,
+      "tags": [
+        "Blog Hub",
+        "게시 검증"
+      ],
+      "coverImage": "reports/260809-blog-hub-v2/assets/blog-hub-thumbnail.png",
+      "coverAlt": "Blog Hub v2 실제 교체 썸네일"
+    },
     {
       "id": "260808-stanley-tumbler-analysis",
       "slug": "stanley-tumbler-analysis",
       "title": "스탠리 텀블러 인기 비결과 기업 분석",
-      "subtitle": "110년 된 보온병이 패션 아이템이 된 이유와 기업 전략",
       "category": "기타",
       "summary": "스탠리 텀블러의 1913년 유래, Quencher 인기 요인, 기업 소유구조와 성장 전략, 바이럴 사례와 리스크를 비전공자 임원 관점에서 분석한 보고서입니다.",
       "createdAt": "2026-08-08T17:31:00+09:00",
@@ -24,13 +43,13 @@
         "consumer-brand"
       ],
       "coverImage": "reports/260808-stanley-tumbler-analysis/assets/color-quenchers.webp",
-      "coverAlt": "Stanley Quencher 텀블러 제품군 이미지"
+      "coverAlt": "Stanley Quencher 텀블러 제품군 이미지",
+      "subtitle": "110년 된 보온병이 패션 아이템이 된 이유와 기업 전략"
     },
     {
       "id": "260808-adhd-hsp-daily-tips",
       "slug": "adhd-hsp-daily-tips",
       "title": "ADHD와 HSP를 함께 가진 사람의 일상생활 꿀팁 핵심 정리",
-      "subtitle": "의지 대신 환경·감각·회복을 설계하는 일상 운영 가이드",
       "category": "라이프",
       "summary": "ADHD와 HSP(감각처리 민감성)를 함께 경험하는 성인을 위한 일상생활 핵심 전략: 외부기억, 감각 총량 조절, 회복 예약, 과부하 리셋, 대화 문장을 정리합니다.",
       "createdAt": "2026-08-08T17:31:00+09:00",
@@ -48,13 +67,13 @@
         "wellbeing"
       ],
       "coverImage": "reports/260808-adhd-hsp-daily-tips/assets/cover.svg",
-      "coverAlt": "ADHD와 HSP 일상 운영 가이드 전용 표지"
+      "coverAlt": "ADHD와 HSP 일상 운영 가이드 전용 표지",
+      "subtitle": "의지 대신 환경·감각·회복을 설계하는 일상 운영 가이드"
     },
     {
       "id": "260808-dongtan-car-camping-guide",
       "slug": "dongtan-car-camping-guide",
       "title": "동탄 출발 차박지 추천 | 1시간권·2시간권·3시간 이상",
-      "subtitle": "동탄호수공원 출발 차박지 9곳 상세 리포트",
       "category": "여행",
       "summary": "동탄호수공원 출발 기준 1시간권, 2시간권, 3시간 이상 차박지 9곳의 실제 주소, 사진, 차박 허용 조건, 예약 링크와 안전 체크리스트를 정리한 상세 보고서입니다.",
       "createdAt": "2026-08-08T17:31:00+09:00",
@@ -72,7 +91,8 @@
         "family"
       ],
       "coverImage": "reports/260808-dongtan-car-camping-guide/assets/singgeulbeonggeul-camp.webp",
-      "coverAlt": "용인 싱글벙글캠핑장 대표 이미지"
+      "coverAlt": "용인 싱글벙글캠핑장 대표 이미지",
+      "subtitle": "동탄호수공원 출발 차박지 9곳 상세 리포트"
     },
     {
       "id": "260808-macbook-local-llm-lm-studio-v1-1-0",

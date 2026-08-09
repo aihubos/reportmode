@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1",
+  "id": "260809-blog-hub-v2",
+  "slug": "blog-hub-v2",
+  "title": "Blog Hub v2 게시 파이프라인 검증",
+  "category": "AI",
+  "tags": [
+    "Blog Hub",
+    "게시 검증"
+  ],
+  "summary": "게시 전후 이중 검증을 실제로 확인하는 임시 보고서입니다.",
+  "createdAt": "2026-08-09T09:46:40+09:00",
+  "updatedAt": "2026-08-09T09:46:40+09:00",
+  "status": "published",
+  "sourceName": "preflight_20260809002956682_e484f180.zip",
+  "sourceCount": 1,
+  "entry": "index.html"
+}
