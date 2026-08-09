@@ -1,7 +1,27 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-09T18:42:45+09:00",
+  "updatedAt": "2026-08-09T19:20:45+09:00",
   "reports": [
+    {
+      "schemaVersion": "1",
+      "id": "260809-graphify-llm-wiki-guide",
+      "slug": "graphify-llm-wiki-guide",
+      "title": "Graphify로 업그레이드하는 LLM Wiki 개념·설치·실습 가이드",
+      "category": "AI",
+      "tags": [
+        "Graphify",
+        "LLM Wiki",
+        "지식관리",
+        "Codex"
+      ],
+      "summary": "Graphify의 지식 그래프 방식과 LLM Wiki의 차이, 설치·질의·운영 위험을 공식 문서 기준으로 정리한 실습 가이드입니다.",
+      "createdAt": "2026-08-09T19:14:22+09:00",
+      "updatedAt": "2026-08-09T19:14:22+09:00",
+      "status": "published",
+      "sourceName": "Graphify로 업그레이드하는 LLM Wiki 개념·설치·실습 가이드.zip",
+      "sourceCount": 5,
+      "entry": "index.html"
+    },
     {
       "schemaVersion": "1",
       "id": "260809-v1-0-0",

@@ -1,7 +1,29 @@
 {
-  "generatedAt": "2026-08-09T10:08:02.142Z",
+  "generatedAt": "2026-08-09T10:20:45.832Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260809-graphify-llm-wiki-guide",
+      "slug": "graphify-llm-wiki-guide",
+      "title": "Graphify로 업그레이드하는 LLM Wiki 개념·설치·실습 가이드",
+      "category": "AI",
+      "summary": "Graphify의 지식 그래프 방식과 LLM Wiki의 차이, 설치·질의·운영 위험을 공식 문서 기준으로 정리한 실습 가이드입니다.",
+      "createdAt": "2026-08-09T19:14:22+09:00",
+      "updatedAt": "2026-08-09T19:14:22+09:00",
+      "status": "published",
+      "path": "reports/260809-graphify-llm-wiki-guide/",
+      "url": "https://aihubos.github.io/reportmode/reports/260809-graphify-llm-wiki-guide/",
+      "displayDate": "260809",
+      "sourceCount": 5,
+      "tags": [
+        "Graphify",
+        "LLM Wiki",
+        "지식관리",
+        "Codex"
+      ],
+      "coverImage": "reports/260809-graphify-llm-wiki-guide/assets/graphify-official-og.png",
+      "coverAlt": "Graphify 공식 사이트 대표 이미지"
+    },
     {
       "id": "260809-v1-0-0",
       "slug": "v1-0-0",
