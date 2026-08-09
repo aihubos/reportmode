@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "1.0",
+  "reportId": "260809-21-soul-md-ai-clone-agent-v1-0-0",
+  "verifiedAt": "2026-08-09T23:20:00+09:00",
+  "sources": [
+    {
+      "id": "src-01",
+      "claim": "사용자가 제시한 100문 100답 기반 Soul.md 생성 흐름과 공유 대화",
+      "url": "https://chatgpt.com/share/6a788ab5-2040-83e8-87d2-43a933c41ac4",
+      "sourceType": "사용자 제공 공유 대화",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedIn": [
+        "Hero",
+        "사용 방법",
+        "출처"
+      ],
+      "confidence": "high",
+      "notes": "URL은 /share/ 형식. 직접 GPT 링크로 오인하지 않도록 표기."
+    },
+    {
+      "id": "src-02",
+      "claim": "SOUL.md에 어조·의견·간결함·유머·경계 등을 넣고 명확하게 버전 관리하라는 원칙",
+      "url": "https://docs.openclaw.ai/ko/concepts/soul",
+      "sourceType": "공식 문서",
+      "publishedAt": "2026",
+      "verifiedAt": "2026-08-09",
+      "usedIn": [
+        "Soul.md 구조",
+        "리스크"
+      ],
+      "confidence": "high",
+      "notes": "OpenClaw 프레임워크 기준이며 모든 에이전트 도구에 동일하게 적용된다는 뜻은 아님."
+    },
+    {
+      "id": "src-03",
+      "claim": "Custom GPT는 instructions와 knowledge 파일, capabilities, version history를 구성할 수 있음",
+      "url": "https://help.openai.com/en/articles/8554397-creating-and-editing-gpts",
+      "sourceType": "OpenAI 공식 도움말",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedIn": [
+        "적용 방법",
+        "FAQ"
+      ],
+      "confidence": "high",
+      "notes": "GPT 생성·편집은 플랜과 workspace permission에 따라 제한될 수 있음."
+    },
+    {
+      "id": "src-04",
+      "claim": "GPTs는 saved memory, custom instructions, previous conversations를 자동 사용하지 않고 대화가 새로 시작됨",
+      "url": "https://help.openai.com/en/articles/8554407-gpts-in-chatgpt",
+      "sourceType": "OpenAI 공식 도움말",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedIn": [
+        "실전 사용처",
+        "FAQ"
+      ],
+      "confidence": "high",
+      "notes": "공식 도움말의 현재 동작 기준. 향후 변경 가능."
+    },
+    {
+      "id": "src-05",
+      "claim": "Voice를 GPTs와 사용할 수 있으나 Live는 custom GPTs에서 지원되지 않고, transcript는 발화와 정확히 일치하지 않을 수 있음",
+      "url": "https://help.openai.com/en/articles/20001274",
+      "sourceType": "OpenAI 공식 도움말",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedIn": [
+        "Voice 모드",
+        "FAQ"
+      ],
+      "confidence": "high",
+      "notes": "플랜·지역·앱 버전별 옵션 차이 있음."
+    },
+    {
+      "id": "src-06",
+      "claim": "ChatGPT shared link는 링크를 가진 사람이 볼 수 있으며 /share/ URL 구조를 사용함",
+      "url": "https://help.openai.com/en/articles/7925741-chatgpt-shared-links-faq",
+      "sourceType": "OpenAI 공식 도움말",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedIn": [
+        "Hero 주의",
+        "사용 방법",
+        "리스크"
+      ],
+      "confidence": "high",
+      "notes": "공유 링크에는 민감한 정보를 포함하지 말라는 공식 안내."
+    },
+    {
+      "id": "src-07",
+      "claim": "Data Controls에서 Improve the model for everyone 설정을 끌 수 있음",
+      "url": "https://help.openai.com/en/articles/7730893-data-controls-faq",
+      "sourceType": "OpenAI 공식 도움말",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-09",
+      "usedIn": [
+        "개인정보 주의"
+      ],
+      "confidence": "high",
+      "notes": "계정·workspace 설정에 따라 옵션과 기본값 차이 가능."
+    }
+  ]
+}
