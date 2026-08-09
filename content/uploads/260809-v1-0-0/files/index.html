@@ -1,0 +1,1241 @@
+<!DOCTYPE html><html lang="ko"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="자율주행차가 교통 혼잡을 없앨 수 있는지, 차량 기술·교통 시스템·이동 수요 관점에서 분석한 임원용 반응형 보고서">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:title" content="모든 차가 자율주행을 해도 도로는 계속 막힐까?">
+  <meta property="og:description" content="자율주행이 교통 혼잡을 줄이는 조건과 서울의 실행 과제">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="assets/a148-autonomous-bus.jpg">
+  <title>모든 차가 자율주행을 해도 도로는 계속 막힐까? · v1.0.0</title>
+  <style>
+    :root {
+      --blue: #3182F6;
+      --blue-strong: #1B64DA;
+      --blue-soft: #E8F3FF;
+      --ink: #191F28;
+      --ink-2: #333D4B;
+      --muted: #6B7684;
+      --muted-2: #8B95A1;
+      --line: #E5E8EB;
+      --surface: #F7F8FA;
+      --surface-2: #F2F4F6;
+      --white: #FFFFFF;
+      --highlight: #DFFF6A;
+      --highlight-yellow: #FFF184;
+      --mint: #DFFBF2;
+      --violet: #EEE9FF;
+      --danger-soft: #FFF0F0;
+      --danger: #D45454;
+      --shadow-sm: 0 8px 30px rgba(25,31,40,.06);
+      --shadow-md: 0 24px 70px rgba(25,31,40,.10);
+      --radius-sm: 18px;
+      --radius-md: 28px;
+      --radius-lg: 40px;
+      --max: 1180px;
+      --hero-title-min: 36px;
+      --hero-title-fluid: 4.4vw;
+      --hero-title-max: 55px;
+      --section-title-min: 28px;
+      --section-title-fluid: 3.3vw;
+      --section-title-max: 41px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 88% 5%, rgba(49,130,246,.11), transparent 26rem),
+        radial-gradient(circle at 8% 23%, rgba(223,255,106,.09), transparent 24rem),
+        #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", sans-serif;
+      line-height: 1.65;
+      letter-spacing: -.02em;
+      overflow-x: hidden;
+      word-break: keep-all;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    img, svg { display: block; max-width: 100%; }
+    h1, h2, h3, h4, p, figure { margin-top: 0; }
+    strong { color: var(--ink); }
+    mark { color: inherit; background: transparent; }
+    :focus-visible { outline: 3px solid rgba(49,130,246,.38); outline-offset: 3px; }
+
+    .skip-link {
+      position: fixed;
+      left: 14px;
+      top: -80px;
+      z-index: 3000;
+      padding: 10px 14px;
+      border-radius: 12px;
+      color: #fff;
+      background: var(--ink);
+      font-weight: 800;
+      transition: top .2s ease;
+    }
+    .skip-link:focus { top: 14px; }
+
+    .scroll-progress {
+      position: fixed;
+      inset: 0 auto auto 0;
+      width: 0;
+      height: 3px;
+      z-index: 1400;
+      background: linear-gradient(90deg, var(--blue), #6AA7FF);
+      transition: width .08s linear;
+    }
+
+    .container { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+
+    .nav-wrap { position: sticky; top: 0; z-index: 1200; padding: 14px 22px 0; }
+    .nav {
+      max-width: 1240px;
+      min-height: 62px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 10px 12px 10px 18px;
+      border: 1px solid rgba(229,232,235,.88);
+      border-radius: 22px;
+      background: rgba(255,255,255,.84);
+      box-shadow: 0 10px 34px rgba(25,31,40,.05);
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+    }
+    .brand { display: flex; align-items: center; gap: 11px; min-width: max-content; font-size: 14px; font-weight: 850; }
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      color: #fff;
+      background: linear-gradient(145deg, #5CA2FF, var(--blue-strong));
+      box-shadow: 0 8px 20px rgba(49,130,246,.28);
+    }
+    .brand-mark svg { width: 21px; height: 21px; }
+    .brand-sub { color: var(--muted-2); font-weight: 750; }
+    .nav-links { display: flex; align-items: center; gap: 5px; margin-left: auto; }
+    .nav-links a { padding: 9px 11px; border-radius: 12px; color: var(--muted); font-size: 13px; font-weight: 750; transition: .2s ease; }
+    .nav-links a:hover { color: var(--ink); background: var(--surface); }
+    .nav-actions { display: flex; gap: 8px; }
+
+    .btn {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      min-height: 42px;
+      padding: 0 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 850;
+      letter-spacing: -.02em;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { color: #fff; background: var(--blue); box-shadow: 0 10px 24px rgba(49,130,246,.24); }
+    .btn-primary:hover { background: var(--blue-strong); }
+    .btn-ghost { color: var(--ink-2); background: var(--surface); }
+    .btn-ghost:hover { background: var(--surface-2); }
+
+    .hero-shell { position: relative; }
+    .hero {
+      min-height: 790px;
+      display: grid;
+      grid-template-columns: 1.04fr .96fr;
+      align-items: center;
+      gap: 58px;
+      padding: 78px 0 68px;
+    }
+    .hero-copy { position: relative; z-index: 2; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 13px;
+      margin-bottom: 22px;
+      border-radius: 999px;
+      color: var(--blue-strong);
+      background: var(--blue-soft);
+      font-size: 14px;
+      font-weight: 850;
+    }
+    .eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 5px rgba(49,130,246,.12); }
+    .hero h1 {
+      max-width: 730px;
+      margin-bottom: 23px;
+      font-size: clamp(var(--hero-title-min), var(--hero-title-fluid), var(--hero-title-max));
+      line-height: 1.09;
+      letter-spacing: -.058em;
+      font-weight: 870;
+      text-wrap: balance;
+      overflow-wrap: anywhere;
+    }
+    .blue { color: var(--blue); }
+    .marker { position: relative; white-space: nowrap; z-index: 0; }
+    .marker::after {
+      content: "";
+      position: absolute;
+      left: -.03em;
+      right: -.03em;
+      bottom: .08em;
+      height: .34em;
+      border-radius: .12em;
+      background: var(--highlight);
+      transform: rotate(-1.2deg);
+      z-index: -1;
+      opacity: .92;
+    }
+    .hero-lead { max-width: 720px; margin-bottom: 26px; color: var(--muted); font-size: clamp(18px,1.8vw,22px); line-height: 1.62; font-weight: 620; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .hero-note { margin-top: 22px; display: flex; align-items: flex-start; gap: 10px; color: var(--muted); font-size: 13px; font-weight: 650; }
+    .hero-note svg { width: 18px; height: 18px; flex: 0 0 auto; margin-top: 2px; color: var(--blue); }
+
+    .report-meta { margin-top: 18px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 13px; color: var(--muted-2); font-size: 12px; font-weight: 800; }
+    .version-badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0 10px;
+      border-radius: 999px;
+      color: var(--blue-strong);
+      background: var(--blue-soft);
+      border: 1px solid rgba(49,130,246,.16);
+      font-variant-numeric: tabular-nums;
+    }
+    .report-meta-separator { width: 3px; height: 3px; border-radius: 50%; background: var(--line); }
+
+    .hero-visual { min-height: 610px; display: grid; place-items: center; position: relative; }
+    .hero-orbit { position: absolute; width: 515px; height: 515px; border: 1px dashed rgba(49,130,246,.20); border-radius: 50%; animation: orbit 24s linear infinite; }
+    .hero-orbit::before, .hero-orbit::after { content: ""; position: absolute; width: 13px; height: 13px; border-radius: 50%; }
+    .hero-orbit::before { top: 68px; right: 62px; background: var(--blue); box-shadow: 0 0 0 8px rgba(49,130,246,.11); }
+    .hero-orbit::after { left: 30px; bottom: 140px; background: var(--highlight); box-shadow: 0 0 0 8px rgba(223,255,106,.20); }
+    @keyframes orbit { to { transform: rotate(360deg); } }
+
+    .decision-board {
+      width: min(100%,500px);
+      position: relative;
+      z-index: 2;
+      padding: 22px;
+      border: 1px solid rgba(229,232,235,.92);
+      border-radius: 36px;
+      background: rgba(255,255,255,.96);
+      box-shadow: var(--shadow-md);
+      backdrop-filter: blur(14px);
+    }
+    .board-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 15px; }
+    .board-title { display: flex; align-items: center; gap: 9px; color: var(--ink-2); font-size: 13px; font-weight: 900; }
+    .board-title i { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); }
+    .board-tag { padding: 5px 9px; border-radius: 999px; color: #126D58; background: var(--mint); font-size: 10px; font-weight: 900; }
+    .verdict {
+      position: relative;
+      overflow: hidden;
+      padding: 25px;
+      border-radius: 26px;
+      color: #fff;
+      background: linear-gradient(145deg,#216DDC,#3182F6 58%,#5A9CFF);
+    }
+    .verdict::after { content: ""; position: absolute; width: 170px; height: 170px; right: -80px; bottom: -100px; border-radius: 50%; background: rgba(255,255,255,.13); }
+    .verdict-label { display: block; margin-bottom: 9px; color: rgba(255,255,255,.74); font-size: 11px; font-weight: 900; letter-spacing: .08em; }
+    .verdict strong { position: relative; z-index: 1; display: block; color: #fff; font-size: 25px; line-height: 1.36; letter-spacing: -.045em; }
+    .equation {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 10px;
+      align-items: center;
+      margin-top: 11px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 21px;
+      background: var(--surface);
+    }
+    .equation-box { min-width: 0; padding: 11px 9px; text-align: center; border-radius: 14px; background: #fff; }
+    .equation-box span { display: block; color: var(--muted-2); font-size: 10px; font-weight: 900; letter-spacing: .04em; }
+    .equation-box strong { display: block; margin-top: 3px; font-size: 15px; }
+    .equation-symbol { color: var(--blue); font-size: 25px; font-weight: 300; }
+    .board-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 9px; margin-top: 10px; }
+    .board-card { min-height: 124px; padding: 14px; border: 1px solid var(--line); border-radius: 18px; background: #fff; }
+    .board-card b { width: 27px; height: 27px; display: grid; place-items: center; margin-bottom: 12px; border-radius: 9px; color: var(--blue); background: var(--blue-soft); font-size: 10px; }
+    .board-card:nth-child(2) b { color: #7557D2; background: var(--violet); }
+    .board-card:nth-child(3) b { color: #126D58; background: var(--mint); }
+    .board-card strong { display: block; margin-bottom: 4px; font-size: 13px; }
+    .board-card p { margin: 0; color: var(--muted); font-size: 10px; line-height: 1.5; font-weight: 650; }
+
+    .evidence-legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .evidence-tag { display: inline-flex; align-items: center; gap: 6px; padding: 6px 9px; border-radius: 999px; font-size: 11px; font-weight: 850; }
+    .evidence-tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; }
+    .evidence-tag.verified { color: #126D58; background: var(--mint); }
+    .evidence-tag.verified::before { background: #20A486; }
+    .evidence-tag.statement { color: #6C52CC; background: var(--violet); }
+    .evidence-tag.statement::before { background: #8066DF; }
+    .evidence-tag.inference { color: #7C6500; background: #FFF6C7; }
+    .evidence-tag.inference::before { background: #D9B800; }
+
+    section { padding: 104px 0; }
+    .section-soft { background: var(--surface); }
+    .section-blue {
+      color: #fff;
+      background:
+        radial-gradient(circle at 15% 20%,rgba(255,255,255,.18),transparent 25rem),
+        linear-gradient(145deg,#216DDC,#3182F6 58%,#5A9CFF);
+    }
+    .section-kicker { margin-bottom: 10px; color: var(--blue); font-size: 14px; font-weight: 900; letter-spacing: .02em; }
+    .section-blue .section-kicker { color: rgba(255,255,255,.74); }
+    .section-title {
+      max-width: 900px;
+      margin-bottom: 18px;
+      font-size: clamp(var(--section-title-min),var(--section-title-fluid),var(--section-title-max));
+      line-height: 1.19;
+      letter-spacing: -.05em;
+      font-weight: 860;
+      text-wrap: balance;
+      overflow-wrap: anywhere;
+    }
+    .section-desc { max-width: 860px; margin-bottom: 44px; color: var(--muted); font-size: 19px; line-height: 1.62; font-weight: 600; }
+    .section-blue .section-desc { color: rgba(255,255,255,.79); }
+    .cite { display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 20px; margin-left: 2px; padding: 0 5px; border-radius: 7px; color: var(--blue-strong); background: var(--blue-soft); font-size: 10px; font-weight: 900; vertical-align: .12em; }
+    .section-blue .cite { color: #fff; background: rgba(255,255,255,.16); }
+
+    .thesis-card {
+      display: grid;
+      grid-template-columns: 142px 1fr;
+      gap: 28px;
+      align-items: center;
+      padding: 34px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: #fff;
+      box-shadow: var(--shadow-sm);
+    }
+    .thesis-stamp { aspect-ratio: 1; display: grid; place-items: center; border-radius: 34px; color: var(--blue); background: var(--blue-soft); }
+    .thesis-stamp svg { width: 68px; height: 68px; }
+    .thesis-copy h3 { margin-bottom: 10px; font-size: 25px; line-height: 1.35; letter-spacing: -.04em; }
+    .thesis-copy p { margin-bottom: 0; color: var(--muted); font-size: 18px; font-weight: 600; }
+    .thesis-copy .highlight { position: relative; color: var(--ink); z-index: 0; white-space: nowrap; }
+    .thesis-copy .highlight::after { content: ""; position: absolute; left: -.03em; right: -.03em; bottom: .05em; height: .3em; border-radius: 4px; background: var(--highlight); z-index: -1; }
+
+    .insight-grid, .feature-grid, .value-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 22px; }
+    .insight-card, .feature-card, .value-card {
+      min-height: 250px;
+      padding: 27px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: #fff;
+      box-shadow: 0 10px 30px rgba(25,31,40,.035);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .insight-card:hover, .feature-card:hover, .value-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .card-index { width: 37px; height: 37px; display: grid; place-items: center; margin-bottom: 20px; border-radius: 12px; color: var(--blue); background: var(--blue-soft); font-size: 12px; font-weight: 900; }
+    .insight-card:nth-child(2) .card-index, .feature-card:nth-child(2) .card-index { color: #7458D2; background: var(--violet); }
+    .insight-card:nth-child(3) .card-index, .feature-card:nth-child(3) .card-index { color: #15876D; background: var(--mint); }
+    .insight-card h3, .feature-card h3, .value-card h3 { margin-bottom: 10px; font-size: 23px; line-height: 1.35; letter-spacing: -.04em; }
+    .insight-card p, .feature-card p, .value-card p { margin-bottom: 0; color: var(--muted); font-size: 15px; font-weight: 600; }
+    .easy-label { display: inline-flex; padding: 5px 9px; margin-bottom: 15px; border-radius: 8px; color: #415400; background: var(--highlight); font-size: 12px; font-weight: 900; transform: rotate(-1deg); }
+
+    .paradox-layout { display: grid; grid-template-columns: .82fr 1.18fr; gap: 24px; align-items: stretch; }
+    .paradox-copy { padding: 34px; border-radius: 32px; color: #fff; background: var(--ink); box-shadow: var(--shadow-md); }
+    .paradox-copy .section-kicker { color: #8BBCFF; }
+    .paradox-copy h3 { margin-bottom: 15px; font-size: 31px; line-height: 1.27; letter-spacing: -.05em; }
+    .paradox-copy p { color: rgba(255,255,255,.72); font-size: 17px; font-weight: 600; }
+    .paradox-copy .quote { margin-top: 26px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.14); color: #fff; font-size: 20px; font-weight: 800; line-height: 1.5; }
+    .paradox-copy .quote mark { padding: 0 .12em; border-radius: 4px; color: var(--ink); background: var(--highlight); }
+    .route-flow { display: grid; grid-template-columns: repeat(2,1fr); gap: 13px; }
+    .route-step { position: relative; min-height: 190px; padding: 24px; border: 1px solid var(--line); border-radius: 26px; background: #fff; box-shadow: 0 8px 24px rgba(25,31,40,.035); }
+    .route-step:last-child { border-color: rgba(49,130,246,.25); background: linear-gradient(180deg,#fff,#F2F7FF); }
+    .route-step b { width: 34px; height: 34px; display: grid; place-items: center; margin-bottom: 24px; border-radius: 11px; color: var(--blue); background: var(--blue-soft); font-size: 12px; }
+    .route-step h4 { margin-bottom: 7px; font-size: 19px; }
+    .route-step p { margin-bottom: 0; color: var(--muted); font-size: 14px; font-weight: 650; }
+    .route-step .arrow { position: absolute; right: -13px; top: 50%; z-index: 3; width: 26px; height: 26px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--blue); background: #fff; box-shadow: var(--shadow-sm); transform: translateY(-50%); }
+    .route-step:nth-child(2) .arrow { display: none; }
+
+    .system-equation { margin-top: 24px; padding: 30px; border: 1px solid var(--line); border-radius: 30px; background: var(--surface); }
+    .system-equation-head { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 22px; }
+    .system-equation-head h3 { margin-bottom: 4px; font-size: 24px; }
+    .system-equation-head p { margin-bottom: 0; color: var(--muted); font-size: 14px; font-weight: 650; }
+    .equation-track { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 10px; align-items: center; }
+    .track-card { min-height: 120px; padding: 18px; border: 1px solid var(--line); border-radius: 20px; background: #fff; }
+    .track-card span { display: block; margin-bottom: 9px; color: var(--muted-2); font-size: 10px; font-weight: 900; letter-spacing: .05em; }
+    .track-card strong { display: block; font-size: 16px; line-height: 1.35; }
+    .track-card p { margin: 7px 0 0; color: var(--muted); font-size: 12px; font-weight: 650; }
+    .track-symbol { color: var(--blue); font-size: 28px; font-weight: 300; }
+
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .compare-card { padding: 30px; border: 1px solid var(--line); border-radius: var(--radius-md); background: #fff; }
+    .compare-card.good { border-color: rgba(49,130,246,.25); background: linear-gradient(180deg,#fff,#F5F9FF); }
+    .compare-label { display: inline-flex; padding: 6px 10px; margin-bottom: 18px; border-radius: 999px; color: var(--muted); background: var(--surface-2); font-size: 12px; font-weight: 900; }
+    .compare-card.good .compare-label { color: var(--blue-strong); background: var(--blue-soft); }
+    .compare-card h3 { margin-bottom: 12px; font-size: 24px; letter-spacing: -.04em; }
+    .compare-card > p { color: var(--muted); font-size: 16px; font-weight: 600; }
+    .compare-list { display: grid; gap: 12px; margin-top: 20px; }
+    .compare-item { display: grid; grid-template-columns: 24px 1fr; gap: 10px; color: var(--ink-2); font-size: 15px; font-weight: 700; }
+    .compare-item b { width: 24px; height: 24px; display: grid; place-items: center; border-radius: 50%; color: var(--muted-2); background: var(--surface-2); font-size: 11px; }
+    .compare-card.good .compare-item b { color: var(--blue); background: var(--blue-soft); }
+
+    .metric-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-top: 22px; }
+    .metric-card { min-height: 168px; padding: 23px; border: 1px solid var(--line); border-radius: 24px; background: #fff; }
+    .metric-card strong { display: block; margin-bottom: 5px; color: var(--blue); font-size: 34px; line-height: 1.1; letter-spacing: -.05em; font-variant-numeric: tabular-nums; }
+    .metric-card span { display: block; margin-bottom: 12px; color: var(--ink-2); font-size: 14px; font-weight: 850; }
+    .metric-card p { margin-bottom: 0; color: var(--muted); font-size: 12px; font-weight: 650; }
+    .metric-card.caution strong { color: #7C5E00; }
+
+    .evidence-note { margin-top: 22px; display: flex; align-items: flex-start; gap: 14px; padding: 22px 24px; border: 1px solid #F4E28E; border-radius: 22px; color: #635300; background: #FFF8CE; font-size: 15px; font-weight: 700; }
+    .evidence-note svg { width: 22px; height: 22px; flex: 0 0 auto; margin-top: 2px; }
+    .evidence-note strong { color: #5C4B00; }
+
+    .scenario-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 17px; }
+    .scenario-card { position: relative; overflow: hidden; min-height: 390px; padding: 28px; border: 1px solid var(--line); border-radius: 30px; background: #fff; box-shadow: 0 10px 30px rgba(25,31,40,.035); }
+    .scenario-card.recommended { border-color: rgba(49,130,246,.28); background: linear-gradient(180deg,#fff,#F3F8FF); }
+    .scenario-band { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 24px; }
+    .scenario-share { display: inline-flex; padding: 7px 10px; border-radius: 999px; color: var(--blue-strong); background: var(--blue-soft); font-size: 12px; font-weight: 900; }
+    .scenario-certainty { color: var(--muted-2); font-size: 11px; font-weight: 850; }
+    .scenario-card h3 { margin-bottom: 8px; font-size: 24px; letter-spacing: -.04em; }
+    .scenario-card > p { color: var(--muted); font-size: 15px; font-weight: 600; }
+    .penetration-visual { height: 82px; display: flex; align-items: flex-end; gap: 5px; margin: 24px 0; padding: 13px; border-radius: 18px; background: var(--surface); }
+    .penetration-visual i { flex: 1; min-width: 0; height: 22px; border-radius: 7px 7px 3px 3px; background: #D9DEE5; }
+    .scenario-card.low .penetration-visual i:nth-child(-n+1),
+    .scenario-card.mid .penetration-visual i:nth-child(-n+4),
+    .scenario-card.high .penetration-visual i:nth-child(-n+7) { height: 52px; background: var(--blue); }
+    .scenario-list { display: grid; gap: 10px; }
+    .scenario-list div { display: grid; grid-template-columns: 21px 1fr; gap: 9px; color: var(--ink-2); font-size: 14px; font-weight: 700; }
+    .scenario-list b { width: 21px; height: 21px; display: grid; place-items: center; border-radius: 7px; color: var(--blue); background: var(--blue-soft); font-size: 10px; }
+
+    .flow-grid { display: grid; grid-template-columns: repeat(6,1fr); gap: 12px; }
+    .flow-step { position: relative; min-height: 250px; padding: 22px 18px; border: 1px solid rgba(255,255,255,.19); border-radius: 25px; background: rgba(255,255,255,.11); backdrop-filter: blur(8px); }
+    .flow-step::after { content: ""; position: absolute; top: 50%; right: -10px; width: 8px; height: 8px; border-top: 2px solid rgba(255,255,255,.55); border-right: 2px solid rgba(255,255,255,.55); transform: rotate(45deg); }
+    .flow-step:last-child::after { display: none; }
+    .flow-num { width: 35px; height: 35px; display: grid; place-items: center; margin-bottom: 33px; border-radius: 11px; color: var(--blue-strong); background: #fff; font-size: 12px; font-weight: 900; }
+    .flow-step h3 { margin-bottom: 9px; font-size: 18px; line-height: 1.35; }
+    .flow-step p { margin-bottom: 0; color: rgba(255,255,255,.74); font-size: 13px; font-weight: 650; }
+    .flow-caption { margin-top: 24px; padding: 17px 20px; border: 1px solid rgba(255,255,255,.18); border-radius: 18px; color: rgba(255,255,255,.88); background: rgba(0,0,0,.10); font-size: 14px; font-weight: 700; }
+
+    .media-layout { display: grid; grid-template-columns: 1.05fr .95fr; gap: 24px; align-items: stretch; }
+    .photo-card { overflow: hidden; border: 1px solid var(--line); border-radius: 34px; background: #fff; box-shadow: var(--shadow-sm); }
+    .photo-card img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+    .photo-caption { padding: 18px 20px; color: var(--muted); font-size: 12px; font-weight: 650; }
+    .photo-caption strong { display: block; margin-bottom: 4px; font-size: 14px; }
+    .case-card { padding: 32px; border: 1px solid rgba(49,130,246,.22); border-radius: 34px; background: linear-gradient(180deg,#fff,#F3F8FF); }
+    .case-badge { display: inline-flex; padding: 6px 10px; margin-bottom: 20px; border-radius: 999px; color: var(--blue-strong); background: var(--blue-soft); font-size: 12px; font-weight: 900; }
+    .case-card h3 { margin-bottom: 13px; font-size: 28px; line-height: 1.3; letter-spacing: -.045em; }
+    .case-card > p { color: var(--muted); font-size: 16px; font-weight: 600; }
+    .case-facts { display: grid; gap: 12px; margin-top: 24px; }
+    .case-fact { display: grid; grid-template-columns: 50px 1fr; gap: 13px; align-items: start; padding: 15px; border: 1px solid var(--line); border-radius: 18px; background: #fff; }
+    .case-fact b { color: var(--blue); font-size: 19px; line-height: 1.3; }
+    .case-fact span { color: var(--ink-2); font-size: 14px; font-weight: 750; }
+    .case-takeaway { margin-top: 18px; padding: 17px 18px; border-radius: 18px; color: var(--ink-2); background: var(--highlight); font-size: 15px; font-weight: 850; }
+
+    .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 18px; }
+    .gallery-grid figure { overflow: hidden; margin-bottom: 0; border: 1px solid var(--line); border-radius: 25px; background: #fff; }
+    .gallery-grid img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+    .gallery-grid figcaption { padding: 13px 15px; color: var(--muted); font-size: 11px; font-weight: 650; }
+
+    .impact-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 15px; }
+    .impact-card { min-height: 235px; padding: 25px; border: 1px solid var(--line); border-radius: 27px; background: #fff; }
+    .impact-icon { width: 48px; height: 48px; display: grid; place-items: center; margin-bottom: 27px; border-radius: 16px; color: var(--blue); background: var(--blue-soft); }
+    .impact-card:nth-child(2) .impact-icon { color: #7458D2; background: var(--violet); }
+    .impact-card:nth-child(3) .impact-icon { color: #15876D; background: var(--mint); }
+    .impact-card:nth-child(4) .impact-icon { color: #9B7700; background: #FFF5CF; }
+    .impact-icon svg { width: 25px; height: 25px; }
+    .impact-card h3 { margin-bottom: 9px; font-size: 21px; letter-spacing: -.04em; }
+    .impact-card p { margin-bottom: 0; color: var(--muted); font-size: 14px; font-weight: 650; }
+
+    .correction-table { overflow: hidden; border: 1px solid var(--line); border-radius: 28px; background: #fff; }
+    .correction-row { display: grid; grid-template-columns: .92fr 1.08fr; border-bottom: 1px solid var(--line); }
+    .correction-row:last-child { border-bottom: 0; }
+    .correction-cell { display: flex; align-items: flex-start; gap: 12px; padding: 24px; color: var(--ink-2); font-size: 15px; font-weight: 700; }
+    .correction-cell + .correction-cell { border-left: 1px solid var(--line); }
+    .correction-cell.wrong { color: var(--muted); background: #FBFBFC; }
+    .correction-icon { width: 29px; height: 29px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 50%; font-size: 14px; font-weight: 900; }
+    .wrong .correction-icon { color: var(--danger); background: var(--danger-soft); }
+    .right .correction-icon { color: var(--blue); background: var(--blue-soft); }
+
+    .recommend-grid { display: grid; grid-template-columns: .94fr 1.06fr; gap: 22px; }
+    .recommend-card { padding: 32px; border: 1px solid var(--line); border-radius: 32px; background: #fff; }
+    .recommend-card.blue-card { color: #fff; border-color: transparent; background: linear-gradient(145deg,#216DDD,#3182F6); }
+    .recommend-card h3 { margin-bottom: 20px; font-size: 27px; }
+    .recommend-list { display: grid; gap: 15px; }
+    .recommend-item { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; }
+    .recommend-num { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 11px; color: var(--blue); background: var(--blue-soft); font-size: 12px; font-weight: 900; }
+    .blue-card .recommend-num { color: var(--blue-strong); background: #fff; }
+    .recommend-item strong { display: block; margin-bottom: 3px; font-size: 16px; }
+    .blue-card .recommend-item strong { color: #fff; }
+    .recommend-item p { margin-bottom: 0; color: var(--muted); font-size: 14px; font-weight: 650; }
+    .blue-card .recommend-item p { color: rgba(255,255,255,.74); }
+
+    .kpi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 13px; margin-top: 22px; }
+    .kpi-card { padding: 21px; border: 1px solid var(--line); border-radius: 22px; background: var(--surface); }
+    .kpi-card span { display: block; margin-bottom: 8px; color: var(--muted-2); font-size: 10px; font-weight: 900; letter-spacing: .05em; }
+    .kpi-card strong { display: block; margin-bottom: 6px; font-size: 18px; }
+    .kpi-card p { margin-bottom: 0; color: var(--muted); font-size: 12px; font-weight: 650; }
+
+    .video-layout { display: grid; grid-template-columns: 1.18fr .82fr; gap: 24px; align-items: stretch; }
+    .video-frame { overflow: hidden; min-height: 420px; border-radius: 32px; background: #111; box-shadow: var(--shadow-md); }
+    .video-frame iframe { width: 100%; height: 100%; min-height: 420px; border: 0; }
+    .video-notes { padding: 31px; border: 1px solid var(--line); border-radius: 32px; background: #fff; }
+    .video-notes h3 { margin-bottom: 14px; font-size: 26px; letter-spacing: -.04em; }
+    .video-notes p { color: var(--muted); font-size: 15px; font-weight: 600; }
+    .chapter-list { display: grid; gap: 10px; margin-top: 21px; }
+    .chapter-item { display: grid; grid-template-columns: 42px 1fr; gap: 11px; align-items: start; padding: 13px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
+    .chapter-item b { color: var(--blue); font-size: 12px; }
+    .chapter-item span { color: var(--ink-2); font-size: 13px; font-weight: 750; }
+    .print-video-link { display: none; }
+
+    .sources { padding: 80px 0 42px; border-top: 1px solid var(--line); background: #fff; }
+    .source-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 27px; }
+    .source-head h2 { margin-bottom: 5px; font-size: 29px; letter-spacing: -.04em; }
+    .source-head p { margin-bottom: 0; color: var(--muted); font-size: 14px; font-weight: 650; }
+    .source-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+    .source-link { min-height: 126px; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); transition: .2s ease; overflow-wrap: anywhere; }
+    a.source-link:hover { transform: translateY(-2px); border-color: rgba(49,130,246,.25); background: var(--blue-soft); }
+    .source-link span { display: block; margin-bottom: 6px; color: var(--muted-2); font-size: 10px; font-weight: 900; letter-spacing: .06em; }
+    .source-link strong { display: block; margin-bottom: 7px; font-size: 14px; line-height: 1.45; }
+    .source-link small { color: var(--muted); font-size: 11px; font-weight: 650; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-top: 36px; padding-top: 22px; border-top: 1px solid var(--line); color: var(--muted-2); font-size: 12px; font-weight: 650; }
+
+    .report-history { margin-top: 44px; padding-top: 34px; border-top: 1px solid var(--line); }
+    .history-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 18px; }
+    .history-head h2 { margin-bottom: 4px; font-size: 26px; letter-spacing: -.04em; }
+    .history-head p { margin-bottom: 0; color: var(--muted); font-size: 13px; font-weight: 650; }
+    .history-table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 20px; background: #fff; }
+    .history-table { width: 100%; min-width: 780px; border-collapse: collapse; font-size: 13px; }
+    .history-table th, .history-table td { padding: 15px 16px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+    .history-table tr:last-child td { border-bottom: 0; }
+    .history-table th { color: var(--muted); background: var(--surface); font-size: 11px; font-weight: 900; letter-spacing: .03em; white-space: nowrap; }
+    .history-table td { color: var(--ink-2); font-weight: 650; }
+    .history-table td:first-child { color: var(--blue-strong); font-weight: 900; white-space: nowrap; }
+    .history-table td:nth-child(2), .history-table td:nth-child(3) { white-space: nowrap; }
+    .history-status { display: inline-flex; padding: 5px 8px; border-radius: 999px; color: var(--muted); background: var(--surface-2); font-size: 11px; font-weight: 850; }
+    .history-empty { padding: 22px; color: var(--muted); text-align: center; }
+
+    .floating-actions { position: fixed; right: 22px; bottom: 22px; z-index: 900; display: grid; gap: 10px; }
+    .float-btn { width: 48px; height: 48px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 16px; color: var(--ink-2); background: rgba(255,255,255,.93); box-shadow: var(--shadow-sm); cursor: pointer; backdrop-filter: blur(12px); transition: .2s ease; }
+    .float-btn:hover { transform: translateY(-2px); color: var(--blue); border-color: rgba(49,130,246,.25); }
+    .float-btn svg { width: 20px; height: 20px; }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 1040px) {
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 62px; }
+      .hero-copy { text-align: center; }
+      .hero-lead { margin-left: auto; margin-right: auto; }
+      .hero-actions, .report-meta, .hero-note, .evidence-legend { justify-content: center; }
+      .hero-note { text-align: left; }
+      .hero-visual { min-height: 590px; }
+      .paradox-layout, .media-layout, .video-layout { grid-template-columns: 1fr; }
+      .metric-grid, .impact-grid { grid-template-columns: repeat(2,1fr); }
+      .flow-grid { grid-template-columns: repeat(3,1fr); }
+      .flow-step::after { display: none; }
+      .source-grid { grid-template-columns: repeat(2,1fr); }
+    }
+
+    @media (max-width: 720px) {
+      .container { width: min(100% - 28px,var(--max)); }
+      .nav-wrap { padding: 9px 10px 0; }
+      .nav { min-height: 56px; padding-left: 12px; border-radius: 18px; }
+      .brand-sub, .nav-actions .btn-ghost { display: none; }
+      .btn { min-height: 40px; padding: 0 13px; }
+      .hero { gap: 25px; padding: 56px 0 42px; }
+      .hero h1 { font-size: 38px; }
+      .hero-lead { font-size: 18px; }
+      .hero-visual { min-height: 540px; }
+      .hero-orbit { width: 340px; height: 340px; animation: none; }
+      .decision-board { padding: 15px; border-radius: 28px; }
+      .verdict { padding: 21px; }
+      .verdict strong { font-size: 22px; }
+      .board-grid { grid-template-columns: 1fr; }
+      .board-card { min-height: auto; }
+      section { padding: 82px 0; }
+      .section-title { font-size: 32px; }
+      .section-desc { margin-bottom: 34px; font-size: 17px; }
+      .thesis-card { grid-template-columns: 1fr; padding: 27px; }
+      .thesis-stamp { width: 94px; border-radius: 24px; }
+      .thesis-copy .highlight { white-space: normal; }
+      .insight-grid, .feature-grid, .value-grid, .compare-grid, .scenario-grid, .recommend-grid, .kpi-grid, .flow-grid, .metric-grid, .impact-grid, .source-grid { grid-template-columns: 1fr; }
+      .insight-card, .feature-card, .value-card, .scenario-card { min-height: auto; }
+      .route-flow { grid-template-columns: 1fr; }
+      .route-step .arrow { display: none; }
+      .system-equation-head { align-items: flex-start; flex-direction: column; }
+      .equation-track { grid-template-columns: 1fr; }
+      .track-symbol { justify-self: center; transform: rotate(90deg); }
+      .correction-row { grid-template-columns: 1fr; }
+      .correction-cell + .correction-cell { border-left: 0; border-top: 1px solid var(--line); }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .photo-card, .case-card, .video-frame, .video-notes { border-radius: 26px; }
+      .video-frame, .video-frame iframe { min-height: 240px; }
+      .source-head, .footer-bottom, .history-head { align-items: flex-start; flex-direction: column; }
+      .floating-actions { right: 12px; bottom: 12px; }
+    }
+
+    @media (max-width: 430px) {
+      .brand { font-size: 12px; }
+      .brand-mark { width: 33px; height: 33px; }
+      .nav-actions .btn-primary { padding: 0 11px; font-size: 12px; }
+      .hero h1 { font-size: 34px; }
+      .hero-visual { min-height: 590px; }
+      .equation { grid-template-columns: 1fr; }
+      .equation-symbol { transform: rotate(90deg); }
+      .scenario-card, .paradox-copy, .case-card, .recommend-card { padding: 24px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    @media print {
+      @page { size: A4; margin: 12mm; }
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      body { background: #fff !important; color: #000; font-size: 10pt; }
+      .nav-wrap, .floating-actions, .scroll-progress, .hero-actions, .skip-link { display: none !important; }
+      .container { width: 100%; max-width: none; }
+      .hero-shell { min-height: calc(297mm - 24mm); break-after: page; display: flex; align-items: center; }
+      .hero { min-height: auto; grid-template-columns: 1.02fr .98fr; gap: 9mm; padding: 6mm 0; }
+      .hero h1 { font-size: 31pt; }
+      .hero-lead { font-size: 12pt; }
+      .hero-visual { min-height: 118mm; }
+      .hero-orbit { display: none; }
+      .decision-board { box-shadow: none; }
+      .board-grid { grid-template-columns: repeat(3,1fr); }
+      section { padding: 13mm 0; }
+      .section-title { font-size: 24pt; }
+      .section-desc { font-size: 11pt; }
+      .section-blue { color: #000 !important; background: #fff !important; border-top: 2px solid var(--blue); border-bottom: 2px solid var(--blue); }
+      .section-blue .section-kicker { color: var(--blue) !important; }
+      .section-blue .section-desc, .flow-step p { color: #333 !important; }
+      .flow-step { color: #000; border: 1px solid #bbb; background: #fff; }
+      .flow-num { border: 1px solid #bbb; }
+      .paradox-copy, .recommend-card.blue-card { color: #000 !important; border: 1px solid #bbb; background: #F4F6F8 !important; box-shadow: none; }
+      .paradox-copy .section-kicker { color: var(--blue); }
+      .paradox-copy p, .blue-card .recommend-item p { color: #333 !important; }
+      .paradox-copy .quote, .blue-card .recommend-item strong { color: #000 !important; }
+      .insight-card, .feature-card, .value-card, .compare-card, .scenario-card, .metric-card, .impact-card, .photo-card, .case-card, .recommend-card, .video-notes, .thesis-card { box-shadow: none; break-inside: avoid; }
+      .video-frame { display: none; }
+      .print-video-link { display: block; margin-top: 10mm; font-size: 10pt; }
+      .source-grid { grid-template-columns: repeat(2,1fr); }
+      .source-link { min-height: 0; break-inside: avoid; }
+      .history-table-wrap { overflow: visible; }
+      .history-table { min-width: 0; font-size: 8.5pt; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      a { text-decoration: none; }
+    }
+  </style>
+</head>
+<body data-report-cover="assets/a148-autonomous-bus.jpg" data-report-cover-alt="모든 차가 자율주행을 해도 도로는 계속 막힐까?">
+  <a class="skip-link" href="#main-content">본문으로 바로가기</a>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <div class="nav-wrap">
+    <nav class="nav" aria-label="주요 메뉴">
+      <a class="brand" href="#top" aria-label="보고서 처음으로">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 16.5h3.4l2.2-9 3.2 11 2.2-7 1.7 5H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </span>
+        <span>자율주행 × 교통 혼잡</span>
+        <span class="brand-sub">Executive Report</span>
+      </a>
+      <div class="nav-links">
+        <a href="#summary">결론</a>
+        <a href="#paradox">경로 역설</a>
+        <a href="#capability">효과와 한계</a>
+        <a href="#scenarios">보급 시나리오</a>
+        <a href="#seoul">서울 사례</a>
+        <a href="#recommendation">권고안</a>
+        <a href="#sources">출처</a>
+      </div>
+      <div class="nav-actions">
+        <a class="btn btn-ghost" href="#video">원본 영상</a>
+        <button class="btn btn-primary" type="button" onclick="window.print()">PDF 저장</button>
+      </div>
+    </nav>
+  </div>
+
+  <main id="main-content">
+    <div class="hero-shell" id="top">
+      <div class="container">
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy reveal">
+            <div class="eyebrow"><span class="eyebrow-dot"></span>서울대 김동규 교수 영상 기반 · 최신 자료 교차 검증</div>
+            <h1 id="hero-title">
+              모든 차가 자율주행을 해도<br>도로는 <span class="blue">계속 막힐까?</span>
+            </h1>
+            <p class="hero-lead">
+              <strong>그렇습니다. 막힐 수 있습니다.</strong> 자율주행은 급가감속과 유령 정체를 줄여 도로를 더 효율적으로 쓰게 하지만, 이동 수요가 유효 용량을 넘거나 차량이 각자 최적 경로만 고르면 혼잡은 남습니다.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#summary">한 문장 결론 보기</a>
+              <a class="btn btn-ghost" href="#recommendation">의사결정 포인트 보기</a>
+            </div>
+            <div class="hero-note">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"></circle><path d="M12 10v6M12 7.2v.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+              <span><strong>핵심 전환:</strong> 목표를 “정체 0”이 아니라 <strong>예측 가능한 이동시간·사람 수송량·안전</strong>으로 바꿔야 합니다.</span>
+            </div>
+            <div class="evidence-legend" aria-label="근거 표시 범례">
+              <span class="evidence-tag verified">외부 자료 검증</span>
+              <span class="evidence-tag statement">영상 발언</span>
+              <span class="evidence-tag inference">보고서 판단</span>
+            </div>
+            <div class="report-meta" aria-label="보고서 버전 정보">
+              <span class="version-badge" id="reportVersion">v1.0.0</span>
+              <span id="reportUpdated">Updated 2026.08.09</span>
+              <span class="report-meta-separator" aria-hidden="true"></span>
+              <span id="reportGeneration">AI-assisted · Human review recommended</span>
+            </div>
+          </div>
+
+          <div class="hero-visual reveal" aria-label="교통 혼잡의 핵심 구조 요약">
+            <div class="hero-orbit" aria-hidden="true"></div>
+            <article class="decision-board">
+              <div class="board-head">
+                <div class="board-title"><i></i>EXECUTIVE SNAPSHOT</div>
+                <div class="board-tag">DECISION FIRST</div>
+              </div>
+              <div class="verdict">
+                <span class="verdict-label">ONE-LINE CONCLUSION</span>
+                <strong>자율주행은 정체를 ‘완화’하지만, 수요와 시스템 운영을 바꾸지 않으면 ‘제거’하지 못합니다.</strong>
+              </div>
+              <div class="equation" aria-label="혼잡 발생 공식">
+                <div class="equation-box"><span>TRAVEL DEMAND</span><strong>이동 수요</strong></div>
+                <div class="equation-symbol">&gt;</div>
+                <div class="equation-box"><span>EFFECTIVE CAPACITY</span><strong>유효 도로 용량</strong></div>
+              </div>
+              <div class="board-grid">
+                <div class="board-card"><b>01</b><strong>차량 기술</strong><p>급제동·충격파·차간거리 낭비를 줄입니다.</p></div>
+                <div class="board-card"><b>02</b><strong>교통 시스템</strong><p>신호·경로·요금·V2X가 전체 흐름을 조정합니다.</p></div>
+                <div class="board-card"><b>03</b><strong>이동 수요</strong><p>빈 차 이동과 추가 통행이 효과를 다시 상쇄할 수 있습니다.</p></div>
+              </div>
+            </article>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <section id="summary" class="section-soft">
+      <div class="container">
+        <div class="section-kicker reveal">EXECUTIVE SUMMARY</div>
+        <h2 class="section-title reveal">결론은 “자율주행차”보다<br>“자율협력 교통체계”가 중요하다는 것입니다</h2>
+        <p class="section-desc reveal">
+          영상은 교통을 차량 한 대의 지능이 아니라 사람·차량·신호·도로·정보가 상호작용하는 시스템으로 설명합니다. 서울대 공식 소개에서도 김동규 교수 연구실은 교통수요 예측, 네트워크, 최적운영을 주요 영역으로 제시합니다.<a class="cite" href="#source-1" aria-label="출처 1">[1]</a><a class="cite" href="#source-2" aria-label="출처 2">[2]</a>
+        </p>
+
+        <article class="thesis-card reveal">
+          <div class="thesis-stamp" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none"><path d="M9 42h46M12 35c7-15 15 13 23-2s13 6 17-10" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"></path><circle cx="12" cy="35" r="3" fill="currentColor"></circle><circle cx="35" cy="33" r="3" fill="currentColor"></circle><circle cx="52" cy="23" r="3" fill="currentColor"></circle></svg>
+          </div>
+          <div class="thesis-copy">
+            <h3>한 문장 결론</h3>
+            <p>
+              모든 차가 자율주행을 하더라도 <span class="highlight">수요가 용량보다 크면 정체는 발생</span>합니다. 다만 차량 간 협력과 실시간 신호·경로·요금 운영을 결합하면 정체의 크기와 변동성을 크게 줄일 수 있습니다.<a class="cite" href="#source-6" aria-label="출처 6">[6]</a><a class="cite" href="#source-10" aria-label="출처 10">[10]</a>
+            </p>
+          </div>
+        </article>
+
+        <div class="insight-grid">
+          <article class="insight-card reveal">
+            <div class="card-index">01</div>
+            <h3>정체는 남습니다</h3>
+            <div class="easy-label">도로도 한정된 자원</div>
+            <p>병목·합류·사고·행사·출퇴근처럼 같은 시간에 차량이 몰리는 현상은 자동화만으로 사라지지 않습니다.</p>
+          </article>
+          <article class="insight-card reveal">
+            <div class="card-index">02</div>
+            <h3>흐름은 더 안정될 수 있습니다</h3>
+            <div class="easy-label">유령 정체를 완화</div>
+            <p>차량이 급제동을 줄이고 속도를 협조적으로 조절하면 정지·출발 파동을 약화할 수 있습니다.<a class="cite" href="#source-4" aria-label="출처 4">[4]</a><a class="cite" href="#source-5" aria-label="출처 5">[5]</a></p>
+          </article>
+          <article class="insight-card reveal">
+            <div class="card-index">03</div>
+            <h3>순효과는 정책이 결정합니다</h3>
+            <div class="easy-label">빈 차와 추가 통행 통제</div>
+            <p>자동화가 승용차 이용과 무인 공차를 늘리면 용량 개선 효과를 다시 소진할 수 있습니다.<a class="cite" href="#source-6" aria-label="출처 6">[6]</a><a class="cite" href="#source-7" aria-label="출처 7">[7]</a></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="paradox">
+      <div class="container">
+        <div class="paradox-layout">
+          <article class="paradox-copy reveal">
+            <div class="section-kicker">WHY NAVIGATION FAILS</div>
+            <h3>“가장 빠른 길”을 모두가 선택하면, 그 길은 더 이상 빠르지 않습니다</h3>
+            <p>내비게이션은 각 운전자에게 현재 유리한 길을 제시하지만, 여러 사람이 동시에 같은 선택을 하면 교통량이 병목으로 몰립니다. 추가 정보가 이용자에게도 더 큰 혼잡을 만들 수 있다는 ‘정보형 브라에스 역설’ 연구도 이 가능성을 보여줍니다.<a class="cite" href="#source-3" aria-label="출처 3">[3]</a></p>
+            <div class="quote"><mark>개별 최적의 합이 전체 최적은 아닙니다.</mark></div>
+          </article>
+
+          <div class="route-flow" aria-label="경로 안내가 새 정체를 만드는 과정">
+            <article class="route-step reveal"><b>01</b><h4>빈 도로 발견</h4><p>현재 통행시간이 짧은 우회로를 시스템이 감지합니다.</p><span class="arrow" aria-hidden="true">›</span></article>
+            <article class="route-step reveal"><b>02</b><h4>동시 안내</h4><p>여러 운전자에게 같은 도로가 ‘최적 경로’로 제시됩니다.</p></article>
+            <article class="route-step reveal"><b>03</b><h4>램프·교차로 집중</h4><p>진입부와 합류부의 처리능력이 먼저 한계에 도달합니다.</p><span class="arrow" aria-hidden="true">›</span></article>
+            <article class="route-step reveal"><b>04</b><h4>새로운 정체</h4><p>개별 선택은 합리적이었지만 전체 통행시간은 오히려 늘 수 있습니다.</p></article>
+          </div>
+        </div>
+
+        <div class="system-equation reveal">
+          <div class="system-equation-head">
+            <div><h3>해결해야 할 것은 “경로 추천”이 아니라 “시스템 최적화”입니다</h3><p>운전자 한 명의 빠른 길과 도시 전체의 빠른 흐름은 목적함수가 다릅니다.</p></div>
+            <span class="evidence-tag inference">보고서 판단</span>
+          </div>
+          <div class="equation-track">
+            <div class="track-card"><span>INDIVIDUAL</span><strong>각 차량의 최소 시간</strong><p>나에게 지금 가장 빠른 길</p></div>
+            <div class="track-symbol">≠</div>
+            <div class="track-card"><span>SYSTEM</span><strong>전체 차량의 총 지체 최소</strong><p>모두의 합계 시간을 줄이는 배분</p></div>
+            <div class="track-symbol">→</div>
+            <div class="track-card"><span>TOOLS</span><strong>신호·경로·요금·대중교통</strong><p>정보와 인센티브를 함께 운영</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="capability" class="section-soft">
+      <div class="container">
+        <div class="section-kicker reveal">WHAT AVs CAN — AND CANNOT — DO</div>
+        <h2 class="section-title reveal">자율주행은 차량 흐름을 매끄럽게 하지만,<br>도로의 물리적 한계를 없애지는 않습니다</h2>
+        <p class="section-desc reveal">
+          실험에서는 적은 비율의 제어 차량도 정지·출발 파동을 완화했습니다. 그러나 이는 원형 트랙의 제한된 실험이며, 실제 도시에서는 혼합 교통·차선 변경·교차로·사고·추가 수요가 동시에 작동합니다.<a class="cite" href="#source-4" aria-label="출처 4">[4]</a><a class="cite" href="#source-5" aria-label="출처 5">[5]</a><a class="cite" href="#source-6" aria-label="출처 6">[6]</a>
+        </p>
+
+        <div class="compare-grid">
+          <article class="compare-card good reveal">
+            <div class="compare-label">차량 수준에서 개선</div>
+            <h3>정체의 ‘파동’을 줄입니다</h3>
+            <p>앞차의 작은 감속이 뒤로 갈수록 큰 급정거로 증폭되는 현상을 협조 제어로 완화할 수 있습니다.</p>
+            <div class="compare-list">
+              <div class="compare-item"><b>✓</b><div>급가감속과 불필요한 제동 감소</div></div>
+              <div class="compare-item"><b>✓</b><div>안전한 범위의 짧고 일정한 차간거리</div></div>
+              <div class="compare-item"><b>✓</b><div>신호 잔여시간을 활용한 부드러운 접근</div></div>
+              <div class="compare-item"><b>✓</b><div>차량 간 협력 주행과 군집 이동</div></div>
+            </div>
+          </article>
+          <article class="compare-card reveal">
+            <div class="compare-label">시스템 수준에서 한계</div>
+            <h3>정체의 ‘원인’은 남습니다</h3>
+            <p>같은 시각에 너무 많은 이동이 발생하면 더 효율적인 차량도 결국 줄을 서야 합니다.</p>
+            <div class="compare-list">
+              <div class="compare-item"><b>1</b><div>램프·합류·교차로 같은 구조적 병목</div></div>
+              <div class="compare-item"><b>2</b><div>사고·공사·기상·행사에 따른 용량 감소</div></div>
+              <div class="compare-item"><b>3</b><div>더 편해진 승용차가 만드는 추가 통행</div></div>
+              <div class="compare-item"><b>4</b><div>승객 없는 차량의 재배치·귀환 이동</div></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="metric-grid">
+          <article class="metric-card reveal"><strong>20+</strong><span>실험 차량 수</span><p>원형 트랙에서 20대가 넘는 차량 중 1대를 자동 제어했습니다.</p></article>
+          <article class="metric-card reveal"><strong>1대</strong><span>제어 차량</span><p>한 대의 속도 제어가 전체 흐름의 정지·출발 파동을 약화했습니다.</p></article>
+          <article class="metric-card reveal"><strong>약 5%</strong><span>실험상 낮은 침투율</span><p>미 교통부 요약은 적은 비율에서도 효과 가능성을 소개합니다. 도시 전체로 일반화할 수는 없습니다.</p></article>
+          <article class="metric-card caution reveal"><strong>최대 40%</strong><span>연료소비 개선</span><p>특정 트랙 실험의 결과이며, 실제 도로 혼잡 40% 감소를 뜻하지 않습니다.<a class="cite" href="#source-5" aria-label="출처 5">[5]</a></p></article>
+        </div>
+
+        <div class="evidence-note reveal">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 21 20H3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><path d="M12 9v5m0 3v.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+          <div><strong>영상 수치 검증 상태:</strong> 교수는 센서가 없는 구간의 정보 생성 정확도 약 85%, 경로·차로 안내로 대기시간과 대기행렬을 최대 15% 줄인 실증 결과를 언급합니다. 이번 조사에서는 해당 수치의 공개 보고서·논문 원문을 찾지 못했으므로 <strong>‘영상 발언 기반, 외부 원문 미확인’</strong>으로 분류했습니다.<a class="cite" href="#source-1" aria-label="출처 1">[1]</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="scenarios">
+      <div class="container">
+        <div class="section-kicker reveal">MIXED-TRAFFIC SCENARIOS</div>
+        <h2 class="section-title reveal">효과는 보급률 숫자 하나가 아니라<br>차량 능력과 인프라 연결 수준으로 갈립니다</h2>
+        <p class="section-desc reveal">
+          2026년 NCHRP 가이드는 자율주행차가 도로의 유효 용량을 높일 가능성과 함께, 일반차와 섞인 환경에서는 효과가 줄고 무인 공차가 교통량을 늘릴 수 있다는 불확실성을 동시에 제시합니다.<a class="cite" href="#source-6" aria-label="출처 6">[6]</a>
+        </p>
+
+        <div class="scenario-grid">
+          <article class="scenario-card low reveal">
+            <div class="scenario-band"><span class="scenario-share">낮은 보급률</span><span class="scenario-certainty">효과 불확실</span></div>
+            <h3>사람 흐름에 맞추는 단계</h3>
+            <p>소수의 자율주행차는 주변 인간 운전자의 불규칙한 행동에 맞춰 보수적으로 움직입니다.</p>
+            <div class="penetration-visual" aria-label="낮은 보급률 도식"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="scenario-list">
+              <div><b>1</b><span>차간거리·합류 효과가 제한됨</span></div>
+              <div><b>2</b><span>과도한 안전 여유가 용량을 낮출 수 있음</span></div>
+              <div><b>3</b><span>특정 제어 전략은 파동 완화 가능</span></div>
+            </div>
+          </article>
+
+          <article class="scenario-card mid recommended reveal">
+            <div class="scenario-band"><span class="scenario-share">중간 보급률</span><span class="scenario-certainty">인프라가 승부처</span></div>
+            <h3>연결의 가치가 커지는 단계</h3>
+            <p>V2X, 실시간 신호, 차로 배정, 시스템 최적 경로가 있어야 차량 비율 이상의 효과를 얻을 수 있습니다.</p>
+            <div class="penetration-visual" aria-label="중간 보급률 도식"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="scenario-list">
+              <div><b>1</b><span>교차로와 램프의 협조 제어</span></div>
+              <div><b>2</b><span>차량 간 정보 공유와 군집 형성</span></div>
+              <div><b>3</b><span>전체 최적화를 위한 공공 운영 필요</span></div>
+            </div>
+          </article>
+
+          <article class="scenario-card high reveal">
+            <div class="scenario-band"><span class="scenario-share">높은 보급률</span><span class="scenario-certainty">용량 증가 가능</span></div>
+            <h3>도로를 더 촘촘히 쓰는 단계</h3>
+            <p>차량이 같은 규칙과 정보를 공유하면 차간거리와 신호 통과 효율이 높아집니다. 그러나 이동량 자체가 늘면 다시 막힙니다.</p>
+            <div class="penetration-visual" aria-label="높은 보급률 도식"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="scenario-list">
+              <div><b>1</b><span>군집 주행과 안정적 속도 흐름</span></div>
+              <div><b>2</b><span>주차 공간 재배치 가능성</span></div>
+              <div><b>3</b><span>유도 수요·공차 이동 통제가 핵심</span></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="evidence-note reveal">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"></circle><path d="M12 10v6m0-9v.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+          <div><strong>임계값 해석 주의:</strong> 영상의 “10%에서는 별 차이가 없거나 더 혼잡할 수 있다”, “30%로 50%의 효과를 내는 인프라를 연구한다”는 설명은 연구 방향을 보여주는 발언입니다. 특정 도시와 기술에 공통으로 적용되는 보편적 임계값으로 해석하면 안 됩니다.<a class="cite" href="#source-1" aria-label="출처 1">[1]</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-blue" id="system">
+      <div class="container">
+        <div class="section-kicker reveal">HOW TO ACTUALLY REDUCE CONGESTION</div>
+        <h2 class="section-title reveal">차 한 대를 똑똑하게 만드는 것보다<br>도시 전체가 함께 판단하게 만들어야 합니다</h2>
+        <p class="section-desc reveal">
+          디지털 트윈은 현실 정보를 계속 받아 가상 모델을 동기화하고, V2X는 차량·신호·도로 인프라가 정보를 교환하게 합니다. 여기에 요금과 대중교통 정책을 결합해야 수요까지 조정할 수 있습니다.<a class="cite" href="#source-8" aria-label="출처 8">[8]</a><a class="cite" href="#source-9" aria-label="출처 9">[9]</a><a class="cite" href="#source-10" aria-label="출처 10">[10]</a><a class="cite" href="#source-11" aria-label="출처 11">[11]</a>
+        </p>
+
+        <div class="flow-grid">
+          <article class="flow-step reveal"><div class="flow-num">01</div><h3>실시간 감지</h3><p>차량·CCTV·레이더·신호·교통카드 데이터를 모읍니다.</p></article>
+          <article class="flow-step reveal"><div class="flow-num">02</div><h3>디지털 트윈</h3><p>현재 상태를 재현하고 가까운 미래의 흐름을 예측합니다.</p></article>
+          <article class="flow-step reveal"><div class="flow-num">03</div><h3>시스템 최적화</h3><p>경로·신호·차로를 전체 지체 최소 기준으로 계산합니다.</p></article>
+          <article class="flow-step reveal"><div class="flow-num">04</div><h3>V2X 협력</h3><p>차량과 인프라가 신호·위험·권장속도를 공유합니다.</p></article>
+          <article class="flow-step reveal"><div class="flow-num">05</div><h3>수요 관리</h3><p>혼잡 요금·대중교통·공유 이동으로 시간과 수단을 분산합니다.</p></article>
+          <article class="flow-step reveal"><div class="flow-num">06</div><h3>계속 검증</h3><p>사람 수송량·신뢰도·공차·안전·형평성을 반복 측정합니다.</p></article>
+        </div>
+        <div class="flow-caption reveal">운영 원칙: <strong>차량의 국지적 판단 → 도로망의 공동 판단 → 도시의 수요 관리</strong> 순으로 범위를 넓혀야 합니다.</div>
+      </div>
+    </section>
+
+    <section id="seoul">
+      <div class="container">
+        <div class="section-kicker reveal">SEOUL 2026 CASE</div>
+        <h2 class="section-title reveal">서울의 실제 서비스도 이미<br>“차량 단독”이 아니라 “차량 + 신호 인프라”로 움직입니다</h2>
+        <p class="section-desc reveal">
+          서울시가 2026년 4월 시작한 A148 새벽동행 자율주행버스는 차량 센서와 시가 제공하는 교차로 실시간 신호정보를 함께 사용합니다. 이는 영상의 핵심 주장인 ‘차량·인프라·정보의 결합’을 실제 운영에서 보여주는 사례입니다.<a class="cite" href="#source-12" aria-label="출처 12">[12]</a>
+        </p>
+
+        <div class="media-layout">
+          <figure class="photo-card reveal">
+            <img src="assets/a148-autonomous-bus.jpg" alt="서울 새벽동행 자율주행버스 A148이 도로를 운행하는 모습" width="1200" height="800">
+            <figcaption class="photo-caption"><strong>서울 새벽동행 자율주행버스 A148</strong>사진 © 심재혁 · 내 손안에 서울. 보도·사진 출처는 하단 자료에 연결했습니다.<a class="cite" href="#source-14" aria-label="출처 14">[14]</a></figcaption>
+          </figure>
+
+          <article class="case-card reveal">
+            <div class="case-badge">OFFICIAL OPERATION</div>
+            <h3>신호정보를 받는 버스가 더 안정적으로 교차로를 통과합니다</h3>
+            <p>A148은 급행 방식과 자율주행을 결합한 실제 대중교통 서비스입니다. 기술의 가치는 ‘운전자 제거’보다 신호와 도로 정보를 활용한 안정적 운행에서 먼저 나타납니다.</p>
+            <div class="case-facts">
+              <div class="case-fact"><b>22.1km</b><span>상계역~고속터미널 구간, 주요 정류소 41곳 정차</span></div>
+              <div class="case-fact"><b>98개</b><span>노선 내 교차로의 실시간 신호정보를 보완적으로 활용</span></div>
+              <div class="case-fact"><b>약 15분</b><span>일반 148번보다 편도 도착시간 단축 예상 — 급행 정차 효과 포함</span></div>
+            </div>
+            <div class="case-takeaway">실행 시사점: 자율주행 예산을 차량 구매가 아니라 신호 데이터 품질·통신·운영센터까지 묶어 평가해야 합니다.</div>
+          </article>
+        </div>
+
+        <div class="gallery-grid">
+          <figure class="reveal"><img src="assets/a148-autonomous-bus-interior.jpg" alt="서울 자율주행버스 A148 내부 좌석과 안내 화면" width="1200" height="800" loading="lazy"><figcaption>A148 내부. 실제 서비스는 승객 안전, 운영자, 정류장 정보가 함께 설계돼야 합니다. © 심재혁 · 내 손안에 서울</figcaption></figure>
+          <article class="case-card reveal">
+            <div class="case-badge">AUTONOMOUS TAXI</div>
+            <h3>서울 강남 심야 자율주행 택시는 ‘제한된 구역·시간’에서 단계적으로 확대 중입니다</h3>
+            <p>서울시는 2026년 3월 운행 차량을 3대에서 7대로 늘리고, 2024년 9월 26일부터 2026년 2월 28일까지 7,754건의 탑승을 기록했다고 발표했습니다. 시 발표 기준 해당 기간 자율주행 기술로 발생한 사고는 없었습니다.<a class="cite" href="#source-13" aria-label="출처 13">[13]</a></p>
+            <div class="case-takeaway">확대 원칙: 제한 구역 → 안전·보안 평가 → 운행 확대 → 유료화처럼 단계별 검증이 현실적입니다.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-soft" id="impact">
+      <div class="container">
+        <div class="section-kicker reveal">BUSINESS &amp; CITY IMPACT</div>
+        <h2 class="section-title reveal">시민이 먼저 체감할 변화는 “무정체”보다<br>“예측 가능성”과 “공간 재배치”입니다</h2>
+        <p class="section-desc reveal">
+          영상에서 교수는 10년 뒤 가장 큰 체감 변화로 일정한 도착시간과 예측 가능한 서비스를 제시하고, 물리적 도로 개편보다 주차 효율화와 개인 비서형 이동 서비스가 먼저 올 가능성을 말합니다.<a class="cite" href="#source-1" aria-label="출처 1">[1]</a>
+        </p>
+
+        <div class="impact-grid">
+          <article class="impact-card reveal"><div class="impact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"></circle><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg></div><h3>도착시간 신뢰도</h3><p>평균 5분 단축보다 “몇 시에 도착할지 맞는가”가 업무·물류·대중교통 연결에 더 큰 가치가 될 수 있습니다.</p></article>
+          <article class="impact-card reveal"><div class="impact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19h14V8H5zM8 8V5h8v3" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><path d="M9 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg></div><h3>주차 공간 재편</h3><p>차량이 원격 주차장을 스스로 오갈 수 있다면 도심의 주차 공간을 다른 용도로 전환할 수 있습니다. 단, 공차 이동은 관리해야 합니다.</p></article>
+          <article class="impact-card reveal"><div class="impact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 16c4-8 12-8 16 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path><circle cx="7" cy="17" r="2" stroke="currentColor" stroke-width="1.8"></circle><circle cx="17" cy="17" r="2" stroke="currentColor" stroke-width="1.8"></circle><path d="M8 11h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg></div><h3>사람 중심 수송</h3><p>도로 성과를 차량 속도보다 시간당 이동한 사람 수, 환승 편의, 교통약자 접근성으로 측정해야 합니다.</p></article>
+          <article class="impact-card reveal"><div class="impact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 20 6v5.5c0 4.5-3.1 7.5-8 9.2-4.9-1.7-8-4.7-8-9.2V6z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><h3>데이터 신뢰와 형평성</h3><p>교통 데이터는 위치·생활패턴을 포함합니다. 최소 수집, 합성데이터, 접근통제와 정보 소외 방지가 함께 필요합니다.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="recommendation">
+      <div class="container">
+        <div class="section-kicker reveal">RISKS, GUARDRAILS &amp; RECOMMENDATION</div>
+        <h2 class="section-title reveal">“자율주행 도입 대수”가 아니라<br>“시스템 성과”로 투자 여부를 판단해야 합니다</h2>
+        <p class="section-desc reveal">
+          자동화 기술의 효과는 도시 구조와 운영 정책에 따라 달라집니다. 따라서 대규모 차량 구매보다 특정 회랑에서 신호·V2X·경로·수요 정책을 함께 시험하고, 전후 성과를 비교하는 방식이 안전합니다.
+        </p>
+
+        <div class="correction-table reveal" aria-label="오해와 올바른 실행 원칙">
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>“자율주행차가 많아지면 정체는 자동으로 사라진다.”</div><div class="correction-cell right"><span class="correction-icon">✓</span>유효 용량은 늘 수 있지만, 유도 수요·공차·병목을 함께 관리해야 순효과가 납니다.</div></div>
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>“내비게이션이 각 차량에 가장 빠른 길만 주면 된다.”</div><div class="correction-cell right"><span class="correction-icon">✓</span>전체 지체를 줄이는 시스템 최적 경로와 신호·요금 인센티브가 필요합니다.</div></div>
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>“보급률 10%·30% 같은 숫자가 모든 도시에 통한다.”</div><div class="correction-cell right"><span class="correction-icon">✓</span>차량 기능, 인간 운전자 행동, 차로·신호·통신 조건별로 시뮬레이션과 실증을 해야 합니다.</div></div>
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>“평균 통행시간만 줄면 성공이다.”</div><div class="correction-cell right"><span class="correction-icon">✓</span>신뢰도·사람 수송량·안전·공차거리·형평성·개인정보를 함께 봐야 합니다.</div></div>
+        </div>
+
+        <div class="recommend-grid" style="margin-top:22px">
+          <article class="recommend-card reveal">
+            <h3>승인 전 최소 조건</h3>
+            <div class="recommend-list">
+              <div class="recommend-item"><div class="recommend-num">1</div><div><strong>대상 회랑 1곳 선정</strong><p>램프·교차로·버스 우선 등 병목이 명확하고 효과 측정이 가능한 구간을 고릅니다.</p></div></div>
+              <div class="recommend-item"><div class="recommend-num">2</div><div><strong>기준선 4주 측정</strong><p>평균이 아니라 95백분위 이동시간, 대기행렬, 사람 수송량을 기록합니다.</p></div></div>
+              <div class="recommend-item"><div class="recommend-num">3</div><div><strong>데이터·권한 설계</strong><p>차량·신호·CCTV 데이터의 수집 범위, 보존 기간, 접근 권한을 정합니다.</p></div></div>
+              <div class="recommend-item"><div class="recommend-num">4</div><div><strong>중단 기준 정의</strong><p>안전사건, 사이버 장애, 형평성 저하, 공차거리 증가가 한계를 넘으면 중단합니다.</p></div></div>
+            </div>
+          </article>
+
+          <article class="recommend-card blue-card reveal">
+            <h3>90일 파일럿</h3>
+            <div class="recommend-list">
+              <div class="recommend-item"><div class="recommend-num">1</div><div><strong>1~30일 · 디지털 트윈 보정</strong><p>실시간 데이터로 현재 흐름을 재현하고 예측 오차를 확인합니다.</p></div></div>
+              <div class="recommend-item"><div class="recommend-num">2</div><div><strong>31~50일 · 신호 최적화</strong><p>실시간 신호와 권장속도만 적용해 독립 효과를 측정합니다.</p></div></div>
+              <div class="recommend-item"><div class="recommend-num">3</div><div><strong>51~70일 · V2X·경로 연계</strong><p>협력 차량과 시스템 최적 경로 안내를 제한적으로 추가합니다.</p></div></div>
+              <div class="recommend-item"><div class="recommend-num">4</div><div><strong>71~90일 · 수요 정책 검증</strong><p>버스 우선, 시간대 분산, 요금·인센티브를 조합하고 확대 여부를 결정합니다.</p></div></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="kpi-grid">
+          <article class="kpi-card reveal"><span>KPI 01</span><strong>이동시간 신뢰도</strong><p>95백분위 통행시간과 평균의 차이</p></article>
+          <article class="kpi-card reveal"><span>KPI 02</span><strong>사람 수송량</strong><p>시간당 차량 수가 아닌 시간당 이동 인원</p></article>
+          <article class="kpi-card reveal"><span>KPI 03</span><strong>정지·급제동</strong><p>정지 횟수, 충격파, 급감속 이벤트</p></article>
+          <article class="kpi-card reveal"><span>KPI 04</span><strong>무인 공차거리</strong><p>승객 없이 이동한 차량거리 비중</p></article>
+          <article class="kpi-card reveal"><span>KPI 05</span><strong>안전·사이버 사건</strong><p>개입, 장애, 취약점, 데이터 오용 건수</p></article>
+          <article class="kpi-card reveal"><span>KPI 06</span><strong>형평성</strong><p>지역·소득·연령별 접근성과 혜택 차이</p></article>
+        </div>
+
+        <div class="evidence-note reveal">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 20 6v5.7c0 4.6-3.2 7.6-8 9.3-4.8-1.7-8-4.7-8-9.3V6z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <div><strong>최종 의사결정 문장:</strong> “자율주행차를 몇 대 도입할 것인가”보다 “어떤 병목에서 차량·신호·경로·수요를 함께 운영해, 예측 가능한 이동을 얼마나 개선할 것인가”를 승인 안건으로 삼는 것이 적절합니다.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="video" class="section-soft">
+      <div class="container">
+        <div class="section-kicker reveal">SOURCE VIDEO</div>
+        <h2 class="section-title reveal">원본 영상과 함께 보면<br>교통공학의 인간적 맥락이 더 선명해집니다</h2>
+        <p class="section-desc reveal">아래 영상은 본 보고서의 주요 서사와 교수 발언의 1차 자료입니다. 보고서는 이를 외부 연구·공식 운영 자료와 구분해 재구성했습니다.</p>
+
+        <div class="video-layout">
+          <div class="video-frame reveal">
+            <iframe src="https://www.youtube-nocookie.com/embed/BUDRtbBZjeI" title="모든 차가 자율주행을 해도 도로는 계속 막힐까? 서울대 김동규 교수 샤로잡다 시즌2" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
+          </div>
+          <article class="video-notes reveal">
+            <h3>26분 영상의 핵심 흐름</h3>
+            <p>자막에 시간코드가 없어 아래는 내용 순서 기준의 챕터 요약입니다.</p>
+            <div class="chapter-list">
+              <div class="chapter-item"><b>01</b><span>내비게이션과 개별 최적의 역설</span></div>
+              <div class="chapter-item"><b>02</b><span>신호·요금·경로 안내와 시뮬레이션</span></div>
+              <div class="chapter-item"><b>03</b><span>디지털 트윈과 센서 없는 구간 추정</span></div>
+              <div class="chapter-item"><b>04</b><span>자율주행·V2X·유령 정체 완화</span></div>
+              <div class="chapter-item"><b>05</b><span>보급률, 주차, 개인정보와 합성데이터</span></div>
+              <div class="chapter-item"><b>06</b><span>10년 뒤 예측 가능한 교통과 정보 격차</span></div>
+            </div>
+            <a class="btn btn-primary" style="margin-top:22px" href="https://www.youtube.com/watch?v=BUDRtbBZjeI" target="_blank" rel="noopener noreferrer">YouTube에서 원본 열기</a>
+            <div class="print-video-link">원본 영상: https://www.youtube.com/watch?v=BUDRtbBZjeI</div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sources" id="sources">
+    <div class="container">
+      <div class="source-head">
+        <div>
+          <h2>참고 자료와 출처</h2>
+          <p>실제로 본문 판단에 사용한 1차·공식·연구 자료만 수록했습니다. 웹 확인일: 2026.08.09.</p>
+        </div>
+        <button class="btn btn-ghost" type="button" onclick="window.print()">전체 PDF 저장</button>
+      </div>
+
+      <div class="source-grid">
+        <a class="source-link" id="source-1" href="https://www.youtube.com/watch?v=BUDRtbBZjeI" target="_blank" rel="noopener noreferrer"><span>PRIMARY VIDEO · 자막 확인 2026-08-09</span><strong>모든 차가 자율주행을 해도 도로는 계속 막힐까? | 서울대 김동규 교수</strong><small>서울대학교 Seoul National University · 샤로잡다 시즌2</small></a>
+        <a class="source-link" id="source-2" href="https://cee.snu.ac.kr/sub4_3.php" target="_blank" rel="noopener noreferrer"><span>OFFICIAL PROFILE · 확인 2026-08-09</span><strong>서울대학교 건설환경공학부 교통계획·물류연구실</strong><small>김동규 교수 연구 분야·연구실 소개</small></a>
+        <a class="source-link" id="source-3" href="https://economics.mit.edu/sites/default/files/publications/Informational%20Braess%20Paradox%20-%20The%20Effect%20of%20Infor.pdf" target="_blank" rel="noopener noreferrer"><span>RESEARCH · 2018</span><strong>Informational Braess’ Paradox: The Effect of Information on Traffic Congestion</strong><small>Acemoglu et al. · Operations Research</small></a>
+        <a class="source-link" id="source-4" href="https://arxiv.org/abs/1705.01693" target="_blank" rel="noopener noreferrer"><span>RESEARCH · 2018</span><strong>Dissipation of stop-and-go waves via control of autonomous vehicles</strong><small>Stern et al. · Transportation Research Part C</small></a>
+        <a class="source-link" id="source-5" href="https://www.itskrs.its.dot.gov/2019-b01402" target="_blank" rel="noopener noreferrer"><span>GOVERNMENT SUMMARY · 2019</span><strong>Track testing: stop-and-go wave control with a small AV share</strong><small>U.S. DOT ITS Deployment Evaluation</small></a>
+        <a class="source-link" id="source-6" href="https://nap.nationalacademies.org/resource/29355/9780309603133_508.pdf" target="_blank" rel="noopener noreferrer"><span>RESEARCH GUIDE · 2026</span><strong>NCHRP Research Report 1168: Incorporating Uncertainty into Long-Range Transportation Planning</strong><small>National Academies / Transportation Research Board</small></a>
+        <a class="source-link" id="source-7" href="https://link.springer.com/article/10.1007/s11116-021-10199-z" target="_blank" rel="noopener noreferrer"><span>OPEN RESEARCH · 2022</span><strong>Impacts of highly automated vehicles on travel demand</strong><small>Sonnleitner, Friedrich &amp; Richter · Transportation</small></a>
+        <a class="source-link" id="source-8" href="https://nvlpubs.nist.gov/nistpubs/ir/2025/NIST.IR.8356.pdf" target="_blank" rel="noopener noreferrer"><span>OFFICIAL STANDARD GUIDE · 2025</span><strong>NIST IR 8356: Security and Trust Considerations for Digital Twin Technology</strong><small>Digital twin definition, synchronization and trust</small></a>
+        <a class="source-link" id="source-9" href="https://highways.dot.gov/sites/fhwa.dot.gov/files/FHWA-HRT-22-089.pdf" target="_blank" rel="noopener noreferrer"><span>OFFICIAL FACTSHEET · 2022</span><strong>Developing Future Traffic Management Systems Using Hybrid Twins</strong><small>Federal Highway Administration</small></a>
+        <a class="source-link" id="source-10" href="https://www.transportation.gov/briefing-room/usdot-releases-national-deployment-plan-vehicle-everything-v2x-technologies-reduce" target="_blank" rel="noopener noreferrer"><span>OFFICIAL PLAN · 2024</span><strong>USDOT National Deployment Plan for V2X Technologies</strong><small>차량·무선기기·도로 인프라 연결 계획</small></a>
+        <a class="source-link" id="source-11" href="https://www.fhwa.dot.gov/policy/otps/pricingkit.cfm" target="_blank" rel="noopener noreferrer"><span>OFFICIAL POLICY GUIDE · 확인 2026-08-09</span><strong>FHWA Pricing Kit</strong><small>혼잡 요금, 이동행태 변화와 도로 용량 활용</small></a>
+        <a class="source-link" id="source-12" href="https://www.seoul.go.kr/news/news_report.do?nttNo=456237" target="_blank" rel="noopener noreferrer"><span>OFFICIAL SEOUL · 2026-04-15</span><strong>3만명 탄 새벽동행 자율주행버스 확대…A148 운행</strong><small>서울시 교통실 미래첨단교통과</small></a>
+        <a class="source-link" id="source-13" href="https://news.seoul.go.kr/traffic/archives/516542" target="_blank" rel="noopener noreferrer"><span>OFFICIAL SEOUL · 2026</span><strong>강남 심야 자율주행 택시 유료 전환·운행 확대</strong><small>서울특별시 교통 분야 공식 안내</small></a>
+        <a class="source-link" id="source-14" href="https://mediahub.seoul.go.kr/archives/2017908" target="_blank" rel="noopener noreferrer"><span>OFFICIAL PHOTO · 2026</span><strong>새벽동행 자율주행버스 A148 현장 사진</strong><small>내 손안에 서울 · 사진 © 심재혁</small></a>
+      </div>
+
+      <div class="footer-bottom">
+        <span id="footerTitle">모든 차가 자율주행을 해도 도로는 계속 막힐까? · AIHUBOS ReportMode</span>
+        <span id="footerMeta">AI-assisted · 2026.08</span>
+      </div>
+
+      <div class="report-history" id="history" aria-labelledby="history-title">
+        <div class="history-head">
+          <div>
+            <h2 id="history-title">버전 및 업데이트 히스토리</h2>
+            <p>보고서의 판단·수치·출처·디자인 변경을 누적 기록합니다.</p>
+          </div>
+          <span class="version-badge" id="historyCurrentVersion">Current v1.0.0</span>
+        </div>
+        <div class="history-table-wrap">
+          <table class="history-table">
+            <thead><tr><th>버전</th><th>업데이트일</th><th>변경 구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr></thead>
+            <tbody id="historyBody"><tr><td colspan="5" class="history-empty">변경 이력을 불러오는 중입니다.</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="floating-actions" aria-label="빠른 작업">
+    <button class="float-btn" type="button" id="toTop" aria-label="맨 위로 이동">
+      <svg viewBox="0 0 24 24" fill="none"><path d="m6 14 6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    </button>
+    <button class="float-btn" type="button" onclick="window.print()" aria-label="PDF로 저장">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M7 9V4h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><path d="M7 14h10v6H7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg>
+    </button>
+  </div>
+
+  <script id="report-metadata" type="application/json">
+  {
+    "schemaVersion": "1.0",
+    "reportId": "260809-autonomous-driving-congestion",
+    "title": "모든 차가 자율주행을 해도 도로는 계속 막힐까?",
+    "version": "1.0.0",
+    "status": "Published",
+    "createdAt": "2026-08-09",
+    "updatedAt": "2026-08-09",
+    "language": "ko-KR",
+    "author": "AIHUBOS ReportMode",
+    "generation": "AI-assisted",
+    "reviewStatus": "Human review recommended",
+    "history": [
+      {
+        "version": "1.0.0",
+        "date": "2026-08-09",
+        "type": "신규 작성",
+        "summary": "서울대 김동규 교수 영상 자막을 기반으로 자율주행과 교통 혼잡의 관계를 차량 기술·교통 시스템·이동 수요로 재구성하고, 2026년 NCHRP 보고서와 서울시 자율주행 서비스 등 공식·연구 자료를 교차 검증함. 영상의 85%·15% 수치는 공개 원문 미확인으로 별도 표시함.",
+        "sections": ["전체", "Executive Summary", "보급 시나리오", "서울 2026 사례", "90일 파일럿", "출처"],
+        "updatedBy": "AI-assisted",
+        "reviewStatus": "검토 권장"
+      }
+    ]
+  }
+  </script>
+
+  <script>
+    const progress = document.getElementById('scrollProgress');
+    const toTop = document.getElementById('toTop');
+
+    function updateProgress() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const percent = max > 0 ? (window.scrollY / max) * 100 : 0;
+      progress.style.width = percent + '%';
+      toTop.style.opacity = window.scrollY > 600 ? '1' : '0';
+      toTop.style.pointerEvents = window.scrollY > 600 ? 'auto' : 'none';
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.10 });
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach((el) => el.classList.add('visible'));
+    }
+
+    function renderReportMetadata() {
+      const node = document.getElementById('report-metadata');
+      if (!node) return;
+      try {
+        const meta = JSON.parse(node.textContent);
+        const version = `v${meta.version}`;
+        const date = String(meta.updatedAt || '').replaceAll('-', '.');
+        const month = date.slice(0, 7);
+        const setText = (id, value) => {
+          const element = document.getElementById(id);
+          if (element) element.textContent = value;
+        };
+
+        setText('reportVersion', version);
+        setText('reportUpdated', `Updated ${date}`);
+        setText('reportGeneration', `${meta.generation} · ${meta.reviewStatus}`);
+        setText('historyCurrentVersion', `Current ${version}`);
+        setText('footerTitle', `${meta.title} · AIHUBOS ReportMode`);
+        setText('footerMeta', `${meta.generation} · ${month}`);
+        document.title = `${meta.title} · ${version}`;
+
+        const body = document.getElementById('historyBody');
+        if (!body) return;
+        body.innerHTML = '';
+        const history = Array.isArray(meta.history) ? meta.history : [];
+        if (!history.length) {
+          const row = document.createElement('tr');
+          const cell = document.createElement('td');
+          cell.colSpan = 5;
+          cell.className = 'history-empty';
+          cell.textContent = '기록된 변경 이력이 없습니다.';
+          row.appendChild(cell);
+          body.appendChild(row);
+          return;
+        }
+
+        history.forEach((item) => {
+          const row = document.createElement('tr');
+          const values = [
+            `v${item.version}`,
+            String(item.date || '').replaceAll('-', '.'),
+            item.type || '',
+            item.summary || '',
+            [item.updatedBy, item.reviewStatus].filter(Boolean).join(' · ')
+          ];
+          values.forEach((value, index) => {
+            const cell = document.createElement('td');
+            if (index === 4) {
+              const badge = document.createElement('span');
+              badge.className = 'history-status';
+              badge.textContent = value;
+              cell.appendChild(badge);
+            } else {
+              cell.textContent = value;
+            }
+            row.appendChild(cell);
+          });
+          body.appendChild(row);
+        });
+      } catch (error) {
+        console.error('Invalid report metadata:', error);
+      }
+    }
+    renderReportMetadata();
+  </script>
+
+
+</body></html>

@@ -1,7 +1,24 @@
 {
-  "generatedAt": "2026-08-09T09:42:31.070Z",
+  "generatedAt": "2026-08-09T09:42:50.814Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260809-v1-0-0",
+      "slug": "v1-0-0",
+      "title": "모든 차가 자율주행을 해도 도로는 계속 막힐까? · v1.0.0",
+      "category": "기타",
+      "summary": "자율주행차가 교통 혼잡을 없앨 수 있는지, 차량 기술·교통 시스템·이동 수요 관점에서 분석한 임원용 반응형 보고서",
+      "createdAt": "2026-08-09T18:42:16+09:00",
+      "updatedAt": "2026-08-09T18:42:16+09:00",
+      "status": "published",
+      "path": "reports/260809-v1-0-0/",
+      "url": "https://aihubos.github.io/reportmode/reports/260809-v1-0-0/",
+      "displayDate": "260809",
+      "sourceCount": 14,
+      "tags": [],
+      "coverImage": "reports/260809-v1-0-0/assets/a148-autonomous-bus.jpg",
+      "coverAlt": "모든 차가 자율주행을 해도 도로는 계속 막힐까?"
+    },
     {
       "id": "260809-ai-10gw-spacex-gpu-v1-0-0-02",
       "slug": "ai-10gw-spacex-gpu-v1-0-0",
