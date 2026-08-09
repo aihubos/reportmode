@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-09T16:28:43.760Z",
+  "generatedAt": "2026-08-09T22:59:53.116Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
     {
@@ -51,6 +51,29 @@
       "coverImage": "reports/260810-01-demis-hassabis-life-timeline-v1-0-0/assets/thumbnail.png",
       "coverAlt": "데미스 하사비스 인물 사진",
       "subtitle": "체스·게임·뇌과학·DeepMind·AlphaGo·AlphaFold로 이어진 50년"
+    },
+    {
+      "id": "rh-260809-004-6e35ac46",
+      "slug": "chatgpt-worries-thinking-guide",
+      "title": "ChatGPT에 고민을 털어놔도 될까? 내가 ‘답’ 대신 ‘질문’을 받는 이유",
+      "category": "AI",
+      "summary": "ChatGPT에 고민의 결론을 맡기지 않고 사실·해석·감정·몸의 반응을 분리한 뒤 열린 질문을 받아 생각을 정리하는 10분 루틴입니다.",
+      "createdAt": "2026-08-10T07:54:00+09:00",
+      "updatedAt": "2026-08-10T07:54:00+09:00",
+      "status": "published",
+      "path": "reports/260810-01-chatgpt-worries-thinking-guide-v2-0-0/",
+      "url": "https://aihubos.github.io/reportmode/reports/260810-01-chatgpt-worries-thinking-guide-v2-0-0/",
+      "displayDate": "260810",
+      "sourceCount": 10,
+      "tags": [
+        "ChatGPT 고민 상담",
+        "생각 정리",
+        "Temporary Chat",
+        "자살예방상담전화 109"
+      ],
+      "coverImage": "reports/260810-01-chatgpt-worries-thinking-guide-v2-0-0/assets/thumbnail.png",
+      "coverAlt": "고민을 AI에게 말해도 될까 · 답 대신 질문 받기 · Report Hub",
+      "subtitle": "결론을 맡기지 않고 생각을 정리하는 10분 루틴과 안전한 중단 기준"
     },
     {
       "id": "260809-21-dario-amodei-claude-altman-rivalry-v1-0-0",
@@ -590,27 +613,6 @@
       ],
       "coverImage": "reports/drafts/chatgpt-content-099-v1.0.0/assets/thumbnail.png",
       "coverAlt": "ChatGPT로 발표 자료·대본 빠르게 만드는 법 · AI · 실전 검증",
-      "subtitle": "관리자 검토 전 초안"
-    },
-    {
-      "id": "rh-260809-004-6e35ac46",
-      "slug": "chatgpt-conversation-for-worries-v1.0.0",
-      "title": "ChatGPT로 고민 정리하는 올바른 방법: 상담의 한계까지",
-      "category": "Draft",
-      "summary": "ChatGPT로 고민 정리하는 올바른 방법: 상담의 한계까지",
-      "createdAt": "2026-08-09T20:00:00+09:00",
-      "updatedAt": "2026-08-09T20:00:00+09:00",
-      "status": "published",
-      "path": "reports/drafts/chatgpt-conversation-for-worries-v1.0.0/",
-      "url": "https://aihubos.github.io/reportmode/reports/drafts/chatgpt-conversation-for-worries-v1.0.0/",
-      "displayDate": "260809",
-      "sourceCount": 3,
-      "tags": [
-        "Draft",
-        "Jeremy Style"
-      ],
-      "coverImage": "reports/drafts/chatgpt-conversation-for-worries-v1.0.0/assets/thumbnail.png",
-      "coverAlt": "ChatGPT로 고민 정리하는 올바른 방법 · AI · 실전 검증",
       "subtitle": "관리자 검토 전 초안"
     },
     {

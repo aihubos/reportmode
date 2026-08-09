@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "rh-260809-004-6e35ac46",
+  "title": "ChatGPT에 고민을 털어놔도 될까? 내가 ‘답’ 대신 ‘질문’을 받는 이유",
+  "seoTitle": "ChatGPT 고민 상담, 안전하게 생각 정리하는 법",
+  "alternativeTitles": [
+    "큰 고민 앞에서 ChatGPT를 쓰는 법: 정답 대신 생각을 정리하는 10분 루틴",
+    "ChatGPT 상담의 진짜 용도: 결론이 아니라 내 생각을 보는 거울",
+    "AI에게 고민을 말하기 전 꼭 정해야 할 4가지"
+  ],
+  "slug": "chatgpt-worries-thinking-guide",
+  "folder": "260810-01-chatgpt-worries-thinking-guide-v2-0-0",
+  "version": "2.0.0",
+  "status": "Published",
+  "summary": "ChatGPT에 고민의 결론을 맡기지 않고 사실·해석·감정·몸의 반응을 분리한 뒤 열린 질문을 받아 생각을 정리하는 10분 루틴. AI가 지나치게 내 편을 드는 문제, 개인정보, 위기 상황의 중단 기준과 한국의 109 연결선까지 정리했다.",
+  "hook": "AI에게 결론을 맡기면 안 된다",
+  "lead": "나는 요즘 큰 고민이 생기면 혼자 머릿속에서 굴리기 전에 ChatGPT를 켠다. 결론을 맡기려는 게 아니라, 사실·해석·감정을 분리하고 내가 놓친 질문을 받기 위해서다.",
+  "oneSentenceConclusion": "AI는 내 고민을 대신 해결하는 상담사가 아니라, 내가 내 생각을 더 정확히 보게 만드는 거울로 쓸 때 가장 유용하다.",
+  "thumbnailMain": "고민을 AI에게 말해도 될까",
+  "thumbnailSub": "답 대신 질문 받기",
+  "snsCopy": [
+    "ChatGPT에 고민을 말해도 될까? 정답을 맡기는 대신 사실·해석·감정·몸을 나누고, 열린 질문을 받는 10분 루틴을 정리했습니다.",
+    "AI가 너무 내 편을 들 때 오히려 위험해질 수 있습니다. 고민 정리 프롬프트, 개인정보, 멈춤 기준과 한국 109 연결선까지 한 번에 정리했습니다."
+  ],
+  "keywords": [
+    "ChatGPT 고민 상담",
+    "AI 상담",
+    "생각 정리",
+    "감정 정리",
+    "ChatGPT 프롬프트",
+    "AI 정서 의존",
+    "Temporary Chat",
+    "자살예방상담전화 109"
+  ],
+  "category": "AI",
+  "createdAt": "2026-08-09",
+  "updatedAt": "2026-08-10",
+  "canonical": "https://aihubos.github.io/reportmode/reports/260810-01-chatgpt-worries-thinking-guide-v2-0-0/",
+  "thumbnail": "assets/thumbnail.png",
+  "topicScore": 94,
+  "topicScoreBreakdown": {
+    "최신성": 18,
+    "검색 의도": 15,
+    "SNS 공유성": 14,
+    "실무 효용": 15,
+    "한국 연관성": 15,
+    "근거 강도": 10,
+    "시각화 적합성": 7
+  },
+  "generation": "AI-assisted",
+  "reviewStatus": "Published after official source recheck",
+  "assumptions": [
+    "기존 글과 JeremySoul.md, 실제 블로그 포스팅에서 확인되는 경험과 표현만 사용하고 구체적인 사적 사건은 새로 만들지 않았다.",
+    "이 글의 범위는 일상적 고민의 생각 정리이며 의료 상담·진단·치료 대체가 아니다.",
+    "위기 도움 정보는 대한민국 기준으로 2026-08-10에 재확인했다.",
+    "기존 v1.0.0의 주제와 reportId를 유지하되 문체·구조·안전 정보를 전면 개편해 v2.0.0으로 올렸다."
+  ]
+}

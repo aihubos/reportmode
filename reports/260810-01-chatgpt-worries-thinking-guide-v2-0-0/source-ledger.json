@@ -1,0 +1,150 @@
+{
+  "schemaVersion": "1.0",
+  "reportId": "rh-260809-004-6e35ac46",
+  "verifiedAt": "2026-08-10",
+  "sources": [
+    {
+      "sourceId": "src-01",
+      "claim": "ChatGPT가 민감한 대화에서 현실 관계와 전문 도움을 지지하도록 개선됐다; 개선 후에도 지속적인 측정과 보완이 필요하다",
+      "url": "https://openai.com/index/strengthening-chatgpt-responses-in-sensitive-conversations/",
+      "sourceType": "공식 제품·안전 자료",
+      "publisher": "OPENAI",
+      "publishedAt": "2025-10-27",
+      "verifiedAt": "2026-08-10",
+      "usedSections": [
+        "AI의 역할과 한계",
+        "멈춤 기준"
+      ],
+      "confidence": "높음",
+      "caveat": "OpenAI 자체 평가 결과이므로 독립 임상 검증과 구분했다."
+    },
+    {
+      "sourceId": "src-02",
+      "claim": "AI와의 정서적 상호작용 결과는 사용 방식과 개인 상황에 따라 달라질 수 있다",
+      "url": "https://openai.com/index/affective-use-study/",
+      "sourceType": "연구 공개 자료",
+      "publisher": "OPENAI/MIT",
+      "publishedAt": "2025-03-21",
+      "verifiedAt": "2026-08-10",
+      "usedSections": [
+        "왜 사용법이 중요한가",
+        "리스크"
+      ],
+      "confidence": "중상",
+      "caveat": "초기 연구이며 특정 사용법이 모든 사람에게 같은 효과를 낸다는 근거는 아니다."
+    },
+    {
+      "sourceId": "src-03",
+      "claim": "AI가 사용자의 프레임에 과도하게 동조할 수 있다",
+      "url": "https://openai.com/index/expanding-on-sycophancy/",
+      "sourceType": "공식 제품·안전 자료",
+      "publisher": "OPENAI",
+      "publishedAt": "2025-05-02",
+      "verifiedAt": "2026-08-10",
+      "usedSections": [
+        "AI가 너무 내 편을 들 때"
+      ],
+      "confidence": "높음",
+      "caveat": "특정 2025년 업데이트 사례이지만 일반적인 과잉 동조 위험을 설명하는 근거로 사용했다."
+    },
+    {
+      "sourceId": "src-04",
+      "claim": "Temporary Chat은 기록에 표시되지 않고 메모리를 만들지 않으며 모델 개선에 사용되지 않는다; 안전 목적으로 사본이 최대 30일 보관될 수 있다",
+      "url": "https://help.openai.com/en/articles/8914046-temporary-chat-faq",
+      "sourceType": "공식 도움말",
+      "publisher": "OPENAI",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-10",
+      "usedSections": [
+        "개인정보와 기록"
+      ],
+      "confidence": "높음",
+      "caveat": "기능·정책은 바뀔 수 있어 실제 사용 직전 설정 화면을 다시 확인해야 한다."
+    },
+    {
+      "sourceId": "src-05",
+      "claim": "범용 생성형 AI를 정신건강 서비스로 오인하면 위험할 수 있다",
+      "url": "https://www.who.int/news/item/20-03-2026-towards-responsible-ai-for-mental-health-and-well-being--experts-chart-a-way-forward",
+      "sourceType": "국제 공공기관",
+      "publisher": "WHO",
+      "publishedAt": "2026-03-20",
+      "verifiedAt": "2026-08-10",
+      "usedSections": [
+        "AI의 역할과 한계",
+        "리스크"
+      ],
+      "confidence": "높음",
+      "caveat": "정책·전문가 워크숍 권고이며 개별 치료 지침은 아니다."
+    },
+    {
+      "sourceId": "src-06",
+      "claim": "심한 증상이 2주 이상 지속되거나 일상 기능이 떨어지면 전문 도움을 고려해야 한다",
+      "url": "https://www.nimh.nih.gov/health/topics/caring-for-your-mental-health",
+      "sourceType": "미국 국립보건기관",
+      "publisher": "NIMH",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-10",
+      "usedSections": [
+        "멈춤 기준"
+      ],
+      "confidence": "높음",
+      "caveat": "미국 기관의 일반 가이드로, 한국의 진료 체계와 위기 번호는 별도 국내 자료를 사용했다."
+    },
+    {
+      "sourceId": "src-07",
+      "claim": "한국의 자살예방상담전화 109는 24시간 운영된다; 당장 위험하면 109만 기다리지 말고 112·119 등 즉시 연결이 필요하다",
+      "url": "https://www.mohw.go.kr/board.es?act=view&bid=0027&list_no=1491347&mid=a10503010100&nPage=1&tag=",
+      "sourceType": "대한민국 정부",
+      "publisher": "보건복지부",
+      "publishedAt": "2026-07-20",
+      "verifiedAt": "2026-08-10",
+      "usedSections": [
+        "한국 도움 연결선"
+      ],
+      "confidence": "높음",
+      "caveat": "109의 운영 상황은 변할 수 있다. 즉각적인 생명 위험에는 긴급신고가 우선이다."
+    },
+    {
+      "sourceId": "src-08",
+      "claim": "가까운 정신건강복지센터를 공공 포털에서 찾을 수 있다",
+      "url": "https://www.mentalhealth.go.kr/portal/health/fac/PotalHealthFacListTab2.do?sc3=AFCS1%2CAFCS1_1%2CAFCS1_2",
+      "sourceType": "대한민국 공공기관",
+      "publisher": "국가정신건강정보포털",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-10",
+      "usedSections": [
+        "한국 도움 연결선"
+      ],
+      "confidence": "높음",
+      "caveat": "기관 연락처와 운영시간은 방문 전 개별 확인이 필요하다."
+    },
+    {
+      "sourceId": "src-09",
+      "claim": "범죄나 즉각적인 신변 위험에는 112 긴급신고를 이용할 수 있다",
+      "url": "https://www.police.go.kr/www/agency/intro/intro0601.jsp",
+      "sourceType": "대한민국 정부",
+      "publisher": "경찰청",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-10",
+      "usedSections": [
+        "한국 도움 연결선"
+      ],
+      "confidence": "높음",
+      "caveat": "정신건강 상담 번호가 아니라 즉각적인 위험·범죄 상황의 긴급신고 번호다."
+    },
+    {
+      "sourceId": "src-10",
+      "claim": "구조·구급이 필요한 즉각적인 생명·신체 위험에는 119를 이용할 수 있다",
+      "url": "https://www.nfa.go.kr/nfa/safetyinfo/emergencyservice/119emergencydeclaration/",
+      "sourceType": "대한민국 정부",
+      "publisher": "소방청",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-10",
+      "usedSections": [
+        "한국 도움 연결선"
+      ],
+      "confidence": "높음",
+      "caveat": "상담 서비스가 아니라 즉각적인 구조·구급을 요청하는 긴급신고 번호다."
+    }
+  ]
+}

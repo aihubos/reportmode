@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">고민을 AI에게 말해도 될까</title>
+<desc id="desc">답 대신 질문 받기. 얽힌 생각이 질문을 통해 정돈되는 모습을 표현한 Report Hub 썸네일.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#F7FBFF"/>
+    <stop offset="1" stop-color="#E8F3FF"/>
+  </linearGradient>
+  <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#5CA2FF"/>
+    <stop offset="1" stop-color="#1B64DA"/>
+  </linearGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+    <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#191F28" flood-opacity=".14"/>
+  </filter>
+</defs>
+<rect width="1200" height="630" rx="0" fill="url(#bg)"/>
+<circle cx="1040" cy="92" r="170" fill="#DFFF6A" opacity=".75"/>
+<circle cx="1050" cy="610" r="270" fill="#3182F6" opacity=".10"/>
+<path d="M0 0h338c-62 95-77 180-47 255 38 96 27 202-33 314L0 630Z" fill="#3182F6" opacity=".08"/>
+<g font-family="Noto Sans CJK KR, NanumGothic, sans-serif">
+  <rect x="72" y="72" width="256" height="46" rx="23" fill="#FFFFFF" stroke="#DCE8F7"/>
+  <circle cx="98" cy="95" r="6" fill="#3182F6"/>
+  <text x="116" y="102" font-size="20" font-weight="700" fill="#1B64DA">CHATGPT · 생각 정리</text>
+  <text x="72" y="208" font-size="68" font-weight="800" letter-spacing="-3" fill="#191F28">고민을 AI에게</text>
+  <text x="72" y="292" font-size="68" font-weight="800" letter-spacing="-3" fill="#191F28">말해도 될까</text>
+  <rect x="72" y="334" width="325" height="62" rx="16" fill="#DFFF6A"/>
+  <text x="98" y="376" font-size="30" font-weight="800" letter-spacing="-1" fill="#415400">답 대신 질문 받기</text>
+  <text x="74" y="560" font-size="18" font-weight="800" fill="#6B7684">REPORT HUB · AIHUBOS</text>
+</g>
+<g filter="url(#shadow)">
+  <rect x="700" y="128" width="400" height="374" rx="42" fill="#FFFFFF"/>
+  <rect x="748" y="180" width="252" height="86" rx="28" fill="url(#blue)"/>
+  <circle cx="804" cy="223" r="8" fill="#FFFFFF" opacity=".95"/>
+  <circle cx="838" cy="223" r="8" fill="#FFFFFF" opacity=".72"/>
+  <circle cx="872" cy="223" r="8" fill="#FFFFFF" opacity=".5"/>
+  <path d="M1000 238l26 18-31 1Z" fill="#1B64DA"/>
+  <rect x="792" y="302" width="258" height="126" rx="30" fill="#F2F4F6"/>
+  <path d="M827 352c24-43 47 44 71-2 23-43 46 42 70-3" fill="none" stroke="#8B95A1" stroke-width="9" stroke-linecap="round"/>
+  <path d="M827 387h134" fill="none" stroke="#3182F6" stroke-width="10" stroke-linecap="round"/>
+  <path d="m951 373 22 14-22 14" fill="none" stroke="#3182F6" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="748" cy="445" r="30" fill="#DFFF6A"/>
+  <path d="M739 445l7 7 14-17" fill="none" stroke="#415400" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>
