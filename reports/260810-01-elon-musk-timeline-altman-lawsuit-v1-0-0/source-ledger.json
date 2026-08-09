@@ -1,0 +1,405 @@
+{
+  "schemaVersion": "1.0",
+  "reportId": "260810-01-elon-musk-timeline-altman-lawsuit-v1-0-0",
+  "verifiedAt": "2026-08-10",
+  "sources": [
+    {
+      "claim": "Elon Musk was born on 28 June 1971 in Pretoria, South Africa.",
+      "url": "https://www.britannica.com/money/Elon-Musk",
+      "sourceType": "reference biography",
+      "publishedAt": "updated 2026",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "Hero",
+        "전체 연대기"
+      ],
+      "confidence": "높음",
+      "caution": "기본 인물 정보."
+    },
+    {
+      "claim": "At age 12, Musk sold code for the game Blastar for about $500.",
+      "url": "https://www.gq.com/story/elon-musk-paypal-solar-power-electric-cars-space-travel",
+      "sourceType": "reported biography",
+      "publishedAt": "2009-02-12",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "Hero",
+        "전체 연대기",
+        "재미있는 일화"
+      ],
+      "confidence": "중상",
+      "caution": "당시 원계약서가 아니라 전기·프로필 보도에 기반."
+    },
+    {
+      "claim": "Musk has served as Tesla CEO since October 2008 and joined the board in April 2004.",
+      "url": "https://ir.tesla.com/corporate/elon-musk",
+      "sourceType": "company official biography",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "전체 연대기",
+        "FAQ"
+      ],
+      "confidence": "높음",
+      "caution": "Tesla 자체 공시성 약력."
+    },
+    {
+      "claim": "SpaceX incorporated in 2002; Falcon 1 reached orbit in September 2008; NASA awarded a $1.6B CRS contract in December 2008.",
+      "url": "https://www.nasa.gov/wp-content/uploads/2018/07/spacex_nasa_crs-6_presskit-2.pdf",
+      "sourceType": "NASA primary PDF",
+      "publishedAt": "2015",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "전체 연대기",
+        "1분 요약",
+        "FAQ"
+      ],
+      "confidence": "매우 높음",
+      "caution": "NASA press kit milestone table."
+    },
+    {
+      "claim": "The 2018 SEC settlement required Musk to leave the Tesla chair for three years and Musk/Tesla to each pay $20M.",
+      "url": "https://www.sec.gov/newsroom/press-releases/2018-226",
+      "sourceType": "government enforcement release",
+      "publishedAt": "2018-09-29",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "전체 연대기",
+        "패턴 분석"
+      ],
+      "confidence": "매우 높음",
+      "caution": "합의는 위법 사실을 인정하거나 부인하지 않는 형태."
+    },
+    {
+      "claim": "Twitter’s merger closed on 27 October 2022 at $54.20 per share.",
+      "url": "https://www.sec.gov/Archives/edgar/data/1418091/000119312522272772/d411753d8k.htm",
+      "sourceType": "SEC filing",
+      "publishedAt": "2022-10-27",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "전체 연대기"
+      ],
+      "confidence": "매우 높음",
+      "caution": "통상 약 440억달러 거래로 표현되나 최종 자금 구조는 별도."
+    },
+    {
+      "claim": "Musk carried a kitchen sink into Twitter headquarters before closing the acquisition.",
+      "url": "https://www.reuters.com/markets/deals/elon-musk-tweets-he-is-twitters-headquarters-2022-10-26/",
+      "sourceType": "Reuters report",
+      "publishedAt": "2022-10-26",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "재미있는 일화"
+      ],
+      "confidence": "높음",
+      "caution": "공개 영상과 Reuters 보도로 확인."
+    },
+    {
+      "claim": "Neuralink announced its first human implant in January 2024.",
+      "url": "https://neuralink.com/updates/prime-study-progress-update/",
+      "sourceType": "company official update",
+      "publishedAt": "2024",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "전체 연대기"
+      ],
+      "confidence": "높음",
+      "caution": "회사 발표이며 임상 효능 전반을 의미하지 않음."
+    },
+    {
+      "claim": "OpenAI launched in 2015 with Sam Altman and Elon Musk as co-chairs and a stated $1B commitment from backers.",
+      "url": "https://openai.com/index/introducing-openai/",
+      "sourceType": "official launch announcement",
+      "publishedAt": "2015-12-11",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "전체 연대기",
+        "법정전 타임라인"
+      ],
+      "confidence": "매우 높음",
+      "caution": "약정액과 실제 납입액은 구분."
+    },
+    {
+      "claim": "OpenAI says Musk proposed a for-profit structure with control and later a Tesla combination.",
+      "url": "https://openai.com/index/openai-elon-musk/",
+      "sourceType": "litigant public statement",
+      "publishedAt": "2024-03-05",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "양측 주장",
+        "법정전 타임라인"
+      ],
+      "confidence": "당사자 주장",
+      "caution": "OpenAI가 소송 대응 과정에서 선별 공개한 자료. 중립적 판정이 아님."
+    },
+    {
+      "claim": "Musk filed his first state-court suit on 29 February 2024, withdrew it in June, and refiled federally in August 2024.",
+      "url": "https://www.reuters.com/legal/elon-musk-sues-openai-ceo-sam-altman-breach-contract-2024-03-01/",
+      "sourceType": "Reuters legal report",
+      "publishedAt": "2024-03-01",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "법정전 타임라인"
+      ],
+      "confidence": "높음",
+      "caution": "취하·재제기는 별도 Reuters 기사와 교차 확인."
+    },
+    {
+      "claim": "The court denied Musk’s preliminary injunction in March 2025 while moving toward an expedited trial.",
+      "url": "https://www.reuters.com/legal/us-court-denies-musk-preliminary-injunction-his-suit-against-openai-2025-03-05/",
+      "sourceType": "Reuters legal report",
+      "publishedAt": "2025-03-05",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "법정전 타임라인"
+      ],
+      "confidence": "높음",
+      "caution": "가처분 기각은 최종 본안 판단과 다름."
+    },
+    {
+      "claim": "A Musk-led group offered $97.4B for the OpenAI nonprofit; Altman publicly joked about buying Twitter for $9.74B.",
+      "url": "https://apnews.com/article/b1ad37fe4fe70e3b5d283940bd3b8215",
+      "sourceType": "AP report",
+      "publishedAt": "2025-02-11",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "법정전 타임라인",
+        "법정 밖 장면"
+      ],
+      "confidence": "높음",
+      "caution": "인수 제안은 이사회가 거절했으며 거래가 성사된 가격이 아님."
+    },
+    {
+      "claim": "OpenAI countersued Musk in April 2025, alleging harassment and competitive interference.",
+      "url": "https://www.reuters.com/legal/openai-countersues-elon-musk-claims-harassment-2025-04-09/",
+      "sourceType": "Reuters legal report",
+      "publishedAt": "2025-04-09",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "법정전 타임라인",
+        "양측 주장"
+      ],
+      "confidence": "높음",
+      "caution": "맞소송의 주장이지 확정 사실이 아님."
+    },
+    {
+      "claim": "In May 2025 OpenAI revised restructuring plans to retain nonprofit control.",
+      "url": "https://www.reuters.com/business/openai-remain-under-non-profit-control-change-restructuring-plans-2025-05-05/",
+      "sourceType": "Reuters business report",
+      "publishedAt": "2025-05-05",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "법정전 타임라인"
+      ],
+      "confidence": "높음",
+      "caution": "세부 지분·법인 구조는 이후에도 변할 수 있음."
+    },
+    {
+      "claim": "Musk dropped fraud claims before the April 2026 trial, leaving charitable-trust and unjust-enrichment theories.",
+      "url": "https://www.reuters.com/world/us-judge-dismisses-musks-fraud-claims-openai-case-plans-proceed-trial-2026-04-24/",
+      "sourceType": "Reuters legal report",
+      "publishedAt": "2026-04-24",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "법정전 타임라인"
+      ],
+      "confidence": "높음",
+      "caution": "재판 직전 절차상 범위."
+    },
+    {
+      "claim": "On 18 May 2026 a unanimous jury found Musk’s claims time-barred after less than two hours; the judge accepted the advisory verdict.",
+      "url": "https://www.reuters.com/legal/government/elon-musk-loses-lawsuit-against-openai-2026-05-18/",
+      "sourceType": "Reuters/AP legal reporting",
+      "publishedAt": "2026-05-18",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "Hero",
+        "1분 요약",
+        "법정전 결론",
+        "FAQ"
+      ],
+      "confidence": "매우 높음",
+      "caution": "시효 판단이며 OpenAI 사명 논쟁의 실체까지 판정한 것은 아님."
+    },
+    {
+      "claim": "Musk said he would appeal; no final appellate ruling was identified by 9 August 2026.",
+      "url": "https://www.reuters.com/legal/government/elon-musk-loses-lawsuit-against-openai-2026-05-18/",
+      "sourceType": "Reuters report plus docket check",
+      "publishedAt": "2026-05-18",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "법정전 결론",
+        "FAQ"
+      ],
+      "confidence": "중상",
+      "caution": "항소 절차는 변동 가능. 최종 appellate result가 없다는 제한적 표현만 사용."
+    },
+    {
+      "claim": "Musk was ousted as PayPal CEO while away on a honeymoon.",
+      "url": "https://www.washingtonpost.com/business/2025/06/06/musk-breakups-altman-thiel/",
+      "sourceType": "reported business history",
+      "publishedAt": "2025-06-06",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "전체 연대기",
+        "재미있는 일화",
+        "패턴 분석"
+      ],
+      "confidence": "중상",
+      "caution": "회사 기록이 아니라 복수 전기·보도에서 반복되는 일화."
+    },
+    {
+      "claim": "Musk crashed an uninsured McLaren F1 with Peter Thiel as passenger and was not seriously hurt.",
+      "url": "https://time.com/6127754/elon-musk-net-worth-person-of-the-year/",
+      "sourceType": "reported profile",
+      "publishedAt": "2021-12-13",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "재미있는 일화"
+      ],
+      "confidence": "중상",
+      "caution": "전기적 일화로 분류."
+    },
+    {
+      "claim": "Early Zip2 colleagues recalled Musk sleeping at the office and showering at a YMCA.",
+      "url": "https://www.wired.com/story/whats-driving-elon-musk",
+      "sourceType": "reported recollection",
+      "publishedAt": "2018-12-13",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "재미있는 일화"
+      ],
+      "confidence": "중간",
+      "caution": "직원·가족 회고 기반."
+    },
+    {
+      "claim": "A Russian negotiator allegedly spat on Musk’s shoes during failed rocket talks.",
+      "url": "https://www.businessinsider.com/russian-inspired-spacex-by-spitting-on-elon-musk-shoes-book-2022-6",
+      "sourceType": "memoir-based report",
+      "publishedAt": "2022-06",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "재미있는 일화"
+      ],
+      "confidence": "회고록 기반",
+      "caution": "Lori Garver 회고록의 서술로 독립적인 1차 확인이 제한됨."
+    },
+    {
+      "claim": "캐나다 이주와 Queen’s 재학 시기.",
+      "url": "https://www.queensu.ca/alumnireview/articles/2013-02-01/elon-musk",
+      "sourceType": "OFFICIAL",
+      "publishedAt": "2013.02.01",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "본문 보조",
+        "출처 카드"
+      ],
+      "confidence": "높음",
+      "caution": "보조 출처이며, 본문에서는 해당 자료의 증거 수준과 당사자성을 구분해 사용함."
+    },
+    {
+      "claim": "2018년 Falcon Heavy 시험비행과 Tesla Roadster 탑재.",
+      "url": "https://www.nasa.gov/history/5-years-ago-first-flight-of-the-falcon-heavy-rocket/",
+      "sourceType": "OFFICIAL",
+      "publishedAt": "2023.02.06",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "본문 보조",
+        "출처 카드"
+      ],
+      "confidence": "높음",
+      "caution": "보조 출처이며, 본문에서는 해당 자료의 증거 수준과 당사자성을 구분해 사용함."
+    },
+    {
+      "claim": "미국 상업 유인우주선의 NASA 우주비행사 발사 기록.",
+      "url": "https://www.nasa.gov/news-release/nasa-astronauts-launch-from-america-in-historic-test-flight-of-spacex-crew-dragon/",
+      "sourceType": "OFFICIAL",
+      "publishedAt": "2020.05.30",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "본문 보조",
+        "출처 카드"
+      ],
+      "confidence": "높음",
+      "caution": "보조 출처이며, 본문에서는 해당 자료의 증거 수준과 당사자성을 구분해 사용함."
+    },
+    {
+      "claim": "Twitter의 X 리브랜딩.",
+      "url": "https://www.reuters.com/technology/bird-has-flown-musk-twitter-ceo-yaccarino-say-x-logo-is-here-2023-07-24/",
+      "sourceType": "NEWS",
+      "publishedAt": "2023.07.24",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "본문 보조",
+        "출처 카드"
+      ],
+      "confidence": "높음",
+      "caution": "보조 출처이며, 본문에서는 해당 자료의 증거 수준과 당사자성을 구분해 사용함."
+    },
+    {
+      "claim": "SpaceX의 xAI 인수 발표.",
+      "url": "https://x.ai/news/xai-joins-spacex",
+      "sourceType": "OFFICIAL",
+      "publishedAt": "2026.02.02",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "본문 보조",
+        "출처 카드"
+      ],
+      "confidence": "높음",
+      "caution": "보조 출처이며, 본문에서는 해당 자료의 증거 수준과 당사자성을 구분해 사용함."
+    },
+    {
+      "claim": "첫 소송의 자진 취하.",
+      "url": "https://www.reuters.com/legal/elon-musk-withdraws-lawsuit-against-openai-2024-06-11/",
+      "sourceType": "NEWS",
+      "publishedAt": "2024.06.11",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "본문 보조",
+        "출처 카드"
+      ],
+      "confidence": "높음",
+      "caution": "보조 출처이며, 본문에서는 해당 자료의 증거 수준과 당사자성을 구분해 사용함."
+    },
+    {
+      "claim": "연방법원 재제기와 청구 확대.",
+      "url": "https://www.reuters.com/technology/elon-musk-revives-lawsuit-against-sam-altman-openai-nyt-reports-2024-08-05/",
+      "sourceType": "NEWS",
+      "publishedAt": "2024.08.05",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "본문 보조",
+        "출처 카드"
+      ],
+      "confidence": "높음",
+      "caution": "보조 출처이며, 본문에서는 해당 자료의 증거 수준과 당사자성을 구분해 사용함."
+    },
+    {
+      "claim": "9인 배심, 3주 재판, 권고적 평결과 법관의 수용.",
+      "url": "https://apnews.com/article/0b9b0bfaffe96f2c930341f52dfe4f8c",
+      "sourceType": "NEWS",
+      "publishedAt": "2026.05.18",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "본문 보조",
+        "출처 카드"
+      ],
+      "confidence": "높음",
+      "caution": "보조 출처이며, 본문에서는 해당 자료의 증거 수준과 당사자성을 구분해 사용함."
+    },
+    {
+      "claim": "통제권 협상 증언, 재판 장면, OpenAI 지배구조 평판 영향.",
+      "url": "https://www.reuters.com/legal/government/key-moments-musk-vs-openai-trial-2026-05-18/",
+      "sourceType": "NEWS ANALYSIS",
+      "publishedAt": "2026.05.18–19",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "본문 보조",
+        "출처 카드"
+      ],
+      "confidence": "높음",
+      "caution": "보조 출처이며, 본문에서는 해당 자료의 증거 수준과 당사자성을 구분해 사용함."
+    }
+  ]
+}

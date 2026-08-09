@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "260809-21-dario-amodei-claude-altman-rivalry-v1-0-0",
+  "title": "다리오 아모데이 연대기: 샘 올트먼과 결별해 클로드를 만든 남자",
+  "seoTitle": "다리오 아모데이 연대기와 샘 올트먼 불화",
+  "alternativeTitles": [
+    "클로드의 아버지 다리오 아모데이, OpenAI를 떠난 진짜 이유",
+    "손도 안 잡았다: 아모데이 vs 올트먼, 10년 AI 냉전 연대기",
+    "물리 올림피아드 소년은 왜 샘 올트먼의 최대 라이벌이 됐나"
+  ],
+  "slug": "dario-amodei-claude-altman-rivalry",
+  "folder": "260809-21-dario-amodei-claude-altman-rivalry-v1-0-0",
+  "version": "1.0.0",
+  "status": "Published",
+  "summary": "물리 올림피아드 소년에서 생물물리학자, OpenAI 연구 부사장, Anthropic·Claude 창업자가 된 다리오 아모데이의 경로와 샘 올트먼과의 장기 갈등을 실제 사진과 사실 수준별 타임라인으로 정리했다.",
+  "hook": "OpenAI 핵심 연구자가 왜 경쟁사를 만들었고, 두 CEO는 왜 2026년 카메라 앞에서도 손을 잡지 않았을까.",
+  "keywords": [
+    "다리오 아모데이",
+    "Dario Amodei",
+    "Claude",
+    "Anthropic",
+    "샘 올트먼",
+    "샘 알트만",
+    "OpenAI",
+    "RLHF",
+    "AI 안전",
+    "Claude Code"
+  ],
+  "category": "AI",
+  "createdAt": "2026-08-09",
+  "updatedAt": "2026-08-09",
+  "canonical": "https://aihubos.github.io/reportmode/reports/260809-21-dario-amodei-claude-altman-rivalry-v1-0-0/",
+  "thumbnail": "assets/thumbnail.png",
+  "topicScore": 93,
+  "assumptions": [
+    "사용자의 “클로드 아모데이”는 Claude를 만든 Anthropic CEO 다리오 아모데이를 뜻하는 것으로 해석했다.",
+    "“불화”는 검증되지 않은 사적 감정이 아니라 공식 기록, Reuters·WIRED 취재, 공개 발언과 행동으로 확인 가능한 노선·조직·시장 갈등으로 정의했다.",
+    "일일 순번은 제공된 예시 폴더가 20번이므로 다음 순번 21번으로 가정했다.",
+    "사용자의 업로드 요청에 따라 공개 상태로 등록했다.",
+    "실제 사진은 CC BY 2.0 또는 GODL-India 파일만 사용했고, 크롭·리사이즈·색상 오버레이를 출처 카드와 이미지 메타데이터에 표시했다."
+  ],
+  "generation": "AI-assisted",
+  "reviewStatus": "Human review recommended",
+  "thumbnailText": {
+    "main": "클로드를 만든 반란자",
+    "sub": "아모데이 vs 올트먼"
+  },
+  "socialCopy": [
+    "OpenAI 핵심 연구자가 회사를 나와 Claude를 만들었다. 그리고 2026년, 샘 올트먼과 나란히 서고도 손을 잡지 않았다. 다리오 아모데이의 26년 연대기.",
+    "Claude는 ChatGPT보다 먼저 훈련됐지만 늦게 공개됐다. 이 한 장면에 아모데이와 올트먼의 AI 철학 차이가 거의 다 들어 있다."
+  ]
+}

@@ -1,0 +1,216 @@
+{
+  "schemaVersion": "1.0",
+  "reportId": "260809-21-sam-altman-timeline-musk-amodei-v1-0-0",
+  "checkedAt": "2026-08-09",
+  "entries": [
+    {
+      "sourceId": "src-01",
+      "claim": "샘 알트만은 1985년 시카고에서 태어나 세인트루이스에서 성장했다.",
+      "url": "https://aiforgood.itu.int/speaker/sam-altman/",
+      "sourceType": "공공기관 프로필",
+      "publishedAt": "",
+      "checkedAt": "2026-08-09",
+      "usedIn": "인물 소개·타임라인",
+      "confidence": "높음",
+      "caveat": "공식 자서전은 아니며 행사 연사 프로필이다."
+    },
+    {
+      "sourceId": "src-02",
+      "claim": "알트만은 2005년 Loopt를 창업했고 2012년 매각한 뒤 2014년 Y Combinator 대표가 됐다.",
+      "url": "https://www.ycombinator.com/blog/sam-altman-startup-school-radio/",
+      "sourceType": "공식 기관 자료",
+      "publishedAt": "",
+      "checkedAt": "2026-08-09",
+      "usedIn": "타임라인",
+      "confidence": "높음",
+      "caveat": "게시물의 현재 표기는 과거 시점 설명이다."
+    },
+    {
+      "sourceId": "src-03",
+      "claim": "Green Dot의 Loopt 인수 총 고려액은 4,340만 달러였고 약 980만 달러가 직원 유지 풀에 배정됐다.",
+      "url": "https://ir.greendot.com/news-releases/news-release-details/green-dot-acquire-loopt/",
+      "sourceType": "기업 공시",
+      "publishedAt": "2012-03-09",
+      "checkedAt": "2026-08-09",
+      "usedIn": "타임라인",
+      "confidence": "높음",
+      "caveat": "총 고려액은 창업자 개인 수익과 동일하지 않다."
+    },
+    {
+      "sourceId": "src-04",
+      "claim": "OpenAI는 2015년 비영리로 출범했고 알트만과 머스크가 공동 의장을 맡았다.",
+      "url": "https://openai.com/index/introducing-openai/",
+      "sourceType": "공식 발표",
+      "publishedAt": "2015-12-11",
+      "checkedAt": "2026-08-09",
+      "usedIn": "타임라인·머스크",
+      "confidence": "높음",
+      "caveat": "10억 달러는 즉시 납입액이 아니라 후원 약정 총액이다."
+    },
+    {
+      "sourceId": "src-05",
+      "claim": "OpenAI는 현재 Foundation이 Group PBC를 지배하는 구조이며 샘 알트만은 CEO이자 Foundation 이사다.",
+      "url": "https://openai.com/our-structure/",
+      "sourceType": "공식 구조 설명",
+      "publishedAt": "2025-10-28",
+      "checkedAt": "2026-08-09",
+      "usedIn": "현재 역할·타임라인",
+      "confidence": "높음",
+      "caveat": "회사 자체 구조 설명이며 향후 변경 가능하다."
+    },
+    {
+      "sourceId": "src-06",
+      "claim": "ChatGPT는 2022년 11월 30일 연구 프리뷰로 공개됐다.",
+      "url": "https://openai.com/index/chatgpt/",
+      "sourceType": "공식 제품 발표",
+      "publishedAt": "2022-11-30",
+      "checkedAt": "2026-08-09",
+      "usedIn": "타임라인",
+      "confidence": "높음",
+      "caveat": "출시 초기 연구 프리뷰 기준이다."
+    },
+    {
+      "sourceId": "src-07",
+      "claim": "알트만은 2023년 5월 미국 상원 청문회에서 AI 규제와 감독에 관해 증언했다.",
+      "url": "https://www.judiciary.senate.gov/committee-activity/hearings/oversight-of-ai-rules-for-artificial-intelligence",
+      "sourceType": "정부 기록",
+      "publishedAt": "2023-05-16",
+      "checkedAt": "2026-08-09",
+      "usedIn": "타임라인·인물 역할",
+      "confidence": "높음",
+      "caveat": "청문회 발언은 정책 입장이지 독립적 사실 검증이 아니다."
+    },
+    {
+      "sourceId": "src-08",
+      "claim": "OpenAI 이사회는 2023년 11월 17일 알트만이 이사회와의 소통에서 일관되게 솔직하지 않았다고 발표하며 해임했다.",
+      "url": "https://openai.com/index/openai-announces-leadership-transition/",
+      "sourceType": "공식 발표",
+      "publishedAt": "2023-11-17",
+      "checkedAt": "2026-08-09",
+      "usedIn": "타임라인·2023년 사태",
+      "confidence": "높음",
+      "caveat": "당시 이사회의 설명이며 구체적 사실관계는 공개되지 않았다."
+    },
+    {
+      "sourceId": "src-09",
+      "claim": "알트만은 해임 발표 나흘 뒤 OpenAI CEO로 돌아오는 합의에 도달했다.",
+      "url": "https://www.reuters.com/technology/sam-altman-return-openai-ceo-2023-11-22/",
+      "sourceType": "통신 보도",
+      "publishedAt": "2023-11-22",
+      "checkedAt": "2026-08-09",
+      "usedIn": "타임라인·2023년 사태",
+      "confidence": "높음",
+      "caveat": "공식 업무 복귀 메시지는 11월 29일 게시됐다."
+    },
+    {
+      "sourceId": "src-10",
+      "claim": "OpenAI는 2023년 11월 29일 알트만의 CEO 복귀를 공식 발표했다.",
+      "url": "https://openai.com/index/sam-altman-returns-as-ceo-openai-has-a-new-initial-board/",
+      "sourceType": "공식 발표",
+      "publishedAt": "2023-11-29",
+      "checkedAt": "2026-08-09",
+      "usedIn": "타임라인·2023년 사태",
+      "confidence": "높음",
+      "caveat": "복귀 합의는 앞서 11월 22일 알려졌다."
+    },
+    {
+      "sourceId": "src-11",
+      "claim": "2024년 3월 외부 검토 후 OpenAI 이사회는 알트만의 리더십에 신뢰를 표명하고 그를 이사회에 복귀시켰다.",
+      "url": "https://openai.com/index/review-completed-altman-brockman-to-continue-to-lead-openai/",
+      "sourceType": "공식 검토 요약",
+      "publishedAt": "2024-03-08",
+      "checkedAt": "2026-08-09",
+      "usedIn": "타임라인·반론",
+      "confidence": "중상",
+      "caveat": "OpenAI가 의뢰·발표한 검토 요약이며 전체 조사보고서는 공개되지 않았다."
+    },
+    {
+      "sourceId": "src-12",
+      "claim": "OpenAI는 머스크가 지배권을 원했고 Tesla 합병을 제안한 뒤 2018년 떠났다고 주장한다.",
+      "url": "https://openai.com/index/openai-elon-musk/",
+      "sourceType": "분쟁 당사자 자료",
+      "publishedAt": "2024-03-05",
+      "checkedAt": "2026-08-09",
+      "usedIn": "머스크 일화",
+      "confidence": "중간",
+      "caveat": "분쟁 당사자인 OpenAI의 일방적 설명이므로 법원·보도와 함께 읽어야 한다."
+    },
+    {
+      "sourceId": "src-13",
+      "claim": "머스크 측은 2025년 OpenAI 비영리 지배 자산에 974억 달러를 제안했고 알트만은 Twitter를 97.4억 달러에 사겠다고 받아쳤다.",
+      "url": "https://www.reuters.com/markets/deals/elon-musk-led-group-makes-974-billion-bid-control-openai-wsj-reports-2025-02-10/",
+      "sourceType": "통신 보도",
+      "publishedAt": "2025-02-10",
+      "checkedAt": "2026-08-09",
+      "usedIn": "머스크 일화",
+      "confidence": "높음",
+      "caveat": "제안은 이사회에서 거절됐고 실제 거래가 아니다."
+    },
+    {
+      "sourceId": "src-14",
+      "claim": "2026년 5월 배심은 머스크가 너무 늦게 소송을 냈다고 판단했고 법원은 청구를 배척했다.",
+      "url": "https://www.reuters.com/legal/government/elon-musk-loses-lawsuit-against-openai-2026-05-18/",
+      "sourceType": "통신 보도",
+      "publishedAt": "2026-05-18",
+      "checkedAt": "2026-08-09",
+      "usedIn": "머스크 일화·리스크",
+      "confidence": "높음",
+      "caveat": "판단은 주로 제소 시한에 관한 것으로 핵심 주장 자체의 진위를 모두 판정한 것은 아니다."
+    },
+    {
+      "sourceId": "src-15",
+      "claim": "법원은 자문 배심의 시효 판단을 채택했고 알트만은 과거 존경했던 머스크에게 버림받았다고 느꼈다고 증언했다.",
+      "url": "https://apnews.com/article/musk-openai-trial-verdict-0b9b0bfaffe96f2c930341f52dfe4f8c",
+      "sourceType": "통신 보도",
+      "publishedAt": "2026-05-18",
+      "checkedAt": "2026-08-09",
+      "usedIn": "머스크 일화",
+      "confidence": "높음",
+      "caveat": "감정 표현은 알트만 개인의 법정 증언이다."
+    },
+    {
+      "sourceId": "src-16",
+      "claim": "다리오 아모데이는 OpenAI 연구 부사장으로 GPT-2·GPT-3 개발을 이끌었고 RLHF 공동 발명자라고 소개한다.",
+      "url": "https://darioamodei.com/",
+      "sourceType": "당사자 프로필",
+      "publishedAt": "",
+      "checkedAt": "2026-08-09",
+      "usedIn": "아모데이 일화",
+      "confidence": "중상",
+      "caveat": "개인 공식 프로필의 자기소개다."
+    },
+    {
+      "sourceId": "src-17",
+      "claim": "Anthropic은 2021년 다리오 아모데이 CEO와 다니엘라 아모데이 사장 체제로 안전·신뢰성 중심 연구 방향을 공개했다.",
+      "url": "https://www.anthropic.com/news/anthropic-raises-124-million-to-build-more-reliable-general-ai-systems",
+      "sourceType": "공식 기업 발표",
+      "publishedAt": "2021-05-28",
+      "checkedAt": "2026-08-09",
+      "usedIn": "아모데이 일화",
+      "confidence": "높음",
+      "caveat": "회사 출범 초기의 포지셔닝이다."
+    },
+    {
+      "sourceId": "src-18",
+      "claim": "2023년 알트만 해임 기간 OpenAI 이사회는 아모데이에게 후임 CEO와 양사 합병 가능성을 타진했지만 그는 둘 다 거절했다.",
+      "url": "https://www.reuters.com/technology/openais-board-approached-anthropic-ceo-about-top-job-merger-sources-2023-11-21/",
+      "sourceType": "통신 보도",
+      "publishedAt": "2023-11-21",
+      "checkedAt": "2026-08-09",
+      "usedIn": "아모데이 일화·2023년 사태",
+      "confidence": "중상",
+      "caveat": "익명 관계자 보도이며 양사는 구체적 논의 내용을 공식 확인하지 않았다."
+    },
+    {
+      "sourceId": "src-19",
+      "claim": "2026년 8월 기준 샘 알트만은 OpenAI 공동창업자이자 CEO다.",
+      "url": "https://forum.openai.com/public/videos/event-replay-sam-altman-on-building-the-future-of-ai-2026-04-06",
+      "sourceType": "공식 행사 프로필",
+      "publishedAt": "2026-04-06",
+      "checkedAt": "2026-08-09",
+      "usedIn": "현재 역할",
+      "confidence": "높음",
+      "caveat": "직책은 향후 변경될 수 있어 발행일 기준이다."
+    }
+  ]
+}

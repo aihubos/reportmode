@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "260810-01-demis-hassabis-life-timeline-v1-0-0",
+  "title": "데미스 하사비스 일대기: 4세 체스 신동에서 노벨상·Alphabet 수석과학자까지",
+  "seoTitle": "데미스 하사비스 일대기·타임라인: 체스 신동부터 딥마인드·노벨상까지",
+  "alternativeTitles": [
+    "4세 체스 신동은 어떻게 AlphaGo와 AlphaFold를 만들었나",
+    "게임 개발자에서 노벨 화학상까지: 데미스 하사비스의 50년",
+    "데미스 하사비스 재밌는 일화 11선: 30! 면접부터 Move 37까지"
+  ],
+  "slug": "demis-hassabis-life-timeline",
+  "folder": "260810-01-demis-hassabis-life-timeline-v1-0-0",
+  "version": "1.0.0",
+  "status": "Published",
+  "summary": "데미스 하사비스는 직업을 여러 번 바꾼 인물이 아니라, 지능의 작동 원리를 체스·게임·뇌과학·AI·생명과학으로 확장해 온 연구자다.",
+  "hook": "체스 천재가 왜 게임 개발자를 거쳐 뇌과학자가 됐을까?",
+  "lead": "4세에 체스를 시작해 8세에 상금으로 컴퓨터를 샀고, 17세에는 Theme Park 개발의 핵심을 맡았다. 게임판에서 시작한 지능에 대한 질문은 뇌과학, AlphaGo, AlphaFold로 이동했고 결국 2024년 노벨 화학상까지 이어졌다.",
+  "oneSentenceConclusion": "그는 직업을 다섯 번 바꾼 사람이 아니라, 지능은 어떻게 작동하는가라는 질문을 40년 넘게 체스·게임·뇌·AI·생명과학으로 확장한 사람에 가깝다.",
+  "thumbnailMain": "체스 신동이 노벨상까지",
+  "thumbnailSub": "데미스 하사비스 연대기",
+  "socialShare": [
+    "4세 체스 신동 → 17세 게임 개발자 → 뇌과학 박사 → AlphaGo → AlphaFold → 노벨상. 데미스 하사비스의 50년을 한 번에 정리했습니다.",
+    "피터 틸을 붙잡은 체스 한마디, 10시간 패배 뒤 떠올린 암 연구, 그리고 Move 37. 하사비스의 선택을 만든 11개 일화."
+  ],
+  "keywords": [
+    "데미스 하사비스",
+    "Demis Hassabis",
+    "딥마인드",
+    "Google DeepMind",
+    "AlphaGo",
+    "AlphaFold",
+    "노벨 화학상",
+    "이세돌",
+    "AI 인물",
+    "타임라인"
+  ],
+  "category": "AI",
+  "createdAt": "2026-08-10",
+  "updatedAt": "2026-08-10",
+  "canonical": "https://aihubos.github.io/reportmode/reports/260810-01-demis-hassabis-life-timeline-v1-0-0/",
+  "thumbnail": "assets/thumbnail.png",
+  "topicScore": 91,
+  "topicScoreBreakdown": {
+    "최신성": 18,
+    "검색 의도": 15,
+    "SNS 공유성": 14,
+    "실무 효용": 12,
+    "한국 연관성": 14,
+    "근거 강도": 9,
+    "시각화 적합성": 9
+  },
+  "selectedTitleScore": 94,
+  "generation": "AI-assisted",
+  "reviewStatus": "Human review recommended",
+  "assumptions": [
+    "사용자의 ‘데이빗 하사비스’는 Google DeepMind 공동 창업자 Demis Hassabis를 뜻하는 것으로 해석했다.",
+    "신규 보고서이므로 버전은 v1.0.0, 일일 순번은 01로 설정했다.",
+    "사용자가 제공한 데미스 하사비스 사진을 썸네일과 본문 대표 이미지로 사용했다.",
+    "직책은 2026-08-06 Google 공식 공지를 기준으로 최신화했으며, 이전 기관 프로필의 CEO 표기는 우선하지 않았다.",
+    "어린 시절·투자·노벨 연락 일화는 당사자 회고 및 장문 인터뷰 기반임을 본문에 명시했다."
+  ]
+}
