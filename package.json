@@ -10,8 +10,14 @@
   "scripts": {
     "build": "tsx src/cli/index.ts build",
     "report": "tsx src/cli/index.ts",
+    "reports:integrity": "node scripts/report-integrity-qa.mjs",
+    "reports:content-review": "node scripts/report-content-review.mjs",
+    "reports:links": "node scripts/report-link-audit.mjs",
+    "reports:refresh": "node scripts/report-refresh.mjs",
+    "reports:standardize": "node scripts/standardize-report-pages.mjs",
     "studio": "tsx src/cli/index.ts studio",
     "skill:install": "tsx scripts/install-skill.ts",
+    "test": "node --test scripts/report-refresh-lib.test.mjs scripts/report-refresh.test.mjs scripts/report-integrity-qa.test.mjs scripts/report-content-review.test.mjs scripts/report-content-regression.test.mjs assets/report-history.test.mjs assets/report-layout.test.mjs && tsx --test src/lib/render.test.ts",
     "typecheck": "tsc --noEmit"
   },
   "engines": {

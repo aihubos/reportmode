@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <base href="/reportmode/reports/">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MacBook Pro M5 Max 128GB에서 ComfyUI를 설치하고 FLUX 이미지와 Wan2.2 영상을 생성하는 비전공자용 실전 가이드" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>MacBook Pro M5 Max 128GB · ComfyUI 실전 가이드 · v1.0.0</title>
+  <style>
+    :root {
+      --blue:#3182f6; --blue-strong:#1b64da; --blue-soft:#e8f3ff;
+      --ink:#191f28; --ink-2:#333d4b; --muted:#6b7684; --muted-2:#8b95a1;
+      --line:#e5e8eb; --surface:#f7f8fa; --surface-2:#f2f4f6; --white:#fff;
+      --highlight:#dfff6a; --yellow:#fff184; --green:#21a57a; --red:#d85c5c;
+      --shadow-sm:0 8px 30px rgba(25,31,40,.06); --shadow-md:0 24px 70px rgba(25,31,40,.11);
+      --radius-sm:18px; --radius-md:28px; --radius-lg:40px; --max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:92px}
+    body{margin:0;color:var(--ink);background:radial-gradient(circle at 88% 4%,rgba(49,130,246,.10),transparent 28rem),#fff;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Segoe UI",sans-serif;line-height:1.65;letter-spacing:-.02em;overflow-x:hidden}
+    a{color:inherit;text-decoration:none} button{font:inherit} img,video,svg{display:block;max-width:100%} h1,h2,h3,h4,p,figure{margin-top:0} strong{color:var(--ink)}
+    .container{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+    .scroll-progress{position:fixed;inset:0 auto auto 0;width:0;height:3px;background:linear-gradient(90deg,var(--blue),#78afff);z-index:1200}
+    .nav-wrap{position:sticky;top:0;z-index:1000;padding:14px 22px 0}
+    .nav{max-width:1240px;margin:auto;min-height:62px;display:flex;align-items:center;gap:16px;padding:10px 12px 10px 18px;border:1px solid rgba(229,232,235,.88);border-radius:22px;background:rgba(255,255,255,.84);backdrop-filter:blur(18px) saturate(160%);box-shadow:0 10px 34px rgba(25,31,40,.05)}
+    .brand{display:flex;align-items:center;gap:10px;min-width:max-content;font-size:14px;font-weight:850}.brand-mark{width:36px;height:36px;display:grid;place-items:center;border-radius:12px;color:#fff;background:linear-gradient(145deg,#5ca2ff,var(--blue-strong));box-shadow:0 8px 20px rgba(49,130,246,.28)}.brand-mark svg{width:20px}.brand-sub{color:var(--muted-2);font-weight:750}
+    .nav-links{display:flex;gap:4px;margin-left:auto}.nav-links a{padding:9px 10px;border-radius:12px;color:var(--muted);font-size:13px;font-weight:760}.nav-links a:hover,.nav-links a:focus-visible{color:var(--ink);background:var(--surface)}
+    .nav-actions{display:flex;gap:8px}.btn{appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:0 16px;border-radius:14px;font-size:14px;font-weight:850;transition:.2s ease}.btn:hover{transform:translateY(-1px)}.btn:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid rgba(49,130,246,.28);outline-offset:3px}.btn-primary{color:#fff;background:var(--blue);box-shadow:0 10px 24px rgba(49,130,246,.24)}.btn-primary:hover{background:var(--blue-strong)}.btn-ghost{color:var(--ink-2);background:var(--surface)}.btn-outline{color:var(--blue-strong);border:1px solid rgba(49,130,246,.24);background:#fff}
+    .hero{min-height:720px;display:grid;grid-template-columns:1.02fr .98fr;align-items:center;gap:58px;padding:76px 0 66px}.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 13px;margin-bottom:22px;border-radius:999px;color:var(--blue-strong);background:var(--blue-soft);font-size:14px;font-weight:850}.eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 5px rgba(49,130,246,.12)}
+    .hero h1{max-width:750px;margin-bottom:24px;font-size:clamp(36px,4.4vw,55px);line-height:1.10;letter-spacing:-.055em;font-weight:860;text-wrap:balance;overflow-wrap:anywhere}.blue{color:var(--blue)}.marker{position:relative;z-index:0;white-space:nowrap}.marker:after{content:"";position:absolute;left:-.03em;right:-.03em;bottom:.08em;height:.34em;border-radius:.12em;background:var(--highlight);transform:rotate(-1.2deg);z-index:-1;opacity:.9}
+    .hero-lead{max-width:720px;margin-bottom:28px;color:var(--muted);font-size:clamp(18px,1.8vw,22px);line-height:1.62;font-weight:620}.hero-actions{display:flex;flex-wrap:wrap;gap:10px}.hero-note{margin-top:22px;display:flex;gap:10px;color:var(--muted);font-size:14px;font-weight:650}.hero-note svg{width:19px;flex:0 0 auto;margin-top:2px;color:var(--blue)}
+    .report-meta{margin-top:18px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 13px;color:var(--muted-2);font-size:12px;font-weight:800}.version-badge{display:inline-flex;align-items:center;min-height:28px;padding:0 10px;border-radius:999px;color:var(--blue-strong);background:var(--blue-soft);border:1px solid rgba(49,130,246,.16);font-variant-numeric:tabular-nums}.meta-dot{width:3px;height:3px;border-radius:50%;background:var(--line)}
+    .hero-visual{position:relative}.hero-visual:before{content:"";position:absolute;inset:-35px;border:1px dashed rgba(49,130,246,.22);border-radius:46px;transform:rotate(2deg)}.hero-art{position:relative;padding:14px;border-radius:36px;border:1px solid rgba(229,232,235,.9);background:rgba(255,255,255,.92);box-shadow:var(--shadow-md)}.hero-art img{width:100%;border-radius:26px}.hero-specs{position:absolute;left:-22px;right:-22px;bottom:-26px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.hero-spec{padding:15px 14px;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:var(--shadow-sm)}.hero-spec span{display:block;color:var(--muted-2);font-size:10px;font-weight:900;letter-spacing:.04em}.hero-spec strong{display:block;margin-top:4px;font-size:16px;letter-spacing:-.03em}
+    section{padding:102px 0}.section-soft{background:var(--surface)}.section-blue{color:#fff;background:radial-gradient(circle at 12% 20%,rgba(255,255,255,.18),transparent 26rem),linear-gradient(145deg,#216ddc,#3182f6 58%,#5a9cff)}.section-kicker{margin-bottom:10px;color:var(--blue);font-size:14px;font-weight:900;letter-spacing:.03em}.section-blue .section-kicker{color:rgba(255,255,255,.76)}.section-title{max-width:930px;margin-bottom:18px;font-size:clamp(28px,3.3vw,41px);line-height:1.19;letter-spacing:-.05em;font-weight:860;text-wrap:balance;overflow-wrap:anywhere}.section-desc{max-width:880px;margin-bottom:42px;color:var(--muted);font-size:19px;line-height:1.62;font-weight:600}.section-blue .section-desc{color:rgba(255,255,255,.80)}
+    .cite{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 5px;margin-left:2px;border-radius:7px;color:var(--blue-strong);background:var(--blue-soft);font-size:11px;font-weight:900;vertical-align:middle}.section-blue .cite{color:#fff;background:rgba(255,255,255,.16)}
+    .thesis-card{display:grid;grid-template-columns:130px 1fr;gap:28px;align-items:center;padding:34px;border:1px solid var(--line);border-radius:var(--radius-lg);background:#fff;box-shadow:var(--shadow-sm)}.thesis-stamp{aspect-ratio:1;display:grid;place-items:center;border-radius:32px;color:var(--blue);background:var(--blue-soft)}.thesis-stamp svg{width:62px}.thesis-copy h3{margin-bottom:8px;font-size:25px;letter-spacing:-.04em}.thesis-copy p{margin-bottom:0;color:var(--muted);font-size:18px;font-weight:620}
+    .insight-grid,.feature-grid,.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}.card{padding:26px;border:1px solid var(--line);border-radius:var(--radius-md);background:#fff;box-shadow:0 10px 30px rgba(25,31,40,.035)}.card-index{display:inline-grid;place-items:center;width:36px;height:36px;margin-bottom:18px;border-radius:12px;color:var(--blue);background:var(--blue-soft);font-size:12px;font-weight:900}.card h3{margin-bottom:9px;font-size:23px;letter-spacing:-.04em}.card p{margin-bottom:0;color:var(--muted);font-size:15px;font-weight:600}.card .easy{display:inline-flex;padding:5px 9px;margin-bottom:14px;border-radius:8px;color:#415400;background:var(--highlight);font-size:12px;font-weight:900;transform:rotate(-1deg)}
+    .metric-card{padding:25px;border:1px solid var(--line);border-radius:24px;background:#fff}.metric-card span{display:block;color:var(--muted-2);font-size:12px;font-weight:900}.metric-card strong{display:block;margin:8px 0 5px;color:var(--blue);font-size:32px;line-height:1;font-variant-numeric:tabular-nums}.metric-card p{margin:0;color:var(--muted);font-size:13px;font-weight:620}
+    .hardware-layout{display:grid;grid-template-columns:.92fr 1.08fr;gap:26px;align-items:stretch}.photo-card{overflow:hidden;position:relative;min-height:450px;border:1px solid var(--line);border-radius:36px;background:#fff;box-shadow:var(--shadow-sm)}.photo-card img{width:100%;height:100%;object-fit:contain;padding:28px;background:#fff}.photo-credit{position:absolute;left:18px;right:18px;bottom:18px;padding:10px 13px;border-radius:14px;color:var(--muted);background:rgba(255,255,255,.88);backdrop-filter:blur(12px);font-size:11px;font-weight:750}.fit-panel{display:grid;gap:14px}.fit-row{display:grid;grid-template-columns:120px 1fr;gap:18px;align-items:start;padding:22px;border:1px solid var(--line);border-radius:24px;background:#fff}.fit-grade{display:inline-flex;align-items:center;justify-content:center;min-height:38px;border-radius:12px;color:#116b53;background:#dffbf2;font-size:13px;font-weight:900}.fit-grade.conditional{color:#765f00;background:#fff7c9}.fit-row h3{margin-bottom:5px;font-size:19px}.fit-row p{margin:0;color:var(--muted);font-size:14px;font-weight:600}
+    .decision-note{margin-top:22px;display:flex;gap:14px;padding:22px 24px;border:1px solid #f2df84;border-radius:22px;color:#635300;background:#fff8ce;font-size:15px;font-weight:700}.decision-note svg{width:22px;flex:0 0 auto;margin-top:2px}
+    .tabs{border:1px solid var(--line);border-radius:32px;background:#fff;box-shadow:var(--shadow-sm);overflow:hidden}.tab-list{display:flex;gap:6px;padding:10px;border-bottom:1px solid var(--line);background:var(--surface)}.tab-button{flex:1;min-height:48px;border:0;border-radius:14px;background:transparent;color:var(--muted);font-weight:850;cursor:pointer}.tab-button[aria-selected="true"]{color:#fff;background:var(--blue);box-shadow:0 8px 22px rgba(49,130,246,.22)}.tab-panel{padding:30px}.tab-panel[hidden]{display:none}.install-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.install-step{padding:20px;border:1px solid var(--line);border-radius:22px;background:var(--surface)}.install-step b{display:inline-grid;place-items:center;width:32px;height:32px;margin-bottom:13px;border-radius:10px;color:var(--blue);background:var(--blue-soft);font-size:12px}.install-step h3{margin-bottom:6px;font-size:17px}.install-step p{margin:0;color:var(--muted);font-size:13px;font-weight:600}.install-result{margin-top:18px;padding:18px 20px;border-radius:18px;color:#116b53;background:#e8fff7;font-size:14px;font-weight:750}
+    .code-wrap{position:relative;margin:18px 0;border:1px solid #2d3748;border-radius:22px;background:#111827;overflow:hidden}.code-head{display:flex;justify-content:space-between;align-items:center;padding:10px 12px 10px 18px;color:#a9b5c9;background:#172033;font-size:11px;font-weight:850}.copy-btn{border:1px solid rgba(255,255,255,.12);border-radius:9px;padding:6px 10px;color:#eaf2ff;background:rgba(255,255,255,.07);cursor:pointer;font-size:11px;font-weight:850}.code-wrap pre{margin:0;padding:20px;color:#e7edf7;font:13px/1.72 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere;tab-size:2}.code-comment{color:#8eb4e8}.inline-code{padding:.12em .42em;border-radius:.45em;color:#35506f;background:#edf3fa;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9em}
+    .setup-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.setup-card{padding:28px;border:1px solid var(--line);border-radius:30px;background:#fff}.setup-card h3{margin-bottom:8px;font-size:24px}.setup-card>p{color:var(--muted);font-size:15px;font-weight:600}.path-list{display:grid;gap:10px;margin-top:20px}.path-item{display:grid;grid-template-columns:145px 1fr;gap:12px;padding:14px;border-radius:16px;background:var(--surface)}.path-item strong{font-size:13px}.path-item code{color:var(--blue-strong);font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;overflow-wrap:anywhere}
+    .media-layout{display:grid;grid-template-columns:1.04fr .96fr;gap:24px;align-items:start}.media-card{overflow:hidden;border:1px solid var(--line);border-radius:34px;background:#fff;box-shadow:var(--shadow-sm)}.media-card img,.media-card video{width:100%;aspect-ratio:16/10;object-fit:cover;background:#111}.media-card.square img{aspect-ratio:1/1}.media-copy{padding:24px}.media-badge{display:inline-flex;padding:6px 10px;margin-bottom:12px;border-radius:999px;color:var(--blue-strong);background:var(--blue-soft);font-size:11px;font-weight:900}.media-copy h3{margin-bottom:8px;font-size:23px}.media-copy p{margin-bottom:16px;color:var(--muted);font-size:14px;font-weight:600}.media-actions{display:flex;flex-wrap:wrap;gap:8px}.media-actions .btn{min-height:38px;padding:0 12px;font-size:12px}.settings-list{display:grid;gap:10px}.setting-row{display:grid;grid-template-columns:130px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}.setting-row:last-child{border-bottom:0}.setting-row b{font-size:13px}.setting-row span{color:var(--muted);font-size:13px;font-weight:620}.prompt-box{padding:20px;border-radius:22px;color:#fff;background:linear-gradient(145deg,#202b3d,#111827)}.prompt-box span{display:block;margin-bottom:8px;color:#93a6c2;font-size:11px;font-weight:900}.prompt-box p{margin:0;color:#fff;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;line-height:1.7;letter-spacing:0}.prompt-korean{margin-top:10px!important;color:#cbd7e8!important;font-family:inherit!important}
+    .download-strip{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:22px;padding:18px 20px;border:1px solid rgba(49,130,246,.22);border-radius:20px;background:linear-gradient(90deg,#f7fbff,#e8f3ff)}.download-strip p{margin:0;color:var(--muted);font-size:13px;font-weight:650}
+    .video-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.video-card{overflow:hidden;border:1px solid rgba(255,255,255,.22);border-radius:28px;background:rgba(255,255,255,.12);backdrop-filter:blur(10px)}.video-card img,.video-card video{width:100%;aspect-ratio:16/9;object-fit:cover;background:#0c1524}.video-card .video-copy{padding:22px}.video-card h3{margin-bottom:7px;font-size:21px;color:#fff}.video-card p{margin-bottom:14px;color:rgba(255,255,255,.76);font-size:13px;font-weight:600}.video-card .media-badge{color:#fff;background:rgba(255,255,255,.16)}.video-card .btn-outline{color:#fff;border-color:rgba(255,255,255,.24);background:rgba(255,255,255,.10)}
+    .offline-demo{margin-top:20px;padding:18px;border:1px solid rgba(255,255,255,.22);border-radius:24px;background:rgba(13,42,87,.20)}.offline-demo>p{margin:0 0 14px;color:rgba(255,255,255,.78);font-size:13px;font-weight:650}.offline-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.offline-item{overflow:hidden;border-radius:18px;background:rgba(255,255,255,.10)}.offline-item video{width:100%;aspect-ratio:16/9;object-fit:cover}.offline-item div{padding:13px 14px}.offline-item strong{color:#fff;font-size:13px}.offline-item span{display:block;color:rgba(255,255,255,.66);font-size:11px}
+    .flow-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:13px;margin-top:28px}.flow-step{min-height:220px;padding:21px;border:1px solid rgba(255,255,255,.2);border-radius:24px;background:rgba(255,255,255,.12)}.flow-num{width:36px;height:36px;display:grid;place-items:center;margin-bottom:32px;border-radius:12px;color:var(--blue-strong);background:#fff;font-size:12px;font-weight:900}.flow-step h3{margin-bottom:8px;font-size:18px;color:#fff}.flow-step p{margin:0;color:rgba(255,255,255,.72);font-size:13px;font-weight:600}
+    .ladder-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.ladder-card{padding:26px;border:1px solid var(--line);border-radius:28px;background:#fff}.ladder-card.recommended{border-color:rgba(49,130,246,.3);background:linear-gradient(180deg,#fff,#f4f9ff)}.ladder-tag{display:inline-flex;padding:5px 9px;margin-bottom:16px;border-radius:999px;color:var(--muted);background:var(--surface-2);font-size:11px;font-weight:900}.recommended .ladder-tag{color:var(--blue-strong);background:var(--blue-soft)}.ladder-card h3{margin-bottom:10px;font-size:21px}.ladder-card ul{margin:0;padding-left:20px;color:var(--muted);font-size:14px;font-weight:620}.ladder-card li+li{margin-top:6px}
+    .benchmark-table-wrap,.history-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:22px;background:#fff}.benchmark-table,.history-table{width:100%;min-width:800px;border-collapse:collapse;font-size:13px}.benchmark-table th,.benchmark-table td,.history-table th,.history-table td{padding:15px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}.benchmark-table tr:last-child td,.history-table tr:last-child td{border-bottom:0}.benchmark-table th,.history-table th{color:var(--muted);background:var(--surface);font-size:11px;font-weight:900;white-space:nowrap}.benchmark-table td,.history-table td{color:var(--ink-2);font-weight:650}.benchmark-table input{width:100%;min-width:90px;border:1px solid var(--line);border-radius:9px;padding:7px;background:#fff}.micro-note{margin-top:10px;color:var(--muted-2);font-size:12px;font-weight:620}
+    .correction-table{overflow:hidden;border:1px solid var(--line);border-radius:28px;background:#fff}.correction-row{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line)}.correction-row:last-child{border-bottom:0}.correction-cell{display:flex;gap:12px;padding:23px;color:var(--ink-2);font-size:14px;font-weight:700}.correction-cell+.correction-cell{border-left:1px solid var(--line)}.correction-icon{width:29px;height:29px;flex:0 0 auto;display:grid;place-items:center;border-radius:50%;font-size:14px;font-weight:900}.wrong .correction-icon{color:var(--red);background:#fff0f0}.right .correction-icon{color:var(--blue);background:var(--blue-soft)}
+    .faq{display:grid;gap:10px;margin-top:22px}.faq details{border:1px solid var(--line);border-radius:20px;background:#fff}.faq summary{cursor:pointer;list-style:none;padding:18px 54px 18px 20px;font-weight:820;position:relative}.faq summary::-webkit-details-marker{display:none}.faq summary:after{content:"+";position:absolute;right:20px;top:14px;width:32px;height:32px;display:grid;place-items:center;border-radius:10px;color:var(--blue);background:var(--blue-soft);font-size:20px}.faq details[open] summary:after{content:"−"}.faq-content{padding:0 20px 20px;color:var(--muted);font-size:14px;font-weight:600}.faq-content p:last-child{margin-bottom:0}
+    .recommend-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.recommend-card{padding:32px;border:1px solid var(--line);border-radius:32px;background:#fff}.recommend-card.blue-card{color:#fff;border-color:transparent;background:linear-gradient(145deg,#216ddd,#3182f6)}.recommend-card h3{margin-bottom:20px;font-size:26px}.recommend-list{display:grid;gap:16px}.recommend-item{display:grid;grid-template-columns:34px 1fr;gap:12px}.recommend-num{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;color:var(--blue);background:var(--blue-soft);font-size:13px;font-weight:900}.blue-card .recommend-num{color:var(--blue-strong);background:#fff}.recommend-item strong{display:block;margin-bottom:3px;font-size:16px}.blue-card .recommend-item strong{color:#fff}.recommend-item p{margin:0;color:var(--muted);font-size:14px;font-weight:650}.blue-card .recommend-item p{color:rgba(255,255,255,.74)}
+    .sources{padding:78px 0 40px;border-top:1px solid var(--line);background:#fff}.source-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:26px}.source-head h2{margin-bottom:5px;font-size:28px;letter-spacing:-.04em}.source-head p{margin:0;color:var(--muted);font-size:14px;font-weight:650}.source-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.source-link{padding:18px;border:1px solid var(--line);border-radius:18px;background:var(--surface);transition:.2s ease;overflow-wrap:anywhere}.source-link:hover{transform:translateY(-2px);border-color:rgba(49,130,246,.25);background:var(--blue-soft)}.source-link span{display:block;margin-bottom:6px;color:var(--muted-2);font-size:10px;font-weight:900;letter-spacing:.05em}.source-link strong{display:block;font-size:14px}.source-link small{display:block;margin-top:5px;color:var(--muted);font-size:11px}.footer-bottom{display:flex;justify-content:space-between;gap:18px;margin-top:34px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted-2);font-size:12px;font-weight:650}.report-history{margin-top:42px;padding-top:32px;border-top:1px solid var(--line)}.history-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:18px}.history-head h2{margin-bottom:4px;font-size:26px;letter-spacing:-.04em}.history-head p{margin:0;color:var(--muted);font-size:13px;font-weight:650}.history-table td:first-child{color:var(--blue-strong);font-weight:900;white-space:nowrap}.history-status{display:inline-flex;padding:5px 8px;border-radius:999px;color:var(--muted);background:var(--surface-2);font-size:11px;font-weight:850}.history-empty{text-align:center;color:var(--muted)}
+    .floating-actions{position:fixed;right:22px;bottom:22px;z-index:800;display:grid;gap:10px}.float-btn{width:48px;height:48px;display:grid;place-items:center;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.92);box-shadow:var(--shadow-sm);cursor:pointer;color:var(--ink-2);backdrop-filter:blur(12px)}.float-btn svg{width:20px}.float-btn:hover{color:var(--blue)}
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}.reveal.visible{opacity:1;transform:none}.print-only{display:none}
+    @media(max-width:1040px){.nav-links{display:none}.hero{grid-template-columns:1fr;padding-top:60px}.hero-copy{text-align:center}.hero-lead{margin-left:auto;margin-right:auto}.hero-actions,.report-meta,.hero-note{justify-content:center}.hero-note{text-align:left}.hero-visual{max-width:650px;margin:auto}.insight-grid,.feature-grid,.metric-grid{grid-template-columns:repeat(2,1fr)}.hardware-layout,.media-layout{grid-template-columns:1fr}.install-grid{grid-template-columns:repeat(2,1fr)}.flow-grid{grid-template-columns:repeat(2,1fr)}.source-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:720px){.container{width:min(100% - 28px,var(--max))}.nav-wrap{padding:9px 10px 0}.nav{min-height:56px;padding-left:12px;border-radius:18px}.brand-sub,.nav-actions .btn-ghost{display:none}.btn{min-height:40px;padding:0 13px}.hero{gap:38px;padding:56px 0 68px}.hero h1{font-size:38px}.hero-lead{font-size:18px}.hero-visual:before{inset:-12px}.hero-art{padding:8px;border-radius:26px}.hero-specs{position:static;margin-top:10px;grid-template-columns:1fr}.hero-spec{padding:12px}section{padding:82px 0}.section-title{font-size:32px}.section-desc{font-size:17px;margin-bottom:34px}.thesis-card{grid-template-columns:1fr;padding:28px}.thesis-stamp{width:94px}.insight-grid,.feature-grid,.metric-grid,.install-grid,.setup-grid,.video-grid,.offline-grid,.flow-grid,.ladder-grid,.recommend-grid{grid-template-columns:1fr}.hardware-layout{gap:18px}.photo-card{min-height:330px}.fit-row{grid-template-columns:1fr}.tab-list{flex-direction:column}.tab-panel{padding:20px}.path-item,.setting-row{grid-template-columns:1fr;gap:5px}.download-strip,.source-head,.footer-bottom,.history-head{align-items:flex-start;flex-direction:column}.correction-row{grid-template-columns:1fr}.correction-cell+.correction-cell{border-left:0;border-top:1px solid var(--line)}.source-grid{grid-template-columns:1fr}.floating-actions{right:12px;bottom:12px}.marker{white-space:normal}.media-card img,.media-card video{aspect-ratio:4/3}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+    @media print{@page{size:A4;margin:12mm}body{background:#fff!important;color:#000}.nav-wrap,.floating-actions,.scroll-progress,.hero-actions,.copy-btn,.tab-list,.source-head .btn{display:none!important}.container{width:100%;max-width:none}.hero{min-height:auto;grid-template-columns:1fr 1fr;padding:8mm 0 12mm}.hero-visual:before{display:none}.hero-specs{position:static;margin-top:3mm}.hero-art,.card,.media-card,.setup-card,.metric-card,.ladder-card,.recommend-card,.thesis-card{box-shadow:none}.tab-panel{display:block!important;padding:5mm 0;border-top:1px solid #ccc}.tab-panel:before{content:attr(data-print-title);display:block;margin-bottom:3mm;font-size:16px;font-weight:800}.section-blue{color:#000!important;background:#fff!important;border-top:2px solid var(--blue);border-bottom:2px solid var(--blue)}.section-blue .section-desc,.section-blue p,.video-card p,.flow-step p,.offline-item span{color:#333!important}.video-card,.flow-step,.offline-demo,.offline-item,.recommend-card.blue-card{color:#000!important;background:#f4f6f8!important;border:1px solid #ccc}.video-card h3,.flow-step h3,.offline-item strong,.blue-card .recommend-item strong{color:#000!important}section{padding:12mm 0;break-inside:avoid}.source-grid{grid-template-columns:repeat(2,1fr)}video{display:none!important}.print-only{display:block!important}.reveal{opacity:1!important;transform:none!important}.history-table,.benchmark-table{min-width:0;font-size:9px}.history-table-wrap,.benchmark-table-wrap{overflow:visible}a{text-decoration:none}}
+  </style>
+  <link rel="stylesheet" href="../assets/report-page-layout.css?v=20260807c-wide-default">
+</head>
+<body data-report-view="detail" data-report-layout="wide" data-report-cover="assets/260808-macbook-m5max-comfyui-practical-guide/cover.png" data-report-cover-alt="Apple 로고와 MacBook Pro 공식 제품 이미지">
+  <aside class="report-version-banner" role="note" style="position:relative;z-index:9999;padding:12px 18px;border-bottom:1px solid #f1d48a;color:#4f3a00;background:#fff8dc;font:700 13px/1.5 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;text-align:center">2026년 8월 9일 이전판입니다. 현재 정보와 다를 수 있습니다. <a href="/reportmode/reports/260808-macbook-m5max-comfyui-practical-guide.html" style="color:#1b64da">최신 보고서 보기 →</a></aside>
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="nav-wrap">
+    <nav class="nav" aria-label="주요 메뉴">
+      <a class="brand" href="../archive/" aria-label="보고서 처음으로">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.2 9.1 16 19 6.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span>AIHUBOS REPORTMODE</span><span class="brand-sub">ComfyUI Guide</span>
+      </a>
+      <div class="nav-links">
+        <a href="#summary">결론</a><a href="#install">설치</a><a href="#image">이미지</a><a href="#video">동영상</a><a href="#operations">운영</a><a href="#troubleshoot">문제 해결</a><a href="#sources">출처</a>
+      </div>
+      <div class="nav-actions"><a class="btn btn-ghost" href="#history">변경 이력</a><button class="btn btn-primary" type="button" onclick="window.print()">PDF 저장</button></div>
+    </nav>
+  </div>
+
+  <main id="top">
+    <div class="container">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span class="eyebrow-dot"></span>비전공자도 따라 하는 로컬 생성형 AI 가이드</div>
+          <h1 id="hero-title">MacBook Pro <span class="blue">M5 Max 128GB</span>로<br><span class="marker">ComfyUI</span> 이미지·영상 만들기</h1>
+          <p class="hero-lead">설치부터 MPS 확인, FLUX 이미지 생성, Wan2.2 텍스트·이미지 기반 영상 생성까지 한 흐름으로 정리했습니다. 결과물과 워크플로 파일을 함께 제공해 설명만 읽고 끝나지 않도록 구성했습니다.</p>
+          <div class="hero-actions"><a class="btn btn-primary" href="#install">설치부터 시작</a><a class="btn btn-ghost" href="#image">생성 예시 보기</a></div>
+          <div class="hero-note"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 10v6M12 7.2v.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>기준일 2026.08.08. 실제 사용자 장비에서 시간을 측정한 벤치마크는 아니며, 속도는 모델·해상도·ComfyUI/PyTorch 버전에 따라 달라집니다.</span></div>
+          <div class="report-meta" aria-label="보고서 버전 정보"><span class="version-badge" id="reportVersion">v1.0.0</span><span id="reportUpdated">Updated 2026.08.08</span><span class="meta-dot"></span><span id="reportGeneration">AI-generated · Human review recommended</span></div>
+        </div>
+        <div class="hero-visual reveal" aria-label="ComfyUI 작동 구조 일러스트">
+          <div class="hero-art"><img src="assets/260808-macbook-m5max-comfyui-practical-guide/comfyui-m5max-diagram.svg" alt="MacBook 화면에서 프롬프트, 모델, 샘플러, 출력 노드가 연결된 ComfyUI 구조" width="1200" height="820"></div>
+          <div class="hero-specs" aria-label="대상 장비 핵심 사양">
+            <div class="hero-spec"><span>UNIFIED MEMORY</span><strong>128GB</strong></div><div class="hero-spec"><span>GPU</span><strong>40-core</strong></div><div class="hero-spec"><span>MEMORY BANDWIDTH</span><strong>614GB/s</strong></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section id="summary" class="section-soft">
+      <div class="container">
+        <div class="section-kicker reveal">EXECUTIVE SUMMARY</div>
+        <h2 class="section-title reveal">용량은 충분하지만, 성공 여부는 <span class="blue">MPS 호환성과 워크플로 선택</span>이 좌우합니다</h2>
+        <p class="section-desc reveal">M5 Max 128GB는 대형 이미지·영상 모델을 메모리에 올릴 수 있는 강한 기반입니다. 다만 128GB가 모두 GPU 전용 메모리는 아니며, CUDA 전용 노드와 일부 연산은 Mac에서 다르게 작동할 수 있습니다.</p>
+        <article class="thesis-card reveal">
+          <div class="thesis-stamp" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M17 25.5a11 11 0 0 1 19.4-7.1A10.5 10.5 0 0 1 49 28.6a10 10 0 0 1-2.8 19.2H20.4A11.4 11.4 0 0 1 17 25.5Z" stroke="currentColor" stroke-width="3.2"/><path d="M24 31h16M24 38h12" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></svg></div>
+          <div class="thesis-copy"><h3>한 문장 결론</h3><p><strong>Desktop 앱 + MPS + FLUX.1 첫 이미지</strong>로 설치를 검증한 뒤, <strong>Wan2.2 5B·41프레임</strong>으로 영상 파이프라인을 확인하고 해상도와 프레임 수를 단계적으로 높이는 방식이 가장 안전합니다.</p></div>
+        </article>
+        <div class="insight-grid">
+          <article class="card reveal"><div class="card-index">01</div><h3>하드웨어 여유</h3><div class="easy">큰 책상을 가진 셈</div><p>128GB 통합 메모리는 모델·텍스트 인코더·VAE를 함께 다룰 여유를 줍니다. Apple 사양상 이 구성은 40코어 GPU와 614GB/s 대역폭 조합입니다.<a class="cite" href="#source-1">[1]</a></p></article>
+          <article class="card reveal"><div class="card-index">02</div><h3>권장 설치 경로</h3><div class="easy">먼저 앱으로 성공</div><p>비전공자는 Comfy Desktop을 권장합니다. macOS 13+, Apple Silicon, 설치당 약 4.85GB가 공식 최소 출발점입니다.<a class="cite" href="#source-3">[3]</a></p></article>
+          <article class="card reveal"><div class="card-index">03</div><h3>가장 큰 변수</h3><div class="easy">RAM보다 호환성</div><p>PyTorch는 Metal의 MPS로 GPU를 사용하지만 MPS 백엔드는 계속 개선되는 영역입니다. CUDA 전용 최적화와 동일한 결과·속도를 전제로 하면 안 됩니다.<a class="cite" href="#source-5">[5]</a></p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="hardware">
+      <div class="container">
+        <div class="section-kicker reveal">HARDWARE FIT</div>
+        <h2 class="section-title reveal">M5 Max 128GB는 “실행 가능성”이 아니라 <span class="blue">운영 여유</span>를 확보한 구성입니다</h2>
+        <p class="section-desc reveal">모델이 메모리에 들어가는 것과 빠르게 생성되는 것은 다른 문제입니다. 이 장비는 용량 측면에서 강하지만, 실제 처리 시간은 각 노드의 Metal 지원과 모델 구조에 달려 있습니다.</p>
+        <div class="hardware-layout">
+          <figure class="photo-card reveal">
+            <img src="assets/260808-macbook-m5max-comfyui-practical-guide/apple-macbook-pro-m5.png" alt="Apple 공식 MacBook Pro 제품 이미지" loading="lazy" referrerpolicy="no-referrer">
+            <figcaption class="photo-credit">공식 제품 이미지: Apple MacBook Pro 기술 사양 페이지 · 로드 실패 시 설명용 로컬 일러스트 표시</figcaption>
+          </figure>
+          <div class="fit-panel">
+            <article class="fit-row reveal"><span class="fit-grade">매우 적합</span><div><h3>FLUX 이미지 생성</h3><p>1024×1024, 배치 1부터 시작하기에 충분한 메모리 여유가 있습니다. 32GB 초과 RAM에서는 FLUX의 FP16 T5 텍스트 인코더를 권장한다는 공식 예제 설명과도 부합합니다.<a class="cite" href="#source-7">[7]</a></p></div></article>
+            <article class="fit-row reveal"><span class="fit-grade">적합</span><div><h3>Wan2.2 5B 영상</h3><p>공식 문서는 5B 하이브리드 모델이 네이티브 오프로딩으로 8GB VRAM에도 맞는다고 안내합니다. 128GB 구성은 용량보다 생성 시간·노드 호환성을 먼저 확인해야 합니다.<a class="cite" href="#source-8">[8]</a></p></div></article>
+            <article class="fit-row reveal"><span class="fit-grade conditional">조건부</span><div><h3>Wan2.2 14B·고프레임</h3><p>메모리에는 들어갈 가능성이 높아도, 긴 영상은 픽셀 수×프레임 수×샘플링 단계만큼 계산량이 커집니다. 5B 파이프라인 검증 전 14B를 첫 모델로 선택하지 않는 편이 안전합니다.</p></div></article>
+            <article class="fit-row reveal"><span class="fit-grade conditional">확인 필요</span><div><h3>커스텀 노드</h3><p>CUDA 전용 라이브러리, Triton, xFormers 특정 기능을 요구하는 노드는 Mac에서 설치 실패 또는 CPU 폴백이 날 수 있습니다. 필요한 노드만 신뢰할 수 있는 출처에서 설치합니다.<a class="cite" href="#source-10">[10]</a></p></div></article>
+          </div>
+        </div>
+        <div class="decision-note reveal"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 20 6v5.7c0 4.6-3.2 7.6-8 9.3-4.8-1.7-8-4.7-8-9.3V6z" stroke="currentColor" stroke-width="1.8"/><path d="M12 8v5M12 16.2v.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><div><strong>중요:</strong> “128GB 통합 메모리 = 128GB 전용 VRAM”은 아닙니다. macOS, CPU, GPU, 앱이 같은 메모리 풀을 공유하므로 Activity Monitor의 <strong>메모리 압력</strong>을 기준으로 판단합니다.</div></div>
+      </div>
+    </section>
+
+    <section id="install" class="section-soft">
+      <div class="container">
+        <div class="section-kicker reveal">INSTALLATION</div>
+        <h2 class="section-title reveal">첫 설치는 Desktop, 장기 운영은 필요할 때만 수동 설치로 전환합니다</h2>
+        <p class="section-desc reveal">Desktop은 Python과 의존성을 자동 관리해 첫 성공률이 높습니다. 수동 설치는 최신 커밋, 독립 환경, 세밀한 버전 통제가 필요한 사용자에게 적합합니다.</p>
+        <div class="tabs reveal" data-tabs>
+          <div class="tab-list" role="tablist" aria-label="설치 방식 선택">
+            <button class="tab-button" id="tab-desktop" role="tab" aria-controls="panel-desktop" aria-selected="true">A. Desktop 앱 · 권장</button>
+            <button class="tab-button" id="tab-manual" role="tab" aria-controls="panel-manual" aria-selected="false">B. 수동 설치 · 고급</button>
+          </div>
+          <div class="tab-panel" id="panel-desktop" role="tabpanel" aria-labelledby="tab-desktop" data-print-title="A. Desktop 앱 설치">
+            <div class="install-grid">
+              <article class="install-step"><b>1</b><h3>macOS 확인</h3><p>Comfy Desktop 기준 macOS 13 이상, Apple Silicon이 필요합니다. 최신 MPS 수동 환경은 macOS 14 이상을 권장합니다.<a class="cite" href="#source-3">[3]</a></p></article>
+              <article class="install-step"><b>2</b><h3>공식 설치 파일</h3><p>ComfyUI 공식 macOS 다운로드 페이지에서 최신 DMG를 받습니다. 비공식 번들보다 공식 경로를 우선합니다.</p></article>
+              <article class="install-step"><b>3</b><h3>Applications로 이동</h3><p>DMG를 열고 Comfy Desktop을 Applications 폴더로 드래그한 뒤 Launchpad 또는 Spotlight에서 실행합니다.<a class="cite" href="#source-3">[3]</a></p></article>
+              <article class="install-step"><b>4</b><h3>보안 허용</h3><p>첫 실행 경고가 나오면 시스템 설정 → 개인정보 보호 및 보안 → 그래도 열기를 선택합니다.</p></article>
+              <article class="install-step"><b>5</b><h3>MPS 선택</h3><p>실행 장치 선택 화면이 나타나면 MPS를 선택합니다. CPU Mode는 문제 진단 외에는 선택하지 않습니다.</p></article>
+              <article class="install-step"><b>6</b><h3>전용 폴더 지정</h3><p>모델·출력·워크플로를 위한 빈 폴더를 지정합니다. 권장 예: <span class="inline-code">~/ComfyUI-Shared</span>.</p></article>
+            </div>
+            <div class="install-result">완료 기준: 앱이 열리고 기본 워크플로가 보이며, Queue/Run을 눌렀을 때 콘솔에 <strong>MPS</strong> 장치가 표시됩니다.</div>
+          </div>
+          <div class="tab-panel" id="panel-manual" role="tabpanel" aria-labelledby="tab-manual" data-print-title="B. 수동 설치" hidden>
+            <p>수동 설치는 가상환경 → 저장소 복제 → PyTorch/MPS → ComfyUI 의존성 → 실행 순서로 진행합니다. 공식 문서는 시스템 Python 오염을 피하기 위해 독립 환경을 권장하며, Python 3.13을 우선 권장하고 일부 커스텀 노드 의존성 문제가 있으면 3.12를 대안으로 안내합니다.<a class="cite" href="#source-4">[4]</a><a class="cite" href="#source-13">[13]</a></p>
+            <div class="code-wrap"><div class="code-head"><span>Terminal · Conda 기준</span><button class="copy-btn" type="button" data-copy>명령 복사</button></div><pre><code><span class="code-comment"># 0) Apple 개발 도구 설치</span>
+xcode-select --install
+
+<span class="code-comment"># 1) 독립 환경 생성 — Python 3.13 우선, 문제 시 3.12</span>
+conda create -n comfyenv python=3.13 -y
+conda activate comfyenv
+
+<span class="code-comment"># 2) ComfyUI 복제</span>
+mkdir -p ~/AI &amp;&amp; cd ~/AI
+git clone https://github.com/Comfy-Org/ComfyUI.git
+cd ComfyUI
+
+<span class="code-comment"># 3) Apple Silicon용 PyTorch nightly</span>
+conda install pytorch-nightly::pytorch torchvision torchaudio -c pytorch-nightly
+
+<span class="code-comment"># 4) ComfyUI 의존성 및 실행</span>
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+python main.py</code></pre></div>
+            <div class="install-result">브라우저가 자동으로 열리지 않으면 터미널에 표시된 로컬 주소를 엽니다. 종료는 터미널에서 <strong>Control + C</strong>입니다.</div>
+          </div>
+        </div>
+        <div class="download-strip reveal"><p><strong>운영 권고:</strong> Desktop과 수동 설치를 동시에 운영한다면 모델은 공유 폴더 하나에 두고 <span class="inline-code">extra_model_paths.yaml</span>로 연결해 중복 저장을 막습니다.<a class="cite" href="#source-4">[4]</a></p><a class="btn btn-outline" href="https://www.comfy.org/download" target="_blank" rel="noopener noreferrer">공식 다운로드 열기</a></div>
+      </div>
+    </section>
+
+    <section id="setup">
+      <div class="container">
+        <div class="section-kicker reveal">FIRST CONFIGURATION</div>
+        <h2 class="section-title reveal">모델 파일은 “아무 폴더”가 아니라 <span class="blue">역할별 서랍</span>에 넣어야 합니다</h2>
+        <p class="section-desc reveal">ComfyUI는 모델 유형별 폴더를 검색합니다. 파일 이름이 맞아도 폴더가 틀리면 노드 목록에 나타나지 않습니다. 파일을 넣은 뒤에는 앱 재시작 또는 <strong>R</strong> 키로 모델 목록을 새로고침합니다.<a class="cite" href="#source-6">[6]</a></p>
+        <div class="setup-grid">
+          <article class="setup-card reveal"><h3>권장 폴더 구조</h3><p>Desktop의 실제 루트는 설치 시 선택한 공유 폴더, 수동 설치는 <span class="inline-code">ComfyUI/models</span>입니다.</p>
+            <div class="code-wrap"><div class="code-head"><span>MODEL LIBRARY</span><button class="copy-btn" type="button" data-copy>구조 복사</button></div><pre><code>ComfyUI/
+├─ models/
+│  ├─ diffusion_models/  <span class="code-comment"># FLUX, Wan 본체</span>
+│  ├─ text_encoders/     <span class="code-comment"># T5, CLIP, UMT5</span>
+│  ├─ vae/               <span class="code-comment"># 잠재공간 → 이미지</span>
+│  ├─ checkpoints/       <span class="code-comment"># 단일 파일 모델</span>
+│  └─ loras/             <span class="code-comment"># 스타일·캐릭터 보조</span>
+├─ input/                <span class="code-comment"># I2V 입력 이미지</span>
+├─ output/               <span class="code-comment"># 생성 결과</span>
+└─ user/                 <span class="code-comment"># 워크플로·설정</span></code></pre></div>
+          </article>
+          <article class="setup-card reveal"><h3>MPS 가속 확인</h3><p>“실행된다”보다 “GPU로 실행된다”를 확인해야 합니다. 아래 스크립트는 PyTorch가 MPS를 빌드했고 현재 장치에서 사용할 수 있는지 검사합니다.<a class="cite" href="#source-5">[5]</a></p>
+            <div class="code-wrap"><div class="code-head"><span>Terminal · comfyenv 활성화 후</span><button class="copy-btn" type="button" data-copy>명령 복사</button></div><pre><code>cd ~/AI/ComfyUI
+python /path/to/verify_mps.py
+
+<span class="code-comment"># 기대 결과</span>
+MPS built: True
+MPS available: True
+MPS tensor test: tensor([1.], device='mps:0')</code></pre></div>
+            <div class="media-actions"><a class="btn btn-outline" href="scripts/verify_mps.py" download>verify_mps.py 받기</a></div>
+          </article>
+        </div>
+        <div class="metric-grid reveal">
+          <article class="metric-card"><span>공식 Desktop 기본 공간</span><strong>4.85GB+</strong><p>설치 인스턴스 하나의 출발점. 모델·출력은 별도입니다.<a class="cite" href="#source-3">[3]</a></p></article>
+          <article class="metric-card"><span>실전 여유 공간 · 보고서 권고</span><strong>150–300GB</strong><p>FLUX + Wan 5B + 캐시 + 출력 보관을 위한 운영 추정치입니다.</p></article>
+          <article class="metric-card"><span>첫 Queue</span><strong>1개씩</strong><p>동시 생성보다 단일 작업으로 오류와 메모리 압력을 먼저 확인합니다.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="image" class="section-soft">
+      <div class="container">
+        <div class="section-kicker reveal">IMAGE GENERATION · FLUX.1 DEV</div>
+        <h2 class="section-title reveal">공식 예제 PNG를 끌어놓으면 <span class="blue">그 결과를 만든 노드 그래프</span>가 열립니다</h2>
+        <p class="section-desc reveal">ComfyUI 공식 예제 이미지는 워크플로 메타데이터를 포함합니다. 아래 PNG를 다운로드해 ComfyUI 캔버스에 드래그하면 모델 파일만 갖춰진 상태에서 동일한 구조를 불러올 수 있습니다.<a class="cite" href="#source-12">[12]</a></p>
+        <div class="media-layout">
+          <figure class="media-card square reveal">
+            <img src="assets/260808-macbook-m5max-comfyui-practical-guide/flux-dev-example.png" alt="FLUX.1 Dev로 생성한 여우 귀 메이드가 케이크를 들고 있는 공식 ComfyUI 예제 이미지" width="1024" height="1024" loading="lazy">
+            <figcaption class="media-copy"><span class="media-badge">ACTUAL COMFYUI OUTPUT · WORKFLOW EMBEDDED</span><h3>FLUX.1 Dev 공식 생성 예시</h3><p>1024×1024 PNG 안에 실제 워크플로와 API 프롬프트가 포함되어 있습니다. 보고서 패키지에는 추출한 JSON도 함께 제공합니다. 예제 저장소 라이선스는 워크플로 재사용을 허용하지만, 생성 이미지의 별도 재배포 권리와 모델 이용 조건은 프로젝트 목적에 맞게 다시 확인해야 합니다.<a class="cite" href="#source-15">[15]</a></p><div class="media-actions"><a class="btn btn-primary" href="assets/260808-macbook-m5max-comfyui-practical-guide/flux-dev-example.png" download>PNG 받기</a><a class="btn btn-outline" href="assets/260808-macbook-m5max-comfyui-practical-guide/workflow.json" download>Workflow JSON</a><a class="btn btn-outline" href="assets/260808-macbook-m5max-comfyui-practical-guide/prompt.json" download>API Prompt JSON</a></div></figcaption>
+          </figure>
+          <div class="reveal">
+            <div class="prompt-box"><span>POSITIVE PROMPT · 실제 PNG 메타데이터</span><p>cute anime girl with massive fluffy fennec ears and a big fluffy tail, blonde messy long hair, blue eyes, wearing a maid outfit with a long black gold leaf pattern dress and a white apron, holding a fancy black forest cake with candles, in the kitchen of an old dark Victorian mansion lit by candlelight, bright window to a foggy forest</p><p class="prompt-korean">핵심은 “주체 → 외형 → 의상 → 행동 → 배경 → 조명” 순서입니다. 긴 수식어보다 충돌 없는 장면 구조가 재현성에 유리합니다.</p></div>
+            <div class="settings-list" aria-label="FLUX 공식 예제 설정">
+              <div class="setting-row"><b>Diffusion Model</b><span><span class="inline-code">flux1-dev.safetensors</span> → <span class="inline-code">models/diffusion_models</span></span></div>
+              <div class="setting-row"><b>Text Encoders</b><span><span class="inline-code">t5xxl_fp16.safetensors</span> + <span class="inline-code">clip_l.safetensors</span> → <span class="inline-code">models/text_encoders</span></span></div>
+              <div class="setting-row"><b>VAE</b><span><span class="inline-code">ae.safetensors</span> → <span class="inline-code">models/vae</span></span></div>
+              <div class="setting-row"><b>Canvas</b><span>1024 × 1024 · Batch 1</span></div>
+              <div class="setting-row"><b>Sampling</b><span>20 steps · Euler · Simple · Denoise 1.0</span></div>
+              <div class="setting-row"><b>Guidance</b><span>3.5 · Seed는 고정하면 같은 조건 비교 가능</span></div>
+            </div>
+            <div class="decision-note"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 20 6v5.7c0 4.6-3.2 7.6-8 9.3-4.8-1.7-8-4.7-8-9.3V6z" stroke="currentColor" stroke-width="1.8"/><path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.8"/></svg><div><strong>128GB 활용법:</strong> 첫 성공은 FP8 체크포인트도 좋지만, 품질 확인 단계에서는 공식 분리형 모델과 FP16 T5를 사용할 여유가 있습니다. FP8은 메모리를 줄이는 대신 품질이 소폭 저하될 수 있습니다.<a class="cite" href="#source-7">[7]</a></div></div>
+          </div>
+        </div>
+        <div class="download-strip reveal"><p><strong>실행 순서:</strong> PNG 드래그 → 빨간 노드의 모델 파일명 확인 → 각 모델 다운로드·배치 → R 키로 새로고침 → 프롬프트 수정 → <strong>Cmd + Enter</strong>. FLUX.1 Dev 가중치는 모델 카드의 이용 조건 동의가 필요합니다.<a class="cite" href="#source-14">[14]</a></p><div class="media-actions"><a class="btn btn-outline" href="https://comfyanonymous.github.io/ComfyUI_examples/flux/" target="_blank" rel="noopener noreferrer">공식 FLUX 예제</a><a class="btn btn-outline" href="https://huggingface.co/black-forest-labs/FLUX.1-dev" target="_blank" rel="noopener noreferrer">FLUX.1 Dev 모델 카드</a></div></div>
+      </div>
+    </section>
+
+    <section id="video" class="section-blue">
+      <div class="container">
+        <div class="section-kicker reveal">VIDEO GENERATION · WAN2.2 5B</div>
+        <h2 class="section-title reveal">텍스트만 넣는 T2V와 첫 장면을 주는 I2V를 <span class="marker">같은 5B 워크플로</span>로 검증합니다</h2>
+        <p class="section-desc reveal">공식 템플릿은 Workflow → Browse Templates → Video → “Wan2.2 5B video generation”에서 불러올 수 있습니다. 5B 모델은 텍스트·이미지 기반 영상을 한 워크플로에서 다룹니다.<a class="cite" href="#source-8">[8]</a></p>
+        <div class="video-grid">
+          <article class="video-card reveal">
+            <img src="assets/260808-macbook-m5max-comfyui-practical-guide/wan22-text-to-video-5b.webp" alt="화산이 분화하는 산비탈을 여우가 걷는 Wan2.2 5B 공식 텍스트-투-비디오 애니메이션" loading="lazy" referrerpolicy="no-referrer">
+            <div class="video-copy"><span class="media-badge">OFFICIAL ACTUAL OUTPUT · ONLINE</span><h3>A. Text-to-Video</h3><p><strong style="color:#fff">예시 프롬프트:</strong> drone shot of a volcano erupting with a fox walking on it</p><div class="media-actions"><a class="btn btn-outline" href="https://raw.githubusercontent.com/comfyanonymous/ComfyUI_examples/master/wan22/text_to_video_wan22_5B.json" target="_blank" rel="noopener noreferrer">공식 JSON</a><a class="btn btn-outline" href="assets/260808-macbook-m5max-comfyui-practical-guide/wan22-text-to-video-5b.webp" target="_blank" rel="noopener noreferrer">원본 WebP</a></div></div>
+          </article>
+          <article class="video-card reveal">
+            <img src="assets/260808-macbook-m5max-comfyui-practical-guide/wan22-image-to-video-5b.webp" alt="여우 귀 캐릭터가 들판에서 움직이는 Wan2.2 5B 공식 이미지-투-비디오 애니메이션" loading="lazy" referrerpolicy="no-referrer">
+            <div class="video-copy"><span class="media-badge">OFFICIAL ACTUAL OUTPUT · ONLINE</span><h3>B. Image-to-Video</h3><p>Load Image 노드를 활성화해 첫 프레임을 연결합니다. 움직임, 카메라, 유지해야 할 요소를 프롬프트로 지정합니다.</p><div class="media-actions"><a class="btn btn-outline" href="https://raw.githubusercontent.com/comfyanonymous/ComfyUI_examples/master/wan22/image_to_video_wan22_5B.json" target="_blank" rel="noopener noreferrer">공식 JSON</a><a class="btn btn-outline" href="assets/260808-macbook-m5max-comfyui-practical-guide/wan22-image-to-video-5b.webp" target="_blank" rel="noopener noreferrer">원본 WebP</a></div></div>
+          </article>
+        </div>
+        <div class="offline-demo reveal">
+          <p><strong style="color:#fff">패키지 내 로컬 MP4:</strong> 아래 파일은 브라우저 재생과 전달 포맷을 확인하기 위한 부속 예시입니다. 첫 영상은 첨부 FLUX 이미지에 카메라 모션만 적용했으며, 둘째는 공식 T2V 프롬프트의 절차형 스토리보드입니다. <strong style="color:#fff">Wan2.2 모델 출력으로 오인하지 마십시오.</strong></p>
+          <div class="offline-grid">
+            <div class="offline-item"><img src="assets/260808-macbook-m5max-comfyui-practical-guide/wan22-image-to-video-5b.webp" alt="로컬 I2V 모션 미리보기" loading="lazy" style="width:100%;border-radius:16px;display:block"><div><strong>로컬 I2V 모션 미리보기</strong><span>FLUX 정지 이미지 + 카메라 이동 · 7초 MP4 · 공식 예제 이미지</span></div></div>
+            <div class="offline-item"><img src="assets/260808-macbook-m5max-comfyui-practical-guide/wan22-text-to-video-5b.webp" alt="로컬 T2V 스토리보드" loading="lazy" style="width:100%;border-radius:16px;display:block"><div><strong>로컬 T2V 스토리보드</strong><span>화산·여우 프롬프트 장면 설계 · 6초 MP4 · 공식 예제 이미지</span></div></div>
+          </div>
+        </div>
+        <div class="flow-grid">
+          <article class="flow-step reveal"><div class="flow-num">1</div><h3>템플릿 로드</h3><p>Video 템플릿에서 Wan2.2 5B 워크플로를 엽니다.</p></article>
+          <article class="flow-step reveal"><div class="flow-num">2</div><h3>모델 배치</h3><p>5B 본체, UMT5 텍스트 인코더, Wan VAE를 지정 폴더에 넣습니다.</p></article>
+          <article class="flow-step reveal"><div class="flow-num">3</div><h3>입력 선택</h3><p>T2V는 시작 이미지 없음. I2V는 Load Image를 start_image에 연결합니다.</p></article>
+          <article class="flow-step reveal"><div class="flow-num">4</div><h3>짧게 검증</h3><p>1280×704, 41프레임, 30 steps, batch 1로 첫 결과를 확인합니다.</p></article>
+          <article class="flow-step reveal"><div class="flow-num">5</div><h3>품질 확대</h3><p>성공 후 프레임·해상도·모델 규모를 한 번에 하나씩 높입니다.</p></article>
+        </div>
+        <div class="code-wrap reveal"><div class="code-head"><span>Wan2.2 5B · 모델 배치</span><button class="copy-btn" type="button" data-copy>구조 복사</button></div><pre><code>ComfyUI/models/
+├─ diffusion_models/
+│  └─ wan2.2_ti2v_5B_fp16.safetensors
+├─ text_encoders/
+│  └─ umt5_xxl_fp8_e4m3fn_scaled.safetensors
+└─ vae/
+   └─ wan2.2_vae.safetensors</code></pre></div>
+      </div>
+    </section>
+
+    <section id="video-settings">
+      <div class="container">
+        <div class="section-kicker reveal">REPRODUCIBLE EXAMPLES</div>
+        <h2 class="section-title reveal">영상은 “길게 한 번”보다 <span class="blue">짧게 세 번 검증</span>하는 편이 빠릅니다</h2>
+        <p class="section-desc reveal">공식 5B 예제 JSON은 1280×704, 41프레임, 30단계, CFG 5, 24fps를 사용합니다. 워크플로 메모에는 121프레임이 권장 길이로 적혀 있지만 첫 결과 대기 시간을 줄이기 위해 41프레임을 사용합니다.</p>
+        <div class="ladder-grid">
+          <article class="ladder-card reveal"><span class="ladder-tag">RUN 1 · 연결 확인</span><h3>최소 검증</h3><ul><li>Batch 1</li><li>41 frames</li><li>기본 해상도 유지</li><li>프롬프트 1문장</li><li>목표: 오류 없이 저장</li></ul></article>
+          <article class="ladder-card recommended reveal"><span class="ladder-tag">RUN 2 · 권장</span><h3>움직임 조정</h3><ul><li>Seed 고정</li><li>카메라 움직임 한 가지</li><li>주체 동작 한 가지</li><li>negative prompt 유지</li><li>목표: 흔들림·형태 확인</li></ul></article>
+          <article class="ladder-card reveal"><span class="ladder-tag">RUN 3 · 품질</span><h3>길이·해상도 확대</h3><ul><li>81 → 121 frames</li><li>필요 시 14B 비교</li><li>프레임 보간은 별도 단계</li><li>최종 MP4 변환</li><li>목표: 납품 규격 충족</li></ul></article>
+        </div>
+        <div class="setup-grid" style="margin-top:22px">
+          <article class="setup-card reveal"><h3>T2V 프롬프트 예시</h3><p>장면 전체를 지시하는 대신 카메라·주체·동작·환경 변화 순서로 적습니다.</p><div class="prompt-box"><span>TEXT-TO-VIDEO</span><p>cinematic drone shot, a red fox walks cautiously across a black volcanic slope, ash clouds rise from an erupting crater in the background, subtle camera push-in, realistic scale, natural motion, no text, no watermark</p><p class="prompt-korean">카메라: drone shot / 주체: red fox / 동작: walks cautiously / 환경: erupting crater / 품질 통제: no text</p></div></article>
+          <article class="setup-card reveal"><h3>I2V 프롬프트 예시</h3><p>입력 이미지의 정체성을 지키고 “무엇이 움직이는지”만 구체화합니다.</p><div class="prompt-box"><span>IMAGE-TO-VIDEO</span><p>gentle dolly-in, candle flames flicker, her hair and fluffy tail move softly in the indoor breeze, she steadies the cake with both hands, preserve face, costume and background composition, natural motion, no scene cut</p><p class="prompt-korean">원본 유지: preserve face / 움직임: hair, tail, candle / 카메라: gentle dolly-in / 금지: no scene cut</p></div></article>
+        </div>
+        <div class="download-strip reveal"><p><strong>MP4 변환:</strong> 공식 예제의 WebM 또는 Animated WebP를 범용 H.264 MP4로 바꾸려면 FFmpeg를 사용합니다.</p><button class="btn btn-outline" type="button" data-scroll-code="#ffmpeg-code">변환 명령 보기</button></div>
+        <div class="code-wrap reveal" id="ffmpeg-code"><div class="code-head"><span>Terminal · Homebrew FFmpeg</span><button class="copy-btn" type="button" data-copy>명령 복사</button></div><pre><code>brew install ffmpeg
+
+<span class="code-comment"># WebM → 범용 MP4</span>
+ffmpeg -i ComfyUI_00001_.webm \
+  -c:v libx264 -pix_fmt yuv420p -movflags +faststart output.mp4
+
+<span class="code-comment"># Animated WebP → MP4</span>
+ffmpeg -i ComfyUI_00001_.webp \
+  -c:v libx264 -pix_fmt yuv420p -movflags +faststart output.mp4</code></pre></div>
+      </div>
+    </section>
+
+    <section id="operations" class="section-soft">
+      <div class="container">
+        <div class="section-kicker reveal">PERFORMANCE & OPERATIONS</div>
+        <h2 class="section-title reveal">“몇 초 걸리나요?”보다 먼저 <span class="blue">내 장비의 기준선</span>을 기록하십시오</h2>
+        <p class="section-desc reveal">M5 Max의 공개 사양만으로 특정 워크플로 시간을 단정할 수 없습니다. 아래 표에 동일 Seed·동일 모델로 세 번 측정해 첫 로드와 재실행을 분리하면 실제 운영 판단이 가능합니다.</p>
+        <div class="benchmark-table-wrap reveal">
+          <table class="benchmark-table">
+            <thead><tr><th>테스트</th><th>모델·설정</th><th>첫 실행</th><th>재실행</th><th>메모리 압력</th><th>판정</th></tr></thead>
+            <tbody>
+              <tr><td>이미지 기준선</td><td>FLUX.1 Dev · 1024² · 20 steps</td><td><input aria-label="이미지 첫 실행 시간" placeholder="예: 00:00"></td><td><input aria-label="이미지 재실행 시간" placeholder="예: 00:00"></td><td><input aria-label="이미지 메모리 압력" placeholder="녹색/노랑"></td><td><input aria-label="이미지 판정" placeholder="통과/조정"></td></tr>
+              <tr><td>영상 기준선</td><td>Wan2.2 5B · 1280×704 · 41f</td><td><input aria-label="영상 첫 실행 시간" placeholder="예: 00:00"></td><td><input aria-label="영상 재실행 시간" placeholder="예: 00:00"></td><td><input aria-label="영상 메모리 압력" placeholder="녹색/노랑"></td><td><input aria-label="영상 판정" placeholder="통과/조정"></td></tr>
+              <tr><td>품질 확대</td><td>동일 Seed · 프레임 또는 해상도만 변경</td><td><input aria-label="확대 첫 실행 시간" placeholder="예: 00:00"></td><td><input aria-label="확대 재실행 시간" placeholder="예: 00:00"></td><td><input aria-label="확대 메모리 압력" placeholder="녹색/노랑"></td><td><input aria-label="확대 판정" placeholder="채택/보류"></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="micro-note">입력값은 현재 브라우저 세션에만 있으며 자동 저장되지 않습니다. PDF로 저장하면 기록을 남길 수 있습니다.</p>
+        <div class="feature-grid">
+          <article class="card reveal"><div class="card-index">01</div><h3>전원과 냉각</h3><p>전원 어댑터를 연결하고 통풍이 되는 단단한 바닥에서 실행합니다. 긴 영상 큐는 발열로 처리 속도가 달라질 수 있습니다.</p></article>
+          <article class="card reveal"><div class="card-index">02</div><h3>메모리 압력</h3><p>Activity Monitor에서 노랑·빨강이 지속되면 프레임·해상도·동시 큐를 줄입니다. 숫자보다 압력 상태가 중요합니다.</p></article>
+          <article class="card reveal"><div class="card-index">03</div><h3>한 변수씩 변경</h3><p>Seed를 고정한 뒤 Steps, Guidance, 해상도, 프레임 중 하나만 바꿉니다. 그래야 품질 차이의 원인을 알 수 있습니다.</p></article>
+          <article class="card reveal"><div class="card-index">04</div><h3>모델 공유</h3><p>Desktop·수동 설치가 공존하면 <span class="inline-code">extra_model_paths</span>로 한 라이브러리를 공유해 수십 GB 중복을 피합니다.</p></article>
+          <article class="card reveal"><div class="card-index">05</div><h3>출력 정리</h3><p>초안·승인·최종 폴더를 구분하고 Seed·프롬프트·워크플로 JSON을 결과물과 함께 보관합니다.</p></article>
+          <article class="card reveal"><div class="card-index">06</div><h3>업데이트 원칙</h3><p>납품 중에는 코어·노드·PyTorch를 동시에 업데이트하지 않습니다. 별도 인스턴스에서 검증 후 운영 환경에 반영합니다.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="troubleshoot">
+      <div class="container">
+        <div class="section-kicker reveal">TROUBLESHOOTING & GUARDRAILS</div>
+        <h2 class="section-title reveal">오류는 대부분 <span class="blue">장치·경로·의존성</span> 중 하나에서 발생합니다</h2>
+        <p class="section-desc reveal">처음부터 커스텀 노드를 많이 설치하면 원인 분리가 어려워집니다. 코어 워크플로가 정상 동작한 뒤 필요한 기능만 추가합니다.</p>
+        <div class="correction-table reveal">
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span><div><strong>“Model not found”인데 파일을 다시 다운로드</strong><br>같은 파일을 중복 저장하면 문제만 커집니다.</div></div><div class="correction-cell right"><span class="correction-icon">✓</span><div><strong>파일명·하위 폴더·검색 경로 확인</strong><br>diffusion_models, text_encoders, vae를 구분하고 R 키 또는 재시작으로 새로고침합니다.</div></div></div>
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span><div><strong>MPS 오류가 나면 바로 CPU Mode 고정</strong><br>대형 모델은 사실상 사용성이 크게 떨어질 수 있습니다.</div></div><div class="correction-cell right"><span class="correction-icon">✓</span><div><strong>PyTorch·macOS·노드 지원부터 확인</strong><br>MPS 검증 스크립트, ComfyUI 콘솔, 실패한 정확한 노드 순으로 원인을 좁힙니다.</div></div></div>
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span><div><strong>빨간 노드를 보고 노드 팩을 무작정 설치</strong><br>악성 코드·의존성 충돌 위험이 있습니다.</div></div><div class="correction-cell right"><span class="correction-icon">✓</span><div><strong>공식 템플릿과 코어 노드로 먼저 재현</strong><br>커스텀 노드는 신뢰할 수 있는 작성자·Registry·소스 코드를 확인한 뒤 설치합니다.<a class="cite" href="#source-10">[10]</a></div></div></div>
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span><div><strong>메모리가 많으니 121프레임부터 시작</strong><br>긴 실패는 원인 확인에도 오래 걸립니다.</div></div><div class="correction-cell right"><span class="correction-icon">✓</span><div><strong>41프레임에서 저장까지 통과</strong><br>그 후 81, 121프레임으로 늘리고 각 단계 시간을 기록합니다.</div></div></div>
+        </div>
+        <div class="faq">
+          <details class="reveal"><summary>MPS available이 False입니다</summary><div class="faq-content"><p>현재 가상환경의 PyTorch가 MPS 지원 빌드인지, macOS가 최신인지, Apple Silicon 환경인지 확인합니다. Desktop이라면 앱 내부 Terminal에서 검사해야 하며 시스템 Terminal의 다른 Python 결과와 혼동하지 마십시오.</p></div></details>
+          <details class="reveal"><summary>생성 도중 앱이 종료되거나 메모리 압력이 빨갛습니다</summary><div class="faq-content"><p>동시 큐를 1개로 줄이고, 영상 프레임 수 또는 해상도를 낮춥니다. 브라우저 탭·영상 편집기·다른 AI 앱을 닫고 재시도합니다. 비공식 환경 변수로 메모리 안전 한계를 해제하는 방법은 시스템 불안정 위험이 있어 기본 해결책으로 권장하지 않습니다.</p></div></details>
+          <details class="reveal"><summary>커스텀 노드 설치 후 ComfyUI가 시작되지 않습니다</summary><div class="faq-content"><p>최근 설치한 노드 폴더를 <span class="inline-code">custom_nodes</span> 밖으로 이동해 부팅을 확인합니다. 별도 인스턴스에서 노드 의존성을 검증하고, 운영 인스턴스의 Python 환경에 시스템 <span class="inline-code">pip</span>로 설치하지 않습니다.</p></div></details>
+          <details class="reveal"><summary>모델 파일과 생성 결과를 상업적으로 사용할 수 있나요?</summary><div class="faq-content"><p>ComfyUI, 모델 가중치, LoRA, 입력 이미지, 생성 결과는 각각 조건이 다릅니다. FLUX.1 Dev 모델 카드는 가중치에 Non-Commercial License 동의를 요구하고 생성 결과의 이용 조건을 별도로 설명합니다.<a class="cite" href="#source-14">[14]</a> ComfyUI의 Wan2.2 공식 문서는 공개 모델 시리즈를 Apache 2.0으로 안내합니다.<a class="cite" href="#source-8">[8]</a> 최종 납품 전에는 사용한 정확한 파일의 모델 카드, 귀속·고지 의무, 인물·브랜드·원저작물 권리를 함께 검토하십시오.</p></div></details>
+          <details class="reveal"><summary>완전 오프라인으로 사용할 수 있나요?</summary><div class="faq-content"><p>코어는 로컬 워크플로로 사용할 수 있지만, 최초 앱·모델·노드 다운로드와 업데이트에는 인터넷이 필요합니다. Partner/API 노드는 외부 서비스로 데이터를 보낼 수 있으므로 민감 자료는 로컬 코어 노드만 사용하는 별도 인스턴스에서 처리합니다.<a class="cite" href="#source-11">[11]</a></p></div></details>
+        </div>
+        <div class="decision-note reveal"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 20 6v5.7c0 4.6-3.2 7.6-8 9.3-4.8-1.7-8-4.7-8-9.3V6z" stroke="currentColor" stroke-width="1.8"/><path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.8"/></svg><div><strong>보안 원칙:</strong> 미공개 제품 이미지, 고객 얼굴, 계약 자료를 외부 API 노드에 넣기 전에 데이터 전송 위치와 보관 정책을 확인합니다. 민감 프로젝트는 로컬 전용 인스턴스와 별도 모델 폴더로 분리합니다.</div></div>
+      </div>
+    </section>
+
+    <section id="roadmap" class="section-soft">
+      <div class="container">
+        <div class="section-kicker reveal">30-MINUTE START & 7-DAY PLAN</div>
+        <h2 class="section-title reveal">오늘은 한 장과 41프레임, 일주일 뒤에는 재현 가능한 제작 템플릿을 남깁니다</h2>
+        <p class="section-desc reveal">성공 기준은 “앱이 열림”이 아니라 이미지·영상이 저장되고 같은 JSON으로 다시 생성되는 것입니다.</p>
+        <div class="recommend-grid">
+          <article class="recommend-card reveal"><h3>첫 30분 체크리스트</h3><div class="recommend-list">
+            <div class="recommend-item"><div class="recommend-num">1</div><div><strong>Desktop 설치</strong><p>공식 DMG 설치, MPS 장치 선택, 공유 폴더 지정.</p></div></div>
+            <div class="recommend-item"><div class="recommend-num">2</div><div><strong>MPS 로그 확인</strong><p>기본 워크플로 실행 전 콘솔에서 장치를 확인.</p></div></div>
+            <div class="recommend-item"><div class="recommend-num">3</div><div><strong>FLUX PNG 드래그</strong><p>첨부 공식 예제 PNG로 노드 그래프를 불러오기.</p></div></div>
+            <div class="recommend-item"><div class="recommend-num">4</div><div><strong>모델 경로 해결</strong><p>빨간 모델 노드의 파일을 역할별 폴더에 배치.</p></div></div>
+            <div class="recommend-item"><div class="recommend-num">5</div><div><strong>첫 이미지 저장</strong><p>Seed·시간·메모리 압력을 기록하고 JSON 저장.</p></div></div>
+          </div></article>
+          <article class="recommend-card blue-card reveal"><h3>7일 운영 계획</h3><div class="recommend-list">
+            <div class="recommend-item"><div class="recommend-num">D1</div><div><strong>이미지 기준선</strong><p>FLUX 1024², 20 steps, batch 1을 3회 측정.</p></div></div>
+            <div class="recommend-item"><div class="recommend-num">D2</div><div><strong>프롬프트 템플릿</strong><p>주체·행동·배경·조명 순서의 템플릿 확정.</p></div></div>
+            <div class="recommend-item"><div class="recommend-num">D3</div><div><strong>Wan 5B 설치</strong><p>T2V 41프레임으로 저장까지 통과.</p></div></div>
+            <div class="recommend-item"><div class="recommend-num">D4</div><div><strong>I2V 검증</strong><p>첫 이미지에 한 가지 카메라 모션 적용.</p></div></div>
+            <div class="recommend-item"><div class="recommend-num">D5–7</div><div><strong>품질·보안·보관</strong><p>121프레임 비교, MP4 변환, 모델 라이선스와 폴더 백업 점검.</p></div></div>
+          </div></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sources" id="sources">
+    <div class="container">
+      <div class="source-head"><div><h2>참고 자료와 출처</h2><p>2026.08.08에 확인한 공식·1차 자료와 실제 사용한 예제만 기재했습니다.</p></div><button class="btn btn-ghost" type="button" onclick="window.print()">전체 PDF 저장</button></div>
+      <div class="source-grid">
+        <a class="source-link" id="source-1" href="https://www.apple.com/macbook-pro/specs/" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · APPLE · 2026-08-08</span><strong>MacBook Pro Technical Specifications</strong><small>M5 Max 40-core GPU, 614GB/s, 128GB 구성</small></a>
+        <a class="source-link" id="source-2" href="https://support.apple.com/en-us/126318" target="_blank" rel="noopener noreferrer"><span>OFFICIAL SUPPORT · APPLE · 2026-08-08</span><strong>MacBook Pro 14-inch, M5 Pro or M5 Max</strong><small>제품 지원 사양 교차 확인</small></a>
+        <a class="source-link" id="source-3" href="https://docs.comfy.org/installation/desktop/macos" target="_blank" rel="noopener noreferrer"><span>OFFICIAL DOCS · COMFYUI · 2026-08-08</span><strong>macOS — Comfy Desktop</strong><small>요구 사항, DMG 설치, 업데이트, 기본 데이터 경로</small></a>
+        <a class="source-link" id="source-4" href="https://docs.comfy.org/installation/manual_install" target="_blank" rel="noopener noreferrer"><span>OFFICIAL DOCS · COMFYUI · 2026-08-08</span><strong>Manual Installation — Local Self-Hosted</strong><small>가상환경, Apple Silicon PyTorch, 실행, extra model paths</small></a>
+        <a class="source-link" id="source-5" href="https://developer.apple.com/metal/pytorch/" target="_blank" rel="noopener noreferrer"><span>PRIMARY · APPLE DEVELOPER · 2026-08-08</span><strong>Accelerated PyTorch Training on Mac</strong><small>MPS 요구 사항과 검증 코드</small></a>
+        <a class="source-link" id="source-6" href="https://docs.comfy.org/interface/overview" target="_blank" rel="noopener noreferrer"><span>OFFICIAL DOCS · COMFYUI · 2026-08-08</span><strong>ComfyUI Interface Overview</strong><small>한국어 설정, Models·Workflows·Queue 패널</small></a>
+        <a class="source-link" id="source-7" href="https://comfyanonymous.github.io/ComfyUI_examples/flux/" target="_blank" rel="noopener noreferrer"><span>PRIMARY EXAMPLE · COMFYUI · 2026-08-08</span><strong>FLUX Official Example Workflows</strong><small>모델 폴더, FP16/FP8 설명, 워크플로 포함 PNG</small></a>
+        <a class="source-link" id="source-8" href="https://docs.comfy.org/tutorials/video/wan/wan2_2" target="_blank" rel="noopener noreferrer"><span>OFFICIAL TUTORIAL · COMFYUI · 2026-08-08</span><strong>Wan2.2 Native Workflow Example</strong><small>5B 모델 파일, 템플릿 경로, T2V·I2V 실행</small></a>
+        <a class="source-link" id="source-9" href="https://comfyanonymous.github.io/ComfyUI_examples/wan22/" target="_blank" rel="noopener noreferrer"><span>PRIMARY MEDIA · COMFYUI · 2026-08-08</span><strong>Wan2.2 Official Example Assets</strong><small>실제 T2V·I2V 애니메이션과 JSON 워크플로</small></a>
+        <a class="source-link" id="source-10" href="https://docs.comfy.org/installation/install_custom_node" target="_blank" rel="noopener noreferrer"><span>OFFICIAL DOCS · COMFYUI · 2026-08-08</span><strong>How to Install Custom Nodes</strong><small>Manager 권장, 신뢰 출처와 보안 주의</small></a>
+        <a class="source-link" id="source-11" href="https://github.com/Comfy-Org/ComfyUI" target="_blank" rel="noopener noreferrer"><span>PRIMARY CODE · GITHUB · 2026-08-08</span><strong>Comfy-Org/ComfyUI Repository</strong><small>지원 플랫폼, 로컬·API 노드, 워크플로 기능</small></a>
+        <a class="source-link" id="source-12" href="https://github.com/comfyanonymous/ComfyUI_examples" target="_blank" rel="noopener noreferrer"><span>PRIMARY EXAMPLES · GITHUB · 2026-08-08</span><strong>ComfyUI_examples Repository</strong><small>메타데이터 포함 이미지와 공식 워크플로 모음</small></a>
+        <a class="source-link" id="source-13" href="https://docs.comfy.org/installation/system_requirements" target="_blank" rel="noopener noreferrer"><span>OFFICIAL DOCS · COMFYUI · 2026-08-08</span><strong>System Requirements</strong><small>Python 3.13 권장, 3.12 호환성 대안</small></a>
+        <a class="source-link" id="source-14" href="https://huggingface.co/black-forest-labs/FLUX.1-dev" target="_blank" rel="noopener noreferrer"><span>PRIMARY MODEL CARD · BFL · 2026-08-08</span><strong>black-forest-labs/FLUX.1-dev</strong><small>가중치 접근 조건, 라이선스, 출력 이용 안내</small></a>
+        <a class="source-link" id="source-15" href="https://github.com/comfyanonymous/ComfyUI_examples/blob/master/LICENSE" target="_blank" rel="noopener noreferrer"><span>PRIMARY LICENSE · GITHUB · 2026-08-08</span><strong>ComfyUI_examples License</strong><small>예제 워크플로 사용·복사·수정·배포 조건</small></a>
+      </div>
+      <div class="footer-bottom"><span id="footerTitle">MacBook Pro M5 Max 128GB · ComfyUI 실전 가이드</span><span id="footerMeta">AI-generated · 2026.08</span></div>
+      <div class="report-history" id="history" aria-labelledby="history-title">
+        <div class="history-head"><div><h2 id="history-title">버전 및 업데이트 히스토리</h2><p>내용·출처·미디어가 수정될 때 변경 범위를 누적 기록합니다.</p></div><span class="version-badge" id="historyCurrentVersion">Current v1.0.0</span></div>
+        <div class="history-table-wrap"><table class="history-table"><thead><tr><th>버전</th><th>업데이트일</th><th>변경 구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr></thead><tbody id="historyBody"><tr><td colspan="5" class="history-empty">변경 이력을 불러오는 중입니다.</td></tr></tbody></table></div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="floating-actions" aria-label="빠른 작업">
+    <button class="float-btn" type="button" id="toTop" aria-label="맨 위로 이동"><svg viewBox="0 0 24 24" fill="none"><path d="m6 14 6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="float-btn" type="button" onclick="window.print()" aria-label="PDF로 저장"><svg viewBox="0 0 24 24" fill="none"><path d="M7 9V4h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-width="1.8"/><path d="M7 14h10v6H7z" stroke="currentColor" stroke-width="1.8"/></svg></button>
+  </div>
+
+  <script id="report-metadata" type="application/json">
+  {
+    "schemaVersion":"1.0",
+    "reportId":"260808-comfyui-m5max-128gb-guide",
+    "title":"MacBook Pro M5 Max 128GB · ComfyUI 실전 가이드",
+    "version":"1.0.0",
+    "status":"Published",
+    "createdAt":"2026-08-08",
+    "updatedAt":"2026-08-08",
+    "language":"ko-KR",
+    "author":"AIHUBOS ReportMode",
+    "generation":"AI-generated",
+    "reviewStatus":"Human review recommended",
+    "history":[
+      {
+        "version":"1.0.0",
+        "date":"2026-08-08",
+        "type":"신규 작성",
+        "summary":"MacBook Pro M5 Max 128GB 기준 Comfy Desktop·수동 설치, MPS 검증, FLUX.1 이미지 생성, Wan2.2 5B T2V·I2V 절차를 최초 작성함. 실제 생성 PNG·공식 온라인 애니메이션·로컬 MP4 미리보기·워크플로 JSON을 첨부하고 Python 호환성과 모델·예제 라이선스 출처를 명시함.",
+        "sections":["전체"],
+        "updatedBy":"AI-generated",
+        "reviewStatus":"검토 권장"
+      }
+    ]
+  }
+  </script>
+  <script>
+    const progress=document.getElementById('scrollProgress'); const toTop=document.getElementById('toTop');
+    function updateProgress(){const max=document.documentElement.scrollHeight-window.innerHeight;progress.style.width=(max>0?window.scrollY/max*100:0)+'%';const show=window.scrollY>600;toTop.style.opacity=show?'1':'0';toTop.style.pointerEvents=show?'auto':'none'}
+    window.addEventListener('scroll',updateProgress,{passive:true});updateProgress();toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+    if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.08});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))}else{document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'))}
+    document.querySelectorAll('[data-tabs]').forEach(group=>{const tabs=[...group.querySelectorAll('[role="tab"]')];const panels=tabs.map(t=>document.getElementById(t.getAttribute('aria-controls')));tabs.forEach((tab,index)=>{tab.addEventListener('click',()=>{tabs.forEach((t,i)=>{const active=i===index;t.setAttribute('aria-selected',String(active));panels[i].hidden=!active})});tab.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight'].includes(e.key))return;e.preventDefault();const next=(index+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;tabs[next].focus();tabs[next].click()})})});
+    document.querySelectorAll('[data-copy]').forEach(btn=>btn.addEventListener('click',async()=>{const code=btn.closest('.code-wrap')?.querySelector('pre')?.innerText||'';try{await navigator.clipboard.writeText(code);const old=btn.textContent;btn.textContent='복사됨';setTimeout(()=>btn.textContent=old,1500)}catch{btn.textContent='선택 후 복사'}}));
+    document.querySelectorAll('[data-scroll-code]').forEach(btn=>btn.addEventListener('click',()=>document.querySelector(btn.dataset.scrollCode)?.scrollIntoView({behavior:'smooth',block:'center'})));
+    function renderMeta(){const node=document.getElementById('report-metadata');if(!node)return;try{const meta=JSON.parse(node.textContent);const version='v'+meta.version;const date=String(meta.updatedAt||'').replaceAll('-','.');const month=date.slice(0,7);const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v};set('reportVersion',version);set('reportUpdated','Updated '+date);set('reportGeneration',meta.generation+' · '+meta.reviewStatus);set('historyCurrentVersion','Current '+version);set('footerTitle',meta.title+' · AIHUBOS ReportMode');set('footerMeta',meta.generation+' · '+month);document.title=meta.title+' · '+version;const body=document.getElementById('historyBody');body.innerHTML='';(meta.history||[]).forEach(item=>{const tr=document.createElement('tr');[versionFrom(item.version),String(item.date||'').replaceAll('-','.'),item.type||'',item.summary||'',[item.updatedBy,item.reviewStatus].filter(Boolean).join(' · ')].forEach((value,i)=>{const td=document.createElement('td');if(i===4){const badge=document.createElement('span');badge.className='history-status';badge.textContent=value;td.appendChild(badge)}else td.textContent=value;tr.appendChild(td)});body.appendChild(tr)});if(!(meta.history||[]).length)body.innerHTML='<tr><td colspan="5" class="history-empty">기록된 변경 이력이 없습니다.</td></tr>'}catch(e){console.error('Invalid report metadata',e)}}
+    function versionFrom(v){return 'v'+v} renderMeta();
+  </script>
+
+  <script src="../assets/report-view-counter.js" data-report-id="260808-macbook-m5max-comfyui-practical-guide"></script>
+  <script src="../assets/report-page-layout.js?v=20260807c-wide-default"></script>
+</body>
+</html>

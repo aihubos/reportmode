@@ -1,0 +1,796 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <base href="/reportmode/reports/260806-palantir-business-ai-analysis/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="팔란티어는 생성형 AI 모델을 직접 만드는 회사라기보다, 정부와 기업이 보유한 복잡한 데이터를 실제 업무·작전·생산·의사결정에 연결하는 운영형 AI 플랫폼 회사입니다. 경쟁사가 없는 것은 아니지만, 데이터 의미 구조인 Ontology, 고보안 환경 배포 경험, AIP를 빠르게 현장에 적용하는 배포 방식이 차별점입니다. 주가는 AI 성장 기대를 강하게 반영하고 있어 사업 성장은 인상적이지만 가격 부담과 기대치도 함께 봐야 합니다.">
+  <meta name="color-scheme" content="light">
+  <title>260806 · 팔란티어 기업 분석 — AI 기업인가, 경쟁사가 없는가 — Report Mode</title>
+  <style>:root {
+  --ink: #171717;
+  --muted: #5f5f66;
+  --bg: #f4f1ea;
+  --paper: #fffdf8;
+  --line: #ddd4c5;
+  --accent: #0b3d91;
+  --soft: #efe8db;
+  --dark: #111111;
+  --warn: #8a5a00;
+  --warn-bg: #fff4d8;
+  --fact: #0b6e4f;
+  --analysis: #0b3d91;
+  --forecast: #6b3fa0;
+  --rumor: #9a6700;
+  --max: 1080px;
+  --serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, "Noto Serif KR", serif;
+  --sans: "Avenir Next", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--bg);
+  font-family: var(--sans);
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 3px solid #2f6fed; outline-offset: 3px; }
+.nav {
+  position: sticky; top: 0; z-index: 20; height: 52px;
+  background: rgba(17,17,17,.9); color: #fff; backdrop-filter: blur(14px);
+}
+.nav-inner, .wrap, .footer-inner {
+  width: min(var(--max), calc(100% - 40px));
+  margin: 0 auto;
+}
+.nav-inner {
+  height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.nav a { color: #f5f5f7; text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+.nav-links { display: flex; gap: 18px; font-size: 13px; }
+.hero {
+  background: radial-gradient(circle at top right, #243b55, #0b1020 55%, #05070d);
+  color: #fff; padding: 88px 0 72px;
+}
+.hero-inner { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+.eyebrow {
+  font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: #b8c0cc; font-weight: 700;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(42px, 8vw, 78px);
+  line-height: 1.02;
+  letter-spacing: -.04em;
+  margin: 18px 0 18px;
+  max-width: 16ch;
+}
+.lede {
+  max-width: 48rem; font-size: clamp(18px, 2.4vw, 24px); line-height: 1.35; color: #d7dde7; font-weight: 500;
+}
+.meta-row {
+  display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px;
+}
+.chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 999px; padding: 8px 12px; font-size: 13px; color: #f0f3f8;
+}
+.dot { width: 8px; height: 8px; border-radius: 50%; background: #ffd166; box-shadow: 0 0 0 4px rgba(255,209,102,.15); }
+section { padding: 78px 0; }
+.section-head { max-width: 46rem; margin-bottom: 34px; }
+.kicker { color: var(--accent); font-size: 14px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+.section-head h2 {
+  font-family: var(--serif);
+  font-size: clamp(30px, 4.5vw, 48px);
+  line-height: 1.1; letter-spacing: -.03em; margin: 10px 0 12px;
+}
+.section-head p { margin: 0; color: var(--muted); font-size: 18px; }
+.paper {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 28px;
+  box-shadow: 0 18px 40px rgba(40, 28, 8, .05);
+}
+.verdict-grid {
+  display: grid; grid-template-columns: 1.4fr .8fr; gap: 18px;
+}
+.verdict-main h3 { font-family: var(--serif); font-size: 28px; margin: 0 0 14px; }
+.verdict-side {
+  background: var(--dark); color: #fff; border-radius: 18px; padding: 24px;
+}
+.verdict-side .big { font-size: 42px; font-weight: 800; line-height: 1; }
+.metrics {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 22px;
+}
+.metric {
+  background: var(--soft); border-radius: 16px; padding: 18px;
+}
+.metric .value { font-family: var(--serif); font-size: 28px; font-weight: 700; }
+.metric .label { color: var(--muted); font-size: 13px; margin-top: 6px; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; }
+.badge {
+  display: inline-flex; align-items: center; border-radius: 999px;
+  padding: 4px 10px; font-size: 12px; font-weight: 800;
+}
+.badge.fact { background: #e5f6ef; color: var(--fact); }
+.badge.analysis { background: #e8effc; color: var(--analysis); }
+.badge.forecast { background: #f1e9fb; color: var(--forecast); }
+.badge.rumor { background: #fff3d9; color: var(--rumor); }
+.section-card { margin-top: 18px; }
+.section-card h3 {
+  font-family: var(--serif); font-size: 28px; margin: 0 0 12px;
+}
+.section-card .body p { margin: 0 0 12px; font-size: 17px; }
+.section-card ul { margin: 0; padding-left: 1.1rem; }
+.section-card li { margin: 6px 0; }
+.table-wrap {
+  margin: 20px 0;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+}
+.report-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.report-table th, .report-table td {
+  padding: 13px 14px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+  text-align: left;
+}
+.report-table th {
+  color: #263548;
+  background: #eef3f8;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: -.01em;
+  white-space: nowrap;
+}
+.report-table td:first-child { font-weight: 700; }
+.report-table tr:last-child td { border-bottom: 0; }
+.hl { background: #fff2a8; padding: 0 .12em; }
+.quote {
+  border-left: 4px solid var(--accent);
+  padding: 8px 0 8px 18px;
+  margin: 18px 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.35;
+  color: #2a2a2e;
+}
+.duo { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.panel {
+  border-radius: 18px; padding: 24px; background: #171717; color: #f2f2f2;
+}
+.panel h3 { margin: 0 0 14px; font-family: var(--serif); font-size: 26px; }
+.panel ul { list-style: none; margin: 0; padding: 0; }
+.panel li {
+  position: relative; padding: 12px 0 12px 30px; border-top: 1px solid #333;
+}
+.panel li:first-child { border-top: 0; }
+.panel.pros li::before, .panel.cons li::before {
+  position: absolute; left: 0; top: 12px; width: 20px; height: 20px;
+  border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 800;
+}
+.panel.pros li::before { content: "+"; background: #174a2d; color: #7dffb2; }
+.panel.cons li::before { content: "−"; background: #4a1d1d; color: #ff9b9b; }
+.checks {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+}
+.check {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 20px;
+}
+.check .num { color: #888; font-size: 12px; font-weight: 800; letter-spacing: .08em; }
+.check h3 { font-size: 18px; margin: 10px 0 8px; }
+.check p { margin: 0; color: var(--muted); }
+.timeline { display: grid; gap: 12px; }
+.t-item {
+  display: grid; grid-template-columns: 120px 1fr; gap: 14px;
+  background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px;
+}
+.t-item .date { font-weight: 800; color: var(--accent); }
+.sources { list-style: none; margin: 0; padding: 0; }
+.sources li {
+  padding: 16px 0; border-top: 1px solid var(--line);
+}
+.sources li:first-child { border-top: 0; }
+.sources a { font-weight: 700; }
+.sources span { display: block; margin-top: 4px; color: var(--muted); font-size: 14px; }
+.notice {
+  background: var(--warn-bg); color: #5b4300; border-radius: 12px; padding: 14px 16px; margin-bottom: 18px;
+}
+footer {
+  background: #111; color: #a0a0a0; padding: 28px 0; font-size: 13px;
+}
+.footer-inner { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+.archive-page {
+  --archive-blue: #3182f6;
+  --archive-blue-deep: #1b64da;
+  --archive-blue-soft: #eaf3ff;
+  --archive-ink: #191f28;
+  --archive-muted: #6b7684;
+  --archive-subtle: #8b95a1;
+  --archive-line: #e5e8eb;
+  margin: 0;
+  color: var(--archive-ink);
+  background: #f5f7f9;
+  font-family: "Pretendard", "Avenir Next", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  line-height: 1.5;
+  letter-spacing: -.02em;
+}
+.archive-page section { padding: 0; }
+.archive-topbar {
+  position: sticky; top: 0; z-index: 50;
+  height: 64px; background: rgba(255,255,255,.92);
+  border-bottom: 1px solid rgba(229,232,235,.9);
+  backdrop-filter: saturate(180%) blur(18px);
+}
+.archive-topbar-inner {
+  width: min(1180px, calc(100% - 40px)); height: 100%; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+}
+.archive-brand {
+  display: inline-flex; align-items: center; gap: 10px;
+  color: var(--archive-ink); font-size: 17px; font-weight: 800; text-decoration: none;
+}
+.archive-brand-mark {
+  width: 32px; height: 32px; display: grid; place-items: center;
+  border-radius: 11px; color: #fff; background: var(--archive-blue);
+  box-shadow: 0 7px 18px rgba(49,130,246,.25);
+}
+.archive-topbar nav { display: flex; align-items: center; gap: 8px; }
+.archive-topbar nav a {
+  min-height: 40px; display: inline-flex; align-items: center; padding: 0 14px;
+  border-radius: 10px; color: var(--archive-muted); font-size: 14px; font-weight: 700; text-decoration: none;
+}
+.archive-topbar nav a:hover, .archive-topbar nav a.is-current { color: var(--archive-blue-deep); background: var(--archive-blue-soft); }
+.archive-shell { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+.archive-profile {
+  min-height: 240px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 28px;
+  margin: 32px 0 24px; padding: 38px 42px !important;
+  border: 1px solid #edf0f2; border-radius: 26px; background: #fff;
+  box-shadow: 0 14px 38px rgba(15,23,42,.045);
+  overflow: hidden; position: relative;
+}
+.archive-profile::after {
+  content: ""; position: absolute; width: 320px; height: 320px; right: -180px; top: -190px;
+  border-radius: 50%; background: radial-gradient(circle, rgba(49,130,246,.13), rgba(49,130,246,0) 68%);
+  pointer-events: none;
+}
+.archive-avatar {
+  width: 92px; height: 92px; display: grid; place-items: center; position: relative;
+  border-radius: 32px; color: #fff; background: linear-gradient(145deg, #4593ff, #1769e8);
+  box-shadow: 0 18px 36px rgba(49,130,246,.24);
+}
+.archive-avatar::before, .archive-avatar::after {
+  content: ""; position: absolute; border-radius: 999px; background: rgba(255,255,255,.28); transform: rotate(-28deg);
+}
+.archive-avatar::before { width: 54px; height: 9px; top: 19px; right: -5px; }
+.archive-avatar::after { width: 30px; height: 7px; bottom: 18px; left: -4px; }
+.archive-avatar span { font-size: 27px; font-weight: 900; letter-spacing: -.07em; }
+.archive-eyebrow, .archive-side-label {
+  color: var(--archive-blue); font-size: 11px; line-height: 1; font-weight: 900; letter-spacing: .11em;
+}
+.archive-profile h1 { margin: 9px 0 8px; font-size: clamp(30px, 4vw, 42px); line-height: 1.13; letter-spacing: -.045em; }
+.archive-profile-copy > p { margin: 0; color: var(--archive-muted); font-size: 16px; }
+.archive-profile-meta { display: flex; flex-wrap: wrap; gap: 7px 18px; margin-top: 17px; color: var(--archive-subtle); font-size: 13px; }
+.archive-profile-meta span { position: relative; }
+.archive-profile-meta span:not(:last-child)::after { content: ""; position: absolute; width: 1px; height: 10px; right: -10px; top: 5px; background: var(--archive-line); }
+.archive-profile-meta b { color: var(--archive-ink); }
+.archive-primary-action {
+  position: relative; z-index: 1; min-height: 48px; display: inline-flex; align-items: center; gap: 13px;
+  padding: 0 19px; border-radius: 14px; color: #fff; background: var(--archive-blue);
+  box-shadow: 0 10px 24px rgba(49,130,246,.22); font-size: 14px; font-weight: 800; text-decoration: none;
+  transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+}
+.archive-primary-action:hover { color: #fff; background: var(--archive-blue-deep); transform: translateY(-2px); box-shadow: 0 14px 28px rgba(49,130,246,.3); }
+.archive-blog-action { min-width: 244px; min-height: 62px; background: #03c75a; box-shadow: 0 10px 24px rgba(3,199,90,.2); }
+.archive-blog-action:hover { background: #00ad4e; box-shadow: 0 14px 28px rgba(3,199,90,.28); }
+.archive-blog-mark { width: 30px; height: 30px; display: grid; place-items: center; flex: 0 0 auto; border-radius: 9px; color: #03c75a; background: #fff; font-size: 17px; font-weight: 950; }
+.archive-blog-action > span:nth-child(2) { display: grid; gap: 1px; line-height: 1.15; }
+.archive-blog-action b { font-size: 14px; }
+.archive-blog-action small { color: rgba(255,255,255,.82); font-size: 10px; font-weight: 600; }
+.archive-blog-action i { margin-left: auto; font-size: 15px; font-style: normal; }
+.archive-layout { display: grid; grid-template-columns: 246px minmax(0, 1fr); align-items: start; gap: 22px; }
+.archive-sidebar { display: grid; gap: 14px; }
+.archive-side-card { padding: 24px !important; border: 1px solid #edf0f2; border-radius: 20px; background: #fff; }
+.archive-side-card h2 { margin: 13px 0 10px; font-size: 20px; line-height: 1.35; letter-spacing: -.035em; }
+.archive-side-card p { margin: 0; color: var(--archive-muted); font-size: 13px; line-height: 1.65; }
+.archive-side-categories { padding-bottom: 12px !important; }
+.archive-category-list { margin-top: 14px; }
+.archive-category {
+  width: 100%; min-height: 42px; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 0 12px; border: 0; border-radius: 10px; color: var(--archive-muted); background: transparent;
+  font: inherit; font-size: 14px; text-align: left; cursor: pointer;
+}
+.archive-category:hover { color: var(--archive-ink); background: #f6f8fa; }
+.archive-category.is-active { color: var(--archive-blue-deep); background: var(--archive-blue-soft); font-weight: 800; }
+.archive-category b { color: var(--archive-subtle); font-size: 12px; }
+.archive-category.is-active b { color: var(--archive-blue); }
+.archive-side-tags h2 { margin-bottom: 15px; font-weight: 600; }
+.archive-tag-cloud { display: flex; flex-wrap: wrap; gap: 7px 6px; }
+.archive-report-tag {
+  display: inline-flex; align-items: center; min-height: 27px; padding: 4px 9px; border: 1px solid #dbe7f7; border-radius: 999px;
+  color: #4e5968; background: #f5f8fc; font-size: 11px; font-weight: 500;
+  line-height: 1.2; text-decoration: none; transition: color .18s ease, background .18s ease, transform .18s ease;
+}
+.archive-report-tag:hover { color: #fff; background: var(--archive-blue); transform: translateY(-1px); }
+.archive-side-note { display: flex; gap: 11px; align-items: flex-start; padding: 16px 18px !important; }
+.archive-side-note p { margin: 0; color: var(--archive-subtle); font-size: 12px; line-height: 1.55; }
+.archive-note-dot { width: 7px; height: 7px; flex: 0 0 auto; margin-top: 5px; border-radius: 50%; background: #00c73c; box-shadow: 0 0 0 4px rgba(0,199,60,.09); }
+.archive-board { min-width: 0; padding: 30px 32px 28px !important; border: 1px solid #edf0f2; border-radius: 22px; background: #fff; }
+.archive-board-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; padding-bottom: 24px; }
+.archive-board-head h2 { margin: 8px 0 3px; font-size: 28px; letter-spacing: -.045em; }
+.archive-board-head p { margin: 0; color: var(--archive-subtle); font-size: 13px; }
+.archive-search {
+  width: min(320px, 45%); height: 46px; display: flex; align-items: center; gap: 10px;
+  padding: 0 14px; border: 1px solid var(--archive-line); border-radius: 13px; background: #f9fafb;
+  transition: border .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.archive-search:focus-within { border-color: var(--archive-blue); background: #fff; box-shadow: 0 0 0 4px rgba(49,130,246,.1); }
+.archive-search svg { width: 19px; height: 19px; flex: 0 0 auto; fill: none; stroke: var(--archive-subtle); stroke-width: 1.8; stroke-linecap: round; }
+.archive-search input { min-width: 0; width: 100%; border: 0; outline: 0; background: transparent; color: var(--archive-ink); font: inherit; font-size: 14px; }
+.archive-search input::placeholder { color: #aeb6bf; }
+.archive-mobile-categories { display: none; }
+.archive-list-head {
+  display: grid; grid-template-columns: 64px minmax(0, 1fr) 154px; gap: 18px;
+  padding: 12px 8px; border-top: 2px solid #333d4b; border-bottom: 1px solid var(--archive-line);
+  color: var(--archive-subtle); font-size: 11px; font-weight: 800; letter-spacing: .04em; text-align: center;
+}
+.archive-list-head span:nth-child(2) { text-align: left; }
+.archive-post { border-bottom: 1px solid #edf0f2; }
+.archive-post[hidden] { display: none; }
+.archive-post-link {
+  display: grid; grid-template-columns: 64px minmax(0, 1fr) 154px; gap: 18px; align-items: center;
+  min-height: 154px; padding: 22px 8px; color: inherit; text-decoration: none;
+  transition: background .18s ease, transform .18s ease;
+}
+.archive-post-link:hover { color: inherit; background: #fbfcfd; transform: translateX(3px); }
+.archive-post-number { color: #a7b0ba; font-size: 12px; font-variant-numeric: tabular-nums; text-align: center; }
+.archive-post-copy { min-width: 0; }
+.archive-post-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 13px; color: var(--archive-subtle); font-size: 12px; }
+.archive-post-meta span { position: relative; }
+.archive-post-meta span:not(:last-child)::after { content: ""; position: absolute; width: 1px; height: 9px; right: -7px; top: 4px; background: var(--archive-line); }
+.archive-post-meta .archive-post-category { color: var(--archive-blue-deep); font-weight: 800; }
+.archive-view-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: max-content;
+  min-width: 88px;
+  max-width: none;
+  min-height: 26px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  color: var(--archive-blue-deep);
+  background: var(--archive-blue-soft);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 900;
+  overflow: visible;
+  text-overflow: clip;
+  white-space: nowrap;
+  box-shadow: inset 0 0 0 1px rgba(49, 130, 246, 0.12);
+}
+.archive-view-count::before {
+  content: "👁";
+  margin-right: 4px;
+  font-size: 11px;
+}
+.archive-post h2 { margin: 7px 0 6px; overflow: hidden; color: var(--archive-ink); font-size: 20px; line-height: 1.35; letter-spacing: -.035em; text-overflow: ellipsis; white-space: nowrap; }
+.archive-post p { display: -webkit-box; margin: 0; overflow: hidden; color: var(--archive-muted); font-size: 13px; line-height: 1.55; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.archive-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 9px; color: #8b95a1; font-size: 11px; }
+.archive-post-cover {
+  width: 154px; height: 104px; margin: 0; border: 1px solid #e5e8eb; border-radius: 14px;
+  background: #eef2f6; box-shadow: inset 0 1px rgba(255,255,255,.25); overflow: hidden; position: relative;
+}
+.archive-post-cover img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center; transition: transform .35s ease; }
+.archive-post-link:hover .archive-post-cover img { transform: scale(1.045); }
+.archive-post-cover figcaption { position: absolute; right: 8px; bottom: 8px; padding: 4px 7px; border-radius: 7px; color: #fff; background: rgba(25,31,40,.76); backdrop-filter: blur(8px); font-size: 9px; font-weight: 800; letter-spacing: .04em; }
+.archive-post-cover-fallback { display: flex; flex-direction: column; justify-content: flex-end; padding: 12px; color: #fff; background: linear-gradient(145deg, #5aa0ff, #2477ed 62%, #1659bd); }
+.archive-post-cover-fallback::after { content: ""; position: absolute; width: 86px; height: 86px; right: -48px; top: -44px; border: 13px solid rgba(255,255,255,.14); border-radius: 50%; }
+.archive-post-cover-fallback span { position: absolute; top: 10px; left: 12px; color: rgba(255,255,255,.72); font-size: 8px; font-weight: 900; letter-spacing: .11em; }
+.archive-post-cover-fallback strong { font-size: 25px; line-height: .95; letter-spacing: -.06em; }
+.archive-post-cover-fallback small { margin-top: 5px; overflow: hidden; font-size: 9px; font-weight: 700; opacity: .85; text-overflow: ellipsis; white-space: nowrap; }
+.archive-empty-static, .archive-empty { padding: 72px 20px; color: var(--archive-muted); text-align: center; }
+.archive-empty div { font-size: 32px; }
+.archive-empty h3 { margin: 12px 0 5px; color: var(--archive-ink); font-size: 18px; }
+.archive-empty p { margin: 0; font-size: 13px; }
+.archive-pagination { display: flex; justify-content: center; align-items: center; gap: 7px; padding-top: 28px; }
+.archive-pagination[hidden] { display: none; }
+.archive-page-button {
+  min-width: 36px; height: 36px; padding: 0 8px; border: 1px solid transparent; border-radius: 10px;
+  color: var(--archive-muted); background: transparent; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer;
+}
+.archive-page-button:hover:not(:disabled) { color: var(--archive-blue-deep); background: var(--archive-blue-soft); }
+.archive-page-button.is-active { color: #fff; background: var(--archive-blue); box-shadow: 0 7px 14px rgba(49,130,246,.2); }
+.archive-page-button.is-wide { padding: 0 14px; }
+.archive-page-button:disabled { cursor: default; opacity: .35; }
+.archive-footer {
+  display: flex; justify-content: space-between; gap: 16px; margin: 26px 0 40px;
+  padding: 0 4px !important; color: var(--archive-subtle); background: transparent; font-size: 12px;
+}
+.archive-footer a { color: var(--archive-blue-deep); font-weight: 700; text-decoration: none; }
+.request-board { width: min(520px, 100%); margin: 0 0 24px auto; padding: 22px !important; border: 1px solid var(--archive-line); border-radius: 18px; color: var(--archive-ink); background: #fff; }
+.request-board-kicker { color: var(--archive-blue); font-size: 10px; font-weight: 900; letter-spacing: .11em; }
+.request-board h2 { margin: 7px 0 8px; font-size: 25px; line-height: 1.22; letter-spacing: -.045em; }
+.request-board-highlight { padding: 0 2px; background: linear-gradient(transparent 52%, #fff36a 52%, #fff36a 91%, transparent 91%); }
+.request-board-copy p { margin: 0; color: var(--archive-muted); font-size: 13px; line-height: 1.55; }
+.request-board-form { display: grid; gap: 8px; margin-top: 15px; }.request-board-identity { display: grid; grid-template-columns: 1fr 1.25fr; gap: 8px; }
+.request-board-form label, .request-board-inline-form label { display: grid; gap: 5px; color: var(--archive-muted); font-size: 11px; font-weight: 800; }
+.request-board-form input, .request-board-form textarea, .request-board-inline-form input, .request-board-inline-form textarea { width: 100%; padding: 10px 11px; border: 1px solid var(--archive-line); border-radius: 10px; outline: 0; color: var(--archive-ink); background: #fff; font: inherit; font-size: 13px; resize: vertical; }
+.request-board-form input:focus, .request-board-form textarea:focus, .request-board-inline-form input:focus, .request-board-inline-form textarea:focus { border-color: var(--archive-blue); box-shadow: 0 0 0 3px rgba(49,130,246,.1); }
+.request-board-form [aria-invalid="true"], .request-board-inline-form [aria-invalid="true"] { border-color: #e5484d; box-shadow: 0 0 0 3px rgba(229,72,77,.1); }
+.request-board-form textarea { min-height: 66px; }.request-board-helper { margin: -1px 0 2px; color: var(--archive-subtle); font-size: 10px; line-height: 1.45; }
+.request-board-submit { min-height: 38px; border: 0; border-radius: 10px; color: #fff; background: var(--archive-blue); font: inherit; font-size: 13px; font-weight: 800; cursor: pointer; }.request-board-submit:hover { background: var(--archive-blue-deep); }.request-board-submit:disabled { cursor: wait; opacity: .68; }
+.request-board-status, .request-board-item-status { min-height: 16px; margin: 0; color: var(--archive-blue-deep); font-size: 11px; font-weight: 700; }
+.request-board-feed { margin-top: 15px; padding-top: 13px; border-top: 1px solid #edf0f2; }.request-board-feed-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }.request-board-feed-head strong { font-size: 12px; }.request-board-feed-head span { color: var(--archive-subtle); font-size: 11px; }
+.request-board-list { display: grid; gap: 9px; max-height: min(42vh, 410px); padding-right: 2px; overflow: auto; }.request-board-item { padding: 13px; border: 1px solid #e8ebef; border-radius: 12px; background: #fbfcfd; }.request-board-item-head { display: flex; align-items: center; gap: 8px; }.request-board-avatar { width: 27px; height: 27px; display: grid; place-items: center; flex: 0 0 auto; border-radius: 50%; color: #fff; background: #333d4b; font-size: 12px; font-weight: 900; }.request-board-author { min-width: 0; overflow: hidden; color: var(--archive-ink); font-size: 13px; font-weight: 900; text-overflow: ellipsis; white-space: nowrap; }.request-board-item time { margin-left: auto; color: var(--archive-subtle); font-size: 10px; white-space: nowrap; }.request-board-edited { color: var(--archive-subtle); font-size: 9px; white-space: nowrap; }.request-board-topic { margin: 10px 0 0; color: #333d4b; font-size: 13px; font-weight: 650; line-height: 1.55; white-space: pre-wrap; word-break: keep-all; }
+.request-board-actions, .request-board-inline-actions { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }.request-board-action, .request-board-inline-actions button { min-height: 28px; padding: 0 9px; border: 1px solid #dfe4ea; border-radius: 8px; color: var(--archive-muted); background: #fff; font: inherit; font-size: 10px; font-weight: 800; cursor: pointer; }.request-board-action.is-admin { margin-left: auto; color: var(--archive-blue-deep); border-color: #cfe2ff; }.request-board-reply { margin-top: 11px; padding: 11px 12px; border-left: 3px solid var(--archive-blue); border-radius: 0 9px 9px 0; background: #f0f6ff; }.request-board-reply strong { display: block; color: var(--archive-blue-deep); font-size: 10px; }.request-board-reply p { margin: 5px 0 0; color: #334866; font-size: 12px; line-height: 1.55; white-space: pre-wrap; }.request-board-inline-form { display: grid; gap: 7px; margin-top: 10px; padding: 10px; border: 1px solid #dfe4ea; border-radius: 10px; background: #fff; }.request-board-inline-form textarea { min-height: 66px; }
+@media (min-width: 1280px) { .archive-shell { width: min(960px, calc(100% - 444px)); margin-left: max(20px, calc((100vw - 1400px) / 2)); margin-right: auto; }.request-board { position: fixed; top: 88px; right: max(20px, calc((100vw - 1400px) / 2)); z-index: 45; width: 380px; max-height: calc(100vh - 112px); margin: 0; overflow-y: auto; box-shadow: 0 14px 36px rgba(15,23,42,.12); } }
+@media (max-width: 860px) {
+  .verdict-grid, .duo, .checks, .metrics { grid-template-columns: 1fr 1fr; }
+  .metrics { grid-template-columns: 1fr 1fr; }
+  .t-item { grid-template-columns: 1fr; }
+  .archive-profile { grid-template-columns: auto 1fr; }
+  .archive-primary-action { grid-column: 2; justify-self: start; }
+  .archive-layout { grid-template-columns: 1fr; }
+  .archive-sidebar { position: static; grid-template-columns: 1fr; }
+  .archive-side-categories, .archive-side-tags, .archive-side-note { display: none; }
+  .archive-mobile-categories { display: flex; gap: 7px; margin: 0 -2px 18px; overflow-x: auto; scrollbar-width: none; }
+  .archive-mobile-categories::-webkit-scrollbar { display: none; }
+  .archive-mobile-categories .archive-category { width: auto; min-width: max-content; padding: 0 14px; border: 1px solid var(--archive-line); border-radius: 999px; }
+  .archive-mobile-categories .archive-category b { margin-left: 5px; }
+}
+@media (max-width: 640px) {
+  .nav-links a:not(:last-child) { display: none; }
+  .verdict-grid, .duo, .checks, .metrics { grid-template-columns: 1fr; }
+  section { padding: 56px 0; }
+  .hero { padding: 72px 0 56px; }
+  .archive-topbar { height: 58px; }
+  .archive-topbar-inner, .archive-shell { width: min(100% - 28px, 1180px); }
+  .archive-brand > span:last-child { display: none; }
+  .archive-topbar nav { gap: 2px; }
+  .archive-topbar nav a { padding: 0 8px; font-size: 11px; white-space: nowrap; }
+  .archive-topbar nav a:first-child { display: none; }
+  .archive-profile { grid-template-columns: 1fr; gap: 18px; margin: 18px 0 14px; padding: 24px !important; border-radius: 20px; }
+  .archive-avatar { width: 68px; height: 68px; border-radius: 23px; }
+  .archive-avatar span { font-size: 21px; }
+  .archive-profile h1 { margin-top: 7px; font-size: 29px; word-break: keep-all; }
+  .archive-profile-copy > p { font-size: 14px; }
+  .archive-profile-meta span:last-child { display: none; }
+  .archive-primary-action { grid-column: 1; width: 100%; justify-content: space-between; }
+  .archive-side-card { padding: 20px !important; }
+  .archive-side-card h2 { font-size: 18px; }
+  .archive-board { padding: 24px 18px 20px !important; border-radius: 20px; }
+  .archive-board-head { display: grid; gap: 18px; }
+  .archive-board-head h2 { font-size: 25px; }
+  .archive-search { width: 100%; }
+  .archive-list-head { display: none; }
+  .archive-post-link { grid-template-columns: minmax(0, 1fr) 96px; gap: 13px; min-height: 138px; padding: 19px 0; }
+  .archive-post-number { display: none; }
+  .archive-post h2 { font-size: 17px; white-space: normal; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+  .archive-post p { -webkit-line-clamp: 1; }
+  .archive-tags { display: none; }
+  .archive-post-cover { width: 96px; height: 80px; border-radius: 11px; }
+  .archive-post-cover-fallback { padding: 10px; }
+  .archive-post-cover-fallback span { left: 10px; top: 9px; font-size: 7px; }
+  .archive-post-cover-fallback strong { font-size: 21px; }
+  .archive-post-cover-fallback small { font-size: 8px; }
+  .archive-pagination { gap: 3px; }
+  .archive-page-button { min-width: 32px; height: 34px; font-size: 12px; }
+  .archive-page-button.is-wide { padding: 0 9px; }
+  .archive-footer { display: grid; margin-bottom: 26px; }
+  .request-board { width: 100%; margin-bottom: 14px; padding: 18px !important; border-radius: 16px; }
+  .request-board-identity { grid-template-columns: 1fr; }.request-board-list { max-height: none; }.request-board-action.is-admin { margin-left: 0; }
+}
+@media print {
+  .nav { display: none; }
+  body { background: #fff; }
+  .hero { break-inside: avoid; }
+  section { break-inside: avoid; }
+  .archive-topbar, .archive-sidebar, .archive-primary-action, .archive-search, .archive-mobile-categories, .archive-pagination { display: none !important; }
+  .request-board { display: none !important; }
+  .archive-shell { width: 100%; }
+  .archive-profile, .archive-board { box-shadow: none; }
+  .archive-post[hidden] { display: block; }
+}
+</style>
+  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260807c-wide-default">
+</head>
+<body data-report-view="detail" data-report-layout="wide" data-report-cover="../assets/260806-palantir-business-ai-analysis/cover.png" data-report-cover-alt="Palantir 공식 로고">
+  <aside class="report-version-banner" role="note" style="position:relative;z-index:9999;padding:12px 18px;border-bottom:1px solid #f1d48a;color:#4f3a00;background:#fff8dc;font:700 13px/1.5 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;text-align:center">2026년 8월 9일 이전판입니다. 현재 정보와 다를 수 있습니다. <a href="/reportmode/reports/260806-palantir-business-ai-analysis/" style="color:#1b64da">최신 보고서 보기 →</a></aside>
+  <a class="report-home-button" href="../../archive/" aria-label="보고서 도서관 메인으로 이동">🏠 메인</a>
+  <nav class="nav" aria-label="보고서 탐색">
+    <div class="nav-inner">
+      <a href="../../archive/">Report Mode</a>
+      <div class="nav-links">
+        <a href="#summary">요약</a>
+        <a href="#body">본문</a>
+        <a href="#sources">출처</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">PALANTIR · BUSINESS &amp; AI ANALYSIS</div>
+      <h1>팔란티어 기업 분석 — AI 기업인가, 경쟁사가 없는가</h1>
+      <p class="lede">비전공자를 위한 사업영역·AIP·경쟁력·주가 흐름과 향후 강점 분석</p>
+      <div class="meta-row">
+        <div class="chip"><span class="dot" aria-hidden="true"></span>260806 · AI · 기업분석</div>
+        <div class="chip">작성 2026.08.06 KST</div>
+        <div class="chip">수정 2026.08.06 KST</div>
+        <div class="chip">출처 9개</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="summary">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Executive Summary</div>
+          <h2>한 문장 판단</h2>
+          <p>팔란티어는 생성형 AI 모델을 직접 만드는 회사라기보다, 정부와 기업이 보유한 복잡한 데이터를 실제 업무·작전·생산·의사결정에 연결하는 운영형 AI 플랫폼 회사입니다. 경쟁사가 없는 것은 아니지만, 데이터 의미 구조인 Ontology, 고보안 환경 배포 경험, AIP를 빠르게 현장에 적용하는 배포 방식이 차별점입니다. 주가는 AI 성장 기대를 강하게 반영하고 있어 사업 성장은 인상적이지만 가격 부담과 기대치도 함께 봐야 합니다.</p>
+        </div>
+        <div class="verdict-grid">
+          <article class="paper verdict-main">
+            <h3>팔란티어의 핵심은 ‘AI 모델’이 아니라 ‘AI가 회사의 실제 행동으로 이어지게 만드는 운영 시스템’입니다. 강한 경쟁력은 있지만 독점은 아니며, 향후에는 상업 고객 확장과 높은 성장률이 현재의 높은 주가 수준을 계속 정당화할 수 있는지가 핵심입니다.</h3>
+
+          </article>
+          <aside class="verdict-side">
+            <div class="big">3</div>
+            <p>핵심 기준·지표와 출처를 함께 확인하세요. 최종 판단과 검수는 사용자에게 있습니다.</p>
+          </aside>
+        </div>
+        <div class="metrics"><div class="metric"><div class="value">$4.5B</div><div class="label">2025년 매출 · 정부 54%, 상업 46%</div></div><div class="metric"><div class="value">$158.43</div><div class="label">최근 주가 · 2026-08-06 UTC 기준, 장중 변동</div></div><div class="metric"><div class="value">$407B</div><div class="label">시가총액 · 동일 기준 시장 데이터</div></div><div class="metric"><div class="value">$7.65–7.662B</div><div class="label">FY2026 회사 가이던스 · 2026년 1분기 업데이트 기준</div></div></div>
+        <div class="legend">
+          <span class="badge fact">사실</span>
+          <span class="badge analysis">분석</span>
+          <span class="badge forecast">전망</span>
+          <span class="badge rumor">루머</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="body">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Body</div>
+          <h2>본문</h2>
+          <p>사실·분석·전망·루머를 분리해 정리했습니다.</p>
+        </div>
+
+<article class="paper section-card" id="what-palantir-is">
+  <div class="badge fact">사실</div>
+  <h3>팔란티어는 무슨 회사인가</h3>
+  <div class="body"><p>팔란티어는 여러 곳에 흩어진 데이터를 한곳에 모으는 데서 끝나지 않고, 그 데이터가 실제 업무와 의사결정에 쓰이도록 연결하는 소프트웨어를 제공합니다. 쉽게 말하면 ‘회사 전체의 데이터 흐름과 의사결정 흐름을 연결하는 운영체제’에 가깝습니다. 2025년 매출은 약 45억 달러였고, 매출은 정부 부문과 상업 부문으로 나뉩니다. 정부 고객은 국방·정보·안보·공공기관, 상업 고객은 제조·의료·금융·에너지 등 민간 조직입니다.</p></div>
+
+  <ul><li>Gotham: 국방·정보·수사 등 임무 중심의 정부용 플랫폼</li><li>Foundry: 기업의 데이터를 업무 프로세스와 연결하는 플랫폼</li><li>Apollo: 다양한 클라우드·현장 장비·보안 환경에 소프트웨어를 배포하고 관리</li><li>AIP: 생성형 AI와 에이전트를 고객의 데이터·업무 규칙 안에서 작동시키는 계층</li></ul>
+  <p class="muted" style="margin-top:14px;color:var(--muted);font-size:14px;">출처: <a href="https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm" rel="noopener">Palantir 2025 Form 10-K</a> · <a href="https://investors.palantir.com/files/2025%20FY%20PLTR%2010-K.pdf" rel="noopener">Palantir 2025 FY Annual Report PDF</a></p>
+</article>
+
+<article class="paper section-card" id="business-areas">
+  <div class="badge fact">사실</div>
+  <h3>사업영역과 주요 사업부명</h3>
+  <div class="body"><p>팔란티어는 회계상으로는 Commercial과 Government라는 두 운영 부문으로 공시합니다. 그러나 제품 관점에서는 Gotham, Foundry, Apollo, AIP라는 네 가지 이름을 이해하는 것이 중요합니다. 이들은 서로 완전히 분리된 사업부라기보다, 고객의 문제를 해결하기 위해 함께 묶이는 플랫폼 구성요소입니다.</p></div>
+
+  <ul><li>Government: 군·정보기관·공공기관의 작전, 수사, 물류, 재난대응, 국방 의사결정</li><li>Commercial: 제조 품질, 공급망, 생산계획, 병원 운영, 금융 리스크 등 민간 업무</li><li>Gotham: ‘어디에 어떤 위험이 있는가’를 파악하는 데 강점</li><li>Foundry: ‘회사 안에서 무엇을 어떻게 바꿀 것인가’를 실행하는 데 강점</li><li>Apollo: 인터넷이 끊기거나 보안이 높은 환경에서도 소프트웨어를 운영</li><li>AIP: 자연어 질문, AI 에이전트, 예측·추천을 조직의 실제 데이터와 연결</li></ul>
+  <p class="muted" style="margin-top:14px;color:var(--muted);font-size:14px;">출처: <a href="https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm" rel="noopener">Palantir 2025 Form 10-K</a> · <a href="https://investors.palantir.com/files/2025%20FY%20PLTR%2010-K.pdf" rel="noopener">Palantir 2025 FY Annual Report PDF</a> · <a href="https://investors.palantir.com/files/Palantir%20-%20Q1%202026%20Business%20Update.pdf" rel="noopener">Palantir Q1 2026 Business Update</a></p>
+</article>
+
+<article class="paper section-card" id="what-is-aip">
+  <div class="badge fact">사실</div>
+  <h3>AIP란 무엇인가</h3>
+  <div class="body"><p>AIP는 Artificial Intelligence Platform의 약자입니다. ChatGPT처럼 질문에 답하는 화면만 의미하지 않습니다. 팔란티어의 설명에 따르면 AIP는 조직의 Ontology에 정리된 신뢰할 수 있는 데이터를 업무 로직, 대규모 언어 모델, 최적화 계산과 연결해 정부와 기업의 프로세스와 의사결정을 지원합니다. 비유하면 ChatGPT가 ‘말을 잘하는 두뇌’라면, AIP는 회사의 창고·규칙·권한·업무 시스템까지 연결된 ‘업무용 조종석’입니다.</p></div>
+
+  <ul><li>질문: ‘납기 지연 가능성이 높은 주문은 무엇인가?’</li><li>데이터 연결: 주문, 재고, 공급업체, 생산라인 데이터를 함께 확인</li><li>업무 의미 부여: 단순 숫자가 아니라 고객·공장·계약·부품의 관계를 해석</li><li>행동 제안: 대체 공급처, 생산순서 변경, 고객 우선순위를 제안</li><li>통제: 누가 어떤 데이터와 AI 결과를 봤고 승인했는지 추적</li></ul>
+  <p class="muted" style="margin-top:14px;color:var(--muted);font-size:14px;">출처: <a href="https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm" rel="noopener">Palantir 2025 Form 10-K</a> · <a href="https://investors.palantir.com/files/Palantir%20-%20Q1%202026%20Business%20Update.pdf" rel="noopener">Palantir Q1 2026 Business Update</a></p>
+</article>
+
+<article class="paper section-card" id="is-ai-company">
+  <div class="badge analysis">분석</div>
+  <h3>팔란티어는 AI 기업인가</h3>
+  <div class="body"><p>결론부터 말하면 AI 기업이라고 볼 수 있습니다. 다만 OpenAI·Anthropic처럼 범용 AI 모델을 중심으로 하는 기업과는 유형이 다릅니다. 팔란티어는 고객 데이터를 안전하게 연결하고, 외부 또는 자체 AI 모델을 실제 업무에 붙이며, 결과를 사람이 승인할 수 있는 환경까지 제공하는 응용·운영형 AI 기업입니다. 따라서 ‘AI 모델을 직접 훈련하는가’만으로 판단하면 팔란티어의 사업을 놓치게 됩니다.</p></div>
+
+  <ul><li>모델 기업: 범용 언어·멀티모달 모델 자체를 만드는 회사</li><li>팔란티어: 모델이 고객의 데이터·규칙·업무 프로세스에서 작동하도록 만드는 회사</li><li>실제 고객 가치는 답변의 유창함보다 데이터 연결, 권한관리, 추적성, 행동 전환에서 발생</li><li>여러 AI 모델을 고객 환경에 연결할 수 있어 특정 모델 하나에만 종속되지 않는 구조를 지향</li></ul>
+  <p class="muted" style="margin-top:14px;color:var(--muted);font-size:14px;">출처: <a href="https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm" rel="noopener">Palantir 2025 Form 10-K</a> · <a href="https://investors.palantir.com/files/2025%20FY%20PLTR%2010-K.pdf" rel="noopener">Palantir 2025 FY Annual Report PDF</a> · <a href="https://investors.palantir.com/files/Palantir%20-%20Q1%202026%20Business%20Update.pdf" rel="noopener">Palantir Q1 2026 Business Update</a></p>
+</article>
+
+<article class="paper section-card" id="competitive-moat">
+  <div class="badge analysis">분석</div>
+  <h3>AI 시대에 팔란티어가 갖는 장점</h3>
+  <div class="body"><p>팔란티어의 강점은 ‘AI를 한 번 시연하는 것’이 아니라 ‘고객의 민감한 데이터와 실제 업무에 AI를 배치하고 계속 운영하는 것’에 있습니다. 특히 국방·정보·의료·제조처럼 오류 비용이 큰 분야에서는 좋은 모델을 호출하는 것만으로 충분하지 않습니다. 데이터가 어디서 왔는지, 어떤 규칙을 거쳤는지, 누가 승인했는지, 문제가 생기면 되돌릴 수 있는지를 함께 증명해야 합니다.</p></div>
+
+  <ul><li>Ontology: 사람·제품·공장·계약·작전 같은 업무 객체와 관계를 데이터 위에 구조화</li><li>보안·인증·배포: 정부와 보안 환경에서 운영한 경험이 신규 AI 업체의 진입장벽이 될 수 있음</li><li>현장 적용 속도: AIP 부트캠프처럼 고객 문제를 짧은 기간에 실제 업무 흐름으로 연결</li><li>높은 전환비용: 고객의 업무 규칙·데이터 모델·승인 흐름이 플랫폼에 축적될수록 교체가 어려워짐</li><li>모델 중립성: 특정 대형언어모델의 성능 경쟁보다 고객 환경에 맞는 모델 조합과 통제에 집중</li></ul>
+  <p class="muted" style="margin-top:14px;color:var(--muted);font-size:14px;">출처: <a href="https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm" rel="noopener">Palantir 2025 Form 10-K</a> · <a href="https://investors.palantir.com/files/2025%20FY%20PLTR%2010-K.pdf" rel="noopener">Palantir 2025 FY Annual Report PDF</a> · <a href="https://investors.palantir.com/files/Palantir%20-%20Q1%202026%20Business%20Update.pdf" rel="noopener">Palantir Q1 2026 Business Update</a></p>
+</article>
+
+<article class="paper section-card" id="competition">
+  <div class="badge analysis">분석</div>
+  <h3>정말 경쟁사가 없는가</h3>
+  <div class="body"><p>경쟁사가 없다는 표현은 과장입니다. 다만 팔란티어와 모든 기능이 똑같은 단일 경쟁사는 드뭅니다. 경쟁은 고객이 어떤 문제를 해결하려는지에 따라 달라집니다. Databricks·Snowflake·Microsoft Fabric은 데이터 플랫폼과 AI 분석 영역에서 경쟁하고, Anduril·Booz Allen·Leidos·SAIC 등은 국방·정부 프로젝트에서 경쟁하거나 협력합니다. Accenture와 대형 시스템 통합업체는 고객별 AI 업무 시스템을 직접 구축하는 방식으로 경쟁할 수 있습니다.</p></div>
+
+  <ul><li>Databricks: 데이터·머신러닝·AI 개발자 생태계에서 강함</li><li>Snowflake: 클라우드 데이터 플랫폼과 데이터 활용에서 강함</li><li>Microsoft Fabric/Azure: 기존 기업 계약·클라우드·생산성 도구를 묶는 힘</li><li>Anduril: 국방 기술·자율 시스템·센서와 소프트웨어의 결합</li><li>컨설팅·SI 업체: 고객 현장에 맞춘 맞춤형 AI 시스템을 구축할 수 있음</li><li>팔란티어의 차이: 데이터 플랫폼만이 아니라 업무 의미 구조·운영·보안·실행까지 한 묶음으로 제공</li></ul>
+  <p class="muted" style="margin-top:14px;color:var(--muted);font-size:14px;">출처: <a href="https://www.teahose.com/guides/palantir-competitors" rel="noopener">Palantir Competitors (2026): Why Nobody Comps Palantir Cleanly</a> · <a href="https://www.lambdafin.com/articles/palantir-competitors" rel="noopener">Palantir Competitors (2026)</a> · <a href="https://www.investing.com/news/stock-market-news/palantir-vs-snowflake-how-the-two-enterprise-ai-bets-stack-up-93CH-4818228" rel="noopener">Palantir vs Snowflake: enterprise AI bets</a></p>
+</article>
+
+<article class="paper section-card" id="stock-trend">
+  <div class="badge fact">사실</div>
+  <h3>최근 주가 동향과 읽는 법</h3>
+  <div class="body"><p>2026년 8월 6일 UTC 기준 시장 데이터에서 PLTR 주가는 158.43달러, 전일 대비 2.69% 하락, 장중 고가 165.98달러·저가 156.02달러로 확인됩니다. 시가총액은 약 4,070억 달러, 주가수익비율은 약 135배 수준입니다. 최근 보도에서는 2026년 2분기 매출이 전년 대비 93% 증가한 19.4억 달러, 주당순이익이 41센트였다고 전했으며, 실적 발표 직후 주가가 크게 상승한 것으로 보도됐습니다. 이처럼 주가는 일반 소프트웨어 기업보다 훨씬 높은 성장 기대를 반영하고 있습니다.</p></div>
+
+  <ul><li>긍정적 신호: 매출 성장, AI 수요, 정부·상업 고객 확대, 높은 현금창출력</li><li>부담 요인: 높은 밸류에이션, 성장률 둔화 시 주가 조정 가능성, 기대치가 이미 높음</li><li>주가 상승이 곧 기업가치의 안전성을 의미하지 않음</li><li>중요한 추적 지표: 미국 상업 매출 성장, 고객 수·대형 고객 확장, 계약 잔액, 영업현금흐름, 주식보상 희석</li></ul>
+  <p class="muted" style="margin-top:14px;color:var(--muted);font-size:14px;">출처: <a href="https://apnews.com/article/fbbe6128d618509e33d45a493c2615b1" rel="noopener">US stocks hit records as profits keep piling up</a> · <a href="https://www.kiplinger.com/investing/stocks/s-and-p-500-joins-dow-in-record-high-territory" rel="noopener">S&amp;P 500 Joins Dow in Record-High Territory</a> · <a href="https://stockanalysis.com/stocks/pltr/history/" rel="noopener">Palantir Stock Price History 2020-2026</a></p>
+</article>
+
+<article class="paper section-card" id="future-strengths">
+  <div class="badge forecast">전망</div>
+  <h3>향후 강점과 확인해야 할 조건</h3>
+  <div class="body"><p>앞으로의 강점은 AI 모델의 성능 자체보다 ‘AI를 실제 조직에 넣는 운영 표준’이 될 수 있는지에 달려 있습니다. 팔란티어가 정부 중심의 성공 사례를 제조·의료·금융·에너지 등 상업 시장으로 반복 확장하면 플랫폼 효과가 커질 수 있습니다. 반대로 고객이 Databricks·Snowflake·Azure·내부 개발 조합으로 비슷한 결과를 더 싸고 쉽게 만들 수 있다면 높은 성장 기대는 약해질 수 있습니다.</p></div>
+
+  <ul><li>강점 1: 국가안보·국방·공공 분야에서 축적한 신뢰와 인증</li><li>강점 2: 고객 조직의 데이터와 업무 규칙을 구조화하는 Ontology</li><li>강점 3: 모델보다 업무 결과와 실행을 판매하는 제품 포지셔닝</li><li>강점 4: 정부와 상업 부문을 동시에 키울 수 있는 구조</li><li>확인 조건: 상업 매출 성장률 유지, 신규 고객의 빠른 확장, 경쟁 플랫폼 대비 실제 ROI</li><li>주의 조건: AI 기능의 상품화, 가격 경쟁, 특정 고객·정부 예산 의존, 높은 주가 기대치</li></ul>
+  <p class="muted" style="margin-top:14px;color:var(--muted);font-size:14px;">출처: <a href="https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm" rel="noopener">Palantir 2025 Form 10-K</a> · <a href="https://investors.palantir.com/files/Palantir%20-%20Q1%202026%20Business%20Update.pdf" rel="noopener">Palantir Q1 2026 Business Update</a> · <a href="https://www.teahose.com/guides/palantir-competitors" rel="noopener">Palantir Competitors (2026): Why Nobody Comps Palantir Cleanly</a> · <a href="https://www.kiplinger.com/investing/stocks/s-and-p-500-joins-dow-in-record-high-territory" rel="noopener">S&amp;P 500 Joins Dow in Record-High Territory</a></p>
+</article>
+      </div>
+    </section>
+
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Trade-offs</div>
+      <h2>얻게 되는 것과<br>감수해야 하는 것</h2>
+    </div>
+    <div class="duo">
+      <article class="panel pros"><h3>장점</h3><ul><li>AI를 실제 업무와 작전으로 연결하는 제품 구조</li><li>정부·보안 환경에서의 배포 경험과 신뢰</li><li>Ontology와 업무 데이터가 쌓일수록 높아질 수 있는 전환비용</li><li>상업 부문 확장과 높은 성장률</li></ul></article>
+      <article class="panel cons"><h3>단점</h3><ul><li>경쟁사가 없다는 주장은 사실이 아님</li><li>높은 주가수익비율과 성장 기대치</li><li>대형 정부 계약·예산 변화의 영향</li><li>AI 기능이 데이터 플랫폼과 클라우드 업체에 흡수될 가능성</li></ul></article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Decision Criteria</div>
+      <h2>판단 기준</h2>
+    </div>
+    <div class="checks">
+
+        <article class="check">
+          <div class="num">01</div>
+          <h3>기업 이해의 한 문장</h3>
+          <p>팔란티어는 AI 모델을 파는 회사라기보다, 고객의 데이터와 업무를 AI가 움직일 수 있게 만드는 운영 플랫폼 회사입니다.</p>
+        </article>
+        <article class="check">
+          <div class="num">02</div>
+          <h3>경쟁 구도의 한 문장</h3>
+          <p>단일 경쟁사는 약하지만 Databricks·Snowflake·Microsoft·Anduril·SI 업체가 서로 다른 각도에서 경쟁합니다.</p>
+        </article>
+        <article class="check">
+          <div class="num">03</div>
+          <h3>주가 판단의 한 문장</h3>
+          <p>사업의 질과 주가의 매력은 별개의 문제이므로 성장률이 높은 만큼 가격에 반영된 기대치도 함께 확인해야 합니다.</p>
+        </article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Timeline</div>
+      <h2>타임라인</h2>
+    </div>
+    <div class="timeline">
+
+        <div class="t-item">
+          <div class="date">2003</div>
+          <div>
+            <strong>팔란티어 설립</strong>
+            <div style="color:var(--muted);margin-top:4px;">정부·정보 분야의 복잡한 데이터를 다루는 소프트웨어에서 출발했습니다.</div>
+          </div>
+        </div>
+        <div class="t-item">
+          <div class="date">2020</div>
+          <div>
+            <strong>뉴욕증권거래소 상장</strong>
+            <div style="color:var(--muted);margin-top:4px;">상장 이후 정부 중심 기업에서 상업 소프트웨어 기업으로의 확장을 본격화했습니다.</div>
+          </div>
+        </div>
+        <div class="t-item">
+          <div class="date">2023</div>
+          <div>
+            <strong>AIP 공개</strong>
+            <div style="color:var(--muted);margin-top:4px;">생성형 AI를 고객 데이터와 업무 프로세스에 연결하는 플랫폼을 내세웠습니다.</div>
+          </div>
+        </div>
+        <div class="t-item">
+          <div class="date">2026</div>
+          <div>
+            <strong>AI 운영 플랫폼 경쟁</strong>
+            <div style="color:var(--muted);margin-top:4px;">데이터·클라우드·국방·컨설팅 기업이 기업용 AI 예산을 두고 경쟁하는 단계로 진입했습니다.</div>
+          </div>
+        </div>
+    </div>
+  </div>
+</section>
+    <div id="sources">
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Sources</div>
+      <h2>원문과 확인 범위</h2>
+      <p>기사 전문은 저장하지 않습니다. 제목·발행처·URL·확인일만 남깁니다.</p>
+    </div>
+    <div class="paper">
+      <ul class="sources">
+
+          <li>
+            <a href="https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm" rel="noopener">Palantir 2025 Form 10-K</a>
+            <span>U.S. SEC · 발행 2026-02-17 · 확인 2026.08.06 KST · 사업부문, 2025년 매출, AIP·Ontology·제품 설명의 1차 자료</span>
+          </li>
+          <li>
+            <a href="https://investors.palantir.com/files/2025%20FY%20PLTR%2010-K.pdf" rel="noopener">Palantir 2025 FY Annual Report PDF</a>
+            <span>Palantir Technologies · 발행 2026-02-17 · 확인 2026.08.06 KST · 제품·사업 구조 확인</span>
+          </li>
+          <li>
+            <a href="https://investors.palantir.com/files/Palantir%20-%20Q1%202026%20Business%20Update.pdf" rel="noopener">Palantir Q1 2026 Business Update</a>
+            <span>Palantir Technologies · 발행 2026-05-04 · 확인 2026.08.06 KST · FY2026 가이던스와 상업 매출 전망</span>
+          </li>
+          <li>
+            <a href="https://www.teahose.com/guides/palantir-competitors" rel="noopener">Palantir Competitors (2026): Why Nobody Comps Palantir Cleanly</a>
+            <span>Teahose · 발행 2026-07-01 · 확인 2026.08.06 KST · 경쟁 구도 참고자료</span>
+          </li>
+          <li>
+            <a href="https://www.lambdafin.com/articles/palantir-competitors" rel="noopener">Palantir Competitors (2026)</a>
+            <span>Lambda Finance · 발행 2026-07-01 · 확인 2026.08.06 KST · 경쟁사 범주 참고자료</span>
+          </li>
+          <li>
+            <a href="https://www.investing.com/news/stock-market-news/palantir-vs-snowflake-how-the-two-enterprise-ai-bets-stack-up-93CH-4818228" rel="noopener">Palantir vs Snowflake: enterprise AI bets</a>
+            <span>Investing.com · 발행 2026-07-28 · 확인 2026.08.06 KST · Palantir와 Snowflake의 성장·수익성 비교 참고</span>
+          </li>
+          <li>
+            <a href="https://apnews.com/article/fbbe6128d618509e33d45a493c2615b1" rel="noopener">US stocks hit records as profits keep piling up</a>
+            <span>Associated Press · 발행 2026-08-04 · 확인 2026.08.06 KST · 2026년 2분기 실적과 주가 반응 보도</span>
+          </li>
+          <li>
+            <a href="https://www.kiplinger.com/investing/stocks/s-and-p-500-joins-dow-in-record-high-territory" rel="noopener">S&amp;P 500 Joins Dow in Record-High Territory</a>
+            <span>Kiplinger · 발행 2026-08-04 · 확인 2026.08.06 KST · 2분기 매출·EPS와 주가 반응 보도</span>
+          </li>
+          <li>
+            <a href="https://stockanalysis.com/stocks/pltr/history/" rel="noopener">Palantir Stock Price History 2020-2026</a>
+            <span>Stock Analysis · 발행 2026-07-21 · 확인 2026.08.06 KST · 주가 흐름 확인용 시장 데이터</span>
+          </li>
+      </ul>
+    </div>
+  </div>
+</section></div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>Report Mode · 260806 · Jeremy</span>
+      <span>최종 판단과 검수는 사용자에게 있습니다.</span>
+    </div>
+  </footer>
+  <script src="../../assets/report-page-layout.js?v=20260807c-wide-default"></script>
+  <script src="../../assets/report-view-counter.js" data-report-id="260806-palantir-business-ai-analysis"></script>
+</body>
+</html>

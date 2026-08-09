@@ -203,7 +203,7 @@ export function renderReportHtml(doc: ReportDocument): string {
   <meta name="color-scheme" content="light">
   <title>${escapeHtml(dateCode)} · ${escapeHtml(doc.title)} — Report Mode</title>
   <style>${css()}</style>
-  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260807c-wide-default">
+  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260809-refresh">
 </head>
 <body data-report-view="detail" data-report-layout="wide">
   <a class="report-home-button" href="../../archive/" aria-label="보고서 도서관 메인으로 이동">🏠 메인</a>
@@ -283,8 +283,9 @@ export function renderReportHtml(doc: ReportDocument): string {
       <span>최종 판단과 검수는 사용자에게 있습니다.</span>
     </div>
   </footer>
-  <script src="../../assets/report-page-layout.js?v=20260807c-wide-default"></script>
+  <script src="../../assets/report-page-layout.js?v=20260809-refresh"></script>
   <script src="../../assets/report-view-counter.js" data-report-id="${escapeHtml(doc.id)}"></script>
+  <script src="../../assets/report-history.js?v=20260809" data-report-id="${escapeHtml(doc.id)}"></script>
 </body>
 </html>
 `;
@@ -470,7 +471,7 @@ export function renderHomeHtml(
         <h1 id="archive-title">Jeremy's AI Report 도서관</h1>
         <p>원자료를 조사하고 사실과 해석을 나눠 기록하는 개인 보고서 아카이브입니다.</p>
         <div class="archive-profile-meta">
-          <span>전체 보고서 <b>${items.length}</b></span>
+          <span>전체 보고서 <b id="archiveHeroCount">${items.length}</b></span>
           <span>최근 작성 <b>${escapeHtml(latestDate)}</b></span>
           <span>자동 업데이트</span>
         </div>
@@ -571,6 +572,7 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
     var COUNTER_BASE = "https://api.counterapi.dev/v1/aihubos-reportmode/";
     var COUNTER_ENABLED = window.location.hostname === "aihubos.github.io";
     var posts = Array.prototype.slice.call(document.querySelectorAll("[data-report-item]"));
+    var heroCount = document.getElementById("archiveHeroCount");
     var filters = Array.prototype.slice.call(document.querySelectorAll("[data-category-filter]"));
     var search = document.getElementById("archiveSearch");
     var count = document.getElementById("archiveResultCount");
@@ -583,6 +585,8 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
       category: params.get("category") || "all",
       page: Math.max(1, parseInt(params.get("page") || "1", 10) || 1)
     };
+
+    if (heroCount) heroCount.textContent = String(posts.length);
 
     search.value = state.query;
 

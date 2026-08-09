@@ -1,0 +1,458 @@
+{
+  "schemaVersion": 1,
+  "snapshotId": "2026-08-09-before-refresh",
+  "generatedAt": "2026-08-09T00:00:00+09:00",
+  "counts": {
+    "total": 45,
+    "content": 42,
+    "redirects": 3,
+    "listed": 39,
+    "unlisted": 6
+  },
+  "reports": [
+    {
+      "id": "260802-ai-agent-hermes-openclaw-codex",
+      "path": "reports/260802-ai-agent-hermes-openclaw-codex.html",
+      "title": "Hermes vs OpenClaw vs Codex",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260802-apple-foldable-iphone",
+      "path": "reports/260802-apple-foldable-iphone/index.html",
+      "title": "Apple 폴더블 iPhone",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260802-galaxy-z-fold8-deep-dive",
+      "path": "reports/260802-galaxy-z-fold8-deep-dive.html",
+      "title": "갤럭시 Z Fold8 심층분석",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260802-gpt-5-6-sol-terra-luna-guide",
+      "path": "reports/260802-gpt-5-6-sol-terra-luna-guide.html",
+      "title": "GPT-5.6 Sol · Terra · Luna 실사용 가이드",
+      "kind": "content",
+      "listed": false,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260802-iphone-fold-vs-galaxy-fold7-fold8-ultra",
+      "path": "reports/260802-iphone-fold-vs-galaxy-fold7-fold8-ultra.html",
+      "title": "아이폰 폴드 vs 갤럭시 폴드7· 폴드8 울트라",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260802-karpathy-llm-wiki",
+      "path": "reports/260802-karpathy-llm-wiki.html",
+      "title": "Andrej Karpathy의 LLM Wiki란? 지식이 쌓이는 구조",
+      "kind": "content",
+      "listed": false,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260802-pokemon-pokopia-deep-dive",
+      "path": "reports/260802-pokemon-pokopia-deep-dive.html",
+      "title": "포켓몬 포코피아: 장단점과 인기 요인",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260802-taki-poo-books-gift-guide",
+      "path": "reports/260802-taki-poo-books-gift-guide.html",
+      "title": "타키 포오 어린이책 선물 가이드",
+      "kind": "content",
+      "listed": false,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260802-tesla-model-y-l-deep-dive",
+      "path": "reports/260802-tesla-model-y-l-deep-dive.html",
+      "title": "Tesla Model Y L 심층 분석",
+      "kind": "content",
+      "listed": false,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260803-buzz-slack-discord-telegram-guide",
+      "path": "reports/260803-buzz-slack-discord-telegram-guide.html",
+      "title": "Buzz는 메신저가 아니라 AI 작업공간",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260803-chatgpt-desktop-chat-work-codex-guide",
+      "path": "reports/260803-chatgpt-desktop-chat-work-codex-guide.html",
+      "title": "Chat은 대화, Work는 업무, Codex는 구현",
+      "kind": "content",
+      "listed": false,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260803-deepseek-v4-flash-comparison",
+      "path": "reports/260803-deepseek-v4-flash-comparison.html",
+      "title": "DeepSeek V4 Flash — 가격은 압도적 · 선택은 업무별",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260803-macbook-m5-max-local-llm-model-fit",
+      "path": "reports/260803-macbook-m5-max-local-llm-model-fit.html",
+      "title": "MacBook M5 Max 128GB 로컬 LLM 최적 모델 분석",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260803-shanghai-disneyland-attractions-crowd-guide",
+      "path": "reports/260803-shanghai-disneyland-attractions-crowd-guide.html",
+      "title": "상하이 디즈니랜드 31개 어트랙션 · 퍼레이드 9–10월 · 월별 비수기 분석",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260803-tesla-model-y-l-delivery-decision",
+      "path": "reports/260803-tesla-model-y-l-delivery-decision.html",
+      "title": "Tesla Model Y L 6,499만원 출고 결정",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260804-academy-automation-hermes-obsidian-llm-wiki",
+      "path": "reports/260804-academy-automation-hermes-obsidian-llm-wiki.html",
+      "title": "비전공자를 위한 학원 자동화 실행 설계",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260804-minimax-h3-m5-max-comfyui-guide",
+      "path": "reports/260804-minimax-h3-m5-max-comfyui-guide.html",
+      "title": "MiniMax H3를 M5 Max 128GB에서 어떻게 쓸까",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260804-openai-hugging-face-agent-incident",
+      "path": "reports/260804-openai-hugging-face-agent-incident.html",
+      "title": "GPT 신모델이 Hugging Face를 해킹했다?",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260804-semiconductor-glass-substrate-scm-tam-sam",
+      "path": "reports/260804-semiconductor-glass-substrate-scm-tam-sam.html",
+      "title": "반도체 유리기판, 평평한 유리판이 AI 패키지를 바꿀까",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260804-shanghai-disneyland-family-hotel-strategy",
+      "path": "reports/260804-shanghai-disneyland-family-hotel-strategy.html",
+      "title": "두 가족을 위한 상하이 디즈니랜드 4박 5일 전략",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260806-hermes-second-brain",
+      "path": "reports/260806-hermes-second-brain/index.html",
+      "title": "Hermes × Second Brain",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260806-palantir-business-ai-analysis",
+      "path": "reports/260806-palantir-business-ai-analysis/index.html",
+      "title": "팔란티어 기업 분석 — AI 기업인가, 경쟁사가 없는가",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260807-ai-agent-books-review",
+      "path": "reports/260807-ai-agent-books-review.html",
+      "title": "AI 에이전트 3권, 모두 사야 할까? 답은 단계 구매 입니다",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260807-chatgpt-codex-pricing-api-comparison-02",
+      "path": "reports/260807-chatgpt-codex-pricing-api-comparison-02/index.html",
+      "title": "ChatGPT 요금제와 Codex·API 비용 을 한 번에 비교",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260807-mac-ai-ecosystem-advantage",
+      "path": "reports/260807-mac-ai-ecosystem-advantage.html",
+      "title": "왜 Mac은 AI 생태계 에 유리한가",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260807-paseo-mcp-orchestration-guidebook",
+      "path": "reports/260807-paseo-mcp-orchestration-guidebook.html",
+      "title": "PASEO MCP 로 여러 AI를 한 팀처럼 움직이는 방법",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260807-paseo-multi-ai-orchestration-analysis",
+      "path": "reports/260807-paseo-multi-ai-orchestration-analysis.html",
+      "title": "여러 AI 코딩 에이전트를 한곳에서 지휘하는 Paseo",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260808-adhd-hsp-daily-tips",
+      "path": "reports/260808-adhd-hsp-daily-tips/index.html",
+      "title": "ADHD × HSP, 의지보다 환경·회복을 설계해야 편해집니다",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260808-ai-beginner-hermes-second-brain-50",
+      "path": "reports/260808-ai-beginner-hermes-second-brain-50/index.html",
+      "title": "AI를 이해하고, 에이전트로 일하게 만드는 첫 번째 교과서",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260808-ai-persona-prompting-intro",
+      "path": "reports/260808-ai-persona-prompting-intro.html",
+      "title": "AI에게 ‘말투’ 를 가르칠 수 있을까?",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260808-ai-token-lego-guide",
+      "path": "reports/260808-ai-token-lego-guide.html",
+      "title": "AI의 토큰은 문장을 잘게 나눈 레고 블록 입니다",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260808-dongtan-car-camping-guide",
+      "path": "reports/260808-dongtan-car-camping-guide/index.html",
+      "title": "동탄에서 떠나는 실패 확률 낮은 차박지 9곳",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260808-dongtan-kids-day-trips",
+      "path": "reports/260808-dongtan-kids-day-trips.html",
+      "title": "동탄에서 1시간, 뻔하지 않은 아이 나들이 7선",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260808-dongtan-toddler-hidden-daytrips",
+      "path": "reports/260808-dongtan-toddler-hidden-daytrips.html",
+      "title": "동탄호수공원에서 1시간, 1~3세와 실패 적은 나들이 7선",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260808-hbm-ai-memory-beginner",
+      "path": "reports/260808-hbm-ai-memory-beginner.html",
+      "title": "HBM은 AI 칩 옆에 세운 수직 물류창고 와 수천 차선 출입구 입니다",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260808-hermes-desktop-guide-site",
+      "path": "reports/260808-hermes-desktop-guide-site.html",
+      "title": "Hermes Desktop 설치 가이드 사이트",
+      "kind": "redirect",
+      "listed": true,
+      "titleLocked": true
+    },
+    {
+      "id": "260808-hermes-instagram-blog-automation-guide",
+      "path": "reports/260808-hermes-instagram-blog-automation-guide.html",
+      "title": "Hermes로 만드는 인스타그램·블로그 승인형 자동화",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260808-hermes-second-brain-guide-site",
+      "path": "reports/260808-hermes-second-brain-guide-site.html",
+      "title": "Hermes Second Brain 설치 가이드 사이트",
+      "kind": "redirect",
+      "listed": true,
+      "titleLocked": true
+    },
+    {
+      "id": "260808-hostinger-vps-hermes-24h",
+      "path": "reports/260808-hostinger-vps-hermes-24h.html",
+      "title": "Hermes를 쉬지 않고 움직이는 원격 컴퓨터, VPS Hostinger로 시작하기",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260808-macbook-local-llm-lm-studio-v1-0-0",
+      "path": "reports/260808-macbook-local-llm-lm-studio-v1-0-0/index.html",
+      "title": "MacBook에 Local LLM 설치하기 feat. LM Studio",
+      "kind": "historical",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.0.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260808-macbook-local-llm-lm-studio-v1-0-1",
+      "path": "reports/260808-macbook-local-llm-lm-studio-v1-0-1/index.html",
+      "title": "MacBook에 Local LLM 설치하기 feat. LM Studio",
+      "kind": "historical",
+      "listed": true,
+      "previousVersion": "v1.0.1",
+      "currentVersion": "v1.0.1",
+      "titleLocked": true
+    },
+    {
+      "id": "260808-macbook-local-llm-lm-studio-v1-1-0",
+      "path": "reports/260808-macbook-local-llm-lm-studio-v1-1-0/index.html",
+      "title": "MacBook에 Local LLM 설치하기 LM Studio 완전 입문",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.1.0",
+      "currentVersion": "v1.2.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260808-macbook-m5max-comfyui-practical-guide",
+      "path": "reports/260808-macbook-m5max-comfyui-practical-guide.html",
+      "title": "MacBook Pro M5 Max 128GB 로 ComfyUI 이미지·영상 만들기",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "260808-stanley-tumbler-analysis",
+      "path": "reports/260808-stanley-tumbler-analysis/index.html",
+      "title": "110년 된 보온병은 어떻게 ‘갖고 싶은 패션 아이템’ 이 되었나",
+      "kind": "content",
+      "listed": true,
+      "previousVersion": "v1.0.0",
+      "currentVersion": "v1.1.0",
+      "titleLocked": true
+    },
+    {
+      "id": "apple-foldable-iphone",
+      "path": "reports/apple-foldable-iphone/index.html",
+      "title": "보고서 주소가 변경되었습니다",
+      "kind": "redirect",
+      "listed": false,
+      "titleLocked": true
+    }
+  ]
+}
