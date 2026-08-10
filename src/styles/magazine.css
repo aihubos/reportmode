@@ -263,6 +263,16 @@ footer {
 .archive-blog-card .archive-blog-mark { width: 28px; height: 28px; font-size: 15px; }
 .archive-blog-card-copy { display: grid; gap: 1px; line-height: 1.1; }
 .archive-blog-card-copy small { color: rgba(255,255,255,.82); font-size: 9px; font-weight: 600; }
+.archive-carrot-card {
+  min-height: 44px; display: inline-flex; align-items: center; gap: 9px; padding: 5px 11px;
+  border: 1px solid var(--rh-daangn); border-radius: 12px; color: var(--rh-daangn); background: var(--rh-paper); font-size: 12px; font-weight: 800; text-decoration: none;
+  transition: background .18s ease, color .18s ease, transform .18s ease;
+}
+.archive-carrot-card:hover { color: var(--rh-daangn-hover); background: var(--rh-paper); transform: translateY(-1px); }
+.archive-carrot-card:focus-visible { outline: 3px solid var(--rh-ring); outline-offset: 2px; }
+.archive-carrot-qr { width: 28px; height: 28px; display: block; flex: 0 0 auto; border-radius: 8px; object-fit: cover; }
+.archive-carrot-card-copy { display: grid; gap: 1px; line-height: 1.1; }
+.archive-carrot-card-copy small { color: var(--rh-sub); font-size: 9px; font-weight: 600; }
 .archive-shell { width: min(1180px, calc(100% - (var(--archive-shell-edge) * 2))); margin: 0 auto; }
 .archive-spotlight { margin-top: 24px; padding: 24px !important; border: 1px solid var(--archive-line); border-radius: 18px; background: var(--rh-paper); }
 .archive-spotlight-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 20px; }
@@ -567,6 +577,10 @@ footer {
   .archive-blog-card { min-height: 38px; gap: 6px; padding: 4px 7px; }
   .archive-blog-card .archive-blog-mark { width: 24px; height: 24px; font-size: 13px; }
   .archive-blog-card-copy small { display: none; }
+  .archive-visitor-count { display: none; }
+  .archive-carrot-card { min-height: 38px; gap: 6px; padding: 4px 7px; }
+  .archive-carrot-qr { width: 24px; height: 24px; border-radius: 6px; }
+  .archive-carrot-card-copy small, .archive-blog-card-copy { display: none; }
   .archive-profile { grid-template-columns: 1fr; gap: 18px; margin: 18px 0 14px; padding: 24px !important; border-radius: 20px; }
   .archive-avatar { width: 68px; height: 68px; border-radius: 23px; }
   .archive-avatar span { font-size: 21px; }

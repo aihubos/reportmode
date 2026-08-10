@@ -64,6 +64,8 @@ for (const relative of ["index.html", "archive/index.html", "archive/upload.html
 const archive = fs.readFileSync(path.join(root, "archive/index.html"), "utf8");
 if ((archive.match(/https:\/\/blog\.naver\.com\/jeremylee0213/g) || []).length !== 1) failures.push("archive/index.html: 네이버 블로그 링크가 1개가 아님");
 if (!archive.includes('class="archive-blog-card"')) failures.push("archive/index.html: 초록색 네이버 블로그 카드가 없음");
+if ((archive.match(/https:\/\/daangn\.com\/kr\/share\/community\/ref\/invite-group\/baRr2nojJVT\?utm_campaign=share_qr/g) || []).length !== 1) failures.push("archive/index.html: 당근모임 링크가 1개가 아님");
+if (!archive.includes('class="archive-carrot-card"') || !archive.includes('src="../assets/daangn-meeting-qr.png"')) failures.push("archive/index.html: 당근모임 QR 카드가 없음");
 if (/class="archive-profile"|읽고 판단하기 좋은/.test(archive)) failures.push("archive/index.html: 삭제 요청한 소개 카드가 남아 있음");
 if (!/var DEFAULT_PAGE_SIZE = 30/.test(archive) || !/id="archivePageSize"/.test(archive)) failures.push("archive/index.html: 기본 30개 표시 선택기가 없음");
 if (!/archive-visitor-counter\.js\?v=20260809-visits1/.test(archive)) failures.push("archive/index.html: 방문자 집계 스크립트가 없음");

@@ -90,6 +90,9 @@ test("renders the simplified archive with one Naver card and a 30-item default s
   assert.doesNotMatch(html, /class="archive-brand-mark"/);
   assert.equal(html.match(/https:\/\/blog\.naver\.com\/jeremylee0213/g)?.length, 1);
   assert.match(html, /class="archive-blog-card"/);
+  assert.equal(html.match(/https:\/\/daangn\.com\/kr\/share\/community\/ref\/invite-group\/baRr2nojJVT\?utm_campaign=share_qr/g)?.length, 1);
+  assert.match(html, /class="archive-carrot-card"/);
+  assert.match(html, /src="\.\.\/assets\/daangn-meeting-qr\.png"/);
   assert.match(html, /id="archiveVisitorCount"/);
   assert.match(html, /class="report-hub-clock"/);
   assert.match(html, /class="archive-content-layout"/);
