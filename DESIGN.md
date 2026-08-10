@@ -81,6 +81,7 @@ Report Hub는 보고서보다 먼저 시선을 빼앗지 않는 임원용 리서
 - 관리자 편집 창 최대 폭: 600px (`--rh-admin-editor-width`)
 - 관리자 편집 입력 최소 높이: 40px (`--rh-admin-editor-control-height`)
 - 관리자 썸네일 놓기 영역 최소 높이: 112px (`--rh-admin-thumbnail-drop-min-height`)
+- 관리자 썸네일 미리보기 최대 폭: 392px (`--rh-admin-thumbnail-preview-width`)
 - 관리자 카드 동작 최소 높이: 32px (`--rh-admin-card-action-height`)
 
 ## 5. Components

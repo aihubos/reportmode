@@ -676,8 +676,9 @@ footer {
 .archive-admin-hidden-badge { display: inline-flex; align-items: center; min-height: 20px; padding: 0 7px; border-radius: 999px; color: #b42318; background: #ffe8e5; font-size: 10px; font-weight: 900; }
 .archive-admin-panel.is-unlocked { border-color: #cfe2ff; background: #f5f9ff; }
 .archive-admin-editor {
-  width: min(calc(100vw - (var(--rh-space-4) * 2)), var(--rh-admin-editor-width)); max-width: var(--rh-admin-editor-width); margin: auto; padding: var(--rh-space-4);
+  width: min(calc(100vw - (var(--rh-space-4) * 2)), var(--rh-admin-editor-width)); max-width: var(--rh-admin-editor-width); max-height: calc(100dvh - (var(--rh-space-4) * 2)); margin: auto; padding: var(--rh-space-4);
   border: 1px solid var(--rh-border); border-radius: var(--rh-radius-4); color: var(--rh-ink); background: var(--rh-paper); box-shadow: 0 8px 24px var(--rh-shadow-color); font-family: var(--rh-sans);
+  overflow-y: auto; overscroll-behavior: contain;
 }
 .archive-admin-editor::backdrop { background: var(--rh-overlay); }
 .archive-admin-editor-form { display: grid; gap: var(--rh-space-3); }
@@ -707,7 +708,7 @@ footer {
 .archive-admin-thumbnail-drop strong { color: var(--rh-ink); font-size: var(--rh-control-font-size); }
 .archive-admin-thumbnail-drop span { font-size: var(--rh-label-font-size); }
 .archive-admin-thumbnail-drop:hover, .archive-admin-thumbnail-drop.is-dragging { border-color: var(--rh-primary); background: var(--rh-primary-soft); }
-.archive-admin-thumbnail-preview { min-height: var(--rh-admin-thumbnail-drop-min-height); display: grid; place-items: center; overflow: hidden; border: 1px solid var(--rh-border); border-radius: var(--rh-radius-3); background: var(--rh-surface-muted); aspect-ratio: 16 / 9; }
+.archive-admin-thumbnail-preview { width: min(100%, var(--rh-admin-thumbnail-preview-width)); min-height: var(--rh-admin-thumbnail-drop-min-height); justify-self: center; display: grid; place-items: center; overflow: hidden; border: 1px solid var(--rh-border); border-radius: var(--rh-radius-3); background: var(--rh-surface-muted); aspect-ratio: 16 / 9; }
 .archive-admin-thumbnail-preview img { width: 100%; height: 100%; display: block; object-fit: cover; }
 .archive-admin-thumbnail-preview span { color: var(--rh-muted); font-size: var(--rh-label-font-size); }
 .archive-admin-editor-status { min-height: var(--rh-space-4); margin: 0; color: var(--rh-primary-hover); font-size: var(--rh-label-font-size); font-weight: 700; }
