@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">AI 워크스테이션 3종 비교</title>
+<desc id="desc">노트북, AI 큐브, Windows 미니 PC를 추상적으로 표현한 Report Hub 썸네일</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#F8FBFF"/>
+    <stop offset="1" stop-color="#E8F3FF"/>
+  </linearGradient>
+  <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#1B64DA"/>
+    <stop offset="1" stop-color="#5A9CFF"/>
+  </linearGradient>
+  <filter id="shadow" x="-40%" y="-40%" width="180%" height="180%">
+    <feDropShadow dx="0" dy="22" stdDeviation="24" flood-color="#191F28" flood-opacity="0.16"/>
+  </filter>
+</defs>
+<rect width="1200" height="630" rx="0" fill="url(#bg)"/>
+<circle cx="1095" cy="62" r="210" fill="#DFFF6A" opacity="0.42"/>
+<circle cx="70" cy="595" r="230" fill="#3182F6" opacity="0.08"/>
+<g opacity="0.42" stroke="#3182F6" fill="none">
+  <path d="M55 92H335" stroke-width="2" stroke-dasharray="8 11"/>
+  <path d="M930 548h210" stroke-width="2" stroke-dasharray="8 11"/>
+</g>
+<g transform="translate(68 70)">
+  <rect x="0" y="0" width="176" height="42" rx="21" fill="#FFFFFF" stroke="#DDE6F0"/>
+  <circle cx="24" cy="21" r="6" fill="#3182F6"/>
+  <text x="42" y="27" font-family="Noto Sans CJK KR, sans-serif" font-size="16" font-weight="800" fill="#191F28">REPORT HUB</text>
+</g>
+<text x="72" y="224" font-family="Noto Sans CJK KR, sans-serif" font-size="67" font-weight="900" letter-spacing="-4" fill="#191F28">AI 워크스테이션</text>
+<text x="72" y="300" font-family="Noto Sans CJK KR, sans-serif" font-size="67" font-weight="900" letter-spacing="-4" fill="#3182F6">3종 비교</text>
+<g transform="translate(72 342)">
+  <rect width="310" height="58" rx="14" fill="#DFFF6A" transform="rotate(-1 155 29)"/>
+  <text x="25" y="39" font-family="Noto Sans CJK KR, sans-serif" font-size="28" font-weight="900" letter-spacing="-1.5" fill="#334300">속도보다 용도가 먼저</text>
+</g>
+<g transform="translate(665 110)" filter="url(#shadow)">
+  <!-- laptop -->
+  <g transform="translate(0 82)">
+    <rect x="0" y="0" width="192" height="132" rx="20" fill="#FFFFFF" stroke="#CAD8E8" stroke-width="5"/>
+    <rect x="17" y="17" width="158" height="98" rx="11" fill="url(#blue)"/>
+    <path d="M-22 140h236l-20 25H-2z" fill="#DCE7F3" stroke="#C4D2E1" stroke-width="4"/>
+    <path d="M52 71h88" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" opacity=".9"/>
+  </g>
+  <!-- cube -->
+  <g transform="translate(230 0)">
+    <rect x="0" y="0" width="174" height="174" rx="35" fill="#191F28"/>
+    <path d="M87 32 132 58v52l-45 26-45-26V58z" fill="none" stroke="#DFFF6A" stroke-width="9" stroke-linejoin="round"/>
+    <path d="M87 32v104M42 58l45 26 45-26" fill="none" stroke="#DFFF6A" stroke-width="7" stroke-linejoin="round"/>
+  </g>
+  <!-- mini pc -->
+  <g transform="translate(260 210)">
+    <rect x="0" y="0" width="184" height="154" rx="34" fill="#FFFFFF" stroke="#CAD8E8" stroke-width="5"/>
+    <g transform="translate(40 30)" fill="#3182F6">
+      <rect width="44" height="38" rx="8"/><rect x="54" width="44" height="38" rx="8"/>
+      <rect y="48" width="44" height="38" rx="8"/><rect x="54" y="48" width="44" height="38" rx="8"/>
+    </g>
+    <circle cx="151" cy="124" r="8" fill="#DFFF6A" stroke="#9CB137" stroke-width="2"/>
+  </g>
+  <path d="M190 188c30-24 54-33 85-35" fill="none" stroke="#3182F6" stroke-width="5" stroke-linecap="round" stroke-dasharray="7 12"/>
+  <path d="M320 182c-8 20-11 34-8 54" fill="none" stroke="#3182F6" stroke-width="5" stroke-linecap="round" stroke-dasharray="7 12"/>
+</g>
+</svg>

@@ -1,0 +1,243 @@
+{
+  "schemaVersion": "1.0",
+  "reportId": "rh-260810-01-ai-workstation-3way",
+  "checkedAt": "2026-08-10T11:20:00+09:00",
+  "sources": [
+    {
+      "id": 1,
+      "claim": "영상의 3종 비교 결론과 개인 측정",
+      "url": "https://www.youtube.com/watch?v=oUAPSdZ7RDw",
+      "sourceType": "Video / user-provided transcript",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "usedSections": [
+        "Hero",
+        "영상 검증",
+        "선택 가이드"
+      ],
+      "confidence": "medium",
+      "caution": "자동 자막 기반이며 모델 태그·양자화·컨텍스트·반복 횟수가 완전하지 않음"
+    },
+    {
+      "id": 2,
+      "claim": "M5 Max 128GB·2TB 현재 한국 가격 11,890,000원",
+      "url": "https://www.apple.com/kr/shop/buy-mac/macbook-pro/16-%EB%AA%A8%EB%8D%B8-space-black-%EC%8A%A4%ED%83%A0%EB%8B%A4%EB%93%9C-%EB%94%94%EC%8A%A4%ED%94%8C%EB%A0%88%EC%9D%B4-apple-m5-max-%EC%B9%A9-18%EC%BD%94%EC%96%B4-cpu-40%EC%BD%94%EC%96%B4-gpu-128gb-%EB%A9%94%EB%AA%A8%EB%A6%AC-2tb-%EC%A0%80%EC%9E%A5-%EC%9E%A5%EC%B9%98",
+      "sourceType": "Official product store",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "usedSections": [
+        "Hero",
+        "1분 요약",
+        "비교표",
+        "비용 계산"
+      ],
+      "confidence": "high",
+      "caution": "가격은 재고·프로모션·구성에 따라 변동 가능"
+    },
+    {
+      "id": 3,
+      "claim": "M5 Max 40코어 GPU, 614GB/s, 최대 128GB 사양",
+      "url": "https://support.apple.com/en-hk/126319",
+      "sourceType": "Official technical specification",
+      "publishedAt": "2026",
+      "checkedAt": "2026-08-10",
+      "usedSections": [
+        "Hero",
+        "왜 지금",
+        "비교표"
+      ],
+      "confidence": "high",
+      "caution": "지역별 페이지는 동일 제품 사양이나 가격 정보는 한국 스토어 별도"
+    },
+    {
+      "id": 4,
+      "claim": "M5 Pro/Max 출시일과 한국 시작 가격",
+      "url": "https://www.apple.com/kr/newsroom/2026/03/apple-introduces-macbook-pro-with-all-new-m5-pro-and-m5-max/",
+      "sourceType": "Official press release",
+      "publishedAt": "2026-03-03",
+      "checkedAt": "2026-08-10",
+      "usedSections": [
+        "왜 지금",
+        "출처"
+      ],
+      "confidence": "high",
+      "caution": "회사 성능 비교는 Apple 자체 테스트"
+    },
+    {
+      "id": 5,
+      "claim": "DGX Spark 128GB, 200B 추론, 70B 파인튜닝, 2대 연결 405B",
+      "url": "https://www.nvidia.com/ko-kr/products/workstations/dgx-spark/",
+      "sourceType": "Official product page",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "usedSections": [
+        "Hero",
+        "왜 지금",
+        "비교표",
+        "선택 가이드"
+      ],
+      "confidence": "high",
+      "caution": "최대 모델 규모는 NVIDIA 포지셔닝이며 실제 양자화·컨텍스트에 따라 달라짐"
+    },
+    {
+      "id": 6,
+      "claim": "DGX Spark 273GB/s, 20코어 Arm, 128GB LPDDR5X",
+      "url": "https://docs.nvidia.com/dgx/dgx-spark/hardware.html",
+      "sourceType": "Official documentation",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "usedSections": [
+        "Hero",
+        "비교표",
+        "팩트체크"
+      ],
+      "confidence": "high",
+      "caution": "하드웨어 사양"
+    },
+    {
+      "id": 7,
+      "claim": "DGX Spark 미국 공식가 $4,699",
+      "url": "https://marketplace.nvidia.com/en-us/enterprise/personal-ai-supercomputers/dgx-spark/",
+      "sourceType": "Official marketplace",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "usedSections": [
+        "1분 요약",
+        "비교표",
+        "비용 계산"
+      ],
+      "confidence": "high",
+      "caution": "미국 가격이며 세금·한국 유통 가격과 다름"
+    },
+    {
+      "id": 8,
+      "claim": "Ryzen AI Max+ 395 128GB, LPDDR5X-8000, Radeon 8060S 40CU",
+      "url": "https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-plus-395.html",
+      "sourceType": "Official product specification",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "usedSections": [
+        "비교표",
+        "선택 가이드"
+      ],
+      "confidence": "high",
+      "caution": "완제품의 전력·포트·냉각·가격은 제조사별 상이"
+    },
+    {
+      "id": 9,
+      "claim": "Ryzen AI Max+ 395 최대 96GB VGM, 256GB/s",
+      "url": "https://www.amd.com/en/blogs/2025/amd-ryzen-ai-max-395-processor-breakthrough-ai-.html",
+      "sourceType": "Official vendor blog",
+      "publishedAt": "2025-03-17",
+      "checkedAt": "2026-08-10",
+      "usedSections": [
+        "Hero",
+        "왜 지금",
+        "비교표",
+        "팩트체크"
+      ],
+      "confidence": "high",
+      "caution": "AMD 자체 벤치마크는 회사 측 결과로 취급"
+    },
+    {
+      "id": 10,
+      "claim": "Mac Studio M3 Ultra 최대 512GB, 819GB/s, 600B 초과 LLM 회사 주장",
+      "url": "https://www.apple.com/kr/newsroom/2025/03/apple-unveils-new-mac-studio-the-most-powerful-mac-ever/",
+      "sourceType": "Official press release",
+      "publishedAt": "2025-03-05",
+      "checkedAt": "2026-08-10",
+      "usedSections": [
+        "팩트체크",
+        "Mac Studio 대안"
+      ],
+      "confidence": "high",
+      "caution": "600B 초과 실행 가능은 Apple 회사 주장, 모델 형식과 성능 조건 미공개"
+    },
+    {
+      "id": 11,
+      "claim": "Ollama qwen3.5:122b 약 81GB",
+      "url": "https://ollama.com/library/qwen3.5/tags",
+      "sourceType": "Official model registry",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "usedSections": [
+        "1분 요약",
+        "영상 검증",
+        "FAQ"
+      ],
+      "confidence": "high",
+      "caution": "태그와 파일 크기는 업데이트될 수 있음"
+    },
+    {
+      "id": 12,
+      "claim": "Ollama gpt-oss:120b 약 65GB",
+      "url": "https://ollama.com/library/gpt-oss/tags",
+      "sourceType": "Official model registry",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "usedSections": [
+        "1분 요약",
+        "영상 검증",
+        "FAQ"
+      ],
+      "confidence": "high",
+      "caution": "태그와 파일 크기는 업데이트될 수 있음"
+    },
+    {
+      "id": 13,
+      "claim": "gpt-oss-120b 단일 80GB GPU 목표",
+      "url": "https://openai.com/index/introducing-gpt-oss/",
+      "sourceType": "Official model announcement",
+      "publishedAt": "2025-08-05",
+      "checkedAt": "2026-08-10",
+      "usedSections": [
+        "영상 검증",
+        "FAQ"
+      ],
+      "confidence": "high",
+      "caution": "OpenAI의 제품 포지셔닝과 벤치마크는 회사 자료"
+    },
+    {
+      "id": 14,
+      "claim": "RTX 5090 32GB, 1,792GB/s",
+      "url": "https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5090/",
+      "sourceType": "Official product specification",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "usedSections": [
+        "영상 검증",
+        "팩트체크"
+      ],
+      "confidence": "high",
+      "caution": "M5 Max와 아키텍처·메모리 구조가 달라 대역폭만으로 성능 비교 불가"
+    },
+    {
+      "id": 15,
+      "claim": "Ollama macOS/Windows/Linux 실행 방법",
+      "url": "https://docs.ollama.com/quickstart",
+      "sourceType": "Official documentation",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "usedSections": [
+        "출처"
+      ],
+      "confidence": "high",
+      "caution": "런타임 버전과 지원 모델은 변경 가능"
+    },
+    {
+      "id": 16,
+      "claim": "RTX Spark Windows·CUDA·RTX 플랫폼과 2026년 가을 출시 예정",
+      "url": "https://nvidianews.nvidia.com/news/nvidia-microsoft-windows-pcs-agents-rtx-spark",
+      "sourceType": "Official announcement",
+      "publishedAt": "2026-05-31",
+      "checkedAt": "2026-08-10",
+      "usedSections": [
+        "왜 지금",
+        "선택 가이드",
+        "출처"
+      ],
+      "confidence": "high",
+      "caution": "기준일 현재 출시 전이며 국내 가격·실제품 성능·A/S는 미확인"
+    }
+  ]
+}

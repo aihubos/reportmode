@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "rh-260810-01-ai-workstation-3way",
+  "title": "AI 워크스테이션 3종 비교: M5 Max·DGX Spark·Ryzen AI Max+ 395, 결국 이 기준으로 사야 한다",
+  "seoTitle": "M5 Max vs DGX Spark vs Ryzen AI Max+ 395 비교",
+  "alternativeTitles": [
+    "로컬 LLM용 컴퓨터, M5 Max·DGX Spark·AI Max+ 395 중 무엇을 살까",
+    "128GB AI 워크스테이션 비교: 속도·CUDA·게임·확장성의 진짜 차이",
+    "M5 Max가 DGX Spark보다 빠르다고? 구매 전 반드시 확인할 함정"
+  ],
+  "slug": "m5-max-dgx-spark-ryzen-ai-max-395",
+  "folder": "260810-01-m5-max-dgx-spark-ryzen-ai-max-395-v1-0-0",
+  "version": "1.0.0",
+  "status": "Published",
+  "summary": "M5 Max MacBook Pro, NVIDIA DGX Spark, Ryzen AI Max+ 395 시스템을 로컬 LLM 추론, 메모리 대역폭, CUDA, Windows, 가격, 확장성, 국내 A/S와 RTX Spark 출시 대기 변수까지 검증 비교한 구매 가이드.",
+  "hook": "128GB면 다 같은 128GB일까? 실제로는 운영체제·CUDA·VGM·대역폭이 구매 결론을 바꿉니다.",
+  "keywords": [
+    "M5 Max",
+    "DGX Spark",
+    "Ryzen AI Max+ 395",
+    "AI 워크스테이션",
+    "로컬 LLM",
+    "Ollama",
+    "통합 메모리",
+    "CUDA",
+    "Mac Studio",
+    "RTX Spark"
+  ],
+  "category": "IT 기기",
+  "createdAt": "2026-08-10",
+  "updatedAt": "2026-08-10",
+  "canonical": "https://aihubos.github.io/reportmode/reports/260810-01-m5-max-dgx-spark-ryzen-ai-max-395-v1-0-0/",
+  "thumbnail": "assets/thumbnail.png",
+  "topicScore": 95,
+  "topicScoreBreakdown": {
+    "freshness": 20,
+    "searchIntent": 15,
+    "socialShare": 14,
+    "practicalUtility": 15,
+    "koreaRelevance": 14,
+    "evidenceStrength": 8,
+    "visualFit": 9
+  },
+  "oneSentenceConclusion": "휴대형 대형 모델 추론은 M5 Max, CUDA 개발과 2노드 확장은 DGX Spark, Windows·게임·가격 균형은 Ryzen AI Max+ 395가 맞습니다.",
+  "thumbnailMain": "AI 워크스테이션 3종 비교",
+  "thumbnailSub": "속도보다 용도가 먼저",
+  "socialCopy": [
+    "M5 Max가 DGX Spark보다 빠르다고? 128GB AI 워크스테이션 3종을 공식 사양과 실제 용도로 다시 비교했습니다.",
+    "로컬 LLM 장비는 RAM 숫자만 보면 안 됩니다. CUDA·VGM·대역폭·A/S까지 보면 구매 결론이 달라집니다."
+  ],
+  "assumptions": [
+    "2026-08-10 일일 순번을 01로 가정했습니다.",
+    "제공된 YouTube 자동 자막을 원자료로 사용했고, 영상 속 성능 수치는 개인 측정으로만 표기했습니다.",
+    "영상에서 누락된 모델 digest, 양자화, 컨텍스트, warm-up 조건은 추정하지 않았습니다.",
+    "M5 Max 128GB·2TB 가격은 2026-08-10 Apple Korea 표시가 11,890,000원을 사용했습니다.",
+    "DGX Spark 한국 가격과 Ryzen AI Max+ 395 완제품 가격은 판매처별 변동성이 커 계산기에서 편집 가능한 예시값으로 처리했습니다.",
+    "작성자가 세 장비를 직접 동일 조건으로 재측정했다고 표현하지 않았습니다.",
+    "메모리 대역폭을 단독 성능 지표로 사용하지 않고 커널·양자화·KV cache·런타임 영향을 함께 설명했습니다.",
+    "RTX Spark는 2026년 가을 출시 예정 발표 상태로, 현재 구매 가능 제품처럼 다루지 않았습니다.",
+    "제품 사진과 로고 복제를 피하고 자체 추상 그래픽 썸네일을 제작했습니다.",
+    "독립 HTML은 오프라인 표시를 위해 썸네일을 data URI로 내장했고, GitHub index.html은 표준 assets/thumbnail.png 경로를 사용합니다."
+  ],
+  "generation": "AI-assisted",
+  "reviewStatus": "Published"
+}

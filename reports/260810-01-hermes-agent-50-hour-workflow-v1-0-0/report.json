@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "rh-260810-01-hermes-agent-50-hour-workflow",
+  "title": "[Hermes 활용법] 50시간 사용 사례에서 배운 7가지: 비서는 키우고, 권한은 줄이기",
+  "seoTitle": "Hermes Agent 활용법: 이메일 자동화·메모리·스킬·권한 설정",
+  "alternativeTitles": [
+    "[실전 가이드] Hermes로 Gmail·Sheets·Slack 자동화할 때 꼭 지켜야 할 7가지",
+    "Hermes를 오래 쓰면 달라지는 것: 메모리·스킬·크론 운영법",
+    "AI 에이전트를 진짜 비서로 만드는 법: Hermes 50시간 사례 분석"
+  ],
+  "slug": "hermes-agent-50-hour-workflow",
+  "folder": "260810-01-hermes-agent-50-hour-workflow-v1-0-0",
+  "version": "1.0.0",
+  "status": "Published",
+  "summary": "Hermes를 잘 쓰는 법은 더 많은 권한을 주는 것이 아니라, 읽기·정리·초안·승인을 분리하고 실패에서 배운 절차를 스킬로 남기는 것이다.",
+  "hook": "연결만 하면 자비스가 될 줄 알았습니다. 그런데 오래 쓴 사례에서 가장 중요했던 것은 모델 성능이 아니라 승인·기억·로그의 운영 구조였습니다.",
+  "keywords": [
+    "Hermes Agent",
+    "Hermes 활용법",
+    "AI 에이전트",
+    "Gmail 자동화",
+    "Google Workspace CLI",
+    "Slack 자동화",
+    "AI 비서",
+    "에이전트 스킬",
+    "에이전트 메모리",
+    "PlayMCP"
+  ],
+  "category": "AI",
+  "createdAt": "2026-08-10",
+  "updatedAt": "2026-08-10",
+  "canonical": "https://aihubos.github.io/reportmode/reports/260810-01-hermes-agent-50-hour-workflow-v1-0-0/",
+  "thumbnail": "assets/thumbnail.png",
+  "topicScore": 92,
+  "assumptions": [
+    "사용자가 별도 지시 없이 첨부한 YouTube 자동 자막을 블로그 보고서 작성 요청으로 해석했다.",
+    "영상의 50시간 사용 결과는 원 제작자의 경험 사례이며, 본 보고서 작성 과정에서 동일 환경으로 재현하지 않았다.",
+    "2026-08-10 일일 보고서 순번은 저장소의 당일 충돌 여부를 확인하지 못해 01로 설정했다.",
+    "PlayMCP의 Hermes 연결은 영상 속 사용자 테스트 사례로 다뤘다. 카카오 공식 자료가 명시한 직접 연동 대상은 OpenClaw다.",
+    "본문의 자동화 안전 점수는 운영 체크리스트이며 보안 감사나 법률·컴플라이언스 인증이 아니다."
+  ],
+  "generation": "AI-assisted",
+  "reviewStatus": "Published",
+  "thumbnailCopy": {
+    "main": "Hermes 진짜 비서 만들기",
+    "sub": "50시간 사례 핵심"
+  },
+  "socialCopy": [
+    "Hermes를 50시간 쓰면 무엇이 달라질까? Gmail→Sheets→초안→승인 흐름을 분석했습니다. 핵심은 더 많은 권한이 아니라 더 잘게 나눈 승인 구조였습니다.",
+    "AI 비서는 메모리만 쌓는다고 똑똑해지지 않습니다. 사실은 메모리, 절차는 스킬, 반복은 크론, 외부 실행은 승인. Hermes 운영 원칙 7가지를 정리했습니다."
+  ]
+}
