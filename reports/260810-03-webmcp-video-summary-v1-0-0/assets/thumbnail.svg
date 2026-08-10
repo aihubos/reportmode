@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<rect width="1200" height="630" fill="#F7F9FC"/>
+<circle cx="1106" cy="42" r="170" fill="#ECFFB0"/>
+<circle cx="1005" cy="646" r="235" fill="#E8F3FF"/>
+<text x="74" y="231" font-family="Noto Sans KR, sans-serif" font-size="72" font-weight="800" fill="#191F28">웹사이트가</text>
+<text x="74" y="319" font-family="Noto Sans KR, sans-serif" font-size="72" font-weight="800" fill="#191F28">AI 도구가 된다</text>
+<rect x="74" y="350" width="364" height="22" rx="11" fill="#DFFF6A"/>
+<text x="74" y="449" font-family="Noto Sans KR, sans-serif" font-size="36" font-weight="800" fill="#3182F6">WebMCP 13분 요약</text>
+<rect x="670" y="106" width="450" height="448" rx="42" fill="#DCE4EE"/>
+<rect x="670" y="95" width="450" height="448" rx="42" fill="#E9EEF4"/>
+<rect x="670" y="82" width="450" height="448" rx="42" fill="#FFFFFF" stroke="#E5E8EB" stroke-width="2"/>
+<path d="M712 82h366a42 42 0 0 1 42 42v30H670v-30a42 42 0 0 1 42-42Z" fill="#F2F4F6"/>
+<circle cx="714" cy="121" r="8" fill="#FF7B72"/><circle cx="742" cy="121" r="8" fill="#F2CC60"/><circle cx="770" cy="121" r="8" fill="#6BD58C"/>
+<rect x="806" y="106" width="258" height="31" rx="15.5" fill="#FFFFFF" stroke="#E5E8EB"/>
+<rect x="706" y="196" width="174" height="88" rx="24" fill="#3182F6"/>
+<rect x="706" y="316" width="174" height="88" rx="24" fill="#F2F4F6" stroke="#E5E8EB"/>
+<rect x="735" y="221" width="34" height="34" rx="9" fill="#FFFFFF"/><path d="m744 238 8 8 10-14" fill="none" stroke="#1B64DA" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="755" cy="361" r="16" fill="none" stroke="#3182F6" stroke-width="5"/><path d="m748 361 8 8 10-17" fill="none" stroke="#3182F6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="999" cy="287" r="69" fill="#E8F3FF"/><path d="M966 288c5-38 59-38 66 0" fill="none" stroke="#3182F6" stroke-width="8" stroke-linecap="round"/><circle cx="983" cy="284" r="6" fill="#3182F6"/><circle cx="1020" cy="284" r="6" fill="#3182F6"/><path d="M984 304c10 15 27 15 37 0" fill="none" stroke="#3182F6" stroke-width="6" stroke-linecap="round"/>
+<path d="M882 238 924 259M882 360 924 329" stroke="#3182F6" stroke-width="6"/><circle cx="910" cy="255" r="9" fill="#DFFF6A"/><circle cx="910" cy="331" r="9" fill="#DFFF6A"/>
+<rect x="706" y="444" width="382" height="56" rx="20" fill="#191F28"/>
+<circle cx="778" cy="472" r="14" fill="#FFFFFF"/><circle cx="895" cy="472" r="14" fill="#FFFFFF"/><circle cx="1012" cy="472" r="14" fill="#FFFFFF"/>
+<path d="M794 472h84m0 0-14-9m14 9-14 9M911 472h84m0 0-14-9m14 9-14 9" fill="none" stroke="#3182F6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

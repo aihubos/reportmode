@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "webmcp-video-summary-260810-03",
+  "title": "[13분 요약] WebMCP란? AI가 버튼 대신 도구를 호출하는 웹",
+  "seoTitle": "WebMCP란? AI용 웹사이트 표준·작동 원리 13분 요약",
+  "alternativeTitles": [
+    "WebMCP 완전 정리: AI가 웹사이트 버튼을 누르지 않아도 되는 이유",
+    "구글 WebMCP 13분 요약: 페이지가 AI에게 도구를 공개한다",
+    "AI 에이전트용 웹이 온다: WebMCP 작동 원리와 보안 한계"
+  ],
+  "slug": "webmcp-video-summary",
+  "folder": "260810-03-webmcp-video-summary-v1-0-0",
+  "version": "1.0.0",
+  "status": "Published",
+  "summary": "노마드 코더 WebMCP 영상의 문제 제기, 페이지→브라우저→에이전트 구조, 명령형·선언형 API, 피자 주문 데모와 세 가지 한계를 요약하고 최신 공식 상태를 검증했습니다.",
+  "hook": "AI가 버튼 위치를 추측하지 않고 웹사이트가 공개한 기능을 직접 호출한다면, 웹은 어떻게 달라질까?",
+  "lead": "노마드 코더 영상의 흐름을 13분 요약으로 재구성했습니다. 표준·브라우저 지원·봇 트래픽·보안 상태는 2026년 8월 10일 공식 자료로 따로 확인했습니다.",
+  "oneSentenceConclusion": "WebMCP는 웹사이트가 기능을 구조화된 도구로 공개해 AI가 화면을 추측하지 않고 호출하게 하는 제안이지만, 현재는 Chrome Origin Trial 단계이며 권한·프롬프트 인젝션·브라우저 종속 문제가 남아 있습니다.",
+  "thumbnailMain": "웹사이트가 AI 도구가 된다",
+  "thumbnailSub": "WebMCP 13분 요약",
+  "socialCopy": [
+    "AI가 웹사이트 버튼을 눈으로 찾지 않고, 사이트가 공개한 도구를 직접 호출한다면? WebMCP 영상의 핵심과 현재 Chrome 실험 상태를 한 번에 정리했습니다.",
+    "영상의 “웹 트래픽 60%”는 AI 비중이 아닙니다. WebMCP의 큰 방향은 맞지만, 제안 표준·Origin Trial·프롬프트 인젝션 한계를 함께 봐야 합니다."
+  ],
+  "keywords": [
+    "WebMCP",
+    "Web MCP",
+    "AI 에이전트",
+    "agentic web",
+    "Chrome 149",
+    "Origin Trial",
+    "프롬프트 인젝션",
+    "유튜브 요약"
+  ],
+  "category": "AI",
+  "createdAt": "2026-08-10",
+  "updatedAt": "2026-08-10",
+  "canonical": "https://aihubos.github.io/reportmode/reports/260810-03-webmcp-video-summary-v1-0-0/",
+  "thumbnail": "assets/thumbnail.png",
+  "topicScore": 89,
+  "topicScoreBreakdown": {
+    "freshness": 19,
+    "searchIntent": 14,
+    "socialShare": 13,
+    "practicalUtility": 13,
+    "koreaRelevance": 10,
+    "evidenceStrength": 10,
+    "visualFit": 10
+  },
+  "assumptions": [
+    "사용자 요청에 따라 개인 경험이나 문제 해결 서사가 아닌 YouTube 영상 요약으로 작성했다.",
+    "영상의 장면 순서와 피자 주문 데모는 사용자 제공 한국어 자동 자막을 원자료로 사용했다.",
+    "WebMCP의 표준 상태, Chrome 지원 범위, API 명칭, 보안 가이드는 2026-08-10 기준 공식 자료로 재검증했다.",
+    "영상의 약 60% 수치는 HTML 페이지 요청의 전체 봇 비중으로 범위를 바로잡았으며 AI 에이전트만의 비중으로 쓰지 않았다.",
+    "Kotlin 구간은 후원 콘텐츠로 분리했고, 제품·데모를 직접 사용하거나 재현했다고 쓰지 않았다."
+  ],
+  "generation": "AI-assisted",
+  "reviewStatus": "Published"
+}
