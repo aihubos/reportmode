@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "1.0",
+  "reportId": "rh-260810-34-group-chat-ai-mention-only-safety",
+  "verifiedAt": "2026-08-10",
+  "sources": [
+    {
+      "id": "src-01",
+      "claim": "Telegram privacy mode가 켜진 봇은 자신을 대상으로 한 명령·답글 등 제한된 메시지만 받고, 봇 간 원치 않는 루프를 막기 위해 다른 봇 메시지를 받지 않는다.",
+      "url": "https://core.telegram.org/bots/faq",
+      "sourceType": "Official developer documentation",
+      "publisher": "Telegram",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-10",
+      "sections": [
+        "멘션 기반 응답",
+        "FAQ"
+      ],
+      "confidence": "High",
+      "caution": "봇이 관리자이거나 privacy mode가 꺼져 있으면 수신 범위가 달라질 수 있다."
+    },
+    {
+      "id": "src-02",
+      "claim": "Slack app_mention 이벤트는 앱/봇을 직접 멘션한 메시지를 구독하며, DM은 별도 message.im 이벤트로 처리한다.",
+      "url": "https://docs.slack.dev/reference/events/app_mention/",
+      "sourceType": "Official developer documentation",
+      "publisher": "Slack",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-10",
+      "sections": [
+        "멘션 기반 응답",
+        "채널 권한표"
+      ],
+      "confidence": "High",
+      "caution": "이벤트 수신과 실제 데이터 접근 권한은 별개이므로 사용자·채널 인가가 추가로 필요하다."
+    },
+    {
+      "id": "src-03",
+      "claim": "OWASP는 prompt injection이 민감정보 노출·무단 기능 접근으로 이어질 수 있으며 최소 권한과 고위험 작업의 사람 승인을 권고한다.",
+      "url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/",
+      "sourceType": "Security framework guidance",
+      "publisher": "OWASP GenAI Security Project",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-10",
+      "sections": [
+        "Policy as Code",
+        "리스크와 반론"
+      ],
+      "confidence": "High",
+      "caution": "OWASP는 위험 프레임워크이며 특정 구현의 보안 인증을 의미하지 않는다."
+    },
+    {
+      "id": "src-04",
+      "claim": "OWASP Excessive Agency는 과도한 기능·권한·자율성을 주요 원인으로 들고 필요한 확장 기능만 허용할 것을 권고한다.",
+      "url": "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/",
+      "sourceType": "Security framework guidance",
+      "publisher": "OWASP GenAI Security Project",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-10",
+      "sections": [
+        "Policy as Code",
+        "개인자료 경계"
+      ],
+      "confidence": "High",
+      "caution": "실제 위험은 연결된 도구와 하위 시스템 권한에 따라 달라진다."
+    },
+    {
+      "id": "src-05",
+      "claim": "OWASP Top 10 for Agentic Applications 2026은 계획·행동·의사결정을 수행하는 AI 에이전트의 핵심 위험을 다루는 동료 검토 프레임워크다.",
+      "url": "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/",
+      "sourceType": "Security framework",
+      "publisher": "OWASP GenAI Security Project",
+      "publishedAt": "2025-12-09",
+      "verifiedAt": "2026-08-10",
+      "sections": [
+        "리스크와 반론"
+      ],
+      "confidence": "High",
+      "caution": "프레임워크 적용 범위는 조직의 에이전트 구조와 자율성 수준에 맞춰 조정해야 한다."
+    },
+    {
+      "id": "src-06",
+      "claim": "NIST AI RMF와 생성형 AI 프로필은 AI 제품·서비스·시스템의 설계·개발·사용·평가에 신뢰성과 고유 위험을 반영하기 위한 자발적 관리 체계를 제공한다.",
+      "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+      "sourceType": "Government framework",
+      "publisher": "NIST",
+      "publishedAt": "2024-07-26",
+      "verifiedAt": "2026-08-10",
+      "sections": [
+        "리스크와 반론"
+      ],
+      "confidence": "High",
+      "caution": "법적 의무가 아닌 자발적 프레임워크이며 산업별 규제 검토가 별도로 필요하다."
+    }
+  ]
+}

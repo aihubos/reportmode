@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">보고서 하나로 3번 쓰기</title>
+  <desc id="desc">중앙의 원자료 문서에서 블로그, 수업, 웹사이트 카드로 내용이 확장되는 추상 인포그래픽</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F7FAFF"/>
+      <stop offset="0.55" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E8F3FF"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5CA2FF"/>
+      <stop offset="1" stop-color="#1B64DA"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="22" stdDeviation="24" flood-color="#191F28" flood-opacity="0.15"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#3182F6"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1110" cy="60" r="255" fill="#3182F6" opacity="0.10"/>
+  <circle cx="38" cy="610" r="210" fill="#DFFF6A" opacity="0.22"/>
+  <g font-family="Noto Sans CJK KR, NanumGothic, Apple SD Gothic Neo, sans-serif">
+    <rect x="68" y="54" width="190" height="46" rx="23" fill="#E8F3FF"/>
+    <circle cx="96" cy="77" r="6" fill="#3182F6"/>
+    <text x="116" y="84" font-size="19" font-weight="800" fill="#1B64DA">콘텐츠 자산화</text>
+
+    <text x="68" y="230" font-size="82" font-weight="900" letter-spacing="-5" fill="#191F28">보고서 하나로</text>
+    <text x="68" y="330" font-size="108" font-weight="900" letter-spacing="-7" fill="#3182F6">3번 쓰기</text>
+    <rect x="68" y="344" width="255" height="24" rx="8" fill="#DFFF6A" transform="rotate(-1.4 68 344)"/>
+    <text x="68" y="430" font-size="39" font-weight="800" letter-spacing="-2" fill="#333D4B">블로그 · 수업 · 웹사이트</text>
+    <text x="68" y="484" font-size="25" font-weight="650" fill="#6B7684">새로 쓰지 말고, 목적에 맞게 재구성하기</text>
+    <text x="68" y="565" font-size="18" font-weight="800" fill="#8B95A1">REPORT HUB · AIHUBOS · 2026.08</text>
+  </g>
+
+  <g transform="translate(700 78)" filter="url(#shadow)" font-family="Noto Sans CJK KR, NanumGothic, sans-serif">
+    <rect x="112" y="148" width="220" height="264" rx="34" fill="#FFFFFF" stroke="#D9E2EC" stroke-width="2"/>
+    <rect x="112" y="148" width="220" height="78" rx="34" fill="url(#blue)"/>
+    <rect x="112" y="195" width="220" height="31" fill="url(#blue)"/>
+    <text x="222" y="194" text-anchor="middle" font-size="24" font-weight="900" fill="#FFFFFF">원자료 묶음</text>
+    <rect x="148" y="258" width="148" height="12" rx="6" fill="#E8F3FF"/>
+    <rect x="148" y="292" width="116" height="12" rx="6" fill="#E5E8EB"/>
+    <rect x="148" y="326" width="136" height="12" rx="6" fill="#E5E8EB"/>
+    <rect x="148" y="360" width="96" height="12" rx="6" fill="#DFFF6A"/>
+
+    <path d="M112 214 C70 190, 68 160, 58 132" fill="none" stroke="#3182F6" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)" opacity="0.82"/>
+    <path d="M332 214 C378 188, 397 161, 404 132" fill="none" stroke="#3182F6" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)" opacity="0.82"/>
+    <path d="M222 412 C222 432, 222 445, 222 458" fill="none" stroke="#3182F6" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)" opacity="0.82"/>
+
+    <g transform="translate(0 0)">
+      <rect x="0" y="34" width="145" height="112" rx="25" fill="#FFFFFF" stroke="#E5E8EB" stroke-width="2"/>
+      <circle cx="37" cy="71" r="18" fill="#E8F3FF"/>
+      <path d="M28 70h18M28 78h13M28 62h18" stroke="#3182F6" stroke-width="4" stroke-linecap="round"/>
+      <text x="73" y="80" font-size="20" font-weight="900" fill="#191F28">블로그</text>
+      <text x="22" y="119" font-size="15" font-weight="700" fill="#6B7684">경험과 흐름</text>
+    </g>
+    <g transform="translate(331 0)">
+      <rect x="0" y="34" width="145" height="112" rx="25" fill="#FFFFFF" stroke="#E5E8EB" stroke-width="2"/>
+      <circle cx="37" cy="71" r="18" fill="#EEE9FF"/>
+      <path d="M29 78h16v-14H29zM26 81h22" fill="none" stroke="#7458D2" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="73" y="80" font-size="20" font-weight="900" fill="#191F28">수업</text>
+      <text x="22" y="119" font-size="15" font-weight="700" fill="#6B7684">실습과 피드백</text>
+    </g>
+    <g transform="translate(149 430)">
+      <rect x="0" y="0" width="145" height="112" rx="25" fill="#FFFFFF" stroke="#E5E8EB" stroke-width="2"/>
+      <circle cx="37" cy="37" r="18" fill="#DFFBF2"/>
+      <rect x="27" y="29" width="20" height="16" rx="3" fill="none" stroke="#15876D" stroke-width="3"/>
+      <path d="M27 34h20" stroke="#15876D" stroke-width="3"/>
+      <text x="73" y="46" font-size="20" font-weight="900" fill="#191F28">웹</text>
+      <text x="22" y="85" font-size="15" font-weight="700" fill="#6B7684">탐색과 업데이트</text>
+    </g>
+  </g>
+</svg>

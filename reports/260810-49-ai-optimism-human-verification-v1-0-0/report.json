@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "rh-260810-49-ai-optimism-human-verification",
+  "title": "AI의 미래를 낙관하면서도 매번 검수하는 이유",
+  "seoTitle": "AI 낙관론과 검수 원칙 6가지",
+  "alternativeTitles": [
+    "AI는 미래다. 그래서 결과는 매번 검수한다",
+    "현재의 AI를 과소평가하지도, 그대로 믿지도 않는 법",
+    "AI 결과가 틀렸을 때 모델 탓부터 하지 않는 6가지 원칙"
+  ],
+  "slug": "ai-optimism-human-verification",
+  "folder": "260810-49-ai-optimism-human-verification-v1-0-0",
+  "version": "1.0.0",
+  "status": "Published",
+  "summary": "AI 결과가 부족할 때 영구적 한계로 단정하지 않고 Goal·input·Raw Data·Reference·도구·모델을 분리해 진단하는 방법을 정리했다. 성능 가속과 환각 위험을 함께 보고, 외부 실행은 사용자가 최종 검수하는 6가지 운영 원칙을 제시한다.",
+  "hook": "AI를 믿는 것과 AI의 답을 믿는 것은 다르다.",
+  "lead": [
+    "AI 결과가 부족하면 나도 실망한다. 하지만 그 한 번의 실패를 AI의 영구적인 한계로 결론내리지는 않는다.",
+    "모델, input, Raw Data, Reference, 구현 경로를 다시 확인하고, 외부로 나가는 결과는 결국 내가 검수한다."
+  ],
+  "conclusion": "AI의 미래를 믿는 태도와 오늘의 출력물을 의심하는 습관은 모순이 아니라 같은 운영 원칙이다.",
+  "thumbnailText": {
+    "main": "AI의 미래는 믿되 결과는 검수한다",
+    "sub": "낙관과 검증의 운영 원칙"
+  },
+  "socialCopies": [
+    "AI를 낙관하는데 왜 매번 검수할까? 한 번의 실패를 모델의 영구적 한계로 보지 않되, 오늘의 출력은 원문·숫자·실행 결과까지 확인하는 이유를 정리했습니다.",
+    "AI는 미래다. 그래서 더 믿어도 된다는 뜻은 아닙니다. Goal·input·Raw Data·Reference·도구·모델을 분리하고, 마지막 권한은 사용자에게 남기는 6가지 원칙."
+  ],
+  "keywords": [
+    "AI 낙관론",
+    "AI 검수",
+    "생성형 AI 오류",
+    "AI 에이전트",
+    "Human in the loop",
+    "팩트체크",
+    "AI 활용법",
+    "AI 거버넌스"
+  ],
+  "category": "AI",
+  "createdAt": "2026-08-10",
+  "updatedAt": "2026-08-10",
+  "canonical": "https://aihubos.github.io/reportmode/reports/260810-49-ai-optimism-human-verification-v1-0-0/",
+  "thumbnail": "assets/thumbnail.png",
+  "topicScore": 92,
+  "scoreBreakdown": {
+    "최신성": 18,
+    "검색 의도": 13,
+    "SNS 공유성": 14,
+    "실무 효용": 15,
+    "한국 연관성": 12,
+    "근거 강도": 10,
+    "시각화 적합성": 10
+  },
+  "assumptions": [
+    "사용자 입력의 49번을 2026-08-10 일일 순번으로 사용했다.",
+    "글의 중심은 특정 모델 로드맵 예측이 아니라 AI 낙관론과 사용자 검수의 공존 원칙으로 잡았다.",
+    "글로벌 스마트폰 문장 속 숫자는 JeremySoul.md의 표현 훈련 예시이며 시장 사실로 사용하지 않았다.",
+    "GitHub push와 외부 블로그 발행은 수행하지 않았으며, 예상 canonical만 기록했다.",
+    "검수 강도 계산기는 Jeremy의 운영 원칙을 단순화한 도구이며 법적·산업 표준이 아니다."
+  ],
+  "generation": "AI-assisted",
+  "reviewStatus": "Published"
+}

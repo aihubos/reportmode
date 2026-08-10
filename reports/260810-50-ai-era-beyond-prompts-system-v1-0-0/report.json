@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "rh-260810-50-ai-era-beyond-prompts-system",
+  "title": "2026년 AI 시대, 내가 준비하는 것은 ‘프롬프트’가 아니다",
+  "seoTitle": "2026 AI 시대 준비법: 프롬프트보다 중요한 4가지 능력",
+  "alternativeTitles": [
+    "AI 도구가 매달 바뀌어도 남는 것: 학습·검증·축적·실행",
+    "프롬프트 엔지니어링보다 오래가는 AI 시대 개인 시스템",
+    "AI를 배우는 데 지친 내가 도구 대신 시스템을 만든 이유"
+  ],
+  "slug": "ai-era-beyond-prompts-system",
+  "folder": "260810-50-ai-era-beyond-prompts-system-v1-0-0",
+  "version": "1.0.0",
+  "status": "Published",
+  "summary": "새 AI 도구를 따라가는 피로에서 벗어나 학습·검증·지식 축적·실행을 하나의 개인 시스템으로 만드는 방법을 Jeremy Lee의 경험과 최신 공식 자료를 바탕으로 정리했다.",
+  "hook": "도구가 바뀌어도 내게 남는 것은 무엇일까?",
+  "keywords": [
+    "2026 AI 시대",
+    "AI 준비",
+    "프롬프트",
+    "AI 리터러시",
+    "개인 지식관리",
+    "LLM Wiki",
+    "원문 검증",
+    "AI 자동화",
+    "AI 교육",
+    "두 번째 경력"
+  ],
+  "category": "AI",
+  "createdAt": "2026-08-10",
+  "updatedAt": "2026-08-10",
+  "canonical": "https://aihubos.github.io/reportmode/reports/260810-50-ai-era-beyond-prompts-system-v1-0-0/",
+  "thumbnail": "assets/thumbnail.png",
+  "topicScore": 92,
+  "scoreBreakdown": {
+    "freshness": 18,
+    "searchIntent": 13,
+    "socialShareability": 14,
+    "practicalUtility": 15,
+    "koreaRelevance": 14,
+    "evidenceStrength": 9,
+    "visualFit": 9
+  },
+  "lead": "새 AI 도구를 따라가다 보니 어느 순간 도구를 익히는 속도보다 도구가 바뀌는 속도가 더 빠르다는 피로가 왔다. 그래서 질문을 바꿨다. 무슨 프롬프트를 외울지가 아니라, 모델이 바뀌어도 무엇이 내게 남을지를 보기 시작했다.",
+  "conclusion": "프롬프트는 인터페이스이고, 오래 남는 경쟁력은 학습→검증→축적→실행을 반복하는 개인 시스템이다.",
+  "thumbnailCopy": {
+    "main": "AI 시대, 프롬프트가 답이 아니다",
+    "sub": "남는 것은 시스템"
+  },
+  "socialCopy": [
+    "새 AI 도구를 전부 따라가려다 지쳤다. 그래서 프롬프트 대신 학습·검증·축적·실행이 반복되는 개인 시스템을 만들기 시작했다.",
+    "AI 시대의 차이는 ‘비밀 프롬프트’보다 원문을 확인하고, 지식을 남기고, 실제 사용자에게 써보는 능력에서 난다. 내가 다음 6개월 동안 쌓을 것을 정리했다."
+  ],
+  "assumptions": [
+    "개인 경험 서술은 사용자가 제공한 글의 흐름, Jeremy Soul, 기존 블로그 아카이브를 바탕으로 재구성했으며 사용량·성과 수치는 임의로 만들지 않았다.",
+    "‘프롬프트보다 시스템이 오래 남는다’는 문장은 저자의 운영 경험과 공개 자료를 결합한 판단이며 모든 직무에 동일하게 적용되는 실증 결론은 아니다.",
+    "6개월 축적 시뮬레이터는 1개월을 평균 4.33주, 6개월을 26주로 둔 계획 도구이며 커리어 성과를 예측하지 않는다.",
+    "사용자가 제시한 목록 번호 50을 일일 순번으로 사용했다.",
+    "사용자 요청에 따라 공개 상태로 전환함."
+  ],
+  "generation": "AI-assisted",
+  "reviewStatus": "Published"
+}

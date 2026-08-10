@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">128GB도 로컬 LLM에 무적은 아니었다</title>
+  <desc id="desc">M5 Max 로컬 LLM 운영 현실을 표현한 추상 노트북과 메모리 블록</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.62" stop-color="#F8FBFF"/>
+      <stop offset="1" stop-color="#E8F3FF"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#191F28"/>
+      <stop offset="1" stop-color="#333D4B"/>
+    </linearGradient>
+    <linearGradient id="chip" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6AA7FF"/>
+      <stop offset="1" stop-color="#1B64DA"/>
+    </linearGradient>
+    <filter id="shadow" x="-35%" y="-35%" width="170%" height="185%">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#191F28" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1120" cy="72" r="246" fill="#3182F6" opacity="0.10"/>
+  <circle cx="42" cy="620" r="205" fill="#DFFF6A" opacity="0.24"/>
+  <path d="M655 78c-76 58-111 131-104 220" fill="none" stroke="#3182F6" stroke-width="3" stroke-dasharray="9 13" opacity="0.32"/>
+
+  <g font-family="Noto Sans CJK KR, Apple SD Gothic Neo, sans-serif">
+    <text x="70" y="190" font-size="78" font-weight="900" letter-spacing="-4" fill="#191F28">128GB도</text>
+    <text x="70" y="286" font-size="78" font-weight="900" letter-spacing="-5" fill="#3182F6">로컬 LLM에</text>
+    <text x="70" y="382" font-size="76" font-weight="900" letter-spacing="-5" fill="#191F28">무적은 아니었다</text>
+    <rect x="65" y="399" width="430" height="24" rx="9" fill="#DFFF6A" transform="rotate(-1.1 65 399)"/>
+    <text x="72" y="492" font-size="38" font-weight="800" letter-spacing="-2" fill="#333D4B">M5 Max 운영 현실</text>
+  </g>
+
+  <g transform="translate(742 108)" filter="url(#shadow)">
+    <rect x="0" y="0" width="384" height="328" rx="36" fill="#FFFFFF" stroke="#E5E8EB" stroke-width="2"/>
+    <rect x="24" y="24" width="336" height="242" rx="24" fill="url(#screen)"/>
+    <g transform="translate(118 62)">
+      <rect x="0" y="0" width="132" height="132" rx="34" fill="url(#chip)"/>
+      <rect x="31" y="31" width="70" height="70" rx="19" fill="#FFFFFF" opacity="0.16"/>
+      <circle cx="66" cy="66" r="18" fill="#FFFFFF" opacity="0.85"/>
+      <g stroke="#6AA7FF" stroke-width="7" stroke-linecap="round">
+        <path d="M20 -14v14M51 -14v14M81 -14v14M112 -14v14"/>
+        <path d="M20 132v14M51 132v14M81 132v14M112 132v14"/>
+        <path d="M-14 20h14M-14 51h14M-14 81h14M-14 112h14"/>
+        <path d="M132 20h14M132 51h14M132 81h14M132 112h14"/>
+      </g>
+    </g>
+    <g transform="translate(63 218)">
+      <rect x="0" y="0" width="36" height="14" rx="7" fill="#3182F6"/>
+      <rect x="47" y="0" width="36" height="14" rx="7" fill="#5CA2FF"/>
+      <rect x="94" y="0" width="36" height="14" rx="7" fill="#87BCFF"/>
+      <rect x="141" y="0" width="36" height="14" rx="7" fill="#DFFF6A"/>
+      <rect x="188" y="0" width="36" height="14" rx="7" fill="#DFFF6A" opacity="0.56"/>
+      <rect x="235" y="0" width="36" height="14" rx="7" fill="#55606F"/>
+    </g>
+    <path d="M-24 328h432l-36 48H12z" fill="#DDE3EA"/>
+    <rect x="153" y="339" width="78" height="9" rx="4.5" fill="#AAB4C0"/>
+  </g>
+
+  <g transform="translate(804 492)">
+    <rect x="0" y="0" width="78" height="78" rx="24" fill="#191F28"/>
+    <rect x="98" y="0" width="78" height="78" rx="24" fill="#3182F6"/>
+    <rect x="196" y="0" width="78" height="78" rx="24" fill="#DFFF6A"/>
+    <path d="M22 39h34M39 22v34" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"/>
+    <path d="M118 50l17-20 19 20" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="235" cy="39" r="17" fill="none" stroke="#415400" stroke-width="7"/>
+  </g>
+</svg>

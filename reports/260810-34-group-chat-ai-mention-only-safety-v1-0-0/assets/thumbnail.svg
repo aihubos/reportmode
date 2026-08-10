@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">멘션 없으면 대답하지 마</title>
+<desc id="desc">단체방 AI의 멘션 기반 응답과 개인 데이터 차단을 상징하는 추상 그래픽</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#124FB5"/>
+    <stop offset="0.58" stop-color="#3182F6"/>
+    <stop offset="1" stop-color="#6AA7FF"/>
+  </linearGradient>
+  <radialGradient id="glow" cx="0.16" cy="0.18" r="0.85">
+    <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.22"/>
+    <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+  </radialGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+    <feDropShadow dx="0" dy="20" stdDeviation="24" flood-color="#0B2A64" flood-opacity="0.24"/>
+  </filter>
+</defs>
+<rect width="1200" height="630" rx="0" fill="url(#bg)"/>
+<rect width="1200" height="630" fill="url(#glow)"/>
+<circle cx="1045" cy="56" r="210" fill="#FFFFFF" opacity="0.06"/>
+<circle cx="830" cy="610" r="270" fill="#DFFF6A" opacity="0.08"/>
+<g opacity="0.18" fill="#FFFFFF">
+  <circle cx="78" cy="526" r="4"/><circle cx="112" cy="526" r="4"/><circle cx="146" cy="526" r="4"/><circle cx="180" cy="526" r="4"/>
+  <circle cx="78" cy="560" r="4"/><circle cx="112" cy="560" r="4"/><circle cx="146" cy="560" r="4"/><circle cx="180" cy="560" r="4"/>
+</g>
+<g font-family="Noto Sans CJK KR, NanumGothic, sans-serif">
+  <rect x="72" y="67" width="272" height="58" rx="29" fill="#DFFF6A"/>
+  <text x="208" y="105" text-anchor="middle" font-size="29" font-weight="800" fill="#334700">침묵도 보안이다</text>
+  <text x="72" y="246" font-size="88" font-weight="900" letter-spacing="-5" fill="#FFFFFF">멘션 없으면</text>
+  <text x="72" y="354" font-size="88" font-weight="900" letter-spacing="-5" fill="#FFFFFF">대답하지 마</text>
+  <path d="M76 390 C220 414, 420 414, 625 384" fill="none" stroke="#DFFF6A" stroke-width="18" stroke-linecap="round" opacity="0.95"/>
+</g>
+<g transform="translate(730 72)" filter="url(#shadow)">
+  <rect x="0" y="0" width="390" height="486" rx="50" fill="#FFFFFF"/>
+  <rect x="26" y="28" width="338" height="58" rx="20" fill="#F2F4F6"/>
+  <circle cx="61" cy="57" r="15" fill="#8B95A1"/>
+  <circle cx="102" cy="57" r="15" fill="#B4BDC7"/>
+  <circle cx="143" cy="57" r="15" fill="#D0D5DB"/>
+  <rect x="184" y="47" width="132" height="19" rx="9.5" fill="#E5E8EB"/>
+
+  <rect x="34" y="118" width="246" height="76" rx="25" fill="#F7F8FA"/>
+  <circle cx="71" cy="156" r="18" fill="#D0D5DB"/>
+  <rect x="104" y="143" width="129" height="12" rx="6" fill="#C7CDD4"/>
+  <rect x="104" y="164" width="87" height="10" rx="5" fill="#E0E4E8"/>
+
+  <rect x="106" y="214" width="250" height="98" rx="29" fill="#3182F6"/>
+  <circle cx="310" cy="263" r="31" fill="#FFFFFF" opacity="0.18"/>
+  <text x="310" y="276" text-anchor="middle" font-family="Arial, sans-serif" font-size="50" font-weight="900" fill="#FFFFFF">@</text>
+  <rect x="135" y="241" width="114" height="13" rx="6.5" fill="#FFFFFF" opacity="0.95"/>
+  <rect x="135" y="266" width="82" height="11" rx="5.5" fill="#FFFFFF" opacity="0.68"/>
+
+  <rect x="34" y="334" width="190" height="72" rx="25" fill="#F7F8FA"/>
+  <circle cx="71" cy="370" r="17" fill="#D0D5DB"/>
+  <circle cx="119" cy="370" r="5" fill="#8B95A1"/>
+  <circle cx="139" cy="370" r="5" fill="#8B95A1"/>
+  <circle cx="159" cy="370" r="5" fill="#8B95A1"/>
+
+  <g transform="translate(252 343)">
+    <path d="M50 0 96 17v34c0 47-31 73-46 79C35 124 4 98 4 51V17z" fill="#191F28"/>
+    <rect x="29" y="49" width="42" height="37" rx="9" fill="#DFFF6A"/>
+    <path d="M38 49V37c0-13 8-22 12-22s12 9 12 22v12" fill="none" stroke="#DFFF6A" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="50" cy="67" r="5" fill="#191F28"/>
+  </g>
+</g>
+</svg>

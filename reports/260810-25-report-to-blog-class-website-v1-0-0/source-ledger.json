@@ -1,0 +1,105 @@
+{
+  "schemaVersion": "1.0",
+  "reportId": "260810-25-report-to-blog-class-website",
+  "checkedAt": "2026-08-10",
+  "method": "사용자 경험과 제공된 글 흐름을 중심으로 작성하고, 검색·교육 설계·웹 접근성·게시·라이선스 관련 운영 원칙만 공식 자료로 검증했다.",
+  "sources": [
+    {
+      "id": 1,
+      "claim": "채널마다 독자에게 고유한 효용과 경험을 제공해야 하며, 검색만을 위한 대량 변형보다 사람을 위한 콘텐츠가 우선이다.",
+      "title": "Creating Helpful, Reliable, People-First Content",
+      "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+      "sourceType": "공식 검색 가이드",
+      "publisher": "Google Search Central",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "usedIn": [
+        "왜 지금인가",
+        "블로그로 바꾸는 법",
+        "리스크와 반론"
+      ],
+      "confidence": "높음",
+      "notes": "고유한 경험과 독자 효용을 강조하는 공식 가이드. 동일 문구 반복을 금지하는 규정으로 과장해 해석하지 않음."
+    },
+    {
+      "id": 2,
+      "claim": "중복 또는 매우 유사한 웹페이지가 생기면 대표 URL을 명시하는 canonical 관리가 필요하다.",
+      "title": "How to specify a canonical URL with rel=canonical",
+      "url": "https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls",
+      "sourceType": "공식 기술 문서",
+      "publisher": "Google Search Central",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "usedIn": [
+        "웹사이트로 바꾸는 법",
+        "재가공 후 검수"
+      ],
+      "confidence": "높음",
+      "notes": "복사 게시물에 대한 자동 패널티를 주장하지 않고, 대표 URL 선택과 유사 페이지 관리 용도로만 사용."
+    },
+    {
+      "id": 3,
+      "claim": "수업 설계는 학습 결과를 먼저 정하고, 평가 방법과 활동을 뒤에서 맞추는 backward design이 유용하다.",
+      "title": "Designing Your Course",
+      "url": "https://teaching.cornell.edu/teaching-resources/preparing-teach/designing-your-course",
+      "sourceType": "대학 교육 설계 가이드",
+      "publisher": "Cornell University Center for Teaching Innovation",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "usedIn": [
+        "수업으로 바꾸는 법",
+        "실전 변환 예시"
+      ],
+      "confidence": "높음",
+      "notes": "보고서 목차를 그대로 강의 순서로 옮기지 않고 학습 목표부터 재설계하는 근거로 사용."
+    },
+    {
+      "id": 4,
+      "claim": "웹 이미지의 대체 텍스트는 파일 모양보다 해당 맥락에서 이미지가 전달하는 목적과 의미를 설명해야 한다.",
+      "title": "Images Tutorial",
+      "url": "https://www.w3.org/WAI/tutorials/images/",
+      "sourceType": "웹 접근성 표준 가이드",
+      "publisher": "W3C Web Accessibility Initiative",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "usedIn": [
+        "이미지 파생 순서",
+        "재가공 후 검수"
+      ],
+      "confidence": "높음",
+      "notes": "본문의 썸네일과 다이어그램 alt 작성 원칙에 반영."
+    },
+    {
+      "id": 5,
+      "claim": "GitHub Pages는 저장소의 HTML, CSS, JavaScript 파일을 정적 웹사이트로 게시할 수 있다.",
+      "title": "What is GitHub Pages?",
+      "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages",
+      "sourceType": "공식 제품 문서",
+      "publisher": "GitHub Docs",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "usedIn": [
+        "웹사이트로 바꾸는 법",
+        "한국 실무 적용"
+      ],
+      "confidence": "높음",
+      "notes": "Report Hub의 공개 웹페이지 채널 설명에만 사용."
+    },
+    {
+      "id": 6,
+      "claim": "재사용 가능한 자료라도 CC 라이선스별로 저작자 표시, 개작, 상업 이용 조건이 다르므로 재가공 전에 권리 조건을 확인해야 한다.",
+      "title": "Sharing Openly, Sharing Globally — CC Licenses",
+      "url": "https://creativecommons.org/cc-licenses/",
+      "sourceType": "공식 라이선스 안내",
+      "publisher": "Creative Commons",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "usedIn": [
+        "이미지 파생 순서",
+        "재가공 후 검수"
+      ],
+      "confidence": "높음",
+      "notes": "법률 자문이 아니라 재사용 전 라이선스 확인 체크포인트로만 제시."
+    }
+  ]
+}

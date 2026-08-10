@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "rh-260810-33-human-loop-automation",
+  "title": "AI 자동화에서 사람이 빠지면 안 되는 세 지점",
+  "seoTitle": "AI 자동화에서 사람이 빠지면 안 되는 세 지점",
+  "alternativeTitles": [
+    "자동화율 100%보다 중요한 것: 사람이 확인할 3곳",
+    "보고서 공개·메시지 발송·위키 병합에 사람을 남긴 이유",
+    "AI 에이전트 권한 설계: 삭제·결제·외부 발신의 승인 경계"
+  ],
+  "slug": "human-in-the-loop-ai-automation",
+  "folder": "260810-33-human-in-the-loop-ai-automation-v1-0-0",
+  "version": "1.0.0",
+  "status": "Published",
+  "summary": "AI 자동화에서 수집·정리·초안은 에이전트에 맡기되, 사실과 맥락, 외부 발신, 삭제·결제·민감정보 경계에는 사람의 검토와 승인을 남겨야 한다는 실전 운영 원칙을 정리했다.",
+  "hook": "자동화율 100%가 목표가 아니라, 사람이 꼭 봐야 하는 순간만 남기는 것이 목표였다.",
+  "oneSentenceConclusion": "AI는 수집·정리·초안을 맡기고, 사람은 맥락·책임·외부 실행을 승인해야 한다.",
+  "lead": [
+    "자동화율 100%가 멋져 보이던 시기가 있었다.",
+    "그런데 실제 운영에 붙여보니 사람이 빠져야 할 일이 아니라, 사람이 정확히 어디에 남아야 하는지가 더 중요했다."
+  ],
+  "thumbnailText": {
+    "main": "사람이 남아야 할 3곳",
+    "sub": "AI 자동화 승인 경계"
+  },
+  "socialShare": [
+    "AI 자동화율을 100%로 만드는 게 목표는 아니었습니다. 보고서 공개, 메시지 발송, 위키 병합 앞에 사람을 남긴 이유를 정리했습니다.",
+    "AI에게 반복 업무는 맡기되 삭제·결제·외부 발신은 바로 실행시키지 않습니다. Human-in-the-loop를 실제 운영 표로 정리했습니다."
+  ],
+  "keywords": [
+    "AI 자동화",
+    "Human-in-the-loop",
+    "AI 에이전트",
+    "AI 거버넌스",
+    "업무 자동화",
+    "권한 설계",
+    "개인정보 보호",
+    "승인 워크플로"
+  ],
+  "category": "AI",
+  "createdAt": "2026-08-10",
+  "updatedAt": "2026-08-10",
+  "canonical": "https://aihubos.github.io/reportmode/reports/260810-33-human-in-the-loop-ai-automation-v1-0-0/",
+  "thumbnail": "assets/thumbnail.png",
+  "topicScore": 91,
+  "topicScoreBreakdown": {
+    "freshness": 17,
+    "searchIntent": 13,
+    "socialShare": 13,
+    "practicalUtility": 15,
+    "koreaRelevance": 14,
+    "evidenceStrength": 10,
+    "visualFit": 9
+  },
+  "generation": "AI-assisted",
+  "reviewStatus": "Published",
+  "assumptions": [
+    "사용자가 제시한 항목 번호 33을 2026-08-10 일일 순번으로 사용했다.",
+    "보고서 공개·메시지 발송·위키 병합에 사람 검수를 남긴 경험은 사용자 제공 맥락을 기반으로 서술했다.",
+    "실제 사고·손실·자동화율 수치는 제공되지 않아 임의의 성과 수치나 사건을 만들지 않았다.",
+    "승인 강도 점수는 법적 기준이 아닌 운영 휴리스틱이며 조직별 보안·법무 검토가 필요하다.",
+    "GitHub에는 실제 push하지 않고 업로드용 ZIP까지만 생성했다."
+  ]
+}

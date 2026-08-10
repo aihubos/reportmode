@@ -1,0 +1,21 @@
+{
+  "title": "RAG보다 LLM-Wiki가 더 잘 맞았던 순간: 검색보다 판단의 이력이 필요했다",
+  "url": "/reportmode/reports/260810-13-rag-vs-llm-wiki-operations-v1-0-0/",
+  "thumbnail": "/reportmode/reports/260810-13-rag-vs-llm-wiki-operations-v1-0-0/assets/thumbnail.png",
+  "summary": "RAG는 최신 원문을 빠르게 찾는 데 강하고, LLM-Wiki는 결정 사유·실패 기록·다음 행동을 편집 가능한 문서로 누적하는 데 강하다. 둘을 경쟁시키기보다 검색과 축적의 역할을 나누는 실전 운영법을 정리했다.",
+  "category": "AI",
+  "publishedAt": "2026-08-10",
+  "version": "1.0.0",
+  "keywords": [
+    "RAG",
+    "LLM Wiki",
+    "LLM-Wiki",
+    "AI 지식관리",
+    "Obsidian",
+    "세컨드 브레인",
+    "AI 에이전트 메모리",
+    "지식베이스",
+    "인수인계",
+    "변경 이력"
+  ]
+}

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">같은 실수, 스킬로 막는 법</title>
+  <desc id="desc">메모리에서 스킬과 검증으로 이어지는 AI 에이전트 운영 루프</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F7FAFF"/>
+      <stop offset="0.6" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E8F3FF"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1B64DA"/>
+      <stop offset="1" stop-color="#5A9CFF"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#191F28" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1110" cy="58" r="210" fill="#3182F6" opacity="0.08"/>
+  <circle cx="55" cy="600" r="220" fill="#DFFF6A" opacity="0.18"/>
+  <g font-family="Noto Sans CJK KR, NanumGothic, sans-serif">
+    <rect x="84" y="86" width="162" height="42" rx="21" fill="#DFFF6A"/>
+    <text x="165" y="114" text-anchor="middle" font-size="18" font-weight="800" fill="#415400">Hermes 운영 기록</text>
+    <text x="84" y="224" font-size="72" font-weight="900" letter-spacing="-4" fill="#191F28">같은 실수,</text>
+    <text x="84" y="316" font-size="72" font-weight="900" letter-spacing="-4" fill="#3182F6">스킬로 막는 법</text>
+    <rect x="84" y="365" width="430" height="8" rx="4" fill="#DFFF6A"/>
+  </g>
+
+  <g transform="translate(670 90)" filter="url(#shadow)">
+    <rect x="0" y="0" width="430" height="450" rx="42" fill="#FFFFFF" stroke="#E5E8EB" stroke-width="2"/>
+    <path d="M84 128 C84 62 166 40 222 78" fill="none" stroke="#C9DDFB" stroke-width="11" stroke-linecap="round"/>
+    <path d="M222 78 l-24 -4 l9 22" fill="#3182F6"/>
+    <path d="M346 198 C390 252 346 326 280 338" fill="none" stroke="#C9DDFB" stroke-width="11" stroke-linecap="round"/>
+    <path d="M280 338 l18 -17 l4 24" fill="#3182F6"/>
+    <path d="M166 356 C98 366 44 312 58 246" fill="none" stroke="#C9DDFB" stroke-width="11" stroke-linecap="round"/>
+    <path d="M58 246 l-8 24 l24 -7" fill="#3182F6"/>
+
+    <g font-family="Noto Sans CJK KR, NanumGothic, sans-serif">
+      <rect x="54" y="84" width="164" height="104" rx="24" fill="#F2F4F6" stroke="#E5E8EB"/>
+      <circle cx="87" cy="117" r="13" fill="#8B95A1"/>
+      <text x="110" y="122" font-size="18" font-weight="800" fill="#333D4B">MEMORY</text>
+      <text x="81" y="158" font-size="22" font-weight="900" fill="#191F28">무엇을 아는가</text>
+
+      <rect x="214" y="162" width="168" height="112" rx="24" fill="url(#blue)"/>
+      <circle cx="250" cy="198" r="13" fill="#DFFF6A"/>
+      <text x="273" y="204" font-size="18" font-weight="800" fill="#FFFFFF">SKILL</text>
+      <text x="244" y="242" font-size="22" font-weight="900" fill="#FFFFFF">어떻게 하는가</text>
+
+      <rect x="82" y="288" width="184" height="110" rx="24" fill="#F6FFD7" stroke="#DFFF6A"/>
+      <circle cx="117" cy="323" r="14" fill="#3182F6"/>
+      <path d="M110 323 l5 5 l10 -12" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="142" y="329" font-size="18" font-weight="800" fill="#415400">VERIFY</text>
+      <text x="111" y="367" font-size="22" font-weight="900" fill="#191F28">정말 끝났는가</text>
+    </g>
+  </g>
+</svg>

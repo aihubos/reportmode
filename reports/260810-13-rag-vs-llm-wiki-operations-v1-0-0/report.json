@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "260810-13-rag-vs-llm-wiki-operations",
+  "title": "RAG보다 LLM-Wiki가 더 잘 맞았던 순간: 검색보다 판단의 이력이 필요했다",
+  "seoTitle": "RAG vs LLM-Wiki 차이: 검색과 누적 지식의 선택 기준",
+  "alternativeTitles": [
+    "RAG는 찾고, LLM-Wiki는 남긴다: 직접 운영하며 느낀 차이",
+    "AI 지식관리, RAG만으로 부족했던 이유와 LLM-Wiki 활용법",
+    "검색형 RAG와 편집형 LLM-Wiki, 무엇을 언제 써야 할까"
+  ],
+  "slug": "rag-vs-llm-wiki-operations",
+  "folder": "260810-13-rag-vs-llm-wiki-operations-v1-0-0",
+  "version": "1.0.0",
+  "status": "Published",
+  "summary": "RAG는 최신 원문을 빠르게 찾는 데 강하고, LLM-Wiki는 결정 사유·실패 기록·다음 행동을 편집 가능한 문서로 누적하는 데 강하다. 둘을 경쟁시키기보다 검색과 축적의 역할을 나누는 실전 운영법을 정리했다.",
+  "hook": "답은 찾았는데, 왜 다음 질문에서는 또 처음부터일까?",
+  "lead": "질문할 때마다 자료를 다시 찾는 AI는 분명 똑똑했지만, 다음 질문에서는 또 처음부터였다. 내가 필요했던 건 정답 한 줄이 아니라 왜 그렇게 결정했고 무엇을 실패했는지 계속 고쳐 쓸 수 있는 기억이었다.",
+  "oneSentenceConclusion": "빠르게 찾을 때는 RAG, 판단과 시행착오를 다음 사람에게 넘길 때는 LLM-Wiki가 더 잘 맞았다.",
+  "thumbnailMain": "검색보다 판단의 이력을 남겨라",
+  "thumbnailSub": "RAG vs LLM-Wiki",
+  "socialCopy": [
+    "RAG가 나쁜 게 아니었다. 다만 내가 찾던 건 검색 결과가 아니라 결정의 이유와 실패 기록이었다. 검색은 RAG, 축적은 LLM-Wiki로 나눠본 운영기.",
+    "AI Agent에게 매번 프로젝트를 처음부터 설명하고 있다면, 검색보다 인수인계 구조가 먼저일 수 있습니다. RAG와 LLM-Wiki를 언제 나눠 써야 하는지 정리했습니다."
+  ],
+  "keywords": [
+    "RAG",
+    "LLM Wiki",
+    "LLM-Wiki",
+    "AI 지식관리",
+    "Obsidian",
+    "세컨드 브레인",
+    "AI 에이전트 메모리",
+    "지식베이스",
+    "인수인계",
+    "변경 이력"
+  ],
+  "category": "AI",
+  "createdAt": "2026-08-10",
+  "updatedAt": "2026-08-10",
+  "canonical": "https://aihubos.github.io/reportmode/reports/260810-13-rag-vs-llm-wiki-operations-v1-0-0/",
+  "thumbnail": "assets/thumbnail.png",
+  "topicScore": 88,
+  "assumptions": [
+    "일일 발행 순번을 사용자 제공 항목 번호와 맞춰 13으로 사용함.",
+    "LLM-Wiki는 특정 제품이 아니라 Andrej Karpathy의 2026년 LLM Wiki 운영 패턴을 의미함.",
+    "실제 page 변경 이력은 사용자 제공 블로그 아카이브의 V1·V2 문장과 이번 V3 보고서를 비교해 구성함.",
+    "인수인계 장면은 사용자가 제공한 운영 경험 흐름을 바탕으로 개인·팀에서 재현 가능한 형태로 정리함.",
+    "2026년 LLM-Wiki 관련 논문은 초기 preprint이므로 보편적 성능 우위를 확정하지 않음."
+  ],
+  "generation": "AI-assisted",
+  "reviewStatus": "Published"
+}

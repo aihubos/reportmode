@@ -1,0 +1,105 @@
+{
+  "schemaVersion": "1.0",
+  "reportId": "rh-260810-33-human-loop-automation",
+  "checkedAt": "2026-08-10",
+  "sources": [
+    {
+      "id": "src-01",
+      "claim": "조직은 human-AI 구성의 역할과 책임, 주기적 검토, 경영진 책임, AI 시스템 중단·비활성화 절차를 명확히 해야 한다.",
+      "url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+      "sourceType": "공식 프레임워크",
+      "publishedAt": "2023",
+      "checkedAt": "2026-08-10",
+      "sections": [
+        "1분 요약",
+        "자동화율 목표 변경",
+        "운영 원칙"
+      ],
+      "confidence": "high",
+      "notes": "NIST AI RMF는 자발적 위험관리 프레임워크이며 법적 의무 자체를 의미하지 않는다."
+    },
+    {
+      "id": "src-02",
+      "claim": "AI 에이전트에는 최소 권한, 고위험·비가역 작업 승인, 실행 preview, audit trail, rollback, step-up 인증이 필요하다.",
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/AI_Agent_Security_Cheat_Sheet.html",
+      "sourceType": "공식 보안 가이드",
+      "publishedAt": "미표기(확인일 기준 현재 문서)",
+      "checkedAt": "2026-08-10",
+      "sections": [
+        "세 승인 지점",
+        "담당자 표",
+        "승인 강도",
+        "FAQ"
+      ],
+      "confidence": "high",
+      "notes": "OWASP 예시는 구현 가이드이며 조직의 위험평가에 맞게 조정해야 한다."
+    },
+    {
+      "id": "src-03",
+      "claim": "prompt injection 대응에는 권한 최소화와 privileged operation에 대한 human approval이 포함된다.",
+      "url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/",
+      "sourceType": "공식 보안 가이드",
+      "publishedAt": "2025",
+      "checkedAt": "2026-08-10",
+      "sections": [
+        "FAQ",
+        "권한 경계"
+      ],
+      "confidence": "high",
+      "notes": "prompt injection은 승인 절차만으로 해결되지 않으며 입력·출력 검증과 권한 통제가 병행돼야 한다."
+    },
+    {
+      "id": "src-04",
+      "claim": "EU AI Act Article 14는 high-risk AI에 대해 automation bias 인지, 출력 무시·override·reverse, stop 가능성을 포함한 human oversight를 요구한다.",
+      "url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng",
+      "sourceType": "공식 법령",
+      "publishedAt": "2024-07-12",
+      "checkedAt": "2026-08-10",
+      "sections": [
+        "리스크와 반론"
+      ],
+      "confidence": "high",
+      "notes": "Article 14의 의무는 high-risk AI 시스템에 적용되며 모든 일반 자동화에 동일하게 적용된다고 서술하지 않았다."
+    },
+    {
+      "id": "src-05",
+      "claim": "개인정보위 2025 안내서는 생성형 AI 생애주기별 안전조치, AI 에이전트 관리, CPO 중심 거버넌스를 제시한다.",
+      "url": "https://www.pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS074&mCode=C020010000&nttId=11410",
+      "sourceType": "정부 공식 가이드 발표",
+      "publishedAt": "2025-08-06",
+      "checkedAt": "2026-08-10",
+      "sections": [
+        "한국 관점"
+      ],
+      "confidence": "high",
+      "notes": "보도자료 요약을 사용했으며 세부 적용은 첨부 안내서와 법률 검토가 필요하다."
+    },
+    {
+      "id": "src-06",
+      "claim": "개인정보위 2026 이용자 가이드는 업무 관련 자료 입력과 외부 서비스 연동 안전성, 학습 활용·기록 설정을 주요 점검 항목으로 다룬다.",
+      "url": "https://www.pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS074&mCode=C020010000&nttId=12084",
+      "sourceType": "정부 공식 가이드 발표",
+      "publishedAt": "2026-05-19",
+      "checkedAt": "2026-08-10",
+      "sections": [
+        "한국 관점"
+      ],
+      "confidence": "high",
+      "notes": "일반 이용자 가이드이며 기업의 구체적 법적 의무 판단은 별도 검토가 필요하다."
+    },
+    {
+      "id": "src-07",
+      "claim": "OWASP는 2026년판 Agentic Applications Top 10을 통해 계획·행동·의사결정형 AI 에이전트 보안을 별도 운영 주제로 다룬다.",
+      "url": "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/",
+      "sourceType": "공식 보안 프레임워크",
+      "publishedAt": "2025-12-09",
+      "checkedAt": "2026-08-10",
+      "sections": [
+        "출처",
+        "주제 최신성"
+      ],
+      "confidence": "high",
+      "notes": "본문의 세부 통제는 AI Agent Security Cheat Sheet를 우선 근거로 사용했다."
+    }
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "schemaVersion": "1.0",
+  "reportId": "rh-260810-36-m5-max-128gb-local-llm",
+  "verifiedAt": "2026-08-10",
+  "sources": [
+    {
+      "id": "src-00",
+      "claim": "MacBook Pro 16 M5 Max, 통합 메모리 128GB, SSD 2TB를 기준으로 로컬 LLM을 운영한다는 경험 맥락.",
+      "url": "user-provided://conversation/2026-08-10",
+      "sourceType": "사용자 제공 경험",
+      "publishedAt": "2026-08-10",
+      "verifiedAt": "2026-08-10",
+      "section": [
+        "Hero",
+        "장비 선택 이유",
+        "운영 현실",
+        "클라우드 병행 기준"
+      ],
+      "confidence": "High for user context",
+      "caution": "구체적인 벤치마크 원본 로그는 제공되지 않았으므로 수치 성능은 주장하지 않음."
+    },
+    {
+      "id": "src-01",
+      "claim": "MacBook Pro 16 M5 Max는 18코어 CPU, 32/40코어 GPU, 460/614GB/s 메모리 대역폭 구성을 제공한다.",
+      "url": "https://support.apple.com/ko-kr/126319",
+      "sourceType": "공식 기술 사양",
+      "publishedAt": "2026-03",
+      "verifiedAt": "2026-08-10",
+      "section": [
+        "Executive snapshot",
+        "사양 카드",
+        "장비 선택 질문표"
+      ],
+      "confidence": "High",
+      "caution": "GPU 코어 수에 따라 메모리 대역폭이 다름."
+    },
+    {
+      "id": "src-02",
+      "claim": "M5 Max는 최대 40코어 GPU, 최대 614GB/s 메모리 대역폭, 최대 128GB 통합 메모리를 지원한다.",
+      "url": "https://www.apple.com/kr/newsroom/2026/03/apple-debuts-m5-pro-and-m5-max-to-supercharge-the-most-demanding-pro-workflows/",
+      "sourceType": "Apple 공식 보도자료",
+      "publishedAt": "2026-03-03",
+      "verifiedAt": "2026-08-10",
+      "section": [
+        "왜 지금",
+        "통합 메모리",
+        "주의사항"
+      ],
+      "confidence": "High",
+      "caution": "Apple의 세대 성능 비교는 회사 자체 테스트이므로 본문에서 독립 벤치마크처럼 사용하지 않음."
+    },
+    {
+      "id": "src-03",
+      "claim": "M5 Pro/Max MacBook Pro는 2026년 3월 11일 출시됐고 M5 Max 구성은 2TB SSD부터 시작한다.",
+      "url": "https://www.apple.com/kr/newsroom/2026/03/apple-introduces-macbook-pro-with-all-new-m5-pro-and-m5-max/",
+      "sourceType": "Apple 공식 보도자료",
+      "publishedAt": "2026-03-03",
+      "verifiedAt": "2026-08-10",
+      "section": [
+        "왜 지금",
+        "사양 카드"
+      ],
+      "confidence": "High",
+      "caution": "출시 당시 기준이며 후속 SKU 변화 가능."
+    },
+    {
+      "id": "src-04",
+      "claim": "한국 Apple Store에 16형 M5 Max 18코어 CPU·40코어 GPU·128GB 메모리·2TB 저장 장치 구성이 존재한다.",
+      "url": "https://www.apple.com/kr/shop/buy-mac/macbook-pro/16-%EB%AA%A8%EB%8D%B8-space-black-%EC%8A%A4%ED%83%A0%EB%8B%A4%EB%93%9C-%EB%94%94%EC%8A%A4%ED%94%8C%EB%A0%88%EC%9D%B4-apple-m5-max-%EC%B9%A9-18%EC%BD%94%EC%96%B4-cpu-40%EC%BD%94%EC%96%B4-gpu-128gb-%EB%A9%94%EB%AA%A8%EB%A6%AC-2tb-%EC%A0%80%EC%9E%A5-%EC%9E%A5%EC%B9%98",
+      "sourceType": "Apple 공식 스토어",
+      "publishedAt": "2026",
+      "verifiedAt": "2026-08-10",
+      "section": [
+        "Hero",
+        "사양 카드"
+      ],
+      "confidence": "High",
+      "caution": "가격과 재고는 수시 변경 가능."
+    },
+    {
+      "id": "src-05",
+      "claim": "128GB 통합 메모리는 40코어 GPU 탑재 M5 Max 모델에서 선택할 수 있다.",
+      "url": "https://www.apple.com/kr/macbook-pro/specs/",
+      "sourceType": "Apple 공식 제품 사양",
+      "publishedAt": "2026",
+      "verifiedAt": "2026-08-10",
+      "section": [
+        "구매 판단",
+        "FAQ"
+      ],
+      "confidence": "High",
+      "caution": "지역별 CTO 옵션 차이 가능."
+    },
+    {
+      "id": "src-06",
+      "claim": "Apple silicon은 CPU와 GPU가 동일한 메모리 풀에 직접 접근하는 통합 메모리 아키텍처를 사용하며 MLX가 이를 활용한다.",
+      "url": "https://ml-explore.github.io/mlx/build/html/usage/unified_memory.html",
+      "sourceType": "MLX 공식 문서",
+      "publishedAt": "2026",
+      "verifiedAt": "2026-08-10",
+      "section": [
+        "통합 메모리 장점과 한계"
+      ],
+      "confidence": "High",
+      "caution": "통합 메모리가 모든 워크로드에서 동일한 성능을 보장한다는 의미는 아님."
+    },
+    {
+      "id": "src-07",
+      "claim": "MLX-LM은 Apple silicon에서 LLM을 실행하고 4-bit 양자화 모델을 변환·실행할 수 있는 공식 프로젝트다.",
+      "url": "https://github.com/ml-explore/mlx-lm",
+      "sourceType": "공식 오픈소스 저장소",
+      "publishedAt": "2023-2026",
+      "verifiedAt": "2026-08-10",
+      "section": [
+        "운영 스택",
+        "양자화"
+      ],
+      "confidence": "High",
+      "caution": "모델 지원과 성능은 버전별로 바뀔 수 있음."
+    },
+    {
+      "id": "src-08",
+      "claim": "Ollama는 컨텍스트 길이를 늘리면 모델 실행에 필요한 메모리도 증가한다고 설명한다.",
+      "url": "https://docs.ollama.com/context-length",
+      "sourceType": "Ollama 공식 문서",
+      "publishedAt": "2026",
+      "verifiedAt": "2026-08-10",
+      "section": [
+        "운영 현실",
+        "메모리 계산기",
+        "FAQ"
+      ],
+      "confidence": "High",
+      "caution": "실제 KV 캐시 크기는 모델 구조와 런타임 설정에 따라 다름."
+    },
+    {
+      "id": "src-09",
+      "claim": "Ollama는 KV 캐시 q8_0이 f16의 약 절반, q4_0이 약 4분의 1 메모리를 사용한다고 안내한다.",
+      "url": "https://docs.ollama.com/faq",
+      "sourceType": "Ollama 공식 문서",
+      "publishedAt": "2026",
+      "verifiedAt": "2026-08-10",
+      "section": [
+        "양자화와 컨텍스트",
+        "리스크와 반론"
+      ],
+      "confidence": "High",
+      "caution": "품질 손실 정도는 모델과 긴 컨텍스트에서 달라질 수 있음."
+    }
+  ]
+}

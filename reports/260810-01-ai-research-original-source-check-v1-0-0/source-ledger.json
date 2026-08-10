@@ -1,0 +1,118 @@
+{
+  "schemaVersion": "1.0",
+  "reportId": "rh-260810-01-ai-research-original-source-check",
+  "title": "AI에게 조사시켜도 원문 링크를 끝까지 여는 이유: 출처 검증 7단계",
+  "checkedAt": "2026-08-10",
+  "method": "공식 원문 우선, PDF 페이지·HTML 섹션·링크 접근 상태를 별도 기록",
+  "sources": [
+    {
+      "id": "src-01",
+      "claim": "생성형 AI 출력의 출처와 인용은 검토·검증해야 한다.",
+      "url": "https://doi.org/10.6028/NIST.AI.600-1",
+      "sourceType": "정부·공공기관 공식 보고서 / DOI PDF",
+      "publisher": "NIST",
+      "publishedAt": "2024-07-26",
+      "updatedAt": "2026-04-08",
+      "checkedAt": "2026-08-10",
+      "usedIn": [
+        "Hero",
+        "왜 지금",
+        "숫자·인용 재검증",
+        "리스크"
+      ],
+      "confidence": "높음",
+      "linkStatus": "정상 열림 · PDF 64쪽",
+      "location": "인쇄면 p.31, MS-2.5-003; PDF p.9 confabulation 설명",
+      "caution": "위험관리 권고이며 모든 개인 블로그에 법적 의무를 부과하는 문서는 아니다."
+    },
+    {
+      "id": "src-02",
+      "claim": "검색 스니펫은 페이지 내용에서 자동 생성되고 검색어에 따라 달라질 수 있다.",
+      "url": "https://developers.google.com/search/docs/appearance/snippet",
+      "sourceType": "공식 검색 문서",
+      "publisher": "Google Search Central",
+      "publishedAt": null,
+      "updatedAt": null,
+      "checkedAt": "2026-08-10",
+      "usedIn": [
+        "검색 결과 설명의 위험",
+        "출처 우선순위"
+      ],
+      "confidence": "높음",
+      "linkStatus": "정상 열림 · HTML",
+      "location": "How snippets are created",
+      "caution": "Google 검색 결과에 대한 설명이며 다른 검색 서비스의 표시 방식과 동일하다고 단정하지 않는다."
+    },
+    {
+      "id": "src-03",
+      "claim": "스캔 PDF는 이미지일 수 있어 텍스트 추출이 비거나 최소화될 수 있으며 OCR이 필요할 수 있다.",
+      "url": "https://pypdf.readthedocs.io/en/stable/user/extract-text.html",
+      "sourceType": "오픈소스 프로젝트 공식 기술 문서",
+      "publisher": "pypdf",
+      "publishedAt": null,
+      "updatedAt": null,
+      "checkedAt": "2026-08-10",
+      "usedIn": [
+        "추출 실패 대응",
+        "PDF 검증"
+      ],
+      "confidence": "높음",
+      "linkStatus": "정상 열림 · HTML · 문서 버전 6.15.0",
+      "location": "Notes; Why Text Extraction is hard; OCR vs. Text Extraction",
+      "caution": "pypdf의 범위와 한계를 설명하는 문서이며 모든 PDF 도구의 성능을 대표하지 않는다."
+    },
+    {
+      "id": "src-04",
+      "claim": "링크 체커는 링크와 프래그먼트의 접근 가능성을 확인하고 리디렉션을 경고할 수 있다.",
+      "url": "https://dev.w3.org/perl/modules/W3C/LinkChecker/docs/checklink",
+      "sourceType": "표준기구 도구 문서",
+      "publisher": "W3C",
+      "publishedAt": null,
+      "updatedAt": "2010-03-07",
+      "checkedAt": "2026-08-10",
+      "usedIn": [
+        "확인일과 링크 상태",
+        "자동화 범위"
+      ],
+      "confidence": "높음",
+      "linkStatus": "정상 열림 · HTML",
+      "location": "What it does",
+      "caution": "오래된 도구 문서다. 링크 검사 개념의 근거로 사용하고 최신 브라우저 동작 전체를 설명하는 자료로 쓰지 않는다."
+    },
+    {
+      "id": "src-05",
+      "claim": "DOI는 콘텐츠가 웹사이트를 옮겨도 같은 연구물을 가리키는 영구 식별자로 운영된다.",
+      "url": "https://www.crossref.org/documentation/register-maintain-records/",
+      "sourceType": "학술 인프라 공식 문서",
+      "publisher": "Crossref",
+      "publishedAt": null,
+      "updatedAt": null,
+      "checkedAt": "2026-08-10",
+      "usedIn": [
+        "원문 우선순위",
+        "링크 보존"
+      ],
+      "confidence": "높음",
+      "linkStatus": "정상 열림 · HTML",
+      "location": "Benefits of content registration",
+      "caution": "DOI도 등록기관과 메타데이터 관리가 필요하며 모든 웹 자료에 DOI가 있는 것은 아니다."
+    },
+    {
+      "id": "src-06",
+      "claim": "YouTube는 영상 설명 영역에서 transcript를 열어 현재 재생 구간의 자막을 확인하는 기능을 안내한다.",
+      "url": "https://support.google.com/youtube/answer/15930243?hl=en",
+      "sourceType": "공식 제품 도움말",
+      "publisher": "YouTube Help",
+      "publishedAt": null,
+      "updatedAt": null,
+      "checkedAt": "2026-08-10",
+      "usedIn": [
+        "영상 원자료 검증"
+      ],
+      "confidence": "중간",
+      "linkStatus": "자동 접근 환경에서 429 · 일반 브라우저 재확인 필요",
+      "location": "View video transcripts",
+      "caution": "영상마다 자막·transcript 제공 여부가 다르며 자동 자막은 오인식될 수 있다."
+    }
+  ]
+}

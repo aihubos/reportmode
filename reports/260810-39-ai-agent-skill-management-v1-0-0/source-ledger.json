@@ -1,0 +1,124 @@
+{
+  "schemaVersion": "1.0",
+  "verifiedAt": "2026-08-10",
+  "sources": [
+    {
+      "id": 1,
+      "claim": "Hermes Agent는 경험에서 스킬을 만들고 사용 중 개선하는 closed learning loop와 Agent Skills 표준 호환을 설명한다.",
+      "url": "https://github.com/NousResearch/hermes-agent",
+      "sourceType": "official repository",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "Hero",
+        "왜 지금인가"
+      ],
+      "confidence": "high",
+      "caution": "저장소 설명은 프로젝트 자체 주장이다. 실제 품질 개선 정도는 환경별 평가가 필요하다."
+    },
+    {
+      "id": 2,
+      "claim": "Hermes 가이드는 스킬을 절차 지식, 메모리를 사실 지식으로 구분하고 When to Use, Procedure, Pitfalls, Verification 구조와 지속 업데이트를 권장한다.",
+      "url": "https://github.com/NousResearch/hermes-agent/blob/main/website/docs/guides/work-with-skills.md",
+      "sourceType": "official documentation",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "1분 요약",
+        "메모리 vs 스킬",
+        "좋은 스킬",
+        "낡은 지침",
+        "FAQ"
+      ],
+      "confidence": "high",
+      "caution": "main 브랜치 문서는 릴리스 태그와 세부 동작이 다를 수 있다."
+    },
+    {
+      "id": 3,
+      "claim": "Hermes는 skill_manage로 스킬을 생성·수정·삭제할 수 있고 skills.write_approval로 변경 승인을 요구할 수 있다.",
+      "url": "https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/features/skills.md",
+      "sourceType": "official technical documentation",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "낡은 지침",
+        "리스크",
+        "FAQ"
+      ],
+      "confidence": "high",
+      "caution": "설정명과 기본값은 설치 버전별 확인이 필요하다."
+    },
+    {
+      "id": 4,
+      "claim": "Agent Skills 공개 표준은 name·description이 포함된 SKILL.md와 optional scripts/references/assets 구조, progressive disclosure와 validation을 정의한다.",
+      "url": "https://agentskills.io/specification",
+      "sourceType": "open specification",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "1분 요약",
+        "왜 지금인가",
+        "낡은 지침",
+        "템플릿",
+        "FAQ"
+      ],
+      "confidence": "high",
+      "caution": "각 에이전트 구현은 experimental fields와 tool permission을 다르게 지원할 수 있다."
+    },
+    {
+      "id": 5,
+      "claim": "OpenAI는 Skills를 SKILL.md가 포함된 versioned file bundle로 정의하고 local/hosted execution 및 공개 Agent Skills 표준 호환을 제공한다.",
+      "url": "https://developers.openai.com/api/docs/guides/tools-skills",
+      "sourceType": "official product documentation",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "왜 지금인가",
+        "출처"
+      ],
+      "confidence": "high",
+      "caution": "API 기능·가격·보존 정책은 변경될 수 있으므로 실제 사용 직전에 재확인해야 한다."
+    },
+    {
+      "id": 6,
+      "claim": "Anthropic은 2025-10-16 Agent Skills를 소개했고 2025-12-18 공개 표준 전환을 알렸으며 악성 스킬의 보안 위험을 경고한다.",
+      "url": "https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills",
+      "sourceType": "official engineering article",
+      "publishedAt": "2025-10-16",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "왜 지금인가",
+        "리스크"
+      ],
+      "confidence": "high",
+      "caution": "보안 위험은 제품별 sandbox와 권한 설정에 따라 달라진다."
+    },
+    {
+      "id": 7,
+      "claim": "Hermes Agent v0.20.0의 release date는 2026-08-03이며 기준일 현재 최신 태그로 표시됐다.",
+      "url": "https://github.com/NousResearch/hermes-agent/releases",
+      "sourceType": "official release page",
+      "publishedAt": "2026-08-03",
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "왜 지금인가"
+      ],
+      "confidence": "high",
+      "caution": "main 브랜치는 최신 태그보다 앞설 수 있고 설치 채널별 배포 시점이 다를 수 있다."
+    },
+    {
+      "id": 8,
+      "claim": "OpenAI Agents SDK는 guardrails, human-in-the-loop, tracing을 agent workflow의 공식 기능으로 제공한다.",
+      "url": "https://openai.github.io/openai-agents-python/",
+      "sourceType": "official SDK documentation",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-10",
+      "usedIn": [
+        "메모리 vs 스킬",
+        "팀 운영"
+      ],
+      "confidence": "high",
+      "caution": "스킬과 승인형 workflow의 구분은 이 글의 운영 해석이며 SDK가 동일 분류표를 제시하는 것은 아니다."
+    }
+  ]
+}
