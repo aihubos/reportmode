@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "1.0",
+  "reportId": "rh-260810-49-ai-optimism-human-verification",
+  "checkedAt": "2026-08-10",
+  "sources": [
+    {
+      "id": "src-01",
+      "claim": "2026 AI Index는 frontier models가 Humanity’s Last Exam에서 1년 새 30 percentage points 상승했고 benchmark 포화가 빨라졌다고 정리한다.",
+      "url": "https://hai.stanford.edu/ai-index/2026-ai-index-report/technical-performance",
+      "sourceType": "research index / authoritative secondary",
+      "publishedAt": "2026",
+      "checkedAt": "2026-08-10",
+      "usedIn": [
+        "Hero",
+        "1분 요약",
+        "사실과 전망"
+      ],
+      "reliability": "high",
+      "caution": "benchmark 성능이 모든 실제 업무 성능을 뜻하지 않는다."
+    },
+    {
+      "id": "src-02",
+      "claim": "2026 AI Index가 소개한 한 accuracy benchmark에서 26개 상위 모델의 hallucination rate가 22%에서 94% 범위였다.",
+      "url": "https://hai.stanford.edu/ai-index/2026-ai-index-report/responsible-ai",
+      "sourceType": "research index / authoritative secondary",
+      "publishedAt": "2026",
+      "checkedAt": "2026-08-10",
+      "usedIn": [
+        "Hero",
+        "1분 요약",
+        "리스크"
+      ],
+      "reliability": "high",
+      "caution": "특정 benchmark 결과이며 일반적인 모델 오류율로 해석하면 안 된다."
+    },
+    {
+      "id": "src-03",
+      "claim": "METR Time Horizon 1.1의 hybrid fit은 frontier P50 time horizon 배증을 약 196.5일로 추정한다.",
+      "url": "https://metr.org/blog/2026-1-29-time-horizon-1-1/",
+      "sourceType": "primary research",
+      "publishedAt": "2026-01-29",
+      "checkedAt": "2026-08-10",
+      "usedIn": [
+        "Hero",
+        "1분 요약",
+        "사실과 전망"
+      ],
+      "reliability": "high",
+      "caution": "228개 task suite와 50% success probability 기반이며 실제 자율 실행 시간과 같은 개념이 아니다."
+    },
+    {
+      "id": "src-04",
+      "claim": "NIST AI 600-1은 confabulation과 human-AI configuration risk를 정의하고, 위험에 비례한 독립 평가와 인간 감독 역할 문서화를 제안한다.",
+      "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf",
+      "sourceType": "government standard guidance",
+      "publishedAt": "2024-07-26",
+      "checkedAt": "2026-08-10",
+      "usedIn": [
+        "검수 실험실",
+        "리스크"
+      ],
+      "reliability": "very high",
+      "caution": "자발적 위험관리 지침이며 모든 산업에 동일한 의무를 부과하는 법은 아니다."
+    },
+    {
+      "id": "src-05",
+      "claim": "OpenAI 연구는 언어모델의 환각이 불확실할 때 추측을 보상하는 학습·평가 구조 때문에 지속될 수 있다고 주장한다.",
+      "url": "https://openai.com/index/why-language-models-hallucinate/",
+      "sourceType": "primary research / company research",
+      "publishedAt": "2025-09-05",
+      "checkedAt": "2026-08-10",
+      "usedIn": [
+        "원인 진단"
+      ],
+      "reliability": "high",
+      "caution": "환각의 원인에 대한 연구자들의 설명이며 단일 요인으로 모든 오류를 설명하지 않는다."
+    },
+    {
+      "id": "local-01",
+      "claim": "“AI티가 많이 나네” 업무 장면, Raw Data·Reference 부족 진단, “검수는 꼭 사용자가 한다” 문장, 수정 전후 표현 예시는 JeremySoul.md에서 가져왔다.",
+      "url": "local://project/JeremySoul.md",
+      "sourceType": "user-provided primary personal record",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "usedIn": [
+        "문체",
+        "실망한 장면",
+        "실패→수정 사례",
+        "결론"
+      ],
+      "reliability": "high for personal voice and anecdote",
+      "caution": "예시 숫자는 시장 사실 검증 자료가 아니므로 외부 사실 주장에 사용하지 않았다."
+    }
+  ]
+}

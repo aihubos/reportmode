@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "rh-260810-34-group-chat-ai-mention-only-safety",
+  "title": "단체방 AI가 @멘션에만 답하게 만든 이유: 침묵도 보안이다",
+  "seoTitle": "단체방 AI 멘션 응답 보안 설정 7가지",
+  "alternativeTitles": [
+    "단체방 AI는 왜 조용해야 할까: @멘션 기반 응답 설계",
+    "친구방 AI를 멘션 전용으로 바꾼 뒤 달라진 것",
+    "DM은 기억하고 단체방은 잊게 만든 이유"
+  ],
+  "slug": "group-chat-ai-mention-only-safety",
+  "folder": "260810-34-group-chat-ai-mention-only-safety-v1-0-0",
+  "version": "1.0.0",
+  "status": "Published",
+  "summary": "여러 사람과 봇이 섞인 공개 채널에서 AI가 멘션에만 반응하도록 한 이유를 요청자 식별, DM·단체방 권한 분리, 개인 위키 차단, 최소 권한, 승인과 로그 관점에서 정리한 실전 운영 가이드.",
+  "hook": "AI가 말을 잘하는 것보다, 누구의 요청인지 확인하고 조용히 있을 줄 아는 능력이 먼저였다.",
+  "oneSentenceConclusion": "단체방 AI의 안전은 모델 성능보다 호출 조건, 데이터 경계, 실행 권한을 얼마나 좁게 잡았는지에서 결정된다.",
+  "thumbnailCopy": {
+    "main": "멘션 없으면 대답하지 마",
+    "sub": "침묵도 보안이다"
+  },
+  "socialCopy": [
+    "단체방 AI를 붙이고 가장 먼저 만든 기능은 답변이 아니었다. @멘션이 없으면 조용히 있는 규칙이었다. 호출 조건·개인 위키 차단·승인 구조를 정리했다. #AI에이전트 #보안",
+    "AI가 모든 대화를 읽고 끼어들수록 똑똑해지는 걸까? 공개 채널에서는 오히려 호출 조건과 권한 경계가 먼저다. 단체방 AI 운영 규칙 7가지. #단체방AI #최소권한"
+  ],
+  "keywords": [
+    "단체방 AI",
+    "AI 에이전트 보안",
+    "멘션 기반 응답",
+    "최소 권한",
+    "개인 위키",
+    "Telegram Bot",
+    "Slack app_mention"
+  ],
+  "category": "AI",
+  "createdAt": "2026-08-10",
+  "updatedAt": "2026-08-10",
+  "canonical": "https://aihubos.github.io/reportmode/reports/260810-34-group-chat-ai-mention-only-safety-v1-0-0/",
+  "thumbnail": "assets/thumbnail.png",
+  "topicScore": 87,
+  "topicScoreBreakdown": {
+    "freshness": 14,
+    "searchIntent": 13,
+    "socialShareability": 14,
+    "practicalUtility": 15,
+    "koreaRelevance": 12,
+    "evidenceStrength": 9,
+    "visualFit": 10
+  },
+  "assumptions": [
+    "순번 34는 사용자가 제시한 주제 번호를 일일 폴더 순번으로 사용했다.",
+    "단체방은 여러 비소유자가 참여하는 Telegram·Slack 유사 공개/공유 채널로 정의했다.",
+    "개인 위키·일정의 실제 내용과 Credential은 제공받지 않았으며 보고서에 재현하지 않았다.",
+    "플랫폼별 구체 구현은 다르므로 권한표와 설정 예시는 벤더 중립 운영 원칙으로 작성했다.",
+    "GitHub push와 외부 블로그 발행은 수행하지 않았고 산출물 상태를 Draft로 두었다."
+  ],
+  "generation": "AI-assisted",
+  "reviewStatus": "Published"
+}

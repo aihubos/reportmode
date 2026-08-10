@@ -1,0 +1,126 @@
+{
+  "schemaVersion": "1.0",
+  "reportId": "260810-13-rag-vs-llm-wiki-operations",
+  "verifiedAt": "2026-08-10",
+  "sources": [
+    {
+      "id": 1,
+      "claim": "LLM Wiki는 원문과 사용자 사이에 영속적·상호연결된 Markdown Wiki를 두고, 새 source를 기존 page·index·log에 통합하는 운영 패턴이다.",
+      "url": "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f",
+      "sourceType": "1차 원문 / 공식 아이디어 파일",
+      "publishedAt": "2026-04-04",
+      "verifiedAt": "2026-08-10",
+      "sections": [
+        "Hero",
+        "쉬운 비유",
+        "결정 page",
+        "인수인계",
+        "Hybrid",
+        "FAQ"
+      ],
+      "confidence": "높음",
+      "caution": "구체 구현 표준이나 제품 사양이 아니라 추상적 패턴임."
+    },
+    {
+      "id": 2,
+      "claim": "RAG는 생성 모델의 파라미터 메모리와 외부 비정형 메모리를 검색으로 결합한다.",
+      "url": "https://arxiv.org/abs/2005.11401",
+      "sourceType": "연구 논문 / 원 RAG 논문",
+      "publishedAt": "2020-05-22",
+      "verifiedAt": "2026-08-10",
+      "sections": [
+        "1분 요약",
+        "쉬운 비유",
+        "비교표"
+      ],
+      "confidence": "높음",
+      "caution": "2020년 원형 RAG 정의이며 현대의 다양한 RAG 확장 전체를 대표하지 않음."
+    },
+    {
+      "id": 3,
+      "claim": "LLM Wiki compilation은 중요한 사실을 누락할 수 있으며 반복 평가·수정이 필요하다.",
+      "url": "https://arxiv.org/abs/2605.07068",
+      "sourceType": "연구 preprint",
+      "publishedAt": "2026-05-08",
+      "verifiedAt": "2026-08-10",
+      "sections": [
+        "Hybrid",
+        "리스크",
+        "FAQ"
+      ],
+      "confidence": "중간",
+      "caution": "초기 preprint이며 특정 benchmark·설정의 결과. 독립 재현과 peer review 필요."
+    },
+    {
+      "id": 4,
+      "claim": "구조화된 Wiki page와 link-following을 사용하는 agent-native retrieval이 multi-hop benchmark에서 일부 기존 baseline보다 높은 결과를 보였다.",
+      "url": "https://arxiv.org/abs/2605.25480",
+      "sourceType": "연구 preprint",
+      "publishedAt": "2026-05-25",
+      "verifiedAt": "2026-08-10",
+      "sections": [
+        "리스크",
+        "FAQ"
+      ],
+      "confidence": "중간",
+      "caution": "저자 보고 결과이며 초기 preprint. 모든 corpus·언어·업무에 일반화하지 않음."
+    },
+    {
+      "id": 5,
+      "claim": "결정 과정의 dead end와 철회된 주장을 append-only Wiki에 보존하면 후속 협업자가 실패를 반복하는 문제를 줄이는 데 도움이 될 수 있다.",
+      "url": "https://arxiv.org/abs/2607.24759",
+      "sourceType": "연구 preprint / 사례 보고",
+      "publishedAt": "2026-05-29",
+      "verifiedAt": "2026-08-10",
+      "sections": [
+        "결정 page",
+        "리스크"
+      ],
+      "confidence": "중간",
+      "caution": "소수 사례와 설계 보고 중심의 초기 preprint."
+    },
+    {
+      "id": 6,
+      "claim": "Wiki page history는 특정 revision을 열고 이전·현재 버전을 비교할 수 있다.",
+      "url": "https://www.mediawiki.org/wiki/Help:History",
+      "sourceType": "공식 제품 문서",
+      "publishedAt": "living-document",
+      "verifiedAt": "2026-08-10",
+      "sections": [
+        "실제 변경 이력"
+      ],
+      "confidence": "높음",
+      "caution": "MediaWiki 기능 설명이며 모든 Wiki 구현이 같은 UI를 제공하는 것은 아님."
+    },
+    {
+      "id": 7,
+      "claim": "버전 관리는 파일 변경을 기록해 특정 버전 복원, 변경 비교, 문제 도입 시점 추적을 가능하게 한다.",
+      "url": "https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control",
+      "sourceType": "공식 기술 문서",
+      "publishedAt": "living-document",
+      "verifiedAt": "2026-08-10",
+      "sections": [
+        "실제 변경 이력",
+        "도입 가이드"
+      ],
+      "confidence": "높음",
+      "caution": "Git 일반 기능 설명이며 LLM Wiki에 Git 사용이 필수라는 뜻은 아님."
+    },
+    {
+      "id": 8,
+      "claim": "사용자는 Obsidian·OpenClaw·LLM Wiki를 연결해 개인 지식 온톨로지를 실험했고, 저장보다 연결과 재사용을 핵심 문제로 경험했다.",
+      "url": "https://blog.naver.com/jeremylee0213/224272712507",
+      "sourceType": "사용자 제공 1차 경험 자료",
+      "publishedAt": "2026-05-02",
+      "verifiedAt": "2026-08-10",
+      "sections": [
+        "운영 문제",
+        "결정 page",
+        "인수인계",
+        "변경 이력"
+      ],
+      "confidence": "높음(경험 진술)",
+      "caution": "일반 성능 검증이 아니라 개인 운영 경험."
+    }
+  ]
+}

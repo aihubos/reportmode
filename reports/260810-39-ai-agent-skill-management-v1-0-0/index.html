@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hermes를 운영하며 같은 오류를 세션마다 반복한 문제를 메모리와 스킬의 차이, 좋은 SKILL.md 구성, 낡은 지침 수정법, 스킬 남발 방지 기준과 실전 템플릿으로 정리했다.">
+  <meta name="author" content="Jeremy Lee">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="canonical" href="https://aihubos.github.io/reportmode/reports/260810-39-ai-agent-skill-management-v1-0-0/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="AI 에이전트 스킬 관리법: 반복 실수 줄이는 SKILL.md 템플릿">
+  <meta property="og:description" content="Hermes를 운영하며 같은 오류를 세션마다 반복한 문제를 메모리와 스킬의 차이, 좋은 SKILL.md 구성, 낡은 지침 수정법, 스킬 남발 방지 기준과 실전 템플릿으로 정리했다.">
+  <meta property="og:url" content="https://aihubos.github.io/reportmode/reports/260810-39-ai-agent-skill-management-v1-0-0/">
+  <meta property="og:image" content="https://aihubos.github.io/reportmode/reports/260810-39-ai-agent-skill-management-v1-0-0/assets/thumbnail.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="같은 실수를 반복하는 AI 에이전트의 메모리, 스킬, 검증 루프를 표현한 Report Hub 썸네일">
+  <meta property="article:published_time" content="2026-08-10T20:00:00+09:00">
+  <meta property="article:modified_time" content="2026-08-10T20:00:00+09:00">
+  <meta property="article:author" content="Jeremy Lee">
+  <meta property="article:section" content="AI">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI 에이전트 스킬 관리법: 반복 실수 줄이는 SKILL.md 템플릿">
+  <meta name="twitter:description" content="Hermes를 운영하며 같은 오류를 세션마다 반복한 문제를 메모리와 스킬의 차이, 좋은 SKILL.md 구성, 낡은 지침 수정법, 스킬 남발 방지 기준과 실전 템플릿으로 정리했다.">
+  <meta name="twitter:image" content="https://aihubos.github.io/reportmode/reports/260810-39-ai-agent-skill-management-v1-0-0/assets/thumbnail.png">
+  <title>AI 에이전트 스킬 관리법: 반복 실수 줄이는 SKILL.md 템플릿 | Report Hub</title>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"AI 에이전트가 같은 실수를 반복한다면, 메모리보다 ‘스킬’부터 고쳐야 한다",
+    "description":"Hermes를 운영하며 같은 오류를 세션마다 반복한 문제를 메모리와 스킬의 차이, 좋은 SKILL.md 구성, 낡은 지침 수정법, 스킬 남발 방지 기준과 실전 템플릿으로 정리했다.",
+    "image":["https://aihubos.github.io/reportmode/reports/260810-39-ai-agent-skill-management-v1-0-0/assets/thumbnail.png"],
+    "datePublished":"2026-08-10T20:00:00+09:00",
+    "dateModified":"2026-08-10T20:00:00+09:00",
+    "author":{"@type":"Person","name":"Jeremy Lee"},
+    "publisher":{"@type":"Organization","name":"Report Hub","url":"https://aihubos.github.io/reportmode/"},
+    "mainEntityOfPage":{"@type":"WebPage","@id":"https://aihubos.github.io/reportmode/reports/260810-39-ai-agent-skill-management-v1-0-0/"},
+    "keywords":["AI 에이전트","Agent Skills","Hermes Agent","SKILL.md","AI 메모리","에이전트 자동화","AI 워크플로","검증"],
+    "articleSection":"AI",
+    "inLanguage":"ko-KR"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Report Hub","item":"https://aihubos.github.io/reportmode/"},
+      {"@type":"ListItem","position":2,"name":"AI Reports","item":"https://aihubos.github.io/reportmode/archive/"},
+      {"@type":"ListItem","position":3,"name":"AI 에이전트가 같은 실수를 반복한다면, 메모리보다 ‘스킬’부터 고쳐야 한다","item":"https://aihubos.github.io/reportmode/reports/260810-39-ai-agent-skill-management-v1-0-0/"}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"메모리와 스킬의 가장 큰 차이는 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"메모리는 사용자 사실과 취향처럼 무엇을 아는지에 가깝고, 스킬은 특정 일을 어떤 순서와 기준으로 수행할지에 관한 절차 지식에 가깝습니다."}},
+      {"@type":"Question","name":"반복 프롬프트는 모두 스킬로 만들어야 하나요?","acceptedAnswer":{"@type":"Answer","text":"아닙니다. 반복 가능성, 단계 수, 실패 비용, 검증 필요성이 충분할 때만 스킬로 만들고 단순한 선호나 일회성 요청은 메모리 또는 템플릿으로 남기는 편이 낫습니다."}},
+      {"@type":"Question","name":"스킬이 오래되면 어떻게 관리하나요?","acceptedAnswer":{"@type":"Answer","text":"사용 중 발견한 실패를 해당 단계, 함정, 검증 규칙에 즉시 패치하고 새 세션에서 다시 시험합니다. 변경 이력과 마지막 검증일도 함께 기록합니다."}}
+    ]
+  }
+  </script>
+  <style>
+    :root{
+      --blue:#3182f6;--blue-strong:#1b64da;--blue-soft:#e8f3ff;--ink:#191f28;--ink-2:#333d4b;
+      --muted:#6b7684;--muted-2:#8b95a1;--line:#e5e8eb;--surface:#f7f8fa;--surface-2:#f2f4f6;
+      --white:#fff;--lime:#dfff6a;--yellow:#fff8ce;--mint:#dffbf2;--violet:#eee9ff;
+      --shadow-sm:0 8px 30px rgba(25,31,40,.06);--shadow-md:0 24px 70px rgba(25,31,40,.11);
+      --radius-sm:18px;--radius-md:28px;--radius-lg:40px;--max:1180px;
+      --hero-min:36px;--hero-fluid:4.4vw;--hero-max:55px;--section-min:28px;--section-fluid:3.3vw;--section-max:41px;
+    }
+    *{box-sizing:border-box}html{scroll-behavior:smooth}html,body{max-width:100%;overflow-x:hidden}
+    body{margin:0;color:var(--ink);background:radial-gradient(circle at 86% 7%,rgba(49,130,246,.10),transparent 26rem),radial-gradient(circle at 8% 20%,rgba(223,255,106,.11),transparent 25rem),#fff;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Segoe UI",sans-serif;line-height:1.68;letter-spacing:-.022em}
+    a{color:inherit;text-decoration:none}button,input{font:inherit}img,svg{display:block;max-width:100%}h1,h2,h3,p{margin-top:0}strong{color:var(--ink)}
+    :focus-visible{outline:3px solid rgba(49,130,246,.35);outline-offset:3px;border-radius:8px}
+    .skip-link{position:fixed;left:12px;top:-80px;z-index:3000;padding:10px 14px;border-radius:10px;color:#fff;background:var(--ink);font-weight:850}.skip-link:focus{top:12px}
+    .scroll-progress{position:fixed;inset:0 auto auto 0;width:0;height:3px;background:linear-gradient(90deg,var(--blue),#6aa7ff);z-index:1200;transition:width .08s linear}
+    .container{width:min(var(--max),calc(100% - 40px));margin:0 auto;min-width:0}.nav-wrap{position:sticky;top:0;z-index:1000;padding:14px 22px 0}
+    .nav{max-width:1240px;margin:0 auto;min-height:62px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 12px 10px 18px;border:1px solid rgba(229,232,235,.86);border-radius:22px;background:rgba(255,255,255,.82);backdrop-filter:blur(18px) saturate(160%);box-shadow:0 10px 34px rgba(25,31,40,.05)}
+    .brand{display:flex;align-items:center;gap:11px;min-width:max-content;font-size:14px;font-weight:850}.brand-mark{width:36px;height:36px;display:grid;place-items:center;border-radius:12px;color:#fff;background:linear-gradient(145deg,#5ca2ff,var(--blue-strong));box-shadow:0 8px 20px rgba(49,130,246,.28)}.brand-mark svg{width:20px}.brand-sub{color:var(--muted-2);font-weight:750}
+    .nav-links{display:flex;align-items:center;gap:5px;margin-left:auto}.nav-links a{padding:9px 12px;border-radius:12px;color:var(--muted);font-size:14px;font-weight:750;transition:.2s}.nav-links a:hover{color:var(--ink);background:var(--surface)}.nav-actions{display:flex;gap:8px}
+    .btn{appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:0 16px;border-radius:14px;font-size:14px;font-weight:850;letter-spacing:-.02em;transition:transform .2s,box-shadow .2s,background .2s}.btn:hover{transform:translateY(-1px)}.btn-primary{color:#fff;background:var(--blue);box-shadow:0 10px 24px rgba(49,130,246,.24)}.btn-primary:hover{background:var(--blue-strong)}.btn-ghost{color:var(--ink-2);background:var(--surface)}.btn-ghost:hover{background:var(--surface-2)}
+    .hero{min-height:830px;display:grid;grid-template-columns:1.04fr .96fr;align-items:center;gap:54px;padding:76px 0 64px}.hero-copy{min-width:0}.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 13px;margin-bottom:20px;border-radius:999px;color:var(--blue-strong);background:var(--blue-soft);font-size:14px;font-weight:850}.eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 5px rgba(49,130,246,.12)}
+    .blog-hook{display:inline-flex;padding:6px 10px;margin-bottom:14px;border-radius:8px;color:#415400;background:var(--lime);font-size:12px;font-weight:900;transform:rotate(-1deg)}
+    .hero h1{max-width:760px;margin-bottom:24px;font-size:clamp(var(--hero-min),var(--hero-fluid),var(--hero-max));line-height:1.10;letter-spacing:-.055em;font-weight:900;text-wrap:balance;word-break:keep-all}.blue{color:var(--blue)}.marker{position:relative;white-space:nowrap;z-index:0}.marker::after{content:"";position:absolute;left:-.03em;right:-.03em;bottom:.08em;height:.34em;border-radius:.12em;background:var(--lime);transform:rotate(-1.3deg);z-index:-1;opacity:.9}
+    .hero-lead{max-width:720px;margin-bottom:27px;color:var(--muted);font-size:clamp(18px,1.8vw,22px);line-height:1.64;font-weight:620}.hero-actions{display:flex;flex-wrap:wrap;gap:10px}.hero-note{margin-top:22px;display:flex;align-items:flex-start;gap:10px;color:var(--muted);font-size:14px;font-weight:650}.hero-note svg{width:19px;flex:0 0 auto;margin-top:2px;color:var(--blue)}
+    .report-meta{margin-top:18px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;color:var(--muted-2);font-size:12px;font-weight:800}.version-badge{display:inline-flex;align-items:center;min-height:28px;padding:0 10px;border-radius:999px;color:var(--blue-strong);background:var(--blue-soft);border:1px solid rgba(49,130,246,.16);font-variant-numeric:tabular-nums}.meta-sep{width:3px;height:3px;border-radius:50%;background:var(--line)}.keyword-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:17px}.keyword-chip{padding:7px 10px;border-radius:999px;color:var(--muted);background:var(--surface);border:1px solid var(--line);font-size:11px;font-weight:800}
+    .hero-visual{min-height:520px;display:grid;place-items:center;position:relative}.hero-orbit{position:absolute;width:480px;height:480px;border:1px dashed rgba(49,130,246,.20);border-radius:50%;animation:orbit 22s linear infinite}@keyframes orbit{to{transform:rotate(360deg)}}
+    .hero-media{width:min(100%,520px);position:relative;z-index:2;padding:14px;border:1px solid rgba(229,232,235,.94);border-radius:36px;background:rgba(255,255,255,.95);box-shadow:var(--shadow-md)}.hero-media img{width:100%;height:auto;border-radius:26px}.hero-metric-row{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:10px}.hero-metric{padding:14px;border:1px solid var(--line);border-radius:18px;background:var(--surface)}.hero-metric b{display:block;color:var(--blue-strong);font-size:17px;line-height:1.15;letter-spacing:-.04em}.hero-metric span{display:block;margin-top:6px;color:var(--muted);font-size:10px;line-height:1.45;font-weight:750}.hero-media figcaption{display:flex;justify-content:space-between;gap:12px;padding:12px 6px 2px;color:var(--muted-2);font-size:11px;font-weight:750}
+    .executive-strip{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:6px}.exec-card{padding:20px 22px;border:1px solid var(--line);border-radius:22px;background:#fff;box-shadow:var(--shadow-sm)}.exec-card b{display:inline-flex;margin-bottom:10px;padding:5px 8px;border-radius:999px;color:var(--blue-strong);background:var(--blue-soft);font-size:10px;font-weight:900}.exec-card:nth-child(2) b{color:#6c52cc;background:var(--violet)}.exec-card:nth-child(3) b{color:#517000;background:var(--lime)}.exec-card h3{margin-bottom:6px;font-size:18px;letter-spacing:-.035em}.exec-card p{margin:0;color:var(--muted);font-size:13px;font-weight:620}
+    section{padding:100px 0}.section-soft{background:var(--surface)}.section-blue{color:#fff;background:radial-gradient(circle at 15% 20%,rgba(255,255,255,.18),transparent 25rem),linear-gradient(145deg,#216ddc,#3182f6 58%,#5a9cff)}.section-kicker{margin-bottom:10px;color:var(--blue);font-size:14px;font-weight:900;letter-spacing:.02em}.section-blue .section-kicker{color:rgba(255,255,255,.74)}.section-title{max-width:940px;margin-bottom:18px;font-size:clamp(var(--section-min),var(--section-fluid),var(--section-max));line-height:1.20;letter-spacing:-.05em;font-weight:900;text-wrap:balance;word-break:keep-all}.section-desc{max-width:860px;margin-bottom:42px;color:var(--muted);font-size:19px;line-height:1.64;font-weight:600}.section-blue .section-desc{color:rgba(255,255,255,.80)}
+    .verdict-card{padding:34px;border-radius:34px;color:#fff;background:linear-gradient(145deg,#124fb5,#3182f6 60%,#6aa7ff);box-shadow:var(--shadow-md)}.verdict-card small{display:block;margin-bottom:10px;color:rgba(255,255,255,.72);font-size:11px;font-weight:900;letter-spacing:.08em}.verdict-card h3{margin-bottom:12px;color:#fff;font-size:30px;line-height:1.34;letter-spacing:-.045em}.verdict-card p{margin:0;color:rgba(255,255,255,.84);font-size:17px;font-weight:650}
+    .metric-board{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}.metric-tile{padding:22px;border:1px solid var(--line);border-radius:24px;background:#fff}.metric-tile span{display:block;margin-bottom:13px;color:var(--muted-2);font-size:10px;font-weight:900;letter-spacing:.06em}.metric-tile strong{display:block;color:var(--blue-strong);font-size:25px;line-height:1.05;letter-spacing:-.045em}.metric-tile p{margin:9px 0 0;color:var(--muted);font-size:12px;font-weight:650}.metric-tile a,.inline-source{color:var(--blue-strong);font-weight:850}
+    .story-grid{display:grid;grid-template-columns:.86fr 1.14fr;gap:22px;align-items:start}.story-card{padding:32px;border:1px solid var(--line);border-radius:32px;background:#fff;box-shadow:var(--shadow-sm)}.story-card h3{font-size:25px;letter-spacing:-.04em}.story-card p{color:var(--muted);font-size:17px;font-weight:610}.story-lines{display:grid;gap:13px}.story-line{padding:18px 20px;border-radius:18px;background:var(--surface);border:1px solid var(--line);font-size:15px;font-weight:750}.story-line strong{display:block;margin-bottom:4px;color:var(--blue-strong);font-size:11px;letter-spacing:.04em}.quote-card{padding:32px;border-radius:32px;color:#fff;background:linear-gradient(145deg,#216ddd,#3182f6)}.quote-card blockquote{margin:0;font-size:27px;line-height:1.48;letter-spacing:-.04em;font-weight:850}.quote-card p{margin:18px 0 0;color:rgba(255,255,255,.76);font-size:14px;font-weight:650}
+    .timeline{display:grid;gap:0;border:1px solid var(--line);border-radius:28px;overflow:hidden;background:#fff}.timeline-item{display:grid;grid-template-columns:140px 1fr;gap:24px;padding:24px 26px;border-bottom:1px solid var(--line)}.timeline-item:last-child{border-bottom:0}.timeline-date{color:var(--blue-strong);font-size:13px;font-weight:900}.timeline-copy h3{margin-bottom:6px;font-size:19px}.timeline-copy p{margin:0;color:var(--muted);font-size:14px;font-weight:620}
+    .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.compare-card{padding:30px;border-radius:var(--radius-md);border:1px solid var(--line);background:#fff}.compare-card.good{border-color:rgba(49,130,246,.25);background:linear-gradient(180deg,#fff,#f5f9ff)}.compare-label{display:inline-flex;padding:6px 10px;border-radius:999px;margin-bottom:18px;color:var(--muted);background:var(--surface-2);font-size:12px;font-weight:900}.compare-card.good .compare-label{color:var(--blue-strong);background:var(--blue-soft)}.compare-card h3{margin-bottom:12px;font-size:25px;letter-spacing:-.04em}.compare-card>p{color:var(--muted);font-size:16px;font-weight:600}.compare-list{display:grid;gap:12px;margin-top:20px}.compare-item{display:grid;grid-template-columns:24px 1fr;gap:10px;color:var(--ink-2);font-size:15px;font-weight:700}.compare-item b{width:24px;height:24px;display:grid;place-items:center;border-radius:50%;color:var(--muted-2);background:var(--surface-2);font-size:11px}.compare-card.good .compare-item b{color:var(--blue);background:var(--blue-soft)}
+    .table-shell,.history-table-wrap{width:100%;max-width:100%;min-width:0;overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-inline:contain;border:1px solid var(--line);border-radius:28px;background:#fff}.data-table{width:100%;min-width:940px;border-collapse:collapse;font-size:13px}.data-table th,.data-table td{padding:17px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}.data-table th{background:var(--surface);color:var(--muted);font-size:10px;font-weight:900;letter-spacing:.04em;white-space:nowrap}.data-table td{color:var(--ink-2);font-weight:650}.data-table tr:last-child td{border-bottom:0}.data-table td:first-child{min-width:145px;color:var(--ink);font-weight:900}.status-pill{display:inline-flex;padding:5px 8px;border-radius:999px;font-size:10px;font-weight:900;white-space:nowrap}.status-blue{color:var(--blue-strong);background:var(--blue-soft)}.status-gray{color:var(--muted);background:var(--surface-2)}.status-lime{color:#517000;background:var(--lime)}
+    .flow-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:13px}.flow-step{position:relative;min-height:250px;padding:22px;border-radius:24px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.20);backdrop-filter:blur(10px)}.flow-num{width:36px;height:36px;display:grid;place-items:center;margin-bottom:32px;border-radius:12px;color:var(--blue-strong);background:#fff;font-size:12px;font-weight:900}.flow-step h3{margin-bottom:10px;color:#fff;font-size:19px}.flow-step p{margin:0;color:rgba(255,255,255,.76);font-size:14px;font-weight:600}
+    .signal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.signal-card{min-height:220px;padding:26px;border:1px solid var(--line);border-radius:28px;background:#fff}.signal-card b{display:grid;place-items:center;width:38px;height:38px;margin-bottom:18px;border-radius:13px;color:var(--blue-strong);background:var(--blue-soft)}.signal-card h3{margin-bottom:8px;font-size:20px}.signal-card p{margin:0;color:var(--muted);font-size:14px;font-weight:620}.callout{display:flex;align-items:flex-start;gap:14px;margin-top:20px;padding:22px 24px;border-radius:22px;border:1px solid #f4e28e;color:#635300;background:var(--yellow);font-size:14px;font-weight:700}.callout strong{color:#4e4200}
+    .score-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:22px;align-items:start}.score-controls{padding:28px;border:1px solid var(--line);border-radius:28px;background:#fff;box-shadow:var(--shadow-sm)}.field{display:grid;gap:7px;margin-bottom:17px}.field label{color:var(--ink-2);font-size:13px;font-weight:850}.field input[type="number"],.field select{width:100%;min-height:48px;padding:0 14px;border:1px solid var(--line);border-radius:14px;color:var(--ink);background:var(--surface);font:inherit;font-weight:750}.field-check{display:flex;align-items:center;gap:10px;padding:13px 14px;border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--ink-2);font-size:13px;font-weight:800}.field-check input{width:19px;height:19px;accent-color:var(--blue)}.score-result{padding:34px;border-radius:32px;color:#fff;background:linear-gradient(145deg,#124fb5,#3182f6 60%,#6aa7ff);box-shadow:var(--shadow-md)}.score-result small{display:block;color:rgba(255,255,255,.72);font-size:11px;font-weight:900;letter-spacing:.08em}.score-number{display:flex;align-items:flex-end;gap:8px;margin:14px 0 18px}.score-number strong{color:#fff;font-size:72px;line-height:.9;letter-spacing:-.07em}.score-number span{padding-bottom:7px;color:rgba(255,255,255,.72);font-size:15px;font-weight:850}.score-result h3{color:#fff;font-size:28px;letter-spacing:-.04em}.score-result p{color:rgba(255,255,255,.82);font-size:15px;font-weight:620}.score-bar{height:10px;margin-top:22px;border-radius:999px;background:rgba(255,255,255,.22);overflow:hidden}.score-bar i{display:block;height:100%;width:0;border-radius:inherit;background:var(--lime);transition:width .2s}.score-note{margin-top:14px;color:var(--muted-2);font-size:11px;font-weight:650}
+    .code-shell{overflow:hidden;border:1px solid #1c2738;border-radius:30px;background:#101826;box-shadow:var(--shadow-md)}.code-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.09);color:#c7d4e8;background:#162033;font-size:12px;font-weight:850}.code-dots{display:flex;gap:6px}.code-dots i{width:9px;height:9px;border-radius:50%;background:#5d6d83}.copy-btn{border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:7px 10px;color:#fff;background:rgba(255,255,255,.08);cursor:pointer;font-size:11px;font-weight:850}.copy-btn:hover{background:rgba(255,255,255,.14)}pre{margin:0;max-height:760px;overflow:auto;padding:25px;color:#dce8f7;font:13px/1.7 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;white-space:pre}.template-grid{display:grid;grid-template-columns:.72fr 1.28fr;gap:22px;align-items:start}.template-points{display:grid;gap:12px}.template-point{padding:20px;border:1px solid var(--line);border-radius:20px;background:#fff}.template-point b{display:block;margin-bottom:7px;color:var(--blue-strong);font-size:12px}.template-point strong{display:block;margin-bottom:5px;font-size:17px}.template-point p{margin:0;color:var(--muted);font-size:13px;font-weight:620}
+    .impact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.impact-card{padding:24px;border:1px solid var(--line);border-radius:24px;background:#fff}.impact-card b{display:grid;place-items:center;width:42px;height:42px;margin-bottom:18px;border-radius:13px;color:var(--blue-strong);background:var(--blue-soft);font-size:12px}.impact-card h3{margin-bottom:8px;font-size:19px}.impact-card p{margin:0;color:var(--muted);font-size:13px;font-weight:620}
+    .plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.plan-card{padding:28px;border-radius:28px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.20)}.plan-card span{display:inline-grid;place-items:center;width:48px;height:48px;margin-bottom:24px;border-radius:14px;color:var(--blue-strong);background:#fff;font-size:12px;font-weight:900}.plan-card h3{color:#fff;font-size:23px}.plan-card p{color:rgba(255,255,255,.75);font-size:14px;font-weight:620}.plan-card ul{margin:15px 0 0;padding-left:19px;color:rgba(255,255,255,.90);font-size:13px;font-weight:700}
+    .correction-table{overflow:hidden;border:1px solid var(--line);border-radius:28px;background:#fff}.correction-row{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line)}.correction-row:last-child{border-bottom:0}.correction-cell{display:flex;align-items:flex-start;gap:12px;padding:24px;color:var(--ink-2);font-size:15px;font-weight:700}.correction-cell+.correction-cell{border-left:1px solid var(--line)}.correction-icon{width:29px;height:29px;flex:0 0 auto;display:grid;place-items:center;border-radius:50%;font-size:14px;font-weight:900}.wrong .correction-icon{color:#d45454;background:#fff0f0}.right .correction-icon{color:var(--blue);background:var(--blue-soft)}
+    .faq-list{display:grid;gap:12px}.faq-item{border:1px solid var(--line);border-radius:20px;background:#fff;overflow:hidden}.faq-item summary{cursor:pointer;padding:20px 22px;list-style:none;font-size:16px;font-weight:850}.faq-item summary::-webkit-details-marker{display:none}.faq-item summary::after{content:"+";float:right;color:var(--blue)}.faq-item[open] summary::after{content:"−"}.faq-answer{padding:0 22px 22px;color:var(--muted);font-size:14px;font-weight:620}
+    .sources{padding:78px 0 40px;border-top:1px solid var(--line);background:#fff}.source-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:26px}.source-head h2{margin-bottom:5px;font-size:28px;letter-spacing:-.04em}.source-head p{margin:0;color:var(--muted);font-size:14px;font-weight:650}.source-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.source-link{padding:18px;border-radius:18px;border:1px solid var(--line);background:var(--surface);transition:.2s}.source-link:hover{transform:translateY(-2px);border-color:rgba(49,130,246,.25);background:var(--blue-soft)}.source-link span{display:block;margin-bottom:6px;color:var(--muted-2);font-size:10px;font-weight:900;letter-spacing:.06em}.source-link strong{display:block;font-size:14px}.source-link small{display:block;margin-top:7px;color:var(--muted);font-size:11px;line-height:1.5;font-weight:620}.disclosure{margin-top:24px;padding:18px 20px;border:1px dashed var(--line);border-radius:18px;color:var(--muted);background:var(--surface);font-size:12px;font-weight:650}.footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:36px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted-2);font-size:12px;font-weight:650}
+    .report-history{margin-top:44px;padding-top:34px;border-top:1px solid var(--line)}.history-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:18px}.history-head h2{margin-bottom:4px;font-size:26px;letter-spacing:-.04em}.history-head p{margin:0;color:var(--muted);font-size:13px;font-weight:650}.history-table{width:100%;min-width:780px;border-collapse:collapse;font-size:13px}.history-table th,.history-table td{padding:15px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}.history-table tr:last-child td{border-bottom:0}.history-table th{color:var(--muted);background:var(--surface);font-size:11px;font-weight:900;letter-spacing:.03em;white-space:nowrap}.history-table td{color:var(--ink-2);font-weight:650}.history-table td:first-child{color:var(--blue-strong);font-weight:900;white-space:nowrap}.history-status{display:inline-flex;padding:5px 8px;border-radius:999px;color:var(--muted);background:var(--surface-2);font-size:11px;font-weight:850}.history-empty{padding:22px;color:var(--muted);text-align:center}
+    .floating-actions{position:fixed;right:22px;bottom:22px;z-index:800;display:grid;gap:10px}.float-btn{width:48px;height:48px;display:grid;place-items:center;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.92);box-shadow:var(--shadow-sm);cursor:pointer;color:var(--ink-2);backdrop-filter:blur(12px);transition:.2s}.float-btn:hover{transform:translateY(-2px);color:var(--blue);border-color:rgba(49,130,246,.25)}.float-btn svg{width:20px}.reveal{opacity:0;transform:translateY(20px);transition:opacity .65s,transform .65s}.reveal.visible{opacity:1;transform:none}
+    @media(max-width:1040px){.nav-links{display:none}.hero{grid-template-columns:minmax(0,1fr);min-height:auto;padding-top:62px}.hero-copy{text-align:center}.hero-lead{margin-left:auto;margin-right:auto}.hero-actions,.report-meta,.hero-note,.keyword-chips{justify-content:center}.hero-note{text-align:left}.hero-visual{min-height:520px}.executive-strip{grid-column:1}.metric-board,.impact-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.story-grid,.score-layout,.template-grid{grid-template-columns:1fr}.signal-grid{grid-template-columns:repeat(2,1fr)}.flow-grid{grid-template-columns:repeat(2,1fr)}.source-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:720px){main{overflow-x:hidden}.marker{white-space:normal}pre{white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word}pre code{white-space:inherit;display:block;max-width:100%}.container{width:min(100% - 28px,var(--max))}.nav-wrap{padding:9px 10px 0}.nav{min-height:56px;padding-left:12px;border-radius:18px}.brand-sub,.nav-actions .btn-ghost{display:none}.btn{min-height:40px;padding:0 13px}.hero{gap:30px;padding:56px 0 42px}.hero-copy,.hero-visual,.executive-strip{width:100%;min-width:0}.hero h1{max-width:100%;font-size:clamp(32px,9.5vw,38px);overflow-wrap:normal;word-break:keep-all}.hero-lead{font-size:18px}.hero-visual{min-height:auto}.hero-orbit{display:none}.hero-media{width:100%;max-width:520px;margin-inline:auto;padding:10px;border-radius:26px}.hero-metric-row,.executive-strip,.metric-board,.signal-grid,.impact-grid,.plan-grid,.flow-grid,.compare-grid{grid-template-columns:minmax(0,1fr)}section{padding:80px 0}.section-title{font-size:32px}.section-desc{margin-bottom:34px;font-size:17px}.verdict-card{padding:26px}.verdict-card h3{font-size:25px}.timeline-item{grid-template-columns:1fr;gap:7px}.data-table{min-width:880px}.correction-row{grid-template-columns:1fr}.correction-cell+.correction-cell{border-left:0;border-top:1px solid var(--line)}.source-grid{grid-template-columns:1fr}.source-head,.footer-bottom,.history-head{align-items:flex-start;flex-direction:column}.floating-actions{right:12px;bottom:12px}.score-number strong{font-size:62px}.code-shell{border-radius:22px}pre{padding:20px;font-size:12px}.template-point{padding:18px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+    @media print{@page{size:A4;margin:12mm}body{background:#fff!important;color:#000}.nav-wrap,.floating-actions,.scroll-progress,.hero-actions,.copy-btn{display:none!important}.container{width:100%;max-width:none}.hero{min-height:auto;grid-template-columns:1fr 1fr;padding:8mm 0 14mm}.hero-orbit{display:none}section{padding:14mm 0;break-inside:avoid}.section-blue{background:#fff!important;color:#000!important;border-top:2px solid var(--blue);border-bottom:2px solid var(--blue)}.section-blue .section-desc,.flow-step p,.plan-card p,.plan-card ul{color:#333!important}.flow-step,.plan-card,.quote-card,.verdict-card,.score-result{border:1px solid #ccc;background:#f4f6f8!important;color:#000!important;box-shadow:none}.flow-step h3,.plan-card h3,.quote-card blockquote,.verdict-card h3,.score-result h3,.score-number strong{color:#000!important}.hero-media,.exec-card,.story-card,.metric-tile,.signal-card{box-shadow:none}.reveal{opacity:1!important;transform:none!important}.history-table{min-width:0;font-size:9px}.table-shell,.history-table-wrap{overflow:visible}.data-table{min-width:0;font-size:8px}a{text-decoration:none}}
+  </style>
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260810-mobile-scroll1">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png?v=20260810-mobile-scroll1">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png?v=20260810-mobile-scroll1">
+  <link rel="manifest" href="../../site.webmanifest?v=20260810-mobile-scroll1">
+  <meta name="application-name" content="Report Hub">
+  <meta property="og:site_name" content="Report Hub">
+  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260810-mobile-scroll1">
+  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260810-mobile-scroll1">
+  <link rel="stylesheet" href="../../assets/report-comments.css?v=20260809-comments1">
+</head>
+<body data-report-view="detail" data-report-layout="wide">
+  <a class="report-home-button" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span></a>
+  <a class="skip-link" href="#main-content">본문으로 바로가기</a>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <div class="nav-wrap">
+    <nav class="nav" aria-label="주요 메뉴">
+      <a class="brand report-hub-brand-link" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span></a>
+      <div class="nav-links"><a href="#summary">1분 요약</a><a href="#problem">반복 오류</a><a href="#difference">메모리 vs 스킬</a><a href="#anatomy">좋은 스킬</a><a href="#template">템플릿</a><a href="#sources">출처</a></div>
+      <div class="nav-actions"><a class="btn btn-ghost" href="#history">변경 이력</a><button class="btn btn-primary" type="button" onclick="window.print()">PDF 저장</button></div>
+    </nav>
+  </div>
+
+  <main id="main-content">
+    <div class="container" id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span class="eyebrow-dot"></span>AI 에이전트 운영 · 자료 기준 2026.08.10</div>
+          <div class="blog-hook">어제 고친 오류를 오늘 또 틀렸다면?</div>
+          <h1 id="hero-title">AI 에이전트가 같은 실수를 반복한다면, <span class="blue">메모리보다 ‘스킬’</span>부터 고쳐야 한다</h1>
+          <p class="hero-lead">AI 에이전트를 오래 쓰면 알아서 점점 똑똑해질 줄 알았습니다. 그런데 새 세션이 열릴 때마다 같은 오류가 돌아왔고, 그때부터 기억보다 실행 절차를 남기기 시작했습니다.</p>
+          <div class="hero-actions"><a class="btn btn-primary" href="#summary">1분 요약 보기</a><a class="btn btn-ghost" href="#template">SKILL.md 템플릿</a></div>
+          <div class="hero-note"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 20 6v5.7c0 4.6-3.2 7.6-8 9.3-4.8-1.7-8-4.7-8-9.3V6z" stroke="currentColor" stroke-width="1.8"/><path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Hermes·Agent Skills·OpenAI·Anthropic 공식 문서를 기준으로 현재 구조를 확인했습니다. 이 글의 운영 규칙과 점수표는 제 실사용 방식이며 제품의 공식 보증은 아닙니다.</span></div>
+          <div class="report-meta"><span class="version-badge" id="reportVersion">v1.0.0</span><span class="meta-sep"></span><span id="reportUpdated">Updated 2026.08.10</span><span class="meta-sep"></span><span id="reportGeneration">AI-assisted · Published</span></div>
+          <div class="keyword-chips" aria-label="핵심 키워드"><span class="keyword-chip">Hermes Agent</span><span class="keyword-chip">Agent Skills</span><span class="keyword-chip">SKILL.md</span><span class="keyword-chip">Procedural Memory</span><span class="keyword-chip">검증 루프</span></div>
+        </div>
+        <div class="hero-visual reveal">
+          <div class="hero-orbit" aria-hidden="true"></div>
+          <figure class="hero-media">
+            <img src="assets/thumbnail.png" width="1200" height="630" alt="같은 실수를 반복하는 AI 에이전트의 메모리, 스킬, 검증 루프를 표현한 Report Hub 썸네일">
+            <div class="hero-metric-row">
+              <div class="hero-metric"><b>MEMORY</b><span>무엇을 알고 있는가</span></div>
+              <div class="hero-metric"><b>SKILL</b><span>어떤 순서로 하는가</span></div>
+              <div class="hero-metric"><b>VERIFY</b><span>정말 끝났는가</span></div>
+            </div>
+            <figcaption><span>대화 기억 → 실행 절차 → 검증</span><span>Report Hub</span></figcaption>
+          </figure>
+        </div>
+        <div class="executive-strip" aria-label="핵심 요약">
+          <article class="exec-card reveal"><b>PROBLEM</b><h3>세션이 바뀌면 교정도 사라졌다</h3><p>한 번 잘한 경험이 다음 실행의 절차로 고정되지 않으면, 같은 설명과 같은 수정이 다시 필요했습니다.</p></article>
+          <article class="exec-card reveal"><b>TURNING POINT</b><h3>사실은 메모리, 방법은 스킬</h3><p>취향과 배경은 기억에, 명령·단계·실패 조건·검증은 별도의 실행 문서에 나눠 남겼습니다.</p></article>
+          <article class="exec-card reveal"><b>VERDICT</b><h3>실패한 순간이 업데이트 타이밍</h3><p>좋은 스킬은 완성본이 아니라, 실제 사용 중 틀린 단계를 바로 고치는 살아 있는 매뉴얼입니다.</p></article>
+        </div>
+      </section>
+    </div>
+
+    <section class="section-soft" id="summary">
+      <div class="container">
+        <div class="section-kicker reveal">ONE-MINUTE BRIEF</div>
+        <h2 class="section-title reveal">에이전트의 경험은 대화에 남기면 추억이고, <span class="blue">스킬에 남기면 다음 실행</span>이 됩니다</h2>
+        <p class="section-desc reveal">안녕하세요, 비서조련사 제레미입니다. AI도 어제 배운 걸 오늘 또 까먹습니다. 사람 같아서 반갑지는 않았습니다 ㅎㅎ</p>
+        <div class="verdict-card reveal"><small>JEREMY'S VERDICT</small><h3>메모리를 더 많이 넣는다고 반복 실수가 자동으로 줄어들지는 않았습니다. 실행 순서와 검증 기준이 적힌 스킬이 있어야 어제의 시행착오가 오늘의 능력이 됩니다.</h3><p>Hermes 공식 가이드도 메모리를 ‘무엇을 아는가’, 스킬을 ‘어떻게 하는가’에 가까운 절차 지식으로 구분합니다. <a class="inline-source" href="#src-02">[출처 2]</a></p></div>
+        <div class="metric-board">
+          <article class="metric-tile reveal"><span>MEMORY</span><strong>사실·취향</strong><p>사용자 정보와 짧은 지속 사실. 매 세션에 들어갈 만큼 간결해야 합니다.</p></article>
+          <article class="metric-tile reveal"><span>SKILL</span><strong>절차·검증</strong><p>단계, 명령, 실패 모드, 완료 조건을 필요할 때만 불러옵니다. <a href="#src-02">[출처 2]</a></p></article>
+          <article class="metric-tile reveal"><span>FORMAT</span><strong>SKILL.md</strong><p>이름과 설명이 필수이며, 스크립트·레퍼런스·자산을 함께 묶을 수 있습니다. <a href="#src-04">[출처 4]</a></p></article>
+          <article class="metric-tile reveal"><span>UPDATE</span><strong>실패 직후</strong><p>같은 수정을 두 번 설명하기 전에, 틀린 단계와 검증 규칙부터 패치합니다.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="problem">
+      <div class="container">
+        <div class="section-kicker reveal">THE REPEATED MISTAKE</div>
+        <h2 class="section-title reveal">한 세션 안에서는 잘했는데, <span class="marker">새 대화가 열리면 다시 처음</span>이었습니다</h2>
+        <p class="section-desc reveal">처음에는 제가 설명을 덜 했다고 생각했습니다. 그래서 메모리를 더 넣고, 긴 프롬프트도 붙였습니다. 그런데 문제는 정보량이 아니라 실행 순서가 고정되지 않은 데 있었습니다.</p>
+        <div class="story-grid">
+          <article class="story-card reveal">
+            <h3>제가 반복해서 겪은 흐름</h3>
+            <p>어제는 잘 끝냈습니다. 중간에 오류가 났지만 원인을 찾았고, 마지막에는 결과도 검수했습니다.</p>
+            <div class="story-lines">
+              <div class="story-line"><strong>SESSION A</strong>오류 발견 → 원인 수정 → 결과 확인</div>
+              <div class="story-line"><strong>SESSION B</strong>같은 작업 요청 → 같은 단계 누락 → 같은 오류</div>
+              <div class="story-line"><strong>MY RESPONSE</strong>“어제 이거 고쳤잖아”를 다시 설명</div>
+              <div class="story-line"><strong>REAL PROBLEM</strong>고친 내용이 다음 실행의 규칙으로 남지 않음</div>
+            </div>
+          </article>
+          <article class="quote-card reveal">
+            <blockquote>대화가 길어졌다고 경험이 쌓인 것은 아니었습니다. 다음 세션이 읽고 따라 할 수 있는 형태로 남아야 비로소 재사용됩니다.</blockquote>
+            <p>그래서 잘된 답변을 저장하는 대신, 잘되기까지의 순서와 실패 조건을 스킬로 바꾸기 시작했습니다.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-soft" id="why-now">
+      <div class="container">
+        <div class="section-kicker reveal">WHY NOW</div>
+        <h2 class="section-title reveal">‘스킬’은 특정 에이전트의 편법이 아니라 <span class="blue">공통 운영 포맷</span>으로 가고 있습니다</h2>
+        <p class="section-desc reveal">2025년 말 공개 표준이 나온 뒤 Hermes와 OpenAI도 같은 방향을 공식 문서에 반영했습니다. 지금부터 스킬을 파일과 버전으로 관리하면 한 제품에만 묶이지 않을 가능성이 커졌습니다.</p>
+        <div class="timeline reveal">
+          <article class="timeline-item"><div class="timeline-date">2025.10.16</div><div class="timeline-copy"><h3>Anthropic, Agent Skills 공개</h3><p>실제 업무에 필요한 절차 지식과 조직 맥락을 파일·폴더로 묶는 방식을 소개했습니다. 이후 2025년 12월 18일 공개 표준으로 전환했다고 밝혔습니다. <a class="inline-source" href="#src-06">[출처 6]</a></p></div></article>
+          <article class="timeline-item"><div class="timeline-date">2026 현재</div><div class="timeline-copy"><h3>OpenAI, 버전형 Skill bundle 공식 지원</h3><p>OpenAI 문서는 `SKILL.md`와 파일 묶음을 재사용 가능한 버전 단위로 정의하고, 공개 Agent Skills 표준과의 호환을 명시합니다. <a class="inline-source" href="#src-05">[출처 5]</a></p></div></article>
+          <article class="timeline-item"><div class="timeline-date">2026.08.03</div><div class="timeline-copy"><h3>Hermes v0.20.0 최신 태그</h3><p>2026년 8월 10일 확인 기준 최신 태그는 v0.20.0이며, Hermes는 경험에서 스킬을 만들고 사용 중 개선하는 학습 루프를 핵심으로 설명합니다. <a class="inline-source" href="#src-01">[출처 1]</a> <a class="inline-source" href="#src-07">[출처 7]</a></p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="difference">
+      <div class="container">
+        <div class="section-kicker reveal">MEMORY VS SKILL</div>
+        <h2 class="section-title reveal">메모리는 “제레미가 무엇을 좋아하는지”, 스킬은 <span class="blue">“이 일을 어떻게 끝내는지”</span>를 남깁니다</h2>
+        <p class="section-desc reveal">둘 중 하나가 더 좋은 것이 아닙니다. 서로 다른 것을 저장해야 에이전트가 덜 헷갈립니다.</p>
+        <div class="compare-grid">
+          <article class="compare-card reveal"><span class="compare-label">MEMORY · WHAT</span><h3>짧게 항상 알아야 할 것</h3><p>사용자 정보, 선호, 고정된 배경처럼 매 세션에 도움이 되는 사실입니다.</p><div class="compare-list"><div class="compare-item"><b>1</b><span>“제레미는 짧은 호흡의 글을 선호한다”</span></div><div class="compare-item"><b>2</b><span>“Report Hub는 Toss Blue를 사용한다”</span></div><div class="compare-item"><b>3</b><span>“외부 게시 전에는 사용자 승인이 필요하다”</span></div></div></article>
+          <article class="compare-card good reveal"><span class="compare-label">SKILL · HOW</span><h3>필요할 때 불러오는 실행 매뉴얼</h3><p>어떤 상황에서, 어떤 도구로, 어떤 순서와 기준으로 일을 끝낼지 적습니다.</p><div class="compare-list"><div class="compare-item"><b>1</b><span>입력과 선행 조건을 먼저 확인</span></div><div class="compare-item"><b>2</b><span>명령과 단계, 예외 처리 순서를 실행</span></div><div class="compare-item"><b>3</b><span>완료 조건을 검증하고 실패하면 중단</span></div></div></article>
+        </div>
+        <div class="table-shell reveal" role="region" aria-label="메모리 프롬프트 도구 스킬 워크플로 비교" tabindex="0" style="margin-top:22px">
+          <table class="data-table">
+            <thead><tr><th>구분</th><th>남기는 것</th><th>적합한 예</th><th>주의할 점</th></tr></thead>
+            <tbody>
+              <tr><td>메모리</td><td>사실·취향·짧은 맥락</td><td>사용자 선호, 기본 저장 위치, 팀 용어</td><td>긴 절차를 넣으면 매 세션의 문맥을 계속 차지함</td></tr>
+              <tr><td>프롬프트</td><td>이번 요청의 목표</td><td>오늘 한 번만 필요한 수정·질문</td><td>다음 세션에 자동 재사용되지 않음</td></tr>
+              <tr><td>도구</td><td>하나의 원자적 행동</td><td>파일 읽기, 검색, 명령 실행</td><td>어떤 순서로 조합할지는 별도 지침이 필요</td></tr>
+              <tr><td><span class="status-pill status-blue">스킬</span></td><td>반복 가능한 절차 지식</td><td>보고서 패키징, 배포 전 QA, PR 리뷰</td><td>낡으면 잘못된 방법을 빠르게 반복하는 부채가 됨</td></tr>
+              <tr><td><span class="status-pill status-lime">승인형 워크플로</span></td><td>확정된 실행 경로와 권한 경계</td><td>외부 발신, 결제, 삭제, 프로덕션 변경</td><td>스킬만 믿지 말고 guardrail·사람 승인·로그를 함께 둠 <a class="inline-source" href="#src-08">[출처 8]</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-blue" id="anatomy">
+      <div class="container">
+        <div class="section-kicker reveal">ANATOMY OF A GOOD SKILL</div>
+        <h2 class="section-title reveal">좋은 스킬에는 멋진 설명보다 <span style="color:#fff">단계·명령·실패 조건·검증</span>이 있습니다</h2>
+        <p class="section-desc reveal">Hermes 공식 예시는 When to Use, Procedure, Pitfalls, Verification을 기본 뼈대로 제시합니다. 저는 여기에 입력 조건과 중단 기준, 업데이트 규칙을 더합니다. <a class="inline-source" style="color:#fff" href="#src-02">[출처 2]</a></p>
+        <div class="flow-grid">
+          <article class="flow-step reveal"><span class="flow-num">01</span><h3>Trigger</h3><p>언제 사용하고 언제 사용하지 않을지 적습니다. 설명이 너무 넓으면 엉뚱한 작업에 불립니다.</p></article>
+          <article class="flow-step reveal"><span class="flow-num">02</span><h3>Inputs</h3><p>필요한 파일, 권한, 경로, 설정, 원자료를 먼저 확인합니다. 준비가 없으면 실행하지 않습니다.</p></article>
+          <article class="flow-step reveal"><span class="flow-num">03</span><h3>Procedure</h3><p>순서와 명령을 그대로 재현할 수 있게 씁니다. 판단이 필요한 지점은 기준까지 남깁니다.</p></article>
+          <article class="flow-step reveal"><span class="flow-num">04</span><h3>Failure</h3><p>자주 틀리는 부분, 재시도 조건, 즉시 멈춰야 할 위험 신호를 적습니다.</p></article>
+          <article class="flow-step reveal"><span class="flow-num">05</span><h3>Verification</h3><p>파일 존재, 테스트 통과, 수치 일치처럼 “끝났다”를 증명하는 확인 절차를 둡니다.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-soft" id="before-after">
+      <div class="container">
+        <div class="section-kicker reveal">BEFORE / AFTER</div>
+        <h2 class="section-title reveal">스킬 전후의 차이는 답변 품질보다 <span class="blue">재설명과 재검수의 양</span>에서 먼저 보였습니다</h2>
+        <p class="section-desc reveal">아래는 특정 벤치마크가 아니라 제가 운영할 때 확인하는 비교 기준입니다. 스킬이 있다고 모델이 무조건 더 똑똑해지는 것은 아닙니다. 대신 실수의 종류와 수정 위치가 눈에 보이기 시작합니다.</p>
+        <div class="table-shell reveal" role="region" aria-label="스킬 적용 전후 작업 비교" tabindex="0">
+          <table class="data-table">
+            <thead><tr><th>작업 지점</th><th>스킬 전</th><th>스킬 후</th><th>남는 자산</th></tr></thead>
+            <tbody>
+              <tr><td>새 세션 시작</td><td>작업 목적과 순서를 다시 설명</td><td>설명과 작업이 맞으면 스킬을 먼저 불러옴</td><td>재사용 가능한 trigger</td></tr>
+              <tr><td>명령 실행</td><td>에이전트가 매번 새 계획을 추론</td><td>검증된 명령·순서에서 시작하고 상황에 맞게 조정</td><td>실행 runbook</td></tr>
+              <tr><td>오류 발생</td><td>대화 안에서 원인을 찾고 세션 종료 후 사라짐</td><td>pitfall과 stop condition에 실패 원인을 추가</td><td>다음 실행의 예방 규칙</td></tr>
+              <tr><td>완료 판단</td><td>그럴듯한 답변을 완료로 착각할 수 있음</td><td>파일·테스트·수치·링크를 별도 검증</td><td>acceptance criteria</td></tr>
+              <tr><td>운영 개선</td><td>“다음에는 잘해줘”로 끝남</td><td>틀린 문장만 patch하고 새 세션에서 재시험</td><td>버전형 절차 지식</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="stale">
+      <div class="container">
+        <div class="section-kicker reveal">WHEN A SKILL GOES STALE</div>
+        <h2 class="section-title reveal">낡은 스킬은 실수를 줄이는 도구가 아니라 <span class="marker">실수를 자동화하는 도구</span>가 됩니다</h2>
+        <p class="section-desc reveal">Hermes 문서도 실제 사용 중 문제가 드러나면 스킬을 업데이트하라고 권합니다. 유지되지 않는 스킬은 부채가 될 수 있습니다. <a class="inline-source" href="#src-02">[출처 2]</a></p>
+        <div class="signal-grid">
+          <article class="signal-card reveal"><b>01</b><h3>같은 수동 수정이 두 번 나왔다</h3><p>사람이 같은 부분을 다시 고쳤다면, 대화가 아니라 스킬의 해당 단계가 틀린 것입니다.</p></article>
+          <article class="signal-card reveal"><b>02</b><h3>명령 옵션이나 출력 형식이 바뀌었다</h3><p>도구가 업데이트됐는데 예전 flag와 경로를 쓰면, 정확하게 오래된 방법을 반복합니다.</p></article>
+          <article class="signal-card reveal"><b>03</b><h3>엉뚱한 요청에 스킬이 실행된다</h3><p>`description`이 너무 넓거나 모호한 신호입니다. 스킬은 이름과 설명을 먼저 보고 활성화됩니다. <a class="inline-source" href="#src-04">[출처 4]</a></p></article>
+          <article class="signal-card reveal"><b>04</b><h3>검증은 통과했는데 결과가 틀렸다</h3><p>검증 명령이 너무 약하거나 성공 조건이 실제 목적과 맞지 않은 경우입니다.</p></article>
+          <article class="signal-card reveal"><b>05</b><h3>한 스킬이 너무 많은 일을 한다</h3><p>수정 하나가 다른 작업까지 흔듭니다. 한 문장으로 책임을 설명하기 어렵다면 분리할 시점입니다.</p></article>
+          <article class="signal-card reveal"><b>06</b><h3>누가 언제 고쳤는지 알 수 없다</h3><p>버전, 변경 이유, 마지막 검증일이 없으면 잘못된 수정도 경험처럼 굳어질 수 있습니다.</p></article>
+        </div>
+        <div class="callout reveal"><span aria-hidden="true">⚠</span><div><strong>민감한 스킬은 자동 수정까지 맡기지 않습니다.</strong> Hermes는 에이전트가 스킬을 생성·수정·삭제할 수 있고, `skills.write_approval`로 모든 변경을 사람 승인 대기 상태로 둘 수 있습니다. 운영·보안·외부 발신 스킬에는 승인 게이트를 켜는 편이 안전합니다. <a class="inline-source" href="#src-03">[출처 3]</a></div></div>
+      </div>
+    </section>
+
+    <section class="section-soft" id="score">
+      <div class="container">
+        <div class="section-kicker reveal">DON'T TURN EVERYTHING INTO A SKILL</div>
+        <h2 class="section-title reveal">스킬은 많을수록 좋은 게 아니라, <span class="blue">반복해서 찾을 가치가 있을 때만</span> 만듭니다</h2>
+        <p class="section-desc reveal">단순한 취향은 메모리, 일회성 요청은 프롬프트, 고정된 위험 작업은 승인형 워크플로가 더 낫습니다. 아래 판단표는 제가 스킬 후보를 거르는 간단한 기준입니다.</p>
+        <div class="score-layout">
+          <form class="score-controls reveal" onsubmit="return false" aria-label="스킬화 판단 점수 입력">
+            <div class="field"><label for="repeatCount">최근 비슷한 작업 반복 횟수 (0~5)</label><input id="repeatCount" type="number" min="0" max="5" step="1" value="4"></div>
+            <div class="field"><label for="stepCount">실행 단계 수 (1~10)</label><input id="stepCount" type="number" min="1" max="10" step="1" value="7"></div>
+            <div class="field"><label for="failureCost">실패 비용</label><select id="failureCost"><option value="0">낮음 · 다시 하면 됨</option><option value="1">보통 · 시간 손실</option><option value="2" selected>높음 · 데이터/신뢰 손상</option><option value="3">매우 높음 · 외부 실행/권한 위험</option></select></div>
+            <label class="field-check" for="needsVerify"><input id="needsVerify" type="checkbox" checked> 결과 검증이 반드시 필요하다</label>
+            <p class="score-note">최대 100점. 공식 표준이 아니라 운영 우선순위를 정하기 위한 개인 판단표입니다.</p>
+          </form>
+          <article class="score-result reveal" aria-live="polite">
+            <small>SKILL CANDIDATE SCORE</small>
+            <div class="score-number"><strong id="skillScore">75</strong><span>/ 100</span></div>
+            <h3 id="skillDecision">스킬로 만들 가치가 큽니다</h3>
+            <p id="skillReason">반복되고 단계가 많으며 검증이 필요한 작업입니다. 최근 성공한 실행을 기준으로 작게 문서화하세요.</p>
+            <div class="score-bar"><i id="skillScoreBar" style="width:75%"></i></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="template">
+      <div class="container">
+        <div class="section-kicker reveal">FIRST SKILL TEMPLATE</div>
+        <h2 class="section-title reveal">첫 스킬은 미래에 할 일을 상상해서 쓰지 말고, <span class="blue">방금 성공한 작업</span>에서 뽑습니다</h2>
+        <p class="section-desc reveal">제가 Report Hub 글을 만들 때 사용할 수 있는 예시입니다. 그대로 복사하기보다 실제 경로와 명령, 승인 경계를 자신의 환경에 맞게 바꾸는 것이 핵심입니다.</p>
+        <div class="template-grid">
+          <div class="template-points">
+            <article class="template-point reveal"><b>STEP 1</b><strong>최근 반복 오류 하나를 고릅니다</strong><p>가장 거창한 자동화보다 어제와 오늘 두 번 고친 작은 문제에서 시작합니다.</p></article>
+            <article class="template-point reveal"><b>STEP 2</b><strong>성공한 순서만 적습니다</strong><p>추측이 아니라 실제로 통과한 명령, 입력, 결과 파일을 기준으로 씁니다.</p></article>
+            <article class="template-point reveal"><b>STEP 3</b><strong>실패와 완료를 동시에 정의합니다</strong><p>무엇을 하면 되는지와 무엇이 없으면 끝난 게 아닌지를 함께 남깁니다.</p></article>
+            <article class="template-point reveal"><b>STEP 4</b><strong>새 세션에서 다시 시험합니다</strong><p>작성한 세션에서 잘되는 것은 당연합니다. 맥락이 없는 새 세션에서 통과해야 스킬입니다.</p></article>
+          </div>
+          <div class="code-shell reveal">
+            <div class="code-head"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>report-hub-publish/SKILL.md</span><button class="copy-btn" id="copySkill" type="button">템플릿 복사</button></div>
+            <pre><code id="skillTemplate">---
+name: report-hub-publish
+description: Verify facts, create a Report Hub HTML article and GitHub upload ZIP, then run structural QA. Use when the user asks to write, update, package, or publish an AI/Tech report or blog post.
+version: 1.0.0
+metadata:
+  hermes:
+    tags: [report, blog, qa, publishing]
+    category: publishing
+---
+
+# Report Hub Publish
+
+## When to Use
+- A topic must become a standalone HTML report and upload ZIP.
+- Existing report data, sources, or metadata must be updated safely.
+
+## Do Not Use
+- The user only wants a short text answer.
+- The source material is missing and the core claim cannot be verified.
+
+## Inputs
+- Topic, publish date, daily sequence, repository, template
+- Source URLs or files
+- Required output structure and approval boundary
+
+## Procedure
+1. Read the project instructions, voice profile, template, and prior version.
+2. Verify current names, dates, prices, licenses, and source status.
+3. Draft the article in the requested voice; label assumptions and unverified claims.
+4. Generate `index.html`, `thumbnail.png`, `thumbnail.svg`, metadata, and source ledger.
+5. Build the ZIP without overwriting archive or sitemap files that were not read.
+6. Run QA and fix failures before presenting the files.
+
+## Commands / Tools
+- Use the official source first; use trusted reporting only to fill gaps.
+- Run HTML, JSON schema, image-size, link-security, and ZIP-manifest checks.
+- Use targeted patches for small changes; do not rewrite an unrelated section.
+
+## Failure / Stop Conditions
+- Stop if a key number has no source or two authoritative sources conflict.
+- Stop before GitHub push, external publishing, payment, deletion, or message sending unless the user explicitly approves it.
+- Do not mark the task complete while required files or checks are missing.
+
+## Verification
+- The HTML title, H1, OG title, canonical, version, and metadata agree.
+- Thumbnail is exactly 1200×630 and the `&lt;img&gt;` alt text is meaningful.
+- Mobile width has no page-level horizontal overflow.
+- ZIP paths, file hashes, and upload manifest agree.
+- Every external link has `target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;`.
+
+## Update Rule
+When a failure is corrected, patch the exact step, pitfall, or verification rule in this skill. Record what changed and re-run the smallest test that proves the correction.</code></pre>
+          </div>
+        </div>
+        <div class="callout reveal"><span aria-hidden="true">✓</span><div><strong>파일 구조도 작게 시작합니다.</strong> 공개 표준은 최소 `SKILL.md` 하나만 요구하며, 긴 설명은 `references/`, 반복 명령은 `scripts/`, 템플릿은 `assets/`로 나눌 수 있습니다. 메인 파일은 핵심 절차만 남기는 편이 좋습니다. <a class="inline-source" href="#src-04">[출처 4]</a></div></div>
+      </div>
+    </section>
+
+    <section class="section-soft" id="team">
+      <div class="container">
+        <div class="section-kicker reveal">KOREAN TEAM VIEW</div>
+        <h2 class="section-title reveal">개인 에이전트에서 시작해도, 팀에 공유하는 순간 <span class="blue">문서가 아니라 운영 자산</span>이 됩니다</h2>
+        <p class="section-desc reveal">한국 기업과 개발팀에서는 스킬의 문장보다 소유자, 권한, 검증일, 비밀정보 경계가 더 중요할 수 있습니다.</p>
+        <div class="impact-grid">
+          <article class="impact-card reveal"><b>OWN</b><h3>소유자와 마지막 검증일</h3><p>누가 책임지고 언제 실제 환경에서 확인했는지 metadata 또는 변경 이력에 남깁니다.</p></article>
+          <article class="impact-card reveal"><b>SEC</b><h3>비밀은 스킬에 쓰지 않기</h3><p>API key와 토큰은 지침 파일이 아니라 별도 secret·config 관리로 분리합니다.</p></article>
+          <article class="impact-card reveal"><b>QA</b><h3>같은 테스트 세트로 비교</h3><p>스킬 적용 전후를 같은 과제로 실행해 trigger, 완료율, 검수 시간을 비교합니다.</p></article>
+          <article class="impact-card reveal"><b>APP</b><h3>외부 실행은 승인 필수</h3><p>메일·결제·삭제·배포는 스킬의 자율성보다 사람 승인과 audit log를 우선합니다.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-blue" id="plan">
+      <div class="container">
+        <div class="section-kicker reveal">30 / 60 / 90 DAYS</div>
+        <h2 class="section-title reveal">스킬 라이브러리는 한 번에 만들지 않고, 실패 로그에서 조금씩 키웁니다</h2>
+        <p class="section-desc reveal">처음부터 수십 개를 모으면 검색과 유지보수가 일이 됩니다. 하나를 실제로 쓰고 고친 뒤 범위를 넓히는 편이 안정적이었습니다.</p>
+        <div class="plan-grid">
+          <article class="plan-card reveal"><span>30D</span><h3>반복 작업 1개만 스킬화</h3><p>최근 두 번 이상 고친 일을 고르고 새 세션에서 5회 시험합니다.</p><ul><li>trigger와 do-not-use 작성</li><li>실패 조건 3개 수집</li><li>검증 명령 1개 이상</li></ul></article>
+          <article class="plan-card reveal"><span>60D</span><h3>패치와 정리 기준 만들기</h3><p>같은 오류가 나오면 바로 수정하고, 겹치는 스킬은 합치거나 삭제합니다.</p><ul><li>버전·변경 이유 기록</li><li>owner·last verified 지정</li><li>민감 변경 승인 게이트</li></ul></article>
+          <article class="plan-card reveal"><span>90D</span><h3>팀 공유와 평가 자동화</h3><p>Git으로 관리하고 공통 테스트 세트로 적용 전후를 비교합니다.</p><ul><li>approved skill catalog</li><li>trigger·완료율 점검</li><li>분기별 stale review</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-soft" id="risks">
+      <div class="container">
+        <div class="section-kicker reveal">RISKS & COUNTERPOINTS</div>
+        <h2 class="section-title reveal">스킬이 있다고 에이전트가 항상 맞는 것은 아닙니다. <span class="blue">잘못된 절차도 더 빠르게 반복</span>할 수 있습니다</h2>
+        <p class="section-desc reveal">강한 모델, 많은 메모리, 긴 스킬보다 중요한 건 올바른 trigger와 실제 검증입니다.</p>
+        <div class="correction-table reveal">
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>좋은 답변을 그대로 저장하면 좋은 스킬이 된다</div><div class="correction-cell right"><span class="correction-icon">✓</span>답변보다 입력·단계·명령·실패 조건·검증을 분리해 저장해야 재현됩니다.</div></div>
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>스킬이 많을수록 에이전트가 더 똑똑해진다</div><div class="correction-cell right"><span class="correction-icon">✓</span>과도한 스킬은 trigger 충돌과 유지보수 비용을 만듭니다. 한 책임으로 좁게 유지합니다.</div></div>
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>에이전트가 알아서 스킬을 고치게 두면 된다</div><div class="correction-cell right"><span class="correction-icon">✓</span>민감 환경에서는 변경 승인과 diff 검토가 필요합니다. Hermes도 write approval을 제공합니다.</div></div>
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>공개된 스킬이면 안전하다</div><div class="correction-cell right"><span class="correction-icon">✓</span>스킬은 지침과 코드를 포함할 수 있습니다. 출처·권한·스크립트를 검토하고 격리된 환경에서 시험합니다. <a class="inline-source" href="#src-06">[출처 6]</a></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <div class="section-kicker reveal">FAQ</div>
+        <h2 class="section-title reveal">처음 스킬을 만들 때 가장 많이 생기는 질문</h2>
+        <div class="faq-list">
+          <details class="faq-item reveal"><summary>메모리와 스킬의 가장 큰 차이는 무엇인가요?</summary><div class="faq-answer">메모리는 사용자 사실과 취향처럼 “무엇을 아는지”에 가깝고, 스킬은 특정 일을 “어떤 순서와 기준으로 수행할지”에 관한 절차 지식입니다. Hermes 공식 가이드도 이 구분을 그대로 설명합니다. <a class="inline-source" href="#src-02">[출처 2]</a></div></details>
+          <details class="faq-item reveal"><summary>반복 프롬프트는 모두 스킬로 만들어야 하나요?</summary><div class="faq-answer">아닙니다. 반복 가능성, 단계 수, 실패 비용, 검증 필요성이 충분할 때만 스킬로 만드는 편이 좋습니다. 단순 선호는 메모리, 일회성 요청은 프롬프트, 위험한 외부 실행은 승인형 워크플로로 분리합니다.</div></details>
+          <details class="faq-item reveal"><summary>SKILL.md는 얼마나 길어야 하나요?</summary><div class="faq-answer">공개 Agent Skills 문서는 메인 파일을 500줄 이하로 유지하고, 긴 자료는 `references/`, 실행 코드는 `scripts/`, 템플릿은 `assets/`로 분리하도록 권장합니다. 중요한 것은 길이보다 trigger와 핵심 절차가 한눈에 보이는지입니다. <a class="inline-source" href="#src-04">[출처 4]</a></div></details>
+          <details class="faq-item reveal"><summary>Hermes가 스킬을 자동으로 만들거나 수정할 수 있나요?</summary><div class="faq-answer">가능합니다. Hermes는 복잡한 작업 성공, 오류 우회, 사용자 교정, 비정형 workflow 발견 후 스킬을 만들거나 수정할 수 있습니다. 민감한 환경에서는 `skills.write_approval`을 켜서 모든 변경을 승인 대기 상태로 둘 수 있습니다. <a class="inline-source" href="#src-03">[출처 3]</a></div></details>
+          <details class="faq-item reveal"><summary>스킬이 제대로 작동하는지는 어떻게 확인하나요?</summary><div class="faq-answer">작성한 세션이 아니라 새 세션에서 같은 입력으로 시험합니다. 정상 입력뿐 아니라 파일 누락, 잘못된 경로, 권한 부족 같은 실패 입력도 넣고, 검증 명령이 실제 오류를 잡는지 확인합니다.</div></details>
+          <details class="faq-item reveal"><summary>처음 만들기 좋은 스킬은 무엇인가요?</summary><div class="faq-answer">최근 한 달 안에 두 번 이상 반복했고, 매번 3단계 이상 진행하며, 마지막에 사람이 결과를 확인했던 작업이 좋습니다. 보고서 패키징, 배포 전 QA, 정기 데이터 정리처럼 성공 기준이 명확한 일이 시작하기 쉽습니다.</div></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sources" id="sources">
+    <div class="container">
+      <div class="source-head"><div><h2>참고 자료와 출처</h2><p>공식 저장소·공식 제품 문서·공개 표준을 우선했습니다. 확인일 2026.08.10.</p></div><button class="btn btn-ghost" type="button" onclick="window.print()">전체 PDF 저장</button></div>
+      <div class="source-grid">
+        <a class="source-link" id="src-01" href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · NOUS RESEARCH</span><strong>Hermes Agent repository</strong><small>경험에서 스킬을 만들고 개선하는 learning loop와 공개 표준 호환.</small></a>
+        <a class="source-link" id="src-02" href="https://github.com/NousResearch/hermes-agent/blob/main/website/docs/guides/work-with-skills.md" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · HERMES GUIDE</span><strong>Working with Skills</strong><small>스킬 구조, 테스트, 메모리와 스킬의 차이, 유지관리 팁.</small></a>
+        <a class="source-link" id="src-03" href="https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/features/skills.md" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · HERMES REFERENCE</span><strong>Skills System</strong><small>skill_manage, procedural memory, write approval, source-of-truth directory.</small></a>
+        <a class="source-link" id="src-04" href="https://agentskills.io/specification" target="_blank" rel="noopener noreferrer"><span>OPEN STANDARD · AGENT SKILLS</span><strong>Agent Skills specification</strong><small>SKILL.md frontmatter, 디렉터리 구조, progressive disclosure, validation.</small></a>
+        <a class="source-link" id="src-05" href="https://developers.openai.com/api/docs/guides/tools-skills" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · OPENAI</span><strong>Skills | OpenAI API</strong><small>버전형 파일 bundle, SKILL.md, local/hosted execution, 공개 표준 호환.</small></a>
+        <a class="source-link" id="src-06" href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · ANTHROPIC · 2025.10.16</span><strong>Equipping agents with Skills</strong><small>절차 지식 패키징, 공개 표준 전환, 악성 스킬 보안 주의.</small></a>
+        <a class="source-link" id="src-07" href="https://github.com/NousResearch/hermes-agent/releases" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · RELEASES · 2026.08.03</span><strong>Hermes Agent v0.20.0</strong><small>기준일 현재 최신 태그와 release date 확인.</small></a>
+        <a class="source-link" id="src-08" href="https://openai.github.io/openai-agents-python/" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · OPENAI AGENTS SDK</span><strong>Guardrails, HITL and tracing</strong><small>입출력 검증, 사람 승인, 추적을 포함한 agent workflow 기본 요소.</small></a>
+      </div>
+      <div class="disclosure"><strong>제작 방식:</strong> 사용자가 제공한 Hermes 운영 경험과 Jeremy 문체 자료를 중심으로 1인칭 흐름을 구성하고, 제품·표준 관련 설명만 공식 문서로 검증했습니다. 구체적인 실패 로그와 로컬 명령은 제공되지 않아 템플릿의 명령·경로는 Report Hub 작업을 위한 예시입니다. 실제 스킬 반영과 외부 게시 전에는 사용자가 최종 검수해야 합니다.</div>
+      <div class="footer-bottom"><span id="footerTitle">AI 에이전트가 같은 실수를 반복한다면, 메모리보다 ‘스킬’부터 고쳐야 한다</span><span id="footerMeta">자료 기준일 2026.08.10 · AI-assisted · Published</span></div>
+      <div class="report-history" id="history" aria-labelledby="history-title">
+        <div class="history-head"><div><h2 id="history-title">버전 및 업데이트 히스토리</h2><p>실사용 실패와 공식 문서 변화가 확인되면 스킬 템플릿·검증 기준·출처를 함께 갱신합니다.</p></div><span class="version-badge" id="historyCurrentVersion">Current v1.0.0</span></div>
+        <div class="history-table-wrap"><table class="history-table"><thead><tr><th>버전</th><th>업데이트일</th><th>변경 구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr></thead><tbody id="historyBody"><tr><td colspan="5" class="history-empty">변경 이력을 불러오는 중입니다.</td></tr></tbody></table></div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="floating-actions" aria-label="빠른 작업"><button class="float-btn" type="button" id="toTop" aria-label="맨 위로 이동"><svg viewBox="0 0 24 24" fill="none"><path d="m6 14 6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="float-btn" type="button" onclick="window.print()" aria-label="PDF로 저장"><svg viewBox="0 0 24 24" fill="none"><path d="M7 9V4h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-width="1.8"/><path d="M7 14h10v6H7z" stroke="currentColor" stroke-width="1.8"/></svg></button></div>
+
+  <script id="report-metadata" type="application/json">
+  {
+    "schemaVersion":"2.0",
+    "reportId":"260810-39-ai-agent-skill-management-v1-0-0",
+    "title":"AI 에이전트가 같은 실수를 반복한다면, 메모리보다 ‘스킬’부터 고쳐야 한다",
+    "version":"1.0.0",
+    "status":"Published",
+    "createdAt":"2026-08-10",
+    "updatedAt":"2026-08-10",
+    "language":"ko-KR",
+    "author":"Jeremy Lee",
+    "generation":"AI-assisted",
+    "reviewStatus":"Published",
+    "history":[{
+      "version":"1.0.0",
+      "date":"2026-08-10",
+      "type":"신규 작성",
+      "summary":"Hermes 운영 경험을 바탕으로 메모리와 스킬의 차이, 좋은 SKILL.md 구조, 낡은 지침 수정 신호, 스킬 남발 방지 점수표, 실전 Report Hub 스킬 템플릿과 30/60/90일 운영안을 최초 구성함.",
+      "sections":["Hero·후킹","1분 요약","반복 오류","메모리 vs 스킬","좋은 스킬 구조","전후 비교","낡은 지침 탐지","스킬화 점수표","첫 스킬 템플릿","팀 운영","30/60/90일","리스크·FAQ·출처"],
+      "updatedBy":"AI-assisted",
+      "reviewStatus":"발행 완료"
+    }]
+  }
+  </script>
+  <script>
+    const progress=document.getElementById('scrollProgress');const toTop=document.getElementById('toTop');
+    function updateProgress(){const max=document.documentElement.scrollHeight-window.innerHeight;const percent=max>0?(window.scrollY/max)*100:0;if(progress)progress.style.width=percent+'%';if(toTop){toTop.style.opacity=window.scrollY>600?'1':'0';toTop.style.pointerEvents=window.scrollY>600?'auto':'none';}}
+    window.addEventListener('scroll',updateProgress,{passive:true});updateProgress();if(toTop)toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+    if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}})},{threshold:.08});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));}else{document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));}
+    function renderReportMetadata(){const node=document.getElementById('report-metadata');if(!node)return;try{const meta=JSON.parse(node.textContent);const version=`v${meta.version}`;const date=String(meta.updatedAt||'').replaceAll('-','.');const setText=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value;};setText('reportVersion',version);setText('reportUpdated',`Updated ${date}`);setText('reportGeneration',`${meta.generation} · ${meta.reviewStatus}`);setText('historyCurrentVersion',`Current ${version}`);setText('footerTitle',meta.title);setText('footerMeta',`자료 기준일 ${date} · ${meta.generation} · ${meta.reviewStatus}`);const body=document.getElementById('historyBody');if(!body)return;body.innerHTML='';(meta.history||[]).forEach(item=>{const row=document.createElement('tr');const values=[`v${item.version}`,String(item.date||'').replaceAll('-','.'),item.type||'',item.summary||'',[item.updatedBy,item.reviewStatus].filter(Boolean).join(' · ')];values.forEach((value,index)=>{const cell=document.createElement('td');if(index===4){const badge=document.createElement('span');badge.className='history-status';badge.textContent=value;cell.appendChild(badge);}else cell.textContent=value;row.appendChild(cell)});body.appendChild(row)});}catch(error){console.error('Invalid report metadata:',error)}}renderReportMetadata();
+    const scoreEls={repeat:document.getElementById('repeatCount'),steps:document.getElementById('stepCount'),cost:document.getElementById('failureCost'),verify:document.getElementById('needsVerify'),score:document.getElementById('skillScore'),decision:document.getElementById('skillDecision'),reason:document.getElementById('skillReason'),bar:document.getElementById('skillScoreBar')};
+    function updateSkillScore(){const repeat=Math.min(5,Math.max(0,Number(scoreEls.repeat.value)||0));const steps=Math.min(10,Math.max(1,Number(scoreEls.steps.value)||1));const cost=Math.min(3,Math.max(0,Number(scoreEls.cost.value)||0));const verify=scoreEls.verify.checked?10:0;const score=Math.min(100,Math.round(repeat*8+Math.max(0,steps-1)*(20/9)+cost*10+verify));scoreEls.score.textContent=score;scoreEls.bar.style.width=score+'%';if(score>=65){scoreEls.decision.textContent='스킬로 만들 가치가 큽니다';scoreEls.reason.textContent='반복되고 단계가 많거나 실패 비용이 있는 작업입니다. 최근 성공한 실행을 기준으로 작게 문서화하세요.'}else if(score>=40){scoreEls.decision.textContent='템플릿으로 먼저 시험하세요';scoreEls.reason.textContent='반복 가능성은 있지만 아직 절차가 안정되지 않았습니다. 체크리스트나 짧은 프롬프트로 검증한 뒤 스킬로 승격하세요.'}else{scoreEls.decision.textContent='아직 스킬이 필요하지 않습니다';scoreEls.reason.textContent='일회성 요청이나 단순 선호에 가깝습니다. 메모리, 프롬프트, 기본 템플릿이 더 가볍습니다.'}}
+    [scoreEls.repeat,scoreEls.steps,scoreEls.cost,scoreEls.verify].forEach(el=>el.addEventListener('input',updateSkillScore));updateSkillScore();
+    const copyButton=document.getElementById('copySkill');if(copyButton)copyButton.addEventListener('click',async()=>{const text=document.getElementById('skillTemplate').textContent;try{await navigator.clipboard.writeText(text);copyButton.textContent='복사 완료';setTimeout(()=>copyButton.textContent='템플릿 복사',1600)}catch(error){copyButton.textContent='선택 후 복사';const range=document.createRange();range.selectNodeContents(document.getElementById('skillTemplate'));const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range)}});
+  </script>
+  <script src="../../assets/report-page-layout.js?v=20260810-mobile-scroll1"></script>
+  <script src="../../assets/report-view-counter.js?v=20260810-counter-d1-1" data-report-id="260810-39-ai-agent-skill-management-v1-0-0"></script>
+  <script src="../../assets/report-comments.js?v=20260809-comments1" data-report-id="260810-39-ai-agent-skill-management-v1-0-0"></script>
+  <script src="../../assets/report-history.js?v=20260809-history2" data-report-id="260810-39-ai-agent-skill-management-v1-0-0"></script>
+  <script src="../../assets/report-hub-brand.js?v=20260810-mobile-scroll1"></script>
+</body>
+</html>

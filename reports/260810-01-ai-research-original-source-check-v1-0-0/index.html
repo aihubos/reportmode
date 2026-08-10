@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI 조사 결과를 그대로 믿지 않고 검색 원문, PDF, 영상 타임스탬프, 숫자와 인용문, 링크 상태를 다시 확인하는 7단계 출처 검증 루틴을 정리했다.">
+  <meta name="author" content="Jeremy Lee">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="canonical" href="https://aihubos.github.io/reportmode/reports/260810-01-ai-research-original-source-check-v1-0-0/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="AI 조사 출처 검증법: 원문 링크 확인 7단계">
+  <meta property="og:description" content="AI 조사 결과를 그대로 믿지 않고 검색 원문, PDF, 영상 타임스탬프, 숫자와 인용문, 링크 상태를 다시 확인하는 7단계 출처 검증 루틴을 정리했다.">
+  <meta property="og:url" content="https://aihubos.github.io/reportmode/reports/260810-01-ai-research-original-source-check-v1-0-0/">
+  <meta property="og:image" content="https://aihubos.github.io/reportmode/reports/260810-01-ai-research-original-source-check-v1-0-0/assets/thumbnail.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="AI 조사 결과를 원문 링크까지 검증하는 7단계 출처 확인법 썸네일">
+  <meta property="article:published_time" content="2026-08-10T09:00:00+09:00">
+  <meta property="article:modified_time" content="2026-08-10T09:00:00+09:00">
+  <meta property="article:author" content="Jeremy Lee">
+  <meta property="article:section" content="AI">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI 조사 출처 검증법: 원문 링크 확인 7단계">
+  <meta name="twitter:description" content="AI 조사 결과를 그대로 믿지 않고 검색 원문, PDF, 영상 타임스탬프, 숫자와 인용문, 링크 상태를 다시 확인하는 7단계 출처 검증 루틴을 정리했다.">
+  <meta name="twitter:image" content="https://aihubos.github.io/reportmode/reports/260810-01-ai-research-original-source-check-v1-0-0/assets/thumbnail.png">
+  <title>AI 조사 출처 검증법: 원문 링크 확인 7단계 | Report Hub</title>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"AI에게 조사시켜도 원문 링크를 끝까지 여는 이유: 출처 검증 7단계","description":"AI 조사 결과를 그대로 믿지 않고 검색 원문, PDF, 영상 타임스탬프, 숫자와 인용문, 링크 상태를 다시 확인하는 7단계 출처 검증 루틴을 정리했다.","image":["https://aihubos.github.io/reportmode/reports/260810-01-ai-research-original-source-check-v1-0-0/assets/thumbnail.png"],"datePublished":"2026-08-10T09:00:00+09:00","dateModified":"2026-08-10T09:00:00+09:00","author":{"@type":"Person","name":"Jeremy Lee"},"publisher":{"@type":"Organization","name":"Report Hub","url":"https://aihubos.github.io/reportmode/"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://aihubos.github.io/reportmode/reports/260810-01-ai-research-original-source-check-v1-0-0/"},"keywords":["AI 조사","출처 검증","원문 링크","PDF 추출","AI 리서치","팩트체크","source ledger","링크 검증"],"articleSection":"AI","inLanguage":"ko-KR"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Report Hub","item":"https://aihubos.github.io/reportmode/"},{"@type":"ListItem","position":2,"name":"AI Reports","item":"https://aihubos.github.io/reportmode/archive/"},{"@type":"ListItem","position":3,"name":"AI에게 조사시켜도 원문 링크를 끝까지 여는 이유: 출처 검증 7단계","item":"https://aihubos.github.io/reportmode/reports/260810-01-ai-research-original-source-check-v1-0-0/"}]}</script>
+  <style>
+    :root {
+      --blue:#3182f6; --blue-strong:#1b64da; --blue-soft:#e8f3ff;
+      --ink:#191f28; --ink-2:#333d4b; --muted:#6b7684; --muted-2:#8b95a1;
+      --line:#e5e8eb; --surface:#f7f8fa; --surface-2:#f2f4f6; --white:#fff;
+      --lime:#dfff6a; --mint:#dffbf2; --violet:#eee9ff; --yellow:#fff8ce;
+      --shadow-sm:0 8px 30px rgba(25,31,40,.06); --shadow-md:0 24px 70px rgba(25,31,40,.10);
+      --radius-sm:18px; --radius-md:28px; --radius-lg:40px; --max:1180px;
+      --hero-title-min:36px; --hero-title-fluid:4.4vw; --hero-title-max:55px;
+      --section-title-min:28px; --section-title-fluid:3.3vw; --section-title-max:41px;
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;color:var(--ink);background:radial-gradient(circle at 90% 3%,rgba(49,130,246,.11),transparent 24rem),radial-gradient(circle at 8% 23%,rgba(223,255,106,.12),transparent 22rem),#fff;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Segoe UI",sans-serif;line-height:1.72;letter-spacing:-.022em;overflow-x:hidden} body,html{max-width:100%} a{color:inherit;text-decoration:none} button,input{font:inherit} img,svg{display:block;max-width:100%;height:auto} h1,h2,h3,p{margin-top:0} strong{color:var(--ink)}
+    .skip-link{position:fixed;left:12px;top:-80px;z-index:3000;padding:10px 14px;border-radius:10px;color:#fff;background:var(--ink);font-weight:850}.skip-link:focus{top:12px}.scroll-progress{position:fixed;inset:0 auto auto 0;width:0;height:3px;background:linear-gradient(90deg,var(--blue),#6aa7ff);z-index:1200}.container{width:min(var(--max),calc(100% - 40px));margin:0 auto;min-width:0}.nav-wrap{position:sticky;top:0;z-index:1000;padding:14px 22px 0}.nav{max-width:1240px;margin:0 auto;min-height:62px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 12px 10px 18px;border:1px solid rgba(229,232,235,.88);border-radius:22px;background:rgba(255,255,255,.84);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);box-shadow:0 10px 34px rgba(25,31,40,.05)}.brand{display:flex;align-items:center;gap:11px;min-width:max-content;font-size:14px;font-weight:900}.brand-mark{width:36px;height:36px;display:grid;place-items:center;border-radius:12px;color:#fff;background:linear-gradient(145deg,#5ca2ff,var(--blue-strong));box-shadow:0 8px 20px rgba(49,130,246,.28)}.brand-mark svg{width:20px}.brand-sub{color:var(--muted-2);font-weight:750}.nav-links{display:flex;align-items:center;gap:5px;margin-left:auto}.nav-links a{padding:9px 12px;border-radius:12px;color:var(--muted);font-size:14px;font-weight:750}.nav-links a:hover{color:var(--ink);background:var(--surface)}.nav-actions{display:flex;gap:8px}.btn{appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:0 16px;border-radius:14px;font-size:14px;font-weight:900;transition:.2s ease}.btn:hover{transform:translateY(-1px)}.btn-primary{color:#fff;background:var(--blue);box-shadow:0 10px 24px rgba(49,130,246,.24)}.btn-primary:hover{background:var(--blue-strong)}.btn-ghost{color:var(--ink-2);background:var(--surface)}
+    .hero{min-height:850px;display:grid;grid-template-columns:1.04fr .96fr;align-items:center;gap:54px;padding:78px 0 68px}.hero-copy{position:relative;z-index:2;min-width:0}.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 13px;margin-bottom:22px;border-radius:999px;color:var(--blue-strong);background:var(--blue-soft);font-size:14px;font-weight:900}.eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 5px rgba(49,130,246,.12)}.blog-hook{display:inline-flex;padding:6px 10px;margin-bottom:14px;border-radius:8px;color:#415400;background:var(--lime);font-size:12px;font-weight:900;transform:rotate(-1deg)}.hero h1{max-width:760px;margin-bottom:24px;font-size:clamp(var(--hero-title-min),var(--hero-title-fluid),var(--hero-title-max));line-height:1.1;letter-spacing:-.055em;font-weight:900;text-wrap:balance;overflow-wrap:anywhere}.blue{color:var(--blue)}.marker{position:relative;white-space:nowrap;z-index:0}.marker:after{content:"";position:absolute;left:-.03em;right:-.03em;bottom:.08em;height:.34em;border-radius:.12em;background:var(--lime);transform:rotate(-1.3deg);z-index:-1;opacity:.9}.hero-lead{max-width:720px;margin-bottom:28px;color:var(--muted);font-size:clamp(18px,1.8vw,22px);line-height:1.68;font-weight:620}.hero-actions{display:flex;flex-wrap:wrap;gap:10px}.hero-note{margin-top:24px;display:flex;align-items:flex-start;gap:10px;color:var(--muted);font-size:14px;font-weight:650}.hero-note svg{width:19px;flex:0 0 auto;margin-top:2px;color:var(--blue)}.report-meta{margin-top:18px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;color:var(--muted-2);font-size:12px;font-weight:800}.version-badge{display:inline-flex;align-items:center;min-height:28px;padding:0 10px;border-radius:999px;color:var(--blue-strong);background:var(--blue-soft);border:1px solid rgba(49,130,246,.16)}.report-meta-separator{width:3px;height:3px;border-radius:50%;background:var(--line)}.keyword-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.keyword-chip{padding:7px 10px;border-radius:999px;color:var(--muted);background:var(--surface);border:1px solid var(--line);font-size:11px;font-weight:800}
+    .hero-visual{min-height:540px;display:grid;place-items:center;position:relative;min-width:0}.hero-orbit{position:absolute;width:490px;height:490px;border:1px dashed rgba(49,130,246,.20);border-radius:50%;animation:orbit 22s linear infinite}@keyframes orbit{to{transform:rotate(360deg)}}.hero-media{width:min(100%,520px);position:relative;z-index:2;padding:14px;border:1px solid rgba(229,232,235,.94);border-radius:36px;background:rgba(255,255,255,.95);box-shadow:var(--shadow-md)}.hero-media img{width:100%;border-radius:26px}.hero-media figcaption{display:flex;justify-content:space-between;gap:12px;padding:12px 6px 2px;color:var(--muted-2);font-size:11px;font-weight:750}.hero-metric-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.hero-metric{padding:13px 10px;border:1px solid var(--line);border-radius:17px;background:var(--surface);text-align:center}.hero-metric b{display:block;color:var(--blue-strong);font-size:22px;line-height:1.1}.hero-metric span{display:block;margin-top:5px;color:var(--muted);font-size:10px;line-height:1.4;font-weight:750}.executive-strip{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:4px}.exec-card{padding:20px 22px;border:1px solid var(--line);border-radius:22px;background:#fff;box-shadow:var(--shadow-sm)}.exec-card b{display:inline-flex;margin-bottom:10px;padding:5px 8px;border-radius:999px;color:var(--blue-strong);background:var(--blue-soft);font-size:10px;font-weight:900}.exec-card:nth-child(2) b{color:#6c52cc;background:var(--violet)}.exec-card:nth-child(3) b{color:#517000;background:var(--lime)}.exec-card h3{margin-bottom:6px;font-size:18px;letter-spacing:-.035em}.exec-card p{margin:0;color:var(--muted);font-size:13px;font-weight:620}
+    section{padding:102px 0}.section-soft{background:var(--surface)}.section-blue{color:#fff;background:radial-gradient(circle at 15% 20%,rgba(255,255,255,.18),transparent 25rem),linear-gradient(145deg,#216ddc,#3182f6 58%,#5a9cff)}.section-kicker{margin-bottom:10px;color:var(--blue);font-size:14px;font-weight:900;letter-spacing:.02em}.section-blue .section-kicker{color:rgba(255,255,255,.75)}.section-title{max-width:940px;margin-bottom:18px;font-size:clamp(var(--section-title-min),var(--section-title-fluid),var(--section-title-max));line-height:1.2;letter-spacing:-.05em;font-weight:900;text-wrap:balance;overflow-wrap:anywhere}.section-desc{max-width:880px;margin-bottom:44px;color:var(--muted);font-size:19px;line-height:1.68;font-weight:600}.section-blue .section-desc{color:rgba(255,255,255,.8)}.prose{max-width:880px}.prose p{margin-bottom:20px;color:var(--ink-2);font-size:18px;font-weight:560}.prose p.lead-line{font-size:23px;line-height:1.55;font-weight:850;color:var(--ink)}.source-anchor{color:var(--blue-strong);font-size:.82em;font-weight:900;white-space:nowrap}.verdict-card{padding:34px;border-radius:34px;color:#fff;background:linear-gradient(145deg,#124fb5,#3182f6 60%,#6aa7ff);box-shadow:var(--shadow-md)}.verdict-card small{display:block;margin-bottom:10px;color:rgba(255,255,255,.72);font-size:11px;font-weight:900;letter-spacing:.08em}.verdict-card h3{margin-bottom:12px;color:#fff;font-size:30px;line-height:1.35;letter-spacing:-.045em}.verdict-card p{margin:0;color:rgba(255,255,255,.84);font-size:17px;font-weight:650}.metric-board{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}.metric-tile{padding:22px;border:1px solid var(--line);border-radius:24px;background:#fff}.metric-tile span{display:block;margin-bottom:13px;color:var(--muted-2);font-size:10px;font-weight:900;letter-spacing:.06em}.metric-tile strong{display:block;color:var(--blue-strong);font-size:30px;line-height:1}.metric-tile p{margin:9px 0 0;color:var(--muted);font-size:12px;font-weight:650}
+    .insight-grid,.priority-grid,.decision-grid,.risk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.insight-card,.priority-card,.decision-card,.risk-card{min-height:245px;padding:26px;border:1px solid var(--line);border-radius:var(--radius-md);background:#fff;box-shadow:0 10px 30px rgba(25,31,40,.035)}.card-index{display:inline-grid;place-items:center;width:36px;height:36px;margin-bottom:20px;border-radius:12px;color:var(--blue);background:var(--blue-soft);font-size:12px;font-weight:900}.insight-card:nth-child(2) .card-index,.priority-card:nth-child(2) .card-index{color:#7458d2;background:var(--violet)}.insight-card:nth-child(3) .card-index,.priority-card:nth-child(3) .card-index{color:#15876d;background:var(--mint)}.insight-card h3,.priority-card h3,.decision-card h3,.risk-card h3{margin-bottom:10px;font-size:23px;letter-spacing:-.04em}.insight-card p,.priority-card p,.decision-card p,.risk-card p{margin-bottom:0;color:var(--muted);font-size:15px;font-weight:600}.thesis-card{display:grid;grid-template-columns:140px 1fr;gap:28px;align-items:center;padding:34px;border:1px solid var(--line);border-radius:var(--radius-lg);background:#fff;box-shadow:var(--shadow-sm)}.thesis-stamp{aspect-ratio:1;display:grid;place-items:center;border-radius:34px;color:var(--blue);background:var(--blue-soft)}.thesis-stamp svg{width:64px}.thesis-copy h3{margin-bottom:10px;font-size:25px;line-height:1.35;letter-spacing:-.04em}.thesis-copy p{margin:0;color:var(--muted);font-size:18px;font-weight:600}
+    .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.compare-card{padding:30px;border-radius:var(--radius-md);border:1px solid var(--line);background:#fff}.compare-card.good{border-color:rgba(49,130,246,.25);background:linear-gradient(180deg,#fff,#f5f9ff)}.compare-label{display:inline-flex;padding:6px 10px;border-radius:999px;margin-bottom:18px;color:var(--muted);background:var(--surface-2);font-size:12px;font-weight:900}.compare-card.good .compare-label{color:var(--blue-strong);background:var(--blue-soft)}.compare-card h3{margin-bottom:12px;font-size:24px;letter-spacing:-.04em}.compare-card>p{color:var(--muted);font-size:16px;font-weight:600}.compare-list{display:grid;gap:12px;margin-top:20px}.compare-item{display:grid;grid-template-columns:24px 1fr;gap:10px;color:var(--ink-2);font-size:15px;font-weight:700}.compare-item b{width:24px;height:24px;display:grid;place-items:center;border-radius:50%;color:var(--muted-2);background:var(--surface-2);font-size:11px}.compare-card.good .compare-item b{color:var(--blue);background:var(--blue-soft)}
+    .priority-grid{grid-template-columns:repeat(4,1fr)}.priority-card{position:relative;min-height:290px}.priority-card .rank{position:absolute;right:22px;top:18px;color:var(--line);font-size:54px;line-height:1;font-weight:900}.priority-card .tag{display:inline-flex;padding:6px 9px;margin-bottom:18px;border-radius:999px;color:var(--blue-strong);background:var(--blue-soft);font-size:10px;font-weight:900}.priority-card ul,.decision-card ul,.risk-card ul{margin:15px 0 0;padding-left:18px;color:var(--ink-2);font-size:13px;font-weight:700}.callout{display:flex;align-items:flex-start;gap:14px;margin-top:22px;padding:22px 24px;border-radius:22px;border:1px solid #f4e28e;color:#635300;background:var(--yellow);font-size:14px;font-weight:700}.callout strong{color:#4e4200}.flow-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:13px}.flow-step{position:relative;min-height:240px;padding:22px;border-radius:24px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(10px)}.flow-num{width:36px;height:36px;display:grid;place-items:center;margin-bottom:36px;border-radius:12px;color:var(--blue-strong);background:#fff;font-size:12px;font-weight:900}.flow-step h3{margin-bottom:10px;font-size:19px;color:#fff}.flow-step p{margin:0;color:rgba(255,255,255,.75);font-size:14px;font-weight:600}
+    .figure-card{margin:34px 0 0;padding:16px;border:1px solid var(--line);border-radius:30px;background:#fff;box-shadow:var(--shadow-sm)}.figure-card img{width:100%;border-radius:22px}.figure-card figcaption{padding:14px 8px 3px;color:var(--muted-2);font-size:12px;font-weight:650}.table-shell,.history-table-wrap{width:100%;max-width:100%;min-width:0;overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-inline:contain;border:1px solid var(--line);border-radius:28px;background:#fff}.data-table{width:100%;min-width:980px;border-collapse:collapse;font-size:13px}.data-table th,.data-table td{padding:17px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}.data-table th{background:var(--surface);color:var(--muted);font-size:10px;font-weight:900;letter-spacing:.04em;white-space:nowrap}.data-table td{color:var(--ink-2);font-weight:650}.data-table tr:last-child td{border-bottom:0}.data-table td:first-child{min-width:145px;color:var(--ink);font-weight:900}.status-pill{display:inline-flex;padding:5px 8px;border-radius:999px;font-size:10px;font-weight:900;white-space:nowrap}.status-open{color:#086c55;background:var(--mint)}.status-review{color:#8a6700;background:var(--yellow)}.status-discovery{color:#6c52cc;background:var(--violet)}.code-card{margin-top:22px;padding:24px;border-radius:24px;color:#D8E0EA;background:#12161C;overflow-x:auto}.code-card pre{margin:0;font:600 13px/1.7 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap}.code-card .key{color:#8CC8FF}.code-card .str{color:#DFFF6A}
+    .check-layout{display:grid;grid-template-columns:.75fr 1.25fr;gap:22px;align-items:start}.check-summary{position:sticky;top:100px;padding:28px;border:1px solid var(--line);border-radius:28px;background:#fff;box-shadow:var(--shadow-sm)}.check-ring{width:150px;height:150px;margin:0 auto 22px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--blue) 0deg,var(--surface-2) 0deg);position:relative}.check-ring:after{content:"";position:absolute;inset:15px;border-radius:50%;background:#fff}.check-ring strong{position:relative;z-index:1;color:var(--blue-strong);font-size:34px}.check-summary h3{text-align:center;margin-bottom:8px;font-size:23px}.check-summary p{text-align:center;margin:0;color:var(--muted);font-size:14px;font-weight:650}.checklist{display:grid;gap:12px}.check-item{display:grid;grid-template-columns:52px 1fr 34px;gap:14px;align-items:center;padding:20px;border:1px solid var(--line);border-radius:22px;background:#fff;cursor:pointer}.check-item:hover{border-color:rgba(49,130,246,.35);box-shadow:var(--shadow-sm)}.check-num{width:52px;height:52px;display:grid;place-items:center;border-radius:16px;color:var(--blue-strong);background:var(--blue-soft);font-size:13px;font-weight:900}.check-copy h3{margin-bottom:3px;font-size:18px}.check-copy p{margin:0;color:var(--muted);font-size:13px;font-weight:620}.check-box{appearance:none;width:28px;height:28px;border:2px solid #C8D0D9;border-radius:9px;display:grid;place-items:center;cursor:pointer}.check-box:checked{border-color:var(--blue);background:var(--blue)}.check-box:checked:after{content:"✓";color:#fff;font-weight:900}.check-item.done{background:linear-gradient(180deg,#fff,#F6FAFF);border-color:rgba(49,130,246,.28)}
+    .decision-grid{grid-template-columns:repeat(3,1fr)}.decision-card .tag{display:inline-flex;padding:6px 9px;margin-bottom:18px;border-radius:999px;color:var(--blue-strong);background:var(--blue-soft);font-size:10px;font-weight:900}.risk-grid{grid-template-columns:repeat(2,1fr)}.risk-card{min-height:0}.risk-card .wrong{display:block;margin-bottom:10px;color:#D45454;font-size:12px;font-weight:900}.risk-card .right{display:block;margin-bottom:10px;color:var(--blue-strong);font-size:12px;font-weight:900}.faq-list{display:grid;gap:12px}.faq-item{border:1px solid var(--line);border-radius:20px;background:#fff;overflow:hidden}.faq-item summary{cursor:pointer;padding:20px 22px;list-style:none;font-size:16px;font-weight:850}.faq-item summary::-webkit-details-marker{display:none}.faq-item summary:after{content:"+";float:right;color:var(--blue)}.faq-item[open] summary:after{content:"−"}.faq-answer{padding:0 22px 22px;color:var(--muted);font-size:14px;font-weight:620}
+    .sources{padding:78px 0 40px;border-top:1px solid var(--line);background:#fff}.source-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:26px}.source-head h2{margin-bottom:5px;font-size:28px;letter-spacing:-.04em}.source-head p{margin:0;color:var(--muted);font-size:14px;font-weight:650}.source-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.source-link{padding:18px;border-radius:18px;border:1px solid var(--line);background:var(--surface);transition:.2s ease}.source-link:hover{transform:translateY(-2px);border-color:rgba(49,130,246,.25);background:var(--blue-soft)}.source-link span{display:block;margin-bottom:6px;color:var(--muted-2);font-size:10px;font-weight:900;letter-spacing:.06em}.source-link strong{display:block;font-size:14px}.source-link small{display:block;margin-top:7px;color:var(--muted);font-size:11px;line-height:1.55;font-weight:620}.disclosure{margin-top:24px;padding:18px 20px;border:1px dashed var(--line);border-radius:18px;color:var(--muted);background:var(--surface);font-size:12px;font-weight:650}.footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:36px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted-2);font-size:12px;font-weight:650}.report-history{margin-top:44px;padding-top:34px;border-top:1px solid var(--line)}.history-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:18px}.history-head h2{margin-bottom:4px;font-size:26px;letter-spacing:-.04em}.history-head p{margin:0;color:var(--muted);font-size:13px;font-weight:650}.history-table{width:100%;min-width:780px;border-collapse:collapse;font-size:13px}.history-table th,.history-table td{padding:15px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}.history-table th{color:var(--muted);background:var(--surface);font-size:11px;font-weight:900;white-space:nowrap}.history-table td{color:var(--ink-2);font-weight:650}.history-table tr:last-child td{border-bottom:0}.history-table td:first-child{color:var(--blue-strong);font-weight:900;white-space:nowrap}.history-status{display:inline-flex;padding:5px 8px;border-radius:999px;color:var(--muted);background:var(--surface-2);font-size:11px;font-weight:850}.history-empty{padding:22px;color:var(--muted);text-align:center}.floating-actions{position:fixed;right:22px;bottom:22px;z-index:800;display:grid;gap:10px}.float-btn{width:48px;height:48px;display:grid;place-items:center;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.92);box-shadow:var(--shadow-sm);cursor:pointer;color:var(--ink-2);backdrop-filter:blur(12px)}.float-btn:hover{color:var(--blue);border-color:rgba(49,130,246,.25)}.float-btn svg{width:20px}.reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease}.reveal.visible{opacity:1;transform:none}
+    @media(max-width:1040px){.nav-links{display:none}.hero{grid-template-columns:minmax(0,1fr);min-height:auto;padding-top:62px}.hero-copy{text-align:center}.hero-lead{margin-left:auto;margin-right:auto}.hero-actions,.report-meta,.hero-note,.keyword-chips{justify-content:center}.hero-note{text-align:left}.hero-visual{min-height:520px}.executive-strip{grid-column:1}.metric-board{grid-template-columns:repeat(2,minmax(0,1fr))}.insight-grid,.decision-grid{grid-template-columns:repeat(2,1fr)}.priority-grid{grid-template-columns:repeat(2,1fr)}.flow-grid{grid-template-columns:repeat(2,1fr)}.check-layout{grid-template-columns:1fr}.check-summary{position:static}.source-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:720px){.container{width:min(100% - 28px,var(--max))}.nav-wrap{padding:9px 10px 0}.nav{min-height:56px;padding-left:12px;border-radius:18px}.brand-sub,.nav-actions .btn-ghost{display:none}.btn{min-height:40px;padding:0 13px}.hero{gap:30px;padding:56px 0 42px}.hero h1{max-width:100%;font-size:clamp(32px,9.5vw,38px);word-break:keep-all;overflow-wrap:normal}.hero h1 .blue{overflow-wrap:anywhere;word-break:break-word}.hero-lead{font-size:18px}.hero-visual{min-height:auto}.hero-orbit{display:none}.hero-media{width:100%;padding:10px;border-radius:26px}.hero-metric-row,.executive-strip,.metric-board,.insight-grid,.priority-grid,.compare-grid,.decision-grid,.risk-grid,.flow-grid,.source-grid{grid-template-columns:minmax(0,1fr)}.hero-media figcaption,.source-head,.footer-bottom,.history-head{align-items:flex-start;flex-direction:column}.section-title{font-size:32px}.section-desc{font-size:17px;margin-bottom:34px}.prose p{font-size:16px}.prose p.lead-line{font-size:20px}.thesis-card{grid-template-columns:1fr;padding:28px}.thesis-stamp{width:94px;border-radius:24px}.priority-card,.insight-card,.decision-card{min-height:0}.flow-step{min-height:0}.check-item{grid-template-columns:46px 1fr 30px;padding:16px;gap:10px}.check-num{width:46px;height:46px}.figure-card{padding:8px;border-radius:22px}.data-table{min-width:900px}.floating-actions{right:12px;bottom:12px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+    @media print{@page{size:A4;margin:12mm}body{background:#fff!important;color:#000}.nav-wrap,.floating-actions,.scroll-progress,.hero-actions,.check-box{display:none!important}.container{width:100%;max-width:none}.hero{min-height:auto;grid-template-columns:1fr 1fr;padding:8mm 0 14mm}.hero-orbit{display:none}section{padding:14mm 0;break-inside:avoid}.section-blue{background:#fff!important;color:#000!important;border-top:2px solid var(--blue);border-bottom:2px solid var(--blue)}.section-blue .section-desc,.flow-step p{color:#333!important}.flow-step,.verdict-card{border:1px solid #ccc;background:#f4f6f8!important;color:#000!important;box-shadow:none}.verdict-card h3,.flow-step h3{color:#000!important}.verdict-card p{color:#333!important}.reveal{opacity:1!important;transform:none!important}.history-table-wrap,.table-shell{overflow:visible}.history-table,.data-table{min-width:0;font-size:9px}.source-link,.insight-card,.priority-card,.decision-card,.risk-card,.thesis-card{box-shadow:none}.check-summary{position:static}.check-ring{background:var(--surface-2)!important}a{text-decoration:none}}
+  </style>
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260810-mobile-scroll1">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png?v=20260810-mobile-scroll1">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png?v=20260810-mobile-scroll1">
+  <link rel="manifest" href="../../site.webmanifest?v=20260810-mobile-scroll1">
+  <meta name="application-name" content="Report Hub">
+  <meta property="og:site_name" content="Report Hub">
+  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260810-mobile-scroll1">
+  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260810-mobile-scroll1">
+  <link rel="stylesheet" href="../../assets/report-comments.css?v=20260809-comments1">
+</head>
+<body data-report-view="detail" data-report-layout="wide">
+  <a class="report-home-button" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span></a>
+  <a class="skip-link" href="#main-content">본문으로 바로가기</a>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <div class="nav-wrap">
+    <nav class="nav" aria-label="주요 메뉴">
+      <a class="brand report-hub-brand-link" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span></a>
+      <div class="nav-links"><a href="#summary">1분 요약</a><a href="#danger">검색 설명</a><a href="#priority">원자료 우선순위</a><a href="#fallback">추출 실패</a><a href="#routine">7단계</a><a href="#sources">출처</a></div>
+      <div class="nav-actions"><a class="btn btn-ghost" href="#history">변경 이력</a><button class="btn btn-primary" type="button" onclick="window.print()">PDF 저장</button></div>
+    </nav>
+  </div>
+
+  <main id="main-content">
+    <div class="container" id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span class="eyebrow-dot"></span>AI 조사 운영 · 자료 기준 2026.08.10</div>
+          <div class="blog-hook">AI가 링크까지 달아줬는데 왜 또 열어봐야 할까?</div>
+          <h1 id="hero-title">AI에게 조사시켜도 <span class="blue">원문 링크</span>를 끝까지 여는 이유</h1>
+          <p class="hero-lead">AI에게 조사를 시키면 웹, PDF, 영상, 대화 자료가 정말 빨리 모입니다. 그런데 결과가 그럴듯할수록 마지막에 꼭 하는 일이 있습니다. 링크를 직접 열고 원문까지 내려가는 것입니다.</p>
+          <div class="hero-actions"><a class="btn btn-primary" href="#routine">7단계 루틴 보기</a><a class="btn btn-ghost" href="#link-log">검증 로그 보기</a></div>
+          <div class="hero-note"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 20 6v5.7c0 4.6-3.2 7.6-8 9.3-4.8-1.7-8-4.7-8-9.3V6z" stroke="currentColor" stroke-width="1.8"/><path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>NIST는 생성형 AI 출력의 출처와 인용을 검토·검증하는 절차를 권고합니다. 이번 글도 공식 문서의 원문과 페이지 위치를 다시 확인했습니다. <a class="source-anchor" href="#src-01">[출처 1]</a></span></div>
+          <div class="report-meta"><span class="version-badge" id="reportVersion">v1.0.0</span><span class="report-meta-separator"></span><span id="reportUpdated">Updated 2026.08.10</span><span class="report-meta-separator"></span><span id="reportGeneration">AI-assisted · Published</span></div>
+          <div class="keyword-chips" aria-label="핵심 키워드"><span class="keyword-chip">AI 조사</span><span class="keyword-chip">원문 링크</span><span class="keyword-chip">PDF 검증</span><span class="keyword-chip">숫자·인용문</span><span class="keyword-chip">Source Ledger</span></div>
+        </div>
+        <div class="hero-visual reveal">
+          <div class="hero-orbit" aria-hidden="true"></div>
+          <figure class="hero-media"><img src="assets/thumbnail.png" width="1200" height="630" alt="AI 조사 결과를 원문 링크까지 검증하는 7단계 출처 확인법 썸네일"><div class="hero-metric-row"><div class="hero-metric"><b>7</b><span>검증 단계</span></div><div class="hero-metric"><b>4</b><span>출처 우선순위</span></div><div class="hero-metric"><b>6</b><span>공식 원자료</span></div><div class="hero-metric"><b>1</b><span>수동 재확인</span></div></div><figcaption><span>검색 → 원문 → 페이지 → 링크 상태</span><span>Report Hub</span></figcaption></figure>
+        </div>
+        <div class="executive-strip" aria-label="핵심 요약">
+          <article class="exec-card reveal"><b>WHAT GOES WRONG</b><h3>요약끼리 서로를 확인한다</h3><p>검색 설명과 AI 답변이 같은 원문을 짧게 재가공한 것인데도 독립된 두 근거처럼 보일 수 있습니다.</p></article>
+          <article class="exec-card reveal"><b>WHAT TO CHECK</b><h3>페이지·단위·맥락까지</h3><p>숫자는 단위와 기간, 인용문은 발화자와 페이지·타임스탬프, 링크는 확인일과 상태를 남깁니다.</p></article>
+          <article class="exec-card reveal"><b>ONE-LINE VERDICT</b><h3>요약은 지도, 원문은 근거</h3><p>독자가 다시 열어 볼 수 없는 문장은 최종 보고서의 핵심 근거로 쓰지 않습니다.</p></article>
+        </div>
+      </section>
+    </div>
+
+    <section class="section-soft" id="summary">
+      <div class="container">
+        <div class="section-kicker reveal">ONE-MINUTE BRIEF</div>
+        <h2 class="section-title reveal">AI는 조사 속도를 올려주지만 <span class="blue">근거 책임까지 대신 지지는 않습니다</span></h2>
+        <p class="section-desc reveal">나는 AI를 조사 시작점으로 적극적으로 씁니다. 안 되는 건 없다고 생각하고, 먼저 AI에게 자료를 모으게 합니다. 하지만 마지막 검수는 꼭 사용자가 해야 합니다. 특히 출처는 더 그렇습니다.</p>
+        <div class="verdict-card reveal"><small>REPORT HUB VERDICT</small><h3>AI 요약은 조사 시작점이고, 최종 근거는 독자가 다시 열어 볼 수 있는 원자료여야 한다.</h3><p>검색 결과의 두세 줄 설명은 원문 미리보기이고, PDF 추출문은 도구가 복원한 텍스트이며, 영상 transcript는 자막 데이터입니다. 셋 다 편리하지만 원자료와 같은 것은 아닙니다.</p></div>
+        <div class="metric-board">
+          <article class="metric-tile reveal"><span>DISCOVERY</span><strong>검색·AI</strong><p>자료 후보를 넓게 찾는 단계</p></article>
+          <article class="metric-tile reveal"><span>EVIDENCE</span><strong>원문·PDF</strong><p>주장을 실제로 지지하는지 확인</p></article>
+          <article class="metric-tile reveal"><span>LOCATION</span><strong>p.·§·00:00</strong><p>페이지·섹션·타임스탬프 기록</p></article>
+          <article class="metric-tile reveal"><span>REPRODUCIBILITY</span><strong>확인일</strong><p>나중에 다시 열 수 있게 남김</p></article>
+        </div>
+        <div class="insight-grid" style="margin-top:18px">
+          <article class="insight-card reveal"><span class="card-index">01</span><h3>AI 요약은 지도다</h3><p>어디를 볼지 빠르게 알려줍니다. 하지만 지도에 적힌 길 이름이 맞는지, 실제 길이 열려 있는지는 현장에서 다시 봐야 합니다.</p></article>
+          <article class="insight-card reveal"><span class="card-index">02</span><h3>원문은 증거다</h3><p>공식 문서, 원 논문, PDF, 영상의 실제 발화 지점처럼 독자가 다시 확인할 수 있는 자료가 마지막 근거가 됩니다.</p></article>
+          <article class="insight-card reveal"><span class="card-index">03</span><h3>출처 표는 기억이다</h3><p>무엇을 언제 확인했고 어떤 주의사항이 있었는지 남겨두면, 업데이트할 때 처음부터 조사하지 않아도 됩니다.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="danger">
+      <div class="container">
+        <div class="section-kicker reveal">WHY SEARCH SUMMARIES ARE NOT ENOUGH</div>
+        <h2 class="section-title reveal">검색 결과 설명만 믿으면 <span class="marker">틀린 문장보다 빠진 조건</span>을 놓치기 쉽습니다</h2>
+        <p class="section-desc reveal">검색 화면에 보이는 두세 줄이 틀렸다는 뜻은 아닙니다. 문제는 그 문장이 어떤 검색어를 기준으로 잘렸고, 무엇이 생략됐는지 알기 어렵다는 점입니다.</p>
+        <div class="prose reveal">
+          <p class="lead-line">예전에는 검색 결과에 보이는 설명과 AI 요약이 비슷하면, 두 번 확인된 것처럼 느껴질 때가 있었습니다.</p>
+          <p>그런데 생각해보면 둘 다 같은 원문을 짧게 잘라 보여준 것일 수 있습니다. 검색 설명을 AI가 읽고 다시 요약했다면 사실상 한 자료를 두 번 본 것입니다. 근거가 두 개가 된 게 아닙니다.</p>
+          <p>Google도 검색 스니펫이 페이지 내용에서 자동 생성되고, 사용자의 검색어에 따라 서로 다른 문장이 표시될 수 있다고 설명합니다. 검색 설명은 원문을 대신하는 고정 초록이 아니라, 검색 상황에 맞춘 미리보기입니다. <a class="source-anchor" href="#src-02">[출처 2]</a></p>
+        </div>
+        <div class="compare-grid reveal" style="margin-top:32px">
+          <article class="compare-card"><span class="compare-label">검색·AI 화면에서 보이는 것</span><h3>짧고 그럴듯한 결론</h3><p>읽기 쉽고 빠릅니다. 대신 조건과 예외가 잘려 나갈 수 있습니다.</p><div class="compare-list"><div class="compare-item"><b>1</b><span>수치만 남고 기준 기간이 사라짐</span></div><div class="compare-item"><b>2</b><span>회사 주장과 독립 검증이 섞임</span></div><div class="compare-item"><b>3</b><span>예외 조항·각주·지역 조건이 빠짐</span></div><div class="compare-item"><b>4</b><span>오래된 페이지인지 알기 어려움</span></div></div></article>
+          <article class="compare-card good"><span class="compare-label">원문에서 다시 확인하는 것</span><h3>문장이 성립하는 조건</h3><p>조금 느리지만 최종 판단에 필요한 맥락이 남습니다.</p><div class="compare-list"><div class="compare-item"><b>✓</b><span>발표일·업데이트일·버전</span></div><div class="compare-item"><b>✓</b><span>단위·지역·대상·분모</span></div><div class="compare-item"><b>✓</b><span>본문·각주·표의 원래 위치</span></div><div class="compare-item"><b>✓</b><span>링크가 실제로 열리는지</span></div></div></article>
+        </div>
+        <div class="callout reveal"><span aria-hidden="true">⚠</span><div><strong>내가 가장 경계하는 장면:</strong> AI가 출처 링크를 여러 개 달아줬는데, 막상 열어보면 해당 숫자가 없거나 제목만 비슷한 경우입니다. 링크가 있다는 사실과 그 링크가 주장을 지지한다는 사실은 다릅니다.</div></div>
+      </div>
+    </section>
+
+    <section class="section-soft" id="priority">
+      <div class="container">
+        <div class="section-kicker reveal">SOURCE PRIORITY</div>
+        <h2 class="section-title reveal">나는 출처를 많이 모으기보다 <span class="blue">원문에 가까운 순서</span>로 다시 정렬합니다</h2>
+        <p class="section-desc reveal">AI가 가져온 링크 목록을 그대로 참고문헌으로 쓰지 않습니다. 먼저 자료의 역할을 나누면, 무엇을 근거로 쓰고 무엇을 탐색용으로만 둘지 선명해집니다.</p>
+        <div class="priority-grid">
+          <article class="priority-card reveal"><span class="rank">1</span><span class="tag">PRIMARY</span><h3>공식·원출처</h3><p>정부 문서, 회사 공식 문서, 법령, 공시, 원 논문, 데이터셋처럼 주장에 가장 가까운 자료입니다.</p><ul><li>버전·날짜 확인</li><li>회사 주장 여부 표시</li><li>원문 위치 기록</li></ul></article>
+          <article class="priority-card reveal"><span class="rank">2</span><span class="tag">RAW MATERIAL</span><h3>원본 파일·기록</h3><p>PDF, GitHub 저장소, 영상 원본, 회의록, transcript, 릴리스 노트처럼 실제 재료가 남는 자료입니다.</p><ul><li>페이지·커밋·타임스탬프</li><li>추출본과 화면 대조</li><li>원본 보존</li></ul></article>
+          <article class="priority-card reveal"><span class="rank">3</span><span class="tag">SECONDARY</span><h3>신뢰도 높은 보도</h3><p>공식 자료로 확인하기 어려운 사건·협상·시장 반응은 신뢰도 높은 보도로 보완합니다.</p><ul><li>복수 매체 교차 확인</li><li>익명 소식통 표기</li><li>사실과 해석 분리</li></ul></article>
+          <article class="priority-card reveal"><span class="rank">4</span><span class="tag">DISCOVERY ONLY</span><h3>검색·AI 요약</h3><p>후보 자료를 찾고 질문을 넓히는 데 씁니다. 최종 숫자와 인용의 근거로는 바로 사용하지 않습니다.</p><ul><li>링크 후보 수집</li><li>키워드 확장</li><li>반론 탐색</li></ul></article>
+        </div>
+        <div class="callout reveal"><span aria-hidden="true">✓</span><div><strong>중요한 반론:</strong> 공식 문서라고 항상 중립적인 것은 아닙니다. 회사의 성능표는 공식 원자료이지만 여전히 회사 측 결과입니다. 원문 여부와 독립성은 별도로 표시해야 합니다.</div></div>
+        <div class="prose reveal" style="margin-top:34px">
+          <p>논문이라면 가능하면 제목만 검색하지 않고 DOI까지 남깁니다. Crossref는 DOI가 웹사이트가 바뀌어도 같은 연구물을 가리키는 영구 식별자로 유지되도록 메타데이터를 관리한다고 설명합니다. <a class="source-anchor" href="#src-05">[출처 5]</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-blue" id="fallback">
+      <div class="container">
+        <div class="section-kicker reveal">WHEN EXTRACTION FAILS</div>
+        <h2 class="section-title reveal">추출이 실패하면 같은 답을 반복시키지 않고 <span style="color:#fff;text-decoration:underline;text-decoration-color:#DFFF6A;text-underline-offset:7px">다른 형태로 원문을 봅니다</span></h2>
+        <p class="section-desc reveal">웹 본문 추출이 비었거나 PDF 표가 깨졌을 때, AI에게 “다시 해봐”만 시키면 같은 오류가 반복될 수 있습니다. 도구를 바꾸는 게 아니라 입력 형태를 바꾸는 것이 핵심입니다.</p>
+        <div class="flow-grid">
+          <article class="flow-step reveal"><span class="flow-num">01</span><h3>HTML 원문</h3><p>자동 추출문과 브라우저에 보이는 제목·본문·업데이트일을 대조합니다.</p></article>
+          <article class="flow-step reveal"><span class="flow-num">02</span><h3>PDF 텍스트</h3><p>페이지별 추출 결과에서 숫자와 문장을 찾되, 표·각주가 섞였는지 봅니다.</p></article>
+          <article class="flow-step reveal"><span class="flow-num">03</span><h3>페이지 렌더링</h3><p>텍스트 순서가 이상하면 해당 페이지를 이미지로 열어 눈으로 확인합니다.</p></article>
+          <article class="flow-step reveal"><span class="flow-num">04</span><h3>OCR</h3><p>스캔 PDF처럼 페이지 전체가 이미지일 때만 OCR을 보조 수단으로 씁니다.</p></article>
+          <article class="flow-step reveal"><span class="flow-num">05</span><h3>영상 재생</h3><p>transcript에서 찾은 문장을 실제 타임스탬프로 이동해 앞뒤 맥락을 듣습니다.</p></article>
+        </div>
+        <div class="prose reveal" style="margin-top:38px">
+          <p style="color:rgba(255,255,255,.88)">PDF는 화면에 잘 보인다고 해서 기계가 같은 구조로 읽는 파일이 아닙니다. pypdf 문서는 스캔 페이지가 이미지로만 구성되면 추출 텍스트가 거의 없을 수 있고, 표·문단·각주를 확실하게 구분하는 의미 구조가 PDF에 없을 수 있다고 설명합니다. <a class="source-anchor" style="color:#DFFF6A" href="#src-03">[출처 3]</a></p>
+          <p style="color:rgba(255,255,255,.88)">그래서 나는 추출 결과를 원문이라고 부르지 않습니다. 추출 결과는 원문을 읽기 쉽게 바꾼 중간 산출물입니다. 숫자 하나가 중요하면 결국 해당 페이지 화면으로 돌아갑니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="numbers">
+      <div class="container">
+        <div class="section-kicker reveal">NUMBERS & QUOTES</div>
+        <h2 class="section-title reveal">숫자와 인용문은 맞는지보다 <span class="marker">어떤 조건에서 맞는지</span>를 확인합니다</h2>
+        <p class="section-desc reveal">AI가 숫자를 정확히 옮겼어도 단위와 기간이 빠지면 다른 의미가 됩니다. 인용문도 문장 자체가 같아도 발화자와 맥락이 바뀌면 해석이 달라집니다.</p>
+        <div class="compare-grid reveal">
+          <article class="compare-card good"><span class="compare-label">숫자 검증 5개</span><h3>값보다 주변을 먼저 본다</h3><div class="compare-list"><div class="compare-item"><b>1</b><span>단위: 원·달러·토큰·명·%</span></div><div class="compare-item"><b>2</b><span>기간: 월·분기·연간·기준일</span></div><div class="compare-item"><b>3</b><span>지역·대상·표본</span></div><div class="compare-item"><b>4</b><span>분모와 비교 기준</span></div><div class="compare-item"><b>5</b><span>각주·프로모션·추정치 여부</span></div></div></article>
+          <article class="compare-card"><span class="compare-label">인용문 검증 5개</span><h3>문장보다 위치를 남긴다</h3><div class="compare-list"><div class="compare-item"><b>1</b><span>정확한 발화자·작성자</span></div><div class="compare-item"><b>2</b><span>원래 문장과 생략 표시</span></div><div class="compare-item"><b>3</b><span>페이지·섹션·타임스탬프</span></div><div class="compare-item"><b>4</b><span>앞뒤 문맥과 반대 조건</span></div><div class="compare-item"><b>5</b><span>번역이면 원문 병기 여부</span></div></div></article>
+        </div>
+        <div class="table-shell reveal" style="margin-top:28px" role="region" aria-label="숫자와 인용문 재검증 예시" tabindex="0">
+          <table class="data-table"><thead><tr><th>AI 요약 문장</th><th>원문에서 다시 볼 것</th><th>최종 작성 방식</th><th>주의</th></tr></thead><tbody>
+            <tr><td>“비용이 30% 감소했다”</td><td>어느 기간, 어느 지역, 무엇 대비 30%인지</td><td>“회사 내부 시범 환경에서 전월 대비 30% 감소했다고 회사가 설명”</td><td>이 표의 숫자는 검증 방법을 보여주기 위한 예시</td></tr>
+            <tr><td>“CEO가 곧 출시한다고 말했다”</td><td>정확한 발언, 행사 날짜, ‘곧’의 범위</td><td>영상 12:44의 원문과 발표일을 함께 기록</td><td>자막 자동 인식 오류 가능</td></tr>
+            <tr><td>“공식 문서가 상업 이용을 허용한다”</td><td>라이선스 본문, 규모·지역·표시 의무</td><td>허용 범위와 예외 조건을 분리해 작성</td><td>무료·오픈웨이트·오픈소스는 다른 개념</td></tr>
+          </tbody></table>
+        </div>
+        <div class="callout reveal"><span aria-hidden="true">→</span><div><strong>내 기준:</strong> 숫자 하나를 쓸 때 링크만 남기지 않습니다. 그 숫자를 다시 찾을 수 있는 표 번호·페이지·문단을 같이 남깁니다. 나중에 업데이트할 때 이 차이가 엄청 큽니다.</div></div>
+      </div>
+    </section>
+
+    <section class="section-soft" id="link-log">
+      <div class="container">
+        <div class="section-kicker reveal">CHECKED DATE & LINK STATUS</div>
+        <h2 class="section-title reveal">확인일과 링크 상태를 남겨야 <span class="blue">나중의 나도 같은 자료를 찾습니다</span></h2>
+        <p class="section-desc reveal">출처는 영원히 같은 위치에 있지 않습니다. 페이지가 이동하고, 문서가 업데이트되고, 자동 접근이 막히기도 합니다. 그래서 URL만 저장하는 것보다 확인 당시의 상태를 함께 남깁니다.</p>
+        <figure class="figure-card reveal"><img src="assets/source-verification-board.svg" width="1400" height="820" alt="2026년 8월 10일 기준 공식 출처 여섯 곳의 링크 접근 상태와 확인 내용을 정리한 화면"><figcaption>이번 글의 실제 확인 로그. YouTube Help는 자동 접근 환경에서 429가 발생해 ‘정상’으로 단정하지 않고 수동 재확인 대상으로 남겼습니다.</figcaption></figure>
+        <div class="prose reveal" style="margin-top:34px">
+          <p>W3C의 Link Checker 문서는 링크와 내부 프래그먼트가 실제로 열리는지 확인하고 리디렉션을 경고하는 방식을 설명합니다. 링크 검사는 단순히 404만 찾는 작업이 아니라, 이동된 주소와 깨진 섹션 링크를 발견하는 작업이기도 합니다. <a class="source-anchor" href="#src-04">[출처 4]</a></p>
+          <p>다만 링크가 열린다고 내용이 맞는 것은 아닙니다. 접근 상태 확인은 1차 점검이고, 그 페이지가 내 문장을 실제로 지지하는지는 사람이 다시 읽어야 합니다.</p>
+        </div>
+        <div class="table-shell reveal" style="margin-top:26px" role="region" aria-label="실제 원자료 링크 검증 표" tabindex="0">
+          <table class="data-table"><thead><tr><th>원자료</th><th>역할</th><th>확인 위치</th><th>확인일</th><th>링크 상태</th><th>주의사항</th></tr></thead><tbody>
+            <tr><td>NIST AI 600-1</td><td>AI 출력의 출처·인용 검증 권고</td><td>인쇄면 p.31, MS-2.5-003</td><td>2026.08.10</td><td><span class="status-pill status-open">정상 열림 · PDF</span></td><td>위험관리 권고 문서</td></tr>
+            <tr><td>Google Search Central</td><td>검색 스니펫 생성 방식</td><td>How snippets are created</td><td>2026.08.10</td><td><span class="status-pill status-open">정상 열림 · HTML</span></td><td>Google 검색에 한정</td></tr>
+            <tr><td>pypdf Docs</td><td>PDF 추출·OCR 한계</td><td>Why Text Extraction is hard</td><td>2026.08.10</td><td><span class="status-pill status-open">정상 열림 · HTML</span></td><td>도구 범위 문서</td></tr>
+            <tr><td>W3C Link Checker</td><td>링크·리디렉션 점검</td><td>What it does</td><td>2026.08.10</td><td><span class="status-pill status-open">정상 열림 · HTML</span></td><td>문서 자체는 오래됨</td></tr>
+            <tr><td>Crossref Docs</td><td>DOI·영구 식별자</td><td>Benefits of registration</td><td>2026.08.10</td><td><span class="status-pill status-open">정상 열림 · HTML</span></td><td>모든 자료에 DOI가 있는 것은 아님</td></tr>
+            <tr><td>YouTube Help</td><td>영상 transcript 확인</td><td>View video transcripts</td><td>2026.08.10</td><td><span class="status-pill status-review">자동접근 429</span></td><td>일반 브라우저 재확인 필요</td></tr>
+          </tbody></table>
+        </div>
+      </div>
+    </section>
+
+    <section id="routine">
+      <div class="container">
+        <div class="section-kicker reveal">MY SOURCE-CENTERED ROUTINE</div>
+        <h2 class="section-title reveal">AI 조사 결과를 보고서로 바꾸는 <span class="blue">7단계 체크리스트</span></h2>
+        <p class="section-desc reveal">모든 링크를 처음부터 완벽하게 읽는 방식은 오래 못 갑니다. AI에게 넓게 찾게 하고, 핵심 주장만 원문으로 좁혀 검증하는 흐름이 현실적이었습니다.</p>
+        <div class="check-layout">
+          <aside class="check-summary reveal" aria-live="polite"><div class="check-ring" id="checkRing"><strong id="checkPercent">0%</strong></div><h3 id="checkHeadline">검증 시작 전</h3><p id="checkMessage">아래 항목을 눌러 나만의 조사 완료 상태를 확인하세요.</p></aside>
+          <div class="checklist" id="sourceChecklist">
+            <label class="check-item reveal"><span class="check-num">01</span><span class="check-copy"><h3>검증할 주장부터 한 문장으로 쓴다</h3><p>“이 주장의 숫자·날짜·인용이 맞는가?”처럼 확인 대상을 좁힙니다.</p></span><input class="check-box" type="checkbox" aria-label="1단계 완료"></label>
+            <label class="check-item reveal"><span class="check-num">02</span><span class="check-copy"><h3>AI에게 자료 후보를 넓게 찾게 한다</h3><p>공식 문서, 원 논문, PDF, 영상, 반론 자료를 분리해 요청합니다.</p></span><input class="check-box" type="checkbox" aria-label="2단계 완료"></label>
+            <label class="check-item reveal"><span class="check-num">03</span><span class="check-copy"><h3>검색·요약 링크를 출처 등급으로 나눈다</h3><p>공식 원문 / 원본 파일 / 신뢰도 높은 보도 / 탐색용 요약으로 구분합니다.</p></span><input class="check-box" type="checkbox" aria-label="3단계 완료"></label>
+            <label class="check-item reveal"><span class="check-num">04</span><span class="check-copy"><h3>핵심 링크를 직접 열어 제목·날짜·본문을 본다</h3><p>링크 존재 여부가 아니라 해당 문장을 실제로 지지하는지 확인합니다.</p></span><input class="check-box" type="checkbox" aria-label="4단계 완료"></label>
+            <label class="check-item reveal"><span class="check-num">05</span><span class="check-copy"><h3>추출이 깨지면 페이지 이미지·OCR·영상 재생으로 전환한다</h3><p>도구가 만든 텍스트와 원문 화면이 다를 때는 원문 화면을 우선합니다.</p></span><input class="check-box" type="checkbox" aria-label="5단계 완료"></label>
+            <label class="check-item reveal"><span class="check-num">06</span><span class="check-copy"><h3>숫자와 인용문을 위치 정보와 함께 기록한다</h3><p>단위·기간·페이지·섹션·타임스탬프·각주를 붙입니다.</p></span><input class="check-box" type="checkbox" aria-label="6단계 완료"></label>
+            <label class="check-item reveal"><span class="check-num">07</span><span class="check-copy"><h3>확인일·최종 URL·링크 상태를 source ledger에 남긴다</h3><p>나중에 링크가 바뀌어도 무엇을 근거로 썼는지 추적할 수 있게 합니다.</p></span><input class="check-box" type="checkbox" aria-label="7단계 완료"></label>
+          </div>
+        </div>
+        <div class="code-card reveal"><pre><span class="key">claim</span>: <span class="str">"AI 출력의 출처와 인용은 검증해야 한다"</span>
+<span class="key">source_url</span>: <span class="str">"https://doi.org/10.6028/NIST.AI.600-1"</span>
+<span class="key">location</span>: <span class="str">"인쇄면 p.31 · MS-2.5-003"</span>
+<span class="key">checked_at</span>: <span class="str">"2026-08-10"</span>
+<span class="key">link_status</span>: <span class="str">"정상 열림 · PDF 64쪽"</span>
+<span class="key">caution</span>: <span class="str">"권고 문서이며 법적 의무로 확대 해석하지 않음"</span></pre></div>
+      </div>
+    </section>
+
+    <section class="section-blue" id="team">
+      <div class="container">
+        <div class="section-kicker reveal">WHAT AI SHOULD AUTOMATE</div>
+        <h2 class="section-title reveal">AI에게 맡길 일은 원문을 대신 읽는 것이 아니라 <span style="color:#DFFF6A">누락과 불일치를 빨리 찾는 일</span>입니다</h2>
+        <p class="section-desc reveal">링크 접근, 중복 URL, 날짜 형식, 인용 위치 누락은 자동화하기 좋습니다. 반면 회사 주장과 독립 사실을 구분하고, 인용문이 맥락을 왜곡하는지 판단하는 일은 사람이 맡아야 합니다.</p>
+        <div class="flow-grid">
+          <article class="flow-step reveal"><span class="flow-num">AUTO</span><h3>링크 상태</h3><p>열림·리디렉션·404·429를 주기적으로 점검합니다.</p></article>
+          <article class="flow-step reveal"><span class="flow-num">AUTO</span><h3>중복·누락</h3><p>같은 URL 중복, 확인일 누락, 페이지 위치 빈칸을 찾습니다.</p></article>
+          <article class="flow-step reveal"><span class="flow-num">AUTO</span><h3>버전 비교</h3><p>문서 제목·업데이트일·해시가 바뀌었는지 표시합니다.</p></article>
+          <article class="flow-step reveal"><span class="flow-num">HUMAN</span><h3>의미 일치</h3><p>출처가 내 주장을 실제로 지지하는지 읽고 판단합니다.</p></article>
+          <article class="flow-step reveal"><span class="flow-num">HUMAN</span><h3>공개 판단</h3><p>민감정보, 과장, 오해 가능성, 최종 결론을 검수합니다.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-soft" id="decision">
+      <div class="container">
+        <div class="section-kicker reveal">HOW MUCH VERIFICATION IS ENOUGH?</div>
+        <h2 class="section-title reveal">모든 문장을 같은 강도로 확인하지 않고 <span class="blue">틀렸을 때의 비용</span>으로 나눕니다</h2>
+        <p class="section-desc reveal">원문 확인이 중요하다고 해서 조사 속도를 다시 사람 손 수준으로 되돌릴 필요는 없습니다. 핵심은 리스크 기반 검증입니다.</p>
+        <div class="decision-grid">
+          <article class="decision-card reveal"><span class="tag">LOW RISK</span><h3>아이디어·초안</h3><p>검색·AI 요약으로 빠르게 구조를 만들고, 공개 전 핵심 주장만 확인합니다.</p><ul><li>개념 설명</li><li>개인 생각</li><li>초안 목차</li></ul></article>
+          <article class="decision-card reveal"><span class="tag">MEDIUM RISK</span><h3>블로그·업무 자료</h3><p>숫자·제품명·날짜·정책·직접 인용은 원문 링크와 위치를 남깁니다.</p><ul><li>공식 문서 우선</li><li>중요 수치 재검증</li><li>확인일 기록</li></ul></article>
+          <article class="decision-card reveal"><span class="tag">HIGH RISK</span><h3>법률·의료·투자·경영 판단</h3><p>공식 원문과 독립된 보조 근거를 교차 확인하고 전문가 검토를 거칩니다.</p><ul><li>복수 근거</li><li>최신성 재확인</li><li>사람 승인 필수</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="risks">
+      <div class="container">
+        <div class="section-kicker reveal">RISKS & COUNTERPOINTS</div>
+        <h2 class="section-title reveal">원문을 열었다고 검증이 끝난 것은 아닙니다</h2>
+        <p class="section-desc reveal">출처 중심 조사는 강력하지만, 원문 자체의 편향과 업데이트 가능성까지 같이 봐야 합니다.</p>
+        <div class="risk-grid">
+          <article class="risk-card reveal"><span class="wrong">착각 1</span><h3>공식이면 무조건 사실이다</h3><p>공식 자료는 가장 가까운 원출처일 수 있지만 회사의 주장·마케팅·자체 벤치마크일 수 있습니다.</p><span class="right">대응</span><p>“회사 측 결과”라고 표시하고 가능하면 독립 평가를 붙입니다.</p></article>
+          <article class="risk-card reveal"><span class="wrong">착각 2</span><h3>링크가 열리면 근거가 맞다</h3><p>페이지가 정상 열려도 해당 문장이 없거나, 다른 조건의 수치일 수 있습니다.</p><span class="right">대응</span><p>페이지·섹션·표·타임스탬프까지 기록합니다.</p></article>
+          <article class="risk-card reveal"><span class="wrong">착각 3</span><h3>PDF 추출문은 원문과 같다</h3><p>표의 열 순서, 각주, 스캔 OCR, 특수문자가 깨질 수 있습니다.</p><span class="right">대응</span><p>중요 숫자는 렌더링된 페이지와 대조합니다.</p></article>
+          <article class="risk-card reveal"><span class="wrong">착각 4</span><h3>한 번 검증하면 계속 유효하다</h3><p>가격·제품명·정책·라이선스·도움말은 바뀔 수 있습니다.</p><span class="right">대응</span><p>확인일과 버전을 남기고 발행·업데이트 직전에 다시 엽니다.</p></article>
+        </div>
+        <div class="callout reveal"><span aria-hidden="true">NIST</span><div>NIST는 생성형 AI가 자신감 있게 틀린 내용이나 가짜 인용을 제시할 수 있다고 설명하고, 출처와 인용 검증을 권고합니다. 원문 확인은 AI를 덜 쓰기 위한 절차가 아니라 AI를 더 안전하게 쓰기 위한 절차입니다. <a class="source-anchor" href="#src-01">[출처 1]</a></div></div>
+      </div>
+    </section>
+
+    <section class="section-soft" id="faq">
+      <div class="container">
+        <div class="section-kicker reveal">FAQ</div>
+        <h2 class="section-title reveal">AI 조사에서 자주 생기는 질문</h2>
+        <div class="faq-list">
+          <details class="faq-item reveal"><summary>AI가 출처 링크를 달아주면 그대로 써도 되나요?</summary><div class="faq-answer">링크 후보로는 매우 유용합니다. 다만 링크가 실제로 열리는지, 해당 페이지에 주장과 숫자가 있는지, 날짜와 조건이 맞는지는 직접 확인해야 합니다. 링크의 존재와 근거의 적합성은 다른 문제입니다.</div></details>
+          <details class="faq-item reveal"><summary>검색 결과의 설명은 인용해도 되나요?</summary><div class="faq-answer">가능하면 원문을 열어 인용하는 편이 안전합니다. 검색 스니펫은 검색어에 따라 자동으로 달라질 수 있는 미리보기이기 때문에 고정된 원문 문장으로 취급하지 않습니다.</div></details>
+          <details class="faq-item reveal"><summary>PDF에서 검색이 안 되면 자료가 없는 건가요?</summary><div class="faq-answer">아닙니다. 스캔 PDF는 페이지가 이미지일 수 있고, 표·각주·특수문자가 추출되지 않을 수 있습니다. 해당 페이지를 렌더링해 보거나 OCR을 보조적으로 사용한 뒤 화면과 대조합니다.</div></details>
+          <details class="faq-item reveal"><summary>출처는 몇 개면 충분한가요?</summary><div class="faq-answer">개수보다 역할이 중요합니다. 핵심 수치는 원출처 하나가 여러 요약 기사보다 강할 수 있습니다. 다만 회사 주장, 고위험 판단, 논쟁적 사안은 독립된 보조 근거를 추가합니다.</div></details>
+          <details class="faq-item reveal"><summary>영상 transcript만 확인하면 되나요?</summary><div class="faq-answer">transcript는 문장을 찾는 데 좋지만 자동 자막 오인식과 문맥 누락이 있을 수 있습니다. 중요한 인용은 해당 타임스탬프로 이동해 직접 듣고, 발화자와 앞뒤 문장을 확인합니다.</div></details>
+          <details class="faq-item reveal"><summary>링크 검증은 전부 자동화할 수 있나요?</summary><div class="faq-answer">접근 상태, 리디렉션, 중복, 확인일 누락은 자동화하기 좋습니다. 그러나 그 링크가 내 주장을 의미상 지지하는지, 조건을 과장하지 않았는지는 사람의 검토가 필요합니다.</div></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sources" id="sources">
+    <div class="container">
+      <div class="source-head"><div><h2>참고 자료와 원문 출처</h2><p>공식·원자료를 우선했고, 확인 위치와 링크 상태는 source-ledger.json에 함께 기록했습니다. 확인일 2026.08.10.</p></div><button class="btn btn-ghost" type="button" onclick="window.print()">전체 PDF 저장</button></div>
+      <div class="source-grid">
+        <a class="source-link" id="src-01" href="https://doi.org/10.6028/NIST.AI.600-1" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · NIST · 2024 / UPDATED 2026</span><strong>NIST AI 600-1: Generative AI Profile</strong><small>출처·인용 검증 권고는 인쇄면 p.31, MS-2.5-003. DOI PDF 64쪽.</small></a>
+        <a class="source-link" id="src-02" href="https://developers.google.com/search/docs/appearance/snippet" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · GOOGLE SEARCH CENTRAL</span><strong>Control your snippets in search results</strong><small>검색 스니펫이 페이지 내용에서 자동 생성되고 검색어에 따라 달라질 수 있음을 설명.</small></a>
+        <a class="source-link" id="src-03" href="https://pypdf.readthedocs.io/en/stable/user/extract-text.html" target="_blank" rel="noopener noreferrer"><span>PRIMARY · PYPDF 6.15.0 DOCS</span><strong>Extract Text from a PDF</strong><small>스캔 PDF, OCR, 표·문단·각주 추출의 구조적 한계를 설명.</small></a>
+        <a class="source-link" id="src-04" href="https://dev.w3.org/perl/modules/W3C/LinkChecker/docs/checklink" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · W3C TOOL DOCUMENTATION</span><strong>W3C Link Checker Documentation</strong><small>링크·프래그먼트 접근과 HTTP 리디렉션 경고 기능 설명.</small></a>
+        <a class="source-link" id="src-05" href="https://www.crossref.org/documentation/register-maintain-records/" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · CROSSREF</span><strong>Register and maintain your records</strong><small>DOI가 콘텐츠 이동 후에도 같은 연구물을 가리키도록 메타데이터를 유지하는 구조.</small></a>
+        <a class="source-link" id="src-06" href="https://support.google.com/youtube/answer/15930243?hl=en" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · YOUTUBE HELP · MANUAL RECHECK</span><strong>View video transcripts</strong><small>영상 transcript 확인 안내. 자동 접근 환경에서는 429가 발생해 일반 브라우저 재확인 권장.</small></a>
+      </div>
+      <div class="disclosure"><strong>제작 방식:</strong> AI가 공개 원자료를 구조화하고 HTML·체크리스트·썸네일·source ledger를 생성했습니다. 핵심 출처는 원문과 페이지·섹션을 재확인했으며, 링크 상태는 2026년 8월 10일 기준입니다. 외부 게시 전 사람의 최종 검토를 권장합니다.</div>
+      <div class="footer-bottom"><span id="footerTitle">AI에게 조사시켜도 원문 링크를 끝까지 여는 이유: 출처 검증 7단계</span><span id="footerMeta">자료 기준일 2026.08.10 · AI-assisted · Published</span></div>
+      <div class="report-history" id="history" aria-labelledby="history-title"><div class="history-head"><div><h2 id="history-title">버전 및 업데이트 히스토리</h2><p>출처 링크·공식 문서·검증 루틴이 바뀌면 변경 범위를 누적 기록합니다.</p></div><span class="version-badge" id="historyCurrentVersion">Current v1.0.0</span></div><div class="history-table-wrap"><table class="history-table"><thead><tr><th>버전</th><th>업데이트일</th><th>변경 구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr></thead><tbody id="historyBody"><tr><td colspan="5" class="history-empty">변경 이력을 불러오는 중입니다.</td></tr></tbody></table></div></div>
+    </div>
+  </footer>
+  <div class="floating-actions" aria-label="빠른 작업"><button class="float-btn" type="button" id="toTop" aria-label="맨 위로 이동"><svg viewBox="0 0 24 24" fill="none"><path d="m6 14 6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="float-btn" type="button" onclick="window.print()" aria-label="PDF로 저장"><svg viewBox="0 0 24 24" fill="none"><path d="M7 9V4h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-width="1.8"/><path d="M7 14h10v6H7z" stroke="currentColor" stroke-width="1.8"/></svg></button></div>
+
+  <script id="report-metadata" type="application/json">{
+  "schemaVersion": "2.0",
+  "reportId": "rh-260810-01-ai-research-original-source-check",
+  "title": "AI에게 조사시켜도 원문 링크를 끝까지 여는 이유: 출처 검증 7단계",
+  "version": "1.0.0",
+  "status": "Published",
+  "createdAt": "2026-08-10",
+  "updatedAt": "2026-08-10",
+  "language": "ko-KR",
+  "author": "Jeremy Lee",
+  "generation": "AI-assisted",
+  "reviewStatus": "Published",
+  "history": [
+    {
+      "version": "1.0.0",
+      "date": "2026-08-10",
+      "type": "신규 작성",
+      "summary": "검색 스니펫, 공식 원문, PDF 추출 실패, 영상 transcript, 숫자·인용문 재검증, 확인일·링크 상태 기록을 하나의 7단계 출처 중심 조사 루틴으로 구성함.",
+      "sections": [
+        "Hero·후킹",
+        "1분 요약",
+        "검색 설명의 위험",
+        "원자료 우선순위",
+        "추출 실패 대응",
+        "숫자·인용 검증",
+        "링크 로그",
+        "7단계 체크리스트",
+        "리스크·FAQ·출처"
+      ],
+      "updatedBy": "AI-assisted",
+      "reviewStatus": "발행 완료"
+    }
+  ]
+}</script>
+  <script>
+    const progress=document.getElementById('scrollProgress');const toTop=document.getElementById('toTop');
+    function updateProgress(){const max=document.documentElement.scrollHeight-window.innerHeight;const percent=max>0?(window.scrollY/max)*100:0;if(progress)progress.style.width=percent+'%';if(toTop){toTop.style.opacity=window.scrollY>600?'1':'0';toTop.style.pointerEvents=window.scrollY>600?'auto':'none';}}
+    window.addEventListener('scroll',updateProgress,{passive:true});updateProgress();if(toTop)toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+    if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}})},{threshold:.08});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));}else{document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));}
+    function renderReportMetadata(){const node=document.getElementById('report-metadata');if(!node)return;try{const meta=JSON.parse(node.textContent);const version=`v${meta.version}`;const date=String(meta.updatedAt||'').replaceAll('-','.');const setText=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value};setText('reportVersion',version);setText('reportUpdated',`Updated ${date}`);setText('reportGeneration',`${meta.generation} · ${meta.reviewStatus}`);setText('historyCurrentVersion',`Current ${version}`);setText('footerTitle',meta.title);setText('footerMeta',`자료 기준일 ${date} · ${meta.generation} · ${meta.reviewStatus}`);const body=document.getElementById('historyBody');if(!body)return;body.innerHTML='';(meta.history||[]).forEach(item=>{const row=document.createElement('tr');const values=[`v${item.version}`,String(item.date||'').replaceAll('-','.'),item.type||'',item.summary||'',[item.updatedBy,item.reviewStatus].filter(Boolean).join(' · ')];values.forEach((value,index)=>{const cell=document.createElement('td');if(index===4){const badge=document.createElement('span');badge.className='history-status';badge.textContent=value;cell.appendChild(badge)}else cell.textContent=value;row.appendChild(cell)});body.appendChild(row)});}catch(error){console.error('Invalid report metadata:',error)}}renderReportMetadata();
+    const boxes=[...document.querySelectorAll('.check-box')];const ring=document.getElementById('checkRing');const percent=document.getElementById('checkPercent');const headline=document.getElementById('checkHeadline');const message=document.getElementById('checkMessage');
+    function updateChecklist(){const done=boxes.filter(box=>box.checked).length;const pct=Math.round(done/boxes.length*100);const deg=pct*3.6;ring.style.background=`conic-gradient(var(--blue) ${deg}deg,var(--surface-2) ${deg}deg)`;percent.textContent=pct+'%';boxes.forEach(box=>box.closest('.check-item').classList.toggle('done',box.checked));if(done===0){headline.textContent='검증 시작 전';message.textContent='아래 항목을 눌러 나만의 조사 완료 상태를 확인하세요.'}else if(done<4){headline.textContent='자료 후보 정리 중';message.textContent='원문을 열기 전 탐색과 분류 단계입니다.'}else if(done<7){headline.textContent='핵심 근거 검증 중';message.textContent='숫자·인용·링크 상태를 끝까지 확인하세요.'}else{headline.textContent='출처 검증 완료';message.textContent='이제 독자가 다시 열 수 있는 근거와 함께 발행할 수 있습니다.'}}
+    boxes.forEach(box=>box.addEventListener('change',updateChecklist));updateChecklist();
+  </script>
+  <script src="../../assets/report-page-layout.js?v=20260810-mobile-scroll1"></script>
+  <script src="../../assets/report-view-counter.js?v=20260810-counter-d1-1" data-report-id="260810-01-ai-research-original-source-check-v1-0-0"></script>
+  <script src="../../assets/report-comments.js?v=20260809-comments1" data-report-id="260810-01-ai-research-original-source-check-v1-0-0"></script>
+  <script src="../../assets/report-history.js?v=20260809-history2" data-report-id="260810-01-ai-research-original-source-check-v1-0-0"></script>
+  <script src="../../assets/report-hub-brand.js?v=20260810-mobile-scroll1"></script>
+</body>
+</html>

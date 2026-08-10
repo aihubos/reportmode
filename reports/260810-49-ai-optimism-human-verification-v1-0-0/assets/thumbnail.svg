@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">AI의 미래는 믿되 결과는 검수한다 — 낙관과 검증의 운영 원칙</title>
+<desc id="desc">Toss Blue와 Lime 색상의 추상 AI 네트워크와 검수 체크 아이콘</desc>
+<defs>
+  <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#1B64DA"/><stop offset="1" stop-color="#5BA0FF"/></linearGradient>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#191F28" flood-opacity="0.14"/></filter>
+</defs>
+<rect width="1200" height="630" fill="#F7FAFF"/>
+<circle cx="50" cy="650" r="225" fill="#F2FFB9"/>
+<circle cx="1090" cy="20" r="230" fill="#E8F3FF"/>
+<rect x="72" y="82" width="640" height="466" rx="48" fill="#fff" stroke="#E5E8EB" stroke-width="2"/>
+<rect x="744" y="78" width="390" height="474" rx="58" fill="url(#panel)"/>
+<text x="118" y="214" font-family="Noto Sans CJK KR, NanumGothic, sans-serif" font-size="64" font-weight="800" fill="#191F28">AI의 미래는 믿되</text>
+<text x="118" y="302" font-family="Noto Sans CJK KR, NanumGothic, sans-serif" font-size="64" font-weight="800" fill="#191F28">결과는 검수한다</text>
+<rect x="118" y="334" width="412" height="20" rx="10" fill="#DFFF6A"/>
+<text x="118" y="430" font-family="Noto Sans CJK KR, NanumGothic, sans-serif" font-size="30" font-weight="800" fill="#1B64DA">낙관과 검증의 운영 원칙</text>
+<circle cx="940" cy="275" r="130" fill="none" stroke="#fff" stroke-width="3" opacity=".9"/>
+<circle cx="940" cy="275" r="100" fill="none" stroke="#fff" stroke-width="2" opacity=".6"/>
+<g stroke="#B9D7FF" stroke-width="4">
+  <line x1="940" y1="275" x2="940" y2="202"/><line x1="940" y1="275" x2="875" y2="245"/><line x1="940" y1="275" x2="1005" y2="245"/>
+  <line x1="940" y1="275" x2="900" y2="322"/><line x1="940" y1="275" x2="980" y2="322"/><line x1="940" y1="275" x2="940" y2="350"/>
+</g>
+<g fill="#fff"><circle cx="940" cy="202" r="10"/><circle cx="875" cy="245" r="10"/><circle cx="1005" cy="245" r="10"/><circle cx="900" cy="322" r="10"/><circle cx="980" cy="322" r="10"/><circle cx="940" cy="350" r="10"/></g>
+<circle cx="940" cy="275" r="18" fill="#DFFF6A"/>
+<g filter="url(#shadow)"><rect x="862" y="348" width="212" height="158" rx="34" fill="#fff"/></g>
+<path d="M968 375l57 22-8 52-49 33-49-33-8-52z" fill="#E8F3FF"/>
+<path d="M937 427l22 22 43-45" fill="none" stroke="#1B64DA" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="1095" cy="135" r="17" fill="#DFFF6A"/>
+</svg>

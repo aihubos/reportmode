@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "260810-25-report-to-blog-class-website",
+  "title": "보고서 하나를 블로그·수업·웹사이트로 세 번 쓰는 방법",
+  "seoTitle": "보고서 하나로 블로그·수업·웹사이트 만드는 법",
+  "alternativeTitles": [
+    "같은 조사를 세 번 하지 않는 법: 보고서 하나로 콘텐츠 3종 만들기",
+    "AI Report 자산화: 블로그·교육·웹페이지로 확장하는 6단계",
+    "보고서 한 편을 3개의 콘텐츠 자산으로 바꾸는 구조"
+  ],
+  "slug": "report-to-blog-class-website",
+  "folder": "260810-25-report-to-blog-class-website-v1-0-0",
+  "version": "1.0.0",
+  "status": "Published",
+  "summary": "검증된 원자료와 한 문장 결론을 중심 자산으로 두고, 보고서는 근거, 블로그는 경험, 수업은 실습, 웹사이트는 탐색 구조로 재구성하는 콘텐츠 자산화 방법을 정리했다.",
+  "hook": "같은 조사를 플랫폼마다 다시 하고 있지 않았나요?",
+  "keywords": [
+    "보고서 재가공",
+    "콘텐츠 자산화",
+    "AI Report",
+    "블로그 글쓰기",
+    "교육 자료",
+    "GitHub Pages",
+    "콘텐츠 파이프라인",
+    "원자료 검증"
+  ],
+  "category": "AI",
+  "createdAt": "2026-08-10",
+  "updatedAt": "2026-08-10",
+  "canonical": "https://aihubos.github.io/reportmode/reports/260810-25-report-to-blog-class-website-v1-0-0/",
+  "thumbnail": "assets/thumbnail.png",
+  "topicScore": 88,
+  "assumptions": [
+    "사용자가 제공한 원본 순번 453의 흐름을 신규 보고서 v1.0.0으로 작성했다.",
+    "실제 산출물 3종 예시는 사용자가 제공한 출처 중심 조사·LLM-Wiki 운영 경험을 바탕으로 재구성한 적용 예시이며, 특정 강의 운영 실적을 주장하지 않는다.",
+    "검증되지 않은 시간 절감률이나 생산성 수치는 사용하지 않았다.",
+    "실제 GitHub push와 외부 블로그 발행은 수행하지 않았다."
+  ],
+  "generation": "AI-assisted",
+  "reviewStatus": "Published"
+}

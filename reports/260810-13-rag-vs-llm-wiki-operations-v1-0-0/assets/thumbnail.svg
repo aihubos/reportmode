@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">검색보다 판단의 이력을 남겨라</title>
+<desc id="desc">왼쪽의 검색 노드와 오른쪽의 버전이 누적되는 위키 페이지를 대비한 Report Hub 썸네일</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#ffffff"/>
+    <stop offset="0.62" stop-color="#f4f8ff"/>
+    <stop offset="1" stop-color="#e8f3ff"/>
+  </linearGradient>
+  <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#1B64DA"/>
+    <stop offset="1" stop-color="#5A9CFF"/>
+  </linearGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+    <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#191F28" flood-opacity="0.13"/>
+  </filter>
+</defs>
+<rect width="1200" height="630" rx="0" fill="url(#bg)"/>
+<circle cx="1110" cy="76" r="180" fill="#3182F6" opacity="0.08"/>
+<circle cx="82" cy="570" r="180" fill="#DFFF6A" opacity="0.16"/>
+<rect x="72" y="70" width="52" height="52" rx="17" fill="url(#blue)"/>
+<path d="M88 96.5 98.5 106 111 88" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="72" y="218" font-family="Noto Sans CJK KR, NanumGothic, sans-serif" font-size="68" font-weight="800" letter-spacing="-4" fill="#191F28">
+  <tspan x="72" dy="0">검색보다 판단의</tspan>
+  <tspan x="72" dy="84">이력을 남겨라</tspan>
+</text>
+<rect x="72" y="408" width="330" height="60" rx="30" fill="#191F28"/>
+<text x="237" y="448" text-anchor="middle" font-family="Noto Sans CJK KR, NanumGothic, sans-serif" font-size="28" font-weight="700" fill="#fff">RAG vs LLM-Wiki</text>
+
+<!-- RAG search cluster -->
+<g transform="translate(530 120)">
+  <circle cx="105" cy="175" r="92" fill="#fff" stroke="#D9E6F7" stroke-width="3" filter="url(#shadow)"/>
+  <circle cx="78" cy="150" r="31" fill="#E8F3FF"/>
+  <path d="M65 151h25M77.5 138v25" stroke="#3182F6" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="130" cy="194" r="25" fill="#DFFF6A"/>
+  <path d="M144 210l28 28" stroke="#191F28" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="6" cy="88" r="13" fill="#3182F6"/>
+  <circle cx="196" cy="72" r="13" fill="#3182F6"/>
+  <circle cx="220" cy="254" r="13" fill="#3182F6"/>
+  <circle cx="14" cy="280" r="13" fill="#3182F6"/>
+  <path d="M18 98 65 130M187 82 146 133M207 246 157 208M24 270 63 218" stroke="#9DC4FA" stroke-width="4" stroke-dasharray="8 9"/>
+</g>
+
+<!-- Arrow -->
+<path d="M785 310h70" stroke="#3182F6" stroke-width="8" stroke-linecap="round"/>
+<path d="m839 286 24 24-24 24" fill="none" stroke="#3182F6" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+
+<!-- Wiki version stack -->
+<g transform="translate(885 100)" filter="url(#shadow)">
+  <rect x="34" y="52" width="210" height="310" rx="28" fill="#DCEBFF" transform="rotate(7 139 207)"/>
+  <rect x="16" y="28" width="210" height="310" rx="28" fill="#EFF5FF" transform="rotate(3 121 183)"/>
+  <rect x="0" y="0" width="210" height="310" rx="28" fill="#fff" stroke="#D9E6F7" stroke-width="3"/>
+  <rect x="28" y="32" width="105" height="22" rx="11" fill="#3182F6"/>
+  <rect x="28" y="78" width="148" height="14" rx="7" fill="#D6DCE4"/>
+  <rect x="28" y="108" width="126" height="14" rx="7" fill="#D6DCE4"/>
+  <rect x="28" y="138" width="155" height="14" rx="7" fill="#D6DCE4"/>
+  <rect x="28" y="184" width="154" height="72" rx="18" fill="#F7F8FA"/>
+  <circle cx="51" cy="207" r="8" fill="#3182F6"/>
+  <circle cx="51" cy="231" r="8" fill="#DFFF6A"/>
+  <path d="M68 207h83M68 231h66" stroke="#8B95A1" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="177" cy="282" r="18" fill="#DFFF6A"/>
+  <path d="m169 282 6 6 11-14" fill="none" stroke="#191F28" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>

@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "rh-260810-36-m5-max-128gb-local-llm",
+  "title": "M5 Max 128GB MacBook으로 로컬 LLM을 돌려보니, 128GB도 무적은 아니었다",
+  "seoTitle": "M5 Max 128GB MacBook 로컬 LLM 운영 현실과 선택 가이드",
+  "alternativeTitles": [
+    "128GB 통합 메모리는 어디까지 가능한가: M5 Max 로컬 LLM 실전 가이드",
+    "M5 Max 로컬 LLM 운영기: 큰 모델보다 먼저 봐야 할 5가지",
+    "로컬 LLM용 MacBook, 128GB를 고르기 전에 계산해야 할 것들"
+  ],
+  "slug": "m5-max-128gb-local-llm",
+  "folder": "260810-36-m5-max-128gb-local-llm-v1-0-0",
+  "version": "1.0.0",
+  "status": "Published",
+  "summary": "M5 Max 128GB MacBook Pro를 로컬 LLM 장비로 볼 때 통합 메모리의 장점과 한계, 모델 크기·양자화·컨텍스트·동시 실행의 균형, 로컬과 클라우드의 병행 기준을 실제 운영 관점에서 정리한 글.",
+  "hook": "128GB면 로컬 LLM 고민이 끝날 줄 알았다. 막상 운영해 보니 메모리는 선택지를 넓혔지만 실용성을 결정한 것은 모델 크기보다 양자화·컨텍스트·동시 실행의 균형이었다.",
+  "oneSentenceConclusion": "128GB는 더 큰 모델을 실행할 자유를 사는 옵션이지만, 실제 생산성은 양자화·컨텍스트·동시 실행·클라우드 병행 기준에서 갈린다.",
+  "thumbnailMain": "128GB도 로컬 LLM에 무적은 아니었다",
+  "thumbnailSub": "M5 Max 운영 현실",
+  "snsCopy": [
+    "M5 Max 128GB면 로컬 LLM 고민이 끝날 줄 알았습니다. 실제로는 모델 크기보다 양자화·컨텍스트·동시 실행의 균형이 더 중요했습니다. 측정표와 메모리 계산기를 함께 정리했습니다.",
+    "128GB는 속도를 보장하는 옵션이 아니라, 더 많은 선택지를 사는 옵션이었습니다. M5 Max로 로컬 LLM을 운영하며 확인한 현실적인 기준."
+  ],
+  "keywords": [
+    "M5 Max",
+    "MacBook Pro 16",
+    "128GB 통합 메모리",
+    "로컬 LLM",
+    "Local LLM",
+    "Apple Silicon",
+    "MLX",
+    "Ollama",
+    "양자화",
+    "컨텍스트 길이",
+    "AI 노트북"
+  ],
+  "category": "IT 기기",
+  "createdAt": "2026-08-10",
+  "updatedAt": "2026-08-10",
+  "canonical": "https://aihubos.github.io/reportmode/reports/260810-36-m5-max-128gb-local-llm-v1-0-0/",
+  "thumbnail": "assets/thumbnail.png",
+  "topicScore": 91,
+  "topicScoreBreakdown": {
+    "recency": 18,
+    "searchIntent": 14,
+    "socialShare": 13,
+    "practicalUtility": 15,
+    "koreaRelevance": 14,
+    "evidenceStrength": 9,
+    "visualFit": 8
+  },
+  "assumptions": [
+    "장비 사양과 로컬 LLM 운영 경험은 사용자가 제공한 맥락을 1차 자료로 사용했다.",
+    "실제 모델별 tokens/s, TTFT, 최고 메모리 사용량 로그가 제공되지 않아 수치를 임의로 만들지 않았다.",
+    "모델별 측정표는 독자가 자신의 런타임과 모델 버전으로 직접 채우는 템플릿으로 제공한다.",
+    "메모리 계산기는 파라미터 수×양자화 비트의 이론값에 사용자가 지정한 오버헤드·KV 캐시·OS 여유분을 더한 계획용 추정치다.",
+    "한국 Apple Store의 CTO 가격은 시점과 옵션에 따라 바뀔 수 있어 특정 총액을 본문에 고정하지 않았다.",
+    "보고서 일련번호는 사용자가 제공한 주제 번호 36을 사용했다."
+  ],
+  "generation": "AI-assisted",
+  "reviewStatus": "Published"
+}

@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "1.0",
+  "reportId": "rh-260810-50-ai-era-beyond-prompts-system",
+  "checkedAt": "2026-08-10",
+  "claims": [
+    {
+      "claimId": "C01",
+      "claim": "2025년 조사 대상 조직의 AI 도입률은 88%, 생성형 AI를 최소 한 업무 기능에서 사용한 조직은 70%로 집계됨.",
+      "url": "https://hai.stanford.edu/ai-index/2026-ai-index-report/economy",
+      "sourceType": "공식 연구 보고서",
+      "publisher": "Stanford HAI",
+      "publishedAt": "2026",
+      "verifiedAt": "2026-08-10",
+      "usedIn": "AI 도입률과 업무 적용 확산",
+      "confidence": "높음",
+      "caution": "조사 대상 조직 기준이며 전체 기업을 대표하는 절대치로 해석하지 않음."
+    },
+    {
+      "claimId": "C02",
+      "claim": "분석적 사고는 10곳 중 7곳이 핵심 역량으로 보며, AI·빅데이터와 기술 리터러시뿐 아니라 창의적 사고, 회복탄력성, 호기심과 평생학습도 중요도가 상승할 것으로 전망됨.",
+      "url": "https://www.weforum.org/publications/the-future-of-jobs-report-2025/digest/",
+      "sourceType": "공식 고용주 조사 보고서",
+      "publisher": "World Economic Forum",
+      "publishedAt": "2025-01-07",
+      "verifiedAt": "2026-08-10",
+      "usedIn": "AI 시대의 핵심 역량과 평생학습",
+      "confidence": "높음",
+      "caution": "고용주의 2025~2030년 전망이며 확정된 노동시장 결과가 아님."
+    },
+    {
+      "claimId": "C03",
+      "claim": "AI 위험관리를 Govern, Map, Measure, Manage의 네 기능으로 설명하고 전 수명주기에서 지속적으로 수행할 것을 권고함.",
+      "url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+      "sourceType": "정부 공식 프레임워크",
+      "publisher": "NIST AI Resource Center",
+      "publishedAt": "2023",
+      "verifiedAt": "2026-08-10",
+      "usedIn": "검증과 거버넌스를 반복 시스템으로 설계",
+      "confidence": "높음",
+      "caution": "자발적 프레임워크이며 AI RMF 1.0은 현재 개정 진행 중."
+    },
+    {
+      "claimId": "C04",
+      "claim": "AI 리터러시는 AI의 작동·기회·위험, 조직의 역할, 결과 해석과 인간 감독을 맥락에 맞게 이해하는 역량을 포함함.",
+      "url": "https://digital-strategy.ec.europa.eu/en/faqs/ai-literacy-questions-answers",
+      "sourceType": "정부 공식 가이드",
+      "publisher": "European Commission",
+      "publishedAt": "2026-07-27",
+      "verifiedAt": "2026-08-10",
+      "usedIn": "AI 리터러시의 범위를 도구 사용법 밖으로 확장",
+      "confidence": "높음",
+      "caution": "EU AI Act 적용 범위와 개별 조직의 의무는 역할·위험·관할에 따라 달라질 수 있음."
+    },
+    {
+      "claimId": "C05",
+      "claim": "인공지능기본법은 2026년 1월 22일 시행됐고, 제31조는 일정 생성형 AI 제품·서비스 제공 시 AI 기반 운용 사실과 생성 결과 표시 의무를 규정함.",
+      "url": "https://www.law.go.kr/LSW//lsSideInfoP.do?docCls=jo&joBrNo=00&joNo=0031&lsiSeq=282791&urlMode=lsScJoRltInfoR",
+      "sourceType": "대한민국 현행 법령",
+      "publisher": "국가법령정보센터",
+      "publishedAt": "2026-01-20",
+      "verifiedAt": "2026-08-10",
+      "usedIn": "한국 기업의 투명성·표시·책임 맥락",
+      "confidence": "높음",
+      "caution": "법 적용 여부는 사업 형태와 구체적 사실관계에 따라 달라지므로 법률 자문이 아님."
+    }
+  ],
+  "authorExperienceBoundary": "AI 교육, 개인 위키, 리서치 아카이브, 자동화, 두 번째 경력에 관한 구체적 경험은 저자의 자기 서술이며 외부 사실처럼 일반화하지 않았다."
+}
