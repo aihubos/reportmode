@@ -142,6 +142,7 @@ test("renders the simplified archive with one Naver card and a 30-item default s
   assert.match(archiveCss, /\.archive-content-layout\s*{[^}]*grid-template-columns:\s*minmax\(0, 960px\) var\(--archive-right-rail-width\)/s);
   assert.doesNotMatch(archiveCss, /\.request-board-list\s*{[^}]*max-height:/s);
   assert.match(archiveCss, /\.archive-topbar \.report-hub-clock-date\s*{\s*display:\s*none;/s);
+  assert.match(archiveCss, /\.archive-admin-console-link\[hidden\]\s*{\s*display:\s*none;/);
   assert.match(
     archiveCss,
     /@media \(max-width:\s*640px\)\s*{[\s\S]*?\.archive-board-head\s*{[^}]*display:\s*grid;[^}]*grid-template-columns:\s*minmax\(0, 1fr\);[^}]*align-items:\s*stretch;/,
