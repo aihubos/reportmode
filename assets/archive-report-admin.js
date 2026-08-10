@@ -825,10 +825,12 @@
     var unlockBtn = document.getElementById("archiveAdminUnlockBtn");
     var lockBtn = document.getElementById("archiveAdminLockBtn");
     var form = document.getElementById("archiveAdminForm");
+    var consoleLink = document.getElementById("archiveAdminConsoleLink");
     if (panel) panel.classList.toggle("is-unlocked", unlocked);
     if (unlockBtn) unlockBtn.hidden = unlocked;
     if (lockBtn) lockBtn.hidden = !unlocked;
     if (form) form.hidden = unlocked;
+    if (consoleLink) consoleLink.hidden = !unlocked;
     if (!unlocked) closePresentationEditor();
     ensureDeleteButtons();
     applyHiddenState();
@@ -851,6 +853,7 @@
       '  <div class="archive-admin-head-actions">',
       '    <button type="button" class="archive-admin-chip" id="archiveAdminUnlockBtn">관리자 잠금 해제</button>',
       '    <button type="button" class="archive-admin-chip is-lock" id="archiveAdminLockBtn" hidden>잠금</button>',
+      '    <a class="archive-admin-console-link" id="archiveAdminConsoleLink" href="./admin/" hidden>전체 게시물 표 관리</a>',
       '  </div>',
       '</div>',
       '<form id="archiveAdminForm" class="archive-admin-form" hidden novalidate>',

@@ -34,6 +34,17 @@ type ReportViewRow = {
   view_count: number;
 };
 
+type DailyCountRow = {
+  date: string;
+  count: number;
+};
+
+type PopularReportRow = {
+  report_id: string;
+  view_count: number;
+  updated_at: string;
+};
+
 type ReportOverrideRow = {
   report_id: string;
   title: string;
@@ -153,6 +164,53 @@ async function visitCounts(env: Env, siteId: string, day: string) {
     "SELECT COUNT(*) AS count FROM report_site_visits WHERE site_id = ? AND visit_date = ?"
   ).bind(siteId, day).first<{ count: number }>();
   return { total: Number(total?.count || 0), today: Number(today?.count || 0) };
+}
+
+async function analyticsSnapshot(env: Env, day: string) {
+  const siteId = "report-hub-main";
+  const [site, allViews, todayViews, siteDaily, reportDaily, popularReports] = await Promise.all([
+    visitCounts(env, siteId, day),
+    env.DB.prepare(
+      "SELECT COALESCE(SUM(view_count), 0) AS count FROM report_view_counts"
+    ).first<{ count: number }>(),
+    env.DB.prepare(
+      "SELECT COUNT(*) AS count FROM report_view_daily_visitors WHERE view_date = ?"
+    ).bind(day).first<{ count: number }>(),
+    env.DB.prepare(
+      "SELECT visit_date AS date, COUNT(*) AS count FROM report_site_visits WHERE site_id = ? GROUP BY visit_date ORDER BY visit_date DESC LIMIT 31"
+    ).bind(siteId).all<DailyCountRow>(),
+    env.DB.prepare(
+      "SELECT view_date AS date, COUNT(*) AS count FROM report_view_daily_visitors GROUP BY view_date ORDER BY view_date DESC LIMIT 31"
+    ).all<DailyCountRow>(),
+    env.DB.prepare(
+      "SELECT report_id, view_count, updated_at FROM report_view_counts ORDER BY view_count DESC, report_id ASC LIMIT 100"
+    ).all<PopularReportRow>(),
+  ]);
+
+  return {
+    generatedAt: new Date().toISOString(),
+    site: {
+      siteId,
+      ...site,
+      daily: (siteDaily.results || []).map((row) => ({
+        date: row.date,
+        count: Math.max(0, Number(row.count || 0)),
+      })),
+    },
+    reports: {
+      totalViews: Math.max(0, Number(allViews?.count || 0)),
+      todayViews: Math.max(0, Number(todayViews?.count || 0)),
+      daily: (reportDaily.results || []).map((row) => ({
+        date: row.date,
+        count: Math.max(0, Number(row.count || 0)),
+      })),
+      top: (popularReports.results || []).map((row) => ({
+        reportId: row.report_id,
+        views: Math.max(0, Number(row.view_count || 0)),
+        updatedAt: row.updated_at,
+      })),
+    },
+  };
 }
 
 async function featuredReportIds(env: Env) {
@@ -482,6 +540,16 @@ export default {
       return json(request, { ok: true });
     }
 
+    if (url.pathname === "/admin/analytics" && request.method === "POST") {
+      let payload: { adminPassword?: unknown };
+      try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+      if (!env.ADMIN_PASSWORD) return json(request, { error: "admin_not_configured" }, 503);
+      if (passwordValue(payload.adminPassword) !== env.ADMIN_PASSWORD) {
+        return json(request, { error: "wrong_admin_password" }, 403);
+      }
+      return json(request, await analyticsSnapshot(env, seoulDate()));
+    }
+
     if (url.pathname === "/report-overrides" && request.method === "GET") {
       return json(request, { overrides: await reportOverrides(env) });
     }
@@ -648,7 +716,7 @@ export default {
       return json(request, { ok: true, reportId });
     }
 
-    if (url.pathname === "/comments" || commentId || url.pathname === "/visits" || url.pathname === "/report-views" || url.pathname === "/requests" || requestId || replyRequestId || url.pathname.startsWith("/hidden-reports") || url.pathname.startsWith("/featured-reports") || url.pathname.startsWith("/draft-promotions") || url.pathname.startsWith("/report-overrides") || url.pathname === "/admin/verify") {
+    if (url.pathname === "/comments" || commentId || url.pathname === "/visits" || url.pathname === "/report-views" || url.pathname === "/requests" || requestId || replyRequestId || url.pathname.startsWith("/hidden-reports") || url.pathname.startsWith("/featured-reports") || url.pathname.startsWith("/draft-promotions") || url.pathname.startsWith("/report-overrides") || url.pathname === "/admin/verify" || url.pathname === "/admin/analytics") {
       return json(request, { error: "method_not_allowed" }, 405);
     }
     return json(request, { error: "not_found" }, 404);

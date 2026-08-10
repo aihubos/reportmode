@@ -93,6 +93,8 @@ test("renders the simplified archive with one Naver card and a 30-item default s
   assert.equal(html.match(/https:\/\/daangn\.com\/kr\/share\/community\/ref\/invite-group\/baRr2nojJVT\?utm_campaign=share_qr/g)?.length, 1);
   assert.match(html, /class="archive-carrot-card"/);
   assert.match(html, /src="\.\.\/assets\/daangn-meeting-logo\.png"/);
+  assert.doesNotMatch(html, /archive-carrot-card-copy/);
+  assert.match(html, /aria-label="당근 비전공자 AI 에이전트 공부방 열기"/);
   assert.match(html, /id="archiveVisitorCount"/);
   assert.match(html, /class="report-hub-clock"/);
   assert.match(html, /class="archive-content-layout"/);
@@ -142,6 +144,10 @@ test("renders the simplified archive with one Naver card and a 30-item default s
   assert.match(archiveCss, /\.archive-topbar \.report-hub-clock-date\s*{\s*display:\s*none;/s);
   assert.match(
     archiveCss,
+    /@media \(max-width:\s*640px\)\s*{[\s\S]*?\.archive-board-head\s*{[^}]*display:\s*grid;[^}]*grid-template-columns:\s*minmax\(0, 1fr\);[^}]*align-items:\s*stretch;/,
+  );
+  assert.match(
+    archiveCss,
     /@media \(max-width:\s*860px\)\s*{[\s\S]*?\.archive-sidebar\s*{\s*display:\s*none;\s*}[\s\S]*?\.archive-mobile-categories\s*{\s*display:\s*none;\s*}/,
   );
   assert.match(archiveCss, /\.archive-mobile-panel-actions\s*{\s*display:\s*none;/);
@@ -153,7 +159,10 @@ test("renders the simplified archive with one Naver card and a 30-item default s
     archiveCss,
     /\.archive-mobile-panel-actions\s*{[^}]*top:\s*calc\(var\(--rh-archive-mobile-height\) \+ var\(--rh-space-3\)\);[^}]*right:\s*var\(--archive-shell-edge-mobile\);/,
   );
-  assert.doesNotMatch(archiveCss, /\.archive-mobile-panel-actions\s*{[^}]*bottom:/);
+  assert.match(
+    archiveCss,
+    /@media \(max-width:\s*640px\)\s*{[\s\S]*?\.archive-mobile-panel-actions\s*{[^}]*top:\s*auto;[^}]*bottom:\s*var\(--rh-space-4\);/,
+  );
   assert.match(archiveCss, /body\.archive-mobile-panel-open\s*{\s*overflow:\s*hidden;/);
   assert.match(
     archiveCss,

@@ -279,15 +279,13 @@ footer {
 .archive-blog-card-copy { display: grid; gap: 1px; line-height: 1.1; }
 .archive-blog-card-copy small { color: rgba(255,255,255,.82); font-size: 9px; font-weight: 600; }
 .archive-carrot-card {
-  min-height: 44px; display: inline-flex; align-items: center; gap: 9px; padding: 5px 11px;
-  border: 1px solid var(--rh-daangn); border-radius: 12px; color: var(--rh-daangn); background: var(--rh-paper); font-size: 12px; font-weight: 800; text-decoration: none;
+  min-height: var(--rh-space-12); display: inline-flex; align-items: center; justify-content: center; padding: var(--rh-space-1) var(--rh-space-3);
+  border: 1px solid var(--rh-daangn); border-radius: var(--rh-radius-3); color: var(--rh-daangn); background: var(--rh-paper); text-decoration: none;
   transition: background .18s ease, color .18s ease, transform .18s ease;
 }
 .archive-carrot-card:hover { color: var(--rh-daangn-hover); background: var(--rh-paper); transform: translateY(-1px); }
 .archive-carrot-card:focus-visible { outline: 3px solid var(--rh-ring); outline-offset: 2px; }
-.archive-carrot-logo { width: 44px; height: 28px; display: block; flex: 0 0 auto; object-fit: contain; }
-.archive-carrot-card-copy { display: grid; gap: 1px; line-height: 1.1; }
-.archive-carrot-card-copy small { color: var(--rh-sub); font-size: 9px; font-weight: 600; }
+.archive-carrot-logo { width: var(--rh-daangn-logo-width); height: var(--rh-daangn-logo-height); display: block; flex: 0 0 auto; object-fit: contain; }
 .archive-shell { width: min(1180px, calc(100% - (var(--archive-shell-edge) * 2))); margin: 0 auto; }
 .archive-spotlight { margin-top: 24px; padding: 24px !important; border: 1px solid var(--archive-line); border-radius: 18px; background: var(--rh-paper); }
 .archive-spotlight-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 20px; }
@@ -391,7 +389,8 @@ footer {
 .archive-side-note p { margin: 0; color: var(--archive-subtle); font-size: 12px; line-height: 1.55; }
 .archive-note-dot { width: 7px; height: 7px; flex: 0 0 auto; margin-top: 5px; border-radius: 50%; background: #00c73c; box-shadow: 0 0 0 4px rgba(0,199,60,.09); }
 .archive-board { min-width: 0; padding: 30px 32px 28px !important; border: 1px solid #edf0f2; border-radius: 22px; background: #fff; }
-.archive-board-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; padding-bottom: 24px; }
+.archive-board-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: var(--rh-space-6); padding-bottom: var(--rh-space-6); }
+.archive-board-head > :first-child { flex: 1 1 var(--rh-archive-board-title-min-width); }
 .archive-board-head h2 { margin: 8px 0 3px; font-size: 28px; letter-spacing: -.045em; }
 .archive-board-head p { margin: 0; color: var(--archive-subtle); font-size: 13px; }
 .archive-search {
@@ -403,8 +402,8 @@ footer {
 .archive-search svg { width: 19px; height: 19px; flex: 0 0 auto; fill: none; stroke: var(--archive-subtle); stroke-width: 1.8; stroke-linecap: round; }
 .archive-search input { min-width: 0; width: 100%; border: 0; outline: 0; background: transparent; color: var(--archive-ink); font: inherit; font-size: 14px; }
 .archive-search input::placeholder { color: #aeb6bf; }
-.archive-board-controls { display: flex; align-items: center; justify-content: flex-end; gap: 10px; width: min(460px, 58%); }
-.archive-board-controls .archive-search { width: min(320px, 100%); flex: 1 1 auto; }
+.archive-board-controls { display: grid; grid-template-columns: minmax(var(--rh-admin-console-search-min-width), 1fr) max-content max-content; align-items: end; gap: var(--rh-space-2); width: min(100%, var(--rh-archive-controls-max-width)); }
+.archive-board-controls .archive-search { width: 100%; min-width: 0; }
 .archive-page-size, .archive-sort { display: grid; gap: 4px; flex: 0 0 auto; color: var(--archive-subtle); font-size: 10px; font-weight: 800; }
 .archive-page-size select, .archive-sort select {
   min-width: 82px; height: 46px; padding: 0 30px 0 11px; border: 1px solid var(--archive-line); border-radius: 13px;
@@ -593,9 +592,9 @@ footer {
   .archive-blog-card .archive-blog-mark { width: 24px; height: 24px; font-size: 13px; }
   .archive-blog-card-copy small { display: none; }
   .archive-visitor-count { display: none; }
-  .archive-carrot-card { min-height: 38px; gap: 6px; padding: 4px 7px; }
-  .archive-carrot-logo { width: 36px; height: 24px; }
-  .archive-carrot-card-copy small, .archive-blog-card-copy { display: none; }
+  .archive-carrot-card { min-height: var(--rh-space-10); padding: var(--rh-space-1) var(--rh-space-2); }
+  .archive-carrot-logo { width: var(--rh-daangn-logo-width-compact); height: var(--rh-daangn-logo-height-compact); }
+  .archive-blog-card-copy { display: none; }
   .archive-profile { grid-template-columns: 1fr; gap: 18px; margin: 18px 0 14px; padding: 24px !important; border-radius: 20px; }
   .archive-avatar { width: 68px; height: 68px; border-radius: 23px; }
   .archive-avatar span { font-size: 21px; }
@@ -606,7 +605,7 @@ footer {
   .archive-side-card { padding: 20px !important; }
   .archive-side-card h2 { font-size: 18px; }
   .archive-board { padding: 24px 18px 20px !important; border-radius: 20px; }
-  .archive-board-head { display: grid; gap: 18px; }
+  .archive-board-head { display: grid; grid-template-columns: minmax(0, 1fr); align-items: stretch; gap: 18px; }
   .archive-board-head h2 { font-size: 25px; }
   .archive-board-controls { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--rh-space-2); width: 100%; align-items: flex-end; }
   .archive-board-controls .archive-search { grid-column: 1 / -1; width: 100%; }
@@ -646,6 +645,9 @@ footer {
   .archive-page.is-mobile-panel-open .request-board, .archive-page.is-mobile-panel-open .archive-weather-card { margin: 0; box-shadow: 0 8px 24px var(--rh-shadow-color); }
   .archive-page.is-mobile-panel-request .archive-weather-card, .archive-page.is-mobile-panel-weather .request-board { display: none; }
 }
+@media (max-width: 640px) {
+  .archive-mobile-panel-actions { top: auto; bottom: var(--rh-space-4); }
+}
 @media print {
   .nav { display: none; }
   body { background: #fff; }
@@ -672,7 +674,7 @@ footer {
 .archive-admin-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .archive-admin-kicker { color: var(--archive-subtle); font-size: 10px; font-weight: 900; letter-spacing: .12em; }
 .archive-admin-head strong { display: block; margin-top: 2px; font-size: 14px; }
-.archive-admin-head-actions { display: flex; gap: 6px; }
+.archive-admin-head-actions { display: flex; flex-wrap: wrap; gap: 6px; }
 .archive-admin-chip, .archive-admin-submit, .archive-admin-delete, .archive-admin-feature, .archive-admin-promote {
   min-height: 32px; padding: 0 11px; border: 1px solid #d7dee7; border-radius: 9px;
   color: var(--archive-muted); background: #fff; font: inherit; font-size: 12px; font-weight: 800; cursor: pointer;
@@ -686,6 +688,9 @@ footer {
 .archive-admin-help { margin: 8px 0 0; color: var(--archive-subtle); font-size: 11px; line-height: 1.45; }
 .archive-admin-status { min-height: 16px; margin: 6px 0 0; color: var(--archive-blue-deep); font-size: 11px; font-weight: 700; }
 .archive-admin-status[data-error="true"] { color: #b42318; }
+.archive-admin-console-link { min-height: var(--rh-admin-card-action-height); display: inline-flex; align-items: center; justify-content: center; padding: 0 var(--rh-space-2); border: 1px solid var(--rh-primary); border-radius: var(--rh-radius-2); color: var(--rh-primary-hover); background: var(--rh-primary-soft); font-size: var(--rh-control-font-size); font-weight: 800; text-decoration: none; }
+.archive-admin-console-link:hover, .archive-admin-console-link:focus-visible { color: var(--rh-paper); background: var(--rh-primary-hover); }
+.archive-admin-console-link:focus-visible { outline: 3px solid var(--rh-ring); outline-offset: 2px; }
 .archive-admin-actions { position: absolute; right: calc(var(--archive-cover-width) + var(--archive-cover-gap) + var(--archive-cover-edge)); bottom: 12px; z-index: 3; display: flex; gap: 6px; }
 .archive-post { position: relative; }
 .archive-post.has-admin-actions .archive-post-link { padding-bottom: 58px; }
@@ -769,7 +774,7 @@ footer {
   .archive-mobile-panel-button, .archive-mobile-panel-close { transition: none; }
 }
 </style>
-  <link rel="stylesheet" href="../assets/report-hub-brand.css?v=20260810-daangn1">
+  <link rel="stylesheet" href="../assets/report-hub-brand.css?v=20260810-archive-console1">
 </head>
 <body class="archive-page">
   <header class="archive-topbar">
@@ -782,7 +787,7 @@ footer {
       </div>
       <div class="archive-topbar-actions">
         <span class="archive-visitor-count" id="archiveVisitorCount" aria-live="polite">방문 집계 중</span>
-        <a class="archive-carrot-card" href="https://daangn.com/kr/share/community/ref/invite-group/baRr2nojJVT?utm_campaign=share_qr" target="_blank" rel="noopener" aria-label="당근모임 비전공자 AI 에이전트 공부방 열기"><img class="archive-carrot-logo" src="../assets/daangn-meeting-logo.png" alt="당근 로고"><span class="archive-carrot-card-copy"><b>당근모임</b><small>비전공자 AI 에이전트 공부방</small></span></a>
+        <a class="archive-carrot-card" href="https://daangn.com/kr/share/community/ref/invite-group/baRr2nojJVT?utm_campaign=share_qr" target="_blank" rel="noopener" aria-label="당근 비전공자 AI 에이전트 공부방 열기"><img class="archive-carrot-logo" src="../assets/daangn-meeting-logo.png" alt="당근 로고"></a>
         <a class="archive-blog-card" href="https://blog.naver.com/jeremylee0213" target="_blank" rel="noopener"><span class="archive-blog-mark">N</span><span class="archive-blog-card-copy"><b>Jeremy's Blog</b><small>네이버 블로그</small></span></a>
       </div>
     </div>
@@ -5740,9 +5745,9 @@ footer {
   })();
   </script>
   <script src="../assets/archive-request-board.js"></script>
-  <script src="../assets/archive-report-admin.js?v=20260810-admin-presentation1"></script>
+  <script src="../assets/archive-report-admin.js?v=20260810-admin-console1"></script>
   <script src="../assets/archive-visitor-counter.js?v=20260809-visits1"></script>
   <script src="../assets/archive-weather.js?v=20260809-weather1"></script>
-  <script src="../assets/report-hub-brand.js?v=20260810-daangn1"></script>
+  <script src="../assets/report-hub-brand.js?v=20260810-archive-console1"></script>
 </body>
 </html>

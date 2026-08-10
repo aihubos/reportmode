@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Report Hub 관리자용 보고서 현황과 카드 관리 화면">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260810-admin-console1">
+  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260810-admin-console1">
+  <link rel="stylesheet" href="../../assets/archive-admin-console.css?v=20260810-admin-console1">
+  <title>보고서 관리 | Report Hub</title>
+</head>
+<body class="archive-admin-console-page">
+  <header class="archive-admin-console-topbar">
+    <div class="archive-admin-console-topbar-inner">
+      <a class="archive-admin-console-brand" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동">
+        <span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span>
+      </a>
+      <nav class="archive-admin-console-nav" aria-label="관리 화면 이동">
+        <a class="archive-admin-console-link" href="../">도서관</a>
+        <a class="archive-admin-console-link" href="https://aireport.ai-hub-os.com/">메인</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="archive-admin-console-shell">
+    <section class="archive-admin-console-intro" aria-labelledby="archive-admin-console-title">
+      <div>
+        <p class="archive-admin-console-kicker">REPORT MANAGEMENT</p>
+        <h1 id="archive-admin-console-title">전체 게시물 표 관리</h1>
+        <p>일별 방문과 보고서 클릭을 확인하고, 도서관 카드의 제목·설명·썸네일·표시 상태를 관리합니다.</p>
+      </div>
+    </section>
+
+    <section class="archive-admin-console-gate" id="archiveAdminGate" aria-labelledby="archive-admin-gate-title">
+      <div>
+        <h2 id="archive-admin-gate-title">관리자 확인</h2>
+        <p>통계와 수정 기능은 관리자 비밀번호 확인 후에만 열립니다.</p>
+      </div>
+      <form class="archive-admin-console-gate-form" id="archiveAdminGateForm" novalidate>
+        <label class="archive-admin-console-field">관리자 비밀번호
+          <input class="archive-admin-console-input" id="archiveAdminGatePassword" type="password" maxlength="80" autocomplete="current-password" placeholder="관리자 비밀번호">
+        </label>
+        <button class="archive-admin-console-button is-primary" id="archiveAdminGateSubmit" type="submit">확인</button>
+      </form>
+      <p class="archive-admin-console-status" id="archiveAdminGateStatus" role="status"></p>
+    </section>
+
+    <section class="archive-admin-console-dashboard" id="archiveAdminDashboard" hidden aria-labelledby="archive-admin-dashboard-title">
+      <div class="archive-admin-console-section-head">
+        <div>
+          <h2 id="archive-admin-dashboard-title">운영 현황</h2>
+          <p class="archive-admin-console-panel-note" id="archiveAdminAnalyticsUpdated">통계 불러오는 중</p>
+        </div>
+        <button class="archive-admin-console-button" id="archiveAdminRefresh" type="button">새로 고침</button>
+      </div>
+      <p class="archive-admin-console-status" id="archiveAdminDashboardStatus" role="status"></p>
+
+      <dl class="archive-admin-console-metrics" id="archiveAdminAnalytics">
+        <div class="archive-admin-console-metric"><dt>누적 방문</dt><dd id="archiveAdminMetricVisits">0</dd></div>
+        <div class="archive-admin-console-metric"><dt>오늘 방문</dt><dd id="archiveAdminMetricTodayVisits">0</dd></div>
+        <div class="archive-admin-console-metric"><dt>누적 보고서 클릭</dt><dd id="archiveAdminMetricViews">0</dd></div>
+        <div class="archive-admin-console-metric"><dt>오늘 보고서 클릭</dt><dd id="archiveAdminMetricTodayViews">0</dd></div>
+        <div class="archive-admin-console-metric"><dt>숨김 보고서</dt><dd id="archiveAdminMetricHidden">0</dd></div>
+      </dl>
+
+      <div class="archive-admin-console-analytics-grid">
+        <section class="archive-admin-console-panel" aria-labelledby="archive-admin-visits-title">
+          <div class="archive-admin-console-section-head">
+            <div><h2 id="archive-admin-visits-title">일별 방문자</h2><p class="archive-admin-console-panel-note">최근 31일, 하루 한 번 집계</p></div>
+          </div>
+          <div class="archive-admin-console-table-wrap">
+            <table class="archive-admin-console-table">
+              <thead><tr><th scope="col">날짜</th><th scope="col">방문자</th></tr></thead>
+              <tbody id="archiveAdminVisitDaily"><tr><td colspan="2">통계 불러오는 중</td></tr></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="archive-admin-console-panel" aria-labelledby="archive-admin-clicks-title">
+          <div class="archive-admin-console-section-head">
+            <div><h2 id="archive-admin-clicks-title">일별 보고서 클릭</h2><p class="archive-admin-console-panel-note">최근 31일, 같은 브라우저·보고서는 하루 한 번</p></div>
+          </div>
+          <div class="archive-admin-console-table-wrap">
+            <table class="archive-admin-console-table">
+              <thead><tr><th scope="col">날짜</th><th scope="col">클릭</th></tr></thead>
+              <tbody id="archiveAdminViewDaily"><tr><td colspan="2">통계 불러오는 중</td></tr></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <section class="archive-admin-console-panel" aria-labelledby="archive-admin-popular-title">
+        <div class="archive-admin-console-section-head">
+          <div><h2 id="archive-admin-popular-title">인기 게시물</h2><p class="archive-admin-console-panel-note">누적 보고서 클릭 순</p></div>
+        </div>
+        <ol class="archive-admin-console-popular-list" id="archiveAdminPopularList"><li class="archive-admin-console-empty">통계 불러오는 중</li></ol>
+      </section>
+
+      <section class="archive-admin-console-report-panel" aria-labelledby="archive-admin-report-title">
+        <div class="archive-admin-console-section-head">
+          <div><h2 id="archive-admin-report-title">게시물 관리</h2><p class="archive-admin-console-panel-note" id="archiveAdminReportCount">총 0개</p></div>
+          <div class="archive-admin-console-filters">
+            <label class="archive-admin-console-field">검색
+              <input class="archive-admin-console-input" id="archiveAdminReportSearch" type="search" autocomplete="off" placeholder="제목, 설명, 태그 검색">
+            </label>
+            <label class="archive-admin-console-field">표시 상태
+              <select class="archive-admin-console-select" id="archiveAdminReportStatus">
+                <option value="all">전체</option>
+                <option value="visible">공개</option>
+                <option value="hidden">숨김</option>
+                <option value="draft">초안</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="archive-admin-console-table-wrap">
+          <table class="archive-admin-console-table" id="archiveAdminReportTable">
+            <thead><tr><th scope="col">썸네일</th><th scope="col">보고서</th><th scope="col">카테고리</th><th scope="col">작성일</th><th scope="col">조회수</th><th scope="col">상태</th><th scope="col">관리</th></tr></thead>
+            <tbody id="archiveAdminReportTableBody"><tr><td colspan="7">관리자 확인 후 게시물을 불러옵니다.</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <dialog class="archive-admin-console-dialog" id="archiveAdminEditDialog" aria-labelledby="archive-admin-edit-title">
+    <form class="archive-admin-console-dialog-form" id="archiveAdminEditForm" novalidate>
+      <div class="archive-admin-console-dialog-head">
+        <div><h2 id="archive-admin-edit-title">카드 정보 수정</h2><p id="archiveAdminEditReportName"></p></div>
+        <button class="archive-admin-console-dialog-close" id="archiveAdminEditClose" type="button">닫기</button>
+      </div>
+      <label class="archive-admin-console-field">제목
+        <input class="archive-admin-console-input" id="archiveAdminEditTitle" maxlength="140" required>
+      </label>
+      <label class="archive-admin-console-field">상세 설명
+        <textarea class="archive-admin-console-textarea" id="archiveAdminEditSummary" maxlength="480" required></textarea>
+      </label>
+      <label class="archive-admin-console-field">썸네일 이미지 주소
+        <input class="archive-admin-console-input" id="archiveAdminEditCover" type="url" inputmode="url" maxlength="825000" placeholder="https://... 또는 이미지 파일 선택">
+      </label>
+      <label class="archive-admin-console-field">썸네일 이미지 파일
+        <input class="archive-admin-console-input" id="archiveAdminEditFile" type="file" accept="image/*">
+      </label>
+      <div class="archive-admin-console-dialog-preview" aria-live="polite"><img id="archiveAdminEditPreview" alt="" hidden><span id="archiveAdminEditPreviewEmpty">선택한 썸네일 미리보기</span></div>
+      <label class="archive-admin-console-field">이미지 설명
+        <input class="archive-admin-console-input" id="archiveAdminEditCoverAlt" maxlength="160" placeholder="이미지를 설명하는 짧은 문장">
+      </label>
+      <p class="archive-admin-console-status" id="archiveAdminEditStatus" role="status"></p>
+      <div class="archive-admin-console-dialog-actions">
+        <button class="archive-admin-console-button" id="archiveAdminEditRestore" type="button">원래 정보로 되돌리기</button>
+        <button class="archive-admin-console-button is-primary" id="archiveAdminEditSave" type="submit">변경 저장</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="../../assets/archive-admin-console.js?v=20260810-admin-console1"></script>
+</body>
+</html>
