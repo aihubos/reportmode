@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "1.0",
+  "reportId": "rh-260810-51-ai-era-boundary-person-5-skills",
+  "checkedAt": "2026-08-10T14:25:00+09:00",
+  "sources": [
+    {
+      "claim": "백영재 박사는 경계인을 한 영역의 배움을 다른 세계와 연결해 자기 관점을 만드는 사람으로 설명했고, 33인 인터뷰에서 다섯 역량을 정리했다.",
+      "url": "https://longblack.co/note/2078",
+      "sourceType": "1차 인터뷰 기사",
+      "publishedAt": "2026-08-10",
+      "checkedAt": "2026-08-10",
+      "usedSections": [
+        "Hero",
+        "1분 요약",
+        "경계인 정의",
+        "5가지 역량",
+        "FAQ"
+      ],
+      "confidence": "높음",
+      "caution": "질적 인터뷰 프레임이다. 기사 문장을 복사하지 않고 핵심 주장과 사례 구조만 재구성했다."
+    },
+    {
+      "claim": "『경계인: AI 시대, 새로운 인재의 조건』은 백영재 박사의 공식 저서로 소개된다.",
+      "url": "https://thickdata.co.kr/",
+      "sourceType": "저자 공식 홈페이지",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "usedSections": [
+        "왜 지금",
+        "출처"
+      ],
+      "confidence": "높음",
+      "caution": "도서 판매 조건·출간 세부 정보는 별도 유통 페이지에서 달라질 수 있다."
+    },
+    {
+      "claim": "WEF는 2030년까지 노동시장에서 필요한 핵심 역량의 39%가 변할 수 있다고 전망했다.",
+      "url": "https://www.weforum.org/stories/2025/01/future-of-jobs-report-2025-jobs-of-the-future-and-the-skills-you-need-to-get-them/",
+      "sourceType": "국제기구 공식 보고서 요약",
+      "publishedAt": "2025-01-08",
+      "checkedAt": "2026-08-10",
+      "usedSections": [
+        "Executive snapshot",
+        "왜 지금",
+        "한국 기업 관점"
+      ],
+      "confidence": "높음",
+      "caution": "기업 설문 기반 전망이며 개인의 실제 직무 변화를 확정하는 수치가 아니다."
+    },
+    {
+      "claim": "AI·빅데이터와 함께 창의적 사고, 회복탄력성·유연성·민첩성, 호기심·평생학습의 중요도가 상승할 것으로 조사됐다.",
+      "url": "https://www.weforum.org/publications/the-future-of-jobs-report-2025/in-full/3-skills-outlook/",
+      "sourceType": "국제기구 공식 보고서 본문",
+      "publishedAt": "2025-01-07",
+      "checkedAt": "2026-08-10",
+      "usedSections": [
+        "왜 지금",
+        "5가지 역량",
+        "리스크와 반론"
+      ],
+      "confidence": "높음",
+      "caution": "산업과 지역에 따라 중요도 차이가 있다."
+    },
+    {
+      "claim": "Marginal Man 개념은 Robert E. Park의 1928년 논문에서 제시됐다.",
+      "url": "https://www.jstor.org/stable/2765982",
+      "sourceType": "학술 1차 자료 서지",
+      "publishedAt": "1928-05-01",
+      "checkedAt": "2026-08-10",
+      "usedSections": [
+        "경계인 정의",
+        "FAQ"
+      ],
+      "confidence": "높음",
+      "caution": "1928년 사회학 개념과 백영재 박사의 현대적 인재 프레임은 동일하지 않으며, 후자는 확장된 해석이다."
+    }
+  ]
+}
