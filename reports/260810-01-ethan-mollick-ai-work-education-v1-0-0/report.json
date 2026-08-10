@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "rh-260810-01-ethan-mollick-ai-work-education",
+  "title": "[핵심 요약] 이선 몰릭이 말한 AI 시대 생존법 7가지 — 직업보다 과업을 보라",
+  "seoTitle": "이선 몰릭 AI 인터뷰 요약: 직업보다 과업을 보라",
+  "alternativeTitles": [
+    "AI가 내 직업을 뺏을까? 이선 몰릭의 답은 “직업보다 과업”",
+    "AI를 모든 일에 써보라는 와튼 교수의 현실적인 조언 7가지",
+    "교육·기업·커리어가 바뀐다: 이선 몰릭 인터뷰 핵심 정리"
+  ],
+  "slug": "ethan-mollick-ai-work-education",
+  "folder": "260810-01-ethan-mollick-ai-work-education-v1-0-0",
+  "version": "1.0.0",
+  "status": "Published",
+  "summary": "AI 시대의 경쟁력은 특정 도구를 외우는 능력이 아니라, 자기 일을 과업으로 쪼개 AI와 다시 설계하고 최종 판단을 사람이 맡는 능력이다.",
+  "hook": "AI가 내 직업을 뺏을까? 질문을 바꾸면 답도 달라진다.",
+  "lead": "AI가 내 직업을 뺏을까? 이선 몰릭은 직업 전체가 아니라 과업의 묶음으로 다시 보라고 말한다. 실제 업무에 AI를 붙이고, 학습에서는 정답을 막고, 조직에서는 실험을 숨기지 않게 만드는 것이 핵심이다.",
+  "thumbnailMain": "직업보다 과업을 보라",
+  "thumbnailSub": "AI 시대 생존법 7가지",
+  "socialCopy": [
+    "AI가 직업을 없앤다는 말보다 더 현실적인 질문: 내 일의 어떤 과업이 먼저 바뀌는가. 이선 몰릭 인터뷰를 7가지로 정리했습니다.",
+    "AI를 모든 일에 써보되, 학습에서는 정답을 바로 받지 말고 조직에서는 실험을 숨기지 말 것. 와튼 교수 이선 몰릭의 핵심 조언입니다."
+  ],
+  "keywords": [
+    "이선 몰릭",
+    "Ethan Mollick",
+    "AI 일자리",
+    "AI 교육",
+    "Leadership Lab Crowd",
+    "직업보다 과업",
+    "듀얼 브레인",
+    "AI 활용법"
+  ],
+  "category": "AI",
+  "createdAt": "2026-08-10",
+  "updatedAt": "2026-08-10",
+  "canonical": "https://aihubos.github.io/reportmode/reports/260810-01-ethan-mollick-ai-work-education-v1-0-0/",
+  "thumbnail": "assets/thumbnail.png",
+  "topicScore": 94,
+  "topicScoreBreakdown": {
+    "freshness": 20,
+    "searchIntent": 14,
+    "socialShareability": 14,
+    "practicalUtility": 15,
+    "koreaRelevance": 13,
+    "evidenceStrength": 9,
+    "visualFit": 9
+  },
+  "assumptions": [
+    "사용자가 제공한 YouTube 자동 자막을 인터뷰 내용의 1차 자료로 사용했다.",
+    "자동 자막의 Ethan Malik 표기는 한국어판 공식 저자명인 이선 몰릭(Ethan Mollick)으로 정정했다.",
+    "자동 자막에서 정확성이 낮을 수 있는 최신 모델명·성능 수치는 핵심 주장과 표에서 제외했다.",
+    "영상 게시 시각은 별도 확정하지 않고 원본 링크의 확인일을 2026-08-10으로 기록했다.",
+    "직업 변화에 관한 전망은 이선 몰릭의 관점이며 산업별 고용 결과를 보장하지 않는다.",
+    "해당 날짜의 저장소 내 기존 순번을 확인하지 못해 dailySequence 01을 사용했다."
+  ],
+  "generation": "AI-assisted",
+  "reviewStatus": "Published"
+}

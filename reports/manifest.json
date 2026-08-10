@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10T00:56:13.780Z",
+  "generatedAt": "2026-08-10T01:38:00.718Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
     {
@@ -51,6 +51,60 @@
       "coverImage": "reports/260810-01-demis-hassabis-life-timeline-v1-0-0/assets/thumbnail.png",
       "coverAlt": "데미스 하사비스 인물 사진",
       "subtitle": "체스·게임·뇌과학·DeepMind·AlphaGo·AlphaFold로 이어진 50년"
+    },
+    {
+      "id": "rh-260810-01-ethan-mollick-ai-work-education",
+      "slug": "ethan-mollick-ai-work-education",
+      "title": "[핵심 요약] 이선 몰릭이 말한 AI 시대 생존법 7가지 — 직업보다 과업을 보라",
+      "subtitle": "직업 전체가 아니라 과업을 다시 설계하라는 이선 몰릭의 7가지 조언",
+      "category": "AI",
+      "summary": "AI 시대의 경쟁력은 특정 도구를 외우는 능력이 아니라, 자기 일을 과업으로 쪼개 AI와 다시 설계하고 최종 판단을 사람이 맡는 능력이다.",
+      "createdAt": "2026-08-10T12:00:00+09:00",
+      "updatedAt": "2026-08-10T12:00:00+09:00",
+      "status": "published",
+      "path": "reports/260810-01-ethan-mollick-ai-work-education-v1-0-0/",
+      "url": "https://aihubos.github.io/reportmode/reports/260810-01-ethan-mollick-ai-work-education-v1-0-0/",
+      "displayDate": "260810",
+      "sourceCount": 10,
+      "tags": [
+        "이선 몰릭",
+        "Ethan Mollick",
+        "AI 일자리",
+        "AI 교육",
+        "Leadership Lab Crowd",
+        "직업보다 과업",
+        "듀얼 브레인",
+        "AI 활용법"
+      ],
+      "coverImage": "reports/260810-01-ethan-mollick-ai-work-education-v1-0-0/assets/thumbnail.png",
+      "coverAlt": "직업보다 과업을 보라, 이선 몰릭 AI 인터뷰 핵심 7가지 썸네일"
+    },
+    {
+      "id": "webmcp-video-summary-260810-03",
+      "slug": "webmcp-video-summary",
+      "title": "[13분 요약] WebMCP란? AI가 버튼 대신 도구를 호출하는 웹",
+      "subtitle": "AI가 화면을 추측하지 않고 웹사이트가 공개한 도구를 호출하는 방식",
+      "category": "AI",
+      "summary": "노마드 코더 WebMCP 영상의 문제 제기, 페이지→브라우저→에이전트 구조, 명령형·선언형 API, 피자 주문 데모와 세 가지 한계를 요약하고 최신 공식 상태를 검증했습니다.",
+      "createdAt": "2026-08-10T10:00:00+09:00",
+      "updatedAt": "2026-08-10T10:00:00+09:00",
+      "status": "published",
+      "path": "reports/260810-03-webmcp-video-summary-v1-0-0/",
+      "url": "https://aihubos.github.io/reportmode/reports/260810-03-webmcp-video-summary-v1-0-0/",
+      "displayDate": "260810",
+      "sourceCount": 10,
+      "tags": [
+        "WebMCP",
+        "Web MCP",
+        "AI 에이전트",
+        "agentic web",
+        "Chrome 149",
+        "Origin Trial",
+        "프롬프트 인젝션",
+        "유튜브 요약"
+      ],
+      "coverImage": "reports/260810-03-webmcp-video-summary-v1-0-0/assets/thumbnail.png",
+      "coverAlt": "웹사이트가 AI 도구가 된다, WebMCP 13분 요약 썸네일"
     },
     {
       "id": "rh-260810-01-ai-workstation-3way",

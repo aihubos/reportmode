@@ -1,0 +1,259 @@
+{
+  "schemaVersion": "1.0",
+  "reportId": "webmcp-video-summary-260810-03",
+  "verifiedAt": "2026-08-10",
+  "verificationMode": "youtube-summary-plus-official-current-status-check",
+  "sources": [
+    {
+      "id": "src-01",
+      "title": "구글이 웹사이트를 AI용으로 바꾸기 시작했다",
+      "publisher": "노마드 코더 Nomad Coders",
+      "url": "https://www.youtube.com/watch?v=tfrDp6FnhZc",
+      "label": "VIDEO · YOUTUBE · TRANSCRIPT",
+      "note": "길이 776초. 사용자 제공 한국어 자동 자막을 영상 요약의 원자료로 사용.",
+      "sourceType": "User-provided YouTube automatic transcript",
+      "publishedAt": null,
+      "confidence": "medium",
+      "caution": "자동 자막의 반복·띄어쓰기·고유명사 오인식 가능성. 영상 속 주장은 공식 자료와 별도 구분.",
+      "usedSections": [
+        "Hero",
+        "1분 요약",
+        "기존 방식",
+        "작동 원리",
+        "피자 데모",
+        "영상의 한계",
+        "웹 디자인 질문"
+      ]
+    },
+    {
+      "id": "src-02",
+      "title": "WebMCP overview",
+      "publisher": "Chrome for Developers",
+      "url": "https://developer.chrome.com/docs/ai/webmcp",
+      "label": "OFFICIAL · CHROME · 2026.05.18",
+      "note": "WebMCP를 proposed web standard로 정의하고 두 API, 사용 조건, 제한을 설명.",
+      "sourceType": "Official documentation",
+      "publishedAt": "2026-05-18",
+      "confidence": "high",
+      "caution": "제안 단계이며 API와 일정은 변경될 수 있음.",
+      "usedSections": [
+        "Hero",
+        "1분 요약",
+        "공식 확인",
+        "작동 원리",
+        "FAQ"
+      ]
+    },
+    {
+      "id": "src-03",
+      "title": "WebMCP Chrome Platform Status",
+      "publisher": "Chrome Platform Status",
+      "url": "https://chromestatus.com/feature/5117755740913664",
+      "label": "OFFICIAL · CHROME STATUS · LIVE",
+      "note": "Dev Trial 146, Origin Trial 149~156, shipping target 157 상태.",
+      "sourceType": "Official browser feature status",
+      "publishedAt": null,
+      "confidence": "high",
+      "caution": "Shipping 157은 목표 일정이며 정식 배포 보장은 아님.",
+      "usedSections": [
+        "Hero",
+        "공식 확인",
+        "한계",
+        "FAQ"
+      ]
+    },
+    {
+      "id": "src-04",
+      "title": "WebMCP Imperative API",
+      "publisher": "Chrome for Developers",
+      "url": "https://developer.chrome.com/docs/ai/webmcp/imperative-api",
+      "label": "OFFICIAL · API · UPDATED 2026.07.30",
+      "note": "document.modelContext.registerTool(), getTools(), executeTool()과 Chrome 150 변경사항.",
+      "sourceType": "Official API documentation",
+      "publishedAt": "2026-05-18",
+      "confidence": "high",
+      "caution": "navigator.modelContext는 Chrome 150에서 deprecated.",
+      "usedSections": [
+        "두 가지 API",
+        "공식 확인",
+        "FAQ"
+      ]
+    },
+    {
+      "id": "src-05",
+      "title": "WebMCP Declarative API",
+      "publisher": "Chrome for Developers",
+      "url": "https://developer.chrome.com/docs/ai/webmcp/declarative-api",
+      "label": "OFFICIAL · HTML API · 2026.05.18",
+      "note": "toolname, tooldescription, toolparamdescription, toolautosubmit와 CSS 상태를 설명.",
+      "sourceType": "Official API documentation",
+      "publishedAt": "2026-05-18",
+      "confidence": "high",
+      "caution": "Origin Trial 중인 실험 API.",
+      "usedSections": [
+        "두 가지 API",
+        "공식 확인",
+        "FAQ"
+      ]
+    },
+    {
+      "id": "src-06",
+      "title": "WebMCP tool security",
+      "publisher": "Chrome for Developers",
+      "url": "https://developer.chrome.com/docs/ai/webmcp/secure-tools",
+      "label": "OFFICIAL · SECURITY · UPDATED 2026.07.01",
+      "note": "간접 프롬프트 인젝션, untrustedContentHint, readOnlyHint, origin 제한, 동의 관리 논의를 설명.",
+      "sourceType": "Official security guidance",
+      "publishedAt": "2026-06-09",
+      "confidence": "high",
+      "caution": "보안 가이드는 preliminary guidance이며 완전한 안전을 보장하지 않음.",
+      "usedSections": [
+        "한계",
+        "공식 확인",
+        "FAQ"
+      ]
+    },
+    {
+      "id": "src-07",
+      "title": "Traffic Worldwide — Bot vs. Human",
+      "publisher": "Cloudflare Radar",
+      "url": "https://radar.cloudflare.com/traffic",
+      "label": "PRIMARY DATA · CLOUDFLARE RADAR · LIVE",
+      "note": "봇/인간 비중의 측정 범위를 HTML 응답에 대한 HTTP 요청으로 정의.",
+      "sourceType": "Primary traffic dashboard",
+      "publishedAt": null,
+      "confidence": "high",
+      "caution": "전체 인터넷 이용량이나 AI 에이전트만의 비중이 아님. 시점에 따라 수치가 변함.",
+      "usedSections": [
+        "공식 확인",
+        "FAQ"
+      ]
+    },
+    {
+      "id": "src-08",
+      "title": "Cloudflare Radar 2025 Year in Review",
+      "publisher": "Cloudflare",
+      "url": "https://blog.cloudflare.com/radar-2025-year-in-review/",
+      "label": "PRIMARY ANALYSIS · CLOUDFLARE · 2025",
+      "note": "2025년 HTML 요청에서 AI 봇 평균 4.2%, 비AI 봇과 인간을 별도 분류한 분석.",
+      "sourceType": "Primary network analysis",
+      "publishedAt": "2025-12-09",
+      "confidence": "high",
+      "caution": "2025년 연간 평균이며 2026년 특정 시점과 직접 동일시할 수 없음.",
+      "usedSections": [
+        "공식 확인",
+        "FAQ"
+      ]
+    },
+    {
+      "id": "src-09",
+      "title": "Google I/O 2026: Agentic web updates",
+      "publisher": "Chrome for Developers",
+      "url": "https://developer.chrome.com/blog/chrome-at-io26",
+      "label": "OFFICIAL · GOOGLE I/O · 2026.05.19",
+      "note": "Chrome 149 Origin Trial, Gemini in Chrome의 향후 지원, 실험 참여 브랜드를 발표.",
+      "sourceType": "Official announcement",
+      "publishedAt": "2026-05-19",
+      "confidence": "high",
+      "caution": "“will soon support”는 향후 계획 표현이며 일반 제공 완료를 뜻하지 않음.",
+      "usedSections": [
+        "공식 확인",
+        "한계",
+        "FAQ"
+      ]
+    },
+    {
+      "id": "src-10",
+      "title": "WebMCP explainer and specification work",
+      "publisher": "W3C Web Machine Learning Community Group / GitHub",
+      "url": "https://github.com/webmachinelearning/webmcp",
+      "label": "PRIMARY · COMMUNITY GROUP · GITHUB",
+      "note": "페이지 등록→에이전트 발견→브라우저 중개→페이지 실행의 흐름과 human-in-the-loop 목표를 설명.",
+      "sourceType": "Primary standards explainer",
+      "publishedAt": null,
+      "confidence": "high",
+      "caution": "Community Group 단계의 작업 문서로 최종 W3C Recommendation이 아님.",
+      "usedSections": [
+        "공식 확인",
+        "작동 원리",
+        "FAQ"
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "claim": "영상은 현재 에이전트의 웹 사용을 비전, 텍스트 변환, 헤드리스 브라우저 세 방식으로 설명한다.",
+      "sourceIds": [
+        "src-01"
+      ],
+      "confidence": "high-for-summary",
+      "caution": "영상의 설명을 재구성한 것이며 모든 에이전트 구현을 망라한 분류는 아님."
+    },
+    {
+      "claim": "WebMCP는 페이지가 구조화된 도구를 등록해 브라우저 기반 에이전트가 발견·호출하게 하는 제안된 웹 표준이다.",
+      "sourceIds": [
+        "src-02",
+        "src-10"
+      ],
+      "confidence": "high",
+      "caution": "최종 W3C Recommendation이 아니며 설계가 변경될 수 있음."
+    },
+    {
+      "claim": "Chrome Status에는 Origin Trial 149~156과 shipping target 157이 표시된다.",
+      "sourceIds": [
+        "src-03"
+      ],
+      "confidence": "high",
+      "caution": "Target은 정식 배포 보장이 아님."
+    },
+    {
+      "claim": "현재 명령형 API는 document.modelContext.registerTool()이며 navigator.modelContext는 Chrome 150에서 deprecated다.",
+      "sourceIds": [
+        "src-04"
+      ],
+      "confidence": "high",
+      "caution": "실험 API이므로 추가 변경 가능."
+    },
+    {
+      "claim": "선언형 API는 toolname, tooldescription, optional toolparamdescription/toolautosubmit을 사용한다.",
+      "sourceIds": [
+        "src-05"
+      ],
+      "confidence": "high",
+      "caution": "Origin Trial API."
+    },
+    {
+      "claim": "Cloudflare Radar의 봇/인간 지표는 HTML 응답에 대한 HTTP 요청 분류이며 AI 에이전트만의 비중이 아니다.",
+      "sourceIds": [
+        "src-07",
+        "src-08"
+      ],
+      "confidence": "high",
+      "caution": "실시간 수치는 시점에 따라 변하며 2025 연간 평균과 2026 특정 시점은 구분해야 함."
+    },
+    {
+      "claim": "간접 프롬프트 인젝션의 안전을 LLM 내부에서 완전히 보장할 수 없으며 hints, origin 제한, 사용자 확인이 필요하다.",
+      "sourceIds": [
+        "src-06"
+      ],
+      "confidence": "high",
+      "caution": "가이드는 예비 지침이며 보안 책임을 제거하지 않음."
+    },
+    {
+      "claim": "Google I/O 발표는 Chrome 149 실험과 Gemini in Chrome의 향후 지원을 예고했다.",
+      "sourceIds": [
+        "src-09"
+      ],
+      "confidence": "high",
+      "caution": "향후형 발표를 현재 일반 지원으로 표현하지 않음."
+    },
+    {
+      "claim": "피자 주문은 영상에서 세 번의 도구 호출로 보여준 데모다.",
+      "sourceIds": [
+        "src-01"
+      ],
+      "confidence": "high-for-summary",
+      "caution": "직접 재현하지 않았으며 일반 제공 상태를 입증하지 않음."
+    }
+  ]
+}

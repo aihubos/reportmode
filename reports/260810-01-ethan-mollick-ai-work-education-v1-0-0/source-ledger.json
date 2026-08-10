@@ -1,0 +1,150 @@
+{
+  "schemaVersion": "1.0",
+  "reportId": "rh-260810-01-ethan-mollick-ai-work-education",
+  "verifiedAt": "2026-08-10",
+  "sources": [
+    {
+      "id": 1,
+      "claim": "인터뷰의 핵심 메시지: AI를 실제 일에 폭넓게 사용하고, 직업을 과업의 묶음으로 보며, 교육·기업의 구조를 재설계해야 한다.",
+      "url": "https://www.youtube.com/watch?v=Qt50DVNJcvw",
+      "sourceType": "primary-video / user-provided auto transcript",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-10",
+      "sections": [
+        "Hero",
+        "핵심 7가지",
+        "교육",
+        "기업",
+        "FAQ"
+      ],
+      "confidence": "high for interview framing",
+      "caution": "자동 전사에 인명·제품명 오류 가능성. 직접 인용은 최소화하고 의미 중심으로 재구성."
+    },
+    {
+      "id": 2,
+      "claim": "Ethan Mollick의 와튼 스쿨 직위, 연구 영역, Generative AI Labs 역할.",
+      "url": "https://mgmt.wharton.upenn.edu/profile/emollick/",
+      "sourceType": "official university profile",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-10",
+      "sections": [
+        "1분 요약",
+        "출처"
+      ],
+      "confidence": "high",
+      "caution": "기관 직함은 향후 변경 가능."
+    },
+    {
+      "id": 3,
+      "claim": "Wharton Generative AI Labs의 교육·연구 미션.",
+      "url": "https://gail.wharton.upenn.edu/",
+      "sourceType": "official lab site",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-10",
+      "sections": [
+        "1분 요약",
+        "출처"
+      ],
+      "confidence": "high",
+      "caution": "없음."
+    },
+    {
+      "id": 4,
+      "claim": "Co-Intelligence의 ‘세 번의 잠 못 드는 밤’과 공동지능 프레임.",
+      "url": "https://penguinrandomhousehighereducation.com/2024/05/21/an-excerpt-from-co-intelligence/",
+      "sourceType": "publisher book excerpt",
+      "publishedAt": "2024-05-21",
+      "verifiedAt": "2026-08-10",
+      "sections": [
+        "배경",
+        "출처"
+      ],
+      "confidence": "high",
+      "caution": "저작권 보호 원문이므로 본문은 짧은 개념 요약만 사용."
+    },
+    {
+      "id": 5,
+      "claim": "기업 AI 도입의 Leadership, Lab, Crowd 프레임.",
+      "url": "https://www.oneusefulthing.org/p/making-ai-work-leadership-lab-and",
+      "sourceType": "author primary essay",
+      "publishedAt": "2025-05-22",
+      "verifiedAt": "2026-08-10",
+      "sections": [
+        "핵심 7가지",
+        "기업",
+        "30/60/90일"
+      ],
+      "confidence": "high for author framework",
+      "caution": "보편적 조직 설계의 인과효과가 확정된 규격은 아님."
+    },
+    {
+      "id": 6,
+      "claim": "직원이 AI 사용을 숨기는 Secret Cyborgs 문제.",
+      "url": "https://www.oneusefulthing.org/p/detecting-the-secret-cyborgs",
+      "sourceType": "author primary essay",
+      "publishedAt": "2023-06-18",
+      "verifiedAt": "2026-08-10",
+      "sections": [
+        "핵심 7가지",
+        "한국 관점"
+      ],
+      "confidence": "medium-high",
+      "caution": "개념적 프레임이며 조직별 실증은 별도 필요."
+    },
+    {
+      "id": 7,
+      "claim": "가드레일 없는 생성형 AI가 학습을 해칠 수 있고 튜터형 설계가 부정적 효과를 완화할 수 있음.",
+      "url": "https://www.pnas.org/doi/10.1073/pnas.2422633122",
+      "sourceType": "peer-reviewed research",
+      "publishedAt": "2025",
+      "verifiedAt": "2026-08-10",
+      "sections": [
+        "교육",
+        "리스크"
+      ],
+      "confidence": "high",
+      "caution": "특정 고등학교 수학 교육 맥락의 연구로 일반화에 주의."
+    },
+    {
+      "id": 8,
+      "claim": "맞춤형 AI 튜터와 능동학습 수업을 비교한 무작위 실험에서 높은 학습 효과가 관찰됨.",
+      "url": "https://www.nature.com/articles/s41598-025-97652-6",
+      "sourceType": "peer-reviewed research",
+      "publishedAt": "2025",
+      "verifiedAt": "2026-08-10",
+      "sections": [
+        "교육"
+      ],
+      "confidence": "high",
+      "caution": "194명 규모, 특정 대학 물리 수업과 설계된 튜터 조건."
+    },
+    {
+      "id": 9,
+      "claim": "BCG 현장 실험에서 AI 효과가 과업별로 불균일한 jagged frontier를 보임.",
+      "url": "https://www.hbs.edu/faculty/Pages/item.aspx?num=64700",
+      "sourceType": "academic field experiment",
+      "publishedAt": "2023",
+      "verifiedAt": "2026-08-10",
+      "sections": [
+        "핵심 7가지",
+        "업무 재설계"
+      ],
+      "confidence": "high",
+      "caution": "연구 당시 모델·컨설팅 과업에 기반한 결과."
+    },
+    {
+      "id": 10,
+      "claim": "한국어판 저자명 이선 몰릭, 도서명 듀얼 브레인.",
+      "url": "https://www.sangsangsquare-books.com/book-kr/dyueol-beurein",
+      "sourceType": "official Korean publisher",
+      "publishedAt": null,
+      "verifiedAt": "2026-08-10",
+      "sections": [
+        "1분 요약",
+        "출처"
+      ],
+      "confidence": "high",
+      "caution": "없음."
+    }
+  ]
+}
