@@ -1,0 +1,127 @@
+{
+  "schemaVersion": "1.0",
+  "reportId": "260810-01-even-realities-g2-review",
+  "checkedAt": "2026-08-10T16:30:00+09:00",
+  "claims": [
+    {
+      "claim": "화상회의에서 번역이 약 2~3초 뒤 렌즈와 앱에 함께 표시돼 편리했다.",
+      "url": null,
+      "sourceType": "Author-provided field note",
+      "publishedAt": "2026-08-10",
+      "checkedAt": "2026-08-10",
+      "section": "실사용 후기",
+      "confidence": "High for the described session",
+      "caution": "환경·언어·네트워크에 따라 달라지는 체감값이며 공식 성능 보장이 아님."
+    },
+    {
+      "claim": "Even G2 기본 가격은 미국 공식 스토어 기준 $599이다.",
+      "url": "https://www.evenrealities.com/products/g2-a",
+      "sourceType": "Official store",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "section": "가격·구매",
+      "confidence": "High",
+      "caution": "세금·배송·지역별 통화·프로모션 제외."
+    },
+    {
+      "claim": "G2는 36g, 마그네슘 프레임과 티타늄 템플을 사용한다.",
+      "url": "https://www.evenrealities.com/smart-glasses",
+      "sourceType": "Official product page",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "section": "상세 사양",
+      "confidence": "High",
+      "caution": "공식 페이지 표기."
+    },
+    {
+      "claim": "양안 Micro LED, 640×350, 27.5° FoV, 60Hz, 1,200니트, 녹색 표시, 98% 투과율이다.",
+      "url": "https://support.evenrealities.com/hc/en-us/articles/13499229138959-Specs",
+      "sourceType": "Official support specification",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "section": "상세 사양",
+      "confidence": "High",
+      "caution": "실사용 가독성은 밝기·배경·피팅에 따라 달라질 수 있음."
+    },
+    {
+      "claim": "일반 사용 기준 최대 2일, 케이스는 최대 7회 충전을 지원한다.",
+      "url": "https://support.evenrealities.com/hc/en-us/articles/13499229138959-Specs",
+      "sourceType": "Official support specification",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "section": "상세 사양",
+      "confidence": "High",
+      "caution": "사용 패턴에 따라 달라짐."
+    },
+    {
+      "claim": "최신 공식 지원문서의 방진·방수 등급은 IP65이다.",
+      "url": "https://support.evenrealities.com/hc/en-us/articles/13499229138959-Specs",
+      "sourceType": "Official support specification",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "section": "상세 사양·주의사항",
+      "confidence": "High",
+      "caution": "일부 초기 보도는 IP67로 표기했으나 본문은 최신 공식 IP65를 사용. 침수 금지."
+    },
+    {
+      "claim": "번역은 음성을 Bluetooth로 앱에 보내고 클라우드에서 처리한 뒤 렌즈에 표시하며 오프라인에서는 동작하지 않는다.",
+      "url": "https://www.evenrealities.com/translation-glasses",
+      "sourceType": "Official feature page",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "section": "번역·한계",
+      "confidence": "High",
+      "caution": "인터넷·마이크·앱 상태에 의존."
+    },
+    {
+      "claim": "Conversate는 Prep Notes, AI Cues, 실시간 전사, Action Items를 제공한다.",
+      "url": "https://support.evenrealities.com/hc/en-us/articles/14273795154319-Conversate",
+      "sourceType": "Official support guide",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "section": "기능 12가지",
+      "confidence": "High",
+      "caution": "인터넷 연결과 마이크 권한 필요."
+    },
+    {
+      "claim": "Teleprompt는 AI·Auto·Manual 모드와 TXT·DOCX·PDF 가져오기를 지원한다.",
+      "url": "https://support.evenrealities.com/hc/en-us/articles/14273863878415-Teleprompt",
+      "sourceType": "Official support guide",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "section": "기능 12가지",
+      "confidence": "High",
+      "caution": "PDF는 단순 레이아웃 권장, 파일 크기 255KB 제한."
+    },
+    {
+      "claim": "공식 모바일 호환 기준은 iOS 16+와 Android 11+이다.",
+      "url": "https://support.evenrealities.com/hc/en-us/articles/13744432133903-Compatibility",
+      "sourceType": "Official support",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "section": "상세 사양",
+      "confidence": "High",
+      "caution": "폴더블 호환성은 개선 중이라는 안내."
+    },
+    {
+      "claim": "독립 리뷰에서는 휴대폰 연결 의존성과 소프트웨어 안정성을 구매 변수로 지적했다.",
+      "url": "https://techcrunch.com/2026/07/11/smart-glasses-without-a-camera-even-realities-bets-productivity-beats-recording-everyone/",
+      "sourceType": "Independent review",
+      "publishedAt": "2026-07-11",
+      "checkedAt": "2026-08-10",
+      "section": "리스크·반론",
+      "confidence": "Medium-High",
+      "caution": "리뷰어 환경과 펌웨어 버전에 따른 경험 차이 가능."
+    },
+    {
+      "claim": "Conversate는 오디오 자체를 저장하지 않고 텍스트 전사·요약을 스마트폰에 저장한다고 회사가 안내한다.",
+      "url": "https://www.evenrealities.com/conversate",
+      "sourceType": "Official feature page",
+      "publishedAt": null,
+      "checkedAt": "2026-08-10",
+      "section": "프라이버시",
+      "confidence": "High for company policy statement",
+      "caution": "처리 과정과 조직의 회의 녹취 정책은 별도 검토 필요. 참여자 고지 권장."
+    }
+  ]
+}

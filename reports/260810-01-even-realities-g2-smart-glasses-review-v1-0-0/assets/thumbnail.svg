@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">2~3초 뒤, 눈앞에 번역</title>
+<desc id="desc">스마트글라스의 양쪽 렌즈에 번역 문장이 표시되는 모습을 추상적으로 표현한 Report Hub 썸네일</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1f3a"/><stop offset="0.55" stop-color="#1b64da"/><stop offset="1" stop-color="#3182f6"/></linearGradient>
+  <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#dfff6a" stop-opacity=".55"/><stop offset="1" stop-color="#dfff6a" stop-opacity="0"/></radialGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#06152b" flood-opacity=".35"/></filter>
+  <filter id="soft"><feGaussianBlur stdDeviation="22"/></filter>
+</defs>
+<rect width="1200" height="630" fill="url(#bg)"/>
+<circle cx="1010" cy="90" r="250" fill="#6aa7ff" opacity=".18"/>
+<circle cx="760" cy="560" r="280" fill="url(#glow)" opacity=".55"/>
+<path d="M0 535 C240 460 400 625 630 535 S960 420 1200 505 V630 H0Z" fill="#071629" opacity=".28"/>
+<g font-family="NanumSquare, Noto Sans CJK KR, sans-serif">
+  <text x="74" y="112" font-size="29" font-weight="800" fill="#dfff6a" letter-spacing="1">EVEN G2 실사용</text>
+  <text x="70" y="235" font-size="76" font-weight="900" fill="#ffffff">2~3초 뒤,</text>
+  <text x="70" y="326" font-size="76" font-weight="900" fill="#ffffff">눈앞에 번역</text>
+  <rect x="70" y="360" width="330" height="14" rx="7" fill="#dfff6a"/>
+</g>
+<g transform="translate(570 120)" filter="url(#shadow)">
+  <path d="M73 138 C90 85 152 58 224 67 C284 74 322 105 331 155" fill="none" stroke="#ffffff" stroke-width="17" stroke-linecap="round"/>
+  <path d="M508 138 C491 85 429 58 357 67 C297 74 259 105 250 155" fill="none" stroke="#ffffff" stroke-width="17" stroke-linecap="round"/>
+  <path d="M331 143 C348 128 366 128 382 143" fill="none" stroke="#ffffff" stroke-width="15" stroke-linecap="round"/>
+  <path d="M75 148 L16 124" fill="none" stroke="#ffffff" stroke-width="14" stroke-linecap="round"/>
+  <path d="M506 148 L565 124" fill="none" stroke="#ffffff" stroke-width="14" stroke-linecap="round"/>
+  <rect x="67" y="110" width="264" height="190" rx="72" fill="#06172b" fill-opacity=".63" stroke="#ffffff" stroke-width="12"/>
+  <rect x="382" y="110" width="264" height="190" rx="72" fill="#06172b" fill-opacity=".63" stroke="#ffffff" stroke-width="12"/>
+  <rect x="98" y="151" width="200" height="110" rx="24" fill="#dfff6a" fill-opacity=".10" stroke="#dfff6a" stroke-opacity=".5"/>
+  <rect x="414" y="151" width="200" height="110" rx="24" fill="#dfff6a" fill-opacity=".10" stroke="#dfff6a" stroke-opacity=".5"/>
+  <g fill="#dfff6a">
+    <rect x="120" y="177" width="150" height="10" rx="5"/>
+    <rect x="120" y="203" width="118" height="10" rx="5" opacity=".8"/>
+    <rect x="120" y="229" width="164" height="10" rx="5" opacity=".62"/>
+    <rect x="436" y="177" width="144" height="10" rx="5"/>
+    <rect x="436" y="203" width="164" height="10" rx="5" opacity=".8"/>
+    <rect x="436" y="229" width="118" height="10" rx="5" opacity=".62"/>
+  </g>
+  <circle cx="354" cy="207" r="52" fill="#3182f6" stroke="#ffffff" stroke-width="8"/>
+  <path d="M336 207 h36 M354 189 v36" stroke="#fff" stroke-width="8" stroke-linecap="round"/>
+</g>
+<circle cx="905" cy="322" r="168" fill="#dfff6a" opacity=".08" filter="url(#soft)"/>
+</svg>
