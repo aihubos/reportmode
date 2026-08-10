@@ -36,6 +36,7 @@ test("public brand uses a large Toss Blue text wordmark and one floating menu", 
   assert.match(script, /if \(!home && !archiveBrand\)/);
   assert.match(script, /report-hub-floating-menu/);
   assert.match(script, /function installTitleLinks/);
+  assert.match(script, /archiveBrandName/);
   assert.match(script, /function normalizeReportHubLinks/);
   assert.match(script, /function removeLegacyTopMenus/);
   assert.match(script, /function removeLegacyViewModes/);
@@ -54,7 +55,8 @@ test("public brand uses a large Toss Blue text wordmark and one floating menu", 
   assert.doesNotMatch(script, /<img class="report-hub-logo"/);
   assert.match(archive, /<title>Report Hub \| AI 리서치 라이브러리<\/title>/);
   assert.doesNotMatch(archive, /class="archive-profile"|<h1 id="archive-title">/);
-  assert.match(archive, /class="archive-brand report-hub-brand-link"[^>]*>[\s\S]*class="report-hub-wordmark">Report Hub/);
+  assert.match(archive, /class="archive-brand report-hub-brand-link"[^>]*>[\s\S]*class="report-hub-wordmark">Blog Hub/);
+  assert.match(archive, /data-archive-brand-name="Blog Hub"/);
   assert.match(archive, /class="report-hub-byline">by Jeremy/);
   assert.match(archive, /class="report-hub-clock"/);
   assert.match(archive, /class="archive-blog-card"/);

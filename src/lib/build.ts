@@ -22,6 +22,7 @@ import {
 } from "../schema/report.js";
 import { listUploadedReports, uploadedToManifest } from "../publisher/store.js";
 import { applyReportHubBrand } from "./public-brand.js";
+import { sanitizeTags } from "./tags.js";
 
 function publicPagePath(root: string, itemPath: string): string {
   return path.join(root, itemPath.endsWith("/") ? `${itemPath}index.html` : itemPath);
@@ -128,12 +129,16 @@ function mergeManifestItems(
   existing: ManifestItem[],
   generated: ManifestItem[],
 ): ManifestItem[] {
-  const itemsById = new Map(existing.map((item) => [item.id, item]));
+  const normalizeTags = (item: ManifestItem): ManifestItem => ({
+    ...item,
+    tags: sanitizeTags(item.tags),
+  });
+  const itemsById = new Map(existing.map((item) => [item.id, normalizeTags(item)]));
   for (const item of generated) {
     const previous = itemsById.get(item.id);
     itemsById.set(item.id, {
       ...previous,
-      ...item,
+      ...normalizeTags(item),
       coverImage: item.coverImage || previous?.coverImage,
       coverAlt: item.coverAlt || previous?.coverAlt,
     });

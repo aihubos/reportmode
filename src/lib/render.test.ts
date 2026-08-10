@@ -85,6 +85,9 @@ test("renders the simplified archive with one Naver card and a 30-item default s
   assert.doesNotMatch(html, /class="archive-profile"/);
   assert.doesNotMatch(html, /원자료를 조사하고 사실과 해석을 나눠 기록하는/);
   assert.doesNotMatch(html, /읽고 판단하기 좋은/);
+  assert.match(html, /class="report-hub-wordmark">Blog Hub<\/span>/);
+  assert.match(html, /aria-label="Blog Hub 메인으로 이동"/);
+  assert.doesNotMatch(html, /class="archive-brand-mark"/);
   assert.equal(html.match(/https:\/\/blog\.naver\.com\/jeremylee0213/g)?.length, 1);
   assert.match(html, /class="archive-blog-card"/);
   assert.match(html, /id="archiveVisitorCount"/);
@@ -103,12 +106,18 @@ test("renders the simplified archive with one Naver card and a 30-item default s
   assert.ok(html.indexOf('class="request-board"') < html.indexOf("data-archive-weather"));
   assert.match(html, /archive-visitor-counter\.js\?v=20260809-visits1/);
   assert.match(html, /id="archivePageSize"/);
+  assert.match(html, /id="archiveSort"/);
+  assert.match(html, /<option value="created">생성일 최신순<\/option>/);
+  assert.match(html, /<option value="updated">수정일 최신순<\/option>/);
+  assert.match(html, /<option value="views">조회수 높은순<\/option>/);
   assert.match(html, /<option value="5">5개<\/option>/);
   assert.match(html, /<option value="10">10개<\/option>/);
   assert.match(html, /<option value="20">20개<\/option>/);
   assert.match(html, /<option value="30" selected>30개<\/option>/);
   assert.match(html, /var DEFAULT_PAGE_SIZE = 30/);
+  assert.match(html, /var ALLOWED_SORTS = \["created", "updated", "views"\]/);
   assert.match(html, /state\.pageSize/);
+  assert.match(html, /state\.sort/);
   assert.equal(html.match(/data-report-share(?=[ >])/g)?.length, 31);
   assert.equal(html.match(/class="archive-share-button"[^>]*>[\s\S]*?class="archive-share-icon"/g)?.length, 31);
   assert.doesNotMatch(html, />공유<\/button>/);
@@ -145,6 +154,39 @@ test("renders the simplified archive with one Naver card and a 30-item default s
     archiveCss,
     /@media \(prefers-reduced-motion:\s*reduce\)\s*{[\s\S]*?\.archive-mobile-panel-button,\s*\.archive-mobile-panel-close\s*{\s*transition:\s*none;/,
   );
+});
+
+test("curates blocked and duplicate archive tags into one searchable navigation tag", () => {
+  const base = {
+    subtitle: "",
+    summary: "태그 정리 확인",
+    category: "AI",
+    displayDate: "260810",
+    sourceCount: 1,
+    createdAt: "2026-08-10T09:00:00+09:00",
+    updatedAt: "2026-08-10T10:00:00+09:00",
+  };
+  const html = renderHomeHtml([
+    {
+      ...base,
+      id: "tag-one",
+      path: "reports/tag-one/",
+      title: "첫 번째 태그 보고서",
+      tags: ["Draft", "Jeremy Style", "Hermes Agent", "hermes", "LLM-Wiki", "LLM Wiki"],
+    },
+    {
+      ...base,
+      id: "tag-two",
+      path: "reports/tag-two/",
+      title: "두 번째 태그 보고서",
+      tags: ["Hermes", "LLM Wiki", "Temporary Chat", "AI Report"],
+    },
+  ] as any);
+
+  assert.doesNotMatch(html, /#Draft|#Jeremy Style|#Temporary Chat|#AI Report/);
+  assert.equal(html.match(/data-tag-filter="hermes"/g)?.length, 1);
+  assert.equal(html.match(/data-tag-filter="llm-wiki"/g)?.length, 1);
+  assert.match(html, /data-tag-keys="hermes\|llm-wiki"/);
 });
 
 test("renders the same fallback count and report-specific share URL on archive cards", () => {
@@ -199,9 +241,16 @@ test("renders a top spotlight with three curated defaults and three view-ranked 
   assert.equal(html.match(/data-featured-fallback-item/g)?.length, 3);
   assert.equal(html.match(/data-popular-report/g)?.length, 3);
   const popular = html.slice(html.indexOf('id="archivePopularList"'));
+  const featured = html.slice(
+    html.indexOf('id="archiveFeaturedList"'),
+    html.indexOf('id="archivePopularList"'),
+  );
   assert.ok(popular.indexOf("추천 후보 4") < popular.indexOf("추천 후보 2"));
   assert.ok(popular.indexOf("추천 후보 2") < popular.indexOf("추천 후보 5"));
   assert.match(popular, /조회수 34/);
+  assert.match(featured, /조회수 3/);
+  assert.doesNotMatch(featured, /추천 후보 2/);
+  assert.match(html, /class="archive-marker">지금 읽을 보고서<\/span>/);
 });
 
 test("Draft reports use a separate category and stay out of the default total", () => {

@@ -14,8 +14,9 @@
   var mobileTopBarFrame = null;
   var mobileTopBarInstalled = false;
 
-  function logoMarkup() {
-    return '<span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span>';
+  function logoMarkup(name) {
+    var wordmark = name === "Blog Hub" ? "Blog Hub" : "Report Hub";
+    return '<span class="report-hub-brand-copy"><span class="report-hub-wordmark">' + wordmark + '</span><span class="report-hub-byline">by Jeremy</span></span>';
   }
 
   function formatClock(value) {
@@ -88,9 +89,10 @@
 
   function setLink(link) {
     if (!link) return;
+    var archiveBrandName = link.dataset && link.dataset.archiveBrandName === "Blog Hub" ? "Blog Hub" : "Report Hub";
     link.href = HOME;
-    link.setAttribute("aria-label", "Report Hub 메인으로 이동");
-    link.innerHTML = logoMarkup();
+    link.setAttribute("aria-label", archiveBrandName + " 메인으로 이동");
+    link.innerHTML = logoMarkup(archiveBrandName);
   }
 
   function normalizeTitle() {

@@ -5,6 +5,7 @@ import { loadConfig } from "../lib/config.js";
 import { ensureDir, readText, writeText } from "../lib/fs.js";
 import { repoRoot, runtimeDir } from "../lib/paths.js";
 import { displayDateFromIso, nowIsoKst, yymmdd } from "../lib/time.js";
+import { sanitizeTags } from "../lib/tags.js";
 import type { ManifestItem } from "../schema/report.js";
 import {
   UploadedReportMetaSchema,
@@ -192,12 +193,7 @@ function nextId(slug: string): string {
 }
 
 function cleanTags(value: unknown): string[] {
-  const tags = Array.isArray(value)
-    ? value
-    : String(value || "").split(",");
-  return Array.from(
-    new Set(tags.map((tag) => String(tag).trim().replace(/^#/, "")).filter(Boolean)),
-  ).slice(0, 12);
+  return sanitizeTags(value);
 }
 
 export function prepareUpload(body: Record<string, unknown>): PreparedUpload {

@@ -17,6 +17,7 @@
   --rh-danger: #B42318;
   --rh-danger-soft: #FFF7F6;
   --rh-surface-muted: #F8FAFC;
+  --rh-highlight: #DDFB63;
   --rh-sans: "Pretendard Variable", "Pretendard", "SF Pro Display", "SF Pro Text", "Apple SD Gothic Neo", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --rh-space-1: 4px;
   --rh-space-2: 8px;
@@ -24,6 +25,7 @@
   --rh-space-4: 16px;
   --rh-space-8: 32px;
   --rh-space-12: 48px;
+  --rh-highlight-mark-height: 8px;
   --rh-radius-2: 8px;
   --rh-radius-3: 12px;
   --rh-radius-4: 16px;

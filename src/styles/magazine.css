@@ -268,6 +268,8 @@ footer {
 .archive-spotlight-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 20px; }
 .archive-spotlight-head > div > span { color: var(--archive-blue); font-size: 11px; font-weight: 900; }
 .archive-spotlight-head h1 { margin: 4px 0 0; font-size: 28px; line-height: 1.2; letter-spacing: -.045em; }
+.archive-marker { position: relative; z-index: 0; isolation: isolate; display: inline; }
+.archive-marker::after { content: ""; position: absolute; z-index: -1; right: calc(var(--rh-space-1) * -1); bottom: 0; left: calc(var(--rh-space-1) * -1); height: var(--rh-highlight-mark-height); background: var(--rh-highlight); }
 .archive-spotlight-head p { max-width: 360px; margin: 0; color: var(--archive-muted); font-size: 12px; text-align: right; }
 .archive-spotlight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .archive-spotlight-column { min-width: 0; padding: 16px !important; border: 1px solid var(--archive-line); border-radius: 14px; background: var(--rh-surface-muted); }
@@ -356,7 +358,10 @@ footer {
   color: #4e5968; background: #f5f8fc; font-size: 11px; font-weight: 500;
   line-height: 1.2; text-decoration: none; transition: color .18s ease, background .18s ease, transform .18s ease;
 }
+.archive-report-tag { cursor: pointer; font-family: inherit; }
 .archive-report-tag:hover { color: #fff; background: var(--archive-blue); transform: translateY(-1px); }
+.archive-report-tag.is-active { color: var(--archive-blue-deep); border-color: var(--rh-primary); background: var(--rh-primary-soft); font-weight: 800; }
+.archive-report-tag b { margin-left: var(--rh-space-1); color: currentColor; font-size: inherit; font-variant-numeric: tabular-nums; }
 .archive-side-note { display: flex; gap: 11px; align-items: flex-start; padding: 16px 18px !important; }
 .archive-side-note p { margin: 0; color: var(--archive-subtle); font-size: 12px; line-height: 1.55; }
 .archive-note-dot { width: 7px; height: 7px; flex: 0 0 auto; margin-top: 5px; border-radius: 50%; background: #00c73c; box-shadow: 0 0 0 4px rgba(0,199,60,.09); }
@@ -375,12 +380,13 @@ footer {
 .archive-search input::placeholder { color: #aeb6bf; }
 .archive-board-controls { display: flex; align-items: center; justify-content: flex-end; gap: 10px; width: min(460px, 58%); }
 .archive-board-controls .archive-search { width: min(320px, 100%); flex: 1 1 auto; }
-.archive-page-size { display: grid; gap: 4px; flex: 0 0 auto; color: var(--archive-subtle); font-size: 10px; font-weight: 800; }
-.archive-page-size select {
+.archive-page-size, .archive-sort { display: grid; gap: 4px; flex: 0 0 auto; color: var(--archive-subtle); font-size: 10px; font-weight: 800; }
+.archive-page-size select, .archive-sort select {
   min-width: 82px; height: 46px; padding: 0 30px 0 11px; border: 1px solid var(--archive-line); border-radius: 13px;
   color: var(--archive-ink); background: #f9fafb; font: inherit; font-size: 12px; font-weight: 800; cursor: pointer;
 }
-.archive-page-size select:focus-visible { outline: 3px solid rgba(49,130,246,.2); outline-offset: 2px; }
+.archive-sort select { min-width: 116px; }
+.archive-page-size select:focus-visible, .archive-sort select:focus-visible { outline: 3px solid rgba(49,130,246,.2); outline-offset: 2px; }
 .archive-mobile-categories { display: none; }
 .archive-list-head {
   display: grid; grid-template-columns: 64px minmax(0, 1fr) 154px; gap: 18px;
@@ -573,9 +579,10 @@ footer {
   .archive-board { padding: 24px 18px 20px !important; border-radius: 20px; }
   .archive-board-head { display: grid; gap: 18px; }
   .archive-board-head h2 { font-size: 25px; }
-  .archive-board-controls { width: 100%; align-items: flex-end; }
-  .archive-search { width: 100%; }
-  .archive-page-size select { height: 46px; }
+  .archive-board-controls { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--rh-space-2); width: 100%; align-items: flex-end; }
+  .archive-board-controls .archive-search { grid-column: 1 / -1; width: 100%; }
+  .archive-page-size select, .archive-sort select { height: 46px; }
+  .archive-page-size { justify-self: end; }
   .archive-list-head { display: none; }
   .archive-post { --archive-cover-width: 96px; --archive-cover-gap: 13px; --archive-cover-edge: 0px; }
   .archive-post-link { grid-template-columns: minmax(0, 1fr) 96px; gap: 13px; min-height: 138px; padding: 19px 0; }

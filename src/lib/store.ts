@@ -13,6 +13,7 @@ import {
   repoRoot,
 } from "./paths.js";
 import { displayDateFromIso } from "./time.js";
+import { sanitizeTags } from "./tags.js";
 
 export function listReportIds(): string[] {
   return listDirs(path.join(repoRoot(), "content", "reports"));
@@ -29,7 +30,7 @@ export function saveReport(
   doc: ReportDocument,
   options?: { recordHistory?: boolean; historyReason?: string },
 ): void {
-  const parsed = ReportDocumentSchema.parse(doc);
+  const parsed = ReportDocumentSchema.parse({ ...doc, tags: sanitizeTags(doc.tags) });
   const reportPath = contentReportPath(parsed.id);
   const nextContent = JSON.stringify(parsed, null, 2) + "\n";
 
@@ -65,7 +66,7 @@ export function toManifestItem(doc: ReportDocument): ManifestItem {
     url: `${config.siteBase.replace(/\/$/, "")}/${pathRel}`,
     displayDate: displayDateFromIso(doc.createdAt),
     sourceCount: doc.sources.length,
-    tags: doc.tags ?? [],
+    tags: sanitizeTags(doc.tags),
   };
 }
 

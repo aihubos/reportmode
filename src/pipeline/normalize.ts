@@ -5,6 +5,7 @@ import { loadConfig } from "../lib/config.js";
 import { listReportIds } from "../lib/store.js";
 import { makeReportId, slugify } from "../lib/slug.js";
 import { nowIsoKst, yymmdd } from "../lib/time.js";
+import { sanitizeTags } from "../lib/tags.js";
 
 export function normalizeDocument(args: {
   draft: ReportDocument;
@@ -61,6 +62,7 @@ export function normalizeDocument(args: {
     sources,
     provider: args.request.provider,
     model: args.request.model,
+    tags: sanitizeTags(args.draft.tags),
   };
 
   return ReportDocumentSchema.parse(doc);

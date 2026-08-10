@@ -5,9 +5,12 @@ import { loadConfig } from "./config.js";
 import { escapeHtml, inlineMark, nl2p } from "./html.js";
 import { displayDateFromIso, prettyDateFromIso } from "./time.js";
 import { repoRoot } from "./paths.js";
+import { sanitizeTags, tagFilterKey } from "./tags.js";
 import { REPORT_COUNTER_VERSION, REPORT_HISTORY_VERSION, REPORT_HUB_BRAND_VERSION, REPORT_HUB_HOME } from "./public-brand.js";
 
 const ARCHIVE_WEATHER_VERSION = "20260809-weather1";
+const ARCHIVE_ADMIN_VERSION = "20260810-archive-curation1";
+const ARCHIVE_ASSET_VERSION = "20260810-archive-curation1";
 
 const KIND_LABEL: Record<SectionKind, string> = {
   fact: "사실",
@@ -319,6 +322,7 @@ export function renderHomeHtml(
   bodySearchTextById: Record<string, string> = {},
   fallbackViewCountsById: Record<string, number> = {},
 ): string {
+  const archiveItems = items.map((item) => ({ ...item, tags: sanitizeTags(item.tags) }));
   const categoryOrder = ["AI", "게임", "자동차", "IT 기기", "비즈니스", "라이프", "기타", "Draft"];
   const categoryFor = (item: ManifestItem) => {
     const selectedCategory = String(item.category || "").trim();
@@ -342,7 +346,7 @@ export function renderHomeHtml(
     return "기타";
   };
   const categories = categoryOrder.filter((category) =>
-    items.some((item) => categoryFor(item) === category),
+    archiveItems.some((item) => categoryFor(item) === category),
   );
   const categoryButtons = ["전체", ...categories]
     .map(
@@ -350,74 +354,44 @@ export function renderHomeHtml(
         const value = category === "전체" ? "all" : category;
         const count =
           value === "all"
-            ? items.filter((item) => categoryFor(item) !== "Draft").length
-            : items.filter((item) => categoryFor(item) === category).length;
+            ? archiveItems.filter((item) => categoryFor(item) !== "Draft").length
+            : archiveItems.filter((item) => categoryFor(item) === category).length;
         return `<button class="archive-category" type="button" data-category-filter="${escapeHtml(value)}"><span>${escapeHtml(category)}</span><b>${count}</b></button>`;
       },
     )
     .join("\n");
 
-  const tagLabels: Record<string, string> = {
-    "ai-agent": "AI 에이전트",
-    "ai-model": "AI 모델",
-    apple: "Apple",
-    automation: "자동화",
-    benchmarks: "벤치마크",
-    buzz: "Buzz",
-    "claude-sonnet-5": "Claude Sonnet 5",
-    codex: "Codex",
-    comparison: "비교",
-    "cozy-game": "코지 게임",
-    deepseek: "DeepSeek",
-    "deepseek-v4-flash": "DeepSeek V4 Flash",
-    "deep-dive": "심층분석",
-    discord: "Discord",
-    "electric-vehicle": "전기차",
-    foldable: "폴더블",
-    "galaxy-z-fold7": "Galaxy Z Fold7",
-    "galaxy-z-fold8": "Galaxy Z Fold8",
-    "galaxy-z-fold8-ultra": "Galaxy Z Fold8 Ultra",
-    "gemini-3.6": "Gemini 3.6",
-    "gpt-5.6": "GPT-5.6",
-    "hermes-agent": "Hermes",
-    iphone: "iPhone",
-    "iphone-fold": "iPhone Fold",
-    "model-y-l": "Model Y L",
-    "nintendo-switch-2": "Nintendo Switch 2",
-    official: "공식 발표",
-    openclaw: "OpenClaw",
-    pokemon: "포켓몬",
-    pokopia: "포코피아",
-    "purchase-decision": "구매 결정",
-    rumor: "루머",
-    samsung: "Samsung",
-    security: "보안",
-    "self-hosted": "셀프호스팅",
-    slack: "Slack",
-    telegram: "Telegram",
-    tesla: "Tesla",
-  };
-  const tagLinks = items
-    .flatMap((item) => {
-      const reportHref = linkPrefix + item.path;
-      return (item.tags || []).slice(0, 3).map((tag) => {
-          const label = tagLabels[tag.toLocaleLowerCase("en")] || tag;
-          return `<a class="archive-report-tag" href="${escapeHtml(reportHref)}" aria-label="${escapeHtml(label)} 태그: ${escapeHtml(item.title)} 보고서 열기">#${escapeHtml(label)}</a>`;
-        });
-    })
+  const navigationTags = Array.from(
+    archiveItems.reduce((tags, item) => {
+      for (const tag of item.tags || []) {
+        const key = tagFilterKey(tag);
+        const current = tags.get(key) || { key, label: tag, count: 0 };
+        current.count += 1;
+        tags.set(key, current);
+      }
+      return tags;
+    }, new Map<string, { key: string; label: string; count: number }>()),
+  )
+    .map(([, tag]) => tag)
+    .filter((tag) => tag.count >= 2)
+    .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label, "ko"))
+    .slice(0, 18);
+  const tagLinks = navigationTags
+    .map((tag) => `<button class="archive-report-tag" type="button" data-tag-filter="${escapeHtml(tag.key)}" aria-pressed="false">#${escapeHtml(tag.label)} <b>${tag.count}</b></button>`)
     .join("\n");
 
-  const posts = items
+  const posts = archiveItems
     .map((item, index) => {
       const archiveCategory = categoryFor(item);
       const rawFallbackViewCount = Number(fallbackViewCountsById[item.id] || 0);
       const fallbackViewCount = Number.isFinite(rawFallbackViewCount)
         ? Math.max(0, Math.trunc(rawFallbackViewCount))
         : 0;
-      const tags = (item.tags || [])
+      const tags = sanitizeTags(item.tags)
         .slice(0, 3)
         .map((tag) => `<span>#${escapeHtml(tag)}</span>`)
         .join("");
+      const tagMarkup = tags ? `\n            <div class="archive-tags">${tags}</div>` : "";
       const searchText = [
         item.title,
         item.subtitle,
@@ -439,10 +413,11 @@ export function renderHomeHtml(
         ? `<figure class="archive-post-cover"><img src="${escapeHtml(coverSource)}" alt="${escapeHtml(coverAlt)}" loading="lazy"><figcaption>${escapeHtml(item.displayDate)}</figcaption></figure>`
         : `<div class="archive-post-cover archive-post-cover-fallback" aria-hidden="true"><span>REPORT</span><strong>${escapeHtml(item.displayDate.slice(0, 2))}</strong><small>${escapeHtml(item.category)}</small></div>`;
       const reportHref = linkPrefix + item.path;
+      const tagKeys = sanitizeTags(item.tags).map(tagFilterKey).join("|");
       return `
-      <article class="archive-post" data-report-item data-report-id="${escapeHtml(item.id)}" data-category="${escapeHtml(archiveCategory)}"${archiveCategory === "Draft" ? ' data-report-draft="true"' : ""} data-search="${escapeHtml(searchText)}">
+      <article class="archive-post" data-report-item data-report-id="${escapeHtml(item.id)}" data-category="${escapeHtml(archiveCategory)}" data-tag-keys="${escapeHtml(tagKeys)}" data-created-at="${escapeHtml(item.createdAt || "")}" data-updated-at="${escapeHtml(item.updatedAt || "")}" data-report-order="${index}"${archiveCategory === "Draft" ? ' data-report-draft="true"' : ""} data-search="${escapeHtml(searchText)}">
         <a class="archive-post-link" href="${escapeHtml(reportHref)}">
-          <div class="archive-post-number" aria-label="게시글 번호">${String(items.length - index).padStart(3, "0")}</div>
+          <div class="archive-post-number" aria-label="게시글 번호">${String(archiveItems.length - index).padStart(3, "0")}</div>
           <div class="archive-post-copy">
             <div class="archive-post-meta">
               <span class="archive-post-category">${escapeHtml(archiveCategory)}</span>${archiveCategory === "Draft" ? '<span class="archive-draft-badge">초안</span>' : ""}
@@ -451,8 +426,7 @@ export function renderHomeHtml(
               <span class="archive-view-count" data-view-count data-view-count-fallback="${fallbackViewCount}">조회수 ${fallbackViewCount.toLocaleString("ko-KR")}</span>
             </div>
             <h2>${escapeHtml(item.title)}</h2>
-            <p>${escapeHtml(item.summary)}</p>
-            ${tags ? `<div class="archive-tags">${tags}</div>` : ""}
+            <p>${escapeHtml(item.summary)}</p>${tagMarkup}
           </div>
           ${cover}
         </a>
@@ -480,22 +454,24 @@ export function renderHomeHtml(
     const attribute = kind === "featured"
       ? "data-featured-fallback-item"
       : "data-popular-report";
-    const meta = kind === "popular"
-      ? `조회수 ${viewCount.toLocaleString("ko-KR")}`
-      : `${escapeHtml(categoryFor(item))} · ${escapeHtml(item.displayDate)}`;
+    const meta = `${escapeHtml(categoryFor(item))} · ${escapeHtml(item.displayDate)} · 조회수 ${viewCount.toLocaleString("ko-KR")}`;
     return `<a class="archive-spotlight-item" ${attribute} data-spotlight-report-id="${escapeHtml(item.id)}" href="${escapeHtml(reportHref)}">
       <span class="archive-spotlight-rank" aria-hidden="true">${String(index + 1).padStart(2, "0")}</span>
       <span class="archive-spotlight-copy"><small>${meta}</small><strong>${escapeHtml(item.title)}</strong></span>
       <span class="archive-spotlight-cover">${cover}</span>
     </a>`;
   };
-  const featuredItems = items.slice(0, 3)
-    .map((item, index) => spotlightItem(item, index, "featured"))
-    .join("\n");
-  const popularItems = items
+  const popularReports = archiveItems
     .map((item, index) => ({ item, index, count: Number(fallbackViewCountsById[item.id] || 0) }))
     .sort((a, b) => b.count - a.count || a.index - b.index)
+    .slice(0, 3);
+  const popularIds = new Set(popularReports.map(({ item }) => item.id));
+  const featuredItems = archiveItems
+    .filter((item) => !popularIds.has(item.id))
     .slice(0, 3)
+    .map((item, index) => spotlightItem(item, index, "featured"))
+    .join("\n");
+  const popularItems = popularReports
     .map(({ item }, index) => spotlightItem(item, index, "popular"))
     .join("\n");
 
@@ -515,14 +491,14 @@ export function renderHomeHtml(
   <meta property="og:title" content="Report Hub | AI 리서치 라이브러리">
   <title>Report Hub | AI 리서치 라이브러리</title>
   <style>${css()}</style>
-  <link rel="stylesheet" href="../assets/report-hub-brand.css?v=${REPORT_HUB_BRAND_VERSION}">
+  <link rel="stylesheet" href="../assets/report-hub-brand.css?v=${ARCHIVE_ASSET_VERSION}">
 </head>
 <body class="archive-page">
   <header class="archive-topbar">
     <div class="archive-topbar-inner">
       <div class="report-hub-brand-cluster">
-        <a class="archive-brand report-hub-brand-link" href="${REPORT_HUB_HOME}" aria-label="Report Hub 메인으로 이동">
-          <span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span>
+        <a class="archive-brand report-hub-brand-link" data-archive-brand-name="Blog Hub" href="${REPORT_HUB_HOME}" aria-label="Blog Hub 메인으로 이동">
+          <span class="report-hub-brand-copy"><span class="report-hub-wordmark">Blog Hub</span><span class="report-hub-byline">by Jeremy</span></span>
         </a>
         <time class="report-hub-clock" data-report-hub-clock="true" aria-label="서울 현재 날짜와 시각"><span class="report-hub-clock-date"></span><span class="report-hub-clock-time"></span></time>
       </div>
@@ -536,7 +512,7 @@ export function renderHomeHtml(
   <main class="archive-shell">
     <section class="archive-spotlight" id="archiveSpotlight" aria-labelledby="spotlight-title">
       <div class="archive-spotlight-head">
-        <div><span>먼저 볼 리포트</span><h1 id="spotlight-title">지금 읽을 보고서</h1></div>
+        <div><span>먼저 볼 리포트</span><h1 id="spotlight-title"><span class="archive-marker">지금 읽을 보고서</span></h1></div>
         <p>Jeremy's Pick과 저장된 조회수 기준 인기글을 모았습니다.</p>
       </div>
       <div class="archive-spotlight-grid">
@@ -634,7 +610,7 @@ ${tagLinks}
           <div>
             <div class="archive-side-label">ALL REPORTS</div>
             <h2 id="board-title">전체 보고서</h2>
-            <p id="archiveResultCount">총 ${items.length}개의 글</p>
+            <p id="archiveResultCount">총 ${archiveItems.length}개의 글</p>
           </div>
           <div class="archive-board-controls">
             <label class="archive-search">
@@ -642,6 +618,7 @@ ${tagLinks}
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.1-5.4a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"/></svg>
               <input id="archiveSearch" type="search" placeholder="제목, 본문, 태그 검색" autocomplete="off">
             </label>
+            <label class="archive-sort">정렬 기준<select id="archiveSort" aria-label="보고서 정렬 기준"><option value="created">생성일 최신순</option><option value="updated">수정일 최신순</option><option value="views">조회수 높은순</option></select></label>
             <label class="archive-page-size">표시 개수<select id="archivePageSize" aria-label="페이지당 보고서 수"><option value="5">5개</option><option value="10">10개</option><option value="20">20개</option><option value="30" selected>30개</option></select></label>
           </div>
         </div>
@@ -687,6 +664,8 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
   (function () {
     var DEFAULT_PAGE_SIZE = 30;
     var ALLOWED_PAGE_SIZES = [5, 10, 20, 30];
+    var DEFAULT_SORT = "created";
+    var ALLOWED_SORTS = ["created", "updated", "views"];
     var COUNTER_API = "https://reportmode-request-board.report-request-board.workers.dev";
     var liveViewCounts = null;
     var viewCountsPromise = null;
@@ -696,32 +675,25 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
     var count = document.getElementById("archiveResultCount");
     var pagination = document.getElementById("archivePagination");
     var pageSizeSelect = document.getElementById("archivePageSize");
+    var sortSelect = document.getElementById("archiveSort");
     var empty = document.getElementById("archiveEmpty");
-    var tagCloud = document.querySelector("[data-report-tag-cloud]");
+    var tagFilters = Array.prototype.slice.call(document.querySelectorAll("[data-tag-filter]"));
+    var postsRoot = document.getElementById("archivePosts");
     var params = new URLSearchParams(window.location.search);
     var requestedPageSize = parseInt(params.get("size") || String(DEFAULT_PAGE_SIZE), 10);
+    var requestedSort = params.get("sort") || DEFAULT_SORT;
     var state = {
       query: params.get("q") || "",
       category: params.get("category") || "all",
+      tag: params.get("tag") || "",
       page: Math.max(1, parseInt(params.get("page") || "1", 10) || 1),
-      pageSize: ALLOWED_PAGE_SIZES.indexOf(requestedPageSize) >= 0 ? requestedPageSize : DEFAULT_PAGE_SIZE
+      pageSize: ALLOWED_PAGE_SIZES.indexOf(requestedPageSize) >= 0 ? requestedPageSize : DEFAULT_PAGE_SIZE,
+      sort: ALLOWED_SORTS.indexOf(requestedSort) >= 0 ? requestedSort : DEFAULT_SORT
     };
 
     search.value = state.query;
     pageSizeSelect.value = String(state.pageSize);
-
-    if (tagCloud) {
-      var shuffledTags = Array.prototype.slice.call(tagCloud.children);
-      for (var tagIndex = shuffledTags.length - 1; tagIndex > 0; tagIndex -= 1) {
-        var randomIndex = Math.floor(Math.random() * (tagIndex + 1));
-        var temporaryTag = shuffledTags[tagIndex];
-        shuffledTags[tagIndex] = shuffledTags[randomIndex];
-        shuffledTags[randomIndex] = temporaryTag;
-      }
-      shuffledTags.forEach(function (tag) {
-        tagCloud.appendChild(tag);
-      });
-    }
+    if (sortSelect) sortSelect.value = state.sort;
 
     function legacyCopyReportLink(value) {
       return new Promise(function (resolve, reject) {
@@ -893,10 +865,29 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
       var next = new URLSearchParams();
       if (state.query) next.set("q", state.query);
       if (state.category !== "all") next.set("category", state.category);
+      if (state.tag) next.set("tag", state.tag);
+      if (state.sort !== DEFAULT_SORT) next.set("sort", state.sort);
       if (state.page > 1) next.set("page", String(state.page));
       if (state.pageSize !== DEFAULT_PAGE_SIZE) next.set("size", String(state.pageSize));
       var query = next.toString();
       window.history.replaceState(null, "", window.location.pathname + (query ? "?" + query : ""));
+    }
+
+    function timestamp(post, field) {
+      var value = Date.parse(post.dataset[field] || "");
+      return Number.isFinite(value) ? value : 0;
+    }
+
+    function comparePosts(a, b) {
+      var aOrder = Number(a.dataset.reportOrder || 0);
+      var bOrder = Number(b.dataset.reportOrder || 0);
+      if (state.sort === "views") {
+        var aViews = Number(a.querySelector("[data-view-count]")?.dataset.viewCountLive || a.querySelector("[data-view-count]")?.dataset.viewCountFallback || 0);
+        var bViews = Number(b.querySelector("[data-view-count]")?.dataset.viewCountLive || b.querySelector("[data-view-count]")?.dataset.viewCountFallback || 0);
+        return bViews - aViews || aOrder - bOrder;
+      }
+      var field = state.sort === "updated" ? "updatedAt" : "createdAt";
+      return timestamp(b, field) - timestamp(a, field) || aOrder - bOrder;
     }
 
     function render(shouldScroll) {
@@ -915,8 +906,10 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
             ? (!isDraft || isPromoted)
             : post.dataset.category === state.category;
         var queryMatches = !normalizedQuery || (post.dataset.search || "").indexOf(normalizedQuery) !== -1;
-        return categoryMatches && queryMatches;
+        var tagMatches = !state.tag || (post.dataset.tagKeys || "").split("|").indexOf(state.tag) !== -1;
+        return categoryMatches && queryMatches && tagMatches;
       });
+      filtered.sort(comparePosts);
       var totalPages = Math.max(1, Math.ceil(filtered.length / state.pageSize));
       state.page = Math.min(state.page, totalPages);
       var start = (state.page - 1) * state.pageSize;
@@ -924,9 +917,17 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
 
       posts.forEach(function (post) { post.hidden = true; });
       visible.forEach(function (post) { post.hidden = false; });
+      if (postsRoot) {
+        filtered.forEach(function (post) { postsRoot.appendChild(post); });
+      }
       loadViewCounts(visible);
       filters.forEach(function (filter) {
         var active = filter.dataset.categoryFilter === state.category;
+        filter.classList.toggle("is-active", active);
+        filter.setAttribute("aria-pressed", active ? "true" : "false");
+      });
+      tagFilters.forEach(function (filter) {
+        var active = filter.dataset.tagFilter === state.tag;
         filter.classList.toggle("is-active", active);
         filter.setAttribute("aria-pressed", active ? "true" : "false");
       });
@@ -961,6 +962,14 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
         render(false);
       });
     });
+    tagFilters.forEach(function (filter) {
+      filter.addEventListener("click", function () {
+        var selected = filter.dataset.tagFilter || "";
+        state.tag = state.tag === selected ? "" : selected;
+        state.page = 1;
+        render(false);
+      });
+    });
     search.addEventListener("input", function () {
       state.query = search.value;
       state.page = 1;
@@ -971,6 +980,17 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
       state.pageSize = ALLOWED_PAGE_SIZES.indexOf(selected) >= 0 ? selected : DEFAULT_PAGE_SIZE;
       state.page = 1;
       render(false);
+    });
+    if (sortSelect) {
+      sortSelect.addEventListener("change", function () {
+        var selected = sortSelect.value;
+        state.sort = ALLOWED_SORTS.indexOf(selected) >= 0 ? selected : DEFAULT_SORT;
+        state.page = 1;
+        render(false);
+      });
+    }
+    window.addEventListener("reportmode:view-counts-updated", function () {
+      if (state.sort === "views") render(false);
     });
     window.reportmodeArchiveRender = render;
     render(false);
@@ -1113,10 +1133,10 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
   })();
   </script>
   <script src="../assets/archive-request-board.js"></script>
-  <script src="../assets/archive-report-admin.js?v=20260810-draft-views1"></script>
+  <script src="../assets/archive-report-admin.js?v=${ARCHIVE_ADMIN_VERSION}"></script>
   <script src="../assets/archive-visitor-counter.js?v=20260809-visits1"></script>
   <script src="../assets/archive-weather.js?v=${ARCHIVE_WEATHER_VERSION}"></script>
-  <script src="../assets/report-hub-brand.js?v=${REPORT_HUB_BRAND_VERSION}"></script>
+  <script src="../assets/report-hub-brand.js?v=${ARCHIVE_ASSET_VERSION}"></script>
 </body>
 </html>
 `;

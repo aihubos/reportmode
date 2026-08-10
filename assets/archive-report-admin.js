@@ -113,9 +113,11 @@
     var copy = document.createElement("span");
     copy.className = "archive-spotlight-copy";
     var meta = document.createElement("small");
-    meta.textContent = kind === "popular"
-      ? (count ? count.textContent : "조회수 0")
-      : [category && category.textContent, date && date.textContent].filter(Boolean).join(" · ");
+    meta.textContent = [
+      category && category.textContent,
+      date && date.textContent,
+      count ? count.textContent : "조회수 0",
+    ].filter(Boolean).join(" · ");
     var title = document.createElement("strong");
     title.textContent = heading ? heading.textContent : post.dataset.reportId || "보고서";
     copy.append(meta, title);
@@ -148,13 +150,6 @@
     var byId = new Map(visiblePosts.map(function (post) {
       return [post.dataset.reportId || "", post];
     }));
-    var featuredPosts = Array.from(state.featured)
-      .map(function (id) { return byId.get(id); })
-      .filter(Boolean);
-    visiblePosts.forEach(function (post) {
-      if (featuredPosts.length >= 3 || featuredPosts.indexOf(post) >= 0) return;
-      featuredPosts.push(post);
-    });
     var popularPosts = visiblePosts.slice().sort(function (a, b) {
       var aOutput = a.querySelector("[data-view-count]");
       var bOutput = b.querySelector("[data-view-count]");
@@ -162,6 +157,20 @@
       var bCount = Number(bOutput?.dataset.viewCountLive || bOutput?.dataset.viewCountFallback || 0);
       return bCount - aCount || visiblePosts.indexOf(a) - visiblePosts.indexOf(b);
     }).slice(0, 3);
+    var popularIds = new Set(popularPosts.map(function (post) {
+      return post.dataset.reportId || "";
+    }));
+    var featuredPosts = Array.from(state.featured)
+      .map(function (id) { return byId.get(id); })
+      .filter(Boolean);
+    featuredPosts = featuredPosts.filter(function (post) {
+      return !popularIds.has(post.dataset.reportId || "");
+    });
+    visiblePosts.forEach(function (post) {
+      var reportId = post.dataset.reportId || "";
+      if (featuredPosts.length >= 3 || popularIds.has(reportId) || featuredPosts.indexOf(post) >= 0) return;
+      featuredPosts.push(post);
+    });
     featuredList.replaceChildren.apply(featuredList, featuredPosts.slice(0, 3).map(function (post, index) {
       return makeSpotlightItem(post, index, "featured");
     }));

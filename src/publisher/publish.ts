@@ -8,6 +8,7 @@ import { repoRoot, runtimeDir } from "../lib/paths.js";
 import { applyReportHubBrand } from "../lib/public-brand.js";
 import { appendRevision } from "../lib/revisions.js";
 import { nowIsoKst } from "../lib/time.js";
+import { sanitizeTags } from "../lib/tags.js";
 import {
   UploadedReportMetaSchema,
   UploadedReportRegistrySchema,
@@ -269,8 +270,7 @@ export async function publishPreparedUpload(prepared: PreparedUpload): Promise<P
 }
 
 function cleanTags(value: unknown): string[] {
-  const values = Array.isArray(value) ? value : String(value || "").split(",");
-  return Array.from(new Set(values.map((tag) => String(tag).trim().replace(/^#/, "")).filter(Boolean))).slice(0, 12);
+  return sanitizeTags(value);
 }
 
 export async function updateUploadedReport(

@@ -5,7 +5,26 @@ import path from "node:path";
 import test from "node:test";
 
 import * as publisher from "./publish.js";
+import { prepareUpload } from "./store.js";
 import type { PreparedUpload } from "./store.js";
+
+test("publisher removes blocked aliases and duplicate tags before registration", () => {
+  const sourceHtml = "<!doctype html><html><head><title>태그 정리</title></head><body><h1>태그 정리</h1></body></html>";
+  const prepared = prepareUpload({
+    fileName: "tag-cleanup.html",
+    dataBase64: Buffer.from(sourceHtml, "utf8").toString("base64"),
+    tags: "Draft, Jeremy Style, Hermes Agent, hermes, LLM-Wiki, LLM Wiki, Temporary Chat, AI Report, external, agent, AIP, aip, MLX, mlx, Apple Silicon, apple-silicon, fact-check, 팩트체크, prompt, 프롬프트, Obsidian, obsidian",
+  });
+
+  assert.deepEqual(prepared.meta.tags, ["Hermes", "LLM Wiki", "AIP", "MLX", "Apple Silicon", "팩트체크", "프롬프트", "Obsidian"]);
+
+  const lowerCaseOnly = prepareUpload({
+    fileName: "tag-cleanup-lowercase.html",
+    dataBase64: Buffer.from(sourceHtml, "utf8").toString("base64"),
+    tags: "obsidian",
+  });
+  assert.deepEqual(lowerCaseOnly.meta.tags, ["Obsidian"]);
+});
 
 test("publisher preserves the uploaded source and adds comments to the public report", () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), "reportmode-publisher-comments-"));
