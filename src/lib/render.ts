@@ -504,7 +504,7 @@ export function renderHomeHtml(
       </div>
       <div class="archive-topbar-actions">
         <span class="archive-visitor-count" id="archiveVisitorCount" aria-live="polite">방문 집계 중</span>
-        <a class="archive-carrot-card" href="https://daangn.com/kr/share/community/ref/invite-group/baRr2nojJVT?utm_campaign=share_qr" target="_blank" rel="noopener" aria-label="당근모임 비전공자 AI 에이전트 공부방 열기"><img class="archive-carrot-qr" src="../assets/daangn-meeting-qr.png" alt="당근모임 QR 코드"><span class="archive-carrot-card-copy"><b>당근모임</b><small>비전공자 AI 에이전트 공부방</small></span></a>
+        <a class="archive-carrot-card" href="https://daangn.com/kr/share/community/ref/invite-group/baRr2nojJVT?utm_campaign=share_qr" target="_blank" rel="noopener" aria-label="당근모임 비전공자 AI 에이전트 공부방 열기"><img class="archive-carrot-logo" src="../assets/daangn-meeting-logo.png" alt="당근 로고"><span class="archive-carrot-card-copy"><b>당근모임</b><small>비전공자 AI 에이전트 공부방</small></span></a>
         <a class="archive-blog-card" href="https://blog.naver.com/jeremylee0213" target="_blank" rel="noopener"><span class="archive-blog-mark">N</span><span class="archive-blog-card-copy"><b>Jeremy's Blog</b><small>네이버 블로그</small></span></a>
       </div>
     </div>
