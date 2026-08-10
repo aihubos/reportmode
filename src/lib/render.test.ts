@@ -135,6 +135,11 @@ test("renders the simplified archive with one Naver card and a 30-item default s
     archiveCss,
     /@media \(max-width:\s*860px\)\s*{[\s\S]*?\.archive-mobile-panel-actions\s*{[^}]*display:\s*grid;[\s\S]*?\.archive-right-rail\s*{[^}]*display:\s*none;/,
   );
+  assert.match(
+    archiveCss,
+    /\.archive-mobile-panel-actions\s*{[^}]*top:\s*calc\(var\(--rh-archive-mobile-height\) \+ var\(--rh-space-3\)\);[^}]*right:\s*var\(--archive-shell-edge-mobile\);/,
+  );
+  assert.doesNotMatch(archiveCss, /\.archive-mobile-panel-actions\s*{[^}]*bottom:/);
   assert.match(archiveCss, /body\.archive-mobile-panel-open\s*{\s*overflow:\s*hidden;/);
   assert.match(
     archiveCss,

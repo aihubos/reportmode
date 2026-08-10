@@ -616,7 +616,7 @@ footer {
 }
 @media (max-width: 860px) {
   body.archive-mobile-panel-open { overflow: hidden; }
-  .archive-mobile-panel-actions { position: fixed; right: var(--archive-shell-edge-mobile); bottom: var(--rh-space-4); z-index: 62; display: grid; gap: var(--rh-space-2); }
+  .archive-mobile-panel-actions { position: fixed; top: calc(var(--rh-archive-mobile-height) + var(--rh-space-3)); right: var(--archive-shell-edge-mobile); z-index: 62; display: grid; gap: var(--rh-space-2); }
   .archive-mobile-panel-backdrop:not([hidden]) { position: fixed; inset: 0; z-index: 60; display: block; border: 0; background: var(--rh-overlay); }
   .archive-right-rail { display: none; }
   .archive-page.is-mobile-panel-open .archive-mobile-panel-actions { display: none; }
