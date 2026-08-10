@@ -534,12 +534,9 @@ footer {
   .archive-profile { grid-template-columns: 1fr auto; }
   .archive-primary-action { grid-column: auto; justify-self: start; }
   .archive-layout { grid-template-columns: 1fr; }
-  .archive-sidebar { position: static; grid-template-columns: 1fr; }
+  .archive-sidebar { display: none; }
   .archive-side-categories, .archive-side-tags, .archive-side-note { display: none; }
-  .archive-mobile-categories { display: flex; gap: 7px; margin: 0 -2px 18px; overflow-x: auto; scrollbar-width: none; }
-  .archive-mobile-categories::-webkit-scrollbar { display: none; }
-  .archive-mobile-categories .archive-category { width: auto; min-width: max-content; padding: 0 14px; border: 1px solid var(--archive-line); border-radius: 999px; }
-  .archive-mobile-categories .archive-category b { margin-left: 5px; }
+  .archive-mobile-categories { display: none; }
 }
 @media (max-width: 640px) {
   .nav-links a:not(:last-child) { display: none; }
