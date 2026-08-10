@@ -336,6 +336,13 @@ export default {
       return json(request, { comments: rows.results || [] });
     }
 
+    if (url.pathname === "/comments/recent" && request.method === "GET") {
+      const rows = await env.DB.prepare(
+        "SELECT id, report_id, author, content, created_at, updated_at, is_admin FROM report_comments ORDER BY COALESCE(updated_at, created_at) DESC LIMIT 1000"
+      ).all<CommentRow>();
+      return json(request, { comments: rows.results || [] });
+    }
+
     if (url.pathname === "/comments" && request.method === "POST") {
       let payload: { reportId?: unknown; author?: unknown; content?: unknown; password?: unknown };
       try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
@@ -716,7 +723,7 @@ export default {
       return json(request, { ok: true, reportId });
     }
 
-    if (url.pathname === "/comments" || commentId || url.pathname === "/visits" || url.pathname === "/report-views" || url.pathname === "/requests" || requestId || replyRequestId || url.pathname.startsWith("/hidden-reports") || url.pathname.startsWith("/featured-reports") || url.pathname.startsWith("/draft-promotions") || url.pathname.startsWith("/report-overrides") || url.pathname === "/admin/verify" || url.pathname === "/admin/analytics") {
+    if (url.pathname === "/comments" || url.pathname === "/comments/recent" || commentId || url.pathname === "/visits" || url.pathname === "/report-views" || url.pathname === "/requests" || requestId || replyRequestId || url.pathname.startsWith("/hidden-reports") || url.pathname.startsWith("/featured-reports") || url.pathname.startsWith("/draft-promotions") || url.pathname.startsWith("/report-overrides") || url.pathname === "/admin/verify" || url.pathname === "/admin/analytics") {
       return json(request, { error: "method_not_allowed" }, 405);
     }
     return json(request, { error: "not_found" }, 404);

@@ -18,8 +18,12 @@ test("shared comments asset provides required identity and inline edit/delete st
   assert.match(script, /method:\s*"PATCH"/);
   assert.match(script, /method:\s*"DELETE"/);
   assert.match(script, /report-history/);
+  assert.match(script, /item\.id = "comment-" \+ comment\.id/);
+  assert.match(script, /window\.addEventListener\("hashchange"/);
+  assert.match(script, /scrollIntoView/);
   assert.doesNotMatch(script, /\bprompt\s*\(|\balert\s*\(/);
   assert.match(css, /\.report-comments/);
   assert.match(css, /\.report-comment-admin-badge/);
+  assert.match(css, /\.report-comment\.is-targeted/);
   assert.match(css, /:focus-visible/);
 });

@@ -116,6 +116,26 @@
       });
     }
 
+    function focusCommentFromHash() {
+      var targetId = (window.location.hash || "").slice(1);
+      if (!/^comment-[0-9a-f-]{36}$/i.test(targetId)) return;
+      var target = document.getElementById(targetId);
+      if (!target) return;
+      list.querySelectorAll(".report-comment.is-targeted").forEach(function (item) {
+        item.classList.remove("is-targeted");
+      });
+      target.classList.add("is-targeted");
+      target.setAttribute("tabindex", "-1");
+      target.scrollIntoView({
+        behavior: window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+        block: "center"
+      });
+      window.requestAnimationFrame(function () {
+        try { target.focus({ preventScroll: true }); }
+        catch (_error) { target.focus(); }
+      });
+    }
+
     function inlineStatus(formElement, message, isError) {
       var output = formElement.querySelector(".report-comment-inline-status");
       if (!output) return;
@@ -211,6 +231,7 @@
       comments.forEach(function (comment) {
         var item = document.createElement("article");
         item.className = "report-comment";
+        item.id = "comment-" + comment.id;
         var head = document.createElement("div");
         head.className = "report-comment-head";
         var avatar = document.createElement("span");
@@ -252,6 +273,7 @@
         item.append(head, content, actions, inline);
         list.appendChild(item);
       });
+      focusCommentFromHash();
     }
 
     function loadComments() {
@@ -297,6 +319,7 @@
       }).finally(function () { setBusy(false); });
     });
 
+    window.addEventListener("hashchange", focusCommentFromHash);
     loadComments();
   });
 })();

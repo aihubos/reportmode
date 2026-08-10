@@ -57,8 +57,17 @@ class FakeD1 {
   }
 
   async all(sql: string, args: unknown[]) {
+    if (/FROM report_comments\s+ORDER BY COALESCE\(updated_at, created_at\) DESC/i.test(sql)) {
+      const rows = Array.from(this.comments.values())
+        .sort((left, right) => String(right.updated_at || right.created_at).localeCompare(String(left.updated_at || left.created_at)))
+        .map(({ password_salt, password_hash, ...row }) => row);
+      return { results: rows as T[] };
+    }
     if (/FROM report_comments WHERE report_id = \?/i.test(sql)) {
-      return { results: Array.from(this.comments.values()).filter((row) => row.report_id === String(args[0])) };
+      const rows = Array.from(this.comments.values())
+        .filter((row) => row.report_id === String(args[0]))
+        .map(({ password_salt, password_hash, ...row }) => row);
+      return { results: rows as T[] };
     }
     throw new Error(`Unhandled all SQL: ${sql}`);
   }
@@ -98,6 +107,42 @@ test("Jeremy and 제레미 are reserved for an authenticated administrator", asy
   });
   assert.equal(allowed.response.status, 201);
   assert.equal(allowed.json.comment.is_admin, 1);
+});
+
+test("recent comments span reports in latest activity order", async () => {
+  const environment = env();
+  environment.DB.comments.set("11111111-1111-4111-8111-111111111111", {
+    id: "11111111-1111-4111-8111-111111111111",
+    report_id: "older-report",
+    author: "첫 방문자",
+    content: "먼저 남긴 댓글",
+    password_salt: "private-salt",
+    password_hash: "private-hash",
+    created_at: "2026-08-08T01:00:00.000Z",
+    updated_at: null,
+    is_admin: 0,
+  });
+  environment.DB.comments.set("22222222-2222-4222-8222-222222222222", {
+    id: "22222222-2222-4222-8222-222222222222",
+    report_id: "newer-report",
+    author: "최근 방문자",
+    content: "가장 최근에 수정한 댓글",
+    password_salt: "private-salt",
+    password_hash: "private-hash",
+    created_at: "2026-08-08T02:00:00.000Z",
+    updated_at: "2026-08-09T03:00:00.000Z",
+    is_admin: 1,
+  });
+
+  const result = await call(environment, "/comments/recent");
+  assert.equal(result.response.status, 200);
+  assert.deepEqual(result.json.comments.map((comment: any) => comment.id), [
+    "22222222-2222-4222-8222-222222222222",
+    "11111111-1111-4111-8111-111111111111",
+  ]);
+  assert.equal(result.json.comments[0].report_id, "newer-report");
+  assert.equal("password_hash" in result.json.comments[0], false);
+  assert.equal("password_salt" in result.json.comments[0], false);
 });
 
 test("comment owner and administrator can persist edits and deletes", async () => {

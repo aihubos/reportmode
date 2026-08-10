@@ -4,7 +4,7 @@ const SITE_PREFIX = "/reportmode/";
 const LAYOUT_VERSION = "20260810-mobile-scroll1";
 const HISTORY_VERSION = "20260809-history2";
 const COUNTER_VERSION = "20260810-counter-d1-1";
-const COMMENTS_VERSION = "20260809-comments1";
+const COMMENTS_VERSION = "20260810-comments2";
 
 export function isRedirectHtml(html) {
   return /<meta\b[^>]*http-equiv\s*=\s*["']?refresh["']?/i.test(html);

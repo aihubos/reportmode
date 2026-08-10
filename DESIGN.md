@@ -91,6 +91,7 @@ Report Hub는 보고서보다 먼저 시선을 빼앗지 않는 임원용 리서
 - 관리자 통합 화면 검색 최소 폭: 280px (`--rh-admin-console-search-min-width`)
 - 관리자 통합 화면 통계 최소 폭: 180px (`--rh-admin-console-metric-min-width`)
 - 도서관 검색 제어 묶음·제목 최소 폭: 608px·192px (`--rh-archive-controls-max-width`, `--rh-archive-board-title-min-width`)
+- 댓글 탐색 전체 목록 창 최대 폭: 760px (`--rh-comment-explorer-dialog-width`)
 - 관리자 통합 화면 제목·수치·표 글자 크기: 32px·24px·12px (`--rh-admin-console-title-size`, `--rh-admin-console-metric-size`, `--rh-admin-console-table-size`)
 - 당근 로고 데스크톱·모바일 표시 크기: 68×40px·60×34px (`--rh-daangn-logo-width`, `--rh-daangn-logo-height`, `--rh-daangn-logo-width-compact`, `--rh-daangn-logo-height-compact`)
 
@@ -186,6 +187,14 @@ Report Hub는 보고서보다 먼저 시선을 빼앗지 않는 임원용 리서
 - 메인 상단에서 네이버 카드 옆에 작은 중립색 정보 영역으로 표시한다.
 - `누적 방문`과 `오늘` 수치를 함께 보여주고 숫자는 tabular-nums를 사용한다.
 - 같은 브라우저의 반복 새로고침은 서울 날짜 기준 하루 한 번만 집계한다.
+
+### Archive comment explorer
+
+- 도서관 우측 고정 영역의 첫 카드에서 최근 댓글 4개를 작성자·보고서명·시간·내용 순서로 보여 준다.
+- `전체 댓글 보기`는 현재 공개된 댓글을 하나의 모달 목록으로 열며, 목록은 화면 안에서 스크롤한다.
+- 각 댓글 항목은 해당 보고서의 정확한 댓글 위치(`#comment-댓글ID`)로 같은 탭에서 이동한다.
+- 원문 보고서를 찾을 수 없는 이전 댓글은 링크처럼 보이지 않게 처리하고, 이유를 짧게 표시한다.
+- 카드와 모달은 `--rh-paper`, `--rh-border`, `--rh-primary`, `--rh-ring`만 사용한다.
 
 ### Archive featured and popular spotlight
 

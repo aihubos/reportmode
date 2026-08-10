@@ -69,7 +69,8 @@
 .report-comments-feed { margin-top: 24px; }
 .report-comments-list { display: grid; gap: 12px; }
 .report-comments-empty { padding: 32px 20px; border: 1px dashed var(--rh-border); border-radius: 14px; color: var(--rh-muted); background: var(--rh-surface-muted); font-size: 13px; text-align: center; }
-.report-comment { padding: 16px; border: 1px solid var(--rh-border); border-radius: 14px; background: var(--rh-paper); }
+.report-comment { padding: 16px; border: 1px solid var(--rh-border); border-radius: 14px; background: var(--rh-paper); transition: border-color var(--rh-motion-fast) var(--rh-ease), box-shadow var(--rh-motion-fast) var(--rh-ease); }
+.report-comment.is-targeted { border-color: var(--rh-primary); box-shadow: 0 0 0 3px var(--rh-ring); }
 .report-comment-head { display: flex; align-items: center; gap: 8px; min-width: 0; }
 .report-comment-avatar { display: grid; width: 30px; height: 30px; place-items: center; flex: 0 0 auto; border-radius: 50%; color: var(--rh-paper); background: var(--rh-ink); font-size: 12px; font-weight: 900; }
 .report-comment-author { min-width: 0; overflow: hidden; color: var(--rh-ink); font-size: 13px; font-weight: 900; text-overflow: ellipsis; white-space: nowrap; }

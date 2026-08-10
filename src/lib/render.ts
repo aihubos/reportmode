@@ -6,11 +6,12 @@ import { escapeHtml, inlineMark, nl2p } from "./html.js";
 import { displayDateFromIso, prettyDateFromIso } from "./time.js";
 import { repoRoot } from "./paths.js";
 import { sanitizeTags, tagFilterKey } from "./tags.js";
-import { REPORT_COUNTER_VERSION, REPORT_HISTORY_VERSION, REPORT_HUB_BRAND_VERSION, REPORT_HUB_HOME } from "./public-brand.js";
+import { REPORT_COMMENTS_VERSION, REPORT_COUNTER_VERSION, REPORT_HISTORY_VERSION, REPORT_HUB_BRAND_VERSION, REPORT_HUB_HOME } from "./public-brand.js";
 
 const ARCHIVE_WEATHER_VERSION = "20260809-weather1";
 const ARCHIVE_ADMIN_VERSION = "20260810-admin-console1";
 const ARCHIVE_ASSET_VERSION = "20260810-archive-console1";
+const ARCHIVE_COMMENTS_VERSION = "20260810-comment-explorer1";
 
 const KIND_LABEL: Record<SectionKind, string> = {
   fact: "사실",
@@ -226,7 +227,7 @@ export function renderReportHtml(doc: ReportDocument): string {
   <style>${css()}</style>
   <link rel="stylesheet" href="../../assets/report-page-layout.css?v=${REPORT_HUB_BRAND_VERSION}">
   <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=${REPORT_HUB_BRAND_VERSION}">
-  <link rel="stylesheet" href="../../assets/report-comments.css?v=20260809-comments1">
+  <link rel="stylesheet" href="../../assets/report-comments.css?v=${REPORT_COMMENTS_VERSION}">
 </head>
 <body data-report-view="detail" data-report-layout="wide">
   <a class="report-home-button" href="${REPORT_HUB_HOME}" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span></a>
@@ -308,7 +309,7 @@ export function renderReportHtml(doc: ReportDocument): string {
   </footer>
   <script src="../../assets/report-page-layout.js?v=${REPORT_HUB_BRAND_VERSION}"></script>
   <script src="../../assets/report-view-counter.js?v=${REPORT_COUNTER_VERSION}" data-report-id="${escapeHtml(doc.id)}"></script>
-  <script src="../../assets/report-comments.js?v=20260809-comments1" data-report-id="${escapeHtml(doc.id)}"></script>
+  <script src="../../assets/report-comments.js?v=${REPORT_COMMENTS_VERSION}" data-report-id="${escapeHtml(doc.id)}"></script>
   <script src="../../assets/report-history.js?v=${REPORT_HISTORY_VERSION}" data-report-id="${escapeHtml(doc.id)}"></script>
   <script src="../../assets/report-hub-brand.js?v=${REPORT_HUB_BRAND_VERSION}"></script>
 </body>
@@ -528,7 +529,7 @@ export function renderHomeHtml(
       </div>
     </section>
     <div class="archive-content-layout">
-    <aside class="archive-right-rail" id="archiveMobilePanel" aria-label="방문자 참여와 동탄 날씨">
+    <aside class="archive-right-rail" id="archiveMobilePanel" aria-label="방문자 참여, 최근 댓글과 동탄 날씨">
       <div class="archive-mobile-panel-head">
         <strong id="archive-mobile-panel-title" data-archive-mobile-panel-title>리포트 희망</strong>
         <button class="archive-mobile-panel-close" type="button" data-archive-mobile-panel-close aria-label="패널 닫기" title="닫기">
@@ -536,6 +537,18 @@ export function renderHomeHtml(
           <span class="sr-only">패널 닫기</span>
         </button>
       </div>
+      <section class="archive-comments-card" aria-labelledby="archive-comments-title">
+        <div class="archive-comments-head">
+          <div>
+            <div class="archive-comments-kicker">READER COMMENTS</div>
+            <h2 id="archive-comments-title">최근 댓글</h2>
+          </div>
+          <span class="archive-comments-count" id="archiveCommentsCount">불러오는 중</span>
+        </div>
+        <p class="archive-comments-copy">새로 등록되거나 수정된 의견을 바로 확인하세요.</p>
+        <div class="archive-comments-recent-list" id="archiveCommentsRecentList" aria-live="polite" aria-busy="true"><p class="archive-comments-empty">댓글을 불러오는 중입니다.</p></div>
+        <button class="archive-comments-open-all" id="archiveCommentsOpenAll" type="button" aria-controls="archiveCommentsDialog" aria-haspopup="dialog">전체 댓글 보기</button>
+      </section>
       <section class="request-board" aria-labelledby="request-board-title">
       <div class="request-board-copy">
         <div class="request-board-kicker">REPORT WISHLIST</div>
@@ -644,11 +657,25 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
     </div>
     </div>
 
+    <dialog class="archive-comments-dialog" id="archiveCommentsDialog" aria-labelledby="archiveCommentsDialogTitle">
+      <div class="archive-comments-dialog-card">
+        <div class="archive-comments-dialog-head">
+          <div><span>READER COMMENTS</span><h2 id="archiveCommentsDialogTitle">전체 댓글</h2><p id="archiveAllCommentsCount">불러오는 중</p></div>
+          <button class="archive-comments-dialog-close" id="archiveCommentsDialogClose" type="button">닫기</button>
+        </div>
+        <div class="archive-comments-all-list" id="archiveAllCommentsList" aria-live="polite" aria-busy="true"><p class="archive-comments-empty">댓글을 불러오는 중입니다.</p></div>
+      </div>
+    </dialog>
+
     <div class="archive-mobile-panel-backdrop" data-archive-mobile-panel-backdrop aria-hidden="true" hidden></div>
-    <div class="archive-mobile-panel-actions" role="group" aria-label="리포트 희망과 날씨 열기">
+    <div class="archive-mobile-panel-actions" role="group" aria-label="리포트 희망, 댓글과 날씨 열기">
       <button class="archive-mobile-panel-button" type="button" data-archive-mobile-panel-open="request" aria-controls="archiveMobilePanel" aria-expanded="false" aria-haspopup="dialog" aria-label="리포트 희망 열기" title="리포트 희망 열기">
         <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="M5 5.75A2.75 2.75 0 0 1 7.75 3h8.5A2.75 2.75 0 0 1 19 5.75v6.5A2.75 2.75 0 0 1 16.25 15H11l-4.25 3.25V15.9A2.75 2.75 0 0 1 5 13.25Z"></path><path d="M8.5 8.5h7"></path><path d="M8.5 11.5h4.5"></path></svg>
         <span class="sr-only">리포트 희망 열기</span>
+      </button>
+      <button class="archive-mobile-panel-button" type="button" data-archive-mobile-panel-open="comments" aria-controls="archiveMobilePanel" aria-expanded="false" aria-haspopup="dialog" aria-label="최근 댓글 열기" title="최근 댓글 열기">
+        <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="M5 5.75A2.75 2.75 0 0 1 7.75 3h8.5A2.75 2.75 0 0 1 19 5.75v6.5A2.75 2.75 0 0 1 16.25 15H11l-4.25 3.25V15.9A2.75 2.75 0 0 1 5 13.25Z"></path><path d="M8.5 8.5h7"></path><path d="M8.5 11.5h7"></path></svg>
+        <span class="sr-only">최근 댓글 열기</span>
       </button>
       <button class="archive-mobile-panel-button" type="button" data-archive-mobile-panel-open="weather" aria-controls="archiveMobilePanel" aria-expanded="false" aria-haspopup="dialog" aria-label="동탄 날씨 열기" title="동탄 날씨 열기">
         <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="M8.25 18.25h8.5a3.25 3.25 0 0 0 .45-6.47A4.75 4.75 0 0 0 8.37 9.7 3.75 3.75 0 0 0 8.25 18.25Z"></path><path d="M8 3.5v2"></path><path d="m4.1 5.1 1.4 1.4"></path><path d="M3 9h2"></path></svg>
@@ -1047,7 +1074,7 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
 
       function closePanel(restoreFocus) {
         var wasOpen = isOpen();
-        page.classList.remove("is-mobile-panel-open", "is-mobile-panel-request", "is-mobile-panel-weather");
+        page.classList.remove("is-mobile-panel-open", "is-mobile-panel-request", "is-mobile-panel-comments", "is-mobile-panel-weather");
         document.body.classList.remove("archive-mobile-panel-open");
         backdrop.hidden = true;
         setPanelAccessibility(false);
@@ -1061,10 +1088,10 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
       function openPanel(panelName, trigger) {
         if (!mobileQuery.matches) return;
         activeTrigger = trigger;
-        page.classList.remove("is-mobile-panel-request", "is-mobile-panel-weather");
+        page.classList.remove("is-mobile-panel-request", "is-mobile-panel-comments", "is-mobile-panel-weather");
         page.classList.add("is-mobile-panel-open", "is-mobile-panel-" + panelName);
         document.body.classList.add("archive-mobile-panel-open");
-        title.textContent = panelName === "weather" ? "동탄 날씨" : "리포트 희망";
+        title.textContent = panelName === "weather" ? "동탄 날씨" : panelName === "comments" ? "최근 댓글" : "리포트 희망";
         backdrop.hidden = false;
         setPanelAccessibility(true);
         setTriggerStates(panelName);
@@ -1135,6 +1162,7 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
   })();
   </script>
   <script src="../assets/archive-request-board.js"></script>
+  <script src="../assets/archive-comment-explorer.js?v=${ARCHIVE_COMMENTS_VERSION}"></script>
   <script src="../assets/archive-report-admin.js?v=${ARCHIVE_ADMIN_VERSION}"></script>
   <script src="../assets/archive-visitor-counter.js?v=20260809-visits1"></script>
   <script src="../assets/archive-weather.js?v=${ARCHIVE_WEATHER_VERSION}"></script>

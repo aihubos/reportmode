@@ -56,8 +56,8 @@ test("renders a structured report table with column headers and cells", () => {
   assert.match(html, /<td>\$20<\/td>/);
   assert.match(html, /report-page-layout\.css\?v=20260810-mobile-scroll1/);
   assert.match(html, /report-page-layout\.js\?v=20260810-mobile-scroll1/);
-  assert.match(html, /report-comments\.css\?v=20260809-comments1/);
-  assert.match(html, /report-comments\.js\?v=20260809-comments1" data-report-id="table-test"/);
+  assert.match(html, /report-comments\.css\?v=20260810-comments2/);
+  assert.match(html, /report-comments\.js\?v=20260810-comments2" data-report-id="table-test"/);
   assert.match(html, /report-view-counter\.js\?v=20260810-counter-d1-1" data-report-id="table-test"/);
   assert.match(html, /report-history\.js\?v=20260809-history2/);
   assert.match(html, /id="report-home-button"|class="report-home-button"/);
@@ -103,11 +103,17 @@ test("renders the simplified archive with one Naver card and a 30-item default s
   assert.match(html, /id="archive-weather-title">동탄 날씨/);
   assert.match(html, /data-weather-retry/);
   assert.match(html, /data-archive-mobile-panel-open="request"/);
+  assert.match(html, /data-archive-mobile-panel-open="comments"/);
   assert.match(html, /data-archive-mobile-panel-open="weather"/);
+  assert.match(html, /id="archiveCommentsRecentList"/);
+  assert.match(html, /id="archiveAllCommentsList"/);
+  assert.match(html, /id="archiveCommentsOpenAll"/);
+  assert.match(html, /id="archiveCommentsDialog"/);
   assert.match(html, /data-archive-mobile-panel-backdrop/);
   assert.match(html, /data-archive-mobile-panel-close/);
   assert.match(html, /function installArchiveMobilePanels\(\)/);
   assert.match(html, /archive-weather\.js\?v=20260809-weather1/);
+  assert.match(html, /archive-comment-explorer\.js\?v=20260810-comment-explorer1/);
   assert.ok(html.indexOf('class="request-board"') < html.indexOf("data-archive-weather"));
   assert.match(html, /archive-visitor-counter\.js\?v=20260809-visits1/);
   assert.match(html, /id="archivePageSize"/);
@@ -141,6 +147,9 @@ test("renders the simplified archive with one Naver card and a 30-item default s
   assert.match(archiveCss, /\.archive-topbar-inner\s*{[^}]*width:\s*min\(var\(--archive-shell-max\),\s*calc\(100% - \(var\(--archive-shell-edge\) \* 2\)\)\)/s);
   assert.match(archiveCss, /\.archive-content-layout\s*{[^}]*grid-template-columns:\s*minmax\(0, 960px\) var\(--archive-right-rail-width\)/s);
   assert.doesNotMatch(archiveCss, /\.request-board-list\s*{[^}]*max-height:/s);
+  assert.match(archiveCss, /\.archive-comments-card/);
+  assert.match(archiveCss, /\.archive-comments-dialog::backdrop/);
+  assert.match(archiveCss, /is-mobile-panel-comments/);
   assert.match(archiveCss, /\.archive-topbar \.report-hub-clock-date\s*{\s*display:\s*none;/s);
   assert.match(archiveCss, /\.archive-admin-console-link\[hidden\]\s*{\s*display:\s*none;/);
   assert.match(
