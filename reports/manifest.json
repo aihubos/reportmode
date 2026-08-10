@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-09T23:57:48.902Z",
+  "generatedAt": "2026-08-10T00:56:13.780Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
     {
@@ -51,6 +51,64 @@
       "coverImage": "reports/260810-01-demis-hassabis-life-timeline-v1-0-0/assets/thumbnail.png",
       "coverAlt": "데미스 하사비스 인물 사진",
       "subtitle": "체스·게임·뇌과학·DeepMind·AlphaGo·AlphaFold로 이어진 50년"
+    },
+    {
+      "id": "rh-260810-01-ai-workstation-3way",
+      "slug": "m5-max-dgx-spark-ryzen-ai-max-395",
+      "title": "AI 워크스테이션 3종 비교: M5 Max·DGX Spark·Ryzen AI Max+ 395, 결국 이 기준으로 사야 한다",
+      "subtitle": "128GB면 다 같은 128GB일까? 실제로는 운영체제·CUDA·VGM·대역폭이 구매 결론을 바꿉니다.",
+      "category": "IT 기기",
+      "summary": "M5 Max MacBook Pro, NVIDIA DGX Spark, Ryzen AI Max+ 395 시스템을 로컬 LLM 추론, 메모리 대역폭, CUDA, Windows, 가격, 확장성, 국내 A/S와 RTX Spark 출시 대기 변수까지 검증 비교한 구매 가이드.",
+      "createdAt": "2026-08-10T09:55:02+09:00",
+      "updatedAt": "2026-08-10T09:55:02+09:00",
+      "status": "published",
+      "path": "reports/260810-01-m5-max-dgx-spark-ryzen-ai-max-395-v1-0-0/",
+      "url": "https://aihubos.github.io/reportmode/reports/260810-01-m5-max-dgx-spark-ryzen-ai-max-395-v1-0-0/",
+      "displayDate": "260810",
+      "sourceCount": 16,
+      "tags": [
+        "M5 Max",
+        "DGX Spark",
+        "Ryzen AI Max+ 395",
+        "AI 워크스테이션",
+        "로컬 LLM",
+        "Ollama",
+        "통합 메모리",
+        "CUDA",
+        "Mac Studio",
+        "RTX Spark"
+      ],
+      "coverImage": "reports/260810-01-m5-max-dgx-spark-ryzen-ai-max-395-v1-0-0/assets/thumbnail.png",
+      "coverAlt": "AI 워크스테이션 3종 비교 — 속도보다 용도가 먼저"
+    },
+    {
+      "id": "rh-260810-01-hermes-agent-50-hour-workflow",
+      "slug": "hermes-agent-50-hour-workflow",
+      "title": "[Hermes 활용법] 50시간 사용 사례에서 배운 7가지: 비서는 키우고, 권한은 줄이기",
+      "subtitle": "연결만 하면 자비스가 될 줄 알았습니다. 그런데 오래 쓴 사례에서 가장 중요했던 것은 모델 성능이 아니라 승인·기억·로그의 운영 구조였습니다.",
+      "category": "AI",
+      "summary": "Hermes를 잘 쓰는 법은 더 많은 권한을 주는 것이 아니라, 읽기·정리·초안·승인을 분리하고 실패에서 배운 절차를 스킬로 남기는 것이다.",
+      "createdAt": "2026-08-10T09:55:01+09:00",
+      "updatedAt": "2026-08-10T09:55:01+09:00",
+      "status": "published",
+      "path": "reports/260810-01-hermes-agent-50-hour-workflow-v1-0-0/",
+      "url": "https://aihubos.github.io/reportmode/reports/260810-01-hermes-agent-50-hour-workflow-v1-0-0/",
+      "displayDate": "260810",
+      "sourceCount": 10,
+      "tags": [
+        "Hermes Agent",
+        "Hermes 활용법",
+        "AI 에이전트",
+        "Gmail 자동화",
+        "Google Workspace CLI",
+        "Slack 자동화",
+        "AI 비서",
+        "에이전트 스킬",
+        "에이전트 메모리",
+        "PlayMCP"
+      ],
+      "coverImage": "reports/260810-01-hermes-agent-50-hour-workflow-v1-0-0/assets/thumbnail.png",
+      "coverAlt": "Hermes 진짜 비서 만들기, 50시간 사례 핵심"
     },
     {
       "id": "rh-260810-50-ai-era-beyond-prompts-system",
