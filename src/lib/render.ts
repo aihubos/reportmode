@@ -551,7 +551,14 @@ export function renderHomeHtml(
       </div>
     </section>
     <div class="archive-content-layout">
-    <aside class="archive-right-rail" aria-label="방문자 참여와 동탄 날씨">
+    <aside class="archive-right-rail" id="archiveMobilePanel" aria-label="방문자 참여와 동탄 날씨">
+      <div class="archive-mobile-panel-head">
+        <strong id="archive-mobile-panel-title" data-archive-mobile-panel-title>리포트 희망</strong>
+        <button class="archive-mobile-panel-close" type="button" data-archive-mobile-panel-close aria-label="패널 닫기" title="닫기">
+          <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="m7 7 10 10"></path><path d="m17 7-10 10"></path></svg>
+          <span class="sr-only">패널 닫기</span>
+        </button>
+      </div>
       <section class="request-board" aria-labelledby="request-board-title">
       <div class="request-board-copy">
         <div class="request-board-kicker">REPORT WISHLIST</div>
@@ -657,6 +664,18 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
         <nav class="archive-pagination" id="archivePagination" aria-label="보고서 페이지 이동"></nav>
       </section>
     </div>
+    </div>
+
+    <div class="archive-mobile-panel-backdrop" data-archive-mobile-panel-backdrop aria-hidden="true" hidden></div>
+    <div class="archive-mobile-panel-actions" role="group" aria-label="리포트 희망과 날씨 열기">
+      <button class="archive-mobile-panel-button" type="button" data-archive-mobile-panel-open="request" aria-controls="archiveMobilePanel" aria-expanded="false" aria-haspopup="dialog" aria-label="리포트 희망 열기" title="리포트 희망 열기">
+        <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="M5 5.75A2.75 2.75 0 0 1 7.75 3h8.5A2.75 2.75 0 0 1 19 5.75v6.5A2.75 2.75 0 0 1 16.25 15H11l-4.25 3.25V15.9A2.75 2.75 0 0 1 5 13.25Z"></path><path d="M8.5 8.5h7"></path><path d="M8.5 11.5h4.5"></path></svg>
+        <span class="sr-only">리포트 희망 열기</span>
+      </button>
+      <button class="archive-mobile-panel-button" type="button" data-archive-mobile-panel-open="weather" aria-controls="archiveMobilePanel" aria-expanded="false" aria-haspopup="dialog" aria-label="동탄 날씨 열기" title="동탄 날씨 열기">
+        <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="M8.25 18.25h8.5a3.25 3.25 0 0 0 .45-6.47A4.75 4.75 0 0 0 8.37 9.7 3.75 3.75 0 0 0 8.25 18.25Z"></path><path d="M8 3.5v2"></path><path d="m4.1 5.1 1.4 1.4"></path><path d="M3 9h2"></path></svg>
+        <span class="sr-only">동탄 날씨 열기</span>
+      </button>
     </div>
 
     <footer class="archive-footer">
@@ -955,6 +974,142 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
     });
     window.reportmodeArchiveRender = render;
     render(false);
+  })();
+  </script>
+  <script>
+  (function () {
+    function installArchiveMobilePanels() {
+      var mobileQuery = window.matchMedia("(max-width: 860px)");
+      var page = document.querySelector(".archive-page");
+      var panel = document.getElementById("archiveMobilePanel");
+      var backdrop = document.querySelector("[data-archive-mobile-panel-backdrop]");
+      var title = document.querySelector("[data-archive-mobile-panel-title]");
+      var closeButton = document.querySelector("[data-archive-mobile-panel-close]");
+      var triggers = Array.prototype.slice.call(document.querySelectorAll("[data-archive-mobile-panel-open]"));
+      var activeTrigger = null;
+
+      if (!page || !panel || !backdrop || !title || !closeButton || !triggers.length) return;
+
+      function isOpen() {
+        return page.classList.contains("is-mobile-panel-open");
+      }
+
+      function setPanelAccessibility(open) {
+        if (!mobileQuery.matches) {
+          panel.removeAttribute("role");
+          panel.removeAttribute("aria-modal");
+          panel.removeAttribute("aria-labelledby");
+          panel.removeAttribute("aria-hidden");
+          return;
+        }
+
+        if (open) {
+          panel.setAttribute("role", "dialog");
+          panel.setAttribute("aria-modal", "true");
+          panel.setAttribute("aria-labelledby", "archive-mobile-panel-title");
+          panel.removeAttribute("aria-hidden");
+          return;
+        }
+
+        panel.removeAttribute("role");
+        panel.removeAttribute("aria-modal");
+        panel.removeAttribute("aria-labelledby");
+        panel.setAttribute("aria-hidden", "true");
+      }
+
+      function setTriggerStates(activePanel) {
+        triggers.forEach(function (trigger) {
+          trigger.setAttribute("aria-expanded", trigger.dataset.archiveMobilePanelOpen === activePanel ? "true" : "false");
+        });
+      }
+
+      function closePanel(restoreFocus) {
+        var wasOpen = isOpen();
+        page.classList.remove("is-mobile-panel-open", "is-mobile-panel-request", "is-mobile-panel-weather");
+        document.body.classList.remove("archive-mobile-panel-open");
+        backdrop.hidden = true;
+        setPanelAccessibility(false);
+        setTriggerStates("");
+        if (restoreFocus && wasOpen && activeTrigger && document.contains(activeTrigger)) {
+          activeTrigger.focus();
+        }
+        activeTrigger = null;
+      }
+
+      function openPanel(panelName, trigger) {
+        if (!mobileQuery.matches) return;
+        activeTrigger = trigger;
+        page.classList.remove("is-mobile-panel-request", "is-mobile-panel-weather");
+        page.classList.add("is-mobile-panel-open", "is-mobile-panel-" + panelName);
+        document.body.classList.add("archive-mobile-panel-open");
+        title.textContent = panelName === "weather" ? "동탄 날씨" : "리포트 희망";
+        backdrop.hidden = false;
+        setPanelAccessibility(true);
+        setTriggerStates(panelName);
+        window.requestAnimationFrame(function () {
+          closeButton.focus();
+        });
+      }
+
+      function focusableItems() {
+        return Array.prototype.slice.call(panel.querySelectorAll("a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex='-1'])")).filter(function (item) {
+          return !item.hidden && item.getClientRects().length > 0;
+        });
+      }
+
+      triggers.forEach(function (trigger) {
+        trigger.addEventListener("click", function () {
+          openPanel(trigger.dataset.archiveMobilePanelOpen || "request", trigger);
+        });
+      });
+      closeButton.addEventListener("click", function () {
+        closePanel(true);
+      });
+      backdrop.addEventListener("click", function () {
+        closePanel(true);
+      });
+      document.addEventListener("keydown", function (event) {
+        if (!mobileQuery.matches || !isOpen()) return;
+        if (event.key === "Escape") {
+          event.preventDefault();
+          closePanel(true);
+          return;
+        }
+        if (event.key !== "Tab") return;
+        var items = focusableItems();
+        if (!items.length) {
+          event.preventDefault();
+          closeButton.focus();
+          return;
+        }
+        var first = items[0];
+        var last = items[items.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      });
+
+      function syncViewport() {
+        if (mobileQuery.matches) {
+          if (!isOpen()) setPanelAccessibility(false);
+          return;
+        }
+        closePanel(false);
+      }
+
+      if (typeof mobileQuery.addEventListener === "function") {
+        mobileQuery.addEventListener("change", syncViewport);
+      } else {
+        mobileQuery.addListener(syncViewport);
+      }
+      syncViewport();
+    }
+
+    installArchiveMobilePanels();
   })();
   </script>
   <script src="../assets/archive-request-board.js"></script>

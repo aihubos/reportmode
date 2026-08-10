@@ -10,6 +10,7 @@
   --rh-border: #E5E8EB;
   --rh-ring: rgba(49, 130, 246, .22);
   --rh-shadow-color: rgba(25, 31, 40, .12);
+  --rh-overlay: rgba(25, 31, 40, .32);
   --rh-naver: #03C75A;
   --rh-naver-hover: #02B350;
   --rh-success: #08783E;
@@ -21,6 +22,8 @@
   --rh-space-2: 8px;
   --rh-space-3: 12px;
   --rh-space-4: 16px;
+  --rh-space-8: 32px;
+  --rh-space-12: 48px;
   --rh-radius-2: 8px;
   --rh-radius-3: 12px;
   --rh-radius-4: 16px;

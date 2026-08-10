@@ -94,6 +94,11 @@ test("renders the simplified archive with one Naver card and a 30-item default s
   assert.equal(html.match(/data-archive-weather/g)?.length, 1);
   assert.match(html, /id="archive-weather-title">동탄 날씨/);
   assert.match(html, /data-weather-retry/);
+  assert.match(html, /data-archive-mobile-panel-open="request"/);
+  assert.match(html, /data-archive-mobile-panel-open="weather"/);
+  assert.match(html, /data-archive-mobile-panel-backdrop/);
+  assert.match(html, /data-archive-mobile-panel-close/);
+  assert.match(html, /function installArchiveMobilePanels\(\)/);
   assert.match(html, /archive-weather\.js\?v=20260809-weather1/);
   assert.ok(html.indexOf('class="request-board"') < html.indexOf("data-archive-weather"));
   assert.match(html, /archive-visitor-counter\.js\?v=20260809-visits1/);
@@ -124,6 +129,16 @@ test("renders the simplified archive with one Naver card and a 30-item default s
   assert.match(
     archiveCss,
     /@media \(max-width:\s*860px\)\s*{[\s\S]*?\.archive-sidebar\s*{\s*display:\s*none;\s*}[\s\S]*?\.archive-mobile-categories\s*{\s*display:\s*none;\s*}/,
+  );
+  assert.match(archiveCss, /\.archive-mobile-panel-actions\s*{\s*display:\s*none;/);
+  assert.match(
+    archiveCss,
+    /@media \(max-width:\s*860px\)\s*{[\s\S]*?\.archive-mobile-panel-actions\s*{[^}]*display:\s*grid;[\s\S]*?\.archive-right-rail\s*{[^}]*display:\s*none;/,
+  );
+  assert.match(archiveCss, /body\.archive-mobile-panel-open\s*{\s*overflow:\s*hidden;/);
+  assert.match(
+    archiveCss,
+    /@media \(prefers-reduced-motion:\s*reduce\)\s*{[\s\S]*?\.archive-mobile-panel-button,\s*\.archive-mobile-panel-close\s*{\s*transition:\s*none;/,
   );
 });
 
