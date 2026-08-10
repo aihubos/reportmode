@@ -1,0 +1,177 @@
+{
+  "title": "조직개편, 전략인가 권력의 지도인가: 새 팀명보다 먼저 확인할 5가지",
+  "seoTitle": "조직개편이 실패하는 이유와 직원 체크리스트",
+  "alternateTitles": [
+    "조직도는 바뀌었는데 일은 왜 그대로일까",
+    "매년 조직개편하는 회사가 놓치는 것",
+    "반복 조직개편이 변화 피로를 만드는 이유"
+  ],
+  "titleCandidates": [
+    {
+      "title": "조직개편, 전략인가 권력의 지도인가: 새 팀명보다 먼저 확인할 5가지",
+      "score": 94,
+      "keywordPosition": "front",
+      "utility": 24,
+      "evidence": 22,
+      "shareability": 24,
+      "hypeAvoidance": 24,
+      "selected": true
+    },
+    {
+      "title": "조직도는 바뀌었는데 일은 왜 그대로일까",
+      "score": 91,
+      "keywordPosition": "front",
+      "utility": 22,
+      "evidence": 21,
+      "shareability": 25,
+      "hypeAvoidance": 23,
+      "selected": false
+    },
+    {
+      "title": "반복 조직개편이 변화 피로를 만드는 이유",
+      "score": 90,
+      "keywordPosition": "front",
+      "utility": 23,
+      "evidence": 24,
+      "shareability": 21,
+      "hypeAvoidance": 22,
+      "selected": false
+    },
+    {
+      "title": "좋은 조직개편과 나쁜 조직개편을 가르는 5가지",
+      "score": 90,
+      "keywordPosition": "front",
+      "utility": 25,
+      "evidence": 20,
+      "shareability": 22,
+      "hypeAvoidance": 23,
+      "selected": false
+    },
+    {
+      "title": "조직개편의 진짜 성적표는 새 팀명이 아니다",
+      "score": 89,
+      "keywordPosition": "front",
+      "utility": 23,
+      "evidence": 21,
+      "shareability": 23,
+      "hypeAvoidance": 22,
+      "selected": false
+    },
+    {
+      "title": "매년 조직개편하는 회사가 놓치는 것",
+      "score": 88,
+      "keywordPosition": "front",
+      "utility": 22,
+      "evidence": 20,
+      "shareability": 24,
+      "hypeAvoidance": 22,
+      "selected": false
+    },
+    {
+      "title": "조직개편을 혁신으로 착각하지 않는 법",
+      "score": 87,
+      "keywordPosition": "front",
+      "utility": 22,
+      "evidence": 20,
+      "shareability": 23,
+      "hypeAvoidance": 22,
+      "selected": false
+    },
+    {
+      "title": "팀 이름을 바꿨는데 성과가 안 나는 이유",
+      "score": 86,
+      "keywordPosition": "middle",
+      "utility": 22,
+      "evidence": 20,
+      "shareability": 23,
+      "hypeAvoidance": 21,
+      "selected": false
+    },
+    {
+      "title": "조직개편이 ‘유배’가 되는 순간",
+      "score": 85,
+      "keywordPosition": "front",
+      "utility": 19,
+      "evidence": 18,
+      "shareability": 25,
+      "hypeAvoidance": 23,
+      "selected": false
+    },
+    {
+      "title": "조직도 한 장이 바꾸지 못하는 것",
+      "score": 82,
+      "keywordPosition": "front",
+      "utility": 19,
+      "evidence": 19,
+      "shareability": 22,
+      "hypeAvoidance": 22,
+      "selected": false
+    }
+  ],
+  "slug": "reorganization-power-map",
+  "summary": "브런치의 풍자적 조직개편 글을 바탕으로, 반복 개편의 변화 피로와 구조 중심 개편의 한계를 검증하고 직원과 리더가 확인할 5가지 질문을 정리했습니다.",
+  "oneSentenceConclusion": "좋은 조직개편은 사람을 옮긴 흔적이 아니라 의사결정·자원·책임·업무 방식이 달라진 증거를 남깁니다.",
+  "keywords": [
+    "조직개편",
+    "조직설계",
+    "변화관리",
+    "조직문화",
+    "직장인",
+    "운영모델",
+    "변화피로"
+  ],
+  "category": "기타",
+  "publishedDate": "2026-08-10",
+  "modifiedDate": "2026-08-10",
+  "canonical": "https://aihubos.github.io/reportmode/reports/260810-033-reorganization-power-map-v1-0-0/",
+  "thumbnail": "assets/thumbnail.png",
+  "thumbnailAlt": "파란색 조직도 노드와 권한·자원·지표·책임을 표현한 Report Hub 뉴스레터 썸네일",
+  "version": "1.0.0",
+  "status": "AI-assisted · Published",
+  "author": "Jeremy Lee",
+  "brand": "Report Hub / AIHUBOS",
+  "score": {
+    "freshness": 12,
+    "searchIntent": 14,
+    "socialShare": 15,
+    "practicalUtility": 15,
+    "koreaRelevance": 15,
+    "evidenceStrength": 8,
+    "visualPotential": 8,
+    "total": 87,
+    "note": "원문은 2024년이지만 조직개편 검색 의도와 국내 직장인 공감도가 높고, 2025~2026 자료로 현재성을 보강했습니다."
+  },
+  "editorialMode": "newsletter",
+  "preheader": "조직도가 바뀔 때, 실제로 달라지는 것은 무엇일까?",
+  "editorComment": "조직개편은 때로 필요한 경영 수단입니다. 문제는 새 조직도가 전략·권한·자원·업무 방식을 바꾸지 못한 채 사람만 이동시킬 때 시작됩니다.",
+  "closingQuestion": "다음 개편에서 당신은 새 팀명을 볼 것인가, 아니면 바뀐 결정권과 책임을 확인할 것인가?",
+  "series": "AIHUBOS Editorial",
+  "issue": "01",
+  "archiveSequence": "033",
+  "experienceBasis": "source-derived observation only",
+  "fieldNotesIncluded": true,
+  "thumbnailCopy": {
+    "main": "조직개편의 진짜 성적표는 따로 있다",
+    "sub": "팀명보다 중요한 것"
+  },
+  "snsCopy": [
+    "조직도가 바뀌었다. 그런데 의사결정, 예산, KPI는 그대로라면? 조직개편이 전략인지 보여주기인지 구분하는 5가지 질문을 정리했습니다.",
+    "반복 개편은 변화가 아니라 변화 피로를 만들 수 있습니다. 새 팀명보다 먼저 확인해야 할 것은 구조 밖에 있습니다."
+  ],
+  "sourceCount": 6,
+  "assumptions": [
+    "브런치 원문은 풍자와 저자의 해석으로 취급했으며 모든 회사에 적용되는 사실로 일반화하지 않았습니다.",
+    "사용자 개인 경험이 제공되지 않아 1인칭 체험을 만들지 않고 원문 기반 관찰형 도입을 사용했습니다.",
+    "원문의 이미지와 고유 표현을 재사용하지 않고 자체 추상 그래픽과 독자적 문장으로 재구성했습니다.",
+    "2026-08-10 기준 공개 아카이브가 32개 보고서를 표시해 다음 순번을 033으로 가정했습니다.",
+    "실제 GitHub push와 외부 게시 작업은 사용자의 명시적 요청이 없어 수행하지 않았습니다.",
+    "조직개편의 법률적 적정성은 개별 사실관계에 따라 달라지므로 이 글은 법률 자문을 제공하지 않습니다."
+  ],
+  "history": [
+    {
+      "version": "1.0.0",
+      "date": "2026-08-10",
+      "changes": "브런치 원문을 뉴스레터형 에디토리얼로 재구성하고 반복 조직개편·운영모델·직원 발언권 관련 최신 근거, 5가지 판별 질문, Field Notes를 추가했습니다."
+    }
+  ]
+}

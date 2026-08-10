@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">조직개편의 진짜 성적표는 따로 있다</title>
+<desc id="desc">팀명보다 중요한 것. 파란색 조직도 노드로 전략, 권한, 자원, 지표, 책임, 발언권을 표현한 추상 그래픽.</desc>
+<defs>
+  <style>
+    .b{font-family:Pretendard,'Noto Sans KR','Apple SD Gothic Neo',sans-serif;font-weight:800;letter-spacing:-.04em}
+    .r{font-family:Pretendard,'Noto Sans KR','Apple SD Gothic Neo',sans-serif;font-weight:600;letter-spacing:-.025em}
+  </style>
+</defs>
+<rect width="1200" height="630" fill="#fff"/>
+<circle cx="1055" cy="55" r="295" fill="#EEF6FF"/>
+<circle cx="70" cy="705" r="290" fill="#F7FFE1"/>
+<rect x="72" y="52" width="261" height="48" rx="24" fill="#E8F3FF"/>
+<text x="94" y="84" class="b" font-size="24" fill="#1B64DA">REPORT HUB · EDITORIAL 01</text>
+<text x="72" y="203" class="b" font-size="58" fill="#191F28">조직개편의 진짜</text>
+<text x="72" y="282" class="b" font-size="66" fill="#191F28">성적표는 따로 있다</text>
+<rect x="72" y="326" width="288" height="51" rx="20" fill="#DFFF6A"/>
+<text x="94" y="361" class="r" font-size="29" fill="#191F28">팀명보다 중요한 것</text>
+<text x="74" y="487" class="r" font-size="29" fill="#4E5968">새 팀명보다 결정권·자원·지표·책임을 보라</text>
+<text x="74" y="575" class="b" font-size="20" fill="#8B95A1">AIHUBOS · Jeremy Lee · 2026.08.10</text>
+<rect x="730" y="82" width="398" height="466" rx="42" fill="#191F28"/>
+<rect x="760" y="112" width="338" height="52" rx="20" fill="#2B3440"/>
+<text x="786" y="146" class="b" font-size="20" fill="#fff">조직도보다 운영 모델</text>
+<path d="M930 214V445M930 266H820M930 266H1040M930 367H820M930 367H1040" fill="none" stroke="#657180" stroke-width="5" stroke-linecap="round"/>
+<g class="b" font-size="24" text-anchor="middle">
+<rect x="847" y="188" width="166" height="54" rx="20" fill="#DFFF6A"/><text x="930" y="224" fill="#191F28">전략</text>
+<rect x="754" y="280" width="133" height="54" rx="20" fill="#3182F6"/><text x="820.5" y="316" fill="#fff">권한</text>
+<rect x="973" y="280" width="133" height="54" rx="20" fill="#fff"/><text x="1039.5" y="316" fill="#191F28">자원</text>
+<rect x="754" y="381" width="133" height="54" rx="20" fill="#fff"/><text x="820.5" y="417" fill="#191F28">지표</text>
+<rect x="973" y="381" width="133" height="54" rx="20" fill="#3182F6"/><text x="1039.5" y="417" fill="#fff">책임</text>
+<rect x="847" y="462" width="166" height="54" rx="20" fill="#2B3440"/><text x="930" y="498" fill="#fff">발언권</text>
+</g>
+</svg>
