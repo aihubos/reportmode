@@ -9,7 +9,7 @@ import { sanitizeTags, tagFilterKey } from "./tags.js";
 import { REPORT_COUNTER_VERSION, REPORT_HISTORY_VERSION, REPORT_HUB_BRAND_VERSION, REPORT_HUB_HOME } from "./public-brand.js";
 
 const ARCHIVE_WEATHER_VERSION = "20260809-weather1";
-const ARCHIVE_ADMIN_VERSION = "20260810-archive-curation1";
+const ARCHIVE_ADMIN_VERSION = "20260810-admin-presentation1";
 const ARCHIVE_ASSET_VERSION = "20260810-archive-curation1";
 
 const KIND_LABEL: Record<SectionKind, string> = {
@@ -905,7 +905,8 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
           : state.category === "all"
             ? (!isDraft || isPromoted)
             : post.dataset.category === state.category;
-        var queryMatches = !normalizedQuery || (post.dataset.search || "").indexOf(normalizedQuery) !== -1;
+        var presentationSearch = ((post.dataset.adminTitle || "") + " " + (post.dataset.adminSummary || "")).toLocaleLowerCase("ko");
+        var queryMatches = !normalizedQuery || (post.dataset.search || "").indexOf(normalizedQuery) !== -1 || presentationSearch.indexOf(normalizedQuery) !== -1;
         var tagMatches = !state.tag || (post.dataset.tagKeys || "").split("|").indexOf(state.tag) !== -1;
         return categoryMatches && queryMatches && tagMatches;
       });

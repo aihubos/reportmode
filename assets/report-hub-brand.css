@@ -26,6 +26,12 @@
   --rh-space-8: 32px;
   --rh-space-12: 48px;
   --rh-highlight-mark-height: 8px;
+  --rh-admin-editor-width: 600px;
+  --rh-admin-editor-control-height: 40px;
+  --rh-admin-thumbnail-drop-min-height: 112px;
+  --rh-admin-card-action-height: 32px;
+  --rh-control-font-size: 12px;
+  --rh-label-font-size: 11px;
   --rh-radius-2: 8px;
   --rh-radius-3: 12px;
   --rh-radius-4: 16px;

@@ -34,6 +34,15 @@ type ReportViewRow = {
   view_count: number;
 };
 
+type ReportOverrideRow = {
+  report_id: string;
+  title: string;
+  summary: string;
+  cover_image?: string | null;
+  cover_alt?: string | null;
+  updated_at: string;
+};
+
 const ALLOWED_ORIGINS = new Set([
   "https://aihubos.github.io",
   "https://aireport.ai-hub-os.com",
@@ -48,7 +57,7 @@ function cors(request: Request) {
     : "https://aihubos.github.io";
   return {
     "Access-Control-Allow-Origin": allowed,
-    "Access-Control-Allow-Methods": "GET, POST, PATCH, DELETE, OPTIONS",
+    "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
     "Vary": "Origin",
   };
@@ -89,6 +98,40 @@ function isPublicReportId(value: string) {
   return /^[a-z0-9][a-z0-9-]{0,119}$/i.test(value);
 }
 
+function imageValue(value: unknown) {
+  return typeof value === "string" ? value.trim().slice(0, 825000) : "";
+}
+
+function publicImageUrl(value: unknown) {
+  const candidate = imageValue(value);
+  if (!candidate) return "";
+  const inlineImage = candidate.match(/^data:image\/jpeg;base64,([a-z0-9+/]*={0,2})$/i);
+  if (inlineImage) {
+    const encoded = inlineImage[1];
+    const padding = encoded.endsWith("==") ? 2 : encoded.endsWith("=") ? 1 : 0;
+    const byteLength = Math.floor((encoded.length * 3) / 4) - padding;
+    if (encoded.length % 4 === 0 && byteLength > 0 && byteLength <= 600 * 1024) {
+      return `data:image/jpeg;base64,${encoded}`;
+    }
+    return "";
+  }
+  try {
+    const url = new URL(candidate);
+    return url.protocol === "https:" ? url.toString() : "";
+  } catch {
+    return "";
+  }
+}
+
+function decodeReportId(value: string) {
+  try {
+    const reportId = decodeURIComponent(value).slice(0, 120);
+    return isPublicReportId(reportId) ? reportId : "";
+  } catch {
+    return "";
+  }
+}
+
 function isVisitorId(value: string) {
   return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
 }
@@ -124,6 +167,24 @@ async function draftPromotionIds(env: Env) {
     "SELECT report_id FROM report_draft_promotions ORDER BY promoted_at DESC LIMIT 500"
   ).all<{ report_id: string }>();
   return (rows.results || []).map((row) => row.report_id);
+}
+
+function publicOverride(row: ReportOverrideRow) {
+  return {
+    reportId: row.report_id,
+    title: row.title,
+    summary: row.summary,
+    coverImage: row.cover_image || null,
+    coverAlt: row.cover_alt || null,
+    updatedAt: row.updated_at,
+  };
+}
+
+async function reportOverrides(env: Env) {
+  const rows = await env.DB.prepare(
+    "SELECT report_id, title, summary, cover_image, cover_alt, updated_at FROM report_overrides ORDER BY updated_at DESC LIMIT 500"
+  ).all<ReportOverrideRow>();
+  return Object.fromEntries((rows.results || []).map((row) => [row.report_id, publicOverride(row)]));
 }
 
 async function requestForPassword(env: Env, id: string) {
@@ -421,6 +482,63 @@ export default {
       return json(request, { ok: true });
     }
 
+    if (url.pathname === "/report-overrides" && request.method === "GET") {
+      return json(request, { overrides: await reportOverrides(env) });
+    }
+
+    const reportOverrideId = url.pathname.match(/^\/report-overrides\/([^/]+)$/i)?.[1];
+    if (reportOverrideId && request.method === "PUT") {
+      let payload: { title?: unknown; summary?: unknown; coverImage?: unknown; coverAlt?: unknown; adminPassword?: unknown };
+      try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+      if (!env.ADMIN_PASSWORD) return json(request, { error: "admin_not_configured" }, 503);
+      if (passwordValue(payload.adminPassword) !== env.ADMIN_PASSWORD) {
+        return json(request, { error: "wrong_admin_password" }, 403);
+      }
+      const reportId = decodeReportId(reportOverrideId);
+      if (!reportId) return json(request, { error: "missing_report" }, 400);
+      const title = clean(payload.title, 140);
+      const summary = clean(payload.summary, 480);
+      const requestedCover = imageValue(payload.coverImage);
+      const coverImage = publicImageUrl(requestedCover);
+      const coverAlt = coverImage ? clean(payload.coverAlt, 160) : "";
+      if (title.length < 2) return json(request, { error: "title_too_short" }, 400);
+      if (summary.length < 4) return json(request, { error: "summary_too_short" }, 400);
+      if (requestedCover && !coverImage) return json(request, { error: "invalid_cover_url" }, 400);
+      const updatedAt = new Date().toISOString();
+      const row: ReportOverrideRow = {
+        report_id: reportId,
+        title,
+        summary,
+        cover_image: coverImage || null,
+        cover_alt: coverAlt || null,
+        updated_at: updatedAt,
+      };
+      await env.DB.prepare(
+        `INSERT INTO report_overrides (report_id, title, summary, cover_image, cover_alt, updated_at)
+         VALUES (?, ?, ?, ?, ?, ?)
+         ON CONFLICT(report_id) DO UPDATE SET
+           title = excluded.title,
+           summary = excluded.summary,
+           cover_image = excluded.cover_image,
+           cover_alt = excluded.cover_alt,
+           updated_at = excluded.updated_at`
+      ).bind(row.report_id, row.title, row.summary, row.cover_image, row.cover_alt, row.updated_at).run();
+      return json(request, { override: publicOverride(row) }, 201);
+    }
+
+    if (reportOverrideId && request.method === "DELETE") {
+      let payload: { adminPassword?: unknown };
+      try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+      if (!env.ADMIN_PASSWORD) return json(request, { error: "admin_not_configured" }, 503);
+      if (passwordValue(payload.adminPassword) !== env.ADMIN_PASSWORD) {
+        return json(request, { error: "wrong_admin_password" }, 403);
+      }
+      const reportId = decodeReportId(reportOverrideId);
+      if (!reportId) return json(request, { error: "missing_report" }, 400);
+      await env.DB.prepare("DELETE FROM report_overrides WHERE report_id = ?").bind(reportId).run();
+      return json(request, { ok: true, reportId });
+    }
+
     if (url.pathname === "/hidden-reports" && request.method === "GET") {
       const rows = await env.DB.prepare(
         "SELECT report_id FROM report_hidden ORDER BY hidden_at DESC LIMIT 500"
@@ -530,7 +648,7 @@ export default {
       return json(request, { ok: true, reportId });
     }
 
-    if (url.pathname === "/comments" || commentId || url.pathname === "/visits" || url.pathname === "/report-views" || url.pathname === "/requests" || requestId || replyRequestId || url.pathname.startsWith("/hidden-reports") || url.pathname.startsWith("/featured-reports") || url.pathname.startsWith("/draft-promotions") || url.pathname === "/admin/verify") {
+    if (url.pathname === "/comments" || commentId || url.pathname === "/visits" || url.pathname === "/report-views" || url.pathname === "/requests" || requestId || replyRequestId || url.pathname.startsWith("/hidden-reports") || url.pathname.startsWith("/featured-reports") || url.pathname.startsWith("/draft-promotions") || url.pathname.startsWith("/report-overrides") || url.pathname === "/admin/verify") {
       return json(request, { error: "method_not_allowed" }, 405);
     }
     return json(request, { error: "not_found" }, 404);

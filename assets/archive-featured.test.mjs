@@ -37,3 +37,17 @@ test("spotlight keeps overlapping popular reports in the right column and shows 
   assert.match(script, /featuredPosts = featuredPosts\.filter/);
   assert.match(script, /count \? count\.textContent : "조회수 0"/);
 });
+
+test("archive admin provides a persistent report card presentation editor", () => {
+  const script = fs.readFileSync(path.join(root, "archive-report-admin.js"), "utf8");
+
+  assert.match(script, /report-overrides/);
+  assert.match(script, /archive-admin-edit/);
+  assert.match(script, /archive-admin-editor/);
+  assert.match(script, /썸네일 이미지 주소/);
+  assert.match(script, /원래 정보로 되돌리기/);
+  assert.match(script, /archive-admin-thumbnail-drop/);
+  assert.match(script, /clipboardData/);
+  assert.match(script, /dragover/);
+  assert.match(script, /image\/jpeg/);
+});

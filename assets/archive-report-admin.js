@@ -1,6 +1,12 @@
 (function () {
   var API = "https://reportmode-request-board.report-request-board.workers.dev";
   var STORAGE_KEY = "reportmode:admin-unlocked";
+  var THUMBNAIL_MAX_BYTES = 600 * 1024;
+  var THUMBNAIL_PRESETS = [
+    { width: 720, height: 405, quality: 0.82 },
+    { width: 640, height: 360, quality: 0.76 },
+    { width: 512, height: 288, quality: 0.7 },
+  ];
   var postsRoot = document.getElementById("archivePosts");
   if (!postsRoot) return;
 
@@ -10,6 +16,10 @@
     hidden: new Set(),
     featured: new Set(),
     promotedDrafts: new Set(),
+    overrides: new Map(),
+    editorReportId: "",
+    editorOpener: null,
+    editorCoverState: "default",
   };
 
   function posts() {
@@ -34,6 +44,9 @@
     if (code === "admin_not_configured") return "관리자 기능을 준비 중입니다.";
     if (code === "missing_report") return "보고서 ID를 찾지 못했습니다.";
     if (code === "featured_limit_reached") return "추천 글은 최대 3개까지 선택할 수 있습니다.";
+    if (code === "title_too_short") return "제목은 두 글자 이상 입력해 주세요.";
+    if (code === "summary_too_short") return "상세 설명은 네 글자 이상 입력해 주세요.";
+    if (code === "invalid_cover_url") return "썸네일은 HTTPS 이미지 주소 또는 붙여넣은 JPEG 이미지만 사용할 수 있습니다.";
     return "요청을 처리하지 못했습니다. 잠시 후 다시 시도해 주세요.";
   }
 
@@ -42,6 +55,431 @@
     if (!status) return;
     status.textContent = text || "";
     status.dataset.error = isError ? "true" : "false";
+  }
+
+  function rememberPresentation(post) {
+    if (!post || post.dataset.presentationRemembered === "true") return;
+    var title = post.querySelector("h2");
+    var summary = post.querySelector(".archive-post-copy > p");
+    var cover = post.querySelector(".archive-post-cover");
+    var image = cover && cover.querySelector("img");
+    post.dataset.presentationRemembered = "true";
+    post.dataset.originalTitle = title ? title.textContent.trim() : "";
+    post.dataset.originalSummary = summary ? summary.textContent.trim() : "";
+    post.dataset.originalCoverClass = cover ? cover.className : "";
+    post.dataset.originalCoverMarkup = cover ? cover.innerHTML : "";
+    post.dataset.originalCoverImage = image ? (image.currentSrc || image.src || "") : "";
+    post.dataset.originalCoverAlt = image ? (image.alt || "") : "";
+  }
+
+  function safeImageUrl(value) {
+    var candidate = String(value || "").trim();
+    if (!candidate) return "";
+    var inlineThumbnail = candidate.match(/^data:image\/jpeg;base64,([a-z0-9+/]*={0,2})$/i);
+    if (inlineThumbnail) {
+      var encoded = inlineThumbnail[1];
+      var padding = encoded.endsWith("==") ? 2 : encoded.endsWith("=") ? 1 : 0;
+      var byteLength = Math.floor((encoded.length * 3) / 4) - padding;
+      return encoded.length % 4 === 0 && byteLength > 0 && byteLength <= THUMBNAIL_MAX_BYTES
+        ? "data:image/jpeg;base64," + encoded
+        : "";
+    }
+    try {
+      var url = new URL(candidate, window.location.href);
+      return url.protocol === "https:" ? url.href : "";
+    } catch (_) {
+      return "";
+    }
+  }
+
+  function restoreOriginalCover(post) {
+    var cover = post.querySelector(".archive-post-cover");
+    if (!cover) return;
+    if (post.dataset.originalCoverClass) cover.className = post.dataset.originalCoverClass;
+    cover.innerHTML = post.dataset.originalCoverMarkup || "";
+  }
+
+  function setCoverImage(post, imageUrl, alt) {
+    var cover = post.querySelector(".archive-post-cover");
+    if (!cover) return;
+    var image = cover.querySelector("img");
+    if (!image) {
+      image = document.createElement("img");
+      image.loading = "lazy";
+      cover.classList.remove("archive-post-cover-fallback");
+      cover.replaceChildren(image);
+    }
+    image.src = imageUrl;
+    image.alt = alt || post.dataset.originalCoverAlt || post.dataset.originalTitle || "보고서 대표 이미지";
+  }
+
+  function applyPresentation(post, override) {
+    rememberPresentation(post);
+    var title = post.querySelector("h2");
+    var summary = post.querySelector(".archive-post-copy > p");
+    if (!override) {
+      if (title) title.textContent = post.dataset.originalTitle || "";
+      if (summary) summary.textContent = post.dataset.originalSummary || "";
+      delete post.dataset.adminTitle;
+      delete post.dataset.adminSummary;
+      restoreOriginalCover(post);
+      return;
+    }
+    if (title) title.textContent = override.title || post.dataset.originalTitle || "";
+    if (summary) summary.textContent = override.summary || post.dataset.originalSummary || "";
+    post.dataset.adminTitle = override.title || "";
+    post.dataset.adminSummary = override.summary || "";
+    if (override.coverImage) setCoverImage(post, override.coverImage, override.coverAlt);
+    else restoreOriginalCover(post);
+  }
+
+  function applyOverrides() {
+    posts().forEach(function (post) {
+      applyPresentation(post, state.overrides.get(post.dataset.reportId || ""));
+    });
+    if (typeof window.reportmodeArchiveRender === "function") window.reportmodeArchiveRender(false);
+    renderSpotlights();
+  }
+
+  function editorDialog() {
+    return document.getElementById("archiveAdminEditor");
+  }
+
+  function editorStatus(text, isError) {
+    var output = document.getElementById("archiveAdminEditorStatus");
+    if (!output) return;
+    output.textContent = text || "";
+    output.dataset.error = isError ? "true" : "false";
+  }
+
+  function imageFileFromTransfer(transfer) {
+    if (!transfer) return null;
+    var items = Array.prototype.slice.call(transfer.items || []);
+    for (var index = 0; index < items.length; index += 1) {
+      var item = items[index];
+      if (item.kind === "file" && /^image\//i.test(item.type || "")) return item.getAsFile();
+    }
+    var files = Array.prototype.slice.call(transfer.files || []);
+    return files.find(function (file) { return /^image\//i.test(file.type || ""); }) || null;
+  }
+
+  function thumbnailByteLength(dataUrl) {
+    var encoded = String(dataUrl || "").split(",")[1] || "";
+    var padding = encoded.endsWith("==") ? 2 : encoded.endsWith("=") ? 1 : 0;
+    return Math.floor((encoded.length * 3) / 4) - padding;
+  }
+
+  function createThumbnailDataUrl(file) {
+    return new Promise(function (resolve, reject) {
+      if (!file || !/^image\//i.test(file.type || "")) {
+        reject(new Error("thumbnail_file_required"));
+        return;
+      }
+      var sourceUrl = URL.createObjectURL(file);
+      var image = new Image();
+      image.onload = function () {
+        try {
+          for (var index = 0; index < THUMBNAIL_PRESETS.length; index += 1) {
+            var preset = THUMBNAIL_PRESETS[index];
+            var canvas = document.createElement("canvas");
+            canvas.width = preset.width;
+            canvas.height = preset.height;
+            var context = canvas.getContext("2d");
+            if (!context) throw new Error("thumbnail_canvas_unavailable");
+            var scale = Math.max(preset.width / image.naturalWidth, preset.height / image.naturalHeight);
+            var width = image.naturalWidth * scale;
+            var height = image.naturalHeight * scale;
+            context.drawImage(image, (preset.width - width) / 2, (preset.height - height) / 2, width, height);
+            var dataUrl = canvas.toDataURL("image/jpeg", preset.quality);
+            if (thumbnailByteLength(dataUrl) <= THUMBNAIL_MAX_BYTES) {
+              URL.revokeObjectURL(sourceUrl);
+              resolve(dataUrl);
+              return;
+            }
+          }
+          URL.revokeObjectURL(sourceUrl);
+          reject(new Error("thumbnail_too_large"));
+        } catch (error) {
+          URL.revokeObjectURL(sourceUrl);
+          reject(error);
+        }
+      };
+      image.onerror = function () {
+        URL.revokeObjectURL(sourceUrl);
+        reject(new Error("thumbnail_decode_failed"));
+      };
+      image.src = sourceUrl;
+    });
+  }
+
+  function updateEditorPreview() {
+    var dialog = editorDialog();
+    if (!dialog) return;
+    var input = document.getElementById("archiveAdminEditorCover");
+    var preview = document.getElementById("archiveAdminEditorPreview");
+    var empty = document.getElementById("archiveAdminEditorPreviewEmpty");
+    if (!input || !preview || !empty) return;
+    var requested = String(input.value || "").trim();
+    var imageUrl = requested ? safeImageUrl(requested) : (dialog.dataset.defaultCover || "");
+    if (requested && !imageUrl) {
+      state.editorCoverState = "invalid";
+      preview.hidden = true;
+      preview.removeAttribute("src");
+      empty.hidden = false;
+      editorStatus("HTTPS 이미지 주소 또는 붙여넣은 이미지를 사용해 주세요.", true);
+      return;
+    }
+    if (!imageUrl) {
+      state.editorCoverState = "default";
+      preview.hidden = true;
+      preview.removeAttribute("src");
+      empty.hidden = false;
+      editorStatus("", false);
+      return;
+    }
+    var sourceAlreadyLoaded = preview.dataset.previewSource === imageUrl && preview.complete && preview.naturalWidth > 0;
+    state.editorCoverState = requested ? (sourceAlreadyLoaded ? "valid" : "loading") : "default";
+    preview.dataset.previewSource = imageUrl;
+    preview.alt = String(document.getElementById("archiveAdminEditorCoverAlt").value || dialog.dataset.defaultCoverAlt || "보고서 대표 이미지");
+    if (!sourceAlreadyLoaded) preview.src = imageUrl;
+    preview.hidden = false;
+    empty.hidden = true;
+    if (requested) editorStatus(sourceAlreadyLoaded ? "썸네일 미리보기를 준비했습니다." : "썸네일 미리보기를 확인하는 중입니다.", false);
+  }
+
+  function replaceThumbnailFromFile(file) {
+    var input = document.getElementById("archiveAdminEditorCover");
+    if (!input) return;
+    editorStatus("썸네일을 카드 크기로 정리하는 중입니다.", false);
+    createThumbnailDataUrl(file)
+      .then(function (dataUrl) {
+        input.value = dataUrl;
+        updateEditorPreview();
+      })
+      .catch(function (error) {
+        var code = error && error.message;
+        editorStatus(code === "thumbnail_too_large" ? "이미지가 너무 커서 카드용 썸네일로 만들지 못했습니다." : "이미지 파일을 읽지 못했습니다.", true);
+      });
+  }
+
+  function closePresentationEditor() {
+    var dialog = editorDialog();
+    if (!dialog) return;
+    if (typeof dialog.close === "function" && dialog.open) dialog.close();
+    else {
+      dialog.removeAttribute("open");
+      document.body.classList.remove("archive-admin-editor-open");
+    }
+  }
+
+  function openPresentationEditor(post, opener) {
+    if (!state.unlocked || !state.password) {
+      setStatus("먼저 관리자 비밀번호로 잠금을 해제해 주세요.", true);
+      return;
+    }
+    buildPresentationEditor();
+    var dialog = editorDialog();
+    if (!dialog) return;
+    rememberPresentation(post);
+    var reportId = post.dataset.reportId || "";
+    var override = state.overrides.get(reportId);
+    state.editorReportId = reportId;
+    state.editorOpener = opener || null;
+    dialog.dataset.defaultCover = post.dataset.originalCoverImage || "";
+    dialog.dataset.defaultCoverAlt = post.dataset.originalCoverAlt || "";
+    document.getElementById("archiveAdminEditorTitle").value = override ? override.title : (post.dataset.originalTitle || "");
+    document.getElementById("archiveAdminEditorSummary").value = override ? override.summary : (post.dataset.originalSummary || "");
+    document.getElementById("archiveAdminEditorCover").value = override && override.coverImage ? override.coverImage : "";
+    document.getElementById("archiveAdminEditorCoverAlt").value = override && override.coverAlt ? override.coverAlt : (post.dataset.originalCoverAlt || "");
+    document.getElementById("archiveAdminEditorReportName").textContent = post.dataset.originalTitle || reportId;
+    editorStatus("", false);
+    updateEditorPreview();
+    document.body.classList.add("archive-admin-editor-open");
+    if (typeof dialog.showModal === "function") dialog.showModal();
+    else dialog.setAttribute("open", "");
+    window.requestAnimationFrame(function () {
+      document.getElementById("archiveAdminEditorTitle").focus();
+    });
+  }
+
+  function savePresentationEditor(event) {
+    event.preventDefault();
+    var dialog = editorDialog();
+    if (!dialog || !state.editorReportId || !state.password) return;
+    var titleInput = document.getElementById("archiveAdminEditorTitle");
+    var summaryInput = document.getElementById("archiveAdminEditorSummary");
+    var coverInput = document.getElementById("archiveAdminEditorCover");
+    var altInput = document.getElementById("archiveAdminEditorCoverAlt");
+    var submit = document.getElementById("archiveAdminEditorSave");
+    var title = String(titleInput.value || "").trim();
+    var summary = String(summaryInput.value || "").trim();
+    var requestedCover = String(coverInput.value || "").trim();
+    var coverImage = requestedCover ? safeImageUrl(requestedCover) : "";
+    if (title.length < 2) {
+      editorStatus(message("title_too_short"), true);
+      titleInput.focus();
+      return;
+    }
+    if (summary.length < 4) {
+      editorStatus(message("summary_too_short"), true);
+      summaryInput.focus();
+      return;
+    }
+    if (requestedCover && (!coverImage || state.editorCoverState !== "valid")) {
+      editorStatus("썸네일 미리보기를 확인한 뒤 저장해 주세요.", true);
+      return;
+    }
+    submit.disabled = true;
+    editorStatus("카드 정보를 저장하는 중입니다.", false);
+    requestJson(API + "/report-overrides/" + encodeURIComponent(state.editorReportId), {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        adminPassword: state.password,
+        title: title,
+        summary: summary,
+        coverImage: coverImage,
+        coverAlt: String(altInput.value || "").trim(),
+      }),
+    })
+      .then(function (body) {
+        state.overrides.set(state.editorReportId, body.override);
+        applyOverrides();
+        closePresentationEditor();
+        setStatus("카드 제목, 상세 설명, 썸네일을 저장했습니다.");
+      })
+      .catch(function (error) {
+        editorStatus(message(error.message), true);
+      })
+      .finally(function () {
+        submit.disabled = false;
+      });
+  }
+
+  function restorePresentationEditor() {
+    var reportId = state.editorReportId;
+    if (!reportId || !state.password) return;
+    if (!state.overrides.has(reportId)) {
+      editorStatus("이 카드에는 저장된 변경이 없습니다.", false);
+      return;
+    }
+    var restore = document.getElementById("archiveAdminEditorRestore");
+    restore.disabled = true;
+    editorStatus("원래 카드 정보로 되돌리는 중입니다.", false);
+    requestJson(API + "/report-overrides/" + encodeURIComponent(reportId), {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ adminPassword: state.password }),
+    })
+      .then(function () {
+        state.overrides.delete(reportId);
+        applyOverrides();
+        closePresentationEditor();
+        setStatus("카드를 원래 정보로 되돌렸습니다.");
+      })
+      .catch(function (error) {
+        editorStatus(message(error.message), true);
+      })
+      .finally(function () {
+        restore.disabled = false;
+      });
+  }
+
+  function buildPresentationEditor() {
+    if (editorDialog()) return;
+    var dialog = document.createElement("dialog");
+    dialog.id = "archiveAdminEditor";
+    dialog.className = "archive-admin-editor";
+    dialog.innerHTML = [
+      '<form id="archiveAdminEditorForm" class="archive-admin-editor-form" novalidate>',
+      '  <div class="archive-admin-editor-head">',
+      '    <div><span>카드 정보 수정</span><h2>보고서 카드 편집</h2><p id="archiveAdminEditorReportName"></p></div>',
+      '    <button type="button" class="archive-admin-editor-close" data-admin-editor-close aria-label="카드 편집 닫기">닫기</button>',
+      '  </div>',
+      '  <label>제목<input id="archiveAdminEditorTitle" maxlength="140" required></label>',
+      '  <label>상세 설명<textarea id="archiveAdminEditorSummary" maxlength="480" required></textarea></label>',
+      '  <label>썸네일 이미지 주소<input id="archiveAdminEditorCover" type="url" inputmode="url" maxlength="825000" placeholder="https://... 또는 이미지 붙여넣기"></label>',
+      '  <div class="archive-admin-thumbnail-drop" id="archiveAdminThumbnailDrop" tabindex="0" role="button" aria-label="썸네일 이미지 파일 선택, 끌어놓기 또는 붙여넣기">',
+      '    <input id="archiveAdminEditorFile" type="file" accept="image/*" hidden>',
+      '    <strong>이미지를 끌어놓거나 붙여넣으세요</strong><span>클릭해 파일을 선택할 수도 있습니다.</span>',
+      '  </div>',
+      '  <div class="archive-admin-thumbnail-preview" aria-live="polite"><img id="archiveAdminEditorPreview" alt="" hidden><span id="archiveAdminEditorPreviewEmpty">선택한 썸네일 미리보기</span></div>',
+      '  <label>이미지 설명<input id="archiveAdminEditorCoverAlt" maxlength="160" placeholder="이미지를 설명하는 짧은 문장"></label>',
+      '  <p class="archive-admin-editor-status" id="archiveAdminEditorStatus" role="status"></p>',
+      '  <div class="archive-admin-editor-actions">',
+      '    <button type="button" class="archive-admin-editor-restore" id="archiveAdminEditorRestore">원래 정보로 되돌리기</button>',
+      '    <button type="submit" class="archive-admin-editor-save" id="archiveAdminEditorSave">변경 저장</button>',
+      '  </div>',
+      '</form>',
+    ].join("");
+    document.body.appendChild(dialog);
+    var form = document.getElementById("archiveAdminEditorForm");
+    var close = dialog.querySelector("[data-admin-editor-close]");
+    var drop = document.getElementById("archiveAdminThumbnailDrop");
+    var file = document.getElementById("archiveAdminEditorFile");
+    var cover = document.getElementById("archiveAdminEditorCover");
+    var alt = document.getElementById("archiveAdminEditorCoverAlt");
+    var preview = document.getElementById("archiveAdminEditorPreview");
+    close.addEventListener("click", closePresentationEditor);
+    form.addEventListener("submit", savePresentationEditor);
+    document.getElementById("archiveAdminEditorRestore").addEventListener("click", restorePresentationEditor);
+    cover.addEventListener("input", updateEditorPreview);
+    alt.addEventListener("input", updateEditorPreview);
+    preview.addEventListener("load", function () {
+      if (state.editorCoverState === "loading") {
+        state.editorCoverState = "valid";
+        editorStatus("썸네일 미리보기를 준비했습니다.", false);
+      }
+    });
+    preview.addEventListener("error", function () {
+      if (String(cover.value || "").trim()) {
+        state.editorCoverState = "invalid";
+        editorStatus("이미지를 불러오지 못했습니다. 주소를 확인해 주세요.", true);
+      }
+    });
+    drop.addEventListener("click", function () { file.click(); });
+    drop.addEventListener("keydown", function (event) {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      file.click();
+    });
+    drop.addEventListener("dragover", function (event) {
+      event.preventDefault();
+      drop.classList.add("is-dragging");
+    });
+    drop.addEventListener("dragleave", function () { drop.classList.remove("is-dragging"); });
+    drop.addEventListener("drop", function (event) {
+      event.preventDefault();
+      drop.classList.remove("is-dragging");
+      var dropped = imageFileFromTransfer(event.dataTransfer);
+      if (dropped) replaceThumbnailFromFile(dropped);
+      else editorStatus("이미지 파일만 썸네일로 사용할 수 있습니다.", true);
+    });
+    file.addEventListener("change", function () {
+      if (file.files && file.files[0]) replaceThumbnailFromFile(file.files[0]);
+      file.value = "";
+    });
+    dialog.addEventListener("paste", function (event) {
+      var pasted = imageFileFromTransfer(event.clipboardData);
+      if (pasted) {
+        event.preventDefault();
+        replaceThumbnailFromFile(pasted);
+        return;
+      }
+      var text = event.clipboardData && event.clipboardData.getData("text/plain");
+      if (text && event.target !== cover && safeImageUrl(text)) {
+        event.preventDefault();
+        cover.value = text;
+        updateEditorPreview();
+      }
+    });
+    dialog.addEventListener("close", function () {
+      var opener = state.editorOpener;
+      state.editorReportId = "";
+      state.editorOpener = null;
+      document.body.classList.remove("archive-admin-editor-open");
+      if (opener && document.contains(opener)) opener.focus();
+    });
   }
 
   function applyHiddenState() {
@@ -194,6 +632,16 @@
       var isFeatured = state.featured.has(id);
       var isDraft = post.dataset.reportDraft === "true";
       var isPromoted = state.promotedDrafts.has(id);
+      var editButton = document.createElement("button");
+      editButton.type = "button";
+      editButton.className = "archive-admin-edit";
+      editButton.textContent = "수정";
+      editButton.setAttribute("aria-label", "보고서 카드 정보 수정");
+      editButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        openPresentationEditor(post, editButton);
+      });
       var featureButton = document.createElement("button");
       featureButton.type = "button";
       featureButton.className = "archive-admin-feature" + (isFeatured ? " is-featured" : "");
@@ -227,7 +675,7 @@
         });
         actions.appendChild(promoteButton);
       }
-      actions.append(featureButton, button);
+      actions.append(editButton, featureButton, button);
       post.classList.add("has-admin-actions");
       post.appendChild(actions);
     });
@@ -381,6 +829,7 @@
     if (unlockBtn) unlockBtn.hidden = unlocked;
     if (lockBtn) lockBtn.hidden = !unlocked;
     if (form) form.hidden = unlocked;
+    if (!unlocked) closePresentationEditor();
     ensureDeleteButtons();
     applyHiddenState();
   }
@@ -497,6 +946,19 @@
       });
   }
 
+  function loadOverrides() {
+    return requestJson(API + "/report-overrides", { method: "GET", cache: "no-store" })
+      .then(function (body) {
+        var values = body && body.overrides && typeof body.overrides === "object" ? body.overrides : {};
+        state.overrides = new Map(Object.keys(values).map(function (reportId) {
+          return [reportId, values[reportId]];
+        }));
+      })
+      .catch(function () {
+        state.overrides = new Map();
+      });
+  }
+
   // Hook archive render if present later: patch after DOM ready by wrapping filter
   function patchArchiveFilter() {
     // monkey-patch by intercepting posts visibility in Mutation? Better: patch render via exposed function.
@@ -526,10 +988,11 @@
   buildPanel();
   patchArchiveFilter();
   window.addEventListener("reportmode:view-counts-updated", renderSpotlights);
-  Promise.all([loadHidden(), loadFeatured(), loadDraftPromotions()]).then(function () {
+  Promise.all([loadHidden(), loadFeatured(), loadDraftPromotions(), loadOverrides()]).then(function () {
     var maybeUnlocked = false;
     try { maybeUnlocked = sessionStorage.getItem(STORAGE_KEY) === "1"; } catch (_) {}
     // session only remembers unlock UI intent; password must be re-entered after refresh for safety
+    applyOverrides();
     applyHiddenState();
     if (maybeUnlocked) {
       setStatus("보안을 위해 새로고침 후 관리자 비밀번호를 다시 입력해 주세요.");

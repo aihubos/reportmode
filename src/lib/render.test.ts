@@ -118,6 +118,8 @@ test("renders the simplified archive with one Naver card and a 30-item default s
   assert.match(html, /var ALLOWED_SORTS = \["created", "updated", "views"\]/);
   assert.match(html, /state\.pageSize/);
   assert.match(html, /state\.sort/);
+  assert.match(html, /post\.dataset\.adminTitle/);
+  assert.match(html, /post\.dataset\.adminSummary/);
   assert.equal(html.match(/data-report-share(?=[ >])/g)?.length, 31);
   assert.equal(html.match(/class="archive-share-button"[^>]*>[\s\S]*?class="archive-share-icon"/g)?.length, 31);
   assert.doesNotMatch(html, />공유<\/button>/);
