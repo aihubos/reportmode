@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10T05:55:46.738Z",
+  "generatedAt": "2026-08-10T06:36:52.399Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
     {
@@ -55,7 +55,6 @@
       "id": "rh-260810-51-ai-era-boundary-person-5-skills",
       "slug": "ai-era-boundary-person-5-skills",
       "title": "AI 시대를 돌파하는 사람은 도구를 많이 아는 사람이 아니었다: 경계인의 5가지 역량",
-      "subtitle": "새 AI 도구를 하나 더 결제하면 정말 준비가 끝날까?",
       "category": "AI",
       "summary": "AI 시대의 경쟁력은 특정 도구 숙련보다 자기 한계를 보고, 낯선 세계에서 다시 배우고, 감당 가능한 실험을 하며, 경험을 자기 질문으로 연결하는 능력에서 나온다.",
       "createdAt": "2026-08-10T14:25:00+09:00",
@@ -80,7 +79,8 @@
         "AI 시대 생존법"
       ],
       "coverImage": "reports/260810-51-ai-era-boundary-person-5-skills-v1-0-0/assets/thumbnail.png",
-      "coverAlt": "AI 시대 경계인의 5가지 역량을 설명한 카드형 인포그래픽"
+      "coverAlt": "AI 시대 경계인의 5가지 역량을 설명한 카드형 인포그래픽",
+      "subtitle": "새 AI 도구를 하나 더 결제하면 정말 준비가 끝날까?"
     },
     {
       "id": "rh-260810-01-ethan-mollick-ai-work-education",

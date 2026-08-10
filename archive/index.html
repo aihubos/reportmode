@@ -680,13 +680,61 @@ footer {
 .archive-admin-promote { min-height: 30px; color: var(--archive-blue-deep); border-color: #b8d4ff; background: var(--rh-primary-soft); }
 .archive-admin-promote.is-promoted { color: var(--archive-muted); border-color: var(--archive-line); background: var(--rh-paper); }
 .archive-admin-delete { min-height: 30px; color: #b42318; border-color: #f0c7c3; background: #fff7f6; }
+.archive-admin-edit {
+  min-height: var(--rh-admin-card-action-height); padding: 0 var(--rh-space-2); border: 1px solid var(--rh-border); border-radius: var(--rh-radius-2);
+  color: var(--rh-sub); background: var(--rh-paper); font: inherit; font-size: var(--rh-control-font-size); font-weight: 800; cursor: pointer;
+}
+.archive-admin-edit:hover, .archive-admin-edit:focus-visible { color: var(--rh-primary-hover); border-color: var(--rh-primary); }
+.archive-admin-edit:focus-visible, .archive-admin-editor input:focus-visible, .archive-admin-editor textarea:focus-visible, .archive-admin-thumbnail-drop:focus-visible { outline: 3px solid var(--rh-ring); outline-offset: 2px; }
 .archive-draft-badge { display: inline-flex; align-items: center; min-height: 20px; padding: 0 7px; border-radius: 999px; color: #4e5968; background: #f2f4f6; font-size: 10px; font-weight: 900; }
 .archive-post.is-admin-hidden { outline: 1px dashed #f0b4ae; background: #fffaf9; }
 .archive-admin-hidden-badge { display: inline-flex; align-items: center; min-height: 20px; padding: 0 7px; border-radius: 999px; color: #b42318; background: #ffe8e5; font-size: 10px; font-weight: 900; }
 .archive-admin-panel.is-unlocked { border-color: #cfe2ff; background: #f5f9ff; }
+.archive-admin-editor {
+  width: min(calc(100vw - (var(--rh-space-4) * 2)), var(--rh-admin-editor-width)); max-width: var(--rh-admin-editor-width); max-height: calc(100dvh - (var(--rh-space-4) * 2)); margin: auto; padding: var(--rh-space-4);
+  border: 1px solid var(--rh-border); border-radius: var(--rh-radius-4); color: var(--rh-ink); background: var(--rh-paper); box-shadow: 0 8px 24px var(--rh-shadow-color); font-family: var(--rh-sans);
+  overflow-y: auto; overscroll-behavior: contain;
+}
+.archive-admin-editor::backdrop { background: var(--rh-overlay); }
+.archive-admin-editor-form { display: grid; gap: var(--rh-space-3); }
+.archive-admin-editor-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--rh-space-3); }
+.archive-admin-editor-head span { color: var(--rh-primary); font-size: var(--rh-label-font-size); font-weight: 800; }
+.archive-admin-editor-head h2 { margin: var(--rh-space-1) 0 0; font-size: 20px; letter-spacing: -.035em; }
+.archive-admin-editor-head p { margin: var(--rh-space-1) 0 0; overflow: hidden; color: var(--rh-muted); font-size: var(--rh-label-font-size); text-overflow: ellipsis; white-space: nowrap; }
+.archive-admin-editor-close, .archive-admin-editor-save, .archive-admin-editor-restore {
+  min-height: var(--rh-admin-editor-control-height); padding: 0 var(--rh-space-3); border: 1px solid var(--rh-border); border-radius: var(--rh-radius-2);
+  font: inherit; font-size: var(--rh-control-font-size); font-weight: 800; cursor: pointer;
+}
+.archive-admin-editor-close, .archive-admin-editor-restore { color: var(--rh-sub); background: var(--rh-paper); }
+.archive-admin-editor-save { color: var(--rh-paper); border-color: var(--rh-primary); background: var(--rh-primary); }
+.archive-admin-editor-close:hover, .archive-admin-editor-restore:hover { color: var(--rh-primary-hover); border-color: var(--rh-primary); }
+.archive-admin-editor-save:hover { border-color: var(--rh-primary-hover); background: var(--rh-primary-hover); }
+.archive-admin-editor-close:disabled, .archive-admin-editor-save:disabled, .archive-admin-editor-restore:disabled { cursor: not-allowed; opacity: .5; }
+.archive-admin-editor label { display: grid; gap: var(--rh-space-1); color: var(--rh-sub); font-size: var(--rh-label-font-size); font-weight: 800; }
+.archive-admin-editor input, .archive-admin-editor textarea {
+  width: 100%; min-height: var(--rh-admin-editor-control-height); padding: var(--rh-space-2) var(--rh-space-3); border: 1px solid var(--rh-border); border-radius: var(--rh-radius-2);
+  color: var(--rh-ink); background: var(--rh-paper); font: inherit; font-size: var(--rh-control-font-size); resize: vertical;
+}
+.archive-admin-editor textarea { min-height: calc(var(--rh-admin-editor-control-height) * 3); }
+.archive-admin-thumbnail-drop {
+  min-height: var(--rh-admin-thumbnail-drop-min-height); display: grid; place-items: center; align-content: center; gap: var(--rh-space-1); padding: var(--rh-space-3); border: 1px dashed var(--rh-border); border-radius: var(--rh-radius-3);
+  color: var(--rh-sub); background: var(--rh-surface-muted); cursor: pointer; text-align: center;
+}
+.archive-admin-thumbnail-drop strong { color: var(--rh-ink); font-size: var(--rh-control-font-size); }
+.archive-admin-thumbnail-drop span { font-size: var(--rh-label-font-size); }
+.archive-admin-thumbnail-drop:hover, .archive-admin-thumbnail-drop.is-dragging { border-color: var(--rh-primary); background: var(--rh-primary-soft); }
+.archive-admin-thumbnail-preview { width: min(100%, var(--rh-admin-thumbnail-preview-width)); min-height: var(--rh-admin-thumbnail-drop-min-height); justify-self: center; display: grid; place-items: center; overflow: hidden; border: 1px solid var(--rh-border); border-radius: var(--rh-radius-3); background: var(--rh-surface-muted); aspect-ratio: 16 / 9; }
+.archive-admin-thumbnail-preview img { width: 100%; height: 100%; display: block; object-fit: cover; }
+.archive-admin-thumbnail-preview span { color: var(--rh-muted); font-size: var(--rh-label-font-size); }
+.archive-admin-editor-status { min-height: var(--rh-space-4); margin: 0; color: var(--rh-primary-hover); font-size: var(--rh-label-font-size); font-weight: 700; }
+.archive-admin-editor-status[data-error="true"] { color: var(--rh-danger); }
+.archive-admin-editor-actions { display: flex; justify-content: space-between; gap: var(--rh-space-2); }
 @media (max-width: 720px) {
   .archive-admin-form { grid-template-columns: 1fr; }
   .archive-admin-actions { right: calc(var(--archive-cover-width) + var(--archive-cover-gap)); bottom: 10px; }
+  .archive-admin-editor { width: min(calc(100vw - (var(--rh-space-2) * 2)), var(--rh-admin-editor-width)); padding: var(--rh-space-3); }
+  .archive-admin-editor-actions { display: grid; grid-template-columns: 1fr; }
+  .archive-admin-editor-actions .archive-admin-editor-save { grid-row: 1; }
 }
 
 @media (max-width: 767px) {
@@ -961,7 +1009,7 @@ footer {
             <p>AI 시대의 경쟁력은 특정 도구 숙련보다 자기 한계를 보고, 낯선 세계에서 다시 배우고, 감당 가능한 실험을 하며, 경험을 자기 질문으로 연결하는 능력에서 나온다.</p>
             <div class="archive-tags"><span>#AI 시대 인재</span><span>#경계인</span><span>#백영재</span></div>
           </div>
-          <figure class="archive-post-cover"><img src="../reports/260810-51-ai-era-boundary-person-5-skills-v1-0-0/assets/thumbnail.png" alt="AI 시대 경계인의 5가지 역량을 설명한 카드형 인포그래픽" style="object-position:top" loading="lazy"><figcaption>260810</figcaption></figure>
+          <figure class="archive-post-cover"><img src="../reports/260810-51-ai-era-boundary-person-5-skills-v1-0-0/assets/thumbnail.png" alt="AI 시대 경계인의 5가지 역량을 설명한 카드형 인포그래픽" loading="lazy"><figcaption>260810</figcaption></figure>
         </a>
         <button class="archive-share-button" type="button" data-report-share data-report-share-url="../reports/260810-51-ai-era-boundary-person-5-skills-v1-0-0/" data-share-state="share" aria-label="AI 시대를 돌파하는 사람은 도구를 많이 아는 사람이 아니었다: 경계인의 5가지 역량 보고서 링크 복사" title="링크 복사"><span class="archive-share-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M12 15V3"></path><path d="m8 7 4-4 4 4"></path><path d="M5 10v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-9"></path></svg></span><span class="archive-share-status" aria-live="polite"></span></button>
       </article>
@@ -5429,7 +5477,8 @@ footer {
           : state.category === "all"
             ? (!isDraft || isPromoted)
             : post.dataset.category === state.category;
-        var queryMatches = !normalizedQuery || (post.dataset.search || "").indexOf(normalizedQuery) !== -1;
+        var presentationSearch = ((post.dataset.adminTitle || "") + " " + (post.dataset.adminSummary || "")).toLocaleLowerCase("ko");
+        var queryMatches = !normalizedQuery || (post.dataset.search || "").indexOf(normalizedQuery) !== -1 || presentationSearch.indexOf(normalizedQuery) !== -1;
         var tagMatches = !state.tag || (post.dataset.tagKeys || "").split("|").indexOf(state.tag) !== -1;
         return categoryMatches && queryMatches && tagMatches;
       });
@@ -5657,7 +5706,7 @@ footer {
   })();
   </script>
   <script src="../assets/archive-request-board.js"></script>
-  <script src="../assets/archive-report-admin.js?v=20260810-archive-curation1"></script>
+  <script src="../assets/archive-report-admin.js?v=20260810-admin-presentation1"></script>
   <script src="../assets/archive-visitor-counter.js?v=20260809-visits1"></script>
   <script src="../assets/archive-weather.js?v=20260809-weather1"></script>
   <script src="../assets/report-hub-brand.js?v=20260810-archive-curation1"></script>
