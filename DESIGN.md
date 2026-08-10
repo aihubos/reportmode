@@ -98,8 +98,8 @@ Report Hub는 보고서보다 먼저 시선을 빼앗지 않는 임원용 리서
 
 ### Archive wordmark
 
-- 아카이브 상단 왼쪽은 아이콘 없이 `Blog Hub` 글자와 그 아래의 작은 회색 `by Jeremy`만 표시한다.
-- 보고서 본문과 공개 URL의 기존 `Report Hub` 브랜드 링크는 변경하지 않는다.
+- 아카이브 상단 왼쪽은 아이콘 없이 `Report Hub` 글자와 그 아래의 작은 회색 `by Jeremy`만 표시한다.
+- 도서관과 보고서 본문의 브랜드 링크는 모두 `Report Hub`로 통일한다.
 
 ### Floating navigation
 

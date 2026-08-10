@@ -85,8 +85,8 @@ test("renders the simplified archive with one Naver card and a 30-item default s
   assert.doesNotMatch(html, /class="archive-profile"/);
   assert.doesNotMatch(html, /원자료를 조사하고 사실과 해석을 나눠 기록하는/);
   assert.doesNotMatch(html, /읽고 판단하기 좋은/);
-  assert.match(html, /class="report-hub-wordmark">Blog Hub<\/span>/);
-  assert.match(html, /aria-label="Blog Hub 메인으로 이동"/);
+  assert.match(html, /class="report-hub-wordmark">Report Hub<\/span>/);
+  assert.match(html, /aria-label="Report Hub 메인으로 이동"/);
   assert.doesNotMatch(html, /class="archive-brand-mark"/);
   assert.equal(html.match(/https:\/\/blog\.naver\.com\/jeremylee0213/g)?.length, 1);
   assert.match(html, /class="archive-blog-card"/);

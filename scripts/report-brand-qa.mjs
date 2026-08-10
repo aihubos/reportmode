@@ -70,7 +70,7 @@ if (!/archive-visitor-counter\.js\?v=20260809-visits1/.test(archive)) failures.p
 
 for (const relative of ["archive/index.html", "archive/upload.html"]) {
   const html = fs.readFileSync(path.join(root, relative), "utf8");
-  const wordmark = relative === "archive/index.html" ? "Blog Hub" : "Report Hub";
+  const wordmark = "Report Hub";
   if (!html.includes(`href="${home}"`)) failures.push(`${relative}: 좌측 상단 로고 링크 주소가 다름`);
   if (!html.includes(`class="report-hub-wordmark">${wordmark}</span><span class="report-hub-byline">by Jeremy</span>`)) failures.push(`${relative}: 워드마크와 제작자 서명이 없음`);
 }

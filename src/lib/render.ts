@@ -497,8 +497,8 @@ export function renderHomeHtml(
   <header class="archive-topbar">
     <div class="archive-topbar-inner">
       <div class="report-hub-brand-cluster">
-        <a class="archive-brand report-hub-brand-link" data-archive-brand-name="Blog Hub" href="${REPORT_HUB_HOME}" aria-label="Blog Hub 메인으로 이동">
-          <span class="report-hub-brand-copy"><span class="report-hub-wordmark">Blog Hub</span><span class="report-hub-byline">by Jeremy</span></span>
+        <a class="archive-brand report-hub-brand-link" href="${REPORT_HUB_HOME}" aria-label="Report Hub 메인으로 이동">
+          <span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span>
         </a>
         <time class="report-hub-clock" data-report-hub-clock="true" aria-label="서울 현재 날짜와 시각"><span class="report-hub-clock-date"></span><span class="report-hub-clock-time"></span></time>
       </div>
