@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "260810-01-even-realities-g2-review",
+  "title": "이븐 리얼리티 G2 실사용: 약 2~3초 뒤 눈앞에 뜨는 번역, 화상회의가 달라졌다",
+  "seoTitle": "이븐 리얼리티 G2 실사용 후기·스펙·기능 총정리",
+  "alternativeTitles": [
+    "Even G2 리뷰: 화상회의 실시간 번역이 기대 이상이었던 이유",
+    "스마트글라스 Even G2로 할 수 있는 12가지",
+    "카메라 없는 스마트글라스, Even G2는 회의용으로 쓸 만할까"
+  ],
+  "slug": "even-realities-g2-smart-glasses-review",
+  "folder": "260810-01-even-realities-g2-smart-glasses-review-v1-0-0",
+  "version": "1.0.0",
+  "status": "Published",
+  "summary": "Even G2를 화상회의에서 직접 사용해 본 경험을 중심으로 실시간 번역 체감, 36g 하드웨어, 양안 Micro‑LED HUD, 주요 기능 12가지, 가격과 구매 전 한계를 정리했다.",
+  "hook": "번역 앱을 내려다보는 대신, 상대의 말을 들으며 눈앞에서 바로 읽는다.",
+  "keywords": [
+    "이븐 리얼리티 G2",
+    "Even G2",
+    "스마트글라스",
+    "실시간 번역 안경",
+    "화상회의 번역",
+    "AI 글라스",
+    "텔레프롬프터 안경",
+    "Conversate"
+  ],
+  "category": "IT Devices",
+  "createdAt": "2026-08-10",
+  "updatedAt": "2026-08-10",
+  "canonical": "https://aihubos.github.io/reportmode/reports/260810-01-even-realities-g2-smart-glasses-review-v1-0-0/",
+  "thumbnail": "assets/thumbnail.png",
+  "topicScore": 92,
+  "assumptions": [
+    "화상회의에서 번역이 약 2~3초 뒤 렌즈와 앱에 표시됐다는 내용은 작성자가 제공한 실사용 경험이며 표준화된 지연 측정값이 아니다.",
+    "가격은 2026-08-10 미국 공식 스토어의 USD 표시 기준이며 세금, 국제 배송비, 관부가세, 환율을 포함하지 않는다.",
+    "공식 번역 페이지는 35개 언어를 강조하지만 같은 페이지 FAQ는 33개로 안내해 실제 앱의 최신 언어 목록 확인을 권장한다.",
+    "보고서 일일 순번은 01로 가정했다. 저장소에 같은 날짜의 기존 보고서가 있다면 폴더 순번을 조정해야 한다.",
+    "한국 내 공식 오프라인 판매처와 수리 거점은 이번 조사에서 확인하지 못해 구매 전 배송·보증 범위를 별도 확인해야 한다."
+  ],
+  "generation": "AI-assisted",
+  "reviewStatus": "Published",
+  "thumbnailText": {
+    "main": "2~3초 뒤, 눈앞에 번역",
+    "sub": "EVEN G2 실사용"
+  },
+  "socialCopy": [
+    "스마트글라스가 진짜 쓸모 있던 순간. 화상회의에서 상대가 말한 뒤 약 2~3초, 번역이 렌즈와 앱에 함께 떴다. Even G2 실사용 후기와 스펙을 정리했다.",
+    "카메라도 스피커도 없는데 $599. 그래도 회의·번역·텔레프롬프터에 집중하면 Even G2의 방향이 보인다. 살 사람과 기다릴 사람을 나눠봤다."
+  ]
+}

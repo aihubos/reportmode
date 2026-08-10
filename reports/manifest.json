@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10T06:36:52.399Z",
+  "generatedAt": "2026-08-10T09:40:45.909Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
     {
@@ -50,6 +50,33 @@
       "coverImage": "reports/260810-01-demis-hassabis-life-timeline-v1-0-0/assets/thumbnail.png",
       "coverAlt": "데미스 하사비스 인물 사진",
       "subtitle": "체스·게임·뇌과학·DeepMind·AlphaGo·AlphaFold로 이어진 50년"
+    },
+    {
+      "id": "260810-01-even-realities-g2-review",
+      "slug": "even-realities-g2-smart-glasses-review",
+      "title": "이븐 리얼리티 G2 실사용: 약 2~3초 뒤 눈앞에 뜨는 번역, 화상회의가 달라졌다",
+      "subtitle": "화상회의에서 약 2~3초 뒤 렌즈와 앱에 번역이 표시된 실사용 리뷰",
+      "category": "IT 기기",
+      "summary": "Even G2를 화상회의에서 직접 사용해 본 경험을 중심으로 실시간 번역 체감, 36g 하드웨어, 양안 Micro‑LED HUD, 주요 기능 12가지, 가격과 구매 전 한계를 정리했다.",
+      "createdAt": "2026-08-10T17:00:00+09:00",
+      "updatedAt": "2026-08-10T17:00:00+09:00",
+      "status": "published",
+      "path": "reports/260810-01-even-realities-g2-smart-glasses-review-v1-0-0/",
+      "url": "https://aihubos.github.io/reportmode/reports/260810-01-even-realities-g2-smart-glasses-review-v1-0-0/",
+      "displayDate": "260810",
+      "sourceCount": 12,
+      "tags": [
+        "이븐 리얼리티 G2",
+        "Even G2",
+        "스마트글라스",
+        "실시간 번역 안경",
+        "화상회의 번역",
+        "AI 글라스",
+        "텔레프롬프터 안경",
+        "Conversate"
+      ],
+      "coverImage": "reports/260810-01-even-realities-g2-smart-glasses-review-v1-0-0/assets/thumbnail.png",
+      "coverAlt": "Even Realities G2 스마트글라스와 녹색 HUD 인터페이스"
     },
     {
       "id": "rh-260810-51-ai-era-boundary-person-5-skills",
