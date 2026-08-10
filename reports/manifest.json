@@ -1,7 +1,33 @@
 {
-  "generatedAt": "2026-08-10T09:40:45.909Z",
+  "generatedAt": "2026-08-10T11:49:12.134Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260810-hermes-practical-training",
+      "slug": "hermes-practical-training",
+      "title": "Hermes Agent 실습형 교육 가이드: 설치부터 LLM Wiki 자동화까지",
+      "subtitle": "Telegram·Cron·Obsidian PARA·LLM Wiki를 한 번에 따라 하는 27페이지 실습",
+      "category": "AI",
+      "summary": "비전공자가 Hermes Agent 설치부터 Telegram 연동, 주요 명령어, 페르소나, Cron, Obsidian PARA, LLM Wiki 자동화까지 순서대로 따라 할 수 있도록 구성한 27페이지 실습형 교육 가이드입니다.",
+      "createdAt": "2026-08-10T20:48:23+09:00",
+      "updatedAt": "2026-08-10T20:48:23+09:00",
+      "status": "published",
+      "path": "reports/260810-hermes-practical-training/",
+      "url": "https://aihubos.github.io/reportmode/reports/260810-hermes-practical-training/",
+      "displayDate": "260810",
+      "sourceCount": 12,
+      "tags": [
+        "Hermes",
+        "Telegram",
+        "Cron",
+        "Obsidian",
+        "세컨드 브레인",
+        "LLM Wiki",
+        "SOUL.md"
+      ],
+      "coverImage": "reports/260810-hermes-practical-training/assets/thumbnail.png",
+      "coverAlt": "Hermes와 지식 네트워크를 상징하는 주황색 그래픽"
+    },
     {
       "id": "260810-01-elon-musk-timeline-altman-lawsuit-v1-0-0",
       "slug": "elon-musk-timeline-altman-lawsuit",

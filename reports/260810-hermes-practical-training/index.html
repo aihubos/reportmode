@@ -1,0 +1,1898 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="비전공자를 위한 Hermes Agent 설치, Telegram 연동, 주요 명령어, 페르소나, Cron, Obsidian PARA, LLM Wiki 실습형 단일 웹 교육 자료" name="description"/>
+<link rel="canonical" href="https://aihubos.github.io/reportmode/reports/260810-hermes-practical-training/"/>
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="Hermes Agent 실습형 교육 가이드 | 설치부터 LLM Wiki 자동화까지"/>
+<meta property="og:description" content="비전공자를 위한 Hermes Agent 설치, Telegram 연동, 주요 명령어, 페르소나, Cron, Obsidian PARA, LLM Wiki 실습형 단일 웹 교육 자료"/>
+<meta property="og:image" content="https://aihubos.github.io/reportmode/reports/260810-hermes-practical-training/assets/thumbnail.png"/>
+<meta property="og:image:width" content="596"/>
+<meta property="og:image:height" content="335"/>
+<meta property="og:image:alt" content="Hermes와 지식 네트워크를 상징하는 주황색 그래픽"/>
+<meta property="article:published_time" content="2026-08-10T20:48:23+09:00"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Hermes Agent 실습형 교육 가이드 | 설치부터 LLM Wiki 자동화까지"/>
+<meta name="twitter:description" content="Hermes 설치부터 Telegram, Cron, Obsidian PARA, LLM Wiki 자동화까지 순서대로 따라 하는 실습형 가이드"/>
+<meta name="twitter:image" content="https://aihubos.github.io/reportmode/reports/260810-hermes-practical-training/assets/thumbnail.png"/>
+<meta content="#ffffff" name="theme-color"/>
+<title>Hermes Agent 실습형 교육 가이드 | 설치부터 LLM Wiki 자동화까지 · v1.0.0 | Report Hub</title>
+<style>
+    :root {
+      --blue:#3182F6; --blue-strong:#1B64DA; --blue-soft:#E8F3FF;
+      --ink:#191F28; --ink-2:#333D4B; --muted:#6B7684; --muted-2:#8B95A1;
+      --line:#E5E8EB; --surface:#F7F8FA; --surface-2:#F2F4F6; --white:#FFF;
+      --highlight:#DFFF6A; --yellow:#FFF184; --mint:#DFFBF2; --violet:#EEE9FF;
+      --shadow-sm:0 8px 30px rgba(25,31,40,.06); --shadow-md:0 24px 70px rgba(25,31,40,.10);
+      --radius-sm:18px; --radius-md:28px; --radius-lg:40px; --max:1180px;
+      --hero-title-min:36px; --hero-title-fluid:4.4vw; --hero-title-max:55px;
+      --section-title-min:28px; --section-title-fluid:3.3vw; --section-title-max:41px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;color:var(--ink);background:linear-gradient(180deg,#f8fbff 0,#f4f7fb 34%,#f7f8fa 100%);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Segoe UI",sans-serif;line-height:1.62;letter-spacing:-.02em;overflow-x:hidden}
+    a{color:inherit;text-decoration:none} button,input{font:inherit} button{color:inherit} h1,h2,h3,p{margin-top:0} code,pre{font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace}
+    .skip-link{position:fixed;left:12px;top:-80px;z-index:3000;padding:10px 14px;border-radius:12px;background:var(--ink);color:#fff;font-weight:800} .skip-link:focus{top:12px}
+    .scroll-progress{position:fixed;inset:0 auto auto 0;width:0;height:3px;background:linear-gradient(90deg,var(--blue),#78afff);z-index:2000}
+    .nav-wrap{position:sticky;top:0;z-index:1200;padding:12px 18px 0}
+    .nav{max-width:1240px;margin:0 auto;min-height:62px;display:flex;align-items:center;gap:14px;padding:9px 11px 9px 16px;border:1px solid rgba(229,232,235,.9);border-radius:22px;background:rgba(255,255,255,.86);backdrop-filter:blur(18px) saturate(150%);box-shadow:0 10px 34px rgba(25,31,40,.05)}
+    .brand{display:flex;align-items:center;gap:10px;min-width:max-content;font-size:14px;font-weight:900} .brand-mark{width:38px;height:38px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(145deg,#5ca2ff,var(--blue-strong));color:#fff;box-shadow:0 8px 20px rgba(49,130,246,.25)} .brand-mark svg{width:21px}
+    .brand-sub{color:var(--muted-2);font-size:12px;font-weight:800}
+    .nav-links{display:flex;gap:3px;margin-left:auto} .nav-links a{padding:8px 10px;border-radius:11px;color:var(--muted);font-size:13px;font-weight:800} .nav-links a:hover,.nav-links a:focus-visible{background:var(--surface);color:var(--ink)}
+    .nav-actions{display:flex;align-items:center;gap:7px}
+    .btn{appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:40px;padding:0 14px;border-radius:13px;font-size:13px;font-weight:850;transition:.2s ease} .btn:hover{transform:translateY(-1px)} .btn-primary{background:var(--blue);color:#fff;box-shadow:0 9px 22px rgba(49,130,246,.22)} .btn-ghost{background:var(--surface);color:var(--ink-2)} .btn-outline{border:1px solid var(--line);background:#fff}
+    .os-switch{display:flex;padding:3px;border-radius:12px;background:var(--surface)} .os-switch button{border:0;background:transparent;padding:7px 9px;border-radius:9px;color:var(--muted);font-size:12px;font-weight:850;cursor:pointer} .os-switch button.active{background:#fff;color:var(--blue-strong);box-shadow:0 4px 12px rgba(25,31,40,.08)}
+    .progress-chip{min-width:88px;padding:6px 9px;border-radius:11px;background:var(--blue-soft);color:var(--blue-strong);font-size:11px;font-weight:900;text-align:center}
+    main{padding:54px 0 90px}
+    .report-stack{width:min(var(--max),calc(100% - 40px));margin:0 auto;display:grid;gap:36px}
+    .paper-page{position:relative;min-height:720px;padding:42px 48px 38px;border:1px solid rgba(218,224,230,.95);border-radius:36px;background-color:#fff;background-image:radial-gradient(circle,rgba(49,130,246,.10) 1px,transparent 1px);background-size:22px 22px;box-shadow:var(--shadow-md);overflow:hidden;isolation:isolate}
+    .paper-page::before{content:"";position:absolute;right:-180px;top:-190px;width:500px;height:500px;border-radius:50%;border:1px dashed rgba(49,130,246,.18);z-index:-1}
+    .paper-page::after{content:"";position:absolute;left:-110px;bottom:-160px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(223,255,106,.13),transparent 68%);z-index:-1}
+    .cover-page{min-height:780px;padding-top:48px}
+    .blue-page{color:#fff;background-image:radial-gradient(circle at 14% 16%,rgba(255,255,255,.12),transparent 24rem),linear-gradient(145deg,#216DDC,#3182F6 58%,#5A9CFF)} .blue-page::before{border-color:rgba(255,255,255,.25)} .blue-page .page-header>p,.blue-page .page-footer,.blue-page .page-section{color:rgba(255,255,255,.76)} .blue-page .page-number{background:rgba(255,255,255,.18);color:#fff;border-color:rgba(255,255,255,.22)} .blue-page code{color:inherit}
+    .page-topline{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px} .page-section{color:var(--blue);font-size:12px;font-weight:950;letter-spacing:.08em} .page-number{display:inline-flex;min-height:30px;align-items:center;padding:0 11px;border:1px solid rgba(49,130,246,.16);border-radius:999px;background:var(--blue-soft);color:var(--blue-strong);font-size:12px;font-weight:900;font-variant-numeric:tabular-nums}
+    .page-header h2{max-width:900px;margin-bottom:15px;font-size:clamp(var(--section-title-min),var(--section-title-fluid),var(--section-title-max));line-height:1.18;letter-spacing:-.052em;font-weight:900;text-wrap:balance;overflow-wrap:anywhere} .cover-page .page-header h2{font-size:clamp(var(--hero-title-min),var(--hero-title-fluid),var(--hero-title-max));max-width:940px;line-height:1.08} .blue{color:var(--blue)} .blue-page .blue{color:#fff} .page-header>p{max-width:900px;margin-bottom:30px;color:var(--muted);font-size:18px;font-weight:620}
+    .page-body{position:relative;z-index:1}
+    .page-footer{position:absolute;left:48px;right:48px;bottom:18px;display:flex;justify-content:space-between;gap:16px;padding-top:12px;border-top:1px solid var(--line);color:var(--muted-2);font-size:10px;font-weight:800;letter-spacing:.03em}
+    .blue-page .page-footer{border-color:rgba(255,255,255,.18)}
+    .hero-summary-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:22px;align-items:stretch} .hero-thesis{padding:28px;border:1px solid var(--line);border-radius:30px;background:rgba(255,255,255,.92);box-shadow:var(--shadow-sm)} .mini-kicker{display:inline-flex;margin-bottom:12px;padding:6px 9px;border-radius:999px;background:var(--blue-soft);color:var(--blue-strong);font-size:11px;font-weight:900} .hero-thesis h3{margin-bottom:15px;font-size:29px;line-height:1.35;letter-spacing:-.045em} mark{padding:0 .14em;border-radius:5px;background:linear-gradient(transparent 48%,var(--highlight) 48%);color:inherit} .hero-thesis p{color:var(--muted);font-weight:620} .report-meta{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin-top:20px;color:var(--muted-2);font-size:11px;font-weight:850} .version-badge{display:inline-flex;align-items:center;min-height:27px;padding:0 9px;border-radius:999px;background:var(--blue-soft);color:var(--blue-strong);border:1px solid rgba(49,130,246,.16);font-weight:900}
+    .system-map{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;padding:24px;border-radius:30px;background:linear-gradient(145deg,#edf5ff,#fff);border:1px solid rgba(49,130,246,.18)} .map-node{min-height:105px;padding:16px;border-radius:20px;background:#fff;border:1px solid var(--line);box-shadow:0 8px 22px rgba(25,31,40,.04)} .map-node b{display:grid;place-items:center;width:26px;height:26px;margin-bottom:12px;border-radius:9px;background:var(--blue-soft);color:var(--blue);font-size:11px} .map-node strong{display:block;font-size:16px} .map-node span{color:var(--muted);font-size:12px;font-weight:650} .map-arrow{color:var(--blue);font-size:24px} .map-wiki{grid-column:1/-1;min-height:auto;background:var(--blue);color:#fff} .map-wiki b{background:#fff} .map-wiki span{color:rgba(255,255,255,.75)}
+    .summary-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px} .summary-cards article{padding:18px;border-radius:20px;background:var(--surface);border:1px solid var(--line)} .summary-cards b{color:var(--blue);font-size:11px} .summary-cards h3{margin:10px 0 6px;font-size:18px} .summary-cards p{margin:0;color:var(--muted);font-size:13px;font-weight:620} .decision-banner,.definition-banner{display:flex;align-items:flex-start;gap:12px;margin-top:16px;padding:15px 17px;border-radius:17px;background:#f5ffd1;border:1px solid #dfea9d;font-size:13px;font-weight:700} .decision-banner strong,.definition-banner strong{white-space:nowrap;color:#3f5800}
+    .roadmap-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px} .roadmap-card{grid-column:span 2;min-height:155px;padding:20px;border:1px solid var(--line);border-radius:23px;background:#fff} .roadmap-card:nth-child(4),.roadmap-card:nth-child(5){grid-column:span 3} .roadmap-card span,.card-label,.command-cheat-grid span,.command-grid article>span,.persona-grid article>span,.template-head span,.versus-grid article>span,.source-card span,.trouble-grid article>span{color:var(--blue);font-size:10px;font-weight:950;letter-spacing:.07em} .roadmap-card h3{margin:11px 0 7px;font-size:21px} .roadmap-card p{margin:0;color:var(--muted);font-size:13px;font-weight:620} .prep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px} .prep-card{padding:17px;border-radius:18px;background:var(--surface);border:1px solid var(--line)} .prep-card b{display:block;margin-bottom:6px} .prep-card p{margin:0;color:var(--muted);font-size:13px;font-weight:620} .prep-card.warning{background:#fff9dd;border-color:#efe0a2}
+    .task-check{display:inline-flex;align-items:center;gap:9px;margin-top:18px;padding:11px 14px;border-radius:14px;background:var(--surface);border:1px solid var(--line);cursor:pointer;user-select:none;font-size:13px} .task-check input{position:absolute;opacity:0;pointer-events:none} .task-check span{width:23px;height:23px;display:grid;place-items:center;border-radius:8px;border:2px solid #cbd2d9;background:#fff} .task-check input:checked+span{border-color:var(--blue);background:var(--blue)} .task-check input:checked+span::after{content:"✓";color:#fff;font-weight:950;font-size:14px} .blue-page .task-check{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.22)}
+    .split-grid,.two-column,.versus-grid,.compare-grid,.template-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch} .step-panel,.instruction-card,.visual-window,.vault-visual,.correction-table{border:1px solid var(--line);border-radius:27px;background:#fff;box-shadow:var(--shadow-sm)} .step-panel{padding:23px;display:grid;gap:15px} .step-row{display:grid;grid-template-columns:34px 1fr;gap:12px} .step-row>b,.telegram-steps article>b,.practice-sequence article>b,.three-step-cards article>b{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;background:var(--blue-soft);color:var(--blue);font-size:12px} .step-row h3{margin-bottom:3px;font-size:17px} .step-row p{margin:0;color:var(--muted);font-size:13px;font-weight:620}
+    .visual-window{overflow:hidden} .window-bar{height:48px;display:flex;align-items:center;gap:7px;padding:0 16px;border-bottom:1px solid var(--line);background:var(--surface)} .window-bar i{width:9px;height:9px;border-radius:50%;background:#ff8578} .window-bar i:nth-child(2){background:#ffd365} .window-bar i:nth-child(3){background:#5fd58a} .window-bar span{margin-left:8px;color:var(--muted);font-size:12px;font-weight:850} .install-flow{display:grid;place-items:center;gap:7px;padding:29px} .install-flow div{width:80%;padding:13px 16px;border-radius:16px;background:var(--surface);text-align:center} .install-flow strong,.install-flow span{display:block} .install-flow span{color:var(--muted);font-size:11px} .install-flow em{color:var(--blue);font-style:normal}
+    .info-note,.warning-note,.security-note,.governance-note{display:flex;align-items:flex-start;gap:11px;margin-top:15px;padding:15px 17px;border-radius:17px;font-size:13px;font-weight:680} .info-note{background:var(--blue-soft);border:1px solid rgba(49,130,246,.18)} .info-note strong{color:var(--blue-strong);white-space:nowrap} .warning-note{background:#fff8d9;border:1px solid #efe09a;color:#675700} .warning-note strong{white-space:nowrap} .security-note,.governance-note{background:#fff6ca;border:1px solid #eadb8b;color:#5f5200} .security-note strong,.governance-note strong{white-space:nowrap} .cite{display:inline-flex;margin-left:3px;color:var(--blue-strong);font-weight:950;text-decoration:underline;text-underline-offset:2px}
+    .os-panels [data-os-panel]{display:none} body[data-os="windows"] [data-os-panel="windows"]{display:block} body[data-os="macos"] [data-os-panel="macos"]{display:block}
+    .code-card{margin-top:11px;overflow:hidden;border:1px solid #2f3742;border-radius:18px;background:#161b22;box-shadow:0 10px 22px rgba(17,24,39,.08)} .code-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 11px 8px 15px;border-bottom:1px solid rgba(255,255,255,.08);color:#fff} .code-head>div{display:flex;align-items:center;gap:9px} .code-lang{display:inline-flex;padding:4px 7px;border-radius:7px;background:rgba(49,130,246,.22);color:#9fc7ff;font-size:9px;font-weight:950;text-transform:uppercase} .code-head strong{font-size:11px;color:#dfe7f2} .copy-btn{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);color:#fff;padding:6px 9px;border-radius:9px;font-size:10px;font-weight:900;cursor:pointer} .copy-btn:hover,.copy-btn:focus-visible{background:rgba(255,255,255,.16)} .code-card pre{margin:0;padding:15px 17px;overflow:auto;color:#f5f7fb;font-size:12.5px;line-height:1.66;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word} .code-note{margin:0;padding:9px 15px;border-top:1px solid rgba(255,255,255,.08);color:#aeb9c8;font-size:10px;font-weight:650}
+    .instruction-card{padding:23px} .instruction-card.soft-blue{background:linear-gradient(180deg,#f4f9ff,#fff);border-color:rgba(49,130,246,.20)} .instruction-card h3{margin-bottom:11px;font-size:21px} .number-list,.check-list{margin:0;padding-left:20px;color:var(--muted);font-size:14px;font-weight:650} .number-list li,.check-list li{margin:8px 0}
+    .command-grid{display:grid;gap:13px;margin-top:15px} .command-grid.cols-3{grid-template-columns:repeat(3,1fr)} .command-grid article{padding:17px;border:1px solid var(--line);border-radius:20px;background:#fff} .command-grid article h3{margin:7px 0 8px;font-size:17px}
+    .telegram-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px} .telegram-steps article{padding:20px;border:1px solid var(--line);border-radius:24px;background:#fff} .telegram-steps h3{margin:16px 0 7px;font-size:19px} .telegram-steps p{color:var(--muted);font-size:13px;font-weight:620} .danger-banner{display:flex;gap:11px;margin-top:15px;padding:15px 17px;border-radius:17px;background:#fff0f0;border:1px solid #f2caca;color:#8a3b3b;font-size:13px;font-weight:700} .danger-banner strong{white-space:nowrap}
+    .fake-form{display:grid;gap:15px;padding:25px} .fake-form label{display:grid;gap:6px;color:var(--muted);font-size:11px;font-weight:850} .fake-form input{width:100%;padding:12px;border:1px solid var(--line);border-radius:13px;background:var(--surface);color:var(--ink)} .fake-form button{justify-self:end;border:0;border-radius:12px;background:var(--blue);color:#fff;padding:10px 13px;font-weight:850} .fake-status{display:flex;align-items:center;gap:8px;padding:12px;border-radius:13px;background:var(--mint);color:#12745f;font-weight:850;font-size:13px} .fake-status span{width:9px;height:9px;border-radius:50%;background:#27b38d}
+    .command-cheat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px} .command-cheat-grid article{min-height:165px;padding:20px;border:1px solid var(--line);border-radius:22px;background:#fff} .command-cheat-grid h3{margin:14px 0 8px;font-size:21px} .command-cheat-grid p{margin:0;color:var(--muted);font-size:13px;font-weight:620} .compare-strip{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:15px;margin-top:14px;padding:16px;border-radius:20px;background:var(--surface);border:1px solid var(--line)} .compare-strip div{text-align:center} .compare-strip strong,.compare-strip span{display:block} .compare-strip span{color:var(--muted);font-size:12px} .compare-strip i{color:var(--blue);font-style:normal;font-size:23px}
+    .practice-sequence{display:grid;grid-template-columns:repeat(4,1fr);gap:12px} .practice-sequence article{padding:16px;border:1px solid var(--line);border-radius:21px;background:#fff} .practice-sequence article>b{margin-bottom:12px} .practice-sequence h3{font-size:17px}
+    .versus-grid{grid-template-columns:1fr 74px 1fr} .versus-grid article{padding:25px;border:1px solid var(--line);border-radius:28px;background:#fff} .versus-grid article.recommended{border-color:rgba(49,130,246,.25);background:linear-gradient(180deg,#f1f7ff,#fff)} .versus-grid h3{margin:13px 0 8px;font-size:24px} .versus-grid p{color:var(--muted);font-size:14px;font-weight:620} .versus-plus{display:grid;place-items:center;color:var(--blue);font-size:34px}
+    .verification-flow,.attachment-flow{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:14px;padding:15px;border:1px solid rgba(49,130,246,.18);border-radius:20px;background:var(--blue-soft)} .verification-flow div,.attachment-flow div{text-align:center} .verification-flow strong,.verification-flow span,.attachment-flow strong,.attachment-flow span{display:block} .verification-flow span,.attachment-flow span{color:var(--muted);font-size:11px;font-weight:650} .verification-flow i,.attachment-flow i{color:var(--blue);font-style:normal;font-size:23px}
+    .persona-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px} .persona-grid article{padding:19px;border:1px solid var(--line);border-radius:22px;background:#fff} .persona-grid h3{margin:12px 0 8px;font-size:18px} .reset-card{display:grid;grid-template-columns:.55fr 1.45fr;gap:15px;align-items:center;margin-top:15px;padding:18px;border:1px solid rgba(49,130,246,.18);border-radius:21px;background:var(--blue-soft)} .reset-card strong,.reset-card span{display:block} .reset-card span{color:var(--muted);font-size:12px}
+    .template-grid article{padding:20px;border:1px solid var(--line);border-radius:26px;background:#fff} .template-head h3{margin:9px 0 0;font-size:21px}
+    .blue-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:11px} .blue-flow article{min-height:150px;padding:18px;border:1px solid rgba(255,255,255,.22);border-radius:22px;background:rgba(255,255,255,.11);backdrop-filter:blur(8px)} .blue-flow b{display:grid;place-items:center;width:31px;height:31px;margin-bottom:26px;border-radius:10px;background:#fff;color:var(--blue-strong);font-size:11px} .blue-flow h3{margin-bottom:7px;font-size:18px} .blue-flow p{color:rgba(255,255,255,.74);font-size:12px;font-weight:650} .blue-page .instruction-card{background:rgba(255,255,255,.96);color:var(--ink)} .blue-page .info-note{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.20);color:#fff} .blue-page .info-note strong,.blue-page .cite{color:#fff}
+    .compact-top{margin-top:15px}
+    .folder-tree-card{padding:19px;border-radius:22px;background:#161b22;color:#f5f7fb;border:1px solid #303846} .folder-tree-card pre{margin:0;white-space:pre;overflow:auto;font-size:14px;line-height:1.82} .folder-tree-card.large pre{font-size:13px}
+    .vault-visual{display:grid;place-items:center;padding:22px;text-align:center;background:linear-gradient(180deg,#f8f5ff,#fff)} .vault-icon{width:62px;height:62px;display:grid;place-items:center;border-radius:20px;background:var(--violet);color:#6f55cf;font-size:34px} .vault-visual h3{margin:14px 0 3px;font-size:24px} .vault-visual>p{color:var(--muted);font-size:13px} .vault-mini-tree{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px} .vault-mini-tree span{padding:8px;border-radius:10px;background:var(--surface);color:var(--muted);font-size:11px;font-weight:800} .vault-mini-tree span.active{background:var(--blue-soft);color:var(--blue-strong)}
+    .folder-purpose-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px} .folder-purpose-grid article{padding:20px;border:1px solid var(--line);border-radius:23px;background:#fff} .folder-purpose-grid article>b{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:11px;background:var(--surface);color:var(--blue);font-size:12px} .folder-purpose-grid h3{margin:14px 0 7px;font-size:21px} .folder-purpose-grid p{color:var(--muted);font-size:13px;font-weight:620} .folder-purpose-grid code{display:block;padding-top:12px;border-top:1px solid var(--line);color:var(--ink-2);font-size:11px} .folder-purpose-grid .wiki-purpose{background:linear-gradient(180deg,#edf5ff,#fff);border-color:rgba(49,130,246,.22)}
+    .update-callout{display:grid;grid-template-columns:1fr 62px 1fr;gap:15px;align-items:center;padding:19px;border:1px solid var(--line);border-radius:25px;background:var(--surface)} .update-callout>div{padding:17px;border-radius:18px;background:#fff} .update-callout>div.current{background:var(--blue);color:#fff} .update-callout span{color:var(--muted);font-size:10px;font-weight:900} .update-callout .current span{color:rgba(255,255,255,.72)} .update-callout h3{margin:8px 0 0;font-size:18px} .update-callout i{text-align:center;color:var(--blue);font-style:normal;font-size:28px}
+    .wiki-tree-layout{display:grid;grid-template-columns:.72fr 1.28fr;gap:17px} .wiki-role-list{display:grid;grid-template-columns:1fr 1fr;gap:10px} .wiki-role-list article{display:grid;grid-template-columns:56px 1fr;gap:11px;padding:15px;border:1px solid var(--line);border-radius:19px;background:#fff} .wiki-role-list b{color:var(--blue);font-size:10px;letter-spacing:.05em} .wiki-role-list h3{margin-bottom:4px;font-size:16px} .wiki-role-list p{margin:0;color:var(--muted);font-size:12px;font-weight:620} .wiki-role-list article:last-child{grid-column:1/-1}
+    .three-step-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:13px} .three-step-cards article{padding:18px;border:1px solid var(--line);border-radius:22px;background:#fff} .three-step-cards h3{margin:13px 0 7px;font-size:18px} .three-step-cards p{margin:0;color:var(--muted);font-size:12px;font-weight:620}
+    .attach-icon{width:42px;height:42px;display:grid!important;place-items:center;border-radius:14px;background:#fff;color:var(--blue);font-size:25px}
+    .compare-grid article{padding:23px;border:1px solid var(--line);border-radius:27px;background:#fff} .compare-grid article.good{background:linear-gradient(180deg,#edf5ff,#fff);border-color:rgba(49,130,246,.22)} .compare-grid h3{margin:10px 0 7px;font-size:22px} .compare-grid p{color:var(--muted);font-size:13px;font-weight:620}
+    .correction-table{overflow:hidden} .correction-row{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line)} .correction-row:last-child{border-bottom:0} .correction-row>div{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start;padding:18px;font-size:13px;font-weight:700} .correction-row .wrong{background:#fbfbfc;color:var(--muted)} .correction-row .right{border-left:1px solid var(--line)} .correction-row b{width:28px;height:28px;display:grid;place-items:center;border-radius:50%;font-size:13px} .wrong b{background:#fff0f0;color:#d45454} .right b{background:var(--blue-soft);color:var(--blue)}
+    .trouble-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px} .trouble-grid article{padding:20px;border:1px solid var(--line);border-radius:23px;background:#fff} .trouble-grid h3{margin:10px 0 6px;font-size:19px} .trouble-grid p{color:var(--muted);font-size:12px;font-weight:620}
+    .source-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px} .source-card{padding:16px;border:1px solid var(--line);border-radius:18px;background:var(--surface);transition:.2s ease} .source-card:hover,.source-card:focus-visible{transform:translateY(-2px);background:var(--blue-soft);border-color:rgba(49,130,246,.24)} .source-card strong{display:block;margin:7px 0 4px;font-size:14px} .source-card p{margin:0;color:var(--muted);font-size:11px;font-weight:620}
+    .report-history{margin-top:22px;padding-top:20px;border-top:1px solid var(--line)} .history-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:12px} .history-head h3{margin-bottom:3px;font-size:21px} .history-head p{margin:0;color:var(--muted);font-size:11px} .history-table-wrap{overflow:auto;border:1px solid var(--line);border-radius:17px} .history-table{width:100%;min-width:760px;border-collapse:collapse;font-size:11px} .history-table th,.history-table td{padding:11px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)} .history-table tr:last-child td{border-bottom:0} .history-table th{background:var(--surface);color:var(--muted);font-size:10px;white-space:nowrap} .history-table td:first-child{color:var(--blue-strong);font-weight:900;white-space:nowrap}
+    .toc-dialog{width:min(760px,calc(100% - 28px));max-height:min(82vh,800px);padding:0;border:0;border-radius:28px;background:#fff;box-shadow:var(--shadow-md)} .toc-dialog::backdrop{background:rgba(16,22,31,.38);backdrop-filter:blur(4px)} .toc-head{position:sticky;top:0;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:19px 21px;border-bottom:1px solid var(--line);background:#fff;z-index:2} .toc-head h2{margin:0;font-size:22px} .toc-close{width:38px;height:38px;border:0;border-radius:12px;background:var(--surface);cursor:pointer;font-weight:900} .toc-list{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:17px} .toc-list a{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid var(--line);border-radius:15px;background:var(--surface);font-size:12px;font-weight:800} .toc-list a span{display:grid;place-items:center;min-width:34px;height:28px;border-radius:9px;background:var(--blue-soft);color:var(--blue-strong);font-size:10px}
+    .floating-actions{position:fixed;right:18px;bottom:18px;z-index:900;display:grid;gap:8px} .float-btn{width:46px;height:46px;display:grid;place-items:center;border:1px solid var(--line);border-radius:15px;background:rgba(255,255,255,.92);box-shadow:var(--shadow-sm);cursor:pointer;color:var(--ink-2);backdrop-filter:blur(12px)} .float-btn:hover{color:var(--blue)} .float-btn svg{width:19px}
+    .toast{position:fixed;left:50%;bottom:24px;z-index:2500;padding:11px 15px;border-radius:13px;background:rgba(25,31,40,.95);color:#fff;font-size:12px;font-weight:850;opacity:0;transform:translate(-50%,14px);pointer-events:none;transition:.22s ease} .toast.show{opacity:1;transform:translate(-50%,0)}
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease} .reveal.visible{opacity:1;transform:none}
+    @media(max-width:1040px){.nav-links{display:none}.report-stack{width:min(100% - 30px,var(--max))}.paper-page{padding:36px 34px 34px}.page-footer{left:34px;right:34px}.hero-summary-grid,.split-grid,.two-column,.template-grid,.compare-grid{grid-template-columns:1fr}.summary-cards,.command-cheat-grid,.practice-sequence,.persona-grid{grid-template-columns:repeat(2,1fr)}.roadmap-grid{grid-template-columns:1fr 1fr}.roadmap-card,.roadmap-card:nth-child(4),.roadmap-card:nth-child(5){grid-column:auto}.prep-grid,.telegram-steps,.command-grid.cols-3,.folder-purpose-grid,.three-step-cards,.source-grid{grid-template-columns:repeat(2,1fr)}.versus-grid{grid-template-columns:1fr}.versus-plus{min-height:42px}.wiki-tree-layout{grid-template-columns:1fr}.blue-flow{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:720px){.nav-wrap{padding:8px 8px 0}.nav{min-height:56px;border-radius:18px;padding-left:10px}.brand-sub,.progress-chip,.os-switch,.nav-actions .btn-outline{display:none}.brand{font-size:12px}.brand-mark{width:34px;height:34px}.nav-actions .btn{padding:0 10px;font-size:11px}main{padding-top:30px}.report-stack{width:min(100% - 20px,var(--max));gap:22px}.paper-page{min-height:auto;padding:27px 19px 55px;border-radius:25px;background-size:18px 18px}.paper-page::before{width:300px;height:300px;right:-180px;top:-170px}.cover-page{min-height:auto}.page-topline{margin-bottom:19px}.page-header h2,.cover-page .page-header h2{font-size:32px}.page-header>p{font-size:16px;margin-bottom:23px}.page-footer{left:19px;right:19px;bottom:12px}.hero-summary-grid,.summary-cards,.roadmap-grid,.prep-grid,.split-grid,.two-column,.telegram-steps,.command-cheat-grid,.practice-sequence,.persona-grid,.template-grid,.command-grid.cols-3,.folder-purpose-grid,.wiki-role-list,.three-step-cards,.compare-grid,.trouble-grid,.source-grid{grid-template-columns:1fr}.system-map{grid-template-columns:1fr}.map-arrow{transform:rotate(90deg);text-align:center}.map-wiki{grid-column:auto}.roadmap-card{min-height:auto}.versus-grid{grid-template-columns:1fr}.reset-card{grid-template-columns:1fr}.blue-flow{grid-template-columns:1fr 1fr}.verification-flow,.attachment-flow{flex-direction:column}.verification-flow i,.attachment-flow i{transform:rotate(90deg)}.update-callout{grid-template-columns:1fr}.update-callout i{transform:rotate(90deg)}.correction-row{grid-template-columns:1fr}.correction-row .right{border-left:0;border-top:1px solid var(--line)}.toc-list{grid-template-columns:1fr}.floating-actions{right:9px;bottom:9px}.code-card pre{font-size:11.5px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+    @media print{@page{size:A4 landscape;margin:8mm}body{background:#fff!important;color:#000}.nav-wrap,.floating-actions,.scroll-progress,.toast,.copy-btn,.task-check,.toc-dialog{display:none!important}main{padding:0}.report-stack{width:100%;display:block}.paper-page{min-height:185mm;margin:0 0 8mm;padding:10mm 11mm 11mm;border:1px solid #d7dde4;border-radius:0;box-shadow:none;break-after:page;break-inside:avoid;background:#fff!important;color:#000!important;overflow:visible}.paper-page:last-child{break-after:auto}.paper-page::before,.paper-page::after{display:none}.page-header h2,.cover-page .page-header h2{font-size:29px!important}.page-header>p{font-size:12px;margin-bottom:5mm;color:#333!important}.page-topline{margin-bottom:4mm}.page-footer{left:11mm;right:11mm;bottom:4mm}.blue-page{border-top:3px solid var(--blue)}.blue-page .page-section,.blue-page .page-footer{color:#555!important}.blue-page .page-number{background:#fff;color:var(--blue-strong);border-color:#c8d8ec}.blue-flow article{border:1px solid #ccd4dd;background:#f5f7fa;color:#000}.blue-flow p{color:#444}.blue-page .instruction-card,.blue-page .info-note{color:#000;background:#fff;border-color:#ccd4dd}.code-card{box-shadow:none}.code-card pre{font-size:9px;line-height:1.45}.source-grid{grid-template-columns:repeat(4,1fr)}.source-card{break-inside:avoid}.history-table-wrap{overflow:visible}.history-table{min-width:0;font-size:8px}[data-os-panel]{display:block!important}[data-os-panel]+[data-os-panel]{margin-top:3mm}.skip-link{display:none!important}.code-card,.instruction-card,.info-note,.warning-note,.security-note,.source-card,.folder-tree-card,.decision-banner,.definition-banner,.hero-thesis,.system-map,.summary-cards article,.report-history{break-inside:avoid;page-break-inside:avoid}.cover-page{min-height:185mm;height:185mm;padding:7mm 9mm 8mm;overflow:hidden}.cover-page .page-topline{margin-bottom:2mm}.cover-page .page-header h2{font-size:24px!important;line-height:1.1;margin-bottom:2mm}.cover-page .page-header>p{font-size:9.5px;line-height:1.35;margin-bottom:3mm}.cover-page .hero-summary-grid{gap:3mm}.cover-page .hero-thesis{padding:4mm;border-radius:5mm}.cover-page .mini-kicker{margin-bottom:1.5mm;padding:1mm 2mm;font-size:7.5px}.cover-page .hero-thesis h3{font-size:18px;line-height:1.22;margin-bottom:2mm}.cover-page .hero-thesis p{font-size:9px;line-height:1.35;margin-bottom:0}.cover-page .report-meta{margin-top:2mm;gap:1.5mm 2.5mm;font-size:7px}.cover-page .version-badge{min-height:5mm;padding:0 2mm}.cover-page .system-map{padding:3mm;border-radius:5mm;gap:2mm}.cover-page .map-node{min-height:20mm;padding:2.5mm;border-radius:4mm}.cover-page .map-node b{width:5mm;height:5mm;margin-bottom:1.5mm;font-size:7px}.cover-page .map-node strong{font-size:10px}.cover-page .map-node span{font-size:7px}.cover-page .map-arrow{font-size:13px}.cover-page .map-wiki{min-height:auto}.cover-page .summary-cards{gap:2mm;margin-top:3mm}.cover-page .summary-cards article{padding:2.5mm;border-radius:3mm}.cover-page .summary-cards h3{margin:1.5mm 0 1mm;font-size:10px}.cover-page .summary-cards p{font-size:7.5px;line-height:1.35}.cover-page .decision-banner{margin-top:2.5mm;padding:2mm 2.5mm;border-radius:3mm;font-size:7.5px;line-height:1.3}.cover-page .page-footer{left:9mm;right:9mm;bottom:3mm}.reveal{opacity:1!important;transform:none!important}}
+  </style>
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260810-mobile-scroll1">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png?v=20260810-mobile-scroll1">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png?v=20260810-mobile-scroll1">
+  <link rel="manifest" href="../../site.webmanifest?v=20260810-mobile-scroll1">
+  <meta name="application-name" content="Report Hub">
+  <meta property="og:site_name" content="Report Hub">
+  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260810-mobile-scroll1">
+  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260810-mobile-scroll1">
+  <link rel="stylesheet" href="../../assets/report-comments.css?v=20260809-comments1">
+</head>
+<body data-os="windows" data-report-cover="assets/thumbnail.png" data-report-cover-alt="Hermes와 지식 네트워크를 상징하는 주황색 그래픽" data-report-view="detail" data-report-layout="wide">
+  <a class="report-home-button" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span></a>
+<a class="skip-link" href="#page-01">본문으로 바로가기</a>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="nav-wrap">
+<nav aria-label="교육 자료 주요 메뉴" class="nav">
+<a aria-label="교육 자료 처음으로" class="brand" href="#page-01">
+<span aria-hidden="true" class="brand-mark"><svg fill="none" viewbox="0 0 24 24"><path d="M6 4.5h12v15H6z" stroke="currentColor" stroke-width="2"></path><path d="M9 8h6M9 12h6M9 16h4" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path></svg></span>
+<span>HERMES PRACTICAL GUIDE</span><span class="brand-sub">설치 → 자동화 → Wiki</span>
+</a>
+<div class="nav-links">
+<a href="#page-03">설치</a><a href="#page-07">명령</a><a href="#page-09">이름·페르소나</a><a href="#page-13">Cron</a><a href="#page-16">Second Brain</a><a href="#page-27">출처</a>
+</div>
+<div class="nav-actions">
+<div aria-label="운영체제 예제 선택" class="os-switch"><button class="active" data-os="windows" type="button">Windows</button><button data-os="macos" type="button">macOS</button></div>
+<span class="progress-chip" id="progressChip">진행 0%</span>
+<button class="btn btn-outline" id="tocOpen" type="button">목차</button>
+<button class="btn btn-primary" onclick="window.print()" type="button">PDF 저장</button>
+</div>
+</nav>
+</div>
+<main id="main">
+<div class="report-stack">
+<article aria-labelledby="page-01-title" class="paper-page cover-page" data-page="01" data-section="전체 요약" id="page-01">
+<div class="page-topline">
+<span class="page-section">EXECUTIVE SUMMARY</span>
+<span class="page-number">P.01 / 27</span>
+</div>
+<header class="page-header">
+<h2 id="page-01-title">설치에서 자동화까지,<br/><span class="blue">한 번에 따라 하는 Hermes 실습</span></h2>
+<p>비전공자가 Hermes Desktop과 Telegram을 연결하고, 명령어·페르소나·Cron·Obsidian·LLM Wiki를 순서대로 직접 완성하는 단일 웹 교육 자료입니다.</p>
+</header>
+<div class="page-body">
+<div class="hero-summary-grid">
+<section class="hero-thesis">
+<span class="mini-kicker">오늘의 완성 상태</span>
+<h3>Telegram에서 말하면<br/><mark>Hermes가 실행하고 Wiki가 기억합니다</mark></h3>
+<p>설치 → 연결 → 명령 연습 → 자동화 → 지식 축적의 흐름을 끊지 않고 이어갑니다.</p>
+<div aria-label="보고서 메타 정보" class="report-meta">
+<span class="version-badge" id="reportVersion">v1.0.0</span>
+<span id="reportUpdated">Updated 2026.08.10</span>
+<span id="reportGeneration">AI-assisted · Human review recommended</span>
+</div>
+</section>
+<section aria-label="교육 과정 전체 구조" class="system-map">
+<div class="map-node map-hermes"><b>1</b><strong>Hermes</strong><span>설치·모델 연결</span></div>
+<div aria-hidden="true" class="map-arrow">→</div>
+<div class="map-node map-telegram"><b>2</b><strong>Telegram</strong><span>어디서나 지시</span></div>
+<div aria-hidden="true" class="map-arrow">→</div>
+<div class="map-node map-cron"><b>3</b><strong>Cron</strong><span>정해진 시간 실행</span></div>
+<div aria-hidden="true" class="map-arrow">→</div>
+<div class="map-node map-wiki"><b>4</b><strong>Second Brain</strong><span>Obsidian·LLM Wiki</span></div>
+</section>
+</div>
+<div class="summary-cards">
+<article><b>01</b><h3>먼저 연결</h3><p>Desktop, 모델, Telegram Gateway를 정상 상태로 만듭니다.</p></article>
+<article><b>02</b><h3>직접 연습</h3><p><code>/model</code>, <code>/usage</code>, <code>/reasoning</code>, <code>/status</code>를 실행합니다.</p></article>
+<article><b>03</b><h3>자동화</h3><p>매일 오전 8시 브리핑과 Wiki Ingest·Lint를 예약합니다.</p></article>
+<article><b>04</b><h3>기억 축적</h3><p>PARA의 <code>05 LLM Wiki</code>에 원본과 연결 지식을 누적합니다.</p></article>
+</div>
+<div class="decision-banner"><strong>핵심 원칙</strong><span>토큰·비밀번호는 코드블록 예시에 넣지 않고, 삭제 작업은 항상 목록 확인 → 대상 확인 → 승인 순서로 진행합니다.</span></div>
+</div>
+<footer class="page-footer">
+<span>전체 요약</span>
+<span>Hermes Agent Practical Learning</span>
+</footer>
+</article>
+<article aria-labelledby="page-02-title" class="paper-page" data-page="02" data-section="학습 로드맵" id="page-02">
+<div class="page-topline">
+<span class="page-section">LEARNING MAP</span>
+<span class="page-number">P.02 / 27</span>
+</div>
+<header class="page-header">
+<h2 id="page-02-title">27개 편집 기준 페이지로<br/>실습 순서를 고정합니다</h2>
+<p>각 페이지는 하나의 메시지와 하나의 완료 조건만 담습니다. 상단의 페이지 번호를 기준으로 추후 내용을 추가·교체할 수 있습니다.</p>
+</header>
+<div class="page-body">
+<div class="roadmap-grid">
+<article class="roadmap-card"><span>PHASE 1 · P.03–06</span><h3>설치와 연결</h3><p>Hermes Desktop → 모델 OAuth → BotFather → Telegram Gateway</p></article>
+<article class="roadmap-card"><span>PHASE 2 · P.07–12</span><h3>명령과 정체성</h3><p>상태·모델·사용량·추론 → 이름 → 세션 페르소나 → SOUL.md</p></article>
+<article class="roadmap-card"><span>PHASE 3 · P.13–15</span><h3>반복 업무 자동화</h3><p>Home Channel → 오전 8시 브리핑 → 목록·실행·삭제</p></article>
+<article class="roadmap-card"><span>PHASE 4 · P.16–24</span><h3>Second Brain</h3><p>Obsidian → PARA → 05 LLM Wiki → 저장·질의 → Ingest·Lint</p></article>
+<article class="roadmap-card"><span>PHASE 5 · P.25–27</span><h3>안전 운영</h3><p>보안 기준 → 문제 해결 → 출처·버전 이력</p></article>
+</div>
+<div class="prep-grid">
+<article class="prep-card"><b>준비물</b><p>Windows 또는 macOS PC, Telegram 계정, ChatGPT/지원 모델 계정, 인터넷 연결</p></article>
+<article class="prep-card"><b>권장 방식</b><p>각 실습 후 결과 화면을 확인하고 다음 페이지로 이동합니다. 실패하면 P.26에서 복구합니다.</p></article>
+<article class="prep-card warning"><b>절대 공유 금지</b><p>Bot Token, API Key, 비밀번호, OAuth 장치 코드, 개인 user ID가 들어간 화면 캡처</p></article>
+</div>
+<label class="task-check">
+<input data-progress="p02" type="checkbox"/>
+<span aria-hidden="true"></span>
+<strong>교육 순서와 준비물 확인 완료</strong>
+</label></div>
+<footer class="page-footer">
+<span>학습 로드맵</span>
+<span>Hermes Agent Practical Learning</span>
+</footer>
+</article>
+<article aria-labelledby="page-03-title" class="paper-page" data-page="03" data-section="Hermes 설치" id="page-03">
+<div class="page-topline">
+<span class="page-section">01 · HERMES INSTALL</span>
+<span class="page-number">P.03 / 27</span>
+</div>
+<header class="page-header">
+<h2 id="page-03-title">공식 배포판에서 받고,<br/>첫 실행 준비가 끝날 때까지 기다리세요</h2>
+<p>사용자 가이드의 핵심 흐름은 “공식 다운로드 → 설치 파일 실행 → Desktop 채팅 화면 확인”입니다. 첫 실행에서는 필요한 실행 환경 준비로 시간이 걸릴 수 있습니다.</p>
+</header>
+<div class="page-body">
+<div class="split-grid">
+<article class="step-panel">
+<div class="step-row"><b>1</b><div><h3>공식 다운로드</h3><p>Nous Research 공식 Hermes Agent 문서 또는 Desktop Download를 엽니다.</p></div></div>
+<div class="step-row"><b>2</b><div><h3>운영체제 선택</h3><p>Windows 또는 macOS용 파일을 받습니다. Windows 가이드의 파일명은 <code>Hermes-Setup.exe</code>입니다.</p></div></div>
+<div class="step-row"><b>3</b><div><h3>첫 실행 대기</h3><p>설치 후 Hermes Desktop을 열고 채팅 화면이 나타날 때까지 창을 닫지 않습니다.</p></div></div>
+</article>
+<article aria-label="Hermes Desktop 설치 흐름 모형" class="visual-window">
+<div class="window-bar"><i></i><i></i><i></i><span>Hermes Desktop</span></div>
+<div class="install-flow"><div><strong>Download</strong><span>공식 배포판</span></div><em>↓</em><div><strong>Install</strong><span>OS 안내 따르기</span></div><em>↓</em><div><strong>First Run</strong><span>채팅 화면 확인</span></div></div>
+</article>
+</div>
+<div class="os-panels">
+<div data-os-panel="windows">
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Windows</span><strong>Windows에서 확인할 설치 파일명</strong></div>
+<button aria-label="Windows에서 확인할 설치 파일명 코드 복사" class="copy-btn" data-copy="install-windows" type="button">복사</button>
+</div>
+<pre id="install-windows"><code>Hermes-Setup.exe</code></pre>
+</div>
+</div>
+<div data-os-panel="macos">
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">macOS</span><strong>macOS 설치 흐름</strong></div>
+<button aria-label="macOS 설치 흐름 코드 복사" class="copy-btn" data-copy="install-macos" type="button">복사</button>
+</div>
+<pre id="install-macos"><code>공식 다운로드 페이지 → macOS 선택 → 받은 설치 파일 실행</code></pre>
+<p class="code-note">배포 파일명과 설치 화면은 버전에 따라 달라질 수 있으므로 공식 다운로드 화면을 기준으로 진행합니다.</p>
+</div>
+</div>
+</div>
+<div class="info-note"><strong>근거</strong><span>제공된 Desktop 가이드는 공식 사이트에서 다운로드하고 첫 실행 준비가 끝날 때까지 기다리는 순서를 안내합니다. <a aria-label="출처 1: Hermes Desktop 설치 가이드" class="cite" href="#source-user-desktop">[1]</a></span></div>
+<label class="task-check">
+<input data-progress="p03" type="checkbox"/>
+<span aria-hidden="true"></span>
+<strong>Hermes Desktop 설치 및 첫 화면 확인 완료</strong>
+</label>
+</div>
+<footer class="page-footer">
+<span>Hermes 설치</span>
+<span>Hermes Agent Practical Learning</span>
+</footer>
+</article>
+<article aria-labelledby="page-04-title" class="paper-page" data-page="04" data-section="모델 연결" id="page-04">
+<div class="page-topline">
+<span class="page-section">02 · MODEL CONNECTION</span>
+<span class="page-number">P.04 / 27</span>
+</div>
+<header class="page-header">
+<h2 id="page-04-title">모델을 연결한 뒤<br/><span class="blue">상태부터 확인</span>하세요</h2>
+<p>Desktop 가이드는 Settings의 Provider 화면에서 ChatGPT OAuth를 연결하는 흐름을 사용합니다. 로그인 코드나 장치 코드는 Hermes 채팅창이 아니라 공식 로그인 화면에만 입력합니다.</p>
+</header>
+<div class="page-body">
+<div class="two-column">
+<article class="instruction-card">
+<span class="card-label">GUI PATH</span>
+<h3>Settings → Providers → OpenAI Codex</h3>
+<ol class="number-list"><li>Provider를 선택합니다.</li><li>브라우저의 공식 로그인 화면에서 장치 코드를 입력합니다.</li><li>Hermes로 돌아와 모델을 선택합니다.</li><li>짧은 테스트 메시지를 보냅니다.</li></ol>
+</article>
+<article class="instruction-card soft-blue">
+<span class="card-label">TERMINAL FALLBACK</span>
+<h3>설정 마법사로 모델 연결</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">shell</span><strong>Nous Portal 기반 빠른 설정</strong></div>
+<button aria-label="Nous Portal 기반 빠른 설정 코드 복사" class="copy-btn" data-copy="setup-portal" type="button">복사</button>
+</div>
+<pre id="setup-portal"><code>hermes setup --portal</code></pre>
+</div>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">shell</span><strong>모델 설정만 다시 열기</strong></div>
+<button aria-label="모델 설정만 다시 열기 코드 복사" class="copy-btn" data-copy="setup-model" type="button">복사</button>
+</div>
+<pre id="setup-model"><code>hermes setup model</code></pre>
+</div>
+</article>
+</div>
+<div class="command-grid cols-3">
+<article><span>SESSION</span><h3>현재 대화 상태</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">chat</span><strong>Telegram 또는 Hermes 채팅</strong></div>
+<button aria-label="Telegram 또는 Hermes 채팅 코드 복사" class="copy-btn" data-copy="status-slash-1" type="button">복사</button>
+</div>
+<pre id="status-slash-1"><code>/status</code></pre>
+</div></article>
+<article><span>INSTALL</span><h3>전체 설치 상태</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">shell</span><strong>Terminal에서 실행</strong></div>
+<button aria-label="Terminal에서 실행 코드 복사" class="copy-btn" data-copy="status-cli-1" type="button">복사</button>
+</div>
+<pre id="status-cli-1"><code>hermes status</code></pre>
+</div></article>
+<article><span>DIAGNOSE</span><h3>자동 진단</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">shell</span><strong>문제가 있을 때 실행</strong></div>
+<button aria-label="문제가 있을 때 실행 코드 복사" class="copy-btn" data-copy="doctor-cli-1" type="button">복사</button>
+</div>
+<pre id="doctor-cli-1"><code>hermes doctor</code></pre>
+</div></article>
+</div>
+<div class="security-note"><strong>보안 확인</strong><span>OAuth 장치 코드·Bot Token·API Key는 메신저, 문서, 공개 화면 캡처에 붙여넣지 않습니다.</span></div>
+<label class="task-check">
+<input data-progress="p04" type="checkbox"/>
+<span aria-hidden="true"></span>
+<strong>모델 연결 후 /status 또는 hermes status 확인 완료</strong>
+</label>
+</div>
+<footer class="page-footer">
+<span>모델 연결</span>
+<span>Hermes Agent Practical Learning</span>
+</footer>
+</article>
+<article aria-labelledby="page-05-title" class="paper-page" data-page="05" data-section="Telegram 봇 생성" id="page-05">
+<div class="page-topline">
+<span class="page-section">03 · TELEGRAM BOT</span>
+<span class="page-number">P.05 / 27</span>
+</div>
+<header class="page-header">
+<h2 id="page-05-title">BotFather에서 내 봇을 만들고<br/>숫자 user ID를 준비합니다</h2>
+<p>Telegram 공식 봇 관리 도구에서 표시 이름과 고유 username을 정합니다. Bot Token은 봇을 제어하는 비밀키이므로 유출되면 즉시 폐기해야 합니다.</p>
+</header>
+<div class="page-body">
+<div class="telegram-steps">
+<article><b>1</b><h3>@BotFather 열기</h3><p>공식 계정인지 확인하고 새 봇 생성을 시작합니다.</p>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>BotFather에 보내기</strong></div>
+<button aria-label="BotFather에 보내기 코드 복사" class="copy-btn" data-copy="botfather-newbot" type="button">복사</button>
+</div>
+<pre id="botfather-newbot"><code>/newbot</code></pre>
+</div></article>
+<article><b>2</b><h3>이름·username 설정</h3><p>표시 이름은 자유롭게, username은 고유하고 <code>bot</code>으로 끝나게 정합니다.</p>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">text</span><strong>이름 예시</strong></div>
+<button aria-label="이름 예시 코드 복사" class="copy-btn" data-copy="bot-name-example" type="button">복사</button>
+</div>
+<pre id="bot-name-example"><code>표시 이름: 루미 AI 비서
+username: my_lumi_assistant_bot</code></pre>
+</div></article>
+<article><b>3</b><h3>숫자 user ID 확인</h3><p>가이드의 방식처럼 @userinfobot에 메시지를 보내 회신된 숫자를 기록합니다.</p>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>Telegram에서 검색</strong></div>
+<button aria-label="Telegram에서 검색 코드 복사" class="copy-btn" data-copy="userinfobot" type="button">복사</button>
+</div>
+<pre id="userinfobot"><code>@userinfobot</code></pre>
+</div></article>
+</div>
+<div class="danger-banner"><strong>Token 유출 시</strong><span>BotFather에서 해당 봇을 선택해 토큰을 revoke한 뒤 새 토큰으로 Desktop 설정을 교체합니다.</span></div>
+<div class="info-note"><strong>공식 문서</strong><span>Hermes Telegram 설정은 BotFather에서 <code>/newbot</code>을 보내고, 발급된 토큰과 허용 사용자 ID를 설정하도록 안내합니다. <a aria-label="출처 5: Hermes Telegram 공식 설정" class="cite" href="#source-official-telegram">[5]</a></span></div>
+<label class="task-check">
+<input data-progress="p05" type="checkbox"/>
+<span aria-hidden="true"></span>
+<strong>Bot Token과 숫자 user ID를 안전한 곳에 준비 완료</strong>
+</label>
+</div>
+<footer class="page-footer">
+<span>Telegram 봇 생성</span>
+<span>Hermes Agent Practical Learning</span>
+</footer>
+</article>
+<article aria-labelledby="page-06-title" class="paper-page" data-page="06" data-section="Telegram 연동" id="page-06">
+<div class="page-topline">
+<span class="page-section">04 · TELEGRAM CONNECTION</span>
+<span class="page-number">P.06 / 27</span>
+</div>
+<header class="page-header">
+<h2 id="page-06-title">Desktop에 토큰과 허용 사용자를 넣고<br/><span class="blue">Gateway를 재시작</span>합니다</h2>
+<p>토큰과 user ID는 Hermes Desktop 설정 화면에만 입력합니다. 저장 후 Gateway가 실행 중이고 Telegram이 Connected 상태인지 확인합니다.</p>
+</header>
+<div class="page-body">
+<div class="split-grid">
+<article class="step-panel">
+<div class="step-row"><b>1</b><div><h3>Messaging → Telegram</h3><p>Telegram 플랫폼을 선택합니다.</p></div></div>
+<div class="step-row"><b>2</b><div><h3>Bot Token·Allowed user IDs</h3><p>앞 페이지에서 준비한 값을 입력하고 Telegram을 Enabled로 전환합니다.</p></div></div>
+<div class="step-row"><b>3</b><div><h3>Save Changes → Restart Gateway</h3><p>System 화면에서 Gateway를 재시작하고 Connected 표시를 확인합니다.</p></div></div>
+<div class="step-row"><b>4</b><div><h3>Telegram 첫 메시지</h3><p>봇에게 <code>/start</code> 또는 짧은 인사를 보냅니다.</p></div></div>
+</article>
+<article class="visual-window">
+<div class="window-bar"><i></i><i></i><i></i><span>Messaging · Telegram</span></div>
+<div class="fake-form"><label>Bot token<input aria-label="가상 Bot token 입력란" readonly="" value="••••••••••••••••"/></label><label>Allowed user IDs<input aria-label="가상 허용 사용자 ID 입력란" readonly="" value="123 456 789"/></label><div class="fake-status"><span></span>Telegram Connected</div><button disabled="" type="button">Restart Gateway</button></div>
+</article>
+</div>
+<div class="command-grid cols-3">
+<article><h3>첫 연결 확인</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>Telegram 봇에게 보내기</strong></div>
+<button aria-label="Telegram 봇에게 보내기 코드 복사" class="copy-btn" data-copy="tg-start" type="button">복사</button>
+</div>
+<pre id="tg-start"><code>/start</code></pre>
+</div></article>
+<article><h3>Home Channel 지정</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>Cron 결과를 받을 채팅에서 실행</strong></div>
+<button aria-label="Cron 결과를 받을 채팅에서 실행 코드 복사" class="copy-btn" data-copy="tg-sethome" type="button">복사</button>
+</div>
+<pre id="tg-sethome"><code>/sethome</code></pre>
+</div></article>
+<article><h3>현재 세션 확인</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>응답이 오면 연결 성공</strong></div>
+<button aria-label="응답이 오면 연결 성공 코드 복사" class="copy-btn" data-copy="tg-status" type="button">복사</button>
+</div>
+<pre id="tg-status"><code>/status</code></pre>
+</div></article>
+</div>
+<div class="info-note"><strong>왜 /sethome인가?</strong><span>Hermes 공식 문서는 현재 채팅을 Home Channel로 지정하면 예약 작업 결과가 이 채팅으로 전달된다고 설명합니다. <a aria-label="출처 5: Hermes Telegram 공식 설정" class="cite" href="#source-official-telegram">[5]</a></span></div>
+<label class="task-check">
+<input data-progress="p06" type="checkbox"/>
+<span aria-hidden="true"></span>
+<strong>Telegram에서 /status 응답과 /sethome 완료</strong>
+</label>
+</div>
+<footer class="page-footer">
+<span>Telegram 연동</span>
+<span>Hermes Agent Practical Learning</span>
+</footer>
+</article>
+<article aria-labelledby="page-07-title" class="paper-page" data-page="07" data-section="주요 명령어" id="page-07">
+<div class="page-topline">
+<span class="page-section">05 · CORE COMMANDS</span>
+<span class="page-number">P.07 / 27</span>
+</div>
+<header class="page-header">
+<h2 id="page-07-title">네 개 명령만 익혀도<br/>상태·비용·속도를 스스로 조절할 수 있습니다</h2>
+<p>명령은 Telegram과 Hermes 채팅에서 슬래시로 시작합니다. 설치판에 따라 메뉴가 달라질 수 있으므로 최종 기준은 언제나 <code>/help</code>입니다.</p>
+</header>
+<div class="page-body">
+<div class="command-cheat-grid">
+<article><span>STATUS</span><h3><code>/status</code></h3><p>현재 모델·Provider·세션·토큰·최근 활동을 확인합니다.</p></article>
+<article><span>MODEL</span><h3><code>/model</code></h3><p>연결된 Provider와 모델을 보고 현재 세션 모델을 바꿉니다.</p></article>
+<article><span>USAGE</span><h3><code>/usage</code></h3><p>토큰 사용량, 비용 추정, 컨텍스트와 제공자 한도를 확인합니다.</p></article>
+<article><span>REASONING</span><h3><code>/reasoning</code></h3><p>추론 노력 수준과 추론 표시 방식을 확인하거나 변경합니다.</p></article>
+</div>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>한 번에 연습할 핵심 명령</strong></div>
+<button aria-label="한 번에 연습할 핵심 명령 코드 복사" class="copy-btn" data-copy="core-cheatsheet" type="button">복사</button>
+</div>
+<pre id="core-cheatsheet"><code>/help
+/status
+/model
+/usage
+/reasoning
+/version</code></pre>
+</div>
+<div class="compare-strip">
+<div><strong><code>/status</code></strong><span>현재 대화와 세션</span></div>
+<i>≠</i>
+<div><strong><code>hermes status</code></strong><span>설치·인증·플랫폼 전체</span></div>
+</div>
+<div class="info-note"><strong>공식 기준</strong><span>Slash Commands Reference는 <code>/status</code>, <code>/model</code>, <code>/usage</code>, <code>/reasoning</code>의 역할과 메시징 플랫폼 지원 범위를 설명합니다. <a aria-label="출처 6: Hermes Slash Commands Reference" class="cite" href="#source-official-slash">[6]</a></span></div>
+<label class="task-check">
+<input data-progress="p07" type="checkbox"/>
+<span aria-hidden="true"></span>
+<strong>핵심 명령 4개 역할 이해 완료</strong>
+</label>
+</div>
+<footer class="page-footer">
+<span>주요 명령어</span>
+<span>Hermes Agent Practical Learning</span>
+</footer>
+</article>
+<article aria-labelledby="page-08-title" class="paper-page" data-page="08" data-section="명령어 실습" id="page-08">
+<div class="page-topline">
+<span class="page-section">06 · COMMAND DRILL</span>
+<span class="page-number">P.08 / 27</span>
+</div>
+<header class="page-header">
+<h2 id="page-08-title">현재 상태를 보고<br/>이번 대화에 맞게 모델과 추론을 바꿔보세요</h2>
+<p>모델 전환은 기본적으로 현재 세션에만 적용합니다. 장기 기본값으로 저장할 때만 <code>--global</code>을 붙입니다.</p>
+</header>
+<div class="page-body">
+<div class="practice-sequence">
+<article><b>1</b><div><h3>상태 확인</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>1단계</strong></div>
+<button aria-label="1단계 코드 복사" class="copy-btn" data-copy="drill-status" type="button">복사</button>
+</div>
+<pre id="drill-status"><code>/status</code></pre>
+</div></div></article>
+<article><b>2</b><div><h3>모델 목록 열기</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>2단계</strong></div>
+<button aria-label="2단계 코드 복사" class="copy-btn" data-copy="drill-model" type="button">복사</button>
+</div>
+<pre id="drill-model"><code>/model</code></pre>
+</div></div></article>
+<article><b>3</b><div><h3>현재 사용량 확인</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>3단계</strong></div>
+<button aria-label="3단계 코드 복사" class="copy-btn" data-copy="drill-usage" type="button">복사</button>
+</div>
+<pre id="drill-usage"><code>/usage</code></pre>
+</div></div></article>
+<article><b>4</b><div><h3>추론 상태 확인</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>4단계</strong></div>
+<button aria-label="4단계 코드 복사" class="copy-btn" data-copy="drill-reasoning" type="button">복사</button>
+</div>
+<pre id="drill-reasoning"><code>/reasoning</code></pre>
+</div></div></article>
+</div>
+<div class="two-column">
+<article class="instruction-card"><h3>복잡한 분석에만 높이기</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>현재 대화에 high 적용</strong></div>
+<button aria-label="현재 대화에 high 적용 코드 복사" class="copy-btn" data-copy="reasoning-high" type="button">복사</button>
+</div>
+<pre id="reasoning-high"><code>/reasoning high</code></pre>
+</div>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>일반 업무로 되돌리기</strong></div>
+<button aria-label="일반 업무로 되돌리기 코드 복사" class="copy-btn" data-copy="reasoning-medium" type="button">복사</button>
+</div>
+<pre id="reasoning-medium"><code>/reasoning medium</code></pre>
+</div></article>
+<article class="instruction-card"><h3>기본값으로 저장할 때</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>기본 모델 변경</strong></div>
+<button aria-label="기본 모델 변경 코드 복사" class="copy-btn" data-copy="model-global" type="button">복사</button>
+</div>
+<pre id="model-global"><code>/model [목록에서 복사한 모델명] --global</code></pre>
+</div>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>기본 추론 수준 변경</strong></div>
+<button aria-label="기본 추론 수준 변경 코드 복사" class="copy-btn" data-copy="reasoning-global" type="button">복사</button>
+</div>
+<pre id="reasoning-global"><code>/reasoning high --global</code></pre>
+</div></article>
+</div>
+<div class="warning-note"><strong>비용·속도 주의</strong><span>높은 추론 수준과 잦은 모델 전환은 처리 시간과 비용을 늘릴 수 있습니다. 긴 대화에서 모델을 바꾸면 다음 요청이 전체 문맥을 다시 읽을 수 있습니다.</span></div>
+<label class="task-check">
+<input data-progress="p08" type="checkbox"/>
+<span aria-hidden="true"></span>
+<strong>/status → /model → /usage → /reasoning 순서 실습 완료</strong>
+</label>
+</div>
+<footer class="page-footer">
+<span>명령어 실습</span>
+<span>Hermes Agent Practical Learning</span>
+</footer>
+</article>
+<article aria-labelledby="page-09-title" class="paper-page" data-page="09" data-section="에이전트 이름" id="page-09">
+<div class="page-topline">
+<span class="page-section">07 · AGENT NAME</span>
+<span class="page-number">P.09 / 27</span>
+</div>
+<header class="page-header">
+<h2 id="page-09-title">보이는 봇 이름과<br/>AI가 스스로 인식하는 이름은 다릅니다</h2>
+<p>Telegram 표시 이름은 BotFather에서, Hermes의 내부 정체성과 호칭은 <code>SOUL.md</code>에서 관리합니다. 둘을 같은 이름으로 맞추면 사용자 경험이 자연스럽습니다.</p>
+</header>
+<div class="page-body">
+<div class="versus-grid">
+<article><span>OUTSIDE</span><h3>Telegram 표시 이름</h3><p>채팅 목록과 프로필에 보이는 이름입니다. BotFather에서 수정합니다.</p>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>BotFather에서 표시 이름 바꾸기</strong></div>
+<button aria-label="BotFather에서 표시 이름 바꾸기 코드 복사" class="copy-btn" data-copy="botfather-name" type="button">복사</button>
+</div>
+<pre id="botfather-name"><code>/mybots
+→ 내 봇 선택
+→ Edit Bot
+→ Edit Name</code></pre>
+</div></article>
+<div aria-hidden="true" class="versus-plus">+</div>
+<article class="recommended"><span>INSIDE</span><h3>Hermes 내부 이름</h3><p>새 세션에서 스스로 어떤 이름과 역할로 소개할지 정합니다.</p>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">prompt</span><strong>Hermes에게 이름 설정 요청</strong></div>
+<button aria-label="Hermes에게 이름 설정 요청 코드 복사" class="copy-btn" data-copy="agent-name-prompt" type="button">복사</button>
+</div>
+<pre id="agent-name-prompt"><code>너의 기본 이름을 "루미"로 설정해줘.
+
+~/.hermes/SOUL.md의 첫 부분에 아래 의미가 분명히 드러나게 반영해줘.
+- 이름: 루미
+- 역할: 나의 개인 AI 업무 비서
+- 나를 부르는 호칭: 제레미님
+
+기존 성격 지침은 보존하고, 변경할 내용을 먼저 보여준 뒤 내 승인을 받아 저장해줘.</code></pre>
+</div></article>
+</div>
+<div class="verification-flow">
+<div><strong>저장</strong><span>SOUL.md 수정</span></div><i>→</i><div><strong>새 세션</strong><span><code>/new</code></span></div><i>→</i><div><strong>확인</strong><span>이름·역할 소개 요청</span></div>
+</div>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>새 세션에서 확인</strong></div>
+<button aria-label="새 세션에서 확인 코드 복사" class="copy-btn" data-copy="agent-name-verify" type="button">복사</button>
+</div>
+<pre id="agent-name-verify"><code>/new
+
+너의 이름과 역할, 나를 부르는 호칭을 한 문장으로 소개해줘.</code></pre>
+</div>
+<div class="info-note"><strong>적용 시점</strong><span><code>SOUL.md</code>는 Hermes 인스턴스의 기본 정체성 파일이며 세션 시작 시 로드됩니다. <a aria-label="출처 9: Hermes Personality &amp; SOUL.md" class="cite" href="#source-official-soul">[9]</a></span></div>
+<label class="task-check">
+<input data-progress="p09" type="checkbox"/>
+<span aria-hidden="true"></span>
+<strong>Telegram 표시 이름과 Hermes 내부 이름 설정 완료</strong>
+</label>
+</div>
+<footer class="page-footer">
+<span>에이전트 이름</span>
+<span>Hermes Agent Practical Learning</span>
+</footer>
+</article>
+<article aria-labelledby="page-10-title" class="paper-page" data-page="10" data-section="페르소나 설정" id="page-10">
+<div class="page-topline">
+<span class="page-section">08 · SESSION PERSONA</span>
+<span class="page-number">P.10 / 27</span>
+</div>
+<header class="page-header">
+<h2 id="page-10-title">잠깐 말투를 바꿀 때는<br/><code>/personality</code>를 사용합니다</h2>
+<p>세션 페르소나는 현재 대화의 스타일을 빠르게 바꾸는 오버레이입니다. 장기간 유지할 기본 성격은 다음 페이지의 <code>SOUL.md</code>에 저장합니다.</p>
+</header>
+<div class="page-body">
+<div class="persona-grid">
+<article><span>기본 목록</span><h3>현재 설치판 확인</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>사용 가능한 페르소나 확인</strong></div>
+<button aria-label="사용 가능한 페르소나 확인 코드 복사" class="copy-btn" data-copy="persona-list" type="button">복사</button>
+</div>
+<pre id="persona-list"><code>/personality</code></pre>
+</div></article>
+<article><span>간결형</span><h3>짧고 직접적으로</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>보고·명령에 적합</strong></div>
+<button aria-label="보고·명령에 적합 코드 복사" class="copy-btn" data-copy="persona-concise" type="button">복사</button>
+</div>
+<pre id="persona-concise"><code>/personality concise</code></pre>
+</div></article>
+<article><span>기술 전문가</span><h3>정확한 기술 설명</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>설정·장애 점검에 적합</strong></div>
+<button aria-label="설정·장애 점검에 적합 코드 복사" class="copy-btn" data-copy="persona-technical" type="button">복사</button>
+</div>
+<pre id="persona-technical"><code>/personality technical</code></pre>
+</div></article>
+<article><span>친절한 교사</span><h3>초보자 눈높이</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>교육·실습에 적합</strong></div>
+<button aria-label="교육·실습에 적합 코드 복사" class="copy-btn" data-copy="persona-teacher" type="button">복사</button>
+</div>
+<pre id="persona-teacher"><code>/personality teacher</code></pre>
+</div></article>
+</div>
+<div class="reset-card"><div><strong>세션 페르소나 해제</strong><span>기본 SOUL 정체성으로 돌아갑니다.</span></div>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>페르소나 오버레이 제거</strong></div>
+<button aria-label="페르소나 오버레이 제거 코드 복사" class="copy-btn" data-copy="persona-none" type="button">복사</button>
+</div>
+<pre id="persona-none"><code>/personality none</code></pre>
+</div></div>
+<div class="warning-note"><strong>버전 차이</strong><span>설치판에 따라 프리셋 이름이 달라질 수 있습니다. 먼저 <code>/personality</code>로 실제 목록을 확인하고, 목록에 보이는 이름을 복사해 사용하세요.</span></div>
+<label class="task-check">
+<input data-progress="p10" type="checkbox"/>
+<span aria-hidden="true"></span>
+<strong>페르소나 변경과 해제 실습 완료</strong>
+</label>
+</div>
+<footer class="page-footer">
+<span>페르소나 설정</span>
+<span>Hermes Agent Practical Learning</span>
+</footer>
+</article>
+<article aria-labelledby="page-11-title" class="paper-page" data-page="11" data-section="페르소나 예제" id="page-11">
+<div class="page-topline">
+<span class="page-section">09 · SOUL TEMPLATE A</span>
+<span class="page-number">P.11 / 27</span>
+</div>
+<header class="page-header">
+<h2 id="page-11-title">장기 성격은 SOUL.md에 저장합니다<br/><span class="blue">개인 비서형 · 비전공자 교사형</span></h2>
+<p>아래 템플릿은 전체를 복사한 뒤 이름과 호칭만 바꿔 사용할 수 있습니다. 과도한 역할 설명보다 말투, 판단 원칙, 금지 행동을 명확히 적는 편이 좋습니다.</p>
+</header>
+<div class="page-body">
+<div class="template-grid">
+<article>
+<div class="template-head"><span>PERSONAL ASSISTANT</span><h3>정중한 개인 비서형</h3></div>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">markdown</span><strong>SOUL.md 전체 예시</strong></div>
+<button aria-label="SOUL.md 전체 예시 코드 복사" class="copy-btn" data-copy="soul-assistant" type="button">복사</button>
+</div>
+<pre id="soul-assistant"><code># Identity
+너의 이름은 루미다.
+너는 사용자의 개인 AI 업무 비서다.
+
+# Communication
+- 사용자를 "제레미님"이라고 부른다.
+- 결론을 먼저 말하고, 필요한 근거를 짧게 덧붙인다.
+- 일정·할 일·결정 사항은 체크리스트로 정리한다.
+- 모르는 내용은 추측하지 않고 확인이 필요하다고 말한다.
+
+# Working rules
+- 삭제·결제·대외 발송 전에는 반드시 승인을 받는다.
+- 비밀번호, Bot Token, API Key를 대화나 문서에 다시 노출하지 않는다.
+- 긴 작업은 계획 → 실행 → 결과 → 다음 행동 순서로 보고한다.</code></pre>
+</div>
+</article>
+<article>
+<div class="template-head"><span>BEGINNER TEACHER</span><h3>비전공자 교사형</h3></div>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">markdown</span><strong>SOUL.md 전체 예시</strong></div>
+<button aria-label="SOUL.md 전체 예시 코드 복사" class="copy-btn" data-copy="soul-teacher" type="button">복사</button>
+</div>
+<pre id="soul-teacher"><code># Identity
+너의 이름은 모아다.
+너는 비전공자에게 AI와 자동화를 가르치는 친절한 교사다.
+
+# Communication
+- 기술 용어는 처음 등장할 때 쉬운 말로 풀어쓴다.
+- 한 단계에 하나의 행동만 안내한다.
+- 명령어는 항상 복사 가능한 코드블록으로 제공한다.
+- 실행 후 사용자가 확인해야 할 정상 결과를 함께 말한다.
+
+# Working rules
+- 실패 가능성이 있는 단계는 되돌리는 방법을 먼저 설명한다.
+- 사용자 화면이나 설치판을 확인하지 않고 메뉴 이름을 단정하지 않는다.
+- 질문이 모호하면 가장 안전한 기본값을 제시하고 가정을 표시한다.</code></pre>
+</div>
+</article>
+</div>
+<label class="task-check">
+<input data-progress="p11" type="checkbox"/>
+<span aria-hidden="true"></span>
+<strong>개인 비서형 또는 교사형 템플릿 선택 완료</strong>
+</label>
+</div>
+<footer class="page-footer">
+<span>페르소나 예제</span>
+<span>Hermes Agent Practical Learning</span>
+</footer>
+</article>
+<article aria-labelledby="page-12-title" class="paper-page" data-page="12" data-section="페르소나 예제" id="page-12">
+<div class="page-topline">
+<span class="page-section">10 · SOUL TEMPLATE B</span>
+<span class="page-number">P.12 / 27</span>
+</div>
+<header class="page-header">
+<h2 id="page-12-title">업무 성격에 맞춰 고르세요<br/><span class="blue">냉철한 전략가형 · 따뜻한 코치형</span></h2>
+<p>같은 Hermes라도 판단 방식과 피드백 순서를 바꿀 수 있습니다. 단, 페르소나는 사실 검증이나 보안 규칙보다 우선하지 않습니다.</p>
+</header>
+<div class="page-body">
+<div class="template-grid">
+<article>
+<div class="template-head"><span>STRATEGIST</span><h3>냉철한 전략가형</h3></div>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">markdown</span><strong>SOUL.md 전체 예시</strong></div>
+<button aria-label="SOUL.md 전체 예시 코드 복사" class="copy-btn" data-copy="soul-strategist" type="button">복사</button>
+</div>
+<pre id="soul-strategist"><code># Identity
+너의 이름은 아틀라스다.
+너는 경영진의 의사결정을 돕는 냉철한 전략 참모다.
+
+# Communication
+- 답변 첫 줄에 결론을 제시한다.
+- 사실, 해석, 가정, 미확인을 구분한다.
+- 선택지가 둘 이상이면 같은 기준으로 비교한다.
+- 장점보다 실패 조건과 기회비용을 먼저 점검한다.
+
+# Working rules
+- 근거 없는 숫자를 만들지 않는다.
+- 결론이 바뀌면 어떤 새 근거 때문인지 밝힌다.
+- 권고안에는 담당자, 기한, 완료 기준을 포함한다.</code></pre>
+</div>
+</article>
+<article>
+<div class="template-head"><span>COACH</span><h3>따뜻한 코치형</h3></div>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">markdown</span><strong>SOUL.md 전체 예시</strong></div>
+<button aria-label="SOUL.md 전체 예시 코드 복사" class="copy-btn" data-copy="soul-coach" type="button">복사</button>
+</div>
+<pre id="soul-coach"><code># Identity
+너의 이름은 온이다.
+너는 사용자가 부담 없이 행동을 시작하도록 돕는 따뜻한 코치다.
+
+# Communication
+- 감정을 먼저 인정하되 현실적인 다음 행동을 분명히 제시한다.
+- 한 번에 해야 할 일을 최대 3개로 줄인다.
+- 비난이나 과장된 칭찬 대신 관찰 가능한 사실을 말한다.
+- 사용자가 지쳤을 때는 최소 행동 버전을 함께 제시한다.
+
+# Working rules
+- 의료·법률·재무 판단을 대신하지 않는다.
+- 사용자가 스스로 선택할 수 있도록 대안과 기준을 함께 설명한다.
+- 위험 신호가 있으면 친절하지만 분명하게 전문가 도움을 권한다.</code></pre>
+</div>
+</article>
+</div>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">prompt</span><strong>선택한 템플릿 적용 요청</strong></div>
+<button aria-label="선택한 템플릿 적용 요청 코드 복사" class="copy-btn" data-copy="soul-apply-prompt" type="button">복사</button>
+</div>
+<pre id="soul-apply-prompt"><code>아래 코드블록 내용을 ~/.hermes/SOUL.md에 적용해줘.
+기존 파일을 먼저 백업하고, 변경 전후 차이를 보여준 뒤 승인을 받아 저장해줘.
+저장 후 새 세션에서 확인할 수 있도록 다음 명령도 안내해줘.</code></pre>
+</div>
+<label class="task-check">
+<input data-progress="p12" type="checkbox"/>
+<span aria-hidden="true"></span>
+<strong>SOUL.md 템플릿 적용 후 /new로 확인 완료</strong>
+</label>
+</div>
+<footer class="page-footer">
+<span>페르소나 예제</span>
+<span>Hermes Agent Practical Learning</span>
+</footer>
+</article>
+<article aria-labelledby="page-13-title" class="paper-page blue-page" data-page="13" data-section="Cron 기초" id="page-13">
+<div class="page-topline">
+<span class="page-section">11 · CRON BASICS</span>
+<span class="page-number">P.13 / 27</span>
+</div>
+<header class="page-header">
+<h2 id="page-13-title">Cron은 정해진 시간에<br/>새로운 독립 세션으로 일을 시작합니다</h2>
+<p>예약 작업은 과거 대화를 기억하지 않는 새 세션에서 실행됩니다. 따라서 시간, 지역, 검색 범위, 출력 형식, 전달 위치를 프롬프트 안에 모두 넣어야 합니다.</p>
+</header>
+<div class="page-body">
+<div class="blue-flow">
+<article><b>1</b><h3>Schedule</h3><p>언제 실행할지</p></article>
+<article><b>2</b><h3>Fresh Session</h3><p>새 문맥으로 시작</p></article>
+<article><b>3</b><h3>Tools</h3><p>검색·파일 작업</p></article>
+<article><b>4</b><h3>Result</h3><p>요약·보고서 생성</p></article>
+<article><b>5</b><h3>Delivery</h3><p>Telegram 또는 로컬</p></article>
+</div>
+<div class="two-column">
+<article class="instruction-card"><h3>등록 전 체크</h3><ul class="check-list"><li>Gateway가 실행 중인가?</li><li>기본 모델이 설정됐는가?</li><li>Telegram에서 <code>/sethome</code>을 했는가?</li><li>시간대가 Asia/Seoul인가?</li></ul></article>
+<article class="instruction-card"><h3>직접 상태 확인</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>Telegram에서 순서대로 실행</strong></div>
+<button aria-label="Telegram에서 순서대로 실행 코드 복사" class="copy-btn" data-copy="cron-precheck" type="button">복사</button>
+</div>
+<pre id="cron-precheck"><code>/sethome
+/status
+/cron list</code></pre>
+</div>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">shell</span><strong>Terminal 대체 점검</strong></div>
+<button aria-label="Terminal 대체 점검 코드 복사" class="copy-btn" data-copy="cron-cli-precheck" type="button">복사</button>
+</div>
+<pre id="cron-cli-precheck"><code>hermes gateway status
+hermes cron status</code></pre>
+</div></article>
+</div>
+<div class="info-note"><strong>공식 기준</strong><span>Hermes의 Cron은 Gateway가 스케줄러를 실행하고, 각 작업을 독립된 새 Agent 세션에서 처리합니다. <a aria-label="출처 7: Hermes Scheduled Tasks" class="cite" href="#source-official-cron">[7]</a></span></div>
+<label class="task-check">
+<input data-progress="p13" type="checkbox"/>
+<span aria-hidden="true"></span>
+<strong>Cron 등록 전 Gateway·Home Channel·시간대 확인 완료</strong>
+</label>
+</div>
+<footer class="page-footer">
+<span>Cron 기초</span>
+<span>Hermes Agent Practical Learning</span>
+</footer>
+</article>
+<article aria-labelledby="page-14-title" class="paper-page" data-page="14" data-section="Cron 등록" id="page-14">
+<div class="page-topline">
+<span class="page-section">12 · CREATE MORNING BRIEFING</span>
+<span class="page-number">P.14 / 27</span>
+</div>
+<header class="page-header">
+<h2 id="page-14-title">매일 오전 8시<br/>날씨와 국내·세계 뉴스를 받으세요</h2>
+<p>자연어로 요청해도 Hermes가 Cron 작업을 만들 수 있습니다. 아래 프롬프트는 새로운 세션에서도 필요한 조건을 잃지 않도록 완전한 형태로 작성했습니다.</p>
+</header>
+<div class="page-body">
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">prompt</span><strong>Telegram에서 Hermes에게 보내기</strong></div>
+<button aria-label="Telegram에서 Hermes에게 보내기 코드 복사" class="copy-btn" data-copy="morning-briefing-prompt" type="button">복사</button>
+</div>
+<pre id="morning-briefing-prompt"><code>내 로컬 시간대 Asia/Seoul 기준으로 매일 오전 8시에 실행되는 크론잡을 등록해줘.
+
+작업 이름: 아침 날씨·뉴스 브리핑
+전달 위치: 현재 Telegram Home Channel
+
+매 실행 시 아래 작업을 새 세션에서 독립적으로 수행해줘.
+
+1. [내 지역을 입력: 예, 경기도 화성시 동탄]의 오늘 날씨
+   - 현재 기온, 최고·최저 기온, 강수 확률, 미세먼지 또는 대기질
+   - 우산·옷차림·운전 등 실용적인 한 줄 조언
+
+2. 국내 주요 뉴스 5건
+   - 지난 24시간 이내 기사 우선
+   - 정치·경제·사회·산업을 균형 있게 선택
+   - 같은 사건의 중복 기사는 하나로 합치기
+
+3. 세계 주요 뉴스 5건
+   - 지난 24시간 이내 기사 우선
+   - 국제정세·경제·과학기술을 균형 있게 선택
+   - 같은 사건의 중복 기사는 하나로 합치기
+
+4. 출력 형식
+   - 첫 줄: 날짜와 한 문장 핵심 요약
+   - 날씨 → 국내 → 세계 순서
+   - 뉴스마다 제목, 2문장 요약, 원문 링크
+   - 공식 발표·원문·1차 출처를 우선
+   - 확인되지 않은 내용은 "미확인"으로 표시
+   - 전체 분량은 모바일에서 3분 안에 읽을 수 있게 작성
+
+등록 전에 작업 이름, 실행 시간, 시간대, 전달 위치, 전체 프롬프트를 먼저 보여줘.
+내가 "승인"이라고 답한 뒤에만 실제 등록해줘.</code></pre>
+</div>
+<div class="two-column compact-top">
+<article class="instruction-card"><h3>등록 후 즉시 테스트</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>목록 확인 후 1회 실행</strong></div>
+<button aria-label="목록 확인 후 1회 실행 코드 복사" class="copy-btn" data-copy="cron-run-list" type="button">복사</button>
+</div>
+<pre id="cron-run-list"><code>/cron list
+/cron run [작업 ID 또는 정확한 작업 이름]</code></pre>
+</div></article>
+<article class="instruction-card"><h3>CLI 방식이 필요한 경우</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>고급 사용자용</strong></div>
+<button aria-label="고급 사용자용 코드 복사" class="copy-btn" data-copy="cron-add-cli" type="button">복사</button>
+</div>
+<pre id="cron-add-cli"><code>/cron add "0 8 * * *" "[위 프롬프트의 작업 본문을 한 문장으로 축약하지 말고 그대로 입력]"</code></pre>
+</div></article>
+</div>
+<div class="warning-note"><strong>지역 입력 필수</strong><span><code>[내 지역을 입력]</code> 부분을 실제 생활권으로 바꾼 뒤 복사하세요. Cron 프롬프트는 과거 대화를 기억하지 않으므로 “내가 사는 곳”처럼 모호하게 쓰지 않습니다.</span></div>
+<label class="task-check">
+<input data-progress="p14" type="checkbox"/>
+<span aria-hidden="true"></span>
+<strong>오전 8시 브리핑 Cron 등록과 1회 테스트 완료</strong>
+</label>
+</div>
+<footer class="page-footer">
+<span>Cron 등록</span>
+<span>Hermes Agent Practical Learning</span>
+</footer>
+</article>
+<article aria-labelledby="page-15-title" class="paper-page" data-page="15" data-section="Cron 관리" id="page-15">
+<div class="page-topline">
+<span class="page-section">13 · LIST · RUN · DELETE</span>
+<span class="page-number">P.15 / 27</span>
+</div>
+<header class="page-header">
+<h2 id="page-15-title">번호를 붙여 목록화한 뒤<br/>정확한 대상만 삭제합니다</h2>
+<p>사용자에게는 번호가 편하지만, 실제 Cron 작업은 ID 또는 이름으로 관리됩니다. 먼저 번호·ID·이름·시간을 함께 보여 달라고 요청하면 실수를 줄일 수 있습니다.</p>
+</header>
+<div class="page-body">
+<div class="command-grid cols-3">
+<article><span>LIST</span><h3>기본 목록</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>Cron 목록 보기</strong></div>
+<button aria-label="Cron 목록 보기 코드 복사" class="copy-btn" data-copy="cron-list-basic" type="button">복사</button>
+</div>
+<pre id="cron-list-basic"><code>/cron list</code></pre>
+</div></article>
+<article><span>RUN</span><h3>지금 실행</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>예약 전 테스트</strong></div>
+<button aria-label="예약 전 테스트 코드 복사" class="copy-btn" data-copy="cron-run-now" type="button">복사</button>
+</div>
+<pre id="cron-run-now"><code>/cron run [job_id 또는 작업 이름]</code></pre>
+</div></article>
+<article><span>REMOVE</span><h3>완전 삭제</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>되돌리기 어려움</strong></div>
+<button aria-label="되돌리기 어려움 코드 복사" class="copy-btn" data-copy="cron-remove" type="button">복사</button>
+</div>
+<pre id="cron-remove"><code>/cron remove [job_id 또는 작업 이름]</code></pre>
+</div></article>
+</div>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">prompt</span><strong>번호 매긴 Cron 브리핑 요청</strong></div>
+<button aria-label="번호 매긴 Cron 브리핑 요청 코드 복사" class="copy-btn" data-copy="cron-numbered-list" type="button">복사</button>
+</div>
+<pre id="cron-numbered-list"><code>현재 등록된 크론잡을 다음 형식으로 실행 시간순으로 번호를 붙여 보여줘.
+
+번호 | 작업 이름 | job ID | 일정 | 시간대 | 전달 위치 | 활성 상태 | 다음 실행 시각
+
+각 항목 아래에는 실제 프롬프트를 한 줄로 요약해줘.
+파일이나 설정은 변경하지 말고 목록만 보여줘.</code></pre>
+</div>
+<div class="two-column">
+<article class="instruction-card"><h3>안전한 삭제 요청</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">prompt</span><strong>번호를 ID로 다시 확인</strong></div>
+<button aria-label="번호를 ID로 다시 확인 코드 복사" class="copy-btn" data-copy="cron-delete-safe" type="button">복사</button>
+</div>
+<pre id="cron-delete-safe"><code>방금 보여준 목록에서 2번 작업을 삭제하려고 해.
+먼저 2번의 작업 이름, job ID, 일정, 전달 위치를 다시 보여주고 삭제 영향을 설명해줘.
+내가 "삭제 승인"이라고 답하기 전에는 삭제하지 마.</code></pre>
+</div></article>
+<article class="instruction-card"><h3>삭제 대신 잠시 멈추기</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>보존하면서 중지·재개</strong></div>
+<button aria-label="보존하면서 중지·재개 코드 복사" class="copy-btn" data-copy="cron-pause-resume" type="button">복사</button>
+</div>
+<pre id="cron-pause-resume"><code>/cron pause [job_id 또는 작업 이름]
+/cron resume [job_id 또는 작업 이름]</code></pre>
+</div></article>
+</div>
+<label class="task-check">
+<input data-progress="p15" type="checkbox"/>
+<span aria-hidden="true"></span>
+<strong>Cron 목록 번호화·1회 실행·삭제 또는 일시정지 실습 완료</strong>
+</label>
+</div>
+<footer class="page-footer">
+<span>Cron 관리</span>
+<span>Hermes Agent Practical Learning</span>
+</footer>
+</article>
+<article aria-labelledby="page-16-title" class="paper-page" data-page="16" data-section="Obsidian 설치" id="page-16">
+<div class="page-topline">
+<span class="page-section">14 · OBSIDIAN INSTALL</span>
+<span class="page-number">P.16 / 27</span>
+</div>
+<header class="page-header">
+<h2 id="page-16-title">Obsidian은 파일을 가두는 서비스가 아니라<br/>Markdown 폴더를 보여주는 작업 공간입니다</h2>
+<p>공식 사이트에서 설치한 뒤 새 Vault를 바로 만들기보다, 다음 페이지에서 생성할 PARA 폴더의 상위 폴더를 기존 폴더로 열면 됩니다.</p>
+</header>
+<div class="page-body">
+<div class="split-grid">
+<article class="step-panel">
+<div class="step-row"><b>1</b><div><h3>Obsidian 공식 다운로드</h3><p>운영체제에 맞는 설치 파일을 받아 실행합니다.</p></div></div>
+<div class="step-row"><b>2</b><div><h3>PARA 폴더 먼저 생성</h3><p>다음 페이지의 명령으로 <code>My Second Brain</code> 폴더와 6개 하위 폴더를 만듭니다.</p></div></div>
+<div class="step-row"><b>3</b><div><h3>Open folder as vault</h3><p><code>My Second Brain</code> 상위 폴더를 Vault로 엽니다.</p></div></div>
+</article>
+<article class="vault-visual"><div class="vault-icon">◇</div><h3>My Second Brain</h3><p>사람이 확인하는 전체 지식 창고</p><div class="vault-mini-tree"><span>00 Inbox</span><span>01 Project</span><span>02 Area</span><span>03 Resource</span><span>04 Archive</span><span class="active">05 LLM Wiki</span></div></article>
+</div>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Obsidian</span><strong>GUI 클릭 경로</strong></div>
+<button aria-label="GUI 클릭 경로 코드 복사" class="copy-btn" data-copy="obsidian-open" type="button">복사</button>
+</div>
+<pre id="obsidian-open"><code>Obsidian 시작 화면 → Open folder as vault → My Second Brain 선택</code></pre>
+</div>
+<div class="info-note"><strong>가이드 기반</strong><span>제공된 Second Brain 가이드는 Obsidian 설치 후 압축을 푼 폴더를 기존 Vault로 여는 방식을 사용합니다. 이 교육안에서는 사용자 요청에 맞춰 폴더 이름을 <code>00 Inbox</code>부터 <code>05 LLM Wiki</code>까지 단순화했습니다. <a aria-label="출처 2: Hermes Second Brain 설치 가이드" class="cite" href="#source-user-secondbrain">[2]</a></span></div>
+<label class="task-check">
+<input data-progress="p16" type="checkbox"/>
+<span aria-hidden="true"></span>
+<strong>Obsidian 설치 완료</strong>
+</label>
+</div>
+<footer class="page-footer">
+<span>Obsidian 설치</span>
+<span>Hermes Agent Practical Learning</span>
+</footer>
+</article>
+<article aria-labelledby="page-17-title" class="paper-page" data-page="17" data-section="PARA 구조" id="page-17">
+<div class="page-topline">
+<span class="page-section">15 · PARA FOLDER TREE</span>
+<span class="page-number">P.17 / 27</span>
+</div>
+<header class="page-header">
+<h2 id="page-17-title">00 Inbox부터 05 LLM Wiki까지<br/>한 번에 생성합니다</h2>
+<p>사용자가 지정한 폴더 이름과 순서를 그대로 사용합니다. 공백이 포함되므로 Terminal 명령에서는 반드시 따옴표를 유지하세요.</p>
+</header>
+<div class="page-body">
+<div class="folder-tree-card"><pre><code>My Second Brain/
+├── 00 Inbox/
+├── 01 Project/
+├── 02 Area/
+├── 03 Resource/
+├── 04 Archive/
+└── 05 LLM Wiki/</code></pre></div>
+<div class="os-panels">
+<div data-os-panel="windows">
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">PowerShell</span><strong>Windows PowerShell에 그대로 붙여넣기</strong></div>
+<button aria-label="Windows PowerShell에 그대로 붙여넣기 코드 복사" class="copy-btn" data-copy="para-powershell" type="button">복사</button>
+</div>
+<pre id="para-powershell"><code>$vault = "$HOME\Documents\My Second Brain"
+New-Item -ItemType Directory -Force -Path $vault | Out-Null
+
+"00 Inbox", "01 Project", "02 Area", "03 Resource", "04 Archive", "05 LLM Wiki" |
+  ForEach-Object {
+    New-Item -ItemType Directory -Force -Path (Join-Path $vault $_) | Out-Null
+  }
+
+Get-ChildItem -Path $vault -Directory | Select-Object Name</code></pre>
+</div>
+</div>
+<div data-os-panel="macos">
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">zsh</span><strong>macOS Terminal에 그대로 붙여넣기</strong></div>
+<button aria-label="macOS Terminal에 그대로 붙여넣기 코드 복사" class="copy-btn" data-copy="para-macos" type="button">복사</button>
+</div>
+<pre id="para-macos"><code>VAULT="$HOME/Documents/My Second Brain"
+mkdir -p           "$VAULT/00 Inbox"           "$VAULT/01 Project"           "$VAULT/02 Area"           "$VAULT/03 Resource"           "$VAULT/04 Archive"           "$VAULT/05 LLM Wiki"
+
+find "$VAULT" -maxdepth 1 -type d -print</code></pre>
+</div>
+</div>
+</div>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">prompt</span><strong>Hermes에게 자연어로 생성 요청</strong></div>
+<button aria-label="Hermes에게 자연어로 생성 요청 코드 복사" class="copy-btn" data-copy="para-hermes-prompt" type="button">복사</button>
+</div>
+<pre id="para-hermes-prompt"><code>내 Documents 폴더 아래에 "My Second Brain" 폴더를 만들고,
+그 안에 아래 폴더를 정확한 이름과 순서로 생성해줘.
+
+00 Inbox
+01 Project
+02 Area
+03 Resource
+04 Archive
+05 LLM Wiki
+
+기존 폴더나 파일은 삭제하거나 이름을 바꾸지 말고,
+작업 전에 생성될 전체 경로를 보여준 뒤 승인을 받아 실행해줘.</code></pre>
+</div>
+<label class="task-check">
+<input data-progress="p17" type="checkbox"/>
+<span aria-hidden="true"></span>
+<strong>PARA 6개 폴더 생성 및 Obsidian에서 확인 완료</strong>
+</label>
+</div>
+<footer class="page-footer">
+<span>PARA 구조</span>
+<span>Hermes Agent Practical Learning</span>
+</footer>
+</article>
+<article aria-labelledby="page-18-title" class="paper-page" data-page="18" data-section="PARA 활용" id="page-18">
+<div class="page-topline">
+<span class="page-section">16 · PARA USAGE</span>
+<span class="page-number">P.18 / 27</span>
+</div>
+<header class="page-header">
+<h2 id="page-18-title">주제가 아니라<br/><span class="blue">지금 무엇을 해야 하는지</span>로 분류합니다</h2>
+<p>Project, Area, Resource, Archive는 사람의 행동 기준이고, LLM Wiki는 AI가 원본을 연결·갱신하는 별도 지식층입니다.</p>
+</header>
+<div class="page-body">
+<div class="folder-purpose-grid">
+<article><b>00</b><h3>Inbox</h3><p>아직 분류하지 않은 새 자료. 매일 또는 정기적으로 비웁니다.</p><code>예: 새 PDF, 메모, 임시 링크</code></article>
+<article><b>01</b><h3>Project</h3><p>완료 조건과 기한이 있는 현재 일.</p><code>예: Hermes 교육자료 제작</code></article>
+<article><b>02</b><h3>Area</h3><p>끝나지 않고 계속 관리해야 하는 책임 영역.</p><code>예: 건강, 재무, 팀 운영</code></article>
+<article><b>03</b><h3>Resource</h3><p>당장 할 일은 아니지만 다시 볼 참고 자료.</p><code>예: AI 프롬프트, 여행 정보</code></article>
+<article><b>04</b><h3>Archive</h3><p>완료됐거나 비활성화된 자료.</p><code>예: 종료 프로젝트, 과거 기획안</code></article>
+<article class="wiki-purpose"><b>05</b><h3>LLM Wiki</h3><p>원본·개념·인물·제품·비교·질의를 AI가 연결해 유지하는 지식층.</p><code>예: raw, entities, concepts</code></article>
+</div>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">prompt</span><strong>PARA 분류 연습</strong></div>
+<button aria-label="PARA 분류 연습 코드 복사" class="copy-btn" data-copy="para-classification-practice" type="button">복사</button>
+</div>
+<pre id="para-classification-practice"><code>아래 자료를 00 Inbox, 01 Project, 02 Area, 03 Resource, 04 Archive 중 어디에 둘지 판단해줘.
+각 자료마다 "추천 폴더 → 판단 이유 → 나중에 이동할 조건" 순서로 답해줘.
+
+1. 다음 달까지 제출할 AI 교육 기획안
+2. 매주 확인하는 가족 건강 기록
+3. 언젠가 참고할 프롬프트 모음
+4. 이미 종료된 2025년 프로젝트 회의록</code></pre>
+</div>
+<div class="definition-banner"><strong>기억법</strong><span>끝이 있으면 Project · 계속 관리하면 Area · 참고하면 Resource · 끝났으면 Archive · 아직 모르겠으면 Inbox</span></div>
+<label class="task-check">
+<input data-progress="p18" type="checkbox"/>
+<span aria-hidden="true"></span>
+<strong>PARA 폴더별 용도와 이동 기준 이해 완료</strong>
+</label>
+</div>
+<footer class="page-footer">
+<span>PARA 활용</span>
+<span>Hermes Agent Practical Learning</span>
+</footer>
+</article>
+<article aria-labelledby="page-19-title" class="paper-page" data-page="19" data-section="LLM Wiki 설치" id="page-19">
+<div class="page-topline">
+<span class="page-section">17 · LLM WIKI SETUP</span>
+<span class="page-number">P.19 / 27</span>
+</div>
+<header class="page-header">
+<h2 id="page-19-title">2026년 최신 Hermes에서는<br/>“설치”보다 <span class="blue">05 LLM Wiki 경로 초기화</span>가 핵심입니다</h2>
+<p>공식 Hermes 문서 기준 LLM Wiki는 기본 포함된 번들 스킬이며, 위치는 <code>WIKI_PATH</code>로 지정합니다. 따라서 외부 코드를 무조건 복사하기보다 번들 스킬을 먼저 확인합니다.</p>
+</header>
+<div class="page-body">
+<div class="update-callout">
+<div><span>기존 가이드 방식</span><h3>Karpathy Gist를 읽어 특정 폴더에 설치</h3></div>
+<i aria-hidden="true">→</i>
+<div class="current"><span>현재 권장 방식</span><h3>번들 스킬 확인 → WIKI_PATH 지정 → 초기화</h3></div>
+</div>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">prompt</span><strong>05 LLM Wiki에 초기화하는 핵심 명령</strong></div>
+<button aria-label="05 LLM Wiki에 초기화하는 핵심 명령 코드 복사" class="copy-btn" data-copy="llm-wiki-install" type="button">복사</button>
+</div>
+<pre id="llm-wiki-install"><code>내 Obsidian Vault의 절대 경로는 아래와 같아.
+[여기에 My Second Brain의 실제 절대 경로를 붙여넣기]
+
+Hermes 공식 번들 스킬 `skills/research/llm-wiki`가 현재 설치되어 있는지 먼저 확인해줘.
+
+설치되어 있다면 다음 순서로 진행해줘.
+1. `[Vault 경로]/05 LLM Wiki`를 WIKI_PATH로 지정
+2. `05 LLM Wiki` 아래에 공식 LLM Wiki 구조를 초기화
+3. SCHEMA.md의 Domain은 "개인 AI·업무·학습 지식"으로 설정
+4. index.md와 log.md 생성
+5. raw, entities, concepts, comparisons, queries 폴더 생성
+6. 기존 PARA 폴더와 기존 파일은 변경하지 않기
+7. 작업 전에 생성·수정될 파일 목록과 .env 변경 내용을 먼저 보여주기
+8. 내가 "승인"이라고 답한 뒤에만 적용하기
+9. 완료 후 실제 WIKI_PATH, 생성한 폴더, 변경한 파일을 보고하기
+
+공식 번들 스킬이 없다면 임의 설치하지 말고 현재 상태와 가능한 공식 설치 방법만 알려줘.</code></pre>
+</div>
+<div class="two-column compact-top">
+<article class="instruction-card"><h3>설치 상태만 확인</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">prompt</span><strong>읽기 전용 점검</strong></div>
+<button aria-label="읽기 전용 점검 코드 복사" class="copy-btn" data-copy="llm-wiki-check" type="button">복사</button>
+</div>
+<pre id="llm-wiki-check"><code>LLM Wiki 상태를 점검해줘. 파일은 바꾸지 말고, 현재 WIKI_PATH와 폴더 구조, 다음 할 일만 알려줘.</code></pre>
+</div></article>
+<article class="instruction-card"><h3>Legacy 참고</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">URL</span><strong>번들 스킬이 없을 때만 설계 참고</strong></div>
+<button aria-label="번들 스킬이 없을 때만 설계 참고 코드 복사" class="copy-btn" data-copy="llm-wiki-legacy" type="button">복사</button>
+</div>
+<pre id="llm-wiki-legacy"><code>https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f</code></pre>
+</div></article>
+</div>
+<div class="info-note"><strong>공식 확인</strong><span>LLM Wiki 스킬은 기본 설치된 번들로 표시되며, 기본 경로는 <code>~/wiki</code>, 사용자 경로는 <code>WIKI_PATH</code>로 지정합니다. <a aria-label="출처 10: Hermes LLM Wiki bundled skill" class="cite" href="#source-official-wiki">[10]</a></span></div>
+<label class="task-check">
+<input data-progress="p19" type="checkbox"/>
+<span aria-hidden="true"></span>
+<strong>WIKI_PATH를 05 LLM Wiki로 지정하고 초기화 완료</strong>
+</label>
+</div>
+<footer class="page-footer">
+<span>LLM Wiki 설치</span>
+<span>Hermes Agent Practical Learning</span>
+</footer>
+</article>
+<article aria-labelledby="page-20-title" class="paper-page" data-page="20" data-section="LLM Wiki 구조" id="page-20">
+<div class="page-topline">
+<span class="page-section">18 · LLM WIKI STRUCTURE</span>
+<span class="page-number">P.20 / 27</span>
+</div>
+<header class="page-header">
+<h2 id="page-20-title">원본·지식·규칙을 분리하면<br/>AI가 고쳐도 근거를 잃지 않습니다</h2>
+<p>공식 구조는 Raw Sources, Wiki Pages, Schema의 세 층으로 이해하면 쉽습니다. <code>raw</code>는 수정하지 않는 원본, 나머지 폴더는 AI가 연결·갱신하는 지식입니다.</p>
+</header>
+<div class="page-body">
+<div class="wiki-tree-layout">
+<div class="folder-tree-card large"><pre><code>05 LLM Wiki/
+├── SCHEMA.md
+├── index.md
+├── log.md
+├── raw/
+│   ├── articles/
+│   ├── papers/
+│   ├── transcripts/
+│   └── assets/
+├── entities/
+├── concepts/
+├── comparisons/
+└── queries/</code></pre></div>
+<div class="wiki-role-list">
+<article><b>SCHEMA</b><div><h3>운영 규칙</h3><p>분야, 파일명, 태그, 링크, 갱신 기준을 정합니다.</p></div></article>
+<article><b>INDEX</b><div><h3>전체 목차</h3><p>모든 Wiki 페이지와 한 줄 요약을 모읍니다.</p></div></article>
+<article><b>LOG</b><div><h3>변경 기록</h3><p>Ingest·Update·Query·Lint 이력을 순서대로 남깁니다.</p></div></article>
+<article><b>RAW</b><div><h3>수정 금지 원본</h3><p>기사, 논문, 전사, 이미지의 원본을 보존합니다.</p></div></article>
+<article><b>WIKI</b><div><h3>연결 지식</h3><p>entities, concepts, comparisons, queries에서 요약·관계를 관리합니다.</p></div></article>
+</div>
+</div>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">prompt</span><strong>폴더 구조 확인 실습</strong></div>
+<button aria-label="폴더 구조 확인 실습 코드 복사" class="copy-btn" data-copy="wiki-structure-check" type="button">복사</button>
+</div>
+<pre id="wiki-structure-check"><code>05 LLM Wiki 구조를 읽기 전용으로 점검해줘.
+SCHEMA.md, index.md, log.md와 raw/entities/concepts/comparisons/queries 폴더의 존재 여부를 표로 보여줘.
+누락 항목이 있어도 지금은 만들지 말고, 필요한 이유와 예상 변경 파일만 설명해줘.</code></pre>
+</div>
+<div class="warning-note"><strong>Raw 원칙</strong><span><code>raw/</code> 안의 원본은 AI가 요약문처럼 고치지 않습니다. 오류 수정과 해석은 Wiki 페이지에서 하고 원본 출처를 연결합니다.</span></div>
+<label class="task-check">
+<input data-progress="p20" type="checkbox"/>
+<span aria-hidden="true"></span>
+<strong>LLM Wiki 폴더 역할과 Raw 불변 원칙 이해 완료</strong>
+</label>
+</div>
+<footer class="page-footer">
+<span>LLM Wiki 구조</span>
+<span>Hermes Agent Practical Learning</span>
+</footer>
+</article>
+<article aria-labelledby="page-21-title" class="paper-page" data-page="21" data-section="자료 저장 실습" id="page-21">
+<div class="page-topline">
+<span class="page-section">19 · SAVE FROM RAW</span>
+<span class="page-number">P.21 / 27</span>
+</div>
+<header class="page-header">
+<h2 id="page-21-title">원본을 Raw에 넣고<br/>Ingest로 Wiki에 반영합니다</h2>
+<p>직접 파일을 넣을 때는 원본 보관과 Wiki 반영을 분리합니다. Hermes에게 파일 경로, 원본 불변, 생성할 지식 종류, 결과 보고 형식을 명시합니다.</p>
+</header>
+<div class="page-body">
+<div class="three-step-cards">
+<article><b>1</b><h3>원본 배치</h3><p>기사·PDF·회의록을 맞는 <code>raw</code> 하위 폴더에 둡니다.</p></article>
+<article><b>2</b><h3>Ingest 요청</h3><p>기존 index와 Wiki를 먼저 읽고 중복을 피하게 합니다.</p></article>
+<article><b>3</b><h3>결과 확인</h3><p>변경 파일, 출처 연결, 충돌·미확인을 보고받습니다.</p></article>
+</div>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">prompt</span><strong>Raw 폴더 기반 Ingest 실습</strong></div>
+<button aria-label="Raw 폴더 기반 Ingest 실습 코드 복사" class="copy-btn" data-copy="raw-save-ingest" type="button">복사</button>
+</div>
+<pre id="raw-save-ingest"><code>아래 원본 파일을 05 LLM Wiki에 ingest해줘.
+
+원본 파일 경로:
+[예: /Users/me/Documents/My Second Brain/05 LLM Wiki/raw/articles/hermes-guide.md]
+
+작업 규칙:
+1. raw 원본은 수정하지 않기
+2. 작업 전 SCHEMA.md, index.md, 최근 log.md 읽기
+3. 기존 entities·concepts·comparisons 페이지를 먼저 검색하기
+4. 중복 페이지를 만들지 말고 기존 페이지가 있으면 갱신하기
+5. 새 또는 수정된 페이지에는 원본 경로를 sources에 남기기
+6. index.md와 log.md 업데이트하기
+7. 사실과 해석을 구분하고, 충돌하는 정보는 임의로 덮어쓰지 않기
+8. 10개가 넘는 기존 페이지를 수정해야 하면 먼저 범위를 보여주고 승인받기
+
+완료 후 아래를 보고해줘.
+- 읽은 원본
+- 생성한 파일
+- 수정한 파일
+- 새로 연결한 [[wikilinks]]
+- 충돌·미확인 사항</code></pre>
+</div>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">text</span><strong>Raw 하위 폴더 선택 예시</strong></div>
+<button aria-label="Raw 하위 폴더 선택 예시 코드 복사" class="copy-btn" data-copy="raw-example-paths" type="button">복사</button>
+</div>
+<pre id="raw-example-paths"><code>기사·웹 클리핑   → 05 LLM Wiki/raw/articles/
+논문·PDF         → 05 LLM Wiki/raw/papers/
+회의록·인터뷰    → 05 LLM Wiki/raw/transcripts/
+이미지·도표      → 05 LLM Wiki/raw/assets/</code></pre>
+</div>
+<label class="task-check">
+<input data-progress="p21" type="checkbox"/>
+<span aria-hidden="true"></span>
+<strong>Raw 원본 1개를 Ingest하고 변경 파일 확인 완료</strong>
+</label>
+</div>
+<footer class="page-footer">
+<span>자료 저장 실습</span>
+<span>Hermes Agent Practical Learning</span>
+</footer>
+</article>
+<article aria-labelledby="page-22-title" class="paper-page" data-page="22" data-section="자료 저장 실습" id="page-22">
+<div class="page-topline">
+<span class="page-section">20 · SAVE FROM TELEGRAM</span>
+<span class="page-number">P.22 / 27</span>
+</div>
+<header class="page-header">
+<h2 id="page-22-title">파일이나 링크를 Telegram에 보내고<br/>저장 규칙을 한 문장 더 붙이세요</h2>
+<p>짧게 “Wiki에 저장해줘”라고 해도 동작할 수 있지만, 원본 위치·Wiki 경로·근거 보존·결과 보고까지 적으면 재현성과 안전성이 높아집니다.</p>
+</header>
+<div class="page-body">
+<div class="attachment-flow"><div class="attach-icon">＋</div><div><strong>파일·URL 첨부</strong><span>PDF, 회의록, 기사, YouTube 링크</span></div><i>→</i><div><strong>Hermes Ingest</strong><span>Raw 보존 + Wiki 연결</span></div><i>→</i><div><strong>Telegram 보고</strong><span>경로·변경 파일·근거</span></div></div>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>가장 짧은 저장 요청</strong></div>
+<button aria-label="가장 짧은 저장 요청 코드 복사" class="copy-btn" data-copy="telegram-save-short" type="button">복사</button>
+</div>
+<pre id="telegram-save-short"><code>이 자료를 05 LLM Wiki에 저장해줘.</code></pre>
+</div>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">prompt</span><strong>권장 저장 요청</strong></div>
+<button aria-label="권장 저장 요청 코드 복사" class="copy-btn" data-copy="telegram-save-safe" type="button">복사</button>
+</div>
+<pre id="telegram-save-safe"><code>첨부한 파일 또는 URL을 내 Obsidian Vault의 `05 LLM Wiki`에 ingest해줘.
+
+- 원본은 적절한 raw 하위 폴더에 수정 없이 보존
+- 기존 index와 관련 Wiki 페이지를 먼저 검색
+- 핵심 개념·인물·회사·제품·비교 내용을 기존 페이지에 반영
+- 출처 URL 또는 원본 파일 경로를 남기기
+- 충돌하거나 확인되지 않은 내용은 표시하고 임의로 확정하지 않기
+- 완료 후 저장한 Raw 경로, 생성·수정한 Wiki 파일, 핵심 요약 5개를 Telegram으로 보고</code></pre>
+</div>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">prompt</span><strong>YouTube 링크 저장 예시</strong></div>
+<button aria-label="YouTube 링크 저장 예시 코드 복사" class="copy-btn" data-copy="youtube-save" type="button">복사</button>
+</div>
+<pre id="youtube-save"><code>[YouTube URL]
+
+자막과 원본 출처를 raw/transcripts에 보존하고,
+핵심 주장·사례·용어를 05 LLM Wiki에 ingest해줘.
+영상에서 확인되지 않은 내용은 일반지식으로 보충하지 말고 "영상 근거 없음"이라고 표시해줘.</code></pre>
+</div>
+<label class="task-check">
+<input data-progress="p22" type="checkbox"/>
+<span aria-hidden="true"></span>
+<strong>Telegram에서 파일 또는 URL 1개 저장 완료</strong>
+</label>
+</div>
+<footer class="page-footer">
+<span>자료 저장 실습</span>
+<span>Hermes Agent Practical Learning</span>
+</footer>
+</article>
+<article aria-labelledby="page-23-title" class="paper-page" data-page="23" data-section="Wiki 기반 질의" id="page-23">
+<div class="page-topline">
+<span class="page-section">21 · ANSWER FROM WIKI</span>
+<span class="page-number">P.23 / 27</span>
+</div>
+<header class="page-header">
+<h2 id="page-23-title">“Wiki 우선”과 “Wiki만”은<br/>근거 범위가 다릅니다</h2>
+<p>Wiki 우선은 부족한 경우 외부 확인을 허용할 수 있고, Wiki만은 지식창고 밖의 일반지식과 웹 검색을 금지합니다. 중요한 내부 답변에는 사용한 파일 경로를 함께 요청하세요.</p>
+</header>
+<div class="page-body">
+<div class="compare-grid">
+<article><span>WIKI FIRST</span><h3>Wiki를 먼저 읽고 답변</h3><p>내부 지식을 우선하되 부족한 부분을 외부에서 확인할 수 있습니다.</p>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">prompt</span><strong>Wiki 우선 답변</strong></div>
+<button aria-label="Wiki 우선 답변 코드 복사" class="copy-btn" data-copy="wiki-first-answer" type="button">복사</button>
+</div>
+<pre id="wiki-first-answer"><code>내 05 LLM Wiki를 먼저 읽고 질문에 답해줘.
+Wiki에 있는 근거를 우선 사용하고, 부족해서 외부 자료를 확인한 부분은 "외부 확인"으로 분리해 표시해줘.
+답변 끝에 사용한 Wiki 파일과 Raw 원본 경로를 목록으로 남겨줘.
+
+질문: [질문 입력]</code></pre>
+</div></article>
+<article class="good"><span>WIKI ONLY</span><h3>Wiki 안에서만 답변</h3><p>내부 감사·교육처럼 외부 지식이 섞이면 안 되는 상황에 사용합니다.</p>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">prompt</span><strong>Wiki 전용 답변</strong></div>
+<button aria-label="Wiki 전용 답변 코드 복사" class="copy-btn" data-copy="wiki-only-answer" type="button">복사</button>
+</div>
+<pre id="wiki-only-answer"><code>`05 LLM Wiki` 안의 자료에서만 답해줘.
+외부 웹 검색, 모델의 일반지식, 추측을 사용하지 마.
+
+Wiki에서 근거를 찾지 못하면 답을 만들어내지 말고
+"현재 Wiki에서 확인할 수 없음"이라고 말한 뒤,
+추가로 필요한 자료가 무엇인지 제안해줘.
+
+답변마다 근거가 된 Wiki 파일과 Raw 원본 경로를 표시해줘.
+
+질문: [질문 입력]</code></pre>
+</div></article>
+</div>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">prompt</span><strong>답변 근거 재확인</strong></div>
+<button aria-label="답변 근거 재확인 코드 복사" class="copy-btn" data-copy="wiki-evidence-check" type="button">복사</button>
+</div>
+<pre id="wiki-evidence-check"><code>이 답변의 각 핵심 문장과 연결되는 Wiki 파일, Raw 원본, 출처 URL을 표로 보여줘. 근거가 없는 문장은 따로 표시해줘.</code></pre>
+</div>
+<div class="governance-note"><strong>의사결정 원칙</strong><span>Wiki 요약은 원문을 대체하지 않습니다. 계약·비용·보안·대외 발표처럼 중요한 판단은 연결된 원문과 사람이 함께 검토합니다.</span></div>
+<label class="task-check">
+<input data-progress="p23" type="checkbox"/>
+<span aria-hidden="true"></span>
+<strong>Wiki 우선 답변과 Wiki 전용 답변 차이 실습 완료</strong>
+</label>
+</div>
+<footer class="page-footer">
+<span>Wiki 기반 질의</span>
+<span>Hermes Agent Practical Learning</span>
+</footer>
+</article>
+<article aria-labelledby="page-24-title" class="paper-page blue-page" data-page="24" data-section="Wiki 자동화" id="page-24">
+<div class="page-topline">
+<span class="page-section">22 · WIKI AUTOMATION</span>
+<span class="page-number">P.24 / 27</span>
+</div>
+<header class="page-header">
+<h2 id="page-24-title">매일 새벽 3시 Ingest,<br/>매주 일요일 새벽 4시 Lint를 예약합니다</h2>
+<p>Ingest는 새 원본을 Wiki에 반영하고, Lint는 깨진 링크·누락·중복·규칙 위반을 찾습니다. 의미가 바뀌는 대량 수정은 자동으로 하지 않고 보고 후 승인받게 합니다.</p>
+</header>
+<div class="page-body">
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">prompt</span><strong>Ingest·Lint Cron 일괄 등록</strong></div>
+<button aria-label="Ingest·Lint Cron 일괄 등록 코드 복사" class="copy-btn" data-copy="wiki-cron-prompt" type="button">복사</button>
+</div>
+<pre id="wiki-cron-prompt"><code>내 로컬 시간대 Asia/Seoul 기준으로 Second Brain Cron 작업 2개를 등록해줘.
+WIKI_PATH는 현재 설정된 `05 LLM Wiki` 경로를 사용해.
+
+작업 1
+- 이름: Daily Wiki Ingest
+- 일정: 매일 새벽 3시
+- 대상: `00 Inbox`와 `05 LLM Wiki/raw`에 새로 들어온 자료
+- 규칙:
+  1. 처리한 원본은 삭제하지 않기
+  2. raw 원본은 수정하지 않기
+  3. SCHEMA.md, index.md, 최근 log.md를 먼저 읽기
+  4. 새 자료만 ingest하고 기존 Wiki와 중복을 피하기
+  5. 충돌은 덮어쓰지 말고 contested 또는 미확인으로 표시
+  6. 변경한 파일과 처리하지 못한 파일을 Telegram으로 보고
+  7. 10개를 넘는 기존 페이지 수정이 필요하면 중단하고 승인 요청
+
+작업 2
+- 이름: Weekly Wiki Lint
+- 일정: 매주 일요일 새벽 4시
+- 대상: `05 LLM Wiki` 전체
+- 점검 항목:
+  1. 깨진 [[wikilinks]]와 고아 페이지
+  2. index.md 누락
+  3. frontmatter 필수 항목과 허용되지 않은 태그
+  4. 중복 페이지와 상충 주장
+  5. 오래된 페이지와 수정된 raw 원본
+  6. 200줄을 넘는 과대 페이지
+- 규칙:
+  1. 의미가 바뀌는 수정은 자동으로 하지 않기
+  2. 심각도별 문제와 정확한 파일 경로를 Telegram으로 보고
+  3. 자동 수정 가능한 형식 오류도 변경 전 목록을 보여주고 승인받기
+
+두 작업 모두 현재 Telegram Home Channel로 결과를 전달해줘.
+등록 전에 작업 이름, 정확한 일정, 시간대, 대상 경로, 전달 위치, 전체 프롬프트를 표로 보여줘.
+내가 "두 작업 승인"이라고 답한 뒤에만 실제 등록해줘.</code></pre>
+</div>
+<div class="command-grid cols-3 compact-top">
+<article><h3>등록 확인</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>두 작업 ID 확인</strong></div>
+<button aria-label="두 작업 ID 확인 코드 복사" class="copy-btn" data-copy="wiki-cron-list" type="button">복사</button>
+</div>
+<pre id="wiki-cron-list"><code>/cron list</code></pre>
+</div></article>
+<article><h3>Ingest 테스트</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>한 번 즉시 실행</strong></div>
+<button aria-label="한 번 즉시 실행 코드 복사" class="copy-btn" data-copy="wiki-ingest-run" type="button">복사</button>
+</div>
+<pre id="wiki-ingest-run"><code>/cron run Daily Wiki Ingest</code></pre>
+</div></article>
+<article><h3>Lint 테스트</h3>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>한 번 즉시 실행</strong></div>
+<button aria-label="한 번 즉시 실행 코드 복사" class="copy-btn" data-copy="wiki-lint-run" type="button">복사</button>
+</div>
+<pre id="wiki-lint-run"><code>/cron run Weekly Wiki Lint</code></pre>
+</div></article>
+</div>
+<label class="task-check">
+<input data-progress="p24" type="checkbox"/>
+<span aria-hidden="true"></span>
+<strong>Daily Ingest·Weekly Lint 등록과 수동 테스트 완료</strong>
+</label>
+</div>
+<footer class="page-footer">
+<span>Wiki 자동화</span>
+<span>Hermes Agent Practical Learning</span>
+</footer>
+</article>
+<article aria-labelledby="page-25-title" class="paper-page" data-page="25" data-section="안전 운영" id="page-25">
+<div class="page-topline">
+<span class="page-section">23 · SECURITY &amp; GOVERNANCE</span>
+<span class="page-number">P.25 / 27</span>
+</div>
+<header class="page-header">
+<h2 id="page-25-title">자동화보다 먼저<br/>삭제·비밀·근거의 경계를 정하세요</h2>
+<p>Hermes는 파일과 도구를 사용할 수 있으므로 편리함과 권한이 함께 커집니다. 실습 단계부터 최소 권한, 승인, 원본 보존, 결과 검토를 습관으로 고정합니다.</p>
+</header>
+<div class="page-body">
+<div class="correction-table">
+<div class="correction-row"><div class="wrong"><b>×</b><span>Bot Token을 Telegram이나 Wiki에 저장</span></div><div class="right"><b>✓</b><span>Desktop 설정 또는 <code>~/.hermes/.env</code>에만 보관하고 화면 공유 시 가림</span></div></div>
+<div class="correction-row"><div class="wrong"><b>×</b><span>삭제 요청을 번호만 보고 즉시 실행</span></div><div class="right"><b>✓</b><span>번호 → 이름·ID·일정 재확인 → 사용자 승인 → 삭제</span></div></div>
+<div class="correction-row"><div class="wrong"><b>×</b><span>Raw 원본을 요약문처럼 덮어쓰기</span></div><div class="right"><b>✓</b><span>Raw는 불변으로 보존하고 해석·수정은 Wiki 페이지에서 수행</span></div></div>
+<div class="correction-row"><div class="wrong"><b>×</b><span>Wiki 요약을 계약·비용의 최종 근거로 사용</span></div><div class="right"><b>✓</b><span>원문 링크와 파일 경로를 확인하고 중요한 판단은 사람이 검토</span></div></div>
+</div>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">prompt</span><strong>Hermes에 적용할 안전 기본 요청</strong></div>
+<button aria-label="Hermes에 적용할 안전 기본 요청 코드 복사" class="copy-btn" data-copy="safe-default-prompt" type="button">복사</button>
+</div>
+<pre id="safe-default-prompt"><code>앞으로 파일 삭제, 대량 이동, 설정 덮어쓰기, 외부 발송, Cron 삭제를 수행할 때는
+1) 대상 목록
+2) 예상 영향
+3) 되돌리는 방법
+4) 실행할 정확한 명령
+을 먼저 보여주고 내 명시적 승인을 받은 뒤 실행해줘.
+
+비밀번호, Bot Token, API Key, OAuth 코드가 보이면 답변에 다시 출력하지 말고 [REDACTED]로 가려줘.</code></pre>
+</div>
+<div class="security-note"><strong>접근 통제</strong><span>Telegram은 허용 사용자 목록을 유지하고, 모든 사용자를 허용하는 설정은 Terminal 권한이 있는 봇에서 사용하지 않습니다.</span></div>
+<label class="task-check">
+<input data-progress="p25" type="checkbox"/>
+<span aria-hidden="true"></span>
+<strong>보안·승인·원본 보존 원칙 확인 완료</strong>
+</label>
+</div>
+<footer class="page-footer">
+<span>안전 운영</span>
+<span>Hermes Agent Practical Learning</span>
+</footer>
+</article>
+<article aria-labelledby="page-26-title" class="paper-page" data-page="26" data-section="문제 해결" id="page-26">
+<div class="page-topline">
+<span class="page-section">24 · TROUBLESHOOTING</span>
+<span class="page-number">P.26 / 27</span>
+</div>
+<header class="page-header">
+<h2 id="page-26-title">막히면 상태 → 진단 → Gateway → 경로 순서로<br/>하나씩 확인합니다</h2>
+<p>문제를 한 번에 모두 고치려 하지 말고, 읽기 전용 상태 확인부터 시작합니다. 아래 순서는 Desktop 가이드의 복구 흐름과 공식 진단 명령을 합친 것입니다.</p>
+</header>
+<div class="page-body">
+<div class="trouble-grid">
+<article><span>BOT NO RESPONSE</span><h3>Telegram이 답하지 않음</h3><p>Token, Allowed user ID, Gateway, 연결 상태를 확인합니다.</p>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">shell</span><strong>Terminal 점검 순서</strong></div>
+<button aria-label="Terminal 점검 순서 코드 복사" class="copy-btn" data-copy="trouble-telegram" type="button">복사</button>
+</div>
+<pre id="trouble-telegram"><code>hermes status
+hermes doctor
+hermes gateway status</code></pre>
+</div></article>
+<article><span>CRON NO DELIVERY</span><h3>예약 결과가 오지 않음</h3><p>Home Channel, 작업 활성 상태, 시간대, Gateway를 확인합니다.</p>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>Telegram 점검 순서</strong></div>
+<button aria-label="Telegram 점검 순서 코드 복사" class="copy-btn" data-copy="trouble-cron" type="button">복사</button>
+</div>
+<pre id="trouble-cron"><code>/sethome
+/cron list
+/cron run [job_id]</code></pre>
+</div></article>
+<article><span>PERSONA NOT APPLIED</span><h3>이름·말투가 바뀌지 않음</h3><p>SOUL.md 저장 위치와 새 세션 적용 여부를 확인합니다.</p>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">Telegram</span><strong>새 세션에서 재확인</strong></div>
+<button aria-label="새 세션에서 재확인 코드 복사" class="copy-btn" data-copy="trouble-soul" type="button">복사</button>
+</div>
+<pre id="trouble-soul"><code>/new
+
+현재 적용된 이름과 페르소나를 알려줘.</code></pre>
+</div></article>
+<article><span>WIKI NOT FOUND</span><h3>05 LLM Wiki를 못 찾음</h3><p>절대 경로, WIKI_PATH, 공백 따옴표, 초기화 상태를 확인합니다.</p>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">prompt</span><strong>Wiki 경로 점검</strong></div>
+<button aria-label="Wiki 경로 점검 코드 복사" class="copy-btn" data-copy="trouble-wiki" type="button">복사</button>
+</div>
+<pre id="trouble-wiki"><code>현재 WIKI_PATH와 실제 존재 여부를 읽기 전용으로 확인하고, SCHEMA.md·index.md·log.md의 경로를 보여줘.</code></pre>
+</div></article>
+</div>
+<div class="code-card">
+<div class="code-head">
+<div><span class="code-lang">prompt</span><strong>전체 과정 최종 점검</strong></div>
+<button aria-label="전체 과정 최종 점검 코드 복사" class="copy-btn" data-copy="final-test" type="button">복사</button>
+</div>
+<pre id="final-test"><code>최종 점검을 읽기 전용으로 수행해줘.
+
+1. Hermes 모델과 Gateway 상태
+2. Telegram Home Channel 상태
+3. 등록된 Cron 작업 목록과 다음 실행 시간
+4. WIKI_PATH와 05 LLM Wiki 구조
+5. 최근 Ingest·Lint 결과
+6. SOUL.md에 설정된 이름과 역할
+
+어떤 파일이나 설정도 바꾸지 말고,
+정상 / 주의 / 조치 필요 세 단계로 표를 만들어줘.</code></pre>
+</div>
+<label class="task-check">
+<input data-progress="p26" type="checkbox"/>
+<span aria-hidden="true"></span>
+<strong>최종 읽기 전용 점검 결과가 모두 정상 또는 조치 계획 있음</strong>
+</label>
+</div>
+<footer class="page-footer">
+<span>문제 해결</span>
+<span>Hermes Agent Practical Learning</span>
+</footer>
+</article>
+<article aria-labelledby="page-27-title" class="paper-page sources-page" data-page="27" data-section="출처와 변경 이력" id="page-27">
+<div class="page-topline">
+<span class="page-section">SOURCES · VERSION HISTORY</span>
+<span class="page-number">P.27 / 27</span>
+</div>
+<header class="page-header">
+<h2 id="page-27-title">실제 사용한 가이드와 공식 문서만<br/>출처로 남겼습니다</h2>
+<p>사용자 제공 가이드의 교육 흐름과 디자인을 기반으로 하고, 변동 가능한 명령·Telegram·Cron·SOUL·LLM Wiki 정보는 2026년 8월 10일 공식 문서로 재확인했습니다.</p>
+</header>
+<div class="page-body">
+<div class="source-grid">
+<a class="source-card" href="https://hermes-desktop-guide.jeremylee0213-kr.chatgpt.site" id="source-user-desktop" rel="noopener noreferrer" target="_blank"><span>[1] USER GUIDE · 2026-08-10 확인</span><strong>Hermes Desktop 설치 가이드</strong><p>GUI 설치·OAuth·Telegram·명령·페르소나·Cron 흐름</p></a>
+<a class="source-card" href="https://hermes-second-brain-guide.jeremylee0213-kr.chatgpt.site" id="source-user-secondbrain" rel="noopener noreferrer" target="_blank"><span>[2] USER GUIDE · 2026-08-10 확인</span><strong>Hermes Second Brain 설치 가이드</strong><p>Obsidian·PARA·LLM Wiki·Ingest·Lint 실습 흐름</p></a>
+<a class="source-card" href="https://hermes-second-brain-brief.jeremylee0213-kr.chatgpt.site" id="source-user-brief" rel="noopener noreferrer" target="_blank"><span>[3] USER BRIEF · 2026-08-10 확인</span><strong>Hermes × Second Brain 임원 설명 자료</strong><p>비전공자용 개념 관계와 시각 구조</p></a>
+<a class="source-card" href="https://hermes-agent.nousresearch.com/docs/" id="source-official-docs" rel="noopener noreferrer" target="_blank"><span>[4] OFFICIAL · 2026-08-10 확인</span><strong>Hermes Agent Documentation</strong><p>설치, Quickstart, 공식 기능 범위</p></a>
+<a class="source-card" href="https://hermes-agent.nousresearch.com/docs/user-guide/messaging/telegram" id="source-official-telegram" rel="noopener noreferrer" target="_blank"><span>[5] OFFICIAL · 2026-08-10 확인</span><strong>Telegram Setup</strong><p>BotFather, Allowed Users, Home Channel, 모델 선택</p></a>
+<a class="source-card" href="https://hermes-agent.nousresearch.com/docs/reference/slash-commands" id="source-official-slash" rel="noopener noreferrer" target="_blank"><span>[6] OFFICIAL · 2026-08-10 확인</span><strong>Slash Commands Reference</strong><p>/status, /model, /usage, /reasoning, /cron</p></a>
+<a class="source-card" href="https://hermes-agent.nousresearch.com/docs/user-guide/features/cron" id="source-official-cron" rel="noopener noreferrer" target="_blank"><span>[7] OFFICIAL · 2026-08-10 확인</span><strong>Scheduled Tasks (Cron)</strong><p>생성·목록·실행·일시정지·삭제·전달</p></a>
+<a class="source-card" href="https://hermes-agent.nousresearch.com/docs/guides/daily-briefing-bot" id="source-official-briefing" rel="noopener noreferrer" target="_blank"><span>[8] OFFICIAL TUTORIAL · 2026-08-10 확인</span><strong>Daily Briefing Bot</strong><p>오전 8시 뉴스 브리핑 자동화 패턴</p></a>
+<a class="source-card" href="https://hermes-agent.nousresearch.com/docs/user-guide/features/personality" id="source-official-soul" rel="noopener noreferrer" target="_blank"><span>[9] OFFICIAL · 2026-08-10 확인</span><strong>Personality &amp; SOUL.md</strong><p>기본 정체성 파일과 세션 페르소나</p></a>
+<a class="source-card" href="https://hermes-agent.nousresearch.com/docs/user-guide/skills/bundled/research/research-llm-wiki" id="source-official-wiki" rel="noopener noreferrer" target="_blank"><span>[10] OFFICIAL SKILL · 2026-08-10 확인</span><strong>Karpathy's LLM Wiki</strong><p>번들 설치, WIKI_PATH, 3계층 구조, Ingest·Lint</p></a>
+<a class="source-card" href="https://obsidian.md/download" id="source-obsidian" rel="noopener noreferrer" target="_blank"><span>[11] OFFICIAL · 2026-08-10 확인</span><strong>Obsidian Download</strong><p>Windows·macOS 공식 설치 파일</p></a>
+<a class="source-card" href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f" id="source-karpathy" rel="noopener noreferrer" target="_blank"><span>[12] PRIMARY PATTERN</span><strong>Andrej Karpathy's LLM Wiki Pattern</strong><p>기존 가이드가 참조한 원 설계 패턴</p></a>
+</div>
+<div aria-labelledby="history-title" class="report-history" id="history">
+<div class="history-head"><div><h3 id="history-title">버전 및 업데이트 히스토리</h3><p>최신 이력을 위에 누적하며 과거 행을 삭제하지 않습니다.</p></div><span class="version-badge" id="historyCurrentVersion">Current v1.0.0</span></div>
+<div class="history-table-wrap"><table class="history-table"><thead><tr><th>버전</th><th>업데이트일</th><th>변경 구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr></thead><tbody id="historyBody"><tr><td colspan="5">변경 이력을 불러오는 중입니다.</td></tr></tbody></table></div>
+</div>
+</div>
+<footer class="page-footer">
+<span>출처와 변경 이력</span>
+<span>Hermes Agent Practical Learning</span>
+</footer>
+</article>
+</div>
+</main>
+<dialog aria-labelledby="tocTitle" class="toc-dialog" id="tocDialog">
+<div class="toc-head"><h2 id="tocTitle">전체 목차</h2><button aria-label="목차 닫기" class="toc-close" id="tocClose" type="button">×</button></div>
+<div class="toc-list">
+<a href="#page-01"><span>P.01</span>전체 요약</a><a href="#page-02"><span>P.02</span>학습 로드맵</a><a href="#page-03"><span>P.03</span>Hermes 설치</a><a href="#page-04"><span>P.04</span>모델 연결</a><a href="#page-05"><span>P.05</span>Telegram 봇 생성</a><a href="#page-06"><span>P.06</span>Telegram 연동</a><a href="#page-07"><span>P.07</span>주요 명령어</a><a href="#page-08"><span>P.08</span>명령어 실습</a><a href="#page-09"><span>P.09</span>에이전트 이름</a><a href="#page-10"><span>P.10</span>세션 페르소나</a><a href="#page-11"><span>P.11</span>SOUL 예제 A</a><a href="#page-12"><span>P.12</span>SOUL 예제 B</a><a href="#page-13"><span>P.13</span>Cron 기초</a><a href="#page-14"><span>P.14</span>오전 8시 브리핑</a><a href="#page-15"><span>P.15</span>Cron 관리</a><a href="#page-16"><span>P.16</span>Obsidian 설치</a><a href="#page-17"><span>P.17</span>PARA 구조</a><a href="#page-18"><span>P.18</span>PARA 활용</a><a href="#page-19"><span>P.19</span>LLM Wiki 설치</a><a href="#page-20"><span>P.20</span>LLM Wiki 구조</a><a href="#page-21"><span>P.21</span>Raw 저장</a><a href="#page-22"><span>P.22</span>Telegram 저장</a><a href="#page-23"><span>P.23</span>Wiki 질의</a><a href="#page-24"><span>P.24</span>Wiki 자동화</a><a href="#page-25"><span>P.25</span>안전 운영</a><a href="#page-26"><span>P.26</span>문제 해결</a><a href="#page-27"><span>P.27</span>출처·변경 이력</a>
+</div>
+</dialog>
+<div aria-label="빠른 작업" class="floating-actions">
+<button aria-label="실습 진행률 초기화" class="float-btn" id="resetProgress" title="진행률 초기화" type="button"><svg fill="none" viewbox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.3-5.7L4 8.6" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path><path d="M4 4v4.6h4.6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></button>
+<button aria-label="맨 위로 이동" class="float-btn" id="toTop" type="button"><svg fill="none" viewbox="0 0 24 24"><path d="m6 14 6-6 6 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></button>
+</div>
+<div aria-live="polite" class="toast" id="toast" role="status">복사했습니다.</div>
+<script id="report-metadata" type="application/json">
+  {
+    "schemaVersion":"1.0",
+    "reportId":"260810-hermes-practical-training",
+    "title":"Hermes Agent 실습형 교육 가이드 | 설치부터 LLM Wiki 자동화까지",
+    "version":"1.0.0",
+    "status":"Published",
+    "createdAt":"2026-08-10",
+    "updatedAt":"2026-08-10",
+    "language":"ko-KR",
+    "author":"Jeremy Lee",
+    "generation":"AI-assisted",
+    "reviewStatus":"Human review recommended",
+    "history":[
+      {
+        "version":"1.0.0",
+        "date":"2026-08-10",
+        "type":"신규 작성",
+        "summary":"세 개의 사용자 가이드 흐름을 통합하고, Hermes 설치·Telegram·핵심 명령·이름·SOUL 페르소나·Cron·Obsidian PARA·05 LLM Wiki·Ingest/Lint를 27개 편집 기준 페이지의 실습형 교육 자료로 구성함. 최신 공식 문서 기준으로 LLM Wiki를 번들 스킬과 WIKI_PATH 중심으로 수정함.",
+        "sections":["전체"],
+        "updatedBy":"AI-assisted",
+        "reviewStatus":"Human review recommended"
+      }
+    ]
+  }
+  </script>
+<script>
+    const progressBar = document.getElementById('scrollProgress');
+    const toTop = document.getElementById('toTop');
+    const toast = document.getElementById('toast');
+    const progressChip = document.getElementById('progressChip');
+    const progressInputs = [...document.querySelectorAll('[data-progress]')];
+    const storageKey = 'hermes-practical-guide-progress-v1';
+
+    function updateScroll() {
+      const max = document.documentElement.scrollHeight - innerHeight;
+      progressBar.style.width = (max > 0 ? scrollY / max * 100 : 0) + '%';
+      toTop.style.opacity = scrollY > 500 ? '1' : '0';
+      toTop.style.pointerEvents = scrollY > 500 ? 'auto' : 'none';
+    }
+    addEventListener('scroll', updateScroll, {passive:true}); updateScroll();
+    toTop.addEventListener('click', () => scrollTo({top:0,behavior:'smooth'}));
+
+    let toastTimer;
+    function showToast(message) {
+      toast.textContent = message; toast.classList.add('show');
+      clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 1500);
+    }
+    async function copyText(text) {
+      try { await navigator.clipboard.writeText(text); }
+      catch (e) {
+        const area = document.createElement('textarea'); area.value = text; area.style.position='fixed'; area.style.opacity='0';
+        document.body.appendChild(area); area.select(); document.execCommand('copy'); area.remove();
+      }
+      showToast('복사했습니다.');
+    }
+    document.querySelectorAll('[data-copy]').forEach(btn => btn.addEventListener('click', () => {
+      const target = document.getElementById(btn.dataset.copy); if (target) copyText(target.innerText.trim());
+    }));
+
+    function loadProgress() {
+      let saved = {}; try { saved = JSON.parse(localStorage.getItem(storageKey) || '{}'); } catch (e) {}
+      progressInputs.forEach(input => input.checked = Boolean(saved[input.dataset.progress])); updateProgressChip();
+    }
+    function saveProgress() {
+      const saved = Object.fromEntries(progressInputs.map(input => [input.dataset.progress, input.checked]));
+      localStorage.setItem(storageKey, JSON.stringify(saved)); updateProgressChip();
+    }
+    function updateProgressChip() {
+      const done = progressInputs.filter(input => input.checked).length;
+      const pct = progressInputs.length ? Math.round(done / progressInputs.length * 100) : 0;
+      progressChip.textContent = `진행 ${pct}%`;
+      progressChip.title = `${done} / ${progressInputs.length} 실습 완료`;
+    }
+    progressInputs.forEach(input => input.addEventListener('change', saveProgress)); loadProgress();
+    document.getElementById('resetProgress').addEventListener('click', () => {
+      if (confirm('저장된 실습 진행률을 모두 초기화할까요?')) { progressInputs.forEach(i => i.checked=false); saveProgress(); showToast('진행률을 초기화했습니다.'); }
+    });
+
+    document.querySelectorAll('.os-switch [data-os]').forEach(btn => btn.addEventListener('click', () => {
+      document.body.dataset.os = btn.dataset.os;
+      document.querySelectorAll('.os-switch [data-os]').forEach(b => b.classList.toggle('active', b.dataset.os === btn.dataset.os));
+      localStorage.setItem('hermes-guide-os', btn.dataset.os);
+    }));
+    const savedOS = localStorage.getItem('hermes-guide-os'); if (savedOS) document.querySelector(`.os-switch [data-os="${savedOS}"]`)?.click();
+
+    const tocDialog = document.getElementById('tocDialog');
+    document.getElementById('tocOpen').addEventListener('click', () => tocDialog.showModal ? tocDialog.showModal() : tocDialog.setAttribute('open',''));
+    document.getElementById('tocClose').addEventListener('click', () => tocDialog.close ? tocDialog.close() : tocDialog.removeAttribute('open'));
+    tocDialog.querySelectorAll('a').forEach(a => a.addEventListener('click', () => tocDialog.close?.()));
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+      }), {threshold:.08});
+      document.querySelectorAll('.paper-page').forEach(el => { el.classList.add('reveal'); observer.observe(el); });
+    } else { document.querySelectorAll('.paper-page').forEach(el => el.classList.add('visible')); }
+
+    function renderMetadata() {
+      try {
+        const meta = JSON.parse(document.getElementById('report-metadata').textContent);
+        const version = `v${meta.version}`; const date = String(meta.updatedAt).replaceAll('-','.');
+        document.getElementById('reportVersion').textContent = version;
+        document.getElementById('reportUpdated').textContent = `Updated ${date}`;
+        document.getElementById('reportGeneration').textContent = `${meta.generation} · ${meta.reviewStatus}`;
+        document.getElementById('historyCurrentVersion').textContent = `Current ${version}`;
+        document.title = `${meta.title} · ${version}`;
+        const body = document.getElementById('historyBody'); body.innerHTML='';
+        meta.history.forEach(item => {
+          const tr=document.createElement('tr');
+          [`v${item.version}`, String(item.date).replaceAll('-','.'), item.type, item.summary, `${item.updatedBy} · ${item.reviewStatus}`].forEach(value => { const td=document.createElement('td'); td.textContent=value; tr.appendChild(td); });
+          body.appendChild(tr);
+        });
+      } catch (error) { console.error('Invalid report metadata:', error); }
+    }
+    renderMetadata();
+  </script>
+  <script src="../../assets/report-page-layout.js?v=20260810-mobile-scroll1"></script>
+  <script src="../../assets/report-view-counter.js?v=20260810-counter-d1-1" data-report-id="260810-hermes-practical-training"></script>
+  <script src="../../assets/report-comments.js?v=20260809-comments1" data-report-id="260810-hermes-practical-training"></script>
+  <script src="../../assets/report-history.js?v=20260809-history2" data-report-id="260810-hermes-practical-training"></script>
+  <script src="../../assets/report-hub-brand.js?v=20260810-mobile-scroll1"></script>
+</body>
+</html>
