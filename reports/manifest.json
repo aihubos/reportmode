@@ -1,7 +1,32 @@
 {
-  "generatedAt": "2026-08-11T12:58:16.430Z",
+  "generatedAt": "2026-08-11T13:47:09.079Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260811-ai-era-depth-direction-humanity-youtube-summary",
+      "slug": "ai-era-depth-direction-humanity-youtube-summary",
+      "title": "AI 시대에 살아남는 힘: 깊이·지휘·인간성",
+      "subtitle": "직장·AI 활용·자녀 교육에서 살아남는 깊이·지휘·인간성의 기준",
+      "category": "AI",
+      "summary": "손에잡히는경제 박정호 교수 영상의 핵심을 직장 변화, 성장형 AI 활용법, 자녀 교육과 인간 역량의 관점에서 압축한 요약 보고서입니다.",
+      "createdAt": "2026-08-11T22:46:00+09:00",
+      "updatedAt": "2026-08-11T22:46:00+09:00",
+      "status": "published",
+      "path": "reports/260811-ai-era-depth-direction-humanity-youtube-summary/",
+      "url": "https://aihubos.github.io/reportmode/reports/260811-ai-era-depth-direction-humanity-youtube-summary/",
+      "displayDate": "260811",
+      "sourceCount": 3,
+      "tags": [
+        "AI 시대",
+        "직장 변화",
+        "AI 활용",
+        "자녀 교육",
+        "인간 역량",
+        "박정호"
+      ],
+      "coverImage": "reports/260811-ai-era-depth-direction-humanity-youtube-summary/assets/thumbnail.png",
+      "coverAlt": "박정호 교수와 AI 경고 화면, 아이의 모습을 담은 유튜브 대표 썸네일"
+    },
     {
       "id": "260811-ai-v1-0-0-02",
       "slug": "ai-v1-0-0",
