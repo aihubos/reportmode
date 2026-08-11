@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "2.0",
+  "reportId": "rh-260811-01-sovereign-ai-korea-roadmap",
+  "title": "소버린 AI란? 비전공자가 10분 만에 이해하는 개념부터 한국의 2028 로드맵까지",
+  "seoTitle": "소버린 AI 뜻과 한국 전략: 비전공자용 완전 정리",
+  "alternativeTitles": [
+    "소버린 AI, 왜 모든 나라가 자기 AI를 만들려 할까",
+    "한국형 소버린 AI 총정리: 독자 모델·GPU 5만 장·국가 AI 센터",
+    "AI 주권이란 무엇인가: 데이터·모델·컴퓨팅을 쉽게 풀어봤습니다"
+  ],
+  "slug": "sovereign-ai-korea-roadmap",
+  "folder": "260811-01-sovereign-ai-korea-roadmap-v1-0-0",
+  "version": "1.0.0",
+  "status": "Published",
+  "summary": "소버린 AI를 국가의 AI 주방이라는 비유로 풀고, 데이터·컴퓨팅·모델·인재·운영·규범의 6개 층과 2026년 최신 글로벌 흐름, 한국의 2028년 로드맵을 정리한 비전공자용 가이드입니다.",
+  "hook": "소버린 AI는 국산 챗봇 하나가 아니라, 필요할 때 핵심 AI를 스스로 개발·운영·교체할 수 있는 국가의 선택권입니다.",
+  "keywords": [
+    "소버린 AI",
+    "AI 주권",
+    "한국형 AI",
+    "독자 AI 파운데이션 모델",
+    "국가 AI 컴퓨팅센터",
+    "GPU 5만 장",
+    "AI기본법"
+  ],
+  "category": "AI",
+  "createdAt": "2026-08-11",
+  "updatedAt": "2026-08-11",
+  "canonical": "https://aihubos.github.io/reportmode/reports/260811-01-sovereign-ai-korea-roadmap-v1-0-0/",
+  "thumbnail": "assets/thumbnail.png",
+  "topicScore": 97,
+  "topicScoreBreakdown": {
+    "freshness": 20,
+    "searchIntent": 15,
+    "socialShareability": 14,
+    "practicalUtility": 15,
+    "koreaRelevance": 15,
+    "evidenceStrength": 10,
+    "visualFit": 8
+  },
+  "oneSentenceConclusion": "한국의 현실적인 목표는 모든 것을 100% 국산화하는 것이 아니라, 외부 공급자가 멈춰도 핵심 AI를 계속 운영하고 필요하면 교체할 수 있는 선택권을 확보하는 것입니다.",
+  "thumbnailMain": "소버린 AI, 쉽게 이해하기",
+  "thumbnailSub": "한국의 2028 로드맵",
+  "socialCopy": [
+    "소버린 AI는 국산 챗봇 하나가 아닙니다. 데이터·GPU·모델·운영권을 누가 통제하느냐의 문제입니다. 한국이 지금 무엇을 만들고 있는지 2026년 최신 일정까지 정리했습니다.",
+    "GPU 5만 장, 독자 AI 4개 팀, 해남 국가 AI 컴퓨팅센터. 숫자는 많은데 연결이 안 됐다면 이 글부터 보면 됩니다."
+  ],
+  "assumptions": [
+    "당일 아카이브 순번을 제공받지 않아 dailySequence를 01로 가정했습니다.",
+    "2026년 8월 11일 독자 AI 파운데이션 모델 2차 평가의 공식 최종 결과는 발표 전으로 보고, 통과팀을 추정하지 않았습니다.",
+    "소버린 AI는 100% 국산화가 아니라 핵심 AI 전주기의 통제권·대체 가능성·회복탄력성으로 해석했습니다.",
+    "2026~2028 일정은 정부 계획과 목표이며 실제 달성이나 일정 준수를 보장하지 않습니다.",
+    "권리 상태가 불명확한 기업 로고·제품 사진을 쓰지 않고 자체 제작한 추상 그래픽만 사용했습니다."
+  ],
+  "generation": "AI-assisted",
+  "reviewStatus": "Human review recommended"
+}
