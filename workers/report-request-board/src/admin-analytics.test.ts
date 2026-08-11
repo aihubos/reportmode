@@ -33,6 +33,11 @@ class AnalyticsD1 {
     if (/FROM report_view_counts/i.test(sql)) {
       return { results: [{ report_id: "report-one", view_count: 21, updated_at: "2026-08-10T00:00:00.000Z" }] };
     }
+    if (/FROM report_entry_sessions/i.test(sql)) {
+      if (/GROUP BY source_type/i.test(sql)) return { results: [{ source_type: "naver", count: 2 }] };
+      if (/SELECT created_at/i.test(sql)) return { results: [] };
+      return { results: [{ date: "2026-08-10", count: 1 }] };
+    }
     throw new Error(`Unhandled all SQL: ${sql}`);
   }
 }
@@ -47,17 +52,21 @@ async function call(body: unknown) {
 }
 
 test("administrator can read daily visitors and popular report analytics", async () => {
-  const result = await call({ adminPassword: "admin-test-password" });
+  const result = await call({ adminPassword: "admin-test-password", days: 7 });
 
   assert.equal(result.response.status, 200);
   assert.equal(result.json.site.siteId, "report-hub-main");
   assert.equal(result.json.site.total, 12);
   assert.equal(result.json.site.today, 3);
-  assert.deepEqual(result.json.site.daily, [{ date: "2026-08-10", count: 3 }, { date: "2026-08-09", count: 5 }]);
+  assert.equal(result.json.site.daily.length, 7);
+  assert.deepEqual(result.json.site.daily.find((row: { date: string }) => row.date === "2026-08-09"), { date: "2026-08-09", count: 5 });
+  assert.deepEqual(result.json.site.daily.find((row: { date: string }) => row.date === "2026-08-10"), { date: "2026-08-10", count: 3 });
   assert.equal(result.json.reports.totalViews, 42);
   assert.equal(result.json.reports.todayViews, 4);
   assert.equal(result.json.reports.top[0].reportId, "report-one");
   assert.equal(result.json.reports.top[0].views, 21);
+  assert.equal(result.json.entries.daily.length, 7);
+  assert.equal(result.json.entries.sources[0].source, "naver");
 });
 
 test("daily analytics rejects a wrong administrator password", async () => {

@@ -1,12 +1,11 @@
 {
-  "generatedAt": "2026-08-11T03:46:12.266Z",
+  "generatedAt": "2026-08-11T05:52:44.245Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
     {
       "id": "260811-palantir-ontology-executive-brief",
       "slug": "palantir-ontology-executive-brief",
       "title": "Palantir Ontology 심층 분석: AI 시대 기업 운영체계 설계 원칙",
-      "subtitle": "데이터 모델을 넘어 기업 운영체계가 되는 원리와 6주 파일럿 권고",
       "category": "AI",
       "summary": "Palantir DevCon 5의 Advanced Ontology 발표를 바탕으로, Ontology를 데이터 모델이 아닌 기업 운영체계로 이해하기 위한 핵심 인사이트·리스크·6주 파일럿 권고를 비전공자 임원 관점에서 정리한 보고서입니다.",
       "createdAt": "2026-08-11T12:30:22+09:00",
@@ -26,6 +25,7 @@
       ],
       "coverImage": "reports/260811-palantir-ontology-executive-brief/assets/thumbnail.png",
       "coverAlt": "검은 배경에 Palantir Developers 워드마크가 표시된 대표 이미지",
+      "subtitle": "데이터 모델을 넘어 기업 운영체계가 되는 원리와 6주 파일럿 권고",
       "coverFocalPointX": 23
     },
     {
@@ -4157,7 +4157,8 @@
       ],
       "coverImage": "reports/assets/260808-hermes-second-brain-guide-site/cover.png",
       "coverAlt": "Hermes Second Brain 가이드 외부 링크",
-      "subtitle": "외부 가이드 사이트 바로가기"
+      "subtitle": "외부 가이드 사이트 바로가기",
+      "isExternalLink": true
     },
     {
       "id": "260808-hermes-desktop-guide-site",
@@ -4179,7 +4180,8 @@
       ],
       "coverImage": "reports/assets/260808-hermes-desktop-guide-site/cover.png",
       "coverAlt": "Hermes Desktop 가이드 외부 링크",
-      "subtitle": "외부 가이드 사이트 바로가기"
+      "subtitle": "외부 가이드 사이트 바로가기",
+      "isExternalLink": true
     },
     {
       "id": "260808-macbook-m5max-comfyui-practical-guide",

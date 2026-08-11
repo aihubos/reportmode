@@ -5,7 +5,7 @@ import path from "node:path";
 import test from "node:test";
 
 import type { ManifestItem } from "../schema/report.js";
-import { discoverCoverImage } from "./build.js";
+import { discoverCoverImage, isExternalLinkPage } from "./build.js";
 
 test("archive thumbnail ignores the shared RH home logo", () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), "report-hub-cover-"));
@@ -35,6 +35,36 @@ test("archive thumbnail ignores the shared RH home logo", () => {
     const result = discoverCoverImage(root, item);
     assert.equal(result.coverImage, "reports/sample/assets/company-logo.png");
     assert.equal(result.coverAlt, "공식 회사 로고");
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("manifest marks redirect-only pages as external links", () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "report-hub-external-link-"));
+  try {
+    const reportDirectory = path.join(root, "reports", "external");
+    fs.mkdirSync(reportDirectory, { recursive: true });
+    fs.writeFileSync(
+      path.join(reportDirectory, "index.html"),
+      '<meta http-equiv="refresh" content="0; url=https://example.com/">',
+    );
+    const item: ManifestItem = {
+      id: "external",
+      slug: "external",
+      title: "외부 링크",
+      category: "AI",
+      summary: "외부 링크",
+      createdAt: "2026-08-09T00:00:00+09:00",
+      updatedAt: "2026-08-09T00:00:00+09:00",
+      status: "published",
+      path: "reports/external/",
+      url: "https://example.com/reports/external/",
+      displayDate: "260809",
+      sourceCount: 0,
+      tags: [],
+    };
+    assert.equal(isExternalLinkPage(root, item), true);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }

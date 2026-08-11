@@ -5,6 +5,7 @@ export const REPORT_HUB_BRAND_VERSION = "20260810-mobile-scroll1";
 export const REPORT_HISTORY_VERSION = "20260809-history2";
 export const REPORT_COMMENTS_VERSION = "20260810-comments2";
 export const REPORT_COUNTER_VERSION = "20260810-counter-d1-1";
+export const REPORT_ENTRY_VERSION = "20260811-entry1";
 
 function isRedirectHtml(html: string): boolean {
   return /<meta\b[^>]*http-equiv\s*=\s*["']?refresh["']?/i.test(html);
@@ -92,7 +93,7 @@ function upsertSharedScripts(html: string, prefix: string, reportPath: string): 
   const snapshotId = existingHistory.match(/\bdata-snapshot-id=["']([^"']+)["']/i)?.[1];
   const hasPrevious = /\bdata-has-previous=["']true["']/i.test(existingHistory);
   let output = html
-    .replace(/\s*<script\b[^>]*src=["'][^"']*report-(?:hub-brand|page-layout|comments|view-counter)\.js(?:\?[^"']*)?["'][^>]*><\/script>/gi, "")
+    .replace(/\s*<script\b[^>]*src=["'][^"']*report-(?:hub-brand|page-layout|comments|view-counter|entry-tracker)\.js(?:\?[^"']*)?["'][^>]*><\/script>/gi, "")
     .replace(historyExpression, "");
   const historyAttributes = [
     `data-report-id="${reportIdFromPath(reportPath)}"`,
@@ -104,6 +105,7 @@ function upsertSharedScripts(html: string, prefix: string, reportPath: string): 
     `<script src="${prefix}/assets/report-view-counter.js?v=${REPORT_COUNTER_VERSION}" data-report-id="${reportIdFromPath(reportPath)}"></script>`,
     `<script src="${prefix}/assets/report-comments.js?v=${REPORT_COMMENTS_VERSION}" data-report-id="${reportIdFromPath(reportPath)}"></script>`,
     `<script src="${prefix}/assets/report-history.js?v=${REPORT_HISTORY_VERSION}" ${historyAttributes}></script>`,
+    `<script src="${prefix}/assets/report-entry-tracker.js?v=${REPORT_ENTRY_VERSION}" data-report-id="${reportIdFromPath(reportPath)}"></script>`,
     `<script src="${prefix}/assets/report-hub-brand.js?v=${REPORT_HUB_BRAND_VERSION}"></script>`,
   ].join("\n  ");
   return output.replace(/<\/body>/i, `  ${tags}\n</body>`);

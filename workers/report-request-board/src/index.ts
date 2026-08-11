@@ -2,12 +2,21 @@ import {
   handlePrivateReportRequest,
   type PrivateReportBucket,
 } from "./private-reports.js";
+import {
+  aggregateSources,
+  normalizeAnalyticsDays,
+  normalizeEntryPayload,
+  zeroFillDailySeries,
+} from "./admin-analytics.js";
+import { normalizeAdminAction } from "./admin-jobs.js";
 
 interface Env {
   DB: D1Database;
   ADMIN_PASSWORD?: string;
   PRIVATE_REPORTS?: PrivateReportBucket;
   PRIVATE_SESSION_SECRET?: string;
+  GITHUB_REPORTMODE_TOKEN?: string;
+  LIFECYCLE_WORKER_SECRET?: string;
 }
 
 type RequestRow = {
@@ -50,6 +59,27 @@ type PopularReportRow = {
   report_id: string;
   view_count: number;
   updated_at: string;
+};
+
+type EntryDailyRow = {
+  date: string;
+  count: number;
+};
+
+type EntrySourceRow = {
+  source_type: string;
+  count: number;
+};
+
+type EntryRecentRow = {
+  created_at: string;
+  source_type: string;
+  referrer_url: string;
+  landing_path: string;
+  report_id: string;
+  utm_source: string;
+  utm_medium: string;
+  utm_campaign: string;
 };
 
 type ReportOverrideRow = {
@@ -113,7 +143,7 @@ function isAdminPassword(env: Env, password: string) {
 }
 
 function isPublicReportId(value: string) {
-  return /^[a-z0-9][a-z0-9-]{0,119}$/i.test(value);
+  return /^[a-z0-9][a-z0-9.-]{0,119}$/i.test(value);
 }
 
 function imageValue(value: unknown) {
@@ -173,9 +203,17 @@ async function visitCounts(env: Env, siteId: string, day: string) {
   return { total: Number(total?.count || 0), today: Number(today?.count || 0) };
 }
 
-async function analyticsSnapshot(env: Env, day: string) {
+function dateShift(date: string, offset: number) {
+  const result = new Date(`${date}T00:00:00Z`);
+  result.setUTCDate(result.getUTCDate() + offset);
+  return result.toISOString().slice(0, 10);
+}
+
+async function analyticsSnapshot(env: Env, day: string, requestedDays: unknown = 30) {
   const siteId = "report-hub-main";
-  const [site, allViews, todayViews, siteDaily, reportDaily, popularReports] = await Promise.all([
+  const days = normalizeAnalyticsDays(requestedDays);
+  const startDate = dateShift(day, -(days - 1));
+  const [site, allViews, todayViews, siteDaily, reportDaily, popularReports, entryDaily, entrySources, entryRecent] = await Promise.all([
     visitCounts(env, siteId, day),
     env.DB.prepare(
       "SELECT COALESCE(SUM(view_count), 0) AS count FROM report_view_counts"
@@ -184,14 +222,30 @@ async function analyticsSnapshot(env: Env, day: string) {
       "SELECT COUNT(*) AS count FROM report_view_daily_visitors WHERE view_date = ?"
     ).bind(day).first<{ count: number }>(),
     env.DB.prepare(
-      "SELECT visit_date AS date, COUNT(*) AS count FROM report_site_visits WHERE site_id = ? GROUP BY visit_date ORDER BY visit_date DESC LIMIT 31"
-    ).bind(siteId).all<DailyCountRow>(),
+      `SELECT visit_date AS date, COUNT(*) AS count FROM report_site_visits
+       WHERE site_id = ? AND visit_date >= ? GROUP BY visit_date ORDER BY visit_date DESC LIMIT ${days}`
+    ).bind(siteId, startDate).all<DailyCountRow>(),
     env.DB.prepare(
-      "SELECT view_date AS date, COUNT(*) AS count FROM report_view_daily_visitors GROUP BY view_date ORDER BY view_date DESC LIMIT 31"
-    ).all<DailyCountRow>(),
+      `SELECT view_date AS date, COUNT(*) AS count FROM report_view_daily_visitors
+       WHERE view_date >= ? GROUP BY view_date ORDER BY view_date DESC LIMIT ${days}`
+    ).bind(startDate).all<DailyCountRow>(),
     env.DB.prepare(
       "SELECT report_id, view_count, updated_at FROM report_view_counts ORDER BY view_count DESC, report_id ASC LIMIT 100"
     ).all<PopularReportRow>(),
+    env.DB.prepare(
+      `SELECT entry_date AS date, COUNT(*) AS count FROM report_entry_sessions
+       WHERE site_id = ? AND entry_date >= ? GROUP BY entry_date ORDER BY entry_date DESC LIMIT ${days}`
+    ).bind(siteId, startDate).all<EntryDailyRow>(),
+    env.DB.prepare(
+      `SELECT source_type, COUNT(*) AS count FROM report_entry_sessions
+       WHERE site_id = ? AND entry_date >= ? GROUP BY source_type ORDER BY count DESC`
+    ).bind(siteId, startDate).all<EntrySourceRow>(),
+    env.DB.prepare(
+      `SELECT created_at, source_type, referrer_url, landing_path, report_id,
+              utm_source, utm_medium, utm_campaign
+       FROM report_entry_sessions WHERE site_id = ? AND entry_date >= ?
+       ORDER BY created_at DESC LIMIT 100`
+    ).bind(siteId, startDate).all<EntryRecentRow>(),
   ]);
 
   return {
@@ -199,25 +253,192 @@ async function analyticsSnapshot(env: Env, day: string) {
     site: {
       siteId,
       ...site,
-      daily: (siteDaily.results || []).map((row) => ({
+      daily: zeroFillDailySeries(day, days, (siteDaily.results || []).map((row) => ({
         date: row.date,
         count: Math.max(0, Number(row.count || 0)),
-      })),
+      }))),
     },
     reports: {
       totalViews: Math.max(0, Number(allViews?.count || 0)),
       todayViews: Math.max(0, Number(todayViews?.count || 0)),
-      daily: (reportDaily.results || []).map((row) => ({
+      daily: zeroFillDailySeries(day, days, (reportDaily.results || []).map((row) => ({
         date: row.date,
         count: Math.max(0, Number(row.count || 0)),
-      })),
+      }))),
       top: (popularReports.results || []).map((row) => ({
         reportId: row.report_id,
         views: Math.max(0, Number(row.view_count || 0)),
         updatedAt: row.updated_at,
       })),
     },
+    entries: {
+      daily: zeroFillDailySeries(day, days, (entryDaily.results || []).map((row) => ({
+        date: row.date,
+        count: Math.max(0, Number(row.count || 0)),
+      }))),
+      sources: aggregateSources(entrySources.results || []),
+      recent: (entryRecent.results || []).map((row) => ({
+        createdAt: row.created_at,
+        source: row.source_type,
+        referrerUrl: row.referrer_url,
+        landingPath: row.landing_path,
+        reportId: row.report_id,
+        utmSource: row.utm_source,
+        utmMedium: row.utm_medium,
+        utmCampaign: row.utm_campaign,
+      })),
+    },
   };
+}
+
+function reportJobId() {
+  return crypto.randomUUID();
+}
+
+function validReportIds(values: unknown) {
+  if (!Array.isArray(values)) return [];
+  return Array.from(new Set(values
+    .filter((value): value is string => typeof value === "string")
+    .map((value) => value.trim().slice(0, 120))
+    .filter((value) => isPublicReportId(value))));
+}
+
+async function createReportAdminJob(env: Env, action: string, reportIds: string[]) {
+  const id = reportJobId();
+  const now = new Date().toISOString();
+  const statements = [
+    env.DB.prepare(
+      `INSERT INTO report_admin_jobs
+        (id, action, status, requested_count, requested_at)
+       VALUES (?, ?, 'queued', ?, ?)`
+    ).bind(id, action, reportIds.length, now),
+    ...reportIds.map((reportId) => env.DB.prepare(
+      `INSERT INTO report_admin_job_items (job_id, report_id, status, updated_at)
+       VALUES (?, ?, 'queued', ?)`
+    ).bind(id, reportId, now)),
+  ];
+  await env.DB.batch(statements);
+  return { id, action, status: "queued", requestedCount: reportIds.length, requestedAt: now };
+}
+
+async function dispatchReportAdminJob(env: Env, jobId: string) {
+  if (!env.GITHUB_REPORTMODE_TOKEN) {
+    await env.DB.prepare(
+      "UPDATE report_admin_jobs SET status = 'failed', failure_count = requested_count, completed_at = ?, error_message = ? WHERE id = ?"
+    ).bind(new Date().toISOString(), "github_lifecycle_not_configured", jobId).run();
+    return false;
+  }
+  let response: Response;
+  try {
+    response = await fetch("https://api.github.com/repos/aihubos/reportmode/dispatches", {
+      method: "POST",
+      headers: {
+        Accept: "application/vnd.github+json",
+        Authorization: `Bearer ${env.GITHUB_REPORTMODE_TOKEN}`,
+        "User-Agent": "reportmode-lifecycle",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        event_type: "report-lifecycle",
+        client_payload: { jobId },
+      }),
+    });
+  } catch {
+    await env.DB.prepare(
+      "UPDATE report_admin_jobs SET status = 'failed', failure_count = requested_count, completed_at = ?, error_message = ? WHERE id = ?"
+    ).bind(new Date().toISOString(), "github_dispatch_failed", jobId).run();
+    return false;
+  }
+  if (response.ok) return true;
+  const errorText = (await response.text()).slice(0, 240) || `github_dispatch_${response.status}`;
+  await env.DB.prepare(
+    "UPDATE report_admin_jobs SET status = 'failed', failure_count = requested_count, completed_at = ?, error_message = ? WHERE id = ?"
+  ).bind(new Date().toISOString(), errorText, jobId).run();
+  return false;
+}
+
+async function applyVisibilityAction(env: Env, action: "hide" | "unhide", reportIds: string[]) {
+  const now = new Date().toISOString();
+  if (action === "hide") {
+    await env.DB.batch(reportIds.map((reportId) => env.DB.prepare(
+      `INSERT INTO report_hidden (report_id, hidden_at, note)
+       VALUES (?, ?, '관리자 일괄 숨김')
+       ON CONFLICT(report_id) DO UPDATE SET hidden_at = excluded.hidden_at, note = excluded.note`
+    ).bind(reportId, now)));
+  } else {
+    await env.DB.batch(reportIds.map((reportId) => env.DB.prepare(
+      "DELETE FROM report_hidden WHERE report_id = ?"
+    ).bind(reportId)));
+  }
+  return reportIds.map((reportId) => ({ reportId, status: "completed" }));
+}
+
+function lifecycleAuthorized(request: Request, env: Env) {
+  return Boolean(env.LIFECYCLE_WORKER_SECRET)
+    && request.headers.get("X-Report-Lifecycle-Secret") === env.LIFECYCLE_WORKER_SECRET;
+}
+
+async function lifecycleJob(request: Request, env: Env, jobId: string) {
+  const job = await env.DB.prepare(
+    `SELECT id, action, status, requested_count, success_count, failure_count,
+            requested_at, started_at, completed_at, error_message, result_json
+     FROM report_admin_jobs WHERE id = ?`
+  ).bind(jobId).first<Record<string, unknown>>();
+  if (!job) return json(request, { error: "admin_job_not_found" }, 404);
+  const items = await env.DB.prepare(
+    `SELECT report_id, status, private_report_id, error_message, updated_at
+     FROM report_admin_job_items WHERE job_id = ? ORDER BY report_id ASC`
+  ).bind(jobId).all<Record<string, unknown>>();
+  return json(request, { job, items: items.results || [] });
+}
+
+async function lifecycleStart(request: Request, env: Env, jobId: string) {
+  const existing = await env.DB.prepare("SELECT id FROM report_admin_jobs WHERE id = ?").bind(jobId).first<{ id: string }>();
+  if (!existing) return json(request, { error: "admin_job_not_found" }, 404);
+  await env.DB.prepare(
+    "UPDATE report_admin_jobs SET status = 'running', started_at = COALESCE(started_at, ?) WHERE id = ?"
+  ).bind(new Date().toISOString(), jobId).run();
+  return lifecycleJob(request, env, jobId);
+}
+
+async function lifecycleItem(request: Request, env: Env, jobId: string, reportId: string) {
+  let payload: { status?: unknown; privateReportId?: unknown; errorMessage?: unknown };
+  try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+  const status = clean(payload.status, 20);
+  if (!["running", "completed", "failed"].includes(status)) return json(request, { error: "invalid_job_status" }, 400);
+  const now = new Date().toISOString();
+  await env.DB.prepare(
+    `UPDATE report_admin_job_items SET status = ?, private_report_id = ?, error_message = ?, updated_at = ?
+     WHERE job_id = ? AND report_id = ?`
+  ).bind(status, clean(payload.privateReportId, 120), clean(payload.errorMessage, 240), now, jobId, reportId).run();
+  const counts = await env.DB.prepare(
+    `SELECT
+       SUM(CASE WHEN status = 'completed' THEN 1 ELSE 0 END) AS success_count,
+       SUM(CASE WHEN status = 'failed' THEN 1 ELSE 0 END) AS failure_count,
+       COUNT(*) AS requested_count
+     FROM report_admin_job_items WHERE job_id = ?`
+  ).bind(jobId).first<{ success_count: number; failure_count: number; requested_count: number }>();
+  await env.DB.prepare(
+    `UPDATE report_admin_jobs SET success_count = ?, failure_count = ?
+     WHERE id = ?`
+  ).bind(Number(counts?.success_count || 0), Number(counts?.failure_count || 0), jobId).run();
+  return lifecycleJob(request, env, jobId);
+}
+
+async function lifecycleComplete(request: Request, env: Env, jobId: string) {
+  let payload: { status?: unknown; errorMessage?: unknown } = {};
+  try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+  const requested = await env.DB.prepare("SELECT requested_count, success_count, failure_count FROM report_admin_jobs WHERE id = ?")
+    .bind(jobId).first<{ requested_count: number; success_count: number; failure_count: number }>();
+  if (!requested) return json(request, { error: "admin_job_not_found" }, 404);
+  const status = ["completed", "partial", "failed"].includes(String(payload.status))
+    ? String(payload.status)
+    : Number(requested.success_count || 0) === Number(requested.requested_count || 0) ? "completed" : "partial";
+  await env.DB.prepare(
+    `UPDATE report_admin_jobs SET status = ?, completed_at = ?, error_message = COALESCE(?, error_message)
+     WHERE id = ?`
+  ).bind(status, new Date().toISOString(), clean(payload.errorMessage, 240) || null, jobId).run();
+  return lifecycleJob(request, env, jobId);
 }
 
 async function featuredReportIds(env: Env) {
@@ -274,6 +495,18 @@ export default {
     const url = new URL(request.url);
     const privateResponse = await handlePrivateReportRequest(request, env);
     if (privateResponse) return privateResponse;
+    if (url.pathname.startsWith("/internal/report-jobs/")) {
+      if (!lifecycleAuthorized(request, env)) return json(request, { error: "internal_auth_required" }, 401);
+      const startMatch = url.pathname.match(/^\/internal\/report-jobs\/([^/]+)\/start$/i);
+      const itemMatch = url.pathname.match(/^\/internal\/report-jobs\/([^/]+)\/items\/([^/]+)$/i);
+      const completeMatch = url.pathname.match(/^\/internal\/report-jobs\/([^/]+)\/complete$/i);
+      const jobMatch = url.pathname.match(/^\/internal\/report-jobs\/([^/]+)$/i);
+      if (startMatch && request.method === "POST") return lifecycleStart(request, env, decodeURIComponent(startMatch[1]));
+      if (itemMatch && request.method === "POST") return lifecycleItem(request, env, decodeURIComponent(itemMatch[1]), decodeURIComponent(itemMatch[2]));
+      if (completeMatch && request.method === "POST") return lifecycleComplete(request, env, decodeURIComponent(completeMatch[1]));
+      if (jobMatch && request.method === "GET") return lifecycleJob(request, env, decodeURIComponent(jobMatch[1]));
+      return json(request, { error: "method_not_allowed" }, 405);
+    }
     if (url.pathname === "/visits" && request.method === "GET") {
       const siteId = clean(url.searchParams.get("site"), 64);
       if (!siteId || !/^[a-z0-9-]+$/i.test(siteId)) return json(request, { error: "invalid_site" }, 400);
@@ -297,6 +530,47 @@ export default {
       ).bind(siteId, visitorId, day, createdAt).run();
       const counts = await visitCounts(env, siteId, day);
       return json(request, { siteId, day, counted: Number(inserted.meta?.changes || 0) > 0, ...counts });
+    }
+
+    if (url.pathname === "/entry-sessions" && request.method === "POST") {
+      let payload: Record<string, unknown>;
+      try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+      const normalized = normalizeEntryPayload(payload);
+      const siteId = clean(payload.siteId, 64);
+      if (!siteId || !/^[a-z0-9-]+$/i.test(siteId)) return json(request, { error: "invalid_site" }, 400);
+      if (!normalized.entryId || !isVisitorId(normalized.visitorId)) {
+        return json(request, { error: "invalid_entry_session" }, 400);
+      }
+      const day = seoulDate();
+      const createdAt = new Date().toISOString();
+      const inserted = await env.DB.prepare(
+        `INSERT OR IGNORE INTO report_entry_sessions
+          (entry_id, site_id, visitor_id, entry_date, landing_path, report_id,
+           source_type, referrer_host, referrer_path, referrer_url,
+           utm_source, utm_medium, utm_campaign, created_at)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+      ).bind(
+        normalized.entryId,
+        siteId,
+        normalized.visitorId,
+        day,
+        normalized.landingPath,
+        normalized.reportId,
+        normalized.sourceType,
+        normalized.referrerHost,
+        normalized.referrerPath,
+        normalized.referrerUrl,
+        normalized.utmSource,
+        normalized.utmMedium,
+        normalized.utmCampaign,
+        createdAt,
+      ).run();
+      return json(request, {
+        ok: true,
+        entryId: normalized.entryId,
+        sourceType: normalized.sourceType,
+        counted: Number(inserted.meta?.changes || 0) > 0,
+      });
     }
 
     if (url.pathname === "/report-views" && request.method === "GET") {
@@ -557,13 +831,81 @@ export default {
     }
 
     if (url.pathname === "/admin/analytics" && request.method === "POST") {
-      let payload: { adminPassword?: unknown };
+      let payload: { adminPassword?: unknown; days?: unknown };
       try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
       if (!env.ADMIN_PASSWORD) return json(request, { error: "admin_not_configured" }, 503);
       if (passwordValue(payload.adminPassword) !== env.ADMIN_PASSWORD) {
         return json(request, { error: "wrong_admin_password" }, 403);
       }
-      return json(request, await analyticsSnapshot(env, seoulDate()));
+      return json(request, await analyticsSnapshot(env, seoulDate(), payload.days));
+    }
+
+    if (url.pathname === "/admin/report-actions" && request.method === "POST") {
+      let payload: { action?: unknown; reportIds?: unknown; adminPassword?: unknown };
+      try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+      if (!isAdminPassword(env, passwordValue(payload.adminPassword))) {
+        return json(request, { error: "wrong_admin_password" }, 403);
+      }
+      const action = normalizeAdminAction(payload.action);
+      const reportIds = validReportIds(payload.reportIds);
+      if (!action) return json(request, { error: "invalid_admin_action" }, 400);
+      if (!reportIds.length) return json(request, { error: "missing_report_ids" }, 400);
+      if (reportIds.length > 50) return json(request, { error: "too_many_report_ids" }, 413);
+      if (action === "hide" || action === "unhide") {
+        return json(request, {
+          ok: true,
+          action,
+          results: await applyVisibilityAction(env, action, reportIds),
+        });
+      }
+      const job = await createReportAdminJob(env, action, reportIds);
+      const dispatched = await dispatchReportAdminJob(env, job.id);
+      return json(request, {
+        ok: dispatched,
+        job: dispatched ? job : { ...job, status: "failed" },
+      }, dispatched ? 202 : 503);
+    }
+
+    if (url.pathname === "/admin/report-jobs" && request.method === "POST") {
+      let payload: { adminPassword?: unknown; limit?: unknown };
+      try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+      if (!isAdminPassword(env, passwordValue(payload.adminPassword))) {
+        return json(request, { error: "wrong_admin_password" }, 403);
+      }
+      const limit = Math.min(50, Math.max(1, Math.trunc(Number(payload.limit || 20))));
+      const rows = await env.DB.prepare(
+        `SELECT id, action, status, requested_count, success_count, failure_count,
+                requested_at, started_at, completed_at, error_message, result_json
+         FROM report_admin_jobs ORDER BY requested_at DESC LIMIT ${limit}`
+      ).all<Record<string, unknown>>();
+      const jobs = await Promise.all((rows.results || []).map(async (job) => {
+        const items = await env.DB.prepare(
+          "SELECT report_id, status, private_report_id, error_message, updated_at FROM report_admin_job_items WHERE job_id = ? ORDER BY report_id ASC"
+        ).bind(String(job.id || "")).all<Record<string, unknown>>();
+        return { ...job, items: items.results || [] };
+      }));
+      return json(request, { jobs });
+    }
+
+    const adminJobId = url.pathname.match(/^\/admin\/report-jobs\/([^/]+)$/i)?.[1];
+    if (adminJobId && request.method === "POST") {
+      let payload: { adminPassword?: unknown };
+      try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+      if (!isAdminPassword(env, passwordValue(payload.adminPassword))) {
+        return json(request, { error: "wrong_admin_password" }, 403);
+      }
+      const jobId = decodeURIComponent(adminJobId).slice(0, 80);
+      const job = await env.DB.prepare(
+        `SELECT id, action, status, requested_count, success_count, failure_count,
+                requested_at, started_at, completed_at, error_message, result_json
+         FROM report_admin_jobs WHERE id = ?`
+      ).bind(jobId).first<Record<string, unknown>>();
+      if (!job) return json(request, { error: "admin_job_not_found" }, 404);
+      const items = await env.DB.prepare(
+        `SELECT report_id, status, private_report_id, error_message, updated_at
+         FROM report_admin_job_items WHERE job_id = ? ORDER BY report_id ASC`
+      ).bind(jobId).all<Record<string, unknown>>();
+      return json(request, { job, items: items.results || [] });
     }
 
     if (url.pathname === "/report-overrides" && request.method === "GET") {
@@ -732,7 +1074,7 @@ export default {
       return json(request, { ok: true, reportId });
     }
 
-    if (url.pathname === "/comments" || url.pathname === "/comments/recent" || commentId || url.pathname === "/visits" || url.pathname === "/report-views" || url.pathname === "/requests" || requestId || replyRequestId || url.pathname.startsWith("/hidden-reports") || url.pathname.startsWith("/featured-reports") || url.pathname.startsWith("/draft-promotions") || url.pathname.startsWith("/report-overrides") || url.pathname === "/admin/verify" || url.pathname === "/admin/analytics") {
+    if (url.pathname === "/comments" || url.pathname === "/comments/recent" || commentId || url.pathname === "/visits" || url.pathname === "/entry-sessions" || url.pathname === "/report-views" || url.pathname === "/requests" || requestId || replyRequestId || url.pathname.startsWith("/hidden-reports") || url.pathname.startsWith("/featured-reports") || url.pathname.startsWith("/draft-promotions") || url.pathname.startsWith("/report-overrides") || url.pathname === "/admin/verify" || url.pathname === "/admin/analytics" || url.pathname.startsWith("/admin/report-actions") || url.pathname.startsWith("/admin/report-jobs")) {
       return json(request, { error: "method_not_allowed" }, 405);
     }
     return json(request, { error: "not_found" }, 404);

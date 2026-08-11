@@ -22,6 +22,11 @@ type PrivateReportRow = {
   cover_type: string | null;
   created_at: string;
   updated_at: string;
+  origin_report_id?: string;
+  origin_public_url?: string;
+  conversion_job_id?: string;
+  converted_at?: string | null;
+  recovery_key?: string | null;
 };
 
 class FakePrepared {
@@ -78,13 +83,16 @@ class FakePrivateD1 {
         this.failNextReportWrite = false;
         throw new Error("simulated_report_write_failure");
       }
-      const [id, title, summary, displayDate, sourceCount, tagsJson, htmlKey, coverKey, coverType, createdAt, updatedAt] = args;
+      const [id, title, summary, displayDate, sourceCount, tagsJson, htmlKey, coverKey, coverType, createdAt, updatedAt, originReportId, originPublicUrl, conversionJobId, convertedAt, recoveryKey] = args;
       if (this.reports.has(String(id))) throw new Error("UNIQUE constraint failed: private_reports.id");
       this.reports.set(String(id), {
         id: String(id), title: String(title), summary: String(summary), display_date: String(displayDate),
         source_count: Number(sourceCount), tags_json: String(tagsJson), html_key: String(htmlKey),
         cover_key: coverKey ? String(coverKey) : null, cover_type: coverType ? String(coverType) : null,
         created_at: String(createdAt), updated_at: String(updatedAt),
+        origin_report_id: String(originReportId || ""), origin_public_url: String(originPublicUrl || ""),
+        conversion_job_id: String(conversionJobId || ""), converted_at: convertedAt ? String(convertedAt) : null,
+        recovery_key: recoveryKey ? String(recoveryKey) : null,
       });
       return { success: true, meta: { changes: 1 } };
     }
@@ -164,7 +172,7 @@ function environment() {
   } as any;
 }
 
-async function call(env: any, path: string, method = "GET", body?: BodyInit | object, token?: string, origin = "https://aihubos.github.io") {
+async function call(env: any, path: string, method = "GET", body?: BodyInit | object, token?: string, origin = "https://aihubos.github.io", lifecycleSecret?: string) {
   const headers = new Headers({ Origin: origin, "CF-Connecting-IP": "203.0.113.10" });
   let requestBody: BodyInit | undefined;
   if (body instanceof FormData) requestBody = body;
@@ -174,6 +182,7 @@ async function call(env: any, path: string, method = "GET", body?: BodyInit | ob
     requestBody = JSON.stringify(body);
   }
   if (token) headers.set("Authorization", `Bearer ${token}`);
+  if (lifecycleSecret) headers.set("X-Report-Lifecycle-Secret", lifecycleSecret);
   const response = await worker.fetch(new Request(`https://private.test${path}`, { method, headers, body: requestBody }), env);
   const contentType = response.headers.get("Content-Type") || "";
   const value = contentType.includes("application/json") ? await response.json() : await response.text();
@@ -295,4 +304,39 @@ test("private routes reject an untrusted browser origin", async () => {
   const env = environment();
   const result = await call(env, "/private-session", "POST", { adminPassword: "correct-admin-password" }, undefined, "https://attacker.example");
   assert.equal(result.response.status, 403);
+});
+
+test("internal lifecycle package requires the secret and is idempotent per conversion job", async () => {
+  const env = environment();
+  env.LIFECYCLE_WORKER_SECRET = "lifecycle-test-secret";
+  const unauthorized = await call(env, "/internal/private-packages", "POST", reportForm("internal-sample"));
+  assert.equal(unauthorized.response.status, 401);
+
+  const form = reportForm("internal-sample", "자동 전환 비공개 샘플");
+  form.set("originReportId", "public-report");
+  form.set("originPublicUrl", "https://aihubos.github.io/reportmode/reports/public-report/");
+  form.set("conversionJobId", "job-123");
+  form.set("recoveryKey", "trash/job-123/public-report.html");
+  const created = await call(env, "/internal/private-packages", "POST", form, undefined, "", "lifecycle-test-secret");
+  assert.equal(created.response.status, 201);
+  assert.equal(env.DB.reports.get("internal-sample")?.origin_report_id, "public-report");
+  assert.equal(env.DB.reports.get("internal-sample")?.conversion_job_id, "job-123");
+
+  const retry = await call(env, "/internal/private-packages", "POST", form, undefined, "", "lifecycle-test-secret");
+  assert.equal(retry.response.status, 200);
+  assert.equal(env.DB.reports.size, 1);
+});
+
+test("internal recovery upload stores the original HTML under a trash prefix", async () => {
+  const env = environment();
+  env.LIFECYCLE_WORKER_SECRET = "lifecycle-test-secret";
+  const form = new FormData();
+  form.set("key", "job-123/public-report.html");
+  form.set("file", new File(["<html>원본</html>"], "public-report.html", { type: "text/html" }));
+  const stored = await call(env, "/internal/recovery-objects", "POST", form, undefined, "", "lifecycle-test-secret");
+  assert.equal(stored.response.status, 200);
+  assert.equal(stored.value.key, "trash/job-123/public-report.html");
+  const object = await env.PRIVATE_REPORTS.get("trash/job-123/public-report.html");
+  assert.ok(object);
+  assert.match(await object.text!(), /원본/);
 });

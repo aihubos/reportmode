@@ -24,6 +24,10 @@
     privateToken: "",
     privateReports: [],
     privateEditing: null,
+    selectedReports: new Set(),
+    selectedPrivateReports: new Set(),
+    analyticsDays: 30,
+    jobs: [],
   };
 
   function byId(id) { return document.getElementById(id); }
@@ -68,6 +72,14 @@
     if (code === "html_too_large") return "HTML 파일은 최대 5MB까지 등록할 수 있습니다.";
     if (code === "invalid_cover_type") return "썸네일은 JPG, PNG, WebP 파일만 사용할 수 있습니다.";
     if (code === "cover_too_large") return "썸네일은 최대 1MB까지 등록할 수 있습니다.";
+    if (code === "invalid_admin_action") return "지원하지 않는 일괄 작업입니다.";
+    if (code === "missing_report_ids") return "보고서를 먼저 선택해 주세요.";
+    if (code === "too_many_report_ids") return "한 번에 50개까지만 처리할 수 있습니다.";
+    if (code === "lifecycle_not_configured" || code === "github_lifecycle_not_configured") return "비공개·삭제 자동화가 아직 연결되지 않았습니다.";
+    if (code === "admin_job_not_found") return "작업 정보를 찾지 못했습니다.";
+    if (code === "lifecycle_failed") return "일괄 작업이 실패했습니다. 공개 원본은 유지됩니다.";
+    if (code === "lifecycle_partial") return "일부 보고서만 처리되었습니다. 작업 이력을 확인해 주세요.";
+    if (code === "lifecycle_timeout") return "작업 확인 시간이 초과되었습니다. 잠시 후 상태를 다시 확인해 주세요.";
     return "요청을 처리하지 못했습니다. 잠시 후 다시 시도해 주세요.";
   }
 
@@ -81,6 +93,12 @@
   function setText(id, value) {
     var output = byId(id);
     if (output) output.textContent = value;
+  }
+
+  function escapeHtml(value) {
+    return String(value || "").replace(/[&<>"']/g, function (character) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[character];
+    });
   }
 
   function formatNumber(value) {
@@ -161,9 +179,51 @@
   }
 
   function reportState(report) {
+    var pendingJob = state.jobs.find(function (job) {
+      return ["queued", "running"].includes(String(job.status)) && Array.isArray(job.items) && job.items.some(function (item) { return item.report_id === report.id; });
+    });
+    if (pendingJob) return { label: pendingJob.action === "make_private" ? "비공개 전환 중" : "삭제 중", hidden: false, pending: true };
     if (state.hidden.has(report.id)) return { label: "숨김", hidden: true };
     if (report.status === "draft") return { label: "초안", hidden: false };
     return { label: "공개", hidden: false };
+  }
+
+  function isExternalReport(report) {
+    return !report || !report.path || report.isExternalLink === true;
+  }
+
+  function visibleReportsForSelection() {
+    var search = String(byId("archiveAdminReportSearch").value || "").trim().toLocaleLowerCase("ko-KR");
+    var selectedStatus = String(byId("archiveAdminReportStatus").value || "all");
+    return state.reports.filter(function (report) { return matchesReport(report, search, selectedStatus); });
+  }
+
+  function updateSelectionUi() {
+    var count = state.selectedReports.size;
+    setText("archiveAdminSelectionCount", formatNumber(count) + "개 선택");
+    var bar = byId("archiveAdminBulkBar");
+    if (bar) bar.hidden = count === 0;
+    var privateCount = state.selectedPrivateReports.size;
+    setText("archiveAdminPrivateSelectionCount", formatNumber(privateCount) + "개 선택");
+    var privateBar = byId("archiveAdminPrivateBulkBar");
+    if (privateBar) privateBar.hidden = privateCount === 0;
+  }
+
+  function syncSelectAllCheckboxes() {
+    var visible = visibleReportsForSelection();
+    var allSelected = visible.length > 0 && visible.every(function (report) { return state.selectedReports.has(report.id); });
+    [byId("archiveAdminSelectAll"), byId("archiveAdminHeaderSelect")].forEach(function (checkbox) {
+      if (!checkbox) return;
+      checkbox.checked = allSelected;
+      checkbox.indeterminate = !allSelected && visible.some(function (report) { return state.selectedReports.has(report.id); });
+    });
+    var privateCheckbox = byId("archiveAdminPrivateHeaderSelect");
+    var privateAll = state.privateReports.length > 0 && state.privateReports.every(function (report) { return state.selectedPrivateReports.has(report.id); });
+    if (privateCheckbox) {
+      privateCheckbox.checked = privateAll;
+      privateCheckbox.indeterminate = !privateAll && state.privateReports.some(function (report) { return state.selectedPrivateReports.has(report.id); });
+    }
+    updateSelectionUi();
   }
 
   function makeCell(text, className) {
@@ -259,6 +319,52 @@
     renderDailyTable("archiveAdminVisitDaily", site.daily, "방문 데이터가 없습니다.");
     renderDailyTable("archiveAdminViewDaily", reports.daily, "클릭 데이터가 없습니다.");
     renderPopularReports(reports.top);
+    if (window.ReportHubAdminCharts) {
+      window.ReportHubAdminCharts.renderTrend(
+        analytics,
+        byId("archiveAdminTrendChart"),
+        byId("archiveAdminTrendSummary"),
+        byId("archiveAdminTrendLegend"),
+        byId("archiveAdminTrendTable"),
+      );
+    }
+    renderSources(analytics && analytics.entries);
+    renderJobs();
+  }
+
+  function sourceLabel(source) {
+    return ({ direct: "직접 접속", internal: "Report Hub 내부", naver: "네이버", google: "구글", kakao: "카카오", daangn: "당근", social: "SNS", external: "기타 외부" })[source] || source || "기타";
+  }
+
+  function renderSources(entries) {
+    var sourceList = byId("archiveAdminSourceList");
+    var recent = byId("archiveAdminRecentEntries");
+    if (!sourceList || !recent) return;
+    var sources = entries && Array.isArray(entries.sources) ? entries.sources : [];
+    sourceList.innerHTML = sources.length ? sources.map(function (row) {
+      return '<div class="archive-admin-console-source-item"><span>' + sourceLabel(row.source) + '</span><strong>' + formatNumber(row.count) + ' · ' + formatNumber(row.share) + '%</strong><div class="archive-admin-console-source-bar"><span style="width:' + Math.min(100, Number(row.share || 0)) + '%"></span></div></div>';
+    }).join("") : '<p class="archive-admin-console-empty">유입 데이터가 없습니다.</p>';
+    var rows = entries && Array.isArray(entries.recent) ? entries.recent : [];
+    recent.innerHTML = rows.length ? rows.slice(0, 100).map(function (row) {
+      var referrer = row.referrerUrl ? '<a class="archive-admin-console-entry-link" href="' + escapeHtml(row.referrerUrl) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(sourceLabel(row.source)) + '</a>' : escapeHtml(sourceLabel(row.source));
+      var report = row.reportId ? escapeHtml(row.reportId) : "-";
+      return '<tr><td class="archive-admin-console-table-number">' + escapeHtml(displayDate(row.createdAt)) + '</td><td>' + referrer + '</td><td>' + escapeHtml(row.landingPath || "/") + '</td><td>' + report + '</td></tr>';
+    }).join("") : '<tr><td colspan="4">유입 데이터가 없습니다.</td></tr>';
+  }
+
+  function renderJobs() {
+    var body = byId("archiveAdminJobs");
+    if (!body) return;
+    if (!state.jobs.length) {
+      body.innerHTML = '<tr><td colspan="5">작업 이력이 없습니다.</td></tr>';
+      return;
+    }
+    body.innerHTML = state.jobs.map(function (job) {
+      var statusClass = job.status === "failed" ? "is-failed" : ["queued", "running"].includes(job.status) ? "is-pending" : "";
+      var statusLabel = ({ queued: "대기", running: "처리 중", completed: "완료", partial: "일부 실패", failed: "실패" })[job.status] || job.status;
+      var actionLabel = job.action === "make_private" ? "비공개 전환" : job.action === "delete" ? "삭제" : job.action;
+      return '<tr><td class="archive-admin-console-table-number">' + escapeHtml(displayDate(job.requested_at)) + '</td><td>' + escapeHtml(actionLabel) + '</td><td><span class="archive-admin-console-state ' + statusClass + '">' + escapeHtml(statusLabel) + '</span></td><td>' + formatNumber(job.success_count) + ' / ' + formatNumber(job.requested_count) + '</td><td>' + escapeHtml(job.error_message || "-") + '</td></tr>';
+    }).join("");
   }
 
   function matchesReport(report, query, selectedStatus) {
@@ -287,10 +393,11 @@
     if (!visibleReports.length) {
       var empty = document.createElement("tr");
       var cell = document.createElement("td");
-      cell.colSpan = 7;
+      cell.colSpan = 8;
       cell.textContent = "조건에 맞는 보고서가 없습니다.";
       empty.appendChild(cell);
       body.appendChild(empty);
+      syncSelectAllCheckboxes();
       return;
     }
     visibleReports.forEach(function (report) {
@@ -313,7 +420,7 @@
       var status = reportState(report);
       var statusCell = document.createElement("td");
       var statusBadge = document.createElement("span");
-      statusBadge.className = "archive-admin-console-state" + (status.hidden ? " is-hidden" : "");
+      statusBadge.className = "archive-admin-console-state" + (status.hidden ? " is-hidden" : "") + (status.pending ? " is-pending" : "");
       statusBadge.textContent = status.label;
       statusCell.appendChild(statusBadge);
       var actionCell = document.createElement("td");
@@ -329,9 +436,34 @@
       hide.className = "archive-admin-console-table-button" + (status.hidden ? "" : " is-danger");
       hide.textContent = status.hidden ? "복구" : "숨김";
       hide.addEventListener("click", function () { toggleHidden(report, hide); });
-      actions.append(edit, hide);
+      var makePrivate = document.createElement("button");
+      makePrivate.type = "button";
+      makePrivate.className = "archive-admin-console-table-button" + (isExternalReport(report) ? "" : " is-danger");
+      makePrivate.textContent = "비공개";
+      makePrivate.disabled = isExternalReport(report) || status.pending;
+      makePrivate.title = isExternalReport(report) ? "외부 링크 보고서는 비공개 전환할 수 없습니다." : "R2 비공개 보고서로 전환";
+      makePrivate.addEventListener("click", function () { runReportAction("make_private", [report.id]); });
+      var remove = document.createElement("button");
+      remove.type = "button";
+      remove.className = "archive-admin-console-table-button is-danger";
+      remove.textContent = "삭제";
+      remove.disabled = status.pending;
+      remove.addEventListener("click", function () { runReportAction("delete", [report.id]); });
+      var checkboxCell = document.createElement("td");
+      var checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.checked = state.selectedReports.has(report.id);
+      checkbox.setAttribute("aria-label", card.title + " 선택");
+      checkbox.addEventListener("change", function () {
+        if (checkbox.checked) state.selectedReports.add(report.id);
+        else state.selectedReports.delete(report.id);
+        syncSelectAllCheckboxes();
+      });
+      checkboxCell.appendChild(checkbox);
+      actions.append(edit, makePrivate, hide, remove);
       actionCell.appendChild(actions);
       tr.append(
+        checkboxCell,
         coverCell,
         reportCell,
         makeCell(report.category || "기타"),
@@ -342,6 +474,7 @@
       );
       body.appendChild(tr);
     });
+    syncSelectAllCheckboxes();
   }
 
   function loadPublicData() {
@@ -372,9 +505,19 @@
     return requestJson(API + "/admin/analytics", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ adminPassword: state.password }),
+      body: JSON.stringify({ adminPassword: state.password, days: state.analyticsDays }),
     }).then(function (analytics) {
       state.analytics = analytics;
+    });
+  }
+
+  function loadJobs() {
+    return requestJson(API + "/admin/report-jobs", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ adminPassword: state.password, limit: 20 }),
+    }).then(function (body) {
+      state.jobs = Array.isArray(body.jobs) ? body.jobs : [];
     });
   }
 
@@ -384,7 +527,7 @@
       .then(function () {
         renderReports();
         renderAnalytics();
-        return loadAnalytics()
+        return Promise.all([loadAnalytics(), loadJobs()])
           .then(function () {
             renderAnalytics();
             setStatus("archiveAdminDashboardStatus", "목록과 통계를 새로 읽었습니다.", false);
@@ -576,28 +719,107 @@
   }
 
   function toggleHidden(report, button) {
-    if (!state.password) return;
     var hidden = state.hidden.has(report.id);
-    var question = hidden
-      ? "이 보고서를 도서관에 다시 표시할까요?"
-      : "이 보고서를 도서관에서 숨길까요? 보고서 원본은 삭제되지 않습니다.";
-    if (!window.confirm(question)) return;
     button.disabled = true;
-    requestJson(hidden ? API + "/hidden-reports/" + encodeURIComponent(report.id) : API + "/hidden-reports", {
-      method: hidden ? "DELETE" : "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(hidden ? { adminPassword: state.password } : { reportId: report.id, adminPassword: state.password }),
-    }).then(function () {
-      if (hidden) state.hidden.delete(report.id);
-      else state.hidden.add(report.id);
-      renderReports();
-      renderAnalytics();
-      setStatus("archiveAdminDashboardStatus", hidden ? "보고서를 다시 표시했습니다." : "보고서를 도서관에서 숨겼습니다.", false);
+    runReportAction(hidden ? "unhide" : "hide", [report.id]).finally(function () { button.disabled = false; });
+  }
+
+  function actionLabel(action) {
+    return ({ hide: "숨김", unhide: "숨김 해제", make_private: "비공개 전환", delete: "삭제" })[action] || action;
+  }
+
+  function confirmAction(action, reportIds) {
+    if (action === "hide" || action === "unhide") {
+      return window.confirm("선택한 " + reportIds.length + "개 보고서를 " + actionLabel(action) + "할까요?");
+    }
+    if (action === "make_private") {
+      return window.confirm("선택한 " + reportIds.length + "개 보고서를 R2 비공개 저장소로 옮기고 현재 공개 페이지에서 제거할까요? 이미 공개된 GitHub 이력과 검색 캐시는 되돌릴 수 없습니다.");
+    }
+    return window.prompt("삭제하려면 ‘삭제’를 입력하세요.") === "삭제";
+  }
+
+  function pollAdminJob(jobId) {
+    var attempts = 0;
+    function check() {
+      attempts += 1;
+      return requestJson(API + "/admin/report-jobs/" + encodeURIComponent(jobId), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ adminPassword: state.password }),
+      }).then(function (body) {
+        var job = body.job || {};
+        state.jobs = state.jobs.filter(function (item) { return item.id !== job.id; });
+        state.jobs.unshift(job);
+        renderJobs();
+        if (["completed", "partial", "failed"].includes(job.status)) {
+          return refreshDashboard().then(function () {
+            if (job.status === "failed") throw new Error("lifecycle_failed");
+            if (job.status === "partial") throw new Error("lifecycle_partial");
+            return job;
+          });
+        }
+        if (attempts >= 20) {
+          return refreshDashboard().then(function () { throw new Error("lifecycle_timeout"); });
+        }
+        return new Promise(function (resolve) { window.setTimeout(function () { resolve(check()); }, 3000); });
+      }).catch(function (error) {
+        setStatus("archiveAdminDashboardStatus", message(error.message), true);
+        throw error;
+      });
+    }
+    return check();
+  }
+
+  function runReportAction(action, reportIds) {
+    if (!state.password) return Promise.resolve();
+    var unique = Array.from(new Set(reportIds.filter(Boolean)));
+    if (!unique.length) {
+      setStatus("archiveAdminDashboardStatus", "보고서를 먼저 선택해 주세요.", true);
+      return Promise.resolve();
+    }
+    if (!confirmAction(action, unique)) return Promise.resolve();
+    var chunks = [];
+    for (var index = 0; index < unique.length; index += 50) chunks.push(unique.slice(index, index + 50));
+    setStatus("archiveAdminDashboardStatus", actionLabel(action) + " 작업을 시작했습니다.", false);
+    return chunks.reduce(function (chain, chunk) {
+      return chain.then(function () {
+        return requestJson(API + "/admin/report-actions", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ action: action, reportIds: chunk, adminPassword: state.password }),
+        }).then(function (body) {
+          chunk.forEach(function (id) { state.selectedReports.delete(id); });
+          if (body.job) {
+            state.jobs.unshift(body.job);
+            renderJobs();
+            return pollAdminJob(body.job.id);
+          }
+          if (action === "hide") chunk.forEach(function (id) { state.hidden.add(id); });
+          if (action === "unhide") chunk.forEach(function (id) { state.hidden.delete(id); });
+          return refreshDashboard();
+        });
+      });
+    }, Promise.resolve()).then(function () {
+      updateSelectionUi();
+      setStatus("archiveAdminDashboardStatus", actionLabel(action) + " 작업을 완료했습니다.", false);
     }).catch(function (error) {
       setStatus("archiveAdminDashboardStatus", message(error.message), true);
-    }).finally(function () {
-      button.disabled = false;
     });
+  }
+
+  function applyBulkAction() {
+    var action = String(byId("archiveAdminBulkAction").value || "");
+    if (!action) {
+      setStatus("archiveAdminDashboardStatus", "일괄 작업을 선택해 주세요.", true);
+      return;
+    }
+    var ids = Array.from(state.selectedReports);
+    if (action === "make_private") {
+      var external = ids.filter(function (id) { var report = state.reportsById.get(id); return isExternalReport(report); });
+      ids = ids.filter(function (id) { var report = state.reportsById.get(id); return !isExternalReport(report); });
+      if (external.length) setStatus("archiveAdminDashboardStatus", external.length + "개 외부 링크 보고서는 비공개 전환에서 제외했습니다.", true);
+    }
+    runReportAction(action, ids);
   }
 
   function privateRequestJson(path, options) {
@@ -664,7 +886,7 @@
     if (!state.privateReports.length) {
       var empty = document.createElement("tr");
       var emptyCell = document.createElement("td");
-      emptyCell.colSpan = 7;
+      emptyCell.colSpan = 8;
       emptyCell.textContent = "등록된 비공개 보고서가 없습니다.";
       empty.appendChild(emptyCell);
       body.appendChild(empty);
@@ -697,7 +919,19 @@
       remove.addEventListener("click", function () { deletePrivateReport(report, remove); });
       actions.append(edit, remove);
       actionCell.appendChild(actions);
+      var checkboxCell = document.createElement("td");
+      var checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.checked = state.selectedPrivateReports.has(report.id);
+      checkbox.setAttribute("aria-label", report.title + " 선택");
+      checkbox.addEventListener("change", function () {
+        if (checkbox.checked) state.selectedPrivateReports.add(report.id);
+        else state.selectedPrivateReports.delete(report.id);
+        syncSelectAllCheckboxes();
+      });
+      checkboxCell.appendChild(checkbox);
       row.append(
+        checkboxCell,
         reportCell,
         makeCell(displayDate(report.displayDate), "archive-admin-console-table-number"),
         makeCell(formatNumber(report.sourceCount), "archive-admin-console-table-number"),
@@ -708,6 +942,7 @@
       );
       body.appendChild(row);
     });
+    syncSelectAllCheckboxes();
   }
 
   function loadPrivateReports() {
@@ -849,6 +1084,27 @@
     });
   }
 
+  function deleteSelectedPrivateReports() {
+    var ids = Array.from(state.selectedPrivateReports);
+    if (!ids.length || !window.confirm("선택한 비공개 보고서 " + ids.length + "개를 삭제할까요?")) return;
+    var reports = state.privateReports.filter(function (report) { return ids.includes(report.id); });
+    var index = 0;
+    function next() {
+      if (index >= reports.length) {
+        state.selectedPrivateReports.clear();
+        loadPrivateReports();
+        updateSelectionUi();
+        return;
+      }
+      var report = reports[index++];
+      privateRequestJson("/private-reports/" + encodeURIComponent(report.id), { method: "DELETE" })
+        .then(function () { state.selectedPrivateReports.delete(report.id); })
+        .catch(function (error) { setStatus("archiveAdminPrivateStatus", message(error.message, error.retryAfter), true); })
+        .finally(next);
+    }
+    next();
+  }
+
   function verifyAdministrator(event) {
     event.preventDefault();
     var passwordInput = byId("archiveAdminGatePassword");
@@ -886,6 +1142,25 @@
   });
   byId("archiveAdminReportSearch").addEventListener("input", renderReports);
   byId("archiveAdminReportStatus").addEventListener("change", renderReports);
+  byId("archiveAdminAnalyticsDays").addEventListener("change", function (event) {
+    state.analyticsDays = Number(event.target.value) || 30;
+    refreshDashboard();
+  });
+  [byId("archiveAdminSelectAll"), byId("archiveAdminHeaderSelect")].forEach(function (checkbox) {
+    if (!checkbox) return;
+    checkbox.addEventListener("change", function () {
+      visibleReportsForSelection().forEach(function (report) {
+        if (checkbox.checked) state.selectedReports.add(report.id);
+        else state.selectedReports.delete(report.id);
+      });
+      renderReports();
+    });
+  });
+  byId("archiveAdminBulkApply").addEventListener("click", applyBulkAction);
+  byId("archiveAdminBulkClear").addEventListener("click", function () {
+    state.selectedReports.clear();
+    renderReports();
+  });
   byId("archiveAdminEditForm").addEventListener("submit", saveEditor);
   byId("archiveAdminEditClose").addEventListener("click", closeDialog);
   byId("archiveAdminEditRestore").addEventListener("click", restoreEditor);
@@ -904,6 +1179,25 @@
     });
   });
   byId("archiveAdminPrivateAdd").addEventListener("click", function () { openPrivateEditor(null); });
+  byId("archiveAdminPrivateSelectAll").addEventListener("change", function (event) {
+    state.privateReports.forEach(function (report) {
+      if (event.target.checked) state.selectedPrivateReports.add(report.id);
+      else state.selectedPrivateReports.delete(report.id);
+    });
+    renderPrivateReports();
+  });
+  byId("archiveAdminPrivateHeaderSelect").addEventListener("change", function (event) {
+    state.privateReports.forEach(function (report) {
+      if (event.target.checked) state.selectedPrivateReports.add(report.id);
+      else state.selectedPrivateReports.delete(report.id);
+    });
+    renderPrivateReports();
+  });
+  byId("archiveAdminPrivateBulkDelete").addEventListener("click", deleteSelectedPrivateReports);
+  byId("archiveAdminPrivateBulkClear").addEventListener("click", function () {
+    state.selectedPrivateReports.clear();
+    renderPrivateReports();
+  });
   byId("archiveAdminPrivateForm").addEventListener("submit", savePrivateReport);
   byId("archiveAdminPrivateClose").addEventListener("click", closePrivateDialog);
   byId("archiveAdminPrivateCancel").addEventListener("click", closePrivateDialog);

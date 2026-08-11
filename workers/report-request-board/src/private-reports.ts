@@ -3,6 +3,7 @@ const ATTEMPT_WINDOW_MS = 15 * 60 * 1000;
 const ATTEMPT_BLOCK_MS = 30 * 60 * 1000;
 const MAX_FAILED_ATTEMPTS = 5;
 const MAX_HTML_BYTES = 5 * 1024 * 1024;
+const MAX_INTERNAL_HTML_BYTES = 25 * 1024 * 1024;
 const MAX_COVER_BYTES = 1024 * 1024;
 
 const PRIVATE_ORIGINS = new Set([
@@ -24,6 +25,11 @@ type PrivateReportRow = {
   cover_type?: string | null;
   created_at: string;
   updated_at: string;
+  origin_report_id?: string;
+  origin_public_url?: string;
+  conversion_job_id?: string;
+  converted_at?: string | null;
+  recovery_key?: string | null;
 };
 
 type PrivateSessionRow = {
@@ -60,6 +66,7 @@ export interface PrivateReportEnv {
   PRIVATE_REPORTS?: PrivateReportBucket;
   ADMIN_PASSWORD?: string;
   PRIVATE_SESSION_SECRET?: string;
+  LIFECYCLE_WORKER_SECRET?: string;
 }
 
 type ParsedPrivateForm = {
@@ -72,6 +79,10 @@ type ParsedPrivateForm = {
   html: File | null;
   cover: File | null;
   removeCover: boolean;
+  originReportId: string;
+  originPublicUrl: string;
+  conversionJobId: string;
+  recoveryKey: string;
 };
 
 function originAllowed(origin: string) {
@@ -271,13 +282,7 @@ function optionalFile(form: FormData, key: string) {
   return value instanceof File && value.size > 0 ? value : null;
 }
 
-async function parsePrivateForm(request: Request, requiredId: string, requireHtml: boolean): Promise<ParsedPrivateForm | Response> {
-  let form: FormData;
-  try {
-    form = await request.formData();
-  } catch {
-    return privateJson(request, { error: "invalid_form" }, 400);
-  }
+async function parsePrivateFormData(request: Request, form: FormData, requiredId: string, requireHtml: boolean, internal = false): Promise<ParsedPrivateForm | Response> {
   const id = requiredId || reportId(compact(form.get("id"), 120));
   const title = compact(form.get("title"), 140);
   const summary = compact(form.get("summary"), 480);
@@ -297,10 +302,34 @@ async function parsePrivateForm(request: Request, requiredId: string, requireHtm
   }
   if (requireHtml && !html) return privateJson(request, { error: "html_required" }, 400);
   if (html && !/^text\/html(?:$|;)/i.test(html.type || "text/html")) return privateJson(request, { error: "invalid_html_type" }, 400);
-  if (html && html.size > MAX_HTML_BYTES) return privateJson(request, { error: "html_too_large" }, 413);
+  if (html && html.size > (internal ? MAX_INTERNAL_HTML_BYTES : MAX_HTML_BYTES)) return privateJson(request, { error: "html_too_large" }, 413);
   if (cover && !/^image\/(jpeg|png|webp)$/i.test(cover.type)) return privateJson(request, { error: "invalid_cover_type" }, 400);
   if (cover && cover.size > MAX_COVER_BYTES) return privateJson(request, { error: "cover_too_large" }, 413);
-  return { id, title, summary, displayDate, sourceCount, tags, html, cover, removeCover };
+  return {
+    id,
+    title,
+    summary,
+    displayDate,
+    sourceCount,
+    tags,
+    html,
+    cover,
+    removeCover,
+    originReportId: compact(form.get("originReportId"), 120),
+    originPublicUrl: compact(form.get("originPublicUrl"), 420),
+    conversionJobId: compact(form.get("conversionJobId"), 80),
+    recoveryKey: compact(form.get("recoveryKey"), 240),
+  };
+}
+
+async function parsePrivateForm(request: Request, requiredId: string, requireHtml: boolean, internal = false): Promise<ParsedPrivateForm | Response> {
+  let form: FormData;
+  try {
+    form = await request.formData();
+  } catch {
+    return privateJson(request, { error: "invalid_form" }, 400);
+  }
+  return parsePrivateFormData(request, form, requiredId, requireHtml, internal);
 }
 
 function objectKey(id: string, kind: "report" | "cover", extension: string) {
@@ -323,21 +352,28 @@ async function cleanupObjects(bucket: PrivateReportBucket, keys: Array<string | 
 
 async function selectReport(env: PrivateReportEnv, id: string) {
   return env.DB.prepare(
-    "SELECT id, title, summary, display_date, source_count, tags_json, html_key, cover_key, cover_type, created_at, updated_at FROM private_reports WHERE id = ?",
+    "SELECT id, title, summary, display_date, source_count, tags_json, html_key, cover_key, cover_type, created_at, updated_at, origin_report_id, origin_public_url, conversion_job_id, converted_at, recovery_key FROM private_reports WHERE id = ?",
   ).bind(id).first<PrivateReportRow>();
 }
 
 async function listReports(request: Request, env: PrivateReportEnv) {
   const rows = await env.DB.prepare(
-    "SELECT id, title, summary, display_date, source_count, tags_json, html_key, cover_key, cover_type, created_at, updated_at FROM private_reports ORDER BY created_at DESC LIMIT 500",
+    "SELECT id, title, summary, display_date, source_count, tags_json, html_key, cover_key, cover_type, created_at, updated_at, origin_report_id, origin_public_url, conversion_job_id, converted_at, recovery_key FROM private_reports ORDER BY created_at DESC LIMIT 500",
   ).all<PrivateReportRow>();
   return privateJson(request, { reports: (rows.results || []).map(publicReport) });
 }
 
 async function createReport(request: Request, env: PrivateReportEnv, bucket: PrivateReportBucket) {
-  const parsed = await parsePrivateForm(request, "", true);
+  const internal = Boolean(env.LIFECYCLE_WORKER_SECRET) && request.headers.get("X-Report-Lifecycle-Secret") === env.LIFECYCLE_WORKER_SECRET;
+  const parsed = await parsePrivateForm(request, "", true, internal);
   if (parsed instanceof Response) return parsed;
-  if (await selectReport(env, parsed.id)) return privateJson(request, { error: "private_report_exists" }, 409);
+  const existing = await selectReport(env, parsed.id);
+  if (existing) {
+    if (internal && parsed.conversionJobId && existing.conversion_job_id === parsed.conversionJobId) {
+      return privateJson(request, { report: publicReport(existing) });
+    }
+    return privateJson(request, { error: "private_report_exists" }, 409);
+  }
   const htmlKey = objectKey(parsed.id, "report", "html");
   const coverKey = parsed.cover ? objectKey(parsed.id, "cover", coverExtension(parsed.cover.type)) : null;
   try {
@@ -345,10 +381,14 @@ async function createReport(request: Request, env: PrivateReportEnv, bucket: Pri
     if (parsed.cover && coverKey) await putFile(bucket, coverKey, parsed.cover, parsed.cover.type);
     const now = new Date().toISOString();
     await env.DB.prepare(
-      "INSERT INTO private_reports (id, title, summary, display_date, source_count, tags_json, html_key, cover_key, cover_type, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      `INSERT INTO private_reports
+        (id, title, summary, display_date, source_count, tags_json, html_key, cover_key, cover_type,
+         created_at, updated_at, origin_report_id, origin_public_url, conversion_job_id, converted_at, recovery_key)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     ).bind(
       parsed.id, parsed.title, parsed.summary, parsed.displayDate, parsed.sourceCount,
       JSON.stringify(parsed.tags), htmlKey, coverKey, parsed.cover?.type || null, now, now,
+      parsed.originReportId, parsed.originPublicUrl, parsed.conversionJobId, parsed.conversionJobId ? now : null, parsed.recoveryKey || null,
     ).run();
     const row = await selectReport(env, parsed.id);
     return privateJson(request, { report: publicReport(row as PrivateReportRow) }, 201);
@@ -409,6 +449,18 @@ async function deleteReport(request: Request, env: PrivateReportEnv, bucket: Pri
   return privateJson(request, { ok: true, reportId: id });
 }
 
+async function storeRecoveryObject(request: Request, env: PrivateReportEnv, bucket: PrivateReportBucket) {
+  let form: FormData;
+  try { form = await request.formData(); } catch { return privateJson(request, { error: "invalid_form" }, 400); }
+  const requestedKey = compact(form.get("key"), 240).replaceAll("\\", "/").replace(/^\/+/, "");
+  const file = optionalFile(form, "file");
+  if (!requestedKey || requestedKey.includes("..") || !file) return privateJson(request, { error: "invalid_recovery_object" }, 400);
+  if (file.size > MAX_INTERNAL_HTML_BYTES) return privateJson(request, { error: "recovery_object_too_large" }, 413);
+  const key = `trash/${requestedKey}`;
+  await bucket.put(key, await file.arrayBuffer(), { httpMetadata: { contentType: file.type || "application/octet-stream" } });
+  return privateJson(request, { ok: true, key });
+}
+
 async function reportContent(request: Request, bucket: PrivateReportBucket, row: PrivateReportRow) {
   const object = await bucket.get(row.html_key);
   if (!object) return privateJson(request, { error: "private_report_content_missing" }, 404);
@@ -424,6 +476,24 @@ async function reportCover(request: Request, bucket: PrivateReportBucket, row: P
 
 async function dispatchPrivateReportRequest(request: Request, env: PrivateReportEnv): Promise<Response | null> {
   const url = new URL(request.url);
+  if (url.pathname === "/internal/private-packages") {
+    if (!env.LIFECYCLE_WORKER_SECRET || request.headers.get("X-Report-Lifecycle-Secret") !== env.LIFECYCLE_WORKER_SECRET) {
+      return privateJson(request, { error: "internal_auth_required" }, 401);
+    }
+    const bucket = env.PRIVATE_REPORTS;
+    if (!bucket) return privateJson(request, { error: "private_storage_not_configured" }, 503);
+    if (request.method !== "POST") return privateJson(request, { error: "method_not_allowed" }, 405);
+    return createReport(request, env, bucket);
+  }
+  if (url.pathname === "/internal/recovery-objects") {
+    if (!env.LIFECYCLE_WORKER_SECRET || request.headers.get("X-Report-Lifecycle-Secret") !== env.LIFECYCLE_WORKER_SECRET) {
+      return privateJson(request, { error: "internal_auth_required" }, 401);
+    }
+    const bucket = env.PRIVATE_REPORTS;
+    if (!bucket) return privateJson(request, { error: "private_storage_not_configured" }, 503);
+    if (request.method !== "POST") return privateJson(request, { error: "method_not_allowed" }, 405);
+    return storeRecoveryObject(request, env, bucket);
+  }
   const privatePath = url.pathname === "/private-session" || url.pathname === "/private-reports" || url.pathname.startsWith("/private-reports/");
   if (!privatePath) return null;
   if (!originAllowed(request.headers.get("Origin") || "")) {

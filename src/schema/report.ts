@@ -140,6 +140,7 @@ export const ManifestItemSchema = z.object({
   coverImage: z.string().optional(),
   coverAlt: z.string().optional(),
   coverFocalPointX: z.number().min(0).max(100).optional(),
+  isExternalLink: z.boolean().optional(),
 });
 
 export type ManifestItem = z.infer<typeof ManifestItemSchema>;

@@ -20,7 +20,7 @@ function localTarget(root, reportPath, value) {
 
 export function scanHtml({ root, reportPath, html }) {
   const issues = [];
-  for (const asset of ["report-page-layout.js", "report-view-counter.js", "report-history.js"]) {
+  for (const asset of ["report-page-layout.js", "report-view-counter.js", "report-history.js", "report-entry-tracker.js"]) {
     const escaped = asset.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const expression = new RegExp(`<script\\b[^>]*src=["'][^"']*${escaped}(?:\\?[^"']*)?["'][^>]*><\\/script>`, "gi");
     const count = Array.from(html.matchAll(expression)).length;

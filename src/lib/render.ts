@@ -1295,6 +1295,7 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
   <script src="../assets/archive-comment-explorer.js?v=${ARCHIVE_COMMENTS_VERSION}"></script>
   <script src="../assets/archive-report-admin.js?v=${ARCHIVE_ADMIN_VERSION}"></script>
   <script src="../assets/archive-visitor-counter.js?v=20260809-visits1"></script>
+  <script src="../assets/report-entry-tracker.js?v=20260811-entry1"></script>
   <script src="../assets/archive-weather.js?v=${ARCHIVE_WEATHER_VERSION}"></script>
   <script src="../assets/report-hub-brand.js?v=${ARCHIVE_ASSET_VERSION}"></script>
 </body>

@@ -7,7 +7,7 @@
   <meta name="description" content="Report Hub 관리자용 보고서 현황과 카드 관리 화면">
   <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260811-private1">
   <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260811-private1">
-  <link rel="stylesheet" href="../../assets/archive-admin-console.css?v=20260811-private1">
+  <link rel="stylesheet" href="../../assets/archive-admin-console.css?v=20260811-admin-upgrade1">
   <title>보고서 관리 | Report Hub</title>
 </head>
 <body class="archive-admin-console-page">
@@ -65,6 +65,36 @@
         <div class="archive-admin-console-metric"><dt>숨김 보고서</dt><dd id="archiveAdminMetricHidden">0</dd></div>
       </dl>
 
+      <section class="archive-admin-console-panel archive-admin-console-trend-panel" aria-labelledby="archive-admin-trend-title">
+        <div class="archive-admin-console-section-head">
+          <div><h2 id="archive-admin-trend-title">일별 추이</h2><p class="archive-admin-console-panel-note">방문자·보고서 클릭·유입 세션을 한눈에 봅니다.</p></div>
+          <label class="archive-admin-console-field archive-admin-console-period-field">조회 기간
+            <select class="archive-admin-console-select" id="archiveAdminAnalyticsDays">
+              <option value="7">최근 7일</option>
+              <option value="30" selected>최근 30일</option>
+              <option value="90">최근 90일</option>
+            </select>
+          </label>
+        </div>
+        <div class="archive-admin-console-chart-summary" id="archiveAdminTrendSummary" aria-live="polite"></div>
+        <div class="archive-admin-console-line-chart" id="archiveAdminTrendChart" role="img" aria-label="일별 방문자와 보고서 클릭 추이"></div>
+        <div class="archive-admin-console-chart-legend" id="archiveAdminTrendLegend" aria-label="그래프 범례"></div>
+        <details class="archive-admin-console-chart-details">
+          <summary>그래프 상세 표 보기</summary>
+          <div class="archive-admin-console-table-wrap">
+            <table class="archive-admin-console-table"><thead><tr><th>날짜</th><th>방문자</th><th>보고서 클릭</th><th>유입 세션</th></tr></thead><tbody id="archiveAdminTrendTable"><tr><td colspan="4">통계 불러오는 중</td></tr></tbody></table>
+          </div>
+        </details>
+      </section>
+
+      <section class="archive-admin-console-panel" aria-labelledby="archive-admin-source-title">
+        <div class="archive-admin-console-section-head"><div><h2 id="archive-admin-source-title">유입경로</h2><p class="archive-admin-console-panel-note">어떤 링크를 통해 들어왔는지 확인합니다. 유입경로는 기능 배포 이후부터 기록됩니다.</p></div></div>
+        <div class="archive-admin-console-acquisition-grid">
+          <div class="archive-admin-console-source-list" id="archiveAdminSourceList"><p class="archive-admin-console-empty">통계 불러오는 중</p></div>
+          <div class="archive-admin-console-table-wrap"><table class="archive-admin-console-table"><thead><tr><th>시각</th><th>유입</th><th>처음 연 페이지</th><th>보고서</th></tr></thead><tbody id="archiveAdminRecentEntries"><tr><td colspan="4">통계 불러오는 중</td></tr></tbody></table></div>
+        </div>
+      </section>
+
       <div class="archive-admin-console-analytics-grid">
         <section class="archive-admin-console-panel" aria-labelledby="archive-admin-visits-title">
           <div class="archive-admin-console-section-head">
@@ -115,12 +145,30 @@
             </label>
           </div>
         </div>
+        <div class="archive-admin-console-bulk-bar" id="archiveAdminBulkBar" hidden>
+          <label class="archive-admin-console-check-label"><input type="checkbox" id="archiveAdminSelectAll"> 현재 목록 전체 선택</label>
+          <span class="archive-admin-console-selection-count" id="archiveAdminSelectionCount">0개 선택</span>
+          <select class="archive-admin-console-select" id="archiveAdminBulkAction" aria-label="선택한 보고서 일괄 작업">
+            <option value="">선택한 작업</option>
+            <option value="hide">숨김</option>
+            <option value="unhide">숨김 해제</option>
+            <option value="make_private">비공개 전환</option>
+            <option value="delete">삭제</option>
+          </select>
+          <button class="archive-admin-console-button is-primary" id="archiveAdminBulkApply" type="button">실행</button>
+          <button class="archive-admin-console-button" id="archiveAdminBulkClear" type="button">선택 해제</button>
+        </div>
         <div class="archive-admin-console-table-wrap">
           <table class="archive-admin-console-table" id="archiveAdminReportTable">
-            <thead><tr><th scope="col">썸네일</th><th scope="col">보고서</th><th scope="col">카테고리</th><th scope="col">작성일</th><th scope="col">조회수</th><th scope="col">상태</th><th scope="col">관리</th></tr></thead>
-            <tbody id="archiveAdminReportTableBody"><tr><td colspan="7">관리자 확인 후 게시물을 불러옵니다.</td></tr></tbody>
+            <thead><tr><th scope="col"><span class="sr-only">선택</span><input type="checkbox" id="archiveAdminHeaderSelect" aria-label="현재 목록 전체 선택"></th><th scope="col">썸네일</th><th scope="col">보고서</th><th scope="col">카테고리</th><th scope="col">작성일</th><th scope="col">조회수</th><th scope="col">상태</th><th scope="col">관리</th></tr></thead>
+            <tbody id="archiveAdminReportTableBody"><tr><td colspan="8">관리자 확인 후 게시물을 불러옵니다.</td></tr></tbody>
           </table>
         </div>
+      </section>
+
+      <section class="archive-admin-console-panel" aria-labelledby="archive-admin-jobs-title">
+        <div class="archive-admin-console-section-head"><div><h2 id="archive-admin-jobs-title">최근 일괄 작업</h2><p class="archive-admin-console-panel-note">비공개 전환·삭제 작업의 진행 상태입니다.</p></div></div>
+        <div class="archive-admin-console-table-wrap"><table class="archive-admin-console-table"><thead><tr><th>요청 시각</th><th>작업</th><th>상태</th><th>처리 결과</th><th>오류</th></tr></thead><tbody id="archiveAdminJobs"><tr><td colspan="5">작업 이력이 없습니다.</td></tr></tbody></table></div>
       </section>
 
       <section class="archive-admin-console-report-panel archive-admin-private-panel" id="archiveAdminPrivatePanel" aria-labelledby="archive-admin-private-title">
@@ -128,11 +176,17 @@
           <div><h2 id="archive-admin-private-title">비공개 보고서 관리</h2><p class="archive-admin-console-panel-note" id="archiveAdminPrivateCount">인증 준비 중</p></div>
           <button class="archive-admin-console-button is-primary" id="archiveAdminPrivateAdd" type="button" disabled>비공개 보고서 등록</button>
         </div>
+        <div class="archive-admin-console-bulk-bar" id="archiveAdminPrivateBulkBar" hidden>
+          <label class="archive-admin-console-check-label"><input type="checkbox" id="archiveAdminPrivateSelectAll"> 비공개 보고서 전체 선택</label>
+          <span class="archive-admin-console-selection-count" id="archiveAdminPrivateSelectionCount">0개 선택</span>
+          <button class="archive-admin-console-button is-danger" id="archiveAdminPrivateBulkDelete" type="button">선택 삭제</button>
+          <button class="archive-admin-console-button" id="archiveAdminPrivateBulkClear" type="button">선택 해제</button>
+        </div>
         <p class="archive-admin-console-status" id="archiveAdminPrivateStatus" role="status"></p>
         <div class="archive-admin-console-table-wrap">
           <table class="archive-admin-console-table archive-admin-private-table" id="archiveAdminPrivateTable">
-            <thead><tr><th scope="col">보고서</th><th scope="col">작성일</th><th scope="col">출처</th><th scope="col">태그</th><th scope="col">표지</th><th scope="col">수정일</th><th scope="col">관리</th></tr></thead>
-            <tbody id="archiveAdminPrivateTableBody"><tr><td colspan="7">관리자 인증 후 비공개 보고서를 불러옵니다.</td></tr></tbody>
+            <thead><tr><th scope="col"><span class="sr-only">선택</span><input type="checkbox" id="archiveAdminPrivateHeaderSelect" aria-label="비공개 보고서 전체 선택"></th><th scope="col">보고서</th><th scope="col">작성일</th><th scope="col">출처</th><th scope="col">태그</th><th scope="col">표지</th><th scope="col">수정일</th><th scope="col">관리</th></tr></thead>
+            <tbody id="archiveAdminPrivateTableBody"><tr><td colspan="8">관리자 인증 후 비공개 보고서를 불러옵니다.</td></tr></tbody>
           </table>
         </div>
       </section>
@@ -214,6 +268,7 @@
     </form>
   </dialog>
 
-  <script src="../../assets/archive-admin-console.js?v=20260811-private1"></script>
+  <script src="../../assets/archive-admin-charts.js?v=20260811-admin-upgrade1"></script>
+  <script src="../../assets/archive-admin-console.js?v=20260811-admin-upgrade1"></script>
 </body>
 </html>

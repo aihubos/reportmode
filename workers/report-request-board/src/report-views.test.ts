@@ -93,6 +93,9 @@ test("report views persist and deduplicate one browser per Seoul day", async () 
   const list = await call(db, "GET");
   assert.equal(list.json.counts["sample-report"], 2);
   assert.equal(list.json.counts["legacy-report"], 15);
+
+  const dottedPathId = await call(db, "POST", { reportId: "apple-care-098-v1.0.0", visitorId: visitorTwo });
+  assert.equal(dottedPathId.response.status, 200);
 });
 
 test("report views reject invalid public identifiers", async () => {

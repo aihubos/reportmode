@@ -48,6 +48,13 @@ test("keeps redirect-only report pages byte-for-byte unchanged", () => {
   assert.equal(applyReportHubBrand(redirect, "reports/link-only.html"), redirect);
 });
 
+test("public brand keeps one entry tracker after repeated normalization", () => {
+  const source = '<!doctype html><html><head></head><body><script src="../assets/report-entry-tracker.js?v=old" data-report-id="sample"></script></body></html>';
+  const once = applyReportHubBrand(source, "reports/sample/index.html");
+  const twice = applyReportHubBrand(once, "reports/sample/index.html");
+  assert.equal((twice.match(/report-entry-tracker\.js/g) || []).length, 1);
+});
+
 test("uses the correct asset depth for folder reports", () => {
   const source = "<!doctype html><html><head><title>폴더 보고서</title></head><body><h1>폴더 보고서</h1></body></html>";
   const output = applyReportHubBrand(source, "reports/folder-report/index.html");

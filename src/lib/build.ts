@@ -183,8 +183,24 @@ export function discoverCoverImage(root: string, item: ManifestItem): ManifestIt
   }
 }
 
+export function isExternalLinkPage(root: string, item: ManifestItem): boolean {
+  const pagePath = item.path.endsWith("/") ? `${item.path}index.html` : item.path;
+  const absolutePagePath = path.join(root, pagePath);
+  if (!fs.existsSync(absolutePagePath)) return false;
+  try {
+    return /<meta\b[^>]*http-equiv\s*=\s*["']?refresh\b/i.test(readText(absolutePagePath));
+  } catch {
+    return false;
+  }
+}
+
 function enrichCoverImages(root: string, items: ManifestItem[]): ManifestItem[] {
-  return items.map((item) => discoverCoverImage(root, item));
+  return items.map((item) => {
+    const discovered = discoverCoverImage(root, item);
+    return isExternalLinkPage(root, discovered)
+      ? { ...discovered, isExternalLink: true }
+      : discovered;
+  });
 }
 
 function mergedItems(root: string, siteBase: string, docs: ReportDocument[]): ManifestItem[] {
@@ -366,10 +382,10 @@ export function buildSite(options?: {
   const home = writeHomeIndex(root);
 
   for (const legacy of options?.legacyRedirects || []) {
-    writeText(
-      path.join(repoRoot(), "reports", legacy.from, "index.html"),
-      renderRedirectHtml(`reports/${legacy.toId}/`, legacy.title),
-    );
+    const legacyPath = path.join(repoRoot(), "reports", legacy.from, "index.html");
+    if (!fs.existsSync(legacyPath)) {
+      writeText(legacyPath, renderRedirectHtml(`reports/${legacy.toId}/`, legacy.title));
+    }
   }
 
   return {
