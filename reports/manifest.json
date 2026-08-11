@@ -1,7 +1,24 @@
 {
-  "generatedAt": "2026-08-11T12:38:28.057Z",
+  "generatedAt": "2026-08-11T12:58:16.430Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260811-ai-v1-0-0-02",
+      "slug": "ai-v1-0-0",
+      "title": "[Youtube] AI와 사람이 함께 일하는 구조 | 유튜브 핵심 요약",
+      "category": "기타",
+      "summary": "김효율의 AI 개발단 영상 ‘AI와 사람이 함께 일하는 구조 이렇게 만듭니다’의 핵심을 임원용으로 압축한 반응형 HTML 요약 보고서",
+      "createdAt": "2026-08-11T21:57:40+09:00",
+      "updatedAt": "2026-08-11T21:57:40+09:00",
+      "status": "published",
+      "path": "reports/260811-ai-v1-0-0-02/",
+      "url": "https://aihubos.github.io/reportmode/reports/260811-ai-v1-0-0-02/",
+      "displayDate": "260811",
+      "sourceCount": 1,
+      "tags": [],
+      "coverImage": "reports/260811-ai-v1-0-0-02/assets/blog-hub-thumbnail.jpg",
+      "coverAlt": "보고서 대표 이미지"
+    },
     {
       "id": "260811-ai-v1-0-0",
       "slug": "ai-v1-0-0",

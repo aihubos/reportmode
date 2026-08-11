@@ -1,7 +1,22 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-11T21:38:22+09:00",
+  "updatedAt": "2026-08-11T21:58:06+09:00",
   "reports": [
+    {
+      "schemaVersion": "1",
+      "id": "260811-ai-v1-0-0-02",
+      "slug": "ai-v1-0-0",
+      "title": "[Youtube] AI와 사람이 함께 일하는 구조 | 유튜브 핵심 요약",
+      "category": "기타",
+      "tags": [],
+      "summary": "김효율의 AI 개발단 영상 ‘AI와 사람이 함께 일하는 구조 이렇게 만듭니다’의 핵심을 임원용으로 압축한 반응형 HTML 요약 보고서",
+      "createdAt": "2026-08-11T21:57:40+09:00",
+      "updatedAt": "2026-08-11T21:57:40+09:00",
+      "status": "published",
+      "sourceName": "preflight_20260811125635402_e6a54f97.zip",
+      "sourceCount": 1,
+      "entry": "index.html"
+    },
     {
       "schemaVersion": "1",
       "id": "260811-ai-v1-0-0",
