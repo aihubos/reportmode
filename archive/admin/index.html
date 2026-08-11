@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
   <meta name="description" content="Report Hub 관리자용 보고서 현황과 카드 관리 화면">
-  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260811-view-identity1">
-  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260811-view-identity1">
-  <link rel="stylesheet" href="../../assets/archive-admin-console.css?v=20260811-view-identity1">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260811-private1">
+  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260811-private1">
+  <link rel="stylesheet" href="../../assets/archive-admin-console.css?v=20260811-private1">
   <title>보고서 관리 | Report Hub</title>
 </head>
 <body class="archive-admin-console-page">
@@ -38,6 +38,7 @@
         <p>통계와 수정 기능은 관리자 비밀번호 확인 후에만 열립니다.</p>
       </div>
       <form class="archive-admin-console-gate-form" id="archiveAdminGateForm" novalidate>
+        <input type="text" autocomplete="username" value="Jeremy" hidden aria-hidden="true" tabindex="-1">
         <label class="archive-admin-console-field">관리자 비밀번호
           <input class="archive-admin-console-input" id="archiveAdminGatePassword" type="password" maxlength="80" autocomplete="current-password" placeholder="관리자 비밀번호">
         </label>
@@ -121,6 +122,20 @@
           </table>
         </div>
       </section>
+
+      <section class="archive-admin-console-report-panel archive-admin-private-panel" id="archiveAdminPrivatePanel" aria-labelledby="archive-admin-private-title">
+        <div class="archive-admin-console-section-head">
+          <div><h2 id="archive-admin-private-title">비공개 보고서 관리</h2><p class="archive-admin-console-panel-note" id="archiveAdminPrivateCount">인증 준비 중</p></div>
+          <button class="archive-admin-console-button is-primary" id="archiveAdminPrivateAdd" type="button" disabled>비공개 보고서 등록</button>
+        </div>
+        <p class="archive-admin-console-status" id="archiveAdminPrivateStatus" role="status"></p>
+        <div class="archive-admin-console-table-wrap">
+          <table class="archive-admin-console-table archive-admin-private-table" id="archiveAdminPrivateTable">
+            <thead><tr><th scope="col">보고서</th><th scope="col">작성일</th><th scope="col">출처</th><th scope="col">태그</th><th scope="col">표지</th><th scope="col">수정일</th><th scope="col">관리</th></tr></thead>
+            <tbody id="archiveAdminPrivateTableBody"><tr><td colspan="7">관리자 인증 후 비공개 보고서를 불러옵니다.</td></tr></tbody>
+          </table>
+        </div>
+      </section>
     </section>
   </main>
 
@@ -154,6 +169,51 @@
     </form>
   </dialog>
 
-  <script src="../../assets/archive-admin-console.js?v=20260811-view-identity1"></script>
+  <dialog class="archive-admin-console-dialog archive-admin-private-dialog" id="archiveAdminPrivateDialog" aria-labelledby="archive-admin-private-dialog-title">
+    <form class="archive-admin-console-dialog-form" id="archiveAdminPrivateForm" novalidate>
+      <div class="archive-admin-console-dialog-head">
+        <div><h2 id="archive-admin-private-dialog-title">비공개 보고서 등록</h2><p id="archiveAdminPrivateDialogNote">원문과 썸네일은 공개 저장소에 저장되지 않습니다.</p></div>
+        <button class="archive-admin-console-dialog-close" id="archiveAdminPrivateClose" type="button">닫기</button>
+      </div>
+      <div class="archive-admin-private-form-grid">
+        <label class="archive-admin-console-field">보고서 ID
+          <input class="archive-admin-console-input" id="archiveAdminPrivateId" maxlength="120" pattern="[A-Za-z0-9](?:[A-Za-z0-9]|-){2,119}" required placeholder="private-company-analysis">
+        </label>
+        <label class="archive-admin-console-field">작성일
+          <input class="archive-admin-console-input" id="archiveAdminPrivateDate" type="date" required>
+        </label>
+        <label class="archive-admin-console-field archive-admin-private-field-wide">제목
+          <input class="archive-admin-console-input" id="archiveAdminPrivateTitle" maxlength="140" required>
+        </label>
+        <label class="archive-admin-console-field archive-admin-private-field-wide">상세 설명
+          <textarea class="archive-admin-console-textarea" id="archiveAdminPrivateSummary" maxlength="480" required></textarea>
+        </label>
+        <label class="archive-admin-console-field">출처 수
+          <input class="archive-admin-console-input" id="archiveAdminPrivateSourceCount" type="number" min="0" max="999" value="0" required>
+        </label>
+        <label class="archive-admin-console-field">태그
+          <input class="archive-admin-console-input" id="archiveAdminPrivateTags" maxlength="600" placeholder="경영, 전략, 내부자료">
+        </label>
+        <label class="archive-admin-console-field archive-admin-private-field-wide">HTML 보고서
+          <input class="archive-admin-console-input" id="archiveAdminPrivateHtml" type="file" accept="text/html,.html">
+          <span class="archive-admin-private-helper" id="archiveAdminPrivateHtmlHelp">신규 등록 시 필수, 최대 5MB</span>
+        </label>
+        <label class="archive-admin-console-field archive-admin-private-field-wide">썸네일 이미지
+          <input class="archive-admin-console-input" id="archiveAdminPrivateCover" type="file" accept="image/jpeg,image/png,image/webp">
+          <span class="archive-admin-private-helper">선택 사항, 최대 1MB</span>
+        </label>
+        <label class="archive-admin-private-remove-cover archive-admin-private-field-wide" id="archiveAdminPrivateRemoveCoverField" hidden>
+          <input id="archiveAdminPrivateRemoveCover" type="checkbox"> 기존 썸네일 삭제
+        </label>
+      </div>
+      <p class="archive-admin-console-status" id="archiveAdminPrivateEditStatus" role="status"></p>
+      <div class="archive-admin-console-dialog-actions">
+        <button class="archive-admin-console-button" id="archiveAdminPrivateCancel" type="button">취소</button>
+        <button class="archive-admin-console-button is-primary" id="archiveAdminPrivateSave" type="submit">비공개 저장</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="../../assets/archive-admin-console.js?v=20260811-private1"></script>
 </body>
 </html>

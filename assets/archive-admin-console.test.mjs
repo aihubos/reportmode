@@ -8,6 +8,8 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const pagePath = path.join(root, "archive", "admin", "index.html");
 const scriptPath = path.join(root, "assets", "archive-admin-console.js");
 const stylePath = path.join(root, "assets", "archive-admin-console.css");
+const sourceScriptPath = path.join(root, "src", "site", "assets", "archive-admin-console.js");
+const sourceStylePath = path.join(root, "src", "site", "assets", "archive-admin-console.css");
 
 test("archive administrator console provides analytics and bulk report controls", () => {
   assert.equal(fs.existsSync(pagePath), true);
@@ -44,4 +46,27 @@ test("archive footer can open the full report management table after administrat
   const script = fs.readFileSync(path.join(root, "assets", "archive-report-admin.js"), "utf8");
   assert.match(script, /archiveAdminConsoleLink/);
   assert.match(script, /전체 게시물 표 관리/);
+});
+
+test("administrator console manages private HTML reports only after protected session creation", () => {
+  const page = fs.readFileSync(pagePath, "utf8");
+  const script = fs.readFileSync(sourceScriptPath, "utf8");
+  const style = fs.readFileSync(sourceStylePath, "utf8");
+  assert.match(page, /id="archiveAdminPrivatePanel"/);
+  assert.match(page, /id="archiveAdminPrivateTableBody"/);
+  assert.match(page, /id="archiveAdminPrivateDialog"/);
+  assert.match(page, /id="archiveAdminPrivateHtml"[^>]*type="file"[^>]*accept="text\/html/);
+  assert.match(script, /\/private-session/);
+  assert.match(script, /\/private-reports/);
+  assert.match(script, /state\.privateToken/);
+  assert.match(script, /Authorization/);
+  assert.match(script, /new FormData/);
+  assert.match(script, /method:\s*editing \? "PUT" : "POST"/);
+  assert.match(script, /method:\s*"DELETE"/);
+  assert.match(script, /sessionStorage/);
+  assert.match(script, /if \(\/\^\\d\{6\}\$\/\.test\(text\)\) return "20" \+ text\.slice\(0, 2\)/);
+  assert.doesNotMatch(script, /reportLink\.target\s*=\s*"_blank"/);
+  assert.doesNotMatch(script, /657700/);
+  assert.match(style, /\.archive-admin-private-panel/);
+  assert.match(style, /\.archive-admin-private-dialog/);
 });

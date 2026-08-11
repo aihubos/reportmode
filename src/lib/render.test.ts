@@ -104,7 +104,9 @@ test("renders the simplified archive with one Naver card and a 30-item default s
   assert.match(html, /data-weather-retry/);
   assert.match(html, /data-archive-mobile-panel-open="request"/);
   assert.match(html, /data-archive-mobile-panel-open="comments"/);
+  assert.match(html, /data-archive-mobile-panel-open="taxonomy"/);
   assert.match(html, /data-archive-mobile-panel-open="weather"/);
+  assert.match(html, /class="archive-taxonomy-card"/);
   assert.match(html, /id="archiveCommentsRecentList"/);
   assert.match(html, /id="archiveAllCommentsList"/);
   assert.match(html, /id="archiveCommentsOpenAll"/);
@@ -150,6 +152,8 @@ test("renders the simplified archive with one Naver card and a 30-item default s
   assert.match(archiveCss, /\.archive-comments-card/);
   assert.match(archiveCss, /\.archive-comments-dialog::backdrop/);
   assert.match(archiveCss, /is-mobile-panel-comments/);
+  const privateArchiveCss = fs.readFileSync(new URL("../site/assets/archive-private-library.css", import.meta.url), "utf8");
+  assert.match(privateArchiveCss, /is-mobile-panel-taxonomy/);
   assert.match(archiveCss, /\.archive-topbar \.report-hub-clock-date\s*{\s*display:\s*none;/s);
   assert.match(archiveCss, /\.archive-admin-console-link\[hidden\]\s*{\s*display:\s*none;/);
   assert.match(
@@ -208,8 +212,8 @@ test("curates blocked and duplicate archive tags into one searchable navigation 
   ] as any);
 
   assert.doesNotMatch(html, /#Draft|#Jeremy Style|#Temporary Chat|#AI Report/);
-  assert.equal(html.match(/data-tag-filter="hermes"/g)?.length, 1);
-  assert.equal(html.match(/data-tag-filter="llm-wiki"/g)?.length, 1);
+  assert.equal(html.match(/data-tag-filter="hermes"/g)?.length, 2);
+  assert.equal(html.match(/data-tag-filter="llm-wiki"/g)?.length, 2);
   assert.match(html, /data-tag-keys="hermes\|llm-wiki"/);
 });
 
@@ -345,9 +349,40 @@ test("renders Draft filters hidden until administrator unlock and protects Draft
     },
   ] as any);
 
-  assert.equal(html.match(/data-category-filter="Draft"[^>]*\shidden(?:\s|=|>)/g)?.length, 2);
+  assert.equal(html.match(/data-category-filter="Draft"[^>]*\shidden(?:\s|=|>)/g)?.length, 3);
   assert.match(html, /state\.category === "Draft" && !adminUnlocked/);
   assert.match(html, /window\.reportmodeAdminUnlocked === true/);
   assert.match(html, /setInterval\([\s\S]*?30000/);
   assert.match(html, /visibilitychange/);
+});
+
+test("renders a locked private category without embedding private report data", () => {
+  const html = renderHomeHtml([
+    {
+      id: "public-one",
+      path: "reports/public-one/",
+      title: "공개 보고서",
+      subtitle: "",
+      summary: "공개 요약",
+      category: "AI",
+      tags: [],
+      displayDate: "260811",
+      sourceCount: 1,
+    },
+  ] as any);
+
+  assert.equal(html.match(/data-category-filter="Private"/g)?.length, 3);
+  assert.equal(html.match(/data-private-category(?:\s|>)/g)?.length, 3);
+  assert.match(html, /class="archive-taxonomy-card"/);
+  assert.match(html, /data-archive-mobile-panel-open="taxonomy"/);
+  assert.match(html, /reportmode:archive-close-mobile-panel/);
+  assert.match(html, /id="archivePrivateAuthDialog"/);
+  assert.match(html, /id="archivePrivatePassword"[^>]*type="password"/);
+  assert.match(html, /id="archivePrivateAuthStatus"[^>]*role="status"/);
+  assert.match(html, /archive-private-library\.css/);
+  assert.match(html, /archive-private-library\.js/);
+  assert.match(html, /if \(filterValue === "Private"\) return/);
+  assert.match(html, /window\.reportmodePrivateLibraryActive === true/);
+  assert.doesNotMatch(html, /private_reports/);
+  assert.doesNotMatch(html, /657700/);
 });
