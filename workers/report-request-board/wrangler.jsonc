@@ -10,5 +10,11 @@
       "database_name": "reportmode-request-board",
       "database_id": "148c538d-dfc1-462a-9a26-28d42595aacf"
     }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "PRIVATE_REPORTS",
+      "bucket_name": "reportmode-private-reports"
+    }
   ]
 }
