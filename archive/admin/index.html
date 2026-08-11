@@ -38,6 +38,7 @@
         <p>통계와 수정 기능은 관리자 비밀번호 확인 후에만 열립니다.</p>
       </div>
       <form class="archive-admin-console-gate-form" id="archiveAdminGateForm" novalidate>
+        <input type="text" autocomplete="username" value="Jeremy" hidden aria-hidden="true" tabindex="-1">
         <label class="archive-admin-console-field">관리자 비밀번호
           <input class="archive-admin-console-input" id="archiveAdminGatePassword" type="password" maxlength="80" autocomplete="current-password" placeholder="관리자 비밀번호">
         </label>
@@ -176,7 +177,7 @@
       </div>
       <div class="archive-admin-private-form-grid">
         <label class="archive-admin-console-field">보고서 ID
-          <input class="archive-admin-console-input" id="archiveAdminPrivateId" maxlength="120" pattern="[A-Za-z0-9][A-Za-z0-9-]{2,119}" required placeholder="private-company-analysis">
+          <input class="archive-admin-console-input" id="archiveAdminPrivateId" maxlength="120" pattern="[A-Za-z0-9](?:[A-Za-z0-9]|-){2,119}" required placeholder="private-company-analysis">
         </label>
         <label class="archive-admin-console-field">작성일
           <input class="archive-admin-console-input" id="archiveAdminPrivateDate" type="date" required>

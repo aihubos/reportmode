@@ -482,6 +482,58 @@ button:disabled { cursor: not-allowed; opacity: .5; }
 
 .archive-admin-console-dialog-preview img { width: 100%; height: 100%; display: block; object-fit: cover; }
 
+.archive-admin-private-panel {
+  border-color: var(--rh-primary);
+}
+
+.archive-admin-private-panel .archive-admin-console-section-head {
+  align-items: center;
+}
+
+.archive-admin-private-table { min-width: var(--rh-admin-console-table-min-width); }
+
+.archive-admin-private-dialog {
+  width: min(calc(100vw - var(--rh-space-8)), var(--rh-comment-explorer-dialog-width));
+  max-width: var(--rh-comment-explorer-dialog-width);
+}
+
+.archive-admin-private-form-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--rh-space-3);
+}
+
+.archive-admin-private-field-wide { grid-column: 1 / -1; }
+
+.archive-admin-private-helper {
+  color: var(--rh-muted);
+  font-size: var(--rh-label-font-size);
+  font-weight: 600;
+}
+
+.archive-admin-private-remove-cover {
+  min-height: var(--rh-admin-editor-control-height);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--rh-space-2);
+  color: var(--rh-danger);
+  font-size: var(--rh-control-font-size);
+  font-weight: 800;
+}
+
+.archive-admin-private-remove-cover[hidden] { display: none; }
+
+.archive-admin-private-remove-cover input {
+  width: var(--rh-space-5);
+  height: var(--rh-space-5);
+  accent-color: var(--rh-danger);
+}
+
+.archive-admin-private-remove-cover input:focus-visible {
+  outline: 3px solid var(--rh-ring);
+  outline-offset: var(--rh-space-1);
+}
+
 @media (max-width: 700px) {
   .archive-admin-console-topbar-inner,
   .archive-admin-console-shell { width: min(calc(100% - var(--rh-space-4)), var(--rh-admin-console-max-width)); }
@@ -497,7 +549,8 @@ button:disabled { cursor: not-allowed; opacity: .5; }
   .archive-admin-console-gate,
   .archive-admin-console-gate-form,
   .archive-admin-console-filters,
-  .archive-admin-console-analytics-grid { width: 100%; grid-template-columns: 1fr; }
+  .archive-admin-console-analytics-grid,
+  .archive-admin-private-form-grid { width: 100%; grid-template-columns: 1fr; }
 
   .archive-admin-console-panel,
   .archive-admin-console-report-panel,
@@ -507,6 +560,8 @@ button:disabled { cursor: not-allowed; opacity: .5; }
   .archive-admin-console-dialog-actions { display: grid; grid-template-columns: 1fr; }
 
   .archive-admin-console-dialog-actions .archive-admin-console-button.is-primary { grid-row: 1; }
+
+  .archive-admin-private-field-wide { grid-column: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {

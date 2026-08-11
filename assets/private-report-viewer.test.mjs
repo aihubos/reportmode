@@ -46,5 +46,6 @@ test("private report viewer styles use only Report Hub tokens", () => {
   assert.match(style, /\.private-viewer-frame/);
   assert.match(style, /var\(--rh-primary\)/);
   assert.match(style, /@media \(max-width: 700px\)/);
+  assert.doesNotMatch(style, /\.private-viewer-gate-form button\s*\{\s*grid-row:/);
   assert.doesNotMatch(style, /#[0-9a-f]{3,8}\b/i);
 });

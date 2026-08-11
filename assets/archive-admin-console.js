@@ -1,7 +1,9 @@
 (function () {
   "use strict";
 
-  var API = "https://reportmode-request-board.report-request-board.workers.dev";
+  var API = /^(127\.0\.0\.1|localhost)$/.test(window.location.hostname)
+    ? "http://127.0.0.1:8787"
+    : "https://reportmode-request-board.report-request-board.workers.dev";
   var MANIFEST_URL = "../../reports/manifest.json";
   var THUMBNAIL_MAX_BYTES = 600 * 1024;
   var THUMBNAIL_PRESETS = [
@@ -19,6 +21,9 @@
     hidden: new Set(),
     analytics: null,
     editing: null,
+    privateToken: "",
+    privateReports: [],
+    privateEditing: null,
   };
 
   function byId(id) { return document.getElementById(id); }
@@ -31,6 +36,7 @@
         if (!response.ok) {
           var error = new Error((body && body.error) || "request_failed");
           error.status = response.status;
+          error.retryAfter = response.headers.get("Retry-After") || "";
           throw error;
         }
         return body;
@@ -42,13 +48,26 @@
     return requestJson(url, { method: "GET", cache: "no-store" });
   }
 
-  function message(code) {
+  function message(code, retryAfter) {
     if (code === "wrong_admin_password") return "관리자 비밀번호가 맞지 않습니다.";
     if (code === "admin_not_configured") return "관리자 기능을 준비 중입니다.";
     if (code === "missing_report") return "보고서 정보를 찾지 못했습니다.";
     if (code === "title_too_short") return "제목은 두 글자 이상 입력해 주세요.";
     if (code === "summary_too_short") return "상세 설명은 네 글자 이상 입력해 주세요.";
     if (code === "invalid_cover_url") return "썸네일은 HTTPS 이미지 주소 또는 JPEG 이미지로 입력해 주세요.";
+    if (code === "private_login_blocked") return "입력 횟수를 초과했습니다. " + (retryAfter ? retryAfter + "초 후 다시 시도해 주세요." : "잠시 후 다시 시도해 주세요.");
+    if (code === "private_storage_not_configured") return "비공개 저장소를 준비 중입니다.";
+    if (code === "private_session_expired" || code === "private_auth_required") return "비공개 인증 시간이 끝났습니다. 관리자 비밀번호를 다시 입력해 주세요.";
+    if (code === "private_report_exists") return "같은 ID의 비공개 보고서가 이미 있습니다.";
+    if (code === "private_report_not_found") return "비공개 보고서를 찾지 못했습니다.";
+    if (code === "invalid_private_report_id") return "보고서 ID는 영문, 숫자, 하이픈으로 입력해 주세요.";
+    if (code === "invalid_display_date") return "작성일을 확인해 주세요.";
+    if (code === "invalid_source_count") return "출처 수는 0부터 999까지 입력해 주세요.";
+    if (code === "html_required") return "HTML 보고서 파일을 선택해 주세요.";
+    if (code === "invalid_html_type") return "HTML 파일만 등록할 수 있습니다.";
+    if (code === "html_too_large") return "HTML 파일은 최대 5MB까지 등록할 수 있습니다.";
+    if (code === "invalid_cover_type") return "썸네일은 JPG, PNG, WebP 파일만 사용할 수 있습니다.";
+    if (code === "cover_too_large") return "썸네일은 최대 1MB까지 등록할 수 있습니다.";
     return "요청을 처리하지 못했습니다. 잠시 후 다시 시도해 주세요.";
   }
 
@@ -71,6 +90,7 @@
   function displayDate(value) {
     var text = String(value || "").trim();
     if (!text) return "-";
+    if (/^\d{6}$/.test(text)) return "20" + text.slice(0, 2) + "." + text.slice(2, 4) + "." + text.slice(4, 6);
     if (/^\d{4}-\d{2}-\d{2}$/.test(text)) return text.replaceAll("-", ".");
     var date = new Date(text);
     if (Number.isNaN(date.getTime())) return text;
@@ -580,6 +600,255 @@
     });
   }
 
+  function privateRequestJson(path, options) {
+    var settings = Object.assign({ method: "GET", cache: "no-store" }, options || {});
+    settings.headers = new Headers(settings.headers || {});
+    if (state.privateToken) settings.headers.set("Authorization", "Bearer " + state.privateToken);
+    return requestJson(API + path, settings).catch(function (error) {
+      if (error.status === 401) expirePrivateSession();
+      throw error;
+    });
+  }
+
+  function savePrivateSession(token, expiresAt) {
+    state.privateToken = String(token || "");
+    try {
+      window.sessionStorage.setItem("reportmode:private-session", JSON.stringify({ token: state.privateToken, expiresAt: expiresAt }));
+    } catch (_) {}
+  }
+
+  function clearPrivateSession() {
+    state.privateToken = "";
+    state.privateReports = [];
+    try { window.sessionStorage.removeItem("reportmode:private-session"); } catch (_) {}
+    var add = byId("archiveAdminPrivateAdd");
+    if (add) add.disabled = true;
+  }
+
+  function expirePrivateSession() {
+    clearPrivateSession();
+    state.password = "";
+    byId("archiveAdminDashboard").hidden = true;
+    byId("archiveAdminGate").hidden = false;
+    setStatus("archiveAdminGateStatus", "비공개 인증 시간이 끝났습니다. 관리자 비밀번호를 다시 입력해 주세요.", true);
+    window.setTimeout(function () { byId("archiveAdminGatePassword").focus(); }, 0);
+  }
+
+  function requestPrivateSession(password) {
+    setStatus("archiveAdminPrivateStatus", "비공개 저장소 인증을 확인하는 중입니다.", false);
+    return requestJson(API + "/private-session", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ adminPassword: password }),
+      cache: "no-store",
+    }).then(function (body) {
+      savePrivateSession(body.token, body.expiresAt);
+      byId("archiveAdminPrivateAdd").disabled = false;
+      return loadPrivateReports();
+    }).catch(function (error) {
+      clearPrivateSession();
+      setText("archiveAdminPrivateCount", "인증 필요");
+      setStatus("archiveAdminPrivateStatus", message(error.message, error.retryAfter), true);
+    });
+  }
+
+  function privateViewerUrl(report) {
+    return new URL("../private/?report=" + encodeURIComponent(report.id), window.location.href).href;
+  }
+
+  function renderPrivateReports() {
+    var body = byId("archiveAdminPrivateTableBody");
+    if (!body) return;
+    body.replaceChildren();
+    setText("archiveAdminPrivateCount", "총 " + formatNumber(state.privateReports.length) + "개");
+    if (!state.privateReports.length) {
+      var empty = document.createElement("tr");
+      var emptyCell = document.createElement("td");
+      emptyCell.colSpan = 7;
+      emptyCell.textContent = "등록된 비공개 보고서가 없습니다.";
+      empty.appendChild(emptyCell);
+      body.appendChild(empty);
+      return;
+    }
+    state.privateReports.forEach(function (report) {
+      var row = document.createElement("tr");
+      var reportCell = document.createElement("td");
+      reportCell.className = "archive-admin-console-report-cell";
+      var reportLink = document.createElement("a");
+      reportLink.className = "archive-admin-console-report-title";
+      reportLink.href = privateViewerUrl(report);
+      reportLink.textContent = report.title;
+      var summary = document.createElement("p");
+      summary.className = "archive-admin-console-report-summary";
+      summary.textContent = report.summary;
+      reportCell.append(reportLink, summary);
+      var actionCell = document.createElement("td");
+      var actions = document.createElement("div");
+      actions.className = "archive-admin-console-table-actions";
+      var edit = document.createElement("button");
+      edit.type = "button";
+      edit.className = "archive-admin-console-table-button";
+      edit.textContent = "수정";
+      edit.addEventListener("click", function () { openPrivateEditor(report); });
+      var remove = document.createElement("button");
+      remove.type = "button";
+      remove.className = "archive-admin-console-table-button is-danger";
+      remove.textContent = "삭제";
+      remove.addEventListener("click", function () { deletePrivateReport(report, remove); });
+      actions.append(edit, remove);
+      actionCell.appendChild(actions);
+      row.append(
+        reportCell,
+        makeCell(displayDate(report.displayDate), "archive-admin-console-table-number"),
+        makeCell(formatNumber(report.sourceCount), "archive-admin-console-table-number"),
+        makeCell((report.tags || []).join(", ") || "-"),
+        makeCell(report.hasCover ? "있음" : "없음"),
+        makeCell(displayDate(report.updatedAt), "archive-admin-console-table-number"),
+        actionCell,
+      );
+      body.appendChild(row);
+    });
+  }
+
+  function loadPrivateReports() {
+    if (!state.privateToken) return Promise.resolve();
+    setStatus("archiveAdminPrivateStatus", "비공개 보고서를 불러오는 중입니다.", false);
+    return privateRequestJson("/private-reports").then(function (body) {
+      state.privateReports = Array.isArray(body.reports) ? body.reports : [];
+      renderPrivateReports();
+      setStatus("archiveAdminPrivateStatus", "비공개 저장소와 연결되었습니다.", false);
+    }).catch(function (error) {
+      if (error.status !== 401) setStatus("archiveAdminPrivateStatus", message(error.message, error.retryAfter), true);
+    });
+  }
+
+  function privateDateInput(value) {
+    var text = String(value || "");
+    if (/^\d{6}$/.test(text)) return "20" + text.slice(0, 2) + "-" + text.slice(2, 4) + "-" + text.slice(4, 6);
+    if (/^\d{4}-\d{2}-\d{2}/.test(text)) return text.slice(0, 10);
+    return new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Seoul", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+  }
+
+  function privateDisplayDate(value) {
+    return String(value || "").replaceAll("-", "").slice(2);
+  }
+
+  function suggestedPrivateId() {
+    var date = privateDateInput("").replaceAll("-", "");
+    return "private-" + date + "-" + Date.now().toString(36).slice(-6);
+  }
+
+  function openPrivateDialog() {
+    var dialog = byId("archiveAdminPrivateDialog");
+    if (typeof dialog.showModal === "function") dialog.showModal();
+    else dialog.setAttribute("open", "");
+  }
+
+  function closePrivateDialog() {
+    var dialog = byId("archiveAdminPrivateDialog");
+    if (typeof dialog.close === "function" && dialog.open) dialog.close();
+    else dialog.removeAttribute("open");
+    state.privateEditing = null;
+    byId("archiveAdminPrivateForm").reset();
+  }
+
+  function openPrivateEditor(report) {
+    state.privateEditing = report || null;
+    var editing = Boolean(report);
+    byId("archive-admin-private-dialog-title").textContent = editing ? "비공개 보고서 수정" : "비공개 보고서 등록";
+    byId("archiveAdminPrivateDialogNote").textContent = editing ? "HTML과 썸네일을 선택하면 기존 파일을 교체합니다." : "원문과 썸네일은 공개 저장소에 저장되지 않습니다.";
+    byId("archiveAdminPrivateId").value = editing ? report.id : suggestedPrivateId();
+    byId("archiveAdminPrivateId").readOnly = editing;
+    byId("archiveAdminPrivateDate").value = privateDateInput(editing ? report.displayDate : "");
+    byId("archiveAdminPrivateTitle").value = editing ? report.title : "";
+    byId("archiveAdminPrivateSummary").value = editing ? report.summary : "";
+    byId("archiveAdminPrivateSourceCount").value = editing ? String(report.sourceCount || 0) : "0";
+    byId("archiveAdminPrivateTags").value = editing ? (report.tags || []).join(", ") : "";
+    byId("archiveAdminPrivateHtml").value = "";
+    byId("archiveAdminPrivateHtml").required = !editing;
+    byId("archiveAdminPrivateHtmlHelp").textContent = editing ? "선택하지 않으면 기존 HTML을 유지합니다." : "신규 등록 시 필수, 최대 5MB";
+    byId("archiveAdminPrivateCover").value = "";
+    byId("archiveAdminPrivateRemoveCover").checked = false;
+    byId("archiveAdminPrivateRemoveCoverField").hidden = !editing || !report.hasCover;
+    setStatus("archiveAdminPrivateEditStatus", "", false);
+    openPrivateDialog();
+    window.setTimeout(function () { (editing ? byId("archiveAdminPrivateTitle") : byId("archiveAdminPrivateId")).focus(); }, 0);
+  }
+
+  function savePrivateReport(event) {
+    event.preventDefault();
+    if (!state.privateToken) return;
+    var editing = Boolean(state.privateEditing);
+    var id = String(byId("archiveAdminPrivateId").value || "").trim();
+    var title = String(byId("archiveAdminPrivateTitle").value || "").trim();
+    var summary = String(byId("archiveAdminPrivateSummary").value || "").trim();
+    var date = String(byId("archiveAdminPrivateDate").value || "");
+    var sourceCount = Number(byId("archiveAdminPrivateSourceCount").value || 0);
+    var html = byId("archiveAdminPrivateHtml").files && byId("archiveAdminPrivateHtml").files[0];
+    var cover = byId("archiveAdminPrivateCover").files && byId("archiveAdminPrivateCover").files[0];
+    if (!/^[a-z0-9][a-z0-9-]{2,119}$/i.test(id)) {
+      setStatus("archiveAdminPrivateEditStatus", "보고서 ID는 영문, 숫자, 하이픈으로 입력해 주세요.", true);
+      return;
+    }
+    if (title.length < 2 || summary.length < 4 || !date) {
+      setStatus("archiveAdminPrivateEditStatus", "제목, 상세 설명, 작성일을 확인해 주세요.", true);
+      return;
+    }
+    if (!editing && !html) {
+      setStatus("archiveAdminPrivateEditStatus", "HTML 보고서 파일을 선택해 주세요.", true);
+      return;
+    }
+    if (html && html.size > 5 * 1024 * 1024) {
+      setStatus("archiveAdminPrivateEditStatus", "HTML 파일은 최대 5MB까지 등록할 수 있습니다.", true);
+      return;
+    }
+    if (cover && cover.size > 1024 * 1024) {
+      setStatus("archiveAdminPrivateEditStatus", "썸네일은 최대 1MB까지 등록할 수 있습니다.", true);
+      return;
+    }
+    var data = new FormData();
+    data.set("id", id);
+    data.set("title", title);
+    data.set("summary", summary);
+    data.set("displayDate", privateDisplayDate(date));
+    data.set("sourceCount", String(sourceCount));
+    data.set("tags", String(byId("archiveAdminPrivateTags").value || ""));
+    data.set("removeCover", byId("archiveAdminPrivateRemoveCover").checked ? "true" : "false");
+    if (html) data.set("html", html);
+    if (cover) data.set("cover", cover);
+    var save = byId("archiveAdminPrivateSave");
+    save.disabled = true;
+    setStatus("archiveAdminPrivateEditStatus", editing ? "비공개 보고서를 수정하는 중입니다." : "비공개 보고서를 저장하는 중입니다.", false);
+    privateRequestJson(editing ? "/private-reports/" + encodeURIComponent(id) : "/private-reports", {
+      method: editing ? "PUT" : "POST",
+      body: data,
+    }).then(function () {
+      closePrivateDialog();
+      setStatus("archiveAdminPrivateStatus", editing ? "비공개 보고서를 수정했습니다." : "비공개 보고서를 등록했습니다.", false);
+      return loadPrivateReports();
+    }).catch(function (error) {
+      if (error.status !== 401) setStatus("archiveAdminPrivateEditStatus", message(error.message, error.retryAfter), true);
+    }).finally(function () {
+      save.disabled = false;
+    });
+  }
+
+  function deletePrivateReport(report, button) {
+    if (!state.privateToken) return;
+    if (!window.confirm('"' + report.title + '" 비공개 보고서를 삭제할까요? 원문과 썸네일도 함께 삭제됩니다.')) return;
+    button.disabled = true;
+    privateRequestJson("/private-reports/" + encodeURIComponent(report.id), {
+      method: "DELETE",
+    }).then(function () {
+      setStatus("archiveAdminPrivateStatus", "비공개 보고서를 삭제했습니다.", false);
+      return loadPrivateReports();
+    }).catch(function (error) {
+      if (error.status !== 401) setStatus("archiveAdminPrivateStatus", message(error.message, error.retryAfter), true);
+    }).finally(function () {
+      button.disabled = false;
+    });
+  }
+
   function verifyAdministrator(event) {
     event.preventDefault();
     var passwordInput = byId("archiveAdminGatePassword");
@@ -602,6 +871,7 @@
       byId("archiveAdminGate").hidden = true;
       byId("archiveAdminDashboard").hidden = false;
       refreshDashboard();
+      requestPrivateSession(password);
     }).catch(function (error) {
       setStatus("archiveAdminGateStatus", message(error.message), true);
     }).finally(function () {
@@ -610,7 +880,10 @@
   }
 
   byId("archiveAdminGateForm").addEventListener("submit", verifyAdministrator);
-  byId("archiveAdminRefresh").addEventListener("click", refreshDashboard);
+  byId("archiveAdminRefresh").addEventListener("click", function () {
+    refreshDashboard();
+    loadPrivateReports();
+  });
   byId("archiveAdminReportSearch").addEventListener("input", renderReports);
   byId("archiveAdminReportStatus").addEventListener("change", renderReports);
   byId("archiveAdminEditForm").addEventListener("submit", saveEditor);
@@ -630,4 +903,9 @@
       setStatus("archiveAdminEditStatus", "이미지 파일을 읽지 못했습니다.", true);
     });
   });
+  byId("archiveAdminPrivateAdd").addEventListener("click", function () { openPrivateEditor(null); });
+  byId("archiveAdminPrivateForm").addEventListener("submit", savePrivateReport);
+  byId("archiveAdminPrivateClose").addEventListener("click", closePrivateDialog);
+  byId("archiveAdminPrivateCancel").addEventListener("click", closePrivateDialog);
+  byId("archiveAdminPrivateDialog").addEventListener("cancel", function () { state.privateEditing = null; });
 })();

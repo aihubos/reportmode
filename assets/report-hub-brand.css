@@ -52,6 +52,10 @@
   --rh-daangn-logo-height: 40px;
   --rh-daangn-logo-width-compact: 60px;
   --rh-daangn-logo-height-compact: 34px;
+  --rh-private-dialog-width: 480px;
+  --rh-private-cover-width: 160px;
+  --rh-private-card-min-height: 136px;
+  --rh-private-viewer-min-height: 720px;
   --rh-control-font-size: 12px;
   --rh-label-font-size: 11px;
   --rh-radius-2: 8px;

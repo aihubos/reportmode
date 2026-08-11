@@ -32,6 +32,9 @@ test("private archive library uses the Report Hub token contract and responsive 
   assert.match(style, /\.archive-private-post/);
   assert.match(style, /var\(--rh-primary\)/);
   assert.match(style, /var\(--rh-border\)/);
+  assert.match(style, /\.archive-taxonomy-card/);
+  assert.match(style, /is-mobile-panel-taxonomy/);
+  assert.match(style, /@media \(max-width: 860px\)/);
   assert.match(style, /@media \(max-width: 700px\)/);
   assert.doesNotMatch(style, /#[0-9a-f]{3,8}\b/i);
 });

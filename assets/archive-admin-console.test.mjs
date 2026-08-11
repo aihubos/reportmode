@@ -64,6 +64,8 @@ test("administrator console manages private HTML reports only after protected se
   assert.match(script, /method:\s*editing \? "PUT" : "POST"/);
   assert.match(script, /method:\s*"DELETE"/);
   assert.match(script, /sessionStorage/);
+  assert.match(script, /if \(\/\^\\d\{6\}\$\/\.test\(text\)\) return "20" \+ text\.slice\(0, 2\)/);
+  assert.doesNotMatch(script, /reportLink\.target\s*=\s*"_blank"/);
   assert.doesNotMatch(script, /657700/);
   assert.match(style, /\.archive-admin-private-panel/);
   assert.match(style, /\.archive-admin-private-dialog/);

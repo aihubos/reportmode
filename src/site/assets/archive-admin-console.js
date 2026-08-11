@@ -1,7 +1,9 @@
 (function () {
   "use strict";
 
-  var API = "https://reportmode-request-board.report-request-board.workers.dev";
+  var API = /^(127\.0\.0\.1|localhost)$/.test(window.location.hostname)
+    ? "http://127.0.0.1:8787"
+    : "https://reportmode-request-board.report-request-board.workers.dev";
   var MANIFEST_URL = "../../reports/manifest.json";
   var THUMBNAIL_MAX_BYTES = 600 * 1024;
   var THUMBNAIL_PRESETS = [
@@ -88,6 +90,7 @@
   function displayDate(value) {
     var text = String(value || "").trim();
     if (!text) return "-";
+    if (/^\d{6}$/.test(text)) return "20" + text.slice(0, 2) + "." + text.slice(2, 4) + "." + text.slice(4, 6);
     if (/^\d{4}-\d{2}-\d{2}$/.test(text)) return text.replaceAll("-", ".");
     var date = new Date(text);
     if (Number.isNaN(date.getTime())) return text;
@@ -674,8 +677,6 @@
       var reportLink = document.createElement("a");
       reportLink.className = "archive-admin-console-report-title";
       reportLink.href = privateViewerUrl(report);
-      reportLink.target = "_blank";
-      reportLink.rel = "noopener";
       reportLink.textContent = report.title;
       var summary = document.createElement("p");
       summary.className = "archive-admin-console-report-summary";

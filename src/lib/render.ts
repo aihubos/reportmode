@@ -556,7 +556,7 @@ export function renderHomeHtml(
       </div>
     </section>
     <div class="archive-content-layout">
-    <aside class="archive-right-rail" id="archiveMobilePanel" aria-label="방문자 참여, 최근 댓글과 동탄 날씨">
+    <aside class="archive-right-rail" id="archiveMobilePanel" aria-label="방문자 참여, 최근 댓글, 태그·카테고리와 동탄 날씨">
       <div class="archive-mobile-panel-head">
         <strong id="archive-mobile-panel-title" data-archive-mobile-panel-title>리포트 희망</strong>
         <button class="archive-mobile-panel-close" type="button" data-archive-mobile-panel-close aria-label="패널 닫기" title="닫기">
@@ -564,6 +564,26 @@ export function renderHomeHtml(
           <span class="sr-only">패널 닫기</span>
         </button>
       </div>
+      <section class="archive-taxonomy-card" aria-labelledby="archive-taxonomy-title">
+        <div class="archive-taxonomy-head">
+          <div class="archive-side-label">BROWSE REPORTS</div>
+          <h2 id="archive-taxonomy-title">태그 · 카테고리</h2>
+          <p>관심 있는 분류를 선택하면 보고서 목록만 바뀝니다.</p>
+        </div>
+        <div class="archive-taxonomy-group">
+          <h3>카테고리</h3>
+          <div class="archive-category-list">
+${categoryButtons}
+${privateCategoryButton}
+          </div>
+        </div>
+        <div class="archive-taxonomy-group">
+          <h3>주제 태그</h3>
+          <div class="archive-tag-cloud" data-report-tag-cloud>
+${tagLinks}
+          </div>
+        </div>
+      </section>
       <section class="archive-comments-card" aria-labelledby="archive-comments-title">
         <div class="archive-comments-head">
           <div>
@@ -707,6 +727,7 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
 
     <dialog class="archive-private-auth" id="archivePrivateAuthDialog" aria-labelledby="archivePrivateAuthTitle">
       <form class="archive-private-auth-form" id="archivePrivateAuthForm" novalidate>
+        <input type="text" autocomplete="username" value="Jeremy" hidden aria-hidden="true" tabindex="-1">
         <div class="archive-private-auth-head">
           <span class="archive-private-auth-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><rect x="5" y="10" width="14" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg></span>
           <div><h2 id="archivePrivateAuthTitle">비공개 보고서</h2><p>관리자 비밀번호 확인 후 이 탭에서 30분 동안 열립니다.</p></div>
@@ -721,7 +742,7 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
     </dialog>
 
     <div class="archive-mobile-panel-backdrop" data-archive-mobile-panel-backdrop aria-hidden="true" hidden></div>
-    <div class="archive-mobile-panel-actions" role="group" aria-label="리포트 희망, 댓글과 날씨 열기">
+    <div class="archive-mobile-panel-actions" role="group" aria-label="리포트 희망, 댓글, 태그·카테고리와 날씨 열기">
       <button class="archive-mobile-panel-button" type="button" data-archive-mobile-panel-open="request" aria-controls="archiveMobilePanel" aria-expanded="false" aria-haspopup="dialog" aria-label="리포트 희망 열기" title="리포트 희망 열기">
         <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="M5 5.75A2.75 2.75 0 0 1 7.75 3h8.5A2.75 2.75 0 0 1 19 5.75v6.5A2.75 2.75 0 0 1 16.25 15H11l-4.25 3.25V15.9A2.75 2.75 0 0 1 5 13.25Z"></path><path d="M8.5 8.5h7"></path><path d="M8.5 11.5h4.5"></path></svg>
         <span class="sr-only">리포트 희망 열기</span>
@@ -729,6 +750,10 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
       <button class="archive-mobile-panel-button" type="button" data-archive-mobile-panel-open="comments" aria-controls="archiveMobilePanel" aria-expanded="false" aria-haspopup="dialog" aria-label="최근 댓글 열기" title="최근 댓글 열기">
         <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="M5 5.75A2.75 2.75 0 0 1 7.75 3h8.5A2.75 2.75 0 0 1 19 5.75v6.5A2.75 2.75 0 0 1 16.25 15H11l-4.25 3.25V15.9A2.75 2.75 0 0 1 5 13.25Z"></path><path d="M8.5 8.5h7"></path><path d="M8.5 11.5h7"></path></svg>
         <span class="sr-only">최근 댓글 열기</span>
+      </button>
+      <button class="archive-mobile-panel-button" type="button" data-archive-mobile-panel-open="taxonomy" aria-controls="archiveMobilePanel" aria-expanded="false" aria-haspopup="dialog" aria-label="태그와 카테고리 열기" title="태그와 카테고리 열기">
+        <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="M4 5.5h7l8 8-5.5 5.5-8-8Z"></path><circle cx="8.25" cy="8.25" r="1"></circle><path d="M14.5 5H19v4.5"></path></svg>
+        <span class="sr-only">태그와 카테고리 열기</span>
       </button>
       <button class="archive-mobile-panel-button" type="button" data-archive-mobile-panel-open="weather" aria-controls="archiveMobilePanel" aria-expanded="false" aria-haspopup="dialog" aria-label="동탄 날씨 열기" title="동탄 날씨 열기">
         <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="M8.25 18.25h8.5a3.25 3.25 0 0 0 .45-6.47A4.75 4.75 0 0 0 8.37 9.7 3.75 3.75 0 0 0 8.25 18.25Z"></path><path d="M8 3.5v2"></path><path d="m4.1 5.1 1.4 1.4"></path><path d="M3 9h2"></path></svg>
@@ -981,6 +1006,7 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
     }
 
     function render(shouldScroll) {
+      if (window.reportmodePrivateLibraryActive === true) return;
       var adminUnlocked = window.reportmodeAdminUnlocked === true;
       if (state.category === "Draft" && !adminUnlocked) state.category = "all";
       var normalizedQuery = state.query.trim().toLocaleLowerCase("ko");
@@ -1031,6 +1057,7 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
       loadViewCounts(visible);
       filters.forEach(function (filter) {
         var filterValue = filter.dataset.categoryFilter || "all";
+        if (filterValue === "Private") return;
         filter.hidden = filterValue === "Draft" && !adminUnlocked;
         var countOutput = filter.querySelector("b");
         if (countOutput) countOutput.textContent = String(categoryCount(filterValue));
@@ -1072,6 +1099,7 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
         state.category = filter.dataset.categoryFilter || "all";
         state.page = 1;
         render(false);
+        if (filter.closest(".archive-taxonomy-card")) window.dispatchEvent(new CustomEvent("reportmode:archive-close-mobile-panel"));
       });
     });
     tagFilters.forEach(function (filter) {
@@ -1080,6 +1108,7 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
         state.tag = state.tag === selected ? "" : selected;
         state.page = 1;
         render(false);
+        if (filter.closest(".archive-taxonomy-card")) window.dispatchEvent(new CustomEvent("reportmode:archive-close-mobile-panel"));
       });
     });
     search.addEventListener("input", function () {
@@ -1167,7 +1196,7 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
 
       function closePanel(restoreFocus) {
         var wasOpen = isOpen();
-        page.classList.remove("is-mobile-panel-open", "is-mobile-panel-request", "is-mobile-panel-comments", "is-mobile-panel-weather");
+        page.classList.remove("is-mobile-panel-open", "is-mobile-panel-request", "is-mobile-panel-comments", "is-mobile-panel-taxonomy", "is-mobile-panel-weather");
         document.body.classList.remove("archive-mobile-panel-open");
         backdrop.hidden = true;
         setPanelAccessibility(false);
@@ -1181,10 +1210,10 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
       function openPanel(panelName, trigger) {
         if (!mobileQuery.matches) return;
         activeTrigger = trigger;
-        page.classList.remove("is-mobile-panel-request", "is-mobile-panel-comments", "is-mobile-panel-weather");
+        page.classList.remove("is-mobile-panel-request", "is-mobile-panel-comments", "is-mobile-panel-taxonomy", "is-mobile-panel-weather");
         page.classList.add("is-mobile-panel-open", "is-mobile-panel-" + panelName);
         document.body.classList.add("archive-mobile-panel-open");
-        title.textContent = panelName === "weather" ? "동탄 날씨" : panelName === "comments" ? "최근 댓글" : "리포트 희망";
+        title.textContent = panelName === "weather" ? "동탄 날씨" : panelName === "comments" ? "최근 댓글" : panelName === "taxonomy" ? "태그 · 카테고리" : "리포트 희망";
         backdrop.hidden = false;
         setPanelAccessibility(true);
         setTriggerStates(panelName);
@@ -1209,6 +1238,13 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
       });
       backdrop.addEventListener("click", function () {
         closePanel(true);
+      });
+      window.addEventListener("reportmode:archive-close-mobile-panel", function () {
+        closePanel(true);
+        window.requestAnimationFrame(function () {
+          var board = document.querySelector(".archive-board");
+          if (board) board.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
       });
       document.addEventListener("keydown", function (event) {
         if (!mobileQuery.matches || !isOpen()) return;
