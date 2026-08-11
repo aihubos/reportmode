@@ -237,7 +237,7 @@ footer {
 }
 .archive-topbar-inner {
   width: min(var(--archive-shell-max), calc(100% - (var(--archive-shell-edge) * 2))); height: 100%; margin: 0 auto;
-  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  position: relative; display: flex; align-items: center; justify-content: space-between; gap: 24px;
 }
 .archive-brand {
   display: inline-flex; align-items: center; gap: 10px;
@@ -248,7 +248,8 @@ footer {
   border-radius: 11px; color: #fff; background: var(--archive-blue);
   box-shadow: 0 7px 18px rgba(49,130,246,.25);
 }
-.archive-topbar-actions { display: flex; align-items: center; gap: 8px; }
+.archive-topbar-actions { display: flex; align-items: center; margin-left: auto; }
+.archive-topbar-links { display: flex; align-items: center; gap: 8px; }
 .archive-visitor-count {
   min-height: 44px; display: inline-flex; align-items: center; padding: 0 12px;
   border: 1px solid var(--archive-line); border-radius: 12px; color: var(--archive-muted); background: #fff;
@@ -271,6 +272,22 @@ footer {
 .archive-carrot-card:hover { color: var(--rh-daangn-hover); background: var(--rh-paper); transform: translateY(-1px); }
 .archive-carrot-card:focus-visible { outline: 3px solid var(--rh-ring); outline-offset: 2px; }
 .archive-carrot-logo { width: var(--rh-daangn-logo-width); height: var(--rh-daangn-logo-height); display: block; flex: 0 0 auto; object-fit: contain; }
+.archive-builders-card {
+  position: relative; min-height: var(--rh-space-12); width: 142px; display: inline-flex; align-items: center; justify-content: center; overflow: hidden; padding: 3px 10px;
+  border: 1px solid rgba(49,130,246,.24); border-radius: var(--rh-radius-3); background: var(--rh-paper); box-shadow: 0 4px 12px rgba(49,130,246,.08); text-decoration: none;
+  transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.archive-builders-card::after {
+  content: ""; position: absolute; inset: -45% auto -45% -52%; width: 34%; pointer-events: none;
+  background: linear-gradient(105deg, transparent, rgba(255,255,255,.08) 28%, rgba(255,255,255,.92) 50%, rgba(255,255,255,.12) 72%, transparent);
+  transform: skewX(-18deg) translateX(-220%); animation: archive-builders-shine 4.8s ease-in-out infinite;
+}
+.archive-builders-card:hover { border-color: rgba(49,130,246,.52); box-shadow: 0 8px 18px rgba(49,130,246,.16); transform: translateY(-1px); }
+.archive-builders-card:focus-visible { outline: 3px solid var(--rh-ring); outline-offset: 2px; }
+.archive-builders-logo { width: 122px; height: 38px; display: block; object-fit: contain; }
+@keyframes archive-builders-shine { 0%, 62% { transform: skewX(-18deg) translateX(-220%); } 80%, 100% { transform: skewX(-18deg) translateX(610%); } }
+@media (prefers-reduced-motion: reduce) { .archive-builders-card::after { animation: none; } }
+@media (min-width: 960px) { .archive-topbar-links { position: absolute; left: 50%; transform: translateX(-50%); } }
 .archive-shell { width: min(1180px, calc(100% - (var(--archive-shell-edge) * 2))); margin: 0 auto; }
 .archive-spotlight { margin-top: 24px; padding: 24px !important; border: 1px solid var(--archive-line); border-radius: 18px; background: var(--rh-paper); }
 .archive-spotlight-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 20px; }
@@ -600,7 +617,7 @@ footer {
   .archive-shell { width: min(100% - (var(--archive-shell-edge) * 2), 1180px); }
   .archive-topbar .report-hub-clock-date { display: none; }
   .archive-brand > span:last-child { display: none; }
-  .archive-topbar-actions { gap: 4px; }
+  .archive-topbar-links { gap: 4px; }
   .archive-visitor-count { min-height: 38px; padding: 0 7px; font-size: 9px; }
   .archive-blog-card { min-height: 38px; gap: 6px; padding: 4px 7px; }
   .archive-blog-card .archive-blog-mark { width: 24px; height: 24px; font-size: 13px; }
@@ -608,6 +625,9 @@ footer {
   .archive-visitor-count { display: none; }
   .archive-carrot-card { min-height: var(--rh-space-10); padding: var(--rh-space-1) var(--rh-space-2); }
   .archive-carrot-logo { width: var(--rh-daangn-logo-width-compact); height: var(--rh-daangn-logo-height-compact); }
+  .archive-carrot-card { display: none; }
+  .archive-builders-card { min-height: 38px; width: 108px; padding: 2px 6px; }
+  .archive-builders-logo { width: 96px; height: 32px; }
   .archive-blog-card-copy { display: none; }
   .archive-profile { grid-template-columns: 1fr; gap: 18px; margin: 18px 0 14px; padding: 24px !important; border-radius: 20px; }
   .archive-avatar { width: 68px; height: 68px; border-radius: 23px; }

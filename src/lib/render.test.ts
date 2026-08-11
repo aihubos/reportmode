@@ -90,9 +90,12 @@ test("renders the simplified archive with one Naver card and a 30-item default s
   assert.doesNotMatch(html, /class="archive-brand-mark"/);
   assert.equal(html.match(/https:\/\/blog\.naver\.com\/jeremylee0213/g)?.length, 1);
   assert.match(html, /class="archive-blog-card"/);
-  assert.equal(html.match(/https:\/\/daangn\.com\/kr\/share\/community\/ref\/invite-group\/baRr2nojJVT\?utm_campaign=share_qr/g)?.length, 1);
+  assert.equal(html.match(/https:\/\/daangn\.com\/kr\/share\/community\/ref\/invite-group\/baRr2nojJVT\?utm_campaign=share_qr/g)?.length, 2);
   assert.match(html, /class="archive-carrot-card"/);
   assert.match(html, /src="\.\.\/assets\/daangn-meeting-logo\.png"/);
+  assert.match(html, /class="archive-builders-card"/);
+  assert.match(html, /src="\.\.\/assets\/ai-builders-lab-logo\.png"/);
+  assert.match(html, /aria-label="AI Builders Lab 당근 모임 열기"/);
   assert.doesNotMatch(html, /archive-carrot-card-copy/);
   assert.match(html, /aria-label="당근 비전공자 AI 에이전트 공부방 열기"/);
   assert.match(html, /id="archiveVisitorCount"/);
