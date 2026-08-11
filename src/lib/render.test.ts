@@ -351,3 +351,29 @@ test("renders Draft filters hidden until administrator unlock and protects Draft
   assert.match(html, /setInterval\([\s\S]*?30000/);
   assert.match(html, /visibilitychange/);
 });
+
+test("renders a locked private category without embedding private report data", () => {
+  const html = renderHomeHtml([
+    {
+      id: "public-one",
+      path: "reports/public-one/",
+      title: "공개 보고서",
+      subtitle: "",
+      summary: "공개 요약",
+      category: "AI",
+      tags: [],
+      displayDate: "260811",
+      sourceCount: 1,
+    },
+  ] as any);
+
+  assert.equal(html.match(/data-category-filter="Private"/g)?.length, 2);
+  assert.equal(html.match(/data-private-category(?:\s|>)/g)?.length, 2);
+  assert.match(html, /id="archivePrivateAuthDialog"/);
+  assert.match(html, /id="archivePrivatePassword"[^>]*type="password"/);
+  assert.match(html, /id="archivePrivateAuthStatus"[^>]*role="status"/);
+  assert.match(html, /archive-private-library\.css/);
+  assert.match(html, /archive-private-library\.js/);
+  assert.doesNotMatch(html, /private_reports/);
+  assert.doesNotMatch(html, /657700/);
+});

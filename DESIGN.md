@@ -94,6 +94,8 @@ Report Hub는 보고서보다 먼저 시선을 빼앗지 않는 임원용 리서
 - 댓글 탐색 전체 목록 창 최대 폭: 760px (`--rh-comment-explorer-dialog-width`)
 - 관리자 통합 화면 제목·수치·표 글자 크기: 32px·24px·12px (`--rh-admin-console-title-size`, `--rh-admin-console-metric-size`, `--rh-admin-console-table-size`)
 - 당근 로고 데스크톱·모바일 표시 크기: 68×40px·60×34px (`--rh-daangn-logo-width`, `--rh-daangn-logo-height`, `--rh-daangn-logo-width-compact`, `--rh-daangn-logo-height-compact`)
+- 비공개 인증 창 최대 폭: 480px (`--rh-private-dialog-width`)
+- 비공개 카드 표지 폭과 최소 높이: 160px·136px (`--rh-private-cover-width`, `--rh-private-card-min-height`)
 
 ## 5. Components
 
@@ -152,6 +154,15 @@ Report Hub는 보고서보다 먼저 시선을 빼앗지 않는 임원용 리서
 - 초안 카드는 기본 `전체` 목록에서 숨기고 `Draft` 카테고리에서만 공개한다.
 - 관리자가 `메인 등록`한 초안만 전체 목록에 함께 표시한다.
 - 관리자 동작은 기존 카드 하단 버튼군에 `메인 등록` 또는 `메인 제외` 텍스트 버튼으로 제공한다.
+
+### Private report library
+
+- `비공개`는 기존 카테고리 버튼과 같은 위치와 크기를 사용하고 기존 선형 자물쇠 아이콘을 함께 표시한다.
+- 인증 전에는 보고서 수 대신 `잠금`을 표시하며 제목, 설명, 썸네일, 원문을 정적 HTML에 포함하지 않는다.
+- 인증 창은 `--rh-paper`, `--rh-border`, `--rh-primary`, `--rh-ink`, `--rh-sub`, `--rh-danger`, `--rh-overlay`만 사용한다.
+- 비공개 목록은 기존 도서관 목록의 정보 밀도와 정렬을 따르되 `비공개` 상태를 명확히 표시하고 공개 조회수와 댓글을 섞지 않는다.
+- 잠금, 인증 중, 빈 목록, 만료, 네트워크 오류 상태를 같은 영역에서 바꾸며 레이아웃이 이동하지 않게 한다.
+- 모바일 인증 창은 화면 좌우 `--rh-space-4` 안에 두고 버튼을 한 열로 쌓는다.
 
 ### Naver blog card
 

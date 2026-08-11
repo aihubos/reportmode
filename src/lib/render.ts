@@ -12,6 +12,7 @@ const ARCHIVE_WEATHER_VERSION = "20260809-weather1";
 const ARCHIVE_ADMIN_VERSION = "20260811-view-identity2";
 const ARCHIVE_ASSET_VERSION = "20260810-archive-console1";
 const ARCHIVE_COMMENTS_VERSION = "20260811-view-identity1";
+const ARCHIVE_PRIVATE_VERSION = "20260811-private1";
 
 const KIND_LABEL: Record<SectionKind, string> = {
   fact: "사실",
@@ -381,6 +382,7 @@ export function renderHomeHtml(
       },
     )
     .join("\n");
+  const privateCategoryButton = `<button class="archive-category archive-private-category" type="button" data-category-filter="Private" data-private-category aria-pressed="false"><span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="5" y="10" width="14" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg>비공개</span><b data-private-category-count>잠금</b></button>`;
 
   const navigationTags = Array.from(
     archiveItems.reduce((tags, item) => {
@@ -517,6 +519,7 @@ export function renderHomeHtml(
   <title>Report Hub | AI 리서치 라이브러리</title>
   <style>${css()}</style>
   <link rel="stylesheet" href="../assets/report-hub-brand.css?v=${ARCHIVE_ASSET_VERSION}">
+  <link rel="stylesheet" href="../assets/archive-private-library.css?v=${ARCHIVE_PRIVATE_VERSION}">
 </head>
 <body class="archive-page">
   <header class="archive-topbar">
@@ -628,6 +631,7 @@ export function renderHomeHtml(
           <div class="archive-side-label">CATEGORY</div>
           <div class="archive-category-list">
 ${categoryButtons}
+${privateCategoryButton}
           </div>
         </section>
         <section class="archive-side-card archive-side-tags">
@@ -663,6 +667,7 @@ ${tagLinks}
 
         <div class="archive-mobile-categories" aria-label="보고서 분류">
 ${categoryButtons}
+${privateCategoryButton}
         </div>
 
         <div class="archive-list-head" aria-hidden="true">
@@ -671,6 +676,15 @@ ${categoryButtons}
         <div class="archive-posts" id="archivePosts">
 ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고서가 없습니다.</p>"}
         </div>
+        <section class="archive-private-library" id="archivePrivateLibrary" aria-labelledby="archivePrivateLibraryTitle" hidden>
+          <div class="archive-private-library-head">
+            <div><span>PRIVATE REPORTS</span><h2 id="archivePrivateLibraryTitle">비공개 보고서</h2><p id="archivePrivateLibraryStatus" role="status">관리자 인증이 필요합니다.</p></div>
+            <button class="archive-private-lock" id="archivePrivateLock" type="button" hidden>잠금</button>
+          </div>
+          <div class="archive-private-posts" id="archivePrivatePosts" aria-live="polite"></div>
+          <div class="archive-private-empty" id="archivePrivateEmpty" hidden><h3>비공개 보고서가 없습니다.</h3><p>관리자 화면에서 HTML 보고서를 등록할 수 있습니다.</p></div>
+          <nav class="archive-private-pagination" id="archivePrivatePagination" aria-label="비공개 보고서 페이지 이동"></nav>
+        </section>
         <div class="archive-empty" id="archiveEmpty" hidden>
           <div>🔎</div>
           <h3>찾는 보고서가 없습니다.</h3>
@@ -689,6 +703,21 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
         </div>
         <div class="archive-comments-all-list" id="archiveAllCommentsList" aria-live="polite" aria-busy="true"><p class="archive-comments-empty">댓글을 불러오는 중입니다.</p></div>
       </div>
+    </dialog>
+
+    <dialog class="archive-private-auth" id="archivePrivateAuthDialog" aria-labelledby="archivePrivateAuthTitle">
+      <form class="archive-private-auth-form" id="archivePrivateAuthForm" novalidate>
+        <div class="archive-private-auth-head">
+          <span class="archive-private-auth-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><rect x="5" y="10" width="14" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg></span>
+          <div><h2 id="archivePrivateAuthTitle">비공개 보고서</h2><p>관리자 비밀번호 확인 후 이 탭에서 30분 동안 열립니다.</p></div>
+        </div>
+        <label class="archive-private-auth-field">관리자 비밀번호<input id="archivePrivatePassword" type="password" maxlength="80" autocomplete="current-password" required placeholder="관리자 비밀번호"></label>
+        <p class="archive-private-auth-status" id="archivePrivateAuthStatus" role="status"></p>
+        <div class="archive-private-auth-actions">
+          <button class="archive-private-auth-cancel" id="archivePrivateAuthCancel" type="button">취소</button>
+          <button class="archive-private-auth-submit" id="archivePrivateAuthSubmit" type="submit">확인</button>
+        </div>
+      </form>
     </dialog>
 
     <div class="archive-mobile-panel-backdrop" data-archive-mobile-panel-backdrop aria-hidden="true" hidden></div>
@@ -1226,6 +1255,7 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
   })();
   </script>
   <script src="../assets/archive-request-board.js"></script>
+  <script src="../assets/archive-private-library.js?v=${ARCHIVE_PRIVATE_VERSION}"></script>
   <script src="../assets/archive-comment-explorer.js?v=${ARCHIVE_COMMENTS_VERSION}"></script>
   <script src="../assets/archive-report-admin.js?v=${ARCHIVE_ADMIN_VERSION}"></script>
   <script src="../assets/archive-visitor-counter.js?v=20260809-visits1"></script>
