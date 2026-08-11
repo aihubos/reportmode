@@ -1,0 +1,912 @@
+<!DOCTYPE html><html lang="ko"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="티타임즈TV 표철민 AI3 대표 인터뷰를 바탕으로 토큰 맥싱에서 밸류 맥스로 이동하는 기업 AX 전략을 임원용으로 요약한 반응형 보고서">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:title" content="토큰 맥싱에서 밸류 맥스로">
+  <meta property="og:description" content="AI를 많이 쓰는 단계에서, 비용·품질·업무 성과를 함께 관리하는 단계로">
+  <meta property="og:type" content="article">
+  <title>토큰 맥싱에서 밸류 맥스로 · v1.0.0</title>
+  <style>
+    :root {
+      --blue: #3182F6;
+      --blue-strong: #1B64DA;
+      --blue-soft: #E8F3FF;
+      --ink: #191F28;
+      --ink-2: #333D4B;
+      --muted: #6B7684;
+      --muted-2: #8B95A1;
+      --line: #E5E8EB;
+      --surface: #F7F8FA;
+      --surface-2: #F2F4F6;
+      --white: #FFFFFF;
+      --highlight: #DFFF6A;
+      --highlight-yellow: #FFF184;
+      --mint: #DFFBF2;
+      --violet: #EEE9FF;
+      --shadow-sm: 0 8px 30px rgba(25, 31, 40, .06);
+      --shadow-md: 0 24px 70px rgba(25, 31, 40, .10);
+      --radius-sm: 18px;
+      --radius-md: 28px;
+      --radius-lg: 40px;
+      --max: 1180px;
+      --hero-title-min: 36px;
+      --hero-title-fluid: 4.4vw;
+      --hero-title-max: 55px;
+      --section-title-min: 28px;
+      --section-title-fluid: 3.3vw;
+      --section-title-max: 41px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 86% 5%, rgba(49, 130, 246, .11), transparent 24rem),
+        radial-gradient(circle at 7% 23%, rgba(223, 255, 106, .10), transparent 25rem),
+        #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", "Segoe UI", sans-serif;
+      line-height: 1.65;
+      letter-spacing: -.02em;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    img, iframe, svg { display: block; max-width: 100%; }
+    h1, h2, h3, p { margin-top: 0; }
+    strong { color: var(--ink); }
+    .section-blue strong, .blue-card strong { color: #fff; }
+    .container { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .cite { color: var(--blue-strong); font-size: .78em; font-weight: 900; vertical-align: super; }
+
+    .scroll-progress {
+      position: fixed;
+      inset: 0 auto auto 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), #6AA7FF);
+      z-index: 1200;
+      transition: width .08s linear;
+    }
+
+    .nav-wrap { position: sticky; top: 0; z-index: 1000; padding: 14px 22px 0; }
+    .nav {
+      max-width: 1240px;
+      margin: 0 auto;
+      min-height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 10px 12px 10px 18px;
+      border: 1px solid rgba(229, 232, 235, .86);
+      border-radius: 22px;
+      background: rgba(255,255,255,.84);
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      box-shadow: 0 10px 34px rgba(25,31,40,.05);
+    }
+    .brand { display: flex; align-items: center; gap: 11px; min-width: max-content; font-size: 14px; font-weight: 850; }
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      color: #fff;
+      background: linear-gradient(145deg, #5CA2FF, var(--blue-strong));
+      box-shadow: 0 8px 20px rgba(49,130,246,.28);
+    }
+    .brand-mark svg { width: 20px; height: 20px; }
+    .brand-sub { color: var(--muted-2); font-weight: 750; }
+    .nav-links { display: flex; align-items: center; gap: 5px; margin-left: auto; }
+    .nav-links a { padding: 9px 11px; border-radius: 12px; color: var(--muted); font-size: 14px; font-weight: 750; transition: .2s ease; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--ink); background: var(--surface); outline: none; }
+    .nav-actions { display: flex; gap: 8px; }
+
+    .btn {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 0 16px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 850;
+      letter-spacing: -.02em;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:focus-visible, .float-btn:focus-visible { outline: 3px solid rgba(49,130,246,.26); outline-offset: 2px; }
+    .btn-primary { color: #fff; background: var(--blue); box-shadow: 0 10px 24px rgba(49,130,246,.24); }
+    .btn-primary:hover { background: var(--blue-strong); }
+    .btn-ghost { color: var(--ink-2); background: var(--surface); }
+    .btn-ghost:hover { background: var(--surface-2); }
+
+    .hero-shell { position: relative; }
+    .hero {
+      min-height: 760px;
+      display: grid;
+      grid-template-columns: 1.03fr .97fr;
+      align-items: center;
+      gap: 54px;
+      padding: 76px 0 42px;
+    }
+    .hero-copy { position: relative; z-index: 2; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 13px;
+      margin-bottom: 21px;
+      border-radius: 999px;
+      color: var(--blue-strong);
+      background: var(--blue-soft);
+      font-size: 14px;
+      font-weight: 850;
+    }
+    .eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 5px rgba(49,130,246,.12); }
+    .hero h1 {
+      max-width: 760px;
+      margin-bottom: 24px;
+      font-size: clamp(var(--hero-title-min), var(--hero-title-fluid), var(--hero-title-max));
+      line-height: 1.09;
+      letter-spacing: -.058em;
+      font-weight: 850;
+      text-wrap: balance;
+      overflow-wrap: anywhere;
+    }
+    .blue { color: var(--blue); }
+    .marker { position: relative; white-space: nowrap; z-index: 0; }
+    .marker::after {
+      content: "";
+      position: absolute;
+      left: -.03em;
+      right: -.03em;
+      bottom: .08em;
+      height: .34em;
+      border-radius: .12em;
+      background: var(--highlight);
+      transform: rotate(-1.1deg);
+      z-index: -1;
+      opacity: .9;
+    }
+    .hero-lead { max-width: 700px; margin-bottom: 28px; color: var(--muted); font-size: clamp(18px, 1.8vw, 22px); line-height: 1.62; font-weight: 620; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .hero-note { margin-top: 23px; display: flex; align-items: flex-start; gap: 10px; color: var(--muted); font-size: 13px; font-weight: 650; }
+    .hero-note svg { width: 19px; height: 19px; flex: 0 0 auto; margin-top: 2px; color: var(--blue); }
+    .report-meta { margin-top: 17px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 13px; color: var(--muted-2); font-size: 12px; font-weight: 800; }
+    .version-badge { display: inline-flex; align-items: center; min-height: 28px; padding: 0 10px; border-radius: 999px; color: var(--blue-strong); background: var(--blue-soft); border: 1px solid rgba(49,130,246,.16); font-variant-numeric: tabular-nums; }
+    .report-meta-separator { width: 3px; height: 3px; border-radius: 50%; background: var(--line); }
+
+    .hero-visual { min-height: 520px; display: grid; place-items: center; position: relative; }
+    .hero-orbit { position: absolute; width: 480px; height: 480px; border: 1px dashed rgba(49,130,246,.20); border-radius: 50%; animation: orbit 24s linear infinite; }
+    .hero-orbit::before, .hero-orbit::after { content: ""; position: absolute; width: 13px; height: 13px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 8px rgba(49,130,246,.10); }
+    .hero-orbit::before { top: 54px; right: 72px; }
+    .hero-orbit::after { left: 38px; bottom: 118px; background: var(--highlight); box-shadow: 0 0 0 8px rgba(223,255,106,.20); }
+    @keyframes orbit { to { transform: rotate(360deg); } }
+
+    .value-snapshot {
+      width: min(100%, 480px);
+      position: relative;
+      z-index: 2;
+      padding: 22px;
+      border: 1px solid rgba(229,232,235,.92);
+      border-radius: 34px;
+      background: rgba(255,255,255,.95);
+      box-shadow: var(--shadow-md);
+      backdrop-filter: blur(14px);
+    }
+    .snapshot-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+    .snapshot-title { display: flex; align-items: center; gap: 9px; color: var(--ink-2); font-size: 13px; font-weight: 900; }
+    .snapshot-title i { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); }
+    .snapshot-tag { padding: 5px 8px; border-radius: 999px; color: #456100; background: var(--highlight); font-size: 10px; font-weight: 900; }
+    .shift-card { padding: 24px; border-radius: 26px; color: #fff; background: linear-gradient(145deg, #216DDC, #3182F6 58%, #5A9CFF); }
+    .shift-label { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: rgba(255,255,255,.74); font-size: 11px; font-weight: 900; letter-spacing: .04em; }
+    .shift-main { display: grid; grid-template-columns: 1fr 52px 1fr; align-items: center; gap: 9px; margin-top: 18px; }
+    .shift-side { min-width: 0; }
+    .shift-side span { display: block; margin-bottom: 6px; color: rgba(255,255,255,.70); font-size: 10px; font-weight: 850; }
+    .shift-side strong { display: block; color: #fff; font-size: 21px; line-height: 1.28; letter-spacing: -.04em; overflow-wrap: anywhere; }
+    .shift-arrow { width: 50px; height: 50px; display: grid; place-items: center; border-radius: 50%; color: var(--blue-strong); background: #fff; font-size: 24px; font-weight: 500; }
+    .snapshot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px; }
+    .snapshot-card { min-height: 135px; padding: 16px; border-radius: 20px; background: var(--surface); border: 1px solid var(--line); }
+    .snapshot-card b { display: inline-grid; place-items: center; width: 28px; height: 28px; margin-bottom: 14px; border-radius: 10px; color: var(--blue); background: var(--blue-soft); font-size: 11px; }
+    .snapshot-card strong { display: block; margin-bottom: 5px; font-size: 14px; }
+    .snapshot-card p { margin-bottom: 0; color: var(--muted); font-size: 11px; line-height: 1.55; font-weight: 650; }
+
+    .decision-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0 0 60px; }
+    .decision-card { min-height: 145px; padding: 22px; border: 1px solid var(--line); border-radius: 24px; background: rgba(255,255,255,.94); box-shadow: var(--shadow-sm); }
+    .decision-card .num { display: inline-grid; place-items: center; width: 32px; height: 32px; margin-bottom: 16px; border-radius: 11px; color: var(--blue); background: var(--blue-soft); font-size: 11px; font-weight: 900; }
+    .decision-card h3 { margin-bottom: 7px; font-size: 19px; letter-spacing: -.04em; }
+    .decision-card p { margin-bottom: 0; color: var(--muted); font-size: 14px; font-weight: 620; }
+
+    section { padding: 102px 0; }
+    .section-soft { background: var(--surface); }
+    .section-blue { color: #fff; background: radial-gradient(circle at 15% 20%, rgba(255,255,255,.18), transparent 25rem), linear-gradient(145deg, #216DDC, #3182F6 58%, #5A9CFF); }
+    .section-kicker { margin-bottom: 10px; color: var(--blue); font-size: 14px; font-weight: 900; letter-spacing: .02em; }
+    .section-blue .section-kicker { color: rgba(255,255,255,.74); }
+    .section-title { max-width: 900px; margin-bottom: 18px; font-size: clamp(var(--section-title-min), var(--section-title-fluid), var(--section-title-max)); line-height: 1.20; letter-spacing: -.05em; font-weight: 850; text-wrap: balance; overflow-wrap: anywhere; }
+    .section-desc { max-width: 850px; margin-bottom: 44px; color: var(--muted); font-size: 19px; line-height: 1.62; font-weight: 600; }
+    .section-blue .section-desc { color: rgba(255,255,255,.79); }
+
+    .thesis-card { display: grid; grid-template-columns: 132px 1fr; gap: 27px; align-items: center; padding: 34px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: #fff; box-shadow: var(--shadow-sm); }
+    .thesis-stamp { aspect-ratio: 1; display: grid; place-items: center; border-radius: 34px; color: var(--blue); background: var(--blue-soft); }
+    .thesis-stamp svg { width: 62px; height: 62px; }
+    .thesis-copy h3 { margin-bottom: 10px; font-size: 25px; line-height: 1.35; letter-spacing: -.04em; }
+    .thesis-copy p { margin-bottom: 0; color: var(--muted); font-size: 18px; font-weight: 600; }
+
+    .key-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 22px; }
+    .key-card { min-height: 260px; padding: 26px; border: 1px solid var(--line); border-radius: var(--radius-md); background: #fff; box-shadow: 0 10px 30px rgba(25,31,40,.035); transition: transform .25s ease, box-shadow .25s ease; }
+    .key-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .card-index { display: inline-grid; place-items: center; width: 36px; height: 36px; margin-bottom: 20px; border-radius: 12px; color: var(--blue); background: var(--blue-soft); font-size: 12px; font-weight: 900; }
+    .key-card:nth-child(2) .card-index { color: #7458D2; background: var(--violet); }
+    .key-card:nth-child(3) .card-index { color: #15876D; background: var(--mint); }
+    .key-card h3 { margin-bottom: 10px; font-size: 23px; letter-spacing: -.04em; }
+    .key-card p { margin-bottom: 0; color: var(--muted); font-size: 15px; font-weight: 600; }
+    .easy-label { display: inline-flex; padding: 5px 9px; margin-bottom: 15px; border-radius: 8px; background: var(--highlight); color: #415400; font-size: 12px; font-weight: 900; transform: rotate(-1deg); }
+
+    .metric-note { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 22px; }
+    .metric-card { padding: 24px; border-radius: 24px; background: #fff; border: 1px solid var(--line); }
+    .metric-card strong { display: block; margin-bottom: 7px; color: var(--blue-strong); font-size: 34px; line-height: 1; letter-spacing: -.05em; }
+    .metric-card span { display: block; margin-bottom: 10px; color: var(--ink-2); font-size: 14px; font-weight: 850; }
+    .metric-card p { margin-bottom: 0; color: var(--muted); font-size: 13px; font-weight: 620; }
+    .unverified { display: inline-flex; align-items: center; gap: 6px; margin-top: 13px; padding: 5px 8px; border-radius: 999px; color: #705D00; background: var(--highlight-yellow); font-size: 10px; font-weight: 900; }
+
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .compare-card { padding: 30px; border-radius: var(--radius-md); border: 1px solid var(--line); background: #fff; }
+    .compare-card.good { border-color: rgba(49,130,246,.25); background: linear-gradient(180deg, #fff, #F5F9FF); }
+    .compare-label { display: inline-flex; padding: 6px 10px; border-radius: 999px; margin-bottom: 18px; color: var(--muted); background: var(--surface-2); font-size: 12px; font-weight: 900; }
+    .compare-card.good .compare-label { color: var(--blue-strong); background: var(--blue-soft); }
+    .compare-card h3 { margin-bottom: 12px; font-size: 24px; letter-spacing: -.04em; }
+    .compare-card > p { color: var(--muted); font-size: 16px; font-weight: 600; }
+    .compare-list { display: grid; gap: 12px; margin-top: 20px; }
+    .compare-item { display: grid; grid-template-columns: 24px 1fr; gap: 10px; color: var(--ink-2); font-size: 15px; font-weight: 700; }
+    .compare-item b { width: 24px; height: 24px; display: grid; place-items: center; border-radius: 50%; color: var(--muted-2); background: var(--surface-2); font-size: 11px; }
+    .compare-card.good .compare-item b { color: var(--blue); background: var(--blue-soft); }
+
+    .video-layout { display: grid; grid-template-columns: 1.32fr .68fr; gap: 24px; align-items: stretch; }
+    .video-frame { overflow: hidden; aspect-ratio: 16 / 9; border-radius: 30px; background: #10151D; box-shadow: var(--shadow-md); }
+    .video-frame iframe { width: 100%; height: 100%; border: 0; }
+    .video-guide { display: grid; gap: 12px; }
+    .video-card { padding: 23px; border: 1px solid var(--line); border-radius: 24px; background: #fff; }
+    .video-card time, .video-card .tag { display: inline-flex; margin-bottom: 12px; padding: 5px 8px; border-radius: 999px; color: var(--blue-strong); background: var(--blue-soft); font-size: 10px; font-weight: 900; }
+    .video-card h3 { margin-bottom: 7px; font-size: 19px; letter-spacing: -.04em; }
+    .video-card p { margin-bottom: 0; color: var(--muted); font-size: 14px; font-weight: 620; }
+
+    .flow-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 13px; }
+    .flow-step { position: relative; min-height: 250px; padding: 22px; border-radius: 24px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.20); backdrop-filter: blur(10px); }
+    .flow-step::after { content: ""; position: absolute; top: 48%; right: -10px; width: 8px; height: 8px; border-top: 2px solid rgba(255,255,255,.55); border-right: 2px solid rgba(255,255,255,.55); transform: rotate(45deg); }
+    .flow-step:last-child::after { display: none; }
+    .flow-num { width: 36px; height: 36px; display: grid; place-items: center; margin-bottom: 35px; border-radius: 12px; color: var(--blue-strong); background: #fff; font-size: 12px; font-weight: 900; }
+    .flow-step h3 { margin-bottom: 10px; font-size: 19px; }
+    .flow-step p { margin-bottom: 0; color: rgba(255,255,255,.74); font-size: 14px; font-weight: 600; }
+    .flow-chip { display: inline-flex; margin-top: 13px; padding: 6px 9px; border-radius: 10px; color: #fff; background: rgba(0,0,0,.15); font-size: 11px; font-weight: 800; }
+
+    .case-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .case-card { padding: 27px; border-radius: 28px; border: 1px solid var(--line); background: #fff; }
+    .case-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+    .case-icon { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 15px; color: var(--blue); background: var(--blue-soft); }
+    .case-icon svg { width: 24px; height: 24px; }
+    .case-type { color: var(--muted-2); font-size: 11px; font-weight: 900; letter-spacing: .06em; }
+    .case-card h3 { margin-bottom: 9px; font-size: 22px; letter-spacing: -.04em; }
+    .case-card p { margin-bottom: 17px; color: var(--muted); font-size: 15px; font-weight: 600; }
+    .case-path { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; color: var(--ink-2); font-size: 12px; font-weight: 800; }
+    .case-path span { padding: 6px 9px; border-radius: 10px; background: var(--surface); }
+    .case-path b { color: var(--blue); }
+
+    .recommend-grid { display: grid; grid-template-columns: .92fr 1.08fr; gap: 22px; }
+    .recommend-card { padding: 32px; border-radius: 32px; border: 1px solid var(--line); background: #fff; }
+    .recommend-card.blue-card { color: #fff; background: linear-gradient(145deg, #216DDD, #3182F6); border-color: transparent; }
+    .recommend-card h3 { margin-bottom: 20px; font-size: 27px; }
+    .recommend-list { display: grid; gap: 16px; }
+    .recommend-item { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; }
+    .recommend-num { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 11px; color: var(--blue); background: var(--blue-soft); font-size: 13px; font-weight: 900; }
+    .blue-card .recommend-num { color: var(--blue-strong); background: #fff; }
+    .recommend-item strong { display: block; margin-bottom: 3px; font-size: 16px; }
+    .recommend-item p { margin-bottom: 0; color: var(--muted); font-size: 14px; font-weight: 650; }
+    .blue-card .recommend-item p { color: rgba(255,255,255,.74); }
+
+    .correction-table { overflow: hidden; border: 1px solid var(--line); border-radius: 28px; background: #fff; }
+    .correction-row { display: grid; grid-template-columns: .92fr 1.08fr; border-bottom: 1px solid var(--line); }
+    .correction-row:last-child { border-bottom: 0; }
+    .correction-cell { display: flex; align-items: flex-start; gap: 12px; padding: 24px; color: var(--ink-2); font-size: 15px; font-weight: 700; }
+    .correction-cell + .correction-cell { border-left: 1px solid var(--line); }
+    .correction-icon { width: 29px; height: 29px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 50%; font-size: 14px; font-weight: 900; }
+    .wrong .correction-icon { color: #D45454; background: #FFF0F0; }
+    .right .correction-icon { color: var(--blue); background: var(--blue-soft); }
+    .governance-note { margin-top: 22px; display: flex; align-items: flex-start; gap: 14px; padding: 22px 24px; border-radius: 22px; color: #635300; background: #FFF8CE; border: 1px solid #F4E28E; font-size: 15px; font-weight: 700; }
+    .governance-note svg { width: 22px; height: 22px; flex: 0 0 auto; margin-top: 2px; }
+
+    .sources { padding: 78px 0 40px; border-top: 1px solid var(--line); background: #fff; }
+    .source-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 26px; }
+    .source-head h2 { margin-bottom: 5px; font-size: 28px; letter-spacing: -.04em; }
+    .source-head p { margin-bottom: 0; color: var(--muted); font-size: 14px; font-weight: 650; }
+    .source-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .source-link { padding: 18px; border-radius: 18px; border: 1px solid var(--line); background: var(--surface); transition: .2s ease; overflow-wrap: anywhere; }
+    a.source-link:hover { transform: translateY(-2px); border-color: rgba(49,130,246,.25); background: var(--blue-soft); }
+    .source-link span { display: block; margin-bottom: 6px; color: var(--muted-2); font-size: 10px; font-weight: 900; letter-spacing: .06em; }
+    .source-link strong { display: block; font-size: 14px; }
+    .source-link p { margin: 7px 0 0; color: var(--muted); font-size: 12px; font-weight: 620; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-top: 36px; padding-top: 22px; border-top: 1px solid var(--line); color: var(--muted-2); font-size: 12px; font-weight: 650; }
+
+    .report-history { margin-top: 44px; padding-top: 34px; border-top: 1px solid var(--line); }
+    .history-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 18px; }
+    .history-head h2 { margin-bottom: 4px; font-size: 26px; letter-spacing: -.04em; }
+    .history-head p { margin-bottom: 0; color: var(--muted); font-size: 13px; font-weight: 650; }
+    .history-table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 20px; background: #fff; }
+    .history-table { width: 100%; min-width: 780px; border-collapse: collapse; font-size: 13px; }
+    .history-table th, .history-table td { padding: 15px 16px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+    .history-table tr:last-child td { border-bottom: 0; }
+    .history-table th { color: var(--muted); background: var(--surface); font-size: 11px; font-weight: 900; letter-spacing: .03em; white-space: nowrap; }
+    .history-table td { color: var(--ink-2); font-weight: 650; }
+    .history-table td:first-child { color: var(--blue-strong); font-weight: 900; white-space: nowrap; }
+    .history-table td:nth-child(2), .history-table td:nth-child(3) { white-space: nowrap; }
+    .history-status { display: inline-flex; padding: 5px 8px; border-radius: 999px; color: var(--muted); background: var(--surface-2); font-size: 11px; font-weight: 850; }
+    .history-empty { padding: 22px; color: var(--muted); text-align: center; }
+
+    .floating-actions { position: fixed; right: 22px; bottom: 22px; z-index: 800; display: grid; gap: 10px; }
+    .float-btn { width: 48px; height: 48px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 16px; background: rgba(255,255,255,.92); box-shadow: var(--shadow-sm); cursor: pointer; color: var(--ink-2); backdrop-filter: blur(12px); transition: .2s ease; }
+    .float-btn:hover { transform: translateY(-2px); color: var(--blue); border-color: rgba(49,130,246,.25); }
+    .float-btn svg { width: 20px; height: 20px; }
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 1040px) {
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 62px; }
+      .hero-copy { text-align: center; }
+      .hero-lead { margin-left: auto; margin-right: auto; }
+      .hero-actions, .report-meta, .hero-note { justify-content: center; }
+      .hero-note { text-align: left; }
+      .hero-visual { min-height: 500px; }
+      .decision-strip { grid-template-columns: 1fr; }
+      .key-grid, .metric-note { grid-template-columns: repeat(2, 1fr); }
+      .key-card:last-child, .metric-card:last-child { grid-column: 1 / -1; }
+      .video-layout { grid-template-columns: 1fr; }
+      .video-guide { grid-template-columns: repeat(3, 1fr); }
+      .flow-grid { grid-template-columns: repeat(2, 1fr); }
+      .flow-step::after { display: none; }
+      .source-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 720px) {
+      .container { width: min(100% - 28px, var(--max)); }
+      .nav-wrap { padding: 9px 10px 0; }
+      .nav { min-height: 56px; padding-left: 12px; border-radius: 18px; }
+      .brand-sub, .nav-actions .btn-ghost { display: none; }
+      .btn { min-height: 40px; padding: 0 13px; }
+      .hero { gap: 24px; padding: 56px 0 34px; }
+      .hero h1 { font-size: 38px; }
+      .hero-lead { font-size: 18px; }
+      .hero-visual { min-height: 455px; }
+      .hero-orbit { width: 330px; height: 330px; animation: none; }
+      .value-snapshot { padding: 15px; border-radius: 28px; }
+      .shift-card { padding: 20px; }
+      .shift-main { grid-template-columns: 1fr; text-align: center; }
+      .shift-arrow { justify-self: center; transform: rotate(90deg); }
+      .snapshot-grid { grid-template-columns: 1fr; }
+      .snapshot-card { min-height: auto; }
+      .decision-strip { padding-bottom: 42px; }
+      section { padding: 82px 0; }
+      .section-title { font-size: 32px; }
+      .section-desc { margin-bottom: 34px; font-size: 17px; }
+      .thesis-card { grid-template-columns: 1fr; padding: 28px; }
+      .thesis-stamp { width: 94px; border-radius: 24px; }
+      .key-grid, .metric-note, .compare-grid, .case-grid, .recommend-grid, .flow-grid, .video-guide { grid-template-columns: 1fr; }
+      .key-card:last-child, .metric-card:last-child { grid-column: auto; }
+      .key-card { min-height: auto; }
+      .video-frame { border-radius: 22px; }
+      .correction-row { grid-template-columns: 1fr; }
+      .correction-cell + .correction-cell { border-left: 0; border-top: 1px solid var(--line); }
+      .source-grid { grid-template-columns: 1fr; }
+      .source-head, .footer-bottom, .history-head { align-items: flex-start; flex-direction: column; }
+      .floating-actions { display: none; }
+    }
+
+    @media (max-width: 390px) {
+      .hero h1 { font-size: 35px; }
+      .hero-actions .btn { width: 100%; }
+      .brand { font-size: 12px; }
+      .value-snapshot { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    @media print {
+      @page { size: A4; margin: 12mm; }
+      body { background: #fff !important; color: #000; }
+      .nav-wrap, .floating-actions, .scroll-progress, .hero-actions { display: none !important; }
+      .container { width: 100%; max-width: none; }
+      .hero-shell { break-after: page; }
+      .hero { min-height: auto; grid-template-columns: 1.05fr .95fr; gap: 8mm; padding: 5mm 0 6mm; }
+      .hero h1 { font-size: 34px; }
+      .hero-lead { font-size: 14px; }
+      .hero-visual { min-height: 0; }
+      .hero-orbit { display: none; }
+      .value-snapshot { padding: 12px; border-radius: 20px; box-shadow: none; }
+      .shift-card { padding: 14px; }
+      .snapshot-card { min-height: 0; padding: 10px; }
+      .decision-strip { padding-bottom: 0; gap: 7px; }
+      .decision-card { min-height: 0; padding: 12px; box-shadow: none; }
+      section { padding: 12mm 0; }
+      .section-blue { background: #fff !important; color: #000 !important; border-top: 2px solid var(--blue); border-bottom: 2px solid var(--blue); }
+      .section-blue .section-desc, .flow-step p { color: #333 !important; }
+      .flow-step { min-height: 0; border: 1px solid #ccc; background: #fff; color: #000; }
+      .flow-step h3 { color: #000; }
+      .flow-chip { color: #000; background: #eee; }
+      .video-frame { display: none; }
+      .video-layout { grid-template-columns: 1fr; }
+      .video-guide { grid-template-columns: repeat(3, 1fr); }
+      .key-card, .compare-card, .case-card, .recommend-card, .thesis-card, .metric-card, .video-card { box-shadow: none; break-inside: avoid; }
+      .recommend-card.blue-card { background: #F4F6F8 !important; color: #000 !important; border: 1px solid #ccc; }
+      .blue-card strong { color: #000 !important; }
+      .blue-card .recommend-item p { color: #333 !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .history-table-wrap { overflow: visible; }
+      .history-table { min-width: 0; font-size: 9px; }
+      a { text-decoration: none; }
+    }
+  </style>
+</head>
+<body data-report-cover="assets/blog-hub-thumbnail.png" data-report-cover-alt="보고서 대표 이미지">
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <div class="nav-wrap">
+    <nav class="nav" aria-label="주요 메뉴">
+      <a class="brand" href="#top" aria-label="보고서 처음으로">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12.2 9.1 16 19 6.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </span>
+        <span>VALUE MAX</span>
+        <span class="brand-sub">Executive Brief</span>
+      </a>
+      <div class="nav-links">
+        <a href="#summary">핵심 요약</a>
+        <a href="#shift">전환 이유</a>
+        <a href="#architecture">해법</a>
+        <a href="#cases">사례</a>
+        <a href="#action">실행안</a>
+        <a href="#sources">출처</a>
+      </div>
+      <div class="nav-actions">
+        <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=aINMIQmR-Is" target="_blank" rel="noopener noreferrer">영상 보기</a>
+        <button class="btn btn-primary" type="button" onclick="window.print()">PDF 저장</button>
+      </div>
+    </nav>
+  </div>
+
+  <main id="top">
+    <div class="hero-shell" id="summary">
+      <div class="container">
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy reveal">
+            <div class="eyebrow"><span class="eyebrow-dot"></span>유튜브 24분 32초 · 임원용 1페이지 요약</div>
+            <h1 id="hero-title">
+              토큰을 많이 쓰는 회사보다<br>
+              <span class="blue">업무 가치를 크게 만드는</span><br>
+              회사가 <span class="marker">다음 단계</span>입니다
+            </h1>
+            <p class="hero-lead">
+              기업 AX의 기준이 <strong>사용량 확대</strong>에서 <strong>토큰당 성과와 재현성</strong>으로 이동하고 있습니다. 핵심은 에이전트에게 모든 판단을 맡기는 것이 아니라, 사내 데이터와 작업 순서를 통제해 비용·품질·업무 효과를 함께 관리하는 것입니다.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#shift">3분 요약 읽기</a>
+              <a class="btn btn-ghost" href="#action">실행안 먼저 보기</a>
+            </div>
+            <div class="hero-note">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"></circle><path d="M12 10v6M12 7.2v.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+              <span>첨부 자동 자막을 중심으로 요약했습니다. 전사에서 언급된 22배·73%·100배 수치는 원자료명이 없어 별도 검증이 필요합니다.</span>
+            </div>
+            <div class="report-meta reveal" aria-label="보고서 버전 정보">
+              <span class="version-badge" id="reportVersion">v1.0.0</span>
+              <span id="reportUpdated">Updated 2026.08.11</span>
+              <span class="report-meta-separator" aria-hidden="true"></span>
+              <span id="reportGeneration">AI-assisted · Human review recommended</span>
+            </div>
+          </div>
+
+          <div class="hero-visual reveal" aria-label="토큰 맥싱에서 밸류 맥스로 전환하는 핵심 구조">
+            <div class="hero-orbit" aria-hidden="true"></div>
+            <article class="value-snapshot">
+              <div class="snapshot-top">
+                <div class="snapshot-title"><i></i>AX PARADIGM SHIFT</div>
+                <div class="snapshot-tag">DECISION FIRST</div>
+              </div>
+              <div class="shift-card">
+                <div class="shift-label"><span>기존 KPI</span><span>새 KPI</span></div>
+                <div class="shift-main">
+                  <div class="shift-side"><span>TOKEN MAXXING</span><strong>얼마나 많이<br>썼는가</strong></div>
+                  <div class="shift-arrow" aria-hidden="true">→</div>
+                  <div class="shift-side"><span>VALUE MAX</span><strong>무엇을 얼마나<br>개선했는가</strong></div>
+                </div>
+              </div>
+              <div class="snapshot-grid">
+                <div class="snapshot-card"><b>01</b><strong>비용</strong><p>에이전트 반복 호출과 최고급 모델 상시 사용을 통제합니다.</p></div>
+                <div class="snapshot-card"><b>02</b><strong>일관성</strong><p>먼저 작업 순서를 만들고 정해진 경로로 실행합니다.</p></div>
+                <div class="snapshot-card"><b>03</b><strong>가치</strong><p>시간·품질·오류·의사결정 속도로 성과를 측정합니다.</p></div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <div class="decision-strip" aria-label="임원이 바로 결정할 세 가지">
+          <article class="decision-card reveal"><div class="num">01</div><h3>토큰 사용량을 성과로 보지 않기</h3><p>사용량은 도입 지표일 뿐입니다. 업무 처리시간·정확도·매출·비용 절감과 연결해야 합니다.</p></article>
+          <article class="decision-card reveal"><div class="num">02</div><h3>자유형 에이전트보다 통제된 흐름</h3><p>경량 모델 또는 코드가 계획·수집 순서를 정하고, 고급 모델은 어려운 판단에 집중시킵니다.</p></article>
+          <article class="decision-card reveal"><div class="num">03</div><h3>사내 데이터 연결을 우선 투자</h3><p>MCP·DB·ERP 연결과 권한 체계가 있어야 AI가 실제 업무를 수행하고 결과를 반복 재현할 수 있습니다.</p></article>
+        </div>
+      </div>
+    </div>
+
+    <section id="shift" class="section-soft">
+      <div class="container">
+        <div class="section-kicker reveal">EXECUTIVE SUMMARY</div>
+        <h2 class="section-title reveal">토큰 맥싱은 실패가 아니라<br>다음 단계로 가기 위한 탐색기였습니다</h2>
+        <p class="section-desc reveal">초기에는 전 직원에게 AI를 열어 실제 사용처를 찾는 것이 중요했습니다. 이제 기업들은 그 경험을 바탕으로 “얼마나 썼는가”보다 “어떤 업무가 얼마나 좋아졌는가”를 묻기 시작했습니다.</p>
+
+        <article class="thesis-card reveal">
+          <div class="thesis-stamp" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none"><path d="M13 45h38M17 39l9-10 8 6 13-17" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M39 18h8v8" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </div>
+          <div class="thesis-copy">
+            <h3>한 문장 결론</h3>
+            <p><strong>전사 도입의 성공 기준은 AI 접속자 수나 토큰 사용량이 아니라, 정해진 업무에서 비용 대비 검증 가능한 결과를 반복 생산하는가</strong>입니다.</p>
+          </div>
+        </article>
+
+        <div class="key-grid">
+          <article class="key-card reveal"><div class="card-index">01</div><h3>사용량은 빠르게 늘었습니다</h3><div class="easy-label">도입 장벽이 낮아진 단계</div><p>회사 비용으로 최고급 모델을 쓰고, 에이전트가 검색·도구 호출·재시도를 반복하면서 한 번의 질문이 훨씬 많은 토큰을 소비하게 됐습니다.</p></article>
+          <article class="key-card reveal"><div class="card-index">02</div><h3>비용과 품질이 함께 흔들렸습니다</h3><div class="easy-label">자율성의 숨은 비용</div><p>여러 MCP 도구 중 무엇을 어떤 순서로 쓸지 모델에 전부 맡기면 매번 경로가 달라지고, 토큰 낭비와 결과 편차가 커질 수 있습니다.</p></article>
+          <article class="key-card reveal"><div class="card-index">03</div><h3>기업 수요는 구체화됐습니다</h3><div class="easy-label">교육에서 업무 설계로</div><p>일반적인 AI 트렌드 교육보다 특정 프로세스를 진단하고, 어떤 도구와 데이터로 무엇을 개선할지 제시하는 AX 컨설팅 수요가 커졌다는 설명입니다.</p></article>
+        </div>
+
+        <div class="metric-note" aria-label="영상에서 언급된 수치">
+          <article class="metric-card reveal"><strong>22배</strong><span>2년간 증가했다는 사용량</span><p>영상에서 인용됐지만 통계의 기관·범위·측정 기준은 전사에 제시되지 않았습니다.</p><div class="unverified">⚠ 영상 내 인용 · 검증 필요</div></article>
+          <article class="metric-card reveal"><strong>73%</strong><span>예산을 조기 또는 초과 소진했다는 기업 비중</span><p>영상의 주장으로만 확인되며, 원 조사 보고서와 표본 정보는 제공되지 않았습니다.</p><div class="unverified">⚠ 영상 내 인용 · 검증 필요</div></article>
+          <article class="metric-card reveal"><strong>100배</strong><span>사람 대화 대비 에이전트 한 작업의 토큰량 비유</span><p>에이전트가 계획·검색·도구 호출을 반복한다는 비용 구조를 강조한 표현입니다.</p><div class="unverified">⚠ 영상 내 인용 · 검증 필요</div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="comparison">
+      <div class="container">
+        <div class="section-kicker reveal">TOKEN MAXXING → VALUE MAX</div>
+        <h2 class="section-title reveal">같은 AI를 쓰더라도<br>운영 기준이 달라져야 합니다</h2>
+        <p class="section-desc reveal">토큰 맥싱은 사용 습관을 만들고 기회를 찾는 데 유효했습니다. 밸류 맥스는 발견한 기회를 반복 가능한 업무 시스템으로 바꾸는 단계입니다.</p>
+
+        <div class="compare-grid">
+          <article class="compare-card reveal">
+            <div class="compare-label">탐색 단계 · TOKEN MAXXING</div>
+            <h3>“일단 많이 써보자”</h3>
+            <p>AI 활용 문화를 빠르게 확산하고 실제 수요를 발견하는 데 초점을 둡니다.</p>
+            <div class="compare-list">
+              <div class="compare-item"><b>1</b><div><strong>목표:</strong> 사용자 수와 사용 빈도 확대</div></div>
+              <div class="compare-item"><b>2</b><div><strong>모델:</strong> 최고급 모델을 넓게 허용</div></div>
+              <div class="compare-item"><b>3</b><div><strong>에이전트:</strong> 자유롭게 도구를 선택하고 재시도</div></div>
+              <div class="compare-item"><b>4</b><div><strong>비용:</strong> 사후에 청구서를 보고 통제</div></div>
+              <div class="compare-item"><b>5</b><div><strong>성과:</strong> 무엇을 할 수 있는지 발견</div></div>
+            </div>
+          </article>
+          <article class="compare-card good reveal">
+            <div class="compare-label">운영 단계 · VALUE MAX</div>
+            <h3>“필요한 만큼 써서 결과를 만들자”</h3>
+            <p>업무 결과와 비용을 함께 측정하고, 가장 싼 적합 모델과 통제된 절차를 사용합니다.</p>
+            <div class="compare-list">
+              <div class="compare-item"><b>✓</b><div><strong>목표:</strong> 시간·오류·품질·매출 등 업무 KPI</div></div>
+              <div class="compare-item"><b>✓</b><div><strong>모델:</strong> 난이도에 따른 경량/고급 모델 라우팅</div></div>
+              <div class="compare-item"><b>✓</b><div><strong>에이전트:</strong> 계획과 데이터 수집 순서를 먼저 고정</div></div>
+              <div class="compare-item"><b>✓</b><div><strong>비용:</strong> 사용자·팀·에이전트별 예산과 한도</div></div>
+              <div class="compare-item"><b>✓</b><div><strong>성과:</strong> 동일 조건에서 재현 가능한 결과</div></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="video" class="section-soft">
+      <div class="container">
+        <div class="section-kicker reveal">WATCH THE SOURCE</div>
+        <h2 class="section-title reveal">영상은 사례 중심으로 보면<br>핵심이 더 빨리 잡힙니다</h2>
+        <p class="section-desc reveal">표철민 AI3 대표가 기업 도입 현장에서 본 비용·일관성 문제와, 이를 풀기 위해 시도한 경량 모델·결정론적 워크플로 사례를 설명합니다.<a class="cite" href="#source-1" aria-label="출처 1">[1]</a></p>
+
+        <div class="video-layout">
+          <div class="video-frame reveal">
+            <iframe src="https://www.youtube-nocookie.com/embed/aINMIQmR-Is" title="토큰 맥싱 위해 좌충우돌 했던 회사들이 요즘 하는 것" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
+          </div>
+          <div class="video-guide">
+            <article class="video-card reveal"><time datetime="PT24M32S">24분 32초</time><h3>전체 맥락</h3><p>도입 초기의 사용량 급증, 업종·망분리별 차이, 기업이 다음 단계로 이동하는 이유를 설명합니다.</p></article>
+            <article class="video-card reveal"><span class="tag">중반 핵심</span><h3>MCP와 사내 데이터</h3><p>법제처·부동산·ERP·그룹웨어·공장 DB를 AI의 “손발”로 연결하는 사례가 등장합니다.</p></article>
+            <article class="video-card reveal"><span class="tag">후반 핵심</span><h3>워크플로 통제</h3><p>경량 모델이 먼저 계획하거나 코드가 데이터 수집 순서를 고정해 비용과 결과 편차를 줄이는 방법을 설명합니다.</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="architecture" class="section-blue">
+      <div class="container">
+        <div class="section-kicker reveal">CONTROLLED AGENT ARCHITECTURE</div>
+        <h2 class="section-title reveal">에이전트에게 전부 맡기지 말고<br>계획·수집·판단을 분리합니다</h2>
+        <p class="section-desc reveal">영상에서 소개된 실무 해법은 “최고급 모델 하나가 모든 것을 자율적으로 처리”하는 구조가 아닙니다. 가벼운 모델 또는 코드가 경로를 정하고, 필요한 데이터가 준비된 뒤 고급 모델이 판단하도록 역할을 나눕니다.</p>
+
+        <div class="flow-grid">
+          <article class="flow-step reveal"><div class="flow-num">01</div><h3>요청 해석</h3><p>사용자의 질문과 원하는 결과물, 사용 가능한 도구를 확인합니다.</p><div class="flow-chip">예: 투자 검토 보고서</div></article>
+          <article class="flow-step reveal"><div class="flow-num">02</div><h3>워크플로 설계</h3><p>경량 모델 또는 규칙 코드가 작업 순서와 필요한 데이터원을 먼저 정합니다.</p><div class="flow-chip">저비용 계획 단계</div></article>
+          <article class="flow-step reveal"><div class="flow-num">03</div><h3>결정론적 수집</h3><p>DART·NICE·ERP·DB 등에서 정해진 순서로 데이터를 가져옵니다.</p><div class="flow-chip">MCP · API · SQL</div></article>
+          <article class="flow-step reveal"><div class="flow-num">04</div><h3>고급 판단</h3><p>정리된 근거를 플래그십 모델에 전달해 분석·요약·문서화를 수행합니다.</p><div class="flow-chip">어려운 추론에 집중</div></article>
+          <article class="flow-step reveal"><div class="flow-num">05</div><h3>검증과 측정</h3><p>사람이 근거·권한·결과를 확인하고 시간·품질·토큰 비용을 함께 기록합니다.</p><div class="flow-chip">Value / Token</div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="cases">
+      <div class="container">
+        <div class="section-kicker reveal">FIELD EXAMPLES</div>
+        <h2 class="section-title reveal">기업이 원하는 것은 챗봇이 아니라<br>사내 업무의 자연어 프런트엔드입니다</h2>
+        <p class="section-desc reveal">아래 사례는 영상에서 언급된 활용 장면을 임원 관점으로 재구성한 것입니다. 실제 성과 수치나 구축 범위가 독립적으로 검증된 사례 보고서는 아닙니다.</p>
+
+        <div class="case-grid">
+          <article class="case-card reveal">
+            <div class="case-top"><div class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 20h16M6 20V7l6-3 6 3v13M9 10h1m4 0h1M9 14h1m4 0h1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="case-type">GROUPWARE</div></div>
+            <h3>휴가·근태·회의실·전자결재</h3>
+            <p>여러 메뉴를 찾아다니는 대신 자연어로 잔여 휴가, 팀원 근무 위치, 빈 회의실, 결재 문서를 조회·처리하는 구조입니다.</p>
+            <div class="case-path"><span>질문</span><b>→</b><span>사내 MCP</span><b>→</b><span>조회/실행</span></div>
+          </article>
+
+          <article class="case-card reveal">
+            <div class="case-top"><div class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19V9m5 10V5m5 14v-7m4 7H3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="case-type">MANAGEMENT REPORT</div></div>
+            <h3>SAP 원가·공장 수율 자동 보고</h3>
+            <p>원가 또는 생산 DB를 연결해 매일 정해진 형식으로 경영진 보고를 만들고, 권한이 있는 부서에만 에이전트를 공유하는 사례입니다.</p>
+            <div class="case-path"><span>DB</span><b>→</b><span>계산</span><b>→</b><span>일일 보고</span></div>
+          </article>
+
+          <article class="case-card reveal">
+            <div class="case-top"><div class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18M5 7h14M7 7l-3 6h6L7 7Zm10 0-3 6h6l-3-6ZM8 21h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="case-type">DUE DILIGENCE</div></div>
+            <h3>투자 검토 자료의 순차 수집</h3>
+            <p>DART·신용평가·기업 정보를 코드나 전용 MCP가 정해진 순서로 수집한 뒤, 완성된 근거 묶음을 AI가 분석하도록 합니다.</p>
+            <div class="case-path"><span>DART</span><b>→</b><span>신용정보</span><b>→</b><span>LLM 분석</span></div>
+          </article>
+
+          <article class="case-card reveal">
+            <div class="case-top"><div class="case-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16v12H4zM8 10h8M8 14h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="case-type">PUBLIC DATA</div></div>
+            <h3>법·부동산·공공데이터 기반 보고서</h3>
+            <p>법제처, 실거래가, 토지 용도 등 외부 데이터를 직접 조회해 표와 보고서로 만드는 방식입니다. 단순 생성보다 근거 품질이 높아집니다.</p>
+            <div class="case-path"><span>공공 데이터</span><b>→</b><span>근거 표</span><b>→</b><span>PPT/보고서</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="action" class="section-soft">
+      <div class="container">
+        <div class="section-kicker reveal">EXECUTIVE ACTION</div>
+        <h2 class="section-title reveal">전사 확산보다 먼저<br>한 업무의 Value / Token을 증명하세요</h2>
+        <p class="section-desc reveal">토큰을 무조건 줄이면 탐색 기회를 잃고, 무제한으로 풀면 비용과 품질이 흔들립니다. 반복성이 높고 성과 측정이 쉬운 업무 하나에서 통제된 파일럿을 운영하는 것이 적절합니다.</p>
+
+        <div class="recommend-grid">
+          <article class="recommend-card reveal">
+            <h3>승인 전 확인할 4가지</h3>
+            <div class="recommend-list">
+              <div class="recommend-item"><div class="recommend-num">1</div><div><strong>업무 KPI</strong><p>처리시간, 오류율, 재작업률, 매출 또는 의사결정 시간을 기준선으로 측정합니다.</p></div></div>
+              <div class="recommend-item"><div class="recommend-num">2</div><div><strong>데이터와 권한</strong><p>어떤 DB·문서·시스템을 누가 조회·실행할 수 있는지 먼저 정합니다.</p></div></div>
+              <div class="recommend-item"><div class="recommend-num">3</div><div><strong>모델 라우팅</strong><p>분류·요약·계획은 경량 모델, 어려운 판단만 고급 모델에 맡깁니다.</p></div></div>
+              <div class="recommend-item"><div class="recommend-num">4</div><div><strong>비용 가드레일</strong><p>사용자·팀·에이전트별 한도, 재시도 횟수, 최대 단계 수를 설정합니다.</p></div></div>
+            </div>
+          </article>
+
+          <article class="recommend-card blue-card reveal">
+            <h3>4주 파일럿</h3>
+            <div class="recommend-list">
+              <div class="recommend-item"><div class="recommend-num">1</div><div><strong>1주차 · 기준선과 업무 선택</strong><p>주 5회 이상 반복되고 결과 형식이 명확한 업무 하나를 고릅니다.</p></div></div>
+              <div class="recommend-item"><div class="recommend-num">2</div><div><strong>2주차 · 데이터·워크플로 설계</strong><p>필요 데이터, 호출 순서, 검증 지점, 중단 조건을 문서화합니다.</p></div></div>
+              <div class="recommend-item"><div class="recommend-num">3</div><div><strong>3주차 · 제한 운영</strong><p>소수 사용자가 실제 업무에 적용하고 토큰·시간·오류를 함께 수집합니다.</p></div></div>
+              <div class="recommend-item"><div class="recommend-num">4</div><div><strong>4주차 · 확대 여부 결정</strong><p>기준선 대비 가치가 비용을 넘는지 확인해 확대·보완·중단을 결정합니다.</p></div></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="risks">
+      <div class="container">
+        <div class="section-kicker reveal">RISKS &amp; GUARDRAILS</div>
+        <h2 class="section-title reveal">MCP가 정확성을 높여도<br>오류와 책임이 사라지는 것은 아닙니다</h2>
+        <p class="section-desc reveal">영상에서는 DB 직접 조회와 모델 성능 향상으로 할루시네이션이 사실상 사라졌다고 강하게 표현합니다. 보고서의 판단으로는 근거 품질과 재현성은 개선될 수 있지만, 쿼리 오류·권한 오류·오래된 데이터·잘못된 해석 가능성은 여전히 통제해야 합니다.</p>
+
+        <div class="correction-table reveal">
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>토큰을 많이 쓴 팀이 AI를 잘 쓰는 팀이다.</div><div class="correction-cell right"><span class="correction-icon">✓</span>토큰당 업무 성과, 결과 품질, 재작업 감소를 함께 봐야 합니다.</div></div>
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>고급 모델 하나에 모든 도구를 연결하면 자동으로 최적화된다.</div><div class="correction-cell right"><span class="correction-icon">✓</span>계획·수집 순서를 제한하고, 어려운 판단에만 고급 모델을 사용합니다.</div></div>
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>MCP로 DB를 조회하면 할루시네이션이 완전히 사라진다.</div><div class="correction-cell right"><span class="correction-icon">✓</span>원천 데이터, SQL 변환, 권한, 해석 단계마다 오류 검증과 사람 승인이 필요합니다.</div></div>
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span>토큰 비용만 낮추면 밸류 맥스가 된다.</div><div class="correction-cell right"><span class="correction-icon">✓</span>비용 절감과 함께 처리시간·품질·리스크·사용자 채택이 개선돼야 합니다.</div></div>
+        </div>
+
+        <div class="governance-note reveal">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 20 6v5.7c0 4.6-3.2 7.6-8 9.3-4.8-1.7-8-4.7-8-9.3V6z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <div><strong>최소 통제:</strong> 민감 데이터 최소 권한, 도구별 읽기/쓰기 구분, 호출 로그, 비용 상한, 근거 링크, 사람이 승인해야 하는 업무를 명시합니다. 투자·법률·인사·결재처럼 영향이 큰 판단은 자동 실행보다 검토 대기 상태가 안전합니다.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sources" id="sources">
+    <div class="container">
+      <div class="source-head">
+        <div>
+          <h2>사용한 자료와 작성 기준</h2>
+          <p>첨부 자동 자막을 중심으로 요약하고, 영상의 공식 소개 페이지로 제목·게시 정보와 주제를 대조했습니다.</p>
+        </div>
+        <button class="btn btn-ghost" type="button" onclick="window.print()">전체 PDF 저장</button>
+      </div>
+
+      <div class="source-grid">
+        <a class="source-link" id="source-1" href="https://www.youtube.com/watch?v=aINMIQmR-Is" target="_blank" rel="noopener noreferrer"><span>PRIMARY · 2026-08-11 확인</span><strong>티타임즈TV 원본 영상 · 토큰 맥싱 위해 좌충우돌 했던 회사들이 요즘 하는 것</strong><p>채널: 티타임즈TV · 길이: 24분 32초</p></a>
+        <article class="source-link" id="source-2"><span>USER-PROVIDED TRANSCRIPT · 2026-08-11</span><strong>사용자 제공 YouTube 자동 자막 전사</strong><p>요약의 주 근거. 자동 자막 특성상 고유명사와 숫자에 오인식 가능성이 있습니다.</p></article>
+        <a class="source-link" id="source-3" href="https://www.ttimes.co.kr/article/2026081114417746132" target="_blank" rel="noopener noreferrer"><span>OFFICIAL ARTICLE · 2026-08-11 확인</span><strong>“AI 맘대로 써봐” 했더니 너무 낭비하네! 다른 기업은 어떻게 했을까?</strong><p>티타임즈 공식 소개 · 밸류맥스 전환과 표철민 AI3 대표 인터뷰 안내</p></a>
+      </div>
+
+      <div class="footer-bottom">
+        <span id="footerTitle">토큰 맥싱에서 밸류 맥스로 · AIHUBOS ReportMode</span>
+        <span id="footerMeta">AI-assisted · 2026.08</span>
+      </div>
+
+      <div class="report-history" id="history" aria-labelledby="history-title">
+        <div class="history-head">
+          <div>
+            <h2 id="history-title">버전 및 업데이트 히스토리</h2>
+            <p>보고서의 결론·구조·출처·검토 상태 변경을 누적 기록합니다.</p>
+          </div>
+          <span class="version-badge" id="historyCurrentVersion">Current v1.0.0</span>
+        </div>
+        <div class="history-table-wrap" tabindex="0" aria-label="버전 변경 이력 표, 가로로 스크롤 가능">
+          <table class="history-table">
+            <thead><tr><th>버전</th><th>업데이트일</th><th>변경 구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr></thead>
+            <tbody id="historyBody"><tr><td colspan="5" class="history-empty">변경 이력을 불러오는 중입니다.</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="floating-actions" aria-label="빠른 작업">
+    <button class="float-btn" type="button" id="toTop" aria-label="맨 위로 이동">
+      <svg viewBox="0 0 24 24" fill="none"><path d="m6 14 6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    </button>
+    <button class="float-btn" type="button" onclick="window.print()" aria-label="PDF로 저장">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M7 9V4h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><path d="M7 14h10v6H7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg>
+    </button>
+  </div>
+
+  <script id="report-metadata" type="application/json">
+  {
+    "schemaVersion": "1.0",
+    "reportId": "260811-token-maxxing-to-value-max",
+    "title": "토큰 맥싱에서 밸류 맥스로",
+    "version": "1.0.0",
+    "status": "Published",
+    "createdAt": "2026-08-11",
+    "updatedAt": "2026-08-11",
+    "language": "ko-KR",
+    "author": "Jeremy Lee",
+    "generation": "AI-assisted",
+    "reviewStatus": "Human review recommended",
+    "history": [
+      {
+        "version": "1.0.0",
+        "date": "2026-08-11",
+        "type": "신규 작성",
+        "summary": "사용자 제공 YouTube 자동 자막을 기반으로 토큰 맥싱에서 밸류 맥스로 이동하는 기업 AX 흐름, 통제형 에이전트 구조, 현장 사례와 4주 파일럿을 임원용 반응형 보고서로 최초 구성함. 전사에서 원자료가 제시되지 않은 22배·73%·100배 수치는 검증 필요로 명시함.",
+        "sections": ["1페이지 요약", "패러다임 비교", "통제형 에이전트 구조", "현장 사례", "4주 실행안", "위험과 통제"],
+        "updatedBy": "AI-assisted",
+        "reviewStatus": "검토 권장"
+      }
+    ]
+  }
+  </script>
+
+  <script>
+    const progress = document.getElementById('scrollProgress');
+    const toTop = document.getElementById('toTop');
+
+    function updateProgress() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const percent = max > 0 ? (window.scrollY / max) * 100 : 0;
+      progress.style.width = percent + '%';
+      toTop.style.opacity = window.scrollY > 600 ? '1' : '0';
+      toTop.style.pointerEvents = window.scrollY > 600 ? 'auto' : 'none';
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: .10 });
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach((el) => el.classList.add('visible'));
+    }
+
+    function renderReportMetadata() {
+      const node = document.getElementById('report-metadata');
+      if (!node) return;
+      try {
+        const meta = JSON.parse(node.textContent);
+        const version = `v${meta.version}`;
+        const date = String(meta.updatedAt || '').replaceAll('-', '.');
+        const month = date.slice(0, 7);
+        const setText = (id, value) => {
+          const element = document.getElementById(id);
+          if (element) element.textContent = value;
+        };
+
+        setText('reportVersion', version);
+        setText('reportUpdated', `Updated ${date}`);
+        setText('reportGeneration', `${meta.generation} · ${meta.reviewStatus}`);
+        setText('historyCurrentVersion', `Current ${version}`);
+        setText('footerTitle', `${meta.title} · AIHUBOS ReportMode`);
+        setText('footerMeta', `${meta.generation} · ${month}`);
+        document.title = `${meta.title} · ${version}`;
+
+        const body = document.getElementById('historyBody');
+        if (!body) return;
+        body.innerHTML = '';
+        const history = Array.isArray(meta.history) ? meta.history : [];
+        if (!history.length) {
+          const row = document.createElement('tr');
+          const cell = document.createElement('td');
+          cell.colSpan = 5;
+          cell.className = 'history-empty';
+          cell.textContent = '기록된 변경 이력이 없습니다.';
+          row.appendChild(cell);
+          body.appendChild(row);
+          return;
+        }
+
+        history.forEach((item) => {
+          const row = document.createElement('tr');
+          const values = [
+            `v${item.version}`,
+            String(item.date || '').replaceAll('-', '.'),
+            item.type || '',
+            item.summary || '',
+            [item.updatedBy, item.reviewStatus].filter(Boolean).join(' · ')
+          ];
+          values.forEach((value, index) => {
+            const cell = document.createElement('td');
+            if (index === 4) {
+              const badge = document.createElement('span');
+              badge.className = 'history-status';
+              badge.textContent = value;
+              cell.appendChild(badge);
+            } else {
+              cell.textContent = value;
+            }
+            row.appendChild(cell);
+          });
+          body.appendChild(row);
+        });
+      } catch (error) {
+        console.error('Invalid report metadata:', error);
+      }
+    }
+    renderReportMetadata();
+  </script>
+
+
+</body></html>

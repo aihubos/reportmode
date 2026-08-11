@@ -1,12 +1,28 @@
 {
-  "generatedAt": "2026-08-11T06:51:21.679Z",
+  "generatedAt": "2026-08-11T11:58:42.909Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260811-v1-0-0",
+      "slug": "v1-0-0",
+      "title": "[Youtube] 토큰 맥싱에서 밸류 맥스로",
+      "category": "기타",
+      "summary": "티타임즈TV 표철민 AI3 대표 인터뷰를 바탕으로 토큰 맥싱에서 밸류 맥스로 이동하는 기업 AX 전략을 임원용으로 요약한 반응형 보고서",
+      "createdAt": "2026-08-11T20:58:17+09:00",
+      "updatedAt": "2026-08-11T20:58:17+09:00",
+      "status": "published",
+      "path": "reports/260811-v1-0-0/",
+      "url": "https://aihubos.github.io/reportmode/reports/260811-v1-0-0/",
+      "displayDate": "260811",
+      "sourceCount": 2,
+      "tags": [],
+      "coverImage": "reports/260811-v1-0-0/assets/blog-hub-thumbnail.png",
+      "coverAlt": "보고서 대표 이미지"
+    },
     {
       "id": "260811-tip-not-tips-content-strategy",
       "slug": "tip-not-tips-content-strategy",
       "title": "팁 말고 기준: 고가 고객을 부르는 콘텐츠 전략",
-      "subtitle": "조회수보다 문의의 질을 바꾸는 전문가형 콘텐츠의 기준과 30초 점검법",
       "category": "비즈니스",
       "summary": "조회수 중심의 정보형 콘텐츠를 고객 문의의 질을 높이는 전문가형 콘텐츠로 바꾸는 기준과 30초 점검법을 정리한 영상 핵심 요약입니다.",
       "createdAt": "2026-08-11T20:10:00+09:00",
@@ -24,13 +40,13 @@
         "영상 요약"
       ],
       "coverImage": "reports/260811-tip-not-tips-content-strategy/assets/thumbnail.webp",
-      "coverAlt": "영상 속 인물과 ‘팁 말고 기준’ 문구가 담긴 콘텐츠 전략 대표 이미지"
+      "coverAlt": "영상 속 인물과 ‘팁 말고 기준’ 문구가 담긴 콘텐츠 전략 대표 이미지",
+      "subtitle": "조회수보다 문의의 질을 바꾸는 전문가형 콘텐츠의 기준과 30초 점검법"
     },
     {
       "id": "260811-02-ai-purpose-nam-minsoo-video-essay-v1-0-0",
       "slug": "ai-purpose-nam-minsoo-video-essay",
       "title": "AI를 잘 쓰려면 목적이 먼저다: 나민수 대표 인터뷰에서 나를 봤다",
-      "subtitle": "목적·경험·실행을 연결해 AI를 쓰는 이유를 다시 세우는 영상 에세이",
       "category": "AI",
       "summary": "나민수 대표 인터뷰와 공식 자료를 바탕으로, AI 활용에서 목적·경험·실행이 어떻게 연결되는지 1인칭 영상 에세이 형식으로 정리한 보고서입니다.",
       "createdAt": "2026-08-11T20:00:00+09:00",
@@ -49,7 +65,8 @@
         "Soul.md"
       ],
       "coverImage": "reports/260811-02-ai-purpose-nam-minsoo-video-essay-v1-0-0/assets/thumbnail.png",
-      "coverAlt": "AI를 잘 쓰려면 목적이 먼저다 문구와 연결된 점·방향을 표현한 추상 대표 이미지"
+      "coverAlt": "AI를 잘 쓰려면 목적이 먼저다 문구와 연결된 점·방향을 표현한 추상 대표 이미지",
+      "subtitle": "목적·경험·실행을 연결해 AI를 쓰는 이유를 다시 세우는 영상 에세이"
     },
     {
       "id": "260811-palantir-ontology-executive-brief",
