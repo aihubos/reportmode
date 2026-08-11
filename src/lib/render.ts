@@ -532,7 +532,6 @@ export function renderHomeHtml(
       </div>
       <div class="archive-topbar-actions">
         <div class="archive-topbar-links">
-          <a class="archive-carrot-card" href="https://daangn.com/kr/share/community/ref/invite-group/baRr2nojJVT?utm_campaign=share_qr" target="_blank" rel="noopener" aria-label="당근 비전공자 AI 에이전트 공부방 열기"><span class="archive-carrot-copy">당근모임</span></a>
           <a class="archive-builders-card" href="https://daangn.com/kr/share/community/ref/invite-group/baRr2nojJVT?utm_campaign=share_qr" target="_blank" rel="noopener" aria-label="AI Builders Lab 당근 모임 열기"><img class="archive-builders-logo" src="../assets/ai-builders-lab-logo.png" alt="AI Builders Lab 로고"></a>
           <a class="archive-blog-card" href="https://blog.naver.com/jeremylee0213" target="_blank" rel="noopener"><span class="archive-blog-mark">N</span><span class="archive-blog-card-copy"><b>Jeremy's Blog</b><small>네이버 블로그</small></span></a>
         </div>
