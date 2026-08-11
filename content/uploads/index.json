@@ -1,7 +1,22 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-11T20:58:37+09:00",
+  "updatedAt": "2026-08-11T21:38:22+09:00",
   "reports": [
+    {
+      "schemaVersion": "1",
+      "id": "260811-ai-v1-0-0",
+      "slug": "ai-v1-0-0",
+      "title": "[Youtube] 이젠 AI 공부를 왜 해야하나 싶다",
+      "category": "기타",
+      "tags": [],
+      "summary": "Todaycoding 영상 ‘이젠 AI 공부를 왜 해야하나 싶다’ 전사를 바탕으로, AI 시대에 무엇을 공부해야 오래 남는지 정리한 비전공자 임원용 분석 보고서",
+      "createdAt": "2026-08-11T21:38:09+09:00",
+      "updatedAt": "2026-08-11T21:38:09+09:00",
+      "status": "published",
+      "sourceName": "preflight_20260811123704300_2d0bd5d6.zip",
+      "sourceCount": 1,
+      "entry": "index.html"
+    },
     {
       "schemaVersion": "1",
       "id": "260811-v1-0-0",
