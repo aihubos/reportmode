@@ -1,0 +1,172 @@
+{
+  "schemaVersion": "1.0",
+  "reportId": "rh-260811-01-sovereign-ai-korea-roadmap",
+  "checkedAt": "2026-08-11",
+  "sources": [
+    {
+      "claim": "자국 인프라·데이터·인력·비즈니스를 활용해 AI를 생산하는 국가 역량이라는 실무 정의. 보편적 법률 정의라기보다 업계 관점임.",
+      "url": "https://resources.nvidia.com/en-us-government-affairs-mc/en-us-government-affairs/what-is-sovereign-ai",
+      "sourceType": "OFFICIAL · INDUSTRY DEFINITION",
+      "publisher": "NVIDIA",
+      "publishedAt": "2026-07-06",
+      "checkedAt": "2026-08-11",
+      "usedIn": "정의·6개 층",
+      "confidence": "High",
+      "caution": "정책 계획·정부 목표는 실제 성과를 보장하지 않음."
+    },
+    {
+      "claim": "3개 정책축·12대 전략분야, AI고속도로·독자 범용 AI모델·산업·공공·지역·국방·문화 AX 계획.",
+      "url": "https://aikorea.go.kr/web/board/brdDetail.do?currentPage=1&menu_cd=000011&num=328&searchData=&searchText=",
+      "sourceType": "OFFICIAL · KOREA STRATEGY",
+      "publisher": "국가인공지능전략위원회",
+      "publishedAt": "2026-02-25",
+      "checkedAt": "2026-08-11",
+      "usedIn": "한국 전략·로드맵",
+      "confidence": "High",
+      "caution": "정책 계획·정부 목표는 실제 성과를 보장하지 않음."
+    },
+    {
+      "claim": "2026년 1월 22일 시행. 국가 거버넌스, 데이터·R&D, 투명성·안전성, 고영향 AI 의무와 최소 1년 규제 유예 안내.",
+      "url": "https://www.korea.kr/multi/visualNewsView.do?newsId=148958460",
+      "sourceType": "OFFICIAL · KOREA LAW",
+      "publisher": "대한민국 정책브리핑/과기정통부",
+      "publishedAt": "2026-01-23",
+      "checkedAt": "2026-08-11",
+      "usedIn": "한국 현황·리스크",
+      "confidence": "High",
+      "caution": "정책 계획·정부 목표는 실제 성과를 보장하지 않음."
+    },
+    {
+      "claim": "LG AI연구원·SKT·업스테이지에 모티프테크놀로지스가 추가돼 4개 팀이 2차 단계 경쟁에 참여.",
+      "url": "https://www.korea.kr/briefing/policyBriefingView.do?newsId=156745273",
+      "sourceType": "OFFICIAL · KOREA MODEL PROJECT",
+      "publisher": "대한민국 정책브리핑/과기정통부",
+      "publishedAt": "2026-02-20",
+      "checkedAt": "2026-08-11",
+      "usedIn": "한국 타임라인·현재 상태",
+      "confidence": "High",
+      "caution": "정책 계획·정부 목표는 실제 성과를 보장하지 않음."
+    },
+    {
+      "claim": "8월 8~11일 국민 평가단 200명 참여, 4개 팀 중 3개 팀 진출 예정. 8월 11일 기준 공식 최종 결과는 아직 발표 전.",
+      "url": "https://www.yna.co.kr/view/AKR20260807135400017",
+      "sourceType": "NEWS · LATEST STATUS",
+      "publisher": "연합뉴스",
+      "publishedAt": "2026-08-09",
+      "checkedAt": "2026-08-11",
+      "usedIn": "최신 뉴스·주의사항",
+      "confidence": "Medium-High",
+      "caution": "최신 진행 상황 보도이며 공식 최종 결과 공지가 아님."
+    },
+    {
+      "claim": "GPU 약 5만 장 확보 및 2027년 배분계획, 글로벌 Top 10 수준 독자 모델, 모두의 AI·AI 보안 모델 추진.",
+      "url": "https://www.korea.kr/news/policyNewsView.do?newsId=148968283",
+      "sourceType": "OFFICIAL · KOREA COMPUTE",
+      "publisher": "대한민국 정책브리핑",
+      "publishedAt": "2026-07-16",
+      "checkedAt": "2026-08-11",
+      "usedIn": "한국 핵심 수치·로드맵",
+      "confidence": "High",
+      "caution": "정책 계획·정부 목표는 실제 성과를 보장하지 않음."
+    },
+    {
+      "claim": "2028년까지 첨단 AI 반도체 1만5천 장 규모, 2027년 일부 자원 조기 서비스, 국산 AI 반도체 검증 R&D 구역 계획.",
+      "url": "https://www.korea.kr/news/policyNewsView.do?newsId=148969296",
+      "sourceType": "OFFICIAL · KOREA INFRASTRUCTURE",
+      "publisher": "대한민국 정책브리핑/과기정통부",
+      "publishedAt": "2026-08-03",
+      "checkedAt": "2026-08-11",
+      "usedIn": "최신 뉴스·2027~2028 로드맵",
+      "confidence": "High",
+      "caution": "정책 계획·정부 목표는 실제 성과를 보장하지 않음."
+    },
+    {
+      "claim": "최대 7개 AI 기가팩토리, EU·회원국 최대 100억 유로 지원과 최소 200억 유로 민간 투자 유도. EU 규범과 자율성 강조.",
+      "url": "https://digital-strategy.ec.europa.eu/en/news/eu-launches-ai-gigafactories-call-boost-europes-computing-capacity-and-unlock-more-eu30-billion",
+      "sourceType": "OFFICIAL · EU",
+      "publisher": "European Commission",
+      "publishedAt": "2026-07-30",
+      "checkedAt": "2026-08-11",
+      "usedIn": "세계 타임라인·국가별 방식",
+      "confidence": "High",
+      "caution": "정책 계획·정부 목표는 실제 성과를 보장하지 않음."
+    },
+    {
+      "claim": "캐나다 기반 대규모 AI 슈퍼컴퓨팅 인프라 공모. 국내 데이터·지식재산 보호와 연구·산업 접근성 강조.",
+      "url": "https://www.canada.ca/en/innovation-science-economic-development/news/2026/04/canada-launches-national-initiative-to-build-large-scale-ai-supercomputing-capacity.html",
+      "sourceType": "OFFICIAL · CANADA",
+      "publisher": "Government of Canada",
+      "publishedAt": "2026-04-15",
+      "checkedAt": "2026-08-11",
+      "usedIn": "세계 타임라인·국가별 방식",
+      "confidence": "High",
+      "caution": "정책 계획·정부 목표는 실제 성과를 보장하지 않음."
+    },
+    {
+      "claim": "5억 파운드 규모로 자국 AI 기업에 투자·컴퓨팅·인재·공공조달 지원. 국가가 모델만이 아니라 기업 성장 경로를 확보하는 접근.",
+      "url": "https://www.gov.uk/government/news/ai-firms-pioneering-drug-discovery-cheaper-supercomputing-and-more-get-first-backing-through-uks-sovereign-ai",
+      "sourceType": "OFFICIAL · UNITED KINGDOM",
+      "publisher": "UK Government",
+      "publishedAt": "2026-04-16",
+      "checkedAt": "2026-08-11",
+      "usedIn": "세계 타임라인·국가별 방식",
+      "confidence": "High",
+      "caution": "정책 계획·정부 목표는 실제 성과를 보장하지 않음."
+    },
+    {
+      "claim": "12개 자국 파운데이션 모델 팀, 4개 모델 공개, 3만8천 개 이상 GPU 공용 인프라, 추가 2만 개 확충 절차.",
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2239614",
+      "sourceType": "OFFICIAL · INDIA",
+      "publisher": "Press Information Bureau, India",
+      "publishedAt": "2026-03-13",
+      "checkedAt": "2026-08-11",
+      "usedIn": "세계 타임라인·국가별 방식",
+      "confidence": "High",
+      "caution": "정책 계획·정부 목표는 실제 성과를 보장하지 않음."
+    },
+    {
+      "claim": "국가 컴퓨팅, 자체 모델, 지역 데이터 보존, 국내 시스템 아키텍처를 소버린 AI의 구성으로 제시.",
+      "url": "https://cbi.nstc.gov.tw/en/7758ED8D9E3CA37A/5c52e259-429c-4b84-ac2e-6fadf09a0808",
+      "sourceType": "OFFICIAL · TAIWAN",
+      "publisher": "Taiwan NSTC",
+      "publishedAt": "2025-12-12",
+      "checkedAt": "2026-08-11",
+      "usedIn": "세계 타임라인·국가별 방식",
+      "confidence": "High",
+      "caution": "정책 계획·정부 목표는 실제 성과를 보장하지 않음."
+    },
+    {
+      "claim": "최대 20억 캐나다달러 규모로 국내 데이터센터·공공 컴퓨팅·중소기업 접근을 지원하는 3축 전략 발표.",
+      "url": "https://www.canada.ca/en/innovation-science-economic-development/news/2024/12/canada-to-drive-billions-in-investments-to-build-domestic-ai-compute-capacity-at-home.html",
+      "sourceType": "OFFICIAL · CANADA ORIGIN",
+      "publisher": "Government of Canada",
+      "publishedAt": "2024-12-05",
+      "checkedAt": "2026-08-11",
+      "usedIn": "세계 타임라인",
+      "confidence": "High",
+      "caution": "정책 계획·정부 목표는 실제 성과를 보장하지 않음."
+    },
+    {
+      "claim": "1차 평가와 독자성 논의, 국내 모델 개발 경험 축적의 정책적 의미를 설명.",
+      "url": "https://www.korea.kr/news/policyNewsView.do?newsId=156740468",
+      "sourceType": "OFFICIAL · KOREA PHASE 1",
+      "publisher": "대한민국 정책브리핑/과기정통부",
+      "publishedAt": "2026-01-15",
+      "checkedAt": "2026-08-11",
+      "usedIn": "한국 타임라인·리스크",
+      "confidence": "High",
+      "caution": "정책 계획·정부 목표는 실제 성과를 보장하지 않음."
+    },
+    {
+      "claim": "IndiaAI Mission이 2024년 3월 승인됐으며 컴퓨팅·파운데이션 모델·데이터·응용·인재·금융·안전의 7개 축으로 구성됐음을 확인.",
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2289946&lang=1&reg=3",
+      "sourceType": "OFFICIAL · INDIA MISSION",
+      "publisher": "Press Information Bureau, India",
+      "publishedAt": "2026-07-27",
+      "checkedAt": "2026-08-11",
+      "usedIn": "세계 타임라인",
+      "confidence": "High",
+      "caution": "정책 계획·정부 목표는 실제 성과를 보장하지 않음."
+    }
+  ]
+}

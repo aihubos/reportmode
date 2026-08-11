@@ -1,7 +1,33 @@
 {
-  "generatedAt": "2026-08-10T11:49:12.134Z",
+  "generatedAt": "2026-08-11T01:53:32.225Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "rh-260811-01-sovereign-ai-korea-roadmap",
+      "slug": "sovereign-ai-korea-roadmap",
+      "title": "소버린 AI란? 비전공자가 10분 만에 이해하는 개념부터 한국의 2028 로드맵까지",
+      "subtitle": "국가의 AI 선택권을 6개 층과 한국의 2028년 일정으로 풀어낸 비전공자 가이드",
+      "category": "AI",
+      "summary": "소버린 AI를 국가의 AI 주방이라는 비유로 풀고, 데이터·컴퓨팅·모델·인재·운영·규범의 6개 층과 2026년 최신 글로벌 흐름, 한국의 2028년 로드맵을 정리한 비전공자용 가이드입니다.",
+      "createdAt": "2026-08-11T10:52:33+09:00",
+      "updatedAt": "2026-08-11T10:52:33+09:00",
+      "status": "published",
+      "path": "reports/260811-01-sovereign-ai-korea-roadmap-v1-0-0/",
+      "url": "https://aihubos.github.io/reportmode/reports/260811-01-sovereign-ai-korea-roadmap-v1-0-0/",
+      "displayDate": "260811",
+      "sourceCount": 15,
+      "tags": [
+        "소버린 AI",
+        "AI 주권",
+        "한국형 AI",
+        "독자 AI 파운데이션 모델",
+        "국가 AI 컴퓨팅센터",
+        "GPU 5만 장",
+        "AI기본법"
+      ],
+      "coverImage": "reports/260811-01-sovereign-ai-korea-roadmap-v1-0-0/assets/thumbnail.png",
+      "coverAlt": "밤의 지구 위에 Sovereign AI 글자가 배치된 썸네일"
+    },
     {
       "id": "260810-hermes-practical-training",
       "slug": "hermes-practical-training",

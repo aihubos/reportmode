@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="소버린 AI를 국가의 AI 주방이라는 비유로 쉽게 설명하고, 데이터·GPU·모델·인재·운영·규범 6개 층과 2026년 최신 글로벌 뉴스, 한국의 2028년 로드맵을 정리했습니다.">
+  <meta name="author" content="Jeremy Lee">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="canonical" href="https://aihubos.github.io/reportmode/reports/260811-01-sovereign-ai-korea-roadmap-v1-0-0/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="소버린 AI 뜻과 한국 전략: 비전공자용 완전 정리">
+  <meta property="og:description" content="소버린 AI를 국가의 AI 주방이라는 비유로 쉽게 설명하고, 데이터·GPU·모델·인재·운영·규범 6개 층과 2026년 최신 글로벌 뉴스, 한국의 2028년 로드맵을 정리했습니다.">
+  <meta property="og:url" content="https://aihubos.github.io/reportmode/reports/260811-01-sovereign-ai-korea-roadmap-v1-0-0/">
+  <meta property="og:image" content="https://aihubos.github.io/reportmode/reports/260811-01-sovereign-ai-korea-roadmap-v1-0-0/assets/thumbnail.png">
+  <meta property="og:image:width" content="1000">
+  <meta property="og:image:height" content="563">
+  <meta property="og:image:alt" content="밤의 지구 위에 Sovereign AI 글자가 배치된 썸네일">
+  <meta property="article:published_time" content="2026-08-11T20:00:00+09:00">
+  <meta property="article:modified_time" content="2026-08-11T20:00:00+09:00">
+  <meta property="article:author" content="Jeremy Lee">
+  <meta property="article:section" content="AI">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="소버린 AI 뜻과 한국 전략: 비전공자용 완전 정리">
+  <meta name="twitter:description" content="소버린 AI를 국가의 AI 주방이라는 비유로 쉽게 설명하고, 데이터·GPU·모델·인재·운영·규범 6개 층과 2026년 최신 글로벌 뉴스, 한국의 2028년 로드맵을 정리했습니다.">
+  <meta name="twitter:image" content="https://aihubos.github.io/reportmode/reports/260811-01-sovereign-ai-korea-roadmap-v1-0-0/assets/thumbnail.png">
+  <title>소버린 AI 뜻과 한국 전략: 비전공자용 완전 정리 | Report Hub</title>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"소버린 AI란? 비전공자가 10분 만에 이해하는 개념부터 한국의 2028 로드맵까지",
+    "description":"소버린 AI를 국가의 AI 주방이라는 비유로 쉽게 설명하고, 데이터·GPU·모델·인재·운영·규범 6개 층과 2026년 최신 글로벌 뉴스, 한국의 2028년 로드맵을 정리했습니다.",
+    "image":["https://aihubos.github.io/reportmode/reports/260811-01-sovereign-ai-korea-roadmap-v1-0-0/assets/thumbnail.png"],
+    "datePublished":"2026-08-11T20:00:00+09:00",
+    "dateModified":"2026-08-11T20:00:00+09:00",
+    "author":{"@type":"Person","name":"Jeremy Lee"},
+    "publisher":{"@type":"Organization","name":"Report Hub","url":"https://aihubos.github.io/reportmode/"},
+    "mainEntityOfPage":{"@type":"WebPage","@id":"https://aihubos.github.io/reportmode/reports/260811-01-sovereign-ai-korea-roadmap-v1-0-0/"},
+    "keywords":["소버린 AI","AI 주권","한국형 AI","독자 AI 파운데이션 모델","국가 AI 컴퓨팅센터","GPU 5만 장","AI 기본법"],
+    "articleSection":"AI",
+    "inLanguage":"ko-KR"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Report Hub","item":"https://aihubos.github.io/reportmode/"},
+      {"@type":"ListItem","position":2,"name":"AI Reports","item":"https://aihubos.github.io/reportmode/archive/"},
+      {"@type":"ListItem","position":3,"name":"소버린 AI란? 비전공자가 10분 만에 이해하는 개념부터 한국의 2028 로드맵까지","item":"https://aihubos.github.io/reportmode/reports/260811-01-sovereign-ai-korea-roadmap-v1-0-0/"}
+    ]
+  }
+  </script>
+  <style>
+  :root{
+    --blue:#3182f6;--blue-strong:#1b64da;--blue-deep:#114da9;--blue-soft:#e8f3ff;
+    --ink:#191f28;--ink-2:#333d4b;--muted:#6b7684;--muted-2:#8b95a1;
+    --line:#e5e8eb;--surface:#f7f8fa;--surface-2:#f2f4f6;--white:#fff;
+    --lime:#dfff6a;--mint:#dffbf2;--violet:#eee9ff;--yellow:#fff8ce;
+    --shadow-sm:0 10px 34px rgba(25,31,40,.06);--shadow-md:0 26px 80px rgba(25,31,40,.12);
+    --radius-sm:18px;--radius-md:28px;--radius-lg:40px;--max:1180px;
+    --hero-max:55px;--section-max:41px;
+  }
+  *{box-sizing:border-box}html{scroll-behavior:smooth;max-width:100%;overflow-x:hidden}body{margin:0;max-width:100%;overflow-x:hidden;color:var(--ink);background:radial-gradient(circle at 87% 8%,rgba(49,130,246,.12),transparent 28rem),radial-gradient(circle at 10% 24%,rgba(223,255,106,.12),transparent 23rem),#fff;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Pretendard","Segoe UI",sans-serif;line-height:1.72;letter-spacing:-.025em}a{color:inherit;text-decoration:none}button,input{font:inherit}img,svg{display:block;max-width:100%}h1,h2,h3,p{margin-top:0}strong{color:var(--ink)}:focus-visible{outline:3px solid rgba(49,130,246,.35);outline-offset:3px}.skip-link{position:fixed;left:12px;top:-90px;z-index:3000;padding:11px 15px;border-radius:11px;color:#fff;background:var(--ink);font-weight:850}.skip-link:focus{top:12px}.scroll-progress{position:fixed;inset:0 auto auto 0;width:0;height:3px;background:linear-gradient(90deg,var(--blue),#7ab2ff);z-index:1400}.container{width:min(var(--max),calc(100% - 40px));margin:0 auto;min-width:0}.nav-wrap{position:sticky;top:0;z-index:1200;padding:14px 22px 0}.nav{max-width:1240px;margin:0 auto;min-height:62px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 12px 10px 18px;border:1px solid rgba(229,232,235,.9);border-radius:22px;background:rgba(255,255,255,.84);backdrop-filter:blur(18px) saturate(160%);box-shadow:0 10px 36px rgba(25,31,40,.06)}.brand{display:flex;align-items:center;gap:10px;min-width:max-content;font-size:14px;font-weight:900}.brand-mark{width:36px;height:36px;display:grid;place-items:center;border-radius:12px;color:#fff;background:linear-gradient(145deg,#5ca2ff,var(--blue-strong));box-shadow:0 8px 20px rgba(49,130,246,.28)}.brand-mark svg{width:20px}.brand-sub{color:var(--muted-2);font-weight:750}.nav-links{display:flex;gap:3px;margin-left:auto}.nav-links a{padding:9px 10px;border-radius:11px;color:var(--muted);font-size:13px;font-weight:760}.nav-links a:hover{color:var(--ink);background:var(--surface)}.nav-actions{display:flex;gap:8px}.btn{appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:0 16px;border-radius:14px;font-size:14px;font-weight:850;transition:transform .2s ease,background .2s ease}.btn:hover{transform:translateY(-1px)}.btn-primary{color:#fff;background:var(--blue);box-shadow:0 10px 24px rgba(49,130,246,.24)}.btn-primary:hover{background:var(--blue-strong)}.btn-ghost{color:var(--ink-2);background:var(--surface)}.btn-ghost:hover{background:var(--surface-2)}
+  .hero{min-height:825px;display:grid;grid-template-columns:1.03fr .97fr;align-items:center;gap:56px;padding:78px 0 52px}.hero-copy{min-width:0;position:relative;z-index:2}.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 13px;margin-bottom:20px;border-radius:999px;color:var(--blue-strong);background:var(--blue-soft);font-size:14px;font-weight:900}.eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 5px rgba(49,130,246,.12)}.blog-hook{display:inline-flex;padding:6px 10px;margin-bottom:14px;border-radius:8px;color:#415400;background:var(--lime);font-size:12px;font-weight:900;transform:rotate(-1deg)}.hero h1{max-width:760px;margin-bottom:24px;font-size:clamp(36px,4.4vw,var(--hero-max));line-height:1.11;letter-spacing:-.057em;font-weight:900;text-wrap:balance;word-break:keep-all}.blue{color:var(--blue)}.marker{position:relative;white-space:nowrap;z-index:0}.marker:after{content:"";position:absolute;left:-.03em;right:-.03em;bottom:.08em;height:.34em;border-radius:.12em;background:var(--lime);transform:rotate(-1.3deg);z-index:-1}.hero-lead{max-width:720px;margin-bottom:27px;color:var(--muted);font-size:clamp(18px,1.8vw,22px);line-height:1.62;font-weight:620}.hero-actions{display:flex;flex-wrap:wrap;gap:10px}.hero-note{margin-top:23px;display:flex;align-items:flex-start;gap:10px;color:var(--muted);font-size:14px;font-weight:650}.hero-note svg{width:19px;flex:0 0 auto;margin-top:3px;color:var(--blue)}.report-meta{margin-top:18px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 13px;color:var(--muted-2);font-size:12px;font-weight:800}.version-badge{display:inline-flex;align-items:center;min-height:28px;padding:0 10px;border-radius:999px;color:var(--blue-strong);background:var(--blue-soft);border:1px solid rgba(49,130,246,.16)}.dot-sep{width:3px;height:3px;border-radius:50%;background:var(--line)}.keyword-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:17px}.keyword-chip{padding:7px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted);background:var(--surface);font-size:11px;font-weight:800}.hero-visual{min-height:530px;display:grid;place-items:center;position:relative}.hero-orbit{position:absolute;width:480px;height:480px;border:1px dashed rgba(49,130,246,.22);border-radius:50%;animation:orbit 24s linear infinite}@keyframes orbit{to{transform:rotate(360deg)}}.hero-media{width:min(100%,500px);position:relative;z-index:2;padding:14px;border:1px solid rgba(229,232,235,.94);border-radius:36px;background:rgba(255,255,255,.95);box-shadow:var(--shadow-md)}.hero-media img{width:100%;height:auto;border-radius:26px}.hero-metric-row{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:10px}.hero-metric{padding:14px;border:1px solid var(--line);border-radius:18px;background:var(--surface)}.hero-metric b{display:block;color:var(--blue-strong);font-size:22px;line-height:1.1;letter-spacing:-.045em}.hero-metric span{display:block;margin-top:6px;color:var(--muted);font-size:10px;line-height:1.45;font-weight:750}.hero-media figcaption{display:flex;justify-content:space-between;gap:12px;padding:12px 6px 2px;color:var(--muted-2);font-size:11px;font-weight:750}.executive-strip{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}.exec-card{padding:21px 22px;border:1px solid var(--line);border-radius:22px;background:#fff;box-shadow:var(--shadow-sm)}.exec-card b{display:inline-flex;margin-bottom:10px;padding:5px 8px;border-radius:999px;color:var(--blue-strong);background:var(--blue-soft);font-size:10px;font-weight:900}.exec-card:nth-child(2) b{color:#6c52cc;background:var(--violet)}.exec-card:nth-child(3) b{color:#517000;background:var(--lime)}.exec-card h3{margin-bottom:6px;font-size:18px;letter-spacing:-.035em}.exec-card p{margin:0;color:var(--muted);font-size:13px;font-weight:620}
+  section{padding:100px 0}.section-soft{background:var(--surface)}.section-blue{color:#fff;background:radial-gradient(circle at 15% 20%,rgba(255,255,255,.17),transparent 24rem),linear-gradient(145deg,#1454b7,#3182f6 58%,#69a8ff)}.section-kicker{margin-bottom:10px;color:var(--blue);font-size:14px;font-weight:900;letter-spacing:.03em}.section-blue .section-kicker{color:rgba(255,255,255,.72)}.section-title{max-width:920px;margin-bottom:18px;font-size:clamp(28px,3.3vw,var(--section-max));line-height:1.2;letter-spacing:-.052em;font-weight:900;text-wrap:balance;word-break:keep-all}.section-desc{max-width:860px;margin-bottom:42px;color:var(--muted);font-size:19px;line-height:1.64;font-weight:600}.section-blue .section-desc{color:rgba(255,255,255,.78)}.verdict{padding:34px;border-radius:34px;color:#fff;background:linear-gradient(145deg,#124fb5,#3182f6 60%,#6aa7ff);box-shadow:var(--shadow-md)}.verdict small{display:block;margin-bottom:10px;color:rgba(255,255,255,.72);font-size:11px;font-weight:900;letter-spacing:.08em}.verdict h3{margin-bottom:12px;color:#fff;font-size:30px;line-height:1.35;letter-spacing:-.045em}.verdict p{margin:0;color:rgba(255,255,255,.82);font-size:17px;font-weight:650}.metric-board{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}.metric-tile{padding:22px;border:1px solid var(--line);border-radius:24px;background:#fff}.metric-tile span{display:block;margin-bottom:13px;color:var(--muted-2);font-size:10px;font-weight:900;letter-spacing:.06em}.metric-tile strong{display:block;color:var(--blue-strong);font-size:29px;line-height:1;letter-spacing:-.045em}.metric-tile p{margin:9px 0 0;color:var(--muted);font-size:12px;font-weight:650}.cite{color:var(--blue-strong);font-size:.86em;font-weight:900;white-space:nowrap}.cite:hover{text-decoration:underline}
+  .story{max-width:840px}.story p{color:var(--ink-2);font-size:18px;font-weight:580}.story p.lead-drop:first-letter{float:left;margin:8px 9px 0 0;color:var(--blue);font-size:68px;line-height:.78;font-weight:900}.analogy{display:grid;grid-template-columns:.88fr 1.12fr;gap:22px;align-items:stretch}.analogy-main{padding:34px;border:1px solid rgba(49,130,246,.26);border-radius:34px;background:linear-gradient(180deg,#fff,#f4f9ff);box-shadow:var(--shadow-sm)}.analogy-main .label{display:inline-flex;padding:6px 9px;margin-bottom:18px;border-radius:999px;color:var(--blue-strong);background:var(--blue-soft);font-size:11px;font-weight:900}.analogy-main h3{font-size:29px;letter-spacing:-.045em}.analogy-main p{color:var(--muted);font-size:16px;font-weight:620}.kitchen-stack{display:grid;gap:10px}.stack-row{display:grid;grid-template-columns:74px 1fr;gap:15px;align-items:center;padding:17px 18px;border:1px solid var(--line);border-radius:20px;background:#fff}.stack-icon{width:54px;height:54px;display:grid;place-items:center;border-radius:17px;color:var(--blue-strong);background:var(--blue-soft);font-size:22px;font-weight:900}.stack-row:nth-child(2) .stack-icon{color:#6c52cc;background:var(--violet)}.stack-row:nth-child(3) .stack-icon{color:#08765d;background:var(--mint)}.stack-row:nth-child(4) .stack-icon{color:#765f00;background:var(--yellow)}.stack-row:nth-child(5) .stack-icon{color:#415400;background:var(--lime)}.stack-row:nth-child(6) .stack-icon{color:#fff;background:var(--ink)}.stack-row strong{display:block;margin-bottom:3px;font-size:17px}.stack-row p{margin:0;color:var(--muted);font-size:13px;font-weight:620}
+  .step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.step-card{min-height:265px;padding:27px;border:1px solid var(--line);border-radius:28px;background:#fff;box-shadow:0 10px 30px rgba(25,31,40,.035)}.step-card .num{display:grid;place-items:center;width:38px;height:38px;margin-bottom:20px;border-radius:13px;color:var(--blue);background:var(--blue-soft);font-size:12px;font-weight:900}.step-card:nth-child(2) .num,.step-card:nth-child(5) .num{color:#6c52cc;background:var(--violet)}.step-card:nth-child(3) .num,.step-card:nth-child(6) .num{color:#08765d;background:var(--mint)}.step-card h3{margin-bottom:10px;font-size:22px;letter-spacing:-.04em}.step-card p{margin:0;color:var(--muted);font-size:14px;font-weight:620}.myth-table{overflow:hidden;border:1px solid var(--line);border-radius:28px;background:#fff}.myth-row{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line)}.myth-row:last-child{border-bottom:0}.myth-cell{display:flex;align-items:flex-start;gap:12px;padding:23px;color:var(--ink-2);font-size:15px;font-weight:700}.myth-cell+.myth-cell{border-left:1px solid var(--line)}.myth-icon{width:29px;height:29px;flex:0 0 auto;display:grid;place-items:center;border-radius:50%;font-size:14px;font-weight:900}.wrong .myth-icon{color:#d45454;background:#fff0f0}.right .myth-icon{color:var(--blue);background:var(--blue-soft)}
+  .table-shell{width:100%;max-width:100%;min-width:0;overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:28px;background:#fff}.data-table{width:100%;min-width:930px;border-collapse:collapse;font-size:13px}.data-table th,.data-table td{padding:17px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}.data-table th{color:var(--muted);background:var(--surface);font-size:10px;font-weight:900;letter-spacing:.04em;white-space:nowrap}.data-table td{color:var(--ink-2);font-weight:650}.data-table tr:last-child td{border-bottom:0}.data-table td:first-child{min-width:145px;color:var(--ink);font-weight:900}.status-pill{display:inline-flex;padding:5px 8px;border-radius:999px;font-size:10px;font-weight:900;white-space:nowrap}.status-blue{color:var(--blue-strong);background:var(--blue-soft)}.status-green{color:#086c55;background:var(--mint)}.status-purple{color:#6c52cc;background:var(--violet)}.status-yellow{color:#7a6200;background:var(--yellow)}
+  .timeline{display:grid;gap:0;border:1px solid var(--line);border-radius:28px;overflow:hidden;background:#fff}.timeline-item{display:grid;grid-template-columns:150px 120px 1fr;gap:20px;padding:24px 26px;border-bottom:1px solid var(--line)}.timeline-item:last-child{border-bottom:0}.timeline-date{color:var(--blue-strong);font-size:13px;font-weight:900}.timeline-region{align-self:start;display:inline-flex;justify-content:center;padding:5px 8px;border-radius:999px;color:var(--muted);background:var(--surface-2);font-size:10px;font-weight:900}.timeline-copy h3{margin-bottom:6px;font-size:19px}.timeline-copy p{margin:0;color:var(--muted);font-size:14px;font-weight:620}.country-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:13px;margin-top:22px}.country-card{min-height:230px;padding:22px;border:1px solid var(--line);border-radius:24px;background:#fff}.country-card b{display:inline-flex;margin-bottom:22px;padding:6px 9px;border-radius:999px;color:var(--blue-strong);background:var(--blue-soft);font-size:10px;font-weight:900}.country-card h3{margin-bottom:10px;font-size:19px}.country-card p{margin:0;color:var(--muted);font-size:13px;font-weight:620}
+  .korea-board{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.korea-card{padding:24px;border:1px solid var(--line);border-radius:24px;background:#fff}.korea-card span{display:block;margin-bottom:13px;color:var(--muted-2);font-size:10px;font-weight:900;letter-spacing:.05em}.korea-card strong{display:block;color:var(--blue-strong);font-size:28px;line-height:1.12;letter-spacing:-.045em}.korea-card p{margin:10px 0 0;color:var(--muted);font-size:12px;font-weight:650}.news-alert{display:flex;align-items:flex-start;gap:14px;margin-top:20px;padding:22px 24px;border:1px solid #f4e28e;border-radius:22px;color:#635300;background:var(--yellow);font-size:14px;font-weight:700}.news-alert b{color:#4e4200}.news-alert svg{width:22px;flex:0 0 auto;margin-top:2px}.roadmap{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.roadmap-card{position:relative;min-height:330px;padding:27px;border-radius:28px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.20);backdrop-filter:blur(8px)}.roadmap-card span{display:inline-grid;place-items:center;min-width:58px;height:42px;padding:0 12px;margin-bottom:25px;border-radius:14px;color:var(--blue-strong);background:#fff;font-size:12px;font-weight:900}.roadmap-card h3{color:#fff;font-size:23px}.roadmap-card p{color:rgba(255,255,255,.73);font-size:14px;font-weight:620}.roadmap-card ul{margin:15px 0 0;padding-left:19px;color:rgba(255,255,255,.9);font-size:13px;font-weight:700}.roadmap-card li+li{margin-top:7px}
+  .score-layout{display:grid;grid-template-columns:.82fr 1.18fr;gap:22px;align-items:start}.score-panel{position:sticky;top:100px;padding:30px;border:1px solid var(--line);border-radius:30px;background:#fff;box-shadow:var(--shadow-sm)}.score-panel small{display:block;color:var(--muted-2);font-size:10px;font-weight:900;letter-spacing:.06em}.score-number{display:flex;align-items:flex-end;gap:8px;margin:12px 0}.score-number strong{color:var(--blue-strong);font-size:72px;line-height:.9;letter-spacing:-.07em}.score-number span{padding-bottom:8px;color:var(--muted);font-size:17px;font-weight:850}.score-label{display:inline-flex;padding:7px 10px;border-radius:999px;color:var(--blue-strong);background:var(--blue-soft);font-size:12px;font-weight:900}.score-panel p{margin:16px 0 0;color:var(--muted);font-size:13px;font-weight:620}.score-bar{height:10px;margin-top:20px;border-radius:999px;background:var(--surface-2);overflow:hidden}.score-bar i{display:block;width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--blue),#70acff);transition:width .25s ease}.check-list{display:grid;gap:11px}.check-item{display:grid;grid-template-columns:32px 1fr;gap:13px;align-items:start;padding:20px;border:1px solid var(--line);border-radius:21px;background:#fff}.check-item input{width:22px;height:22px;margin:2px 0 0;accent-color:var(--blue)}.check-item strong{display:block;margin-bottom:4px;font-size:16px}.check-item p{margin:0;color:var(--muted);font-size:13px;font-weight:620}.callout{display:flex;align-items:flex-start;gap:14px;margin-top:20px;padding:22px 24px;border:1px solid #f4e28e;border-radius:22px;color:#635300;background:var(--yellow);font-size:14px;font-weight:700}
+  .success-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.success-card{min-height:245px;padding:26px;border:1px solid var(--line);border-radius:28px;background:#fff}.success-card .tag{display:inline-flex;padding:6px 9px;margin-bottom:17px;border-radius:999px;color:var(--blue-strong);background:var(--blue-soft);font-size:10px;font-weight:900}.success-card h3{margin-bottom:10px;font-size:22px;letter-spacing:-.04em}.success-card p{margin:0;color:var(--muted);font-size:14px;font-weight:620}.success-card ul{margin:14px 0 0;padding-left:18px;color:var(--ink-2);font-size:13px;font-weight:700}.success-card li+li{margin-top:6px}.risk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.risk-card{padding:26px;border:1px solid rgba(255,255,255,.22);border-radius:26px;background:rgba(255,255,255,.11)}.risk-card b{display:grid;place-items:center;width:38px;height:38px;margin-bottom:18px;border-radius:13px;color:var(--blue-strong);background:#fff;font-size:12px}.risk-card h3{color:#fff;font-size:20px}.risk-card p{margin:0;color:rgba(255,255,255,.74);font-size:13px;font-weight:620}
+  .faq-list{display:grid;gap:12px}.faq-item{border:1px solid var(--line);border-radius:20px;background:#fff;overflow:hidden}.faq-item summary{cursor:pointer;padding:20px 22px;list-style:none;font-size:16px;font-weight:850}.faq-item summary::-webkit-details-marker{display:none}.faq-item summary:after{content:'+';float:right;color:var(--blue)}.faq-item[open] summary:after{content:'−'}.faq-answer{padding:0 22px 22px;color:var(--muted);font-size:14px;font-weight:620}.sources{padding:78px 0 40px;border-top:1px solid var(--line);background:#fff}.source-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:26px}.source-head h2{margin-bottom:5px;font-size:28px;letter-spacing:-.04em}.source-head p{margin:0;color:var(--muted);font-size:14px;font-weight:650}.source-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.source-card{padding:18px;border:1px solid var(--line);border-radius:18px;background:var(--surface);transition:.2s ease}.source-card:hover{transform:translateY(-2px);border-color:rgba(49,130,246,.28);background:var(--blue-soft)}.source-card span{display:block;margin-bottom:6px;color:var(--muted-2);font-size:10px;font-weight:900;letter-spacing:.04em}.source-card strong{display:block;font-size:14px}.source-card small{display:block;margin-top:7px;color:var(--muted);font-size:11px;line-height:1.5;font-weight:620}.disclosure{margin-top:24px;padding:18px 20px;border:1px dashed var(--line);border-radius:18px;color:var(--muted);background:var(--surface);font-size:12px;font-weight:650}.footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:36px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted-2);font-size:12px;font-weight:650}.report-history{margin-top:44px;padding-top:34px;border-top:1px solid var(--line)}.history-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:18px}.history-head h2{margin-bottom:4px;font-size:26px;letter-spacing:-.04em}.history-head p{margin:0;color:var(--muted);font-size:13px;font-weight:650}.history-table-wrap{width:100%;max-width:100%;overflow-x:auto;border:1px solid var(--line);border-radius:20px;background:#fff}.history-table{width:100%;min-width:780px;border-collapse:collapse;font-size:13px}.history-table th,.history-table td{padding:15px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}.history-table tr:last-child td{border-bottom:0}.history-table th{color:var(--muted);background:var(--surface);font-size:11px;font-weight:900;letter-spacing:.03em;white-space:nowrap}.history-table td{color:var(--ink-2);font-weight:650}.history-table td:first-child{color:var(--blue-strong);font-weight:900;white-space:nowrap}.history-status{display:inline-flex;padding:5px 8px;border-radius:999px;color:var(--muted);background:var(--surface-2);font-size:11px;font-weight:850}.floating-actions{position:fixed;right:22px;bottom:22px;z-index:900;display:grid;gap:10px}.float-btn{width:48px;height:48px;display:grid;place-items:center;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.94);box-shadow:var(--shadow-sm);cursor:pointer;color:var(--ink-2);backdrop-filter:blur(12px)}.float-btn:hover{color:var(--blue);border-color:rgba(49,130,246,.25)}.float-btn svg{width:20px}.reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease}.reveal.visible{opacity:1;transform:none}
+  @media(max-width:1040px){.nav-links{display:none}.hero{grid-template-columns:minmax(0,1fr);min-height:auto;padding-top:62px}.hero-copy{text-align:center}.hero-lead{margin-left:auto;margin-right:auto}.hero-actions,.report-meta,.hero-note,.keyword-chips{justify-content:center}.hero-note{text-align:left}.hero-visual{min-height:520px}.executive-strip{grid-column:1}.metric-board,.korea-board{grid-template-columns:repeat(2,minmax(0,1fr))}.country-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.roadmap{grid-template-columns:repeat(2,minmax(0,1fr))}.score-layout{grid-template-columns:1fr}.score-panel{position:static}.source-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:760px){.container{width:min(100% - 28px,var(--max))}.nav-wrap{padding:9px 10px 0}.nav{min-height:56px;padding-left:12px;border-radius:18px}.brand-sub,.nav-actions .btn-ghost{display:none}.btn{min-height:40px;padding:0 13px}.hero{gap:28px;padding:56px 0 42px}.hero h1{max-width:100%;font-size:clamp(32px,9.4vw,38px);overflow-wrap:normal;word-break:keep-all}.hero-lead{font-size:18px}.hero-visual{min-height:auto}.hero-orbit{display:none}.hero-media{width:100%;padding:10px;border-radius:26px}.hero-metric-row,.executive-strip,.metric-board,.step-grid,.korea-board,.roadmap,.success-grid,.risk-grid{grid-template-columns:minmax(0,1fr)}section{padding:80px 0}.section-title{font-size:32px}.section-desc{font-size:17px;margin-bottom:34px}.verdict{padding:26px}.verdict h3{font-size:25px}.analogy{grid-template-columns:1fr}.myth-row{grid-template-columns:1fr}.myth-cell+.myth-cell{border-left:0;border-top:1px solid var(--line)}.timeline-item{grid-template-columns:minmax(0,1fr);gap:7px}.timeline-region{justify-self:start}.country-grid{grid-template-columns:1fr}.score-number strong{font-size:62px}.source-grid{grid-template-columns:1fr}.source-head,.footer-bottom,.history-head{align-items:flex-start;flex-direction:column}.floating-actions{right:12px;bottom:12px}.data-table{min-width:900px}}
+  @media(max-width:360px){.container{width:calc(100% - 22px)}.brand{font-size:12px}.brand-mark{width:33px;height:33px}.nav-actions .btn-primary{padding:0 10px;font-size:12px}.hero h1{font-size:31px}.hero-metric{padding:12px}.stack-row{grid-template-columns:58px 1fr;padding:14px}.stack-icon{width:46px;height:46px}.timeline-item{padding:20px}.source-card{padding:16px}}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+  @media print{@page{size:A4;margin:12mm}body{background:#fff!important;color:#000}.nav-wrap,.floating-actions,.scroll-progress,.hero-actions,.score-layout{display:none!important}.container{width:100%;max-width:none}.hero{min-height:auto;grid-template-columns:1fr 1fr;padding:8mm 0 14mm}.hero-orbit{display:none}section{padding:14mm 0;break-inside:avoid}.section-blue{background:#fff!important;color:#000!important;border-top:2px solid var(--blue);border-bottom:2px solid var(--blue)}.section-blue .section-desc,.roadmap-card p,.roadmap-card li,.risk-card p{color:#333!important}.roadmap-card,.risk-card,.verdict{border:1px solid #ccc;background:#f4f6f8!important;color:#000!important;box-shadow:none}.roadmap-card h3,.risk-card h3,.verdict h3{color:#000!important}.hero-media,.exec-card,.step-card,.success-card{box-shadow:none}.reveal{opacity:1!important;transform:none!important}.history-table{min-width:0;font-size:9px}a{text-decoration:none}}
+  </style>
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260810-mobile-scroll1">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png?v=20260810-mobile-scroll1">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png?v=20260810-mobile-scroll1">
+  <link rel="manifest" href="../../site.webmanifest?v=20260810-mobile-scroll1">
+  <meta name="application-name" content="Report Hub">
+  <meta property="og:site_name" content="Report Hub">
+  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260810-mobile-scroll1">
+  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260810-mobile-scroll1">
+  <link rel="stylesheet" href="../../assets/report-comments.css?v=20260810-comments2">
+</head>
+<body data-report-cover="assets/thumbnail.png" data-report-cover-alt="밤의 지구 위에 Sovereign AI 글자가 배치된 썸네일" data-report-view="detail" data-report-layout="wide">
+  <a class="report-home-button" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span></a>
+  <a class="skip-link" href="#main-content">본문으로 바로가기</a>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <div class="nav-wrap">
+    <nav class="nav" aria-label="주요 메뉴">
+      <a class="brand report-hub-brand-link" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span></a>
+      <div class="nav-links"><a href="#summary">1분 요약</a><a href="#easy">쉬운 설명</a><a href="#timeline">타임라인</a><a href="#korea">한국 현황</a><a href="#roadmap">로드맵</a><a href="#sources">출처</a></div>
+      <div class="nav-actions"><a class="btn btn-ghost" href="#history">변경 이력</a><button class="btn btn-primary" type="button" onclick="window.print()">PDF 저장</button></div>
+    </nav>
+  </div>
+
+  <main id="main-content">
+    <div class="container" id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span class="eyebrow-dot"></span>비전공자 완전 정리 · 자료 기준 2026.08.11</div><br>
+          <div class="blog-hook">국산 챗봇 하나 만들면 소버린 AI가 되는 걸까요?</div>
+          <h1 id="hero-title">소버린 AI란?<br><span class="blue">국가의 AI 주방</span>부터<br>한국의 2028 로드맵까지</h1>
+          <p class="hero-lead">처음 들으면 이름부터 어렵습니다. 하지만 핵심은 의외로 단순합니다. <strong>AI 시대에도 꼭 필요한 지능을 남의 허락만 기다리지 않고 개발·운영·교체할 수 있느냐</strong>의 문제입니다.</p>
+          <div class="hero-actions"><a class="btn btn-primary" href="#summary">1분 요약 보기</a><a class="btn btn-ghost" href="#easy">단계별로 이해하기</a></div>
+          <div class="hero-note"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 20 6v5.7c0 4.6-3.2 7.6-8 9.3-4.8-1.7-8-4.7-8-9.3V6z" stroke="currentColor" stroke-width="1.8"/><path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>공식 정책 자료를 우선 확인했습니다. 8월 11일 진행된 독자 AI 모델 2차 평가는 공식 최종 결과 발표 전이므로 추정하지 않았습니다.</span></div>
+          <div class="report-meta"><span class="version-badge" id="reportVersion">v1.0.0</span><span class="dot-sep"></span><span id="reportUpdated">Updated 2026.08.11</span><span class="dot-sep"></span><span id="reportGeneration">AI-assisted · Human review recommended</span></div>
+          <div class="keyword-chips"><span class="keyword-chip">소버린 AI</span><span class="keyword-chip">AI 주권</span><span class="keyword-chip">GPU 5만 장</span><span class="keyword-chip">독자 AI 모델</span><span class="keyword-chip">국가 AI 컴퓨팅센터</span></div>
+        </div>
+        <div class="hero-visual reveal">
+          <div class="hero-orbit" aria-hidden="true"></div>
+          <figure class="hero-media">
+            <img src="assets/thumbnail.png" width="1000" height="563" alt="밤의 지구 위에 Sovereign AI 글자가 배치된 썸네일">
+            <div class="hero-metric-row"><div class="hero-metric"><b>6개 층</b><span>데이터부터 규범까지</span></div><div class="hero-metric"><b>약 5만</b><span>정부 GPU 확보 계획</span></div><div class="hero-metric"><b>2028</b><span>국가 AI 센터 완공 목표</span></div></div>
+            <figcaption><span>숫자는 정책 목표이며 달성을 보장하지 않습니다.</span><span>Report Hub</span></figcaption>
+          </figure>
+        </div>
+        <div class="executive-strip" aria-label="핵심 요약">
+          <article class="exec-card reveal"><b>WHAT IT IS</b><h3>모델 하나가 아닙니다</h3><p>데이터·GPU·모델·인재·운영·규범을 묶은 국가 단위의 AI 역량입니다.</p></article>
+          <article class="exec-card reveal"><b>WHAT IT IS NOT</b><h3>100% 국산화도 아닙니다</h3><p>외국 기술을 쓰더라도 통제권·대체 경로·비상 운영 능력을 확보할 수 있습니다.</p></article>
+          <article class="exec-card reveal"><b>KOREA NOW</b><h3>한국은 실행 단계입니다</h3><p>독자 모델 경쟁, GPU 확보, 해남 컴퓨팅센터, AI기본법이 동시에 움직이고 있습니다.</p></article>
+        </div>
+      </section>
+    </div>
+
+    <section class="section-soft" id="summary">
+      <div class="container">
+        <div class="section-kicker reveal">ONE-MINUTE BRIEF</div>
+        <h2 class="section-title reveal">소버린 AI의 핵심은 국산화율보다 <span class="blue">선택권과 복구 능력</span>입니다</h2>
+        <p class="section-desc reveal">평소에는 글로벌 AI 서비스를 편리하게 써도 됩니다. 다만 공공·국방·의료·금융처럼 멈추면 곤란한 영역에서는 데이터와 운영권, 대체 모델과 컴퓨팅 자원을 스스로 통제할 수 있어야 합니다.</p>
+        <div class="verdict reveal"><small>REPORT HUB 한 문장 결론</small><h3>소버린 AI는 “모든 것을 우리끼리 만들자”가 아니라, 꼭 필요할 때 외부 공급자 없이도 핵심 AI를 계속 운영할 수 있는 선택권을 확보하는 일입니다.</h3><p>국가의 AI 주권은 독자 모델 하나로 완성되지 않습니다. 모델이 돌아갈 GPU, 학습할 데이터, 운영할 사람, 장애에 대응할 조직, 국민의 권리를 지킬 규범이 같이 있어야 합니다.</p></div>
+        <div class="metric-board">
+          <article class="metric-tile reveal"><span>구성 요소</span><strong>6개 층</strong><p>데이터·컴퓨팅·모델·인재·운영·규범</p></article>
+          <article class="metric-tile reveal"><span>독자 모델 현황</span><strong>4개 팀</strong><p>2차 평가 진행, 3개 팀 진출 예정. <a class="cite" href="#src-05">[출처 5]</a></p></article>
+          <article class="metric-tile reveal"><span>컴퓨팅 계획</span><strong>약 5만 장</strong><p>2027년 배분계획 수립. <a class="cite" href="#src-06">[출처 6]</a></p></article>
+          <article class="metric-tile reveal"><span>국가 센터</span><strong>1.5만 장</strong><p>2028년 완공 목표. <a class="cite" href="#src-07">[출처 7]</a></p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="easy">
+      <div class="container">
+        <div class="section-kicker reveal">STEP 1 · THE EASY ANALOGY</div>
+        <h2 class="section-title reveal">AI를 음식으로 바꾸면, 소버린 AI는 <span class="marker">국가의 AI 주방</span>입니다</h2>
+        <p class="section-desc reveal">해외 AI API는 배달앱처럼 빠르고 편합니다. 소버린 AI는 배달을 끊자는 이야기가 아닙니다. 배달이 멈췄을 때 병원·행정·국방에 필요한 음식을 직접 만들 수 있는 주방도 준비하자는 이야기입니다.</p>
+        <div class="analogy">
+          <article class="analogy-main reveal"><span class="label">가장 쉬운 비유</span><h3>배달앱만 쓰는 나라 vs 주방도 가진 나라</h3><p>배달앱만 쓰면 메뉴 변경, 가격 인상, 서비스 중단에 그대로 영향을 받습니다. 반대로 주방이 있으면 평소에는 배달을 활용하면서도 중요한 메뉴는 직접 만들 수 있습니다.</p><p><strong>여기서 중요한 점:</strong> 오븐이나 칼을 외국산으로 사도 주방의 열쇠, 레시피, 재료, 운영자가 우리 통제 안에 있으면 일정 수준의 주권을 확보할 수 있습니다.</p></article>
+          <div class="kitchen-stack reveal">
+            <div class="stack-row"><div class="stack-icon">D</div><div><strong>데이터 = 재료</strong><p>어떤 자료를 모으고, 어디에 보관하며, 누가 사용할 수 있는가.</p></div></div>
+            <div class="stack-row"><div class="stack-icon">C</div><div><strong>컴퓨팅 = 주방과 전기</strong><p>GPU·데이터센터·네트워크·전력이 없으면 큰 모델을 만들거나 돌릴 수 없습니다.</p></div></div>
+            <div class="stack-row"><div class="stack-icon">M</div><div><strong>모델 = 레시피와 조리법</strong><p>언어·이미지·업무를 처리하는 핵심 지능입니다.</p></div></div>
+            <div class="stack-row"><div class="stack-icon">T</div><div><strong>인재·소프트웨어 = 요리사와 도구</strong><p>모델을 고치고 최적화하며 장애를 해결할 사람이 필요합니다.</p></div></div>
+            <div class="stack-row"><div class="stack-icon">O</div><div><strong>운영·보안 = 주방 열쇠와 위생</strong><p>로그, 접근권한, 백업, 사고 대응과 공급자 교체 능력입니다.</p></div></div>
+            <div class="stack-row"><div class="stack-icon">G</div><div><strong>법·규범 = 영업 허가와 기준</strong><p>개인정보, 투명성, 안전, 책임을 누구의 가치와 법에 맞출지 정합니다.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-soft" id="steps">
+      <div class="container">
+        <div class="section-kicker reveal">STEP 2 · SIX LAYERS</div>
+        <h2 class="section-title reveal">하나라도 빠지면 “우리 AI”처럼 보여도 <span class="blue">실제 통제권은 약할 수 있습니다</span></h2>
+        <p class="section-desc reveal">NVIDIA는 소버린 AI를 자국 인프라·데이터·인력·비즈니스를 활용해 AI를 생산하는 국가 역량으로 설명합니다. 다만 이것은 업계의 실무 정의 중 하나이며, 각국 정책을 보면 범위와 우선순위가 서로 다릅니다. <a class="cite" href="#src-01">[출처 1]</a></p>
+        <div class="step-grid">
+          <article class="step-card reveal"><span class="num">01</span><h3>데이터 주권</h3><p>한국어, 행정, 의료, 제조 데이터가 어떤 법 아래 저장되고 학습에 쓰이는지 통제합니다. 데이터가 있어도 사용권과 품질이 불명확하면 모델을 키우기 어렵습니다.</p></article>
+          <article class="step-card reveal"><span class="num">02</span><h3>컴퓨팅 주권</h3><p>필요한 GPU를 제때 확보하고, 연구자·스타트업·공공기관이 합리적인 조건으로 쓸 수 있어야 합니다. 숫자보다 실제 접근 대기시간과 가동률이 중요합니다.</p></article>
+          <article class="step-card reveal"><span class="num">03</span><h3>모델 주권</h3><p>모델의 구조·가중치·학습 방식·라이선스를 이해하고 수정할 수 있는 능력입니다. 단순히 외국 모델을 한국어로 포장하는 것과는 다릅니다.</p></article>
+          <article class="step-card reveal"><span class="num">04</span><h3>인재·소프트웨어</h3><p>연구자만이 아니라 데이터 엔지니어, 보안, MLOps, 반도체·시스템 최적화 인력이 필요합니다. 사람이 없으면 장비도 모델도 금방 낡습니다.</p></article>
+          <article class="step-card reveal"><span class="num">05</span><h3>운영·공급망</h3><p>장애, 가격 인상, 수출 제한, 계약 종료에 대응할 수 있어야 합니다. 한 회사의 API와 칩·클라우드에 모두 묶여 있으면 교체가 어렵습니다.</p></article>
+          <article class="step-card reveal"><span class="num">06</span><h3>법·가치·신뢰</h3><p>누가 책임지고 어떤 권리를 보호할지 정합니다. 한국 AI기본법은 거버넌스, 투명성, 안전, 고영향 AI 책무를 제도화했습니다. <a class="cite" href="#src-03">[출처 3]</a></p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="not-this">
+      <div class="container">
+        <div class="section-kicker reveal">STEP 3 · CLEAR THE CONFUSION</div>
+        <h2 class="section-title reveal">소버린 AI를 둘러싼 <span class="blue">네 가지 오해</span>부터 지워야 합니다</h2>
+        <p class="section-desc reveal">이 단어가 애국 마케팅이나 국산 모델 홍보 문구로만 쓰이면 판단이 흐려집니다. 아래 기준으로 보면 훨씬 선명해집니다.</p>
+        <div class="myth-table reveal">
+          <div class="myth-row"><div class="myth-cell wrong"><span class="myth-icon">×</span>외국 기술을 하나라도 쓰면 소버린 AI가 아니다</div><div class="myth-cell right"><span class="myth-icon">✓</span>외국 칩·클라우드를 써도 데이터 통제, 운영권, 대체 경로, 계약상 권리를 확보하면 주권 수준을 높일 수 있습니다.</div></div>
+          <div class="myth-row"><div class="myth-cell wrong"><span class="myth-icon">×</span>국산 LLM 하나 만들면 끝이다</div><div class="myth-cell right"><span class="myth-icon">✓</span>모델이 있어도 GPU·전력·데이터·인재·배포 소프트웨어·보안 운영이 없으면 지속적으로 고칠 수 없습니다.</div></div>
+          <div class="myth-row"><div class="myth-cell wrong"><span class="myth-icon">×</span>오픈웨이트면 오픈소스이고 상업 이용도 자유롭다</div><div class="myth-cell right"><span class="myth-icon">✓</span>가중치 공개, 소스 공개, 무료, 상업 이용 가능은 서로 다른 조건입니다. 라이선스를 별도로 확인해야 합니다.</div></div>
+          <div class="myth-row"><div class="myth-cell wrong"><span class="myth-icon">×</span>소버린 AI는 인터넷을 닫고 자급자족하는 정책이다</div><div class="myth-cell right"><span class="myth-icon">✓</span>핵심은 고립이 아니라 협력할 상대를 선택하고, 필요하면 공급자를 바꿀 수 있는 협상력과 회복탄력성입니다.</div></div>
+        </div>
+        <div class="table-shell reveal" style="margin-top:22px" role="region" aria-label="관련 용어 비교표" tabindex="0">
+          <table class="data-table"><thead><tr><th>용어</th><th>핵심 질문</th><th>범위</th><th>소버린 AI와의 관계</th></tr></thead><tbody>
+            <tr><td>데이터 주권</td><td>데이터가 어디에 있고 누가 통제하는가?</td><td>저장·이전·접근·사용권</td><td>소버린 AI의 한 층</td></tr>
+            <tr><td>소버린 클라우드</td><td>클라우드가 어느 법과 운영 통제 아래 있는가?</td><td>인프라·운영·데이터 위치</td><td>컴퓨팅·운영 기반</td></tr>
+            <tr><td>국산 AI 모델</td><td>국내 기업·연구진이 모델을 만들었는가?</td><td>모델 자체</td><td>중요하지만 전체는 아님</td></tr>
+            <tr><td>오픈웨이트</td><td>학습된 가중치를 내려받을 수 있는가?</td><td>배포·수정 가능성</td><td>통제권을 높일 수 있으나 라이선스 확인 필요</td></tr>
+            <tr><td>소버린 AI</td><td>국가가 핵심 AI를 개발·운영·감사·교체할 수 있는가?</td><td>데이터부터 규범까지 전주기</td><td>가장 넓은 개념</td></tr>
+          </tbody></table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-blue" id="why-now">
+      <div class="container">
+        <div class="section-kicker reveal">WHY NOW</div>
+        <h2 class="section-title reveal">AI가 편의 기능에서 <span style="color:var(--lime)">국가 인프라</span>로 바뀌고 있기 때문입니다</h2>
+        <p class="section-desc reveal">검색과 글쓰기만 할 때는 서비스가 잠시 멈춰도 불편한 정도입니다. 하지만 행정, 병원, 금융, 제조, 국방의 의사결정과 자동화에 들어가면 AI 중단은 국가 운영 리스크가 됩니다.</p>
+        <div class="risk-grid">
+          <article class="risk-card reveal"><b>01</b><h3>서비스 연속성</h3><p>해외 API 장애, 계약 종료, 가격 인상, 수출 제한이 생겨도 핵심 업무를 이어갈 수 있어야 합니다.</p></article>
+          <article class="risk-card reveal"><b>02</b><h3>언어와 문화</h3><p>한국어 존댓말, 행정 용어, 법·의료 맥락, 지역 문화는 범용 영어 중심 모델이 놓치기 쉽습니다.</p></article>
+          <article class="risk-card reveal"><b>03</b><h3>데이터 보호</h3><p>민감한 공공·산업 데이터가 어디로 이동하고 얼마나 보존되는지 계약과 기술로 통제해야 합니다.</p></article>
+          <article class="risk-card reveal"><b>04</b><h3>경제적 가치</h3><p>모델·클라우드·반도체·서비스에서 생기는 일자리와 지식재산을 국내 생태계에 남길 필요가 있습니다.</p></article>
+          <article class="risk-card reveal"><b>05</b><h3>가치와 책임</h3><p>차별, 투명성, 안전, 표현 규범을 국내 법과 사회적 합의에 맞게 적용해야 합니다.</p></article>
+          <article class="risk-card reveal"><b>06</b><h3>협상력</h3><p>대체 모델과 자체 운영 능력이 있어야 글로벌 공급자와 가격·보안·데이터 조건을 협상할 수 있습니다.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-soft" id="timeline">
+      <div class="container">
+        <div class="section-kicker reveal">GLOBAL TIMELINE · 2024—2026</div>
+        <h2 class="section-title reveal">말로만 하던 AI 주권이 <span class="blue">컴퓨팅센터·펀드·공용 GPU</span>로 바뀌었습니다</h2>
+        <p class="section-desc reveal">각국의 방법은 다릅니다. 이를 비교하면 소버린 AI가 단일 제품명이 아니라 국가별 약점을 보완하는 정책 묶음이라는 점이 보입니다.</p>
+        <div class="timeline reveal">
+          <article class="timeline-item"><div class="timeline-date">2024.03</div><div class="timeline-region">인도</div><div class="timeline-copy"><h3>IndiaAI Mission 본격화</h3><p>공용 컴퓨팅과 자국 언어·용도에 맞춘 모델 개발을 국가 프로젝트로 묶었습니다. 이후 2026년 3만8천 개 이상 GPU와 12개 모델 팀으로 확대됐습니다. <a class="cite" href="#src-15">[출처 15]</a> <a class="cite" href="#src-11">[출처 11]</a></p></div></article>
+          <article class="timeline-item"><div class="timeline-date">2024.12</div><div class="timeline-region">캐나다</div><div class="timeline-copy"><h3>Sovereign AI Compute Strategy 발표</h3><p>국내 데이터센터, 공공 슈퍼컴퓨팅, 중소기업 컴퓨팅 접근의 3축에 최대 20억 캐나다달러를 배치했습니다. <a class="cite" href="#src-13">[출처 13]</a></p></div></article>
+          <article class="timeline-item"><div class="timeline-date">2025.08</div><div class="timeline-region">한국</div><div class="timeline-copy"><h3>독자 AI 파운데이션 모델 프로젝트 착수</h3><p>5개 정예팀 경쟁으로 시작했고, 2026년 2월 기준 LG AI연구원·SKT·업스테이지·모티프테크놀로지스 4개 팀 체제로 재편됐습니다. <a class="cite" href="#src-04">[출처 4]</a></p></div></article>
+          <article class="timeline-item"><div class="timeline-date">2025.12</div><div class="timeline-region">대만</div><div class="timeline-copy"><h3>NCHC 클라우드 컴퓨팅센터 개소</h3><p>국가 컴퓨팅, 자체 모델, 지역 데이터 보존, 국내 시스템 아키텍처를 함께 묶은 소버린 AI 기반을 제시했습니다. <a class="cite" href="#src-12">[출처 12]</a></p></div></article>
+          <article class="timeline-item"><div class="timeline-date">2026.01</div><div class="timeline-region">한국</div><div class="timeline-copy"><h3>AI기본법 시행</h3><p>진흥 정책과 함께 투명성·안전성·고영향 AI 책임을 법제도 안에 넣었습니다. 최소 1년 규제 유예와 지원데스크도 운영합니다. <a class="cite" href="#src-03">[출처 3]</a></p></div></article>
+          <article class="timeline-item"><div class="timeline-date">2026.02</div><div class="timeline-region">한국</div><div class="timeline-copy"><h3>인공지능 행동계획 2026~2028 확정</h3><p>AI고속도로, 독자 범용 모델, 인재, 규제 혁신과 산업·공공·지역·국방·문화 AX를 3개 정책축·12대 전략분야로 묶었습니다. <a class="cite" href="#src-02">[출처 2]</a></p></div></article>
+          <article class="timeline-item"><div class="timeline-date">2026.04</div><div class="timeline-region">캐나다·영국</div><div class="timeline-copy"><h3>컴퓨팅과 자국 기업 육성으로 분화</h3><p>캐나다는 국내 대규모 슈퍼컴퓨팅 공모를, 영국은 5억 파운드 Sovereign AI 펀드와 컴퓨팅·인재·조달 지원을 가동했습니다. <a class="cite" href="#src-09">[출처 9]</a> <a class="cite" href="#src-10">[출처 10]</a></p></div></article>
+          <article class="timeline-item"><div class="timeline-date">2026.07</div><div class="timeline-region">EU</div><div class="timeline-copy"><h3>최대 7개 AI 기가팩토리 공모</h3><p>공공자금 최대 100억 유로와 민간투자 최소 200억 유로를 결합해 EU 인프라와 규범 안에서 프런티어 모델을 개발하려 합니다. <a class="cite" href="#src-08">[출처 8]</a></p></div></article>
+          <article class="timeline-item"><div class="timeline-date">2026.08.03</div><div class="timeline-region">한국</div><div class="timeline-copy"><h3>해남 국가 AI 컴퓨팅센터 착공</h3><p>2028년까지 첨단 AI 반도체 1만5천 장 규모를 목표로 하며, 2027년 일부 자원을 먼저 서비스할 계획입니다. <a class="cite" href="#src-07">[출처 7]</a></p></div></article>
+          <article class="timeline-item"><div class="timeline-date">2026.08.08~11</div><div class="timeline-region">한국</div><div class="timeline-copy"><h3>독자 모델 2차 평가</h3><p>4개 팀 모델을 국민 평가단 200명도 직접 사용했습니다. 4개 중 3개 팀이 다음 단계에 진출할 예정이지만, 기준일 현재 공식 최종 결과는 발표 전입니다. <a class="cite" href="#src-05">[출처 5]</a></p></div></article>
+        </div>
+        <div class="country-grid">
+          <article class="country-card reveal"><b>EU</b><h3>인프라 + 규범</h3><p>AI 기가팩토리에서 모델을 만들되 EU 데이터·안전·윤리 기준을 적용합니다.</p></article>
+          <article class="country-card reveal"><b>CANADA</b><h3>국내 컴퓨팅</h3><p>연구자와 기업이 자국 안에서 안전하고 안정적으로 대규모 연산에 접근하게 합니다.</p></article>
+          <article class="country-card reveal"><b>UK</b><h3>기업 성장 경로</h3><p>자국 AI 기업에 자본, GPU 시간, 인재 비자, 공공조달 기회를 묶어 제공합니다.</p></article>
+          <article class="country-card reveal"><b>INDIA</b><h3>공용 GPU + 현지 언어</h3><p>대규모 공용 컴퓨팅과 인도 언어·현장 문제에 맞춘 모델을 동시에 키웁니다.</p></article>
+          <article class="country-card reveal"><b>TAIWAN</b><h3>하드웨어 풀스택</h3><p>반도체 강점을 데이터센터·네트워크·자체 시스템·모델 운영으로 확장합니다.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="korea">
+      <div class="container">
+        <div class="section-kicker reveal">KOREA · WHERE WE ARE</div>
+        <h2 class="section-title reveal">한국의 소버린 AI는 지금 <span class="blue">법·모델·GPU·센터</span> 네 축이 동시에 움직입니다</h2>
+        <p class="section-desc reveal">뉴스를 따로 보면 숫자만 많아 보입니다. 서로 연결하면 구조가 보입니다. 법이 운영 기준을 만들고, GPU와 센터가 연산 기반을 제공하며, 독자 모델이 그 위에서 실제 지능을 만듭니다.</p>
+        <div class="korea-board">
+          <article class="korea-card reveal"><span>법·거버넌스</span><strong>AI기본법</strong><p>2026년 1월 22일 시행. 투명성·안전·고영향 AI 책무를 포함합니다. <a class="cite" href="#src-03">[출처 3]</a></p></article>
+          <article class="korea-card reveal"><span>국가 전략</span><strong>3축·12분야</strong><p>AI고속도로와 독자 모델부터 산업·공공·지역·국방·문화까지 연결합니다. <a class="cite" href="#src-02">[출처 2]</a></p></article>
+          <article class="korea-card reveal"><span>모델 개발</span><strong>4개 팀</strong><p>LG AI연구원·SKT·업스테이지·모티프테크놀로지스가 2차 평가에 참여했습니다. <a class="cite" href="#src-04">[출처 4]</a></p></article>
+          <article class="korea-card reveal"><span>컴퓨팅</span><strong>GPU 약 5만</strong><p>국가 AI 프로젝트 등에 투입할 2027년 배분계획을 선제적으로 수립합니다. <a class="cite" href="#src-06">[출처 6]</a></p></article>
+          <article class="korea-card reveal"><span>국가 센터</span><strong>1만5천 장</strong><p>해남 센터를 2028년까지 구축하고 2027년 일부 자원을 조기 서비스합니다. <a class="cite" href="#src-07">[출처 7]</a></p></article>
+          <article class="korea-card reveal"><span>국산 반도체</span><strong>R&amp;D Zone</strong><p>설계·시제품 검증과 상용 서비스 운영으로 국산 AI 반도체 실증을 지원할 계획입니다. <a class="cite" href="#src-07">[출처 7]</a></p></article>
+          <article class="korea-card reveal"><span>국민 서비스</span><strong>모두의 AI</strong><p>전 국민이 쉽고 부담 없이 쓰는 AI와 AI 민생 10대 프로젝트를 정책에 담았습니다. <a class="cite" href="#src-06">[출처 6]</a></p></article>
+          <article class="korea-card reveal"><span>보안 특화</span><strong>AI 보안 모델</strong><p>사이버보안 특화 독자 파운데이션 모델 개발도 하반기 전략에 포함됐습니다. <a class="cite" href="#src-06">[출처 6]</a></p></article>
+        </div>
+        <div class="news-alert reveal"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 21 19H3L12 3Z" stroke="currentColor" stroke-width="1.8"/><path d="M12 9v4.5M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><div><b>최신 상태 주의:</b> 2차 평가 기간은 8월 8~11일로 보도됐지만, 이 보고서 기준일인 2026년 8월 11일 현재 정부의 공식 최종 통과팀 발표는 확인되지 않았습니다. 기사 제목이나 커뮤니티 추정으로 결과를 앞당겨 쓰지 않았습니다.</div></div>
+      </div>
+    </section>
+
+    <section class="section-blue" id="roadmap">
+      <div class="container">
+        <div class="section-kicker reveal">KOREA ROADMAP · OFFICIAL PLAN + PRACTICAL MILESTONES</div>
+        <h2 class="section-title reveal">한국의 다음 3년은 “모델 발표”보다 <span style="color:var(--lime)">실제로 쓰이는 시스템</span>을 만드는 기간입니다</h2>
+        <p class="section-desc reveal">아래에서 2026~2028은 정부가 공개한 계획과 일정에 기반했습니다. 2029년 이후 항목은 그 계획이 성공하려면 이어져야 할 Report Hub의 분석입니다.</p>
+        <div class="roadmap">
+          <article class="roadmap-card reveal"><span>2026</span><h3>기준과 후보를 세우는 해</h3><p>법·전략·모델·컴퓨팅 사업을 하나의 운영 체계로 연결해야 합니다.</p><ul><li>독자 모델 2차 평가와 3개 팀 진출</li><li>GPU 약 5만 장 확보·2027 배분 설계</li><li>AI기본법 지원과 고영향 AI 기준 정착</li><li>한국어·산업 업무 평가셋 공개</li></ul></article>
+          <article class="roadmap-card reveal"><span>2027</span><h3>조기 서비스와 현장 실증</h3><p>센터가 완공되기 전 일부 컴퓨팅 자원을 먼저 서비스할 계획입니다.</p><ul><li>국가 AI 센터 일부 자원 조기 제공</li><li>스타트업·대학·공공의 공정한 GPU 배분</li><li>독자 모델의 공공·제조·의료·국방 실증</li><li>모두의 AI·AI 민생 서비스 순차 운영</li></ul></article>
+          <article class="roadmap-card reveal"><span>2028</span><h3>국가 AI 센터 완공 목표</h3><p>1만5천 장 규모 인프라와 국산 AI 반도체 검증 환경이 핵심입니다.</p><ul><li>해남 국가 AI 컴퓨팅센터 완공</li><li>R&amp;D Zone에서 국산 칩·시스템 검증</li><li>2026~2028 행동계획 성과 점검</li><li>모델·칩·클라우드의 교체 가능성 검증</li></ul></article>
+          <article class="roadmap-card reveal"><span>2029+</span><h3>수출과 표준으로 넘어가야 합니다</h3><p>국내 프로젝트로 끝나면 비용센터가 됩니다. 해외에서 선택받아야 산업이 됩니다.</p><ul><li>한국어 외 다국어·산업 특화 수출</li><li>아시아 AI 인프라 허브와 국제 공동연구</li><li>안전·감사·라이선스 표준의 수출</li><li>지역 전력·물·인재와 지속가능성 관리</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-soft" id="success">
+      <div class="container">
+        <div class="section-kicker reveal">WHAT SUCCESS LOOKS LIKE</div>
+        <h2 class="section-title reveal">GPU 숫자와 벤치마크 순위보다 <span class="blue">일반 기업이 실제로 쓸 수 있는가</span>를 봐야 합니다</h2>
+        <p class="section-desc reveal">소버린 AI가 성공했는지 판단하려면 “몇 장 샀는가”에서 멈추면 안 됩니다. 아래 지표가 공개돼야 국민과 기업이 정책 효과를 확인할 수 있습니다.</p>
+        <div class="success-grid">
+          <article class="success-card reveal"><span class="tag">COMPUTE ACCESS</span><h3>접근 대기시간</h3><p>스타트업·대학이 GPU 신청 후 실제 사용까지 얼마나 기다리는가.</p><ul><li>평균·상위 10% 대기시간</li><li>가동률과 실패율</li><li>기업 규모별 배분 비중</li></ul></article>
+          <article class="success-card reveal"><span class="tag">REAL TASK QUALITY</span><h3>한국어 실무 성능</h3><p>시험 문제만 잘 푸는지, 행정·제조·의료·법무 업무를 끝까지 처리하는지 봅니다.</p><ul><li>사람 수정 시간</li><li>환각·거절·보안 실패</li><li>완료 업무당 비용</li></ul></article>
+          <article class="success-card reveal"><span class="tag">EXIT OPTION</span><h3>공급자 교체 가능성</h3><p>한 모델이나 클라우드가 멈춰도 다른 시스템으로 이동할 수 있어야 합니다.</p><ul><li>데이터·프롬프트 이식성</li><li>모델 라우팅 표준</li><li>비상 운영 훈련</li></ul></article>
+          <article class="success-card reveal"><span class="tag">DOMESTIC STACK</span><h3>국산 칩 실증</h3><p>국산 AI 반도체가 데모가 아니라 실제 서비스에서 성능·전력·안정성을 증명해야 합니다.</p><ul><li>와트당 처리량</li><li>개발도구 호환성</li><li>상용 고객 수</li></ul></article>
+          <article class="success-card reveal"><span class="tag">PUBLIC TRUST</span><h3>감사와 권리 보호</h3><p>국산이라는 이유로 감시와 오류를 허용해서는 안 됩니다.</p><ul><li>영향평가·감사 결과</li><li>이의제기와 사람 검토</li><li>사고 공개·복구 시간</li></ul></article>
+          <article class="success-card reveal"><span class="tag">GLOBAL DEMAND</span><h3>수출과 생태계</h3><p>해외 고객과 개발자가 한국 모델·칩·서비스를 자발적으로 선택하는가.</p><ul><li>해외 매출·API 사용</li><li>오픈 생태계 기여</li><li>국제 공동 프로젝트</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="self-check">
+      <div class="container">
+        <div class="section-kicker reveal">PRACTICAL CHECK · FOR COMPANIES</div>
+        <h2 class="section-title reveal">우리 조직의 AI 주권은 어느 정도일까?</h2>
+        <p class="section-desc reveal">아래는 정책 평가가 아니라 개념을 이해하기 위한 설명용 자가진단입니다. 체크가 적다면 AI를 쓰지 말라는 뜻이 아니라, 장애·보안·계약 종료 시 무엇을 준비해야 하는지 보여줍니다.</p>
+        <div class="score-layout">
+          <aside class="score-panel reveal" aria-live="polite"><small>SOVEREIGNTY READINESS</small><div class="score-number"><strong id="scoreValue">0</strong><span>/ 100</span></div><div class="score-label" id="scoreLabel">외부 서비스 의존 단계</div><div class="score-bar"><i id="scoreBar"></i></div><p id="scoreText">현재는 편리한 AI 서비스를 빌려 쓰는 단계입니다. 먼저 데이터 위치와 공급자 중단 대응부터 확인해보세요.</p></aside>
+          <div class="check-list reveal">
+            <label class="check-item"><input class="sovereign-check" type="checkbox"><span><strong>데이터 위치와 사용권을 알고 있다</strong><p>입력 데이터가 어디에 저장되고 학습에 재사용되는지 계약과 설정으로 확인했습니다.</p></span></label>
+            <label class="check-item"><input class="sovereign-check" type="checkbox"><span><strong>두 번째 모델 또는 공급자가 준비돼 있다</strong><p>주력 API 장애나 가격 인상 시 전환할 후보와 최소 테스트가 있습니다.</p></span></label>
+            <label class="check-item"><input class="sovereign-check" type="checkbox"><span><strong>민감 업무는 별도 배포 경로가 있다</strong><p>private cloud, 국내 리전, 온프레미스, 격리 환경 중 하나를 운영할 수 있습니다.</p></span></label>
+            <label class="check-item"><input class="sovereign-check" type="checkbox"><span><strong>모델 출력과 행동을 감사할 수 있다</strong><p>프롬프트·도구 호출·데이터 접근·승인·결과 로그가 남습니다.</p></span></label>
+            <label class="check-item"><input class="sovereign-check" type="checkbox"><span><strong>운영 인력과 사고 대응 절차가 있다</strong><p>오류, 유출, 장애, 모델 업데이트를 담당할 사람과 중단 기준이 정해져 있습니다.</p></span></label>
+            <label class="check-item"><input class="sovereign-check" type="checkbox"><span><strong>계약 종료 후 데이터·업무를 옮길 수 있다</strong><p>데이터 내보내기, 프롬프트·평가셋 이식, 모델 교체 계획을 문서화했습니다.</p></span></label>
+          </div>
+        </div>
+        <div class="callout reveal"><span aria-hidden="true">※</span><div><strong>기업에서의 소버린 AI는 규모가 아니라 통제 수준입니다.</strong> 자체 초거대 모델을 만들지 않아도 데이터 분류, 멀티모델 라우팅, 국내 리전, 로그·승인, exit plan을 갖추면 실질적인 주권과 회복탄력성을 높일 수 있습니다.</div></div>
+      </div>
+    </section>
+
+    <section class="section-blue" id="risks">
+      <div class="container">
+        <div class="section-kicker reveal">RISKS & COUNTERPOINTS</div>
+        <h2 class="section-title reveal">소버린 AI가 필요하다고 해서 <span style="color:var(--lime)">모든 국산 프로젝트가 옳은 것은 아닙니다</span></h2>
+        <p class="section-desc reveal">기술 주권은 좋은 목표지만, 비용과 권한이 커지는 만큼 공개 검증과 반론이 필요합니다. 검수는 꼭 사용자가 하듯, 국가 AI도 국민과 시장의 검수를 받아야 합니다.</p>
+        <div class="risk-grid">
+          <article class="risk-card reveal"><b>01</b><h3>비용과 기회비용</h3><p>최첨단 모델과 데이터센터는 매우 비쌉니다. 모든 계층을 국산화하기보다 전략적으로 필요한 층을 선택해야 합니다.</p></article>
+          <article class="risk-card reveal"><b>02</b><h3>보호주의 함정</h3><p>국산이라는 이유만으로 낮은 품질을 의무 구매하면 혁신이 느려질 수 있습니다. 글로벌 모델과 블라인드 비교가 필요합니다.</p></article>
+          <article class="risk-card reveal"><b>03</b><h3>숨은 외부 의존</h3><p>국산 모델도 GPU, CUDA 계열 도구, 네트워크, 클라우드 운영에서 외부 공급망에 크게 의존할 수 있습니다.</p></article>
+          <article class="risk-card reveal"><b>04</b><h3>벤치마크 과적합</h3><p>리더보드 점수를 높여도 실제 업무와 안전성이 따라오지 않을 수 있습니다. 2차 평가가 산업 적용성과 국민 사용성을 함께 보는 이유입니다. <a class="cite" href="#src-05">[출처 5]</a></p></article>
+          <article class="risk-card reveal"><b>05</b><h3>감시와 권력 집중</h3><p>데이터를 국내에 모은다는 명분이 과도한 감시로 이어져서는 안 됩니다. 독립 감사와 이의제기 절차가 필요합니다.</p></article>
+          <article class="risk-card reveal"><b>06</b><h3>전력·물·지역 영향</h3><p>대형 데이터센터는 전력망, 냉각수, 지역경제와 연결됩니다. 장비 수뿐 아니라 에너지 효율과 지역 수용성을 봐야 합니다.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-soft" id="guide">
+      <div class="container">
+        <div class="section-kicker reveal">WHAT IT MEANS FOR US</div>
+        <h2 class="section-title reveal">일반 시민과 기업에는 무엇이 달라질까?</h2>
+        <p class="section-desc reveal">소버린 AI는 먼 국가 프로젝트처럼 보이지만, 잘 설계되면 우리가 쓰는 서비스의 가격·언어 품질·보안·중단 위험에 직접 영향을 줍니다.</p>
+        <div class="success-grid">
+          <article class="success-card reveal"><span class="tag">개인</span><h3>한국어와 생활 맥락</h3><p>행정·교육·복지·의료 안내가 국내 제도와 언어 습관을 더 정확히 이해할 가능성이 커집니다.</p></article>
+          <article class="success-card reveal"><span class="tag">기업</span><h3>가격과 공급자 협상력</h3><p>해외 API 하나에만 묶이지 않고 국내 모델·클라우드·자체 배포를 섞어 비용과 보안을 조정할 수 있습니다.</p></article>
+          <article class="success-card reveal"><span class="tag">개발자</span><h3>GPU와 모델 접근</h3><p>공용 컴퓨팅이 실제로 열리면 소수 대기업이 아니어도 큰 모델을 실험하고 제품을 만들 기회가 늘어납니다.</p></article>
+          <article class="success-card reveal"><span class="tag">공공기관</span><h3>민감 데이터 통제</h3><p>국내 법과 감사 체계 아래에서 행정·국방·의료 AI를 운영할 수 있는 선택지가 늘어납니다.</p></article>
+          <article class="success-card reveal"><span class="tag">반도체 산업</span><h3>실제 서비스 검증</h3><p>국산 AI 반도체가 연구용 시제품을 넘어 상용 추론과 데이터센터에서 성능을 증명할 수 있습니다.</p></article>
+          <article class="success-card reveal"><span class="tag">사회</span><h3>새로운 책임</h3><p>‘우리 AI’라 해도 오류와 차별은 생깁니다. 사람이 최종 판단하고 이의를 제기할 권리는 더 중요해집니다.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <div class="section-kicker reveal">FAQ</div>
+        <h2 class="section-title reveal">비전공자가 가장 많이 묻는 질문</h2>
+        <div class="faq-list">
+          <details class="faq-item reveal"><summary>소버린 AI와 ‘국가대표 AI’는 같은 뜻인가요?</summary><div class="faq-answer">같지 않습니다. 국가대표로 선정된 독자 모델은 소버린 AI의 중요한 구성 요소지만, 전체는 아닙니다. 데이터, GPU·센터, 인재, 운영·보안, 법·규범까지 함께 있어야 국가 차원의 소버린 AI 역량이 됩니다.</div></details>
+          <details class="faq-item reveal"><summary>외국산 NVIDIA GPU를 쓰면 소버린 AI가 아닌가요?</summary><div class="faq-answer">그렇게 단순하게 나눌 수 없습니다. 외국산 칩을 사용해도 장비 위치, 운영권, 데이터, 모델, 계약, 비상 대체 경로를 국내에서 통제할 수 있습니다. 다만 칩과 소프트웨어 공급망 의존은 남으므로 국산 반도체와 호환 소프트웨어를 키우는 이유가 됩니다.</div></details>
+          <details class="faq-item reveal"><summary>한국도 ChatGPT와 똑같은 서비스를 꼭 만들어야 하나요?</summary><div class="faq-answer">모든 기능을 복제할 필요는 없습니다. 한국어·공공·제조·의료·국방처럼 전략적 가치가 높고 국내 데이터가 강한 분야에서 경쟁력을 만드는 편이 현실적입니다. 범용 서비스는 글로벌 모델과 경쟁·협력하며 멀티모델 구조로 갈 가능성이 큽니다.</div></details>
+          <details class="faq-item reveal"><summary>오픈소스 모델만 쓰면 AI 주권이 생기나요?</summary><div class="faq-answer">아닙니다. 오픈웨이트나 오픈소스는 모델 통제권을 높이는 수단입니다. 하지만 GPU, 데이터, 운영 인력, 보안, 라이선스, 업데이트 능력이 없으면 실제 서비스 주권은 낮습니다.</div></details>
+          <details class="faq-item reveal"><summary>정부가 GPU 5만 장을 확보하면 문제가 해결되나요?</summary><div class="faq-answer">장비 확보는 출발점입니다. 누가 얼마나 빨리 접근하는지, 가동률과 전력 효율은 어떤지, 모델과 제품으로 이어지는지, 배분 기준이 공정한지를 같이 봐야 합니다. 그래서 대기시간·가동률·성과 공개가 중요합니다.</div></details>
+          <details class="faq-item reveal"><summary>2026년 8월 독자 모델 평가 결과는 나왔나요?</summary><div class="faq-answer">이 보고서 기준일인 2026년 8월 11일 현재 공식 최종 통과팀 발표는 확인되지 않았습니다. 4개 팀 중 3개가 다음 단계로 진출할 예정이며, 국민 평가단 200명이 8월 8~11일 모델을 직접 평가했다는 보도까지만 반영했습니다.</div></details>
+          <details class="faq-item reveal"><summary>한국이 소버린 AI에 성공할 가능성은 있나요?</summary><div class="faq-answer">반도체·통신·제조·한국어 데이터라는 강점이 있어 가능성은 있습니다. 다만 성공은 모델 순위보다 컴퓨팅 접근성, 인재, 소프트웨어 생태계, 실제 기업 도입, 안전·감사, 해외 고객으로 증명해야 합니다. 목표는 분명하지만 결과는 자동으로 따라오지 않습니다.</div></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sources" id="sources">
+    <div class="container">
+      <div class="source-head"><div><h2>참고 자료와 출처</h2><p>공식 정부·기관 자료를 우선하고, 8월 평가의 최신 진행 상태만 연합뉴스 보도로 보완했습니다. 확인일 2026.08.11.</p></div><button class="btn btn-ghost" type="button" onclick="window.print()">전체 PDF 저장</button></div>
+      <div class="source-grid"><a class="source-card" id="src-01" href="https://resources.nvidia.com/en-us-government-affairs-mc/en-us-government-affairs/what-is-sovereign-ai" target="_blank" rel="noopener noreferrer">
+      <span>OFFICIAL · INDUSTRY DEFINITION · 2026-07-06</span>
+      <strong>What Is Sovereign AI?</strong>
+      <small>자국 인프라·데이터·인력·비즈니스를 활용해 AI를 생산하는 국가 역량이라는 실무 정의. 보편적 법률 정의라기보다 업계 관점임.</small>
+    </a>
+<a class="source-card" id="src-02" href="https://aikorea.go.kr/web/board/brdDetail.do?currentPage=1&amp;menu_cd=000011&amp;num=328&amp;searchData=&amp;searchText=" target="_blank" rel="noopener noreferrer">
+      <span>OFFICIAL · KOREA STRATEGY · 2026-02-25</span>
+      <strong>대한민국 인공지능 행동계획(2026~2028)</strong>
+      <small>3개 정책축·12대 전략분야, AI고속도로·독자 범용 AI모델·산업·공공·지역·국방·문화 AX 계획.</small>
+    </a>
+<a class="source-card" id="src-03" href="https://www.korea.kr/multi/visualNewsView.do?newsId=148958460" target="_blank" rel="noopener noreferrer">
+      <span>OFFICIAL · KOREA LAW · 2026-01-23</span>
+      <strong>인공지능기본법 시행 및 지원데스크</strong>
+      <small>2026년 1월 22일 시행. 국가 거버넌스, 데이터·R&amp;D, 투명성·안전성, 고영향 AI 의무와 최소 1년 규제 유예 안내.</small>
+    </a>
+<a class="source-card" id="src-04" href="https://www.korea.kr/briefing/policyBriefingView.do?newsId=156745273" target="_blank" rel="noopener noreferrer">
+      <span>OFFICIAL · KOREA MODEL PROJECT · 2026-02-20</span>
+      <strong>독자 AI 파운데이션 모델 정예팀 추가 선정</strong>
+      <small>LG AI연구원·SKT·업스테이지에 모티프테크놀로지스가 추가돼 4개 팀이 2차 단계 경쟁에 참여.</small>
+    </a>
+<a class="source-card" id="src-05" href="https://www.yna.co.kr/view/AKR20260807135400017" target="_blank" rel="noopener noreferrer">
+      <span>NEWS · LATEST STATUS · 2026-08-09</span>
+      <strong>독파모 2차 4파전과 국민 평가</strong>
+      <small>8월 8~11일 국민 평가단 200명 참여, 4개 팀 중 3개 팀 진출 예정. 8월 11일 기준 공식 최종 결과는 아직 발표 전.</small>
+    </a>
+<a class="source-card" id="src-06" href="https://www.korea.kr/news/policyNewsView.do?newsId=148968283" target="_blank" rel="noopener noreferrer">
+      <span>OFFICIAL · KOREA COMPUTE · 2026-07-16</span>
+      <strong>2026 하반기 경제성장전략</strong>
+      <small>GPU 약 5만 장 확보 및 2027년 배분계획, 글로벌 Top 10 수준 독자 모델, 모두의 AI·AI 보안 모델 추진.</small>
+    </a>
+<a class="source-card" id="src-07" href="https://www.korea.kr/news/policyNewsView.do?newsId=148969296" target="_blank" rel="noopener noreferrer">
+      <span>OFFICIAL · KOREA INFRASTRUCTURE · 2026-08-03</span>
+      <strong>국가 AI 컴퓨팅센터 해남 착공</strong>
+      <small>2028년까지 첨단 AI 반도체 1만5천 장 규모, 2027년 일부 자원 조기 서비스, 국산 AI 반도체 검증 R&amp;D 구역 계획.</small>
+    </a>
+<a class="source-card" id="src-08" href="https://digital-strategy.ec.europa.eu/en/news/eu-launches-ai-gigafactories-call-boost-europes-computing-capacity-and-unlock-more-eu30-billion" target="_blank" rel="noopener noreferrer">
+      <span>OFFICIAL · EU · 2026-07-30</span>
+      <strong>EU AI Gigafactories call</strong>
+      <small>최대 7개 AI 기가팩토리, EU·회원국 최대 100억 유로 지원과 최소 200억 유로 민간 투자 유도. EU 규범과 자율성 강조.</small>
+    </a>
+<a class="source-card" id="src-09" href="https://www.canada.ca/en/innovation-science-economic-development/news/2026/04/canada-launches-national-initiative-to-build-large-scale-ai-supercomputing-capacity.html" target="_blank" rel="noopener noreferrer">
+      <span>OFFICIAL · CANADA · 2026-04-15</span>
+      <strong>AI Sovereign Compute Infrastructure Program</strong>
+      <small>캐나다 기반 대규모 AI 슈퍼컴퓨팅 인프라 공모. 국내 데이터·지식재산 보호와 연구·산업 접근성 강조.</small>
+    </a>
+<a class="source-card" id="src-10" href="https://www.gov.uk/government/news/ai-firms-pioneering-drug-discovery-cheaper-supercomputing-and-more-get-first-backing-through-uks-sovereign-ai" target="_blank" rel="noopener noreferrer">
+      <span>OFFICIAL · UNITED KINGDOM · 2026-04-16</span>
+      <strong>UK Sovereign AI £500m initiative</strong>
+      <small>5억 파운드 규모로 자국 AI 기업에 투자·컴퓨팅·인재·공공조달 지원. 국가가 모델만이 아니라 기업 성장 경로를 확보하는 접근.</small>
+    </a>
+<a class="source-card" id="src-11" href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2239614" target="_blank" rel="noopener noreferrer">
+      <span>OFFICIAL · INDIA · 2026-03-13</span>
+      <strong>IndiaAI sovereign models and shared compute</strong>
+      <small>12개 자국 파운데이션 모델 팀, 4개 모델 공개, 3만8천 개 이상 GPU 공용 인프라, 추가 2만 개 확충 절차.</small>
+    </a>
+<a class="source-card" id="src-12" href="https://cbi.nstc.gov.tw/en/7758ED8D9E3CA37A/5c52e259-429c-4b84-ac2e-6fadf09a0808" target="_blank" rel="noopener noreferrer">
+      <span>OFFICIAL · TAIWAN · 2025-12-12</span>
+      <strong>NCHC Cloud Computing Center inauguration</strong>
+      <small>국가 컴퓨팅, 자체 모델, 지역 데이터 보존, 국내 시스템 아키텍처를 소버린 AI의 구성으로 제시.</small>
+    </a>
+<a class="source-card" id="src-13" href="https://www.canada.ca/en/innovation-science-economic-development/news/2024/12/canada-to-drive-billions-in-investments-to-build-domestic-ai-compute-capacity-at-home.html" target="_blank" rel="noopener noreferrer">
+      <span>OFFICIAL · CANADA ORIGIN · 2024-12-05</span>
+      <strong>Canadian Sovereign AI Compute Strategy</strong>
+      <small>최대 20억 캐나다달러 규모로 국내 데이터센터·공공 컴퓨팅·중소기업 접근을 지원하는 3축 전략 발표.</small>
+    </a>
+<a class="source-card" id="src-14" href="https://www.korea.kr/news/policyNewsView.do?newsId=156740468" target="_blank" rel="noopener noreferrer">
+      <span>OFFICIAL · KOREA PHASE 1 · 2026-01-15</span>
+      <strong>독자 AI 파운데이션 모델 1차 단계평가 결과</strong>
+      <small>1차 평가와 독자성 논의, 국내 모델 개발 경험 축적의 정책적 의미를 설명.</small>
+    </a>
+<a class="source-card" id="src-15" href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2289946&amp;lang=1&amp;reg=3" target="_blank" rel="noopener noreferrer">
+      <span>OFFICIAL · INDIA MISSION · 2026-07-27</span>
+      <strong>IndiaAI Mission approval and seven pillars</strong>
+      <small>IndiaAI Mission이 2024년 3월 승인됐으며 컴퓨팅·파운데이션 모델·데이터·응용·인재·금융·안전의 7개 축으로 구성됐음을 확인.</small>
+    </a></div>
+      <div class="disclosure"><strong>제작 방식:</strong> AI가 최신 공식 자료와 보도를 구조화하고 HTML·썸네일·메타데이터를 생성했습니다. 정책 목표는 확정된 성과가 아니며, 모델 평가 결과·GPU 확보·센터 일정은 발행 이후 변경될 수 있습니다. 실제 정책·도입 판단 전에는 원문과 최신 공지를 다시 확인해야 합니다.</div>
+      <div class="footer-bottom"><span id="footerTitle">소버린 AI란? 비전공자가 10분 만에 이해하는 개념부터 한국의 2028 로드맵까지</span><span id="footerMeta">자료 기준일 2026.08.11 · AI-assisted · Human review recommended</span></div>
+      <div class="report-history" id="history" aria-labelledby="history-title"><div class="history-head"><div><h2 id="history-title">버전 및 업데이트 히스토리</h2><p>공식 평가 결과, GPU 배분, 센터 일정이 바뀌면 최신 행을 위에 추가합니다.</p></div><span class="version-badge" id="historyCurrentVersion">Current v1.0.0</span></div><div class="history-table-wrap"><table class="history-table"><thead><tr><th>버전</th><th>업데이트일</th><th>변경 구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr></thead><tbody id="historyBody"><tr><td colspan="5">변경 이력을 불러오는 중입니다.</td></tr></tbody></table></div></div>
+    </div>
+  </footer>
+
+  <div class="floating-actions" aria-label="빠른 작업"><button class="float-btn" type="button" id="toTop" aria-label="맨 위로 이동"><svg viewBox="0 0 24 24" fill="none"><path d="m6 14 6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="float-btn" type="button" onclick="window.print()" aria-label="PDF로 저장"><svg viewBox="0 0 24 24" fill="none"><path d="M7 9V4h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-width="1.8"/><path d="M7 14h10v6H7z" stroke="currentColor" stroke-width="1.8"/></svg></button></div>
+
+  <script id="report-metadata" type="application/json">
+  {
+    "schemaVersion":"2.0",
+    "reportId":"rh-260811-01-sovereign-ai-korea-roadmap",
+    "title":"소버린 AI란? 비전공자가 10분 만에 이해하는 개념부터 한국의 2028 로드맵까지",
+    "version":"1.0.0",
+    "status":"Published",
+    "createdAt":"2026-08-11",
+    "updatedAt":"2026-08-11",
+    "language":"ko-KR",
+    "author":"Jeremy Lee",
+    "generation":"AI-assisted",
+    "reviewStatus":"Human review recommended",
+    "history":[{
+      "version":"1.0.0",
+      "date":"2026-08-11",
+      "type":"신규 작성",
+      "summary":"소버린 AI를 국가의 AI 주방 비유와 6개 구성 층으로 설명하고, 2024~2026 글로벌 타임라인, 한국의 AI기본법·독자 모델·GPU 약 5만 장·해남 국가 AI 컴퓨팅센터, 2026~2028 로드맵과 리스크를 최신 자료로 최초 구성함.",
+      "sections":["Hero·1분 요약","단계별 개념 설명","용어·오해 정리","글로벌 타임라인","한국 현황","2026~2028 로드맵","기업 자가진단","리스크·FAQ·출처"],
+      "updatedBy":"AI-assisted",
+      "reviewStatus":"검토 권장"
+    }]
+  }
+  </script>
+  <script>
+  const progress=document.getElementById('scrollProgress');const toTop=document.getElementById('toTop');
+  function updateProgress(){const max=document.documentElement.scrollHeight-window.innerHeight;const percent=max>0?(window.scrollY/max)*100:0;if(progress)progress.style.width=percent+'%';if(toTop){toTop.style.opacity=window.scrollY>600?'1':'0';toTop.style.pointerEvents=window.scrollY>600?'auto':'none'}}
+  window.addEventListener('scroll',updateProgress,{passive:true});updateProgress();if(toTop)toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+  if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}})},{threshold:.07});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))}else{document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'))}
+  function renderMeta(){const node=document.getElementById('report-metadata');if(!node)return;try{const meta=JSON.parse(node.textContent);const version='v'+meta.version;const day=String(meta.updatedAt||'').replaceAll('-','.');const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v};set('reportVersion',version);set('reportUpdated','Updated '+day);set('reportGeneration',meta.generation+' · '+meta.reviewStatus);set('historyCurrentVersion','Current '+version);set('footerTitle',meta.title);set('footerMeta','자료 기준일 '+day+' · '+meta.generation+' · '+meta.reviewStatus);const body=document.getElementById('historyBody');if(!body)return;body.innerHTML='';(meta.history||[]).forEach(item=>{const row=document.createElement('tr');const values=['v'+item.version,String(item.date||'').replaceAll('-','.'),item.type||'',item.summary||'',[item.updatedBy,item.reviewStatus].filter(Boolean).join(' · ')];values.forEach((value,index)=>{const cell=document.createElement('td');if(index===4){const badge=document.createElement('span');badge.className='history-status';badge.textContent=value;cell.appendChild(badge)}else cell.textContent=value;row.appendChild(cell)});body.appendChild(row)})}catch(error){console.error('Invalid report metadata',error)}}renderMeta();
+  const checks=[...document.querySelectorAll('.sovereign-check')];const scoreValue=document.getElementById('scoreValue');const scoreLabel=document.getElementById('scoreLabel');const scoreText=document.getElementById('scoreText');const scoreBar=document.getElementById('scoreBar');
+  function updateScore(){const count=checks.filter(c=>c.checked).length;const score=Math.round(count/6*100);scoreValue.textContent=score;scoreBar.style.width=score+'%';let label,text;if(score<34){label='외부 서비스 의존 단계';text='현재는 편리한 AI 서비스를 빌려 쓰는 단계입니다. 먼저 데이터 위치와 공급자 중단 대응부터 확인해보세요.'}else if(score<67){label='부분 주권 단계';text='일부 통제 장치는 갖췄습니다. 두 번째 공급자와 로그·사고 대응을 연결하면 회복탄력성이 크게 높아집니다.'}else if(score<84){label='운영 가능한 주권';text='핵심 통제권이 상당히 확보됐습니다. 정기 전환 훈련과 계약 종료 테스트로 실제 작동 여부를 검증하세요.'}else{label='높은 회복탄력성';text='데이터·모델·운영·exit plan이 연결돼 있습니다. 이제 비용, 실제 업무 품질, 독립 감사 지표를 지속 관리할 단계입니다.'}scoreLabel.textContent=label;scoreText.textContent=text}
+  checks.forEach(c=>c.addEventListener('change',updateScore));updateScore();
+  </script>
+  <script src="../../assets/report-page-layout.js?v=20260810-mobile-scroll1"></script>
+  <script src="../../assets/report-view-counter.js?v=20260810-counter-d1-1" data-report-id="260811-01-sovereign-ai-korea-roadmap-v1-0-0"></script>
+  <script src="../../assets/report-comments.js?v=20260810-comments2" data-report-id="260811-01-sovereign-ai-korea-roadmap-v1-0-0"></script>
+  <script src="../../assets/report-history.js?v=20260809-history2" data-report-id="260811-01-sovereign-ai-korea-roadmap-v1-0-0"></script>
+  <script src="../../assets/report-hub-brand.js?v=20260810-mobile-scroll1"></script>
+</body>
+</html>
