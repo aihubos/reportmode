@@ -428,8 +428,11 @@ export function renderHomeHtml(
           : linkPrefix + item.coverImage
         : "";
       const coverAlt = item.coverAlt || item.title + " 보고서 대표 이미지";
+      const coverPosition = typeof item.coverFocalPointX === "number"
+        ? ` style="object-position:${item.coverFocalPointX}% center"`
+        : "";
       const cover = coverSource
-        ? `<figure class="archive-post-cover"><img src="${escapeHtml(coverSource)}" alt="${escapeHtml(coverAlt)}" loading="lazy"></figure>`
+        ? `<figure class="archive-post-cover"><img src="${escapeHtml(coverSource)}" alt="${escapeHtml(coverAlt)}" loading="lazy"${coverPosition}></figure>`
         : `<div class="archive-post-cover archive-post-cover-fallback" aria-hidden="true"><span>REPORT</span><strong>RH</strong><small>${escapeHtml(item.category)}</small></div>`;
       const reportHref = linkPrefix + item.path;
       const tagKeys = sanitizeTags(item.tags).map(tagFilterKey).join("|");
@@ -466,8 +469,11 @@ export function renderHomeHtml(
         ? item.coverImage
         : linkPrefix + item.coverImage
       : "";
+    const coverPosition = typeof item.coverFocalPointX === "number"
+      ? ` style="object-position:${item.coverFocalPointX}% center"`
+      : "";
     const cover = coverSource
-      ? `<img src="${escapeHtml(coverSource)}" alt="" loading="lazy">`
+      ? `<img src="${escapeHtml(coverSource)}" alt="" loading="lazy"${coverPosition}>`
       : `<span class="archive-spotlight-cover-fallback" aria-hidden="true">RH</span>`;
     const attribute = kind === "featured"
       ? "data-featured-fallback-item"
