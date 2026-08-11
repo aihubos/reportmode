@@ -532,7 +532,7 @@ export function renderHomeHtml(
       </div>
       <div class="archive-topbar-actions">
         <div class="archive-topbar-links">
-          <a class="archive-carrot-card" href="https://daangn.com/kr/share/community/ref/invite-group/baRr2nojJVT?utm_campaign=share_qr" target="_blank" rel="noopener" aria-label="당근 비전공자 AI 에이전트 공부방 열기"><img class="archive-carrot-logo" src="../assets/daangn-meeting-logo.png" alt="당근 로고"></a>
+          <a class="archive-carrot-card" href="https://daangn.com/kr/share/community/ref/invite-group/baRr2nojJVT?utm_campaign=share_qr" target="_blank" rel="noopener" aria-label="당근 비전공자 AI 에이전트 공부방 열기"><span class="archive-carrot-copy">당근모임</span></a>
           <a class="archive-builders-card" href="https://daangn.com/kr/share/community/ref/invite-group/baRr2nojJVT?utm_campaign=share_qr" target="_blank" rel="noopener" aria-label="AI Builders Lab 당근 모임 열기"><img class="archive-builders-logo" src="../assets/ai-builders-lab-logo.png" alt="AI Builders Lab 로고"></a>
           <a class="archive-blog-card" href="https://blog.naver.com/jeremylee0213" target="_blank" rel="noopener"><span class="archive-blog-mark">N</span><span class="archive-blog-card-copy"><b>Jeremy's Blog</b><small>네이버 블로그</small></span></a>
         </div>
@@ -602,17 +602,15 @@ ${tagLinks}
       <section class="request-board" aria-labelledby="request-board-title">
       <div class="request-board-copy">
         <div class="request-board-kicker">REPORT WISHLIST</div>
-        <h2 id="request-board-title"><span class="request-board-highlight">다음 리포트,</span><br>무엇이 궁금하신가요?</h2>
-        <p>원하는 기업·제품·이슈를 남겨 주세요. 검토할 가치가 있는 주제는 다음 리포트 후보로 반영합니다.</p>
+        <h2 id="request-board-title"><span class="request-board-highlight">희망 리포트</span> 신청</h2>
       </div>
       <form class="request-board-form" id="requestBoardForm" novalidate>
         <div class="request-board-identity">
-          <label>신청자 이름<input id="requestAuthor" name="author" maxlength="24" autocomplete="name" required placeholder="이름 또는 닉네임"></label>
-          <label>수정·삭제 비밀번호<input id="requestPassword" name="password" type="password" minlength="4" maxlength="80" autocomplete="new-password" required placeholder="4글자 이상"></label>
+          <label>이름<input id="requestAuthor" name="author" maxlength="24" autocomplete="name" required placeholder="이름 또는 닉네임"></label>
+          <label>비밀번호<input id="requestPassword" name="password" type="password" minlength="4" maxlength="80" autocomplete="new-password" required placeholder="수정·삭제용"></label>
         </div>
-        <label>궁금한 점 또는 원하는 리포트 주제<textarea id="requestTopic" name="topic" minlength="4" maxlength="240" required placeholder="예: 엔비디아 실적과 경쟁력 분석. AMD·구글과 비교해 장기 경쟁력이 궁금합니다."></textarea></label>
-        <p class="request-board-helper">비밀번호는 글을 수정하거나 삭제할 때 필요합니다.</p>
-        <button class="request-board-submit" type="submit">리포트 희망 남기기 →</button>
+        <label>희망 리포트 주제<input id="requestTopic" name="topic" type="text" minlength="4" maxlength="240" required placeholder="예: 엔비디아 실적과 경쟁력 분석"></label>
+        <button class="request-board-submit" type="submit">신청하기</button>
         <p class="request-board-status" id="requestBoardStatus" role="status"></p>
       </form>
       <div class="request-board-feed" aria-live="polite">

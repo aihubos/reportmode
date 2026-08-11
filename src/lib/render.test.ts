@@ -92,12 +92,16 @@ test("renders the simplified archive with one Naver card and a 30-item default s
   assert.match(html, /class="archive-blog-card"/);
   assert.equal(html.match(/https:\/\/daangn\.com\/kr\/share\/community\/ref\/invite-group\/baRr2nojJVT\?utm_campaign=share_qr/g)?.length, 2);
   assert.match(html, /class="archive-carrot-card"/);
-  assert.match(html, /src="\.\.\/assets\/daangn-meeting-logo\.png"/);
+  assert.match(html, /class="archive-carrot-copy">당근모임/);
   assert.match(html, /class="archive-builders-card"/);
   assert.match(html, /src="\.\.\/assets\/ai-builders-lab-logo\.png"/);
   assert.match(html, /aria-label="AI Builders Lab 당근 모임 열기"/);
   assert.doesNotMatch(html, /archive-carrot-card-copy/);
   assert.match(html, /aria-label="당근 비전공자 AI 에이전트 공부방 열기"/);
+  assert.doesNotMatch(html, /원하는 기업·제품·이슈를 남겨 주세요/);
+  assert.match(html, /<label>이름<input id="requestAuthor"/);
+  assert.match(html, /<label>비밀번호<input id="requestPassword"/);
+  assert.match(html, /<label>희망 리포트 주제<input id="requestTopic"/);
   assert.match(html, /id="archiveVisitorCount"/);
   assert.match(html, /class="report-hub-clock"/);
   assert.match(html, /class="archive-content-layout"/);
@@ -150,7 +154,8 @@ test("renders the simplified archive with one Naver card and a 30-item default s
   assert.match(archiveCss, /\.archive-post-copy\s*{[^}]*padding-right:\s*44px/s);
   assert.match(archiveCss, /\.archive-share-button\s*{[^}]*right:\s*calc\(var\(--archive-cover-width\) \+ var\(--archive-cover-gap\) \+ var\(--archive-cover-edge\)\)/s);
   assert.match(archiveCss, /\.archive-topbar-inner\s*{[^}]*width:\s*min\(var\(--archive-shell-max\),\s*calc\(100% - \(var\(--archive-shell-edge\) \* 2\)\)\)/s);
-  assert.match(archiveCss, /\.archive-content-layout\s*{[^}]*grid-template-columns:\s*minmax\(0, 960px\) var\(--archive-right-rail-width\)/s);
+  assert.match(archiveCss, /--archive-right-rail-width:\s*270px/);
+  assert.match(archiveCss, /\.archive-content-layout\s*{[^}]*grid-template-columns:\s*minmax\(0, 1fr\) var\(--archive-right-rail-width\)/s);
   assert.doesNotMatch(archiveCss, /\.request-board-list\s*{[^}]*max-height:/s);
   assert.match(archiveCss, /\.archive-comments-card/);
   assert.match(archiveCss, /\.archive-comments-dialog::backdrop/);
