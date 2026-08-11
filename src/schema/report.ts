@@ -139,6 +139,7 @@ export const ManifestItemSchema = z.object({
   tags: z.array(z.string()).default([]),
   coverImage: z.string().optional(),
   coverAlt: z.string().optional(),
+  coverFocalPointX: z.number().min(0).max(100).optional(),
 });
 
 export type ManifestItem = z.infer<typeof ManifestItemSchema>;
