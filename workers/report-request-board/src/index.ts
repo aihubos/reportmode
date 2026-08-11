@@ -1,6 +1,13 @@
+import {
+  handlePrivateReportRequest,
+  type PrivateReportBucket,
+} from "./private-reports.js";
+
 interface Env {
   DB: D1Database;
   ADMIN_PASSWORD?: string;
+  PRIVATE_REPORTS?: PrivateReportBucket;
+  PRIVATE_SESSION_SECRET?: string;
 }
 
 type RequestRow = {
@@ -69,7 +76,7 @@ function cors(request: Request) {
   return {
     "Access-Control-Allow-Origin": allowed,
     "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization",
     "Vary": "Origin",
   };
 }
@@ -265,6 +272,8 @@ export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: cors(request) });
     const url = new URL(request.url);
+    const privateResponse = await handlePrivateReportRequest(request, env);
+    if (privateResponse) return privateResponse;
     if (url.pathname === "/visits" && request.method === "GET") {
       const siteId = clean(url.searchParams.get("site"), 64);
       if (!siteId || !/^[a-z0-9-]+$/i.test(siteId)) return json(request, { error: "invalid_site" }, 400);
