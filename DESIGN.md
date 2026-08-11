@@ -96,6 +96,7 @@ Report Hub는 보고서보다 먼저 시선을 빼앗지 않는 임원용 리서
 - 당근 로고 데스크톱·모바일 표시 크기: 68×40px·60×34px (`--rh-daangn-logo-width`, `--rh-daangn-logo-height`, `--rh-daangn-logo-width-compact`, `--rh-daangn-logo-height-compact`)
 - 비공개 인증 창 최대 폭: 480px (`--rh-private-dialog-width`)
 - 비공개 카드 표지 폭과 최소 높이: 160px·136px (`--rh-private-cover-width`, `--rh-private-card-min-height`)
+- 비공개 보고서 뷰어 최소 높이: 720px (`--rh-private-viewer-min-height`)
 
 ## 5. Components
 

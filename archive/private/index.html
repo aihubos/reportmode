@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260811-private1">
+  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260811-private1">
+  <link rel="stylesheet" href="../../assets/private-report-viewer.css?v=20260811-private1">
+  <title>비공개 보고서 | Report Hub</title>
+</head>
+<body class="private-viewer-page">
+  <header class="private-viewer-topbar">
+    <div class="private-viewer-topbar-inner">
+      <a class="private-viewer-brand" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동">
+        <span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span>
+      </a>
+      <a class="private-viewer-library-link" href="../">도서관</a>
+    </div>
+  </header>
+
+  <main class="private-viewer-shell">
+    <section class="private-viewer-gate" id="privateViewerGate" aria-labelledby="private-viewer-gate-title">
+      <div class="private-viewer-gate-copy">
+        <span class="private-viewer-lock-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><rect x="5" y="10" width="14" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg></span>
+        <div><h1 id="private-viewer-gate-title">비공개 보고서</h1><p>관리자 비밀번호 확인 후 현재 탭에서 30분 동안 열립니다.</p></div>
+      </div>
+      <form class="private-viewer-gate-form" id="privateViewerGateForm" novalidate>
+        <label>관리자 비밀번호<input id="privateViewerPassword" type="password" maxlength="80" autocomplete="current-password" required placeholder="관리자 비밀번호"></label>
+        <button id="privateViewerSubmit" type="submit">확인</button>
+      </form>
+      <p class="private-viewer-status" id="privateViewerGateStatus" role="status"></p>
+    </section>
+
+    <section class="private-viewer-content" id="privateViewerContent" hidden aria-labelledby="privateViewerTitle">
+      <div class="private-viewer-content-head">
+        <div><span>PRIVATE REPORT</span><h1 id="privateViewerTitle">비공개 보고서</h1><p id="privateViewerMeta"></p></div>
+        <button class="private-viewer-lock" id="privateViewerLock" type="button">잠금</button>
+      </div>
+      <p class="private-viewer-loading" id="privateViewerLoading" role="status">보고서를 불러오는 중입니다.</p>
+      <iframe class="private-viewer-frame" id="privateViewerFrame" title="비공개 보고서 본문" sandbox="allow-scripts allow-forms allow-popups allow-downloads allow-modals" hidden></iframe>
+    </section>
+  </main>
+
+  <script src="../../assets/private-report-viewer.js?v=20260811-private1"></script>
+</body>
+</html>
