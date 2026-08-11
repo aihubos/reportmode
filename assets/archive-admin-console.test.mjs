@@ -24,6 +24,10 @@ test("archive administrator console provides analytics and bulk report controls"
   assert.match(script, /\/admin\/analytics/);
   assert.match(script, /\/report-overrides\//);
   assert.match(script, /\/hidden-reports/);
+  assert.match(script, /function reportPublicId\(report\)/);
+  assert.match(script, /reportsByPublicId/);
+  assert.match(script, /state\.counts\[reportPublicId\(report\)\]/);
+  assert.match(script, /state\.reportsByPublicId\.get\(row\.reportId\)/);
   assert.match(script, /function reportUrl\(report\)[\s\S]*?var path = String\(\(report && report\.path\) \|\| ""\)[\s\S]*?if \(path\) return new URL\("\.\.\/\.\.\/" \+ path,/);
   assert.match(script, /관리자 비밀번호/);
   assert.doesNotMatch(script, /657700/);

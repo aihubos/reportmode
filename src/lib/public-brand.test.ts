@@ -1,7 +1,14 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { applyReportHubBrand, REPORT_HUB_HOME } from "./public-brand.js";
+import { applyReportHubBrand, reportIdFromPath, REPORT_HUB_HOME } from "./public-brand.js";
+
+test("derives the public report ID from folder and file paths", () => {
+  assert.equal(reportIdFromPath("reports/example/index.html"), "example");
+  assert.equal(reportIdFromPath("reports/example/"), "example");
+  assert.equal(reportIdFromPath("reports/example.html"), "example");
+  assert.equal(reportIdFromPath("reports/drafts/example/index.html"), "example");
+});
 
 test("applies the Report Hub brand without changing the report subject", () => {
   const source = `<!doctype html><html lang="ko"><head><title>샘플 기업 분석 — Report Mode</title><link rel="icon" href="data:,"></head><body><a class="report-home-button" href="../archive/">🏠 메인</a><nav><a class="brand" href="../archive/">RM · Report Mode</a></nav><h1>샘플 기업 분석</h1><footer>AIHUBOS ReportMode · RM 리포트 모드</footer></body></html>`;

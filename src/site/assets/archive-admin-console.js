@@ -13,6 +13,7 @@
     password: "",
     reports: [],
     reportsById: new Map(),
+    reportsByPublicId: new Map(),
     counts: {},
     overrides: {},
     hidden: new Set(),
@@ -115,6 +116,20 @@
     return new URL("../../archive/", window.location.href).href;
   }
 
+  function reportPublicId(report) {
+    var path = String((report && report.path) || "").replaceAll("\\", "/").replace(/^\/+/, "");
+    if (path.endsWith("/")) path = path.slice(0, -1);
+    var parts = path.split("/").filter(Boolean);
+    var last = parts[parts.length - 1] || "";
+    if (last.toLowerCase() === "index.html") last = parts[parts.length - 2] || "";
+    last = last.replace(/\.html$/i, "");
+    return last || (report && report.id) || "";
+  }
+
+  function reportViewCount(report) {
+    return state.counts[reportPublicId(report)] ?? state.counts[report.id] ?? 0;
+  }
+
   function presentation(report) {
     var override = state.overrides[report.id];
     return {
@@ -199,7 +214,7 @@
       rank.textContent = String(index + 1);
       var copy = document.createElement("a");
       copy.className = "archive-admin-console-popular-copy";
-      var report = state.reportsById.get(row.reportId);
+      var report = state.reportsByPublicId.get(row.reportId) || state.reportsById.get(row.reportId);
       copy.href = report ? reportUrl(report) : "../../archive/";
       copy.target = "_blank";
       copy.rel = "noopener";
@@ -301,7 +316,7 @@
         reportCell,
         makeCell(report.category || "기타"),
         makeCell(displayDate(report.createdAt), "archive-admin-console-table-number"),
-        makeCell(formatNumber(state.counts[report.id]), "archive-admin-console-table-number"),
+        makeCell(formatNumber(reportViewCount(report)), "archive-admin-console-table-number"),
         statusCell,
         actionCell,
       );
@@ -326,6 +341,7 @@
           return String(right.createdAt || "").localeCompare(String(left.createdAt || ""));
         });
       state.reportsById = new Map(state.reports.map(function (report) { return [report.id, report]; }));
+      state.reportsByPublicId = new Map(state.reports.map(function (report) { return [reportPublicId(report), report]; }));
       state.counts = views && views.counts && typeof views.counts === "object" ? views.counts : {};
       state.overrides = overrides && overrides.overrides && typeof overrides.overrides === "object" ? overrides.overrides : {};
       state.hidden = new Set(Array.isArray(hidden.reportIds) ? hidden.reportIds : []);

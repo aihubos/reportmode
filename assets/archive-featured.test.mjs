@@ -36,6 +36,8 @@ test("spotlight keeps overlapping popular reports in the right column and shows 
   assert.match(script, /var popularIds = new Set\(popularPosts\.map/);
   assert.match(script, /featuredPosts = featuredPosts\.filter/);
   assert.match(script, /count \? count\.textContent : "조회수 0"/);
+  assert.match(script, /post\.dataset\.reportPublicId/);
+  assert.match(script, /reportmode:view-counts-updated/);
 });
 
 test("archive admin provides a persistent report card presentation editor", () => {

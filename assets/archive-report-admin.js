@@ -578,6 +578,21 @@
     return item;
   }
 
+  function publicReportId(post) {
+    return post.dataset.reportPublicId || post.dataset.reportId || "";
+  }
+
+  function spotlightViewCount(post) {
+    var output = post.querySelector("[data-view-count]");
+    var counts = window.reportmodeViewCounts;
+    var publicId = publicReportId(post);
+    if (counts && Object.prototype.hasOwnProperty.call(counts, publicId)) {
+      var live = Number(counts[publicId]);
+      if (Number.isFinite(live)) return Math.max(0, Math.trunc(live));
+    }
+    return Number(output?.dataset.viewCountLive || output?.dataset.viewCountFallback || 0);
+  }
+
   function renderSpotlights() {
     var featuredList = document.getElementById("archiveFeaturedList");
     var popularList = document.getElementById("archivePopularList");
@@ -589,11 +604,11 @@
       return [post.dataset.reportId || "", post];
     }));
     var popularPosts = visiblePosts.slice().sort(function (a, b) {
-      var aOutput = a.querySelector("[data-view-count]");
-      var bOutput = b.querySelector("[data-view-count]");
-      var aCount = Number(aOutput?.dataset.viewCountLive || aOutput?.dataset.viewCountFallback || 0);
-      var bCount = Number(bOutput?.dataset.viewCountLive || bOutput?.dataset.viewCountFallback || 0);
-      return bCount - aCount || visiblePosts.indexOf(a) - visiblePosts.indexOf(b);
+      var aCount = spotlightViewCount(a);
+      var bCount = spotlightViewCount(b);
+      var aCreated = Date.parse(a.dataset.createdAt || "") || 0;
+      var bCreated = Date.parse(b.dataset.createdAt || "") || 0;
+      return bCount - aCount || bCreated - aCreated || visiblePosts.indexOf(a) - visiblePosts.indexOf(b);
     }).slice(0, 3);
     var popularIds = new Set(popularPosts.map(function (post) {
       return post.dataset.reportId || "";
@@ -921,9 +936,11 @@
       .then(function (body) {
         state.hidden = new Set(Array.isArray(body.reportIds) ? body.reportIds : []);
         window.reportmodeHiddenReports = state.hidden;
+        if (typeof window.reportmodeArchiveRender === "function") window.reportmodeArchiveRender(false);
       })
       .catch(function () {
         state.hidden = new Set();
+        window.reportmodeHiddenReports = state.hidden;
       });
   }
 

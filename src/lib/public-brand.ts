@@ -14,7 +14,7 @@ function relativePrefix(reportPath: string): string {
   return path.posix.relative(path.posix.dirname(reportPath), ".") || ".";
 }
 
-function reportIdFromPath(reportPath: string): string {
+export function reportIdFromPath(reportPath: string): string {
   const normalized = reportPath.replaceAll("\\", "/");
   if (normalized.endsWith("/index.html")) return path.posix.basename(path.posix.dirname(normalized));
   return path.posix.basename(normalized, ".html");

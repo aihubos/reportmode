@@ -15,14 +15,17 @@
   function reportMap() {
     var reports = Object.create(null);
     document.querySelectorAll("[data-report-item]").forEach(function (item) {
+      var publicId = item.dataset.reportPublicId || "";
       var reportId = item.dataset.reportId || "";
       var link = item.querySelector(".archive-post-link");
       var title = item.querySelector(".archive-post-copy h2");
-      if (!reportId || !link) return;
-      reports[reportId] = {
+      if ((!publicId && !reportId) || !link) return;
+      var record = {
         href: link.href,
-        title: title ? title.textContent.trim() : reportId
+        title: title ? title.textContent.trim() : (publicId || reportId)
       };
+      if (publicId) reports[publicId] = record;
+      if (reportId && reportId !== publicId && !reports[reportId]) reports[reportId] = record;
     });
     return reports;
   }

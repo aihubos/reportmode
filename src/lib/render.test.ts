@@ -113,7 +113,7 @@ test("renders the simplified archive with one Naver card and a 30-item default s
   assert.match(html, /data-archive-mobile-panel-close/);
   assert.match(html, /function installArchiveMobilePanels\(\)/);
   assert.match(html, /archive-weather\.js\?v=20260809-weather1/);
-  assert.match(html, /archive-comment-explorer\.js\?v=20260810-comment-explorer1/);
+  assert.match(html, /archive-comment-explorer\.js\?v=20260811-view-identity1/);
   assert.ok(html.indexOf('class="request-board"') < html.indexOf("data-archive-weather"));
   assert.match(html, /archive-visitor-counter\.js\?v=20260809-visits1/);
   assert.match(html, /id="archivePageSize"/);
@@ -291,8 +291,63 @@ test("Draft reports use a separate category and stay out of the default total", 
     { ...base, id: "published-one", category: "AI" },
     { ...base, id: "draft-one", category: "Draft", title: "초안 보고서" },
   ] as any);
-  assert.match(html, /data-category-filter="Draft"><span>Draft<\/span><b>1<\/b>/);
+  assert.match(html, /data-category-filter="Draft"[^>]*hidden[^>]*><span>Draft<\/span><b>1<\/b>/);
   assert.match(html, /data-report-id="draft-one"[^>]*data-report-draft="true"/);
   assert.match(html, /!isDraft \|\| isPromoted/);
   assert.match(html, /data-category-filter="all"><span>전체<\/span><b>1<\/b>/);
+});
+
+test("keeps the management ID while attaching the path-based public ID", () => {
+  const html = renderHomeHtml([
+    {
+      id: "management-id",
+      path: "reports/public-report/index.html",
+      title: "공개 ID 연결 샘플",
+      subtitle: "",
+      summary: "요약",
+      category: "AI",
+      tags: [],
+      displayDate: "260811",
+      sourceCount: 1,
+      coverImage: "assets/public-report.png",
+    },
+  ] as any, "../", {}, { "public-report": 42, "management-id": 7 });
+
+  assert.match(html, /data-report-id="management-id"[^>]*data-report-public-id="public-report"/);
+  assert.match(html, /data-view-count-fallback="42">조회수 42<\/span>/);
+  assert.doesNotMatch(html, /<figcaption>/);
+  assert.match(html, /260811/);
+});
+
+test("renders Draft filters hidden until administrator unlock and protects Draft URLs", () => {
+  const html = renderHomeHtml([
+    {
+      id: "published-one",
+      path: "reports/published-one/",
+      title: "공개 보고서",
+      subtitle: "",
+      summary: "요약",
+      category: "AI",
+      tags: [],
+      displayDate: "260811",
+      sourceCount: 1,
+    },
+    {
+      id: "draft-one",
+      path: "reports/drafts/draft-one/",
+      title: "초안 보고서",
+      subtitle: "",
+      summary: "요약",
+      category: "Draft",
+      tags: [],
+      displayDate: "260811",
+      sourceCount: 1,
+    },
+  ] as any);
+
+  assert.equal(html.match(/data-category-filter="Draft"[^>]*\shidden(?:\s|=|>)/g)?.length, 2);
+  assert.match(html, /state\.category === "Draft" && !adminUnlocked/);
+  assert.match(html, /window\.reportmodeAdminUnlocked === true/);
+  assert.match(html, /setInterval\([\s\S]*?30000/);
+  assert.match(html, /visibilitychange/);
 });

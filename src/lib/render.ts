@@ -6,12 +6,12 @@ import { escapeHtml, inlineMark, nl2p } from "./html.js";
 import { displayDateFromIso, prettyDateFromIso } from "./time.js";
 import { repoRoot } from "./paths.js";
 import { sanitizeTags, tagFilterKey } from "./tags.js";
-import { REPORT_COMMENTS_VERSION, REPORT_COUNTER_VERSION, REPORT_HISTORY_VERSION, REPORT_HUB_BRAND_VERSION, REPORT_HUB_HOME } from "./public-brand.js";
+import { reportIdFromPath, REPORT_COMMENTS_VERSION, REPORT_COUNTER_VERSION, REPORT_HISTORY_VERSION, REPORT_HUB_BRAND_VERSION, REPORT_HUB_HOME } from "./public-brand.js";
 
 const ARCHIVE_WEATHER_VERSION = "20260809-weather1";
-const ARCHIVE_ADMIN_VERSION = "20260810-admin-console1";
+const ARCHIVE_ADMIN_VERSION = "20260811-view-identity2";
 const ARCHIVE_ASSET_VERSION = "20260810-archive-console1";
-const ARCHIVE_COMMENTS_VERSION = "20260810-comment-explorer1";
+const ARCHIVE_COMMENTS_VERSION = "20260811-view-identity1";
 
 const KIND_LABEL: Record<SectionKind, string> = {
   fact: "사실",
@@ -38,6 +38,25 @@ function archiveShareIconMarkup(state: "share" | "check" | "error" = "share"): s
 
 function sourceMap(doc: ReportDocument): Map<string, ReportDocument["sources"][number]> {
   return new Map(doc.sources.map((s) => [s.id, s]));
+}
+
+function publicReportId(item: ManifestItem): string {
+  try {
+    const derived = reportIdFromPath(String(item.path || ""));
+    return derived && derived !== "." ? derived : item.id;
+  } catch {
+    return item.id;
+  }
+}
+
+function fallbackViewCountFor(
+  item: ManifestItem,
+  fallbackViewCountsById: Record<string, number>,
+): number {
+  const publicId = publicReportId(item);
+  const raw = fallbackViewCountsById[publicId] ?? fallbackViewCountsById[item.id] ?? 0;
+  const count = Number(raw);
+  return Number.isFinite(count) ? Math.max(0, Math.trunc(count)) : 0;
 }
 
 function renderTable(section: ReportDocument["sections"][number]): string {
@@ -357,7 +376,8 @@ export function renderHomeHtml(
           value === "all"
             ? archiveItems.filter((item) => categoryFor(item) !== "Draft").length
             : archiveItems.filter((item) => categoryFor(item) === category).length;
-        return `<button class="archive-category" type="button" data-category-filter="${escapeHtml(value)}"><span>${escapeHtml(category)}</span><b>${count}</b></button>`;
+        const adminOnly = value === "Draft" ? ' hidden data-admin-only-category="true"' : "";
+        return `<button class="archive-category" type="button" data-category-filter="${escapeHtml(value)}"${adminOnly}><span>${escapeHtml(category)}</span><b>${count}</b></button>`;
       },
     )
     .join("\n");
@@ -384,10 +404,8 @@ export function renderHomeHtml(
   const posts = archiveItems
     .map((item, index) => {
       const archiveCategory = categoryFor(item);
-      const rawFallbackViewCount = Number(fallbackViewCountsById[item.id] || 0);
-      const fallbackViewCount = Number.isFinite(rawFallbackViewCount)
-        ? Math.max(0, Math.trunc(rawFallbackViewCount))
-        : 0;
+      const fallbackViewCount = fallbackViewCountFor(item, fallbackViewCountsById);
+      const publicId = publicReportId(item);
       const tags = sanitizeTags(item.tags)
         .slice(0, 3)
         .map((tag) => `<span>#${escapeHtml(tag)}</span>`)
@@ -411,12 +429,12 @@ export function renderHomeHtml(
         : "";
       const coverAlt = item.coverAlt || item.title + " 보고서 대표 이미지";
       const cover = coverSource
-        ? `<figure class="archive-post-cover"><img src="${escapeHtml(coverSource)}" alt="${escapeHtml(coverAlt)}" loading="lazy"><figcaption>${escapeHtml(item.displayDate)}</figcaption></figure>`
-        : `<div class="archive-post-cover archive-post-cover-fallback" aria-hidden="true"><span>REPORT</span><strong>${escapeHtml(item.displayDate.slice(0, 2))}</strong><small>${escapeHtml(item.category)}</small></div>`;
+        ? `<figure class="archive-post-cover"><img src="${escapeHtml(coverSource)}" alt="${escapeHtml(coverAlt)}" loading="lazy"></figure>`
+        : `<div class="archive-post-cover archive-post-cover-fallback" aria-hidden="true"><span>REPORT</span><strong>RH</strong><small>${escapeHtml(item.category)}</small></div>`;
       const reportHref = linkPrefix + item.path;
       const tagKeys = sanitizeTags(item.tags).map(tagFilterKey).join("|");
       return `
-      <article class="archive-post" data-report-item data-report-id="${escapeHtml(item.id)}" data-category="${escapeHtml(archiveCategory)}" data-tag-keys="${escapeHtml(tagKeys)}" data-created-at="${escapeHtml(item.createdAt || "")}" data-updated-at="${escapeHtml(item.updatedAt || "")}" data-report-order="${index}"${archiveCategory === "Draft" ? ' data-report-draft="true"' : ""} data-search="${escapeHtml(searchText)}">
+      <article class="archive-post" data-report-item data-report-id="${escapeHtml(item.id)}" data-report-public-id="${escapeHtml(publicId)}" data-category="${escapeHtml(archiveCategory)}" data-tag-keys="${escapeHtml(tagKeys)}" data-created-at="${escapeHtml(item.createdAt || "")}" data-updated-at="${escapeHtml(item.updatedAt || "")}" data-report-order="${index}"${archiveCategory === "Draft" ? ' data-report-draft="true"' : ""} data-search="${escapeHtml(searchText)}">
         <a class="archive-post-link" href="${escapeHtml(reportHref)}">
           <div class="archive-post-number" aria-label="게시글 번호">${String(archiveItems.length - index).padStart(3, "0")}</div>
           <div class="archive-post-copy">
@@ -442,8 +460,7 @@ export function renderHomeHtml(
     kind: "featured" | "popular",
   ) => {
     const reportHref = linkPrefix + item.path;
-    const rawCount = Number(fallbackViewCountsById[item.id] || 0);
-    const viewCount = Number.isFinite(rawCount) ? Math.max(0, Math.trunc(rawCount)) : 0;
+    const viewCount = fallbackViewCountFor(item, fallbackViewCountsById);
     const coverSource = item.coverImage
       ? /^(?:https?:|data:)/i.test(item.coverImage)
         ? item.coverImage
@@ -463,7 +480,8 @@ export function renderHomeHtml(
     </a>`;
   };
   const popularReports = archiveItems
-    .map((item, index) => ({ item, index, count: Number(fallbackViewCountsById[item.id] || 0) }))
+    .filter((item) => categoryFor(item) !== "Draft")
+    .map((item, index) => ({ item, index, count: fallbackViewCountFor(item, fallbackViewCountsById) }))
     .sort((a, b) => b.count - a.count || a.index - b.index)
     .slice(0, 3);
   const popularIds = new Set(popularReports.map(({ item }) => item.id));
@@ -697,6 +715,7 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
     var COUNTER_API = "https://reportmode-request-board.report-request-board.workers.dev";
     var liveViewCounts = null;
     var viewCountsPromise = null;
+    var viewCountTimer = null;
     var posts = Array.prototype.slice.call(document.querySelectorAll("[data-report-item]"));
     var filters = Array.prototype.slice.call(document.querySelectorAll("[data-category-filter]"));
     var search = document.getElementById("archiveSearch");
@@ -814,18 +833,22 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
             throw new Error("invalid counter values");
           }
           liveViewCounts = data.counts;
+          window.reportmodeViewCounts = liveViewCounts;
           posts.forEach(function (post) {
             applyViewCount(post, liveViewCounts);
           });
-          window.dispatchEvent(new CustomEvent("reportmode:view-counts-updated"));
+          window.dispatchEvent(new CustomEvent("reportmode:view-counts-updated", {
+            detail: { counts: liveViewCounts, checkedAt: data.checkedAt || "" }
+          }));
           return liveViewCounts;
+        })
+        .catch(function () {
+          // Keep the last displayed value when the live API is unavailable.
+          return null;
         })
         .finally(function () {
           window.clearTimeout(timeoutId);
-        })
-        .catch(function () {
           viewCountsPromise = null;
-          return null;
         });
       return viewCountsPromise;
     }
@@ -850,13 +873,17 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
 
     function applyViewCount(post, counts) {
       var output = post.querySelector("[data-view-count]");
-      var reportId = post.dataset.reportId || "";
-      if (!output || !reportId) return;
+      var publicId = post.dataset.reportPublicId || "";
+      var managementId = post.dataset.reportId || "";
+      if (!output || (!publicId && !managementId)) return;
       var fallback = Number(output.dataset.viewCountFallback || "0");
-      var cached = cachedViewCount(reportId);
-      var live = counts && Object.prototype.hasOwnProperty.call(counts, reportId)
-        ? Number(counts[reportId])
-        : null;
+      var cached = publicId ? cachedViewCount(publicId) : null;
+      if (cached === null && managementId && managementId !== publicId) cached = cachedViewCount(managementId);
+      var live = counts && publicId && Object.prototype.hasOwnProperty.call(counts, publicId)
+        ? Number(counts[publicId])
+        : counts && managementId && Object.prototype.hasOwnProperty.call(counts, managementId)
+          ? Number(counts[managementId])
+          : null;
       var displayed = Number.isFinite(live)
         ? live
         : cached !== null && Number.isFinite(cached)
@@ -865,7 +892,7 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
       displayed = Math.max(0, Math.trunc(displayed));
       output.dataset.viewCountLive = String(displayed);
       output.textContent = "조회수 " + displayed.toLocaleString("ko-KR");
-      if (Number.isFinite(live)) storeViewCount(reportId, displayed);
+      if (Number.isFinite(live) && publicId) storeViewCount(publicId, displayed);
     }
 
     function loadViewCounts(visiblePosts) {
@@ -919,19 +946,36 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
     }
 
     function render(shouldScroll) {
+      var adminUnlocked = window.reportmodeAdminUnlocked === true;
+      if (state.category === "Draft" && !adminUnlocked) state.category = "all";
       var normalizedQuery = state.query.trim().toLocaleLowerCase("ko");
-      var filtered = posts.filter(function (post) {
+      function isHidden(post) {
         var reportId = post.dataset.reportId || "";
         var hiddenSet = window.reportmodeHiddenReports;
-        var isHidden = (hiddenSet && typeof hiddenSet.has === "function" && hiddenSet.has(reportId)) || post.dataset.adminForceHidden === "true";
-        if (isHidden && !window.reportmodeAdminUnlocked) return false;
-        var isDraft = post.dataset.reportDraft === "true";
+        return (hiddenSet && typeof hiddenSet.has === "function" && hiddenSet.has(reportId)) || post.dataset.adminForceHidden === "true";
+      }
+      function isPromotedPost(post) {
         var promotedSet = window.reportmodeDraftPromotions;
-        var isPromoted = promotedSet && typeof promotedSet.has === "function" && promotedSet.has(reportId);
+        var reportId = post.dataset.reportId || "";
+        return promotedSet && typeof promotedSet.has === "function" && promotedSet.has(reportId);
+      }
+      function categoryCount(value) {
+        return posts.filter(function (post) {
+          var isDraft = post.dataset.reportDraft === "true";
+          if (isHidden(post) && !adminUnlocked) return false;
+          if (value === "Draft") return adminUnlocked && isDraft;
+          if (value === "all") return !isDraft || isPromotedPost(post);
+          return !isDraft && post.dataset.category === value;
+        }).length;
+      }
+      var filtered = posts.filter(function (post) {
+        if (isHidden(post) && !adminUnlocked) return false;
+        var isDraft = post.dataset.reportDraft === "true";
+        var promoted = isPromotedPost(post);
         var categoryMatches = state.category === "Draft"
-          ? isDraft
+          ? adminUnlocked && isDraft
           : state.category === "all"
-            ? (!isDraft || isPromoted)
+            ? (!isDraft || promoted)
             : post.dataset.category === state.category;
         var presentationSearch = ((post.dataset.adminTitle || "") + " " + (post.dataset.adminSummary || "")).toLocaleLowerCase("ko");
         var queryMatches = !normalizedQuery || (post.dataset.search || "").indexOf(normalizedQuery) !== -1 || presentationSearch.indexOf(normalizedQuery) !== -1;
@@ -951,7 +995,11 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
       }
       loadViewCounts(visible);
       filters.forEach(function (filter) {
-        var active = filter.dataset.categoryFilter === state.category;
+        var filterValue = filter.dataset.categoryFilter || "all";
+        filter.hidden = filterValue === "Draft" && !adminUnlocked;
+        var countOutput = filter.querySelector("b");
+        if (countOutput) countOutput.textContent = String(categoryCount(filterValue));
+        var active = filterValue === state.category;
         filter.classList.toggle("is-active", active);
         filter.setAttribute("aria-pressed", active ? "true" : "false");
       });
@@ -1020,6 +1068,16 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
     }
     window.addEventListener("reportmode:view-counts-updated", function () {
       if (state.sort === "views") render(false);
+    });
+    viewCountTimer = window.setInterval(function () {
+      if (document.visibilityState === "visible") fetchLiveViewCounts();
+    }, 30000);
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible") fetchLiveViewCounts();
+    });
+    window.addEventListener("pagehide", function () {
+      if (viewCountTimer !== null) window.clearInterval(viewCountTimer);
+      viewCountTimer = null;
     });
     window.reportmodeArchiveRender = render;
     render(false);

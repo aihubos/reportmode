@@ -13,6 +13,9 @@ test("archive comment explorer provides recent, full, and direct-comment navigat
   assert.match(script, /archiveAllCommentsList/);
   assert.match(script, /archiveCommentsOpenAll/);
   assert.match(script, /#comment-/);
+  assert.match(script, /dataset\.reportPublicId/);
+  assert.match(script, /dataset\.reportId/);
+  assert.match(script, /reportPublicId/);
   assert.match(script, /showModal/);
   assert.doesNotMatch(script, /\bprompt\s*\(|\balert\s*\(/);
 });
