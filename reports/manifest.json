@@ -1,12 +1,36 @@
 {
-  "generatedAt": "2026-08-11T01:53:32.225Z",
+  "generatedAt": "2026-08-11T02:12:15.665Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260811-foplp-glass-core-executive-brief",
+      "slug": "foplp-glass-core-executive-brief",
+      "title": "FOPLP·글라스 코어 기판 임원 브리핑",
+      "category": "비즈니스",
+      "summary": "두 개의 2026년 산업 보고서를 기반으로 FOPLP와 글라스 코어 기판의 시장, 기술, 양산 시점, 경쟁 구도와 경영진 의사결정 포인트를 비전공자 관점에서 정리한 임원 브리핑입니다.",
+      "createdAt": "2026-08-11T11:08:20+09:00",
+      "updatedAt": "2026-08-11T11:08:20+09:00",
+      "status": "published",
+      "path": "reports/260811-foplp-glass-core-executive-brief/",
+      "url": "https://aihubos.github.io/reportmode/reports/260811-foplp-glass-core-executive-brief/",
+      "displayDate": "260811",
+      "sourceCount": 2,
+      "tags": [
+        "FOPLP",
+        "글라스 코어 기판",
+        "반도체 패키징",
+        "AI/HPC",
+        "TGV",
+        "첨단 패키징"
+      ],
+      "coverImage": "reports/260811-foplp-glass-core-executive-brief/assets/thumbnail.png",
+      "coverAlt": "FOPLP의 Logic Die, Bottom, PoP Memory와 메모리·로직 층을 표현한 구조 이미지",
+      "subtitle": "시장·양산 병목·경쟁 구도와 12개월 의사결정 포인트"
+    },
     {
       "id": "rh-260811-01-sovereign-ai-korea-roadmap",
       "slug": "sovereign-ai-korea-roadmap",
       "title": "소버린 AI란? 비전공자가 10분 만에 이해하는 개념부터 한국의 2028 로드맵까지",
-      "subtitle": "국가의 AI 선택권을 6개 층과 한국의 2028년 일정으로 풀어낸 비전공자 가이드",
       "category": "AI",
       "summary": "소버린 AI를 국가의 AI 주방이라는 비유로 풀고, 데이터·컴퓨팅·모델·인재·운영·규범의 6개 층과 2026년 최신 글로벌 흐름, 한국의 2028년 로드맵을 정리한 비전공자용 가이드입니다.",
       "createdAt": "2026-08-11T10:52:33+09:00",
@@ -26,13 +50,13 @@
         "AI기본법"
       ],
       "coverImage": "reports/260811-01-sovereign-ai-korea-roadmap-v1-0-0/assets/thumbnail.png",
-      "coverAlt": "밤의 지구 위에 Sovereign AI 글자가 배치된 썸네일"
+      "coverAlt": "밤의 지구 위에 Sovereign AI 글자가 배치된 썸네일",
+      "subtitle": "국가의 AI 선택권을 6개 층과 한국의 2028년 일정으로 풀어낸 비전공자 가이드"
     },
     {
       "id": "260810-hermes-practical-training",
       "slug": "hermes-practical-training",
       "title": "Hermes Agent 실습형 교육 가이드: 설치부터 LLM Wiki 자동화까지",
-      "subtitle": "Telegram·Cron·Obsidian PARA·LLM Wiki를 한 번에 따라 하는 27페이지 실습",
       "category": "AI",
       "summary": "비전공자가 Hermes Agent 설치부터 Telegram 연동, 주요 명령어, 페르소나, Cron, Obsidian PARA, LLM Wiki 자동화까지 순서대로 따라 할 수 있도록 구성한 27페이지 실습형 교육 가이드입니다.",
       "createdAt": "2026-08-10T20:48:23+09:00",
@@ -52,7 +76,8 @@
         "SOUL.md"
       ],
       "coverImage": "reports/260810-hermes-practical-training/assets/thumbnail.png",
-      "coverAlt": "Hermes와 지식 네트워크를 상징하는 주황색 그래픽"
+      "coverAlt": "Hermes와 지식 네트워크를 상징하는 주황색 그래픽",
+      "subtitle": "Telegram·Cron·Obsidian PARA·LLM Wiki를 한 번에 따라 하는 27페이지 실습"
     },
     {
       "id": "260810-01-elon-musk-timeline-altman-lawsuit-v1-0-0",
@@ -107,7 +132,6 @@
       "id": "260810-01-even-realities-g2-review",
       "slug": "even-realities-g2-smart-glasses-review",
       "title": "이븐 리얼리티 G2 실사용: 약 2~3초 뒤 눈앞에 뜨는 번역, 화상회의가 달라졌다",
-      "subtitle": "화상회의에서 약 2~3초 뒤 렌즈와 앱에 번역이 표시된 실사용 리뷰",
       "category": "IT 기기",
       "summary": "Even G2를 화상회의에서 직접 사용해 본 경험을 중심으로 실시간 번역 체감, 36g 하드웨어, 양안 Micro‑LED HUD, 주요 기능 12가지, 가격과 구매 전 한계를 정리했다.",
       "createdAt": "2026-08-10T17:00:00+09:00",
@@ -128,7 +152,8 @@
         "Conversate"
       ],
       "coverImage": "reports/260810-01-even-realities-g2-smart-glasses-review-v1-0-0/assets/thumbnail.png",
-      "coverAlt": "Even Realities G2 스마트글라스와 녹색 HUD 인터페이스"
+      "coverAlt": "Even Realities G2 스마트글라스와 녹색 HUD 인터페이스",
+      "subtitle": "화상회의에서 약 2~3초 뒤 렌즈와 앱에 번역이 표시된 실사용 리뷰"
     },
     {
       "id": "rh-260810-51-ai-era-boundary-person-5-skills",
