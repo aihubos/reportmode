@@ -124,6 +124,22 @@
     return menu;
   }
 
+  function boardLinkMarkup() {
+    return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6.5A2.5 2.5 0 0 1 7.5 4h9A2.5 2.5 0 0 1 19 6.5v6a2.5 2.5 0 0 1-2.5 2.5H12l-4.5 4v-4h0A2.5 2.5 0 0 1 5 12.5v-6Z"></path></svg><span>게시판</span>';
+  }
+
+  function ensureBoardLink(menu) {
+    if (!menu || menu.querySelector("[data-report-hub-board-link]")) return null;
+    var link = document.createElement("a");
+    link.className = "report-hub-board-link";
+    link.href = new URL("board/", HOME).href;
+    link.setAttribute("data-report-hub-board-link", "true");
+    link.setAttribute("aria-label", "Report Hub 의견 게시판 열기");
+    link.innerHTML = boardLinkMarkup();
+    menu.appendChild(link);
+    return link;
+  }
+
   function attachLayoutControls() {
     if (!document.body || document.querySelector(".archive-brand")) return false;
     var menu = ensureFloatingMenu();
@@ -295,6 +311,7 @@
     if (!archiveBrand) {
       var menu = ensureFloatingMenu();
       if (home && home.parentNode !== menu) menu.insertBefore(home, menu.firstChild);
+      ensureBoardLink(menu);
       ensureClock(menu, menu.querySelector(".report-layout-controls"));
       installTitleLinks();
       watchForLayoutControls();

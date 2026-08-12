@@ -328,6 +328,19 @@ function writeHomeIndex(root: string): string {
   return home;
 }
 
+function writeCommunityBoard(root: string): string {
+  const source = path.join(root, "src", "site", "board", "index.html");
+  const destination = path.join(root, "board", "index.html");
+  writeText(destination, readText(source));
+  for (const asset of ["community-board.css", "community-board.js"]) {
+    fs.copyFileSync(
+      path.join(root, "src", "site", "assets", asset),
+      path.join(root, "assets", asset),
+    );
+  }
+  return destination;
+}
+
 export function buildArchive() {
   const root = repoRoot();
   const config = loadConfig();
@@ -338,6 +351,7 @@ export function buildArchive() {
   return {
     reportCount: items.length,
     home: writeHomeIndex(root),
+    board: writeCommunityBoard(root),
     ...writeArchiveArtifacts(root, items, config.siteBase),
   };
 }
@@ -380,6 +394,7 @@ export function buildSite(options?: {
   );
   const archiveArtifacts = writeArchiveArtifacts(root, items, config.siteBase);
   const home = writeHomeIndex(root);
+  const board = writeCommunityBoard(root);
 
   for (const legacy of options?.legacyRedirects || []) {
     const legacyPath = path.join(repoRoot(), "reports", legacy.from, "index.html");
@@ -393,6 +408,7 @@ export function buildSite(options?: {
     home,
     archive: archiveArtifacts.archive,
     manifest: archiveArtifacts.manifest,
+    board,
     published: docs.filter((d) => reportPublicExists(d.id)).map((d) => d.id),
   };
 }

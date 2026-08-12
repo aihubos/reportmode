@@ -91,6 +91,42 @@ type ReportOverrideRow = {
   updated_at: string;
 };
 
+type BoardPostRow = {
+  id: string;
+  category: string;
+  title: string;
+  content: string;
+  author: string;
+  is_admin: number;
+  view_count: number;
+  comment_count: number;
+  created_at: string;
+  updated_at?: string | null;
+  password_salt?: string;
+  password_hash?: string;
+};
+
+type BoardCommentRow = {
+  id: string;
+  post_id: string;
+  author: string;
+  content: string;
+  is_admin: number;
+  created_at: string;
+  updated_at?: string | null;
+  password_salt?: string;
+  password_hash?: string;
+};
+
+const BOARD_CATEGORIES = new Set([
+  "report_opinion",
+  "ai_question",
+  "knowledge_share",
+  "free_opinion",
+]);
+
+const BOARD_UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
 const ALLOWED_ORIGINS = new Set([
   "https://aihubos.github.io",
   "https://aireport.ai-hub-os.com",
@@ -120,6 +156,85 @@ function json(request: Request, body: unknown, status = 200) {
 
 function clean(value: unknown, limit: number) {
   return typeof value === "string" ? value.replace(/\s+/g, " ").trim().slice(0, limit) : "";
+}
+
+function cleanMultiline(value: unknown, limit: number) {
+  return typeof value === "string"
+    ? value.replace(/\r\n?/g, "\n").replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g, "").trim().slice(0, limit)
+    : "";
+}
+
+function boardCategory(value: unknown) {
+  const category = clean(value, 32);
+  return BOARD_CATEGORIES.has(category) ? category : "";
+}
+
+function boardId(value: string) {
+  try {
+    const id = decodeURIComponent(value).trim().slice(0, 64);
+    return BOARD_UUID_PATTERN.test(id) ? id : "";
+  } catch {
+    return "";
+  }
+}
+
+function boardSort(value: string) {
+  return value === "comments" || value === "views" ? value : "latest";
+}
+
+function boardPage(value: string) {
+  const page = Math.trunc(Number(value || 1));
+  return Number.isFinite(page) ? Math.max(1, Math.min(page, 100000)) : 1;
+}
+
+function boardPageSize(value: string) {
+  const size = Math.trunc(Number(value || 20));
+  return Number.isFinite(size) ? Math.max(1, Math.min(size, 30)) : 20;
+}
+
+function boardPublicPost(row: BoardPostRow) {
+  return {
+    id: row.id,
+    category: row.category,
+    title: row.title,
+    content: row.content,
+    author: row.author,
+    is_admin: Number(row.is_admin || 0),
+    view_count: Math.max(0, Number(row.view_count || 0)),
+    comment_count: Math.max(0, Number(row.comment_count || 0)),
+    created_at: row.created_at,
+    updated_at: row.updated_at || null,
+  };
+}
+
+function boardPublicComment(row: BoardCommentRow) {
+  return {
+    id: row.id,
+    post_id: row.post_id,
+    author: row.author,
+    content: row.content,
+    is_admin: Number(row.is_admin || 0),
+    created_at: row.created_at,
+    updated_at: row.updated_at || null,
+  };
+}
+
+async function boardPostForPassword(env: Env, id: string) {
+  return env.DB.prepare(
+    "SELECT id, password_salt, password_hash FROM board_posts WHERE id = ?"
+  ).bind(id).first<BoardPostRow>();
+}
+
+async function boardCommentForPassword(env: Env, id: string) {
+  return env.DB.prepare(
+    "SELECT id, post_id, password_salt, password_hash FROM board_comments WHERE id = ?"
+  ).bind(id).first<BoardCommentRow>();
+}
+
+async function verifyBoardPassword(env: Env, row: { password_salt?: string; password_hash?: string } | null, password: string) {
+  if (!row) return false;
+  return Boolean(row.password_salt && row.password_hash)
+    && await hashPassword(password, row.password_salt!) === row.password_hash;
 }
 
 function encode(value: string) { return new TextEncoder().encode(value); }
@@ -610,6 +725,249 @@ export default {
       });
     }
 
+    if (url.pathname === "/board/posts" && request.method === "GET") {
+      const page = boardPage(url.searchParams.get("page") || "1");
+      const pageSize = boardPageSize(url.searchParams.get("pageSize") || "20");
+      const category = url.searchParams.get("category") === "all"
+        ? ""
+        : boardCategory(url.searchParams.get("category"));
+      const sort = boardSort(clean(url.searchParams.get("sort"), 16));
+      const query = cleanMultiline(url.searchParams.get("q"), 120);
+      const pattern = query ? "%" + query + "%" : "";
+      const orderBy = sort === "comments"
+        ? "comment_count DESC, created_at DESC"
+        : sort === "views"
+          ? "view_count DESC, created_at DESC"
+          : "created_at DESC";
+      const where = "WHERE (? = '' OR category = ?) " +
+        "AND (? = '' OR LOWER(title || ' ' || content || ' ' || author) LIKE LOWER(?))";
+      const total = await env.DB.prepare("SELECT COUNT(*) AS count FROM board_posts " + where)
+        .bind(category, category, query, pattern)
+        .first<{ count: number }>();
+      const rows = await env.DB.prepare(
+        "SELECT id, category, title, content, author, is_admin, view_count, comment_count, created_at, updated_at " +
+        "FROM board_posts " + where +
+        " ORDER BY " + orderBy + " LIMIT ? OFFSET ?"
+      ).bind(category, category, query, pattern, pageSize, (page - 1) * pageSize).all<BoardPostRow>();
+      return json(request, {
+        posts: (rows.results || []).map((row) => ({
+          ...boardPublicPost(row),
+          content: row.content.slice(0, 220),
+        })),
+        pagination: {
+          page,
+          pageSize,
+          total: Math.max(0, Number(total?.count || 0)),
+          totalPages: Math.max(1, Math.ceil(Number(total?.count || 0) / pageSize)),
+        },
+      });
+    }
+
+    if (url.pathname === "/board/posts" && request.method === "POST") {
+      let payload: { category?: unknown; title?: unknown; content?: unknown; author?: unknown; password?: unknown };
+      try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+      const category = boardCategory(payload.category);
+      const title = clean(payload.title, 100);
+      const content = cleanMultiline(payload.content, 5000);
+      const author = clean(payload.author, 24);
+      const password = passwordValue(payload.password);
+      if (!category) return json(request, { error: "invalid_category" }, 400);
+      if (title.length < 4) return json(request, { error: "title_too_short" }, 400);
+      if (content.length < 10) return json(request, { error: "content_too_short" }, 400);
+      if (!author) return json(request, { error: "author_required" }, 400);
+      if (password.length < 4) return json(request, { error: "password_too_short" }, 400);
+      const isAdmin = isAdminPassword(env, password);
+      if (isReservedAdminName(author) && !isAdmin) return json(request, { error: "reserved_admin_name" }, 403);
+      const now = new Date().toISOString();
+      const salt = crypto.randomUUID();
+      const row: BoardPostRow = {
+        id: crypto.randomUUID(), category, title, content, author,
+        is_admin: isAdmin ? 1 : 0, view_count: 0, comment_count: 0,
+        created_at: now, updated_at: null,
+      };
+      const passwordHash = await hashPassword(password, salt);
+      await env.DB.prepare(
+        "INSERT INTO board_posts " +
+        "(id, category, title, content, author, password_salt, password_hash, is_admin, view_count, comment_count, created_at, updated_at) " +
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, 0, ?, NULL)"
+      ).bind(row.id, row.category, row.title, row.content, row.author, salt, passwordHash, row.is_admin, row.created_at).run();
+      return json(request, { post: boardPublicPost(row) }, 201);
+    }
+
+    const boardPostId = url.pathname.match(/^\/board\/posts\/([0-9a-f-]{36})$/i)?.[1];
+    if (boardPostId && request.method === "GET") {
+      const id = boardId(boardPostId);
+      if (!id) return json(request, { error: "not_found" }, 404);
+      const row = await env.DB.prepare(
+        "SELECT id, category, title, content, author, is_admin, view_count, comment_count, created_at, updated_at " +
+        "FROM board_posts WHERE id = ?"
+      ).bind(id).first<BoardPostRow>();
+      if (!row) return json(request, { error: "not_found" }, 404);
+      return json(request, { post: boardPublicPost(row) });
+    }
+
+    if (boardPostId && request.method === "PATCH") {
+      const id = boardId(boardPostId);
+      if (!id) return json(request, { error: "not_found" }, 404);
+      let payload: { category?: unknown; title?: unknown; content?: unknown; author?: unknown; password?: unknown; adminPassword?: unknown };
+      try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+      const category = boardCategory(payload.category);
+      const title = clean(payload.title, 100);
+      const content = cleanMultiline(payload.content, 5000);
+      const author = clean(payload.author, 24);
+      const password = passwordValue(payload.password);
+      const adminPassword = passwordValue(payload.adminPassword);
+      if (!category) return json(request, { error: "invalid_category" }, 400);
+      if (title.length < 4) return json(request, { error: "title_too_short" }, 400);
+      if (content.length < 10) return json(request, { error: "content_too_short" }, 400);
+      if (!author) return json(request, { error: "author_required" }, 400);
+      if (password.length < 4 && adminPassword.length < 4) return json(request, { error: "password_too_short" }, 400);
+      const row = await boardPostForPassword(env, id);
+      if (!row) return json(request, { error: "not_found" }, 404);
+      const isAdmin = isAdminPassword(env, password) || isAdminPassword(env, adminPassword);
+      if (!isAdmin && !(await verifyBoardPassword(env, row, password))) return json(request, { error: "wrong_password" }, 403);
+      if (isReservedAdminName(author) && !isAdmin) return json(request, { error: "reserved_admin_name" }, 403);
+      const updatedAt = new Date().toISOString();
+      await env.DB.prepare(
+        "UPDATE board_posts SET category = ?, title = ?, content = ?, author = ?, is_admin = ?, updated_at = ? WHERE id = ?"
+      ).bind(category, title, content, author, isAdmin ? 1 : 0, updatedAt, id).run();
+      const updated = await env.DB.prepare(
+        "SELECT id, category, title, content, author, is_admin, view_count, comment_count, created_at, updated_at " +
+        "FROM board_posts WHERE id = ?"
+      ).bind(id).first<BoardPostRow>();
+      return json(request, { post: updated ? boardPublicPost(updated) : null });
+    }
+
+    if (boardPostId && request.method === "DELETE") {
+      const id = boardId(boardPostId);
+      if (!id) return json(request, { error: "not_found" }, 404);
+      let payload: { password?: unknown; adminPassword?: unknown };
+      try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+      const password = passwordValue(payload.password);
+      const adminPassword = passwordValue(payload.adminPassword);
+      if (password.length < 4 && adminPassword.length < 4) return json(request, { error: "password_too_short" }, 400);
+      const row = await boardPostForPassword(env, id);
+      if (!row) return json(request, { error: "not_found" }, 404);
+      const isAdmin = isAdminPassword(env, password) || isAdminPassword(env, adminPassword);
+      if (!isAdmin && !(await verifyBoardPassword(env, row, password))) return json(request, { error: "wrong_password" }, 403);
+      await env.DB.batch([
+        env.DB.prepare("DELETE FROM board_comments WHERE post_id = ?").bind(id),
+        env.DB.prepare("DELETE FROM board_post_daily_views WHERE post_id = ?").bind(id),
+        env.DB.prepare("DELETE FROM board_posts WHERE id = ?").bind(id),
+      ]);
+      return json(request, { ok: true, postId: id });
+    }
+
+    const boardViewId = url.pathname.match(/^\/board\/posts\/([0-9a-f-]{36})\/views$/i)?.[1];
+    if (boardViewId && request.method === "POST") {
+      const id = boardId(boardViewId);
+      if (!id) return json(request, { error: "not_found" }, 404);
+      let payload: { visitorId?: unknown };
+      try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+      const visitorId = clean(payload.visitorId, 64);
+      if (!isVisitorId(visitorId)) return json(request, { error: "invalid_visitor" }, 400);
+      const existing = await env.DB.prepare("SELECT id FROM board_posts WHERE id = ?").bind(id).first<{ id: string }>();
+      if (!existing) return json(request, { error: "not_found" }, 404);
+      const day = seoulDate();
+      const inserted = await env.DB.prepare(
+        "INSERT OR IGNORE INTO board_post_daily_views (post_id, visitor_id, view_date, created_at) VALUES (?, ?, ?, ?)"
+      ).bind(id, visitorId, day, new Date().toISOString()).run();
+      const row = await env.DB.prepare("SELECT view_count FROM board_posts WHERE id = ?").bind(id).first<{ view_count: number }>();
+      return json(request, {
+        postId: id,
+        day,
+        counted: Number(inserted.meta?.changes || 0) > 0,
+        count: Math.max(0, Number(row?.view_count || 0)),
+      });
+    }
+
+    const boardCommentsPostId = url.pathname.match(/^\/board\/posts\/([0-9a-f-]{36})\/comments$/i)?.[1];
+    if (boardCommentsPostId && request.method === "GET") {
+      const postId = boardId(boardCommentsPostId);
+      if (!postId) return json(request, { error: "not_found" }, 404);
+      const post = await env.DB.prepare("SELECT id FROM board_posts WHERE id = ?").bind(postId).first<{ id: string }>();
+      if (!post) return json(request, { error: "not_found" }, 404);
+      const rows = await env.DB.prepare(
+        "SELECT id, post_id, author, content, is_admin, created_at, updated_at " +
+        "FROM board_comments WHERE post_id = ? ORDER BY created_at ASC LIMIT 100"
+      ).bind(postId).all<BoardCommentRow>();
+      return json(request, { comments: (rows.results || []).map(boardPublicComment) });
+    }
+
+    if (boardCommentsPostId && request.method === "POST") {
+      const postId = boardId(boardCommentsPostId);
+      if (!postId) return json(request, { error: "not_found" }, 404);
+      const post = await env.DB.prepare("SELECT id FROM board_posts WHERE id = ?").bind(postId).first<{ id: string }>();
+      if (!post) return json(request, { error: "not_found" }, 404);
+      let payload: { author?: unknown; content?: unknown; password?: unknown };
+      try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+      const author = clean(payload.author, 24);
+      const content = cleanMultiline(payload.content, 1000);
+      const password = passwordValue(payload.password);
+      if (!author) return json(request, { error: "author_required" }, 400);
+      if (content.length < 2) return json(request, { error: "comment_too_short" }, 400);
+      if (password.length < 4) return json(request, { error: "password_too_short" }, 400);
+      const isAdmin = isAdminPassword(env, password);
+      if (isReservedAdminName(author) && !isAdmin) return json(request, { error: "reserved_admin_name" }, 403);
+      const now = new Date().toISOString();
+      const salt = crypto.randomUUID();
+      const row: BoardCommentRow = {
+        id: crypto.randomUUID(), post_id: postId, author, content,
+        is_admin: isAdmin ? 1 : 0, created_at: now, updated_at: null,
+      };
+      const passwordHash = await hashPassword(password, salt);
+      await env.DB.prepare(
+        "INSERT INTO board_comments " +
+        "(id, post_id, author, content, password_salt, password_hash, is_admin, created_at, updated_at) " +
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, NULL)"
+      ).bind(row.id, row.post_id, row.author, row.content, salt, passwordHash, row.is_admin, row.created_at).run();
+      return json(request, { comment: boardPublicComment(row) }, 201);
+    }
+
+    const boardCommentId = url.pathname.match(/^\/board\/comments\/([0-9a-f-]{36})$/i)?.[1];
+    if (boardCommentId && request.method === "PATCH") {
+      const id = boardId(boardCommentId);
+      if (!id) return json(request, { error: "not_found" }, 404);
+      let payload: { author?: unknown; content?: unknown; password?: unknown; adminPassword?: unknown };
+      try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+      const author = clean(payload.author, 24);
+      const content = cleanMultiline(payload.content, 1000);
+      const password = passwordValue(payload.password);
+      const adminPassword = passwordValue(payload.adminPassword);
+      if (!author) return json(request, { error: "author_required" }, 400);
+      if (content.length < 2) return json(request, { error: "comment_too_short" }, 400);
+      if (password.length < 4 && adminPassword.length < 4) return json(request, { error: "password_too_short" }, 400);
+      const row = await boardCommentForPassword(env, id);
+      if (!row) return json(request, { error: "not_found" }, 404);
+      const isAdmin = isAdminPassword(env, password) || isAdminPassword(env, adminPassword);
+      if (!isAdmin && !(await verifyBoardPassword(env, row, password))) return json(request, { error: "wrong_password" }, 403);
+      if (isReservedAdminName(author) && !isAdmin) return json(request, { error: "reserved_admin_name" }, 403);
+      const updatedAt = new Date().toISOString();
+      await env.DB.prepare(
+        "UPDATE board_comments SET author = ?, content = ?, is_admin = ?, updated_at = ? WHERE id = ?"
+      ).bind(author, content, isAdmin ? 1 : 0, updatedAt, id).run();
+      const updated = await env.DB.prepare(
+        "SELECT id, post_id, author, content, is_admin, created_at, updated_at FROM board_comments WHERE id = ?"
+      ).bind(id).first<BoardCommentRow>();
+      return json(request, { comment: updated ? boardPublicComment(updated) : null });
+    }
+
+    if (boardCommentId && request.method === "DELETE") {
+      const id = boardId(boardCommentId);
+      if (!id) return json(request, { error: "not_found" }, 404);
+      let payload: { password?: unknown; adminPassword?: unknown };
+      try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+      const password = passwordValue(payload.password);
+      const adminPassword = passwordValue(payload.adminPassword);
+      if (password.length < 4 && adminPassword.length < 4) return json(request, { error: "password_too_short" }, 400);
+      const row = await boardCommentForPassword(env, id);
+      if (!row) return json(request, { error: "not_found" }, 404);
+      const isAdmin = isAdminPassword(env, password) || isAdminPassword(env, adminPassword);
+      if (!isAdmin && !(await verifyBoardPassword(env, row, password))) return json(request, { error: "wrong_password" }, 403);
+      await env.DB.prepare("DELETE FROM board_comments WHERE id = ?").bind(id).run();
+      return json(request, { ok: true, commentId: id });
+    }
+
     if (url.pathname === "/comments" && request.method === "GET") {
       const reportId = clean(url.searchParams.get("report"), 120);
       if (!reportId) return json(request, { error: "missing_report" }, 400);
@@ -1074,7 +1432,7 @@ export default {
       return json(request, { ok: true, reportId });
     }
 
-    if (url.pathname === "/comments" || url.pathname === "/comments/recent" || commentId || url.pathname === "/visits" || url.pathname === "/entry-sessions" || url.pathname === "/report-views" || url.pathname === "/requests" || requestId || replyRequestId || url.pathname.startsWith("/hidden-reports") || url.pathname.startsWith("/featured-reports") || url.pathname.startsWith("/draft-promotions") || url.pathname.startsWith("/report-overrides") || url.pathname === "/admin/verify" || url.pathname === "/admin/analytics" || url.pathname.startsWith("/admin/report-actions") || url.pathname.startsWith("/admin/report-jobs")) {
+    if (url.pathname === "/comments" || url.pathname === "/comments/recent" || commentId || url.pathname === "/visits" || url.pathname === "/entry-sessions" || url.pathname === "/report-views" || url.pathname === "/requests" || requestId || replyRequestId || url.pathname === "/board/posts" || boardPostId || boardViewId || boardCommentsPostId || boardCommentId || url.pathname.startsWith("/hidden-reports") || url.pathname.startsWith("/featured-reports") || url.pathname.startsWith("/draft-promotions") || url.pathname.startsWith("/report-overrides") || url.pathname === "/admin/verify" || url.pathname === "/admin/analytics" || url.pathname.startsWith("/admin/report-actions") || url.pathname.startsWith("/admin/report-jobs")) {
       return json(request, { error: "method_not_allowed" }, 405);
     }
     return json(request, { error: "not_found" }, 404);
