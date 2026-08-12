@@ -2,7 +2,7 @@
   "use strict";
 
   var HOME = "https://aireport.ai-hub-os.com/";
-  var VERSION = "20260810-mobile-scroll1";
+  var VERSION = "20260812-rh-blue-favicon1";
   var SEOUL_TIME_ZONE = "Asia/Seoul";
   var script = document.currentScript;
   var faviconUrl = script && script.src

@@ -1,7 +1,7 @@
 import path from "node:path";
 
 export const REPORT_HUB_HOME = "https://aireport.ai-hub-os.com/";
-export const REPORT_HUB_BRAND_VERSION = "20260810-mobile-scroll1";
+export const REPORT_HUB_BRAND_VERSION = "20260812-rh-blue-favicon1";
 export const REPORT_HISTORY_VERSION = "20260809-history2";
 export const REPORT_COMMENTS_VERSION = "20260810-comments2";
 export const REPORT_COUNTER_VERSION = "20260810-counter-d1-1";

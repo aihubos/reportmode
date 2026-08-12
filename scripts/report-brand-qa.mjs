@@ -58,7 +58,7 @@ for (const relative of ["index.html", "archive/index.html", "archive/upload.html
   const html = fs.readFileSync(path.join(root, relative), "utf8");
   if (!/Report Hub/.test(html)) failures.push(`${relative}: Report Hub 이름이 없음`);
   if (legacyBrand.test(html)) failures.push(`${relative}: 구형 공개 브랜드 이름이 남아 있음`);
-  if (!/favicon\.svg\?v=20260810-mobile-scroll1/.test(html)) failures.push(`${relative}: 최신 RH 파비콘이 없음`);
+  if (!/favicon\.svg\?v=20260812-rh-blue-favicon1/.test(html)) failures.push(`${relative}: 최신 RH 파비콘이 없음`);
 }
 
 const archive = fs.readFileSync(path.join(root, "archive/index.html"), "utf8");
@@ -81,6 +81,9 @@ for (const relative of ["archive/index.html", "archive/upload.html"]) {
 const favicon = fs.readFileSync(path.join(root, "assets/favicon.svg"), "utf8");
 if (!/>RH<\/text>/.test(favicon) || />RM<\/text>/.test(favicon)) {
   failures.push("assets/favicon.svg: RH 문자가 정확하지 않음");
+}
+if (!/fill="#3182F6"/.test(favicon) || !/fill="#FFFFFF"/.test(favicon)) {
+  failures.push("assets/favicon.svg: 흰 배경과 Toss Blue RH 색상이 아님");
 }
 
 if (failures.length > 0) {
