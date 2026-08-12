@@ -250,7 +250,7 @@ export function renderReportHtml(doc: ReportDocument): string {
   <link rel="stylesheet" href="../../assets/report-comments.css?v=${REPORT_COMMENTS_VERSION}">
 </head>
 <body data-report-view="detail" data-report-layout="wide">
-  <a class="report-home-button" href="${REPORT_HUB_HOME}" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><img class="report-hub-logo-image" src="../../assets/report-hub-logo.png?v=${REPORT_HUB_BRAND_VERSION}" alt="Report Hub"></span></a>
+  <a class="report-home-button" href="${REPORT_HUB_HOME}" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-logo-mark-shimmer" aria-hidden="true"></span><img class="report-hub-logo-image" src="../../assets/report-hub-logo.png?v=${REPORT_HUB_BRAND_VERSION}" alt="Report Hub"></span></a>
   <nav class="nav" aria-label="보고서 탐색">
     <div class="nav-inner">
       <a href="${REPORT_HUB_HOME}">Report Hub</a>
@@ -526,7 +526,7 @@ export function renderHomeHtml(
     <div class="archive-topbar-inner">
       <div class="report-hub-brand-cluster">
         <a class="archive-brand report-hub-brand-link" href="${REPORT_HUB_HOME}" aria-label="Report Hub 메인으로 이동">
-          <span class="report-hub-brand-copy"><img class="report-hub-logo-image" src="../assets/report-hub-logo.png?v=${REPORT_HUB_BRAND_VERSION}" alt="Report Hub"></span>
+          <span class="report-hub-brand-copy"><span class="report-hub-logo-mark-shimmer" aria-hidden="true"></span><img class="report-hub-logo-image" src="../assets/report-hub-logo.png?v=${REPORT_HUB_BRAND_VERSION}" alt="Report Hub"></span>
         </a>
         <time class="report-hub-clock" data-report-hub-clock="true" aria-label="서울 현재 날짜와 시각"><span class="report-hub-clock-date"></span><span class="report-hub-clock-time"></span></time>
       </div>

@@ -5,7 +5,7 @@ const LAYOUT_VERSION = "20260810-mobile-scroll1";
 const HISTORY_VERSION = "20260809-history2";
 const COUNTER_VERSION = "20260810-counter-d1-1";
 const COMMENTS_VERSION = "20260810-comments2";
-const BRAND_VERSION = "20260812-report-hub-logo1";
+const BRAND_VERSION = "20260812-report-hub-logo2";
 
 export function isRedirectHtml(html) {
   return /<meta\b[^>]*http-equiv\s*=\s*["']?refresh["']?/i.test(html);
@@ -116,7 +116,7 @@ function upsertFavicon(html) {
 
 function upsertHomeButton(html, body, archiveHref, prefix) {
   const expression = /<a\b[^>]*class=["'][^"']*\breport-home-button\b[^"']*["'][^>]*>[\s\S]*?<\/a>/i;
-  const button = `<a class="report-home-button" href="${archiveHref}" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><img class="report-hub-logo-image" src="${prefix}/assets/report-hub-logo.png?v=${BRAND_VERSION}" alt="Report Hub"></span></a>`;
+  const button = `<a class="report-home-button" href="${archiveHref}" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-logo-mark-shimmer" aria-hidden="true"></span><img class="report-hub-logo-image" src="${prefix}/assets/report-hub-logo.png?v=${BRAND_VERSION}" alt="Report Hub"></span></a>`;
   if (expression.test(html)) {
     return html.replace(expression, button);
   }

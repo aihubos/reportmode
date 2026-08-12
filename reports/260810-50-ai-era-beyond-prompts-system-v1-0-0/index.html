@@ -183,24 +183,24 @@ section{padding:102px 0}.section-soft{background:var(--surface)}.section-blue{co
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
 @media print{@page{size:A4;margin:12mm}body{background:#fff!important;color:#000}.nav-wrap,.floating-actions,.scroll-progress,.hero-actions,.sim-controls{display:none!important}.container{width:100%;max-width:none}.hero{min-height:auto;grid-template-columns:1fr 1fr;padding:8mm 0 14mm}.hero-orbit{display:none}section{padding:14mm 0;break-inside:avoid}.section-blue{background:#fff!important;color:#000!important;border-top:2px solid var(--blue);border-bottom:2px solid var(--blue)}.section-blue .section-desc,.plan-card p,.check-item{color:#333!important}.plan-card,.human-card.blue-card,.verdict-card{border:1px solid #ccc;background:#f4f6f8!important;color:#000!important;box-shadow:none}.plan-card h3,.verdict-card h3,.blue-card .human-item strong{color:#000!important}.story-quote{position:static;background:#f4f6f8!important;color:#000!important}.story-quote blockquote{color:#000}.story-quote p{color:#333}.hero-media,.cap-card,.story-card,.decision-card,.human-card{box-shadow:none}.reveal{opacity:1!important;transform:none!important}.history-table-wrap,.table-shell{overflow:visible}.history-table,.data-table{min-width:0;font-size:9px}.check-item input{display:none}a{text-decoration:none}.system-map{min-height:auto}.map-ring,.map-line{display:none}.map-node{position:relative;inset:auto!important;transform:none!important;width:100%;margin:4px}.system-map{display:block}.map-center{margin:0 auto 10px}.map-caption{position:relative;inset:auto;text-align:center}}
 </style>
-  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260812-report-hub-logo1">
-  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png?v=20260812-report-hub-logo1">
-  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png?v=20260812-report-hub-logo1">
-  <link rel="manifest" href="../../site.webmanifest?v=20260812-report-hub-logo1">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260812-report-hub-logo2">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png?v=20260812-report-hub-logo2">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png?v=20260812-report-hub-logo2">
+  <link rel="manifest" href="../../site.webmanifest?v=20260812-report-hub-logo2">
   <meta name="application-name" content="Report Hub">
   <meta property="og:site_name" content="Report Hub">
-  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260812-report-hub-logo1">
-  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260812-report-hub-logo1">
+  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260812-report-hub-logo2">
+  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260812-report-hub-logo2">
   <link rel="stylesheet" href="../../assets/report-comments.css?v=20260810-comments2">
 </head>
 <body data-report-root="rh-260810-50-ai-era-beyond-prompts-system" data-report-view="detail" data-report-layout="wide">
-  <a class="report-home-button" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><img class="report-hub-logo-image" src="../../assets/report-hub-logo.png?v=20260812-report-hub-logo1" alt="Report Hub"></span></a>
+  <a class="report-home-button" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-logo-mark-shimmer" aria-hidden="true"></span><img class="report-hub-logo-image" src="../../assets/report-hub-logo.png?v=20260812-report-hub-logo2" alt="Report Hub"></span></a>
   <a class="skip-link" href="#main-content">본문으로 바로가기</a>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
   <div class="nav-wrap">
     <nav class="nav" aria-label="주요 메뉴">
-      <a class="brand report-hub-brand-link" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><img class="report-hub-logo-image" src="../../assets/report-hub-logo.png?v=20260812-report-hub-logo1" alt="Report Hub"></span></a>
+      <a class="brand report-hub-brand-link" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-logo-mark-shimmer" aria-hidden="true"></span><img class="report-hub-logo-image" src="../../assets/report-hub-logo.png?v=20260812-report-hub-logo2" alt="Report Hub"></span></a>
       <div class="nav-links"><a href="#summary">1분 요약</a><a href="#capabilities">4가지 능력</a><a href="#map">활동 지도</a><a href="#plan">6개월 계획</a><a href="#human">사람의 판단</a><a href="#sources">출처</a></div>
       <div class="nav-actions"><a class="btn btn-ghost" href="#history">변경 이력</a><button class="btn btn-primary" type="button" onclick="window.print()">PDF 저장</button></div>
     </nav>
@@ -550,11 +550,11 @@ function saveChecks(){try{const saved={};checks.forEach((c)=>saved[c.id]=c.check
 function updatePlanProgress(){const done=checks.filter((c)=>c.checked).length;const total=checks.length;const pct=total?Math.round(done/total*100):0;const bar=document.getElementById('planProgressBar');const text=document.getElementById('planProgressText');if(bar)bar.style.width=pct+'%';if(text)text.textContent=`${done}/${total} 완료 · ${pct}%`;}
 checks.forEach((c)=>c.addEventListener('change',saveChecks));loadChecks();
 </script>
-  <script src="../../assets/report-page-layout.js?v=20260812-report-hub-logo1"></script>
+  <script src="../../assets/report-page-layout.js?v=20260812-report-hub-logo2"></script>
   <script src="../../assets/report-view-counter.js?v=20260810-counter-d1-1" data-report-id="260810-50-ai-era-beyond-prompts-system-v1-0-0"></script>
   <script src="../../assets/report-comments.js?v=20260810-comments2" data-report-id="260810-50-ai-era-beyond-prompts-system-v1-0-0"></script>
   <script src="../../assets/report-history.js?v=20260809-history2" data-report-id="260810-50-ai-era-beyond-prompts-system-v1-0-0"></script>
   <script src="../../assets/report-entry-tracker.js?v=20260811-entry1" data-report-id="260810-50-ai-era-beyond-prompts-system-v1-0-0"></script>
-  <script src="../../assets/report-hub-brand.js?v=20260812-report-hub-logo1"></script>
+  <script src="../../assets/report-hub-brand.js?v=20260812-report-hub-logo2"></script>
 </body>
 </html>

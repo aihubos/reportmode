@@ -117,20 +117,20 @@
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
     @media print{@page{size:A4;margin:12mm}body{background:#fff!important;color:#000}.nav-wrap,.floating-actions,.scroll-progress,.hero-actions,.prompt-actions{display:none!important}.container{width:100%;max-width:none}.hero{min-height:auto;grid-template-columns:1fr 1fr;padding:8mm 0 14mm}.hero-orbit{display:none}section{padding:14mm 0;break-inside:avoid}.section-blue{background:#fff!important;color:#000!important;border-top:2px solid var(--blue);border-bottom:2px solid var(--blue)}.section-blue .section-desc,.plan-card p,.plan-card ul,.file-content p{color:#333!important}.plan-card,.file-window,.verdict-card{border:1px solid #ccc;background:#f4f6f8!important;color:#000!important;box-shadow:none}.plan-card h3,.file-content h3,.verdict-card h3{color:#000!important}.reveal{opacity:1!important;transform:none!important}.history-table-wrap{overflow:visible}.history-table{min-width:0;font-size:9px}a{text-decoration:none}}
   </style>
-  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260812-report-hub-logo1">
-  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png?v=20260812-report-hub-logo1">
-  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png?v=20260812-report-hub-logo1">
-  <link rel="manifest" href="../../site.webmanifest?v=20260812-report-hub-logo1">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260812-report-hub-logo2">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png?v=20260812-report-hub-logo2">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png?v=20260812-report-hub-logo2">
+  <link rel="manifest" href="../../site.webmanifest?v=20260812-report-hub-logo2">
   <meta name="application-name" content="Report Hub">
   <meta property="og:site_name" content="Report Hub">
-  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260812-report-hub-logo1">
-  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260812-report-hub-logo1">
+  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260812-report-hub-logo2">
+  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260812-report-hub-logo2">
   <link rel="stylesheet" href="../../assets/report-comments.css?v=20260810-comments2">
 </head>
 <body data-report-view="detail" data-report-layout="wide">
   <a class="skip-link" href="#main-content">본문으로 바로가기</a>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
-  <nav class="report-hub-floating-menu" aria-label="Report Hub 및 보고서 보기"><a class="report-home-button" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><img class="report-hub-logo-image" src="../../assets/report-hub-logo.png?v=20260812-report-hub-logo1" alt="Report Hub"></span></a></nav>
+  <nav class="report-hub-floating-menu" aria-label="Report Hub 및 보고서 보기"><a class="report-home-button" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-logo-mark-shimmer" aria-hidden="true"></span><img class="report-hub-logo-image" src="../../assets/report-hub-logo.png?v=20260812-report-hub-logo2" alt="Report Hub"></span></a></nav>
 
   <main id="main-content">
     <div class="container" id="top">
@@ -445,11 +445,11 @@ AI는 단순한 도구가 아니라 인간의 지능을 증폭하는 도구라�
     const copyButton=document.getElementById('copyPrompt');const promptText=document.getElementById('promptText');async function loadPrompt(){if(!copyButton||!promptText)return;try{const response=await fetch(promptText.dataset.promptSource,{cache:'no-store'});if(!response.ok)throw new Error('Prompt load failed');promptText.textContent=await response.text();copyButton.disabled=false;copyButton.textContent='전체 복사'}catch(error){promptText.textContent='프롬프트를 불러오지 못했습니다. Markdown 원문 버튼을 눌러 내용을 확인해 주세요.';copyButton.textContent='불러오기 실패'}}loadPrompt();if(copyButton)copyButton.addEventListener('click',async()=>{if(copyButton.disabled)return;const text=promptText.textContent;try{await navigator.clipboard.writeText(text);copyButton.textContent='복사됨';setTimeout(()=>copyButton.textContent='전체 복사',1600)}catch(e){copyButton.textContent='직접 선택'}});
     const shareButton=document.getElementById('shareArticle');if(shareButton)shareButton.addEventListener('click',async()=>{const data={title:document.title,text:'Soul.md 100문 100답으로 나만의 AI 에이전트를 만드는 방법',url:location.href};if(navigator.share){try{await navigator.share(data)}catch(e){}}else{try{await navigator.clipboard.writeText(location.href);shareButton.setAttribute('aria-label','링크 복사됨')}catch(e){}}});
   </script>
-  <script src="../../assets/report-page-layout.js?v=20260812-report-hub-logo1"></script>
+  <script src="../../assets/report-page-layout.js?v=20260812-report-hub-logo2"></script>
   <script src="../../assets/report-view-counter.js?v=20260810-counter-d1-1" data-report-id="260809-21-soul-md-ai-clone-agent-v1-0-0"></script>
   <script src="../../assets/report-comments.js?v=20260810-comments2" data-report-id="260809-21-soul-md-ai-clone-agent-v1-0-0"></script>
   <script src="../../assets/report-history.js?v=20260809-history2" data-report-id="260809-21-soul-md-ai-clone-agent-v1-0-0"></script>
   <script src="../../assets/report-entry-tracker.js?v=20260811-entry1" data-report-id="260809-21-soul-md-ai-clone-agent-v1-0-0"></script>
-  <script src="../../assets/report-hub-brand.js?v=20260812-report-hub-logo1"></script>
+  <script src="../../assets/report-hub-brand.js?v=20260812-report-hub-logo2"></script>
 </body>
 </html>

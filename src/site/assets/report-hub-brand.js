@@ -2,7 +2,7 @@
   "use strict";
 
   var HOME = "https://aireport.ai-hub-os.com/";
-  var VERSION = "20260812-report-hub-logo1";
+  var VERSION = "20260812-report-hub-logo2";
   var SEOUL_TIME_ZONE = "Asia/Seoul";
   var script = document.currentScript;
   var faviconUrl = script && script.src
@@ -18,7 +18,7 @@
   var mobileTopBarInstalled = false;
 
   function logoMarkup() {
-    return '<span class="report-hub-brand-copy"><img class="report-hub-logo-image" src="' + logoUrl + '" alt="Report Hub"></span>';
+    return '<span class="report-hub-brand-copy"><span class="report-hub-logo-mark-shimmer" aria-hidden="true"></span><img class="report-hub-logo-image" src="' + logoUrl + '" alt="Report Hub"></span>';
   }
 
   function formatClock(value) {

@@ -342,7 +342,7 @@ function writeCommunityBoard(root: string): string {
 }
 
 function syncSharedBrandAssets(root: string) {
-  for (const asset of ["report-hub-brand.css", "report-hub-brand.js", "report-hub-logo.png"]) {
+  for (const asset of ["report-hub-brand.css", "report-hub-brand.js", "report-hub-logo.png", "report-hub-logo-mark.png"]) {
     fs.copyFileSync(
       path.join(root, "src", "site", "assets", asset),
       path.join(root, "assets", asset),
