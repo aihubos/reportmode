@@ -6,7 +6,7 @@ import vm from "node:vm";
 
 const root = path.resolve(import.meta.dirname, "..");
 
-test("public brand uses a large Toss Blue text wordmark and one floating menu", () => {
+test("public brand uses the supplied Report Hub image logo and one floating menu", () => {
   const svg = fs.readFileSync(path.join(root, "assets", "favicon.svg"), "utf8");
   const css = fs.readFileSync(path.join(root, "assets", "report-hub-brand.css"), "utf8");
   const script = fs.readFileSync(path.join(root, "assets", "report-hub-brand.js"), "utf8");
@@ -22,16 +22,16 @@ test("public brand uses a large Toss Blue text wordmark and one floating menu", 
   assert.match(css, /\.report-hub-floating-menu\s*{[^}]*left:\s*50%[^}]*transform:\s*translateX\(-50%\)/s);
   assert.match(css, /--rh-report-menu-content-gap:\s*24px/);
   assert.match(css, /\.report-home-button/);
-  assert.match(css, /\.report-hub-wordmark\s*{[^}]*font-size:\s*var\(--rh-wordmark-size\)/s);
-  assert.match(css, /--rh-wordmark-size:\s*36px/);
-  assert.match(css, /--rh-wordmark-size-compact:\s*30px/);
+  assert.match(css, /\.report-hub-logo-image\s*{[^}]*width:\s*var\(--rh-logo-width\)[^}]*object-fit:\s*contain/s);
+  assert.match(css, /--rh-logo-width:\s*196px/);
+  assert.match(css, /--rh-logo-width-compact:\s*158px/);
   assert.match(css, /--rh-clock-date-size:\s*13px/);
   assert.match(css, /--rh-clock-time-size:\s*22px/);
   assert.match(css, /--rh-clock-date-size-compact:\s*11px/);
   assert.match(css, /--rh-clock-time-size-compact:\s*18px/);
-  assert.match(css, /\.report-hub-brand-copy\s*{[^}]*align-items:\s*flex-start[^}]*text-align:\s*left/s);
+  assert.match(css, /\.report-hub-brand-copy\s*{[^}]*display:\s*inline-flex[^}]*align-items:\s*center/s);
   assert.match(css, /\.report-hub-clock\s*{[^}]*display:\s*flex[^}]*align-items:\s*baseline/s);
-  assert.match(css, /\.report-hub-byline\s*{[^}]*color:\s*var\(--rh-muted\)/s);
+  assert.doesNotMatch(css, /\.report-hub-byline\s*{/);
   assert.match(css, /\.report-hub-clock-time\s*{[^}]*font-variant-numeric:\s*tabular-nums/s);
   assert.doesNotMatch(css, /gradient|glow/i);
   assert.match(script, /https:\/\/aireport\.ai-hub-os\.com\//);
@@ -54,15 +54,16 @@ test("public brand uses a large Toss Blue text wordmark and one floating menu", 
   assert.match(script, /nav\.nav:not\(\.report-hub-floating-menu\)/);
   assert.match(script, /\.report-view-switcher \.report-utility-controls/);
   assert.match(script, /window\.scrollTo/);
-  assert.doesNotMatch(script, /<img class="report-hub-logo"/);
+  assert.match(script, /report-hub-logo\.png/);
+  assert.match(script, /<img class="report-hub-logo-image"/);
   assert.match(archive, /<title>Report Hub \| AI 리서치 라이브러리<\/title>/);
   assert.doesNotMatch(archive, /class="archive-profile"|<h1 id="archive-title">/);
-  assert.match(archive, /class="archive-brand report-hub-brand-link"[^>]*>[\s\S]*class="report-hub-wordmark">Report Hub/);
+  assert.match(archive, /class="archive-brand report-hub-brand-link"[^>]*>[\s\S]*class="report-hub-logo-image"[^>]*alt="Report Hub"/);
   assert.doesNotMatch(archive, /data-archive-brand-name=/);
-  assert.match(archive, /class="report-hub-byline">by Jeremy/);
+  assert.doesNotMatch(archive, /report-hub-byline|by Jeremy/);
   assert.match(archive, /class="report-hub-clock"/);
   assert.match(archive, /class="archive-blog-card"/);
-  assert.doesNotMatch(archive, /class="archive-brand[^>]*>[\s\S]{0,180}report-hub-logo/);
+  assert.match(archive, /src="\.\.\/assets\/report-hub-logo\.png\?v=20260812-report-hub-logo1"/);
   assert.doesNotMatch(archive, /class="archive-avatar"/);
   assert.doesNotMatch(archive, /Jeremy's AI Report|>RM<|>R<\/span>/);
   assert.match(archiveCss, /\.archive-topbar-inner\s*{[^}]*width:\s*min\(var\(--archive-shell-max\),\s*calc\(100% - \(var\(--archive-shell-edge\) \* 2\)\)\)[^}]*margin:\s*0 auto/s);

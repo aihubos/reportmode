@@ -54,8 +54,8 @@ test("renders a structured report table with column headers and cells", () => {
   assert.match(html, /<table class="report-table">/);
   assert.match(html, /<th scope="col">요금제<\/th>/);
   assert.match(html, /<td>\$20<\/td>/);
-  assert.match(html, /report-page-layout\.css\?v=20260812-rh-blue-favicon1/);
-  assert.match(html, /report-page-layout\.js\?v=20260812-rh-blue-favicon1/);
+  assert.match(html, /report-page-layout\.css\?v=20260812-report-hub-logo1/);
+  assert.match(html, /report-page-layout\.js\?v=20260812-report-hub-logo1/);
   assert.match(html, /report-comments\.css\?v=20260810-comments2/);
   assert.match(html, /report-comments\.js\?v=20260810-comments2" data-report-id="table-test"/);
   assert.match(html, /report-view-counter\.js\?v=20260810-counter-d1-1" data-report-id="table-test"/);
@@ -63,8 +63,8 @@ test("renders a structured report table with column headers and cells", () => {
   assert.match(html, /id="report-home-button"|class="report-home-button"/);
   assert.match(html, /href="https:\/\/aireport\.ai-hub-os\.com\/"/);
   assert.match(html, /Report Hub/);
-  assert.match(html, /class="report-hub-byline">by Jeremy/);
-  assert.doesNotMatch(html, /class="report-hub-logo"/);
+  assert.match(html, /class="report-hub-logo-image"[^>]*src="\.\.\/\.\.\/assets\/report-hub-logo\.png\?v=20260812-report-hub-logo1"[^>]*alt="Report Hub"/);
+  assert.doesNotMatch(html, /report-hub-wordmark|report-hub-byline|by Jeremy/);
   assert.doesNotMatch(html, /Report Mode/);
 });
 
@@ -85,7 +85,7 @@ test("renders the simplified archive with one Naver card and a 30-item default s
   assert.doesNotMatch(html, /class="archive-profile"/);
   assert.doesNotMatch(html, /원자료를 조사하고 사실과 해석을 나눠 기록하는/);
   assert.doesNotMatch(html, /읽고 판단하기 좋은/);
-  assert.match(html, /class="report-hub-wordmark">Report Hub<\/span>/);
+  assert.match(html, /class="report-hub-logo-image"[^>]*src="\.\.\/assets\/report-hub-logo\.png\?v=20260812-report-hub-logo1"[^>]*alt="Report Hub"/);
   assert.match(html, /aria-label="Report Hub 메인으로 이동"/);
   assert.doesNotMatch(html, /class="archive-brand-mark"/);
   assert.equal(html.match(/https:\/\/blog\.naver\.com\/jeremylee0213/g)?.length, 1);

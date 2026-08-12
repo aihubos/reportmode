@@ -31,19 +31,19 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
 @media print{@page{size:A4;margin:12mm}body{background:#fff!important;color:#000}.nav-wrap,.floating,.progress,.hero-actions,.timeline-toolbar{display:none!important}.container{width:100%;max-width:none}.hero{min-height:auto;grid-template-columns:1fr 1fr;padding:8mm 0 14mm}section{padding:14mm 0;break-inside:avoid}.blue-section{color:#000!important;background:#fff!important;border-block:2px solid var(--blue)}.blue-section .section-desc,.flow p{color:#333!important}.flow{border:1px solid #ccc;background:#f4f6f8!important}.flow h3{color:#000}.reveal{opacity:1!important;transform:none!important}.history-wrap,.table-shell{overflow:visible}.history-table,.data-table{min-width:0;font-size:8px}.source-card{break-inside:avoid}.hero-media,.card,.exec,.verdict{box-shadow:none}}
 </style>
-  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260810-mobile-scroll1">
-  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png?v=20260810-mobile-scroll1">
-  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png?v=20260810-mobile-scroll1">
-  <link rel="manifest" href="../../site.webmanifest?v=20260810-mobile-scroll1">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260812-report-hub-logo1">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png?v=20260812-report-hub-logo1">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png?v=20260812-report-hub-logo1">
+  <link rel="manifest" href="../../site.webmanifest?v=20260812-report-hub-logo1">
   <meta name="application-name" content="Report Hub">
   <meta property="og:site_name" content="Report Hub">
-  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260810-mobile-scroll1">
-  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260810-mobile-scroll1">
+  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260812-report-hub-logo1">
+  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260812-report-hub-logo1">
   <link rel="stylesheet" href="../../assets/report-comments.css?v=20260810-comments2">
 </head>
 <body data-report-view="detail" data-report-layout="wide">
 <a class="skip" href="#main">본문으로 바로가기</a><div class="progress" id="progress" aria-hidden="true"></div>
-<nav class="report-hub-floating-menu" aria-label="Report Hub 및 보고서 보기"><a class="report-home-button" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span></a></nav>
+<nav class="report-hub-floating-menu" aria-label="Report Hub 및 보고서 보기"><a class="report-home-button" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><img class="report-hub-logo-image" src="../../assets/report-hub-logo.png?v=20260812-report-hub-logo1" alt="Report Hub"></span></a></nav>
 <main id="main">
 <div class="container" id="top"><section class="hero" aria-labelledby="hero-title">
 <div class="hero-copy reveal"><div class="eyebrow"><span class="dot"></span>PERSON FILE · 자료 기준 2026.08.09</div><div class="hook">공동창업자 → 경쟁자 → 법정 상대</div><h1 id="hero-title"><span class="blue">샘 알트만은 누구인가</span><br>머스크·아모데이와 갈라진 AI 권력의 20년</h1><p class="hero-lead">샘 알트만은 ChatGPT의 핵심 알고리즘을 직접 만든 연구자라기보다, 연구자·자본·컴퓨팅·정치·제품을 한 테이블에 올린 조직가에 가깝습니다. 그의 연대기를 따라가면 OpenAI뿐 아니라 xAI와 Anthropic이 왜 오늘의 경쟁자가 됐는지도 한 번에 보입니다.</p><div class="hero-actions"><a class="btn btn-primary" href="#timeline">연대기 바로 보기</a><a class="btn btn-ghost" href="#musk">머스크 4막 보기</a></div><div class="hero-note"><span aria-hidden="true">✓</span><span><b>사실·주장 분리:</b> OpenAI와 머스크의 분쟁은 당사자 주장, 법원 판단, 확인된 연대기를 구분했습니다.</span></div><div class="meta"><span class="badge" id="reportVersion">v1.0.0</span><span class="sep"></span><span id="reportUpdated">Updated 2026.08.09</span><span class="sep"></span><span>AI-assisted · Human review recommended</span></div><div class="chips"><span class="chip">Sam Altman</span><span class="chip">OpenAI</span><span class="chip">Elon Musk</span><span class="chip">Dario Amodei</span><span class="chip">Anthropic</span></div></div>
@@ -149,10 +149,10 @@ if('IntersectionObserver'in window){const o=new IntersectionObserver(es=>es.forE
 document.querySelectorAll('.filter').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const f=btn.dataset.filter;document.querySelectorAll('.timeline-item').forEach(item=>{const cats=(item.dataset.category||'').split(' ');item.hidden=f!=='all'&&!cats.includes(f)})}));
 (function renderMetadata(){try{const m=JSON.parse(document.getElementById('report-metadata').textContent),v='v'+m.version,d=String(m.updatedAt).replaceAll('-','.');document.getElementById('reportVersion').textContent=v;document.getElementById('reportUpdated').textContent='Updated '+d;document.getElementById('historyCurrentVersion').textContent='Current '+v;const b=document.getElementById('historyBody');b.innerHTML='';(m.history||[]).forEach(x=>{const r=document.createElement('tr');[v,String(x.date).replaceAll('-','.'),x.type,x.summary,[x.updatedBy,x.reviewStatus].filter(Boolean).join(' · ')].forEach((t,i)=>{const c=document.createElement('td');if(i===4){const s=document.createElement('span');s.className='history-status';s.textContent=t;c.appendChild(s)}else c.textContent=t;r.appendChild(c)});b.appendChild(r)})}catch(e){console.error('Invalid metadata',e)}})();
 </script>
-  <script src="../../assets/report-page-layout.js?v=20260810-mobile-scroll1"></script>
+  <script src="../../assets/report-page-layout.js?v=20260812-report-hub-logo1"></script>
   <script src="../../assets/report-view-counter.js?v=20260810-counter-d1-1" data-report-id="260809-21-sam-altman-timeline-musk-amodei-v1-0-0"></script>
   <script src="../../assets/report-comments.js?v=20260810-comments2" data-report-id="260809-21-sam-altman-timeline-musk-amodei-v1-0-0"></script>
   <script src="../../assets/report-history.js?v=20260809-history2" data-report-id="260809-21-sam-altman-timeline-musk-amodei-v1-0-0"></script>
   <script src="../../assets/report-entry-tracker.js?v=20260811-entry1" data-report-id="260809-21-sam-altman-timeline-musk-amodei-v1-0-0"></script>
-  <script src="../../assets/report-hub-brand.js?v=20260810-mobile-scroll1"></script>
+  <script src="../../assets/report-hub-brand.js?v=20260812-report-hub-logo1"></script>
 </body></html>

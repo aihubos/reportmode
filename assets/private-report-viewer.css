@@ -224,7 +224,7 @@ body.private-viewer-page {
   .private-viewer-content-head { display: grid; padding: var(--rh-space-4); }
   .private-viewer-lock { width: 100%; }
   .private-viewer-frame { min-height: calc(100dvh - (var(--rh-space-12) * 2)); }
-  .report-hub-wordmark { font-size: var(--rh-wordmark-size-compact); }
+  .report-hub-logo-image { width: var(--rh-logo-width-compact); height: var(--rh-logo-height-compact); }
 }
 
 @media (prefers-reduced-motion: reduce) {

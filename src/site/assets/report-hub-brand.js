@@ -2,12 +2,15 @@
   "use strict";
 
   var HOME = "https://aireport.ai-hub-os.com/";
-  var VERSION = "20260812-rh-blue-favicon1";
+  var VERSION = "20260812-report-hub-logo1";
   var SEOUL_TIME_ZONE = "Asia/Seoul";
   var script = document.currentScript;
   var faviconUrl = script && script.src
     ? new URL("favicon.svg?v=" + VERSION, script.src).href
     : "https://aihubos.github.io/reportmode/assets/favicon.svg?v=" + VERSION;
+  var logoUrl = script && script.src
+    ? new URL("report-hub-logo.png?v=" + VERSION, script.src).href
+    : "https://aihubos.github.io/reportmode/assets/report-hub-logo.png?v=" + VERSION;
   var layoutObserver = null;
   var clockTimer = null;
   var topClearanceFrame = null;
@@ -15,7 +18,7 @@
   var mobileTopBarInstalled = false;
 
   function logoMarkup() {
-    return '<span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span>';
+    return '<span class="report-hub-brand-copy"><img class="report-hub-logo-image" src="' + logoUrl + '" alt="Report Hub"></span>';
   }
 
   function formatClock(value) {
