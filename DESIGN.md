@@ -2,7 +2,7 @@
 
 ## 1. Atmosphere / signature
 
-Report Hub는 보고서보다 먼저 시선을 빼앗지 않는 임원용 리서치 내비게이션이다. Apple처럼 표면은 사라지고 동작만 남기며, 기존 Eduflex Toss Blue 프로젝트처럼 한 가지 파란색을 이동과 선택에만 사용한다. 공통 브랜드는 아이콘 없이 큰 `Report Hub` 글자만 사용한다. 파비콘은 작은 브라우저 탭에서 식별이 필요하므로 RH 심벌을 유지한다.
+Report Hub는 보고서보다 먼저 시선을 빼앗지 않는 임원용 리서치 내비게이션이다. Apple처럼 표면은 사라지고 동작만 남기며, 기존 Eduflex Toss Blue 프로젝트처럼 한 가지 파란색을 이동과 선택에만 사용한다. 공통 브랜드는 제공된 이미지 로고를 사용하고, A 마크에는 짧고 은은한 유리 반사광만 더한다. 파비콘은 작은 브라우저 탭에서 식별이 필요하므로 RH 심벌을 유지한다.
 
 ## 2. Color
 
@@ -100,20 +100,18 @@ Report Hub는 보고서보다 먼저 시선을 빼앗지 않는 임원용 리서
 
 ## 5. Components
 
-### Report Hub wordmark
+### Report Hub image logo
 
-- 아이콘 없이 `Report Hub` 글자만 사용한다.
-- 36px/850 Toss Blue, 모바일·세로 A4는 30px/850이다.
-- `by Jeremy`는 워드마크 바로 아래 11px/600 `--rh-muted`로 표시한다.
-- 워드마크와 `by Jeremy`는 브랜드 버튼 안에서 왼쪽 정렬한다.
+- 제공된 `report-hub-logo.png` 이미지를 사용하며, 텍스트를 별도로 덧쓰지 않는다.
+- 기본 크기는 196×44px, 모바일·세로 A4는 158×36px이다.
+- A 마크 영역만 별도 투명 마스크로 반사광을 제한한다. `Report Hub` 글자는 움직이지 않는다.
 - 메인 도서관의 브랜드 묶음은 화면 왼쪽 16px, 모바일 8px에 맞춘다.
 - 배경은 투명하고 최소 터치 높이는 44px이다.
 - hover는 `--rh-primary-hover`, active는 `scale(.98)`, focus는 `--rh-ring`을 사용한다.
 
-### Archive wordmark
+### Archive image logo
 
-- 아카이브 상단 왼쪽은 아이콘 없이 `Report Hub` 글자와 그 아래의 작은 회색 `by Jeremy`만 표시한다.
-- 도서관과 보고서 본문의 브랜드 링크는 모두 `Report Hub`로 통일한다.
+- 아카이브 상단 왼쪽과 보고서 본문의 브랜드 링크는 모두 같은 Report Hub 이미지 로고로 통일한다.
 
 ### Floating navigation
 
@@ -287,6 +285,8 @@ Report Hub는 보고서보다 먼저 시선을 빼앗지 않는 임원용 리서
 - hover/active는 transform과 opacity 또는 color만 사용한다.
 - 최상단 이동은 기본 smooth, `prefers-reduced-motion: reduce`에서는 즉시 이동한다.
 - 모바일 상단 메뉴 숨김·표시는 `--rh-motion-fast` 180ms이며, 모션 감소 설정에서는 전환 없이 즉시 바뀐다.
+- A 마크 반사광은 `--rh-logo-shimmer-duration` 6800ms, `--rh-logo-shimmer-ease` cubic-bezier(.22, .61, .36, 1), `--rh-logo-shimmer-opacity` .68을 사용한다. 띠의 흰색은 `--rh-logo-shimmer-band`에만 정의하고, transform과 opacity만 애니메이션한다.
+- `prefers-reduced-motion: reduce`에서는 `--rh-logo-shimmer-reduced-opacity` .18의 고정 반사만 남기고 애니메이션을 멈춘다.
 
 ## 7. Depth
 

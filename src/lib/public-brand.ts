@@ -1,7 +1,7 @@
 import path from "node:path";
 
 export const REPORT_HUB_HOME = "https://aireport.ai-hub-os.com/";
-export const REPORT_HUB_BRAND_VERSION = "20260812-report-hub-logo1";
+export const REPORT_HUB_BRAND_VERSION = "20260812-report-hub-logo2";
 export const REPORT_HISTORY_VERSION = "20260809-history2";
 export const REPORT_COMMENTS_VERSION = "20260810-comments2";
 export const REPORT_COUNTER_VERSION = "20260810-counter-d1-1";
@@ -69,7 +69,7 @@ function replaceHeadAssets(html: string, prefix: string): string {
 }
 
 function logoMarkup(prefix: string): string {
-  return `<span class="report-hub-brand-copy"><img class="report-hub-logo-image" src="${prefix}/assets/report-hub-logo.png?v=${REPORT_HUB_BRAND_VERSION}" alt="Report Hub"></span>`;
+  return `<span class="report-hub-brand-copy"><span class="report-hub-logo-mark-shimmer" aria-hidden="true"></span><img class="report-hub-logo-image" src="${prefix}/assets/report-hub-logo.png?v=${REPORT_HUB_BRAND_VERSION}" alt="Report Hub"></span>`;
 }
 
 function homeButton(prefix: string): string {
@@ -86,8 +86,9 @@ function replaceHomeButton(html: string, prefix: string): string {
 function replaceLegacyBrandLinks(html: string, prefix: string): string {
   return html.replace(/<a\b([^>]*class=["'][^"']*\bbrand\b[^"']*["'][^>]*)>([\s\S]*?)<\/a>/gi, (link, attributes: string, content: string) => {
     const plain = content.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
-    if (!/\b(?:RM|RH)\b|Report (?:Mode|Hub)/i.test(plain)) return link;
+    if (!/\b(?:RM|RH)\b|Report (?:Mode|Hub)/i.test(plain) && !/\breport-hub-logo-image\b/i.test(content)) return link;
     let normalized = attributes;
+    if (!/\breport-hub-brand-link\b/i.test(normalized)) normalized = normalized.replace(/\bclass=(['"])([^'"]*)\1/i, (_match, quote, classes) => `class=${quote}${classes} report-hub-brand-link${quote}`);
     if (/\bhref=["'][^"']*["']/i.test(normalized)) normalized = normalized.replace(/\bhref=["'][^"']*["']/i, `href="${REPORT_HUB_HOME}"`);
     else normalized += ` href="${REPORT_HUB_HOME}"`;
     if (/\baria-label=["'][^"']*["']/i.test(normalized)) normalized = normalized.replace(/\baria-label=["'][^"']*["']/i, 'aria-label="Report Hub 메인으로 이동"');

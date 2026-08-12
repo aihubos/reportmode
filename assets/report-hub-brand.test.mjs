@@ -30,10 +30,13 @@ test("public brand uses the supplied Report Hub image logo and one floating menu
   assert.match(css, /--rh-clock-date-size-compact:\s*11px/);
   assert.match(css, /--rh-clock-time-size-compact:\s*18px/);
   assert.match(css, /\.report-hub-brand-copy\s*{[^}]*display:\s*inline-flex[^}]*align-items:\s*center/s);
+  assert.match(css, /\.report-hub-logo-mark-shimmer\s*{[^}]*pointer-events:\s*none[^}]*mask-image:\s*url\("\.\/report-hub-logo-mark\.png"\)/s);
+  assert.match(css, /@keyframes report-hub-logo-mark-shimmer[\s\S]*transform:[\s\S]*opacity:/);
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\)[\s\S]*?\.report-hub-logo-mark-shimmer::before[\s\S]*?animation:\s*none/s);
   assert.match(css, /\.report-hub-clock\s*{[^}]*display:\s*flex[^}]*align-items:\s*baseline/s);
   assert.doesNotMatch(css, /\.report-hub-byline\s*{/);
   assert.match(css, /\.report-hub-clock-time\s*{[^}]*font-variant-numeric:\s*tabular-nums/s);
-  assert.doesNotMatch(css, /gradient|glow/i);
+  assert.doesNotMatch(css, /glow/i);
   assert.match(script, /https:\/\/aireport\.ai-hub-os\.com\//);
   assert.match(script, /if \(!home && !archiveBrand\)/);
   assert.match(script, /report-hub-floating-menu/);
@@ -55,6 +58,7 @@ test("public brand uses the supplied Report Hub image logo and one floating menu
   assert.match(script, /\.report-view-switcher \.report-utility-controls/);
   assert.match(script, /window\.scrollTo/);
   assert.match(script, /report-hub-logo\.png/);
+  assert.match(script, /report-hub-logo-mark-shimmer/);
   assert.match(script, /<img class="report-hub-logo-image"/);
   assert.match(archive, /<title>Report Hub \| AI 리서치 라이브러리<\/title>/);
   assert.doesNotMatch(archive, /class="archive-profile"|<h1 id="archive-title">/);
@@ -63,7 +67,7 @@ test("public brand uses the supplied Report Hub image logo and one floating menu
   assert.doesNotMatch(archive, /report-hub-byline|by Jeremy/);
   assert.match(archive, /class="report-hub-clock"/);
   assert.match(archive, /class="archive-blog-card"/);
-  assert.match(archive, /src="\.\.\/assets\/report-hub-logo\.png\?v=20260812-report-hub-logo1"/);
+  assert.match(archive, /src="\.\.\/assets\/report-hub-logo\.png\?v=20260812-report-hub-logo2"/);
   assert.doesNotMatch(archive, /class="archive-avatar"/);
   assert.doesNotMatch(archive, /Jeremy's AI Report|>RM<|>R<\/span>/);
   assert.match(archiveCss, /\.archive-topbar-inner\s*{[^}]*width:\s*min\(var\(--archive-shell-max\),\s*calc\(100% - \(var\(--archive-shell-edge\) \* 2\)\)\)[^}]*margin:\s*0 auto/s);

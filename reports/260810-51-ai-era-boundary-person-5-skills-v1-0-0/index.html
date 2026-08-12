@@ -147,21 +147,21 @@ section{padding:102px 0}.section-soft{background:var(--surface)}.section-blue{co
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
 @media print{@page{size:A4;margin:12mm}body{background:#fff!important;color:#000}.nav-wrap,.floating-actions,.scroll-progress,.hero-actions,.selfcheck-layout{display:none!important}.container{width:100%;max-width:none}.hero{min-height:auto;grid-template-columns:1fr 1fr;padding:8mm 0 14mm}.hero-orbit{display:none}section{padding:14mm 0;break-inside:avoid}.section-blue{background:#fff!important;color:#000!important;border-top:2px solid var(--blue);border-bottom:2px solid var(--blue)}.section-blue .section-desc,.plan-card p,.plan-card ul{color:#333!important}.plan-card,.verdict-card{border:1px solid #ccc;background:#f4f6f8!important;color:#000!important;box-shadow:none}.plan-card h3,.verdict-card h3{color:#000!important}.hero-media,.exec-card,.metric-tile,.skill-card,.impact-card,.risk-card,.thesis-card{box-shadow:none}.reveal{opacity:1!important;transform:none!important}.history-table{min-width:0;font-size:9px}a{text-decoration:none}}
   </style>
-  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260812-report-hub-logo1">
-  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png?v=20260812-report-hub-logo1">
-  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png?v=20260812-report-hub-logo1">
-  <link rel="manifest" href="../../site.webmanifest?v=20260812-report-hub-logo1">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260812-report-hub-logo2">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png?v=20260812-report-hub-logo2">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png?v=20260812-report-hub-logo2">
+  <link rel="manifest" href="../../site.webmanifest?v=20260812-report-hub-logo2">
   <meta name="application-name" content="Report Hub">
   <meta property="og:site_name" content="Report Hub">
-  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260812-report-hub-logo1">
-  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260812-report-hub-logo1">
+  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260812-report-hub-logo2">
+  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260812-report-hub-logo2">
   <link rel="stylesheet" href="../../assets/report-comments.css?v=20260810-comments2">
 </head>
 <body data-report-view="detail" data-report-layout="wide">
-  <a class="report-home-button" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><img class="report-hub-logo-image" src="../../assets/report-hub-logo.png?v=20260812-report-hub-logo1" alt="Report Hub"></span></a>
+  <a class="report-home-button" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-logo-mark-shimmer" aria-hidden="true"></span><img class="report-hub-logo-image" src="../../assets/report-hub-logo.png?v=20260812-report-hub-logo2" alt="Report Hub"></span></a>
   <a class="skip-link" href="#main-content">본문으로 바로가기</a>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
-  <div class="nav-wrap"><nav class="nav" aria-label="주요 메뉴"><a class="brand report-hub-brand-link" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><img class="report-hub-logo-image" src="../../assets/report-hub-logo.png?v=20260812-report-hub-logo1" alt="Report Hub"></span></a><div class="nav-links"><a href="#summary">1분 요약</a><a href="#definition">경계인</a><a href="#skills">5역량</a><a href="#selfcheck">셀프체크</a><a href="#plan">실천안</a><a href="#sources">출처</a></div><div class="nav-actions"><button class="btn btn-ghost" id="shareButton" type="button">공유</button><button class="btn btn-primary" type="button" onclick="window.print()">PDF 저장</button></div></nav></div>
+  <div class="nav-wrap"><nav class="nav" aria-label="주요 메뉴"><a class="brand report-hub-brand-link" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-logo-mark-shimmer" aria-hidden="true"></span><img class="report-hub-logo-image" src="../../assets/report-hub-logo.png?v=20260812-report-hub-logo2" alt="Report Hub"></span></a><div class="nav-links"><a href="#summary">1분 요약</a><a href="#definition">경계인</a><a href="#skills">5역량</a><a href="#selfcheck">셀프체크</a><a href="#plan">실천안</a><a href="#sources">출처</a></div><div class="nav-actions"><button class="btn btn-ghost" id="shareButton" type="button">공유</button><button class="btn btn-primary" type="button" onclick="window.print()">PDF 저장</button></div></nav></div>
   <main id="main-content">
     <div class="container" id="top">
       <section class="hero" aria-labelledby="hero-title">
@@ -269,11 +269,11 @@ function renderMeta(){const n=document.getElementById('report-metadata');if(!n)r
 const boxes=[...document.querySelectorAll('.check-item input')],scoreValue=document.getElementById('scoreValue'),scoreRing=document.getElementById('scoreRing'),scoreTitle=document.getElementById('scoreTitle'),scoreDesc=document.getElementById('scoreDesc'),scoreNext=document.getElementById('scoreNext');function updateScore(){const score=boxes.filter(b=>b.checked).length;scoreValue.textContent=score;scoreRing.style.background=`conic-gradient(var(--blue) ${score*36}deg,var(--surface-2) ${score*36}deg)`;let t,d,n;if(score<=3){t='도구보다 관찰부터';d='지금은 부족하다는 뜻이 아닙니다. 내 모름과 불편함을 기록하는 것부터 시작하면 됩니다.';n='<strong>첫 행동:</strong> 오늘 막힌 일 하나를 사실·감정·모르는 것·다음 실험으로 나눠보세요.'}else if(score<=6){t='이미 경계 위에 서 있습니다';d='강점이 보이기 시작했습니다. 한 역량을 골라 실제 결과물로 고정할 단계입니다.';n='<strong>다음 행동:</strong> 가장 낮은 역량과 연결된 2주 실험을 하나 설계하세요.'}else if(score<=8){t='작은 실험을 결과물로';d='경계를 넘는 행동이 이미 있습니다. 이제 기존 전문성과 새 배움을 한 프로젝트로 연결하세요.';n='<strong>다음 행동:</strong> 90일 안에 보고서·수업·대시보드·프로토타입 중 하나를 공개하세요.'}else{t='강점의 과잉을 경계할 단계';d='다섯 역량이 고르게 작동합니다. 더 많은 시도보다 무엇을 깊게 남길지 선택해야 합니다.';n='<strong>다음 행동:</strong> 진행 중인 실험을 계속·수정·중단으로 나누고 핵심 하나에 집중하세요.'}scoreTitle.textContent=t;scoreDesc.textContent=d;scoreNext.innerHTML=n}boxes.forEach(b=>b.addEventListener('change',updateScore));updateScore();
 const share=document.getElementById('shareButton');if(share)share.addEventListener('click',async()=>{const data={title:document.title,text:'AI 시대의 경쟁력은 특정 도구 숙련보다 자기 한계를 보고, 낯선 세계에서 다시 배우고, 감당 가능한 실험을 하며, 경험을 자기 질문으로 연결하는 능력에서 나온다.',url:'https://aihubos.github.io/reportmode/reports/260810-51-ai-era-boundary-person-5-skills-v1-0-0/'};try{if(navigator.share)await navigator.share(data);else{await navigator.clipboard.writeText(data.url);share.textContent='링크 복사됨';setTimeout(()=>share.textContent='공유',1500)}}catch(e){if(e.name!=='AbortError')console.warn(e)}});
   </script>
-  <script src="../../assets/report-page-layout.js?v=20260812-report-hub-logo1"></script>
+  <script src="../../assets/report-page-layout.js?v=20260812-report-hub-logo2"></script>
   <script src="../../assets/report-view-counter.js?v=20260810-counter-d1-1" data-report-id="260810-51-ai-era-boundary-person-5-skills-v1-0-0"></script>
   <script src="../../assets/report-comments.js?v=20260810-comments2" data-report-id="260810-51-ai-era-boundary-person-5-skills-v1-0-0"></script>
   <script src="../../assets/report-history.js?v=20260809-history2" data-report-id="260810-51-ai-era-boundary-person-5-skills-v1-0-0"></script>
   <script src="../../assets/report-entry-tracker.js?v=20260811-entry1" data-report-id="260810-51-ai-era-boundary-person-5-skills-v1-0-0"></script>
-  <script src="../../assets/report-hub-brand.js?v=20260812-report-hub-logo1"></script>
+  <script src="../../assets/report-hub-brand.js?v=20260812-report-hub-logo2"></script>
 </body>
 </html>
