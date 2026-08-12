@@ -1,12 +1,35 @@
 {
-  "generatedAt": "2026-08-12T00:15:46.323Z",
+  "generatedAt": "2026-08-12T23:51:39.890Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260813-hermes-llm-wiki-install-guidebook",
+      "slug": "hermes-llm-wiki-install-guidebook",
+      "title": "[가이드북] Hermes, LLM Wiki 설치",
+      "subtitle": "AI Builders Lab · Hermes 실습 10강 Figma 교재",
+      "category": "AI",
+      "summary": "Hermes와 LLM Wiki 설치 과정을 단계별로 확인할 수 있는 AI Builders Lab Figma 가이드북입니다.",
+      "createdAt": "2026-08-13T08:50:27+09:00",
+      "updatedAt": "2026-08-13T08:50:27+09:00",
+      "status": "published",
+      "path": "reports/260813-hermes-llm-wiki-install-guidebook.html",
+      "url": "https://aihubos.github.io/reportmode/reports/260813-hermes-llm-wiki-install-guidebook.html",
+      "displayDate": "260813",
+      "sourceCount": 1,
+      "tags": [
+        "Hermes",
+        "LLM Wiki",
+        "가이드북",
+        "AI Builders Lab"
+      ],
+      "coverImage": "reports/assets/260813-hermes-llm-wiki-install-guidebook/cover.png",
+      "coverAlt": "Hermes와 LLM Wiki 설치 가이드북",
+      "isExternalLink": true
+    },
     {
       "id": "260812-ai-knowledge-self-assessment",
       "slug": "ai-knowledge-self-assessment",
       "title": "[자가진단] 나의 AI 관련 지식은 어느 수준?",
-      "subtitle": "초급부터 연구·최전선까지, 내가 아는 AI 용어를 한 장씩 점검하기",
       "category": "AI",
       "summary": "초급부터 연구·최전선까지, 워드클라우드와 용어표 10장을 한 장씩 넘기며 나의 AI 관련 지식 수준을 가볍게 점검하는 자료입니다.",
       "createdAt": "2026-08-12T09:15:11+09:00",
@@ -23,7 +46,8 @@
         "AI Builders Lab"
       ],
       "coverImage": "reports/260812-ai-knowledge-self-assessment/assets/level-01-beginner-word-cloud.png",
-      "coverAlt": "초급 AI 지식 워드클라우드"
+      "coverAlt": "초급 AI 지식 워드클라우드",
+      "subtitle": "초급부터 연구·최전선까지, 내가 아는 AI 용어를 한 장씩 점검하기"
     },
     {
       "id": "260812-azikazin-magic-world-v1-0-0",
