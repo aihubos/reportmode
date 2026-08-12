@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="RH">
-  <rect x="2" y="2" width="60" height="60" rx="16" fill="#111111"/>
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="#FFFFFF"/>
   <text
     x="32"
-    y="40"
+    y="43"
     text-anchor="middle"
     font-family="Arial, Helvetica, sans-serif"
-    font-size="24"
+    font-size="30"
     font-weight="900"
-    letter-spacing="-1.5"
-    fill="#FFFFFF"
+    letter-spacing="-2"
+    fill="#3182F6"
   >RH</text>
 </svg>

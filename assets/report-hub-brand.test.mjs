@@ -15,6 +15,8 @@ test("public brand uses a large Toss Blue text wordmark and one floating menu", 
 
   assert.match(svg, />RH<\/text>/);
   assert.doesNotMatch(svg, />RM<\/text>/);
+  assert.match(svg, /fill="#3182F6"/);
+  assert.match(svg, /fill="#FFFFFF"/);
   assert.match(css, /--rh-primary:\s*#3182F6/);
   assert.match(css, /\.report-hub-floating-menu\s*{[^}]*position:\s*fixed/s);
   assert.match(css, /\.report-hub-floating-menu\s*{[^}]*left:\s*50%[^}]*transform:\s*translateX\(-50%\)/s);
@@ -64,6 +66,8 @@ test("public brand uses a large Toss Blue text wordmark and one floating menu", 
   assert.doesNotMatch(archive, /class="archive-avatar"/);
   assert.doesNotMatch(archive, /Jeremy's AI Report|>RM<|>R<\/span>/);
   assert.match(archiveCss, /\.archive-topbar-inner\s*{[^}]*width:\s*min\(var\(--archive-shell-max\),\s*calc\(100% - \(var\(--archive-shell-edge\) \* 2\)\)\)[^}]*margin:\s*0 auto/s);
+  assert.match(archiveCss, /\.archive-community-board-card\s*{[^}]*width:\s*142px[^}]*min-height:\s*var\(--rh-space-12\)[^}]*justify-content:\s*center/s);
+  assert.match(archiveCss, /\.archive-blog-card\s*{[^}]*width:\s*142px[^}]*min-height:\s*var\(--rh-space-12\)[^}]*justify-content:\s*center/s);
 });
 
 test("public brand formats the Seoul weekday and second clock", () => {
