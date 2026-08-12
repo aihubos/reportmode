@@ -96,6 +96,10 @@ test("renders the simplified archive with one Naver card and a 30-item default s
   assert.match(html, /class="archive-builders-card"/);
   assert.match(html, /src="\.\.\/assets\/ai-builders-lab-logo\.png"/);
   assert.match(html, /aria-label="AI Builders Lab 당근 모임 열기"/);
+  assert.equal(html.match(/class="archive-guidebook-card"/g)?.length, 1);
+  assert.match(html, /\[가이드북\] Hermes,<br>LLM Wiki 설치/);
+  assert.match(html, /https:\/\/www\.figma\.com\/design\/iazKT2P4SlHppnzZxtGynB\//);
+  assert.match(html, /class="archive-guidebook-card"[^>]*target="_blank"[^>]*rel="noopener noreferrer"/);
   assert.doesNotMatch(html, /원하는 기업·제품·이슈를 남겨 주세요/);
   assert.match(html, /<label>이름<input id="requestAuthor"/);
   assert.match(html, /<label>비밀번호<input id="requestPassword"/);

@@ -282,6 +282,16 @@ footer {
 .archive-community-board-card:hover { border-color: #b8d4fb; color: var(--archive-blue-deep); background: var(--archive-blue-soft); transform: translateY(-1px); }
 .archive-community-board-mark { width: 25px; height: 25px; display: grid; place-items: center; border-radius: 8px; color: var(--archive-blue); background: #fff; }
 .archive-community-board-mark svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; }
+.archive-guidebook-card {
+  width: 142px; min-height: var(--rh-space-12); display: inline-flex; align-items: center; justify-content: center; gap: var(--rh-space-2); padding: var(--rh-space-1) var(--rh-space-2);
+  border: 1px solid var(--rh-border); border-radius: var(--rh-radius-3); color: var(--rh-ink); background: var(--rh-paper); font-size: 11px; font-weight: 800; line-height: 1.2; text-decoration: none;
+  transition: color var(--rh-motion-fast) var(--rh-ease), background var(--rh-motion-fast) var(--rh-ease), border-color var(--rh-motion-fast) var(--rh-ease), transform var(--rh-motion-fast) var(--rh-ease);
+}
+.archive-guidebook-card:hover { border-color: var(--rh-primary); color: var(--rh-primary-hover); background: var(--rh-primary-soft); transform: translateY(-1px); }
+.archive-guidebook-card:focus-visible { outline: 3px solid var(--rh-ring); outline-offset: 2px; }
+.archive-guidebook-mark { width: 25px; height: 25px; display: grid; place-items: center; flex: 0 0 auto; border-radius: var(--rh-radius-2); color: var(--rh-primary); background: var(--rh-primary-soft); }
+.archive-guidebook-mark svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.7; }
+.archive-guidebook-copy { min-width: 0; }
 .archive-blog-card .archive-blog-mark { width: 28px; height: 28px; font-size: 15px; }
 .archive-blog-card-copy { display: grid; gap: 1px; line-height: 1.1; }
 .archive-blog-card-copy small { color: rgba(255,255,255,.82); font-size: 9px; font-weight: 600; }
@@ -607,6 +617,14 @@ footer {
 .archive-weather-retry { min-height: 38px; margin-top: 12px; padding: 0 14px; border: 1px solid #cfe2ff; border-radius: 10px; color: var(--archive-blue-deep); background: #fff; font: inherit; font-size: 12px; font-weight: 800; cursor: pointer; }
 .archive-weather-retry:hover { background: var(--archive-blue-soft); }
 @media (min-width: 1280px) { .archive-shell { width: min(var(--archive-shell-max), calc(100% - (var(--archive-shell-edge) * 2))); }.archive-content-layout { display: grid; grid-template-columns: minmax(0, 1fr) var(--archive-right-rail-width); column-gap: var(--archive-content-gap); align-items: start; justify-content: space-between; }.archive-layout { grid-column: 1; grid-row: 1; margin-top: 32px; }.archive-right-rail { position: sticky; top: 88px; grid-column: 2; grid-row: 1; z-index: 45; width: var(--archive-right-rail-width); margin: 32px 0 24px; align-self: start; }.archive-comments-card, .request-board, .archive-weather-card { box-shadow: 0 14px 36px rgba(15,23,42,.12); } }
+@media (max-width: 1100px) {
+  .archive-topbar .report-hub-clock-date { display: none; }
+  .archive-visitor-count { display: none; }
+  .archive-community-board-card, .archive-guidebook-card, .archive-blog-card { width: 38px; min-height: 38px; justify-content: center; padding: 0; }
+  .archive-community-board-card > span:last-child, .archive-guidebook-copy, .archive-blog-card-copy { display: none; }
+  .archive-builders-card { min-height: 38px; width: 84px; padding: 2px 5px; }
+  .archive-builders-logo { width: 74px; height: 26px; }
+}
 @media (max-width: 860px) {
   .verdict-grid, .duo, .checks, .metrics { grid-template-columns: 1fr 1fr; }
   .metrics { grid-template-columns: 1fr 1fr; }
@@ -638,6 +656,8 @@ footer {
   .archive-blog-card-copy { display: none; }
   .archive-community-board-card { width: 38px; min-height: 38px; justify-content: center; padding: 0; }
   .archive-community-board-card > span:last-child { display: none; }
+  .archive-guidebook-card { width: 38px; min-height: 38px; padding: 0; }
+  .archive-guidebook-copy { display: none; }
   .archive-profile { grid-template-columns: 1fr; gap: 18px; margin: 18px 0 14px; padding: 24px !important; border-radius: 20px; }
   .archive-avatar { width: 68px; height: 68px; border-radius: 23px; }
   .archive-avatar span { font-size: 21px; }
