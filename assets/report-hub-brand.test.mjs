@@ -73,6 +73,9 @@ test("public brand uses the supplied Report Hub image logo and one floating menu
   assert.match(archiveCss, /\.archive-topbar-inner\s*{[^}]*width:\s*min\(var\(--archive-shell-max\),\s*calc\(100% - \(var\(--archive-shell-edge\) \* 2\)\)\)[^}]*margin:\s*0 auto/s);
   assert.match(archiveCss, /\.archive-community-board-card\s*{[^}]*width:\s*142px[^}]*min-height:\s*var\(--rh-space-12\)[^}]*justify-content:\s*center/s);
   assert.match(archiveCss, /\.archive-blog-card\s*{[^}]*width:\s*142px[^}]*min-height:\s*var\(--rh-space-12\)[^}]*justify-content:\s*center/s);
+  assert.match(archiveCss, /\.archive-guidebook-card\s*{[^}]*width:\s*142px[^}]*min-height:\s*var\(--rh-space-12\)[^}]*justify-content:\s*center/s);
+  assert.match(archiveCss, /@media \(max-width:\s*640px\)[\s\S]*?\.archive-guidebook-card\s*{[^}]*width:\s*38px[^}]*min-height:\s*38px/s);
+  assert.match(archiveCss, /@media \(max-width:\s*1100px\)[\s\S]*?\.archive-guidebook-card[^}]*width:\s*38px[^}]*min-height:\s*38px/s);
 });
 
 test("public brand formats the Seoul weekday and second clock", () => {
