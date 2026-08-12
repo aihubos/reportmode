@@ -11,7 +11,7 @@ function reportFiles(directory: string): string[] {
     if (entry.name === "assets") return [];
     const target = path.join(directory, entry.name);
     if (entry.isDirectory()) return reportFiles(target);
-    return entry.isFile() && entry.name.endsWith(".html") ? [target] : [];
+    return entry.isFile() && entry.name.endsWith(".html") && (entry.name === "index.html" || directory === reportsRoot) ? [target] : [];
   });
 }
 

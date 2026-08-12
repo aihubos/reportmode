@@ -88,22 +88,22 @@ section{padding:96px 0}.section-soft{background:var(--surface)}.section-blue{col
 .governance-note svg{width:22px;height:22px;flex:0 0 auto;margin-top:2px;color:#635300}
 .governance-note strong{color:#4e4200}
 </style>
-  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260810-mobile-scroll1">
-  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png?v=20260810-mobile-scroll1">
-  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png?v=20260810-mobile-scroll1">
-  <link rel="manifest" href="../../site.webmanifest?v=20260810-mobile-scroll1">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260812-report-hub-logo1">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png?v=20260812-report-hub-logo1">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png?v=20260812-report-hub-logo1">
+  <link rel="manifest" href="../../site.webmanifest?v=20260812-report-hub-logo1">
   <meta name="application-name" content="Report Hub">
   <meta property="og:site_name" content="Report Hub">
-  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260810-mobile-scroll1">
-  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260810-mobile-scroll1">
+  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260812-report-hub-logo1">
+  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260812-report-hub-logo1">
   <link rel="stylesheet" href="../../assets/report-comments.css?v=20260810-comments2">
 </head>
 <body data-report-view="detail" data-report-layout="wide">
-  <a class="report-home-button" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span></a>
+  <a class="report-home-button" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><img class="report-hub-logo-image" src="../../assets/report-hub-logo.png?v=20260812-report-hub-logo1" alt="Report Hub"></span></a>
 <a class="skip-link" href="#main-content">본문으로 바로가기</a>
 <div aria-hidden="true" class="scroll-progress" id="scrollProgress"></div>
 <div class="nav-wrap"><nav aria-label="주요 메뉴" class="nav">
-<a class="brand report-hub-brand-link" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span></a>
+<a class="brand report-hub-brand-link" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><img class="report-hub-logo-image" src="../../assets/report-hub-logo.png?v=20260812-report-hub-logo1" alt="Report Hub"></span></a>
 <div class="nav-links"><a href="#summary">1분 요약</a><a href="#factcheck">공식 확인</a><a href="#problem">기존 방식</a><a href="#mechanism">작동 원리</a><a href="#api">API</a><a href="#limits">한계</a><a href="#sources">출처</a></div>
 <div class="nav-actions"><a class="btn btn-ghost" href="https://www.youtube.com/watch?v=tfrDp6FnhZc" rel="noopener noreferrer" target="_blank">원본 영상</a><button class="btn btn-primary" onclick="window.print()" type="button">PDF 저장</button></div>
 </nav></div>
@@ -286,10 +286,10 @@ section{padding:96px 0}.section-soft{background:var(--surface)}.section-blue{col
 <script>
 const progress=document.getElementById('scrollProgress');const toTop=document.getElementById('toTop');function updateProgress(){const max=document.documentElement.scrollHeight-window.innerHeight;const percent=max>0?(window.scrollY/max)*100:0;if(progress)progress.style.width=percent+'%';if(toTop){toTop.style.opacity=window.scrollY>600?'1':'0';toTop.style.pointerEvents=window.scrollY>600?'auto':'none';}}window.addEventListener('scroll',updateProgress,{passive:true});updateProgress();if(toTop)toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));if('IntersectionObserver'in window){const observer=new IntersectionObserver((entries)=>{entries.forEach((entry)=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}});},{threshold:.08});document.querySelectorAll('.reveal').forEach((el)=>observer.observe(el));}else{document.querySelectorAll('.reveal').forEach((el)=>el.classList.add('visible'));}function renderReportMetadata(){const node=document.getElementById('report-metadata');if(!node)return;try{const meta=JSON.parse(node.textContent);const version=`v${meta.version}`;const date=String(meta.updatedAt||'').replaceAll('-','.');const setText=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value;};setText('reportVersion',version);setText('reportUpdated',`Updated ${date}`);setText('reportGeneration',`${meta.generation} · ${meta.reviewStatus}`);setText('historyCurrentVersion',`Current ${version}`);setText('footerTitle',meta.title);setText('footerMeta',`자료 기준일 ${date} · ${meta.generation} · ${meta.reviewStatus}`);const body=document.getElementById('historyBody');if(!body)return;body.innerHTML='';(meta.history||[]).forEach((item)=>{const row=document.createElement('tr');const values=[`v${item.version}`,String(item.date||'').replaceAll('-','.'),item.type||'',item.summary||'',[item.updatedBy,item.reviewStatus].filter(Boolean).join(' · ')];values.forEach((value,index)=>{const cell=document.createElement('td');if(index===4){const badge=document.createElement('span');badge.className='history-status';badge.textContent=value;cell.appendChild(badge);}else cell.textContent=value;row.appendChild(cell);});body.appendChild(row);});}catch(error){console.error('Invalid report metadata:',error);}}renderReportMetadata();
 </script>
-  <script src="../../assets/report-page-layout.js?v=20260810-mobile-scroll1"></script>
+  <script src="../../assets/report-page-layout.js?v=20260812-report-hub-logo1"></script>
   <script src="../../assets/report-view-counter.js?v=20260810-counter-d1-1" data-report-id="260810-03-webmcp-video-summary-v1-0-0"></script>
   <script src="../../assets/report-comments.js?v=20260810-comments2" data-report-id="260810-03-webmcp-video-summary-v1-0-0"></script>
   <script src="../../assets/report-history.js?v=20260809-history2" data-report-id="260810-03-webmcp-video-summary-v1-0-0"></script>
   <script src="../../assets/report-entry-tracker.js?v=20260811-entry1" data-report-id="260810-03-webmcp-video-summary-v1-0-0"></script>
-  <script src="../../assets/report-hub-brand.js?v=20260810-mobile-scroll1"></script>
+  <script src="../../assets/report-hub-brand.js?v=20260812-report-hub-logo1"></script>
 </body></html>

@@ -5,6 +5,7 @@ const LAYOUT_VERSION = "20260810-mobile-scroll1";
 const HISTORY_VERSION = "20260809-history2";
 const COUNTER_VERSION = "20260810-counter-d1-1";
 const COMMENTS_VERSION = "20260810-comments2";
+const BRAND_VERSION = "20260812-report-hub-logo1";
 
 export function isRedirectHtml(html) {
   return /<meta\b[^>]*http-equiv\s*=\s*["']?refresh["']?/i.test(html);
@@ -113,17 +114,12 @@ function upsertFavicon(html) {
   return html.replace(/<\/head>/i, '  <link rel="icon" href="data:,">\n</head>');
 }
 
-function upsertHomeButton(html, body, archiveHref) {
-  const expression = /<a\b([^>]*\bclass=["'][^"']*\breport-home-button\b[^"']*["'][^>]*)>/i;
+function upsertHomeButton(html, body, archiveHref, prefix) {
+  const expression = /<a\b[^>]*class=["'][^"']*\breport-home-button\b[^"']*["'][^>]*>[\s\S]*?<\/a>/i;
+  const button = `<a class="report-home-button" href="${archiveHref}" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><img class="report-hub-logo-image" src="${prefix}/assets/report-hub-logo.png?v=${BRAND_VERSION}" alt="Report Hub"></span></a>`;
   if (expression.test(html)) {
-    return html.replace(expression, (whole) => {
-      if (/\bhref=["'][^"']*["']/i.test(whole)) {
-        return whole.replace(/\bhref=["'][^"']*["']/i, `href="${archiveHref}"`);
-      }
-      return whole.replace(/>$/, ` href="${archiveHref}">`);
-    });
+    return html.replace(expression, button);
   }
-  const button = `<a class="report-home-button" href="${archiveHref}" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span></a>`;
   return html.replace(body, `${body}\n  ${button}`);
 }
 
@@ -143,7 +139,7 @@ export function enhanceCurrentReport(html, options) {
   output = upsertFavicon(output);
   output = upsertStylesheet(output, prefix);
   output = upsertCommentsStylesheet(output, prefix);
-  output = upsertHomeButton(output, bodyResult.body, archiveHref);
+  output = upsertHomeButton(output, bodyResult.body, archiveHref, prefix);
   output = upsertScript(
     output,
     /<script\b[^>]*src=["'][^"']*report-page-layout\.js(?:\?[^"']*)?["'][^>]*><\/script>/i,

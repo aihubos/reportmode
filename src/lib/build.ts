@@ -231,7 +231,7 @@ function brandPublicReportFiles(root: string) {
       if (entry.name === "assets") continue;
       const target = path.join(directory, entry.name);
       if (entry.isDirectory()) visit(target);
-      else if (entry.isFile() && entry.name.endsWith(".html")) {
+      else if (entry.isFile() && entry.name.endsWith(".html") && (entry.name === "index.html" || directory === reportsRoot)) {
         const reportPath = path.relative(root, target).split(path.sep).join("/");
         writeText(target, applyReportHubBrand(readText(target), reportPath));
       }
@@ -341,6 +341,15 @@ function writeCommunityBoard(root: string): string {
   return destination;
 }
 
+function syncSharedBrandAssets(root: string) {
+  for (const asset of ["report-hub-brand.css", "report-hub-brand.js", "report-hub-logo.png"]) {
+    fs.copyFileSync(
+      path.join(root, "src", "site", "assets", asset),
+      path.join(root, "assets", asset),
+    );
+  }
+}
+
 export function buildArchive() {
   const root = repoRoot();
   const config = loadConfig();
@@ -381,7 +390,6 @@ export function buildSite(options?: {
     buildReport(doc);
   }
   syncUploadedPublicFiles(root);
-  brandPublicReportFiles(root);
   const items = mergedItems(root, config.siteBase, docs);
 
   fs.cpSync(path.join(root, "src", "site", "assets"), path.join(root, "assets"), {
@@ -392,6 +400,8 @@ export function buildSite(options?: {
     path.join(root, "src", "site", "site.webmanifest"),
     path.join(root, "site.webmanifest"),
   );
+  syncSharedBrandAssets(root);
+  brandPublicReportFiles(root);
   const archiveArtifacts = writeArchiveArtifacts(root, items, config.siteBase);
   const home = writeHomeIndex(root);
   const board = writeCommunityBoard(root);

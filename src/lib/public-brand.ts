@@ -1,7 +1,7 @@
 import path from "node:path";
 
 export const REPORT_HUB_HOME = "https://aireport.ai-hub-os.com/";
-export const REPORT_HUB_BRAND_VERSION = "20260812-rh-blue-favicon1";
+export const REPORT_HUB_BRAND_VERSION = "20260812-report-hub-logo1";
 export const REPORT_HISTORY_VERSION = "20260809-history2";
 export const REPORT_COMMENTS_VERSION = "20260810-comments2";
 export const REPORT_COUNTER_VERSION = "20260810-counter-d1-1";
@@ -68,22 +68,31 @@ function replaceHeadAssets(html: string, prefix: string): string {
   return output;
 }
 
-function homeButton(): string {
-  return `<a class="report-home-button" href="${REPORT_HUB_HOME}" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span></a>`;
+function logoMarkup(prefix: string): string {
+  return `<span class="report-hub-brand-copy"><img class="report-hub-logo-image" src="${prefix}/assets/report-hub-logo.png?v=${REPORT_HUB_BRAND_VERSION}" alt="Report Hub"></span>`;
 }
 
-function replaceHomeButton(html: string): string {
-  const button = homeButton();
+function homeButton(prefix: string): string {
+  return `<a class="report-home-button" href="${REPORT_HUB_HOME}" aria-label="Report Hub 메인으로 이동">${logoMarkup(prefix)}</a>`;
+}
+
+function replaceHomeButton(html: string, prefix: string): string {
+  const button = homeButton(prefix);
   const expression = /<a\b[^>]*class=["'][^"']*\breport-home-button\b[^"']*["'][^>]*>[\s\S]*?<\/a>/i;
   if (expression.test(html)) return html.replace(expression, button);
   return html.replace(/<body\b[^>]*>/i, (body) => `${body}\n  ${button}`);
 }
 
-function replaceLegacyBrandLinks(html: string): string {
-  return html.replace(/<a\b[^>]*class=["'][^"']*\bbrand\b[^"']*["'][^>]*>[\s\S]*?<\/a>/gi, (link) => {
-    const plain = link.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+function replaceLegacyBrandLinks(html: string, prefix: string): string {
+  return html.replace(/<a\b([^>]*class=["'][^"']*\bbrand\b[^"']*["'][^>]*)>([\s\S]*?)<\/a>/gi, (link, attributes: string, content: string) => {
+    const plain = content.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
     if (!/\b(?:RM|RH)\b|Report (?:Mode|Hub)/i.test(plain)) return link;
-    return homeButton().replace('class="report-home-button"', 'class="brand report-hub-brand-link"');
+    let normalized = attributes;
+    if (/\bhref=["'][^"']*["']/i.test(normalized)) normalized = normalized.replace(/\bhref=["'][^"']*["']/i, `href="${REPORT_HUB_HOME}"`);
+    else normalized += ` href="${REPORT_HUB_HOME}"`;
+    if (/\baria-label=["'][^"']*["']/i.test(normalized)) normalized = normalized.replace(/\baria-label=["'][^"']*["']/i, 'aria-label="Report Hub 메인으로 이동"');
+    else normalized += ' aria-label="Report Hub 메인으로 이동"';
+    return `<a${normalized}>${logoMarkup(prefix)}</a>`;
   });
 }
 
@@ -128,8 +137,8 @@ export function applyReportHubBrand(html: string, reportPath: string): string {
   output = replaceTitle(output);
   output = replaceHeadAssets(output, prefix);
   output = replaceBodyDefaults(output);
-  output = replaceHomeButton(output);
-  output = replaceLegacyBrandLinks(output);
+  output = replaceHomeButton(output, prefix);
+  output = replaceLegacyBrandLinks(output, prefix);
   output = upsertSharedScripts(output, prefix, reportPath);
   return output;
 }

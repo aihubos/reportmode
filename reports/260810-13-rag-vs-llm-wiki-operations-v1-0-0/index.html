@@ -422,23 +422,23 @@
       a { text-decoration: none; }
     }
   </style>
-  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260810-mobile-scroll1">
-  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png?v=20260810-mobile-scroll1">
-  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png?v=20260810-mobile-scroll1">
-  <link rel="manifest" href="../../site.webmanifest?v=20260810-mobile-scroll1">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260812-report-hub-logo1">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png?v=20260812-report-hub-logo1">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png?v=20260812-report-hub-logo1">
+  <link rel="manifest" href="../../site.webmanifest?v=20260812-report-hub-logo1">
   <meta name="application-name" content="Report Hub">
   <meta property="og:site_name" content="Report Hub">
-  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260810-mobile-scroll1">
-  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260810-mobile-scroll1">
+  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260812-report-hub-logo1">
+  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260812-report-hub-logo1">
   <link rel="stylesheet" href="../../assets/report-comments.css?v=20260810-comments2">
 </head>
 <body data-report-view="detail" data-report-layout="wide">
-  <a class="report-home-button" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span></a>
+  <a class="report-home-button" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><img class="report-hub-logo-image" src="../../assets/report-hub-logo.png?v=20260812-report-hub-logo1" alt="Report Hub"></span></a>
   <a class="skip-link" href="#main-content">본문으로 바로가기</a>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
   <div class="nav-wrap">
     <nav class="nav" aria-label="주요 메뉴">
-      <a class="brand report-hub-brand-link" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span></a>
+      <a class="brand report-hub-brand-link" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><img class="report-hub-logo-image" src="../../assets/report-hub-logo.png?v=20260812-report-hub-logo1" alt="Report Hub"></span></a>
       <div class="nav-links"><a href="#summary">1분 요약</a><a href="#problem">운영 문제</a><a href="#comparison">비교</a><a href="#history-example">변경 이력</a><a href="#selector">선택 가이드</a><a href="#sources">출처</a></div>
       <div class="nav-actions"><a class="btn btn-ghost" href="#history">버전 이력</a><button class="btn btn-primary" type="button" onclick="window.print()">PDF 저장</button></div>
     </nav>
@@ -805,11 +805,11 @@
     function updateSelector(){let rag=0,wiki=0,selected=0;checks.forEach((c)=>{if(c.checked){selected++;rag+=Number(c.dataset.rag||0);wiki+=Number(c.dataset.wiki||0);}});const max=Math.max(rag,wiki,1);ragBar.style.width=Math.max(rag?8:0,(rag/max)*100)+'%';wikiBar.style.width=Math.max(wiki?8:0,(wiki/max)*100)+'%';ragScore.textContent=rag;wikiScore.textContent=wiki;if(!selected){selectorTitle.textContent='항목을 선택해보세요';selectorCopy.textContent='최신 원문 검색이 중요하면 RAG 점수가, 판단과 변경 이력이 중요하면 Wiki 점수가 올라갑니다.';}else if(Math.abs(rag-wiki)<=2){selectorTitle.textContent='Hybrid가 잘 맞습니다';selectorCopy.textContent='RAG로 원문을 찾고, 검토된 결론과 실패 이력을 Wiki에 누적하세요. 두 시스템의 책임을 명확히 나누는 것이 핵심입니다.';}else if(rag>wiki){selectorTitle.textContent='RAG부터 시작하세요';selectorCopy.textContent='최신성·대규모 원문·정확한 근거 검색 요구가 더 큽니다. 답변 이후의 결정 기록이 필요해질 때 Wiki를 추가하세요.';}else{selectorTitle.textContent='LLM-Wiki부터 시작하세요';selectorCopy.textContent='결정 사유·실패 기록·인수인계 요구가 더 큽니다. decision page 하나로 시작하고, 원문 규모가 커질 때 RAG를 붙이세요.';}}
     checks.forEach((c)=>c.addEventListener('change',updateSelector));updateSelector();
   </script>
-  <script src="../../assets/report-page-layout.js?v=20260810-mobile-scroll1"></script>
+  <script src="../../assets/report-page-layout.js?v=20260812-report-hub-logo1"></script>
   <script src="../../assets/report-view-counter.js?v=20260810-counter-d1-1" data-report-id="260810-13-rag-vs-llm-wiki-operations-v1-0-0"></script>
   <script src="../../assets/report-comments.js?v=20260810-comments2" data-report-id="260810-13-rag-vs-llm-wiki-operations-v1-0-0"></script>
   <script src="../../assets/report-history.js?v=20260809-history2" data-report-id="260810-13-rag-vs-llm-wiki-operations-v1-0-0"></script>
   <script src="../../assets/report-entry-tracker.js?v=20260811-entry1" data-report-id="260810-13-rag-vs-llm-wiki-operations-v1-0-0"></script>
-  <script src="../../assets/report-hub-brand.js?v=20260810-mobile-scroll1"></script>
+  <script src="../../assets/report-hub-brand.js?v=20260812-report-hub-logo1"></script>
 </body>
 </html>

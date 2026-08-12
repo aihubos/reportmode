@@ -627,7 +627,6 @@ footer {
   .archive-page { --archive-shell-edge: var(--archive-shell-edge-mobile); }
   .archive-shell { width: min(100% - (var(--archive-shell-edge) * 2), 1180px); }
   .archive-topbar .report-hub-clock-date { display: none; }
-  .archive-brand > span:last-child { display: none; }
   .archive-topbar-links { gap: 4px; }
   .archive-visitor-count { min-height: 38px; padding: 0 7px; font-size: 9px; }
   .archive-blog-card { width: 38px; min-height: 38px; gap: 6px; padding: 4px 7px; }

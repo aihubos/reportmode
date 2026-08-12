@@ -250,7 +250,7 @@ export function renderReportHtml(doc: ReportDocument): string {
   <link rel="stylesheet" href="../../assets/report-comments.css?v=${REPORT_COMMENTS_VERSION}">
 </head>
 <body data-report-view="detail" data-report-layout="wide">
-  <a class="report-home-button" href="${REPORT_HUB_HOME}" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span></a>
+  <a class="report-home-button" href="${REPORT_HUB_HOME}" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><img class="report-hub-logo-image" src="../../assets/report-hub-logo.png?v=${REPORT_HUB_BRAND_VERSION}" alt="Report Hub"></span></a>
   <nav class="nav" aria-label="보고서 탐색">
     <div class="nav-inner">
       <a href="${REPORT_HUB_HOME}">Report Hub</a>
@@ -518,7 +518,7 @@ export function renderHomeHtml(
   <meta property="og:title" content="Report Hub | AI 리서치 라이브러리">
   <title>Report Hub | AI 리서치 라이브러리</title>
   <style>${css()}</style>
-  <link rel="stylesheet" href="../assets/report-hub-brand.css?v=${ARCHIVE_ASSET_VERSION}">
+  <link rel="stylesheet" href="../assets/report-hub-brand.css?v=${REPORT_HUB_BRAND_VERSION}">
   <link rel="stylesheet" href="../assets/archive-private-library.css?v=${ARCHIVE_PRIVATE_VERSION}">
 </head>
 <body class="archive-page">
@@ -526,7 +526,7 @@ export function renderHomeHtml(
     <div class="archive-topbar-inner">
       <div class="report-hub-brand-cluster">
         <a class="archive-brand report-hub-brand-link" href="${REPORT_HUB_HOME}" aria-label="Report Hub 메인으로 이동">
-          <span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span>
+          <span class="report-hub-brand-copy"><img class="report-hub-logo-image" src="../assets/report-hub-logo.png?v=${REPORT_HUB_BRAND_VERSION}" alt="Report Hub"></span>
         </a>
         <time class="report-hub-clock" data-report-hub-clock="true" aria-label="서울 현재 날짜와 시각"><span class="report-hub-clock-date"></span><span class="report-hub-clock-time"></span></time>
       </div>
@@ -1298,7 +1298,7 @@ ${posts || "          <p class=\"archive-empty-static\">아직 공개된 보고�
   <script src="../assets/archive-visitor-counter.js?v=20260809-visits1"></script>
   <script src="../assets/report-entry-tracker.js?v=20260811-entry1"></script>
   <script src="../assets/archive-weather.js?v=${ARCHIVE_WEATHER_VERSION}"></script>
-  <script src="../assets/report-hub-brand.js?v=${ARCHIVE_ASSET_VERSION}"></script>
+  <script src="../assets/report-hub-brand.js?v=${REPORT_HUB_BRAND_VERSION}"></script>
 </body>
 </html>
 `;

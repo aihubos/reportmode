@@ -10,7 +10,7 @@ function htmlFiles(directory) {
     if (entry.name === "assets") return [];
     const target = path.join(directory, entry.name);
     if (entry.isDirectory()) return htmlFiles(target);
-    return entry.isFile() && entry.name.endsWith(".html") ? [target] : [];
+    return entry.isFile() && entry.name.endsWith(".html") && (entry.name === "index.html" || directory === path.join(root, "reports")) ? [target] : [];
   });
 }
 
@@ -33,8 +33,8 @@ for (const file of htmlFiles(path.join(root, "reports"))) {
   const checks = [
     [occurrences(html, 'class="report-home-button"') === 1, "메인 로고 버튼이 정확히 1개가 아님"],
     [html.includes(`class="report-home-button" href="${home}"`), "메인 로고 링크 주소가 다름"],
-    [html.includes('class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span>'), "워드마크와 제작자 서명이 없음"],
-    [!html.includes('class="report-hub-logo"'), "보고서 홈 버튼에 구형 RH 아이콘이 남아 있음"],
+    [/class="report-hub-logo-image"[^>]*src="[^"']*\/assets\/report-hub-logo\.png\?v=20260812-report-hub-logo1"[^>]*alt="Report Hub"/.test(html), "새 Report Hub 이미지 로고가 없음"],
+    [!/report-hub-wordmark|report-hub-byline|by Jeremy/.test(html), "구형 텍스트 로고 또는 by Jeremy가 남아 있음"],
     [/<title>[\s\S]*Report Hub[\s\S]*<\/title>/i.test(html), "브라우저 제목에 Report Hub가 없음"],
     [occurrences(html, "report-hub-brand.css") === 1, "공통 브랜드 스타일이 정확히 1개가 아님"],
     [occurrences(html, "report-hub-brand.js") === 1, "공통 브랜드 스크립트가 정확히 1개가 아님"],
@@ -58,7 +58,7 @@ for (const relative of ["index.html", "archive/index.html", "archive/upload.html
   const html = fs.readFileSync(path.join(root, relative), "utf8");
   if (!/Report Hub/.test(html)) failures.push(`${relative}: Report Hub 이름이 없음`);
   if (legacyBrand.test(html)) failures.push(`${relative}: 구형 공개 브랜드 이름이 남아 있음`);
-  if (!/favicon\.svg\?v=20260812-rh-blue-favicon1/.test(html)) failures.push(`${relative}: 최신 RH 파비콘이 없음`);
+  if (!/favicon\.svg\?v=20260812-report-hub-logo1/.test(html)) failures.push(`${relative}: 최신 RH 파비콘이 없음`);
 }
 
 const archive = fs.readFileSync(path.join(root, "archive/index.html"), "utf8");
@@ -73,9 +73,13 @@ if (!/archive-visitor-counter\.js\?v=20260809-visits1/.test(archive)) failures.p
 
 for (const relative of ["archive/index.html", "archive/upload.html"]) {
   const html = fs.readFileSync(path.join(root, relative), "utf8");
-  const wordmark = "Report Hub";
   if (!html.includes(`href="${home}"`)) failures.push(`${relative}: 좌측 상단 로고 링크 주소가 다름`);
-  if (!html.includes(`class="report-hub-wordmark">${wordmark}</span><span class="report-hub-byline">by Jeremy</span>`)) failures.push(`${relative}: 워드마크와 제작자 서명이 없음`);
+  if (!/class="report-hub-logo-image"[^>]*src="[^"']*\/assets\/report-hub-logo\.png\?v=20260812-report-hub-logo1"[^>]*alt="Report Hub"/.test(html)) failures.push(`${relative}: 새 Report Hub 이미지 로고가 없음`);
+  if (/report-hub-wordmark|report-hub-byline|by Jeremy/.test(html)) failures.push(`${relative}: 구형 텍스트 로고 또는 by Jeremy가 남아 있음`);
+}
+
+if (!fs.existsSync(path.join(root, "assets", "report-hub-logo.png"))) {
+  failures.push("assets/report-hub-logo.png: 새 로고 자산이 없음");
 }
 
 const favicon = fs.readFileSync(path.join(root, "assets/favicon.svg"), "utf8");
