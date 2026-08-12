@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="초급부터 연구·최전선까지, 10장의 워드클라우드와 용어표로 나의 AI 관련 지식 수준을 가볍게 점검하는 슬라이드형 자가진단 자료입니다.">
+  <meta name="theme-color" content="#111318">
+  <meta property="og:title" content="[자가진단] 나의 AI 관련 지식은 어느 수준? | Report Hub">
+  <meta property="og:description" content="10장의 워드클라우드와 용어표를 한 장씩 넘기며 AI 관련 지식 수준을 점검해 보세요.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://aihubos.github.io/reportmode/reports/260812-ai-knowledge-self-assessment/assets/level-01-beginner-word-cloud.png">
+  <title>[자가진단] 나의 AI 관련 지식은 어느 수준? | Report Hub</title>
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260810-mobile-scroll1">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png?v=20260810-mobile-scroll1">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png?v=20260810-mobile-scroll1">
+  <link rel="manifest" href="../../site.webmanifest?v=20260810-mobile-scroll1">
+  <meta name="application-name" content="Report Hub">
+  <meta property="og:site_name" content="Report Hub">
+  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260810-mobile-scroll1">
+  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260810-mobile-scroll1">
+  <link rel="stylesheet" href="../../assets/report-comments.css?v=20260810-comments2">
+  <style>
+    :root {
+      --self-check-ink: #f8fafc;
+      --self-check-muted: rgba(232, 237, 246, .72);
+      --self-check-panel: rgba(14, 17, 24, .74);
+      --self-check-panel-strong: rgba(14, 17, 24, .92);
+      --self-check-line: rgba(255, 255, 255, .16);
+      --self-check-blue: #3182f6;
+      --self-check-safe-top: 122px;
+    }
+
+    html { background: #111318; }
+    body {
+      margin: 0;
+      min-width: 0;
+      overflow-x: hidden;
+      background: #111318;
+      color: var(--self-check-ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", sans-serif;
+    }
+    body[data-report-layout="a4"] .self-check-app { --self-check-safe-top: 150px; }
+    body[data-report-layout="a4"] .slide-shell { min-height: 100svh; }
+    body[data-report-layout="a4"] .slide-topline { max-width: 680px; }
+
+    .self-check-app { min-width: 0; background: #111318; }
+    .self-check-app > .report-hub-top-spacer { display: none !important; }
+    .slide-shell {
+      position: relative;
+      isolation: isolate;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      width: 100%;
+      min-height: 100svh;
+      overflow: hidden;
+      background: #111318;
+    }
+    .slide-shell::before {
+      position: absolute;
+      z-index: -2;
+      inset: -9%;
+      background-image: linear-gradient(130deg, rgba(4, 7, 12, .92), rgba(4, 7, 12, .56)), var(--slide-background, none);
+      background-position: center;
+      background-size: cover;
+      filter: blur(30px) saturate(.9);
+      opacity: .48;
+      transform: scale(1.12);
+      content: "";
+    }
+    .slide-shell::after {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background: radial-gradient(circle at 50% 42%, transparent 0, rgba(4, 7, 12, .2) 44%, rgba(4, 7, 12, .92) 100%);
+      content: "";
+      pointer-events: none;
+    }
+
+    .slide-topline {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      width: min(100% - 48px, 1280px);
+      margin: 0 auto;
+      padding: calc(var(--self-check-safe-top) + 12px) 0 16px;
+      color: var(--self-check-muted);
+    }
+    .slide-title-wrap { min-width: 0; }
+    .slide-kicker {
+      display: block;
+      margin-bottom: 7px;
+      color: rgba(173, 207, 255, .9);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+    .slide-title {
+      margin: 0;
+      color: #fff;
+      font-size: clamp(17px, 2vw, 24px);
+      font-weight: 820;
+      line-height: 1.22;
+      letter-spacing: -.045em;
+    }
+    .slide-stage-label {
+      flex: none;
+      max-width: 50%;
+      margin-top: 12px;
+      padding: 8px 11px;
+      border: 1px solid var(--self-check-line);
+      border-radius: 999px;
+      background: rgba(7, 10, 16, .48);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 760;
+      line-height: 1.2;
+      text-align: right;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .slide-stage {
+      position: relative;
+      display: grid;
+      min-width: 0;
+      min-height: 0;
+      place-items: center;
+      padding: 10px 100px 24px;
+      touch-action: pan-y;
+    }
+    .slide-frame {
+      position: relative;
+      display: grid;
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      place-items: center;
+    }
+    .slide-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      max-width: 1360px;
+      max-height: min(64svh, 760px);
+      object-fit: contain;
+      object-position: center;
+      filter: drop-shadow(0 25px 45px rgba(0, 0, 0, .36));
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity .22s ease, transform .22s ease;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    .slide-image.is-changing { opacity: .18; transform: scale(.985); }
+    .slide-stage-note {
+      position: absolute;
+      right: clamp(18px, 4vw, 52px);
+      bottom: 15px;
+      max-width: min(330px, calc(100% - 36px));
+      margin: 0;
+      color: rgba(236, 242, 250, .7);
+      font-size: 12px;
+      font-weight: 630;
+      line-height: 1.45;
+      text-align: right;
+    }
+
+    .slide-control {
+      position: absolute;
+      top: 50%;
+      z-index: 1;
+      display: inline-grid;
+      width: 52px;
+      height: 52px;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: 50%;
+      background: rgba(10, 13, 19, .62);
+      color: #fff;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, .22);
+      cursor: pointer;
+      transform: translateY(-50%);
+      transition: background .18s ease, border-color .18s ease, opacity .18s ease, transform .18s ease;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .slide-control:hover:not(:disabled) { border-color: rgba(139, 190, 255, .86); background: rgba(36, 109, 210, .86); transform: translateY(-50%) scale(1.05); }
+    .slide-control:focus-visible, .slide-page-button:focus-visible { outline: 3px solid #9dc6ff; outline-offset: 3px; }
+    .slide-control:disabled { cursor: not-allowed; opacity: .28; }
+    .slide-control svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2.1; }
+    .slide-control.prev { left: clamp(13px, 3vw, 44px); }
+    .slide-control.next { right: clamp(13px, 3vw, 44px); }
+
+    .slide-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      width: min(100% - 48px, 1280px);
+      margin: 0 auto;
+      padding: 12px 0 27px;
+      color: var(--self-check-muted);
+    }
+    .slide-count { font-size: 13px; font-weight: 800; font-variant-numeric: tabular-nums; letter-spacing: .02em; }
+    .slide-count strong { color: #fff; font-size: 15px; }
+    .slide-progress {
+      display: grid;
+      flex: 1;
+      grid-template-columns: repeat(10, minmax(0, 1fr));
+      gap: 5px;
+      max-width: 560px;
+    }
+    .slide-page-button {
+      min-width: 0;
+      height: 4px;
+      padding: 0;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .2);
+      cursor: pointer;
+      transition: background .18s ease, transform .18s ease;
+    }
+    .slide-page-button:hover { background: rgba(164, 207, 255, .85); }
+    .slide-page-button[aria-current="true"] { background: var(--self-check-blue); transform: scaleY(1.5); }
+    .slide-help { margin: 0; font-size: 12px; font-weight: 650; text-align: right; }
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
+    @media (max-width: 740px) {
+      :root { --self-check-safe-top: 174px; }
+      body[data-report-layout="a4"] .self-check-app { --self-check-safe-top: 188px; }
+      .slide-topline { width: min(100% - 28px, 680px); gap: 10px; padding-top: calc(var(--self-check-safe-top) + 10px); }
+      .slide-kicker { margin-bottom: 5px; font-size: 9px; }
+      .slide-title { font-size: 17px; }
+      .slide-stage-label { max-width: 44%; margin-top: 8px; padding: 7px 9px; font-size: 10px; }
+      .slide-stage { padding: 8px 17px 16px; }
+      .slide-image { max-height: min(67svh, 680px); }
+      .slide-stage-note { right: 16px; bottom: 5px; font-size: 10px; }
+      .slide-control { top: auto; bottom: 21px; width: 42px; height: 42px; transform: none; }
+      .slide-control:hover:not(:disabled) { transform: scale(1.04); }
+      .slide-control.prev { left: 16px; }
+      .slide-control.next { right: 16px; }
+      .slide-footer { width: min(100% - 28px, 680px); min-height: 56px; padding: 10px 0 16px; }
+      .slide-count { font-size: 11px; }
+      .slide-count strong { font-size: 13px; }
+      .slide-progress { gap: 3px; }
+      .slide-help { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .slide-image, .slide-control, .slide-page-button { transition: none !important; }
+    }
+    @media print {
+      .self-check-app { background: #fff; color: #111; }
+      .slide-shell { min-height: auto; background: #fff; page-break-after: always; }
+      .slide-shell::before, .slide-shell::after, .slide-topline, .slide-control, .slide-footer { display: none !important; }
+      .slide-stage { display: block; padding: 0; }
+      .slide-image { width: 100%; height: auto; max-width: none; max-height: none; filter: none; }
+      .slide-stage-note { display: none; }
+    }
+  </style>
+</head>
+<body data-report-cover="assets/level-01-beginner-word-cloud.png" data-report-cover-alt="초급 AI 지식 워드클라우드" data-report-view="detail" data-report-layout="wide">
+  <a class="report-home-button" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-wordmark">Report Hub</span><span class="report-hub-byline">by Jeremy</span></span></a>
+
+  <div class="self-check-app" id="top">
+    <section class="slide-shell" id="aiKnowledgeSlideshow" aria-labelledby="selfCheckTitle">
+      <header class="slide-topline">
+        <div class="slide-title-wrap">
+          <span class="slide-kicker">AI BUILDERS LAB · SELF CHECK</span>
+          <h1 class="slide-title" id="selfCheckTitle">[자가진단] 나의 AI 관련 지식은 어느 수준?</h1>
+        </div>
+        <p class="slide-stage-label" id="slideStageLabel">초급 · 워드클라우드</p>
+      </header>
+
+      <div class="slide-stage" id="slideStage" aria-describedby="slideStatus">
+        <button class="slide-control prev" id="slidePrev" type="button" aria-label="이전 이미지" title="이전 이미지">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+        </button>
+        <div class="slide-frame">
+          <img class="slide-image" id="slideImage" src="assets/level-01-beginner-word-cloud.png" alt="초급 단계의 AI 관련 핵심 용어 워드클라우드">
+        </div>
+        <button class="slide-control next" id="slideNext" type="button" aria-label="다음 이미지" title="다음 이미지">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+        </button>
+        <p class="slide-stage-note" id="slideStageNote">이미지를 천천히 살펴보고, 낯선 용어가 얼마나 있는지 확인해 보세요.</p>
+      </div>
+
+      <footer class="slide-footer">
+        <div class="slide-count" aria-hidden="true"><strong id="slideNumber">01</strong> / <span id="slideTotal">10</span></div>
+        <div class="slide-progress" id="slideProgress" role="tablist" aria-label="자가진단 이미지 목록"></div>
+        <p class="slide-help">← → 키보드 또는 좌우 스와이프로 넘기기</p>
+        <p class="visually-hidden" id="slideStatus" role="status" aria-live="polite"></p>
+      </footer>
+    </section>
+  </div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const slides = [
+        { src: "assets/level-01-beginner-word-cloud.png", stage: "초급", type: "워드클라우드", alt: "초급 단계의 AI 관련 핵심 용어 워드클라우드", note: "이미지를 천천히 살펴보고, 낯선 용어가 얼마나 있는지 확인해 보세요." },
+        { src: "assets/level-01-beginner-term-table.png", stage: "초급", type: "용어표", alt: "초급 단계 AI 용어 설명 표", note: "워드클라우드에서 본 용어의 뜻을 한 번씩 확인해 보세요." },
+        { src: "assets/level-02-intermediate-word-cloud.png", stage: "중급", type: "워드클라우드", alt: "중급 단계의 AI 관련 핵심 용어 워드클라우드", note: "업무에서 자주 만나는 개념이 어느 정도인지 점검해 보세요." },
+        { src: "assets/level-02-intermediate-term-table.png", stage: "중급", type: "용어표", alt: "중급 단계 AI 용어 설명 표", note: "용어를 알고 있는지보다, 내 말로 설명할 수 있는지를 기준으로 보세요." },
+        { src: "assets/level-03-advanced-word-cloud.png", stage: "심화", type: "워드클라우드", alt: "심화 단계의 AI 관련 핵심 용어 워드클라우드", note: "모델·데이터·시스템의 연결 관계가 보이기 시작하는 단계입니다." },
+        { src: "assets/level-03-advanced-term-table.png", stage: "심화", type: "용어표", alt: "심화 단계 AI 용어 설명 표", note: "각 개념이 실제 제품과 업무 흐름에서 어디에 쓰이는지 떠올려 보세요." },
+        { src: "assets/level-04-expert-word-cloud.png", stage: "전문가", type: "워드클라우드", alt: "전문가 단계의 AI 관련 핵심 용어 워드클라우드", note: "기술 선택의 장단점과 운영 조건을 판단할 수 있는지 점검해 보세요." },
+        { src: "assets/level-04-expert-term-table.png", stage: "전문가", type: "용어표", alt: "전문가 단계 AI 용어 설명 표", note: "같은 용어라도 조직의 목적과 제약에 따라 판단이 달라질 수 있습니다." },
+        { src: "assets/level-05-frontier-word-cloud.png", stage: "연구·최전선", type: "워드클라우드", alt: "연구와 최전선 단계의 AI 관련 핵심 용어 워드클라우드", note: "새로운 기술의 가능성과 한계를 함께 읽는 단계입니다." },
+        { src: "assets/level-05-frontier-term-table.png", stage: "연구·최전선", type: "용어표", alt: "연구와 최전선 단계 AI 용어 설명 표", note: "모르는 용어가 많아도 괜찮습니다. 다음에 탐색할 주제를 찾는 자료로 활용해 보세요." }
+      ];
+
+      const shell = document.getElementById("aiKnowledgeSlideshow");
+      const stage = document.getElementById("slideStage");
+      const image = document.getElementById("slideImage");
+      const label = document.getElementById("slideStageLabel");
+      const note = document.getElementById("slideStageNote");
+      const number = document.getElementById("slideNumber");
+      const total = document.getElementById("slideTotal");
+      const progress = document.getElementById("slideProgress");
+      const status = document.getElementById("slideStatus");
+      const previous = document.getElementById("slidePrev");
+      const next = document.getElementById("slideNext");
+      let current = 0;
+      let transitionToken = 0;
+      let touchStartX = null;
+      let touchStartY = null;
+
+      total.textContent = String(slides.length);
+      slides.forEach((slide, index) => {
+        const page = document.createElement("button");
+        page.className = "slide-page-button";
+        page.type = "button";
+        page.setAttribute("role", "tab");
+        page.setAttribute("aria-label", `${index + 1}번: ${slide.stage} ${slide.type}`);
+        page.addEventListener("click", () => setSlide(index));
+        progress.appendChild(page);
+      });
+      const pages = [...progress.querySelectorAll(".slide-page-button")];
+
+      slides.forEach((slide) => {
+        const preload = new Image();
+        preload.src = slide.src;
+      });
+
+      function formatNumber(value) {
+        return String(value + 1).padStart(2, "0");
+      }
+
+      function setSlide(index) {
+        const nextIndex = Math.max(0, Math.min(slides.length - 1, index));
+        if (nextIndex === current && image.getAttribute("src") === slides[nextIndex].src) return;
+        const slide = slides[nextIndex];
+        const token = ++transitionToken;
+        image.classList.add("is-changing");
+        window.setTimeout(() => {
+          if (token !== transitionToken) return;
+          current = nextIndex;
+          image.src = slide.src;
+          image.alt = slide.alt;
+          shell.style.setProperty("--slide-background", `url("${slide.src}")`);
+          label.textContent = `${slide.stage} · ${slide.type}`;
+          note.textContent = slide.note;
+          number.textContent = formatNumber(current);
+          previous.disabled = current === 0;
+          next.disabled = current === slides.length - 1;
+          pages.forEach((page, pageIndex) => {
+            const active = pageIndex === current;
+            page.setAttribute("aria-current", String(active));
+            page.setAttribute("aria-selected", String(active));
+            page.tabIndex = active ? 0 : -1;
+          });
+          status.textContent = `${current + 1} / ${slides.length}. ${slide.stage} ${slide.type}`;
+          image.classList.remove("is-changing");
+        }, window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 120);
+      }
+
+      previous.addEventListener("click", () => setSlide(current - 1));
+      next.addEventListener("click", () => setSlide(current + 1));
+
+      document.addEventListener("keydown", (event) => {
+        const target = event.target;
+        if (target && /^(INPUT|TEXTAREA|SELECT)$/i.test(target.tagName)) return;
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          setSlide(current - 1);
+        }
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          setSlide(current + 1);
+        }
+      });
+
+      stage.addEventListener("pointerdown", (event) => {
+        touchStartX = event.clientX;
+        touchStartY = event.clientY;
+      });
+      stage.addEventListener("pointerup", (event) => {
+        if (touchStartX === null || touchStartY === null) return;
+        const deltaX = event.clientX - touchStartX;
+        const deltaY = event.clientY - touchStartY;
+        touchStartX = null;
+        touchStartY = null;
+        if (Math.abs(deltaX) < 48 || Math.abs(deltaX) <= Math.abs(deltaY)) return;
+        setSlide(current + (deltaX < 0 ? 1 : -1));
+      });
+      stage.addEventListener("pointercancel", () => { touchStartX = null; touchStartY = null; });
+
+      shell.style.setProperty("--slide-background", `url("${slides[0].src}")`);
+      current = -1;
+      setSlide(0);
+    })();
+  </script>
+  <script src="../../assets/report-page-layout.js?v=20260810-mobile-scroll1"></script>
+  <script src="../../assets/report-view-counter.js?v=20260810-counter-d1-1" data-report-id="260812-ai-knowledge-self-assessment"></script>
+  <script src="../../assets/report-comments.js?v=20260810-comments2" data-report-id="260812-ai-knowledge-self-assessment"></script>
+  <script src="../../assets/report-history.js?v=20260809-history2" data-report-id="260812-ai-knowledge-self-assessment"></script>
+  <script src="../../assets/report-entry-tracker.js?v=20260811-entry1" data-report-id="260812-ai-knowledge-self-assessment"></script>
+  <script src="../../assets/report-hub-brand.js?v=20260810-mobile-scroll1"></script>
+</body>
+</html>
