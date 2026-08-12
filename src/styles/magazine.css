@@ -261,6 +261,25 @@ footer {
   transition: background .18s ease, transform .18s ease;
 }
 .archive-blog-card:hover { color: #fff; background: var(--rh-naver-hover); transform: translateY(-1px); }
+.archive-community-board-card {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px;
+  border: 1px solid #d6e6fb;
+  border-radius: 12px;
+  color: var(--archive-blue-deep);
+  background: #f7fbff;
+  font-size: 11px;
+  font-weight: 850;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background .18s ease, border-color .18s ease, transform .18s ease;
+}
+.archive-community-board-card:hover { border-color: #b8d4fb; color: var(--archive-blue-deep); background: var(--archive-blue-soft); transform: translateY(-1px); }
+.archive-community-board-mark { width: 25px; height: 25px; display: grid; place-items: center; border-radius: 8px; color: var(--archive-blue); background: #fff; }
+.archive-community-board-mark svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; }
 .archive-blog-card .archive-blog-mark { width: 28px; height: 28px; font-size: 15px; }
 .archive-blog-card-copy { display: grid; gap: 1px; line-height: 1.1; }
 .archive-blog-card-copy small { color: rgba(255,255,255,.82); font-size: 9px; font-weight: 600; }
@@ -616,6 +635,8 @@ footer {
   .archive-builders-card { min-height: 38px; width: 84px; padding: 2px 5px; }
   .archive-builders-logo { width: 74px; height: 26px; }
   .archive-blog-card-copy { display: none; }
+  .archive-community-board-card { width: 38px; min-height: 38px; justify-content: center; padding: 0; }
+  .archive-community-board-card > span:last-child { display: none; }
   .archive-profile { grid-template-columns: 1fr; gap: 18px; margin: 18px 0 14px; padding: 24px !important; border-radius: 20px; }
   .archive-avatar { width: 68px; height: 68px; border-radius: 23px; }
   .archive-avatar span { font-size: 21px; }
