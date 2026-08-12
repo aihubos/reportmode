@@ -1,7 +1,30 @@
 {
-  "generatedAt": "2026-08-11T15:28:10.075Z",
+  "generatedAt": "2026-08-12T00:15:46.323Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260812-ai-knowledge-self-assessment",
+      "slug": "ai-knowledge-self-assessment",
+      "title": "[자가진단] 나의 AI 관련 지식은 어느 수준?",
+      "subtitle": "초급부터 연구·최전선까지, 내가 아는 AI 용어를 한 장씩 점검하기",
+      "category": "AI",
+      "summary": "초급부터 연구·최전선까지, 워드클라우드와 용어표 10장을 한 장씩 넘기며 나의 AI 관련 지식 수준을 가볍게 점검하는 자료입니다.",
+      "createdAt": "2026-08-12T09:15:11+09:00",
+      "updatedAt": "2026-08-12T09:15:11+09:00",
+      "status": "published",
+      "path": "reports/260812-ai-knowledge-self-assessment/",
+      "url": "https://aihubos.github.io/reportmode/reports/260812-ai-knowledge-self-assessment/",
+      "displayDate": "260812",
+      "sourceCount": 0,
+      "tags": [
+        "AI 기초",
+        "자가진단",
+        "AI 용어",
+        "AI Builders Lab"
+      ],
+      "coverImage": "reports/260812-ai-knowledge-self-assessment/assets/level-01-beginner-word-cloud.png",
+      "coverAlt": "초급 AI 지식 워드클라우드"
+    },
     {
       "id": "260812-azikazin-magic-world-v1-0-0",
       "slug": "azikazin-magic-world-v1-0-0",
