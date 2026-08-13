@@ -1,7 +1,30 @@
 {
-  "generatedAt": "2026-08-13T23:13:08.434Z",
+  "generatedAt": "2026-08-13T23:53:16.394Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260814-selfishclub-monetization-analysis",
+      "slug": "selfishclub-monetization-analysis",
+      "title": "셀피쉬클럽 수익화 구조 분석",
+      "category": "비즈니스",
+      "summary": "셀피쉬클럽의 무료 멤버십, 공유회, 워크숍, 코호트, VOD와 B2B 제휴를 연결한 수익화 구조를 분석하고 90일 실행안을 정리한 가이드입니다.",
+      "createdAt": "2026-08-14T08:52:47+09:00",
+      "updatedAt": "2026-08-14T08:52:47+09:00",
+      "status": "published",
+      "path": "reports/260814-selfishclub-monetization-analysis/",
+      "url": "https://aihubos.github.io/reportmode/reports/260814-selfishclub-monetization-analysis/",
+      "displayDate": "260814",
+      "sourceCount": 18,
+      "tags": [
+        "셀피쉬클럽",
+        "수익화",
+        "커뮤니티 비즈니스",
+        "콘텐츠 전략",
+        "멤버십"
+      ],
+      "coverImage": "reports/260814-selfishclub-monetization-analysis/assets/thumbnail.png",
+      "coverAlt": "검은 배경 위 흰색 SELFISH CLUB 워드마크"
+    },
     {
       "id": "260814-opencodex-install-guide",
       "slug": "opencodex-install-guide",
