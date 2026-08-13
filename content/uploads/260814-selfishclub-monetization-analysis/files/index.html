@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="셀피쉬클럽의 무료 멤버십, 공유회, 워크숍, 코호트, VOD, B2B·제휴를 연결한 수익화 구조를 분석하고 90일 안에 재현하는 단계별 실행 가이드" />
+  <meta name="theme-color" content="#ffffff" />
+  <meta property="og:title" content="셀피쉬클럽 수익화 구조 분석과 실행 가이드" />
+  <meta property="og:description" content="확인 사실과 추정을 분리한 상품 사다리·CRM·콘텐츠 플라이휠·90일 실행안·수익 계산기" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="assets/community-projects.png" />
+  <title>셀피쉬클럽 수익화 구조 분석과 실행 가이드 · v1.0.0</title>
+  <style>
+    :root {
+      --blue:#3182F6;
+      --blue-strong:#1B64DA;
+      --blue-soft:#E8F3FF;
+      --ink:#191F28;
+      --ink-2:#333D4B;
+      --muted:#6B7684;
+      --muted-2:#8B95A1;
+      --line:#E5E8EB;
+      --surface:#F7F8FA;
+      --surface-2:#F2F4F6;
+      --white:#FFFFFF;
+      --highlight:#DFFF6A;
+      --highlight-yellow:#FFF184;
+      --mint:#DFFBF2;
+      --violet:#EEE9FF;
+      --danger-soft:#FFF1F1;
+      --danger:#D94B4B;
+      --shadow-sm:0 8px 30px rgba(25,31,40,.06);
+      --shadow-md:0 24px 70px rgba(25,31,40,.10);
+      --radius-sm:18px;
+      --radius-md:28px;
+      --radius-lg:40px;
+      --max:1180px;
+      --hero-title-min:36px;
+      --hero-title-fluid:4.4vw;
+      --hero-title-max:55px;
+      --section-title-min:28px;
+      --section-title-fluid:3.3vw;
+      --section-title-max:41px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:90px}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 88% 4%,rgba(49,130,246,.11),transparent 28rem),
+        radial-gradient(circle at 8% 17%,rgba(223,255,106,.10),transparent 24rem),
+        #fff;
+      font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Segoe UI",sans-serif;
+      line-height:1.65;
+      letter-spacing:-.02em;
+      overflow-x:hidden;
+    }
+    img{display:block;max-width:100%}
+    svg{display:block}
+    a{color:inherit;text-decoration:none}
+    button,input,select{font:inherit}
+    h1,h2,h3,h4,p,figure{margin-top:0}
+    p:last-child{margin-bottom:0}
+    strong{color:var(--ink)}
+    code,pre{font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace}
+    .skip-link{position:fixed;left:12px;top:-80px;z-index:3000;padding:10px 14px;border-radius:12px;color:#fff;background:var(--ink);font-weight:800;transition:top .2s}
+    .skip-link:focus{top:12px}
+    :focus-visible{outline:3px solid rgba(49,130,246,.38);outline-offset:3px}
+    .container{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+    .scroll-progress{position:fixed;inset:0 auto auto 0;width:0;height:3px;background:linear-gradient(90deg,var(--blue),#6AA7FF);z-index:2000;transition:width .08s linear}
+    .nav-wrap{position:sticky;top:0;z-index:1000;padding:14px 22px 0}
+    .nav{max-width:1240px;margin:0 auto;min-height:62px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 12px 10px 18px;border:1px solid rgba(229,232,235,.85);border-radius:22px;background:rgba(255,255,255,.84);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);box-shadow:0 10px 34px rgba(25,31,40,.05)}
+    .brand{display:flex;align-items:center;gap:11px;min-width:max-content;font-size:14px;font-weight:850;letter-spacing:-.03em}
+    .brand-mark{width:36px;height:36px;display:grid;place-items:center;border-radius:12px;color:#fff;background:linear-gradient(145deg,#5CA2FF,var(--blue-strong));box-shadow:0 8px 20px rgba(49,130,246,.28)}
+    .brand-mark svg{width:20px;height:20px}
+    .brand-sub{color:var(--muted-2);font-weight:750}
+    .nav-links{display:flex;align-items:center;gap:4px;margin-left:auto}
+    .nav-links a{padding:9px 10px;border-radius:12px;color:var(--muted);font-size:13px;font-weight:750;transition:.2s ease}
+    .nav-links a:hover{color:var(--ink);background:var(--surface)}
+    .nav-actions{display:flex;gap:8px}
+    .btn{appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:0 16px;border-radius:14px;font-size:14px;font-weight:850;letter-spacing:-.02em;transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{color:#fff;background:var(--blue);box-shadow:0 10px 24px rgba(49,130,246,.24)}
+    .btn-primary:hover{background:var(--blue-strong)}
+    .btn-ghost{color:var(--ink-2);background:var(--surface)}
+    .btn-ghost:hover{background:var(--surface-2)}
+    .btn-dark{color:#fff;background:var(--ink)}
+    .btn-small{min-height:36px;padding:0 12px;font-size:12px;border-radius:11px}
+    .executive-page{min-height:calc(100vh - 76px);display:flex;align-items:center;padding:58px 0 66px}
+    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:46px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 13px;margin-bottom:20px;border-radius:999px;color:var(--blue-strong);background:var(--blue-soft);font-size:13px;font-weight:850}
+    .eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 5px rgba(49,130,246,.12)}
+    .hero h1{max-width:760px;margin-bottom:22px;font-size:clamp(var(--hero-title-min),var(--hero-title-fluid),var(--hero-title-max));line-height:1.10;letter-spacing:-.055em;font-weight:850;text-wrap:balance;overflow-wrap:anywhere}
+    .hero .blue{color:var(--blue)}
+    .marker{position:relative;white-space:nowrap;z-index:0}
+    .nowrap{white-space:nowrap}
+    .marker::after{content:"";position:absolute;left:-.03em;right:-.03em;bottom:.08em;height:.34em;border-radius:.12em;background:var(--highlight);transform:rotate(-1.2deg);z-index:-1;opacity:.9}
+    .hero-lead{max-width:720px;margin-bottom:25px;color:var(--muted);font-size:clamp(18px,1.8vw,22px);line-height:1.62;font-weight:620}
+    .hero-lead strong{font-weight:850}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:10px}
+    .hero-note{margin-top:20px;display:flex;align-items:flex-start;gap:10px;color:var(--muted);font-size:13px;font-weight:650}
+    .hero-note svg{width:18px;height:18px;flex:0 0 auto;margin-top:2px;color:var(--blue)}
+    .report-meta{margin-top:17px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 13px;color:var(--muted-2);font-size:12px;font-weight:800}
+    .version-badge{display:inline-flex;align-items:center;min-height:28px;padding:0 10px;border-radius:999px;color:var(--blue-strong);background:var(--blue-soft);border:1px solid rgba(49,130,246,.16);font-variant-numeric:tabular-nums}
+    .meta-sep{width:3px;height:3px;border-radius:50%;background:var(--line)}
+    .executive-panel{position:relative;padding:22px;border:1px solid rgba(229,232,235,.9);border-radius:36px;background:rgba(255,255,255,.95);box-shadow:var(--shadow-md);overflow:hidden}
+    .executive-panel::before{content:"";position:absolute;width:220px;height:220px;border-radius:50%;right:-82px;top:-96px;background:radial-gradient(circle,rgba(49,130,246,.22),transparent 68%)}
+    .panel-top{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}
+    .panel-title{display:flex;align-items:center;gap:8px;color:var(--ink-2);font-size:13px;font-weight:900}
+    .panel-title i{width:8px;height:8px;border-radius:50%;background:var(--blue)}
+    .panel-tag{padding:5px 8px;border-radius:999px;color:#445600;background:var(--highlight);font-size:10px;font-weight:900}
+    .panel-thesis{position:relative;padding:22px;border-radius:25px;color:#fff;background:linear-gradient(145deg,#216DDC,#3182F6 58%,#5A9CFF)}
+    .panel-thesis small{display:block;margin-bottom:8px;color:rgba(255,255,255,.74);font-size:10px;font-weight:900;letter-spacing:.08em}
+    .panel-thesis strong{display:block;color:#fff;font-size:21px;line-height:1.42;letter-spacing:-.04em}
+    .ladder-mini{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-top:10px}
+    .ladder-step{min-height:84px;padding:11px 8px;border-radius:16px;border:1px solid var(--line);background:var(--surface);text-align:center;display:flex;flex-direction:column;justify-content:center}
+    .ladder-step b{display:block;margin-bottom:4px;color:var(--blue);font-size:13px}
+    .ladder-step span{color:var(--muted);font-size:10px;font-weight:750;line-height:1.4}
+    .flywheel-mini{margin-top:10px;padding:15px;border-radius:19px;border:1px solid rgba(49,130,246,.18);background:var(--blue-soft)}
+    .flywheel-mini-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:9px;font-size:11px;font-weight:900;color:var(--blue-strong)}
+    .flywheel-row{display:flex;align-items:center;justify-content:space-between;gap:4px;overflow:hidden}
+    .flywheel-node{min-width:0;flex:1;padding:7px 5px;border-radius:11px;background:#fff;color:var(--ink-2);font-size:9px;font-weight:850;text-align:center}
+    .flywheel-arrow{color:var(--blue);font-size:13px;font-weight:900}
+    .metric-strip{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:3px}
+    .metric-card{padding:17px 18px;border:1px solid var(--line);border-radius:21px;background:#fff;box-shadow:var(--shadow-sm)}
+    .metric-card span{display:block;margin-bottom:5px;color:var(--muted-2);font-size:10px;font-weight:900;letter-spacing:.04em}
+    .metric-card strong{display:block;margin-bottom:4px;color:var(--ink);font-size:24px;line-height:1.15;font-variant-numeric:tabular-nums}
+    .metric-card p{margin:0;color:var(--muted);font-size:11px;font-weight:650;line-height:1.45}
+    .summary-warning{grid-column:1/-1;display:flex;align-items:flex-start;gap:10px;padding:13px 15px;border-radius:16px;color:#665400;background:#FFF8CE;border:1px solid #F4E28E;font-size:12px;font-weight:700}
+    .summary-warning svg{width:18px;height:18px;flex:0 0 auto;margin-top:1px}
+    section.content-section{padding:100px 0}
+    .section-soft{background:var(--surface)}
+    .section-blue{color:#fff;background:radial-gradient(circle at 15% 20%,rgba(255,255,255,.18),transparent 25rem),linear-gradient(145deg,#216DDC,#3182F6 58%,#5A9CFF)}
+    .section-kicker{margin-bottom:10px;color:var(--blue);font-size:13px;font-weight:900;letter-spacing:.03em}
+    .section-blue .section-kicker{color:rgba(255,255,255,.76)}
+    .section-title{max-width:920px;margin-bottom:18px;font-size:clamp(var(--section-title-min),var(--section-title-fluid),var(--section-title-max));line-height:1.20;letter-spacing:-.05em;font-weight:850;text-wrap:balance;overflow-wrap:anywhere}
+    .section-desc{max-width:880px;margin-bottom:42px;color:var(--muted);font-size:19px;line-height:1.62;font-weight:600}
+    .section-blue .section-desc{color:rgba(255,255,255,.80)}
+    .cite{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:20px;margin-left:3px;padding:0 5px;border-radius:8px;color:var(--blue-strong);background:var(--blue-soft);font-size:10px;font-weight:900;vertical-align:.1em}
+    .section-blue .cite{color:#fff;background:rgba(255,255,255,.16)}
+    .thesis-card{display:grid;grid-template-columns:132px 1fr;gap:26px;align-items:center;padding:32px;border:1px solid var(--line);border-radius:var(--radius-lg);background:#fff;box-shadow:var(--shadow-sm)}
+    .thesis-stamp{aspect-ratio:1;display:grid;place-items:center;border-radius:32px;color:var(--blue);background:var(--blue-soft)}
+    .thesis-stamp svg{width:60px;height:60px}
+    .thesis-copy h3{margin-bottom:9px;font-size:25px;line-height:1.35;letter-spacing:-.04em}
+    .thesis-copy p{margin-bottom:0;color:var(--muted);font-size:17px;font-weight:600}
+    .thesis-copy mark{padding:0 .15em;border-radius:4px;color:var(--ink);background:var(--highlight)}
+    .tri-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;margin-top:20px}
+    .status-card{min-height:270px;padding:25px;border:1px solid var(--line);border-radius:var(--radius-md);background:#fff;box-shadow:0 10px 30px rgba(25,31,40,.035)}
+    .status-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:19px}
+    .status-index{width:36px;height:36px;display:grid;place-items:center;border-radius:12px;color:var(--blue);background:var(--blue-soft);font-size:12px;font-weight:900}
+    .status-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:999px;font-size:10px;font-weight:900}
+    .status-badge.confirmed{color:#107C64;background:var(--mint)}
+    .status-badge.inference{color:#6C52CC;background:var(--violet)}
+    .status-badge.unknown{color:#A26900;background:#FFF5CF}
+    .status-card h3{margin-bottom:10px;font-size:22px;letter-spacing:-.04em}
+    .status-card p{color:var(--muted);font-size:14px;font-weight:620}
+    .status-list{display:grid;gap:10px;margin-top:16px}
+    .status-item{display:grid;grid-template-columns:20px 1fr;gap:8px;color:var(--ink-2);font-size:13px;font-weight:680}
+    .status-item b{width:20px;height:20px;display:grid;place-items:center;border-radius:7px;color:var(--blue);background:var(--blue-soft);font-size:10px}
+    .evidence-note{margin-top:20px;padding:17px 19px;border-radius:19px;border:1px dashed rgba(49,130,246,.35);background:var(--blue-soft);color:var(--ink-2);font-size:13px;font-weight:700}
+    .ladder{display:grid;gap:12px}
+    .ladder-row{display:grid;grid-template-columns:74px 1.08fr .9fr .82fr .9fr;gap:15px;align-items:center;padding:18px 20px;border:1px solid var(--line);border-radius:22px;background:#fff;box-shadow:0 8px 24px rgba(25,31,40,.035)}
+    .ladder-level{width:48px;height:48px;display:grid;place-items:center;border-radius:16px;color:var(--blue);background:var(--blue-soft);font-size:12px;font-weight:900}
+    .ladder-offer strong{display:block;margin-bottom:3px;font-size:18px}
+    .ladder-offer span,.ladder-cell{color:var(--muted);font-size:13px;font-weight:650}
+    .ladder-price{font-size:18px;font-weight:900;color:var(--ink);font-variant-numeric:tabular-nums}
+    .ladder-role{display:inline-flex;padding:6px 9px;border-radius:10px;color:var(--blue-strong);background:var(--blue-soft);font-size:11px;font-weight:900}
+    .ladder-row.highlight{border-color:rgba(49,130,246,.28);background:linear-gradient(180deg,#fff,#F5F9FF)}
+    .table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:23px;background:#fff}
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:15px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+    tr:last-child td{border-bottom:0}
+    th{color:var(--muted);background:var(--surface);font-size:11px;font-weight:900;letter-spacing:.02em;white-space:nowrap}
+    td{color:var(--ink-2);font-size:13px;font-weight:650}
+    .cell-title{display:block;margin-bottom:3px;color:var(--ink);font-weight:850}
+    .confidence{display:inline-flex;padding:5px 8px;border-radius:999px;font-size:10px;font-weight:900;white-space:nowrap}
+    .confidence.high{color:#107C64;background:var(--mint)}
+    .confidence.medium{color:#6C52CC;background:var(--violet)}
+    .confidence.low{color:#A26900;background:#FFF5CF}
+    .flow-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:11px}
+    .flow-step{position:relative;min-height:244px;padding:20px 17px;border-radius:23px;border:1px solid rgba(255,255,255,.20);background:rgba(255,255,255,.11);backdrop-filter:blur(9px)}
+    .flow-step::after{content:"";position:absolute;top:50%;right:-9px;width:7px;height:7px;border-right:2px solid rgba(255,255,255,.65);border-top:2px solid rgba(255,255,255,.65);transform:rotate(45deg)}
+    .flow-step:last-child::after{display:none}
+    .flow-num{width:34px;height:34px;display:grid;place-items:center;margin-bottom:27px;border-radius:11px;color:var(--blue-strong);background:#fff;font-size:12px;font-weight:900}
+    .flow-step h3{margin-bottom:9px;font-size:17px;letter-spacing:-.035em}
+    .flow-step p{margin-bottom:0;color:rgba(255,255,255,.76);font-size:12px;font-weight:650}
+    .flow-output{margin-top:12px;padding:8px 9px;border-radius:10px;color:#fff;background:rgba(0,0,0,.14);font-size:10px;font-weight:800}
+    .media-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-top:28px}
+    .media-main,.media-stack figure{overflow:hidden;border-radius:28px;border:1px solid rgba(255,255,255,.20);background:rgba(255,255,255,.10)}
+    .media-main img{width:100%;height:410px;object-fit:cover}
+    .media-stack{display:grid;gap:18px}
+    .media-stack img{width:100%;height:178px;object-fit:cover}
+    figcaption{padding:13px 15px;color:rgba(255,255,255,.78);font-size:11px;font-weight:650}
+    .video-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+    .video-card{overflow:hidden;border-radius:28px;border:1px solid rgba(255,255,255,.20);background:rgba(255,255,255,.10)}
+    .video-frame{position:relative;aspect-ratio:16/9;background:#111}
+    .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+    .video-copy{padding:17px}
+    .video-copy h3{margin-bottom:5px;font-size:18px}
+    .video-copy p{color:rgba(255,255,255,.74);font-size:12px;font-weight:650}
+    .crm-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:22px}
+    .channel-card{padding:27px;border:1px solid var(--line);border-radius:30px;background:#fff;box-shadow:var(--shadow-sm)}
+    .channel-card h3{margin-bottom:8px;font-size:24px;letter-spacing:-.04em}
+    .channel-card>p{color:var(--muted);font-size:14px;font-weight:650}
+    .channel-stack{display:grid;gap:9px;margin-top:18px}
+    .channel-item{display:grid;grid-template-columns:36px 1fr;gap:10px;align-items:center;padding:12px;border-radius:16px;background:var(--surface)}
+    .channel-item b{width:36px;height:36px;display:grid;place-items:center;border-radius:12px;color:var(--blue);background:var(--blue-soft);font-size:11px}
+    .channel-item strong{display:block;font-size:14px}
+    .channel-item span{display:block;color:var(--muted);font-size:11px;font-weight:650}
+    .sequence-card{padding:27px;border:1px solid var(--line);border-radius:30px;background:#fff}
+    .sequence-card h3{margin-bottom:8px;font-size:24px;letter-spacing:-.04em}
+    .sequence-card>p{color:var(--muted);font-size:14px;font-weight:650}
+    .sequence{display:grid;gap:0;margin-top:18px}
+    .sequence-row{position:relative;display:grid;grid-template-columns:72px 1fr;gap:15px;padding:0 0 19px}
+    .sequence-row::before{content:"";position:absolute;left:24px;top:35px;bottom:0;width:2px;background:var(--line)}
+    .sequence-row:last-child::before{display:none}
+    .sequence-day{width:50px;height:34px;display:grid;place-items:center;border-radius:11px;color:var(--blue-strong);background:var(--blue-soft);font-size:11px;font-weight:900}
+    .sequence-copy{padding:0 0 17px;border-bottom:1px solid var(--line)}
+    .sequence-row:last-child .sequence-copy{border-bottom:0}
+    .sequence-copy strong{display:block;margin-bottom:3px;font-size:15px}
+    .sequence-copy span{display:block;color:var(--muted);font-size:12px;font-weight:650}
+    .template-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:17px;margin-top:22px}
+    .template-card{overflow:hidden;border:1px solid var(--line);border-radius:25px;background:#fff;box-shadow:var(--shadow-sm)}
+    .template-head{padding:20px 20px 13px}
+    .template-type{display:inline-flex;padding:5px 8px;margin-bottom:11px;border-radius:999px;color:var(--blue-strong);background:var(--blue-soft);font-size:10px;font-weight:900}
+    .template-head h3{margin-bottom:5px;font-size:19px}
+    .template-head p{color:var(--muted);font-size:12px;font-weight:650}
+    .template-code{margin:0 12px 12px;padding:17px;border-radius:17px;background:#161B22;color:#F4F7FB;font-size:12px;line-height:1.7;white-space:pre-wrap;word-break:keep-all;overflow-wrap:anywhere}
+    .copy-row{display:flex;justify-content:flex-end;padding:0 13px 13px}
+    .copy-btn{appearance:none;border:0;cursor:pointer;padding:8px 10px;border-radius:10px;color:var(--muted);background:var(--surface);font-size:11px;font-weight:850}
+    .copy-btn:hover{color:var(--blue);background:var(--blue-soft)}
+    .legal-inline{margin-top:20px;display:flex;align-items:flex-start;gap:12px;padding:19px 20px;border-radius:20px;color:#635300;background:#FFF8CE;border:1px solid #F4E28E;font-size:13px;font-weight:700}
+    .legal-inline svg{width:21px;height:21px;flex:0 0 auto;margin-top:2px}
+    .calculator-shell{display:grid;grid-template-columns:1.12fr .88fr;gap:22px}
+    .calculator-card{padding:28px;border:1px solid var(--line);border-radius:32px;background:#fff;box-shadow:var(--shadow-sm)}
+    .calculator-card h3{margin-bottom:7px;font-size:25px;letter-spacing:-.04em}
+    .calculator-card>p{color:var(--muted);font-size:13px;font-weight:650}
+    .preset-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+    .preset-btn{appearance:none;border:1px solid var(--line);cursor:pointer;padding:8px 11px;border-radius:11px;color:var(--ink-2);background:var(--surface);font-size:11px;font-weight:850}
+    .preset-btn:hover,.preset-btn.active{color:var(--blue-strong);border-color:rgba(49,130,246,.30);background:var(--blue-soft)}
+    .input-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .field{display:grid;gap:6px}
+    .field label{color:var(--ink-2);font-size:11px;font-weight:850}
+    .field small{color:var(--muted-2);font-size:9px;font-weight:650}
+    .field input{width:100%;min-height:42px;padding:9px 11px;border:1px solid var(--line);border-radius:12px;color:var(--ink);background:#fff;font-size:13px;font-weight:750;font-variant-numeric:tabular-nums}
+    .result-card{position:sticky;top:94px;padding:28px;border-radius:32px;color:#fff;background:linear-gradient(145deg,#216DDC,#3182F6);box-shadow:var(--shadow-md)}
+    .result-card h3{margin-bottom:7px;color:#fff;font-size:25px}
+    .result-card>p{color:rgba(255,255,255,.76);font-size:13px;font-weight:650}
+    .result-main{margin:24px 0;padding:21px;border-radius:23px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.17)}
+    .result-main span{display:block;margin-bottom:6px;color:rgba(255,255,255,.72);font-size:10px;font-weight:900;letter-spacing:.05em}
+    .result-main strong{display:block;color:#fff;font-size:36px;line-height:1.15;font-variant-numeric:tabular-nums}
+    .result-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+    .result-item{padding:14px;border-radius:17px;background:rgba(255,255,255,.11)}
+    .result-item span{display:block;margin-bottom:4px;color:rgba(255,255,255,.70);font-size:9px;font-weight:850}
+    .result-item strong{display:block;color:#fff;font-size:17px;font-variant-numeric:tabular-nums}
+    .result-note{margin-top:18px;color:rgba(255,255,255,.71);font-size:10px;font-weight:650}
+    .formula-card{margin-top:20px;padding:19px 20px;border-radius:21px;border:1px dashed rgba(49,130,246,.32);background:var(--blue-soft)}
+    .formula-card strong{display:block;margin-bottom:5px;font-size:14px}
+    .formula-card code{display:block;color:var(--blue-strong);font-size:11px;line-height:1.65;white-space:normal}
+    .roadmap-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+    .phase-card{min-height:410px;padding:24px;border:1px solid var(--line);border-radius:28px;background:#fff;box-shadow:0 10px 30px rgba(25,31,40,.035)}
+    .phase-card.recommended{color:#fff;border-color:transparent;background:linear-gradient(145deg,#216DDC,#3182F6)}
+    .phase-tag{display:inline-flex;padding:5px 9px;margin-bottom:17px;border-radius:999px;color:var(--blue-strong);background:var(--blue-soft);font-size:10px;font-weight:900}
+    .recommended .phase-tag{color:var(--blue-strong);background:#fff}
+    .phase-card h3{margin-bottom:6px;font-size:22px;letter-spacing:-.04em}
+    .recommended h3{color:#fff}
+    .phase-card>p{color:var(--muted);font-size:12px;font-weight:650}
+    .recommended>p{color:rgba(255,255,255,.74)}
+    .phase-list{display:grid;gap:13px;margin-top:19px}
+    .phase-item{display:grid;grid-template-columns:28px 1fr;gap:10px}
+    .phase-num{width:28px;height:28px;display:grid;place-items:center;border-radius:9px;color:var(--blue);background:var(--blue-soft);font-size:10px;font-weight:900}
+    .recommended .phase-num{color:var(--blue-strong);background:#fff}
+    .phase-item strong{display:block;margin-bottom:2px;font-size:13px}
+    .recommended .phase-item strong{color:#fff}
+    .phase-item span{display:block;color:var(--muted);font-size:10px;font-weight:650;line-height:1.5}
+    .recommended .phase-item span{color:rgba(255,255,255,.72)}
+    .deliverable{margin-top:20px;padding-top:15px;border-top:1px solid var(--line);color:var(--ink-2);font-size:11px;font-weight:800}
+    .recommended .deliverable{color:#fff;border-color:rgba(255,255,255,.19)}
+    .operating-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:22px}
+    .role-card,.contract-card{padding:28px;border:1px solid var(--line);border-radius:31px;background:#fff;box-shadow:var(--shadow-sm)}
+    .role-card h3,.contract-card h3{margin-bottom:8px;font-size:25px;letter-spacing:-.04em}
+    .role-card>p,.contract-card>p{color:var(--muted);font-size:13px;font-weight:650}
+    .role-list{display:grid;gap:12px;margin-top:19px}
+    .role-row{display:grid;grid-template-columns:48px 1fr;gap:12px;align-items:start;padding:13px;border-radius:17px;background:var(--surface)}
+    .role-row b{width:48px;height:48px;display:grid;place-items:center;border-radius:15px;color:var(--blue);background:var(--blue-soft);font-size:11px}
+    .role-row strong{display:block;margin-bottom:3px;font-size:14px}
+    .role-row span{display:block;color:var(--muted);font-size:11px;font-weight:650}
+    .contract-list{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:19px}
+    .contract-item{padding:15px;border:1px solid var(--line);border-radius:17px;background:var(--surface)}
+    .contract-item strong{display:block;margin-bottom:4px;font-size:13px}
+    .contract-item span{display:block;color:var(--muted);font-size:10px;font-weight:650}
+    .split-options{margin-top:17px;padding:18px;border-radius:19px;background:#161B22;color:#F4F7FB;font-size:11px;line-height:1.7;white-space:pre-wrap}
+    .kpi-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+    .kpi-card{min-height:220px;padding:23px;border:1px solid var(--line);border-radius:26px;background:#fff}
+    .kpi-card span{display:block;margin-bottom:24px;color:var(--blue);font-size:10px;font-weight:900;letter-spacing:.05em}
+    .kpi-card h3{margin-bottom:7px;font-size:18px}
+    .kpi-card p{color:var(--muted);font-size:11px;font-weight:650}
+    .kpi-formula{margin-top:12px;padding:9px;border-radius:11px;color:var(--ink-2);background:var(--surface);font-size:9px;font-weight:750}
+    .gate-table{margin-top:20px}
+    .correction-table{overflow:hidden;border:1px solid var(--line);border-radius:28px;background:#fff}
+    .correction-row{display:grid;grid-template-columns:.9fr 1.1fr;border-bottom:1px solid var(--line)}
+    .correction-row:last-child{border-bottom:0}
+    .correction-cell{display:flex;align-items:flex-start;gap:12px;padding:23px;color:var(--ink-2);font-size:13px;font-weight:700}
+    .correction-cell+.correction-cell{border-left:1px solid var(--line)}
+    .correction-cell.wrong{background:#FBFBFC;color:var(--muted)}
+    .correction-icon{width:29px;height:29px;flex:0 0 auto;display:grid;place-items:center;border-radius:50%;font-size:13px;font-weight:900}
+    .wrong .correction-icon{color:var(--danger);background:var(--danger-soft)}
+    .right .correction-icon{color:var(--blue);background:var(--blue-soft)}
+    .governance-note{margin-top:22px;display:flex;align-items:flex-start;gap:14px;padding:22px 24px;border-radius:22px;color:#635300;background:#FFF8CE;border:1px solid #F4E28E;font-size:13px;font-weight:700}
+    .governance-note svg{width:22px;height:22px;flex:0 0 auto;margin-top:2px}
+    .source-section{padding:78px 0 42px;border-top:1px solid var(--line);background:#fff}
+    .source-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:25px}
+    .source-head h2{margin-bottom:5px;font-size:30px;letter-spacing:-.04em}
+    .source-head p{margin-bottom:0;color:var(--muted);font-size:13px;font-weight:650}
+    .source-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+    .source-link{padding:17px;border-radius:18px;border:1px solid var(--line);background:var(--surface);transition:.2s ease;overflow-wrap:anywhere}
+    .source-link:hover{transform:translateY(-2px);border-color:rgba(49,130,246,.25);background:var(--blue-soft)}
+    .source-link span{display:block;margin-bottom:6px;color:var(--muted-2);font-size:9px;font-weight:900;letter-spacing:.05em}
+    .source-link strong{display:block;font-size:13px;line-height:1.5}
+    .source-link small{display:block;margin-top:6px;color:var(--muted);font-size:9px;font-weight:650}
+    .footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:34px;padding-top:21px;border-top:1px solid var(--line);color:var(--muted-2);font-size:11px;font-weight:650}
+    .report-history{margin-top:42px;padding-top:32px;border-top:1px solid var(--line)}
+    .history-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:17px}
+    .history-head h2{margin-bottom:4px;font-size:25px;letter-spacing:-.04em}
+    .history-head p{margin-bottom:0;color:var(--muted);font-size:12px;font-weight:650}
+    .history-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:20px;background:#fff}
+    .history-table{width:100%;min-width:780px;border-collapse:collapse;font-size:12px}
+    .history-table th,.history-table td{padding:14px 15px}
+    .history-table td:first-child{color:var(--blue-strong);font-weight:900;white-space:nowrap}
+    .history-status{display:inline-flex;padding:5px 8px;border-radius:999px;color:var(--muted);background:var(--surface-2);font-size:10px;font-weight:850}
+    .floating-actions{position:fixed;right:22px;bottom:22px;z-index:800;display:grid;gap:10px}
+    .float-btn{width:48px;height:48px;display:grid;place-items:center;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.93);box-shadow:var(--shadow-sm);cursor:pointer;color:var(--ink-2);backdrop-filter:blur(12px);transition:.2s ease}
+    .float-btn:hover{transform:translateY(-2px);color:var(--blue);border-color:rgba(49,130,246,.25)}
+    .float-btn svg{width:20px;height:20px}
+    .toast{position:fixed;left:50%;bottom:26px;z-index:3000;padding:12px 16px;border-radius:14px;color:#fff;background:rgba(25,31,40,.94);box-shadow:var(--shadow-md);font-size:12px;font-weight:800;opacity:0;transform:translate(-50%,16px);pointer-events:none;transition:.25s ease}
+    .toast.show{opacity:1;transform:translate(-50%,0)}
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease}
+    .reveal.visible{opacity:1;transform:none}
+    .mobile-only{display:none}
+    @media (max-width:1120px){
+      .nav-links{display:none}
+      .hero-grid{grid-template-columns:1fr;gap:30px}
+      .hero-copy{text-align:center}
+      .hero-lead{margin-left:auto;margin-right:auto}
+      .hero-actions,.report-meta,.hero-note{justify-content:center}
+      .hero-note{text-align:left}
+      .executive-panel{width:min(100%,720px);margin:0 auto}
+      .metric-strip{grid-template-columns:repeat(2,1fr)}
+      .tri-grid{grid-template-columns:1fr 1fr}
+      .tri-grid .status-card:last-child{grid-column:1/-1}
+      .ladder-row{grid-template-columns:65px 1.25fr .8fr .8fr}
+      .ladder-row .ladder-cell:last-child{grid-column:2/-1;padding-top:8px;border-top:1px solid var(--line)}
+      .flow-grid{grid-template-columns:repeat(4,1fr)}
+      .flow-step::after{display:none}
+      .media-grid{grid-template-columns:1fr}
+      .media-stack{grid-template-columns:1fr 1fr}
+      .crm-layout,.calculator-shell,.operating-grid{grid-template-columns:1fr}
+      .result-card{position:relative;top:auto}
+      .roadmap-grid{grid-template-columns:repeat(2,1fr)}
+      .kpi-grid{grid-template-columns:repeat(3,1fr)}
+      .source-grid{grid-template-columns:repeat(3,1fr)}
+    }
+    @media (max-width:720px){
+      .container{width:min(100% - 28px,var(--max))}
+      .nav-wrap{padding:9px 10px 0}
+      .nav{min-height:56px;padding-left:12px;border-radius:18px}
+      .brand-sub,.nav-actions .btn-ghost{display:none}
+      .btn{min-height:40px;padding:0 13px}
+      .executive-page{min-height:auto;padding:54px 0 46px}
+      .hero h1{font-size:38px}
+      .hero-lead{font-size:18px}
+      .executive-panel{padding:15px;border-radius:28px}
+      .panel-thesis{padding:19px}
+      .panel-thesis strong{font-size:18px}
+      .ladder-mini{grid-template-columns:1fr 1fr}
+      .ladder-mini .ladder-step:last-child{grid-column:1/-1}
+      .flywheel-row{display:grid;grid-template-columns:1fr 14px 1fr 14px 1fr}
+      .flywheel-node{font-size:8px}
+      .metric-strip{grid-template-columns:1fr 1fr;gap:9px}
+      .metric-card{padding:14px}
+      .metric-card strong{font-size:21px}
+      section.content-section{padding:80px 0}
+      .section-title{font-size:32px}
+      .section-desc{margin-bottom:32px;font-size:17px}
+      .thesis-card{grid-template-columns:1fr;padding:26px}
+      .thesis-stamp{width:90px;border-radius:23px}
+      .tri-grid,.template-grid,.video-grid,.input-grid,.roadmap-grid,.contract-list,.kpi-grid{grid-template-columns:1fr}
+      .tri-grid .status-card:last-child{grid-column:auto}
+      .status-card{min-height:auto}
+      .ladder-row{grid-template-columns:54px 1fr;gap:10px;padding:15px}
+      .ladder-row .ladder-price,.ladder-row .ladder-cell,.ladder-row .ladder-role{grid-column:2}
+      .ladder-row .ladder-cell:last-child{padding-top:8px}
+      .flow-grid{grid-template-columns:1fr}
+      .flow-step{min-height:auto}
+      .media-main img{height:260px}
+      .media-stack{grid-template-columns:1fr}
+      .media-stack img{height:220px}
+      .channel-card,.sequence-card,.calculator-card,.result-card,.role-card,.contract-card{padding:23px}
+      .sequence-row{grid-template-columns:62px 1fr}
+      .source-grid{grid-template-columns:1fr}
+      .source-head,.footer-bottom,.history-head{align-items:flex-start;flex-direction:column}
+      .correction-row{grid-template-columns:1fr}
+      .correction-cell+.correction-cell{border-left:0;border-top:1px solid var(--line)}
+      .floating-actions{right:12px;bottom:12px}
+      .mobile-only{display:block}
+    }
+    @media (max-width:390px){
+      .hero h1{font-size:36px}
+      .metric-strip{grid-template-columns:1fr}
+      .panel-top{align-items:flex-start;flex-direction:column}
+    }
+    @media (prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
+      .reveal{opacity:1;transform:none}
+    }
+    @media print{
+      @page{size:A4;margin:12mm}
+      body{background:#fff!important;color:#000;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      .nav-wrap,.floating-actions,.scroll-progress,.hero-actions,.copy-btn,.preset-row,.toast{display:none!important}
+      .container{width:100%;max-width:none}
+      .executive-page{min-height:270mm;padding:3mm 0 2mm;display:block;break-after:page;page-break-after:always}
+      .hero-grid{grid-template-columns:1.03fr .97fr;gap:8mm;align-items:center}
+      .hero h1{font-size:35px!important;margin-bottom:12px}
+      .hero-lead{font-size:14px;margin-bottom:12px}
+      .eyebrow{margin-bottom:11px}
+      .hero-note{font-size:9px;margin-top:9px}
+      .report-meta{font-size:9px;margin-top:8px}
+      .executive-panel{padding:12px;border-radius:20px;box-shadow:none}
+      .panel-thesis{padding:13px;border-radius:17px}
+      .panel-thesis strong{font-size:15px}
+      .ladder-mini{gap:4px}
+      .ladder-step{min-height:58px;padding:6px 4px}
+      .ladder-step b{font-size:10px}
+      .ladder-step span{font-size:7px}
+      .flywheel-mini{padding:9px;margin-top:6px}
+      .metric-strip{grid-template-columns:repeat(4,1fr);gap:5px;margin-top:5mm}
+      .metric-card{padding:9px;border-radius:12px;box-shadow:none}
+      .metric-card strong{font-size:16px}
+      .metric-card p{font-size:7px}
+      .summary-warning{padding:8px;font-size:8px}
+      section.content-section{padding:12mm 0;break-inside:auto}
+      .section-blue{background:#fff!important;color:#000!important;border-top:2px solid var(--blue);border-bottom:2px solid var(--blue)}
+      .section-blue .section-kicker{color:var(--blue)!important}
+      .section-blue .section-desc,.flow-step p,figcaption,.video-copy p{color:#333!important}
+      .flow-step,.media-main,.media-stack figure,.video-card{background:#fff!important;color:#000!important;border:1px solid #bbb}
+      .flow-num{border:1px solid #bbb}
+      .flow-step h3,.video-copy h3{color:#000!important}
+      .result-card,.phase-card.recommended{background:#F2F4F6!important;color:#000!important;box-shadow:none}
+      .result-card h3,.result-main strong,.result-item strong,.recommended h3,.recommended .phase-item strong,.recommended .deliverable{color:#000!important}
+      .result-card>p,.result-note,.recommended>p,.recommended .phase-item span{color:#333!important}
+      .result-main,.result-item{background:#fff!important;border:1px solid #ccc}
+      .media-main img{height:220px}
+      .media-stack img{height:120px}
+      .video-grid{display:none}
+      .reveal{opacity:1!important;transform:none!important}
+      .status-card,.thesis-card,.calculator-card,.role-card,.contract-card,.phase-card,.metric-card{box-shadow:none}
+      .source-grid{grid-template-columns:repeat(3,1fr)}
+      .history-table-wrap,.table-wrap{overflow:visible}
+      .history-table{min-width:0;font-size:8px}
+      th,td{padding:7px 8px;font-size:8px}
+      a{text-decoration:none}
+      .template-code,.split-options{background:#F2F4F6!important;color:#000!important;border:1px solid #ccc}
+    }
+  </style>
+</head>
+<body data-report-cover="assets/thumbnail.png" data-report-cover-alt="검은 배경 위 흰색 SELFISH CLUB 워드마크">
+  <a class="skip-link" href="#main">본문으로 바로가기</a>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <div class="nav-wrap">
+    <nav class="nav" aria-label="주요 메뉴">
+      <a class="brand" href="#top" aria-label="보고서 처음으로">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12.2 9.1 16 19 6.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span>SELFISH CLUB</span><span class="brand-sub">Monetization Guide</span>
+      </a>
+      <div class="nav-links">
+        <a href="#evidence">근거</a><a href="#ladder">상품 사다리</a><a href="#flywheel">플라이휠</a><a href="#crm">CRM</a><a href="#calculator">계산기</a><a href="#roadmap">90일 실행</a><a href="#risks">위험</a>
+      </div>
+      <div class="nav-actions">
+        <a class="btn btn-ghost" href="#sources">출처</a>
+        <button class="btn btn-primary" type="button" onclick="window.print()">PDF 저장</button>
+      </div>
+    </nav>
+  </div>
+
+  <main id="main">
+    <section class="executive-page hero" id="top" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span class="eyebrow-dot"></span>2026.08.14 공개자료 기반 · 따라 하기용 가이드</div>
+          <h1 id="hero-title">셀피쉬클럽의 수익은<br><span class="blue">무료 멤버십이 아니라</span><br><span class="marker">상품 사다리</span><span class="nowrap">에서 납니다</span></h1>
+          <p class="hero-lead">핵심은 <strong>무료 회원 DB를 모든 프로그램의 관문</strong>으로 만들고, 내부 프로젝트에서 나온 실제 시행착오를 <strong>무료 공유 → 9,900원 라이브 → 9만~18만원 워크숍 → 68만원 코호트 → VOD·B2B</strong>로 반복 재가공하는 구조입니다.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#ladder">수익 구조 보기</a>
+            <a class="btn btn-ghost" href="#roadmap">90일 실행안</a>
+            <a class="btn btn-ghost" href="#calculator">매출 계산기</a>
+          </div>
+          <div class="hero-note">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 10v6M12 7.2v.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <span><strong>분석 한계:</strong> 채널별 실제 매출·비용·이익률·정산 방식은 공개되지 않았습니다. 아래 구조는 공개 판매 페이지와 운영 데이터로 확인한 사실에 기반하며, 수익 비중은 보고서의 추론으로 표시합니다.</span>
+          </div>
+          <div class="report-meta" aria-label="보고서 버전 정보">
+            <span class="version-badge" id="reportVersion">v1.0.0</span><span id="reportUpdated">Updated 2026.08.14</span><span class="meta-sep" aria-hidden="true"></span><span id="reportGeneration">AI-assisted · Human review recommended</span>
+          </div>
+        </div>
+
+        <article class="executive-panel reveal" aria-label="수익화 구조 한눈에 보기">
+          <div class="panel-top"><div class="panel-title"><i></i>ONE-PAGE BUSINESS MAP</div><div class="panel-tag">COPY THE LOGIC</div></div>
+          <div class="panel-thesis"><small>ONE-LINE CONCLUSION</small><strong>무료 회원을 모으는 사업이 아니라, <u>프로젝트 경험을 여러 가격대로 재판매</u>하는 사업입니다.</strong></div>
+          <div class="ladder-mini" aria-label="가격 사다리">
+            <div class="ladder-step"><b>₩0</b><span>멤버십·무료 공유</span></div>
+            <div class="ladder-step"><b>₩9.9K</b><span>유료 공유회</span></div>
+            <div class="ladder-step"><b>₩90–180K</b><span>실습 워크숍</span></div>
+            <div class="ladder-step"><b>₩680K</b><span>6~7주 코호트</span></div>
+            <div class="ladder-step"><b>재판매</b><span>VOD·B2B·제휴</span></div>
+          </div>
+          <div class="flywheel-mini">
+            <div class="flywheel-mini-title"><span>CONTENT → REVENUE FLYWHEEL</span><span>반복</span></div>
+            <div class="flywheel-row">
+              <div class="flywheel-node">실전 프로젝트</div><div class="flywheel-arrow">→</div><div class="flywheel-node">사례·콘텐츠</div><div class="flywheel-arrow">→</div><div class="flywheel-node">라이브 판매</div><div class="flywheel-arrow">→</div><div class="flywheel-node">워크숍·코호트</div><div class="flywheel-arrow">→</div><div class="flywheel-node">VOD·B2B</div>
+            </div>
+          </div>
+        </article>
+
+        <div class="metric-strip reveal" aria-label="핵심 운영 지표">
+          <article class="metric-card"><span>FREE MEMBERSHIP · LIVE COUNT</span><strong>9,511명</strong><p>가입비·카드 등록 없이 프로그램 참여 관문으로 운영. 확인일 2026.08.14. <a class="cite" href="#source-1">[1]</a></p></article>
+          <article class="metric-card"><span>SHARING SESSIONS · SINCE 2025.03</span><strong>25회</strong><p>유료 16회 + 무료 9회, 월 평균 1.7회라는 회사 제공 운영 데이터. <a class="cite" href="#source-3">[3]</a></p></article>
+          <article class="metric-card"><span>MAX PAID REPEAT RATE</span><strong>72.3%</strong><p>유료 공유회 최고 재참여율. 외부 감사 수치가 아닌 회사 제공 데이터입니다. <a class="cite" href="#source-3">[3]</a></p></article>
+          <article class="metric-card"><span>COHORT DEMAND SIGNAL</span><strong>13분</strong><p>스폰지클럽 1기 선착순 마감, 2기 알림 신청 약 700명. <a class="cite" href="#source-2">[2]</a></p></article>
+        </div>
+        <div class="summary-warning reveal">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 21 20H3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 9v5m0 3v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <div><strong>가장 중요한 복제 원칙:</strong> 가격표를 그대로 베끼지 말고, <strong>① 한 직군의 반복 문제 ② 실제 프로젝트 증거 ③ 무료 DB ④ 다음 단계가 명확한 상품 사다리 ⑤ 재참여를 만드는 커뮤니티 리듬</strong>을 복제해야 합니다.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section section-soft" id="evidence">
+      <div class="container">
+        <div class="section-kicker reveal">EVIDENCE BOUNDARY</div>
+        <h2 class="section-title reveal">확인된 판매 구조는 선명하지만,<br>실제 수익 비중은 공개되지 않았습니다</h2>
+        <p class="section-desc reveal">공개 페이지는 가격·기간·좌석·전환 장치를 확인하기에 충분합니다. 반면 감사 재무제표, 채널별 매출, 강사·크루 정산, 광고비와 인건비는 공개되지 않았으므로 “어디서 가장 많이 번다”는 단정은 피해야 합니다.</p>
+
+        <article class="thesis-card reveal">
+          <div class="thesis-stamp" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M14 18h36v28H14z" stroke="currentColor" stroke-width="3"/><path d="M21 27h22M21 34h14M21 41h18" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div>
+          <div class="thesis-copy"><h3>현재 가능한 가장 객관적인 판단</h3><p><strong>직접 소비자 매출은 워크숍·코호트·VOD에서 발생</strong>하고, 무료 멤버십과 공유회는 획득·활성화·검증 장치로 기능합니다. <mark>B2B 교육·제작, 행사 협찬, 제휴는 추가 수익원</mark>으로 확인되지만 규모는 미공개입니다.</p></div>
+        </article>
+
+        <div class="tri-grid">
+          <article class="status-card reveal"><div class="status-head"><div class="status-index">01</div><span class="status-badge confirmed">✓ 확인 사실</span></div><h3>공개 페이지에서 직접 확인</h3><p>프로그램 가격, 일정, 좌석 수, 멤버십 가입 방식, VOD 전환, 제휴 링크, 기업 협업 사례가 공개돼 있습니다.</p><div class="status-list"><div class="status-item"><b>✓</b><div>무료 멤버십이 모든 전용 프로그램의 신청 관문</div></div><div class="status-item"><b>✓</b><div>9,900원 공유회·9만~18만원 워크숍·68만원 코호트</div></div><div class="status-item"><b>✓</b><div>마감 2주 뒤 일부 공유회·챌린지를 인프런 VOD로 전환</div></div></div></article>
+          <article class="status-card reveal"><div class="status-head"><div class="status-index">02</div><span class="status-badge inference">△ 보고서 추론</span></div><h3>퍼널 역할과 경제성 해석</h3><p>가격과 행동 설계를 보면 저가 상품은 수익 그 자체보다 고객을 선별하고 다음 고가 상품으로 이동시키는 역할이 큽니다.</p><div class="status-list"><div class="status-item"><b>△</b><div>무료 회원 = 재접촉 가능한 관계 자산</div></div><div class="status-item"><b>△</b><div>공유회 = 사례 검증·구매 의향 확인</div></div><div class="status-item"><b>△</b><div>워크숍·코호트 = 소비자 부문의 핵심 현금화 지점</div></div></div></article>
+          <article class="status-card reveal"><div class="status-head"><div class="status-index">03</div><span class="status-badge unknown">? 미공개</span></div><h3>따라 하기 전에 직접 계산할 항목</h3><p>겉으로 보이는 매출과 실제 이익은 다릅니다. 팀 보상·툴·장소·환불·PG·플랫폼 수수료가 빠진 공헌이익을 봐야 합니다.</p><div class="status-list"><div class="status-item"><b>?</b><div>연간 매출·영업이익·상품별 구성비</div></div><div class="status-item"><b>?</b><div>크루·강사·프로젝트 참여자의 정산 구조</div></div><div class="status-item"><b>?</b><div>제휴 커미션과 B2B 계약 단가</div></div></div></article>
+        </div>
+        <div class="evidence-note reveal"><strong>출처 품질 메모:</strong> 가격·일정은 공식 판매 페이지를 우선했습니다. 회원 수·재참여율·성과는 회사가 공개한 자체 데이터와 이를 인용한 기사이므로, 운영 신호로는 유용하지만 회계 감사나 독립 검증을 거친 재무 수치로 보아서는 안 됩니다.</div>
+      </div>
+    </section>
+
+    <section class="content-section" id="ladder">
+      <div class="container">
+        <div class="section-kicker reveal">REVENUE LADDER</div>
+        <h2 class="section-title reveal">한 번 모은 관심을<br>여섯 번 현금화하는 상품 사다리</h2>
+        <p class="section-desc reveal">셀피쉬클럽은 하나의 구독료를 받기보다, 고객의 준비도와 원하는 결과에 따라 가격과 전달 강도를 높입니다. 아래 가격은 2026년 공개 페이지에서 관찰한 사례이며, 그대로 복제할 표준가격은 아닙니다.</p>
+
+        <div class="ladder" role="list" aria-label="수익 상품 사다리">
+          <article class="ladder-row" role="listitem"><div class="ladder-level">L0</div><div class="ladder-offer"><strong>무료 멤버십·뉴스레터</strong><span>이름·연락처·이메일 확보, 프로그램 접근권 제공</span></div><div class="ladder-price">₩0</div><div><span class="ladder-role">획득·재접촉</span></div><div class="ladder-cell">무료 자체가 상품이 아니라, 향후 공유회·워크숍·코호트를 알릴 수 있는 CRM 기반입니다. <a class="cite" href="#source-1">[1]</a></div></article>
+          <article class="ladder-row" role="listitem"><div class="ladder-level">L1</div><div class="ladder-offer"><strong>무료 이기적공유회</strong><span>실제 프로젝트·시행착오 공개, VOD 미제공으로 라이브 집중</span></div><div class="ladder-price">₩0</div><div><span class="ladder-role">리드 활성화</span></div><div class="ladder-cell">2026.08.17 무료 공유회는 신청과 동시에 멤버십에 가입시키고, 스폰지클럽 3기 알림을 함께 받게 설계했습니다. <a class="cite" href="#source-8">[8]</a></div></article>
+          <article class="ladder-row" role="listitem"><div class="ladder-level">L2</div><div class="ladder-offer"><strong>유료 이기적공유회</strong><span>2~3시간 라이브, 실제 사례와 Q&amp;A</span></div><div class="ladder-price">₩9,900</div><div><span class="ladder-role">의향 검증</span></div><div class="ladder-cell">낮은 가격으로 결제 행동을 확인하고, 주제별 구매자 세그먼트를 만듭니다. 2026.08.09 공개 페이지 기준. <a class="cite" href="#source-4">[4]</a></div></article>
+          <article class="ladder-row highlight" role="listitem"><div class="ladder-level">L3</div><div class="ladder-offer"><strong>실습형 워크숍</strong><span>4~8시간, 제한 좌석, 실제 결과물·VOD·요약 노트</span></div><div class="ladder-price">₩90K–180K</div><div><span class="ladder-role">핵심 B2C 매출</span></div><div class="ladder-cell">공개 사례는 30명×9만원, 20명×12만원, 온·오프라인 6명×18만원으로 전달 강도에 따라 달랐습니다. <a class="cite" href="#source-5">[5]</a><a class="cite" href="#source-6">[6]</a><a class="cite" href="#source-7">[7]</a></div></article>
+          <article class="ladder-row highlight" role="listitem"><div class="ladder-level">L4</div><div class="ladder-offer"><strong>스폰지클럽 코호트</strong><span>셋업·6주 라이브·주중 미션·오프라인·커뮤니티</span></div><div class="ladder-price">₩680K</div><div><span class="ladder-role">고가·리텐션</span></div><div class="ladder-cell">정가 100만원에서 68만원, 1기 13분 마감·활동 유지율 91.9%를 공개했습니다. 성과는 회사 자체 집계입니다. <a class="cite" href="#source-2">[2]</a></div></article>
+          <article class="ladder-row" role="listitem"><div class="ladder-level">L5</div><div class="ladder-offer"><strong>VOD·로드맵 재판매</strong><span>라이브 종료 후 녹화·사례를 에버그린 상품으로 전환</span></div><div class="ladder-price">₩29.7K / 묶음 ₩158.4K</div><div><span class="ladder-role">재고 없는 반복매출</span></div><div class="ladder-cell">인프런에서 개별 VOD와 8개 코스 묶음을 판매합니다. 플랫폼 정산액·수수료는 미공개입니다. <a class="cite" href="#source-9">[9]</a><a class="cite" href="#source-10">[10]</a></div></article>
+          <article class="ladder-row" role="listitem"><div class="ladder-level">L6</div><div class="ladder-offer"><strong>B2B·프로젝트·행사·제휴</strong><span>기업 교육, AI 콘텐츠 제작, 행사 협찬, AI 도구 제휴</span></div><div class="ladder-price">견적형</div><div><span class="ladder-role">상방 확대</span></div><div class="ladder-cell">카린 등 외부 브랜드 협업, 기업 교육 기반 워크숍, 공식 제휴 링크, 행사 매출·투자·협찬 사례가 확인됩니다. 실제 단가·커미션은 미공개입니다. <a class="cite" href="#source-11">[11]</a><a class="cite" href="#source-12">[12]</a><a class="cite" href="#source-13">[13]</a></div></article>
+        </div>
+
+        <div class="table-wrap reveal" style="margin-top:24px" role="region" aria-label="상품 역할 비교" tabindex="0">
+          <table>
+            <thead><tr><th>상품</th><th>고객이 사는 것</th><th>운영자가 얻는 것</th><th>주요 비용</th><th>복제 시 KPI</th></tr></thead>
+            <tbody>
+              <tr><td><span class="cell-title">무료 멤버십</span></td><td>정보·선착순 기회·할인</td><td>동의 기반 연락처와 관심 태그</td><td>CRM·콘텐츠·메시지</td><td>가입 전환율, 활성률</td></tr>
+              <tr><td><span class="cell-title">무료/저가 공유회</span></td><td>실패를 줄이는 실제 사례</td><td>주제 수요·결제 의향·발표자 발굴</td><td>기획·라이브·고객지원</td><td>출석률, 다음 상품 전환</td></tr>
+              <tr><td><span class="cell-title">워크숍</span></td><td>짧은 시간 안에 완성하는 산출물</td><td>높은 객단가와 결과 사례</td><td>강사·보조·툴·환불 대응</td><td>완성률, 공헌이익, 후기</td></tr>
+              <tr><td><span class="cell-title">코호트</span></td><td>습관·동료·피드백·정체성 변화</td><td>고가 매출·리텐션·크루 후보</td><td>운영 인력·커뮤니티·오프라인</td><td>활동 유지, 완주, 추천</td></tr>
+              <tr><td><span class="cell-title">VOD·B2B</span></td><td>시간 독립 학습 / 조직 맞춤 결과</td><td>콘텐츠 재사용 / 큰 계약 상방</td><td>편집·플랫폼 / 제안·납품</td><td>카탈로그 매출 / 재계약</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section section-blue" id="flywheel">
+      <div class="container">
+        <div class="section-kicker reveal">CONTENT–REVENUE FLYWHEEL</div>
+        <h2 class="section-title reveal">가장 강한 해자는 강사가 아니라<br>프로젝트에서 계속 나오는 새 사례입니다</h2>
+        <p class="section-desc reveal">셀피쉬클럽의 크루는 실제 문제를 풀고, 실패 기록까지 공유회로 바꿉니다. 하나의 프로젝트가 라이브·워크숍·VOD·브랜드 협업의 원재료가 되기 때문에 콘텐츠 재고가 계속 쌓입니다.</p>
+
+        <div class="flow-grid">
+          <article class="flow-step reveal"><div class="flow-num">01</div><h3>문제 선택</h3><p>마케터·창업가가 지금 돈과 시간을 쓰는 좁은 문제를 고릅니다.</p><div class="flow-output">산출물: 문제 문장</div></article>
+          <article class="flow-step reveal"><div class="flow-num">02</div><h3>크루 실험</h3><p>5~8명이 실제 프로젝트를 수행하고 과정·비용·실패를 기록합니다.</p><div class="flow-output">산출물: 원본 로그</div></article>
+          <article class="flow-step reveal"><div class="flow-num">03</div><h3>사례 패키징</h3><p>전후 비교, 의사결정, 툴 조합, 템플릿으로 정리합니다.</p><div class="flow-output">산출물: 케이스</div></article>
+          <article class="flow-step reveal"><div class="flow-num">04</div><h3>공유회 검증</h3><p>무료·저가 라이브로 제목, 수요, 질문, 구매 의향을 확인합니다.</p><div class="flow-output">산출물: 구매 데이터</div></article>
+          <article class="flow-step reveal"><div class="flow-num">05</div><h3>실습 상품화</h3><p>질문이 많은 구간을 워크숍·코호트로 깊게 해결합니다.</p><div class="flow-output">산출물: 고가 오퍼</div></article>
+          <article class="flow-step reveal"><div class="flow-num">06</div><h3>재판매</h3><p>녹화·요약·템플릿을 VOD, 번들, 기업 교육으로 재가공합니다.</p><div class="flow-output">산출물: 카탈로그</div></article>
+          <article class="flow-step reveal"><div class="flow-num">07</div><h3>다음 증거</h3><p>참가자 산출물·후기·크루 프로젝트가 다음 콘텐츠가 됩니다.</p><div class="flow-output">산출물: 새 플라이휠</div></article>
+        </div>
+
+        <div class="media-grid">
+          <figure class="media-main reveal"><img src="assets/community-projects.png" alt="셀피쉬클럽의 공유회, 해외 프로젝트, 스타트업 체육대회 현장을 모은 콜라주" loading="lazy"><figcaption>프로젝트가 콘텐츠와 행사로 확장되는 실제 장면. 사진 제공: 셀피쉬클럽, 보도: AVING(2026.07.02). <a class="cite" href="#source-3">[3]</a></figcaption></figure>
+          <div class="media-stack">
+            <figure class="reveal"><img src="assets/selfish-sharing-definition.png" alt="이기적공유의 의미를 설명하는 온라인 공유회 화면" loading="lazy"><figcaption>직접 경험과 시행착오를 정리해 공유하는 핵심 포맷. 사진 제공: 셀피쉬클럽 / AVING. <a class="cite" href="#source-3">[3]</a></figcaption></figure>
+            <figure class="reveal"><img src="assets/sponge-club-community.jpeg" alt="스폰지클럽 참가자들이 오프라인 모임 후 단체사진을 찍는 모습" loading="lazy"><figcaption>고가 코호트의 가치는 정보뿐 아니라 동료·리듬·소속감에 있습니다. 사진 제공: 셀피쉬클럽 / AVING. <a class="cite" href="#source-2">[2]</a></figcaption></figure>
+          </div>
+        </div>
+
+        <div class="video-grid" aria-label="관련 영상">
+          <article class="video-card reveal"><div class="video-frame"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/RvNrNYQuCZs" title="AI 브랜드 마케팅 이기적공유회 영상" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><div class="video-copy"><h3>실제 브랜드 프로젝트 → 공유회</h3><p>프로젝트 경험을 워크플로우·시행착오 중심으로 판매 콘텐츠화한 사례입니다. <a class="cite" href="#source-14">[14]</a></p></div></article>
+          <article class="video-card reveal"><div class="video-frame"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/D9fdqgTVqXo" title="AI 영상으로 미국 시장을 검증한 프로젝트 공유회 맛보기" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><div class="video-copy"><h3>5개월 프로젝트 → 글로벌 사례 자산</h3><p>긴 실행 과정을 맛보기 영상·라이브·VOD로 나누는 콘텐츠 재활용 방식을 볼 수 있습니다. <a class="cite" href="#source-15">[15]</a></p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section section-soft" id="crm">
+      <div class="container">
+        <div class="section-kicker reveal">OWNED AUDIENCE & CRM</div>
+        <h2 class="section-title reveal">무료 회원을 모은 뒤<br>행동 데이터로 다음 제안을 바꿉니다</h2>
+        <p class="section-desc reveal">멤버십 가입자는 이메일·알림톡으로 프로그램 소식을 받고, 뉴스레터·카카오채널·오픈채팅·유튜브·블로그를 오갑니다. 중요한 것은 채널 수가 아니라, “가입 → 신청 → 출석 → 구매 → 완주 → 재참여” 이벤트를 한 사람 단위로 연결하는 것입니다. <a class="cite" href="#source-1">[1]</a><a class="cite" href="#source-11">[11]</a></p>
+
+        <div class="crm-layout">
+          <article class="channel-card reveal"><h3>최소 채널 구조</h3><p>처음부터 모든 채널을 열지 말고, 기록이 한곳으로 모이는 세 개만 시작하세요.</p><div class="channel-stack"><div class="channel-item"><b>01</b><div><strong>가입 랜딩 + CRM</strong><span>필수 정보 최소 수집, 출처·관심사 태그 저장</span></div></div><div class="channel-item"><b>02</b><div><strong>이메일 또는 알림톡</strong><span>등록 확인, 리마인드, 후속 제안 자동화</span></div></div><div class="channel-item"><b>03</b><div><strong>라이브 + 커뮤니티</strong><span>Zoom/YouTube와 한 개의 참여 채널만 운영</span></div></div><div class="channel-item"><b>04</b><div><strong>콘텐츠 아카이브</strong><span>블로그·VOD에서 검색 가능한 자산으로 축적</span></div></div></div></article>
+          <article class="sequence-card reveal"><h3>14일 전환 시퀀스</h3><p>한 번의 행사보다 행사 전후의 메시지가 실제 매출을 만듭니다.</p><div class="sequence"><div class="sequence-row"><div class="sequence-day">D-7</div><div class="sequence-copy"><strong>문제 인식</strong><span>사람들이 이미 겪는 손실·실패 사례를 짧게 보여주고 무료 등록을 유도합니다.</span></div></div><div class="sequence-row"><div class="sequence-day">D-1</div><div class="sequence-copy"><strong>출석 리마인드</strong><span>캘린더·준비물·얻게 될 산출물 1개만 명확히 보냅니다.</span></div></div><div class="sequence-row"><div class="sequence-day">D0</div><div class="sequence-copy"><strong>라이브 + 행동 CTA</strong><span>마지막 10분에 다음 단계가 필요한 사람을 진단 질문으로 분류합니다.</span></div></div><div class="sequence-row"><div class="sequence-day">D+1</div><div class="sequence-copy"><strong>요약·템플릿 제공</strong><span>출석자는 실습 링크, 미출석자는 3분 요약과 재등록 링크를 받습니다.</span></div></div><div class="sequence-row"><div class="sequence-day">D+3</div><div class="sequence-copy"><strong>워크숍 초대</strong><span>“배우기”가 아니라 “몇 시간 안에 무엇을 완성하는지”로 판매합니다.</span></div></div><div class="sequence-row"><div class="sequence-day">D+7</div><div class="sequence-copy"><strong>코호트 대기자 전환</strong><span>고가 과정은 바로 판매보다 사전 진단·대기자·설명회로 불확실성을 줄입니다.</span></div></div><div class="sequence-row"><div class="sequence-day">D+14</div><div class="sequence-copy"><strong>VOD 에버그린</strong><span>라이브 구매자가 아닌 사람에게 녹화본·번들·다음 무료 행사를 제안합니다.</span></div></div></div></article>
+        </div>
+
+        <div class="template-grid">
+          <article class="template-card reveal"><div class="template-head"><div class="template-type">POSITIONING</div><h3>한 문장 오퍼</h3><p>대상·문제·기간·산출물을 한 문장에 넣습니다.</p></div><pre class="template-code" id="tpl-position">우리는 [구체 직군]이 [반복해서 겪는 문제]를
+[기간] 안에 [눈에 보이는 산출물]로 해결하도록 돕습니다.
+강의가 아니라 [실제 프로젝트/실습]를 함께 수행하고,
+완료 기준은 [측정 가능한 상태]입니다.</pre><div class="copy-row"><button class="copy-btn" type="button" data-copy="tpl-position">템플릿 복사</button></div></article>
+          <article class="template-card reveal"><div class="template-head"><div class="template-type">FREE EVENT</div><h3>90분 무료 공유회 구성</h3><p>정보를 많이 주기보다 다음 행동이 선명해야 합니다.</p></div><pre class="template-code" id="tpl-event">00–10분  문제와 손실을 구체화
+10–25분  우리가 실패한 방법 3개
+25–55분  실제 프로젝트의 전체 흐름
+55–70분  전/후 결과와 의사결정
+70–80분  참가자 미니 실습
+80–90분  누가 다음 워크숍이 필요한지 + Q&A</pre><div class="copy-row"><button class="copy-btn" type="button" data-copy="tpl-event">진행표 복사</button></div></article>
+          <article class="template-card reveal"><div class="template-head"><div class="template-type">UPSELL</div><h3>워크숍 전환 문구</h3><p>과장된 결과 보장 대신 완료할 산출물을 판매합니다.</p></div><pre class="template-code" id="tpl-upsell">오늘은 “어떻게 작동하는지”를 보여드렸습니다.
+다음 워크숍에서는 [시간] 동안 직접 [산출물]을 완성합니다.
+대상: [현재 상태]
+준비물: [계정/자료]
+완료 기준: [배포·실행·측정 가능한 상태]
+좌석은 피드백 가능한 [실제 인원]명으로 제한합니다.</pre><div class="copy-row"><button class="copy-btn" type="button" data-copy="tpl-upsell">판매문구 복사</button></div></article>
+          <article class="template-card reveal"><div class="template-head"><div class="template-type">CASE LOG</div><h3>사례 자산화 기록지</h3><p>프로젝트가 끝나기 전에 콘텐츠 원료부터 확보합니다.</p></div><pre class="template-code" id="tpl-case">1. 고객/사용자의 원래 문제
+2. 시작 전 기준선(시간·비용·품질)
+3. 선택한 방법과 선택하지 않은 방법
+4. 실패·수정 로그
+5. 최종 산출물과 전/후 비교
+6. 재사용 가능한 템플릿·프롬프트
+7. 공개 가능한 범위와 저작권 동의
+8. 다음 상품에서 해결할 남은 문제</pre><div class="copy-row"><button class="copy-btn" type="button" data-copy="tpl-case">기록지 복사</button></div></article>
+        </div>
+
+        <div class="legal-inline reveal"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 20 6v5.7c0 4.6-3.2 7.6-8 9.3-4.8-1.7-8-4.7-8-9.3V6z" stroke="currentColor" stroke-width="1.8"/><path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>복제 시 중요한 법적 차이:</strong> 서비스 제공에 필요한 개인정보와 선택적 마케팅 수신 동의를 구분하고, 선택 동의를 하지 않았다는 이유만으로 서비스를 거절하지 않는 구조를 권고합니다. 개인정보 보호법의 최소수집·선택동의 원칙을 실제 폼과 CRM에 반영하세요. <a class="cite" href="#source-16">[16]</a></div></div>
+      </div>
+    </section>
+
+    <section class="content-section" id="calculator">
+      <div class="container">
+        <div class="section-kicker reveal">UNIT ECONOMICS CALCULATOR</div>
+        <h2 class="section-title reveal">매출이 아니라<br>공헌이익으로 복제 가능성을 판단하세요</h2>
+        <p class="section-desc reveal">아래 값은 셀피쉬클럽의 실제 실적이 아닌 <strong>편집 가능한 예시</strong>입니다. 공개된 가격을 초기값으로 넣었으며, 자신의 좌석·판매량·변동비·고정비로 바꿔야 합니다.</p>
+
+        <div class="calculator-shell">
+          <article class="calculator-card reveal"><h3>월 환산 시나리오</h3><p>코호트는 운영 주기 개월 수로 나눠 월 환산합니다. 부가세·세금·플랫폼 정산·환불은 비용률 또는 고정비에 반영하세요.</p>
+            <div class="preset-row" aria-label="계산기 예시 선택"><button class="preset-btn" type="button" data-preset="solo">1인 파일럿</button><button class="preset-btn active" type="button" data-preset="team">소규모 팀</button><button class="preset-btn" type="button" data-preset="growth">성장 시나리오</button></div>
+            <div class="input-grid">
+              <div class="field"><label for="shareBuyers">월 유료 공유회 구매자</label><input id="shareBuyers" type="number" min="0" step="1" value="80"><small>명</small></div>
+              <div class="field"><label for="sharePrice">공유회 가격</label><input id="sharePrice" type="number" min="0" step="100" value="9900"><small>원</small></div>
+              <div class="field"><label for="workshopSeats">월 워크숍 판매 좌석</label><input id="workshopSeats" type="number" min="0" step="1" value="20"><small>명</small></div>
+              <div class="field"><label for="workshopPrice">워크숍 가격</label><input id="workshopPrice" type="number" min="0" step="1000" value="120000"><small>원</small></div>
+              <div class="field"><label for="cohortSeats">코호트 판매 좌석</label><input id="cohortSeats" type="number" min="0" step="1" value="20"><small>기수당 명</small></div>
+              <div class="field"><label for="cohortPrice">코호트 가격</label><input id="cohortPrice" type="number" min="0" step="1000" value="680000"><small>원</small></div>
+              <div class="field"><label for="cohortMonths">코호트 출시 주기</label><input id="cohortMonths" type="number" min="1" step="1" value="3"><small>개월마다 1기</small></div>
+              <div class="field"><label for="vodBuyers">월 VOD 구매자</label><input id="vodBuyers" type="number" min="0" step="1" value="30"><small>명</small></div>
+              <div class="field"><label for="vodPrice">VOD 평균 객단가</label><input id="vodPrice" type="number" min="0" step="100" value="29700"><small>원</small></div>
+              <div class="field"><label for="b2bRevenue">월 B2B·협찬 매출</label><input id="b2bRevenue" type="number" min="0" step="100000" value="0"><small>원 · 계약 없으면 0</small></div>
+              <div class="field"><label for="variableRate">변동비율</label><input id="variableRate" type="number" min="0" max="100" step="1" value="20"><small>PG·플랫폼·강사·환불충당 %</small></div>
+              <div class="field"><label for="fixedCost">월 고정비</label><input id="fixedCost" type="number" min="0" step="100000" value="3000000"><small>인건비·툴·장소·광고</small></div>
+            </div>
+            <div class="formula-card"><strong>계산식</strong><code>월 총매출 = 공유회 + 워크숍 + (코호트 기수 매출 ÷ 출시주기) + VOD + B2B<br>월 운영잉여 = 총매출 × (1 − 변동비율) − 고정비</code></div>
+          </article>
+
+          <aside class="result-card reveal" aria-live="polite"><h3>계산 결과</h3><p>초기값은 실제 셀피쉬클럽 매출이 아니라 구조를 이해하기 위한 예시입니다.</p><div class="result-main"><span>월 환산 총매출</span><strong id="grossRevenue">₩0</strong></div><div class="result-grid"><div class="result-item"><span>변동비 차감 후</span><strong id="contribution">₩0</strong></div><div class="result-item"><span>고정비 차감 후</span><strong id="operatingSurplus">₩0</strong></div><div class="result-item"><span>코호트 월 환산</span><strong id="cohortMonthly">₩0</strong></div><div class="result-item"><span>공헌이익률</span><strong id="contributionMargin">0%</strong></div></div><p class="result-note" id="calculatorNote">손익분기 상태를 계산하는 중입니다.</p></aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section section-soft" id="roadmap">
+      <div class="container">
+        <div class="section-kicker reveal">90-DAY PLAYBOOK</div>
+        <h2 class="section-title reveal">처음 90일은 커뮤니티가 아니라<br>하나의 반복 가능한 수익 루프를 만드세요</h2>
+        <p class="section-desc reveal">회원 수부터 키우지 마십시오. 한 문제에서 프로젝트 증거를 만들고, 무료 공유회로 수요를 검증한 뒤, 워크숍 한 번을 흑자로 운영하는 것이 첫 번째 목표입니다.</p>
+
+        <div class="roadmap-grid">
+          <article class="phase-card reveal"><div class="phase-tag">DAY 1–14</div><h3>기반 설계</h3><p>누구의 어떤 문제를 어떤 산출물로 해결할지 고정합니다.</p><div class="phase-list"><div class="phase-item"><div class="phase-num">1</div><div><strong>좁은 고객 1명 정의</strong><span>“AI 관심자” 대신 “콘텐츠를 매주 만들어야 하는 1인 대표”처럼 씁니다.</span></div></div><div class="phase-item"><div class="phase-num">2</div><div><strong>멤버십 랜딩 제작</strong><span>혜택·첫 무료 행사·다음 행동·동의 항목을 한 화면에 둡니다.</span></div></div><div class="phase-item"><div class="phase-num">3</div><div><strong>이벤트 태그 설계</strong><span>가입·신청·출석·구매·완주·추천을 CRM 필드로 만듭니다.</span></div></div></div><div class="deliverable">완료 기준 · 가입 폼, CRM, 개인정보·환불 문서, 무료 행사 날짜</div></article>
+          <article class="phase-card recommended reveal"><div class="phase-tag">DAY 15–35</div><h3>프로젝트 증거</h3><p>판매할 지식을 만들지 말고, 실제 문제를 해결한 기록을 만듭니다.</p><div class="phase-list"><div class="phase-item"><div class="phase-num">4</div><div><strong>3주 실전 스프린트</strong><span>5명 이하 팀으로 고객 1개·산출물 1개·지표 1개만 수행합니다.</span></div></div><div class="phase-item"><div class="phase-num">5</div><div><strong>실패 로그 확보</strong><span>무엇을 왜 버렸는지까지 기록해야 공유회의 차별점이 됩니다.</span></div></div><div class="phase-item"><div class="phase-num">6</div><div><strong>공개 범위 합의</strong><span>고객명·화면·수치·참가자 얼굴·녹화 재판매 권리를 서면화합니다.</span></div></div></div><div class="deliverable">완료 기준 · 전/후 비교 1개, 템플릿 1개, 90분 발표 자료</div></article>
+          <article class="phase-card reveal"><div class="phase-tag">DAY 36–60</div><h3>첫 매출 루프</h3><p>무료 공유회 → 저가 검증 → 결과물 워크숍을 연속 실행합니다.</p><div class="phase-list"><div class="phase-item"><div class="phase-num">7</div><div><strong>무료 공유회 1회</strong><span>등록 100명보다 실제 출석·질문·대기자 수를 봅니다.</span></div></div><div class="phase-item"><div class="phase-num">8</div><div><strong>저가 상품 1회</strong><span>1만~3만원으로 결제 의향과 주제별 고객을 선별합니다.</span></div></div><div class="phase-item"><div class="phase-num">9</div><div><strong>워크숍 15~20석</strong><span>4~6시간 안에 완성 가능한 산출물로 범위를 제한합니다.</span></div></div></div><div class="deliverable">완료 기준 · 워크숍 공헌이익 흑자, 완성률 70%+, 후기 5개</div></article>
+          <article class="phase-card reveal"><div class="phase-tag">DAY 61–90</div><h3>재판매·확장</h3><p>한 번 만든 사례를 다음 매출과 다음 사례로 연결합니다.</p><div class="phase-list"><div class="phase-item"><div class="phase-num">10</div><div><strong>VOD·노트 재가공</strong><span>라이브 전체보다 핵심 모듈·템플릿·실수 체크리스트를 묶습니다.</span></div></div><div class="phase-item"><div class="phase-num">11</div><div><strong>코호트 사전판매</strong><span>설명회·진단·대기자 30명 이상이 모일 때 4~6주 과정을 엽니다.</span></div></div><div class="phase-item"><div class="phase-num">12</div><div><strong>B2B 제안 10곳</strong><span>“교육”이 아니라 검증된 워크숍을 조직 문제에 맞춰 제안합니다.</span></div></div></div><div class="deliverable">완료 기준 · VOD 1개, 다음 기수 대기자, 기업 제안서 1개</div></article>
+        </div>
+
+        <div class="table-wrap reveal" style="margin-top:24px" role="region" aria-label="주차별 실행 체크리스트" tabindex="0">
+          <table>
+            <thead><tr><th>주차</th><th>대표 행동</th><th>담당</th><th>완료 산출물</th><th>중단·수정 신호</th></tr></thead>
+            <tbody>
+              <tr><td>1주</td><td>고객 인터뷰 10명, 반복 문제 순위화</td><td>오퍼 PM</td><td>문제 문장·지불 의향 메모</td><td>같은 문제가 5명 미만이면 주제 변경</td></tr>
+              <tr><td>2주</td><td>가입 랜딩·CRM·동의·환불 구조</td><td>CRM/운영</td><td>테스트 가입→메시지 정상 수신</td><td>폼 이탈이 높으면 필드 축소</td></tr>
+              <tr><td>3–5주</td><td>실전 프로젝트와 로그 기록</td><td>프로젝트 리드</td><td>전/후 결과·실패 3개·템플릿</td><td>측정 가능한 결과가 없으면 기간 연장보다 문제 축소</td></tr>
+              <tr><td>6주</td><td>무료 공유회 모집·운영</td><td>콘텐츠/CRM</td><td>출석자·질문·관심 태그</td><td>출석률 25% 미만이면 메시지·시간 재설계</td></tr>
+              <tr><td>7주</td><td>저가 공유회 또는 예약금 테스트</td><td>오퍼 PM</td><td>실결제자·환불·질문</td><td>결제 전환 3% 미만이면 가치제안 변경</td></tr>
+              <tr><td>8–9주</td><td>워크숍 실행·공헌이익 측정</td><td>강사/운영</td><td>완성물·후기·원가표</td><td>완성률 70% 미만이면 범위 축소</td></tr>
+              <tr><td>10–12주</td><td>VOD·코호트 대기자·B2B 제안</td><td>콘텐츠/세일즈</td><td>카탈로그·대기자·제안서</td><td>수요보다 운영 복잡도가 크면 코호트 보류</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="operations">
+      <div class="container">
+        <div class="section-kicker reveal">OPERATING MODEL</div>
+        <h2 class="section-title reveal">크루의 열정이 아니라<br>권리와 정산이 명확한 운영 구조가 필요합니다</h2>
+        <p class="section-desc reveal">프로젝트형 커뮤니티는 참가자의 경험이 다음 상품의 원재료가 됩니다. 작은 팀일수록 “누가 무엇을 만들고, 누가 소유하며, 재판매 수익을 어떻게 나누는지”를 시작 전에 합의해야 오래 갑니다.</p>
+
+        <div class="operating-grid">
+          <article class="role-card reveal"><h3>최소 3역할</h3><p>초기에는 1명이 겸임해도 되지만, 책임 영역은 분리해 기록합니다.</p><div class="role-list"><div class="role-row"><b>OFFER</b><div><strong>오퍼·프로젝트 PM</strong><span>문제 선택, 범위, 커리큘럼, 손익, 품질 기준을 책임집니다.</span></div></div><div class="role-row"><b>CRM</b><div><strong>획득·CRM 운영</strong><span>랜딩, 태그, 메시지, 출석, 결제, 미출석·환불 대응을 맡습니다.</span></div></div><div class="role-row"><b>OPS</b><div><strong>전달·콘텐츠 운영</strong><span>라이브, 실습 보조, 녹화, 노트, VOD, 후기·권리 동의를 관리합니다.</span></div></div><div class="role-row"><b>SME</b><div><strong>주제 전문가·공유자</strong><span>실제 프로젝트 경험과 시연을 제공하되, 보상과 재사용 범위를 계약합니다.</span></div></div></div></article>
+          <article class="contract-card reveal"><h3>반드시 문서화할 8개 항목</h3><p>구두 합의로 시작하면 콘텐츠 재판매 시점에 갈등이 생깁니다.</p><div class="contract-list"><div class="contract-item"><strong>① 원본 IP</strong><span>프로젝트 산출물·템플릿·프롬프트 소유자</span></div><div class="contract-item"><strong>② 녹화·초상</strong><span>라이브 녹화, 얼굴·목소리, 클립 재사용 범위</span></div><div class="contract-item"><strong>③ 수익 정의</strong><span>총매출인지 PG·환불·세금·광고 차감 후인지</span></div><div class="contract-item"><strong>④ 정산 시점</strong><span>취소·환불 확정 후 언제 지급하는지</span></div><div class="contract-item"><strong>⑤ 고객 데이터</strong><span>리드 소유권, 개인 연락 금지, 접근 권한</span></div><div class="contract-item"><strong>⑥ 재판매</strong><span>VOD·기업 교육·번들·2차 콘텐츠 로열티</span></div><div class="contract-item"><strong>⑦ 비용 책임</strong><span>툴·장소·편집·교통·광고·세금 부담</span></div><div class="contract-item"><strong>⑧ 종료 규칙</strong><span>프로젝트 중단·콘텐츠 철회·계정 회수</span></div></div><pre class="split-options">정산 방식 예시
+A. 고정 강사료 + 판매 성과 보너스
+B. 순매출(결제−환불−PG−직접광고) 기준 배분
+C. 라이브 고정료 + VOD 판매분 로열티
+D. B2B 프로젝트는 역할별 일당 + 이익 공유
+
+※ “매출의 50%”처럼 기준이 모호한 표현은 피하고,
+무엇을 차감한 어느 시점의 금액인지 수식으로 씁니다.</pre></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section section-soft" id="metrics">
+      <div class="container">
+        <div class="section-kicker reveal">KPI & DECISION GATES</div>
+        <h2 class="section-title reveal">회원 수보다<br>다음 행동으로 이동한 비율을 보세요</h2>
+        <p class="section-desc reveal">9,511명 같은 큰 숫자는 사회적 증거가 되지만, 작은 운영자가 먼저 봐야 할 것은 출석·결제·완성·재구매·추천입니다. 아래 수치는 업계 표준이 아니라 첫 90일의 <strong>검증용 가설</strong>입니다.</p>
+
+        <div class="kpi-grid">
+          <article class="kpi-card reveal"><span>01 · ACQUISITION</span><h3>유효 가입</h3><p>단순 이메일 수가 아니라 출처와 문제 태그가 있는 연락 가능한 사람 수</p><div class="kpi-formula">유효 가입 ÷ 랜딩 방문</div></article>
+          <article class="kpi-card reveal"><span>02 · ACTIVATION</span><h3>실제 출석</h3><p>등록자가 라이브에 들어와 핵심 구간까지 남은 비율</p><div class="kpi-formula">60분 이상 시청 ÷ 등록</div></article>
+          <article class="kpi-card reveal"><span>03 · REVENUE</span><h3>공헌이익</h3><p>상품별 매출에서 그 상품 때문에 생긴 직접비용을 뺀 금액</p><div class="kpi-formula">매출 − 환불 − PG − 강사 − 광고</div></article>
+          <article class="kpi-card reveal"><span>04 · RETENTION</span><h3>완주·재구매</h3><p>산출물을 끝낸 비율과 90일 안에 다른 상품을 다시 산 비율</p><div class="kpi-formula">완주 / 참가 · 재구매 / 구매자</div></article>
+          <article class="kpi-card reveal"><span>05 · REFERRAL</span><h3>자발적 공유</h3><p>후기 요청 없이도 사례·추천·새 세션을 만든 참가자 수</p><div class="kpi-formula">추천 유입 ÷ 신규 가입</div></article>
+        </div>
+
+        <div class="table-wrap gate-table reveal" role="region" aria-label="검증용 의사결정 기준" tabindex="0">
+          <table><thead><tr><th>관문</th><th>첫 가설</th><th>좋지 않은 신호</th><th>먼저 고칠 것</th></tr></thead><tbody><tr><td>무료 행사</td><td>등록→실출석 35% 이상</td><td>25% 미만</td><td>시간·리마인드·얻게 될 결과</td></tr><tr><td>저가 결제</td><td>출석자→구매 5~12%</td><td>3% 미만</td><td>주제·가격보다 다음 산출물 선명도</td></tr><tr><td>워크숍</td><td>완성률 70% 이상</td><td>질문 폭주·미완성</td><td>범위·사전 준비·보조 인력</td></tr><tr><td>코호트</td><td>대기자 30명+ 후 오픈</td><td>설명회 반응은 높고 결제 없음</td><td>기간·가격·대상 적합도·신뢰 증거</td></tr><tr><td>재판매</td><td>라이브 1회당 VOD/클립/노트 3개</td><td>편집이 매번 새 제작 수준</td><td>촬영·챕터·권리 동의를 처음부터 설계</td></tr></tbody></table>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="risks">
+      <div class="container">
+        <div class="section-kicker reveal">RISKS & GUARDRAILS</div>
+        <h2 class="section-title reveal">겉으로 보이는 전환 장치를<br>그대로 베끼면 오히려 위험합니다</h2>
+        <p class="section-desc reveal">선착순·할인·필수 동의·환불 제한은 전환율을 높일 수 있지만, 사실성·법정 권리·개인정보·신뢰를 훼손하면 장기 LTV가 무너집니다. 아래 통제는 한국 사업자를 기준으로 한 일반 가이드이며, 개별 사업에는 법률·세무 검토가 필요합니다.</p>
+
+        <div class="correction-table reveal">
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span><div><strong>마케팅 수신을 필수로 묶기</strong><br>가입에 필요하지 않은 광고 수신까지 한 번에 강제</div></div><div class="correction-cell right"><span class="correction-icon">✓</span><div><strong>필수 처리와 선택 마케팅을 분리</strong><br>목적·항목·보유기간·거부권을 명확히 표시하고 최소 정보만 수집합니다. <a class="cite" href="#source-16">[16]</a></div></div></div>
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span><div><strong>“행사 2일 전 이후 환불 불가”만 기재</strong><br>운영 편의 정책을 법정 청약철회보다 우선</div></div><div class="correction-cell right"><span class="correction-icon">✓</span><div><strong>법정 권리와 디지털콘텐츠 예외를 함께 설계</strong><br>계약내용, 제공 개시, 철회 제한 표시, 미제공 부분, 환급 시점을 전자상거래법과 맞춥니다. <a class="cite" href="#source-17">[17]</a></div></div></div>
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span><div><strong>근거 없는 정가·과도한 할인율</strong><br>실제로 판매한 적 없는 가격을 기준가처럼 표시</div></div><div class="correction-cell right"><span class="correction-icon">✓</span><div><strong>실제 통상가격 또는 산정 근거 사용</strong><br>“상당 가치”라면 무엇을 기준으로 계산했는지 내부 근거를 남기고, 허위 희소성은 쓰지 않습니다.</div></div></div>
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span><div><strong>제휴 링크를 일반 추천처럼 노출</strong><br>수수료·쿠폰·협찬 관계를 사용자가 찾기 어렵게 표시</div></div><div class="correction-cell right"><span class="correction-icon">✓</span><div><strong>경제적 이해관계를 가까운 위치에 명시</strong><br>“제휴 링크”, “구매 시 수수료 수취”처럼 소비자가 즉시 이해하는 문구를 사용합니다. <a class="cite" href="#source-18">[18]</a></div></div></div>
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span><div><strong>크루 산출물·얼굴·후기를 자동 소유</strong><br>커뮤니티 참가를 포괄적 저작권 양도로 해석</div></div><div class="correction-cell right"><span class="correction-icon">✓</span><div><strong>원본·녹화·2차 편집·VOD·B2B 사용을 분리 동의</strong><br>재사용 범위와 보상, 철회·익명화 절차를 문서로 합의합니다.</div></div></div>
+          <div class="correction-row"><div class="correction-cell wrong"><span class="correction-icon">×</span><div><strong>회원 수를 사업 건강성으로 착각</strong><br>무료 DB 증가만 보고 현금흐름·서비스 품질을 놓침</div></div><div class="correction-cell right"><span class="correction-icon">✓</span><div><strong>코호트별 공헌이익·완성률·재구매 추적</strong><br>활성 없는 연락처는 비용이며, 메시지 피로와 수신거부까지 KPI로 봅니다.</div></div></div>
+        </div>
+
+        <div class="governance-note reveal"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 20 6v5.7c0 4.6-3.2 7.6-8 9.3-4.8-1.7-8-4.7-8-9.3V6z" stroke="currentColor" stroke-width="1.8"/><path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>실행 전 체크:</strong> 통신판매업 신고, 사업자·가격·부가세 표시, 이용약관·환불정책, 개인정보처리방침, 마케팅 수신 동의, 녹화·초상·저작권, 강사·크루 계약, 세금계산서·정산, 광고·제휴 표시를 전문가와 검토하세요. 본 보고서는 법률·세무 자문이 아닙니다.</div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="source-section" id="sources">
+    <div class="container">
+      <div class="source-head"><div><h2>참고 자료와 출처</h2><p>실제 분석에 사용한 공식 판매 페이지·플랫폼 카탈로그·보도·법령만 수록했습니다. 확인일 2026.08.14.</p></div><button class="btn btn-ghost" type="button" onclick="window.print()">전체 PDF 저장</button></div>
+      <div class="source-grid">
+        <a class="source-link" id="source-1" href="https://new.selfishclub.xyz/membership" target="_blank" rel="noopener noreferrer"><span>01 · OFFICIAL · 2026.08.14 확인</span><strong>이기적멤버십 무료 가입 및 프로그램 구조</strong><small>무료 가입, 9,511명, 프로그램 관문, VOD 전환</small></a>
+        <a class="source-link" id="source-2" href="https://new.selfishclub.xyz/spongeclub" target="_blank" rel="noopener noreferrer"><span>02 · OFFICIAL PROGRAM</span><strong>스폰지클럽 2기 신청 페이지</strong><small>68만원, 13분 마감, 대기자, 유지율·만족도</small></a>
+        <a class="source-link" id="source-3" href="https://kr.aving.net/news/articleView.html?idxno=1812116" target="_blank" rel="noopener noreferrer"><span>03 · PRESS / COMPANY DATA · 2026.07.02</span><strong>셀피쉬클럽 3주년 운영 데이터</strong><small>누적 멤버, 공유회 횟수, 재참여율, 행사 성과</small></a>
+        <a class="source-link" id="source-4" href="https://new.selfishclub.xyz/sharing/ai-video-os" target="_blank" rel="noopener noreferrer"><span>04 · OFFICIAL SALES PAGE</span><strong>9,900원 유료 이기적공유회 사례</strong><small>2026.08.09 · 온라인 라이브</small></a>
+        <a class="source-link" id="source-5" href="https://new.selfishclub.xyz/workshop/claude-code-site" target="_blank" rel="noopener noreferrer"><span>05 · OFFICIAL SALES PAGE</span><strong>12만원·20석·6시간 워크숍 사례</strong><small>2026.08.17 · 온라인 실습</small></a>
+        <a class="source-link" id="source-6" href="https://new.selfishclub.xyz/workshop/ai-beauty2" target="_blank" rel="noopener noreferrer"><span>06 · OFFICIAL SALES PAGE</span><strong>9만원·30석 AI 제품 이미지 워크숍</strong><small>VOD·요약 노트 포함</small></a>
+        <a class="source-link" id="source-7" href="https://new.selfishclub.xyz/workshop/ai-business-partner" target="_blank" rel="noopener noreferrer"><span>07 · OFFICIAL SALES PAGE</span><strong>18만원·6석 온오프라인 워크숍</strong><small>전달 강도에 따른 가격 차이 확인</small></a>
+        <a class="source-link" id="source-8" href="https://new.selfishclub.xyz/sharing/ai-business-core" target="_blank" rel="noopener noreferrer"><span>08 · OFFICIAL LEAD MAGNET</span><strong>무료 공유회 → 멤버십·스폰지클럽 알림</strong><small>VOD 미제공, 자동 가입, 다음 기수 CTA</small></a>
+        <a class="source-link" id="source-9" href="https://www.inflearn.com/roadmaps/10645" target="_blank" rel="noopener noreferrer"><span>09 · PLATFORM CATALOG</span><strong>이기적공유회 8개 코스 VOD 로드맵</strong><small>개별·묶음 가격과 프로젝트 사례</small></a>
+        <a class="source-link" id="source-10" href="https://www.inflearn.com/users/1328411/@selfishclub" target="_blank" rel="noopener noreferrer"><span>10 · PLATFORM PROFILE</span><strong>셀피쉬클럽 인프런 프로필</strong><small>532명 수강생, 프로젝트 방식 소개</small></a>
+        <a class="source-link" id="source-11" href="https://www.selfishclub.xyz/" target="_blank" rel="noopener noreferrer"><span>11 · OFFICIAL CHANNELS & PARTNERS</span><strong>뉴스레터·카카오·AI 도구 제휴 채널</strong><small>공식 제휴 링크와 멤버 혜택</small></a>
+        <a class="source-link" id="source-12" href="https://www.brandbrief.co.kr/news/articleView.html?idxno=7800" target="_blank" rel="noopener noreferrer"><span>12 · INDUSTRY PRESS</span><strong>외부 브랜드 프로젝트와 NDA AI Studio</strong><small>카린 협업·AI 콘텐츠 제작 사례</small></a>
+        <a class="source-link" id="source-13" href="https://brunch.co.kr/@shooni/2" target="_blank" rel="noopener noreferrer"><span>13 · PROJECT LEAD RECORD</span><strong>천하제일 스타트업 체육대회 시즌2 회고</strong><small>매출·투자·협찬 합계 3천만원 이상이라는 프로젝트 기록</small></a>
+        <a class="source-link" id="source-14" href="https://www.youtube.com/watch?v=RvNrNYQuCZs" target="_blank" rel="noopener noreferrer"><span>14 · OFFICIAL VIDEO</span><strong>AI 브랜드 마케팅 이기적공유회</strong><small>프로젝트 사례의 공유회 전환 예시</small></a>
+        <a class="source-link" id="source-15" href="https://www.youtube.com/watch?v=D9fdqgTVqXo" target="_blank" rel="noopener noreferrer"><span>15 · OFFICIAL VIDEO</span><strong>AI 영상으로 미국 시장을 검증한 5개월</strong><small>장기 프로젝트의 콘텐츠 자산화 예시</small></a>
+        <a class="source-link" id="source-16" href="https://www.law.go.kr/lsEfInfoP.do?lsiSeq=195062" target="_blank" rel="noopener noreferrer"><span>16 · LAW · 국가법령정보센터</span><strong>개인정보 보호법</strong><small>최소 수집, 선택 동의, 서비스 제공 거부 제한</small></a>
+        <a class="source-link" id="source-17" href="https://law.go.kr/LSW//lsLawLinkInfo.do?chrClsCd=010202&amp;lsId=009318&amp;lsJoLnkSeq=1000527255&amp;print=print" target="_blank" rel="noopener noreferrer"><span>17 · LAW · 2026.07.21 시행</span><strong>전자상거래법 제17조·제18조</strong><small>청약철회, 디지털콘텐츠 예외, 환급</small></a>
+        <a class="source-link" id="source-18" href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=53771" target="_blank" rel="noopener noreferrer"><span>18 · FTC GUIDELINE · 2026.06 시행</span><strong>추천·보증 표시·광고 심사지침</strong><small>경제적 이해관계·제휴 표시 원칙</small></a>
+      </div>
+
+      <div class="footer-bottom"><span id="footerTitle">셀피쉬클럽 수익화 구조 분석과 실행 가이드 · AIHUBOS ReportMode</span><span id="footerMeta">AI-assisted · 2026.08</span></div>
+
+      <div class="report-history" id="history" aria-labelledby="history-title">
+        <div class="history-head"><div><h2 id="history-title">버전 및 업데이트 히스토리</h2><p>내용·출처·판단이 변경될 때 이전 기록을 유지하며 최신 행을 위에 추가합니다.</p></div><span class="version-badge" id="historyCurrentVersion">Current v1.0.0</span></div>
+        <div class="history-table-wrap"><table class="history-table"><thead><tr><th>버전</th><th>업데이트일</th><th>변경 구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr></thead><tbody id="historyBody"><tr><td colspan="5">변경 이력을 불러오는 중입니다.</td></tr></tbody></table></div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="floating-actions" aria-label="빠른 작업">
+    <button class="float-btn" type="button" id="toTop" aria-label="맨 위로 이동"><svg viewBox="0 0 24 24" fill="none"><path d="m6 14 6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="float-btn" type="button" onclick="window.print()" aria-label="PDF로 저장"><svg viewBox="0 0 24 24" fill="none"><path d="M7 9V4h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-width="1.8"/><path d="M7 14h10v6H7z" stroke="currentColor" stroke-width="1.8"/></svg></button>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite">복사했습니다.</div>
+
+  <script id="report-metadata" type="application/json">
+  {
+    "schemaVersion":"1.0",
+    "reportId":"260814-selfishclub-monetization-guide",
+    "title":"셀피쉬클럽 수익화 구조 분석과 실행 가이드",
+    "version":"1.0.0",
+    "status":"Published",
+    "createdAt":"2026-08-14",
+    "updatedAt":"2026-08-14",
+    "language":"ko-KR",
+    "author":"AIHUBOS ReportMode",
+    "generation":"AI-assisted",
+    "reviewStatus":"Human review recommended",
+    "history":[
+      {
+        "version":"1.0.0",
+        "date":"2026-08-14",
+        "type":"신규 작성",
+        "summary":"셀피쉬클럽의 무료 멤버십, 공유회, 워크숍, 스폰지클럽, VOD, B2B·행사·제휴를 공개 자료로 분석하고, 확인 사실과 추정을 분리한 상품 사다리·CRM·수익 계산기·90일 실행계획·법적 통제를 최초 구성함.",
+        "sections":["전체"],
+        "updatedBy":"AI-assisted",
+        "reviewStatus":"검토 권장"
+      }
+    ]
+  }
+  </script>
+
+  <script>
+    const progress=document.getElementById('scrollProgress');
+    const toTop=document.getElementById('toTop');
+    const toast=document.getElementById('toast');
+    function updateProgress(){const max=document.documentElement.scrollHeight-window.innerHeight;const pct=max>0?(window.scrollY/max)*100:0;progress.style.width=pct+'%';const active=window.scrollY>600;toTop.style.opacity=active?'1':'0';toTop.style.pointerEvents=active?'auto':'none'}
+    window.addEventListener('scroll',updateProgress,{passive:true});updateProgress();
+    toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+    if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}})},{threshold:.09});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))}else{document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'))}
+
+    let toastTimer;
+    function showToast(message){toast.textContent=message;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),1500)}
+    async function copyText(text){try{await navigator.clipboard.writeText(text);showToast('복사했습니다.')}catch(error){const area=document.createElement('textarea');area.value=text;area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();document.execCommand('copy');area.remove();showToast('복사했습니다.')}}
+    document.querySelectorAll('[data-copy]').forEach(button=>button.addEventListener('click',()=>{const target=document.getElementById(button.dataset.copy);if(target)copyText(target.innerText.trim())}));
+
+    const fields=['shareBuyers','sharePrice','workshopSeats','workshopPrice','cohortSeats','cohortPrice','cohortMonths','vodBuyers','vodPrice','b2bRevenue','variableRate','fixedCost'];
+    const presets={
+      solo:{shareBuyers:30,sharePrice:15000,workshopSeats:12,workshopPrice:90000,cohortSeats:0,cohortPrice:480000,cohortMonths:3,vodBuyers:10,vodPrice:29700,b2bRevenue:0,variableRate:18,fixedCost:1200000},
+      team:{shareBuyers:80,sharePrice:9900,workshopSeats:20,workshopPrice:120000,cohortSeats:20,cohortPrice:680000,cohortMonths:3,vodBuyers:30,vodPrice:29700,b2bRevenue:0,variableRate:20,fixedCost:3000000},
+      growth:{shareBuyers:180,sharePrice:19900,workshopSeats:40,workshopPrice:150000,cohortSeats:35,cohortPrice:680000,cohortMonths:2,vodBuyers:80,vodPrice:39700,b2bRevenue:8000000,variableRate:28,fixedCost:9000000}
+    };
+    const won=new Intl.NumberFormat('ko-KR',{style:'currency',currency:'KRW',maximumFractionDigits:0});
+    function n(id){const value=Number(document.getElementById(id)?.value||0);return Number.isFinite(value)?Math.max(0,value):0}
+    function calculate(){
+      const share=n('shareBuyers')*n('sharePrice');
+      const workshop=n('workshopSeats')*n('workshopPrice');
+      const cohort=n('cohortSeats')*n('cohortPrice')/Math.max(1,n('cohortMonths'));
+      const vod=n('vodBuyers')*n('vodPrice');
+      const b2b=n('b2bRevenue');
+      const gross=share+workshop+cohort+vod+b2b;
+      const variable=Math.min(100,n('variableRate'))/100;
+      const contribution=gross*(1-variable);
+      const surplus=contribution-n('fixedCost');
+      const margin=gross>0?(contribution/gross)*100:0;
+      document.getElementById('grossRevenue').textContent=won.format(gross);
+      document.getElementById('contribution').textContent=won.format(contribution);
+      document.getElementById('operatingSurplus').textContent=won.format(surplus);
+      document.getElementById('cohortMonthly').textContent=won.format(cohort);
+      document.getElementById('contributionMargin').textContent=margin.toFixed(1)+'%';
+      const note=document.getElementById('calculatorNote');
+      if(surplus>0){note.textContent='예시 기준 월 '+won.format(surplus)+'의 운영잉여가 남습니다. 대표 인건비·부가세·소득세·예상치 못한 환불을 별도로 확인하세요.'}
+      else if(surplus===0){note.textContent='예시 기준 손익분기입니다. 한 번의 환불이나 추가 인력으로 적자가 될 수 있으므로 안전마진이 필요합니다.'}
+      else{note.textContent='예시 기준 월 '+won.format(Math.abs(surplus))+' 적자입니다. 좌석 확대보다 범위·직접비·고정비를 먼저 낮추세요.'}
+    }
+    fields.forEach(id=>document.getElementById(id)?.addEventListener('input',calculate));
+    document.querySelectorAll('[data-preset]').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('[data-preset]').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const preset=presets[btn.dataset.preset];Object.entries(preset).forEach(([id,value])=>{const input=document.getElementById(id);if(input)input.value=value});calculate()}));
+    calculate();
+
+    function renderMetadata(){
+      const node=document.getElementById('report-metadata');if(!node)return;
+      try{const meta=JSON.parse(node.textContent);const version=`v${meta.version}`;const date=String(meta.updatedAt||'').replaceAll('-','.');const month=date.slice(0,7);const set=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value};set('reportVersion',version);set('reportUpdated',`Updated ${date}`);set('reportGeneration',`${meta.generation} · ${meta.reviewStatus}`);set('historyCurrentVersion',`Current ${version}`);set('footerTitle',`${meta.title} · AIHUBOS ReportMode`);set('footerMeta',`${meta.generation} · ${month}`);document.title=`${meta.title} · ${version}`;const body=document.getElementById('historyBody');if(!body)return;body.innerHTML='';(meta.history||[]).forEach(item=>{const row=document.createElement('tr');const values=[`v${item.version}`,String(item.date||'').replaceAll('-','.'),item.type||'',item.summary||'',[item.updatedBy,item.reviewStatus].filter(Boolean).join(' · ')];values.forEach((value,index)=>{const cell=document.createElement('td');if(index===4){const badge=document.createElement('span');badge.className='history-status';badge.textContent=value;cell.appendChild(badge)}else{cell.textContent=value}row.appendChild(cell)});body.appendChild(row)})}catch(error){console.error('Invalid report metadata:',error)}
+    }
+    renderMetadata();
+  </script>
+</body>
+</html>
