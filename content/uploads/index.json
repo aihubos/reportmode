@@ -1,7 +1,28 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-13T13:24:26+09:00",
+  "updatedAt": "2026-08-14T08:10:50+09:00",
   "reports": [
+    {
+      "schemaVersion": "1",
+      "id": "260814-opencodex-install-guide",
+      "slug": "opencodex-install-guide",
+      "title": "OpenCodex 설치 가이드",
+      "category": "AI",
+      "tags": [
+        "OpenCodex",
+        "Codex",
+        "설치 가이드",
+        "macOS",
+        "Windows"
+      ],
+      "summary": "macOS와 Windows에서 OpenCodex를 설치하고 프로바이더 연결, 모델 선택, 첫 실행, 진단, 보안과 원상복구까지 진행하는 단계별 가이드입니다.",
+      "createdAt": "2026-08-14T08:10:20+09:00",
+      "updatedAt": "2026-08-14T08:10:20+09:00",
+      "status": "published",
+      "sourceName": "맥·윈도우 OpenCodex 설치 및 사용 가이드.zip",
+      "sourceCount": 13,
+      "entry": "index.html"
+    },
     {
       "schemaVersion": "1",
       "id": "260813-80-ai-v1-0-0",
