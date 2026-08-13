@@ -1,12 +1,28 @@
 {
-  "generatedAt": "2026-08-12T23:51:39.890Z",
+  "generatedAt": "2026-08-13T04:24:30.413Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260813-80-ai-v1-0-0",
+      "slug": "80-ai-v1-0-0",
+      "title": "[YouTube] 이 사람이 조율, 실행, 리뷰, 판단 에이전트들과 일하는 법 (강정구 라이너 AI전략 총괄)",
+      "category": "기타",
+      "summary": "강정구 라이너 AI전략 총괄 인터뷰를 바탕으로, 80명의 AI 에이전트를 조율·실행·리뷰·판단에 활용하는 법과 기업 AX 시사점을 요약한 임원용 보고서",
+      "createdAt": "2026-08-13T13:24:14+09:00",
+      "updatedAt": "2026-08-13T13:24:14+09:00",
+      "status": "published",
+      "path": "reports/260813-80-ai-v1-0-0/",
+      "url": "https://aihubos.github.io/reportmode/reports/260813-80-ai-v1-0-0/",
+      "displayDate": "260813",
+      "sourceCount": 1,
+      "tags": [],
+      "coverImage": "reports/260813-80-ai-v1-0-0/assets/blog-hub-thumbnail.webp",
+      "coverAlt": "이 사람이 조율, 실행, 리뷰, 판단 에이전트들과 일하는 법 (강정구 라이너 AI전략 총괄) 대표 이미지"
+    },
     {
       "id": "260813-hermes-llm-wiki-install-guidebook",
       "slug": "hermes-llm-wiki-install-guidebook",
       "title": "[가이드북] Hermes, LLM Wiki 설치",
-      "subtitle": "AI Builders Lab · Hermes 실습 10강 Figma 교재",
       "category": "AI",
       "summary": "Hermes와 LLM Wiki 설치 과정을 단계별로 확인할 수 있는 AI Builders Lab Figma 가이드북입니다.",
       "createdAt": "2026-08-13T08:50:27+09:00",
@@ -24,6 +40,7 @@
       ],
       "coverImage": "reports/assets/260813-hermes-llm-wiki-install-guidebook/cover.png",
       "coverAlt": "Hermes와 LLM Wiki 설치 가이드북",
+      "subtitle": "AI Builders Lab · Hermes 실습 10강 Figma 교재",
       "isExternalLink": true
     },
     {
