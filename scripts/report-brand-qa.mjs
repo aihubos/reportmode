@@ -67,7 +67,8 @@ if ((archive.match(/https:\/\/blog\.naver\.com\/jeremylee0213/g) || []).length !
 if (!archive.includes('class="archive-blog-card"')) failures.push("archive/index.html: 초록색 네이버 블로그 카드가 없음");
 if ((archive.match(/https:\/\/daangn\.com\/kr\/share\/community\/ref\/invite-group\/baRr2nojJVT\?utm_campaign=share_qr/g) || []).length !== 1) failures.push("archive/index.html: 당근모임 링크가 1개가 아님");
 if (archive.includes('class="archive-carrot-card"')) failures.push("archive/index.html: 삭제 요청한 당근모임 텍스트 카드가 남아 있음");
-if (!archive.includes('class="archive-builders-card"') || !archive.includes('href="https://open.kakao.com/o/grZIANIi"') || !archive.includes('src="../assets/ai-builders-lab-logo.png"')) failures.push("archive/index.html: AI Builders Lab 카카오 오픈채팅 카드가 없음");
+if (!/class="archive-builders-card" href="https:\/\/builderslab\.ai-hub-os\.com"[^>]*>\s*<img[^>]*src="\.\.\/assets\/ai-builders-lab-logo\.png"/.test(archive)) failures.push("archive/index.html: AI Builders Lab 웹사이트 카드가 없음");
+if (!/class="archive-kakao-openchat-card" href="https:\/\/open\.kakao\.com\/o\/grZIANIi"[^>]*>\s*<img[^>]*src="\.\.\/assets\/kakao-openchat-banner\.png"/.test(archive)) failures.push("archive/index.html: 카카오 오픈채팅 이미지 배너가 없음");
 if (!archive.includes('class="archive-daangn-banner-card"') || !archive.includes('src="../assets/daangn-community-banner.png"')) failures.push("archive/index.html: 당근 이미지 배너가 없음");
 if (/class="archive-profile"|읽고 판단하기 좋은/.test(archive)) failures.push("archive/index.html: 삭제 요청한 소개 카드가 남아 있음");
 if (!/var DEFAULT_PAGE_SIZE = 30/.test(archive) || !/id="archivePageSize"/.test(archive)) failures.push("archive/index.html: 기본 30개 표시 선택기가 없음");

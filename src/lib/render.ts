@@ -533,7 +533,8 @@ export function renderHomeHtml(
       <div class="archive-topbar-actions">
         <div class="archive-topbar-links">
           <a class="archive-community-board-card" href="${linkPrefix}board/" aria-label="Report Hub 의견 게시판 열기"><span class="archive-community-board-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 6.5A2.5 2.5 0 0 1 7.5 4h9A2.5 2.5 0 0 1 19 6.5v6a2.5 2.5 0 0 1-2.5 2.5H12l-4.5 4v-4h0A2.5 2.5 0 0 1 5 12.5v-6Z"></path></svg></span><span>의견 게시판</span></a>
-          <a class="archive-builders-card" href="https://open.kakao.com/o/grZIANIi" target="_blank" rel="noopener" aria-label="AI Builders Lab 카카오 오픈채팅방 열기"><img class="archive-builders-logo" src="../assets/ai-builders-lab-logo.png" alt="AI Builders Lab 로고"></a>
+          <a class="archive-builders-card" href="https://builderslab.ai-hub-os.com" target="_blank" rel="noopener" aria-label="AI Builders Lab 웹사이트 열기"><img class="archive-builders-logo" src="../assets/ai-builders-lab-logo.png" alt="AI Builders Lab 로고"></a>
+          <a class="archive-kakao-openchat-card" href="https://open.kakao.com/o/grZIANIi" target="_blank" rel="noopener" aria-label="AI Builders Lab 카카오 오픈채팅방 열기"><img class="archive-kakao-openchat-banner" src="../assets/kakao-openchat-banner.png" alt="카카오 오픈채팅"></a>
           <a class="archive-daangn-banner-card" href="https://daangn.com/kr/share/community/ref/invite-group/baRr2nojJVT?utm_campaign=share_qr" target="_blank" rel="noopener" aria-label="당근 모임 열기"><img class="archive-daangn-banner" src="../assets/daangn-community-banner.png" alt="당근 모임"></a>
           <a class="archive-blog-card" href="https://blog.naver.com/jeremylee0213" target="_blank" rel="noopener"><span class="archive-blog-mark">N</span><span class="archive-blog-card-copy"><b>Jeremy's Blog</b><small>네이버 블로그</small></span></a>
         </div>

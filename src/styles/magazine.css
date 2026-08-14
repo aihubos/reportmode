@@ -298,6 +298,14 @@ footer {
 .archive-builders-card:hover { border-color: rgba(49,130,246,.52); box-shadow: 0 8px 18px rgba(49,130,246,.16); transform: translateY(-1px); }
 .archive-builders-card:focus-visible { outline: 3px solid var(--rh-ring); outline-offset: 2px; }
 .archive-builders-logo { width: 122px; height: 38px; display: block; object-fit: contain; }
+.archive-kakao-openchat-card {
+  min-height: var(--rh-space-12); width: var(--rh-space-12); display: inline-flex; align-items: center; justify-content: center; overflow: hidden;
+  border: 1px solid rgba(254,229,0,.84); border-radius: var(--rh-radius-3); background: #fee500; box-shadow: 0 4px 12px rgba(254,229,0,.2); text-decoration: none;
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+.archive-kakao-openchat-card:hover { box-shadow: 0 8px 18px rgba(254,229,0,.35); transform: translateY(-1px); }
+.archive-kakao-openchat-card:focus-visible { outline: 3px solid var(--rh-ring); outline-offset: 2px; }
+.archive-kakao-openchat-banner { width: 100%; height: 100%; display: block; object-fit: cover; }
 .archive-daangn-banner-card {
   min-height: var(--rh-space-12); width: 118px; display: inline-flex; align-items: center; justify-content: center; overflow: hidden; padding: 3px 8px;
   border: 1px solid rgba(255,111,15,.3); border-radius: var(--rh-radius-3); background: var(--rh-paper); box-shadow: 0 4px 12px rgba(255,111,15,.08); text-decoration: none;
@@ -622,6 +630,7 @@ footer {
   .archive-community-board-card > span:last-child, .archive-blog-card-copy { display: none; }
   .archive-builders-card { min-height: 38px; width: 84px; padding: 2px 5px; }
   .archive-builders-logo { width: 74px; height: 26px; }
+  .archive-kakao-openchat-card { min-height: 38px; width: 38px; }
   .archive-daangn-banner-card { min-height: 38px; width: 64px; padding: 2px 4px; }
   .archive-daangn-banner { height: 28px; }
 }
@@ -653,6 +662,7 @@ footer {
   .archive-visitor-count { display: none; }
   .archive-builders-card { min-height: 38px; width: 84px; padding: 2px 5px; }
   .archive-builders-logo { width: 74px; height: 26px; }
+  .archive-kakao-openchat-card { min-height: 38px; width: 38px; }
   .archive-daangn-banner-card { min-height: 38px; width: 64px; padding: 2px 4px; }
   .archive-daangn-banner { height: 28px; }
   .archive-blog-card-copy { display: none; }
