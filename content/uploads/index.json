@@ -1,7 +1,28 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-14T08:53:15+09:00",
+  "updatedAt": "2026-08-14T19:53:31+09:00",
   "reports": [
+    {
+      "schemaVersion": "1",
+      "id": "260814-donghaengclub-monetization-analysis",
+      "slug": "donghaengclub-monetization-analysis",
+      "title": "동행클럽 수익화 구조 분석과 실행 가이드",
+      "category": "비즈니스",
+      "tags": [
+        "동행클럽",
+        "수익화",
+        "커뮤니티 비즈니스",
+        "모임 운영",
+        "멤버십"
+      ],
+      "summary": "동행클럽의 정기모임, 놀러가기, 이벤트, 크리에이터 공급과 공간 운영을 분리해 수익 구조를 분석하고 90일 실행안을 정리한 가이드입니다.",
+      "createdAt": "2026-08-14T19:52:48+09:00",
+      "updatedAt": "2026-08-14T19:52:48+09:00",
+      "status": "published",
+      "sourceName": "동행클럽 수익화 구조 분석과 실행 가이드.zip",
+      "sourceCount": 18,
+      "entry": "index.html"
+    },
     {
       "schemaVersion": "1",
       "id": "260814-selfishclub-monetization-analysis",
