@@ -95,7 +95,10 @@ test("renders the simplified archive with one Naver card and a 30-item default s
   assert.doesNotMatch(html, /class="archive-carrot-card"/);
   assert.match(html, /class="archive-builders-card"/);
   assert.match(html, /src="\.\.\/assets\/ai-builders-lab-logo\.png"/);
-  assert.match(html, /aria-label="AI Builders Lab 당근 모임 열기"/);
+  assert.match(html, /href="https:\/\/open\.kakao\.com\/o\/grZIANIi"/);
+  assert.match(html, /aria-label="AI Builders Lab 카카오 오픈채팅방 열기"/);
+  assert.match(html, /class="archive-daangn-banner-card"/);
+  assert.match(html, /src="\.\.\/assets\/daangn-community-banner\.png"/);
   assert.doesNotMatch(html, /class="archive-guidebook-card"/);
   assert.doesNotMatch(html, /원하는 기업·제품·이슈를 남겨 주세요/);
   assert.match(html, /<label>이름<input id="requestAuthor"/);

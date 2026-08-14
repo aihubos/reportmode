@@ -313,6 +313,14 @@ footer {
 .archive-builders-card:hover { border-color: rgba(49,130,246,.52); box-shadow: 0 8px 18px rgba(49,130,246,.16); transform: translateY(-1px); }
 .archive-builders-card:focus-visible { outline: 3px solid var(--rh-ring); outline-offset: 2px; }
 .archive-builders-logo { width: 122px; height: 38px; display: block; object-fit: contain; }
+.archive-daangn-banner-card {
+  min-height: var(--rh-space-12); width: 118px; display: inline-flex; align-items: center; justify-content: center; overflow: hidden; padding: 3px 8px;
+  border: 1px solid rgba(255,111,15,.3); border-radius: var(--rh-radius-3); background: var(--rh-paper); box-shadow: 0 4px 12px rgba(255,111,15,.08); text-decoration: none;
+  transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.archive-daangn-banner-card:hover { border-color: rgba(255,111,15,.62); box-shadow: 0 8px 18px rgba(255,111,15,.16); transform: translateY(-1px); }
+.archive-daangn-banner-card:focus-visible { outline: 3px solid var(--rh-ring); outline-offset: 2px; }
+.archive-daangn-banner { width: 100%; height: 38px; display: block; object-fit: cover; object-position: center 58%; }
 @keyframes archive-builders-shine { 0%, 62% { transform: skewX(-18deg) translateX(-220%); } 80%, 100% { transform: skewX(-18deg) translateX(610%); } }
 @media (prefers-reduced-motion: reduce) { .archive-builders-card::after { animation: none; } }
 .archive-shell { width: min(1180px, calc(100% - (var(--archive-shell-edge) * 2))); margin: 0 auto; }
@@ -629,6 +637,8 @@ footer {
   .archive-community-board-card > span:last-child, .archive-blog-card-copy { display: none; }
   .archive-builders-card { min-height: 38px; width: 84px; padding: 2px 5px; }
   .archive-builders-logo { width: 74px; height: 26px; }
+  .archive-daangn-banner-card { min-height: 38px; width: 64px; padding: 2px 4px; }
+  .archive-daangn-banner { height: 28px; }
 }
 @media (max-width: 860px) {
   .verdict-grid, .duo, .checks, .metrics { grid-template-columns: 1fr 1fr; }
@@ -658,6 +668,8 @@ footer {
   .archive-visitor-count { display: none; }
   .archive-builders-card { min-height: 38px; width: 84px; padding: 2px 5px; }
   .archive-builders-logo { width: 74px; height: 26px; }
+  .archive-daangn-banner-card { min-height: 38px; width: 64px; padding: 2px 4px; }
+  .archive-daangn-banner { height: 28px; }
   .archive-blog-card-copy { display: none; }
   .archive-community-board-card { width: 38px; min-height: 38px; justify-content: center; padding: 0; }
   .archive-community-board-card > span:last-child { display: none; }
@@ -856,7 +868,8 @@ footer {
       <div class="archive-topbar-actions">
         <div class="archive-topbar-links">
           <a class="archive-community-board-card" href="../board/" aria-label="Report Hub 의견 게시판 열기"><span class="archive-community-board-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 6.5A2.5 2.5 0 0 1 7.5 4h9A2.5 2.5 0 0 1 19 6.5v6a2.5 2.5 0 0 1-2.5 2.5H12l-4.5 4v-4h0A2.5 2.5 0 0 1 5 12.5v-6Z"></path></svg></span><span>의견 게시판</span></a>
-          <a class="archive-builders-card" href="https://daangn.com/kr/share/community/ref/invite-group/baRr2nojJVT?utm_campaign=share_qr" target="_blank" rel="noopener" aria-label="AI Builders Lab 당근 모임 열기"><img class="archive-builders-logo" src="../assets/ai-builders-lab-logo.png" alt="AI Builders Lab 로고"></a>
+          <a class="archive-builders-card" href="https://open.kakao.com/o/grZIANIi" target="_blank" rel="noopener" aria-label="AI Builders Lab 카카오 오픈채팅방 열기"><img class="archive-builders-logo" src="../assets/ai-builders-lab-logo.png" alt="AI Builders Lab 로고"></a>
+          <a class="archive-daangn-banner-card" href="https://daangn.com/kr/share/community/ref/invite-group/baRr2nojJVT?utm_campaign=share_qr" target="_blank" rel="noopener" aria-label="당근 모임 열기"><img class="archive-daangn-banner" src="../assets/daangn-community-banner.png" alt="당근 모임"></a>
           <a class="archive-blog-card" href="https://blog.naver.com/jeremylee0213" target="_blank" rel="noopener"><span class="archive-blog-mark">N</span><span class="archive-blog-card-copy"><b>Jeremy's Blog</b><small>네이버 블로그</small></span></a>
         </div>
         <span class="archive-visitor-count" id="archiveVisitorCount" aria-live="polite">방문 집계 중</span>
