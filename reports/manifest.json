@@ -1,7 +1,30 @@
 {
-  "generatedAt": "2026-08-14T10:53:32.297Z",
+  "generatedAt": "2026-08-15T08:54:58.447Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260815-lego-education-first-purchase-guide",
+      "slug": "lego-education-first-purchase-guide",
+      "title": "7세 아이의 첫 LEGO Education 구매 가이드",
+      "category": "라이프",
+      "summary": "7세 아이의 코딩 사고력을 위해 LEGO Education Science K-2, SPIKE Essential과 2026년 신형 Computer Science & AI K-2를 비교한 부모용 구매 가이드입니다.",
+      "createdAt": "2026-08-15T17:53:31+09:00",
+      "updatedAt": "2026-08-15T17:53:31+09:00",
+      "status": "published",
+      "path": "reports/260815-lego-education-first-purchase-guide/",
+      "url": "https://aihubos.github.io/reportmode/reports/260815-lego-education-first-purchase-guide/",
+      "displayDate": "260815",
+      "sourceCount": 15,
+      "tags": [
+        "LEGO Education",
+        "코딩 교육",
+        "Science K-2",
+        "SPIKE Essential",
+        "자녀 교육"
+      ],
+      "coverImage": "reports/260815-lego-education-first-purchase-guide/assets/thumbnail.png",
+      "coverAlt": "빨간색 배경의 LEGO 공식 로고"
+    },
     {
       "id": "260814-donghaengclub-monetization-analysis",
       "slug": "donghaengclub-monetization-analysis",
