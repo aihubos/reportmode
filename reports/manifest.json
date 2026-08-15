@@ -1,7 +1,30 @@
 {
-  "generatedAt": "2026-08-15T08:54:58.447Z",
+  "generatedAt": "2026-08-15T10:28:07.177Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260815-lego-csai-k2-purchase-guide",
+      "slug": "lego-csai-k2-purchase-guide",
+      "title": "7세를 위한 LEGO Education Computer Science & AI K–2 구매·활용 보고서",
+      "category": "라이프",
+      "summary": "7세 아이의 코딩 사고력을 위한 LEGO Education Computer Science & AI K–2(45520)의 제품 구성, 30회 수업, AI 안전, 가정 활용, 구매 판단을 정리한 상세 보고서입니다.",
+      "createdAt": "2026-08-15T19:27:27+09:00",
+      "updatedAt": "2026-08-15T19:27:27+09:00",
+      "status": "published",
+      "path": "reports/260815-lego-csai-k2-purchase-guide/",
+      "url": "https://aihubos.github.io/reportmode/reports/260815-lego-csai-k2-purchase-guide/",
+      "displayDate": "260815",
+      "sourceCount": 14,
+      "tags": [
+        "LEGO Education",
+        "Computer Science & AI K-2",
+        "코딩 교육",
+        "AI 교육",
+        "자녀 교육"
+      ],
+      "coverImage": "reports/260815-lego-csai-k2-purchase-guide/assets/thumbnail.png",
+      "coverAlt": "분홍 배경 위 LEGO Education Computer Science & AI K–2 키트와 교재"
+    },
     {
       "id": "260815-lego-education-first-purchase-guide",
       "slug": "lego-education-first-purchase-guide",
