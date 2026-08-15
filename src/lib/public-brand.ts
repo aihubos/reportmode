@@ -4,7 +4,7 @@ export const REPORT_HUB_HOME = "https://aireport.ai-hub-os.com/";
 export const REPORT_HUB_BRAND_VERSION = "20260812-report-hub-logo2";
 export const REPORT_LAYOUT_VERSION = "20260815-responsive-only1";
 export const REPORT_HISTORY_VERSION = "20260809-history2";
-export const REPORT_COMMENTS_VERSION = "20260810-comments2";
+export const REPORT_COMMENTS_VERSION = "20260816-comments-width1";
 export const REPORT_COUNTER_VERSION = "20260810-counter-d1-1";
 export const REPORT_ENTRY_VERSION = "20260811-entry1";
 

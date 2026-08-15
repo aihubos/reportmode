@@ -1,6 +1,6 @@
 /* Shared Report Hub comments. Keep /src/site/assets in sync. */
 .report-comments {
-  width: min(920px, calc(100% - 40px));
+  width: min(1120px, calc(100% - 40px));
   margin: 48px auto 0;
   color: var(--rh-ink);
   font-family: var(--rh-sans);
@@ -87,7 +87,7 @@
 .report-comment-inline-button { min-height: 36px; }
 
 @media (max-width: 700px) {
-  .report-comments { width: min(100% - 24px, 920px); margin-top: 28px; }
+  .report-comments { width: min(100% - 24px, 1120px); margin-top: 28px; }
   .report-comments-card { padding: 16px; border-radius: 14px; }
   .report-comments-head { align-items: flex-start; }
   .report-comments-head p { display: none; }

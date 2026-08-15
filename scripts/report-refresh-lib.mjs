@@ -4,7 +4,7 @@ const SITE_PREFIX = "/reportmode/";
 const LAYOUT_VERSION = "20260815-responsive-only1";
 const HISTORY_VERSION = "20260809-history2";
 const COUNTER_VERSION = "20260810-counter-d1-1";
-const COMMENTS_VERSION = "20260810-comments2";
+const COMMENTS_VERSION = "20260816-comments-width1";
 const BRAND_VERSION = "20260812-report-hub-logo2";
 
 export function isRedirectHtml(html) {

@@ -23,6 +23,8 @@ test("shared comments asset provides required identity and inline edit/delete st
   assert.match(script, /scrollIntoView/);
   assert.doesNotMatch(script, /\bprompt\s*\(|\balert\s*\(/);
   assert.match(css, /\.report-comments/);
+  assert.match(css, /\.report-comments\s*\{[^}]*width:\s*min\(1120px,\s*calc\(100% - 40px\)\)/s);
+  assert.match(css, /@media \(max-width: 700px\)[\s\S]*?\.report-comments\s*\{[^}]*width:\s*min\(100% - 24px,\s*1120px\)/s);
   assert.match(css, /\.report-comment-admin-badge/);
   assert.match(css, /\.report-comment\.is-targeted/);
   assert.match(css, /:focus-visible/);

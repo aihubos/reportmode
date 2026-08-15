@@ -47,7 +47,7 @@ for (const file of htmlFiles(path.join(root, "reports"))) {
     [!/report-a4-mode|data-report-layout=["']a4["']|aria-label=["']세로 보기["']/i.test(html), "삭제한 세로 모드 코드가 남아 있음"],
     [occurrences(html, "report-comments.css") === 1, "공통 댓글 스타일이 정확히 1개가 아님"],
     [occurrences(html, "report-comments.js") === 1, "공통 댓글 스크립트가 정확히 1개가 아님"],
-    [/report-comments\.js\?v=20260810-comments2[^>]*data-report-id=/i.test(html), "댓글 스크립트에 보고서 ID가 없음"],
+    [/report-comments\.js\?v=20260816-comments-width1[^>]*data-report-id=/i.test(html), "댓글 스크립트에 보고서 ID가 없음"],
     [occurrences(html, "report-view-counter.js") === 1, "공통 조회수 스크립트가 정확히 1개가 아님"],
     [/report-view-counter\.js\?v=20260810-counter-d1-1[^>]*data-report-id=/i.test(html), "조회수 스크립트에 보고서 ID가 없음"],
     [occurrences(html, "report-history.js") === 1, "공통 변경이력 스크립트가 정확히 1개가 아님"],
