@@ -6,7 +6,7 @@ import { escapeHtml, inlineMark, nl2p } from "./html.js";
 import { displayDateFromIso, prettyDateFromIso } from "./time.js";
 import { repoRoot } from "./paths.js";
 import { sanitizeTags, tagFilterKey } from "./tags.js";
-import { reportIdFromPath, REPORT_COMMENTS_VERSION, REPORT_COUNTER_VERSION, REPORT_HISTORY_VERSION, REPORT_HUB_BRAND_VERSION, REPORT_HUB_HOME } from "./public-brand.js";
+import { reportIdFromPath, REPORT_COMMENTS_VERSION, REPORT_COUNTER_VERSION, REPORT_HISTORY_VERSION, REPORT_HUB_BRAND_VERSION, REPORT_HUB_HOME, REPORT_LAYOUT_VERSION } from "./public-brand.js";
 
 const ARCHIVE_WEATHER_VERSION = "20260809-weather1";
 const ARCHIVE_ADMIN_VERSION = "20260811-view-identity2";
@@ -245,11 +245,11 @@ export function renderReportHtml(doc: ReportDocument): string {
   <meta name="color-scheme" content="light">
   <title>${escapeHtml(dateCode)} · ${escapeHtml(doc.title)} | Report Hub</title>
   <style>${css()}</style>
-  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=${REPORT_HUB_BRAND_VERSION}">
+  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=${REPORT_LAYOUT_VERSION}">
   <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=${REPORT_HUB_BRAND_VERSION}">
   <link rel="stylesheet" href="../../assets/report-comments.css?v=${REPORT_COMMENTS_VERSION}">
 </head>
-<body data-report-view="detail" data-report-layout="wide">
+<body data-report-view="detail" data-report-layout="responsive">
   <a class="report-home-button" href="${REPORT_HUB_HOME}" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-logo-mark-shimmer" aria-hidden="true"></span><img class="report-hub-logo-image" src="../../assets/report-hub-logo.png?v=${REPORT_HUB_BRAND_VERSION}" alt="Report Hub"></span></a>
   <nav class="nav" aria-label="보고서 탐색">
     <div class="nav-inner">
@@ -327,7 +327,7 @@ export function renderReportHtml(doc: ReportDocument): string {
       <span>최종 판단과 검수는 사용자에게 있습니다.</span>
     </div>
   </footer>
-  <script src="../../assets/report-page-layout.js?v=${REPORT_HUB_BRAND_VERSION}"></script>
+  <script src="../../assets/report-page-layout.js?v=${REPORT_LAYOUT_VERSION}"></script>
   <script src="../../assets/report-view-counter.js?v=${REPORT_COUNTER_VERSION}" data-report-id="${escapeHtml(doc.id)}"></script>
   <script src="../../assets/report-comments.js?v=${REPORT_COMMENTS_VERSION}" data-report-id="${escapeHtml(doc.id)}"></script>
   <script src="../../assets/report-history.js?v=${REPORT_HISTORY_VERSION}" data-report-id="${escapeHtml(doc.id)}"></script>

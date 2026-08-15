@@ -2,19 +2,20 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 
-test("shared layout starts wide and uses equal-size icon segmented controls", () => {
+test("shared layout removes manual orientation controls and keeps one responsive mode", () => {
   const script = fs.readFileSync(new URL("./report-page-layout.js", import.meta.url), "utf8");
   const css = fs.readFileSync(new URL("./report-page-layout.css", import.meta.url), "utf8");
 
-  assert.match(script, /DEFAULT_LAYOUT = "wide"/);
-  assert.match(script, /class="report-layout-icon"/);
   assert.match(script, /className = "report-view-icon"/);
   assert.match(script, /data-report-view-target/);
-  assert.match(script, /aria-label="가로 보기"/);
-  assert.match(script, /aria-label="세로 보기"/);
+  assert.match(script, /body\.dataset\.reportLayout = "responsive"/);
+  assert.match(script, /body\.classList\.remove\("report-a4-mode"\)/);
+  assert.match(script, /@page \{ size: A4 landscape/);
+  assert.doesNotMatch(script, /aria-label="가로 보기"|aria-label="세로 보기"|data-report-layout="a4"/);
   assert.match(script, /report-hub-brand\.js\?v=20260810-mobile-scroll1/);
   assert.match(script, /querySelector\("\.report-hub-floating-menu"\)/);
-  assert.match(css, /\.report-layout-buttons[^}]*width:\s*156px/);
+  assert.doesNotMatch(css, /\.report-layout-buttons|\.report-layout-button|body\.report-a4-mode/);
+  assert.match(css, /@page \{ size: A4 landscape/);
 });
 
 test("shared report actions place copy beside PDF and expose the report view count", () => {
@@ -49,41 +50,14 @@ test("shared report actions place copy beside PDF and expose the report view cou
   assert.match(css, /@media \(max-width:\s*700px\)[\s\S]*\.report-view-switcher\s*{[^}]*margin-top:\s*96px\s*!important;[^}]*top:\s*154px\s*!important;/);
 });
 
-test("portrait mode deliberately reduces large report headings", () => {
-  const css = fs.readFileSync(new URL("./report-page-layout.css", import.meta.url), "utf8");
-  assert.match(css, /body\.report-a4-mode h1[^}]*font-size:\s*clamp\(26px,4vw,36px\)/);
-  assert.match(css, /body\.report-a4-mode h2[^}]*font-size:\s*clamp\(20px,3vw,28px\)/);
-  assert.match(css, /body\.report-a4-mode h3[^}]*font-size:\s*clamp\(17px,2\.4vw,22px\)/);
-});
-
-test("portrait mode moves the shared menu into the right A4 gutter", () => {
-  const css = fs.readFileSync(new URL("./report-hub-brand.css", import.meta.url), "utf8");
-  assert.match(css, /@media \(min-width:\s*1280px\)[\s\S]*body\.report-a4-mode \.report-hub-floating-menu/);
-  assert.match(css, /left:\s*calc\(50% \+ 105mm \+ var\(--rh-space-4\)\)/);
-  assert.match(css, /width:\s*var\(--rh-a4-menu-width\)/);
-  assert.match(css, /flex-direction:\s*column/);
-});
-
-test("portrait mode contains wide tables and media without clipping their content", () => {
+test("mobile responsive mode contains wide tables and media without page overflow", () => {
   const script = fs.readFileSync(new URL("./report-page-layout.js", import.meta.url), "utf8");
   const css = fs.readFileSync(new URL("./report-page-layout.css", import.meta.url), "utf8");
   assert.match(script, /report-overflow-shell/);
   assert.match(script, /table, pre, iframe, canvas, video/);
-  assert.match(css, /body\.report-a4-mode \.report-overflow-shell[^}]*overflow-x:\s*auto/);
-  assert.match(css, /body\.report-a4-mode img[^}]*max-width:\s*100%/);
-  assert.match(css, /body\.report-a4-mode \.hero-orbit[^}]*animation:\s*none\s*!important/);
-  assert.match(css, /body\.report-a4-mode \.hero-orbit[^}]*aspect-ratio:\s*1/);
-  assert.match(css, /body\.report-a4-mode :where\(a, button\)[^}]*min-width:\s*0/);
-  assert.match(css, /body\.report-a4-mode \.source-grid[^}]*grid-template-columns:\s*repeat\(2,minmax\(0,1fr\)\)/);
-  assert.match(css, /body\.report-a4-mode \.usage-flow[^}]*grid-template-columns:\s*repeat\(3,minmax\(0,1fr\)\)/);
-  assert.match(css, /body\.report-a4-mode \.visual-glow[^}]*inset-inline:\s*0/);
-  assert.match(css, /body\.report-a4-mode :where\(\.table-wrap, \[class\*="table-wrap"\]/);
-});
-
-test("portrait mode keeps decorative hero elements inside the A4 sheet", () => {
-  const css = fs.readFileSync(new URL("./report-page-layout.css", import.meta.url), "utf8");
-  assert.match(css, /body\.report-a4-mode \.orbit[^}]*max-width:\s*100%/);
-  assert.match(css, /body\.report-a4-mode \.floating-note[^}]*right:\s*0\s*!important/);
-  assert.match(css, /body\.report-a4-mode \.float-chip[^}]*display:\s*none\s*!important/);
-  assert.match(css, /body\.report-a4-mode \.hero-specs[^}]*left:\s*0\s*!important/);
+  assert.match(css, /@media \(max-width:\s*700px\)[\s\S]*html, body \{[^}]*overflow-x:\s*clip/);
+  assert.match(css, /\.report-overflow-shell \{[^}]*overflow-x:\s*auto/);
+  assert.match(css, /body :where\(img, video, canvas, svg\)[^}]*max-width:\s*100%/);
+  assert.match(css, /body :where\(\.table-wrap, \[class\*="table-wrap"\]/);
+  assert.match(css, /body :where\(main, \.wrap, \.container, \.report-section, \.page, \.slide-shell\)[^}]*max-width:\s*100%/);
 });

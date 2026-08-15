@@ -2,6 +2,7 @@ import path from "node:path";
 
 export const REPORT_HUB_HOME = "https://aireport.ai-hub-os.com/";
 export const REPORT_HUB_BRAND_VERSION = "20260812-report-hub-logo2";
+export const REPORT_LAYOUT_VERSION = "20260815-responsive-only1";
 export const REPORT_HISTORY_VERSION = "20260809-history2";
 export const REPORT_COMMENTS_VERSION = "20260810-comments2";
 export const REPORT_COUNTER_VERSION = "20260810-counter-d1-1";
@@ -30,7 +31,7 @@ function replaceBodyDefaults(html: string): string {
       else output = output.replace(/>$/, ` ${name}="${value}">`);
     };
     upsert("data-report-view", "detail");
-    upsert("data-report-layout", "wide");
+    upsert("data-report-layout", "responsive");
     return output;
   });
 }
@@ -60,7 +61,7 @@ function replaceHeadAssets(html: string, prefix: string): string {
     `<link rel="manifest" href="${prefix}/site.webmanifest?v=${version}">`,
     '<meta name="application-name" content="Report Hub">',
     '<meta property="og:site_name" content="Report Hub">',
-    `<link rel="stylesheet" href="${prefix}/assets/report-page-layout.css?v=${version}">`,
+    `<link rel="stylesheet" href="${prefix}/assets/report-page-layout.css?v=${REPORT_LAYOUT_VERSION}">`,
     `<link rel="stylesheet" href="${prefix}/assets/report-hub-brand.css?v=${version}">`,
     `<link rel="stylesheet" href="${prefix}/assets/report-comments.css?v=${REPORT_COMMENTS_VERSION}">`,
   ].join("\n  ");
@@ -111,7 +112,7 @@ function upsertSharedScripts(html: string, prefix: string, reportPath: string): 
     hasPrevious ? 'data-has-previous="true"' : "",
   ].filter(Boolean).join(" ");
   const tags = [
-    `<script src="${prefix}/assets/report-page-layout.js?v=${REPORT_HUB_BRAND_VERSION}"></script>`,
+    `<script src="${prefix}/assets/report-page-layout.js?v=${REPORT_LAYOUT_VERSION}"></script>`,
     `<script src="${prefix}/assets/report-view-counter.js?v=${REPORT_COUNTER_VERSION}" data-report-id="${reportIdFromPath(reportPath)}"></script>`,
     `<script src="${prefix}/assets/report-comments.js?v=${REPORT_COMMENTS_VERSION}" data-report-id="${reportIdFromPath(reportPath)}"></script>`,
     `<script src="${prefix}/assets/report-history.js?v=${REPORT_HISTORY_VERSION}" ${historyAttributes}></script>`,

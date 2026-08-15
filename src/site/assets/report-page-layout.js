@@ -13,22 +13,13 @@
     document.head.appendChild(brandScript);
   }
 
-  // Always start in wide (가로). Only user click may switch to a4.
-  var DEFAULT_LAYOUT = "wide";
-
   var printStyle = document.createElement("style");
   printStyle.id = "report-layout-print-style";
   document.head.appendChild(printStyle);
 
   var controls = document.createElement("div");
   controls.className = "report-layout-controls";
-  controls.setAttribute("aria-label", "보고서 레이아웃");
-  controls.innerHTML =
-    '<span class="report-layout-label">레이아웃 선택</span>' +
-    '<div class="report-layout-buttons" role="group" aria-label="가로 또는 세로">' +
-    '<button class="report-layout-button" type="button" data-report-layout="wide" aria-label="가로 보기" aria-pressed="false"><span class="report-layout-icon" aria-hidden="true"><svg viewBox="0 0 20 16" focusable="false"><rect x="1.5" y="2.5" width="17" height="11" rx="2"></rect></svg></span><span>가로</span></button>' +
-    '<button class="report-layout-button" type="button" data-report-layout="a4" aria-label="세로 보기" aria-pressed="false"><span class="report-layout-icon" aria-hidden="true"><svg viewBox="0 0 16 20" focusable="false"><rect x="2.5" y="1.5" width="11" height="17" rx="2"></rect></svg></span><span>세로</span></button>' +
-    "</div>";
+  controls.setAttribute("aria-label", "보고서 도구");
 
   var floatingMenu = document.querySelector(".report-hub-floating-menu");
   var switcher = document.querySelector(".report-view-switcher-inner");
@@ -55,8 +46,6 @@
     if (target === "simple") button.setAttribute("aria-label", "간단 보기");
     if (target === "detail") button.setAttribute("aria-label", "상세 보기");
   });
-
-  var buttons = controls.querySelectorAll("[data-report-layout]");
 
   function findPrimaryPdfButton() {
     var direct = document.getElementById("report-pdf-button");
@@ -221,35 +210,16 @@
     });
   }
 
-  function setPrintPage(layout) {
-    printStyle.textContent =
-      "@page { size: A4 " + (layout === "wide" ? "landscape" : "portrait") + "; margin: 15mm; }";
+  function setPrintPage() {
+    printStyle.textContent = "@page { size: A4 landscape; margin: 15mm; }";
   }
-
-  function setLayout(layout) {
-    var next = layout === "a4" ? "a4" : "wide";
-    var isA4 = next === "a4";
-    body.classList.toggle("report-a4-mode", isA4);
-    body.dataset.reportLayout = next;
-    buttons.forEach(function (button) {
-      var active = button.dataset.reportLayout === next;
-      button.classList.toggle("is-active", active);
-      button.setAttribute("aria-pressed", String(active));
-    });
-    setPrintPage(next);
-  }
-
-  buttons.forEach(function (button) {
-    button.addEventListener("click", function () {
-      setLayout(button.dataset.reportLayout);
-    });
-  });
 
   wrapWideContent();
   window.addEventListener("load", wrapWideContent, { once: true });
 
-  // Force wide on load even if HTML or cached state says otherwise.
-  setLayout(DEFAULT_LAYOUT);
+  body.classList.remove("report-a4-mode");
+  body.dataset.reportLayout = "responsive";
+  setPrintPage();
 
   document.addEventListener(
     "click",
@@ -258,7 +228,7 @@
       if (!trigger) return;
       event.preventDefault();
       event.stopImmediatePropagation();
-      setPrintPage(body.dataset.reportLayout === "wide" ? "wide" : "a4");
+      setPrintPage();
       window.print();
     },
     true

@@ -27,13 +27,13 @@ test("current report enhancement preserves title while adding the shared wide/de
   assert.match(output, /<title>고정 제목<\/title>/);
   assert.match(output, /<h1>고정 제목<\/h1>/);
   assert.match(output, /<body[^>]*data-report-view="detail"/);
-  assert.match(output, /<body[^>]*data-report-layout="wide"/);
+  assert.match(output, /<body[^>]*data-report-layout="responsive"/);
   assert.match(output, /href="https:\/\/aireport\.ai-hub-os\.com\/"/);
   assert.match(output, /class="report-hub-logo-mark-shimmer" aria-hidden="true"/);
   assert.match(output, /class="report-hub-logo-image" src="\.\.\/\.\.\/assets\/report-hub-logo\.png\?v=20260812-report-hub-logo2" alt="Report Hub"/);
   assert.doesNotMatch(output, /report-hub-wordmark|report-hub-byline|by Jeremy/);
-  assert.match(output, /report-page-layout\.css\?v=20260810-mobile-scroll1/);
-  assert.match(output, /report-page-layout\.js\?v=20260810-mobile-scroll1/);
+  assert.match(output, /report-page-layout\.css\?v=20260815-responsive-only1/);
+  assert.match(output, /report-page-layout\.js\?v=20260815-responsive-only1/);
   assert.match(output, /report-comments\.css\?v=20260810-comments2/);
   assert.match(output, /report-comments\.js\?v=20260810-comments2/);
   assert.match(output, /report-history\.js\?v=20260809-history2/);

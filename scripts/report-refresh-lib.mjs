@@ -1,7 +1,7 @@
 import path from "node:path";
 
 const SITE_PREFIX = "/reportmode/";
-const LAYOUT_VERSION = "20260810-mobile-scroll1";
+const LAYOUT_VERSION = "20260815-responsive-only1";
 const HISTORY_VERSION = "20260809-history2";
 const COUNTER_VERSION = "20260810-counter-d1-1";
 const COMMENTS_VERSION = "20260810-comments2";
@@ -91,7 +91,7 @@ function replaceBodyTag(html) {
     else body = body.replace(/>$/, ` ${name}="${value}">`);
   };
   upsert("data-report-view", "detail");
-  upsert("data-report-layout", "wide");
+  upsert("data-report-layout", "responsive");
   return { html: html.replace(match[0], body), body };
 }
 

@@ -63,11 +63,11 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
   <link rel="manifest" href="../site.webmanifest?v=20260812-report-hub-logo2">
   <meta name="application-name" content="Report Hub">
   <meta property="og:site_name" content="Report Hub">
-  <link rel="stylesheet" href="../assets/report-page-layout.css?v=20260812-report-hub-logo2">
+  <link rel="stylesheet" href="../assets/report-page-layout.css?v=20260815-responsive-only1">
   <link rel="stylesheet" href="../assets/report-hub-brand.css?v=20260812-report-hub-logo2">
   <link rel="stylesheet" href="../assets/report-comments.css?v=20260810-comments2">
 </head>
-<body data-report-view="detail" data-report-layout="wide">
+<body data-report-view="detail" data-report-layout="responsive">
   <a class="report-home-button" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-logo-mark-shimmer" aria-hidden="true"></span><img class="report-hub-logo-image" src="../assets/report-hub-logo.png?v=20260812-report-hub-logo2" alt="Report Hub"></span></a>
 <nav aria-label="보고서 탐색" class="nav"><div class="wrap nav-inner"><a class="brand report-hub-brand-link" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-logo-mark-shimmer" aria-hidden="true"></span><img class="report-hub-logo-image" src="../assets/report-hub-logo.png?v=20260812-report-hub-logo2" alt="Report Hub"></span></a><div class="nav-links"><a href="#summary">요약</a><a href="#comparison">비교</a><a href="#decision">판단</a><a href="#sources">출처</a></div></div></nav><section aria-label="보고서 보기 방식" class="report-view-switcher"><div class="wrap report-view-switcher-inner"><span class="report-view-label">보고서 보기</span><div aria-label="간단 또는 상세 보기" class="report-view-buttons" role="group"><button aria-pressed="false" class="report-view-button" data-report-view-target="simple" type="button">간단</button><button aria-pressed="true" class="report-view-button is-active" data-report-view-target="detail" type="button">상세</button></div><div aria-label="보고서 저장 도구" class="report-utility-controls"><button aria-label="현재 보고서 보기를 A4 PDF로 저장" class="pdf-save-button" id="report-pdf-button" type="button">PDF 저장</button></div></div></section>
 <nav aria-label="보고서 바로가기" class="floating-menu"><a class="floating-action" href="#summary">핵심 내용 한눈에 보기</a><a class="floating-action" href="#comparison">핵심 항목 비교</a><a class="floating-action" href="#decision">상황별 선택 기준</a><a class="floating-action" href="#rag">RAG 방식과 비교</a><a class="floating-action" href="#risk">주요 위험과 한계</a><a class="floating-action" href="#scenarios">향후 전망 시나리오</a><a class="floating-action" href="#sources">전체 출처 확인</a></nav>
@@ -170,7 +170,7 @@ main section[id],.source-section[id],#report-top{scroll-margin-top:78px}.top-con
 <script id="report-pdf-script">
   (()=>{const button=document.getElementById('report-pdf-button');const sources=document.getElementById('sources');if(!button)return;let prepared=false;let sourceWasOpen=false;const prepare=()=>{if(prepared)return;prepared=true;sourceWasOpen=Boolean(sources?.open);if(sources&&document.body.dataset.reportView==='detail')sources.open=true;button.classList.add('is-printing')};const reset=()=>{if(!prepared)return;if(sources&&!sourceWasOpen)sources.open=false;button.classList.remove('is-printing');prepared=false};button.addEventListener('click',()=>{prepare();requestAnimationFrame(()=>window.print())});addEventListener('beforeprint',prepare);addEventListener('afterprint',reset);addEventListener('focus',()=>{if(prepared)setTimeout(reset,500)})})();
   </script>
-  <script src="../assets/report-page-layout.js?v=20260812-report-hub-logo2"></script>
+  <script src="../assets/report-page-layout.js?v=20260815-responsive-only1"></script>
   <script src="../assets/report-view-counter.js?v=20260810-counter-d1-1" data-report-id="260802-karpathy-llm-wiki"></script>
   <script src="../assets/report-comments.js?v=20260810-comments2" data-report-id="260802-karpathy-llm-wiki"></script>
   <script src="../assets/report-history.js?v=20260809-history2" data-report-id="260802-karpathy-llm-wiki" data-snapshot-id="2026-08-09-before-refresh" data-has-previous="true"></script>

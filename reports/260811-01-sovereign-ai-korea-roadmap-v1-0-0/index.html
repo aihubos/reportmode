@@ -86,11 +86,11 @@
   <link rel="manifest" href="../../site.webmanifest?v=20260812-report-hub-logo2">
   <meta name="application-name" content="Report Hub">
   <meta property="og:site_name" content="Report Hub">
-  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260812-report-hub-logo2">
+  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260815-responsive-only1">
   <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260812-report-hub-logo2">
   <link rel="stylesheet" href="../../assets/report-comments.css?v=20260810-comments2">
 </head>
-<body data-report-cover="assets/thumbnail.png" data-report-cover-alt="밤의 지구 위에 Sovereign AI 글자가 배치된 썸네일" data-report-view="detail" data-report-layout="wide">
+<body data-report-cover="assets/thumbnail.png" data-report-cover-alt="밤의 지구 위에 Sovereign AI 글자가 배치된 썸네일" data-report-view="detail" data-report-layout="responsive">
   <a class="report-home-button" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-logo-mark-shimmer" aria-hidden="true"></span><img class="report-hub-logo-image" src="../../assets/report-hub-logo.png?v=20260812-report-hub-logo2" alt="Report Hub"></span></a>
   <a class="skip-link" href="#main-content">본문으로 바로가기</a>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
@@ -485,7 +485,7 @@
   function updateScore(){const count=checks.filter(c=>c.checked).length;const score=Math.round(count/6*100);scoreValue.textContent=score;scoreBar.style.width=score+'%';let label,text;if(score<34){label='외부 서비스 의존 단계';text='현재는 편리한 AI 서비스를 빌려 쓰는 단계입니다. 먼저 데이터 위치와 공급자 중단 대응부터 확인해보세요.'}else if(score<67){label='부분 주권 단계';text='일부 통제 장치는 갖췄습니다. 두 번째 공급자와 로그·사고 대응을 연결하면 회복탄력성이 크게 높아집니다.'}else if(score<84){label='운영 가능한 주권';text='핵심 통제권이 상당히 확보됐습니다. 정기 전환 훈련과 계약 종료 테스트로 실제 작동 여부를 검증하세요.'}else{label='높은 회복탄력성';text='데이터·모델·운영·exit plan이 연결돼 있습니다. 이제 비용, 실제 업무 품질, 독립 감사 지표를 지속 관리할 단계입니다.'}scoreLabel.textContent=label;scoreText.textContent=text}
   checks.forEach(c=>c.addEventListener('change',updateScore));updateScore();
   </script>
-  <script src="../../assets/report-page-layout.js?v=20260812-report-hub-logo2"></script>
+  <script src="../../assets/report-page-layout.js?v=20260815-responsive-only1"></script>
   <script src="../../assets/report-view-counter.js?v=20260810-counter-d1-1" data-report-id="260811-01-sovereign-ai-korea-roadmap-v1-0-0"></script>
   <script src="../../assets/report-comments.js?v=20260810-comments2" data-report-id="260811-01-sovereign-ai-korea-roadmap-v1-0-0"></script>
   <script src="../../assets/report-history.js?v=20260809-history2" data-report-id="260811-01-sovereign-ai-korea-roadmap-v1-0-0"></script>

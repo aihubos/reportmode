@@ -65,7 +65,7 @@ export function runIntegrityQa({ root, snapshotId }) {
       continue;
     }
     if (!/data-report-view=["']detail["']/i.test(current)) issues.push({ report: report.id, type: "wrong-default-view" });
-    if (!/data-report-layout=["']wide["']/i.test(current)) issues.push({ report: report.id, type: "wrong-default-layout" });
+    if (!/data-report-layout=["']responsive["']/i.test(current)) issues.push({ report: report.id, type: "wrong-default-layout" });
     if (!/report-history\.js\?v=20260809/.test(current)) issues.push({ report: report.id, type: "missing-history" });
     const expectedBase = expectedReportBase(report.path);
     if (!previous.includes(`<base href="${expectedBase}">`)) {

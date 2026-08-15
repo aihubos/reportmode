@@ -24,7 +24,7 @@ test("refresh run snapshots every route, enhances content pages only, and writes
 
   assert.deepEqual(result.counts, { total: 2, content: 1, redirects: 1, listed: 1, unlisted: 1 });
   const current = fs.readFileSync(path.join(root, "reports", "folder", "index.html"), "utf8");
-  assert.match(current, /data-report-layout="wide"/);
+  assert.match(current, /data-report-layout="responsive"/);
   assert.match(current, /report-history\.js/);
   assert.equal(fs.readFileSync(path.join(root, "reports", "external.html"), "utf8"), redirect);
 

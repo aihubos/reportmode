@@ -199,11 +199,11 @@
   <link rel="manifest" href="../../site.webmanifest?v=20260812-report-hub-logo2">
   <meta name="application-name" content="Report Hub">
   <meta property="og:site_name" content="Report Hub">
-  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260812-report-hub-logo2">
+  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260815-responsive-only1">
   <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260812-report-hub-logo2">
   <link rel="stylesheet" href="../../assets/report-comments.css?v=20260810-comments2">
 </head>
-<body data-report-view="detail" data-report-layout="wide">
+<body data-report-view="detail" data-report-layout="responsive">
   <a class="report-home-button" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-logo-mark-shimmer" aria-hidden="true"></span><img class="report-hub-logo-image" src="../../assets/report-hub-logo.png?v=20260812-report-hub-logo2" alt="Report Hub"></span></a>
   <a class="skip-link" href="#main-content">본문으로 바로가기</a>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
@@ -525,7 +525,7 @@
     function updateRisk(){const score=checks.reduce((sum,input)=>sum+(input.checked?Number(input.dataset.score):0),0);let level,desc;if(score<=1){level='L0 · 자동 실행';desc='read-only이거나 되돌리기 쉬운 작업입니다. 로그와 범위 제한을 유지한 채 자동 실행할 수 있습니다.';}else if(score<=3){level='L1 · 사람 검토';desc='AI가 초안을 만들고, 사람이 내용을 확인한 뒤 다음 단계로 넘깁니다.';}else if(score<=6){level='L2 · 명시적 승인';desc='실행 대상과 변경 내용을 preview로 보여주고, 정확한 action에 대해 사람이 승인합니다.';}else{level='L3 · 이중 승인';desc='별도 인증, 한도, 백업·rollback, 필요 시 2인 확인을 둔 뒤 실행합니다.';}riskScore.textContent=`${score} / 14`;riskBar.style.width=`${Math.max(3,(score/14)*100)}%`;approvalLevel.textContent=level;approvalDesc.textContent=desc;}
     checks.forEach((input)=>input.addEventListener('change',updateRisk));updateRisk();
   </script>
-  <script src="../../assets/report-page-layout.js?v=20260812-report-hub-logo2"></script>
+  <script src="../../assets/report-page-layout.js?v=20260815-responsive-only1"></script>
   <script src="../../assets/report-view-counter.js?v=20260810-counter-d1-1" data-report-id="260810-33-human-in-the-loop-ai-automation-v1-0-0"></script>
   <script src="../../assets/report-comments.js?v=20260810-comments2" data-report-id="260810-33-human-in-the-loop-ai-automation-v1-0-0"></script>
   <script src="../../assets/report-history.js?v=20260809-history2" data-report-id="260810-33-human-in-the-loop-ai-automation-v1-0-0"></script>

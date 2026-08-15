@@ -22,8 +22,8 @@ test("applies the Report Hub brand without changing the report subject", () => {
   assert.doesNotMatch(output, /report-hub-wordmark|report-hub-byline|by Jeremy/);
   assert.match(output, /report-hub-brand\.css\?v=20260812-report-hub-logo2/);
   assert.match(output, /report-hub-brand\.js\?v=20260812-report-hub-logo2/);
-  assert.match(output, /report-page-layout\.css\?v=20260812-report-hub-logo2/);
-  assert.match(output, /report-page-layout\.js\?v=20260812-report-hub-logo2/);
+  assert.match(output, /report-page-layout\.css\?v=20260815-responsive-only1/);
+  assert.match(output, /report-page-layout\.js\?v=20260815-responsive-only1/);
   assert.match(output, /report-comments\.css\?v=20260810-comments2/);
   assert.match(output, /report-comments\.js\?v=20260810-comments2" data-report-id="260809-sample"/);
   assert.match(output, /report-view-counter\.js\?v=20260810-counter-d1-1" data-report-id="260809-sample"/);
@@ -31,7 +31,7 @@ test("applies the Report Hub brand without changing the report subject", () => {
   assert.match(output, /data-report-id="260809-sample"/);
   assert.match(output, /<h1>샘플 기업 분석<\/h1>/);
   assert.match(output, /class="brand report-hub-brand-link"/);
-  assert.match(output, /<body data-report-view="detail" data-report-layout="wide">/);
+  assert.match(output, /<body data-report-view="detail" data-report-layout="responsive">/);
   assert.doesNotMatch(output, /Report Mode|ReportMode|리포트 모드|RM ·/);
 
   const secondPass = applyReportHubBrand(output, "reports/260809-sample.html");
@@ -63,7 +63,7 @@ test("uses the correct asset depth for folder reports", () => {
   assert.match(output, /href="\.\.\/\.\.\/assets\/report-hub-brand\.css\?v=20260812-report-hub-logo2"/);
   assert.match(output, /src="\.\.\/\.\.\/assets\/report-hub-logo\.png\?v=20260812-report-hub-logo2"/);
   assert.match(output, /href="\.\.\/\.\.\/assets\/report-comments\.css\?v=20260810-comments2"/);
-  assert.match(output, /src="\.\.\/\.\.\/assets\/report-page-layout\.js\?v=20260812-report-hub-logo2"/);
+  assert.match(output, /src="\.\.\/\.\.\/assets\/report-page-layout\.js\?v=20260815-responsive-only1"/);
   assert.match(output, /src="\.\.\/\.\.\/assets\/report-comments\.js\?v=20260810-comments2" data-report-id="folder-report"/);
   assert.match(output, /src="\.\.\/\.\.\/assets\/report-view-counter\.js\?v=20260810-counter-d1-1" data-report-id="folder-report"/);
   assert.match(output, /src="\.\.\/\.\.\/assets\/report-history\.js\?v=20260809-history2" data-report-id="folder-report"/);

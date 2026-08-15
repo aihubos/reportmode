@@ -41,6 +41,10 @@ for (const file of htmlFiles(path.join(root, "reports"))) {
     [occurrences(html, "report-hub-brand.js") === 1, "공통 브랜드 스크립트가 정확히 1개가 아님"],
     [occurrences(html, "report-page-layout.css") === 1, "공통 레이아웃 스타일이 정확히 1개가 아님"],
     [occurrences(html, "report-page-layout.js") === 1, "공통 레이아웃 스크립트가 정확히 1개가 아님"],
+    [/report-page-layout\.css\?v=20260815-responsive-only1/.test(html), "반응형 전용 레이아웃 스타일 버전이 아님"],
+    [/report-page-layout\.js\?v=20260815-responsive-only1/.test(html), "반응형 전용 레이아웃 스크립트 버전이 아님"],
+    [/<body\b[^>]*data-report-layout="responsive"/i.test(html), "보고서 기본 레이아웃이 responsive가 아님"],
+    [!/report-a4-mode|data-report-layout=["']a4["']|aria-label=["']세로 보기["']/i.test(html), "삭제한 세로 모드 코드가 남아 있음"],
     [occurrences(html, "report-comments.css") === 1, "공통 댓글 스타일이 정확히 1개가 아님"],
     [occurrences(html, "report-comments.js") === 1, "공통 댓글 스크립트가 정확히 1개가 아님"],
     [/report-comments\.js\?v=20260810-comments2[^>]*data-report-id=/i.test(html), "댓글 스크립트에 보고서 ID가 없음"],
@@ -54,6 +58,13 @@ for (const file of htmlFiles(path.join(root, "reports"))) {
     if (!passed) failures.push(`${relative}: ${message}`);
   }
 }
+
+const sharedLayoutScript = fs.readFileSync(path.join(root, "assets", "report-page-layout.js"), "utf8");
+const sharedLayoutCss = fs.readFileSync(path.join(root, "assets", "report-page-layout.css"), "utf8");
+if (/aria-label="(?:가로|세로) 보기"|data-report-layout="a4"/.test(sharedLayoutScript)) failures.push("assets/report-page-layout.js: 수동 가로·세로 전환이 남아 있음");
+if (!/body\.dataset\.reportLayout = "responsive"/.test(sharedLayoutScript)) failures.push("assets/report-page-layout.js: 자동 responsive 상태가 없음");
+if (/body\.report-a4-mode|\.report-layout-buttons|\.report-layout-button\b/.test(sharedLayoutCss)) failures.push("assets/report-page-layout.css: 세로 전환 스타일이 남아 있음");
+if (!/@page \{ size: A4 landscape/.test(sharedLayoutCss)) failures.push("assets/report-page-layout.css: PDF가 A4 가로로 고정되지 않음");
 
 for (const relative of ["index.html", "archive/index.html", "archive/upload.html"]) {
   const html = fs.readFileSync(path.join(root, relative), "utf8");
