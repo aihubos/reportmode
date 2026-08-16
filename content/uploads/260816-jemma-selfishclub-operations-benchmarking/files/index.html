@@ -67,6 +67,16 @@
     @media print{@page{size:A4;margin:12mm}body{background:#fff!important;color:#000}.nav-wrap,.floating-actions,.scroll-progress,.hero-actions{display:none!important}.container{width:100%;max-width:none}.summary-page{min-height:0;padding:0 0 6mm;break-after:page;background:#fff!important}.hero-grid{grid-template-columns:1.08fr .92fr;gap:7mm}.hero h1{font-size:33px}.hero-lead{font-size:14px}.thesis-line{font-size:12px;padding:10px}.portrait-panel{min-height:88mm}.portrait-orbit,.float-note{display:none}.portrait-card{width:100%;box-shadow:none}.portrait-image{height:60mm}.summary-bottom{margin-top:4mm}.metric-grid{grid-template-columns:repeat(4,1fr);gap:2mm}.metric{min-height:24mm;padding:3mm}.metric strong{font-size:18px}.metric p{font-size:8px}.engine-strip{grid-template-columns:1fr 3fr;gap:2mm}.engine-conclusion{padding:3mm}.engine-conclusion strong{font-size:10px}.mini-flow{grid-template-columns:repeat(7,1fr);padding:1mm}.mini-step{min-height:15mm;padding:1mm}.mini-step span{font-size:7px}.report-meta{font-size:8px}.content-section{padding:12mm 0!important;break-inside:auto}.section-title{font-size:25px}.section-desc{font-size:12px;margin-bottom:5mm}.section-blue{background:#fff!important;color:#000!important;border-top:2px solid var(--blue);border-bottom:2px solid var(--blue)}.section-blue .section-desc,.layer-card p,.roadmap-step p,.kpi-card p{color:#333!important}.layer-card,.roadmap-step,.kpi-card{background:#f7f8fa!important;color:#000!important;border:1px solid #ccc}.architecture-callout{background:#fff!important;color:#000!important;border:1px solid #ccc}.profile-card,.flywheel-card,.benchmark-card,.playbook-card,.source-link,.metric{box-shadow:none}.gallery img,.gallery figure:first-child img{height:48mm;min-height:0}.video-grid{display:none}.reveal{opacity:1!important;transform:none!important}.history-table{min-width:0;font-size:8px}.history-table th,.history-table td{padding:2mm}.table-wrap{overflow:visible}.report-table{min-width:0;font-size:7px}.report-table th,.report-table td{padding:2mm}.source-grid{grid-template-columns:repeat(3,1fr)}a{text-decoration:none}}
     /* Keep the shared Report Hub board action on one line beside this report's navigation. */
     .report-hub-board-link span { white-space: nowrap; }
+
+    /* Align the opening page with the shared 1180px Report Hub report canvas. */
+    @media (min-width: 721px) {
+      .summary-page > .container.summary-shell {
+        width: calc(100% - 40px) !important;
+        max-width: 1180px !important;
+        margin-right: auto !important;
+        margin-left: auto !important;
+      }
+    }
   </style>
 </head>
 <body data-report-cover="assets/thumbnail.png" data-report-cover-alt="형광 연두색 SELFISH CLUB 로고">
