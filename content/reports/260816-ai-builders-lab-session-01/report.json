@@ -1,0 +1,99 @@
+{
+  "schemaVersion": "1",
+  "id": "260816-ai-builders-lab-session-01",
+  "slug": "ai-builders-lab-session-01",
+  "title": "AI 빌더스 랩 · 4회 과정 1차",
+  "subtitle": "Hermes, Telegram, Obsidian, ChatGPT Codex 설치와 기본 실행 매뉴얼",
+  "category": "AI 실습 · 교육",
+  "language": "ko",
+  "author": "AI Builders Lab",
+  "createdAt": "2026-08-16T12:00:00+09:00",
+  "updatedAt": "2026-08-16T12:00:00+09:00",
+  "status": "published",
+  "summary": "4회 과정의 첫 단계입니다. 참여자가 자신의 노트북에서 Hermes, Telegram, Obsidian, ChatGPT Codex를 설치하고 한 번씩 실행할 수 있도록 구성했습니다.",
+  "verdict": "1차의 목표는 도구를 많이 아는 것이 아니라, 자신의 Local PC에서 설치·연결·응답·검수의 기본 흐름을 한 번 끝내는 것입니다.",
+  "heroEyebrow": "AI BUILDERS LAB · SESSION 01",
+  "metrics": [
+    {
+      "label": "전체 과정",
+      "value": "4차",
+      "note": "현재 1차"
+    },
+    {
+      "label": "수업 시간",
+      "value": "180분",
+      "note": "설치와 기본 실행"
+    },
+    {
+      "label": "실습 도구",
+      "value": "4개",
+      "note": "Hermes · Telegram · Obsidian · Codex"
+    }
+  ],
+  "sections": [
+    {
+      "id": "first-session",
+      "heading": "1차에서 확인하는 기본 흐름",
+      "kind": "fact",
+      "body": "참여 빌더가 Local PC 또는 Telegram에서 요청하면 Hermes Gateway와 Hermes Agent가 요청을 전달하고, GPT 모델과 로컬 지식 저장소를 필요에 따라 연결한 뒤 사람이 결과를 검수합니다.",
+      "bullets": [
+        "목표는 Vault 루트의 my goals.md에 직접 기록",
+        "Telegram은 본인과 봇의 1:1 대화만 사용",
+        "Codex는 1차 폴더 안에 설치 확인 노트 하나만 생성",
+        "비밀번호, 토큰, API 키는 화면이나 AI 대화에 입력하지 않음"
+      ],
+      "sourceIds": [
+        "s1"
+      ]
+    }
+  ],
+  "pros": [
+    "macOS와 Windows의 설치 경로를 구분",
+    "설치 실패 때 수업 흐름을 유지하는 우회 경로 제공",
+    "목표·토큰·개인정보를 웹페이지에 저장하지 않음"
+  ],
+  "cons": [
+    "GPT 계정과 제품별 로그인은 참가자가 직접 준비해야 함",
+    "VPS, 그룹 봇, 자동화 제작은 1차 범위가 아님"
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "title": "1차 완료 판단",
+      "body": "설치 여부가 아니라 Hermes와 Telegram에서 응답을 받고, Codex 결과를 Obsidian에서 직접 고쳤는지로 확인합니다."
+    }
+  ],
+  "timeline": [
+    {
+      "date": "1차",
+      "title": "설치와 기본 실행",
+      "body": "개인 Local PC에서 도구를 열고 기본 흐름을 확인합니다."
+    },
+    {
+      "date": "2~4차",
+      "title": "작업대·자동화·개인 화면",
+      "body": "LLM Wiki, 자동화 1건, 모바일 확인 화면으로 확장합니다."
+    }
+  ],
+  "quotes": [
+    "AI가 만든 문장은 초안입니다. 내가 고친 뒤 내 기록이 됩니다."
+  ],
+  "sources": [
+    {
+      "id": "s1",
+      "kind": "local",
+      "title": "AI 빌더스 랩 4회 과정 1차 강의 웹",
+      "publisher": "AI Builders Lab",
+      "accessedAt": "2026-08-16T12:00:00+09:00",
+      "note": "Local PC 설치·실습용 독립 실행형 교육 자료"
+    }
+  ],
+  "tags": [
+    "AI-Builders-Lab",
+    "Hermes",
+    "Telegram",
+    "Obsidian",
+    "Codex",
+    "교육"
+  ]
+}
