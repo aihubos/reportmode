@@ -1,0 +1,202 @@
+{
+  "schemaVersion": "1",
+  "id": "260816-ai-builders-lab-executive-guidebook",
+  "slug": "ai-builders-lab-executive-guidebook",
+  "title": "AI 빌더스 랩 · 임원 교육 가이드북",
+  "subtitle": "4회 12시간 AI 실습을 승인·검수·통제·공개 흐름으로 정리한 41페이지 운영 가이드",
+  "category": "AI 실습 · 교육",
+  "language": "ko",
+  "author": "AI Builders Lab",
+  "createdAt": "2026-08-16T18:50:00+09:00",
+  "updatedAt": "2026-08-16T18:50:00+09:00",
+  "status": "published",
+  "summary": "Hermes 설치, 자동화, Codex 제작, GPT Sites 공개를 임원·스폰서 관점의 승인 기준과 중단 기준으로 묶은 41페이지 통합 가이드입니다.",
+  "verdict": "임원 승인은 도구 구매가 아니라 가치·품질·접근·비용·복구의 다섯 통제를 갖춘 작은 운영 실험을 승인하는 일입니다.",
+  "heroEyebrow": "AI BUILDERS LAB · EXECUTIVE GUIDEBOOK",
+  "metrics": [
+    {
+      "label": "교육 구성",
+      "value": "4차",
+      "note": "각 180분"
+    },
+    {
+      "label": "총 교육",
+      "value": "12시간",
+      "note": "2주 과정"
+    },
+    {
+      "label": "임원 가이드",
+      "value": "41p",
+      "note": "웹·A4 PDF"
+    },
+    {
+      "label": "파일럿",
+      "value": "30일",
+      "note": "확대·유지·중단 판단"
+    }
+  ],
+  "sections": [
+    {
+      "id": "executive-guidebook",
+      "heading": "AI 빌더스 랩 · 임원 교육 가이드북",
+      "kind": "fact",
+      "body": "Hermes 설치, 자동화, Codex 제작, GPT Sites 공개를 임원·스폰서 관점의 승인 기준과 중단 기준으로 묶은 41페이지 통합 가이드입니다.",
+      "bullets": [
+        "지시·검증·통제·공개의 네 가지 책임을 임원 승인 기준으로 제시",
+        "1차 재실행, 2차 pause, 3차 계획·오류 재현, 4차 승인된 최소 공개를 회차별 관문으로 정리",
+        "수료 뒤 읽기 중심 업무 1건을 30일 동안 측정해 확대·유지·중단 결정"
+      ],
+      "sourceIds": [
+        "s1"
+      ]
+    }
+  ],
+  "pros": [
+    "참가자 실습 교재와 임원 승인 기준을 분리",
+    "41페이지 웹·A4 가로 PDF",
+    "공개 전 사람 승인과 방문자 QA를 고정"
+  ],
+  "cons": [
+    "제품 화면·명령은 설치 버전과 요금제에 따라 달라질 수 있음",
+    "대외 문구·재무·법무·보안 판단은 권한 있는 사람이 최종 검토"
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "title": "30일 파일럿 승인",
+      "body": "전사 확산보다 읽기 중심 반복 업무 1건을 최소 권한으로 30일 운영해 가치·품질·접근·비용·복구를 확인합니다."
+    }
+  ],
+  "timeline": [
+    {
+      "date": "1차",
+      "title": "기반 만들기",
+      "body": "설치·연결·재실행"
+    },
+    {
+      "date": "2차",
+      "title": "자동화 통제",
+      "body": "명세·즉시 실행·pause·검수"
+    },
+    {
+      "date": "3차",
+      "title": "결과물 제작",
+      "body": "계획·생성·오류 재현·수정"
+    },
+    {
+      "date": "4차",
+      "title": "안전한 공개",
+      "body": "검토본·승인·최소 공개·방문자 QA"
+    }
+  ],
+  "quotes": [
+    "작게 직접 실행하고, 사람이 검수하며, 멈출 수 있게 자동화하고, 승인된 최소 정보만 공개합니다."
+  ],
+  "sources": [
+    {
+      "id": "s1",
+      "kind": "local",
+      "title": "AI 빌더스 랩 임원 교육 가이드북",
+      "publisher": "AI Builders Lab",
+      "note": "사용자 제공 1~4차 교육 패키지를 임원 관점으로 재구성한 원본",
+      "accessedAt": "2026-08-16T18:50:00+09:00"
+    },
+    {
+      "id": "s2",
+      "kind": "web",
+      "title": "Hermes Agent Documentation",
+      "publisher": "Nous Research",
+      "url": "https://hermes-agent.nousresearch.com/docs/",
+      "accessedAt": "2026-08-16T18:50:00+09:00"
+    },
+    {
+      "id": "s3",
+      "kind": "web",
+      "title": "Hermes Telegram Integration",
+      "publisher": "Nous Research",
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/messaging/telegram",
+      "accessedAt": "2026-08-16T18:50:00+09:00"
+    },
+    {
+      "id": "s4",
+      "kind": "web",
+      "title": "Hermes Cron Jobs",
+      "publisher": "Nous Research",
+      "url": "https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/features/cron.md",
+      "accessedAt": "2026-08-16T18:50:00+09:00"
+    },
+    {
+      "id": "s5",
+      "kind": "web",
+      "title": "Telegram Bot Features",
+      "publisher": "Telegram",
+      "url": "https://core.telegram.org/bots/features",
+      "accessedAt": "2026-08-16T18:50:00+09:00"
+    },
+    {
+      "id": "s6",
+      "kind": "web",
+      "title": "Obsidian Help",
+      "publisher": "Obsidian",
+      "url": "https://obsidian.md/help/obsidian",
+      "accessedAt": "2026-08-16T18:50:00+09:00"
+    },
+    {
+      "id": "s7",
+      "kind": "web",
+      "title": "ChatGPT App Documentation",
+      "publisher": "OpenAI",
+      "url": "https://learn.chatgpt.com/docs/app",
+      "accessedAt": "2026-08-16T18:50:00+09:00"
+    },
+    {
+      "id": "s8",
+      "kind": "web",
+      "title": "ChatGPT Sites Documentation",
+      "publisher": "OpenAI",
+      "url": "https://learn.chatgpt.com/docs/sites",
+      "accessedAt": "2026-08-16T18:50:00+09:00"
+    },
+    {
+      "id": "s9",
+      "kind": "web",
+      "title": "OpenAI Codex Code Review",
+      "publisher": "OpenAI",
+      "url": "https://learn.chatgpt.com/docs/code-review?surface=app",
+      "accessedAt": "2026-08-16T18:50:00+09:00"
+    },
+    {
+      "id": "s10",
+      "kind": "web",
+      "title": "GitHub Pages Quickstart",
+      "publisher": "GitHub",
+      "url": "https://docs.github.com/en/pages/quickstart",
+      "accessedAt": "2026-08-16T18:50:00+09:00"
+    },
+    {
+      "id": "s11",
+      "kind": "web",
+      "title": "MDN Responsive Design",
+      "publisher": "MDN",
+      "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design",
+      "accessedAt": "2026-08-16T18:50:00+09:00"
+    },
+    {
+      "id": "s12",
+      "kind": "web",
+      "title": "W3C WCAG 2.2 Quick Reference",
+      "publisher": "W3C",
+      "url": "https://www.w3.org/WAI/WCAG22/quickref/",
+      "accessedAt": "2026-08-16T18:50:00+09:00"
+    }
+  ],
+  "tags": [
+    "AI Builders Lab",
+    "임원 교육",
+    "Hermes",
+    "자동화",
+    "Codex",
+    "GPT Sites",
+    "30일 파일럿"
+  ]
+}

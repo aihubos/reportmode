@@ -1,7 +1,33 @@
 {
-  "generatedAt": "2026-08-16T06:52:00Z",
+  "generatedAt": "2026-08-16T09:50:00Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260816-ai-builders-lab-executive-guidebook",
+      "slug": "ai-builders-lab-executive-guidebook",
+      "title": "AI 빌더스 랩 · 임원 교육 가이드북",
+      "subtitle": "4회 12시간 AI 실습을 승인·검수·통제·공개 흐름으로 정리한 41페이지 운영 가이드",
+      "category": "기타",
+      "summary": "Hermes 설치, 자동화, Codex 제작, GPT Sites 공개를 임원·스폰서 관점의 승인 기준과 중단 기준으로 묶은 41페이지 통합 가이드입니다.",
+      "createdAt": "2026-08-16T18:50:00+09:00",
+      "updatedAt": "2026-08-16T18:50:00+09:00",
+      "status": "published",
+      "path": "reports/260816-ai-builders-lab-executive-guidebook/",
+      "url": "https://aihubos.github.io/reportmode/reports/260816-ai-builders-lab-executive-guidebook/",
+      "displayDate": "260816",
+      "sourceCount": 12,
+      "tags": [
+        "AI Builders Lab",
+        "임원 교육",
+        "Hermes",
+        "자동화",
+        "Codex",
+        "GPT Sites",
+        "30일 파일럿"
+      ],
+      "coverImage": "reports/260816-ai-builders-lab-executive-guidebook/assets/ai-builders-lab-official-logo.png",
+      "coverAlt": "AI 빌더스 랩 공식 로고"
+    },
     {
       "id": "260816-ai-builders-lab-session-04",
       "slug": "ai-builders-lab-session-04",
