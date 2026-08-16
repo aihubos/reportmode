@@ -8,9 +8,9 @@
   "language": "ko",
   "author": "AI Builders Lab",
   "createdAt": "2026-08-16T12:00:00+09:00",
-  "updatedAt": "2026-08-16T12:00:00+09:00",
+  "updatedAt": "2026-08-16T14:30:00+09:00",
   "status": "published",
-  "summary": "4회 과정의 첫 단계입니다. 참여자가 자신의 노트북에서 Hermes, Telegram, Obsidian, ChatGPT Codex를 설치하고 한 번씩 실행할 수 있도록 구성했습니다.",
+  "summary": "4회 과정의 첫 단계입니다. 31페이지 교재에서 Hermes, Telegram, Obsidian, ChatGPT Codex 설치·연결·첫 실행과 후속 Cron·LLM Wiki 참고 흐름을 구분해 안내합니다.",
   "verdict": "1차의 목표는 도구를 많이 아는 것이 아니라, 자신의 Local PC에서 설치·연결·응답·검수의 기본 흐름을 한 번 끝내는 것입니다.",
   "heroEyebrow": "AI BUILDERS LAB · SESSION 01",
   "metrics": [
@@ -79,14 +79,14 @@
     "AI가 만든 문장은 초안입니다. 내가 고친 뒤 내 기록이 됩니다."
   ],
   "sources": [
-    {
-      "id": "s1",
-      "kind": "local",
-      "title": "AI 빌더스 랩 4회 과정 1차 강의 웹",
-      "publisher": "AI Builders Lab",
-      "accessedAt": "2026-08-16T12:00:00+09:00",
-      "note": "Local PC 설치·실습용 독립 실행형 교육 자료"
-    }
+    {"id":"s1","kind":"local","title":"AI 빌더스 랩 4회 과정 1차 강의 웹","publisher":"AI Builders Lab","accessedAt":"2026-08-16T14:30:00+09:00","note":"Local PC 설치·실습용 독립 실행형 교육 자료"},
+    {"id":"s2","kind":"web","title":"Hermes 설치 문서","publisher":"Nous Research","url":"https://github.com/NousResearch/hermes-agent/blob/main/website/docs/getting-started/installation.md","accessedAt":"2026-08-16T14:30:00+09:00"},
+    {"id":"s3","kind":"web","title":"Hermes Telegram 문서","publisher":"Nous Research","url":"https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/messaging/telegram.md","accessedAt":"2026-08-16T14:30:00+09:00"},
+    {"id":"s4","kind":"web","title":"Hermes Cron 문서","publisher":"Nous Research","url":"https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/features/cron.md","accessedAt":"2026-08-16T14:30:00+09:00"},
+    {"id":"s5","kind":"web","title":"Hermes Slash Commands 문서","publisher":"Nous Research","url":"https://github.com/NousResearch/hermes-agent/blob/main/website/docs/reference/slash-commands.md","accessedAt":"2026-08-16T14:30:00+09:00"},
+    {"id":"s6","kind":"web","title":"Hermes CLI 문서","publisher":"Nous Research","url":"https://github.com/NousResearch/hermes-agent/blob/main/website/docs/reference/cli-commands.md","accessedAt":"2026-08-16T14:30:00+09:00"},
+    {"id":"s7","kind":"web","title":"ChatGPT 데스크톱 앱 문서","publisher":"OpenAI","url":"https://learn.chatgpt.com/docs/app","accessedAt":"2026-08-16T14:30:00+09:00"},
+    {"id":"s8","kind":"web","title":"Obsidian 설치 문서","publisher":"Obsidian","url":"https://obsidian.md/help/install","accessedAt":"2026-08-16T14:30:00+09:00"}
   ],
   "tags": [
     "AI-Builders-Lab",
