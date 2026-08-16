@@ -6,6 +6,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="AI 초보자가 Hermes, Telegram, Obsidian, Codex를 설치하고 첫 실행과 사람 검수까지 완료하는 AI 빌더스 랩 1차 실습 가이드" name="description"/>
 <link rel="canonical" href="https://aihubos.github.io/reportmode/reports/260816-ai-builders-lab-session-01/"/>
+<link rel="icon" type="image/png" href="assets/AI-빌더스-랩-공식-로고.png"/>
 <meta property="og:type" content="article"/>
 <meta property="og:title" content="AI 빌더스 랩 1차 실습 가이드 | 설치부터 혼자 다시 실행까지"/>
 <meta property="og:description" content="AI 초보자가 Hermes, Telegram, Obsidian, Codex를 설치하고 첫 실행과 사람 검수까지 완료하는 AI 빌더스 랩 1차 실습 가이드"/>
@@ -19,7 +20,7 @@
 <meta name="twitter:description" content="Hermes 설치, Telegram 1:1, Obsidian 목표, Codex 첫 파일과 후속 LLM Wiki를 따라 하는 1차 가이드"/>
 <meta name="twitter:image" content="https://aihubos.github.io/reportmode/reports/260816-ai-builders-lab-session-01/assets/AI-빌더스-랩-공식-로고.png"/>
 <meta content="#ffffff" name="theme-color"/>
-<title>AI 빌더스 랩 1차 실습 가이드 | 설치부터 혼자 다시 실행까지 · v1.0.0 | Report Hub</title>
+<title>AI 빌더스 랩 1차 실습 가이드 | 설치부터 혼자 다시 실행까지 · v2.1.0 | Report Hub</title>
 <style>
     :root {
       --blue:#3182F6; --blue-strong:#1B64DA; --blue-soft:#E8F3FF;
@@ -41,7 +42,7 @@
     .nav{max-width:1240px;margin:0 auto;min-height:62px;display:flex;align-items:center;gap:14px;padding:9px 11px 9px 16px;border:1px solid rgba(229,232,235,.9);border-radius:22px;background:rgba(255,255,255,.86);backdrop-filter:blur(18px) saturate(150%);box-shadow:0 10px 34px rgba(25,31,40,.05)}
     .brand{display:flex;align-items:center;gap:10px;min-width:max-content;font-size:14px;font-weight:900} .brand-mark{width:38px;height:38px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(145deg,#5ca2ff,var(--blue-strong));color:#fff;box-shadow:0 8px 20px rgba(49,130,246,.25)} .brand-mark svg{width:21px}
     .brand-sub{color:var(--muted-2);font-size:12px;font-weight:800}
-    .nav-links{display:flex;gap:3px;margin-left:auto} .nav-links a{padding:8px 10px;border-radius:11px;color:var(--muted);font-size:13px;font-weight:800} .nav-links a:hover,.nav-links a:focus-visible{background:var(--surface);color:var(--ink)}
+    .nav-links{display:flex;gap:3px;margin-left:auto} .nav-links a{padding:8px 10px;border-radius:11px;color:var(--muted);font-size:13px;font-weight:800} .nav-links a:hover,.nav-links a:focus-visible{background:var(--surface);color:var(--ink)} .nav-links a[aria-current="page"]{background:var(--blue-soft);color:var(--blue-strong)}
     .nav-actions{display:flex;align-items:center;gap:7px}
     .btn{appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:40px;padding:0 14px;border-radius:13px;font-size:13px;font-weight:850;transition:.2s ease} .btn:hover{transform:translateY(-1px)} .btn-primary{background:var(--blue);color:#fff;box-shadow:0 9px 22px rgba(49,130,246,.22)} .btn-ghost{background:var(--surface);color:var(--ink-2)} .btn-outline{border:1px solid var(--line);background:#fff}
     .os-switch{display:flex;padding:3px;border-radius:12px;background:var(--surface)} .os-switch button{border:0;background:transparent;padding:7px 9px;border-radius:9px;color:var(--muted);font-size:12px;font-weight:850;cursor:pointer} .os-switch button.active{background:#fff;color:var(--blue-strong);box-shadow:0 4px 12px rgba(25,31,40,.08)}
@@ -102,17 +103,12 @@
     @media print{@page{size:A4 landscape;margin:8mm}body{background:#fff!important;color:#000}.nav-wrap,.floating-actions,.scroll-progress,.toast,.copy-btn,.task-check,.toc-dialog{display:none!important}main{padding:0}.report-stack{width:100%;display:block}.paper-page{min-height:185mm;margin:0 0 8mm;padding:10mm 11mm 11mm;border:1px solid #d7dde4;border-radius:0;box-shadow:none;break-after:page;break-inside:avoid;background:#fff!important;color:#000!important;overflow:visible}.paper-page:last-child{break-after:auto}.paper-page::before,.paper-page::after{display:none}.page-header h2,.cover-page .page-header h2{font-size:29px!important}.page-header>p{font-size:12px;margin-bottom:5mm;color:#333!important}.page-topline{margin-bottom:4mm}.page-footer{left:11mm;right:11mm;bottom:4mm}.blue-page{border-top:3px solid var(--blue)}.blue-page .page-section,.blue-page .page-footer{color:#555!important}.blue-page .page-number{background:#fff;color:var(--blue-strong);border-color:#c8d8ec}.blue-flow article{border:1px solid #ccd4dd;background:#f5f7fa;color:#000}.blue-flow p{color:#444}.blue-page .instruction-card,.blue-page .info-note{color:#000;background:#fff;border-color:#ccd4dd}.code-card{box-shadow:none}.code-card pre{font-size:9px;line-height:1.45}.source-grid{grid-template-columns:repeat(4,1fr)}.source-card{break-inside:avoid}.history-table-wrap{overflow:visible}.history-table{min-width:0;font-size:8px}[data-os-panel]{display:block!important}[data-os-panel]+[data-os-panel]{margin-top:3mm}.skip-link{display:none!important}.code-card,.instruction-card,.info-note,.warning-note,.security-note,.source-card,.folder-tree-card,.decision-banner,.definition-banner,.hero-thesis,.system-map,.summary-cards article,.report-history{break-inside:avoid;page-break-inside:avoid}.cover-page{min-height:185mm;height:185mm;padding:7mm 9mm 8mm;overflow:hidden}.cover-page .page-topline{margin-bottom:2mm}.cover-page .page-header h2{font-size:24px!important;line-height:1.1;margin-bottom:2mm}.cover-page .page-header>p{font-size:9.5px;line-height:1.35;margin-bottom:3mm}.cover-page .hero-summary-grid{gap:3mm}.cover-page .hero-thesis{padding:4mm;border-radius:5mm}.cover-page .mini-kicker{margin-bottom:1.5mm;padding:1mm 2mm;font-size:7.5px}.cover-page .hero-thesis h3{font-size:18px;line-height:1.22;margin-bottom:2mm}.cover-page .hero-thesis p{font-size:9px;line-height:1.35;margin-bottom:0}.cover-page .report-meta{margin-top:2mm;gap:1.5mm 2.5mm;font-size:7px}.cover-page .version-badge{min-height:5mm;padding:0 2mm}.cover-page .system-map{padding:3mm;border-radius:5mm;gap:2mm}.cover-page .map-node{min-height:20mm;padding:2.5mm;border-radius:4mm}.cover-page .map-node b{width:5mm;height:5mm;margin-bottom:1.5mm;font-size:7px}.cover-page .map-node strong{font-size:10px}.cover-page .map-node span{font-size:7px}.cover-page .map-arrow{font-size:13px}.cover-page .map-wiki{min-height:auto}.cover-page .summary-cards{gap:2mm;margin-top:3mm}.cover-page .summary-cards article{padding:2.5mm;border-radius:3mm}.cover-page .summary-cards h3{margin:1.5mm 0 1mm;font-size:10px}.cover-page .summary-cards p{font-size:7.5px;line-height:1.35}.cover-page .decision-banner{margin-top:2.5mm;padding:2mm 2.5mm;border-radius:3mm;font-size:7.5px;line-height:1.3}.cover-page .page-footer{left:9mm;right:9mm;bottom:3mm}.reveal{opacity:1!important;transform:none!important}}
   .lab-brand-logo{display:block;width:138px;height:auto}.future-banner{margin:0 0 18px;padding:12px 15px;border-radius:15px;background:var(--blue-soft);color:var(--blue-strong);font-size:13px;font-weight:900}.shot-placeholder{min-height:105px;margin-top:16px;padding:22px;border:2px dashed #b8c4d1;border-radius:18px;background:#fbfcfe;color:var(--muted);display:grid;place-items:center;text-align:center;font-size:13px}.tree-view{padding:16px;border-radius:16px;background:var(--surface);white-space:pre-wrap;overflow:auto}@media(max-width:760px){.lab-brand-logo{width:118px}.brand .brand-sub{display:none}}@media print{.shot-placeholder{min-height:45mm}}
 </style>
-  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260812-report-hub-logo2">
-  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png?v=20260812-report-hub-logo2">
-  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png?v=20260812-report-hub-logo2">
-  <link rel="manifest" href="../../site.webmanifest?v=20260812-report-hub-logo2">
-  <meta name="application-name" content="Report Hub">
-  <meta property="og:site_name" content="Report Hub">
-  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260815-responsive-only1">
-  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260812-report-hub-logo2">
-  <link rel="stylesheet" href="../../assets/report-comments.css?v=20260816-comments-width1">
+  <link rel="icon" type="image/png" href="assets/AI-빌더스-랩-공식-로고.png">
+  <meta name="application-name" content="AI Builders Lab">
+  <meta property="og:site_name" content="AI Builders Lab">
 <style id="guide-print-fit">
 .report-home-button{display:none!important}
+.page-header h2,.page-header p,.hero-thesis h3,.hero-thesis p,.summary-cards h3,.summary-cards p{word-break:keep-all;overflow-wrap:break-word}
 @media print{
   .report-home-button{display:none!important}
   .paper-page{width:142.86%!important;height:264mm!important;min-height:264mm!important;max-height:264mm!important;margin:0!important;overflow:hidden!important;zoom:.7;break-after:page!important;page-break-after:always!important}
@@ -123,25 +119,24 @@
 </style>
 </head>
 <body data-os="windows" data-report-cover="assets/AI-빌더스-랩-공식-로고.png" data-report-cover-alt="AI 빌더스 랩 공식 로고" data-report-view="detail" data-report-layout="responsive">
-  <a class="report-home-button" href="https://aihubos.github.io/reportmode/archive/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-logo-mark-shimmer" aria-hidden="true"></span><img class="report-hub-logo-image" src="../../assets/report-hub-logo.png?v=20260812-report-hub-logo2" alt="Report Hub"></span></a>
 <a class="skip-link" href="#page-01">본문으로 바로가기</a>
 <div class="scroll-progress" id="scrollProgress"></div>
 <div class="nav-wrap">
 <nav aria-label="교육 자료 주요 메뉴" class="nav">
 <a aria-label="Report Hub 보고서 인덱스로 이동" class="brand" href="https://aihubos.github.io/reportmode/archive/"><img class="lab-brand-logo" src="assets/AI-빌더스-랩-공식-로고.png" alt="AI BUILDERS LAB" width="2172" height="724"><span class="brand-sub">1차 · 설치 → 연결 → 실행 → 기록</span></a>
-<div class="nav-links"><a href="#page-07">설치</a><a href="#page-11">명령</a><a href="#page-13">Vault·Codex</a><a href="#page-16">후속 과정</a><a href="#page-34">출처</a></div><div class="nav-actions">
+<div class="nav-links" aria-label="회차 선택"><a href="https://aihubos.github.io/reportmode/reports/260816-ai-builders-lab-session-01/" aria-current="page">1차</a><a href="https://aihubos.github.io/reportmode/reports/260816-ai-builders-lab-session-02/">2차</a><a href="https://aihubos.github.io/reportmode/reports/260816-ai-builders-lab-session-03/">3차</a><a href="https://aihubos.github.io/reportmode/reports/260816-ai-builders-lab-session-04/">4차</a></div><div class="nav-actions">
 <div aria-label="운영체제 예제 선택" class="os-switch"><button class="active" data-os="windows" type="button">Windows</button><button data-os="macos" type="button">macOS</button></div>
 <span class="progress-chip" id="progressChip">진행 0%</span>
 <button class="btn btn-outline" id="tocOpen" type="button">목차</button>
-<a class="btn btn-primary" href="AI-Builders-Lab-Session-01-Guide-v2.0.0.pdf" download>PDF 받기</a>
+<a class="btn btn-primary" href="AI-Builders-Lab-Session-01-Guide-v2.1.0.pdf" download>PDF 받기</a>
 </div>
 </nav>
 </div>
 <main id="main">
 <div class="report-stack">
-<article aria-labelledby="page-01-title" class="paper-page cover-page" data-page="01" data-section="전체 요약" id="page-01"><div class="page-topline"><span class="page-section">AI BUILDERS LAB · SESSION 01</span><span class="page-number">P.01 / 34</span></div><header class="page-header"><h2 id="page-01-title">설치에서 끝나지 않고,<br/><span class="blue">혼자 다시 실행하는 상태</span>까지 만듭니다</h2><p>총 4차 과정의 1차 교재입니다. 180분 동안 Hermes·Telegram·Obsidian·Codex를 Local PC에 준비하고 첫 결과를 직접 검수합니다.</p></header><div class="page-body"><div class="hero-summary-grid"><section class="hero-thesis"><span class="mini-kicker">1차 완료 상태</span><h3>요청하고 → 실행하고 → 기록하고<br/><mark>내가 마지막으로 확인합니다</mark></h3><p>설치 → 모델 → Telegram 1:1 → Vault → Codex → 사람 검수 순서입니다.</p><div class="report-meta"><span class="version-badge" id="reportVersion">v2.0.0</span><span id="reportUpdated">Updated 2026.08.16</span><span id="reportGeneration">AI-assisted · Human review required</span></div></section><section class="system-map"><div class="map-node"><b>1</b><strong>참여 빌더</strong><span>Telegram·로컬 요청</span></div><div class="map-arrow">→</div><div class="map-node"><b>2</b><strong>Hermes</strong><span>Gateway·Agent 실행</span></div><div class="map-arrow">→</div><div class="map-node"><b>3</b><strong>GPT·도구</strong><span>모델·로컬 자료</span></div><div class="map-node map-wiki"><b>4</b><strong>Obsidian Vault</strong><span>검수한 결과만 기록</span></div></section></div><div class="summary-cards"><article><b>01</b><h3>설치</h3><p>공식 경로와 본인 계정</p></article><article><b>02</b><h3>1:1 연결</h3><p>본인과 봇 대화만</p></article><article><b>03</b><h3>한 파일</h3><p>Codex 결과 하나</p></article><article><b>04</b><h3>검수</h3><p>사실·표현 직접 수정</p></article></div><div class="decision-banner"><strong>비밀정보 금지</strong><span>Token·API 키·비밀번호·OAuth 코드·숫자 ID·개인 대화는 교재와 화면에 남기지 않습니다.</span></div></div><footer class="page-footer"><span>전체 요약</span><span>AI Builders Lab · Session 01</span></footer></article>
-<article aria-labelledby="page-02-title" class="paper-page " data-page="02" data-section="4차 과정" id="page-02"><div class="page-topline"><span class="page-section">COURSE MAP</span><span class="page-number">P.02 / 34</span></div><header class="page-header"><h2 id="page-02-title">1차의 설치가 4차의 결과물로<br/>이어지는 길을 먼저 봅니다</h2><p>오늘은 Local PC의 기본 실행만 완성합니다. Cron·SOUL·PARA·LLM Wiki·VPS는 후속 참고입니다.</p></header><div class="page-body"><div class="roadmap-grid"><article class="roadmap-card"><span>SESSION 01 · 오늘</span><h3>설치와 첫 실행</h3><p>Hermes·Telegram·Obsidian·Codex·목표 파일</p></article><article class="roadmap-card"><span>SESSION 02</span><h3>지식 저장소</h3><p>Second Brain·PARA·LLM Wiki</p></article><article class="roadmap-card"><span>SESSION 03</span><h3>자동화 1건</h3><p>반복 업무 선정·등록·검수</p></article><article class="roadmap-card"><span>SESSION 04</span><h3>바이브 코딩</h3><p>모바일 개인 대시보드</p></article><article class="roadmap-card"><span>실행 위치</span><h3>Local PC 우선</h3><p>VPS는 24시간 실행이 필요할 때 검토</p></article></div><div class="prep-grid"><article class="prep-card"><b>1차 실제</b><p>Telegram·GPT·Local PC</p></article><article class="prep-card"><b>후속 선택</b><p>Discord·Slack·Claude·Gemini·VPS</p></article><article class="prep-card warning"><b>동시에 필수 아님</b><p>필요한 연결을 하나씩 추가</p></article></div></div><footer class="page-footer"><span>4차 과정</span><span>AI Builders Lab · Session 01</span></footer></article>
-<article aria-labelledby="page-03-title" class="paper-page " data-page="03" data-section="180분 운영" id="page-03"><div class="page-topline"><span class="page-section">SESSION PLAN</span><span class="page-number">P.03 / 34</span></div><header class="page-header"><h2 id="page-03-title">설명보다 실행에 시간을 쓰는<br/><span class="blue">180분 실습 운영표</span></h2><p>페이지 16 이후 심화 내용은 오늘 실습 시간에 포함하지 않습니다.</p></header><div class="page-body"><div class="history-table-wrap"><table class="history-table"><thead><tr><th>시간</th><th>강사 진행</th><th>참가자 행동</th><th>완료</th></tr></thead><tbody><tr><td>00:00–00:20</td><td>목표·보안·자기소개</td><td>목표 네 문항 준비</td><td>한 문장 목표</td></tr><tr><td>00:20–01:20</td><td>도구 설치 안내</td><td>네 가지 도구 설치</td><td>기본 화면</td></tr><tr><td>01:20–01:50</td><td>Hermes 기본 사용</td><td>대화·종료·재실행</td><td>응답 1회</td></tr><tr><td>01:50–02:20</td><td>Telegram 연결</td><td>봇·Gateway·1:1</td><td>응답 수신</td></tr><tr><td>02:20–02:50</td><td>Codex 실습</td><td>파일 생성·검수</td><td>파일 확인</td></tr><tr><td>02:50–03:00</td><td>완료·과제</td><td>재실행 설명</td><td>6개 기준</td></tr></tbody></table></div><div class="info-note"><strong>합계 180분</strong><span>막히면 원인을 기록하고 우회 경로로 다음 실습을 이어 갑니다.</span></div></div><footer class="page-footer"><span>180분 운영</span><span>AI Builders Lab · Session 01</span></footer></article>
+<article aria-labelledby="page-01-title" class="paper-page cover-page" data-page="01" data-section="전체 요약" id="page-01"><div class="page-topline"><span class="page-section">AI BUILDERS LAB · SESSION 01</span><span class="page-number">P.01 / 34</span></div><header class="page-header"><h2 id="page-01-title">설치에서 끝나지 않고,<br/><span class="blue">혼자 다시 실행하는 상태</span>까지 만듭니다</h2><p>총 4차 과정의 1차 교재입니다. 180분 동안 Hermes·Telegram·Obsidian·LLM Wiki·Codex의 개인 작업 환경을 준비하고 첫 결과를 직접 검수합니다.</p></header><div class="page-body"><div class="hero-summary-grid"><section class="hero-thesis"><span class="mini-kicker">1차 완료 상태</span><h3>요청하고 → 실행하고 → 기록하고<br/><mark>내가 마지막으로 확인합니다</mark></h3><p>설치 → 모델 → Telegram 1:1 → 표준 Vault → 최소 LLM Wiki → Codex → 사람 검수 순서입니다.</p><div class="report-meta"><span class="version-badge" id="reportVersion">v2.1.0</span><span id="reportUpdated">Updated 2026.08.16</span><span id="reportGeneration">AI-assisted · Human review required</span></div></section><section class="system-map"><div class="map-node"><b>1</b><strong>참여 빌더</strong><span>Telegram·로컬 요청</span></div><div class="map-arrow">→</div><div class="map-node"><b>2</b><strong>Hermes</strong><span>Gateway·Agent 실행</span></div><div class="map-arrow">→</div><div class="map-node"><b>3</b><strong>GPT·도구</strong><span>모델·로컬 자료</span></div><div class="map-node map-wiki"><b>4</b><strong>Obsidian Vault</strong><span>검수한 결과만 기록</span></div></section></div><div class="summary-cards"><article><b>01</b><h3>설치</h3><p>공식 경로와 본인 계정</p></article><article><b>02</b><h3>1:1 연결</h3><p>본인과 봇 대화만</p></article><article><b>03</b><h3>지식·파일</h3><p>05 LLM Wiki와 Codex</p></article><article><b>04</b><h3>검수</h3><p>사실·표현 직접 수정</p></article></div><div class="decision-banner"><strong>비밀정보 금지</strong><span>Token·API 키·비밀번호·OAuth 코드·숫자 ID·개인 대화는 교재와 화면에 남기지 않습니다.</span></div></div><footer class="page-footer"><span>전체 요약</span><span>AI Builders Lab · Session 01</span></footer></article>
+<article aria-labelledby="page-02-title" class="paper-page " data-page="02" data-section="4차 과정" id="page-02"><div class="page-topline"><span class="page-section">COURSE MAP</span><span class="page-number">P.02 / 34</span></div><header class="page-header"><h2 id="page-02-title">1차의 설치가 4차의 공개 Site로<br/>이어지는 길을 먼저 봅니다</h2><p>각 차시는 180분입니다. 오늘은 Local PC의 설치·연결·최소 지식 저장소·첫 파일까지 완성합니다.</p></header><div class="page-body"><div class="roadmap-grid"><article class="roadmap-card"><span>SESSION 01 · 오늘</span><h3>설치와 기본 세팅</h3><p>Hermes·Telegram·Obsidian·05 LLM Wiki·Codex</p></article><article class="roadmap-card"><span>SESSION 02</span><h3>자동화와 Codex 기초</h3><p>반복 업무 1건 예약·시험·한 파일 검수</p></article><article class="roadmap-card"><span>SESSION 03</span><h3>Codex 프로그래밍</h3><p>작동하는 미니 게임과 반응형 소개 웹</p></article><article class="roadmap-card"><span>SESSION 04</span><h3>GPT Sites 공개</h3><p>개인 대시보드 또는 홈페이지·공유 URL</p></article><article class="roadmap-card"><span>실행 위치</span><h3>Local PC 우선</h3><p>VPS는 24시간 실행이 필요할 때 검토</p></article></div><div class="prep-grid"><article class="prep-card"><b>1차 실제</b><p>Telegram·GPT·Local PC</p></article><article class="prep-card"><b>4차 실제</b><p>ChatGPT Sites 저장·배포·공개 범위</p></article><article class="prep-card warning"><b>동시에 필수 아님</b><p>필요한 연결을 하나씩 추가</p></article></div></div><footer class="page-footer"><span>4차 과정</span><span>AI Builders Lab · Session 01</span></footer></article>
+<article aria-labelledby="page-03-title" class="paper-page " data-page="03" data-section="180분 운영" id="page-03"><div class="page-topline"><span class="page-section">SESSION PLAN</span><span class="page-number">P.03 / 34</span></div><header class="page-header"><h2 id="page-03-title">설명보다 실행에 시간을 쓰는<br/><span class="blue">180분 실습 운영표</span></h2><p>페이지 16 이후 심화 예시는 오늘 완료 기준에 넣지 않습니다.</p></header><div class="page-body"><div class="history-table-wrap"><table class="history-table"><thead><tr><th>시간</th><th>강사 진행</th><th>참가자 행동</th><th>완료</th></tr></thead><tbody><tr><td>00:00–00:10</td><td>목표·보안 안내</td><td>OS·계정·인터넷 확인</td><td>시작 상태</td></tr><tr><td>00:10–00:25</td><td>목표 네 문항 안내</td><td>my goals.md 작성</td><td>목표 기록</td></tr><tr><td>00:25–00:50</td><td>Hermes 설치</td><td>Desktop 또는 CLI 설치</td><td>첫 실행</td></tr><tr><td>00:50–01:05</td><td>모델 연결</td><td>hermes model 로그인</td><td>기본 응답</td></tr><tr><td>01:05–01:25</td><td>Telegram·Gateway</td><td>봇·허용 사용자·시작</td><td>상태 확인</td></tr><tr><td>01:25–01:45</td><td>기본 명령 시연</td><td>/sethome·상태·모델·비용</td><td>1:1 응답</td></tr><tr><td>01:45–02:05</td><td>Obsidian·Vault</td><td>표준 폴더 구조 생성</td><td>폴더 확인</td></tr><tr><td>02:05–02:25</td><td>최소 LLM Wiki</td><td>05 LLM Wiki 생성·점검</td><td>경로 확인</td></tr><tr><td>02:25–02:45</td><td>Codex 첫 파일</td><td>한 파일 생성·직접 수정</td><td>사람 검수</td></tr><tr><td>02:45–02:55</td><td>재실행·오류 대응</td><td>닫고 다시 열기</td><td>혼자 실행</td></tr><tr><td>02:55–03:00</td><td>완료·과제</td><td>체크·다음 행동 기록</td><td>1차 종료</td></tr></tbody></table></div><div class="info-note"><strong>합계 180분</strong><span>막히면 원인을 기록하고 우회 경로로 다음 실습을 이어 갑니다.</span></div></div><footer class="page-footer"><span>180분 운영</span><span>AI Builders Lab · Session 01</span></footer></article>
 <article aria-labelledby="page-04-title" class="paper-page " data-page="04" data-section="안전 원칙" id="page-04"><div class="page-topline"><span class="page-section">SECURITY FIRST</span><span class="page-number">P.04 / 34</span></div><header class="page-header"><h2 id="page-04-title">비밀정보는 본인만 보고,<br/>AI 결과는 사람이 마지막으로 봅니다</h2><p>화면 공유·교재·채팅·스크린샷에 계정 정보를 남기지 않습니다.</p></header><div class="page-body"><div class="two-column"><article class="instruction-card"><span class="card-label">공유 금지</span><h3>화면에서 숨길 것</h3><ul class="check-list"><li>Bot Token</li><li>API 키·비밀번호·OAuth 코드</li><li>숫자 ID·개인 대화·개인 일정</li></ul></article><article class="instruction-card soft-blue"><span class="card-label">사람 검수</span><h3>AI 결과 사용 순서</h3><ol class="number-list"><li>사실 확인</li><li>표현 수정</li><li>외부 전송 전 다시 읽기</li></ol></article></div><div class="danger-banner"><strong>노출 시</strong><span>화면 공유를 멈추고 해당 Token·키·비밀번호를 폐기 또는 변경합니다.</span></div></div><footer class="page-footer"><span>안전 원칙</span><span>AI Builders Lab · Session 01</span></footer></article>
 <article aria-labelledby="page-05-title" class="paper-page " data-page="05" data-section="전체 연결 구조" id="page-05"><div class="page-topline"><span class="page-section">SYSTEM FLOW</span><span class="page-number">P.05 / 34</span></div><header class="page-header"><h2 id="page-05-title">요청은 Hermes로 들어가고,<br/>검수된 결과만 내 기록이 됩니다</h2><p>강의 웹은 따라 하기 안내입니다. Codex는 Hermes 내부가 아니라 같은 Vault를 다루는 별도 도구입니다.</p></header><div class="page-body"><div class="attachment-flow"><div><strong>참여 빌더</strong><span>Telegram·로컬 요청</span></div><i>→</i><div><strong>Gateway</strong><span>채널·허용 사용자</span></div><i>→</i><div><strong>Hermes Agent</strong><span>GPT·도구·지식</span></div><i>→</i><div><strong>참가자 검수</strong><span>확인 후 결과</span></div></div><div class="two-column" style="margin-top:18px"><article class="instruction-card"><h3>1차 실제</h3><p>Local PC에서 실행하고 Telegram 1:1로 요청합니다.</p></article><article class="instruction-card soft-blue"><h3>로컬 지식 저장소</h3><p>Obsidian Vault와 LLM Wiki는 사용자가 관리하는 파일입니다.</p></article></div><div class="definition-banner"><strong>요약</strong><span>요청 → Hermes → GPT·도구·지식 → 참가자 검수 → 결과</span></div></div><footer class="page-footer"><span>전체 연결 구조</span><span>AI Builders Lab · Session 01</span></footer></article>
 <article aria-labelledby="page-06-title" class="paper-page " data-page="06" data-section="설치 전 점검" id="page-06"><div class="page-topline"><span class="page-section">PRE-FLIGHT</span><span class="page-number">P.06 / 34</span></div><header class="page-header"><h2 id="page-06-title">인터넷·권한·계정부터<br/>5분 안에 확인합니다</h2><p>운영체제별 공식 설치 파일을 사용하고 막힌 원인을 인터넷·권한·계정으로 표시합니다.</p></header><div class="page-body"><div class="prep-grid"><article class="prep-card"><b>인터넷</b><p>공식 사이트·브라우저 로그인</p></article><article class="prep-card"><b>설치 권한</b><p>앱 설치·터미널 실행</p></article><article class="prep-card"><b>계정</b><p>Telegram·ChatGPT 본인 계정</p></article></div><div class="versus-grid" style="margin-top:18px"><article class="recommended"><span>정상 경로</span><h3>공식 설치</h3><p>Hermes → Telegram → Obsidian → ChatGPT</p></article><div class="versus-plus">→</div><article><span>지연 시</span><h3>수업 유지</h3><p>설치 파일 → 핫스팟 → 짝 실습 → 원인 기록</p></article></div><div class="shot-placeholder">[스크린샷 삽입 영역: macOS·Windows 설치 권한 화면, 강조: OS 선택과 열기 버튼]</div><label class="task-check"><input data-progress="p06" type="checkbox"/><span aria-hidden="true"></span><strong>설치 전 준비 상태 확인 완료</strong></label></div><footer class="page-footer"><span>설치 전 점검</span><span>AI Builders Lab · Session 01</span></footer></article>
@@ -286,18 +281,19 @@ hermes gateway status</code></pre></div><p>setup에서 Telegram, Token, 본인 �
 <span>AI Builders Lab · Session 01</span>
 </footer>
 </article>
-<article aria-labelledby="page-13-title" class="paper-page " data-page="13" data-section="Obsidian Vault와 목표" id="page-13"><div class="page-topline"><span class="page-section">07 · VAULT & GOALS</span><span class="page-number">P.13 / 34</span></div><header class="page-header"><h2 id="page-13-title">목표는 웹 폼이 아니라<br/>내 Vault의 <span class="blue">my goals.md</span>에 적습니다</h2><p>Documents/01 Project/AI Builders Lab을 Vault로 열고 1차~4차 폴더를 만듭니다.</p></header><div class="page-body"><div class="two-column"><article class="instruction-card"><h3>1차 실제 폴더</h3><pre class="tree-view">Documents/
-└── 01 Project/
+<article aria-labelledby="page-13-title" class="paper-page " data-page="13" data-section="Obsidian Vault와 목표" id="page-13"><div class="page-topline"><span class="page-section">07 · VAULT & GOALS</span><span class="page-number">P.13 / 34</span></div><header class="page-header"><h2 id="page-13-title">목표는 웹 폼이 아니라<br/>내 Vault의 <span class="blue">my goals.md</span>에 적습니다</h2><p>Vault 안에 <code>100_Projects/AI Builders Lab</code>과 루트의 <code>05 LLM Wiki</code>를 만듭니다.</p></header><div class="page-body"><div class="two-column"><article class="instruction-card"><h3>1차 표준 폴더</h3><pre class="tree-view">&lt;Obsidian Vault&gt;/
+├── 05 LLM Wiki/
+└── 100_Projects/
     └── AI Builders Lab/
         ├── 1차/ 2차/ 3차/ 4차/
-        └── my goals.md</pre><p>1차에는 전체 PARA를 만들지 않습니다.</p></article><article class="instruction-card soft-blue"><h3>my goals.md</h3><div class="code-card"><div class="code-head"><div><span class="code-lang">실행</span><strong>Vault 최상위</strong></div><button class="copy-btn" data-copy="goals" type="button">복사</button></div><pre id="goals"><code># 나의 AI 활용 목표
+        └── my goals.md</pre><p>1차에는 전체 PARA 폴더를 추가로 만들지 않습니다.</p></article><article class="instruction-card soft-blue"><h3>my goals.md</h3><div class="code-card"><div class="code-head"><div><span class="code-lang">실행</span><strong>100_Projects/AI Builders Lab</strong></div><button class="copy-btn" data-copy="goals" type="button">복사</button></div><pre id="goals"><code># 나의 AI 활용 목표
 
 - 이름 또는 별칭:
 - 지금 반복해서 하는 일:
 - 2주 뒤 직접 만들고 싶은 결과:
-- 완성됐다고 판단할 수 있는 모습:</code></pre></div></article></div><div class="shot-placeholder">[스크린샷 삽입 영역: Obsidian Vault, 강조: 1차~4차와 my goals.md]</div><label class="task-check"><input data-progress="p13" type="checkbox"/><span aria-hidden="true"></span><strong>Vault 구조와 목표 기록 완료</strong></label></div><footer class="page-footer"><span>Obsidian Vault와 목표</span><span>AI Builders Lab · Session 01</span></footer></article>
-<article aria-labelledby="page-14-title" class="paper-page " data-page="14" data-section="Codex 첫 파일" id="page-14"><div class="page-topline"><span class="page-section">08 · CODEX PRACTICE</span><span class="page-number">P.14 / 34</span></div><header class="page-header"><h2 id="page-14-title">Codex에는 파일 하나만 요청하고,<br/>Obsidian에서 사람이 고칩니다</h2><p>ChatGPT 앱의 Codex에서 AI Builders Lab Vault를 작업 폴더로 선택합니다.</p></header><div class="page-body"><div class="two-column"><article class="instruction-card"><h3>실행 순서</h3><ol class="number-list"><li>ChatGPT 앱 로그인</li><li>Codex New chat</li><li>Vault 폴더 선택</li><li>아래 요청 입력</li></ol></article><article class="instruction-card soft-blue"><div class="code-card"><div class="code-head"><div><span class="code-lang">실행</span><strong>첫 요청</strong></div><button class="copy-btn" data-copy="codex-prompt" type="button">복사</button></div><pre id="codex-prompt"><code>AI Builders Lab Vault의 1차 폴더 안에 01-설치-확인.md 파일 하나만 만들어줘. 내가 제공하지 않은 개인 정보나 목표를 추측하지 마. Hermes, Telegram, Obsidian, ChatGPT/Codex 설치 확인 체크 항목만 한국어로 넣어줘.</code></pre></div></article></div><div class="verification-flow"><div><strong>Codex 생성</strong><span>파일 하나</span></div><i>→</i><div><strong>Obsidian</strong><span>경로·내용 확인</span></div><i>→</i><div><strong>사람 검수</strong><span>한 문장 수정</span></div></div><div class="shot-placeholder">[스크린샷 삽입 영역: ChatGPT 앱 Codex, 강조: Vault 작업 폴더와 New chat]</div><label class="task-check"><input data-progress="p14" type="checkbox"/><span aria-hidden="true"></span><strong>01-설치-확인.md 생성과 검수 완료</strong></label></div><footer class="page-footer"><span>Codex 첫 파일</span><span>AI Builders Lab · Session 01</span></footer></article>
-<article aria-labelledby="page-15-title" class="paper-page " data-page="15" data-section="1차 완료와 다시 하기" id="page-15"><div class="page-topline"><span class="page-section">SESSION 01 COMPLETE</span><span class="page-number">P.15 / 34</span></div><header class="page-header"><h2 id="page-15-title">여섯 가지가 확인되면<br/>혼자 다시 실행할 준비가 끝났습니다</h2><p>미완료 항목은 다음 조치 목록입니다. 비밀정보는 강사 기록에 남기지 않습니다.</p></header><div class="page-body"><div class="two-column"><article class="instruction-card"><h3>최종 완료표</h3><ul class="check-list"><li>my goals.md 목표 기록</li><li>네 가지 도구 설치</li><li>Hermes 기본 응답</li><li>Telegram Hermes 응답</li><li>Codex 파일·사람 검수</li><li>자료만 보고 재실행</li></ul></article><article class="instruction-card soft-blue"><h3>15분 과제</h3><ol class="number-list"><li>Hermes 다시 실행</li><li>Telegram 연결 확인</li><li>02-반복업무-후보.md 생성</li><li>업무 3개·후보 1개·성공 기준 1개</li><li>Obsidian 한 문장 수정</li></ol></article></div><div class="info-note"><strong>강사 기록</strong><span>소요 시간, OS, 처음 막힌 단계, 효과 있었던 우회, 추가 촬영 화면만 남깁니다.</span></div><label class="task-check"><input data-progress="p15" type="checkbox"/><span aria-hidden="true"></span><strong>1차 완료 기준과 다음 과제 확인 완료</strong></label></div><footer class="page-footer"><span>1차 완료와 다시 하기</span><span>AI Builders Lab · Session 01</span></footer></article>
+- 완성됐다고 판단할 수 있는 모습:</code></pre></div></article></div><div class="shot-placeholder">[스크린샷 삽입 영역: Obsidian Vault, 강조: 05 LLM Wiki, 100_Projects/AI Builders Lab, 1차~4차와 my goals.md]</div><label class="task-check"><input data-progress="p13" type="checkbox"/><span aria-hidden="true"></span><strong>표준 Vault 구조·최소 LLM Wiki·목표 기록 완료</strong></label></div><footer class="page-footer"><span>Obsidian Vault와 목표</span><span>AI Builders Lab · Session 01</span></footer></article>
+<article aria-labelledby="page-14-title" class="paper-page " data-page="14" data-section="Codex 첫 파일" id="page-14"><div class="page-topline"><span class="page-section">08 · CODEX PRACTICE</span><span class="page-number">P.14 / 34</span></div><header class="page-header"><h2 id="page-14-title">Codex에는 파일 하나만 요청하고,<br/>Obsidian에서 사람이 고칩니다</h2><p>ChatGPT 앱의 Codex에서 <code>100_Projects/AI Builders Lab</code>을 작업 폴더로 선택합니다.</p></header><div class="page-body"><div class="two-column"><article class="instruction-card"><h3>실행 순서</h3><ol class="number-list"><li>ChatGPT 앱 로그인</li><li>Codex New chat</li><li>Vault 폴더 선택</li><li>아래 요청 입력</li></ol></article><article class="instruction-card soft-blue"><div class="code-card"><div class="code-head"><div><span class="code-lang">실행</span><strong>첫 요청</strong></div><button class="copy-btn" data-copy="codex-prompt" type="button">복사</button></div><pre id="codex-prompt"><code>`100_Projects/AI Builders Lab/1차` 폴더 안에 `01-설치-확인.md` 파일 하나만 만들어줘. 내가 제공하지 않은 개인 정보나 목표를 추측하지 마. Hermes, Telegram, Obsidian, ChatGPT/Codex 설치 확인 체크 항목만 한국어로 넣어줘.</code></pre></div></article></div><div class="verification-flow"><div><strong>Codex 생성</strong><span>파일 하나</span></div><i>→</i><div><strong>Obsidian</strong><span>경로·내용 확인</span></div><i>→</i><div><strong>사람 검수</strong><span>한 문장 수정</span></div></div><div class="shot-placeholder">[스크린샷 삽입 영역: ChatGPT 앱 Codex, 강조: Vault 작업 폴더와 New chat]</div><label class="task-check"><input data-progress="p14" type="checkbox"/><span aria-hidden="true"></span><strong>01-설치-확인.md 생성과 검수 완료</strong></label></div><footer class="page-footer"><span>Codex 첫 파일</span><span>AI Builders Lab · Session 01</span></footer></article>
+<article aria-labelledby="page-15-title" class="paper-page " data-page="15" data-section="1차 완료와 다시 하기" id="page-15"><div class="page-topline"><span class="page-section">SESSION 01 COMPLETE</span><span class="page-number">P.15 / 34</span></div><header class="page-header"><h2 id="page-15-title">일곱 가지가 확인되면<br/>혼자 다시 실행할 준비가 끝났습니다</h2><p>미완료 항목은 다음 조치 목록입니다. 비밀정보는 강사 기록에 남기지 않습니다.</p></header><div class="page-body"><div class="two-column"><article class="instruction-card"><h3>최종 완료표</h3><ul class="check-list"><li>my goals.md 목표 기록</li><li>네 가지 도구 설치</li><li>05 LLM Wiki 최소 경로</li><li>Hermes 기본 응답</li><li>Telegram Hermes 응답</li><li>Codex 파일·사람 검수</li><li>자료만 보고 재실행</li></ul></article><article class="instruction-card soft-blue"><h3>15분 과제</h3><ol class="number-list"><li>Hermes 다시 실행</li><li>Telegram 연결 확인</li><li>02-반복업무-후보.md 생성</li><li>업무 3개·후보 1개·성공 기준 1개</li><li>Obsidian 한 문장 수정</li></ol></article></div><div class="info-note"><strong>강사 기록</strong><span>소요 시간, OS, 처음 막힌 단계, 효과 있었던 우회, 추가 촬영 화면만 남깁니다.</span></div><label class="task-check"><input data-progress="p15" type="checkbox"/><span aria-hidden="true"></span><strong>1차 완료 기준과 다음 과제 확인 완료</strong></label></div><footer class="page-footer"><span>1차 완료와 다시 하기</span><span>AI Builders Lab · Session 01</span></footer></article>
 <article aria-labelledby="page-16-title" class="paper-page" data-page="16" data-section="에이전트 이름" id="page-16">
 <div class="page-topline">
 <span class="page-section">07 · AGENT NAME</span>
@@ -787,25 +783,25 @@ hermes cron status</code></pre>
 </div>
 <header class="page-header">
 <h2 id="page-23-title">Obsidian은 파일을 가두는 서비스가 아니라<br/>Markdown 폴더를 보여주는 작업 공간입니다</h2>
-<p>공식 사이트에서 설치한 뒤 새 Vault를 바로 만들기보다, 다음 페이지에서 생성할 PARA 폴더의 상위 폴더를 기존 폴더로 열면 됩니다.</p>
+<p>공식 사이트에서 설치한 뒤 기존 Vault 또는 새 Vault 안에 표준 프로젝트 폴더와 05 LLM Wiki를 만듭니다.</p>
 </header>
 <div class="page-body"><p class="future-banner">다음 차시 미리보기입니다. 1차 완료 기준과 180분 실습 시간에는 포함하지 않습니다.</p>
 <div class="split-grid">
 <article class="step-panel">
 <div class="step-row"><b>1</b><div><h3>Obsidian 공식 다운로드</h3><p>운영체제에 맞는 설치 파일을 받아 실행합니다.</p></div></div>
-<div class="step-row"><b>2</b><div><h3>PARA 폴더 먼저 생성</h3><p>다음 페이지의 명령으로 <code>My Second Brain</code> 폴더와 6개 하위 폴더를 만듭니다.</p></div></div>
-<div class="step-row"><b>3</b><div><h3>Open folder as vault</h3><p><code>My Second Brain</code> 상위 폴더를 Vault로 엽니다.</p></div></div>
+<div class="step-row"><b>2</b><div><h3>표준 폴더 먼저 생성</h3><p>다음 페이지의 명령으로 <code>100_Projects/AI Builders Lab</code>과 <code>05 LLM Wiki</code>를 만듭니다.</p></div></div>
+<div class="step-row"><b>3</b><div><h3>Open folder as vault</h3><p>두 표준 폴더가 들어 있는 Vault 루트를 엽니다.</p></div></div>
 </article>
-<article class="vault-visual"><div class="vault-icon">◇</div><h3>My Second Brain</h3><p>사람이 확인하는 전체 지식 창고</p><div class="vault-mini-tree"><span>00 Inbox</span><span>01 Project</span><span>02 Area</span><span>03 Resource</span><span>04 Archive</span><span class="active">05 LLM Wiki</span></div></article>
+<article class="vault-visual"><div class="vault-icon">◇</div><h3>Obsidian Vault</h3><p>사람이 확인하는 전체 지식 창고</p><div class="vault-mini-tree"><span class="active">05 LLM Wiki</span><span>100_Projects</span><span>AI Builders Lab</span><span>1차 · 2차</span><span>3차 · 4차</span><span>my goals.md</span></div></article>
 </div>
 <div class="code-card">
 <div class="code-head">
 <div><span class="code-lang">Obsidian</span><strong>GUI 클릭 경로</strong></div>
 <button aria-label="GUI 클릭 경로 코드 복사" class="copy-btn" data-copy="obsidian-open" type="button">복사</button>
 </div>
-<pre id="obsidian-open"><code>Obsidian 시작 화면 → Open folder as vault → My Second Brain 선택</code></pre>
+<pre id="obsidian-open"><code>Obsidian 시작 화면 → Open folder as vault → 표준 폴더가 들어 있는 Vault 루트 선택</code></pre>
 </div>
-<div class="info-note"><strong>가이드 기반</strong><span>제공된 Second Brain 가이드는 Obsidian 설치 후 압축을 푼 폴더를 기존 Vault로 여는 방식을 사용합니다. 이 교육안에서는 사용자 요청에 맞춰 폴더 이름을 <code>00 Inbox</code>부터 <code>05 LLM Wiki</code>까지 단순화했습니다. <a aria-label="출처 2: Hermes Second Brain 설치 가이드" class="cite" href="#source-user-secondbrain">[2]</a></span></div>
+<div class="info-note"><strong>가이드 기반</strong><span>이 과정의 참가자 표준 경로는 <code>100_Projects/AI Builders Lab</code>, LLM Wiki 표준 경로는 Vault 루트의 <code>05 LLM Wiki</code>입니다. 기존 폴더는 자동으로 이동하거나 이름을 바꾸지 않습니다. <a aria-label="출처 2: Hermes Second Brain 설치 가이드" class="cite" href="#source-user-secondbrain">[2]</a></span></div>
 <label class="task-check">
 <input data-progress="p23" type="checkbox"/>
 <span aria-hidden="true"></span>
@@ -817,23 +813,25 @@ hermes cron status</code></pre>
 <span>AI Builders Lab · Session 01</span>
 </footer>
 </article>
-<article aria-labelledby="page-24-title" class="paper-page" data-page="24" data-section="PARA 구조" id="page-24">
+<article aria-labelledby="page-24-title" class="paper-page" data-page="24" data-section="표준 Vault 구조" id="page-24">
 <div class="page-topline">
-<span class="page-section">15 · PARA FOLDER TREE</span>
+<span class="page-section">15 · STANDARD VAULT TREE</span>
 <span class="page-number">P.24 / 34</span>
 </div>
 <header class="page-header">
-<h2 id="page-24-title">00 Inbox부터 05 LLM Wiki까지<br/>한 번에 생성합니다</h2>
-<p>사용자가 지정한 폴더 이름과 순서를 그대로 사용합니다. 공백이 포함되므로 Terminal 명령에서는 반드시 따옴표를 유지하세요.</p>
+<h2 id="page-24-title">1차~4차 프로젝트와 05 LLM Wiki를<br/>표준 경로로 생성합니다</h2>
+<p>Vault의 실제 절대 경로를 먼저 확인합니다. 공백이 포함되므로 Terminal 명령에서는 반드시 따옴표를 유지하세요.</p>
 </header>
 <div class="page-body"><p class="future-banner">다음 차시 미리보기입니다. 1차 완료 기준과 180분 실습 시간에는 포함하지 않습니다.</p>
-<div class="folder-tree-card"><pre><code>My Second Brain/
-├── 00 Inbox/
-├── 01 Project/
-├── 02 Area/
-├── 03 Resource/
-├── 04 Archive/
-└── 05 LLM Wiki/</code></pre></div>
+<div class="folder-tree-card"><pre><code>&lt;Obsidian Vault&gt;/
+├── 05 LLM Wiki/
+└── 100_Projects/
+    └── AI Builders Lab/
+        ├── 1차/
+        ├── 2차/
+        ├── 3차/
+        ├── 4차/
+        └── my goals.md</code></pre></div>
 <div class="os-panels">
 <div data-os-panel="windows">
 <div class="code-card">
@@ -841,15 +839,16 @@ hermes cron status</code></pre>
 <div><span class="code-lang">PowerShell</span><strong>Windows PowerShell에 그대로 붙여넣기</strong></div>
 <button aria-label="Windows PowerShell에 그대로 붙여넣기 코드 복사" class="copy-btn" data-copy="para-powershell" type="button">복사</button>
 </div>
-<pre id="para-powershell"><code>$vault = "$HOME\Documents\My Second Brain"
-New-Item -ItemType Directory -Force -Path $vault | Out-Null
+<pre id="para-powershell"><code>$vault = Read-Host "Obsidian Vault의 절대 경로"
+$project = Join-Path $vault "100_Projects\AI Builders Lab"
+$wiki = Join-Path $vault "05 LLM Wiki"
 
-"00 Inbox", "01 Project", "02 Area", "03 Resource", "04 Archive", "05 LLM Wiki" |
-  ForEach-Object {
-    New-Item -ItemType Directory -Force -Path (Join-Path $vault $_) | Out-Null
-  }
-
-Get-ChildItem -Path $vault -Directory | Select-Object Name</code></pre>
+New-Item -ItemType Directory -Force -Path $wiki | Out-Null
+"1차", "2차", "3차", "4차" | ForEach-Object {
+  New-Item -ItemType Directory -Force -Path (Join-Path $project $_) | Out-Null
+}
+New-Item -ItemType File -Force -Path (Join-Path $project "my goals.md") | Out-Null
+Get-ChildItem -Path $project</code></pre>
 </div>
 </div>
 <div data-os-panel="macos">
@@ -858,10 +857,11 @@ Get-ChildItem -Path $vault -Directory | Select-Object Name</code></pre>
 <div><span class="code-lang">zsh</span><strong>macOS Terminal에 그대로 붙여넣기</strong></div>
 <button aria-label="macOS Terminal에 그대로 붙여넣기 코드 복사" class="copy-btn" data-copy="para-macos" type="button">복사</button>
 </div>
-<pre id="para-macos"><code>VAULT="$HOME/Documents/My Second Brain"
-mkdir -p           "$VAULT/00 Inbox"           "$VAULT/01 Project"           "$VAULT/02 Area"           "$VAULT/03 Resource"           "$VAULT/04 Archive"           "$VAULT/05 LLM Wiki"
-
-find "$VAULT" -maxdepth 1 -type d -print</code></pre>
+<pre id="para-macos"><code>read -r "VAULT?Obsidian Vault의 절대 경로: "
+mkdir -p "$VAULT/05 LLM Wiki"
+mkdir -p "$VAULT/100_Projects/AI Builders Lab/"{1차,2차,3차,4차}
+touch "$VAULT/100_Projects/AI Builders Lab/my goals.md"
+find "$VAULT/100_Projects/AI Builders Lab" -maxdepth 1 -print</code></pre>
 </div>
 </div>
 </div>
@@ -870,23 +870,21 @@ find "$VAULT" -maxdepth 1 -type d -print</code></pre>
 <div><span class="code-lang">prompt</span><strong>Hermes에게 자연어로 생성 요청</strong></div>
 <button aria-label="Hermes에게 자연어로 생성 요청 코드 복사" class="copy-btn" data-copy="para-hermes-prompt" type="button">복사</button>
 </div>
-<pre id="para-hermes-prompt"><code>내 Documents 폴더 아래에 "My Second Brain" 폴더를 만들고,
-그 안에 아래 폴더를 정확한 이름과 순서로 생성해줘.
+<pre id="para-hermes-prompt"><code>내 Obsidian Vault의 절대 경로는 [여기에 직접 입력]이야.
+아래 표준 구조만 만들어줘.
 
-00 Inbox
-01 Project
-02 Area
-03 Resource
-04 Archive
-05 LLM Wiki
+- Vault 루트/05 LLM Wiki
+- Vault 루트/100_Projects/AI Builders Lab/1차
+- 같은 위치의 2차, 3차, 4차
+- AI Builders Lab 폴더의 my goals.md
 
-기존 폴더나 파일은 삭제하거나 이름을 바꾸지 말고,
-작업 전에 생성될 전체 경로를 보여준 뒤 승인을 받아 실행해줘.</code></pre>
+기존 폴더나 파일은 삭제·이동·이름 변경하지 말고,
+작업 전에 생성될 전체 경로를 보여준 뒤 내 승인을 받아 실행해줘.</code></pre>
 </div>
 <label class="task-check">
 <input data-progress="p24" type="checkbox"/>
 <span aria-hidden="true"></span>
-<strong>PARA 6개 폴더 생성 및 Obsidian에서 확인 완료</strong>
+<strong>표준 프로젝트·05 LLM Wiki 경로를 Obsidian에서 확인 완료</strong>
 </label>
 </div>
 <footer class="page-footer">
@@ -900,11 +898,11 @@ find "$VAULT" -maxdepth 1 -type d -print</code></pre>
 <span class="page-number">P.25 / 34</span>
 </div>
 <header class="page-header">
-<h2 id="page-25-title">주제가 아니라<br/><span class="blue">지금 무엇을 해야 하는지</span>로 분류합니다</h2>
-<p>Project, Area, Resource, Archive는 사람의 행동 기준이고, LLM Wiki는 AI가 원본을 연결·갱신하는 별도 지식층입니다.</p>
+<h2 id="page-25-title">PARA 전체 확장은<br/><span class="blue">필요해질 때만</span> 추가합니다</h2>
+<p>1차 실제 구조는 100_Projects와 05 LLM Wiki입니다. 아래 PARA 분류는 향후 자료가 많아졌을 때 검토하는 선택 개념입니다.</p>
 </header>
 <div class="page-body"><p class="future-banner">다음 차시 미리보기입니다. 1차 완료 기준과 180분 실습 시간에는 포함하지 않습니다.</p>
-<div class="folder-purpose-grid">
+<div class="warning-note"><strong>1차에는 생성하지 않음</strong><span>아래 00~04 폴더는 참고 개념입니다. 기존 Vault 구조를 자동으로 바꾸거나 중복 폴더를 만들지 않습니다.</span></div><div class="folder-purpose-grid">
 <article><b>00</b><h3>Inbox</h3><p>아직 분류하지 않은 새 자료. 매일 또는 정기적으로 비웁니다.</p><code>예: 새 PDF, 메모, 임시 링크</code></article>
 <article><b>01</b><h3>Project</h3><p>완료 조건과 기한이 있는 현재 일.</p><code>예: Hermes 교육자료 제작</code></article>
 <article><b>02</b><h3>Area</h3><p>끝나지 않고 계속 관리해야 하는 책임 영역.</p><code>예: 건강, 재무, 팀 운영</code></article>
@@ -929,7 +927,7 @@ find "$VAULT" -maxdepth 1 -type d -print</code></pre>
 <label class="task-check">
 <input data-progress="p25" type="checkbox"/>
 <span aria-hidden="true"></span>
-<strong>PARA 폴더별 용도와 이동 기준 이해 완료</strong>
+<strong>선택 가능한 PARA 분류 개념 이해 완료</strong>
 </label>
 </div>
 <footer class="page-footer">
@@ -958,7 +956,7 @@ find "$VAULT" -maxdepth 1 -type d -print</code></pre>
 <button aria-label="05 LLM Wiki에 초기화하는 핵심 명령 코드 복사" class="copy-btn" data-copy="llm-wiki-install" type="button">복사</button>
 </div>
 <pre id="llm-wiki-install"><code>내 Obsidian Vault의 절대 경로는 아래와 같아.
-[여기에 My Second Brain의 실제 절대 경로를 붙여넣기]
+[여기에 현재 Obsidian Vault의 실제 절대 경로를 붙여넣기]
 
 Hermes 공식 번들 스킬 `skills/research/llm-wiki`가 현재 설치되어 있는지 먼저 확인해줘.
 
@@ -1081,7 +1079,7 @@ SCHEMA.md, index.md, log.md와 raw/entities/concepts/comparisons/queries 폴더�
 <pre id="raw-save-ingest"><code>아래 원본 파일을 05 LLM Wiki에 ingest해줘.
 
 원본 파일 경로:
-[예: /Users/me/Documents/My Second Brain/05 LLM Wiki/raw/articles/hermes-guide.md]
+[예: /Users/me/Obsidian/My Vault/05 LLM Wiki/raw/articles/hermes-guide.md]
 
 작업 규칙:
 1. raw 원본은 수정하지 않기
@@ -1492,7 +1490,7 @@ hermes gateway status</code></pre>
     "schemaVersion":"1.0",
     "reportId":"260816-ai-builders-lab-session-01",
     "title":"AI 빌더스 랩 1차 실습 가이드 | 설치부터 혼자 다시 실행까지",
-    "version":"2.0.0",
+    "version":"2.1.0",
     "status":"Published",
     "createdAt":"2026-08-16",
     "updatedAt":"2026-08-16",
@@ -1501,6 +1499,15 @@ hermes gateway status</code></pre>
     "generation":"AI-assisted",
     "reviewStatus":"Human review recommended",
     "history":[
+      {
+        "version":"2.1.0",
+        "date":"2026-08-16",
+        "type":"내용 업데이트",
+        "summary":"4차 과정을 자동화·Codex 프로그래밍·GPT Sites 흐름으로 통일하고, 참가자 표준 경로를 100_Projects/AI Builders Lab과 Vault 루트의 05 LLM Wiki로 정리함.",
+        "sections":["과정 지도","180분 운영","Vault","LLM Wiki"],
+        "updatedBy":"AI-assisted",
+        "reviewStatus":"Human review recommended"
+      },
       {
         "version":"2.0.0",
         "date":"2026-08-10",
@@ -1519,7 +1526,7 @@ hermes gateway status</code></pre>
     const toast = document.getElementById('toast');
     const progressChip = document.getElementById('progressChip');
     const progressInputs = [...document.querySelectorAll('[data-progress]')];
-    const storageKey = 'ai-builders-lab-session-01-guide-v2';
+    const storageKey = 'ai-builders-lab-session-01-guide-v3';
 
     function updateScroll() {
       const max = document.documentElement.scrollHeight - innerHeight;
@@ -1604,12 +1611,6 @@ hermes gateway status</code></pre>
     }
     renderMetadata();
   </script>
-  <script src="../../assets/report-page-layout.js?v=20260815-responsive-only1"></script>
-  <script src="../../assets/report-view-counter.js?v=20260810-counter-d1-1" data-report-id="260816-ai-builders-lab-session-01"></script>
-  <script src="../../assets/report-comments.js?v=20260816-comments-width1" data-report-id="260816-ai-builders-lab-session-01"></script>
-  <script src="../../assets/report-history.js?v=20260809-history2" data-report-id="260816-ai-builders-lab-session-01"></script>
-  <script src="../../assets/report-entry-tracker.js?v=20260811-entry1" data-report-id="260816-ai-builders-lab-session-01"></script>
-  <script src="../../assets/report-hub-brand.js?v=20260812-report-hub-logo2"></script>
 
  <style>
   .access-gate{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:24px;background:rgba(245,248,252,.96);backdrop-filter:blur(18px)}
@@ -1618,14 +1619,14 @@ hermes gateway status</code></pre>
   .access-gate-card p{color:#4d5d73}.access-gate-card h1{margin:0 0 12px;font-size:31px;line-height:1.18;letter-spacing:-.05em}
   .access-gate-form{display:grid;gap:10px;margin-top:24px}.access-gate-form label{font-size:13px;font-weight:800}.access-gate-form input{width:100%;padding:14px 15px;border:1px solid #cbd9e7;border-radius:12px;font:600 18px/1.2 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;letter-spacing:.08em}
   .access-gate-form input:focus{outline:3px solid rgba(35,137,254,.18);border-color:#2389fe}.access-gate-form button{padding:14px;border:0;border-radius:12px;background:#2389fe;color:#fff;font-weight:850}.access-gate-form button:hover{background:#006be6}.access-gate-error{min-height:20px;margin:4px 0 0;color:#d92d20;font-size:13px;font-weight:750}.access-gate-note{margin-top:20px!important;font-size:12px;line-height:1.55}
-  body.access-granted .access-gate{display:none}
+  body:not(.access-granted){overflow:hidden}body.access-granted .access-gate{display:none}
  </style>
  <section class="access-gate" id="access-gate" aria-labelledby="access-title">
   <div class="access-gate-card">
    <img src="assets/AI-빌더스-랩-공식-로고.png" alt="AI Builders Lab">
    <p class="eyebrow">PUBLIC GUIDE · ACCESS REQUIRED</p>
    <h1 id="access-title">강의자료 열기</h1>
-   <p>참여자용 자료입니다. 안내받은 비밀번호를 입력하면 1차 실습 매뉴얼을 볼 수 있습니다.</p>
+   <p>참여자용 자료입니다. 안내받은 비밀번호를 입력하면 2차 실습 매뉴얼을 볼 수 있습니다.</p>
    <form class="access-gate-form" id="access-gate-form">
     <label for="access-password">비밀번호</label>
     <input id="access-password" type="password" inputmode="numeric" autocomplete="current-password" aria-describedby="access-error" required>

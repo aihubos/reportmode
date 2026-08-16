@@ -1,0 +1,139 @@
+{
+  "schemaVersion": "1",
+  "id": "260816-ai-builders-lab-session-03",
+  "slug": "ai-builders-lab-session-03",
+  "title": "AI 빌더스 랩 · 4회 과정 3차",
+  "subtitle": "Codex로 만드는 미니 게임과 반응형 소개 웹 실습 매뉴얼",
+  "category": "AI 실습 · 교육",
+  "language": "ko",
+  "author": "AI Builders Lab",
+  "createdAt": "2026-08-16T15:52:00+09:00",
+  "updatedAt": "2026-08-16T15:52:00+09:00",
+  "status": "published",
+  "summary": "요구사항·계획·구현·브라우저 실행·모바일 시험·버그 수정의 기본 루프로 미니 게임과 한 페이지 소개 웹을 완성하는 180분 강의자료입니다.",
+  "verdict": "3차의 목표는 코드를 외우는 것이 아니라, 작은 기능을 직접 실행하고 증상과 재현 순서로 오류를 고치는 경험을 만드는 것입니다.",
+  "heroEyebrow": "AI BUILDERS LAB · SESSION 03",
+  "metrics": [
+    {
+      "label": "전체 과정",
+      "value": "4차",
+      "note": "현재 3차"
+    },
+    {
+      "label": "수업 시간",
+      "value": "180분",
+      "note": "실행 중심"
+    },
+    {
+      "label": "교재 페이지",
+      "value": "18p",
+      "note": "웹·PDF"
+    }
+  ],
+  "sections": [
+    {
+      "id": "session-03",
+      "heading": "AI 빌더스 랩 · 4회 과정 3차",
+      "kind": "fact",
+      "body": "요구사항·계획·구현·브라우저 실행·모바일 시험·버그 수정의 기본 루프로 미니 게임과 한 페이지 소개 웹을 완성하는 180분 강의자료입니다.",
+      "bullets": [
+        "한 화면에는 한 단계 또는 한 행동만 배치",
+        "실제 화면 캡처가 필요한 메뉴 단계만 스크린샷 자리표시자 유지",
+        "비밀번호, Token, API 키, 개인 ID와 개인 대화는 저장하지 않음",
+        "AI 출력은 참가자가 사실과 표현을 직접 검수"
+      ],
+      "sourceIds": [
+        "s1"
+      ]
+    }
+  ],
+  "pros": [
+    "초보자도 강사 없이 다시 실행할 수 있는 단계별 흐름",
+    "PC·태블릿·모바일 반응형과 A4 가로 인쇄",
+    "오류 원인 기록과 대체 실습 경로"
+  ],
+  "cons": [
+    "제품 화면과 메뉴는 업데이트에 따라 달라질 수 있음",
+    "계정·요금제·지역·관리자 설정에 따라 일부 기능이 제한될 수 있음"
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "title": "3차 완료 판단",
+      "body": "3차의 목표는 코드를 외우는 것이 아니라, 작은 기능을 직접 실행하고 증상과 재현 순서로 오류를 고치는 경험을 만드는 것입니다."
+    }
+  ],
+  "timeline": [
+    {
+      "date": "3차",
+      "title": "Codex로 만드는 미니 게임과 반응형 웹",
+      "body": "계획·구현·실행·오류 수정의 기본 루프를 익히는 180분 실습"
+    },
+    {
+      "date": "다음 행동",
+      "title": "혼자 재실행하고 기록",
+      "body": "결과와 오류, 사람 검수 내용을 Vault에 남깁니다."
+    }
+  ],
+  "quotes": [
+    "AI가 만든 결과는 초안입니다. 직접 실행하고 검수한 뒤 내 결과가 됩니다."
+  ],
+  "sources": [
+    {
+      "id": "s1",
+      "kind": "local",
+      "title": "AI 빌더스 랩 3차 독립형 강의 웹",
+      "publisher": "AI Builders Lab",
+      "accessedAt": "2026-08-16T15:52:00+09:00",
+      "note": "180분 참가자 실습·발표·인쇄용 통합 매뉴얼"
+    },
+    {
+      "id": "s2",
+      "kind": "web",
+      "title": "ChatGPT 데스크톱 앱",
+      "publisher": "OpenAI",
+      "url": "https://learn.chatgpt.com/docs/app",
+      "accessedAt": "2026-08-16T15:52:00+09:00"
+    },
+    {
+      "id": "s3",
+      "kind": "web",
+      "title": "Codex Code Review",
+      "publisher": "OpenAI",
+      "url": "https://learn.chatgpt.com/docs/code-review?surface=app",
+      "accessedAt": "2026-08-16T15:52:00+09:00"
+    },
+    {
+      "id": "s4",
+      "kind": "web",
+      "title": "MDN HTML 기초",
+      "publisher": "Official documentation",
+      "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Creating_the_content",
+      "accessedAt": "2026-08-16T15:52:00+09:00"
+    },
+    {
+      "id": "s5",
+      "kind": "web",
+      "title": "MDN 반응형 디자인",
+      "publisher": "Official documentation",
+      "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design",
+      "accessedAt": "2026-08-16T15:52:00+09:00"
+    },
+    {
+      "id": "s6",
+      "kind": "web",
+      "title": "W3C WCAG 빠른 참고",
+      "publisher": "Official documentation",
+      "url": "https://www.w3.org/WAI/WCAG22/quickref/",
+      "accessedAt": "2026-08-16T15:52:00+09:00"
+    }
+  ],
+  "tags": [
+    "AI Builders Lab",
+    "Codex",
+    "바이브 코딩",
+    "웹 게임",
+    "반응형 웹",
+    "교육"
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "schemaVersion": "1",
+  "id": "260816-ai-builders-lab-session-04",
+  "slug": "ai-builders-lab-session-04",
+  "title": "AI 빌더스 랩 · 4회 과정 4차",
+  "subtitle": "GPT Sites 개인 대시보드·홈페이지 제작과 공개 실습 매뉴얼",
+  "category": "AI 실습 · 교육",
+  "language": "ko",
+  "author": "AI Builders Lab",
+  "createdAt": "2026-08-16T15:52:00+09:00",
+  "updatedAt": "2026-08-16T15:52:00+09:00",
+  "status": "published",
+  "summary": "ChatGPT Sites에서 목적과 공개 자료를 설명하고, 미리보기·수정·모바일 검수·버전 저장·공개 범위·배포·방문자 QA까지 완료하는 180분 강의자료입니다.",
+  "verdict": "4차의 목표는 URL 하나가 아니라, 무엇을 공개했고 어떤 버전을 누구에게 보여주는지 스스로 통제하는 개인 Site를 완성하는 것입니다.",
+  "heroEyebrow": "AI BUILDERS LAB · SESSION 04",
+  "metrics": [
+    {
+      "label": "전체 과정",
+      "value": "4차",
+      "note": "현재 4차"
+    },
+    {
+      "label": "수업 시간",
+      "value": "180분",
+      "note": "실행 중심"
+    },
+    {
+      "label": "교재 페이지",
+      "value": "21p",
+      "note": "웹·PDF"
+    }
+  ],
+  "sections": [
+    {
+      "id": "session-04",
+      "heading": "AI 빌더스 랩 · 4회 과정 4차",
+      "kind": "fact",
+      "body": "ChatGPT Sites에서 목적과 공개 자료를 설명하고, 미리보기·수정·모바일 검수·버전 저장·공개 범위·배포·방문자 QA까지 완료하는 180분 강의자료입니다.",
+      "bullets": [
+        "한 화면에는 한 단계 또는 한 행동만 배치",
+        "실제 화면 캡처가 필요한 메뉴 단계만 스크린샷 자리표시자 유지",
+        "비밀번호, Token, API 키, 개인 ID와 개인 대화는 저장하지 않음",
+        "AI 출력은 참가자가 사실과 표현을 직접 검수"
+      ],
+      "sourceIds": [
+        "s1"
+      ]
+    }
+  ],
+  "pros": [
+    "초보자도 강사 없이 다시 실행할 수 있는 단계별 흐름",
+    "PC·태블릿·모바일 반응형과 A4 가로 인쇄",
+    "오류 원인 기록과 대체 실습 경로"
+  ],
+  "cons": [
+    "제품 화면과 메뉴는 업데이트에 따라 달라질 수 있음",
+    "계정·요금제·지역·관리자 설정에 따라 일부 기능이 제한될 수 있음"
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "title": "4차 완료 판단",
+      "body": "4차의 목표는 URL 하나가 아니라, 무엇을 공개했고 어떤 버전을 누구에게 보여주는지 스스로 통제하는 개인 Site를 완성하는 것입니다."
+    }
+  ],
+  "timeline": [
+    {
+      "date": "4차",
+      "title": "GPT Sites로 만드는 개인 대시보드·홈페이지",
+      "body": "설명·미리보기·수정·버전 저장·공개 범위·배포를 익히는 180분 실습"
+    },
+    {
+      "date": "다음 행동",
+      "title": "혼자 재실행하고 기록",
+      "body": "결과와 오류, 사람 검수 내용을 Vault에 남깁니다."
+    }
+  ],
+  "quotes": [
+    "AI가 만든 결과는 초안입니다. 직접 실행하고 검수한 뒤 내 결과가 됩니다."
+  ],
+  "sources": [
+    {
+      "id": "s1",
+      "kind": "local",
+      "title": "AI 빌더스 랩 4차 독립형 강의 웹",
+      "publisher": "AI Builders Lab",
+      "accessedAt": "2026-08-16T15:52:00+09:00",
+      "note": "180분 참가자 실습·발표·인쇄용 통합 매뉴얼"
+    },
+    {
+      "id": "s2",
+      "kind": "web",
+      "title": "OpenAI Sites 공식 문서",
+      "publisher": "OpenAI",
+      "url": "https://learn.chatgpt.com/docs/sites",
+      "accessedAt": "2026-08-16T15:52:00+09:00"
+    },
+    {
+      "id": "s3",
+      "kind": "web",
+      "title": "ChatGPT 데스크톱 앱",
+      "publisher": "OpenAI",
+      "url": "https://learn.chatgpt.com/docs/app",
+      "accessedAt": "2026-08-16T15:52:00+09:00"
+    },
+    {
+      "id": "s4",
+      "kind": "web",
+      "title": "OpenAI Sites 활용 사례",
+      "publisher": "OpenAI",
+      "url": "https://learn.chatgpt.com/use-cases/build-and-deploy-internal-apps",
+      "accessedAt": "2026-08-16T15:52:00+09:00"
+    },
+    {
+      "id": "s5",
+      "kind": "web",
+      "title": "OpenAI 학생 웹사이트 가이드",
+      "publisher": "OpenAI",
+      "url": "https://learn.chatgpt.com/use-cases/build-student-website",
+      "accessedAt": "2026-08-16T15:52:00+09:00"
+    },
+    {
+      "id": "s6",
+      "kind": "web",
+      "title": "GitHub Pages Quickstart",
+      "publisher": "GitHub",
+      "url": "https://docs.github.com/en/pages/quickstart",
+      "accessedAt": "2026-08-16T15:52:00+09:00"
+    },
+    {
+      "id": "s7",
+      "kind": "web",
+      "title": "GitHub Pages 사이트 생성",
+      "publisher": "GitHub",
+      "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site",
+      "accessedAt": "2026-08-16T15:52:00+09:00"
+    },
+    {
+      "id": "s8",
+      "kind": "web",
+      "title": "GitHub Pages HTTPS",
+      "publisher": "GitHub",
+      "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https",
+      "accessedAt": "2026-08-16T15:52:00+09:00"
+    }
+  ],
+  "tags": [
+    "AI Builders Lab",
+    "GPT Sites",
+    "대시보드",
+    "홈페이지",
+    "배포",
+    "교육"
+  ]
+}
