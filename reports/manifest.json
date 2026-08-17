@@ -1,7 +1,30 @@
 {
-  "generatedAt": "2026-08-17T00:13:30.916Z",
+  "generatedAt": "2026-08-17T12:28:46.937Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260817-selfish-core-practical-review",
+      "slug": "selfish-core-practical-review",
+      "title": "Selfish Core 실질 적용 검토 보고서",
+      "category": "비즈니스",
+      "summary": "Selfish Core를 제품 제작 전 코어 인터뷰 게이트로 적용하는 방법과 4주 실행계획을 정리한 검토 보고서입니다.",
+      "createdAt": "2026-08-17T21:30:00+09:00",
+      "updatedAt": "2026-08-17T21:30:00+09:00",
+      "status": "published",
+      "path": "reports/260817-selfish-core-practical-review/",
+      "url": "https://aihubos.github.io/reportmode/reports/260817-selfish-core-practical-review/",
+      "displayDate": "260817",
+      "sourceCount": 9,
+      "tags": [
+        "셀피쉬클럽",
+        "Selfish Core",
+        "AI Builders Lab",
+        "Hermes",
+        "Claude"
+      ],
+      "coverImage": "reports/260817-selfish-core-practical-review/assets/selfishclub-avatar.jpg",
+      "coverAlt": "Selfish Club 로고"
+    },
     {
       "id": "260817-ai-builders-lab-first-cohort-textbook",
       "slug": "ai-builders-lab-first-cohort-textbook",

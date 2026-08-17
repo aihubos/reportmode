@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1",
+  "id": "260817-selfish-core-practical-review",
+  "slug": "selfish-core-practical-review",
+  "title": "Selfish Core 실질 적용 검토 보고서",
+  "category": "비즈니스",
+  "tags": [
+    "셀피쉬클럽",
+    "Selfish Core",
+    "AI Builders Lab",
+    "Hermes",
+    "Claude"
+  ],
+  "summary": "Selfish Core를 제품 제작 전 코어 인터뷰 게이트로 적용하는 방법과 4주 실행계획을 정리한 검토 보고서입니다.",
+  "createdAt": "2026-08-17T21:30:00+09:00",
+  "updatedAt": "2026-08-17T21:30:00+09:00",
+  "status": "published",
+  "sourceName": "Selfish Core 실질 적용 검토 보고서.zip",
+  "sourceCount": 9,
+  "entry": "index.html"
+}
