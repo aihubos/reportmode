@@ -1,13 +1,36 @@
 {
-  "generatedAt": "2026-08-16T09:50:00Z",
+  "generatedAt": "2026-08-17T00:13:30.916Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260817-ai-builders-lab-first-cohort-textbook",
+      "slug": "ai-builders-lab-first-cohort-textbook",
+      "title": "[교재] AI 빌더스 랩 - 1기",
+      "category": "기타",
+      "summary": "AI 초보자가 Hermes, Telegram, Obsidian, Codex를 설치하고 첫 실행과 사람 검수까지 완료하는 AI 빌더스 랩 1기 1차 실습 교재입니다.",
+      "createdAt": "2026-08-17T12:00:00+09:00",
+      "updatedAt": "2026-08-17T12:00:00+09:00",
+      "status": "published",
+      "path": "reports/260817-ai-builders-lab-first-cohort-textbook/",
+      "url": "https://aihubos.github.io/reportmode/reports/260817-ai-builders-lab-first-cohort-textbook/",
+      "displayDate": "260817",
+      "sourceCount": 12,
+      "tags": [
+        "AI Builders Lab",
+        "AI 교육",
+        "Hermes",
+        "Codex",
+        "Obsidian",
+        "Telegram"
+      ],
+      "coverImage": "reports/260817-ai-builders-lab-first-cohort-textbook/assets/thumbnail.png",
+      "coverAlt": "AI 빌더스 랩 로고"
+    },
     {
       "id": "260816-ai-builders-lab-executive-guidebook",
       "slug": "ai-builders-lab-executive-guidebook",
       "title": "AI 빌더스 랩 · 임원 교육 가이드북",
-      "subtitle": "4회 12시간 AI 실습을 승인·검수·통제·공개 흐름으로 정리한 41페이지 운영 가이드",
-      "category": "기타",
+      "category": "AI 실습 · 교육",
       "summary": "Hermes 설치, 자동화, Codex 제작, GPT Sites 공개를 임원·스폰서 관점의 승인 기준과 중단 기준으로 묶은 41페이지 통합 가이드입니다.",
       "createdAt": "2026-08-16T18:50:00+09:00",
       "updatedAt": "2026-08-16T18:50:00+09:00",
@@ -26,14 +49,14 @@
         "30일 파일럿"
       ],
       "coverImage": "reports/260816-ai-builders-lab-executive-guidebook/assets/ai-builders-lab-official-logo.png",
-      "coverAlt": "AI 빌더스 랩 공식 로고"
+      "coverAlt": "AI Builders Lab 공식 로고",
+      "subtitle": "4회 12시간 AI 실습을 승인·검수·통제·공개 흐름으로 정리한 41페이지 운영 가이드"
     },
     {
       "id": "260816-ai-builders-lab-session-04",
       "slug": "ai-builders-lab-session-04",
       "title": "AI 빌더스 랩 · 4회 과정 4차",
-      "subtitle": "GPT Sites 개인 대시보드·홈페이지 제작과 공개 실습 매뉴얼",
-      "category": "기타",
+      "category": "AI 실습 · 교육",
       "summary": "ChatGPT Sites에서 목적과 공개 자료를 설명하고, 미리보기·수정·모바일 검수·버전 저장·공개 범위·배포·방문자 QA까지 완료하는 180분 강의자료입니다.",
       "createdAt": "2026-08-16T15:52:00+09:00",
       "updatedAt": "2026-08-16T15:52:00+09:00",
@@ -51,14 +74,14 @@
         "교육"
       ],
       "coverImage": "reports/260816-ai-builders-lab-session-04/assets/AI-빌더스-랩-공식-로고.png",
-      "coverAlt": "AI 빌더스 랩 공식 로고"
+      "coverAlt": "AI BUILDERS LAB",
+      "subtitle": "GPT Sites 개인 대시보드·홈페이지 제작과 공개 실습 매뉴얼"
     },
     {
       "id": "260816-ai-builders-lab-session-03",
       "slug": "ai-builders-lab-session-03",
       "title": "AI 빌더스 랩 · 4회 과정 3차",
-      "subtitle": "Codex로 만드는 미니 게임과 반응형 소개 웹 실습 매뉴얼",
-      "category": "기타",
+      "category": "AI 실습 · 교육",
       "summary": "요구사항·계획·구현·브라우저 실행·모바일 시험·버그 수정의 기본 루프로 미니 게임과 한 페이지 소개 웹을 완성하는 180분 강의자료입니다.",
       "createdAt": "2026-08-16T15:52:00+09:00",
       "updatedAt": "2026-08-16T15:52:00+09:00",
@@ -76,14 +99,14 @@
         "교육"
       ],
       "coverImage": "reports/260816-ai-builders-lab-session-03/assets/AI-빌더스-랩-공식-로고.png",
-      "coverAlt": "AI 빌더스 랩 공식 로고"
+      "coverAlt": "AI BUILDERS LAB",
+      "subtitle": "Codex로 만드는 미니 게임과 반응형 소개 웹 실습 매뉴얼"
     },
     {
       "id": "260816-ai-builders-lab-session-02",
       "slug": "ai-builders-lab-session-02",
       "title": "AI 빌더스 랩 · 4회 과정 2차",
-      "subtitle": "Hermes 자동화 1건과 Codex 한 파일 수정 실습 매뉴얼",
-      "category": "기타",
+      "category": "AI 실습 · 교육",
       "summary": "Hermes Cron 자동화 후보 선정부터 등록·즉시 실행·비용과 안전 검수, Codex의 작업 폴더·한 파일 수정·Diff 검수까지 연결한 180분 강의자료입니다.",
       "createdAt": "2026-08-16T15:52:00+09:00",
       "updatedAt": "2026-08-16T15:52:00+09:00",
@@ -102,15 +125,15 @@
         "교육"
       ],
       "coverImage": "reports/260816-ai-builders-lab-session-02/assets/AI-빌더스-랩-공식-로고.png",
-      "coverAlt": "AI 빌더스 랩 공식 로고"
+      "coverAlt": "AI BUILDERS LAB",
+      "subtitle": "Hermes 자동화 1건과 Codex 한 파일 수정 실습 매뉴얼"
     },
     {
       "id": "260816-ai-builders-lab-session-01",
       "slug": "ai-builders-lab-session-01",
       "title": "AI 빌더스 랩 · 4회 과정 1차",
-      "subtitle": "Hermes, Telegram, Obsidian, ChatGPT Codex 설치와 기본 실행 매뉴얼",
-      "category": "기타",
-      "summary": "34페이지 1차 가이드를 표준 Vault·최소 LLM Wiki·2차 자동화·3차 Codex 프로그래밍·4차 GPT Sites 과정에 맞춰 개정했습니다.",
+      "category": "AI 실습 · 교육",
+      "summary": "34페이지 1차 가이드를 표준 Vault 경로, 최소 LLM Wiki, 2차 자동화·3차 Codex 프로그래밍·4차 GPT Sites 흐름에 맞춰 개정했습니다.",
       "createdAt": "2026-08-16T12:00:00+09:00",
       "updatedAt": "2026-08-16T15:49:00+09:00",
       "status": "published",
@@ -119,7 +142,7 @@
       "displayDate": "260816",
       "sourceCount": 16,
       "tags": [
-        "AI Builders Lab",
+        "AI-Builders-Lab",
         "Hermes",
         "Telegram",
         "Obsidian",
@@ -127,7 +150,8 @@
         "교육"
       ],
       "coverImage": "reports/260816-ai-builders-lab-session-01/assets/AI-빌더스-랩-공식-로고.png",
-      "coverAlt": "AI 빌더스 랩 공식 로고"
+      "coverAlt": "AI 빌더스 랩 공식 로고",
+      "subtitle": "Hermes, Telegram, Obsidian, ChatGPT Codex 설치와 기본 실행 매뉴얼"
     },
     {
       "id": "260816-jemma-selfishclub-operations-benchmarking",

@@ -1,7 +1,29 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-16T11:59:59+09:00",
+  "updatedAt": "2026-08-17T09:13:30+09:00",
   "reports": [
+    {
+      "schemaVersion": "1",
+      "id": "260817-ai-builders-lab-first-cohort-textbook",
+      "slug": "ai-builders-lab-first-cohort-textbook",
+      "title": "[교재] AI 빌더스 랩 - 1기",
+      "category": "기타",
+      "tags": [
+        "AI Builders Lab",
+        "AI 교육",
+        "Hermes",
+        "Codex",
+        "Obsidian",
+        "Telegram"
+      ],
+      "summary": "AI 초보자가 Hermes, Telegram, Obsidian, Codex를 설치하고 첫 실행과 사람 검수까지 완료하는 AI 빌더스 랩 1기 1차 실습 교재입니다.",
+      "createdAt": "2026-08-17T12:00:00+09:00",
+      "updatedAt": "2026-08-17T12:00:00+09:00",
+      "status": "published",
+      "sourceName": "AI-Builders-Lab-1-4-Executive-Integrated-Upgrade-Package-v2.0.0-20260816.zip",
+      "sourceCount": 12,
+      "entry": "index.html"
+    },
     {
       "schemaVersion": "1",
       "id": "260816-jemma-selfishclub-operations-benchmarking",
