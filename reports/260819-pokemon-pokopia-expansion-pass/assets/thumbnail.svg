@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="t d">
+<title id="t">포켓몬 포코피아 익스팬션 패스 분석</title><desc id="d">바닷속 마을과 확장팩 3부 구성을 표현한 Report Hub 썸네일</desc>
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b4fb8"/><stop offset=".55" stop-color="#3182f6"/><stop offset="1" stop-color="#7dd3fc"/></linearGradient></defs>
+<rect width="1200" height="630" rx="40" fill="url(#g)"/><circle cx="1010" cy="110" r="150" fill="#fff" opacity=".10"/>
+<g fill="none" stroke="#fff" stroke-opacity=".62"><circle cx="880" cy="160" r="22"/><circle cx="940" cy="105" r="12"/><circle cx="990" cy="205" r="34"/><circle cx="1090" cy="250" r="17"/></g>
+<path d="M0 505 C165 455 280 570 430 520 S735 445 900 520 S1080 590 1200 530 V630 H0Z" fill="#0a3f91" opacity=".8"/>
+<text x="72" y="92" font-family="system-ui,sans-serif" font-size="25" font-weight="800" fill="#dbeafe">REPORT HUB · 2026.08.19</text>
+<text x="72" y="190" font-family="system-ui,sans-serif" font-size="62" font-weight="900" fill="#fff">포켓몬 포코피아</text>
+<text x="72" y="270" font-family="system-ui,sans-serif" font-size="62" font-weight="900" fill="#fff">익스팬션 패스 분석</text>
+<rect x="72" y="316" width="620" height="58" rx="29" fill="#dfff6a"/><text x="102" y="354" font-family="system-ui,sans-serif" font-size="24" font-weight="900" fill="#244100">무료 업데이트와 유료 DLC를 구분해서 봐야 한다</text>
+<text x="72" y="430" font-family="system-ui,sans-serif" font-size="28" font-weight="700" fill="#e8f3ff">Part 1 바닷속 마을 · Part 2 2026년 후반 · Part 3 2027년</text>
+</svg>

@@ -1,7 +1,31 @@
 {
-  "generatedAt": "2026-08-19T05:50:23.674Z",
+  "generatedAt": "2026-08-19T07:23:27.418Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260819-pokemon-pokopia-expansion-pass",
+      "slug": "pokemon-pokopia-expansion-pass",
+      "title": "포켓몬 포코피아 익스팬션 패스 분석",
+      "category": "게임",
+      "summary": "Pokémon Pokopia Expansion Pass의 3부 구성, Part 1 Bubbly Basin, 무료 Ver.2.0.0 업데이트와 유료 DLC의 차이, 구매 적합성을 정리한 분석 보고서",
+      "createdAt": "2026-08-19T16:25:00+09:00",
+      "updatedAt": "2026-08-19T16:25:00+09:00",
+      "status": "published",
+      "path": "reports/260819-pokemon-pokopia-expansion-pass/",
+      "url": "https://aihubos.github.io/reportmode/reports/260819-pokemon-pokopia-expansion-pass/",
+      "displayDate": "260819",
+      "sourceCount": 7,
+      "tags": [
+        "Pokémon Pokopia",
+        "포켓몬 포코피아",
+        "Expansion Pass",
+        "Bubbly Basin",
+        "Nintendo Switch 2",
+        "DLC"
+      ],
+      "coverImage": "reports/260819-pokemon-pokopia-expansion-pass/assets/thumbnail.png",
+      "coverAlt": "포켓몬 포코피아 익스팬션 패스"
+    },
     {
       "id": "260819-gfe-certified-trainer-prep",
       "slug": "gfe-certified-trainer-prep",
