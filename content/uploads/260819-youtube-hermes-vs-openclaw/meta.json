@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1",
+  "id": "260819-youtube-hermes-vs-openclaw",
+  "slug": "youtube-hermes-vs-openclaw",
+  "title": "[Youtube] 헤르메스 vs 오픈클로, 아직도 고민하세요? 표 하나로 5분이면 끝납니다",
+  "category": "AI",
+  "tags": [
+    "Youtube",
+    "Hermes",
+    "OpenClaw",
+    "비교"
+  ],
+  "summary": "유튜브 영상의 OpenClaw와 Hermes Agent 비교 내용을 임원 의사결정 관점에서 요약하고, 최신 공식 문서로 핵심 주장을 검증한 반응형 보고서",
+  "createdAt": "2026-08-19T14:25:00+09:00",
+  "updatedAt": "2026-08-19T14:25:00+09:00",
+  "status": "published",
+  "sourceName": "index (2).html",
+  "sourceCount": 14,
+  "entry": "index.html"
+}
