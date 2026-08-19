@@ -1,7 +1,29 @@
 {
-  "generatedAt": "2026-08-17T12:28:46.937Z",
+  "generatedAt": "2026-08-19T04:41:06.259Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260819-youtube-hermes-automation-army",
+      "slug": "youtube-hermes-automation-army",
+      "title": "[Youtube] 같은 AI 쓰는데 왜 누구만 자동화 군단을 굴릴까?",
+      "category": "AI",
+      "summary": "유튜브 영상 ‘같은 AI 쓰는데 왜 누구만 자동화 군단을 굴릴까?’를 바탕으로 Hermes Agent의 레벨 0~7 활용 성숙도, 공식 기능 검증, 비용 구조, 위험 통제와 4주 파일럿을 정리한 임원용 보고서",
+      "createdAt": "2026-08-19T13:40:00+09:00",
+      "updatedAt": "2026-08-19T13:40:00+09:00",
+      "status": "published",
+      "path": "reports/260819-youtube-hermes-automation-army/",
+      "url": "https://aihubos.github.io/reportmode/reports/260819-youtube-hermes-automation-army/",
+      "displayDate": "260819",
+      "sourceCount": 13,
+      "tags": [
+        "Youtube",
+        "Hermes",
+        "자동화",
+        "성숙도"
+      ],
+      "coverImage": "reports/260819-youtube-hermes-automation-army/assets/thumbnail.png",
+      "coverAlt": "Hermes Agent 자동화 레벨 썸네일"
+    },
     {
       "id": "260817-selfish-core-practical-review",
       "slug": "selfish-core-practical-review",

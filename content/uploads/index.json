@@ -1,7 +1,27 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-17T21:28:35+09:00",
+  "updatedAt": "2026-08-19T13:41:36+09:00",
   "reports": [
+    {
+      "schemaVersion": "1",
+      "id": "260819-youtube-hermes-automation-army",
+      "slug": "youtube-hermes-automation-army",
+      "title": "[Youtube] 같은 AI 쓰는데 왜 누구만 자동화 군단을 굴릴까?",
+      "category": "AI",
+      "tags": [
+        "Youtube",
+        "Hermes Agent",
+        "자동화",
+        "성숙도"
+      ],
+      "summary": "유튜브 영상 ‘같은 AI 쓰는데 왜 누구만 자동화 군단을 굴릴까?’를 바탕으로 Hermes Agent의 레벨 0~7 활용 성숙도, 공식 기능 검증, 비용 구조, 위험 통제와 4주 파일럿을 정리한 임원용 보고서",
+      "createdAt": "2026-08-19T13:40:00+09:00",
+      "updatedAt": "2026-08-19T13:40:00+09:00",
+      "status": "published",
+      "sourceName": "index.html",
+      "sourceCount": 13,
+      "entry": "index.html"
+    },
     {
       "schemaVersion": "1",
       "id": "260817-selfish-core-practical-review",
