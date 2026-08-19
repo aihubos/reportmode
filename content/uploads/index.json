@@ -1,7 +1,27 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-19T16:23:26+09:00",
+  "updatedAt": "2026-08-19T16:34:00+09:00",
   "reports": [
+    {
+      "schemaVersion": "1",
+      "id": "260819-youtube-ai-blog-sidehustle-100eok",
+      "slug": "youtube-ai-blog-sidehustle-100eok",
+      "title": "[Youtube] \"한국인만 몰라서 못해요\" 전세계 1위 부업으로 통장에 100억 모은 미친 92년생 재택 부업",
+      "category": "AI",
+      "tags": [
+        "Youtube",
+        "블로그 부업",
+        "AdSense",
+        "현실 검증"
+      ],
+      "summary": "AI 블로그 부업으로 100억을 벌었다는 유튜브 영상을 핵심 구조, 주장 검증, 30일 실행안으로 정리한 임원용 반응형 보고서",
+      "createdAt": "2026-08-19T16:35:00+09:00",
+      "updatedAt": "2026-08-19T16:35:00+09:00",
+      "status": "published",
+      "sourceName": "AI 블로그 부업으로 100억 - 유튜브 핵심 요약과 현실 검증.zip",
+      "sourceCount": 8,
+      "entry": "index.html"
+    },
     {
       "schemaVersion": "1",
       "id": "260819-pokemon-pokopia-expansion-pass",
