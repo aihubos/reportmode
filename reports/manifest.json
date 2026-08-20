@@ -1,7 +1,29 @@
 {
-  "generatedAt": "2026-08-19T07:34:01.313Z",
+  "generatedAt": "2026-08-20T23:49:00.109Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260821-newborn-car-seat-iwacha-guide",
+      "slug": "newborn-car-seat-iwacha-guide",
+      "title": "신생아 카시트 추천 | 아이와차 기준 2026 가격대별 구매 가이드",
+      "category": "라이프",
+      "summary": "아이와차의 공개 선택 기준과 ADAC 독립 충돌시험, 2026년 8월 국내 실구매 가격을 바탕으로 신생아 카시트 4종을 가격대별로 비교한 구매 가이드",
+      "createdAt": "2026-08-21T08:47:21+09:00",
+      "updatedAt": "2026-08-21T08:47:21+09:00",
+      "status": "published",
+      "path": "reports/260821-newborn-car-seat-iwacha-guide/",
+      "url": "https://aihubos.github.io/reportmode/reports/260821-newborn-car-seat-iwacha-guide/",
+      "displayDate": "260821",
+      "sourceCount": 13,
+      "tags": [
+        "신생아",
+        "카시트",
+        "아이와차",
+        "구매 가이드"
+      ],
+      "coverImage": "reports/260821-newborn-car-seat-iwacha-guide/assets/daiichi-bliva-fix.jpg",
+      "coverAlt": "다이치 블리바 픽스 신생아 카시트와 ISOFIX 베이스"
+    },
     {
       "id": "260819-youtube-ai-blog-sidehustle-100eok",
       "slug": "youtube-ai-blog-sidehustle-100eok",
