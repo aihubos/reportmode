@@ -1,0 +1,32 @@
+[PASS] doctype
+[PASS] lang_ko
+[PASS] viewport
+[PASS] title_match
+[PASS] unique_ids — 39 ids
+[PASS] metadata_json
+[PASS] metadata_fields
+[PASS] history_present
+[PASS] version_badge
+[PASS] history_body
+[PASS] print_css
+[PASS] reduced_motion
+[PASS] no_external_fonts_cdn
+[PASS] hero_max_55
+[PASS] section_max_41
+[PASS] mobile_caps
+[PASS] source_count — 22
+[PASS] source_links_https
+[PASS] source_security_rel
+[PASS] fragment_links_resolve
+[PASS] images_have_alt — 0
+[PASS] buttons_labeled — 2
+[PASS] mobile_table_labels — 36
+[PASS] render_no_horizontal_scroll — [(360, 360, 360), (720, 720, 720), (1040, 1040, 1040), (1440, 1440, 1440)]
+[PASS] render_title_caps — [(360, 35, 30), (720, 38, 32), (1040, 45.76, 34.32), (1440, 55, 41)]
+[PASS] mobile_title_caps
+[PASS] js_no_errors — []
+[PASS] js_metadata_render
+[PASS] mobile_table_cards — [(360, 'block'), (720, 'block'), (1040, 'table-row'), (1440, 'table-row')]
+[PASS] print_nav_hidden
+[PASS] print_dark_sections_light
+[PASS] print_sources_history — {'nav': 'none', 'heroBg': 'rgb(242, 244, 246)', 'sources': 22, 'rows': 1}

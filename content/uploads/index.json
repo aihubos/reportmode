@@ -1,7 +1,28 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-21T08:48:58+09:00",
+  "updatedAt": "2026-08-21T11:16:54+09:00",
   "reports": [
+    {
+      "schemaVersion": "1",
+      "id": "260821-buzz-deep-analysis",
+      "slug": "buzz-deep-analysis",
+      "title": "Buzz 심층 분석: Hermes Agent·LLM Wiki·Codex 앱과 메시징 플랫폼 비교",
+      "category": "AI",
+      "tags": [
+        "Buzz",
+        "Hermes",
+        "LLM Wiki",
+        "Codex",
+        "AI 협업"
+      ],
+      "summary": "Buzz 저장소를 Hermes Agent, LLM Wiki, Codex 맥용 앱 사용자 관점에서 분석하고 Telegram·Slack·Discord와 비교한 임원용 상세 보고서",
+      "createdAt": "2026-08-21T11:16:54+09:00",
+      "updatedAt": "2026-08-21T11:16:54+09:00",
+      "status": "published",
+      "sourceName": "Buzz_심층_분석_Hermes_Agent_LLM_Wiki_Codex_앱과_메시징_플랫폼_비교.zip",
+      "sourceCount": 22,
+      "entry": "index.html"
+    },
     {
       "schemaVersion": "1",
       "id": "260821-newborn-car-seat-iwacha-guide",

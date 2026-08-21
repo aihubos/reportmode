@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Buzz 저장소를 Hermes Agent, LLM Wiki, Codex 맥용 앱 사용자 관점에서 분석하고 Telegram·Slack·Discord와 비교한 임원용 상세 보고서">
+  <meta name="theme-color" content="#3182F6">
+  <title>Buzz 심층 분석: Hermes Agent·LLM Wiki·Codex 앱과 메시징 플랫폼 비교 | Report Hub</title>
+  <style>
+    :root {
+      --blue: #3182F6;
+      --blue-strong: #1B64DA;
+      --blue-deep: #154EAA;
+      --blue-soft: #E8F3FF;
+      --ink: #191F28;
+      --ink-2: #333D4B;
+      --muted: #6B7684;
+      --muted-2: #8B95A1;
+      --line: #E5E8EB;
+      --surface: #F7F8FA;
+      --surface-2: #F2F4F6;
+      --white: #FFFFFF;
+      --highlight: #DFFF6A;
+      --highlight-yellow: #FFF184;
+      --mint: #DFFBF2;
+      --violet: #EEE9FF;
+      --rose: #FFE8EC;
+      --shadow-sm: 0 8px 30px rgba(25,31,40,.06);
+      --shadow-md: 0 24px 70px rgba(25,31,40,.10);
+      --radius-sm: 18px;
+      --radius-md: 28px;
+      --radius-lg: 40px;
+      --max: 1180px;
+      --hero-title-min: 36px;
+      --hero-title-fluid: 4.4vw;
+      --hero-title-max: 55px;
+      --section-title-min: 28px;
+      --section-title-fluid: 3.3vw;
+      --section-title-max: 41px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--white);
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", sans-serif;
+      line-height: 1.65;
+      letter-spacing: -.02em;
+      overflow-x: hidden;
+      text-rendering: optimizeLegibility;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0 0 auto;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), #78B2FF);
+      transform: scaleX(var(--scroll, 0));
+      transform-origin: left;
+      z-index: 1000;
+    }
+    a { color: inherit; }
+    code { overflow-wrap: anywhere; word-break: break-word; }
+    img, svg { max-width: 100%; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    :focus-visible { outline: 3px solid rgba(49,130,246,.35); outline-offset: 3px; }
+    .container { width: min(var(--max), calc(100% - 40px)); margin-inline: auto; }
+    .skip-link {
+      position: fixed; left: 18px; top: -80px; z-index: 2000;
+      padding: 12px 16px; border-radius: 12px; background: var(--ink); color: white;
+      text-decoration: none; transition: top .2s ease;
+    }
+    .skip-link:focus { top: 18px; }
+
+    .topbar-wrap { position: sticky; top: 12px; z-index: 900; padding: 12px 0 0; }
+    .topbar {
+      min-height: 62px; display: flex; align-items: center; justify-content: space-between; gap: 18px;
+      padding: 10px 14px 10px 20px; border: 1px solid rgba(229,232,235,.9); border-radius: 22px;
+      background: rgba(255,255,255,.86); box-shadow: var(--shadow-sm); backdrop-filter: blur(18px);
+    }
+    .brand { display: flex; align-items: center; gap: 10px; min-width: 0; text-decoration: none; }
+    .brand-mark {
+      width: 34px; height: 34px; display: grid; place-items: center; border-radius: 12px;
+      background: linear-gradient(145deg, var(--blue-strong), var(--blue)); color: white; font-size: 18px;
+      box-shadow: 0 8px 18px rgba(49,130,246,.24);
+    }
+    .brand-copy { min-width: 0; }
+    .brand-copy strong { display: block; font-size: 14px; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .brand-copy span { display: block; margin-top: 2px; color: var(--muted); font-size: 11px; }
+    .nav-links { display: flex; align-items: center; gap: 3px; }
+    .nav-links a {
+      padding: 9px 11px; border-radius: 12px; color: var(--muted); font-size: 13px; font-weight: 750;
+      text-decoration: none; white-space: nowrap;
+    }
+    .nav-links a:hover { color: var(--blue-strong); background: var(--blue-soft); }
+    .top-actions { display: flex; gap: 8px; }
+    .btn {
+      border: 0; border-radius: 14px; padding: 10px 14px; font: inherit; font-size: 13px; font-weight: 800;
+      cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+    }
+    .btn-primary { background: var(--blue); color: white; box-shadow: 0 10px 24px rgba(49,130,246,.22); }
+    .btn-secondary { background: var(--surface-2); color: var(--ink-2); }
+    .btn:hover { transform: translateY(-1px); }
+
+    .hero { padding: 86px 0 98px; position: relative; overflow: hidden; }
+    .hero::before {
+      content: ""; position: absolute; width: 600px; height: 600px; right: -240px; top: -180px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(49,130,246,.16), rgba(49,130,246,0) 67%); pointer-events: none;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.06fr .94fr; gap: 56px; align-items: center; }
+    .eyebrow, .section-kicker {
+      display: inline-flex; align-items: center; gap: 8px; color: var(--blue-strong); font-size: 12px; font-weight: 900;
+      letter-spacing: .08em; text-transform: uppercase;
+    }
+    .eyebrow::before, .section-kicker::before { content: ""; width: 24px; height: 2px; border-radius: 999px; background: currentColor; }
+    .hero h1 {
+      margin: 20px 0 22px; max-width: 760px;
+      font-size: clamp(var(--hero-title-min), var(--hero-title-fluid), var(--hero-title-max));
+      line-height: 1.10; letter-spacing: -.055em; font-weight: 880; text-wrap: balance; overflow-wrap: anywhere;
+    }
+    .hero h1 .mark { display: inline; padding: 0 .12em; background: linear-gradient(transparent 56%, var(--highlight) 56%); }
+    .hero-lead { margin: 0; max-width: 720px; color: var(--ink-2); font-size: clamp(18px, 1.7vw, 22px); line-height: 1.62; }
+    .hero-lead strong { color: var(--blue-strong); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 30px 0 22px; }
+    .report-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; color: var(--muted); font-size: 12px; }
+    .version-badge, .status-badge {
+      display: inline-flex; align-items: center; border-radius: 999px; padding: 6px 10px; font-size: 11px; font-weight: 850;
+    }
+    .version-badge { background: var(--blue-soft); color: var(--blue-strong); }
+    .status-badge { background: var(--surface-2); color: var(--muted); }
+
+    .hero-panel {
+      position: relative; min-height: 535px; overflow: hidden; padding: 28px; border-radius: var(--radius-lg);
+      color: white; background: linear-gradient(145deg, #1555BC, #3182F6 56%, #6AA8FF);
+      box-shadow: var(--shadow-md);
+    }
+    .hero-panel::before { content: ""; position: absolute; inset: -15% 35% 54% -10%; border-radius: 50%; background: rgba(255,255,255,.12); filter: blur(2px); }
+    .panel-head { position: relative; display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; }
+    .panel-head small { display: block; color: rgba(255,255,255,.72); font-weight: 800; letter-spacing: .06em; }
+    .panel-head h2 { margin: 6px 0 0; font-size: 26px; line-height: 1.25; letter-spacing: -.04em; text-wrap: balance; }
+    .panel-chip { flex: none; padding: 7px 10px; border-radius: 999px; background: rgba(255,255,255,.16); font-size: 11px; font-weight: 850; }
+    .stack-map { position: relative; display: grid; gap: 12px; margin-top: 28px; }
+    .stack-row { display: grid; grid-template-columns: 1fr 42px 1fr; align-items: center; gap: 10px; }
+    .stack-node {
+      min-height: 91px; padding: 17px; border: 1px solid rgba(255,255,255,.18); border-radius: 20px;
+      background: rgba(255,255,255,.12); backdrop-filter: blur(12px);
+    }
+    .stack-node strong { display: block; font-size: 17px; line-height: 1.25; }
+    .stack-node span { display: block; margin-top: 5px; color: rgba(255,255,255,.72); font-size: 12px; line-height: 1.45; }
+    .stack-arrow { text-align: center; color: rgba(255,255,255,.75); font-size: 23px; font-weight: 900; }
+    .decision-strip { position: relative; margin-top: 18px; padding: 17px; border-radius: 20px; background: var(--highlight); color: #17310D; }
+    .decision-strip small { display: block; font-size: 10px; font-weight: 900; letter-spacing: .08em; }
+    .decision-strip strong { display: block; margin-top: 4px; font-size: 17px; line-height: 1.4; }
+
+    section { padding: 104px 0; }
+    .surface { background: var(--surface); }
+    .section-head { max-width: 810px; margin-bottom: 42px; }
+    .section-title {
+      margin: 13px 0 16px; font-size: clamp(var(--section-title-min), var(--section-title-fluid), var(--section-title-max));
+      line-height: 1.20; letter-spacing: -.05em; font-weight: 880; text-wrap: balance;
+    }
+    .section-desc { margin: 0; color: var(--muted); font-size: 18px; line-height: 1.7; }
+    .cite { font-size: .72em; vertical-align: super; color: var(--blue-strong); font-weight: 900; text-decoration: none; }
+
+    .thesis-card {
+      display: grid; grid-template-columns: auto 1fr; gap: 24px; align-items: start; padding: 34px; border-radius: var(--radius-md);
+      background: white; border: 1px solid var(--line); box-shadow: var(--shadow-sm);
+    }
+    .thesis-stamp {
+      width: 58px; height: 58px; display: grid; place-items: center; border-radius: 20px; background: var(--highlight); color: #1E3A13; font-size: 25px; font-weight: 950;
+    }
+    .thesis-copy h3 { margin: 0 0 9px; font-size: 27px; line-height: 1.35; letter-spacing: -.04em; }
+    .thesis-copy p { margin: 0; color: var(--ink-2); font-size: 17px; }
+
+    .signal-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 18px; }
+    .signal-card { padding: 24px; border-radius: 22px; border: 1px solid var(--line); background: white; }
+    .signal-card small { display: block; color: var(--muted); font-size: 11px; font-weight: 850; letter-spacing: .06em; }
+    .signal-card strong { display: block; margin-top: 10px; font-size: 22px; line-height: 1.25; letter-spacing: -.04em; }
+    .signal-card p { margin: 9px 0 0; color: var(--muted); font-size: 13px; }
+    .signal-high strong { color: var(--blue-strong); }
+    .signal-warn strong { color: #9A6400; }
+    .signal-risk strong { color: #B02A37; }
+
+    .summary-grid { display: grid; grid-template-columns: 1.12fr .88fr; gap: 18px; margin-top: 18px; }
+    .summary-card { padding: 28px; border-radius: 24px; border: 1px solid var(--line); background: white; }
+    .summary-card h3 { margin: 0 0 15px; font-size: 20px; letter-spacing: -.03em; }
+    .summary-list { display: grid; gap: 13px; margin: 0; padding: 0; list-style: none; }
+    .summary-list li { display: grid; grid-template-columns: 28px 1fr; gap: 11px; color: var(--ink-2); font-size: 15px; }
+    .summary-list b { width: 26px; height: 26px; display: grid; place-items: center; border-radius: 9px; background: var(--blue-soft); color: var(--blue-strong); font-size: 12px; }
+    .decision-card { background: var(--blue-soft); border-color: rgba(49,130,246,.24); }
+    .decision-card .big { font-size: 28px; line-height: 1.28; font-weight: 900; letter-spacing: -.05em; }
+    .decision-card .big em { font-style: normal; background: linear-gradient(transparent 56%, var(--highlight-yellow) 56%); }
+    .decision-card p { margin: 16px 0 0; color: var(--ink-2); }
+
+    .repo-grid { display: grid; grid-template-columns: .92fr 1.08fr; gap: 24px; align-items: stretch; }
+    .repo-facts { display: grid; gap: 12px; }
+    .fact-card { padding: 23px; border-radius: 22px; background: white; border: 1px solid var(--line); }
+    .fact-top { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+    .fact-top span { color: var(--muted); font-size: 12px; font-weight: 850; }
+    .fact-top b { font-size: 12px; padding: 5px 8px; border-radius: 999px; background: var(--surface-2); color: var(--muted); }
+    .fact-card strong { display: block; margin-top: 9px; font-size: 20px; line-height: 1.35; }
+    .fact-card p { margin: 8px 0 0; color: var(--muted); font-size: 14px; }
+
+    .room-mock {
+      min-height: 620px; border: 1px solid #D9E6FA; border-radius: 30px; overflow: hidden; background: #EFF5FF; box-shadow: var(--shadow-sm);
+    }
+    .mock-top { height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 18px; background: white; border-bottom: 1px solid var(--line); }
+    .mock-dots { display: flex; gap: 6px; }
+    .mock-dots i { width: 9px; height: 9px; border-radius: 50%; background: #D5DBE2; }
+    .mock-title { font-size: 12px; font-weight: 850; color: var(--ink-2); }
+    .mock-status { font-size: 10px; font-weight: 850; color: #18794E; background: var(--mint); border-radius: 999px; padding: 5px 8px; }
+    .mock-body { display: grid; grid-template-columns: 160px 1fr; min-height: 564px; }
+    .mock-side { padding: 18px 12px; background: #1E2632; color: white; }
+    .mock-brand { display: flex; align-items: center; gap: 8px; font-weight: 900; font-size: 14px; padding: 0 7px 15px; }
+    .mock-nav { display: grid; gap: 5px; }
+    .mock-nav span { padding: 8px 9px; border-radius: 9px; color: rgba(255,255,255,.62); font-size: 11px; }
+    .mock-nav span.active { color: white; background: rgba(49,130,246,.55); }
+    .mock-nav small { margin: 13px 9px 2px; color: rgba(255,255,255,.36); font-size: 9px; font-weight: 850; letter-spacing: .08em; }
+    .mock-chat { padding: 22px; background: white; }
+    .mock-channel-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+    .mock-channel-head strong { display: block; font-size: 17px; }
+    .mock-channel-head span { display: block; color: var(--muted); font-size: 10px; margin-top: 3px; }
+    .mock-pill { padding: 6px 8px; border-radius: 9px; background: var(--surface-2); color: var(--muted); font-size: 10px; font-weight: 850; }
+    .messages { display: grid; gap: 16px; padding-top: 18px; }
+    .message { display: grid; grid-template-columns: 34px 1fr; gap: 10px; }
+    .avatar { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 12px; font-size: 13px; font-weight: 900; background: var(--blue-soft); color: var(--blue-strong); }
+    .avatar.agent { background: var(--violet); color: #654BC4; }
+    .message-head { display: flex; align-items: baseline; gap: 7px; }
+    .message-head strong { font-size: 12px; }
+    .message-head time { color: var(--muted-2); font-size: 9px; }
+    .message p { margin: 4px 0 0; color: var(--ink-2); font-size: 11px; line-height: 1.5; }
+    .agent-box { margin-top: 7px; padding: 12px; border-radius: 13px; background: var(--surface); border: 1px solid var(--line); }
+    .agent-box div { display: flex; justify-content: space-between; gap: 8px; font-size: 9px; color: var(--muted); }
+    .agent-box b { color: #18794E; }
+    .diff-mini { margin-top: 8px; padding: 9px; border-radius: 10px; background: #18202B; color: #D9E2EC; font: 9px/1.55 ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .diff-mini .plus { color: #79E2A0; }
+    .reaction-row { display: flex; gap: 5px; margin-top: 7px; }
+    .reaction-row span { padding: 4px 7px; border: 1px solid var(--line); border-radius: 999px; font-size: 9px; background: white; }
+
+    .role-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .role-card { position: relative; overflow: hidden; padding: 29px; border-radius: 26px; border: 1px solid var(--line); background: white; }
+    .role-card::after { content: ""; position: absolute; width: 140px; height: 140px; right: -65px; top: -65px; border-radius: 50%; background: var(--blue-soft); }
+    .role-icon { position: relative; z-index: 1; width: 48px; height: 48px; display: grid; place-items: center; border-radius: 16px; background: var(--blue-soft); color: var(--blue-strong); font-size: 23px; }
+    .role-card:nth-child(2) .role-icon { background: var(--mint); color: #137A55; }
+    .role-card:nth-child(3) .role-icon { background: var(--violet); color: #654BC4; }
+    .role-card h3 { position: relative; z-index: 1; margin: 17px 0 9px; font-size: 23px; line-height: 1.3; letter-spacing: -.04em; }
+    .role-card > p { position: relative; z-index: 1; margin: 0; color: var(--muted); font-size: 15px; }
+    .role-card ul { position: relative; z-index: 1; margin: 18px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+    .role-card li { display: grid; grid-template-columns: 18px 1fr; gap: 8px; color: var(--ink-2); font-size: 13px; }
+    .role-card li::before { content: "✓"; color: var(--blue-strong); font-weight: 950; }
+    .role-card .limit { margin-top: 18px; padding: 13px; border-radius: 14px; background: var(--surface); color: var(--ink-2); font-size: 12px; }
+    .role-card .limit strong { color: #B02A37; }
+
+    .integration-band { margin-top: 26px; padding: 31px; border-radius: 28px; background: var(--ink); color: white; }
+    .integration-band h3 { margin: 0 0 18px; font-size: 25px; letter-spacing: -.04em; }
+    .integration-flow { display: grid; grid-template-columns: repeat(7, auto); gap: 10px; align-items: center; justify-content: center; }
+    .flow-node-dark { min-width: 118px; padding: 14px; text-align: center; border-radius: 16px; background: rgba(255,255,255,.10); border: 1px solid rgba(255,255,255,.13); }
+    .flow-node-dark strong { display: block; font-size: 13px; }
+    .flow-node-dark span { display: block; color: rgba(255,255,255,.58); font-size: 9px; margin-top: 3px; }
+    .flow-arrow-dark { color: rgba(255,255,255,.45); font-weight: 950; }
+    .integration-note { margin: 18px 0 0; text-align: center; color: rgba(255,255,255,.66); font-size: 12px; }
+
+    .table-shell { border: 1px solid var(--line); border-radius: 26px; overflow: hidden; background: white; box-shadow: var(--shadow-sm); }
+    table { width: 100%; border-collapse: collapse; }
+    .comparison-table { table-layout: fixed; }
+    .comparison-table th, .comparison-table td { padding: 17px 15px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .comparison-table thead th { background: #F2F6FC; color: var(--ink-2); font-size: 12px; font-weight: 900; }
+    .comparison-table thead th:first-child { width: 17%; }
+    .comparison-table tbody th { background: #FAFBFC; font-size: 13px; }
+    .comparison-table td { color: var(--ink-2); font-size: 13px; line-height: 1.55; }
+    .comparison-table tr:last-child th, .comparison-table tr:last-child td { border-bottom: 0; }
+    .product-head { display: flex; align-items: center; gap: 7px; }
+    .product-dot { width: 24px; height: 24px; display: grid; place-items: center; border-radius: 8px; font-size: 12px; color: white; background: var(--blue); }
+    .product-dot.slack { background: #4A154B; }
+    .product-dot.discord { background: #5865F2; }
+    .product-dot.telegram { background: #229ED9; }
+    .rating { display: inline-flex; align-items: center; gap: 5px; padding: 4px 8px; border-radius: 999px; font-size: 10px; font-weight: 900; white-space: nowrap; }
+    .rating.high { background: var(--mint); color: #137A55; }
+    .rating.mid { background: var(--highlight-yellow); color: #7A5400; }
+    .rating.low { background: var(--rose); color: #A33A49; }
+    .pros-cons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 20px; }
+    .pc-card { padding: 24px; border-radius: 22px; border: 1px solid var(--line); background: white; }
+    .pc-card h3 { margin: 0 0 14px; font-size: 19px; }
+    .pc-card ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 9px; }
+    .pc-card li { display: grid; grid-template-columns: 16px 1fr; gap: 7px; color: var(--muted); font-size: 12px; }
+    .pc-card li.good::before { content: "+"; color: #16835C; font-weight: 950; }
+    .pc-card li.bad::before { content: "–"; color: #C33C4E; font-weight: 950; }
+
+    .blue-section { color: white; background: linear-gradient(145deg, #216DDC, #3182F6 58%, #5A9CFF); }
+    .blue-section .section-kicker { color: rgba(255,255,255,.72); }
+    .blue-section .section-title { color: white; }
+    .blue-section .section-desc { color: rgba(255,255,255,.75); }
+    .blue-flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 13px; margin-top: 40px; }
+    .blue-step { min-height: 225px; padding: 23px; border: 1px solid rgba(255,255,255,.18); border-radius: 24px; background: rgba(255,255,255,.11); backdrop-filter: blur(10px); }
+    .step-no { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 12px; color: var(--blue-strong); background: white; font-size: 12px; font-weight: 950; }
+    .blue-step h3 { margin: 16px 0 8px; font-size: 19px; line-height: 1.35; }
+    .blue-step p { margin: 0; color: rgba(255,255,255,.72); font-size: 13px; }
+    .blue-step small { display: block; margin-top: 14px; color: var(--highlight); font-size: 11px; font-weight: 850; }
+
+    .risk-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .risk-card { padding: 28px; border-radius: 26px; border: 1px solid var(--line); background: white; }
+    .risk-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .risk-head h3 { margin: 0; font-size: 21px; letter-spacing: -.04em; }
+    .risk-level { padding: 5px 9px; border-radius: 999px; font-size: 10px; font-weight: 900; }
+    .risk-level.high { background: var(--rose); color: #A33A49; }
+    .risk-level.medium { background: var(--highlight-yellow); color: #7A5400; }
+    .risk-card p { margin: 12px 0 0; color: var(--muted); font-size: 14px; }
+    .control { margin-top: 16px; padding: 15px; border-radius: 15px; background: var(--surface); color: var(--ink-2); font-size: 13px; }
+    .control strong { color: var(--blue-strong); }
+    .governance-note { margin-top: 20px; padding: 24px; border-radius: 22px; background: #FFF8D9; border: 1px solid #F2E6A7; }
+    .governance-note strong { display: block; font-size: 18px; }
+    .governance-note p { margin: 8px 0 0; color: #62531C; }
+
+    .recommend-grid { display: grid; grid-template-columns: .83fr 1.17fr; gap: 20px; }
+    .target-card, .pilot-card { padding: 31px; border-radius: 28px; border: 1px solid var(--line); background: white; }
+    .target-card h3, .pilot-card h3 { margin: 0 0 18px; font-size: 24px; letter-spacing: -.04em; }
+    .keep-list { display: grid; gap: 12px; }
+    .keep-item { display: grid; grid-template-columns: 72px 1fr; gap: 12px; align-items: start; padding: 13px; border-radius: 16px; background: var(--surface); }
+    .keep-item b { color: var(--blue-strong); font-size: 12px; }
+    .keep-item span { color: var(--ink-2); font-size: 13px; }
+    .pilot-card { color: white; border-color: transparent; background: linear-gradient(145deg, var(--blue-deep), var(--blue)); }
+    .pilot-roadmap { display: grid; gap: 13px; }
+    .pilot-step { display: grid; grid-template-columns: 76px 1fr; gap: 14px; align-items: start; padding: 16px; border-radius: 18px; background: rgba(255,255,255,.12); }
+    .pilot-step b { color: var(--highlight); font-size: 12px; }
+    .pilot-step strong { display: block; font-size: 15px; }
+    .pilot-step span { display: block; margin-top: 4px; color: rgba(255,255,255,.69); font-size: 12px; }
+    .acceptance { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 20px; }
+    .accept-card { padding: 21px; border-radius: 20px; background: white; border: 1px solid var(--line); }
+    .accept-card small { color: var(--muted); font-size: 10px; font-weight: 900; letter-spacing: .06em; }
+    .accept-card strong { display: block; margin-top: 8px; font-size: 16px; line-height: 1.35; }
+    .accept-card p { margin: 7px 0 0; color: var(--muted); font-size: 11px; }
+
+    .source-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; }
+    .source-link { display: block; min-height: 156px; padding: 22px; border-radius: 21px; border: 1px solid var(--line); background: white; text-decoration: none; transition: transform .2s ease, border-color .2s ease; }
+    .source-link:hover { transform: translateY(-3px); border-color: rgba(49,130,246,.42); }
+    .source-link span { display: block; color: var(--blue-strong); font-size: 10px; font-weight: 900; letter-spacing: .06em; }
+    .source-link strong { display: block; margin-top: 9px; font-size: 16px; line-height: 1.42; }
+    .source-link em { display: block; margin-top: 9px; color: var(--muted); font-size: 11px; font-style: normal; }
+
+    .history-table-wrap { margin-top: 26px; border: 1px solid var(--line); border-radius: 22px; overflow: hidden; background: white; }
+    .history-table th, .history-table td { padding: 15px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; font-size: 12px; }
+    .history-table th { background: var(--surface); color: var(--muted); font-weight: 900; }
+    .history-table tr:last-child td { border-bottom: 0; }
+    .footer-note { display: flex; justify-content: space-between; gap: 18px; margin-top: 24px; color: var(--muted); font-size: 11px; }
+
+    .floating-top { position: fixed; right: 20px; bottom: 20px; width: 46px; height: 46px; display: grid; place-items: center; border: 0; border-radius: 16px; background: var(--ink); color: white; box-shadow: var(--shadow-md); cursor: pointer; opacity: 0; pointer-events: none; transform: translateY(8px); transition: .2s ease; z-index: 800; }
+    .floating-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+    @media (max-width: 1040px) {
+      .nav-links { display: none; }
+      .hero-grid, .repo-grid, .summary-grid, .recommend-grid { grid-template-columns: 1fr; }
+      .hero-panel { min-height: auto; }
+      .signal-grid, .acceptance { grid-template-columns: repeat(2, 1fr); }
+      .role-grid { grid-template-columns: repeat(2, 1fr); }
+      .role-card:last-child { grid-column: 1 / -1; }
+      .blue-flow { grid-template-columns: repeat(2, 1fr); }
+      .blue-step:last-child { grid-column: 1 / -1; }
+      .pros-cons { grid-template-columns: repeat(2, 1fr); }
+      .source-grid { grid-template-columns: repeat(2, 1fr); }
+      .integration-flow { grid-template-columns: 1fr; max-width: 520px; margin-inline: auto; }
+      .flow-arrow-dark { transform: rotate(90deg); text-align: center; }
+    }
+
+    @media (max-width: 720px) {
+      .container { width: min(100% - 28px, var(--max)); }
+      .topbar-wrap { top: 7px; }
+      .topbar { min-height: 56px; padding: 8px 9px 8px 13px; border-radius: 18px; }
+      .brand-copy span, .top-actions .btn-secondary { display: none; }
+      .brand-copy strong { max-width: 170px; font-size: 12px; }
+      .btn { padding: 9px 11px; }
+      .hero { padding: 70px 0 78px; }
+      .hero-grid { gap: 38px; }
+      .hero h1 { font-size: 38px; }
+      .hero-lead { font-size: 17px; }
+      .hero-panel { padding: 22px; border-radius: 28px; }
+      .panel-head h2 { font-size: 22px; }
+      .stack-row { grid-template-columns: 1fr; }
+      .stack-arrow { transform: rotate(90deg); }
+      section { padding: 82px 0; }
+      .section-title { font-size: 32px; }
+      .section-desc { font-size: 16px; }
+      .thesis-card { grid-template-columns: 1fr; padding: 26px; }
+      .thesis-copy h3 { font-size: 23px; }
+      .signal-grid, .role-grid, .risk-grid, .pros-cons, .source-grid, .acceptance, .blue-flow { grid-template-columns: 1fr; }
+      .role-card:last-child, .blue-step:last-child { grid-column: auto; }
+      .summary-card, .target-card, .pilot-card { padding: 24px; }
+      .room-mock { min-height: auto; }
+      .mock-body { grid-template-columns: 1fr; }
+      .mock-side { display: none; }
+      .mock-chat { padding: 16px; }
+      .integration-band { padding: 24px; }
+      .table-shell { border-radius: 20px; overflow: visible; border: 0; background: transparent; box-shadow: none; }
+      .comparison-table, .comparison-table thead, .comparison-table tbody, .comparison-table tr, .comparison-table th, .comparison-table td { display: block; width: 100%; }
+      .comparison-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+      .comparison-table tr { margin-bottom: 14px; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; background: white; }
+      .comparison-table tbody th { padding: 15px 17px; background: var(--ink); color: white; }
+      .comparison-table td { position: relative; padding: 45px 17px 16px; border-bottom: 1px solid var(--line); min-height: 78px; }
+      .comparison-table td:last-child { border-bottom: 0; }
+      .comparison-table td::before { content: attr(data-label); position: absolute; top: 13px; left: 17px; color: var(--blue-strong); font-size: 10px; font-weight: 900; letter-spacing: .04em; }
+      .keep-item, .pilot-step { grid-template-columns: 1fr; gap: 5px; }
+      .footer-note { flex-direction: column; }
+      .history-table-wrap { overflow-x: auto; }
+      .history-table { min-width: 720px; }
+    }
+
+    @media (max-width: 390px) {
+      .hero h1 { font-size: 35px; }
+      .section-title { font-size: 30px; }
+      .brand-copy strong { max-width: 132px; }
+      .hero-actions .btn { width: 100%; }
+      .panel-chip { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .001ms !important; transition-duration: .001ms !important; }
+    }
+
+    @page { size: A4; margin: 12mm; }
+    @media print {
+      :root { --shadow-sm: none; --shadow-md: none; }
+      body { color: #111; background: white; font-size: 10.5pt; }
+      body::before, .topbar-wrap, .floating-top, .hero-actions { display: none !important; }
+      .container { width: 100%; max-width: none; }
+      .hero { padding: 0 0 12mm; }
+      section { padding: 12mm 0; }
+      .hero-grid, .repo-grid, .summary-grid, .recommend-grid { grid-template-columns: 1fr; gap: 8mm; }
+      .hero h1 { font-size: 29pt; }
+      .section-title { font-size: 23pt; }
+      .hero-panel, .blue-section, .pilot-card, .integration-band { color: #111 !important; background: #F2F4F6 !important; border: 1px solid #D6DADF; }
+      .hero-panel *, .blue-section *, .pilot-card *, .integration-band * { color: #111 !important; }
+      .stack-node, .blue-step, .flow-node-dark, .pilot-step { background: white !important; border-color: #D6DADF !important; }
+      .role-grid, .signal-grid, .source-grid, .pros-cons, .acceptance { grid-template-columns: repeat(2, 1fr); }
+      .blue-flow { grid-template-columns: repeat(2, 1fr); }
+      .role-card, .signal-card, .summary-card, .fact-card, .risk-card, .source-link, .accept-card, .thesis-card, .target-card, .pilot-card, .blue-step { break-inside: avoid; }
+      .table-shell { overflow: visible; box-shadow: none; }
+      .comparison-table { table-layout: auto; }
+      .comparison-table th, .comparison-table td { font-size: 8.2pt; padding: 7px; }
+      a { text-decoration: none; }
+      .floating-top { display: none; }
+    }
+  </style>
+  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260812-report-hub-logo2">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png?v=20260812-report-hub-logo2">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png?v=20260812-report-hub-logo2">
+  <link rel="manifest" href="../../site.webmanifest?v=20260812-report-hub-logo2">
+  <meta name="application-name" content="Report Hub">
+  <meta property="og:site_name" content="Report Hub">
+  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260815-responsive-only1">
+  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260812-report-hub-logo2">
+  <link rel="stylesheet" href="../../assets/report-comments.css?v=20260816-comments-width1">
+</head>
+<body data-report-view="detail" data-report-layout="responsive">
+  <a class="report-home-button" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-logo-mark-shimmer" aria-hidden="true"></span><img class="report-hub-logo-image" src="../../assets/report-hub-logo.png?v=20260812-report-hub-logo2" alt="Report Hub"></span></a>
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
+  <div class="topbar-wrap">
+    <nav class="topbar container" aria-label="보고서 내비게이션">
+      <a class="brand report-hub-brand-link" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-logo-mark-shimmer" aria-hidden="true"></span><img class="report-hub-logo-image" src="../../assets/report-hub-logo.png?v=20260812-report-hub-logo2" alt="Report Hub"></span></a>
+      <div class="nav-links" aria-label="주요 섹션">
+        <a href="#summary">요약</a>
+        <a href="#product">제품</a>
+        <a href="#perspectives">사용자 관점</a>
+        <a href="#comparison">비교</a>
+        <a href="#risks">위험</a>
+        <a href="#recommendation">권고안</a>
+      </div>
+      <div class="top-actions">
+        <a class="btn btn-secondary" href="https://github.com/aihubos/buzz" target="_blank" rel="noopener noreferrer">저장소 열기</a>
+        <button class="btn btn-primary" type="button" id="printButton" aria-label="보고서를 인쇄하거나 PDF로 저장">PDF 저장</button>
+      </div>
+    </nav>
+  </div>
+
+  <header class="hero" id="top">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">EXECUTIVE BRIEF · 2026.08.21</div>
+        <h1>Buzz는 메신저가 아니라<br><span class="mark">AI와 사람이 함께 일하는 작업 운영체제</span>에 가깝습니다</h1>
+        <p class="hero-lead">현재의 Telegram·Slack·Discord를 즉시 교체하기보다, <strong>Hermes Agent와 Codex CLI가 실제 업무를 수행하고 그 근거를 남기는 AI 프로젝트 공간</strong>으로 먼저 도입하는 것이 적절합니다.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#recommendation">4주 파일럿 보기</a>
+          <a class="btn btn-secondary" href="#comparison">플랫폼 비교표 보기</a>
+        </div>
+        <div class="report-meta" aria-label="보고서 메타데이터">
+          <span class="version-badge" id="reportVersion">v1.0.0</span>
+          <span id="reportUpdated">최종 업데이트 2026.08.21</span>
+          <span class="status-badge" id="reportGeneration">AI 작성 · 사람 검토 필요</span>
+        </div>
+      </div>
+
+      <aside class="hero-panel" aria-label="핵심 판단 구조">
+        <div class="panel-head">
+          <div><small>ONE-PAGE DECISION</small><h2>기존 메신저 위에<br>AI 작업 레이어를 추가</h2></div>
+          <span class="panel-chip">선별 도입</span>
+        </div>
+        <div class="stack-map">
+          <div class="stack-row">
+            <div class="stack-node"><strong>사람 커뮤니케이션</strong><span>Telegram · Slack · Discord<br>모바일·외부·커뮤니티 소통</span></div>
+            <div class="stack-arrow" aria-hidden="true">+</div>
+            <div class="stack-node"><strong>Buzz Workspace</strong><span>채널 · Git · 워크플로 · 감사 로그<br>사람과 에이전트의 공동 기록</span></div>
+          </div>
+          <div class="stack-row">
+            <div class="stack-node"><strong>실행 엔진</strong><span>Hermes Agent · Codex CLI<br>조사·수정·테스트·자동화</span></div>
+            <div class="stack-arrow" aria-hidden="true">→</div>
+            <div class="stack-node"><strong>지식 결정체</strong><span>LLM Wiki · Canvas · Repository<br>대화를 재사용 가능한 지식으로 전환</span></div>
+          </div>
+        </div>
+        <div class="decision-strip"><small>권고 결론</small><strong>전사 전환은 보류하고, AI·개발 프로젝트 1개에서 4주간 검증</strong></div>
+      </aside>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="surface" id="summary">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">EXECUTIVE SUMMARY</div>
+          <h2 class="section-title">Buzz의 차별점은 “대화하는 AI”가 아니라 “행동하고 책임지는 AI 동료”입니다</h2>
+          <p class="section-desc">모든 메시지·반응·워크플로 단계·Git 이벤트를 같은 서명 이벤트 로그에 남기고, 에이전트에도 사람과 같은 독립 정체성과 채널 권한을 부여합니다. 다만 0.x 제품이며 모바일·연결 안정성·권한 승인 구조는 파일럿에서 반드시 검증해야 합니다.<a class="cite" href="#source-2">S2</a><a class="cite" href="#source-3">S3</a></p>
+        </div>
+
+        <article class="thesis-card">
+          <div class="thesis-stamp" aria-hidden="true">✓</div>
+          <div class="thesis-copy">
+            <h3>최종 판단: <span style="background:linear-gradient(transparent 58%, var(--highlight) 58%)">“메신저 대체”가 아니라 “AI 프로젝트 시스템 오브 레코드”</span>로 도입하십시오</h3>
+            <p>Slack의 범용 협업 성숙도, Discord의 커뮤니티·음성, Telegram의 외부 도달성은 당분간 유지하고, Buzz에는 코드·조사·검토·승인처럼 에이전트 행동의 근거가 필요한 업무만 집중시키는 구성이 가장 현실적입니다.</p>
+          </div>
+        </article>
+
+        <div class="signal-grid" aria-label="도입 신호 요약">
+          <article class="signal-card signal-high"><small>AGENT-NATIVE</small><strong>매우 강함</strong><p>Hermes·Codex·Claude·Goose 등 ACP 런타임을 같은 채널의 구성원으로 운영</p></article>
+          <article class="signal-card signal-high"><small>DATA SOVEREIGNTY</small><strong>강함</strong><p>자가호스팅 relay와 독립 키 기반 정체성, 감사 가능한 이벤트 구조</p></article>
+          <article class="signal-card signal-warn"><small>PRODUCT MATURITY</small><strong>파일럿 단계</strong><p>최신 패키지 v0.5.8, 메인 브랜치는 이후에도 빠르게 변경 중</p></article>
+          <article class="signal-card signal-risk"><small>SECURITY POSTURE</small><strong>강한 통제 필요</strong><p>ACP 도구 승인과 호스트 셸 권한 때문에 공개 응답 모드는 부적합</p></article>
+        </div>
+
+        <div class="summary-grid">
+          <article class="summary-card">
+            <h3>가장 중요한 4가지 근거</h3>
+            <ol class="summary-list">
+              <li><b>1</b><span><strong>한 로그:</strong> 대화, 에이전트 작업, 워크플로, 코드 변경을 하나의 검색·감사 경로로 결합합니다.</span></li>
+              <li><b>2</b><span><strong>독립 정체성:</strong> 에이전트마다 별도 Nostr 키와 채널 멤버십을 부여해 “누가 무엇을 했는지”를 분리합니다.</span></li>
+              <li><b>3</b><span><strong>실행 인터페이스:</strong> JSON 입출력의 <code>buzz-cli</code>와 ACP가 메시지·Canvas·Git·워크플로·메모리를 직접 조작합니다.</span></li>
+              <li><b>4</b><span><strong>아직 초기:</strong> 최신 릴리스와 메인 브랜치 간 변화가 빠르고, 연결·멘션 전달·모바일 관련 공개 버그가 남아 있습니다.</span></li>
+            </ol>
+          </article>
+          <article class="summary-card decision-card">
+            <h3>의사결정 포인트</h3>
+            <div class="big">도입 여부보다 <em>어디까지 맡길지</em>가 핵심입니다</div>
+            <p>추천 범위는 “내부 AI 프로젝트 1개, 3~5명, 에이전트 2개, owner-only/allowlist, 격리된 저장소”입니다. 외부 커뮤니케이션과 긴급 알림은 기존 플랫폼에 남깁니다.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="product">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">WHAT BUZZ REALLY IS</div>
+          <h2 class="section-title">aihubos/buzz는 독립 제품이 아니라 Block의 upstream을 그대로 따라가는 포크입니다</h2>
+          <p class="section-desc">분석 대상 포크는 2026년 8월 21일 생성됐고 분석 시점에 upstream <code>block/buzz</code>의 메인 커밋과 동일했습니다. 따라서 기능·릴리스·이슈 판단은 upstream을 기준으로 보는 것이 맞습니다.<a class="cite" href="#source-1">S1</a><a class="cite" href="#source-16">S16</a></p>
+        </div>
+
+        <div class="repo-grid">
+          <div class="repo-facts">
+            <article class="fact-card"><div class="fact-top"><span>저장소 성격</span><b>FORK</b></div><strong>aihubos/buzz → block/buzz</strong><p>Apache 2.0 공개 저장소. 현재 포크 자체의 독립 변경은 확인되지 않았습니다.</p></article>
+            <article class="fact-card"><div class="fact-top"><span>제품 정의</span><b>SELF-HOSTABLE</b></div><strong>사람과 AI가 같은 방에서 일하는 workspace</strong><p>URL이 workspace 경계를 정하고 relay가 메시지·파일·검색·워크플로·Git·감사 로그를 담당합니다.</p></article>
+            <article class="fact-card"><div class="fact-top"><span>기술 구조</span><b>RUST + TAURI</b></div><strong>Nostr 이벤트 로그 + Postgres·Redis·S3</strong><p>데스크톱은 Tauri/React, 서버는 Rust workspace, 에이전트는 ACP·MCP·CLI로 연결됩니다.</p></article>
+            <article class="fact-card"><div class="fact-top"><span>현재 성숙도</span><b>v0.5.8</b></div><strong>기능 폭은 넓지만 변화 속도도 매우 빠름</strong><p>패키지 릴리스는 2026년 8월 8일 v0.5.8. 이후에도 메인 브랜치에 워크플로·스레드·에이전트 수정이 지속됐습니다.</p></article>
+          </div>
+
+          <div class="room-mock" role="img" aria-label="사람과 AI 에이전트가 한 채널에서 코드 패치와 검토 결과를 공유하는 Buzz 화면 개념도">
+            <div class="mock-top"><div class="mock-dots"><i></i><i></i><i></i></div><div class="mock-title">Buzz · AI Build Room</div><div class="mock-status">Relay connected</div></div>
+            <div class="mock-body">
+              <aside class="mock-side" aria-hidden="true">
+                <div class="mock-brand">🐝 Buzz</div>
+                <div class="mock-nav"><span>⌂ Home</span><span class="active"># ai-report-hub</span><span># research</span><span># release</span><small>AGENTS</small><span>◈ Hermes</span><span>◈ Codex</span><span>◈ Reviewer</span><small>TOOLS</small><span>⚡ Workflows</span><span>⌕ Search</span></div>
+              </aside>
+              <div class="mock-chat">
+                <div class="mock-channel-head"><div><strong># ai-report-hub</strong><span>보고서 생성 · 검토 · 배포 기록</span></div><span class="mock-pill">3 people · 2 agents</span></div>
+                <div class="messages">
+                  <div class="message"><div class="avatar">JL</div><div><div class="message-head"><strong>Jeremy</strong><time>09:10</time></div><p>@Hermes Buzz 분석 자료를 수집하고, 출처별 핵심 차이를 정리해줘.</p></div></div>
+                  <div class="message"><div class="avatar agent">H</div><div><div class="message-head"><strong>Hermes Agent</strong><time>09:12</time></div><p>README·VISION·릴리스·공식 통합 문서를 확인했습니다. LLM Wiki에 넣을 근거 카드 12개를 Canvas에 작성합니다.</p><div class="agent-box"><div><span>tool · canvas.set</span><b>completed</b></div><div class="diff-mini"><span class="plus">+ 핵심 결론: Buzz는 AI 작업 시스템 오브 레코드</span><br>+ 출처: upstream README / Hermes integration</div></div><div class="reaction-row"><span>👍 2</span><span>검토 필요</span></div></div></div>
+                  <div class="message"><div class="avatar agent">C</div><div><div class="message-head"><strong>Codex</strong><time>09:15</time></div><p>보고서 HTML의 모바일 표 레이아웃을 수정하고 360px 회귀 테스트를 실행했습니다.</p><div class="agent-box"><div><span>git patch · mobile table</span><b>tests passed</b></div><div class="diff-mini"><span class="plus">+ @media (max-width: 720px)</span><br><span class="plus">+ table rows → accessible cards</span></div></div></div></div>
+                  <div class="message"><div class="avatar">JL</div><div><div class="message-head"><strong>Jeremy</strong><time>09:19</time></div><p>출처와 테스트가 확인됐으니 release workflow를 승인합니다.</p><div class="reaction-row"><span>✅ Approved</span><span>🔎 Audit trail</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="surface" id="perspectives">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">THREE USER PERSPECTIVES</div>
+          <h2 class="section-title">Hermes에는 실행 공간, LLM Wiki에는 원천 기록, Codex 앱에는 팀 협업 레이어입니다</h2>
+          <p class="section-desc">세 도구는 서로 대체 관계가 아닙니다. Hermes는 범용 에이전트 런타임, LLM Wiki는 지식 자산, Codex 앱은 개인의 멀티에이전트 작업대이며, Buzz가 이들을 팀 단위의 채널·권한·감사 로그로 묶습니다.</p>
+        </div>
+
+        <div class="role-grid">
+          <article class="role-card">
+            <div class="role-icon" aria-hidden="true">🪽</div>
+            <h3>Hermes Agent 사용자</h3>
+            <p>가장 직접적인 적합성이 있습니다. 공식 문서가 3가지 연결 방식을 제공하며, 기존 Telegram·Discord·Slack gateway 옆에 Buzz를 새 플랫폼으로 추가할 수 있습니다.<a class="cite" href="#source-9">S9</a></p>
+            <ul>
+              <li>Desktop preset: 설치된 <code>hermes-acp</code>를 자동 발견해 로컬에서 즉시 실행</li>
+              <li>Relay bridge: <code>buzz-acp</code>가 채널 멘션을 Hermes ACP 세션으로 전달</li>
+              <li>Native gateway: memory·skills·approvals·cron·sessions를 유지하는 가장 깊은 통합</li>
+              <li>전용 Nostr 키로 채널·DM·스레드·반응·이미지·cron 전달을 운영</li>
+            </ul>
+            <div class="limit"><strong>권고:</strong> 시험은 Desktop, 장기 운영은 Hermes native gateway. 공개 <code>anyone</code> 응답은 금지합니다.</div>
+          </article>
+
+          <article class="role-card">
+            <div class="role-icon" aria-hidden="true">📚</div>
+            <h3>LLM Wiki 사용자</h3>
+            <p>Buzz는 Wiki 자체라기보다 “왜 이 지식이 만들어졌는지”를 보존하는 원천 이벤트 레이어입니다. 검색·Canvas·에이전트 메모리·Git 변경을 한 흐름으로 수집할 수 있습니다.<a class="cite" href="#source-6">S6</a></p>
+            <ul>
+              <li>대화·패치·승인·출처를 같은 프로젝트 맥락으로 묶어 지식의 provenance를 강화</li>
+              <li>Canvas를 임시 결정문, Wiki를 장기 검증 지식으로 역할 분리</li>
+              <li>Hermes workflow로 주간 “지식 결정체” 초안을 만들고 사람이 승인</li>
+              <li><code>buzz mem</code>은 에이전트 작업 메모리로 유용하나 조직 Wiki의 분류·출판을 대체하지 않음</li>
+            </ul>
+            <div class="limit"><strong>한계:</strong> native vector RAG·지식 그래프·자동 중복 병합·공개 문서 출판은 별도 LLM Wiki 계층이 필요합니다.</div>
+          </article>
+
+          <article class="role-card">
+            <div class="role-icon" aria-hidden="true">⌘</div>
+            <h3>Codex 맥용 앱 사용자</h3>
+            <p>Codex 앱은 여러 에이전트를 병렬 감독하는 개인 command center이고, Buzz는 팀이 같은 작업을 보고 승인하는 shared room입니다.<a class="cite" href="#source-11">S11</a></p>
+            <ul>
+              <li>Buzz의 Codex 지원은 <code>codex-acp</code>가 Codex CLI를 감싸는 방식</li>
+              <li>Buzz Desktop이 <code>buzz-dev-mcp</code>를 붙여 셸·파일 편집 도구를 제공</li>
+              <li>Codex 앱의 sandbox·Skills·Automations는 개인 실행 환경에 계속 유용</li>
+              <li>팀 공유가 필요한 결과만 Buzz 채널·diff·workflow approval로 승격</li>
+            </ul>
+            <div class="limit"><strong>주의:</strong> “Codex 앱 세션이 Buzz에 그대로 동기화”되는 통합은 아닙니다. CLI 로그인·설정·ACP adapter를 별도로 운영합니다.</div>
+          </article>
+        </div>
+
+        <div class="integration-band">
+          <h3>Codex 연결의 실제 경로</h3>
+          <div class="integration-flow" aria-label="Buzz와 Codex의 연결 흐름">
+            <div class="flow-node-dark"><strong>Buzz 채널</strong><span>사람의 요청·멘션</span></div><div class="flow-arrow-dark">→</div>
+            <div class="flow-node-dark"><strong>buzz-acp / Desktop</strong><span>채널·세션 라우팅</span></div><div class="flow-arrow-dark">→</div>
+            <div class="flow-node-dark"><strong>codex-acp</strong><span>ACP adapter</span></div><div class="flow-arrow-dark">→</div>
+            <div class="flow-node-dark"><strong>Codex CLI</strong><span>코드 작업·도구 실행</span></div>
+          </div>
+          <p class="integration-note">Codex 맥용 앱 UI를 호출하는 경로가 아니라, 동일 제품군의 CLI 런타임을 ACP로 연결하는 구조입니다.<a class="cite" href="#source-7">S7</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="comparison">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">PLATFORM COMPARISON</div>
+          <h2 class="section-title">Slack이 가장 가까운 경쟁자지만, 현재는 네 플랫폼의 역할을 분리하는 편이 낫습니다</h2>
+          <p class="section-desc">Telegram은 외부·긴급·모바일, Discord는 커뮤니티·음성, Slack은 범용 조직 협업, Buzz는 AI·개발 작업의 공동 기록에 강합니다. 비교는 2026년 8월 21일 공개 문서와 upstream 상태를 기준으로 합니다.</p>
+        </div>
+
+        <div class="table-shell">
+          <table class="comparison-table">
+            <thead>
+              <tr><th scope="col">비교 기준</th><th scope="col"><span class="product-head"><span class="product-dot">🐝</span>Buzz</span></th><th scope="col"><span class="product-head"><span class="product-dot slack">S</span>Slack</span></th><th scope="col"><span class="product-head"><span class="product-dot discord">D</span>Discord</span></th><th scope="col"><span class="product-head"><span class="product-dot telegram">T</span>Telegram</span></th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">핵심 역할</th><td data-label="Buzz">사람·AI·Git·workflow가 같은 이벤트 로그에서 일하는 AI-native workspace</td><td data-label="Slack">기업용 채널·DM·Canvas·List·Workflow 중심의 범용 협업</td><td data-label="Discord">서버·역할·포럼·음성·스트리밍 중심의 커뮤니티 공간</td><td data-label="Telegram">개인·그룹·대규모 채널·봇 중심의 글로벌 모바일 메신저</td></tr>
+              <tr><th scope="row">사람 채팅·모바일</th><td data-label="Buzz"><span class="rating mid">성장 중</span><br>Desktop은 폭넓지만 모바일·push는 개발 단계이며 공개 버그를 확인해야 함</td><td data-label="Slack"><span class="rating high">매우 성숙</span><br>기업 채널·스레드·검색·알림·관리 경험이 가장 안정적</td><td data-label="Discord"><span class="rating high">매우 성숙</span><br>커뮤니티 참여·모바일·실시간 음성에 강함</td><td data-label="Telegram"><span class="rating high">매우 성숙</span><br>모바일 도달성과 대규모 그룹·채널 운영에 강함</td></tr>
+              <tr><th scope="row">AI 에이전트 역할</th><td data-label="Buzz"><span class="rating high">핵심 강점</span><br>독립 키·멤버십·감사 로그, ACP/MCP/CLI로 사람과 같은 작업 표면</td><td data-label="Slack"><span class="rating mid">앱·봇 중심</span><br>Codex 공식 통합과 다양한 앱이 있으나 플랫폼 핵심 객체는 사람 중심</td><td data-label="Discord"><span class="rating mid">봇 친화적</span><br>풍부한 bot ecosystem, 역할·command는 강하지만 코드 작업 감사 구조는 별도</td><td data-label="Telegram"><span class="rating mid">봇 친화적</span><br>Bot API·Mini App이 단순하고 빠르지만 작업 provenance는 외부 구현 필요</td></tr>
+              <tr><th scope="row">지식 축적·검색</th><td data-label="Buzz"><span class="rating high">프로젝트 맥락 강함</span><br>대화·패치·workflow·Canvas를 permission-aware FTS로 같은 공간에서 검색</td><td data-label="Slack"><span class="rating high">범용 지식 강함</span><br>메시지·파일·Canvas·List·AI 요약·Workflow를 폭넓게 제공</td><td data-label="Discord"><span class="rating mid">커뮤니티형</span><br>Forum·tag·thread는 좋지만 장기 조직 지식의 정제·감사는 약함</td><td data-label="Telegram"><span class="rating low">구조화 약함</span><br>핀·검색·topic은 가능하지만 프로젝트 지식베이스로 쓰기에는 제한적</td></tr>
+              <tr><th scope="row">Git·CI·승인 연결</th><td data-label="Buzz"><span class="rating high">네이티브 지향</span><br>Git hosting, patch/status 이벤트, branch-as-room, YAML workflow. approval gate는 부분 구현</td><td data-label="Slack"><span class="rating mid">통합형</span><br>GitHub·CI 앱·Workflow Builder로 연결하나 시스템 오브 레코드는 외부</td><td data-label="Discord"><span class="rating low">외부 봇 필요</span><br>웹훅·봇으로 알림은 쉽지만 코드 리뷰·승인 기록은 별도</td><td data-label="Telegram"><span class="rating low">외부 봇 필요</span><br>알림·명령은 가능하나 개발 프로세스 구조는 직접 구현</td></tr>
+              <tr><th scope="row">음성·화면 공유</th><td data-label="Buzz"><span class="rating mid">기본 제공</span><br>WebSocket Opus huddle과 lifecycle은 있으나 녹화·트랙은 계획 단계</td><td data-label="Slack"><span class="rating high">업무형 성숙</span><br>Huddle에서 음성·영상·다중 화면 공유·전용 note thread 제공</td><td data-label="Discord"><span class="rating high">최강점</span><br>상시 voice channel, video, Go Live, screen share, Stage 지원</td><td data-label="Telegram"><span class="rating mid">메신저형</span><br>통화·voice chat은 가능하나 프로젝트 room 연계는 상대적으로 약함</td></tr>
+              <tr><th scope="row">데이터 주권</th><td data-label="Buzz"><span class="rating high">자가호스팅</span><br>Relay·DB·object storage를 직접 운영하고 사용자·에이전트 키를 분리</td><td data-label="Slack"><span class="rating low">SaaS</span><br>기업 관리·보존 기능은 강하지만 운영 substrate는 공급자 소유</td><td data-label="Discord"><span class="rating low">SaaS</span><br>서버 운영 권한은 있어도 기반 인프라는 자체 호스팅할 수 없음</td><td data-label="Telegram"><span class="rating low">SaaS</span><br>Cloud chat은 server-client 암호화, Secret Chat만 별도 E2EE</td></tr>
+              <tr><th scope="row">운영 부담</th><td data-label="Buzz"><span class="rating low">높음</span><br>Relay·Postgres·Redis·S3·TLS·backup·key·upgrade·agent host 운영 필요</td><td data-label="Slack"><span class="rating high">낮음</span><br>관리 정책과 앱 통제에 집중, 인프라 운영 부담은 적음</td><td data-label="Discord"><span class="rating high">낮음</span><br>역할·봇·moderation 관리가 핵심</td><td data-label="Telegram"><span class="rating high">매우 낮음</span><br>Bot token과 group permission 중심으로 빠르게 시작</td></tr>
+              <tr><th scope="row">현재 추천 역할</th><td data-label="Buzz"><strong>AI·개발 프로젝트 전용 기록·실행 공간</strong></td><td data-label="Slack"><strong>전사 내부 협업의 기본 채널</strong></td><td data-label="Discord"><strong>외부 커뮤니티·실시간 음성·이벤트</strong></td><td data-label="Telegram"><strong>긴급 알림·외부 네트워크·모바일 봇</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pros-cons" aria-label="플랫폼별 장단점">
+          <article class="pc-card"><h3>🐝 Buzz</h3><ul><li class="good">에이전트가 사람과 같은 권한·기록 구조</li><li class="good">자가호스팅과 서명 이벤트 감사</li><li class="good">Git·workflow·Canvas·memory 통합</li><li class="bad">0.x 성숙도와 빠른 변경</li><li class="bad">모바일·연결·승인 UX 검증 필요</li><li class="bad">인프라·키·보안 운영 부담</li></ul></article>
+          <article class="pc-card"><h3>Slack</h3><ul><li class="good">기업 협업 UX·검색·관리 성숙</li><li class="good">Canvas·List·Huddle·Workflow 풍부</li><li class="good">Codex 공식 Slack 통합 존재</li><li class="bad">SaaS 종속·비용</li><li class="bad">AI 행동의 원시 감사 로그는 외부 조합</li><li class="bad">Git·CI는 통합 앱에 의존</li></ul></article>
+          <article class="pc-card"><h3>Discord</h3><ul><li class="good">커뮤니티·음성·화면 공유 강력</li><li class="good">역할·forum·thread·bot 생태계</li><li class="good">모바일 참여 장벽 낮음</li><li class="bad">조직 지식 정제와 감사 약함</li><li class="bad">업무용 승인·보존 체계는 별도</li><li class="bad">채널 소음과 맥락 분산</li></ul></article>
+          <article class="pc-card"><h3>Telegram</h3><ul><li class="good">글로벌 도달·모바일·알림 최적</li><li class="good">Bot API와 대규모 group/channel</li><li class="good">운영·온보딩이 매우 단순</li><li class="bad">구조화된 프로젝트 지식에 약함</li><li class="bad">Cloud group은 E2EE 아님</li><li class="bad">봇이 메시지 전체를 읽는 권한 통제 필요</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="blue-section" id="workflow">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">TARGET OPERATING FLOW</div>
+          <h2 class="section-title">대화를 바로 Wiki로 옮기지 말고, 실행·검토·승인을 거쳐 지식으로 결정화합니다</h2>
+          <p class="section-desc">Buzz는 중간 과정의 근거를 보존하고, Hermes와 Codex는 실제 작업을 수행하며, LLM Wiki는 사람이 승인한 결론만 장기 자산으로 보관합니다.</p>
+        </div>
+        <div class="blue-flow">
+          <article class="blue-step"><div class="step-no">01</div><h3>요청 수집</h3><p>Telegram·Slack·Discord에서 들어온 업무를 Buzz의 프로젝트 채널로 승격합니다.</p><small>결과 · 단일 작업 ID</small></article>
+          <article class="blue-step"><div class="step-no">02</div><h3>Hermes 조사</h3><p>웹·문서·기억·MCP를 활용해 근거를 수집하고 Canvas에 출처 카드를 남깁니다.</p><small>결과 · 검증 가능한 리서치</small></article>
+          <article class="blue-step"><div class="step-no">03</div><h3>Codex 실행</h3><p>코드·HTML·테스트·Git patch를 만들고 작업 로그와 diff를 같은 채널에 게시합니다.</p><small>결과 · 재현 가능한 변경</small></article>
+          <article class="blue-step"><div class="step-no">04</div><h3>사람 검토</h3><p>출처·테스트·권한·위험을 확인한 뒤 reaction 또는 workflow gate로 승인합니다.</p><small>결과 · 책임 있는 결정</small></article>
+          <article class="blue-step"><div class="step-no">05</div><h3>Wiki 결정화</h3><p>승인된 결론·근거·변경 이력을 LLM Wiki와 Report Hub에 게시합니다.</p><small>결과 · 장기 재사용 지식</small></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="surface" id="risks">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">RISKS & CONTROLS</div>
+          <h2 class="section-title">가장 큰 위험은 제품 기능 부족보다 “에이전트에게 너무 넓은 컴퓨터 권한을 주는 것”입니다</h2>
+          <p class="section-desc">Hermes 공식 문서는 Buzz Desktop/ACP bridge가 도구 권한 요청을 자동 승인하는 보안 특성을 경고합니다. 채널의 자유 텍스트가 셸·파일·코드 실행으로 이어질 수 있으므로 공개 bot처럼 운영하면 안 됩니다.<a class="cite" href="#source-10">S10</a></p>
+        </div>
+
+        <div class="risk-grid">
+          <article class="risk-card"><div class="risk-head"><h3>ACP 자동 승인·호스트 셸</h3><span class="risk-level high">HIGH</span></div><p>Hermes ACP와 Codex 도구가 terminal·file edit·execute_code를 쓸 수 있는데, unattended host가 승인 프롬프트를 자동 처리할 수 있습니다.</p><div class="control"><strong>통제:</strong> owner-only/allowlist, 전용 OS 계정 또는 container, 읽기 전용 기본값, 제한된 repo, secret 최소화, outbound network 제한.</div></article>
+          <article class="risk-card"><div class="risk-head"><h3>연결·멘션 전달 신뢰성</h3><span class="risk-level high">HIGH</span></div><p>공개 이슈에는 v0.5.x에서 relay reconnect 오류와 ACP mention이 queue에 도달하지 않는 silent-loss 사례가 열려 있습니다.<a class="cite" href="#source-17">S17</a><a class="cite" href="#source-18">S18</a></p><div class="control"><strong>통제:</strong> event ID 기반 수신 확인, heartbeat canary, 실패 재처리 queue, 중요 업무는 사람이 완료 여부를 확인.</div></article>
+          <article class="risk-card"><div class="risk-head"><h3>모바일·알림 전환 리스크</h3><span class="risk-level medium">MEDIUM</span></div><p>upstream은 mobile client를 개발 중으로 표시하고 있으며, self-hosted relay 접속 관련 iOS 공개 버그도 존재합니다.<a class="cite" href="#source-19">S19</a></p><div class="control"><strong>통제:</strong> 긴급·외부 알림은 Telegram/Slack 유지, Buzz는 desktop-first 내부 프로젝트로 한정.</div></article>
+          <article class="risk-card"><div class="risk-head"><h3>암호화·감사 모델 오해</h3><span class="risk-level medium">MEDIUM</span></div><p>Buzz는 TLS와 storage-layer 암호화를 전제로 하며 server-side 검색·eDiscovery가 가능한 구조입니다. DM E2EE는 향후 고려 사항입니다.</p><div class="control"><strong>통제:</strong> relay operator를 신뢰 경계로 정의하고 민감정보 등급·보존·삭제·backup 정책을 별도로 수립.</div></article>
+          <article class="risk-card"><div class="risk-head"><h3>0.x 업그레이드·운영 부채</h3><span class="risk-level medium">MEDIUM</span></div><p>Relay·Postgres·Redis·S3/MinIO·TLS·key·agent host를 함께 운영하며 빠른 upstream 변경을 추적해야 합니다.</p><div class="control"><strong>통제:</strong> upstream tag 고정, staging relay, DB/object backup, 월 1회 upgrade window, rollback runbook.</div></article>
+          <article class="risk-card"><div class="risk-head"><h3>Wiki 품질 자동화의 환상</h3><span class="risk-level medium">MEDIUM</span></div><p>대화 자동 요약만으로는 중복·오류·시점·출처 충돌이 해결되지 않습니다. Buzz search는 강하지만 Wiki의 편집 거버넌스를 대신하지 않습니다.</p><div class="control"><strong>통제:</strong> “초안 → 근거 링크 → 사람 승인 → 게시” 4단계와 문서 소유자·유효기간을 강제.</div></article>
+        </div>
+
+        <aside class="governance-note"><strong>금지선</strong><p>공개 채널에서 <code>respond_to=anyone</code>으로 Hermes/Codex 셸 에이전트를 실행하지 말고, 사람의 Nostr 키를 에이전트와 재사용하지 마십시오. 외부 입력을 받는 bot과 내부 실행 agent는 별도 정체성·별도 host로 분리해야 합니다.</p></aside>
+      </div>
+    </section>
+
+    <section id="recommendation">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">RECOMMENDATION</div>
+          <h2 class="section-title">4주 동안 “AI 보고서·Wiki 생산 파이프라인” 하나만 검증하는 것이 가장 좋습니다</h2>
+          <p class="section-desc">현재 사용 중인 세 메신저를 건드리지 않고, Buzz가 가장 강한 영역인 에이전트 실행·검토·변경 기록부터 증명합니다. 성공하면 Slack의 일부 기술 프로젝트 채널만 단계적으로 이동합니다.</p>
+        </div>
+
+        <div class="recommend-grid">
+          <article class="target-card">
+            <h3>권장 역할 분담</h3>
+            <div class="keep-list">
+              <div class="keep-item"><b>Telegram</b><span>외부 네트워크, 긴급 알림, 개인 모바일 bot. 시스템 오브 레코드는 아님.</span></div>
+              <div class="keep-item"><b>Slack</b><span>전사 일반 협업과 non-technical 팀. 파일럿 기간에는 기본 업무 채널 유지.</span></div>
+              <div class="keep-item"><b>Discord</b><span>커뮤니티·행사·음성·화면 공유. 외부 참여자와의 실시간 공간.</span></div>
+              <div class="keep-item"><b>Buzz</b><span>AI 리서치·개발·검토·승인·배포의 내부 프로젝트 기록.</span></div>
+              <div class="keep-item"><b>Hermes</b><span>native gateway로 조사·memory·skills·cron을 수행하는 범용 실행 agent.</span></div>
+              <div class="keep-item"><b>Codex</b><span>앱은 개인 command center, CLI+ACP는 Buzz room의 코드 실행 agent.</span></div>
+              <div class="keep-item"><b>LLM Wiki</b><span>승인된 결론·출처·버전만 장기 보관하는 지식 publishing layer.</span></div>
+            </div>
+          </article>
+
+          <article class="pilot-card">
+            <h3>4주 파일럿</h3>
+            <div class="pilot-roadmap">
+              <div class="pilot-step"><b>WEEK 1</b><div><strong>격리된 relay와 프로젝트 채널 구성</strong><span>3~5명, Hermes·Codex 전용 키, #intake·#research·#build·#review·#decision. tag 고정과 backup 확인.</span></div></div>
+              <div class="pilot-step"><b>WEEK 2</b><div><strong>Hermes native gateway와 Codex ACP 연결</strong><span>Hermes는 allowlist, Codex는 제한 repo. event receipt·heartbeat·실패 알림을 추가.</span></div></div>
+              <div class="pilot-step"><b>WEEK 3</b><div><strong>보고서 3건을 end-to-end 생산</strong><span>요청 → 리서치 → HTML 변경 → 테스트 → 사람 승인 → LLM Wiki 게시까지 기록.</span></div></div>
+              <div class="pilot-step"><b>WEEK 4</b><div><strong>신뢰성·보안·사용성 평가</strong><span>누락 이벤트, 복구 시간, 사람 검토 시간, 모바일 불편, 운영 비용을 측정해 확대 여부 결정.</span></div></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="acceptance" aria-label="파일럿 통과 기준">
+          <article class="accept-card"><small>RELIABILITY</small><strong>중요 요청 누락 0건</strong><p>멘션·작업·승인마다 receipt와 최종 상태가 확인될 것</p></article>
+          <article class="accept-card"><small>TRACEABILITY</small><strong>결론의 근거 100% 연결</strong><p>Wiki 문서에서 원본 채널·출처·diff·승인으로 역추적 가능</p></article>
+          <article class="accept-card"><small>SECURITY</small><strong>권한 이탈 0건</strong><p>allowlist·격리 host·repo scope·secret 정책이 실제로 작동</p></article>
+          <article class="accept-card"><small>EFFICIENCY</small><strong>사람 검토 시간 감소</strong><p>기존 방식 대비 조사·정리·QA 시간이 의미 있게 줄어들 것</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="surface" id="sources">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">SOURCES & VERSION</div>
+          <h2 class="section-title">공식 문서와 upstream 코드·릴리스·공개 이슈를 우선했습니다</h2>
+          <p class="section-desc">기능 주장은 README·VISION·소스와 공식 통합 문서를 교차 확인했습니다. 공개 이슈는 제품 전체 품질의 통계가 아니라 파일럿에서 확인해야 할 구체적 실패 유형을 보여주는 사례로만 사용했습니다.</p>
+        </div>
+
+        <div class="source-grid">
+          <a class="source-link" id="source-1" href="https://github.com/aihubos/buzz" target="_blank" rel="noopener noreferrer"><span>GITHUB · ANALYSIS TARGET</span><strong>aihubos/buzz 저장소</strong><em>포크 상태·라이선스·기준 브랜치 확인</em></a>
+          <a class="source-link" id="source-2" href="https://github.com/block/buzz/blob/main/README.md" target="_blank" rel="noopener noreferrer"><span>UPSTREAM · PRIMARY</span><strong>Buzz README</strong><em>제품 정의, works today, 설치, 아키텍처</em></a>
+          <a class="source-link" id="source-3" href="https://github.com/block/buzz/blob/main/VISION.md" target="_blank" rel="noopener noreferrer"><span>UPSTREAM · PRIMARY</span><strong>Buzz Vision</strong><em>identity, encryption, workflow, Git, status 경계</em></a>
+          <a class="source-link" id="source-4" href="https://github.com/block/buzz/blob/main/VISION_AGENT.md" target="_blank" rel="noopener noreferrer"><span>UPSTREAM · PRIMARY</span><strong>Buzz Agent Vision</strong><em>ACP agent와 MCP 도구의 설계 원칙</em></a>
+          <a class="source-link" id="source-5" href="https://github.com/block/buzz/blob/main/crates/buzz-acp/README.md" target="_blank" rel="noopener noreferrer"><span>UPSTREAM · PRIMARY</span><strong>buzz-acp README</strong><em>Hermes·Codex·Claude bridge, access gate, heartbeat</em></a>
+          <a class="source-link" id="source-6" href="https://github.com/block/buzz/blob/main/crates/buzz-cli/README.md" target="_blank" rel="noopener noreferrer"><span>UPSTREAM · PRIMARY</span><strong>Buzz CLI</strong><em>messages, Canvas, workflow, Git, agent memory 명령</em></a>
+          <a class="source-link" id="source-7" href="https://github.com/block/buzz/blob/main/desktop/src-tauri/src/managed_agents/discovery.rs" target="_blank" rel="noopener noreferrer"><span>SOURCE CODE · PRIMARY</span><strong>Codex runtime discovery</strong><em>codex-acp, Codex CLI, buzz-dev-mcp 연결 확인</em></a>
+          <a class="source-link" id="source-8" href="https://github.com/block/buzz/blob/main/desktop/src-tauri/src/managed_agents/discovery/presets.rs" target="_blank" rel="noopener noreferrer"><span>SOURCE CODE · PRIMARY</span><strong>Hermes preset definition</strong><em>hermes-acp가 Buzz Desktop preset으로 등록됨</em></a>
+          <a class="source-link" id="source-9" href="https://hermes-agent.nousresearch.com/docs/integrations/buzz" target="_blank" rel="noopener noreferrer"><span>HERMES · OFFICIAL</span><strong>Buzz Integration</strong><em>Desktop, relay bridge, native gateway 3가지 방식</em></a>
+          <a class="source-link" id="source-10" href="https://hermes-agent.nousresearch.com/docs/user-guide/features/acp" target="_blank" rel="noopener noreferrer"><span>HERMES · OFFICIAL</span><strong>ACP Host Integration</strong><em>전용 키·채널 경계·도구 자동 승인 보안 경고</em></a>
+          <a class="source-link" id="source-11" href="https://openai.com/index/introducing-the-codex-app/" target="_blank" rel="noopener noreferrer"><span>OPENAI · OFFICIAL</span><strong>Introducing the Codex app</strong><em>멀티에이전트, Skills, Automations, sandbox</em></a>
+          <a class="source-link" id="source-12" href="https://openai.com/index/codex-now-generally-available/" target="_blank" rel="noopener noreferrer"><span>OPENAI · OFFICIAL</span><strong>Codex general availability</strong><em>Slack integration과 팀 관리 기능</em></a>
+          <a class="source-link" id="source-13" href="https://slack.com/help/articles/34237742189715-Work-with-templates-in-channels" target="_blank" rel="noopener noreferrer"><span>SLACK · OFFICIAL</span><strong>Channels, Canvas, Lists, Workflows</strong><em>범용 조직 협업의 현재 기능</em></a>
+          <a class="source-link" id="source-14" href="https://support.discord.com/hc/en-us/articles/6208479917079-Forum-Channels-FAQ" target="_blank" rel="noopener noreferrer"><span>DISCORD · OFFICIAL</span><strong>Forum Channels FAQ</strong><em>커뮤니티형 비동기 토론 구조</em></a>
+          <a class="source-link" id="source-15" href="https://telegram.org/faq" target="_blank" rel="noopener noreferrer"><span>TELEGRAM · OFFICIAL</span><strong>Telegram FAQ</strong><em>groups, channels, bots, cloud/secret chat 암호화</em></a>
+          <a class="source-link" id="source-16" href="https://github.com/block/buzz/releases" target="_blank" rel="noopener noreferrer"><span>GITHUB RELEASES · PRIMARY</span><strong>Buzz Desktop releases</strong><em>최신 패키지 v0.5.8 · 2026-08-08 확인</em></a>
+          <a class="source-link" id="source-17" href="https://github.com/block/buzz/issues/5056" target="_blank" rel="noopener noreferrer"><span>GITHUB ISSUE · SIGNAL</span><strong>Relay connection unreliable</strong><em>v0.5.5 macOS 연결·UI 복구 사례</em></a>
+          <a class="source-link" id="source-18" href="https://github.com/block/buzz/issues/4903" target="_blank" rel="noopener noreferrer"><span>GITHUB ISSUE · SIGNAL</span><strong>buzz-acp mention silent loss</strong><em>v0.5.4에서 accepted event 전달 누락 사례</em></a>
+          <a class="source-link" id="source-19" href="https://github.com/block/buzz/issues/4604" target="_blank" rel="noopener noreferrer"><span>GITHUB ISSUE · SIGNAL</span><strong>iOS self-hosted relay connection</strong><em>App Store v0.4.12 접속 실패 사례</em></a>
+          <a class="source-link" id="source-20" href="https://slack.com/help/articles/4402059015315-Use-huddles-in-Slack" target="_blank" rel="noopener noreferrer"><span>SLACK · OFFICIAL</span><strong>Use huddles in Slack</strong><em>음성·영상·화면 공유·전용 note thread</em></a>
+          <a class="source-link" id="source-21" href="https://support.discord.com/hc/en-us/articles/19583625604887-Voice-Channels-FAQs" target="_blank" rel="noopener noreferrer"><span>DISCORD · OFFICIAL</span><strong>Voice Channels FAQs</strong><em>서버 voice channel과 역할 권한</em></a>
+          <a class="source-link" id="source-22" href="https://support.discord.com/hc/en-us/articles/4403205878423-Threads-FAQ" target="_blank" rel="noopener noreferrer"><span>DISCORD · OFFICIAL</span><strong>Threads FAQ</strong><em>채널 안의 독립 토론·검색·모바일 지원</em></a>
+        </div>
+
+        <div class="history-table-wrap" aria-label="버전 및 변경 이력">
+          <table class="history-table">
+            <thead><tr><th>버전</th><th>날짜</th><th>변경 구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr></thead>
+            <tbody id="historyBody"></tbody>
+          </table>
+        </div>
+        <div class="footer-note"><span>분석 기준일: 2026년 8월 21일 · Asia/Seoul</span><span>본 보고서는 공개 문서 기반의 도입 판단 자료이며, 실제 운영 전 보안·법무·인프라 검토가 필요합니다.</span></div>
+      </div>
+    </section>
+  </main>
+
+  <button class="floating-top" id="toTop" type="button" aria-label="맨 위로 이동">↑</button>
+
+  <script id="report-metadata" type="application/json">
+  {
+    "id": "buzz-deep-analysis-2026-08-21",
+    "title": "Buzz 심층 분석: Hermes Agent·LLM Wiki·Codex 앱과 메시징 플랫폼 비교",
+    "version": "1.0.0",
+    "created": "2026-08-21",
+    "updated": "2026-08-21",
+    "generation": "AI 작성 · 사람 검토 필요",
+    "history": [
+      {
+        "version": "1.0.0",
+        "date": "2026-08-21",
+        "type": "MAJOR",
+        "changes": "Buzz 저장소와 upstream의 구조·릴리스·기능 경계를 분석하고, Hermes Agent·LLM Wiki·Codex 맥용 앱 관점, Telegram·Slack·Discord 비교, 보안 통제, 4주 파일럿 권고안을 신규 작성했습니다.",
+        "status": "AI 작성 · 사람 검토 필요"
+      }
+    ]
+  }
+  </script>
+  <script>
+    (() => {
+      const metadataNode = document.getElementById('report-metadata');
+      let metadata;
+      try { metadata = JSON.parse(metadataNode.textContent); }
+      catch (error) { console.error('Invalid report metadata JSON', error); return; }
+
+      document.getElementById('reportVersion').textContent = `v${metadata.version}`;
+      document.getElementById('reportUpdated').textContent = `최종 업데이트 ${metadata.updated.replaceAll('-', '.')}`;
+      document.getElementById('reportGeneration').textContent = metadata.generation;
+
+      const body = document.getElementById('historyBody');
+      metadata.history.forEach((item) => {
+        const row = document.createElement('tr');
+        [item.version, item.date, item.type, item.changes, item.status].forEach((value) => {
+          const cell = document.createElement('td');
+          cell.textContent = value;
+          row.appendChild(cell);
+        });
+        body.appendChild(row);
+      });
+
+      document.getElementById('printButton').addEventListener('click', () => window.print());
+      const toTop = document.getElementById('toTop');
+      toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+      const updateScroll = () => {
+        const height = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = height > 0 ? window.scrollY / height : 0;
+        document.body.style.setProperty('--scroll', Math.min(1, Math.max(0, progress)));
+        toTop.classList.toggle('show', window.scrollY > 700);
+      };
+      window.addEventListener('scroll', updateScroll, { passive: true });
+      updateScroll();
+    })();
+  </script>
+  <script src="../../assets/report-page-layout.js?v=20260815-responsive-only1"></script>
+  <script src="../../assets/report-view-counter.js?v=20260810-counter-d1-1" data-report-id="260821-buzz-deep-analysis"></script>
+  <script src="../../assets/report-comments.js?v=20260816-comments-width1" data-report-id="260821-buzz-deep-analysis"></script>
+  <script src="../../assets/report-history.js?v=20260809-history2" data-report-id="260821-buzz-deep-analysis"></script>
+  <script src="../../assets/report-entry-tracker.js?v=20260811-entry1" data-report-id="260821-buzz-deep-analysis"></script>
+  <script src="../../assets/report-hub-brand.js?v=20260812-report-hub-logo2"></script>
+</body>
+</html>
