@@ -1,7 +1,28 @@
 {
-  "generatedAt": "2026-08-21T02:16:54.774Z",
+  "generatedAt": "2026-08-21T04:16:43.566Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260821-grok-buzz-hermes-youtube-summary",
+      "slug": "grok-buzz-hermes-youtube-summary",
+      "title": "이제 AI 에이전트가 대신하는 시대! Grok Bot vs Buzz vs Hermes 핵심 요약",
+      "category": "AI",
+      "summary": "배움의 달인 YouTube 영상 자막을 바탕으로 Grok Bot, Buzz, Hermes의 차이와 사용자별 선택 기준을 정리한 임원용 핵심 요약 보고서",
+      "createdAt": "2026-08-21T13:16:35+09:00",
+      "updatedAt": "2026-08-21T13:16:35+09:00",
+      "status": "published",
+      "path": "reports/260821-grok-buzz-hermes-youtube-summary/",
+      "url": "https://aihubos.github.io/reportmode/reports/260821-grok-buzz-hermes-youtube-summary/",
+      "displayDate": "260821",
+      "sourceCount": 1,
+      "tags": [
+        "Grok Bot",
+        "Buzz",
+        "Hermes",
+        "AI 에이전트",
+        "멀티에이전트"
+      ]
+    },
     {
       "id": "260821-buzz-deep-analysis",
       "slug": "buzz-deep-analysis",
