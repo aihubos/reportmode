@@ -420,15 +420,18 @@ async function callConfiguredProvider(setting: ToolSetting, apiKey: string, inpu
   if (!endpoint) throw new LoungeError("tool_not_configured", 503);
 
   let response: Response;
-  if (setting.provider === "openai" || setting.provider === "openrouter" || setting.provider === "moonshot") {
+  const provider = setting.endpoint_url.includes("openrouter.ai") ? "openrouter"
+    : setting.endpoint_url.includes("moonshot.ai") || setting.endpoint_url.includes("moonshot.cn") ? "moonshot"
+    : setting.provider;
+  if (provider === "openai" || provider === "openrouter" || provider === "moonshot") {
     const wantsImage = setting.tool_id === "masterpiece";
     const payload = openaiCompatiblePayload(setting, prompt);
-    if (wantsImage && setting.provider === "openrouter") {
+    if (wantsImage && provider === "openrouter") {
       (payload as Record<string, unknown>).modalities = ["image", "text"];
     }
     response = await fetch(endpoint, {
       method: "POST",
-      headers: openaiCompatibleHeaders(setting.provider, apiKey),
+      headers: openaiCompatibleHeaders(provider, apiKey),
       body: JSON.stringify(payload),
     });
     const { body } = await parseProviderResponse(response);
