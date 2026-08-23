@@ -416,24 +416,35 @@ function geminiImage(body: any) {
 async function callConfiguredProvider(setting: ToolSetting, apiKey: string, input: Record<string, unknown>, identity: LoungeIdentity) {
   const prompt = cleanMultiline(input.prompt ?? input.text ?? input.transcript, MAX_REQUEST_TEXT);
   if (!prompt) throw new LoungeError("prompt_required", 400);
-  const endpoint = replaceModel(setting.endpoint_url, setting.model);
+  let provider = setting.endpoint_url.includes("openrouter.ai") ? "openrouter"
+    : setting.endpoint_url.includes("moonshot.ai") || setting.endpoint_url.includes("moonshot.cn") ? "moonshot"
+    : setting.provider;
+  let endpointUrl = setting.endpoint_url;
+  if ((setting.tool_id === "webtoon" || setting.tool_id === "masterpiece") && provider === "openai") {
+    provider = "openrouter";
+    endpointUrl = endpointUrl.includes("openrouter.ai") ? endpointUrl : "https://openrouter.ai/api/v1/chat/completions";
+  }
+  const endpoint = replaceModel(endpointUrl, setting.model);
   if (!endpoint) throw new LoungeError("tool_not_configured", 503);
 
   let response: Response;
-  const provider = setting.endpoint_url.includes("openrouter.ai") ? "openrouter"
-    : setting.endpoint_url.includes("moonshot.ai") || setting.endpoint_url.includes("moonshot.cn") ? "moonshot"
-    : setting.provider;
+
   if (provider === "openai" || provider === "openrouter" || provider === "moonshot") {
     const wantsImage = setting.tool_id === "masterpiece";
     const payload = openaiCompatiblePayload(setting, prompt);
     if (wantsImage && provider === "openrouter") {
       (payload as Record<string, unknown>).modalities = ["image", "text"];
     }
-    response = await fetch(endpoint, {
-      method: "POST",
-      headers: openaiCompatibleHeaders(provider, apiKey),
-      body: JSON.stringify(payload),
-    });
+    try {
+      response = await fetch(endpoint, {
+        method: "POST",
+        headers: openaiCompatibleHeaders(provider, apiKey),
+        body: JSON.stringify(payload),
+        signal: AbortSignal.timeout(50_000),
+      });
+    } catch (error) {
+      throw new LoungeError("provider_request_failed", 504, "AI 서비스 응답이 지연되었습니다. 모델 이름과 OpenRouter 설정을 확인해 주세요.");
+    }
     const { body } = await parseProviderResponse(response);
     if (wantsImage) {
       const imageDataUrl = firstOpenAIImage(body);
