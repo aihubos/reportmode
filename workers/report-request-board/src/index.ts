@@ -9,9 +9,14 @@ import {
   zeroFillDailySeries,
 } from "./admin-analytics.js";
 import { normalizeAdminAction } from "./admin-jobs.js";
+import {
+  handleLoungeRequest,
+  loungeBoardAuth,
+  type LoungeEnv,
+  type LoungeIdentity,
+} from "./lounge-platform.js";
 
-interface Env {
-  DB: D1Database;
+interface Env extends LoungeEnv {
   ADMIN_PASSWORD?: string;
   PRIVATE_REPORTS?: PrivateReportBucket;
   PRIVATE_SESSION_SECRET?: string;
@@ -104,6 +109,8 @@ type BoardPostRow = {
   updated_at?: string | null;
   password_salt?: string;
   password_hash?: string;
+  user_sub?: string | null;
+  reward_builds?: number;
 };
 
 type BoardCommentRow = {
@@ -116,6 +123,7 @@ type BoardCommentRow = {
   updated_at?: string | null;
   password_salt?: string;
   password_hash?: string;
+  user_sub?: string | null;
 };
 
 const BOARD_CATEGORIES = new Set([
@@ -142,7 +150,7 @@ function cors(request: Request) {
   return {
     "Access-Control-Allow-Origin": allowed,
     "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Request-Id",
     "Vary": "Origin",
   };
 }
@@ -221,14 +229,22 @@ function boardPublicComment(row: BoardCommentRow) {
 
 async function boardPostForPassword(env: Env, id: string) {
   return env.DB.prepare(
-    "SELECT id, password_salt, password_hash FROM board_posts WHERE id = ?"
+    "SELECT id, password_salt, password_hash, user_sub, reward_builds FROM board_posts WHERE id = ?"
   ).bind(id).first<BoardPostRow>();
 }
 
 async function boardCommentForPassword(env: Env, id: string) {
   return env.DB.prepare(
-    "SELECT id, post_id, password_salt, password_hash FROM board_comments WHERE id = ?"
+    "SELECT id, post_id, password_salt, password_hash, user_sub FROM board_comments WHERE id = ?"
   ).bind(id).first<BoardCommentRow>();
+}
+
+function boardIdentityAuthor(identity: LoungeIdentity) {
+  return clean(identity.name, 24) || clean(identity.email.split("@")[0], 24) || "빌더";
+}
+
+function boardIdentityCanEdit(identity: LoungeIdentity | null, row: { user_sub?: string | null }) {
+  return Boolean(identity && (identity.isAdmin || (row.user_sub && row.user_sub === identity.sub)));
 }
 
 async function verifyBoardPassword(env: Env, row: { password_salt?: string; password_hash?: string } | null, password: string) {
@@ -608,6 +624,8 @@ export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: cors(request) });
     const url = new URL(request.url);
+    const loungeResponse = await handleLoungeRequest(request, env);
+    if (loungeResponse) return loungeResponse;
     const privateResponse = await handlePrivateReportRequest(request, env);
     if (privateResponse) return privateResponse;
     if (url.pathname.startsWith("/internal/report-jobs/")) {
@@ -726,6 +744,8 @@ export default {
     }
 
     if (url.pathname === "/board/posts" && request.method === "GET") {
+      const auth = await loungeBoardAuth(request, env);
+      if (auth.response) return auth.response;
       const page = boardPage(url.searchParams.get("page") || "1");
       const pageSize = boardPageSize(url.searchParams.get("pageSize") || "20");
       const category = url.searchParams.get("category") === "all"
@@ -745,7 +765,7 @@ export default {
         .bind(category, category, query, pattern)
         .first<{ count: number }>();
       const rows = await env.DB.prepare(
-        "SELECT id, category, title, content, author, is_admin, view_count, comment_count, created_at, updated_at " +
+        "SELECT id, category, title, content, author, is_admin, view_count, comment_count, created_at, updated_at, user_sub " +
         "FROM board_posts " + where +
         " ORDER BY " + orderBy + " LIMIT ? OFFSET ?"
       ).bind(category, category, query, pattern, pageSize, (page - 1) * pageSize).all<BoardPostRow>();
@@ -753,6 +773,7 @@ export default {
         posts: (rows.results || []).map((row) => ({
           ...boardPublicPost(row),
           content: row.content.slice(0, 220),
+          can_edit: boardIdentityCanEdit(auth.identity, row),
         })),
         pagination: {
           page,
@@ -766,44 +787,69 @@ export default {
     if (url.pathname === "/board/posts" && request.method === "POST") {
       let payload: { category?: unknown; title?: unknown; content?: unknown; author?: unknown; password?: unknown };
       try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+      const auth = await loungeBoardAuth(request, env);
+      if (auth.response) return auth.response;
+      const identity = auth.identity;
       const category = boardCategory(payload.category);
       const title = clean(payload.title, 100);
       const content = cleanMultiline(payload.content, 5000);
-      const author = clean(payload.author, 24);
+      const author = identity ? boardIdentityAuthor(identity) : clean(payload.author, 24);
       const password = passwordValue(payload.password);
       if (!category) return json(request, { error: "invalid_category" }, 400);
       if (title.length < 4) return json(request, { error: "title_too_short" }, 400);
       if (content.length < 10) return json(request, { error: "content_too_short" }, 400);
       if (!author) return json(request, { error: "author_required" }, 400);
-      if (password.length < 4) return json(request, { error: "password_too_short" }, 400);
-      const isAdmin = isAdminPassword(env, password);
+      if (!identity && password.length < 4) return json(request, { error: "password_too_short" }, 400);
+      const isAdmin = identity?.isAdmin || isAdminPassword(env, password);
       if (isReservedAdminName(author) && !isAdmin) return json(request, { error: "reserved_admin_name" }, 403);
       const now = new Date().toISOString();
       const salt = crypto.randomUUID();
       const row: BoardPostRow = {
         id: crypto.randomUUID(), category, title, content, author,
         is_admin: isAdmin ? 1 : 0, view_count: 0, comment_count: 0,
-        created_at: now, updated_at: null,
+        created_at: now, updated_at: null, user_sub: identity?.sub || null,
+        reward_builds: identity ? 1 : 0,
       };
-      const passwordHash = await hashPassword(password, salt);
-      await env.DB.prepare(
+      const passwordHash = await hashPassword(identity ? crypto.randomUUID() : password, salt);
+      const insertPost = env.DB.prepare(
         "INSERT INTO board_posts " +
-        "(id, category, title, content, author, password_salt, password_hash, is_admin, view_count, comment_count, created_at, updated_at) " +
-        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, 0, ?, NULL)"
-      ).bind(row.id, row.category, row.title, row.content, row.author, salt, passwordHash, row.is_admin, row.created_at).run();
-      return json(request, { post: boardPublicPost(row) }, 201);
+        "(id, category, title, content, author, password_salt, password_hash, is_admin, view_count, comment_count, created_at, updated_at, user_sub, reward_builds) " +
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, 0, ?, NULL, ?, ?)"
+      ).bind(row.id, row.category, row.title, row.content, row.author, salt, passwordHash, row.is_admin, row.created_at, row.user_sub, row.reward_builds);
+      if (identity) {
+        await env.DB.batch([
+          insertPost,
+          env.DB.prepare(
+            "UPDATE lounge_users SET build_balance = build_balance + 1, updated_at = ? WHERE google_sub = ?"
+          ).bind(now, identity.sub),
+          env.DB.prepare(
+            `INSERT INTO lounge_build_ledger
+              (id, user_sub, delta, reason, ref_type, ref_id, balance_after, created_at)
+             SELECT ?, ?, 1, '게시글 작성', 'board_post', ?, build_balance, ?
+               FROM lounge_users WHERE google_sub = ?`
+          ).bind(crypto.randomUUID(), identity.sub, row.id, now, identity.sub),
+        ]);
+        const balance = await env.DB.prepare(
+          "SELECT build_balance FROM lounge_users WHERE google_sub = ?"
+        ).bind(identity.sub).first<{ build_balance: number }>();
+        return json(request, { post: boardPublicPost(row), reward: 1, balance: Number(balance?.build_balance || 0) }, 201);
+      }
+      await insertPost.run();
+      return json(request, { post: boardPublicPost(row), reward: 0 }, 201);
     }
 
     const boardPostId = url.pathname.match(/^\/board\/posts\/([0-9a-f-]{36})$/i)?.[1];
     if (boardPostId && request.method === "GET") {
       const id = boardId(boardPostId);
       if (!id) return json(request, { error: "not_found" }, 404);
+      const auth = await loungeBoardAuth(request, env);
+      if (auth.response) return auth.response;
       const row = await env.DB.prepare(
-        "SELECT id, category, title, content, author, is_admin, view_count, comment_count, created_at, updated_at " +
+        "SELECT id, category, title, content, author, is_admin, view_count, comment_count, created_at, updated_at, user_sub " +
         "FROM board_posts WHERE id = ?"
       ).bind(id).first<BoardPostRow>();
       if (!row) return json(request, { error: "not_found" }, 404);
-      return json(request, { post: boardPublicPost(row) });
+      return json(request, { post: { ...boardPublicPost(row), can_edit: boardIdentityCanEdit(auth.identity, row) } });
     }
 
     if (boardPostId && request.method === "PATCH") {
@@ -811,21 +857,27 @@ export default {
       if (!id) return json(request, { error: "not_found" }, 404);
       let payload: { category?: unknown; title?: unknown; content?: unknown; author?: unknown; password?: unknown; adminPassword?: unknown };
       try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+      const auth = await loungeBoardAuth(request, env);
+      if (auth.response) return auth.response;
+      const identity = auth.identity;
       const category = boardCategory(payload.category);
       const title = clean(payload.title, 100);
       const content = cleanMultiline(payload.content, 5000);
-      const author = clean(payload.author, 24);
+      const author = identity ? boardIdentityAuthor(identity) : clean(payload.author, 24);
       const password = passwordValue(payload.password);
       const adminPassword = passwordValue(payload.adminPassword);
       if (!category) return json(request, { error: "invalid_category" }, 400);
       if (title.length < 4) return json(request, { error: "title_too_short" }, 400);
       if (content.length < 10) return json(request, { error: "content_too_short" }, 400);
       if (!author) return json(request, { error: "author_required" }, 400);
-      if (password.length < 4 && adminPassword.length < 4) return json(request, { error: "password_too_short" }, 400);
+      if (!identity && password.length < 4 && adminPassword.length < 4) return json(request, { error: "password_too_short" }, 400);
       const row = await boardPostForPassword(env, id);
       if (!row) return json(request, { error: "not_found" }, 404);
-      const isAdmin = isAdminPassword(env, password) || isAdminPassword(env, adminPassword);
-      if (!isAdmin && !(await verifyBoardPassword(env, row, password))) return json(request, { error: "wrong_password" }, 403);
+      const isAdmin = identity?.isAdmin || isAdminPassword(env, password) || isAdminPassword(env, adminPassword);
+      const authorized = identity
+        ? boardIdentityCanEdit(identity, row)
+        : isAdmin || await verifyBoardPassword(env, row, password);
+      if (!authorized) return json(request, { error: identity ? "not_owner" : "wrong_password" }, 403);
       if (isReservedAdminName(author) && !isAdmin) return json(request, { error: "reserved_admin_name" }, 403);
       const updatedAt = new Date().toISOString();
       await env.DB.prepare(
@@ -843,18 +895,41 @@ export default {
       if (!id) return json(request, { error: "not_found" }, 404);
       let payload: { password?: unknown; adminPassword?: unknown };
       try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+      const auth = await loungeBoardAuth(request, env);
+      if (auth.response) return auth.response;
+      const identity = auth.identity;
       const password = passwordValue(payload.password);
       const adminPassword = passwordValue(payload.adminPassword);
-      if (password.length < 4 && adminPassword.length < 4) return json(request, { error: "password_too_short" }, 400);
+      if (!identity && password.length < 4 && adminPassword.length < 4) return json(request, { error: "password_too_short" }, 400);
       const row = await boardPostForPassword(env, id);
       if (!row) return json(request, { error: "not_found" }, 404);
-      const isAdmin = isAdminPassword(env, password) || isAdminPassword(env, adminPassword);
-      if (!isAdmin && !(await verifyBoardPassword(env, row, password))) return json(request, { error: "wrong_password" }, 403);
-      await env.DB.batch([
+      const isAdmin = identity?.isAdmin || isAdminPassword(env, password) || isAdminPassword(env, adminPassword);
+      const authorized = identity
+        ? boardIdentityCanEdit(identity, row)
+        : isAdmin || await verifyBoardPassword(env, row, password);
+      if (!authorized) return json(request, { error: identity ? "not_owner" : "wrong_password" }, 403);
+      const statements = [] as any[];
+      const reward = Math.max(0, Number(row.reward_builds || 0));
+      if (row.user_sub && reward > 0) {
+        const now = new Date().toISOString();
+        statements.push(
+          env.DB.prepare(
+            "UPDATE lounge_users SET build_balance = build_balance - ?, updated_at = ? WHERE google_sub = ?"
+          ).bind(reward, now, row.user_sub),
+          env.DB.prepare(
+            `INSERT OR IGNORE INTO lounge_build_ledger
+              (id, user_sub, delta, reason, ref_type, ref_id, balance_after, created_at)
+             SELECT ?, ?, ?, '게시글 삭제로 적립 취소', 'board_post_delete', ?, build_balance, ?
+               FROM lounge_users WHERE google_sub = ?`
+          ).bind(crypto.randomUUID(), row.user_sub, -reward, id, now, row.user_sub),
+        );
+      }
+      statements.push(
         env.DB.prepare("DELETE FROM board_comments WHERE post_id = ?").bind(id),
         env.DB.prepare("DELETE FROM board_post_daily_views WHERE post_id = ?").bind(id),
         env.DB.prepare("DELETE FROM board_posts WHERE id = ?").bind(id),
-      ]);
+      );
+      await env.DB.batch(statements);
       return json(request, { ok: true, postId: id });
     }
 
@@ -885,13 +960,15 @@ export default {
     if (boardCommentsPostId && request.method === "GET") {
       const postId = boardId(boardCommentsPostId);
       if (!postId) return json(request, { error: "not_found" }, 404);
+      const auth = await loungeBoardAuth(request, env);
+      if (auth.response) return auth.response;
       const post = await env.DB.prepare("SELECT id FROM board_posts WHERE id = ?").bind(postId).first<{ id: string }>();
       if (!post) return json(request, { error: "not_found" }, 404);
       const rows = await env.DB.prepare(
-        "SELECT id, post_id, author, content, is_admin, created_at, updated_at " +
+        "SELECT id, post_id, author, content, is_admin, created_at, updated_at, user_sub " +
         "FROM board_comments WHERE post_id = ? ORDER BY created_at ASC LIMIT 100"
       ).bind(postId).all<BoardCommentRow>();
-      return json(request, { comments: (rows.results || []).map(boardPublicComment) });
+      return json(request, { comments: (rows.results || []).map((row) => ({ ...boardPublicComment(row), can_edit: boardIdentityCanEdit(auth.identity, row) })) });
     }
 
     if (boardCommentsPostId && request.method === "POST") {
@@ -901,26 +978,29 @@ export default {
       if (!post) return json(request, { error: "not_found" }, 404);
       let payload: { author?: unknown; content?: unknown; password?: unknown };
       try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
-      const author = clean(payload.author, 24);
+      const auth = await loungeBoardAuth(request, env);
+      if (auth.response) return auth.response;
+      const identity = auth.identity;
+      const author = identity ? boardIdentityAuthor(identity) : clean(payload.author, 24);
       const content = cleanMultiline(payload.content, 1000);
       const password = passwordValue(payload.password);
       if (!author) return json(request, { error: "author_required" }, 400);
       if (content.length < 2) return json(request, { error: "comment_too_short" }, 400);
-      if (password.length < 4) return json(request, { error: "password_too_short" }, 400);
-      const isAdmin = isAdminPassword(env, password);
+      if (!identity && password.length < 4) return json(request, { error: "password_too_short" }, 400);
+      const isAdmin = identity?.isAdmin || isAdminPassword(env, password);
       if (isReservedAdminName(author) && !isAdmin) return json(request, { error: "reserved_admin_name" }, 403);
       const now = new Date().toISOString();
       const salt = crypto.randomUUID();
       const row: BoardCommentRow = {
         id: crypto.randomUUID(), post_id: postId, author, content,
-        is_admin: isAdmin ? 1 : 0, created_at: now, updated_at: null,
+        is_admin: isAdmin ? 1 : 0, created_at: now, updated_at: null, user_sub: identity?.sub || null,
       };
-      const passwordHash = await hashPassword(password, salt);
+      const passwordHash = await hashPassword(identity ? crypto.randomUUID() : password, salt);
       await env.DB.prepare(
         "INSERT INTO board_comments " +
-        "(id, post_id, author, content, password_salt, password_hash, is_admin, created_at, updated_at) " +
-        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, NULL)"
-      ).bind(row.id, row.post_id, row.author, row.content, salt, passwordHash, row.is_admin, row.created_at).run();
+        "(id, post_id, author, content, password_salt, password_hash, is_admin, created_at, updated_at, user_sub) " +
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, NULL, ?)"
+      ).bind(row.id, row.post_id, row.author, row.content, salt, passwordHash, row.is_admin, row.created_at, row.user_sub).run();
       return json(request, { comment: boardPublicComment(row) }, 201);
     }
 
@@ -930,17 +1010,23 @@ export default {
       if (!id) return json(request, { error: "not_found" }, 404);
       let payload: { author?: unknown; content?: unknown; password?: unknown; adminPassword?: unknown };
       try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
-      const author = clean(payload.author, 24);
+      const auth = await loungeBoardAuth(request, env);
+      if (auth.response) return auth.response;
+      const identity = auth.identity;
+      const author = identity ? boardIdentityAuthor(identity) : clean(payload.author, 24);
       const content = cleanMultiline(payload.content, 1000);
       const password = passwordValue(payload.password);
       const adminPassword = passwordValue(payload.adminPassword);
       if (!author) return json(request, { error: "author_required" }, 400);
       if (content.length < 2) return json(request, { error: "comment_too_short" }, 400);
-      if (password.length < 4 && adminPassword.length < 4) return json(request, { error: "password_too_short" }, 400);
+      if (!identity && password.length < 4 && adminPassword.length < 4) return json(request, { error: "password_too_short" }, 400);
       const row = await boardCommentForPassword(env, id);
       if (!row) return json(request, { error: "not_found" }, 404);
-      const isAdmin = isAdminPassword(env, password) || isAdminPassword(env, adminPassword);
-      if (!isAdmin && !(await verifyBoardPassword(env, row, password))) return json(request, { error: "wrong_password" }, 403);
+      const isAdmin = identity?.isAdmin || isAdminPassword(env, password) || isAdminPassword(env, adminPassword);
+      const authorized = identity
+        ? boardIdentityCanEdit(identity, row)
+        : isAdmin || await verifyBoardPassword(env, row, password);
+      if (!authorized) return json(request, { error: identity ? "not_owner" : "wrong_password" }, 403);
       if (isReservedAdminName(author) && !isAdmin) return json(request, { error: "reserved_admin_name" }, 403);
       const updatedAt = new Date().toISOString();
       await env.DB.prepare(
@@ -957,13 +1043,19 @@ export default {
       if (!id) return json(request, { error: "not_found" }, 404);
       let payload: { password?: unknown; adminPassword?: unknown };
       try { payload = await request.json(); } catch { return json(request, { error: "invalid_json" }, 400); }
+      const auth = await loungeBoardAuth(request, env);
+      if (auth.response) return auth.response;
+      const identity = auth.identity;
       const password = passwordValue(payload.password);
       const adminPassword = passwordValue(payload.adminPassword);
-      if (password.length < 4 && adminPassword.length < 4) return json(request, { error: "password_too_short" }, 400);
+      if (!identity && password.length < 4 && adminPassword.length < 4) return json(request, { error: "password_too_short" }, 400);
       const row = await boardCommentForPassword(env, id);
       if (!row) return json(request, { error: "not_found" }, 404);
-      const isAdmin = isAdminPassword(env, password) || isAdminPassword(env, adminPassword);
-      if (!isAdmin && !(await verifyBoardPassword(env, row, password))) return json(request, { error: "wrong_password" }, 403);
+      const isAdmin = identity?.isAdmin || isAdminPassword(env, password) || isAdminPassword(env, adminPassword);
+      const authorized = identity
+        ? boardIdentityCanEdit(identity, row)
+        : isAdmin || await verifyBoardPassword(env, row, password);
+      if (!authorized) return json(request, { error: identity ? "not_owner" : "wrong_password" }, 403);
       await env.DB.prepare("DELETE FROM board_comments WHERE id = ?").bind(id).run();
       return json(request, { ok: true, commentId: id });
     }
