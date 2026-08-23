@@ -1,7 +1,27 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-21T13:17:12+09:00",
+  "updatedAt": "2026-08-23T15:22:57+09:00",
   "reports": [
+    {
+      "schemaVersion": "1",
+      "id": "260823-playworkgrow-site-analysis",
+      "slug": "playworkgrow-site-analysis",
+      "title": "놀일(PLAY WORK GROW) 사이트 분석 보고서",
+      "category": "비즈니스",
+      "tags": [
+        "PLAY WORK GROW",
+        "놀일",
+        "사이트 분석",
+        "커뮤니티 비즈니스"
+      ],
+      "summary": "놀일(PLAY WORK GROW)의 포지셔닝, 사업·수익 구조, 고객 전환, 신뢰 요소와 90일 개선안을 분석한 임원용 보고서",
+      "createdAt": "2026-08-23T15:22:12+09:00",
+      "updatedAt": "2026-08-23T15:22:12+09:00",
+      "status": "published",
+      "sourceName": "놀일_PLAY_WORK_GROW_사이트_분석_보고서_v1.0.0.zip",
+      "sourceCount": 11,
+      "entry": "index.html"
+    },
     {
       "schemaVersion": "1",
       "id": "260821-grok-buzz-hermes-youtube-summary",

@@ -1,7 +1,29 @@
 {
-  "generatedAt": "2026-08-21T04:16:43.566Z",
+  "generatedAt": "2026-08-23T06:22:59.607Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260823-playworkgrow-site-analysis",
+      "slug": "playworkgrow-site-analysis",
+      "title": "놀일(PLAY WORK GROW) 사이트 분석 보고서",
+      "category": "비즈니스",
+      "summary": "놀일(PLAY WORK GROW)의 포지셔닝, 사업·수익 구조, 고객 전환, 신뢰 요소와 90일 개선안을 분석한 임원용 보고서",
+      "createdAt": "2026-08-23T15:22:12+09:00",
+      "updatedAt": "2026-08-23T15:22:12+09:00",
+      "status": "published",
+      "path": "reports/260823-playworkgrow-site-analysis/",
+      "url": "https://aihubos.github.io/reportmode/reports/260823-playworkgrow-site-analysis/",
+      "displayDate": "260823",
+      "sourceCount": 11,
+      "tags": [
+        "PLAY WORK GROW",
+        "놀일",
+        "사이트 분석",
+        "커뮤니티 비즈니스"
+      ],
+      "coverImage": "reports/260823-playworkgrow-site-analysis/assets/group-tea.webp",
+      "coverAlt": "놀일 PLAY WORK GROW 참여자들이 차를 마시며 대화하는 모습"
+    },
     {
       "id": "260821-grok-buzz-hermes-youtube-summary",
       "slug": "grok-buzz-hermes-youtube-summary",
