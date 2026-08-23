@@ -58,7 +58,7 @@ class LoungeError extends Error {
 
 const GOOGLE_JWKS = createRemoteJWKSet(new URL("https://www.googleapis.com/oauth2/v3/certs"));
 const TOOL_IDS = new Set(["meeting", "shorts", "webtoon", "masterpiece"]);
-const PROVIDERS = new Set(["openai", "gemini", "gemini-image", "anthropic", "webhook"]);
+const PROVIDERS = new Set(["openai", "openrouter", "moonshot", "gemini", "gemini-image", "anthropic", "webhook"]);
 const DEFAULT_ADMIN_EMAIL = "jeremylee0213@gmail.com";
 const MAX_REQUEST_TEXT = 120_000;
 
@@ -333,12 +333,65 @@ async function parseProviderResponse(response: Response) {
   try { body = JSON.parse(text); } catch { body = null; }
   if (!response.ok) {
     const message = clean(
-      body?.error?.message || body?.message || body?.error || text || `provider_${response.status}`,
+      body?.error?.message || body?.error?.metadata?.raw || body?.message || body?.error || text || `provider_${response.status}`,
       400,
     );
     throw new LoungeError("provider_request_failed", 502, message);
   }
   return { body, text };
+}
+
+function openaiCompatibleHeaders(provider: string, apiKey: string) {
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${apiKey}`,
+  };
+  if (provider === "openrouter") {
+    headers["HTTP-Referer"] = "https://aihubos.github.io/builders-lounge/";
+    headers["X-Title"] = "Builders Lounge";
+  }
+  return headers;
+}
+
+function openaiCompatiblePayload(setting: ToolSetting, prompt: string) {
+  return {
+    model: setting.model,
+    messages: [
+      { role: "system", content: setting.system_prompt },
+      { role: "user", content: prompt },
+    ],
+  };
+}
+
+function firstOpenAIText(body: any) {
+  const choice = body?.choices?.[0];
+  const message = choice?.message;
+  if (typeof message?.content === "string") return message.content;
+  if (Array.isArray(message?.content)) {
+    return message.content.map((part: any) => {
+      if (typeof part === "string") return part;
+      if (typeof part?.text === "string") return part.text;
+      return "";
+    }).join("\n");
+  }
+  return body?.output_text || "";
+}
+
+function firstOpenAIImage(body: any) {
+  const choice = body?.choices?.[0];
+  const message = choice?.message;
+  const bags = [message?.images, message?.content, body?.data];
+  for (const bag of bags) {
+    if (!Array.isArray(bag)) continue;
+    for (const item of bag) {
+      const url = item?.image_url?.url || item?.url || item?.b64_json || item?.image_base64 || "";
+      if (typeof url === "string" && url.startsWith("data:image/")) return url.slice(0, 8_000_000);
+      if (typeof item?.b64_json === "string" && item.b64_json) return `data:image/png;base64,${item.b64_json}`;
+    }
+  }
+  const content = typeof message?.content === "string" ? message.content : "";
+  const match = content.match(/data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+/=]+/i);
+  return match ? match[0].slice(0, 8_000_000) : "";
 }
 
 function geminiText(body: any) {
@@ -367,20 +420,24 @@ async function callConfiguredProvider(setting: ToolSetting, apiKey: string, inpu
   if (!endpoint) throw new LoungeError("tool_not_configured", 503);
 
   let response: Response;
-  if (setting.provider === "openai") {
+  if (setting.provider === "openai" || setting.provider === "openrouter" || setting.provider === "moonshot") {
+    const wantsImage = setting.tool_id === "masterpiece";
+    const payload = openaiCompatiblePayload(setting, prompt);
+    if (wantsImage && setting.provider === "openrouter") {
+      (payload as Record<string, unknown>).modalities = ["image", "text"];
+    }
     response = await fetch(endpoint, {
       method: "POST",
-      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${apiKey}` },
-      body: JSON.stringify({
-        model: setting.model,
-        messages: [
-          { role: "system", content: setting.system_prompt },
-          { role: "user", content: prompt },
-        ],
-      }),
+      headers: openaiCompatibleHeaders(setting.provider, apiKey),
+      body: JSON.stringify(payload),
     });
     const { body } = await parseProviderResponse(response);
-    const text = cleanMultiline(body?.choices?.[0]?.message?.content || body?.output_text, 160_000);
+    if (wantsImage) {
+      const imageDataUrl = firstOpenAIImage(body);
+      if (!imageDataUrl) throw new LoungeError("empty_provider_response", 502);
+      return { imageDataUrl, text: cleanMultiline(firstOpenAIText(body), 160_000), providerRef: clean(body?.id, 200) };
+    }
+    const text = cleanMultiline(firstOpenAIText(body), 160_000);
     if (!text) throw new LoungeError("empty_provider_response", 502);
     return { text, providerRef: clean(body?.id, 200) };
   }

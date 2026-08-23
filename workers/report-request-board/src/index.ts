@@ -124,6 +124,7 @@ type BoardCommentRow = {
   password_salt?: string;
   password_hash?: string;
   user_sub?: string | null;
+  reward_builds?: number;
 };
 
 const BOARD_CATEGORIES = new Set([
@@ -235,7 +236,7 @@ async function boardPostForPassword(env: Env, id: string) {
 
 async function boardCommentForPassword(env: Env, id: string) {
   return env.DB.prepare(
-    "SELECT id, post_id, password_salt, password_hash, user_sub FROM board_comments WHERE id = ?"
+    "SELECT id, post_id, password_salt, password_hash, user_sub, reward_builds FROM board_comments WHERE id = ?"
   ).bind(id).first<BoardCommentRow>();
 }
 
@@ -994,14 +995,34 @@ export default {
       const row: BoardCommentRow = {
         id: crypto.randomUUID(), post_id: postId, author, content,
         is_admin: isAdmin ? 1 : 0, created_at: now, updated_at: null, user_sub: identity?.sub || null,
+        reward_builds: identity ? 1 : 0,
       };
       const passwordHash = await hashPassword(identity ? crypto.randomUUID() : password, salt);
-      await env.DB.prepare(
+      const insertComment = env.DB.prepare(
         "INSERT INTO board_comments " +
-        "(id, post_id, author, content, password_salt, password_hash, is_admin, created_at, updated_at, user_sub) " +
-        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, NULL, ?)"
-      ).bind(row.id, row.post_id, row.author, row.content, salt, passwordHash, row.is_admin, row.created_at, row.user_sub).run();
-      return json(request, { comment: boardPublicComment(row) }, 201);
+        "(id, post_id, author, content, password_salt, password_hash, is_admin, created_at, updated_at, user_sub, reward_builds) " +
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, NULL, ?, ?)"
+      ).bind(row.id, row.post_id, row.author, row.content, salt, passwordHash, row.is_admin, row.created_at, row.user_sub, row.reward_builds);
+      if (identity) {
+        await env.DB.batch([
+          insertComment,
+          env.DB.prepare(
+            "UPDATE lounge_users SET build_balance = build_balance + 1, updated_at = ? WHERE google_sub = ?"
+          ).bind(now, identity.sub),
+          env.DB.prepare(
+            `INSERT INTO lounge_build_ledger
+              (id, user_sub, delta, reason, ref_type, ref_id, balance_after, created_at)
+             SELECT ?, ?, 1, '댓글 작성', 'board_comment', ?, build_balance, ?
+               FROM lounge_users WHERE google_sub = ?`
+          ).bind(crypto.randomUUID(), identity.sub, row.id, now, identity.sub),
+        ]);
+        const balance = await env.DB.prepare(
+          "SELECT build_balance FROM lounge_users WHERE google_sub = ?"
+        ).bind(identity.sub).first<{ build_balance: number }>();
+        return json(request, { comment: boardPublicComment(row), reward: 1, balance: Number(balance?.build_balance || 0) }, 201);
+      }
+      await insertComment.run();
+      return json(request, { comment: boardPublicComment(row), reward: 0 }, 201);
     }
 
     const boardCommentId = url.pathname.match(/^\/board\/comments\/([0-9a-f-]{36})$/i)?.[1];
@@ -1056,7 +1077,24 @@ export default {
         ? boardIdentityCanEdit(identity, row)
         : isAdmin || await verifyBoardPassword(env, row, password);
       if (!authorized) return json(request, { error: identity ? "not_owner" : "wrong_password" }, 403);
-      await env.DB.prepare("DELETE FROM board_comments WHERE id = ?").bind(id).run();
+      const statements = [] as any[];
+      const reward = Math.max(0, Number(row.reward_builds || 0));
+      if (row.user_sub && reward > 0) {
+        const now = new Date().toISOString();
+        statements.push(
+          env.DB.prepare(
+            "UPDATE lounge_users SET build_balance = build_balance - ?, updated_at = ? WHERE google_sub = ?"
+          ).bind(reward, now, row.user_sub),
+          env.DB.prepare(
+            `INSERT OR IGNORE INTO lounge_build_ledger
+              (id, user_sub, delta, reason, ref_type, ref_id, balance_after, created_at)
+             SELECT ?, ?, ?, '댓글 삭제로 적립 취소', 'board_comment_delete', ?, build_balance, ?
+               FROM lounge_users WHERE google_sub = ?`
+          ).bind(crypto.randomUUID(), row.user_sub, -reward, id, now, row.user_sub),
+        );
+      }
+      statements.push(env.DB.prepare("DELETE FROM board_comments WHERE id = ?").bind(id));
+      await env.DB.batch(statements);
       return json(request, { ok: true, commentId: id });
     }
 

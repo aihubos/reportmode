@@ -1,6 +1,6 @@
 # Builders Lounge 계정·빌드 플랫폼
 
-기존 Report Mode 게시판 Worker와 D1을 함께 사용합니다. 게시글 등록과 `+1빌드` 적립은 같은 D1 묶음으로 처리하며, 보상받은 글을 삭제하면 1빌드가 취소됩니다.
+기존 Report Mode 게시판 Worker와 D1을 함께 사용합니다. 글과 댓글 등록은 각각 `+1빌드`로 같은 D1에서 처리합니다. 삭제하면 그 1빌드가 취소됩니다. 이미지 기본 5빌드, 영상 기본 10빌드는 관리자 화면에서 바꿀 수 있습니다.
 
 ## 운영 설정
 
@@ -23,7 +23,7 @@ npx wrangler deploy --config workers/report-request-board/wrangler.jsonc
 ## 관리자 설정 범위
 
 - 회의록, 쇼츠, 웹툰, 세계명화 도구 활성화
-- 도구별 API 공급자, HTTPS 주소, 모델, 시스템 지시문, 빌드 가격
+- 도구별 API 공급자(OpenAI, OpenRouter, Kimi Moonshot, Gemini, Anthropic), HTTPS 주소, 모델, 시스템 지시문, 빌드 가격
 - API 키 입력·교체·삭제
 - 멤버 빌드 충전·회수와 계정 삭제
 - 관리자 계정 추가·권한 해제
