@@ -11,10 +11,13 @@ CREATE TABLE IF NOT EXISTS lounge_shorts_jobs (
   media_key TEXT NOT NULL DEFAULT '',
   media_type TEXT NOT NULL DEFAULT '',
   media_size INTEGER NOT NULL DEFAULT 0,
+  upload_state TEXT NOT NULL DEFAULT 'idle'
+    CHECK (upload_state IN ('idle', 'uploading', 'stored')),
   published_post_id TEXT NOT NULL DEFAULT '',
   publish_request_id TEXT NOT NULL DEFAULT '',
   rights_notice_version TEXT NOT NULL DEFAULT '',
   rights_confirmed_at TEXT NOT NULL DEFAULT '',
+  expires_at TEXT NOT NULL DEFAULT '',
   created_at TEXT NOT NULL,
   updated_at TEXT NOT NULL,
   UNIQUE(user_sub, request_id),
@@ -24,6 +27,9 @@ CREATE TABLE IF NOT EXISTS lounge_shorts_jobs (
 
 CREATE INDEX IF NOT EXISTS idx_lounge_shorts_user_created
   ON lounge_shorts_jobs(user_sub, created_at DESC);
+
+CREATE INDEX IF NOT EXISTS idx_lounge_shorts_expiry
+  ON lounge_shorts_jobs(reservation_status, expires_at);
 
 CREATE TABLE IF NOT EXISTS lounge_shorts_ledger_events (
   id TEXT PRIMARY KEY,
@@ -46,6 +52,29 @@ CREATE TABLE IF NOT EXISTS lounge_shorts_ledger_events (
 
 CREATE INDEX IF NOT EXISTS idx_lounge_shorts_ledger_user_created
   ON lounge_shorts_ledger_events(user_sub, created_at DESC);
+
+CREATE TABLE IF NOT EXISTS lounge_shorts_publish_requests (
+  job_id TEXT NOT NULL,
+  user_sub TEXT NOT NULL,
+  publish_request_id TEXT NOT NULL,
+  post_id TEXT NOT NULL,
+  status TEXT NOT NULL CHECK (status IN ('active', 'deleted')),
+  visibility TEXT NOT NULL DEFAULT 'public',
+  category TEXT NOT NULL DEFAULT 'knowledge_share',
+  created_at TEXT NOT NULL,
+  deleted_at TEXT NOT NULL DEFAULT '',
+  PRIMARY KEY (job_id, publish_request_id),
+  UNIQUE(post_id),
+  FOREIGN KEY (job_id) REFERENCES lounge_shorts_jobs(job_id) ON DELETE CASCADE,
+  FOREIGN KEY (user_sub) REFERENCES lounge_users(google_sub) ON DELETE CASCADE
+);
+
+CREATE UNIQUE INDEX IF NOT EXISTS idx_lounge_shorts_one_active_publish
+  ON lounge_shorts_publish_requests(job_id)
+  WHERE status = 'active';
+
+CREATE INDEX IF NOT EXISTS idx_lounge_shorts_publish_user_created
+  ON lounge_shorts_publish_requests(user_sub, created_at DESC);
 
 UPDATE lounge_tool_settings
    SET build_cost = 5,

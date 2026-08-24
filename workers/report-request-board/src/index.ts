@@ -238,7 +238,7 @@ function boardPublicComment(row: BoardCommentRow) {
 
 async function boardPostForPassword(env: Env, id: string) {
   return env.DB.prepare(
-    "SELECT id, password_salt, password_hash, user_sub, reward_builds, origin FROM board_posts WHERE id = ?"
+    "SELECT id, password_salt, password_hash, user_sub, reward_builds, origin, shorts_job_id FROM board_posts WHERE id = ?"
   ).bind(id).first<BoardPostRow>();
 }
 
@@ -919,9 +919,9 @@ export default {
         : isAdmin || await verifyBoardPassword(env, row, password);
       if (!authorized) return json(request, { error: identity ? "not_owner" : "wrong_password" }, 403);
       const statements = [] as any[];
+      const now = new Date().toISOString();
       const reward = Math.max(0, Number(row.reward_builds || 0));
       if (row.user_sub && reward > 0) {
-        const now = new Date().toISOString();
         statements.push(
           env.DB.prepare(
             "UPDATE lounge_users SET build_balance = build_balance - ?, updated_at = ? WHERE google_sub = ?"
@@ -934,13 +934,28 @@ export default {
           ).bind(crypto.randomUUID(), row.user_sub, -reward, id, now, row.user_sub),
         );
       }
+      const shortsPost = row.origin === "shorts" && Boolean(row.shorts_job_id);
+      if (shortsPost) {
+        statements.push(
+          env.DB.prepare(
+            `UPDATE lounge_shorts_publish_requests
+                SET status = 'deleted', deleted_at = ?
+              WHERE job_id = ? AND post_id = ? AND status = 'active'`,
+          ).bind(now, row.shorts_job_id, id),
+          env.DB.prepare(
+            `UPDATE lounge_shorts_jobs
+                SET published_post_id = '', publish_request_id = '', updated_at = ?
+              WHERE job_id = ? AND published_post_id = ?`,
+          ).bind(now, row.shorts_job_id, id),
+        );
+      }
       statements.push(
         env.DB.prepare("DELETE FROM board_comments WHERE post_id = ?").bind(id),
         env.DB.prepare("DELETE FROM board_post_daily_views WHERE post_id = ?").bind(id),
         env.DB.prepare("DELETE FROM board_posts WHERE id = ?").bind(id),
       );
       await env.DB.batch(statements);
-      return json(request, { ok: true, postId: id });
+      return json(request, { ok: true, postId: id, ...(shortsPost ? { publishStatus: "deleted" } : {}) });
     }
 
     const boardViewId = url.pathname.match(/^\/board\/posts\/([0-9a-f-]{36})\/views$/i)?.[1];
