@@ -25,7 +25,9 @@ Worker의 로컬 연결 입력은 `SHORTS_RENDERER_URL`, `SHORTS_RENDERER_TOKEN`
 
 ## MP4 판별 범위
 
-Worker는 `ftyp`, `moov`, 비디오 `trak/mdia/hdlr`, 내용이 있는 `mdat`의 경계와 크기를 확인한다. MPT 응답의 미디어 형식은 `video/mp4`여야 하며, 파일 주소는 같은 렌더 서버의 해당 `jobId` 전용 인증 경로와 정확히 일치해야 한다.
+Worker는 `ftyp`, `moov`, 비디오 `trak/mdia/hdlr`, 내용이 있는 `mdat`의 경계와 크기를 확인한다. 비디오 sample table의 `stsz` 또는 `stz2`, `stsc`, `stco` 또는 `co64`도 읽어 최소 1개 sample이 선언됐는지 확인하고, 각 chunk에 배치된 sample의 크기·offset이 실제 `mdat` payload 안에 완전히 존재하며 서로 겹치지 않는지 대조한다. 0 sample, 0바이트 sample, 범위 초과, 안전 정수 범위를 넘는 64비트 offset, 겹치는 sample은 닫힌 실패로 처리한다. MPT 응답의 미디어 형식은 `video/mp4`여야 하며, 파일 주소는 같은 렌더 서버의 해당 `jobId` 전용 인증 경로와 정확히 일치해야 한다.
+
+이 검사는 Cloudflare Worker 번들에 새 런타임 의존성을 추가하지 않는 범위 한정 파서로 구현했다. 필요한 box와 정수 경계만 읽어 공격 표면과 번들 크기를 제한하며, 인식하지 못하거나 모순된 sample table은 승인하지 않는다. 완전한 범용 MP4 파서나 코덱 디코더를 대체하지 않는다.
 
 이 검사는 Worker 메모리 안에서 수행하는 컨테이너 구조 검사다. H.264/AAC 완전 디코딩, 음성 내용, 자막 가독성, 장면 변화와 재생 품질까지 판정하지 않는다. 최종 사용자용 완료 판정은 로컬 대표 영상에서 다음을 별도로 확인해야 한다.
 

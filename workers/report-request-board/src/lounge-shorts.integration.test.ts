@@ -5,7 +5,14 @@ import test from "node:test";
 
 import { exportJWK, generateKeyPair, SignJWT } from "jose";
 
-import { validMp4Bytes } from "./media-test-fixtures.js";
+import {
+  mp4WithInvalidChunkOffset,
+  mp4WithOneByteMdat,
+  mp4WithOversizedVideoSample,
+  mp4WithZeroVideoSamples,
+  syntheticSampleTableMp4,
+  validMp4Bytes,
+} from "./media-test-fixtures.js";
 
 type SqlValue = string | number | bigint | null | Uint8Array;
 
@@ -658,32 +665,52 @@ test("MPT failure and cancellation release the reserved Build exactly once", asy
   assert.equal(shortsLedgerEventCount(cancelledEnv, cancelledPlan.jobId, "confirmation"), 0);
 });
 
-test("MPT invalid MP4 is deleted and releases Build exactly once", async () => {
-  const env = await environment();
-  const token = await fundedUser(env, "renderer-invalid", "renderer-invalid@example.com", "손상 MP4 사용자");
-  const planned = await prepare(env, token);
-  const started = await call(env, `/lounge/shorts/${planned.jobId}/render`, "POST", {}, token);
-  assert.equal(started.response.status, 202);
-  rendererTasks.set(planned.jobId, {
-    state: "completed",
-    progress: 100,
-    bytes: validMp4Bytes().slice(0, 300),
-  });
+test("MPT invalid sample tables are deleted and release Build exactly once", async (t) => {
+  const invalidFiles = [
+    ["truncated container", validMp4Bytes().slice(0, 300)],
+    ["one-byte mdat", mp4WithOneByteMdat()],
+    ["zero video samples", mp4WithZeroVideoSamples()],
+    ["oversized video sample", mp4WithOversizedVideoSample()],
+    ["invalid chunk offset", mp4WithInvalidChunkOffset()],
+    ["overlapping chunks", syntheticSampleTableMp4({
+      sampleSizes: [2, 2],
+      chunkRelativeOffsets: [0, 1],
+      mdatPayloadSize: 4,
+    })],
+    ["unsafe 64-bit chunk offset", syntheticSampleTableMp4({
+      sampleSizes: [2],
+      absoluteChunkOffsets: [BigInt(Number.MAX_SAFE_INTEGER) + 1n],
+      mdatPayloadSize: 2,
+      useCo64: true,
+    })],
+  ] as const;
 
-  const completed = await call(env, `/lounge/shorts/${planned.jobId}/render/sync`, "POST", {}, token);
-  assert.equal(completed.response.status, 415);
-  assert.equal(completed.json.error, "shorts_mp4_structure_invalid");
-  assert.equal(env.PRIVATE_REPORTS.objects.size, 0);
-  assert.equal(shortsLedgerEventCount(env, planned.jobId, "release"), 1);
-  assert.equal(shortsLedgerEventCount(env, planned.jobId, "confirmation"), 0);
-  assert.equal(env.DB.value<{ balance: number }>(
-    "SELECT build_balance AS balance FROM lounge_users WHERE google_sub = 'renderer-invalid'",
-  ).balance, 20);
+  for (const [label, bytes] of invalidFiles) {
+    await t.test(label, async () => {
+      const env = await environment();
+      const userSub = `renderer-invalid-${label.replaceAll(" ", "-")}`;
+      const token = await fundedUser(env, userSub, `${userSub}@example.com`, "손상 MP4 사용자");
+      const planned = await prepare(env, token);
+      const started = await call(env, `/lounge/shorts/${planned.jobId}/render`, "POST", {}, token);
+      assert.equal(started.response.status, 202);
+      rendererTasks.set(planned.jobId, { state: "completed", progress: 100, bytes });
 
-  const status = await call(env, `/lounge/shorts/${planned.jobId}`, "GET", undefined, token);
-  assert.equal(status.json.reservationStatus, "released");
-  assert.equal(status.json.balance, 20);
-  assert.equal(shortsLedgerEventCount(env, planned.jobId, "release"), 1);
+      const completed = await call(env, `/lounge/shorts/${planned.jobId}/render/sync`, "POST", {}, token);
+      assert.equal(completed.response.status, 415, label);
+      assert.equal(completed.json.error, "shorts_mp4_structure_invalid", label);
+      assert.equal(env.PRIVATE_REPORTS.objects.size, 0, label);
+      assert.equal(shortsLedgerEventCount(env, planned.jobId, "release"), 1, label);
+      assert.equal(shortsLedgerEventCount(env, planned.jobId, "confirmation"), 0, label);
+      assert.equal(env.DB.value<{ balance: number }>(
+        `SELECT build_balance AS balance FROM lounge_users WHERE google_sub = '${userSub}'`,
+      ).balance, 20, label);
+
+      const status = await call(env, `/lounge/shorts/${planned.jobId}`, "GET", undefined, token);
+      assert.equal(status.json.reservationStatus, "released", label);
+      assert.equal(status.json.balance, 20, label);
+      assert.equal(shortsLedgerEventCount(env, planned.jobId, "release"), 1, label);
+    });
+  }
 });
 
 test("invalid WebM releases the reservation once and preserves the balance on repeated recovery", async () => {
