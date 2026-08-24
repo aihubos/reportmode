@@ -1222,7 +1222,17 @@ async function uploadShorts(request: Request, env: LoungeEnv, identity: LoungeId
       throw new LoungeError("shorts_file_size_invalid", 413);
     }
     const storedBytes = new Uint8Array(await stored.arrayBuffer());
-    if (storedBytes.byteLength !== storedSize || !isValidWebm(storedBytes)) {
+    if (storedBytes.byteLength !== storedSize) {
+      throw new LoungeError("shorts_file_size_invalid", 413);
+    }
+    if (storedBytes.byteLength < 4
+      || storedBytes[0] !== 0x1a
+      || storedBytes[1] !== 0x45
+      || storedBytes[2] !== 0xdf
+      || storedBytes[3] !== 0xa3) {
+      throw new LoungeError("shorts_webm_signature_invalid", 415);
+    }
+    if (!isValidWebm(storedBytes)) {
       throw new LoungeError("shorts_webm_structure_invalid", 415);
     }
 
