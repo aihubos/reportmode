@@ -970,6 +970,14 @@ function shortsScenes(row: ShortsJobRow) {
   }
 }
 
+function storedShortsSettings(row: ShortsJobRow) {
+  try {
+    return shortsSettings(JSON.parse(row.settings_json || "{}"));
+  } catch {
+    return shortsSettings({});
+  }
+}
+
 function shortsStatus(row: ShortsJobRow) {
   if (row.reservation_status === "confirmed") return "completed";
   if (row.reservation_status === "released") {
@@ -993,6 +1001,8 @@ async function shortsStatePayload(request: Request, env: LoungeEnv, identity: Lo
   return {
     requestId: current.request_id,
     jobId: current.job_id,
+    topic: current.topic,
+    settings: storedShortsSettings(current),
     status: shortsStatus(current),
     reservationStatus: current.reservation_status,
     reservationExpiresAt: expiresAt || null,

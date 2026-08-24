@@ -480,6 +480,13 @@ test("recent recovery returns only the authenticated user's latest live reservat
   assert.equal(ownerRecent.json.found, true);
   assert.equal(ownerRecent.json.jobId, planned.jobId);
   assert.equal(ownerRecent.json.requestId, planned.requestId);
+  assert.equal(ownerRecent.json.topic, "회의 메모를 결정과 할 일 중심으로 정리하는 방법을 알려줘.");
+  assert.deepEqual(ownerRecent.json.settings, {
+    subtitles: true,
+    subtitleStyle: "basic",
+    voice: false,
+    voiceId: "none",
+  });
   assert.equal(ownerRecent.json.reservationStatus, "reserved");
 
   const otherRecent = await call(env, "/lounge/shorts/recent", "GET", undefined, other);
