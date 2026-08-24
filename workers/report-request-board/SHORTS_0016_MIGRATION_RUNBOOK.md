@@ -10,6 +10,14 @@
 - `shorts` 도구 비용을 `5 Build`로 맞춘다.
 - `board_posts`에 미디어·쇼츠·권리 확인 필드 6개를 추가한다.
 
+## 로컬 예약 만료 회수 코드 경로
+
+코드에는 `src/index.ts`의 Worker `scheduled` 핸들러가
+`src/lounge-platform.ts`의 `sweepExpiredShortsReservations`를 호출하고,
+`wrangler.jsonc`의 `* * * * *` cron 설정이 매분 실행하도록 연결되어 있다.
+이 항목은 로컬 소스의 코드 경로만 기록한 것이며, 원격 Worker cron 활성화나
+배포가 완료되었다는 의미가 아니다.
+
 Wrangler는 오류가 난 migration을 롤백하지만, 명령 응답 유실·과거 수동 변경·실제 migration 기록 불일치는 별도로 확인해야 한다. 또한 SQLite의 `ALTER TABLE ... ADD COLUMN`은 같은 열이 있으면 재실행에 실패한다. 따라서 적용 여부가 불명확하거나 일부 객체가 이미 있으면 migration을 다시 실행하지 않는다.
 
 ## 적용 전 확인

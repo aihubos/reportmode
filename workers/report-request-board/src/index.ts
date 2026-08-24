@@ -12,6 +12,7 @@ import { normalizeAdminAction } from "./admin-jobs.js";
 import {
   handleLoungeRequest,
   loungeBoardAuth,
+  sweepExpiredShortsReservations,
   type LoungeEnv,
   type LoungeIdentity,
 } from "./lounge-platform.js";
@@ -631,10 +632,10 @@ async function verifyRequestPassword(env: Env, id: string, password: string) {
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
-    if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: cors(request) });
     const url = new URL(request.url);
     const loungeResponse = await handleLoungeRequest(request, env);
     if (loungeResponse) return loungeResponse;
+    if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: cors(request) });
     const privateResponse = await handlePrivateReportRequest(request, env);
     if (privateResponse) return privateResponse;
     if (url.pathname.startsWith("/internal/report-jobs/")) {
@@ -1590,5 +1591,9 @@ export default {
       return json(request, { error: "method_not_allowed" }, 405);
     }
     return json(request, { error: "not_found" }, 404);
+  },
+
+  async scheduled(_controller: ScheduledController, env: Env): Promise<void> {
+    await sweepExpiredShortsReservations(env);
   },
 };

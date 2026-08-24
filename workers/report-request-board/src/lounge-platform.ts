@@ -1,5 +1,6 @@
 import { createRemoteJWKSet, jwtVerify } from "jose";
 import type { PrivateReportBucket } from "./private-reports.js";
+import { isValidWebm } from "./webm-validation.js";
 
 export interface LoungeEnv {
   DB: D1Database;
@@ -18,6 +19,8 @@ export type LoungeIdentity = {
   isAdmin: boolean;
   balance: number;
 };
+
+type LoungeUserIdentity = Pick<LoungeIdentity, "sub">;
 
 type ToolSetting = {
   tool_id: string;
@@ -841,7 +844,7 @@ async function shortsToolContext(env: LoungeEnv) {
   return { shorts, effective, apiKey, credentialSource: inherited.source };
 }
 
-async function shortsJob(env: LoungeEnv, identity: LoungeIdentity, jobId: string) {
+async function shortsJob(env: LoungeEnv, identity: LoungeUserIdentity, jobId: string) {
   const row = await env.DB.prepare(
     `SELECT s.*, j.build_cost, j.status AS tool_status, j.error_code AS tool_error_code
        FROM lounge_shorts_jobs s
@@ -852,13 +855,24 @@ async function shortsJob(env: LoungeEnv, identity: LoungeIdentity, jobId: string
   return row;
 }
 
-async function shortsJobByRequestId(env: LoungeEnv, identity: LoungeIdentity, requestId: string) {
+async function shortsJobByRequestId(env: LoungeEnv, identity: LoungeUserIdentity, requestId: string) {
   return env.DB.prepare(
     `SELECT s.*, j.build_cost, j.status AS tool_status, j.error_code AS tool_error_code
        FROM lounge_shorts_jobs s
        JOIN lounge_tool_jobs j ON j.id = s.job_id
       WHERE s.user_sub = ? AND s.request_id = ?`,
   ).bind(identity.sub, requestId).first<ShortsJobRow>();
+}
+
+async function latestReservedShortsJob(env: LoungeEnv, identity: LoungeUserIdentity) {
+  return env.DB.prepare(
+    `SELECT s.*, j.build_cost, j.status AS tool_status, j.error_code AS tool_error_code
+       FROM lounge_shorts_jobs s
+       JOIN lounge_tool_jobs j ON j.id = s.job_id
+      WHERE s.user_sub = ? AND s.reservation_status = 'reserved'
+      ORDER BY s.updated_at DESC, s.created_at DESC
+      LIMIT 1`,
+  ).bind(identity.sub).first<ShortsJobRow>();
 }
 
 async function shortsBalance(env: LoungeEnv, userSub: string) {
@@ -1003,7 +1017,7 @@ function shortsMediaUrl(request: Request, jobId: string) {
   return `${new URL(request.url).origin}/lounge/shorts/${encodeURIComponent(jobId)}/media`;
 }
 
-async function releaseShortsReservation(env: LoungeEnv, identity: LoungeIdentity, row: ShortsJobRow, reason: string) {
+async function releaseShortsReservation(env: LoungeEnv, identity: LoungeUserIdentity, row: ShortsJobRow, reason: string) {
   if (row.reservation_status === "confirmed") return row;
   const now = new Date().toISOString();
   const releaseReason = clean(reason, 80) || "released";
@@ -1046,6 +1060,25 @@ async function releaseShortsReservation(env: LoungeEnv, identity: LoungeIdentity
     ).bind(crypto.randomUUID(), releaseReason, now, row.job_id, identity.sub),
   ]);
   return shortsJob(env, identity, row.job_id);
+}
+
+export async function sweepExpiredShortsReservations(env: LoungeEnv): Promise<number> {
+  const now = new Date().toISOString();
+  const rows = await env.DB.prepare(
+    `SELECT s.*, j.build_cost, j.status AS tool_status, j.error_code AS tool_error_code
+       FROM lounge_shorts_jobs s
+       JOIN lounge_tool_jobs j ON j.id = s.job_id
+      WHERE s.reservation_status = 'reserved'
+        AND s.expires_at <> ''
+        AND s.expires_at <= ?
+      ORDER BY s.expires_at ASC, s.updated_at ASC, s.created_at ASC
+      LIMIT 100`,
+  ).bind(now).all<ShortsJobRow>();
+  const expired = rows.results || [];
+  for (const row of expired) {
+    await releaseShortsReservation(env, { sub: row.user_sub }, row, "reservation_expired");
+  }
+  return expired.length;
 }
 
 async function prepareShorts(request: Request, env: LoungeEnv, identity: LoungeIdentity) {
@@ -1145,14 +1178,6 @@ async function prepareShorts(request: Request, env: LoungeEnv, identity: LoungeI
   }
 }
 
-function isWebmEbml(bytes: Uint8Array) {
-  return bytes.byteLength >= 4
-    && bytes[0] === 0x1a
-    && bytes[1] === 0x45
-    && bytes[2] === 0xdf
-    && bytes[3] === 0xa3;
-}
-
 async function uploadShorts(request: Request, env: LoungeEnv, identity: LoungeIdentity, jobId: string) {
   if (!env.PRIVATE_REPORTS) throw new LoungeError("shorts_storage_not_configured", 503);
   let row = await recoverShortsJob(env, identity, await shortsJob(env, identity, jobId));
@@ -1196,8 +1221,10 @@ async function uploadShorts(request: Request, env: LoungeEnv, identity: LoungeId
     if (!stored || !Number.isFinite(storedSize) || storedSize <= 0 || storedSize > MAX_SHORTS_BYTES || storedSize !== mediaSize) {
       throw new LoungeError("shorts_file_size_invalid", 413);
     }
-    const header = new Uint8Array((await stored.arrayBuffer()).slice(0, 4));
-    if (!isWebmEbml(header)) throw new LoungeError("shorts_webm_signature_invalid", 415);
+    const storedBytes = new Uint8Array(await stored.arrayBuffer());
+    if (storedBytes.byteLength !== storedSize || !isValidWebm(storedBytes)) {
+      throw new LoungeError("shorts_webm_structure_invalid", 415);
+    }
 
     const now = new Date().toISOString();
     const committed = await env.DB.batch([
@@ -1493,6 +1520,19 @@ export async function handleLoungeRequest(request: Request, env: LoungeEnv): Pro
     }
 
     const identity = await getLoungeIdentity(request, env);
+    if (url.pathname === "/lounge/shorts/recent" && request.method === "GET") {
+      const user = requireIdentity(identity);
+      const row = await latestReservedShortsJob(env, user);
+      if (!row) return loungeJson(request, { found: false });
+      if (shortsReservationExpired(row)) {
+        await releaseShortsReservation(env, user, row, "reservation_expired");
+        return loungeJson(request, { found: false });
+      }
+      return loungeJson(request, {
+        found: true,
+        ...await shortsStatePayload(request, env, user, row),
+      });
+    }
     if (url.pathname === "/lounge/shorts" && request.method === "GET") {
       const user = requireIdentity(identity);
       const requestId = shortsRequestId(url.searchParams.get("requestId"));
