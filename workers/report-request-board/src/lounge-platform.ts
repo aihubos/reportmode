@@ -1848,12 +1848,47 @@ async function deleteUser(request: Request, env: LoungeEnv, admin: LoungeIdentit
   return loungeJson(request, { ok: true });
 }
 
+async function loungeHealth(request: Request, env: LoungeEnv) {
+  const schema = await env.DB.prepare(
+    `SELECT COUNT(*) AS count
+       FROM sqlite_master
+      WHERE type = 'table'
+        AND name IN ('lounge_shorts_jobs', 'lounge_shorts_ledger_events', 'lounge_shorts_publish_requests')`,
+  ).first<{ count: number }>();
+  const shorts = await env.DB.prepare(
+    "SELECT enabled, build_cost FROM lounge_tool_settings WHERE tool_id = 'shorts'",
+  ).first<{ enabled: number; build_cost: number }>();
+
+  const checks = {
+    database: Number(schema?.count || 0) === 3,
+    shortsTool: Number(shorts?.enabled || 0) === 1 && Number(shorts?.build_cost || 0) === 5,
+    storage: Boolean(env.PRIVATE_REPORTS),
+    login: Boolean(env.GOOGLE_CLIENT_ID),
+    encryption: Boolean(env.LOUNGE_CONFIG_KEY),
+    rendererConfigured: Boolean(shortsRendererConfig(env)),
+  };
+  const coreReady = checks.database && checks.shortsTool && checks.storage;
+  const ready = coreReady && checks.login && checks.encryption && checks.rendererConfigured;
+
+  return loungeJson(request, {
+    ok: coreReady,
+    status: ready ? "ready" : coreReady ? "degraded" : "unavailable",
+    ready,
+    contractVersion: "lounge-health-v1",
+    checks,
+  }, coreReady ? 200 : 503);
+}
+
 export async function handleLoungeRequest(request: Request, env: LoungeEnv): Promise<Response | null> {
   const url = new URL(request.url);
   if (!url.pathname.startsWith("/lounge/")) return null;
   if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: loungeCors(request) });
 
   try {
+    if (url.pathname === "/lounge/health") {
+      if (request.method !== "GET") return loungeJson(request, { error: "method_not_allowed" }, 405);
+      return await loungeHealth(request, env);
+    }
     if (url.pathname === "/lounge/config" && request.method === "GET") {
       const tools = await toolSettings(env);
       return loungeJson(request, {

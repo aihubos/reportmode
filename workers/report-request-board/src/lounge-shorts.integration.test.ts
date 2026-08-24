@@ -416,6 +416,49 @@ async function prepare(env: any, token: string, requestId = uuid()) {
   return result.json;
 }
 
+test("lounge health reports dependency readiness without exposing configuration values", async () => {
+  const env = await environment();
+  const healthy = await call(env, "/lounge/health");
+  assert.equal(healthy.response.status, 200);
+  assert.equal(healthy.response.headers.get("Access-Control-Allow-Origin"), "https://aihubos.github.io");
+  assert.deepEqual(healthy.json, {
+    ok: true,
+    status: "ready",
+    ready: true,
+    contractVersion: "lounge-health-v1",
+    checks: {
+      database: true,
+      shortsTool: true,
+      storage: true,
+      login: true,
+      encryption: true,
+      rendererConfigured: true,
+    },
+  });
+  const publicHealth = JSON.stringify(healthy.json);
+  assert.equal(publicHealth.includes(RENDERER_TOKEN), false);
+  assert.equal(publicHealth.includes(RENDERER_ORIGIN), false);
+  assert.equal(publicHealth.includes(CONFIG_KEY), false);
+
+  const degraded = await call({ ...env, SHORTS_RENDERER_URL: "", SHORTS_RENDERER_TOKEN: "" }, "/lounge/health");
+  assert.equal(degraded.response.status, 200);
+  assert.equal(degraded.json.ok, true);
+  assert.equal(degraded.json.status, "degraded");
+  assert.equal(degraded.json.ready, false);
+  assert.equal(degraded.json.checks.rendererConfigured, false);
+
+  const unavailable = await call({ ...env, PRIVATE_REPORTS: undefined }, "/lounge/health");
+  assert.equal(unavailable.response.status, 503);
+  assert.equal(unavailable.json.ok, false);
+  assert.equal(unavailable.json.status, "unavailable");
+  assert.equal(unavailable.json.ready, false);
+  assert.equal(unavailable.json.checks.storage, false);
+
+  const wrongMethod = await call(env, "/lounge/health", "POST", {});
+  assert.equal(wrongMethod.response.status, 405);
+  assert.equal(wrongMethod.json.error, "method_not_allowed");
+});
+
 test("shorts reserves once, confirms on R2 storage, and publishes only after an explicit idempotent request", async () => {
   const env = await environment();
   const owner = await fundedUser(env, "owner-one", "owner-one@example.com", "소유자");

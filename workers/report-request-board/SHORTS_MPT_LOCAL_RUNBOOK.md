@@ -12,6 +12,8 @@
 
 Worker의 로컬 연결 입력은 `SHORTS_RENDERER_URL`, `SHORTS_RENDERER_TOKEN`이다. HTTP 주소는 `127.0.0.1` 또는 `localhost`만 허용하고, 원격 주소는 HTTPS만 허용한다. MPT 프로세스는 같은 값을 `BUILDERS_LOUNGE_RENDER_TOKEN`으로 받고, `BUILDERS_LOUNGE_MATERIALS`에는 서버가 소유한 로컬 자료 파일명 2개 이상을 지정한다. 실제 값은 저장소·브라우저·채널·로그에 기록하지 않는다.
 
+Worker의 `GET /lounge/health`는 D1 쇼츠 스키마·비용 5, R2 바인딩, 로그인·암호화 설정, renderer 설정 여부를 불리언으로만 반환한다. 핵심 저장 계약이 준비되지 않으면 HTTP 503 `unavailable`, 핵심 저장 계약은 준비됐지만 로그인·암호화·renderer 설정 중 하나가 없으면 HTTP 200 `degraded`, 모두 설정됐으면 HTTP 200 `ready`다. `rendererConfigured`는 URL·토큰 형식이 설정됐다는 뜻이며 실제 MPT 프로세스 도달·영상 생성 성공을 뜻하지 않는다. 비밀값과 renderer 주소는 응답하지 않는다.
+
 ## 처리 순서와 Build
 
 1. 사용자가 한 줄 주제를 제출하면 Worker가 상세 제작안과 장면 2개 이상을 만든 뒤 Build 5를 예약한다.
