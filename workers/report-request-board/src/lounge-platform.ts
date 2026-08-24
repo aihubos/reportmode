@@ -875,6 +875,38 @@ function safeScenes(value: unknown, fallback: string) {
   }));
 }
 
+function editableShortsPlan(payload: Record<string, unknown>) {
+  const detailedPrompt = cleanMultiline(payload.detailedPrompt, 30_000);
+  const items = Array.isArray(payload.scenes) ? payload.scenes : [];
+  if (detailedPrompt.length < 5 || items.length < 2 || items.length > 8) {
+    throw new LoungeError("shorts_plan_invalid", 400);
+  }
+  const scenes = items.map((item, index) => {
+    const row = item && typeof item === "object" && !Array.isArray(item)
+      ? item as Record<string, unknown>
+      : {};
+    const title = clean(row.title, 80);
+    const visual = cleanMultiline(row.visual, 400);
+    const narration = cleanMultiline(row.narration, 600);
+    const subtitle = clean(row.subtitle, 140);
+    const durationSeconds = Math.trunc(Number(row.durationSeconds));
+    if (!title || !visual || !narration || !subtitle
+      || !Number.isFinite(durationSeconds) || durationSeconds < 2 || durationSeconds > 8) {
+      throw new LoungeError("shorts_plan_invalid", 400);
+    }
+    return {
+      id: index + 1,
+      title,
+      visual,
+      narration,
+      subtitle,
+      durationSeconds,
+      audioUrl: "",
+    };
+  });
+  return { detailedPrompt, scenes };
+}
+
 function parseShortsPlan(text: string, topic: string) {
   const candidate = text.trim().replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "");
   try {
@@ -1262,6 +1294,38 @@ async function prepareShorts(request: Request, env: LoungeEnv, identity: LoungeI
   }
 }
 
+async function updateShortsPlan(request: Request, env: LoungeEnv, identity: LoungeIdentity, jobId: string) {
+  const row = await recoverShortsJob(env, identity, await shortsJob(env, identity, jobId));
+  if (row.reservation_status === "released") {
+    throw new LoungeError(shortsStatus(row) === "expired" ? "shorts_reservation_expired" : "shorts_reservation_released", 409);
+  }
+  if (row.reservation_status === "confirmed" || rendererProgress(row) !== null) {
+    throw new LoungeError("shorts_plan_locked", 409);
+  }
+  const plan = editableShortsPlan(await readJson(request, 64_000));
+  const now = new Date().toISOString();
+  const updated = await env.DB.prepare(
+    `UPDATE lounge_shorts_jobs
+        SET detailed_prompt = ?, scenes_json = ?, updated_at = ?
+      WHERE job_id = ? AND user_sub = ? AND reservation_status = 'reserved'
+        AND EXISTS (
+          SELECT 1 FROM lounge_tool_jobs j
+           WHERE j.id = lounge_shorts_jobs.job_id
+             AND j.user_sub = lounge_shorts_jobs.user_sub
+             AND j.status = 'processing'
+             AND j.provider_ref NOT LIKE 'mpt:%'
+        )`,
+  ).bind(plan.detailedPrompt, JSON.stringify(plan.scenes), now, jobId, identity.sub).run();
+  if (Number(updated.meta?.changes || 0) !== 1) {
+    const current = await recoverShortsJob(env, identity, await shortsJob(env, identity, jobId));
+    if (current.reservation_status === "released") {
+      throw new LoungeError(shortsStatus(current) === "expired" ? "shorts_reservation_expired" : "shorts_reservation_released", 409);
+    }
+    throw new LoungeError("shorts_plan_locked", 409);
+  }
+  return loungeJson(request, await shortsStatePayload(request, env, identity, await shortsJob(env, identity, jobId)));
+}
+
 function parseRendererTask(value: unknown, expectedJobId: string): ShortsRendererTask {
   const envelope = value && typeof value === "object" && !Array.isArray(value)
     ? value as Record<string, unknown>
@@ -1320,6 +1384,9 @@ async function requestShortsRenderer(
   const text = await response.text();
   if (new TextEncoder().encode(text).byteLength > SHORTS_RENDERER_MAX_RESPONSE_BYTES) {
     throw new LoungeError("shorts_renderer_invalid_response", 502);
+  }
+  if (response.status === 404 && path.startsWith("/api/v1/builders-lounge/tasks/")) {
+    throw new LoungeError("shorts_renderer_task_missing", 409);
   }
   if (!response.ok) throw new LoungeError("shorts_renderer_request_failed", 502);
   try {
@@ -1629,11 +1696,21 @@ async function syncShortsRender(request: Request, env: LoungeEnv, identity: Loun
     return loungeJson(request, await shortsStatePayload(request, env, identity, row));
   }
   if (rendererProgress(row) === null) throw new LoungeError("shorts_render_not_started", 409);
-  const task = await requestShortsRenderer(
-    env,
-    `/api/v1/builders-lounge/tasks/${encodeURIComponent(jobId)}`,
-    jobId,
-  );
+  let task: ShortsRendererTask;
+  try {
+    task = await requestShortsRenderer(
+      env,
+      `/api/v1/builders-lounge/tasks/${encodeURIComponent(jobId)}`,
+      jobId,
+    );
+  } catch (error) {
+    if (error instanceof LoungeError && error.code === "shorts_renderer_task_missing") {
+      const latest = await shortsJob(env, identity, jobId);
+      const released = await releaseShortsReservation(env, identity, latest, "renderer_task_missing");
+      return loungeJson(request, await shortsStatePayload(request, env, identity, released));
+    }
+    throw error;
+  }
   return applyRendererTask(request, env, identity, row, task);
 }
 
@@ -1939,11 +2016,12 @@ export async function handleLoungeRequest(request: Request, env: LoungeEnv): Pro
       if (action === "sync") return await syncShortsRender(request, env, requireIdentity(identity), jobId);
       return await startShortsRender(request, env, requireIdentity(identity), jobId);
     }
-    const shortsAction = url.pathname.match(/^\/lounge\/shorts\/([0-9a-f-]{36})\/(upload|release|publish|media)$/i);
+    const shortsAction = url.pathname.match(/^\/lounge\/shorts\/([0-9a-f-]{36})\/(plan|upload|release|publish|media)$/i);
     if (shortsAction) {
       const jobId = shortsAction[1];
       const action = shortsAction[2];
       if (action === "media" && request.method === "GET") return await shortsMedia(request, env, identity, jobId);
+      if (action === "plan" && request.method === "PATCH") return await updateShortsPlan(request, env, requireIdentity(identity), jobId);
       if (action === "upload" && request.method === "POST") return await uploadShorts(request, env, requireIdentity(identity), jobId);
       if (action === "release" && request.method === "POST") return await releaseShorts(request, env, requireIdentity(identity), jobId);
       if (action === "publish" && request.method === "POST") return await publishShorts(request, env, requireIdentity(identity), jobId);

@@ -573,6 +573,19 @@ test("MPT render stores a valid MP4 before confirming Build and publishes only o
   const planned = await prepare(env, token);
   assert.equal(env.DB.value<{ count: number }>("SELECT COUNT(*) AS count FROM board_posts").count, 0);
 
+  const editedPlan = {
+    detailedPrompt: "사용자가 직접 고친 회의 메모 정리 쇼츠 제작 방향",
+    scenes: [
+      { title: "결정 먼저", visual: "결정 문장을 파란 카드로 강조한다", narration: "회의가 끝나면 결정된 내용을 먼저 모으세요.", subtitle: "결정된 내용 먼저", durationSeconds: 3 },
+      { title: "실행 연결", visual: "담당자와 날짜를 나란히 보여 준다", narration: "각 할 일에 담당자와 마감일을 연결하세요.", subtitle: "담당자와 마감일 연결", durationSeconds: 4 },
+    ],
+  };
+  const savedPlan = await call(env, `/lounge/shorts/${planned.jobId}/plan`, "PATCH", editedPlan, token);
+  assert.equal(savedPlan.response.status, 200);
+  assert.equal(savedPlan.json.detailedPrompt, editedPlan.detailedPrompt);
+  assert.equal(savedPlan.json.scenes[0].narration, editedPlan.scenes[0].narration);
+  assert.equal(savedPlan.json.scenes[1].visual, editedPlan.scenes[1].visual);
+
   const started = await call(env, `/lounge/shorts/${planned.jobId}/render`, "POST", {}, token);
   assert.equal(started.response.status, 202);
   assert.equal(started.json.renderStarted, true);
@@ -589,9 +602,15 @@ test("MPT render stores a valid MP4 before confirming Build and publishes only o
   assert.equal(createCall.path, "/api/v1/builders-lounge/videos");
   assert.equal(createCall.body?.jobId, planned.jobId);
   assert.match(String(createCall.body?.topic || ""), /회의 메모/);
+  assert.equal(createCall.body?.detailedPrompt, editedPlan.detailedPrompt);
   assert.ok(Array.isArray(createCall.body?.scenes));
-  assert.ok(createCall.body!.scenes.length >= 2);
-  assert.ok(createCall.body!.scenes.every((scene: any) => scene.narration && scene.visualPrompt));
+  assert.equal(createCall.body!.scenes.length, 2);
+  assert.equal(createCall.body!.scenes[0].narration, editedPlan.scenes[0].narration);
+  assert.equal(createCall.body!.scenes[1].visualPrompt, editedPlan.scenes[1].visual);
+
+  const lockedPlan = await call(env, `/lounge/shorts/${planned.jobId}/plan`, "PATCH", editedPlan, token);
+  assert.equal(lockedPlan.response.status, 409);
+  assert.equal(lockedPlan.json.error, "shorts_plan_locked");
 
   rendererTasks.set(planned.jobId, {
     state: "completed",
@@ -669,6 +688,25 @@ test("MPT failure and cancellation release the reserved Build exactly once", asy
   assert.equal(failedAgain.json.releaseEventId, failed.json.releaseEventId);
   assert.equal(shortsLedgerEventCount(failedEnv, failedPlan.jobId, "release"), 1);
   assert.equal(shortsLedgerEventCount(failedEnv, failedPlan.jobId, "confirmation"), 0);
+
+  const missingEnv = await environment();
+  const missingToken = await fundedUser(
+    missingEnv,
+    "renderer-missing",
+    "renderer-missing@example.com",
+    "사라진 작업 사용자",
+  );
+  const missingPlan = await prepare(missingEnv, missingToken);
+  const missingStarted = await call(missingEnv, `/lounge/shorts/${missingPlan.jobId}/render`, "POST", {}, missingToken);
+  assert.equal(missingStarted.response.status, 202);
+  rendererTasks.delete(missingPlan.jobId);
+  const missing = await call(missingEnv, `/lounge/shorts/${missingPlan.jobId}/render/sync`, "POST", {}, missingToken);
+  const missingAgain = await call(missingEnv, `/lounge/shorts/${missingPlan.jobId}/render/sync`, "POST", {}, missingToken);
+  assert.equal(missing.response.status, 200);
+  assert.equal(missing.json.reservationStatus, "released");
+  assert.equal(missing.json.balance, 20);
+  assert.equal(missingAgain.json.releaseEventId, missing.json.releaseEventId);
+  assert.equal(shortsLedgerEventCount(missingEnv, missingPlan.jobId, "release"), 1);
 
   const cancelledEnv = await environment();
   const cancelledToken = await fundedUser(
