@@ -111,6 +111,10 @@ type BoardPostRow = {
   password_hash?: string;
   user_sub?: string | null;
   reward_builds?: number;
+  origin?: string;
+  media_url?: string;
+  media_type?: string;
+  shorts_job_id?: string | null;
 };
 
 type BoardCommentRow = {
@@ -213,6 +217,10 @@ function boardPublicPost(row: BoardPostRow) {
     comment_count: Math.max(0, Number(row.comment_count || 0)),
     created_at: row.created_at,
     updated_at: row.updated_at || null,
+    origin: row.origin || "manual",
+    mediaUrl: row.media_url || "",
+    mediaType: row.media_type || "",
+    shortsJobId: row.shorts_job_id || "",
   };
 }
 
@@ -230,7 +238,7 @@ function boardPublicComment(row: BoardCommentRow) {
 
 async function boardPostForPassword(env: Env, id: string) {
   return env.DB.prepare(
-    "SELECT id, password_salt, password_hash, user_sub, reward_builds FROM board_posts WHERE id = ?"
+    "SELECT id, password_salt, password_hash, user_sub, reward_builds, origin FROM board_posts WHERE id = ?"
   ).bind(id).first<BoardPostRow>();
 }
 
@@ -766,7 +774,7 @@ export default {
         .bind(category, category, query, pattern)
         .first<{ count: number }>();
       const rows = await env.DB.prepare(
-        "SELECT id, category, title, content, author, is_admin, view_count, comment_count, created_at, updated_at, user_sub " +
+        "SELECT id, category, title, content, author, is_admin, view_count, comment_count, created_at, updated_at, user_sub, origin, media_url, media_type, shorts_job_id " +
         "FROM board_posts " + where +
         " ORDER BY " + orderBy + " LIMIT ? OFFSET ?"
       ).bind(category, category, query, pattern, pageSize, (page - 1) * pageSize).all<BoardPostRow>();
@@ -846,7 +854,7 @@ export default {
       const auth = await loungeBoardAuth(request, env);
       if (auth.response) return auth.response;
       const row = await env.DB.prepare(
-        "SELECT id, category, title, content, author, is_admin, view_count, comment_count, created_at, updated_at, user_sub " +
+        "SELECT id, category, title, content, author, is_admin, view_count, comment_count, created_at, updated_at, user_sub, origin, media_url, media_type, shorts_job_id " +
         "FROM board_posts WHERE id = ?"
       ).bind(id).first<BoardPostRow>();
       if (!row) return json(request, { error: "not_found" }, 404);
@@ -880,12 +888,13 @@ export default {
         : isAdmin || await verifyBoardPassword(env, row, password);
       if (!authorized) return json(request, { error: identity ? "not_owner" : "wrong_password" }, 403);
       if (isReservedAdminName(author) && !isAdmin) return json(request, { error: "reserved_admin_name" }, 403);
+      const savedCategory = row.origin === "shorts" ? "knowledge_share" : category;
       const updatedAt = new Date().toISOString();
       await env.DB.prepare(
         "UPDATE board_posts SET category = ?, title = ?, content = ?, author = ?, is_admin = ?, updated_at = ? WHERE id = ?"
-      ).bind(category, title, content, author, isAdmin ? 1 : 0, updatedAt, id).run();
+      ).bind(savedCategory, title, content, author, isAdmin ? 1 : 0, updatedAt, id).run();
       const updated = await env.DB.prepare(
-        "SELECT id, category, title, content, author, is_admin, view_count, comment_count, created_at, updated_at " +
+        "SELECT id, category, title, content, author, is_admin, view_count, comment_count, created_at, updated_at, user_sub, origin, media_url, media_type, shorts_job_id " +
         "FROM board_posts WHERE id = ?"
       ).bind(id).first<BoardPostRow>();
       return json(request, { post: updated ? boardPublicPost(updated) : null });

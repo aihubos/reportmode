@@ -1,7 +1,9 @@
 import { createRemoteJWKSet, jwtVerify } from "jose";
+import type { PrivateReportBucket } from "./private-reports.js";
 
 export interface LoungeEnv {
   DB: D1Database;
+  PRIVATE_REPORTS?: PrivateReportBucket;
   GOOGLE_CLIENT_ID?: string;
   LOUNGE_CONFIG_KEY?: string;
   ADMIN_EMAILS?: string;
@@ -44,6 +46,28 @@ type LoungeUserRow = {
   last_login_at: string;
 };
 
+type ShortsJobRow = {
+  job_id: string;
+  request_id: string;
+  user_sub: string;
+  topic: string;
+  settings_json: string;
+  detailed_prompt: string;
+  scenes_json: string;
+  reservation_status: "reserved" | "confirmed" | "released";
+  media_key: string;
+  media_type: string;
+  media_size: number;
+  published_post_id: string;
+  publish_request_id: string;
+  rights_notice_version: string;
+  rights_confirmed_at: string;
+  build_cost: number;
+  tool_status: string;
+  created_at: string;
+  updated_at: string;
+};
+
 class LoungeError extends Error {
   code: string;
   status: number;
@@ -61,6 +85,8 @@ const TOOL_IDS = new Set(["meeting", "shorts", "webtoon", "masterpiece"]);
 const PROVIDERS = new Set(["openai", "openrouter", "moonshot", "gemini", "gemini-image", "anthropic", "webhook"]);
 const DEFAULT_ADMIN_EMAIL = "jeremylee0213@gmail.com";
 const MAX_REQUEST_TEXT = 120_000;
+const MAX_SHORTS_BYTES = 25 * 1024 * 1024;
+const SHORTS_RIGHTS_VERSION = "shorts-rights-v1";
 
 const ALLOWED_ORIGINS = new Set([
   "https://aihubos.github.io",
@@ -78,7 +104,7 @@ function loungeCors(request: Request) {
   return {
     "Access-Control-Allow-Origin": allowed,
     "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Request-Id",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Request-Id, X-File-Size",
     "Cache-Control": "no-store",
     "Vary": "Origin",
   };
@@ -230,7 +256,25 @@ function loungeErrorResponse(request: Request, error: unknown) {
   return loungeJson(request, { error: "server_error" }, 500);
 }
 
-function toolPublic(setting: ToolSetting) {
+function openRouterCompatible(setting: ToolSetting | null | undefined) {
+  return Boolean(setting && (setting.provider === "openrouter" || setting.endpoint_url.includes("openrouter.ai")));
+}
+
+function inheritedCredential(setting: ToolSetting, settings: ToolSetting[] = []) {
+  if (setting.api_key_ciphertext && setting.api_key_iv) {
+    return { configured: true, source: "tool" as const, credential: setting };
+  }
+  const meeting = setting.tool_id === "shorts"
+    ? settings.find((candidate) => candidate.tool_id === "meeting")
+    : null;
+  if (openRouterCompatible(meeting) && meeting?.api_key_ciphertext && meeting.api_key_iv) {
+    return { configured: true, source: "server-shared" as const, credential: meeting };
+  }
+  return { configured: false, source: "none" as const, credential: null };
+}
+
+function toolPublic(setting: ToolSetting, settings: ToolSetting[] = []) {
+  const credential = inheritedCredential(setting, settings);
   return {
     id: setting.tool_id,
     name: setting.display_name,
@@ -238,7 +282,8 @@ function toolPublic(setting: ToolSetting) {
     cost: Math.max(0, Number(setting.build_cost || 0)),
     provider: setting.provider,
     model: setting.model,
-    apiKeyConfigured: Boolean(setting.api_key_ciphertext && setting.api_key_iv),
+    apiKeyConfigured: credential.configured,
+    credentialSource: credential.source,
     updatedAt: setting.updated_at,
   };
 }
@@ -599,6 +644,7 @@ async function refundBuilds(env: LoungeEnv, identity: LoungeIdentity, setting: T
 
 async function generateWithTool(request: Request, env: LoungeEnv, identity: LoungeIdentity, toolId: string) {
   if (!TOOL_IDS.has(toolId)) throw new LoungeError("tool_not_found", 404);
+  if (toolId === "shorts") throw new LoungeError("shorts_use_studio", 409);
   const setting = await env.DB.prepare(
     `SELECT tool_id, display_name, enabled, build_cost, provider, endpoint_url, model,
             system_prompt, api_key_ciphertext, api_key_iv, updated_by, updated_at
@@ -639,6 +685,464 @@ async function generateWithTool(request: Request, env: LoungeEnv, identity: Loun
   }
 }
 
+function shortsRequestId(value: unknown) {
+  const requestId = clean(value, 80);
+  if (!/^[0-9a-f]{8}-[0-9a-f-]{27,40}$/i.test(requestId)) {
+    throw new LoungeError("invalid_request_id", 400);
+  }
+  return requestId;
+}
+
+function shortsSettings(value: unknown) {
+  const input = value && typeof value === "object" && !Array.isArray(value)
+    ? value as Record<string, unknown>
+    : {};
+  return {
+    subtitles: input.subtitles !== false,
+    subtitleStyle: ["basic", "emphasis", "minimal"].includes(clean(input.subtitleStyle, 20))
+      ? clean(input.subtitleStyle, 20)
+      : "basic",
+    voice: input.voice === true,
+    voiceId: clean(input.voiceId, 80) || "none",
+  };
+}
+
+function safeScenes(value: unknown, fallback: string) {
+  const items = Array.isArray(value) ? value : [];
+  const scenes = items.slice(0, 8).map((item, index) => {
+    const row = item && typeof item === "object" && !Array.isArray(item)
+      ? item as Record<string, unknown>
+      : {};
+    const narration = cleanMultiline(row.narration ?? row.script ?? row.text, 600);
+    const subtitle = clean(row.subtitle ?? narration, 140);
+    return {
+      id: index + 1,
+      title: clean(row.title, 80) || `장면 ${index + 1}`,
+      visual: cleanMultiline(row.visual ?? row.screen, 400) || "핵심 내용을 읽기 쉬운 세로형 카드로 보여 줍니다.",
+      narration: narration || subtitle,
+      subtitle: subtitle || `장면 ${index + 1}`,
+      durationSeconds: Math.min(8, Math.max(2, Math.trunc(Number(row.durationSeconds) || 4))),
+      audioUrl: "",
+    };
+  }).filter((scene) => scene.narration || scene.subtitle);
+  if (scenes.length) return scenes;
+  const chunks = fallback.split(/\n{2,}|(?<=[.!?。！？])\s+/).map((part) => cleanMultiline(part, 500)).filter(Boolean).slice(0, 6);
+  return (chunks.length ? chunks : [fallback]).map((part, index) => ({
+    id: index + 1,
+    title: `장면 ${index + 1}`,
+    visual: "핵심 내용을 읽기 쉬운 세로형 카드로 보여 줍니다.",
+    narration: part,
+    subtitle: clean(part, 100),
+    durationSeconds: 4,
+    audioUrl: "",
+  }));
+}
+
+function parseShortsPlan(text: string, topic: string) {
+  const candidate = text.trim().replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "");
+  try {
+    const parsed = JSON.parse(candidate) as Record<string, unknown>;
+    const detailedPrompt = cleanMultiline(parsed.detailedPrompt ?? parsed.prompt ?? text, 30_000) || topic;
+    return {
+      detailedPrompt,
+      scenes: safeScenes(parsed.scenes, detailedPrompt),
+      // 음성 파일은 신뢰된 서버 렌더러가 발급해야 합니다. 모델이 작성한 URL은 사용하지 않습니다.
+      narrationUrl: "",
+    };
+  } catch {
+    const detailedPrompt = cleanMultiline(text, 30_000) || topic;
+    return { detailedPrompt, scenes: safeScenes([], detailedPrompt), narrationUrl: "" };
+  }
+}
+
+async function shortsToolContext(env: LoungeEnv) {
+  const settings = await toolSettings(env);
+  const shorts = settings.find((setting) => setting.tool_id === "shorts");
+  if (!shorts) throw new LoungeError("tool_not_found", 404);
+  if (Number(shorts.enabled || 0) !== 1) throw new LoungeError("tool_disabled", 503);
+  if (Number(shorts.build_cost || 0) !== 5) throw new LoungeError("shorts_cost_misconfigured", 503);
+  const inherited = inheritedCredential(shorts, settings);
+  if (!inherited.configured || !inherited.credential) throw new LoungeError("tool_not_configured", 503);
+  const credential = inherited.credential;
+  const effective = inherited.source === "server-shared"
+    ? { ...shorts, provider: credential.provider, endpoint_url: credential.endpoint_url }
+    : shorts;
+  const apiKey = await decryptApiKey(env, credential.api_key_ciphertext, credential.api_key_iv);
+  return { shorts, effective, apiKey, credentialSource: inherited.source };
+}
+
+async function shortsJob(env: LoungeEnv, identity: LoungeIdentity, jobId: string) {
+  const row = await env.DB.prepare(
+    `SELECT s.*, j.build_cost, j.status AS tool_status
+       FROM lounge_shorts_jobs s
+       JOIN lounge_tool_jobs j ON j.id = s.job_id
+      WHERE s.job_id = ? AND s.user_sub = ?`,
+  ).bind(jobId, identity.sub).first<ShortsJobRow>();
+  if (!row) throw new LoungeError("shorts_job_not_found", 404);
+  return row;
+}
+
+async function shortsBalance(env: LoungeEnv, userSub: string) {
+  const row = await env.DB.prepare(
+    "SELECT build_balance FROM lounge_users WHERE google_sub = ?",
+  ).bind(userSub).first<{ build_balance: number }>();
+  return Number(row?.build_balance || 0);
+}
+
+async function shortsLedgerRefs(env: LoungeEnv, jobId: string) {
+  const rows = await env.DB.prepare(
+    "SELECT id, event_type FROM lounge_shorts_ledger_events WHERE job_id = ?",
+  ).bind(jobId).all<{ id: string; event_type: "reservation" | "confirmation" | "release" }>();
+  const refs = Object.fromEntries((rows.results || []).map((row) => [row.event_type, row.id]));
+  return {
+    reservationEventId: refs.reservation || "",
+    confirmationEventId: refs.confirmation || "",
+    releaseEventId: refs.release || "",
+  };
+}
+
+function shortsMediaUrl(request: Request, jobId: string) {
+  return `${new URL(request.url).origin}/lounge/shorts/${encodeURIComponent(jobId)}/media`;
+}
+
+async function releaseShortsReservation(env: LoungeEnv, identity: LoungeIdentity, row: ShortsJobRow, reason: string) {
+  if (row.reservation_status !== "reserved") return row.reservation_status;
+  const now = new Date().toISOString();
+  await env.DB.batch([
+    env.DB.prepare(
+      `UPDATE lounge_users
+          SET build_balance = build_balance + ?, updated_at = ?
+        WHERE google_sub = ?
+          AND EXISTS (SELECT 1 FROM lounge_shorts_jobs WHERE job_id = ? AND reservation_status = 'reserved')`,
+    ).bind(row.build_cost, now, identity.sub, row.job_id),
+    env.DB.prepare(
+      `UPDATE lounge_shorts_jobs
+          SET reservation_status = 'released', updated_at = ?
+        WHERE job_id = ? AND user_sub = ? AND reservation_status = 'reserved'`,
+    ).bind(now, row.job_id, identity.sub),
+    env.DB.prepare(
+      `UPDATE lounge_tool_jobs
+          SET status = 'refunded', error_code = ?, updated_at = ?
+        WHERE id = ? AND user_sub = ? AND status <> 'completed'`,
+    ).bind(clean(reason, 80) || "released", now, row.job_id, identity.sub),
+    env.DB.prepare(
+      `INSERT OR IGNORE INTO lounge_shorts_ledger_events
+        (id, job_id, user_sub, event_type, delta, balance_after, reason, created_at)
+       SELECT ?, s.job_id, s.user_sub, 'release', 5, u.build_balance, ?, ?
+         FROM lounge_shorts_jobs s
+         JOIN lounge_users u ON u.google_sub = s.user_sub
+        WHERE s.job_id = ? AND s.user_sub = ? AND s.reservation_status = 'released'`,
+    ).bind(crypto.randomUUID(), clean(reason, 80) || "released", now, row.job_id, identity.sub),
+  ]);
+  return "released";
+}
+
+async function prepareShorts(request: Request, env: LoungeEnv, identity: LoungeIdentity) {
+  const payload = await readJson(request, 24_000);
+  const requestId = shortsRequestId(payload.requestId || request.headers.get("X-Request-Id"));
+  const topic = cleanMultiline(payload.topic, 300);
+  if (topic.length < 5) throw new LoungeError("shorts_topic_too_short", 400);
+  const settings = shortsSettings(payload.settings);
+  const context = await shortsToolContext(env);
+
+  const existing = await env.DB.prepare(
+    `SELECT s.*, j.build_cost, j.status AS tool_status
+       FROM lounge_shorts_jobs s
+       JOIN lounge_tool_jobs j ON j.id = s.job_id
+      WHERE s.user_sub = ? AND s.request_id = ?`,
+  ).bind(identity.sub, requestId).first<ShortsJobRow>();
+  if (existing) {
+    const ledgerRefs = await shortsLedgerRefs(env, existing.job_id);
+    return loungeJson(request, {
+      requestId,
+      jobId: existing.job_id,
+      status: existing.tool_status,
+      detailedPrompt: existing.detailed_prompt,
+      scenes: JSON.parse(existing.scenes_json || "[]"),
+      narrationUrl: "",
+      balance: await shortsBalance(env, identity.sub),
+      credentialSource: context.credentialSource,
+      ...ledgerRefs,
+    }, existing.detailed_prompt ? 200 : 202);
+  }
+
+  const now = new Date().toISOString();
+  const jobId = crypto.randomUUID();
+  const [jobInsert, shortsInsert, balanceUpdate] = await env.DB.batch([
+    env.DB.prepare(
+      `INSERT OR IGNORE INTO lounge_tool_jobs
+        (id, request_id, user_sub, tool_id, build_cost, status, provider_ref, error_code, created_at, updated_at)
+       VALUES (?, ?, ?, 'shorts', ?, 'reserving', '', '', ?, ?)`,
+    ).bind(jobId, requestId, identity.sub, context.shorts.build_cost, now, now),
+    env.DB.prepare(
+      `INSERT OR IGNORE INTO lounge_shorts_jobs
+        (job_id, request_id, user_sub, topic, settings_json, reservation_status, created_at, updated_at)
+       SELECT ?, ?, ?, ?, ?, 'reserved', ?, ?
+        WHERE EXISTS (
+          SELECT 1 FROM lounge_tool_jobs
+           WHERE id = ? AND user_sub = ? AND request_id = ? AND tool_id = 'shorts'
+        )`,
+    ).bind(jobId, requestId, identity.sub, topic, JSON.stringify(settings), now, now,
+      jobId, identity.sub, requestId),
+    env.DB.prepare(
+      `UPDATE lounge_users SET build_balance = build_balance - ?, updated_at = ?
+        WHERE google_sub = ? AND build_balance >= ?
+          AND EXISTS (
+            SELECT 1 FROM lounge_shorts_jobs
+             WHERE job_id = ? AND user_sub = ? AND request_id = ? AND reservation_status = 'reserved'
+          )`,
+    ).bind(context.shorts.build_cost, now, identity.sub, context.shorts.build_cost,
+      jobId, identity.sub, requestId),
+  ]);
+  if (Number(jobInsert.meta?.changes || 0) !== 1 || Number(shortsInsert.meta?.changes || 0) !== 1) {
+    throw new LoungeError("request_already_used", 409);
+  }
+  if (Number(balanceUpdate.meta?.changes || 0) !== 1) {
+    await env.DB.batch([
+      env.DB.prepare("UPDATE lounge_shorts_jobs SET reservation_status = 'released', updated_at = ? WHERE job_id = ?").bind(now, jobId),
+      env.DB.prepare("UPDATE lounge_tool_jobs SET status = 'failed', error_code = 'insufficient_builds', updated_at = ? WHERE id = ?").bind(now, jobId),
+    ]);
+    throw new LoungeError("insufficient_builds", 402);
+  }
+  await env.DB.batch([
+    env.DB.prepare(
+      `INSERT OR IGNORE INTO lounge_shorts_ledger_events
+        (id, job_id, user_sub, event_type, delta, balance_after, reason, created_at)
+       SELECT ?, ?, ?, 'reservation', -5, build_balance, 'video_generation', ?
+         FROM lounge_users WHERE google_sub = ?`,
+    ).bind(crypto.randomUUID(), jobId, identity.sub, now, identity.sub),
+    env.DB.prepare(
+      "UPDATE lounge_tool_jobs SET status = 'processing', updated_at = ? WHERE id = ? AND user_sub = ? AND status = 'reserving'",
+    ).bind(now, jobId, identity.sub),
+  ]);
+
+  const prompt = `다음 한 문장을 한국어 세로형 쇼츠 제작안으로 확장하세요.\n\n주제: ${topic}\n자막 사용: ${settings.subtitles ? "예" : "아니오"}\n자막 스타일: ${settings.subtitleStyle}\n음성 사용: ${settings.voice ? "예" : "아니오"}\n\nJSON 객체 하나만 반환하세요. 필드: detailedPrompt 문자열, scenes 배열. 각 장면은 title, visual, narration, subtitle, durationSeconds(2~8)를 포함합니다. 입력에 없는 사실을 만들지 말고 총 3~6장면으로 구성하세요.`;
+  try {
+    const result = await callConfiguredProvider(context.effective, context.apiKey, { prompt }, identity);
+    const plan = parseShortsPlan(result.text, topic);
+    const updatedAt = new Date().toISOString();
+    await env.DB.batch([
+      env.DB.prepare(
+        "UPDATE lounge_shorts_jobs SET detailed_prompt = ?, scenes_json = ?, updated_at = ? WHERE job_id = ? AND reservation_status = 'reserved'",
+      ).bind(plan.detailedPrompt, JSON.stringify(plan.scenes), updatedAt, jobId),
+      env.DB.prepare(
+        "UPDATE lounge_tool_jobs SET provider_ref = ?, updated_at = ? WHERE id = ? AND status = 'processing'",
+      ).bind(clean(result.providerRef, 200), updatedAt, jobId),
+    ]);
+    const ledgerRefs = await shortsLedgerRefs(env, jobId);
+    return loungeJson(request, {
+      requestId,
+      jobId,
+      status: "processing",
+      detailedPrompt: plan.detailedPrompt,
+      scenes: plan.scenes,
+      narrationUrl: plan.narrationUrl,
+      balance: await shortsBalance(env, identity.sub),
+      credentialSource: context.credentialSource,
+      ...ledgerRefs,
+    }, 201);
+  } catch (error) {
+    const row = await shortsJob(env, identity, jobId);
+    await releaseShortsReservation(env, identity, row, error instanceof LoungeError ? error.code : "provider_request_failed");
+    throw error;
+  }
+}
+
+async function uploadShorts(request: Request, env: LoungeEnv, identity: LoungeIdentity, jobId: string) {
+  if (!env.PRIVATE_REPORTS) throw new LoungeError("shorts_storage_not_configured", 503);
+  const row = await shortsJob(env, identity, jobId);
+  if (row.reservation_status === "released") throw new LoungeError("shorts_reservation_released", 409);
+  if (row.reservation_status === "confirmed" && row.media_key) {
+    const ledgerRefs = await shortsLedgerRefs(env, jobId);
+    return loungeJson(request, {
+      requestId: row.request_id,
+      jobId,
+      status: "completed",
+      mediaUrl: shortsMediaUrl(request, jobId),
+      mediaType: row.media_type,
+      balance: await shortsBalance(env, identity.sub),
+      ...ledgerRefs,
+    });
+  }
+  const contentType = clean(request.headers.get("Content-Type"), 100).toLocaleLowerCase("en-US");
+  if (!contentType.startsWith("video/webm")) throw new LoungeError("shorts_webm_required", 415);
+  const mediaSize = Math.trunc(Number(request.headers.get("X-File-Size") || request.headers.get("Content-Length") || 0));
+  if (!Number.isFinite(mediaSize) || mediaSize <= 0 || mediaSize > MAX_SHORTS_BYTES) {
+    throw new LoungeError("shorts_file_size_invalid", 413);
+  }
+  if (!request.body) throw new LoungeError("shorts_video_required", 400);
+  const mediaKey = `lounge-shorts/${jobId}.webm`;
+  await env.PRIVATE_REPORTS.put(mediaKey, request.body, { httpMetadata: { contentType: "video/webm" } });
+  const stored = await env.PRIVATE_REPORTS.get(mediaKey);
+  const storedSize = Number(stored?.size ?? mediaSize);
+  if (!stored || !Number.isFinite(storedSize) || storedSize <= 0 || storedSize > MAX_SHORTS_BYTES || storedSize !== mediaSize) {
+    await env.PRIVATE_REPORTS.delete(mediaKey).catch(() => undefined);
+    throw new LoungeError("shorts_file_size_invalid", 413);
+  }
+  const now = new Date().toISOString();
+  try {
+    await env.DB.batch([
+      env.DB.prepare(
+        `INSERT OR IGNORE INTO lounge_build_ledger
+          (id, user_sub, delta, reason, ref_type, ref_id, balance_after, created_at)
+         SELECT ?, ?, -j.build_cost, 'AI 쇼츠 스튜디오 사용', 'tool_job', j.id, u.build_balance, ?
+           FROM lounge_tool_jobs j
+           JOIN lounge_shorts_jobs s ON s.job_id = j.id
+           JOIN lounge_users u ON u.google_sub = j.user_sub
+          WHERE j.id = ? AND j.user_sub = ? AND s.reservation_status = 'reserved'`,
+      ).bind(crypto.randomUUID(), identity.sub, now, jobId, identity.sub),
+      env.DB.prepare(
+        `UPDATE lounge_shorts_jobs
+            SET reservation_status = 'confirmed', media_key = ?, media_type = 'video/webm', media_size = ?, updated_at = ?
+          WHERE job_id = ? AND user_sub = ? AND reservation_status = 'reserved'`,
+      ).bind(mediaKey, mediaSize, now, jobId, identity.sub),
+      env.DB.prepare(
+        "UPDATE lounge_tool_jobs SET status = 'completed', error_code = '', updated_at = ? WHERE id = ? AND user_sub = ? AND status = 'processing'",
+      ).bind(now, jobId, identity.sub),
+      env.DB.prepare(
+        `INSERT OR IGNORE INTO lounge_shorts_ledger_events
+          (id, job_id, user_sub, event_type, delta, balance_after, reason, created_at)
+         SELECT ?, s.job_id, s.user_sub, 'confirmation', 0, u.build_balance, 'r2_video_stored', ?
+           FROM lounge_shorts_jobs s
+           JOIN lounge_tool_jobs j ON j.id = s.job_id
+           JOIN lounge_users u ON u.google_sub = s.user_sub
+          WHERE s.job_id = ? AND s.user_sub = ?
+            AND s.reservation_status = 'confirmed' AND j.status = 'completed'`,
+      ).bind(crypto.randomUUID(), now, jobId, identity.sub),
+    ]);
+  } catch {
+    const current = await shortsJob(env, identity, jobId).catch(() => null);
+    if (current?.reservation_status !== "confirmed" || current.tool_status !== "completed") {
+      await env.PRIVATE_REPORTS.delete(mediaKey).catch(() => undefined);
+      throw new LoungeError("shorts_upload_commit_failed", 500);
+    }
+  }
+  const committed = await shortsJob(env, identity, jobId);
+  if (committed.reservation_status !== "confirmed" || committed.tool_status !== "completed" || committed.media_key !== mediaKey) {
+    await env.PRIVATE_REPORTS.delete(mediaKey).catch(() => undefined);
+    throw new LoungeError("shorts_upload_commit_failed", 500);
+  }
+  const ledgerRefs = await shortsLedgerRefs(env, jobId);
+  return loungeJson(request, {
+    requestId: row.request_id,
+    jobId,
+    status: "completed",
+    mediaUrl: shortsMediaUrl(request, jobId),
+    mediaType: "video/webm",
+    balance: await shortsBalance(env, identity.sub),
+    ...ledgerRefs,
+  });
+}
+
+async function releaseShorts(request: Request, env: LoungeEnv, identity: LoungeIdentity, jobId: string) {
+  const payload = await readJson(request, 4_000);
+  const row = await shortsJob(env, identity, jobId);
+  if (row.reservation_status === "confirmed") throw new LoungeError("shorts_already_completed", 409);
+  await releaseShortsReservation(env, identity, row, clean(payload.reason, 80) || "user_cancelled");
+  if (row.media_key && env.PRIVATE_REPORTS) await env.PRIVATE_REPORTS.delete(row.media_key);
+  const ledgerRefs = await shortsLedgerRefs(env, jobId);
+  return loungeJson(request, {
+    requestId: row.request_id,
+    jobId,
+    status: "released",
+    balance: await shortsBalance(env, identity.sub),
+    ...ledgerRefs,
+  });
+}
+
+async function publishShorts(request: Request, env: LoungeEnv, identity: LoungeIdentity, jobId: string) {
+  if (!env.PRIVATE_REPORTS) throw new LoungeError("shorts_storage_not_configured", 503);
+  const payload = await readJson(request, 12_000);
+  const publishRequestId = shortsRequestId(payload.publishRequestId || payload.requestId || request.headers.get("X-Request-Id"));
+  const title = clean(payload.title, 100);
+  const content = cleanMultiline(payload.content, 5_000);
+  if (title.length < 4) throw new LoungeError("title_too_short", 400);
+  if (content.length < 10) throw new LoungeError("content_too_short", 400);
+  if (payload.rightsConfirmed !== true) throw new LoungeError("shorts_rights_confirmation_required", 400);
+  const row = await shortsJob(env, identity, jobId);
+  if (row.reservation_status !== "confirmed" || row.tool_status !== "completed" || !row.media_key) {
+    throw new LoungeError("shorts_not_completed", 409);
+  }
+  const media = await env.PRIVATE_REPORTS.get(row.media_key);
+  if (!media) throw new LoungeError("shorts_media_missing", 409);
+  if (row.published_post_id) {
+    return loungeJson(request, {
+      publishRequestId: row.publish_request_id || publishRequestId,
+      jobId,
+      postId: row.published_post_id,
+      postUrl: `https://aihubos.github.io/builders-lounge/?post=${encodeURIComponent(row.published_post_id)}#board`,
+      category: "knowledge_share",
+      visibility: "public",
+      rewardBuilds: 0,
+    });
+  }
+
+  const postId = crypto.randomUUID();
+  const now = new Date().toISOString();
+  const salt = crypto.randomUUID();
+  const opaquePassword = crypto.randomUUID();
+  const mediaUrl = shortsMediaUrl(request, jobId);
+  try {
+    await env.DB.batch([
+      env.DB.prepare(
+        `INSERT INTO board_posts
+          (id, category, title, content, author, password_salt, password_hash, is_admin,
+           view_count, comment_count, created_at, updated_at, user_sub, reward_builds,
+           origin, media_url, media_type, shorts_job_id, rights_notice_version, rights_confirmed_at)
+         VALUES (?, 'knowledge_share', ?, ?, ?, ?, ?, ?, 0, 0, ?, NULL, ?, 0,
+                 'shorts', ?, 'video/webm', ?, ?, ?)`,
+      ).bind(postId, title, content, identity.name, salt, opaquePassword, identity.isAdmin ? 1 : 0, now,
+        identity.sub, mediaUrl, jobId, SHORTS_RIGHTS_VERSION, now),
+      env.DB.prepare(
+        `UPDATE lounge_shorts_jobs
+            SET published_post_id = ?, publish_request_id = ?, rights_notice_version = ?, rights_confirmed_at = ?, updated_at = ?
+          WHERE job_id = ? AND user_sub = ? AND published_post_id = ''`,
+      ).bind(postId, publishRequestId, SHORTS_RIGHTS_VERSION, now, now, jobId, identity.sub),
+    ]);
+  } catch {
+    const existing = await env.DB.prepare(
+      "SELECT published_post_id, publish_request_id FROM lounge_shorts_jobs WHERE job_id = ? AND user_sub = ?",
+    ).bind(jobId, identity.sub).first<{ published_post_id: string; publish_request_id: string }>();
+    if (!existing?.published_post_id) throw new LoungeError("shorts_publish_failed", 500);
+    return loungeJson(request, {
+      publishRequestId: existing.publish_request_id,
+      jobId,
+      postId: existing.published_post_id,
+      postUrl: `https://aihubos.github.io/builders-lounge/?post=${encodeURIComponent(existing.published_post_id)}#board`,
+      category: "knowledge_share",
+      visibility: "public",
+      rewardBuilds: 0,
+    });
+  }
+  return loungeJson(request, {
+    publishRequestId,
+    jobId,
+    postId,
+    postUrl: `https://aihubos.github.io/builders-lounge/?post=${encodeURIComponent(postId)}#board`,
+    category: "knowledge_share",
+    visibility: "public",
+    rewardBuilds: 0,
+  }, 201);
+}
+
+async function shortsMedia(request: Request, env: LoungeEnv, identity: LoungeIdentity | null, jobId: string) {
+  if (!env.PRIVATE_REPORTS) throw new LoungeError("shorts_storage_not_configured", 503);
+  const row = await env.DB.prepare(
+    "SELECT user_sub, media_key, media_type, published_post_id FROM lounge_shorts_jobs WHERE job_id = ?",
+  ).bind(jobId).first<{ user_sub: string; media_key: string; media_type: string; published_post_id: string }>();
+  if (!row?.media_key) throw new LoungeError("shorts_media_missing", 404);
+  if (!row.published_post_id && identity?.sub !== row.user_sub) throw new LoungeError("not_owner", identity ? 403 : 401);
+  const object = await env.PRIVATE_REPORTS.get(row.media_key);
+  if (!object) throw new LoungeError("shorts_media_missing", 404);
+  const headers = new Headers({
+    "Content-Type": row.media_type || object.httpMetadata?.contentType || "video/webm",
+    "Content-Disposition": `inline; filename="shorts-${jobId}.webm"`,
+    ...loungeCors(request),
+  });
+  headers.set("Cache-Control", row.published_post_id ? "public, max-age=3600" : "private, no-store");
+  return new Response(object.body || await object.arrayBuffer(), { status: 200, headers });
+}
+
 async function writeAudit(env: LoungeEnv, admin: LoungeIdentity, action: string, targetType: string, targetId: string, detail = "") {
   await env.DB.prepare(
     `INSERT INTO lounge_admin_audit
@@ -660,6 +1164,7 @@ async function updateTool(request: Request, env: LoungeEnv, admin: LoungeIdentit
   if (!PROVIDERS.has(provider)) throw new LoungeError("invalid_provider", 400);
   const buildCost = Math.trunc(Number(payload.buildCost ?? current.build_cost));
   if (!Number.isFinite(buildCost) || buildCost < 0 || buildCost > 10_000) throw new LoungeError("invalid_build_cost", 400);
+  if (toolId === "shorts" && buildCost !== 5) throw new LoungeError("shorts_cost_misconfigured", 400);
   const displayName = clean(payload.displayName ?? current.display_name, 80);
   const endpointUrl = endpointValue(payload.endpointUrl ?? current.endpoint_url);
   const model = clean(payload.model ?? current.model, 120);
@@ -695,7 +1200,8 @@ async function updateTool(request: Request, env: LoungeEnv, admin: LoungeIdentit
             system_prompt, api_key_ciphertext, api_key_iv, updated_by, updated_at
        FROM lounge_tool_settings WHERE tool_id = ?`,
   ).bind(toolId).first<ToolSetting>();
-  return loungeJson(request, { tool: updated ? { ...toolPublic(updated), endpointUrl: updated.endpoint_url, systemPrompt: updated.system_prompt, updatedBy: updated.updated_by } : null });
+  const settings = updated ? await toolSettings(env) : [];
+  return loungeJson(request, { tool: updated ? { ...toolPublic(updated, settings), endpointUrl: updated.endpoint_url, systemPrompt: updated.system_prompt, updatedBy: updated.updated_by } : null });
 }
 
 async function adjustBuilds(request: Request, env: LoungeEnv, admin: LoungeIdentity, userSub: string) {
@@ -755,15 +1261,28 @@ export async function handleLoungeRequest(request: Request, env: LoungeEnv): Pro
       return loungeJson(request, {
         googleClientId: env.GOOGLE_CLIENT_ID || "",
         loginReady: Boolean(env.GOOGLE_CLIENT_ID),
-        tools: tools.map(toolPublic),
+        tools: tools.map((tool) => toolPublic(tool, tools)),
       });
     }
 
     const identity = await getLoungeIdentity(request, env);
+    if (url.pathname === "/lounge/shorts/prepare" && request.method === "POST") {
+      return prepareShorts(request, env, requireIdentity(identity));
+    }
+    const shortsAction = url.pathname.match(/^\/lounge\/shorts\/([0-9a-f-]{36})\/(upload|release|publish|media)$/i);
+    if (shortsAction) {
+      const jobId = shortsAction[1];
+      const action = shortsAction[2];
+      if (action === "media" && request.method === "GET") return shortsMedia(request, env, identity, jobId);
+      if (action === "upload" && request.method === "POST") return uploadShorts(request, env, requireIdentity(identity), jobId);
+      if (action === "release" && request.method === "POST") return releaseShorts(request, env, requireIdentity(identity), jobId);
+      if (action === "publish" && request.method === "POST") return publishShorts(request, env, requireIdentity(identity), jobId);
+      return loungeJson(request, { error: "method_not_allowed" }, 405);
+    }
     if (url.pathname === "/lounge/me" && request.method === "GET") {
       const user = requireIdentity(identity);
       const tools = await toolSettings(env);
-      return loungeJson(request, { user: publicIdentity(user), tools: tools.map(toolPublic) });
+      return loungeJson(request, { user: publicIdentity(user), tools: tools.map((tool) => toolPublic(tool, tools)) });
     }
 
     if (url.pathname === "/lounge/me/ledger" && request.method === "GET") {
@@ -790,7 +1309,7 @@ export async function handleLoungeRequest(request: Request, env: LoungeEnv): Pro
         loginReady: Boolean(env.GOOGLE_CLIENT_ID),
         encryptionReady: Boolean(env.LOUNGE_CONFIG_KEY),
         tools: tools.map((tool) => ({
-          ...toolPublic(tool),
+          ...toolPublic(tool, tools),
           endpointUrl: tool.endpoint_url,
           systemPrompt: tool.system_prompt,
           updatedBy: tool.updated_by,
