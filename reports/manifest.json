@@ -1,7 +1,29 @@
 {
-  "generatedAt": "2026-08-24T07:07:54.110Z",
+  "generatedAt": "2026-08-24T08:41:35.103Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260824-ccao-f-step-by-step-guide",
+      "slug": "ccao-f-step-by-step-guide",
+      "title": "Claude Certified Associate – Foundations (CCAO-F) 취득 단계별 가이드북",
+      "category": "AI",
+      "summary": "비개발자 AI 교육자를 위한 CCAO-F 응시 접근, 학습, 실습, 시험 예약과 자격 활용 단계별 가이드북",
+      "createdAt": "2026-08-24T17:39:53+09:00",
+      "updatedAt": "2026-08-24T17:39:53+09:00",
+      "status": "published",
+      "path": "reports/260824-ccao-f-step-by-step-guide/",
+      "url": "https://aihubos.github.io/reportmode/reports/260824-ccao-f-step-by-step-guide/",
+      "displayDate": "260824",
+      "sourceCount": 17,
+      "tags": [
+        "Anthropic",
+        "Claude",
+        "CCAO-F",
+        "AI 자격증"
+      ],
+      "coverImage": "reports/260824-ccao-f-step-by-step-guide/assets/claude-icon-square.png",
+      "coverAlt": "Anthropic 공식 Claude 아이콘"
+    },
     {
       "id": "260823-playworkgrow-site-analysis",
       "slug": "playworkgrow-site-analysis",

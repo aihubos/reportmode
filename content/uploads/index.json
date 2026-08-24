@@ -1,7 +1,27 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-24T16:07:52+09:00",
+  "updatedAt": "2026-08-24T17:41:33+09:00",
   "reports": [
+    {
+      "schemaVersion": "1",
+      "id": "260824-ccao-f-step-by-step-guide",
+      "slug": "ccao-f-step-by-step-guide",
+      "title": "Claude Certified Associate – Foundations (CCAO-F) 취득 단계별 가이드북",
+      "category": "AI",
+      "tags": [
+        "Anthropic",
+        "Claude",
+        "CCAO-F",
+        "AI 자격증"
+      ],
+      "summary": "비개발자 AI 교육자를 위한 CCAO-F 응시 접근, 학습, 실습, 시험 예약과 자격 활용 단계별 가이드북",
+      "createdAt": "2026-08-24T17:39:53+09:00",
+      "updatedAt": "2026-08-24T17:39:53+09:00",
+      "status": "published",
+      "sourceName": "index (4).html",
+      "sourceCount": 17,
+      "entry": "index.html"
+    },
     {
       "schemaVersion": "1",
       "id": "260823-playworkgrow-site-analysis",

@@ -112,12 +112,12 @@ function upsertSharedScripts(html: string, prefix: string, reportPath: string): 
     hasPrevious ? 'data-has-previous="true"' : "",
   ].filter(Boolean).join(" ");
   const tags = [
+    `<script src="${prefix}/assets/report-hub-brand.js?v=${REPORT_HUB_BRAND_VERSION}"></script>`,
     `<script src="${prefix}/assets/report-page-layout.js?v=${REPORT_LAYOUT_VERSION}"></script>`,
     `<script src="${prefix}/assets/report-view-counter.js?v=${REPORT_COUNTER_VERSION}" data-report-id="${reportIdFromPath(reportPath)}"></script>`,
     `<script src="${prefix}/assets/report-comments.js?v=${REPORT_COMMENTS_VERSION}" data-report-id="${reportIdFromPath(reportPath)}"></script>`,
     `<script src="${prefix}/assets/report-history.js?v=${REPORT_HISTORY_VERSION}" ${historyAttributes}></script>`,
     `<script src="${prefix}/assets/report-entry-tracker.js?v=${REPORT_ENTRY_VERSION}" data-report-id="${reportIdFromPath(reportPath)}"></script>`,
-    `<script src="${prefix}/assets/report-hub-brand.js?v=${REPORT_HUB_BRAND_VERSION}"></script>`,
   ].join("\n  ");
   return output.replace(/<\/body>/i, `  ${tags}\n</body>`);
 }
