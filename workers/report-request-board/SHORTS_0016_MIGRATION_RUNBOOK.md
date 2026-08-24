@@ -29,6 +29,10 @@ VP9은 sync code·화면 크기와 uncompressed header 뒤 압축 데이터 존�
 판정하지 않는다. 최종 사용자용 완료 판정에는 MoneyPrinterTurbo 렌더 서버와
 실제 재생 검증을 별도 운영 시험으로 확인해야 한다.
 
+MoneyPrinterTurbo MP4는 `ftyp`, `moov`, 비디오 handler와 내용이 있는 `mdat`을
+확인한 뒤에만 저장·정산한다. 이 역시 코덱 완전 디코딩이나 품질 판정은 아니며,
+서버 간 계약과 로컬 재생 증거는 `SHORTS_MPT_LOCAL_RUNBOOK.md`를 따른다.
+
 Wrangler는 오류가 난 migration을 롤백하지만, 명령 응답 유실·과거 수동 변경·실제 migration 기록 불일치는 별도로 확인해야 한다. 또한 SQLite의 `ALTER TABLE ... ADD COLUMN`은 같은 열이 있으면 재실행에 실패한다. 따라서 적용 여부가 불명확하거나 일부 객체가 이미 있으면 migration을 다시 실행하지 않는다.
 
 ## 적용 전 확인

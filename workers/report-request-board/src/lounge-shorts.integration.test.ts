@@ -5,6 +5,8 @@ import test from "node:test";
 
 import { exportJWK, generateKeyPair, SignJWT } from "jose";
 
+import { validMp4Bytes } from "./media-test-fixtures.js";
+
 type SqlValue = string | number | bigint | null | Uint8Array;
 
 class SqlitePrepared {
@@ -114,7 +116,39 @@ const GOOGLE_CLIENT_ID = "builders-lounge-test.apps.googleusercontent.com";
 const CONFIG_KEY = "builders-lounge-shorts-integration-test";
 const OPENROUTER_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
 const SERVER_API_KEY = "server-only-test-key";
+const RENDERER_ORIGIN = "https://renderer.local.test";
+const RENDERER_TOKEN = "renderer-only-test-token";
 const VALID_WEBM_BASE64 = "GkXfo59ChoEBQveBAULygQRC84EIQoKEd2VibUKHgQJChYECGFOAZwEAAAAAAAHpEU2bdLpNu4tTq4QVSalmU6yBoU27i1OrhBZUrmtTrIHYTbuMU6uEElTDZ1OsggElTbuMU6uEHFO7a1OsggHT7AEAAAAAAABZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVSalmsirXsYMPQkBNgI1MYXZmNjIuMTIuMTAxV0GNTGF2ZjYyLjEyLjEwMUSJiECPQAAAAAAAFlSua8iuAQAAAAAAAD/XgQFzxYjGb5sj+r5DUpyBACK1nIN1bmSIgQCGhVZfVlA4g4EBI+ODhDuaygDgkLCBELqBEJqBAlWwhFW5gQESVMNn/HNzoGPAgGfImkWjh0VOQ09ERVJEh41MYXZmNjIuMTIuMTAxc3PWY8CLY8WIxm+bI/q+Q1JnyKFFo4dFTkNPREVSRIeUTGF2YzYyLjI4LjEwMSBsaWJ2cHhnyKFFo4hEVVJBVElPTkSHkzAwOjAwOjAxLjAwMDAwMDAwMAAfQ7Z1qOeBAKOjgQAAgBACAJ0BKhAAEAAARwiFhYiZhIgCAgAMDWAA/v+rUIAcU7trkbuPs4EAt4r3gQHxggGm8IED";
+type RendererTestTask = {
+  state: "processing" | "completed" | "failed";
+  progress: number;
+  bytes: Uint8Array;
+};
+
+type RendererCall = {
+  method: string;
+  path: string;
+  authorized: boolean;
+  body: Record<string, any> | null;
+};
+
+const rendererTasks = new Map<string, RendererTestTask>();
+const rendererCalls: RendererCall[] = [];
+
+function rendererPayload(taskId: string, task: RendererTestTask) {
+  return {
+    data: {
+      taskId,
+      state: task.state,
+      progress: task.progress,
+      videoUrl: task.state === "completed"
+        ? `${RENDERER_ORIGIN}/api/v1/builders-lounge/tasks/${taskId}/video`
+        : "",
+      mediaType: task.state === "completed" ? "video/mp4" : "",
+    },
+  };
+}
+
 const nativeFetch = globalThis.fetch;
 const { publicKey, privateKey } = await generateKeyPair("RS256");
 const publicJwk = await exportJWK(publicKey);
@@ -124,6 +158,56 @@ publicJwk.use = "sig";
 
 globalThis.fetch = async (input, init) => {
   const url = typeof input === "string" || input instanceof URL ? String(input) : input.url;
+  if (url.startsWith(RENDERER_ORIGIN)) {
+    const parsed = new URL(url);
+    const inputRequest = input instanceof Request ? input : null;
+    const method = String(init?.method || inputRequest?.method || "GET").toUpperCase();
+    const headers = new Headers(init?.headers || inputRequest?.headers);
+    const authorized = headers.get("Authorization") === `Bearer ${RENDERER_TOKEN}`;
+    let body: Record<string, any> | null = null;
+    if (typeof init?.body === "string") body = JSON.parse(init.body) as Record<string, any>;
+    rendererCalls.push({ method, path: parsed.pathname, authorized, body });
+    if (!authorized) return new Response(JSON.stringify({ error: "unauthorized" }), { status: 401 });
+
+    if (method === "POST" && parsed.pathname === "/api/v1/builders-lounge/videos") {
+      const taskId = String(body?.jobId || "");
+      if (!taskId) return new Response(JSON.stringify({ error: "job_required" }), { status: 400 });
+      const task = rendererTasks.get(taskId) || {
+        state: "processing" as const,
+        progress: 15,
+        bytes: validMp4Bytes(),
+      };
+      rendererTasks.set(taskId, task);
+      return new Response(JSON.stringify(rendererPayload(taskId, task)), {
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
+    const statusMatch = parsed.pathname.match(/^\/api\/v1\/builders-lounge\/tasks\/([0-9a-f-]{36})$/i);
+    if (method === "GET" && statusMatch) {
+      const taskId = statusMatch[1];
+      const task = rendererTasks.get(taskId);
+      if (!task) return new Response(JSON.stringify({ error: "not_found" }), { status: 404 });
+      return new Response(JSON.stringify(rendererPayload(taskId, task)), {
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
+    const mediaMatch = parsed.pathname.match(
+      /^\/api\/v1\/builders-lounge\/tasks\/([0-9a-f-]{36})\/video$/i,
+    );
+    if (method === "GET" && mediaMatch) {
+      const task = rendererTasks.get(mediaMatch[1]);
+      if (!task || task.state !== "completed") return new Response(null, { status: 404 });
+      return new Response(new Blob([task.bytes], { type: "video/mp4" }), {
+        headers: {
+          "Content-Type": "video/mp4",
+          "Content-Length": String(task.bytes.byteLength),
+        },
+      });
+    }
+    return new Response(JSON.stringify({ error: "not_found" }), { status: 404 });
+  }
   if (url === "https://www.googleapis.com/oauth2/v3/certs") {
     return new Response(JSON.stringify({ keys: [publicJwk] }), {
       headers: { "Content-Type": "application/json", "Cache-Control": "public, max-age=3600" },
@@ -179,6 +263,8 @@ async function encryptApiKey(value: string) {
 }
 
 async function environment({ matchingEndpoint = true } = {}) {
+  rendererTasks.clear();
+  rendererCalls.length = 0;
   const DB = new SqliteD1();
   for (const name of [
     "0013_create_community_board.sql",
@@ -206,6 +292,8 @@ async function environment({ matchingEndpoint = true } = {}) {
     PRIVATE_REPORTS: new MemoryBucket(),
     GOOGLE_CLIENT_ID,
     LOUNGE_CONFIG_KEY: CONFIG_KEY,
+    SHORTS_RENDERER_URL: RENDERER_ORIGIN,
+    SHORTS_RENDERER_TOKEN: RENDERER_TOKEN,
   } as any;
 }
 
@@ -419,6 +507,183 @@ test("shorts reserves once, confirms on R2 storage, and publishes only after an 
   assert.equal(env.DB.value<{ count: number }>("SELECT COUNT(*) AS count FROM board_posts").count, 1);
   assert.equal(env.DB.value<{ balance: number }>("SELECT build_balance AS balance FROM lounge_users WHERE google_sub = 'owner-one'").balance, 15);
   assert.equal(env.DB.value<{ count: number }>("SELECT COUNT(*) AS count FROM lounge_build_ledger WHERE user_sub = 'owner-one'").count, 1);
+});
+
+test("MPT render stores a valid MP4 before confirming Build and publishes only on the explicit button request", async () => {
+  const env = await environment();
+  const token = await fundedUser(env, "renderer-success", "renderer-success@example.com", "렌더 성공 사용자");
+
+  const config = await call(env, "/lounge/config");
+  assert.equal(config.response.status, 200);
+  assert.equal(config.json.shortsRendererReady, true);
+  const publicConfig = JSON.stringify(config.json);
+  assert.equal(publicConfig.includes(RENDERER_TOKEN), false);
+  assert.equal(publicConfig.includes(RENDERER_ORIGIN), false);
+
+  const planned = await prepare(env, token);
+  assert.equal(env.DB.value<{ count: number }>("SELECT COUNT(*) AS count FROM board_posts").count, 0);
+
+  const started = await call(env, `/lounge/shorts/${planned.jobId}/render`, "POST", {}, token);
+  assert.equal(started.response.status, 202);
+  assert.equal(started.json.renderStarted, true);
+  assert.equal(started.json.renderState, "processing");
+  assert.equal(started.json.renderProgress, 15);
+  assert.equal(started.json.reservationStatus, "reserved");
+  assert.equal(started.json.balance, 15);
+  assert.equal(started.json.confirmationEventId, "");
+  assert.equal(env.DB.value<{ count: number }>("SELECT COUNT(*) AS count FROM board_posts").count, 0);
+
+  const createCall = rendererCalls.find((entry) => entry.method === "POST");
+  assert.ok(createCall);
+  assert.equal(createCall.authorized, true);
+  assert.equal(createCall.path, "/api/v1/builders-lounge/videos");
+  assert.equal(createCall.body?.jobId, planned.jobId);
+  assert.match(String(createCall.body?.topic || ""), /회의 메모/);
+  assert.ok(Array.isArray(createCall.body?.scenes));
+  assert.ok(createCall.body!.scenes.length >= 2);
+  assert.ok(createCall.body!.scenes.every((scene: any) => scene.narration && scene.visualPrompt));
+
+  rendererTasks.set(planned.jobId, {
+    state: "completed",
+    progress: 100,
+    bytes: validMp4Bytes(),
+  });
+  const completed = await call(env, `/lounge/shorts/${planned.jobId}/render/sync`, "POST", {}, token);
+  assert.equal(completed.response.status, 200);
+  assert.equal(completed.json.status, "completed");
+  assert.equal(completed.json.renderState, "completed");
+  assert.equal(completed.json.renderProgress, 100);
+  assert.equal(completed.json.reservationStatus, "confirmed");
+  assert.equal(completed.json.mediaType, "video/mp4");
+  assert.equal(completed.json.balance, 15);
+  assert.ok(completed.json.confirmationEventId);
+  assert.equal(shortsLedgerEventCount(env, planned.jobId, "confirmation"), 1);
+  assert.equal(shortsLedgerEventCount(env, planned.jobId, "release"), 0);
+  assert.equal(env.PRIVATE_REPORTS.objects.size, 1);
+  assert.ok([...env.PRIVATE_REPORTS.objects.keys()].every((key: string) => key.endsWith(".mp4")));
+  assert.equal(env.DB.value<{ count: number }>("SELECT COUNT(*) AS count FROM board_posts").count, 0);
+
+  const media = await call(env, new URL(completed.json.mediaUrl).pathname, "GET", undefined, token);
+  assert.equal(media.response.status, 200);
+  assert.equal(media.response.headers.get("Content-Type"), "video/mp4");
+  assert.match(media.response.headers.get("Content-Disposition") || "", /\.mp4"$/);
+
+  const publishRequestId = uuid();
+  const publishBody = {
+    publishRequestId,
+    title: "MPT 회의 메모 정리법",
+    content: "MPT가 만든 영상의 저장이 끝난 뒤 사용자가 직접 게시한 결과입니다.",
+    rightsConfirmed: true,
+  };
+  const published = await call(env, `/lounge/shorts/${planned.jobId}/publish`, "POST", publishBody, token, {
+    "X-Request-Id": publishRequestId,
+  });
+  assert.equal(published.response.status, 201);
+  assert.equal(published.json.publishStatus, "active");
+  assert.equal(env.DB.value<{ count: number }>("SELECT COUNT(*) AS count FROM board_posts").count, 1);
+  assert.equal(env.DB.value<{ media_type: string }>(
+    "SELECT media_type FROM board_posts WHERE shorts_job_id IS NOT NULL",
+  ).media_type, "video/mp4");
+
+  const repeated = await call(env, `/lounge/shorts/${planned.jobId}/publish`, "POST", publishBody, token, {
+    "X-Request-Id": publishRequestId,
+  });
+  assert.equal(repeated.response.status, 200);
+  assert.equal(repeated.json.postId, published.json.postId);
+  assert.equal(env.DB.value<{ count: number }>("SELECT COUNT(*) AS count FROM board_posts").count, 1);
+
+  const publicResponses = JSON.stringify([config.json, started.json, completed.json, published.json]);
+  assert.equal(publicResponses.includes(RENDERER_TOKEN), false);
+  assert.equal(publicResponses.includes(RENDERER_ORIGIN), false);
+});
+
+test("MPT failure and cancellation release the reserved Build exactly once", async () => {
+  const failedEnv = await environment();
+  const failedToken = await fundedUser(
+    failedEnv,
+    "renderer-failed",
+    "renderer-failed@example.com",
+    "렌더 실패 사용자",
+  );
+  const failedPlan = await prepare(failedEnv, failedToken);
+  const started = await call(failedEnv, `/lounge/shorts/${failedPlan.jobId}/render`, "POST", {}, failedToken);
+  assert.equal(started.response.status, 202);
+  rendererTasks.set(failedPlan.jobId, { state: "failed", progress: 48, bytes: validMp4Bytes() });
+
+  const failed = await call(failedEnv, `/lounge/shorts/${failedPlan.jobId}/render/sync`, "POST", {}, failedToken);
+  const failedAgain = await call(failedEnv, `/lounge/shorts/${failedPlan.jobId}/render/sync`, "POST", {}, failedToken);
+  assert.equal(failed.response.status, 200);
+  assert.equal(failed.json.reservationStatus, "released");
+  assert.equal(failed.json.renderState, "failed");
+  assert.equal(failed.json.balance, 20);
+  assert.equal(failedAgain.json.releaseEventId, failed.json.releaseEventId);
+  assert.equal(shortsLedgerEventCount(failedEnv, failedPlan.jobId, "release"), 1);
+  assert.equal(shortsLedgerEventCount(failedEnv, failedPlan.jobId, "confirmation"), 0);
+
+  const cancelledEnv = await environment();
+  const cancelledToken = await fundedUser(
+    cancelledEnv,
+    "renderer-cancelled",
+    "renderer-cancelled@example.com",
+    "렌더 취소 사용자",
+  );
+  const cancelledPlan = await prepare(cancelledEnv, cancelledToken);
+  const cancelStarted = await call(
+    cancelledEnv,
+    `/lounge/shorts/${cancelledPlan.jobId}/render`,
+    "POST",
+    {},
+    cancelledToken,
+  );
+  assert.equal(cancelStarted.response.status, 202);
+  const cancelled = await call(
+    cancelledEnv,
+    `/lounge/shorts/${cancelledPlan.jobId}/release`,
+    "POST",
+    { reason: "user_cancelled" },
+    cancelledToken,
+  );
+  const cancelledAgain = await call(
+    cancelledEnv,
+    `/lounge/shorts/${cancelledPlan.jobId}/release`,
+    "POST",
+    { reason: "user_cancelled" },
+    cancelledToken,
+  );
+  assert.equal(cancelled.response.status, 200);
+  assert.equal(cancelled.json.reservationStatus, "released");
+  assert.equal(cancelled.json.balance, 20);
+  assert.equal(cancelledAgain.json.releaseEventId, cancelled.json.releaseEventId);
+  assert.equal(shortsLedgerEventCount(cancelledEnv, cancelledPlan.jobId, "release"), 1);
+  assert.equal(shortsLedgerEventCount(cancelledEnv, cancelledPlan.jobId, "confirmation"), 0);
+});
+
+test("MPT invalid MP4 is deleted and releases Build exactly once", async () => {
+  const env = await environment();
+  const token = await fundedUser(env, "renderer-invalid", "renderer-invalid@example.com", "손상 MP4 사용자");
+  const planned = await prepare(env, token);
+  const started = await call(env, `/lounge/shorts/${planned.jobId}/render`, "POST", {}, token);
+  assert.equal(started.response.status, 202);
+  rendererTasks.set(planned.jobId, {
+    state: "completed",
+    progress: 100,
+    bytes: validMp4Bytes().slice(0, 300),
+  });
+
+  const completed = await call(env, `/lounge/shorts/${planned.jobId}/render/sync`, "POST", {}, token);
+  assert.equal(completed.response.status, 415);
+  assert.equal(completed.json.error, "shorts_mp4_structure_invalid");
+  assert.equal(env.PRIVATE_REPORTS.objects.size, 0);
+  assert.equal(shortsLedgerEventCount(env, planned.jobId, "release"), 1);
+  assert.equal(shortsLedgerEventCount(env, planned.jobId, "confirmation"), 0);
+  assert.equal(env.DB.value<{ balance: number }>(
+    "SELECT build_balance AS balance FROM lounge_users WHERE google_sub = 'renderer-invalid'",
+  ).balance, 20);
+
+  const status = await call(env, `/lounge/shorts/${planned.jobId}`, "GET", undefined, token);
+  assert.equal(status.json.reservationStatus, "released");
+  assert.equal(status.json.balance, 20);
+  assert.equal(shortsLedgerEventCount(env, planned.jobId, "release"), 1);
 });
 
 test("invalid WebM releases the reservation once and preserves the balance on repeated recovery", async () => {

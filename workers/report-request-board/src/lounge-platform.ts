@@ -1,4 +1,5 @@
 import { createRemoteJWKSet, jwtVerify } from "jose";
+import { isValidMp4 } from "./mp4-validation.js";
 import type { PrivateReportBucket } from "./private-reports.js";
 import { isValidWebm } from "./webm-validation.js";
 
@@ -8,6 +9,8 @@ export interface LoungeEnv {
   GOOGLE_CLIENT_ID?: string;
   LOUNGE_CONFIG_KEY?: string;
   ADMIN_EMAILS?: string;
+  SHORTS_RENDERER_URL?: string;
+  SHORTS_RENDERER_TOKEN?: string;
 }
 
 export type LoungeIdentity = {
@@ -69,6 +72,7 @@ type ShortsJobRow = {
   build_cost: number;
   tool_status: string;
   tool_error_code: string;
+  provider_ref: string;
   expires_at: string;
   created_at: string;
   updated_at: string;
@@ -106,6 +110,8 @@ const MAX_REQUEST_TEXT = 120_000;
 const MAX_SHORTS_BYTES = 25 * 1024 * 1024;
 const SHORTS_RIGHTS_VERSION = "shorts-rights-v1";
 const SHORTS_RESERVATION_TTL_MS = 30 * 60 * 1000;
+const SHORTS_RENDERER_PREFIX = "mpt";
+const SHORTS_RENDERER_MAX_RESPONSE_BYTES = 64 * 1024;
 
 const ALLOWED_ORIGINS = new Set([
   "https://aihubos.github.io",
@@ -356,6 +362,68 @@ async function toolSettings(env: LoungeEnv) {
   return rows.results || [];
 }
 
+type ShortsRendererConfig = {
+  endpoint: URL;
+  token: string;
+};
+
+type ShortsRendererTask = {
+  taskId: string;
+  state: "processing" | "completed" | "failed";
+  progress: number;
+  videoUrl: string;
+  mediaType: "video/mp4" | "";
+};
+
+function shortsRendererConfig(env: LoungeEnv): ShortsRendererConfig | null {
+  const endpointValue = String(env.SHORTS_RENDERER_URL || "").trim();
+  const token = String(env.SHORTS_RENDERER_TOKEN || "").trim();
+  if (!endpointValue || !token) return null;
+  try {
+    const endpoint = new URL(endpointValue);
+    const localHttp = endpoint.protocol === "http:"
+      && (endpoint.hostname === "127.0.0.1" || endpoint.hostname === "localhost");
+    if (endpoint.protocol !== "https:" && !localHttp) return null;
+    endpoint.pathname = endpoint.pathname.replace(/\/+$/, "") || "/";
+    endpoint.search = "";
+    endpoint.hash = "";
+    return { endpoint, token };
+  } catch {
+    return null;
+  }
+}
+
+function requireShortsRenderer(env: LoungeEnv) {
+  const renderer = shortsRendererConfig(env);
+  if (!renderer) throw new LoungeError("shorts_renderer_not_configured", 503);
+  return renderer;
+}
+
+function rendererProviderRef(jobId: string, progress: number) {
+  return `${SHORTS_RENDERER_PREFIX}:${jobId}:${Math.max(0, Math.min(100, Math.trunc(progress)))}`;
+}
+
+function rendererProgress(row: ShortsJobRow) {
+  const match = String(row.provider_ref || "").match(
+    new RegExp(`^${SHORTS_RENDERER_PREFIX}:${row.job_id}:(\\d{1,3})$`, "i"),
+  );
+  return match ? Math.max(0, Math.min(100, Number(match[1]) || 0)) : null;
+}
+
+function publicRendererState(row: ShortsJobRow) {
+  const progress = rendererProgress(row);
+  if (row.reservation_status === "confirmed") {
+    return { renderStarted: true, renderState: "completed", renderProgress: 100 };
+  }
+  if (row.reservation_status === "released") {
+    return { renderStarted: progress !== null, renderState: "failed", renderProgress: progress || 0 };
+  }
+  if (progress !== null) {
+    return { renderStarted: true, renderState: "processing", renderProgress: progress };
+  }
+  return { renderStarted: false, renderState: "ready", renderProgress: 0 };
+}
+
 async function shortsResolverStatus(env: LoungeEnv) {
   const settings = await toolSettings(env);
   const shorts = settings.find((setting) => setting.tool_id === "shorts");
@@ -363,6 +431,7 @@ async function shortsResolverStatus(env: LoungeEnv) {
   return {
     apiKeyConfigured: Boolean(resolved?.configured),
     credentialSource: resolved?.source || "none",
+    rendererReady: Boolean(shortsRendererConfig(env)),
   };
 }
 
@@ -846,7 +915,8 @@ async function shortsToolContext(env: LoungeEnv) {
 
 async function shortsJob(env: LoungeEnv, identity: LoungeUserIdentity, jobId: string) {
   const row = await env.DB.prepare(
-    `SELECT s.*, j.build_cost, j.status AS tool_status, j.error_code AS tool_error_code
+    `SELECT s.*, j.build_cost, j.status AS tool_status, j.error_code AS tool_error_code,
+            j.provider_ref AS provider_ref
        FROM lounge_shorts_jobs s
        JOIN lounge_tool_jobs j ON j.id = s.job_id
       WHERE s.job_id = ? AND s.user_sub = ?`,
@@ -857,7 +927,8 @@ async function shortsJob(env: LoungeEnv, identity: LoungeUserIdentity, jobId: st
 
 async function shortsJobByRequestId(env: LoungeEnv, identity: LoungeUserIdentity, requestId: string) {
   return env.DB.prepare(
-    `SELECT s.*, j.build_cost, j.status AS tool_status, j.error_code AS tool_error_code
+    `SELECT s.*, j.build_cost, j.status AS tool_status, j.error_code AS tool_error_code,
+            j.provider_ref AS provider_ref
        FROM lounge_shorts_jobs s
        JOIN lounge_tool_jobs j ON j.id = s.job_id
       WHERE s.user_sub = ? AND s.request_id = ?`,
@@ -866,7 +937,8 @@ async function shortsJobByRequestId(env: LoungeEnv, identity: LoungeUserIdentity
 
 async function latestReservedShortsJob(env: LoungeEnv, identity: LoungeUserIdentity) {
   return env.DB.prepare(
-    `SELECT s.*, j.build_cost, j.status AS tool_status, j.error_code AS tool_error_code
+    `SELECT s.*, j.build_cost, j.status AS tool_status, j.error_code AS tool_error_code,
+            j.provider_ref AS provider_ref
        FROM lounge_shorts_jobs s
        JOIN lounge_tool_jobs j ON j.id = s.job_id
       WHERE s.user_sub = ? AND s.reservation_status = 'reserved'
@@ -1018,6 +1090,7 @@ async function shortsStatePayload(request: Request, env: LoungeEnv, identity: Lo
     publishRequestId: latestPublish?.publish_request_id || "",
     publishStatus: latestPublish?.status || "none",
     ...resolver,
+    ...publicRendererState(current),
     balance: await shortsBalance(env, identity.sub),
     ...ledgerRefs,
   };
@@ -1075,7 +1148,8 @@ async function releaseShortsReservation(env: LoungeEnv, identity: LoungeUserIden
 export async function sweepExpiredShortsReservations(env: LoungeEnv): Promise<number> {
   const now = new Date().toISOString();
   const rows = await env.DB.prepare(
-    `SELECT s.*, j.build_cost, j.status AS tool_status, j.error_code AS tool_error_code
+    `SELECT s.*, j.build_cost, j.status AS tool_status, j.error_code AS tool_error_code,
+            j.provider_ref AS provider_ref
        FROM lounge_shorts_jobs s
        JOIN lounge_tool_jobs j ON j.id = s.job_id
       WHERE s.reservation_status = 'reserved'
@@ -1188,8 +1262,156 @@ async function prepareShorts(request: Request, env: LoungeEnv, identity: LoungeI
   }
 }
 
-async function uploadShorts(request: Request, env: LoungeEnv, identity: LoungeIdentity, jobId: string) {
+function parseRendererTask(value: unknown, expectedJobId: string): ShortsRendererTask {
+  const envelope = value && typeof value === "object" && !Array.isArray(value)
+    ? value as Record<string, unknown>
+    : {};
+  const data = envelope.data && typeof envelope.data === "object" && !Array.isArray(envelope.data)
+    ? envelope.data as Record<string, unknown>
+    : {};
+  const taskId = clean(data.taskId, 80);
+  const state = clean(data.state, 20);
+  const progress = Math.max(0, Math.min(100, Math.trunc(Number(data.progress) || 0)));
+  const videoUrl = clean(data.videoUrl, 2_048);
+  const mediaType = clean(data.mediaType, 80);
+  if (taskId !== expectedJobId || !["processing", "completed", "failed"].includes(state)) {
+    throw new LoungeError("shorts_renderer_invalid_response", 502);
+  }
+  if (state === "completed" && (!videoUrl || mediaType !== "video/mp4")) {
+    throw new LoungeError("shorts_renderer_invalid_response", 502);
+  }
+  return {
+    taskId,
+    state: state as ShortsRendererTask["state"],
+    progress,
+    videoUrl,
+    mediaType: mediaType === "video/mp4" ? "video/mp4" : "",
+  };
+}
+
+function rendererApiUrl(renderer: ShortsRendererConfig, path: string) {
+  const base = new URL(renderer.endpoint);
+  if (!base.pathname.endsWith("/")) base.pathname += "/";
+  return new URL(path.replace(/^\/+/, ""), base);
+}
+
+async function requestShortsRenderer(
+  env: LoungeEnv,
+  path: string,
+  expectedJobId: string,
+  body?: Record<string, unknown>,
+) {
+  const renderer = requireShortsRenderer(env);
+  let response: Response;
+  try {
+    response = await fetch(rendererApiUrl(renderer, path), {
+      method: body ? "POST" : "GET",
+      redirect: "error",
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${renderer.token}`,
+        ...(body ? { "Content-Type": "application/json" } : {}),
+      },
+      body: body ? JSON.stringify(body) : undefined,
+    });
+  } catch {
+    throw new LoungeError("shorts_renderer_unreachable", 502);
+  }
+  const text = await response.text();
+  if (new TextEncoder().encode(text).byteLength > SHORTS_RENDERER_MAX_RESPONSE_BYTES) {
+    throw new LoungeError("shorts_renderer_invalid_response", 502);
+  }
+  if (!response.ok) throw new LoungeError("shorts_renderer_request_failed", 502);
+  try {
+    return parseRendererTask(JSON.parse(text), expectedJobId);
+  } catch (error) {
+    if (error instanceof LoungeError) throw error;
+    throw new LoungeError("shorts_renderer_invalid_response", 502);
+  }
+}
+
+async function fetchRenderedMp4(env: LoungeEnv, videoUrl: string, expectedJobId: string) {
+  const renderer = requireShortsRenderer(env);
+  const url = new URL(videoUrl, renderer.endpoint);
+  const expectedPath = `/api/v1/builders-lounge/tasks/${encodeURIComponent(expectedJobId)}/video`;
+  if (url.origin !== renderer.endpoint.origin || url.pathname !== expectedPath || url.search || url.hash) {
+    throw new LoungeError("shorts_renderer_video_url_invalid", 502);
+  }
+  let response: Response;
+  try {
+    response = await fetch(url, {
+      method: "GET",
+      redirect: "error",
+      headers: {
+        Accept: "video/mp4",
+        Authorization: `Bearer ${renderer.token}`,
+      },
+    });
+  } catch {
+    throw new LoungeError("shorts_renderer_video_fetch_failed", 502);
+  }
+  if (!response.ok) throw new LoungeError("shorts_renderer_video_fetch_failed", 502);
+  const contentType = clean(response.headers.get("Content-Type"), 100).toLocaleLowerCase("en-US");
+  if (!contentType.startsWith("video/mp4")) {
+    throw new LoungeError("shorts_renderer_media_type_invalid", 415);
+  }
+  const declaredSize = Math.trunc(Number(response.headers.get("Content-Length") || 0));
+  if (declaredSize > MAX_SHORTS_BYTES) throw new LoungeError("shorts_file_size_invalid", 413);
+  const bytes = new Uint8Array(await response.arrayBuffer());
+  if (bytes.byteLength <= 0 || bytes.byteLength > MAX_SHORTS_BYTES) {
+    throw new LoungeError("shorts_file_size_invalid", 413);
+  }
+  if (declaredSize > 0 && declaredSize !== bytes.byteLength) {
+    throw new LoungeError("shorts_file_size_invalid", 413);
+  }
+  return bytes;
+}
+
+type ShortsMediaContract = {
+  mediaType: "video/webm" | "video/mp4";
+  extension: "webm" | "mp4";
+  signatureValid?: (bytes: Uint8Array) => boolean;
+  signatureError?: string;
+  structureValid: (bytes: Uint8Array) => boolean;
+  structureError: string;
+  failureError: string;
+};
+
+const WEBM_MEDIA_CONTRACT: ShortsMediaContract = {
+  mediaType: "video/webm",
+  extension: "webm",
+  signatureValid: (bytes) => bytes.byteLength >= 4
+    && bytes[0] === 0x1a
+    && bytes[1] === 0x45
+    && bytes[2] === 0xdf
+    && bytes[3] === 0xa3,
+  signatureError: "shorts_webm_signature_invalid",
+  structureValid: isValidWebm,
+  structureError: "shorts_webm_structure_invalid",
+  failureError: "shorts_upload_failed",
+};
+
+const MP4_MEDIA_CONTRACT: ShortsMediaContract = {
+  mediaType: "video/mp4",
+  extension: "mp4",
+  structureValid: isValidMp4,
+  structureError: "shorts_mp4_structure_invalid",
+  failureError: "shorts_renderer_storage_failed",
+};
+
+async function persistShortsMedia(
+  request: Request,
+  env: LoungeEnv,
+  identity: LoungeIdentity,
+  jobId: string,
+  mediaBody: ArrayBuffer | ArrayBufferView | Blob | ReadableStream<Uint8Array>,
+  mediaSize: number,
+  contract: ShortsMediaContract,
+) {
   if (!env.PRIVATE_REPORTS) throw new LoungeError("shorts_storage_not_configured", 503);
+  if (!Number.isFinite(mediaSize) || mediaSize <= 0 || mediaSize > MAX_SHORTS_BYTES) {
+    throw new LoungeError("shorts_file_size_invalid", 413);
+  }
   let row = await recoverShortsJob(env, identity, await shortsJob(env, identity, jobId));
   if (row.reservation_status === "released") {
     throw new LoungeError(shortsStatus(row) === "expired" ? "shorts_reservation_expired" : "shorts_reservation_released", 409);
@@ -1197,13 +1419,6 @@ async function uploadShorts(request: Request, env: LoungeEnv, identity: LoungeId
   if (row.reservation_status === "confirmed" && row.media_key) {
     return loungeJson(request, await shortsStatePayload(request, env, identity, row));
   }
-  const contentType = clean(request.headers.get("Content-Type"), 100).toLocaleLowerCase("en-US");
-  if (!contentType.startsWith("video/webm")) throw new LoungeError("shorts_webm_required", 415);
-  const mediaSize = Math.trunc(Number(request.headers.get("X-File-Size") || request.headers.get("Content-Length") || 0));
-  if (!Number.isFinite(mediaSize) || mediaSize <= 0 || mediaSize > MAX_SHORTS_BYTES) {
-    throw new LoungeError("shorts_file_size_invalid", 413);
-  }
-  if (!request.body) throw new LoungeError("shorts_video_required", 400);
 
   const startedAt = new Date().toISOString();
   const claim = await env.DB.prepare(
@@ -1223,41 +1438,36 @@ async function uploadShorts(request: Request, env: LoungeEnv, identity: LoungeId
     throw new LoungeError("shorts_upload_in_progress", 409);
   }
 
-  const mediaKey = `lounge-shorts/${jobId}.webm`;
+  const mediaKey = `lounge-shorts/${jobId}.${contract.extension}`;
   try {
-    await env.PRIVATE_REPORTS.put(mediaKey, request.body, { httpMetadata: { contentType: "video/webm" } });
+    await env.PRIVATE_REPORTS.put(mediaKey, mediaBody, { httpMetadata: { contentType: contract.mediaType } });
     const stored = await env.PRIVATE_REPORTS.get(mediaKey);
     const storedSize = Number(stored?.size ?? mediaSize);
-    if (!stored || !Number.isFinite(storedSize) || storedSize <= 0 || storedSize > MAX_SHORTS_BYTES || storedSize !== mediaSize) {
+    if (!stored || !Number.isFinite(storedSize) || storedSize <= 0
+      || storedSize > MAX_SHORTS_BYTES || storedSize !== mediaSize) {
       throw new LoungeError("shorts_file_size_invalid", 413);
     }
     const storedBytes = new Uint8Array(await stored.arrayBuffer());
-    if (storedBytes.byteLength !== storedSize) {
-      throw new LoungeError("shorts_file_size_invalid", 413);
+    if (storedBytes.byteLength !== storedSize) throw new LoungeError("shorts_file_size_invalid", 413);
+    if (contract.signatureValid && !contract.signatureValid(storedBytes)) {
+      throw new LoungeError(contract.signatureError || contract.structureError, 415);
     }
-    if (storedBytes.byteLength < 4
-      || storedBytes[0] !== 0x1a
-      || storedBytes[1] !== 0x45
-      || storedBytes[2] !== 0xdf
-      || storedBytes[3] !== 0xa3) {
-      throw new LoungeError("shorts_webm_signature_invalid", 415);
-    }
-    if (!isValidWebm(storedBytes)) {
-      throw new LoungeError("shorts_webm_structure_invalid", 415);
+    if (!contract.structureValid(storedBytes)) {
+      throw new LoungeError(contract.structureError, 415);
     }
 
     const now = new Date().toISOString();
     const committed = await env.DB.batch([
       env.DB.prepare(
         `UPDATE lounge_shorts_jobs
-            SET reservation_status = 'confirmed', upload_state = 'stored', media_key = ?, media_type = 'video/webm', media_size = ?, updated_at = ?
+            SET reservation_status = 'confirmed', upload_state = 'stored', media_key = ?, media_type = ?, media_size = ?, updated_at = ?
           WHERE job_id = ? AND user_sub = ? AND reservation_status = 'reserved' AND upload_state = 'uploading'
             AND (expires_at = '' OR expires_at > ?)
             AND EXISTS (
               SELECT 1 FROM lounge_tool_jobs
                WHERE id = ? AND user_sub = ? AND status = 'processing'
             )`,
-      ).bind(mediaKey, mediaSize, now, jobId, identity.sub, now, jobId, identity.sub),
+      ).bind(mediaKey, contract.mediaType, mediaSize, now, jobId, identity.sub, now, jobId, identity.sub),
       env.DB.prepare(
         `UPDATE lounge_tool_jobs
             SET status = 'completed', error_code = '', updated_at = ?
@@ -1288,7 +1498,8 @@ async function uploadShorts(request: Request, env: LoungeEnv, identity: LoungeId
       ).bind(crypto.randomUUID(), now, jobId, identity.sub),
     ]);
     const current = await shortsJob(env, identity, jobId);
-    if (Number(committed[0]?.meta?.changes || 0) === 1 && current.reservation_status === "confirmed" && current.tool_status === "completed") {
+    if (Number(committed[0]?.meta?.changes || 0) === 1
+      && current.reservation_status === "confirmed" && current.tool_status === "completed") {
       return loungeJson(request, await shortsStatePayload(request, env, identity, current));
     }
     if (current.reservation_status === "confirmed" && current.tool_status === "completed") {
@@ -1306,13 +1517,124 @@ async function uploadShorts(request: Request, env: LoungeEnv, identity: LoungeId
           current,
           shortsReservationExpired(current)
             ? "reservation_expired"
-            : error instanceof LoungeError ? error.code : "shorts_upload_failed",
+            : error instanceof LoungeError ? error.code : contract.failureError,
         );
       }
     }
     if (error instanceof LoungeError) throw error;
-    throw new LoungeError("shorts_upload_failed", 502);
+    throw new LoungeError(contract.failureError, 502);
   }
+}
+
+async function uploadShorts(request: Request, env: LoungeEnv, identity: LoungeIdentity, jobId: string) {
+  const contentType = clean(request.headers.get("Content-Type"), 100).toLocaleLowerCase("en-US");
+  if (!contentType.startsWith("video/webm")) throw new LoungeError("shorts_webm_required", 415);
+  const mediaSize = Math.trunc(Number(request.headers.get("X-File-Size") || request.headers.get("Content-Length") || 0));
+  if (!request.body) throw new LoungeError("shorts_video_required", 400);
+  return persistShortsMedia(request, env, identity, jobId, request.body, mediaSize, WEBM_MEDIA_CONTRACT);
+}
+
+async function updateRendererProgress(
+  env: LoungeEnv,
+  identity: LoungeIdentity,
+  jobId: string,
+  progress: number,
+) {
+  const now = new Date().toISOString();
+  await env.DB.prepare(
+    `UPDATE lounge_tool_jobs SET provider_ref = ?, updated_at = ?
+      WHERE id = ? AND user_sub = ? AND status = 'processing'`,
+  ).bind(rendererProviderRef(jobId, progress), now, jobId, identity.sub).run();
+  return shortsJob(env, identity, jobId);
+}
+
+async function applyRendererTask(
+  request: Request,
+  env: LoungeEnv,
+  identity: LoungeIdentity,
+  row: ShortsJobRow,
+  task: ShortsRendererTask,
+): Promise<Response> {
+  const current = await updateRendererProgress(env, identity, row.job_id, task.progress);
+  if (task.state === "failed") {
+    const released = await releaseShortsReservation(env, identity, current, "renderer_failed");
+    return loungeJson(request, await shortsStatePayload(request, env, identity, released));
+  }
+  if (task.state === "processing") {
+    return loungeJson(request, await shortsStatePayload(request, env, identity, current), 202);
+  }
+
+  let bytes: Uint8Array;
+  try {
+    bytes = await fetchRenderedMp4(env, task.videoUrl, row.job_id);
+  } catch (error) {
+    const latest = await shortsJob(env, identity, row.job_id);
+    if (latest.reservation_status === "reserved") {
+      await releaseShortsReservation(
+        env,
+        identity,
+        latest,
+        error instanceof LoungeError ? error.code : "shorts_renderer_video_fetch_failed",
+      );
+    }
+    throw error;
+  }
+  return persistShortsMedia(
+    request,
+    env,
+    identity,
+    row.job_id,
+    bytes,
+    bytes.byteLength,
+    MP4_MEDIA_CONTRACT,
+  );
+}
+
+async function startShortsRender(request: Request, env: LoungeEnv, identity: LoungeIdentity, jobId: string) {
+  if (!env.PRIVATE_REPORTS) throw new LoungeError("shorts_storage_not_configured", 503);
+  requireShortsRenderer(env);
+  const row = await recoverShortsJob(env, identity, await shortsJob(env, identity, jobId));
+  if (row.reservation_status === "confirmed" && row.media_key) {
+    return loungeJson(request, await shortsStatePayload(request, env, identity, row));
+  }
+  if (row.reservation_status === "released") {
+    throw new LoungeError(shortsStatus(row) === "expired" ? "shorts_reservation_expired" : "shorts_reservation_released", 409);
+  }
+  const scenes = shortsScenes(row);
+  if (!row.detailed_prompt || scenes.length < 2) {
+    await releaseShortsReservation(env, identity, row, "renderer_plan_invalid");
+    throw new LoungeError("shorts_render_plan_incomplete", 409);
+  }
+  const task = await requestShortsRenderer(
+    env,
+    "/api/v1/builders-lounge/videos",
+    jobId,
+    {
+      jobId,
+      topic: row.topic,
+      detailedPrompt: row.detailed_prompt,
+      scenes: scenes.map((scene) => ({
+        narration: scene.narration,
+        visualPrompt: scene.visual,
+      })),
+    },
+  );
+  return applyRendererTask(request, env, identity, row, task);
+}
+
+async function syncShortsRender(request: Request, env: LoungeEnv, identity: LoungeIdentity, jobId: string) {
+  requireShortsRenderer(env);
+  const row = await recoverShortsJob(env, identity, await shortsJob(env, identity, jobId));
+  if (row.reservation_status === "confirmed" || row.reservation_status === "released") {
+    return loungeJson(request, await shortsStatePayload(request, env, identity, row));
+  }
+  if (rendererProgress(row) === null) throw new LoungeError("shorts_render_not_started", 409);
+  const task = await requestShortsRenderer(
+    env,
+    `/api/v1/builders-lounge/tasks/${encodeURIComponent(jobId)}`,
+    jobId,
+  );
+  return applyRendererTask(request, env, identity, row, task);
 }
 
 async function releaseShorts(request: Request, env: LoungeEnv, identity: LoungeIdentity, jobId: string) {
@@ -1359,17 +1681,18 @@ async function publishShorts(request: Request, env: LoungeEnv, identity: LoungeI
   const salt = crypto.randomUUID();
   const opaquePassword = crypto.randomUUID();
   const mediaUrl = shortsMediaUrl(request, jobId);
+  const mediaType = row.media_type === "video/mp4" ? "video/mp4" : "video/webm";
   try {
     await env.DB.batch([
       env.DB.prepare(
         `INSERT INTO board_posts
-          (id, category, title, content, author, password_salt, password_hash, is_admin,
+         (id, category, title, content, author, password_salt, password_hash, is_admin,
            view_count, comment_count, created_at, updated_at, user_sub, reward_builds,
            origin, media_url, media_type, shorts_job_id, rights_notice_version, rights_confirmed_at)
          VALUES (?, 'knowledge_share', ?, ?, ?, ?, ?, ?, 0, 0, ?, NULL, ?, 0,
-                 'shorts', ?, 'video/webm', ?, ?, ?)`,
+                 'shorts', ?, ?, ?, ?, ?)`,
       ).bind(postId, title, content, identity.name, salt, opaquePassword, identity.isAdmin ? 1 : 0, now,
-        identity.sub, mediaUrl, jobId, SHORTS_RIGHTS_VERSION, now),
+        identity.sub, mediaUrl, mediaType, jobId, SHORTS_RIGHTS_VERSION, now),
       env.DB.prepare(
         `INSERT INTO lounge_shorts_publish_requests
           (job_id, user_sub, publish_request_id, post_id, status, visibility, category, created_at, deleted_at)
@@ -1408,9 +1731,10 @@ async function shortsMedia(request: Request, env: LoungeEnv, identity: LoungeIde
   if (!Number(row.active_publish || 0) && identity?.sub !== row.user_sub) throw new LoungeError("not_owner", identity ? 403 : 401);
   const object = await env.PRIVATE_REPORTS.get(row.media_key);
   if (!object) throw new LoungeError("shorts_media_missing", 404);
+  const extension = row.media_type === "video/mp4" ? "mp4" : "webm";
   const headers = new Headers({
     "Content-Type": row.media_type || object.httpMetadata?.contentType || "video/webm",
-    "Content-Disposition": `inline; filename="shorts-${jobId}.webm"`,
+    "Content-Disposition": `inline; filename="shorts-${jobId}.${extension}"`,
     ...loungeCors(request),
   });
   headers.set("Cache-Control", Number(row.active_publish || 0) ? "public, no-store" : "private, no-store");
@@ -1535,6 +1859,7 @@ export async function handleLoungeRequest(request: Request, env: LoungeEnv): Pro
       return loungeJson(request, {
         googleClientId: env.GOOGLE_CLIENT_ID || "",
         loginReady: Boolean(env.GOOGLE_CLIENT_ID),
+        shortsRendererReady: Boolean(shortsRendererConfig(env)),
         tools: tools.map((tool) => toolPublic(tool, tools)),
       });
     }
@@ -1568,6 +1893,16 @@ export async function handleLoungeRequest(request: Request, env: LoungeEnv): Pro
     }
     if (url.pathname === "/lounge/shorts/prepare" && request.method === "POST") {
       return await prepareShorts(request, env, requireIdentity(identity));
+    }
+    const shortsRenderAction = url.pathname.match(
+      /^\/lounge\/shorts\/([0-9a-f-]{36})\/render(?:\/(sync))?$/i,
+    );
+    if (shortsRenderAction) {
+      const jobId = shortsRenderAction[1];
+      const action = shortsRenderAction[2] || "start";
+      if (request.method !== "POST") return loungeJson(request, { error: "method_not_allowed" }, 405);
+      if (action === "sync") return await syncShortsRender(request, env, requireIdentity(identity), jobId);
+      return await startShortsRender(request, env, requireIdentity(identity), jobId);
     }
     const shortsAction = url.pathname.match(/^\/lounge\/shorts\/([0-9a-f-]{36})\/(upload|release|publish|media)$/i);
     if (shortsAction) {
