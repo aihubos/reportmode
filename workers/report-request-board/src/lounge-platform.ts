@@ -1507,16 +1507,16 @@ export async function handleLoungeRequest(request: Request, env: LoungeEnv): Pro
       return loungeJson(request, await shortsStatePayload(request, env, user, row));
     }
     if (url.pathname === "/lounge/shorts/prepare" && request.method === "POST") {
-      return prepareShorts(request, env, requireIdentity(identity));
+      return await prepareShorts(request, env, requireIdentity(identity));
     }
     const shortsAction = url.pathname.match(/^\/lounge\/shorts\/([0-9a-f-]{36})\/(upload|release|publish|media)$/i);
     if (shortsAction) {
       const jobId = shortsAction[1];
       const action = shortsAction[2];
-      if (action === "media" && request.method === "GET") return shortsMedia(request, env, identity, jobId);
-      if (action === "upload" && request.method === "POST") return uploadShorts(request, env, requireIdentity(identity), jobId);
-      if (action === "release" && request.method === "POST") return releaseShorts(request, env, requireIdentity(identity), jobId);
-      if (action === "publish" && request.method === "POST") return publishShorts(request, env, requireIdentity(identity), jobId);
+      if (action === "media" && request.method === "GET") return await shortsMedia(request, env, identity, jobId);
+      if (action === "upload" && request.method === "POST") return await uploadShorts(request, env, requireIdentity(identity), jobId);
+      if (action === "release" && request.method === "POST") return await releaseShorts(request, env, requireIdentity(identity), jobId);
+      if (action === "publish" && request.method === "POST") return await publishShorts(request, env, requireIdentity(identity), jobId);
       return loungeJson(request, { error: "method_not_allowed" }, 405);
     }
     if (url.pathname === "/lounge/me" && request.method === "GET") {
@@ -1536,7 +1536,7 @@ export async function handleLoungeRequest(request: Request, env: LoungeEnv): Pro
 
     const toolGenerate = url.pathname.match(/^\/lounge\/tools\/([a-z-]+)\/generate$/)?.[1];
     if (toolGenerate && request.method === "POST") {
-      return generateWithTool(request, env, requireIdentity(identity), toolGenerate);
+      return await generateWithTool(request, env, requireIdentity(identity), toolGenerate);
     }
 
     if (url.pathname === "/lounge/admin/settings" && request.method === "GET") {
@@ -1559,7 +1559,7 @@ export async function handleLoungeRequest(request: Request, env: LoungeEnv): Pro
     }
 
     const adminTool = url.pathname.match(/^\/lounge\/admin\/tools\/([a-z-]+)$/)?.[1];
-    if (adminTool && request.method === "PUT") return updateTool(request, env, requireAdmin(identity), adminTool);
+    if (adminTool && request.method === "PUT") return await updateTool(request, env, requireAdmin(identity), adminTool);
 
     if (url.pathname === "/lounge/admin/users" && request.method === "GET") {
       requireAdmin(identity);
@@ -1573,12 +1573,12 @@ export async function handleLoungeRequest(request: Request, env: LoungeEnv): Pro
 
     const buildAdjustment = url.pathname.match(/^\/lounge\/admin\/users\/([^/]+)\/builds$/)?.[1];
     if (buildAdjustment && request.method === "POST") {
-      return adjustBuilds(request, env, requireAdmin(identity), decodeURIComponent(buildAdjustment).slice(0, 128));
+      return await adjustBuilds(request, env, requireAdmin(identity), decodeURIComponent(buildAdjustment).slice(0, 128));
     }
 
     const deleteUserMatch = url.pathname.match(/^\/lounge\/admin\/users\/([^/]+)$/)?.[1];
     if (deleteUserMatch && request.method === "DELETE") {
-      return deleteUser(request, env, requireAdmin(identity), decodeURIComponent(deleteUserMatch).slice(0, 128));
+      return await deleteUser(request, env, requireAdmin(identity), decodeURIComponent(deleteUserMatch).slice(0, 128));
     }
 
     if (url.pathname === "/lounge/admin/admins" && request.method === "POST") {
