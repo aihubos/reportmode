@@ -257,6 +257,35 @@ function validWebm() {
   return new Blob([validWebmBytes()], { type: "video/webm" });
 }
 
+function concatBytes(...parts: Uint8Array[]) {
+  const result = new Uint8Array(parts.reduce((total, part) => total + part.byteLength, 0));
+  let offset = 0;
+  for (const part of parts) {
+    result.set(part, offset);
+    offset += part.byteLength;
+  }
+  return result;
+}
+
+function ebmlElement(id: number[], payload = new Uint8Array()) {
+  assert.ok(payload.byteLength < 127, "test EBML payload must fit a one-byte size VINT");
+  return concatBytes(Uint8Array.from(id), Uint8Array.of(0x80 | payload.byteLength), payload);
+}
+
+function minimalVideoWebm(clusterChild: Uint8Array, codecId = "V_VP8") {
+  const header = ebmlElement([0x1a, 0x45, 0xdf, 0xa3],
+    ebmlElement([0x42, 0x82], new TextEncoder().encode("webm")));
+  const trackEntry = ebmlElement([0xae], concatBytes(
+    ebmlElement([0xd7], Uint8Array.of(1)),
+    ebmlElement([0x83], Uint8Array.of(1)),
+    ebmlElement([0x86], new TextEncoder().encode(codecId)),
+    ebmlElement([0xe0]),
+  ));
+  const tracks = ebmlElement([0x16, 0x54, 0xae, 0x6b], trackEntry);
+  const cluster = ebmlElement([0x1f, 0x43, 0xb6, 0x75], clusterChild);
+  return concatBytes(header, ebmlElement([0x18, 0x53, 0x80, 0x67], concatBytes(tracks, cluster)));
+}
+
 async function runScheduled(env: any) {
   const pending: Promise<unknown>[] = [];
   const handler = (worker as any).scheduled;
@@ -502,17 +531,32 @@ test("recent recovery returns only the authenticated user's latest live reservat
   assert.equal(shortsLedgerEventCount(env, planned.jobId, "release"), 1);
 });
 
-test("magic-only, truncated, and wrong-DocType WebM files release Build exactly once", async () => {
+test("invalid WebM containers and frame payloads release Build exactly once", async () => {
   const playable = validWebmBytes();
   const wrongDocType = playable.slice();
   const docTypeIndex = Buffer.from(wrongDocType).indexOf(Buffer.from("webm"));
   assert.ok(docTypeIndex >= 0);
   wrongDocType.set(new TextEncoder().encode("matr"), docTypeIndex);
+  const vp8KeyFrameHeader = Uint8Array.of(0x10, 0x02, 0x00, 0x9d, 0x01, 0x2a, 0x10, 0x00, 0x10, 0x00);
 
   const cases = [
     ["magic-only", new Uint8Array([0x1a, 0x45, 0xdf, 0xa3])],
     ["truncated", playable.slice(0, 300)],
     ["wrong-doctype", wrongDocType],
+    ["empty-block-group", minimalVideoWebm(ebmlElement([0xa0]))],
+    ["frame-less-simple-block", minimalVideoWebm(ebmlElement([0xa3], Uint8Array.of(0x81, 0x00, 0x00, 0x80)))],
+    ["frame-less-block-group", minimalVideoWebm(ebmlElement([0xa0],
+      ebmlElement([0xa1], Uint8Array.of(0x81, 0x00, 0x00, 0x00))))],
+    ["one-byte-frame", minimalVideoWebm(ebmlElement([0xa3], Uint8Array.of(0x81, 0x00, 0x00, 0x80, 0x00)))],
+    ["truncated-vp8-frame", minimalVideoWebm(ebmlElement([0xa3],
+      concatBytes(Uint8Array.of(0x81, 0x00, 0x00, 0x80), vp8KeyFrameHeader)))],
+    ["vp9-header-only", minimalVideoWebm(ebmlElement([0xa3], concatBytes(
+      Uint8Array.of(0x81, 0x00, 0x00, 0x80),
+      Uint8Array.of(0x82, 0x49, 0x83, 0x42, 0x00, 0x00, 0xf0, 0x00, 0xf6, 0x00),
+    )), "V_VP9")],
+    ["wrong-track-simple-block", minimalVideoWebm(ebmlElement([0xa3],
+      concatBytes(Uint8Array.of(0x82, 0x00, 0x00, 0x80), vp8KeyFrameHeader)))],
+    ["invalid-track-vint", minimalVideoWebm(ebmlElement([0xa3], Uint8Array.of(0x00, 0x00, 0x00, 0x80, 0x00)))],
   ] as const;
   for (const [label, bytes] of cases) {
     const env = await environment();
@@ -534,6 +578,35 @@ test("magic-only, truncated, and wrong-DocType WebM files release Build exactly 
     assert.equal(shortsLedgerEventCount(env, planned.jobId, "release"), 1, label);
     assert.equal(env.PRIVATE_REPORTS.objects.size, 0, label);
   }
+});
+
+test("BlockGroup accepts an internal Block only when it carries a complete video keyframe", async () => {
+  const env = await environment();
+  const token = await fundedUser(env, "valid-block-group", "valid-block-group@example.com", "BlockGroup");
+  const planned = await prepare(env, token);
+  const vp8KeyFrame = new Uint8Array(Buffer.from(
+    "1002009d012a100010000047088585889984880202000c0d6000feffab5080",
+    "hex",
+  ));
+  const block = ebmlElement([0xa1], concatBytes(
+    Uint8Array.of(0x81, 0x00, 0x00, 0x00),
+    vp8KeyFrame,
+  ));
+  const bytes = minimalVideoWebm(ebmlElement([0xa0], block));
+  const video = new Blob([bytes], { type: "video/webm" });
+  const uploaded = await call(env, `/lounge/shorts/${planned.jobId}/upload`, "POST", video, token, {
+    "Content-Type": "video/webm",
+    "X-File-Size": String(video.size),
+    "X-Request-Id": planned.requestId,
+  });
+
+  assert.equal(uploaded.response.status, 200);
+  assert.equal(uploaded.json.status, "completed");
+  assert.equal(uploaded.json.reservationStatus, "confirmed");
+  assert.equal(uploaded.json.balance, 15);
+  assert.equal(shortsLedgerEventCount(env, planned.jobId, "confirmation"), 1);
+  assert.equal(shortsLedgerEventCount(env, planned.jobId, "release"), 0);
+  assert.equal(env.PRIVATE_REPORTS.objects.size, 1);
 });
 
 test("expired reservations are released once and the same request never reserves Build again", async () => {

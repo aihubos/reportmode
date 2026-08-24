@@ -18,6 +18,17 @@
 이 항목은 로컬 소스의 코드 경로만 기록한 것이며, 원격 Worker cron 활성화나
 배포가 완료되었다는 의미가 아니다.
 
+## WebM 판별 범위
+
+Worker는 R2 저장 뒤 EBML 컨테이너, `webm` DocType, 비디오 트랙 번호·코덱,
+Cluster의 비디오 Block 헤더와 VP8·VP9 최소 단독 키프레임 구조를 확인한다.
+빈 BlockGroup, 헤더만 있는 Block, 선언되지 않은 트랙 번호는 실패 처리한다.
+VP8은 frame tag가 선언한 첫 partition 길이와 실제 payload 경계를 대조하고,
+VP9은 sync code·화면 크기와 uncompressed header 뒤 압축 데이터 존재를 대조한다.
+이 검사는 컨테이너·최소 프레임 경계 검사이며 VP8·VP9을 완전히 디코딩해 재생 품질을
+판정하지 않는다. 최종 사용자용 완료 판정에는 MoneyPrinterTurbo 렌더 서버와
+실제 재생 검증을 별도 운영 시험으로 확인해야 한다.
+
 Wrangler는 오류가 난 migration을 롤백하지만, 명령 응답 유실·과거 수동 변경·실제 migration 기록 불일치는 별도로 확인해야 한다. 또한 SQLite의 `ALTER TABLE ... ADD COLUMN`은 같은 열이 있으면 재실행에 실패한다. 따라서 적용 여부가 불명확하거나 일부 객체가 이미 있으면 migration을 다시 실행하지 않는다.
 
 ## 적용 전 확인
