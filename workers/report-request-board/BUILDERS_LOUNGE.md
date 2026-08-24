@@ -1,6 +1,6 @@
 # Builders Lounge 계정·빌드 플랫폼
 
-기존 Report Mode 게시판 Worker와 D1을 함께 사용합니다. 글과 댓글 등록은 각각 `+1빌드`로 같은 D1에서 처리합니다. 삭제하면 그 1빌드가 취소됩니다. 이미지 기본 5빌드, 영상 기본 10빌드는 관리자 화면에서 바꿀 수 있습니다.
+기존 Report Mode 게시판 Worker와 D1을 함께 사용합니다. 일반 글과 댓글 등록은 각각 `+1빌드`로 같은 D1에서 처리하며, 삭제하면 그 1빌드가 취소됩니다. 쇼츠는 브라우저 WebM 또는 MoneyPrinterTurbo MP4의 영구 저장과 구조 확인이 성공한 1건당 `5 Build`를 확정하고 실패·취소·30분 만료 시 예약을 해제합니다. 쇼츠 결과를 `게시판에 등록`하는 동작은 추가 비용도 등록 보상도 `0 Build`이며, 사용자가 버튼을 누르기 전에는 게시하지 않습니다. 이미지 기본 비용과 다른 도구 비용은 관리자 화면에서 바꿀 수 있습니다.
 
 ## 운영 설정
 
@@ -19,6 +19,10 @@ npx wrangler deploy --config workers/report-request-board/wrangler.jsonc
 ```
 
 비밀값은 저장소나 브라우저 코드에 넣지 않습니다.
+
+쇼츠용 `0016_lounge_shorts_media.sql`은 일반 배포 명령으로 바로 적용하지 않습니다. 적용 전 백업, 스키마 확인, 적용 후 검증, 부분 실패 판단은 [SHORTS_0016_MIGRATION_RUNBOOK.md](./SHORTS_0016_MIGRATION_RUNBOOK.md)를 따릅니다. 독립 검증실의 코드 판정과 주인님 승인 전에는 원격 migration·Worker·Pages 배포를 실행하지 않습니다.
+
+MoneyPrinterTurbo 로컬 연결, 비밀값 경계, MP4 판별 한계와 검증 순서는 [SHORTS_MPT_LOCAL_RUNBOOK.md](./SHORTS_MPT_LOCAL_RUNBOOK.md)를 따릅니다. 이 문서와 로컬 코드는 Cloudflare 변수·비밀값 설정 또는 원격 렌더 서비스 배포를 승인하지 않습니다.
 
 ## 관리자 설정 범위
 

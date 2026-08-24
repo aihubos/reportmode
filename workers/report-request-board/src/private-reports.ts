@@ -47,6 +47,8 @@ type PrivateAttemptRow = {
 
 export interface PrivateReportObject {
   httpMetadata?: { contentType?: string };
+  size?: number;
+  body?: ReadableStream<Uint8Array>;
   arrayBuffer(): Promise<ArrayBuffer>;
   text?(): Promise<string>;
 }
@@ -54,7 +56,7 @@ export interface PrivateReportObject {
 export interface PrivateReportBucket {
   put(
     key: string,
-    value: string | ArrayBuffer | ArrayBufferView | Blob,
+    value: string | ArrayBuffer | ArrayBufferView | Blob | ReadableStream,
     options?: { httpMetadata?: { contentType?: string } },
   ): Promise<unknown>;
   get(key: string): Promise<PrivateReportObject | null>;

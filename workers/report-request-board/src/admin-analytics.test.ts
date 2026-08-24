@@ -3,6 +3,15 @@ import assert from "node:assert/strict";
 
 import worker from "./index.js";
 
+function seoulDateOffset(offset: number) {
+  const date = new Date(Date.now() + (9 * 60 * 60 * 1000));
+  date.setUTCDate(date.getUTCDate() + offset);
+  return date.toISOString().slice(0, 10);
+}
+
+const ANALYTICS_TODAY = seoulDateOffset(0);
+const ANALYTICS_YESTERDAY = seoulDateOffset(-1);
+
 class AnalyticsPrepared {
   args: unknown[] = [];
   constructor(private db: AnalyticsD1, private sql: string) {}
@@ -25,10 +34,10 @@ class AnalyticsD1 {
 
   async all(sql: string, _args: unknown[]) {
     if (/FROM report_site_visits/i.test(sql)) {
-      return { results: [{ date: "2026-08-10", count: 3 }, { date: "2026-08-09", count: 5 }] };
+      return { results: [{ date: ANALYTICS_TODAY, count: 3 }, { date: ANALYTICS_YESTERDAY, count: 5 }] };
     }
     if (/FROM report_view_daily_visitors/i.test(sql)) {
-      return { results: [{ date: "2026-08-10", count: 4 }, { date: "2026-08-09", count: 7 }] };
+      return { results: [{ date: ANALYTICS_TODAY, count: 4 }, { date: ANALYTICS_YESTERDAY, count: 7 }] };
     }
     if (/FROM report_view_counts/i.test(sql)) {
       return { results: [{ report_id: "report-one", view_count: 21, updated_at: "2026-08-10T00:00:00.000Z" }] };
@@ -36,7 +45,7 @@ class AnalyticsD1 {
     if (/FROM report_entry_sessions/i.test(sql)) {
       if (/GROUP BY source_type/i.test(sql)) return { results: [{ source_type: "naver", count: 2 }] };
       if (/SELECT created_at/i.test(sql)) return { results: [] };
-      return { results: [{ date: "2026-08-10", count: 1 }] };
+      return { results: [{ date: ANALYTICS_TODAY, count: 1 }] };
     }
     throw new Error(`Unhandled all SQL: ${sql}`);
   }
@@ -59,8 +68,8 @@ test("administrator can read daily visitors and popular report analytics", async
   assert.equal(result.json.site.total, 12);
   assert.equal(result.json.site.today, 3);
   assert.equal(result.json.site.daily.length, 7);
-  assert.deepEqual(result.json.site.daily.find((row: { date: string }) => row.date === "2026-08-09"), { date: "2026-08-09", count: 5 });
-  assert.deepEqual(result.json.site.daily.find((row: { date: string }) => row.date === "2026-08-10"), { date: "2026-08-10", count: 3 });
+  assert.deepEqual(result.json.site.daily.find((row: { date: string }) => row.date === ANALYTICS_YESTERDAY), { date: ANALYTICS_YESTERDAY, count: 5 });
+  assert.deepEqual(result.json.site.daily.find((row: { date: string }) => row.date === ANALYTICS_TODAY), { date: ANALYTICS_TODAY, count: 3 });
   assert.equal(result.json.reports.totalViews, 42);
   assert.equal(result.json.reports.todayViews, 4);
   assert.equal(result.json.reports.top[0].reportId, "report-one");

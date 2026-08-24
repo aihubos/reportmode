@@ -1,10 +1,16 @@
 import { createRemoteJWKSet, jwtVerify } from "jose";
+import { isValidMp4 } from "./mp4-validation.js";
+import type { PrivateReportBucket } from "./private-reports.js";
+import { isValidWebm } from "./webm-validation.js";
 
 export interface LoungeEnv {
   DB: D1Database;
+  PRIVATE_REPORTS?: PrivateReportBucket;
   GOOGLE_CLIENT_ID?: string;
   LOUNGE_CONFIG_KEY?: string;
   ADMIN_EMAILS?: string;
+  SHORTS_RENDERER_URL?: string;
+  SHORTS_RENDERER_TOKEN?: string;
 }
 
 export type LoungeIdentity = {
@@ -16,6 +22,8 @@ export type LoungeIdentity = {
   isAdmin: boolean;
   balance: number;
 };
+
+type LoungeUserIdentity = Pick<LoungeIdentity, "sub">;
 
 type ToolSetting = {
   tool_id: string;
@@ -44,6 +52,44 @@ type LoungeUserRow = {
   last_login_at: string;
 };
 
+type ShortsJobRow = {
+  job_id: string;
+  request_id: string;
+  user_sub: string;
+  topic: string;
+  settings_json: string;
+  detailed_prompt: string;
+  scenes_json: string;
+  reservation_status: "reserved" | "confirmed" | "released";
+  media_key: string;
+  media_type: string;
+  media_size: number;
+  upload_state: "idle" | "uploading" | "stored";
+  published_post_id: string;
+  publish_request_id: string;
+  rights_notice_version: string;
+  rights_confirmed_at: string;
+  build_cost: number;
+  tool_status: string;
+  tool_error_code: string;
+  provider_ref: string;
+  expires_at: string;
+  created_at: string;
+  updated_at: string;
+};
+
+type ShortsPublishRow = {
+  job_id: string;
+  user_sub: string;
+  publish_request_id: string;
+  post_id: string;
+  status: "active" | "deleted";
+  visibility: "public";
+  category: "knowledge_share";
+  created_at: string;
+  deleted_at: string;
+};
+
 class LoungeError extends Error {
   code: string;
   status: number;
@@ -61,6 +107,11 @@ const TOOL_IDS = new Set(["meeting", "shorts", "webtoon", "masterpiece"]);
 const PROVIDERS = new Set(["openai", "openrouter", "moonshot", "gemini", "gemini-image", "anthropic", "webhook"]);
 const DEFAULT_ADMIN_EMAIL = "jeremylee0213@gmail.com";
 const MAX_REQUEST_TEXT = 120_000;
+const MAX_SHORTS_BYTES = 25 * 1024 * 1024;
+const SHORTS_RIGHTS_VERSION = "shorts-rights-v1";
+const SHORTS_RESERVATION_TTL_MS = 30 * 60 * 1000;
+const SHORTS_RENDERER_PREFIX = "mpt";
+const SHORTS_RENDERER_MAX_RESPONSE_BYTES = 64 * 1024;
 
 const ALLOWED_ORIGINS = new Set([
   "https://aihubos.github.io",
@@ -78,7 +129,7 @@ function loungeCors(request: Request) {
   return {
     "Access-Control-Allow-Origin": allowed,
     "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Request-Id",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Request-Id, X-File-Size",
     "Cache-Control": "no-store",
     "Vary": "Origin",
   };
@@ -230,7 +281,64 @@ function loungeErrorResponse(request: Request, error: unknown) {
   return loungeJson(request, { error: "server_error" }, 500);
 }
 
-function toolPublic(setting: ToolSetting) {
+type ResolvedCredential = {
+  configured: boolean;
+  source: "tool" | "server-shared" | "none";
+  credential: ToolSetting | null;
+  normalizedModel: string;
+};
+
+function canonicalOpenRouterEndpoint(value: unknown) {
+  const raw = clean(value, 2_000);
+  try {
+    const endpoint = new URL(raw);
+    return endpoint.protocol === "https:" && /(^|\.)openrouter\.ai$/i.test(endpoint.hostname)
+      ? endpoint.toString()
+      : "";
+  } catch {
+    return "";
+  }
+}
+
+function normalizedOpenRouterModel(value: unknown) {
+  const model = clean(value, 120);
+  if (!model) return "";
+  const normalized = model.includes("/")
+    ? model
+    : model.startsWith("kimi") || model.startsWith("moonshot") ? `moonshotai/${model}` : `openai/${model}`;
+  return /^[a-z0-9][a-z0-9._:-]*\/[a-z0-9][a-z0-9._:-]*$/i.test(normalized) ? normalized : "";
+}
+
+function openRouterCompatible(setting: ToolSetting | null | undefined) {
+  return Boolean(setting && setting.provider === "openrouter" && canonicalOpenRouterEndpoint(setting.endpoint_url));
+}
+
+function inheritedCredential(setting: ToolSetting, settings: ToolSetting[] = []): ResolvedCredential {
+  if (setting.api_key_ciphertext && setting.api_key_iv) {
+    return { configured: true, source: "tool", credential: setting, normalizedModel: setting.model };
+  }
+  const meeting = setting.tool_id === "shorts"
+    ? settings.find((candidate) => candidate.tool_id === "meeting")
+    : null;
+  const shortsEndpoint = canonicalOpenRouterEndpoint(setting.endpoint_url);
+  const meetingEndpoint = canonicalOpenRouterEndpoint(meeting?.endpoint_url);
+  const normalizedModel = normalizedOpenRouterModel(setting.model);
+  if (
+    openRouterCompatible(setting)
+    && openRouterCompatible(meeting)
+    && shortsEndpoint
+    && shortsEndpoint === meetingEndpoint
+    && normalizedModel
+    && meeting?.api_key_ciphertext
+    && meeting.api_key_iv
+  ) {
+    return { configured: true, source: "server-shared", credential: meeting, normalizedModel };
+  }
+  return { configured: false, source: "none", credential: null, normalizedModel: "" };
+}
+
+function toolPublic(setting: ToolSetting, settings: ToolSetting[] = []) {
+  const credential = inheritedCredential(setting, settings);
   return {
     id: setting.tool_id,
     name: setting.display_name,
@@ -238,7 +346,8 @@ function toolPublic(setting: ToolSetting) {
     cost: Math.max(0, Number(setting.build_cost || 0)),
     provider: setting.provider,
     model: setting.model,
-    apiKeyConfigured: Boolean(setting.api_key_ciphertext && setting.api_key_iv),
+    apiKeyConfigured: credential.configured,
+    credentialSource: credential.source,
     updatedAt: setting.updated_at,
   };
 }
@@ -251,6 +360,79 @@ async function toolSettings(env: LoungeEnv) {
          WHEN 'meeting' THEN 1 WHEN 'shorts' THEN 2 WHEN 'webtoon' THEN 3 ELSE 4 END`,
   ).all<ToolSetting>();
   return rows.results || [];
+}
+
+type ShortsRendererConfig = {
+  endpoint: URL;
+  token: string;
+};
+
+type ShortsRendererTask = {
+  taskId: string;
+  state: "processing" | "completed" | "failed";
+  progress: number;
+  videoUrl: string;
+  mediaType: "video/mp4" | "";
+};
+
+function shortsRendererConfig(env: LoungeEnv): ShortsRendererConfig | null {
+  const endpointValue = String(env.SHORTS_RENDERER_URL || "").trim();
+  const token = String(env.SHORTS_RENDERER_TOKEN || "").trim();
+  if (!endpointValue || !token) return null;
+  try {
+    const endpoint = new URL(endpointValue);
+    const localHttp = endpoint.protocol === "http:"
+      && (endpoint.hostname === "127.0.0.1" || endpoint.hostname === "localhost");
+    if (endpoint.protocol !== "https:" && !localHttp) return null;
+    endpoint.pathname = endpoint.pathname.replace(/\/+$/, "") || "/";
+    endpoint.search = "";
+    endpoint.hash = "";
+    return { endpoint, token };
+  } catch {
+    return null;
+  }
+}
+
+function requireShortsRenderer(env: LoungeEnv) {
+  const renderer = shortsRendererConfig(env);
+  if (!renderer) throw new LoungeError("shorts_renderer_not_configured", 503);
+  return renderer;
+}
+
+function rendererProviderRef(jobId: string, progress: number) {
+  return `${SHORTS_RENDERER_PREFIX}:${jobId}:${Math.max(0, Math.min(100, Math.trunc(progress)))}`;
+}
+
+function rendererProgress(row: ShortsJobRow) {
+  const match = String(row.provider_ref || "").match(
+    new RegExp(`^${SHORTS_RENDERER_PREFIX}:${row.job_id}:(\\d{1,3})$`, "i"),
+  );
+  return match ? Math.max(0, Math.min(100, Number(match[1]) || 0)) : null;
+}
+
+function publicRendererState(row: ShortsJobRow) {
+  const progress = rendererProgress(row);
+  if (row.reservation_status === "confirmed") {
+    return { renderStarted: true, renderState: "completed", renderProgress: 100 };
+  }
+  if (row.reservation_status === "released") {
+    return { renderStarted: progress !== null, renderState: "failed", renderProgress: progress || 0 };
+  }
+  if (progress !== null) {
+    return { renderStarted: true, renderState: "processing", renderProgress: progress };
+  }
+  return { renderStarted: false, renderState: "ready", renderProgress: 0 };
+}
+
+async function shortsResolverStatus(env: LoungeEnv) {
+  const settings = await toolSettings(env);
+  const shorts = settings.find((setting) => setting.tool_id === "shorts");
+  const resolved = shorts ? inheritedCredential(shorts, settings) : null;
+  return {
+    apiKeyConfigured: Boolean(resolved?.configured),
+    credentialSource: resolved?.source || "none",
+    rendererReady: Boolean(shortsRendererConfig(env)),
+  };
 }
 
 function bytesToBase64(bytes: Uint8Array) {
@@ -599,6 +781,7 @@ async function refundBuilds(env: LoungeEnv, identity: LoungeIdentity, setting: T
 
 async function generateWithTool(request: Request, env: LoungeEnv, identity: LoungeIdentity, toolId: string) {
   if (!TOOL_IDS.has(toolId)) throw new LoungeError("tool_not_found", 404);
+  if (toolId === "shorts") throw new LoungeError("shorts_use_studio", 409);
   const setting = await env.DB.prepare(
     `SELECT tool_id, display_name, enabled, build_cost, provider, endpoint_url, model,
             system_prompt, api_key_ciphertext, api_key_iv, updated_by, updated_at
@@ -639,6 +822,925 @@ async function generateWithTool(request: Request, env: LoungeEnv, identity: Loun
   }
 }
 
+function shortsRequestId(value: unknown) {
+  const requestId = clean(value, 80);
+  if (!/^[0-9a-f]{8}-[0-9a-f-]{27,40}$/i.test(requestId)) {
+    throw new LoungeError("invalid_request_id", 400);
+  }
+  return requestId;
+}
+
+function shortsSettings(value: unknown) {
+  const input = value && typeof value === "object" && !Array.isArray(value)
+    ? value as Record<string, unknown>
+    : {};
+  return {
+    subtitles: input.subtitles !== false,
+    subtitleStyle: ["basic", "emphasis", "minimal"].includes(clean(input.subtitleStyle, 20))
+      ? clean(input.subtitleStyle, 20)
+      : "basic",
+    voice: input.voice === true,
+    voiceId: clean(input.voiceId, 80) || "none",
+  };
+}
+
+function safeScenes(value: unknown, fallback: string) {
+  const items = Array.isArray(value) ? value : [];
+  const scenes = items.slice(0, 8).map((item, index) => {
+    const row = item && typeof item === "object" && !Array.isArray(item)
+      ? item as Record<string, unknown>
+      : {};
+    const narration = cleanMultiline(row.narration ?? row.script ?? row.text, 600);
+    const subtitle = clean(row.subtitle ?? narration, 140);
+    return {
+      id: index + 1,
+      title: clean(row.title, 80) || `장면 ${index + 1}`,
+      visual: cleanMultiline(row.visual ?? row.screen, 400) || "핵심 내용을 읽기 쉬운 세로형 카드로 보여 줍니다.",
+      narration: narration || subtitle,
+      subtitle: subtitle || `장면 ${index + 1}`,
+      durationSeconds: Math.min(8, Math.max(2, Math.trunc(Number(row.durationSeconds) || 4))),
+      audioUrl: "",
+    };
+  }).filter((scene) => scene.narration || scene.subtitle);
+  if (scenes.length) return scenes;
+  const chunks = fallback.split(/\n{2,}|(?<=[.!?。！？])\s+/).map((part) => cleanMultiline(part, 500)).filter(Boolean).slice(0, 6);
+  return (chunks.length ? chunks : [fallback]).map((part, index) => ({
+    id: index + 1,
+    title: `장면 ${index + 1}`,
+    visual: "핵심 내용을 읽기 쉬운 세로형 카드로 보여 줍니다.",
+    narration: part,
+    subtitle: clean(part, 100),
+    durationSeconds: 4,
+    audioUrl: "",
+  }));
+}
+
+function parseShortsPlan(text: string, topic: string) {
+  const candidate = text.trim().replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/, "");
+  try {
+    const parsed = JSON.parse(candidate) as Record<string, unknown>;
+    const detailedPrompt = cleanMultiline(parsed.detailedPrompt ?? parsed.prompt ?? text, 30_000) || topic;
+    return {
+      detailedPrompt,
+      scenes: safeScenes(parsed.scenes, detailedPrompt),
+      // 음성 파일은 신뢰된 서버 렌더러가 발급해야 합니다. 모델이 작성한 URL은 사용하지 않습니다.
+      narrationUrl: "",
+    };
+  } catch {
+    const detailedPrompt = cleanMultiline(text, 30_000) || topic;
+    return { detailedPrompt, scenes: safeScenes([], detailedPrompt), narrationUrl: "" };
+  }
+}
+
+async function shortsToolContext(env: LoungeEnv) {
+  const settings = await toolSettings(env);
+  const shorts = settings.find((setting) => setting.tool_id === "shorts");
+  if (!shorts) throw new LoungeError("tool_not_found", 404);
+  if (Number(shorts.enabled || 0) !== 1) throw new LoungeError("tool_disabled", 503);
+  if (Number(shorts.build_cost || 0) !== 5) throw new LoungeError("shorts_cost_misconfigured", 503);
+  const inherited = inheritedCredential(shorts, settings);
+  if (!inherited.configured || !inherited.credential) throw new LoungeError("tool_not_configured", 503);
+  const credential = inherited.credential;
+  const effective = inherited.source === "server-shared"
+    ? {
+      ...shorts,
+      provider: credential.provider,
+      endpoint_url: credential.endpoint_url,
+      model: inherited.normalizedModel,
+    }
+    : shorts;
+  const apiKey = await decryptApiKey(env, credential.api_key_ciphertext, credential.api_key_iv);
+  return { shorts, effective, apiKey, credentialSource: inherited.source };
+}
+
+async function shortsJob(env: LoungeEnv, identity: LoungeUserIdentity, jobId: string) {
+  const row = await env.DB.prepare(
+    `SELECT s.*, j.build_cost, j.status AS tool_status, j.error_code AS tool_error_code,
+            j.provider_ref AS provider_ref
+       FROM lounge_shorts_jobs s
+       JOIN lounge_tool_jobs j ON j.id = s.job_id
+      WHERE s.job_id = ? AND s.user_sub = ?`,
+  ).bind(jobId, identity.sub).first<ShortsJobRow>();
+  if (!row) throw new LoungeError("shorts_job_not_found", 404);
+  return row;
+}
+
+async function shortsJobByRequestId(env: LoungeEnv, identity: LoungeUserIdentity, requestId: string) {
+  return env.DB.prepare(
+    `SELECT s.*, j.build_cost, j.status AS tool_status, j.error_code AS tool_error_code,
+            j.provider_ref AS provider_ref
+       FROM lounge_shorts_jobs s
+       JOIN lounge_tool_jobs j ON j.id = s.job_id
+      WHERE s.user_sub = ? AND s.request_id = ?`,
+  ).bind(identity.sub, requestId).first<ShortsJobRow>();
+}
+
+async function latestReservedShortsJob(env: LoungeEnv, identity: LoungeUserIdentity) {
+  return env.DB.prepare(
+    `SELECT s.*, j.build_cost, j.status AS tool_status, j.error_code AS tool_error_code,
+            j.provider_ref AS provider_ref
+       FROM lounge_shorts_jobs s
+       JOIN lounge_tool_jobs j ON j.id = s.job_id
+      WHERE s.user_sub = ? AND s.reservation_status = 'reserved'
+      ORDER BY s.updated_at DESC, s.created_at DESC
+      LIMIT 1`,
+  ).bind(identity.sub).first<ShortsJobRow>();
+}
+
+async function shortsBalance(env: LoungeEnv, userSub: string) {
+  const row = await env.DB.prepare(
+    "SELECT build_balance FROM lounge_users WHERE google_sub = ?",
+  ).bind(userSub).first<{ build_balance: number }>();
+  return Number(row?.build_balance || 0);
+}
+
+async function shortsLedgerRefs(env: LoungeEnv, jobId: string) {
+  const rows = await env.DB.prepare(
+    "SELECT id, event_type FROM lounge_shorts_ledger_events WHERE job_id = ?",
+  ).bind(jobId).all<{ id: string; event_type: "reservation" | "confirmation" | "release" }>();
+  const refs = Object.fromEntries((rows.results || []).map((row) => [row.event_type, row.id]));
+  return {
+    reservationEventId: refs.reservation || "",
+    confirmationEventId: refs.confirmation || "",
+    releaseEventId: refs.release || "",
+  };
+}
+
+async function shortsPublishRequest(
+  env: LoungeEnv,
+  identity: LoungeIdentity,
+  jobId: string,
+  publishRequestId: string,
+) {
+  return env.DB.prepare(
+    `SELECT job_id, user_sub, publish_request_id, post_id, status, visibility, category, created_at, deleted_at
+       FROM lounge_shorts_publish_requests
+      WHERE job_id = ? AND user_sub = ? AND publish_request_id = ?`,
+  ).bind(jobId, identity.sub, publishRequestId).first<ShortsPublishRow>();
+}
+
+async function activeShortsPublish(env: LoungeEnv, identity: LoungeIdentity, jobId: string) {
+  return env.DB.prepare(
+    `SELECT job_id, user_sub, publish_request_id, post_id, status, visibility, category, created_at, deleted_at
+       FROM lounge_shorts_publish_requests
+      WHERE job_id = ? AND user_sub = ? AND status = 'active'
+      LIMIT 1`,
+  ).bind(jobId, identity.sub).first<ShortsPublishRow>();
+}
+
+async function latestShortsPublish(env: LoungeEnv, identity: LoungeIdentity, jobId: string) {
+  return env.DB.prepare(
+    `SELECT job_id, user_sub, publish_request_id, post_id, status, visibility, category, created_at, deleted_at
+       FROM lounge_shorts_publish_requests
+      WHERE job_id = ? AND user_sub = ?
+      ORDER BY created_at DESC, publish_request_id DESC
+      LIMIT 1`,
+  ).bind(jobId, identity.sub).first<ShortsPublishRow>();
+}
+
+function shortsPostUrl(postId: string) {
+  return `https://aihubos.github.io/builders-lounge/?post=${encodeURIComponent(postId)}#board`;
+}
+
+function shortsPublishPayload(row: ShortsPublishRow) {
+  return {
+    publishRequestId: row.publish_request_id,
+    jobId: row.job_id,
+    postId: row.post_id,
+    postUrl: shortsPostUrl(row.post_id),
+    visibility: row.visibility,
+    category: row.category,
+    rewardBuilds: 0,
+    publishStatus: row.status,
+  };
+}
+
+function shortsReservationExpiresAt(row: ShortsJobRow) {
+  const stored = Date.parse(row.expires_at || "");
+  if (Number.isFinite(stored)) return new Date(stored).toISOString();
+  const createdAt = Date.parse(row.created_at || "");
+  return Number.isFinite(createdAt)
+    ? new Date(createdAt + SHORTS_RESERVATION_TTL_MS).toISOString()
+    : "";
+}
+
+function shortsReservationExpired(row: ShortsJobRow, now = Date.now()) {
+  if (row.reservation_status !== "reserved") return false;
+  const expiresAt = Date.parse(shortsReservationExpiresAt(row));
+  return Number.isFinite(expiresAt) && expiresAt <= now;
+}
+
+function shortsScenes(row: ShortsJobRow) {
+  try {
+    const parsed = JSON.parse(row.scenes_json || "[]");
+    if (!Array.isArray(parsed) || !parsed.length) {
+      return row.detailed_prompt ? safeScenes([], row.detailed_prompt) : [];
+    }
+    return safeScenes(parsed, row.detailed_prompt || row.topic);
+  } catch {
+    return row.detailed_prompt ? safeScenes([], row.detailed_prompt) : [];
+  }
+}
+
+function storedShortsSettings(row: ShortsJobRow) {
+  try {
+    return shortsSettings(JSON.parse(row.settings_json || "{}"));
+  } catch {
+    return shortsSettings({});
+  }
+}
+
+function shortsStatus(row: ShortsJobRow) {
+  if (row.reservation_status === "confirmed") return "completed";
+  if (row.reservation_status === "released") {
+    return row.tool_error_code === "reservation_expired" ? "expired" : "released";
+  }
+  return row.tool_status || "processing";
+}
+
+async function recoverShortsJob(env: LoungeEnv, identity: LoungeIdentity, row: ShortsJobRow) {
+  return shortsReservationExpired(row)
+    ? releaseShortsReservation(env, identity, row, "reservation_expired")
+    : row;
+}
+
+async function shortsStatePayload(request: Request, env: LoungeEnv, identity: LoungeIdentity, row: ShortsJobRow) {
+  const current = await recoverShortsJob(env, identity, row);
+  const expiresAt = shortsReservationExpiresAt(current);
+  const ledgerRefs = await shortsLedgerRefs(env, current.job_id);
+  const resolver = await shortsResolverStatus(env);
+  const latestPublish = await latestShortsPublish(env, identity, current.job_id);
+  return {
+    requestId: current.request_id,
+    jobId: current.job_id,
+    topic: current.topic,
+    settings: storedShortsSettings(current),
+    status: shortsStatus(current),
+    reservationStatus: current.reservation_status,
+    reservationExpiresAt: expiresAt || null,
+    expiresAt: expiresAt || null,
+    reservationExpired: shortsStatus(current) === "expired",
+    detailedPrompt: current.detailed_prompt,
+    scenes: shortsScenes(current),
+    narrationUrl: "",
+    mediaUrl: current.media_key ? shortsMediaUrl(request, current.job_id) : "",
+    mediaType: current.media_type || "",
+    uploadState: current.upload_state,
+    publishedPostId: latestPublish?.status === "active" ? latestPublish.post_id : "",
+    publishRequestId: latestPublish?.publish_request_id || "",
+    publishStatus: latestPublish?.status || "none",
+    ...resolver,
+    ...publicRendererState(current),
+    balance: await shortsBalance(env, identity.sub),
+    ...ledgerRefs,
+  };
+}
+
+function shortsMediaUrl(request: Request, jobId: string) {
+  return `${new URL(request.url).origin}/lounge/shorts/${encodeURIComponent(jobId)}/media`;
+}
+
+async function releaseShortsReservation(env: LoungeEnv, identity: LoungeUserIdentity, row: ShortsJobRow, reason: string) {
+  if (row.reservation_status === "confirmed") return row;
+  const now = new Date().toISOString();
+  const releaseReason = clean(reason, 80) || "released";
+  await env.DB.batch([
+    env.DB.prepare(
+      `UPDATE lounge_shorts_jobs
+          SET reservation_status = 'released', upload_state = 'idle', updated_at = ?
+        WHERE job_id = ? AND user_sub = ? AND reservation_status = 'reserved'
+          AND (? <> 'reservation_expired' OR expires_at = '' OR expires_at <= ?)`,
+    ).bind(now, row.job_id, identity.sub, releaseReason, now),
+    env.DB.prepare(
+      `UPDATE lounge_users
+          SET build_balance = build_balance + ?, updated_at = ?
+        WHERE google_sub = ?
+          AND EXISTS (
+            SELECT 1 FROM lounge_shorts_jobs
+             WHERE job_id = ? AND user_sub = ? AND reservation_status = 'released'
+          )
+          AND NOT EXISTS (
+            SELECT 1 FROM lounge_shorts_ledger_events
+             WHERE job_id = ? AND event_type = 'release'
+          )`,
+    ).bind(row.build_cost, now, identity.sub, row.job_id, identity.sub, row.job_id),
+    env.DB.prepare(
+      `UPDATE lounge_tool_jobs
+          SET status = 'refunded', error_code = ?, updated_at = ?
+        WHERE id = ? AND user_sub = ? AND status <> 'completed'
+          AND EXISTS (
+            SELECT 1 FROM lounge_shorts_jobs
+             WHERE job_id = ? AND user_sub = ? AND reservation_status = 'released'
+          )`,
+    ).bind(releaseReason, now, row.job_id, identity.sub, row.job_id, identity.sub),
+    env.DB.prepare(
+      `INSERT OR IGNORE INTO lounge_shorts_ledger_events
+        (id, job_id, user_sub, event_type, delta, balance_after, reason, created_at)
+       SELECT ?, s.job_id, s.user_sub, 'release', 5, u.build_balance, ?, ?
+         FROM lounge_shorts_jobs s
+         JOIN lounge_users u ON u.google_sub = s.user_sub
+        WHERE s.job_id = ? AND s.user_sub = ? AND s.reservation_status = 'released'`,
+    ).bind(crypto.randomUUID(), releaseReason, now, row.job_id, identity.sub),
+  ]);
+  return shortsJob(env, identity, row.job_id);
+}
+
+export async function sweepExpiredShortsReservations(env: LoungeEnv): Promise<number> {
+  const now = new Date().toISOString();
+  const rows = await env.DB.prepare(
+    `SELECT s.*, j.build_cost, j.status AS tool_status, j.error_code AS tool_error_code,
+            j.provider_ref AS provider_ref
+       FROM lounge_shorts_jobs s
+       JOIN lounge_tool_jobs j ON j.id = s.job_id
+      WHERE s.reservation_status = 'reserved'
+        AND s.expires_at <> ''
+        AND s.expires_at <= ?
+      ORDER BY s.expires_at ASC, s.updated_at ASC, s.created_at ASC
+      LIMIT 100`,
+  ).bind(now).all<ShortsJobRow>();
+  const expired = rows.results || [];
+  for (const row of expired) {
+    await releaseShortsReservation(env, { sub: row.user_sub }, row, "reservation_expired");
+  }
+  return expired.length;
+}
+
+async function prepareShorts(request: Request, env: LoungeEnv, identity: LoungeIdentity) {
+  const payload = await readJson(request, 24_000);
+  const requestId = shortsRequestId(payload.requestId || request.headers.get("X-Request-Id"));
+  const existing = await shortsJobByRequestId(env, identity, requestId);
+  if (existing) {
+    return loungeJson(
+      request,
+      await shortsStatePayload(request, env, identity, existing),
+      existing.detailed_prompt ? 200 : 202,
+    );
+  }
+
+  const topic = cleanMultiline(payload.topic, 300);
+  if (topic.length < 5) throw new LoungeError("shorts_topic_too_short", 400);
+  const settings = shortsSettings(payload.settings);
+  const context = await shortsToolContext(env);
+  const createdAt = new Date();
+  const now = createdAt.toISOString();
+  const expiresAt = new Date(createdAt.getTime() + SHORTS_RESERVATION_TTL_MS).toISOString();
+  const jobId = crypto.randomUUID();
+  const [jobInsert, shortsInsert, balanceUpdate] = await env.DB.batch([
+    env.DB.prepare(
+      `INSERT OR IGNORE INTO lounge_tool_jobs
+        (id, request_id, user_sub, tool_id, build_cost, status, provider_ref, error_code, created_at, updated_at)
+       VALUES (?, ?, ?, 'shorts', ?, 'reserving', '', '', ?, ?)`,
+    ).bind(jobId, requestId, identity.sub, context.shorts.build_cost, now, now),
+    env.DB.prepare(
+      `INSERT OR IGNORE INTO lounge_shorts_jobs
+        (job_id, request_id, user_sub, topic, settings_json, reservation_status, expires_at, created_at, updated_at)
+       SELECT ?, ?, ?, ?, ?, 'reserved', ?, ?, ?
+        WHERE EXISTS (
+          SELECT 1 FROM lounge_tool_jobs
+           WHERE id = ? AND user_sub = ? AND request_id = ? AND tool_id = 'shorts'
+        )`,
+    ).bind(jobId, requestId, identity.sub, topic, JSON.stringify(settings), expiresAt, now, now,
+      jobId, identity.sub, requestId),
+    env.DB.prepare(
+      `UPDATE lounge_users SET build_balance = build_balance - ?, updated_at = ?
+        WHERE google_sub = ? AND build_balance >= ?
+          AND EXISTS (
+            SELECT 1 FROM lounge_shorts_jobs
+             WHERE job_id = ? AND user_sub = ? AND request_id = ? AND reservation_status = 'reserved'
+          )`,
+    ).bind(context.shorts.build_cost, now, identity.sub, context.shorts.build_cost,
+      jobId, identity.sub, requestId),
+  ]);
+  if (Number(jobInsert.meta?.changes || 0) !== 1 || Number(shortsInsert.meta?.changes || 0) !== 1) {
+    const reused = await shortsJobByRequestId(env, identity, requestId);
+    if (reused) {
+      return loungeJson(request, await shortsStatePayload(request, env, identity, reused), reused.detailed_prompt ? 200 : 202);
+    }
+    throw new LoungeError("request_already_used", 409);
+  }
+  if (Number(balanceUpdate.meta?.changes || 0) !== 1) {
+    await env.DB.batch([
+      env.DB.prepare("UPDATE lounge_shorts_jobs SET reservation_status = 'released', updated_at = ? WHERE job_id = ?").bind(now, jobId),
+      env.DB.prepare("UPDATE lounge_tool_jobs SET status = 'failed', error_code = 'insufficient_builds', updated_at = ? WHERE id = ?").bind(now, jobId),
+    ]);
+    throw new LoungeError("insufficient_builds", 402);
+  }
+  await env.DB.batch([
+    env.DB.prepare(
+      `INSERT OR IGNORE INTO lounge_shorts_ledger_events
+        (id, job_id, user_sub, event_type, delta, balance_after, reason, created_at)
+       SELECT ?, ?, ?, 'reservation', -5, build_balance, 'video_generation', ?
+         FROM lounge_users WHERE google_sub = ?`,
+    ).bind(crypto.randomUUID(), jobId, identity.sub, now, identity.sub),
+    env.DB.prepare(
+      "UPDATE lounge_tool_jobs SET status = 'processing', updated_at = ? WHERE id = ? AND user_sub = ? AND status = 'reserving'",
+    ).bind(now, jobId, identity.sub),
+  ]);
+
+  const prompt = `다음 한 문장을 한국어 세로형 쇼츠 제작안으로 확장하세요.\n\n주제: ${topic}\n자막 사용: ${settings.subtitles ? "예" : "아니오"}\n자막 스타일: ${settings.subtitleStyle}\n음성 사용: ${settings.voice ? "예" : "아니오"}\n\nJSON 객체 하나만 반환하세요. 필드: detailedPrompt 문자열, scenes 배열. 각 장면은 title, visual, narration, subtitle, durationSeconds(2~8)를 포함합니다. 입력에 없는 사실을 만들지 말고 총 3~6장면으로 구성하세요.`;
+  try {
+    const result = await callConfiguredProvider(context.effective, context.apiKey, { prompt }, identity);
+    const plan = parseShortsPlan(result.text, topic);
+    const updatedAt = new Date().toISOString();
+    await env.DB.batch([
+      env.DB.prepare(
+        "UPDATE lounge_shorts_jobs SET detailed_prompt = ?, scenes_json = ?, updated_at = ? WHERE job_id = ? AND reservation_status = 'reserved'",
+      ).bind(plan.detailedPrompt, JSON.stringify(plan.scenes), updatedAt, jobId),
+      env.DB.prepare(
+        "UPDATE lounge_tool_jobs SET provider_ref = ?, updated_at = ? WHERE id = ? AND status = 'processing'",
+      ).bind(clean(result.providerRef, 200), updatedAt, jobId),
+    ]);
+    const planned = await shortsJob(env, identity, jobId);
+    return loungeJson(request, {
+      ...await shortsStatePayload(request, env, identity, planned),
+      credentialSource: context.credentialSource,
+    }, 201);
+  } catch (error) {
+    const row = await shortsJob(env, identity, jobId);
+    await releaseShortsReservation(env, identity, row, error instanceof LoungeError ? error.code : "provider_request_failed");
+    throw error;
+  }
+}
+
+function parseRendererTask(value: unknown, expectedJobId: string): ShortsRendererTask {
+  const envelope = value && typeof value === "object" && !Array.isArray(value)
+    ? value as Record<string, unknown>
+    : {};
+  const data = envelope.data && typeof envelope.data === "object" && !Array.isArray(envelope.data)
+    ? envelope.data as Record<string, unknown>
+    : {};
+  const taskId = clean(data.taskId, 80);
+  const state = clean(data.state, 20);
+  const progress = Math.max(0, Math.min(100, Math.trunc(Number(data.progress) || 0)));
+  const videoUrl = clean(data.videoUrl, 2_048);
+  const mediaType = clean(data.mediaType, 80);
+  if (taskId !== expectedJobId || !["processing", "completed", "failed"].includes(state)) {
+    throw new LoungeError("shorts_renderer_invalid_response", 502);
+  }
+  if (state === "completed" && (!videoUrl || mediaType !== "video/mp4")) {
+    throw new LoungeError("shorts_renderer_invalid_response", 502);
+  }
+  return {
+    taskId,
+    state: state as ShortsRendererTask["state"],
+    progress,
+    videoUrl,
+    mediaType: mediaType === "video/mp4" ? "video/mp4" : "",
+  };
+}
+
+function rendererApiUrl(renderer: ShortsRendererConfig, path: string) {
+  const base = new URL(renderer.endpoint);
+  if (!base.pathname.endsWith("/")) base.pathname += "/";
+  return new URL(path.replace(/^\/+/, ""), base);
+}
+
+async function requestShortsRenderer(
+  env: LoungeEnv,
+  path: string,
+  expectedJobId: string,
+  body?: Record<string, unknown>,
+) {
+  const renderer = requireShortsRenderer(env);
+  let response: Response;
+  try {
+    response = await fetch(rendererApiUrl(renderer, path), {
+      method: body ? "POST" : "GET",
+      redirect: "error",
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${renderer.token}`,
+        ...(body ? { "Content-Type": "application/json" } : {}),
+      },
+      body: body ? JSON.stringify(body) : undefined,
+    });
+  } catch {
+    throw new LoungeError("shorts_renderer_unreachable", 502);
+  }
+  const text = await response.text();
+  if (new TextEncoder().encode(text).byteLength > SHORTS_RENDERER_MAX_RESPONSE_BYTES) {
+    throw new LoungeError("shorts_renderer_invalid_response", 502);
+  }
+  if (!response.ok) throw new LoungeError("shorts_renderer_request_failed", 502);
+  try {
+    return parseRendererTask(JSON.parse(text), expectedJobId);
+  } catch (error) {
+    if (error instanceof LoungeError) throw error;
+    throw new LoungeError("shorts_renderer_invalid_response", 502);
+  }
+}
+
+async function fetchRenderedMp4(env: LoungeEnv, videoUrl: string, expectedJobId: string) {
+  const renderer = requireShortsRenderer(env);
+  const url = new URL(videoUrl, renderer.endpoint);
+  const expectedPath = `/api/v1/builders-lounge/tasks/${encodeURIComponent(expectedJobId)}/video`;
+  if (url.origin !== renderer.endpoint.origin || url.pathname !== expectedPath || url.search || url.hash) {
+    throw new LoungeError("shorts_renderer_video_url_invalid", 502);
+  }
+  let response: Response;
+  try {
+    response = await fetch(url, {
+      method: "GET",
+      redirect: "error",
+      headers: {
+        Accept: "video/mp4",
+        Authorization: `Bearer ${renderer.token}`,
+      },
+    });
+  } catch {
+    throw new LoungeError("shorts_renderer_video_fetch_failed", 502);
+  }
+  if (!response.ok) throw new LoungeError("shorts_renderer_video_fetch_failed", 502);
+  const contentType = clean(response.headers.get("Content-Type"), 100).toLocaleLowerCase("en-US");
+  if (!contentType.startsWith("video/mp4")) {
+    throw new LoungeError("shorts_renderer_media_type_invalid", 415);
+  }
+  const declaredSize = Math.trunc(Number(response.headers.get("Content-Length") || 0));
+  if (declaredSize > MAX_SHORTS_BYTES) throw new LoungeError("shorts_file_size_invalid", 413);
+  const bytes = new Uint8Array(await response.arrayBuffer());
+  if (bytes.byteLength <= 0 || bytes.byteLength > MAX_SHORTS_BYTES) {
+    throw new LoungeError("shorts_file_size_invalid", 413);
+  }
+  if (declaredSize > 0 && declaredSize !== bytes.byteLength) {
+    throw new LoungeError("shorts_file_size_invalid", 413);
+  }
+  return bytes;
+}
+
+type ShortsMediaContract = {
+  mediaType: "video/webm" | "video/mp4";
+  extension: "webm" | "mp4";
+  signatureValid?: (bytes: Uint8Array) => boolean;
+  signatureError?: string;
+  structureValid: (bytes: Uint8Array) => boolean;
+  structureError: string;
+  failureError: string;
+};
+
+const WEBM_MEDIA_CONTRACT: ShortsMediaContract = {
+  mediaType: "video/webm",
+  extension: "webm",
+  signatureValid: (bytes) => bytes.byteLength >= 4
+    && bytes[0] === 0x1a
+    && bytes[1] === 0x45
+    && bytes[2] === 0xdf
+    && bytes[3] === 0xa3,
+  signatureError: "shorts_webm_signature_invalid",
+  structureValid: isValidWebm,
+  structureError: "shorts_webm_structure_invalid",
+  failureError: "shorts_upload_failed",
+};
+
+const MP4_MEDIA_CONTRACT: ShortsMediaContract = {
+  mediaType: "video/mp4",
+  extension: "mp4",
+  structureValid: isValidMp4,
+  structureError: "shorts_mp4_structure_invalid",
+  failureError: "shorts_renderer_storage_failed",
+};
+
+async function persistShortsMedia(
+  request: Request,
+  env: LoungeEnv,
+  identity: LoungeIdentity,
+  jobId: string,
+  mediaBody: ArrayBuffer | ArrayBufferView | Blob | ReadableStream<Uint8Array>,
+  mediaSize: number,
+  contract: ShortsMediaContract,
+) {
+  if (!env.PRIVATE_REPORTS) throw new LoungeError("shorts_storage_not_configured", 503);
+  if (!Number.isFinite(mediaSize) || mediaSize <= 0 || mediaSize > MAX_SHORTS_BYTES) {
+    throw new LoungeError("shorts_file_size_invalid", 413);
+  }
+  let row = await recoverShortsJob(env, identity, await shortsJob(env, identity, jobId));
+  if (row.reservation_status === "released") {
+    throw new LoungeError(shortsStatus(row) === "expired" ? "shorts_reservation_expired" : "shorts_reservation_released", 409);
+  }
+  if (row.reservation_status === "confirmed" && row.media_key) {
+    return loungeJson(request, await shortsStatePayload(request, env, identity, row));
+  }
+
+  const startedAt = new Date().toISOString();
+  const claim = await env.DB.prepare(
+    `UPDATE lounge_shorts_jobs
+        SET upload_state = 'uploading', updated_at = ?
+      WHERE job_id = ? AND user_sub = ? AND reservation_status = 'reserved' AND upload_state = 'idle'
+        AND (expires_at = '' OR expires_at > ?)`,
+  ).bind(startedAt, jobId, identity.sub, startedAt).run();
+  if (Number(claim.meta?.changes || 0) !== 1) {
+    row = await recoverShortsJob(env, identity, await shortsJob(env, identity, jobId));
+    if (row.reservation_status === "confirmed" && row.media_key) {
+      return loungeJson(request, await shortsStatePayload(request, env, identity, row));
+    }
+    if (row.reservation_status === "released") {
+      throw new LoungeError(shortsStatus(row) === "expired" ? "shorts_reservation_expired" : "shorts_reservation_released", 409);
+    }
+    throw new LoungeError("shorts_upload_in_progress", 409);
+  }
+
+  const mediaKey = `lounge-shorts/${jobId}.${contract.extension}`;
+  try {
+    await env.PRIVATE_REPORTS.put(mediaKey, mediaBody, { httpMetadata: { contentType: contract.mediaType } });
+    const stored = await env.PRIVATE_REPORTS.get(mediaKey);
+    const storedSize = Number(stored?.size ?? mediaSize);
+    if (!stored || !Number.isFinite(storedSize) || storedSize <= 0
+      || storedSize > MAX_SHORTS_BYTES || storedSize !== mediaSize) {
+      throw new LoungeError("shorts_file_size_invalid", 413);
+    }
+    const storedBytes = new Uint8Array(await stored.arrayBuffer());
+    if (storedBytes.byteLength !== storedSize) throw new LoungeError("shorts_file_size_invalid", 413);
+    if (contract.signatureValid && !contract.signatureValid(storedBytes)) {
+      throw new LoungeError(contract.signatureError || contract.structureError, 415);
+    }
+    if (!contract.structureValid(storedBytes)) {
+      throw new LoungeError(contract.structureError, 415);
+    }
+
+    const now = new Date().toISOString();
+    const committed = await env.DB.batch([
+      env.DB.prepare(
+        `UPDATE lounge_shorts_jobs
+            SET reservation_status = 'confirmed', upload_state = 'stored', media_key = ?, media_type = ?, media_size = ?, updated_at = ?
+          WHERE job_id = ? AND user_sub = ? AND reservation_status = 'reserved' AND upload_state = 'uploading'
+            AND (expires_at = '' OR expires_at > ?)
+            AND EXISTS (
+              SELECT 1 FROM lounge_tool_jobs
+               WHERE id = ? AND user_sub = ? AND status = 'processing'
+            )`,
+      ).bind(mediaKey, contract.mediaType, mediaSize, now, jobId, identity.sub, now, jobId, identity.sub),
+      env.DB.prepare(
+        `UPDATE lounge_tool_jobs
+            SET status = 'completed', error_code = '', updated_at = ?
+          WHERE id = ? AND user_sub = ? AND status = 'processing'
+            AND EXISTS (
+              SELECT 1 FROM lounge_shorts_jobs
+               WHERE job_id = ? AND user_sub = ? AND reservation_status = 'confirmed'
+            )`,
+      ).bind(now, jobId, identity.sub, jobId, identity.sub),
+      env.DB.prepare(
+        `INSERT OR IGNORE INTO lounge_build_ledger
+          (id, user_sub, delta, reason, ref_type, ref_id, balance_after, created_at)
+         SELECT ?, ?, -j.build_cost, 'AI 쇼츠 스튜디오 사용', 'tool_job', j.id, u.build_balance, ?
+           FROM lounge_tool_jobs j
+           JOIN lounge_shorts_jobs s ON s.job_id = j.id
+           JOIN lounge_users u ON u.google_sub = j.user_sub
+          WHERE j.id = ? AND j.user_sub = ? AND j.status = 'completed' AND s.reservation_status = 'confirmed'`,
+      ).bind(crypto.randomUUID(), identity.sub, now, jobId, identity.sub),
+      env.DB.prepare(
+        `INSERT OR IGNORE INTO lounge_shorts_ledger_events
+          (id, job_id, user_sub, event_type, delta, balance_after, reason, created_at)
+         SELECT ?, s.job_id, s.user_sub, 'confirmation', 0, u.build_balance, 'r2_video_stored', ?
+           FROM lounge_shorts_jobs s
+           JOIN lounge_tool_jobs j ON j.id = s.job_id
+           JOIN lounge_users u ON u.google_sub = s.user_sub
+          WHERE s.job_id = ? AND s.user_sub = ?
+            AND s.reservation_status = 'confirmed' AND j.status = 'completed'`,
+      ).bind(crypto.randomUUID(), now, jobId, identity.sub),
+    ]);
+    const current = await shortsJob(env, identity, jobId);
+    if (Number(committed[0]?.meta?.changes || 0) === 1
+      && current.reservation_status === "confirmed" && current.tool_status === "completed") {
+      return loungeJson(request, await shortsStatePayload(request, env, identity, current));
+    }
+    if (current.reservation_status === "confirmed" && current.tool_status === "completed") {
+      return loungeJson(request, await shortsStatePayload(request, env, identity, current));
+    }
+    throw new LoungeError(shortsReservationExpired(current) ? "shorts_reservation_expired" : "shorts_upload_commit_failed", 409);
+  } catch (error) {
+    const current = await shortsJob(env, identity, jobId).catch(() => null);
+    if (current?.reservation_status !== "confirmed" || current.media_key !== mediaKey) {
+      await env.PRIVATE_REPORTS.delete(mediaKey).catch(() => undefined);
+      if (current?.reservation_status === "reserved") {
+        await releaseShortsReservation(
+          env,
+          identity,
+          current,
+          shortsReservationExpired(current)
+            ? "reservation_expired"
+            : error instanceof LoungeError ? error.code : contract.failureError,
+        );
+      }
+    }
+    if (error instanceof LoungeError) throw error;
+    throw new LoungeError(contract.failureError, 502);
+  }
+}
+
+async function uploadShorts(request: Request, env: LoungeEnv, identity: LoungeIdentity, jobId: string) {
+  const contentType = clean(request.headers.get("Content-Type"), 100).toLocaleLowerCase("en-US");
+  if (!contentType.startsWith("video/webm")) throw new LoungeError("shorts_webm_required", 415);
+  const mediaSize = Math.trunc(Number(request.headers.get("X-File-Size") || request.headers.get("Content-Length") || 0));
+  if (!request.body) throw new LoungeError("shorts_video_required", 400);
+  return persistShortsMedia(request, env, identity, jobId, request.body, mediaSize, WEBM_MEDIA_CONTRACT);
+}
+
+async function updateRendererProgress(
+  env: LoungeEnv,
+  identity: LoungeIdentity,
+  jobId: string,
+  progress: number,
+) {
+  const now = new Date().toISOString();
+  await env.DB.prepare(
+    `UPDATE lounge_tool_jobs SET provider_ref = ?, updated_at = ?
+      WHERE id = ? AND user_sub = ? AND status = 'processing'`,
+  ).bind(rendererProviderRef(jobId, progress), now, jobId, identity.sub).run();
+  return shortsJob(env, identity, jobId);
+}
+
+async function applyRendererTask(
+  request: Request,
+  env: LoungeEnv,
+  identity: LoungeIdentity,
+  row: ShortsJobRow,
+  task: ShortsRendererTask,
+): Promise<Response> {
+  const current = await updateRendererProgress(env, identity, row.job_id, task.progress);
+  if (task.state === "failed") {
+    const released = await releaseShortsReservation(env, identity, current, "renderer_failed");
+    return loungeJson(request, await shortsStatePayload(request, env, identity, released));
+  }
+  if (task.state === "processing") {
+    return loungeJson(request, await shortsStatePayload(request, env, identity, current), 202);
+  }
+
+  let bytes: Uint8Array;
+  try {
+    bytes = await fetchRenderedMp4(env, task.videoUrl, row.job_id);
+  } catch (error) {
+    const latest = await shortsJob(env, identity, row.job_id);
+    if (latest.reservation_status === "reserved") {
+      await releaseShortsReservation(
+        env,
+        identity,
+        latest,
+        error instanceof LoungeError ? error.code : "shorts_renderer_video_fetch_failed",
+      );
+    }
+    throw error;
+  }
+  return persistShortsMedia(
+    request,
+    env,
+    identity,
+    row.job_id,
+    bytes,
+    bytes.byteLength,
+    MP4_MEDIA_CONTRACT,
+  );
+}
+
+async function startShortsRender(request: Request, env: LoungeEnv, identity: LoungeIdentity, jobId: string) {
+  if (!env.PRIVATE_REPORTS) throw new LoungeError("shorts_storage_not_configured", 503);
+  requireShortsRenderer(env);
+  const row = await recoverShortsJob(env, identity, await shortsJob(env, identity, jobId));
+  if (row.reservation_status === "confirmed" && row.media_key) {
+    return loungeJson(request, await shortsStatePayload(request, env, identity, row));
+  }
+  if (row.reservation_status === "released") {
+    throw new LoungeError(shortsStatus(row) === "expired" ? "shorts_reservation_expired" : "shorts_reservation_released", 409);
+  }
+  const scenes = shortsScenes(row);
+  if (!row.detailed_prompt || scenes.length < 2) {
+    await releaseShortsReservation(env, identity, row, "renderer_plan_invalid");
+    throw new LoungeError("shorts_render_plan_incomplete", 409);
+  }
+  const task = await requestShortsRenderer(
+    env,
+    "/api/v1/builders-lounge/videos",
+    jobId,
+    {
+      jobId,
+      topic: row.topic,
+      detailedPrompt: row.detailed_prompt,
+      scenes: scenes.map((scene) => ({
+        narration: scene.narration,
+        visualPrompt: scene.visual,
+      })),
+    },
+  );
+  return applyRendererTask(request, env, identity, row, task);
+}
+
+async function syncShortsRender(request: Request, env: LoungeEnv, identity: LoungeIdentity, jobId: string) {
+  requireShortsRenderer(env);
+  const row = await recoverShortsJob(env, identity, await shortsJob(env, identity, jobId));
+  if (row.reservation_status === "confirmed" || row.reservation_status === "released") {
+    return loungeJson(request, await shortsStatePayload(request, env, identity, row));
+  }
+  if (rendererProgress(row) === null) throw new LoungeError("shorts_render_not_started", 409);
+  const task = await requestShortsRenderer(
+    env,
+    `/api/v1/builders-lounge/tasks/${encodeURIComponent(jobId)}`,
+    jobId,
+  );
+  return applyRendererTask(request, env, identity, row, task);
+}
+
+async function releaseShorts(request: Request, env: LoungeEnv, identity: LoungeIdentity, jobId: string) {
+  const payload = await readJson(request, 4_000);
+  const row = await shortsJob(env, identity, jobId);
+  if (row.reservation_status === "confirmed") throw new LoungeError("shorts_already_completed", 409);
+  await releaseShortsReservation(
+    env,
+    identity,
+    row,
+    shortsReservationExpired(row) ? "reservation_expired" : clean(payload.reason, 80) || "user_cancelled",
+  );
+  if (row.media_key && env.PRIVATE_REPORTS) await env.PRIVATE_REPORTS.delete(row.media_key);
+  const released = await shortsJob(env, identity, jobId);
+  return loungeJson(request, await shortsStatePayload(request, env, identity, released));
+}
+
+async function publishShorts(request: Request, env: LoungeEnv, identity: LoungeIdentity, jobId: string) {
+  if (!env.PRIVATE_REPORTS) throw new LoungeError("shorts_storage_not_configured", 503);
+  const payload = await readJson(request, 12_000);
+  const publishRequestId = shortsRequestId(payload.publishRequestId || payload.requestId || request.headers.get("X-Request-Id"));
+  const row = await recoverShortsJob(env, identity, await shortsJob(env, identity, jobId));
+  const repeated = await shortsPublishRequest(env, identity, jobId, publishRequestId);
+  if (repeated) return loungeJson(request, shortsPublishPayload(repeated));
+  const active = await activeShortsPublish(env, identity, jobId);
+  if (active) return loungeJson(request, shortsPublishPayload(active));
+
+  const title = clean(payload.title, 100);
+  const content = cleanMultiline(payload.content, 5_000);
+  if (title.length < 4) throw new LoungeError("title_too_short", 400);
+  if (content.length < 10) throw new LoungeError("content_too_short", 400);
+  if (payload.rightsConfirmed !== true) throw new LoungeError("shorts_rights_confirmation_required", 400);
+  if (row.reservation_status !== "confirmed" || row.tool_status !== "completed" || !row.media_key) {
+    if (row.reservation_status === "released") {
+      throw new LoungeError(shortsStatus(row) === "expired" ? "shorts_reservation_expired" : "shorts_reservation_released", 409);
+    }
+    throw new LoungeError("shorts_not_completed", 409);
+  }
+  const media = await env.PRIVATE_REPORTS.get(row.media_key);
+  if (!media) throw new LoungeError("shorts_media_missing", 409);
+
+  const postId = crypto.randomUUID();
+  const now = new Date().toISOString();
+  const salt = crypto.randomUUID();
+  const opaquePassword = crypto.randomUUID();
+  const mediaUrl = shortsMediaUrl(request, jobId);
+  const mediaType = row.media_type === "video/mp4" ? "video/mp4" : "video/webm";
+  try {
+    await env.DB.batch([
+      env.DB.prepare(
+        `INSERT INTO board_posts
+         (id, category, title, content, author, password_salt, password_hash, is_admin,
+           view_count, comment_count, created_at, updated_at, user_sub, reward_builds,
+           origin, media_url, media_type, shorts_job_id, rights_notice_version, rights_confirmed_at)
+         VALUES (?, 'knowledge_share', ?, ?, ?, ?, ?, ?, 0, 0, ?, NULL, ?, 0,
+                 'shorts', ?, ?, ?, ?, ?)`,
+      ).bind(postId, title, content, identity.name, salt, opaquePassword, identity.isAdmin ? 1 : 0, now,
+        identity.sub, mediaUrl, mediaType, jobId, SHORTS_RIGHTS_VERSION, now),
+      env.DB.prepare(
+        `INSERT INTO lounge_shorts_publish_requests
+          (job_id, user_sub, publish_request_id, post_id, status, visibility, category, created_at, deleted_at)
+         VALUES (?, ?, ?, ?, 'active', 'public', 'knowledge_share', ?, '')`,
+      ).bind(jobId, identity.sub, publishRequestId, postId, now),
+      env.DB.prepare(
+        `UPDATE lounge_shorts_jobs
+            SET published_post_id = ?, publish_request_id = ?, rights_notice_version = ?, rights_confirmed_at = ?, updated_at = ?
+          WHERE job_id = ? AND user_sub = ? AND published_post_id = ''`,
+      ).bind(postId, publishRequestId, SHORTS_RIGHTS_VERSION, now, now, jobId, identity.sub),
+    ]);
+  } catch {
+    const existing = await shortsPublishRequest(env, identity, jobId, publishRequestId);
+    if (existing) return loungeJson(request, shortsPublishPayload(existing));
+    const currentActive = await activeShortsPublish(env, identity, jobId);
+    if (currentActive) return loungeJson(request, shortsPublishPayload(currentActive));
+    throw new LoungeError("shorts_publish_failed", 500);
+  }
+  const created = await shortsPublishRequest(env, identity, jobId, publishRequestId);
+  if (!created) throw new LoungeError("shorts_publish_failed", 500);
+  return loungeJson(request, shortsPublishPayload(created), 201);
+}
+
+async function shortsMedia(request: Request, env: LoungeEnv, identity: LoungeIdentity | null, jobId: string) {
+  if (!env.PRIVATE_REPORTS) throw new LoungeError("shorts_storage_not_configured", 503);
+  const row = await env.DB.prepare(
+    `SELECT s.user_sub, s.media_key, s.media_type,
+            EXISTS (
+              SELECT 1 FROM lounge_shorts_publish_requests p
+               WHERE p.job_id = s.job_id AND p.status = 'active'
+            ) AS active_publish
+       FROM lounge_shorts_jobs s
+      WHERE s.job_id = ?`,
+  ).bind(jobId).first<{ user_sub: string; media_key: string; media_type: string; active_publish: number }>();
+  if (!row?.media_key) throw new LoungeError("shorts_media_missing", 404);
+  if (!Number(row.active_publish || 0) && identity?.sub !== row.user_sub) throw new LoungeError("not_owner", identity ? 403 : 401);
+  const object = await env.PRIVATE_REPORTS.get(row.media_key);
+  if (!object) throw new LoungeError("shorts_media_missing", 404);
+  const extension = row.media_type === "video/mp4" ? "mp4" : "webm";
+  const headers = new Headers({
+    "Content-Type": row.media_type || object.httpMetadata?.contentType || "video/webm",
+    "Content-Disposition": `inline; filename="shorts-${jobId}.${extension}"`,
+    ...loungeCors(request),
+  });
+  headers.set("Cache-Control", Number(row.active_publish || 0) ? "public, no-store" : "private, no-store");
+  return new Response(object.body || await object.arrayBuffer(), { status: 200, headers });
+}
+
 async function writeAudit(env: LoungeEnv, admin: LoungeIdentity, action: string, targetType: string, targetId: string, detail = "") {
   await env.DB.prepare(
     `INSERT INTO lounge_admin_audit
@@ -660,6 +1762,7 @@ async function updateTool(request: Request, env: LoungeEnv, admin: LoungeIdentit
   if (!PROVIDERS.has(provider)) throw new LoungeError("invalid_provider", 400);
   const buildCost = Math.trunc(Number(payload.buildCost ?? current.build_cost));
   if (!Number.isFinite(buildCost) || buildCost < 0 || buildCost > 10_000) throw new LoungeError("invalid_build_cost", 400);
+  if (toolId === "shorts" && buildCost !== 5) throw new LoungeError("shorts_cost_misconfigured", 400);
   const displayName = clean(payload.displayName ?? current.display_name, 80);
   const endpointUrl = endpointValue(payload.endpointUrl ?? current.endpoint_url);
   const model = clean(payload.model ?? current.model, 120);
@@ -695,7 +1798,8 @@ async function updateTool(request: Request, env: LoungeEnv, admin: LoungeIdentit
             system_prompt, api_key_ciphertext, api_key_iv, updated_by, updated_at
        FROM lounge_tool_settings WHERE tool_id = ?`,
   ).bind(toolId).first<ToolSetting>();
-  return loungeJson(request, { tool: updated ? { ...toolPublic(updated), endpointUrl: updated.endpoint_url, systemPrompt: updated.system_prompt, updatedBy: updated.updated_by } : null });
+  const settings = updated ? await toolSettings(env) : [];
+  return loungeJson(request, { tool: updated ? { ...toolPublic(updated, settings), endpointUrl: updated.endpoint_url, systemPrompt: updated.system_prompt, updatedBy: updated.updated_by } : null });
 }
 
 async function adjustBuilds(request: Request, env: LoungeEnv, admin: LoungeIdentity, userSub: string) {
@@ -755,15 +1859,65 @@ export async function handleLoungeRequest(request: Request, env: LoungeEnv): Pro
       return loungeJson(request, {
         googleClientId: env.GOOGLE_CLIENT_ID || "",
         loginReady: Boolean(env.GOOGLE_CLIENT_ID),
-        tools: tools.map(toolPublic),
+        shortsRendererReady: Boolean(shortsRendererConfig(env)),
+        tools: tools.map((tool) => toolPublic(tool, tools)),
       });
     }
 
     const identity = await getLoungeIdentity(request, env);
+    if (url.pathname === "/lounge/shorts/recent" && request.method === "GET") {
+      const user = requireIdentity(identity);
+      const row = await latestReservedShortsJob(env, user);
+      if (!row) return loungeJson(request, { found: false });
+      if (shortsReservationExpired(row)) {
+        await releaseShortsReservation(env, user, row, "reservation_expired");
+        return loungeJson(request, { found: false });
+      }
+      return loungeJson(request, {
+        found: true,
+        ...await shortsStatePayload(request, env, user, row),
+      });
+    }
+    if (url.pathname === "/lounge/shorts" && request.method === "GET") {
+      const user = requireIdentity(identity);
+      const requestId = shortsRequestId(url.searchParams.get("requestId"));
+      const row = await shortsJobByRequestId(env, user, requestId);
+      if (!row) throw new LoungeError("shorts_job_not_found", 404);
+      return loungeJson(request, await shortsStatePayload(request, env, user, row));
+    }
+    const shortsStatusJob = url.pathname.match(/^\/lounge\/shorts\/([0-9a-f-]{36})(?:\/status)?$/i)?.[1];
+    if (shortsStatusJob && request.method === "GET") {
+      const user = requireIdentity(identity);
+      const row = await shortsJob(env, user, shortsStatusJob);
+      return loungeJson(request, await shortsStatePayload(request, env, user, row));
+    }
+    if (url.pathname === "/lounge/shorts/prepare" && request.method === "POST") {
+      return await prepareShorts(request, env, requireIdentity(identity));
+    }
+    const shortsRenderAction = url.pathname.match(
+      /^\/lounge\/shorts\/([0-9a-f-]{36})\/render(?:\/(sync))?$/i,
+    );
+    if (shortsRenderAction) {
+      const jobId = shortsRenderAction[1];
+      const action = shortsRenderAction[2] || "start";
+      if (request.method !== "POST") return loungeJson(request, { error: "method_not_allowed" }, 405);
+      if (action === "sync") return await syncShortsRender(request, env, requireIdentity(identity), jobId);
+      return await startShortsRender(request, env, requireIdentity(identity), jobId);
+    }
+    const shortsAction = url.pathname.match(/^\/lounge\/shorts\/([0-9a-f-]{36})\/(upload|release|publish|media)$/i);
+    if (shortsAction) {
+      const jobId = shortsAction[1];
+      const action = shortsAction[2];
+      if (action === "media" && request.method === "GET") return await shortsMedia(request, env, identity, jobId);
+      if (action === "upload" && request.method === "POST") return await uploadShorts(request, env, requireIdentity(identity), jobId);
+      if (action === "release" && request.method === "POST") return await releaseShorts(request, env, requireIdentity(identity), jobId);
+      if (action === "publish" && request.method === "POST") return await publishShorts(request, env, requireIdentity(identity), jobId);
+      return loungeJson(request, { error: "method_not_allowed" }, 405);
+    }
     if (url.pathname === "/lounge/me" && request.method === "GET") {
       const user = requireIdentity(identity);
       const tools = await toolSettings(env);
-      return loungeJson(request, { user: publicIdentity(user), tools: tools.map(toolPublic) });
+      return loungeJson(request, { user: publicIdentity(user), tools: tools.map((tool) => toolPublic(tool, tools)) });
     }
 
     if (url.pathname === "/lounge/me/ledger" && request.method === "GET") {
@@ -777,7 +1931,7 @@ export async function handleLoungeRequest(request: Request, env: LoungeEnv): Pro
 
     const toolGenerate = url.pathname.match(/^\/lounge\/tools\/([a-z-]+)\/generate$/)?.[1];
     if (toolGenerate && request.method === "POST") {
-      return generateWithTool(request, env, requireIdentity(identity), toolGenerate);
+      return await generateWithTool(request, env, requireIdentity(identity), toolGenerate);
     }
 
     if (url.pathname === "/lounge/admin/settings" && request.method === "GET") {
@@ -790,7 +1944,7 @@ export async function handleLoungeRequest(request: Request, env: LoungeEnv): Pro
         loginReady: Boolean(env.GOOGLE_CLIENT_ID),
         encryptionReady: Boolean(env.LOUNGE_CONFIG_KEY),
         tools: tools.map((tool) => ({
-          ...toolPublic(tool),
+          ...toolPublic(tool, tools),
           endpointUrl: tool.endpoint_url,
           systemPrompt: tool.system_prompt,
           updatedBy: tool.updated_by,
@@ -800,7 +1954,7 @@ export async function handleLoungeRequest(request: Request, env: LoungeEnv): Pro
     }
 
     const adminTool = url.pathname.match(/^\/lounge\/admin\/tools\/([a-z-]+)$/)?.[1];
-    if (adminTool && request.method === "PUT") return updateTool(request, env, requireAdmin(identity), adminTool);
+    if (adminTool && request.method === "PUT") return await updateTool(request, env, requireAdmin(identity), adminTool);
 
     if (url.pathname === "/lounge/admin/users" && request.method === "GET") {
       requireAdmin(identity);
@@ -814,12 +1968,12 @@ export async function handleLoungeRequest(request: Request, env: LoungeEnv): Pro
 
     const buildAdjustment = url.pathname.match(/^\/lounge\/admin\/users\/([^/]+)\/builds$/)?.[1];
     if (buildAdjustment && request.method === "POST") {
-      return adjustBuilds(request, env, requireAdmin(identity), decodeURIComponent(buildAdjustment).slice(0, 128));
+      return await adjustBuilds(request, env, requireAdmin(identity), decodeURIComponent(buildAdjustment).slice(0, 128));
     }
 
     const deleteUserMatch = url.pathname.match(/^\/lounge\/admin\/users\/([^/]+)$/)?.[1];
     if (deleteUserMatch && request.method === "DELETE") {
-      return deleteUser(request, env, requireAdmin(identity), decodeURIComponent(deleteUserMatch).slice(0, 128));
+      return await deleteUser(request, env, requireAdmin(identity), decodeURIComponent(deleteUserMatch).slice(0, 128));
     }
 
     if (url.pathname === "/lounge/admin/admins" && request.method === "POST") {

@@ -12,6 +12,7 @@ import { normalizeAdminAction } from "./admin-jobs.js";
 import {
   handleLoungeRequest,
   loungeBoardAuth,
+  sweepExpiredShortsReservations,
   type LoungeEnv,
   type LoungeIdentity,
 } from "./lounge-platform.js";
@@ -111,6 +112,10 @@ type BoardPostRow = {
   password_hash?: string;
   user_sub?: string | null;
   reward_builds?: number;
+  origin?: string;
+  media_url?: string;
+  media_type?: string;
+  shorts_job_id?: string | null;
 };
 
 type BoardCommentRow = {
@@ -213,6 +218,10 @@ function boardPublicPost(row: BoardPostRow) {
     comment_count: Math.max(0, Number(row.comment_count || 0)),
     created_at: row.created_at,
     updated_at: row.updated_at || null,
+    origin: row.origin || "manual",
+    mediaUrl: row.media_url || "",
+    mediaType: row.media_type || "",
+    shortsJobId: row.shorts_job_id || "",
   };
 }
 
@@ -230,7 +239,7 @@ function boardPublicComment(row: BoardCommentRow) {
 
 async function boardPostForPassword(env: Env, id: string) {
   return env.DB.prepare(
-    "SELECT id, password_salt, password_hash, user_sub, reward_builds FROM board_posts WHERE id = ?"
+    "SELECT id, password_salt, password_hash, user_sub, reward_builds, origin, shorts_job_id FROM board_posts WHERE id = ?"
   ).bind(id).first<BoardPostRow>();
 }
 
@@ -623,10 +632,10 @@ async function verifyRequestPassword(env: Env, id: string, password: string) {
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
-    if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: cors(request) });
     const url = new URL(request.url);
     const loungeResponse = await handleLoungeRequest(request, env);
     if (loungeResponse) return loungeResponse;
+    if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: cors(request) });
     const privateResponse = await handlePrivateReportRequest(request, env);
     if (privateResponse) return privateResponse;
     if (url.pathname.startsWith("/internal/report-jobs/")) {
@@ -766,7 +775,7 @@ export default {
         .bind(category, category, query, pattern)
         .first<{ count: number }>();
       const rows = await env.DB.prepare(
-        "SELECT id, category, title, content, author, is_admin, view_count, comment_count, created_at, updated_at, user_sub " +
+        "SELECT id, category, title, content, author, is_admin, view_count, comment_count, created_at, updated_at, user_sub, origin, media_url, media_type, shorts_job_id " +
         "FROM board_posts " + where +
         " ORDER BY " + orderBy + " LIMIT ? OFFSET ?"
       ).bind(category, category, query, pattern, pageSize, (page - 1) * pageSize).all<BoardPostRow>();
@@ -846,7 +855,7 @@ export default {
       const auth = await loungeBoardAuth(request, env);
       if (auth.response) return auth.response;
       const row = await env.DB.prepare(
-        "SELECT id, category, title, content, author, is_admin, view_count, comment_count, created_at, updated_at, user_sub " +
+        "SELECT id, category, title, content, author, is_admin, view_count, comment_count, created_at, updated_at, user_sub, origin, media_url, media_type, shorts_job_id " +
         "FROM board_posts WHERE id = ?"
       ).bind(id).first<BoardPostRow>();
       if (!row) return json(request, { error: "not_found" }, 404);
@@ -880,12 +889,13 @@ export default {
         : isAdmin || await verifyBoardPassword(env, row, password);
       if (!authorized) return json(request, { error: identity ? "not_owner" : "wrong_password" }, 403);
       if (isReservedAdminName(author) && !isAdmin) return json(request, { error: "reserved_admin_name" }, 403);
+      const savedCategory = row.origin === "shorts" ? "knowledge_share" : category;
       const updatedAt = new Date().toISOString();
       await env.DB.prepare(
         "UPDATE board_posts SET category = ?, title = ?, content = ?, author = ?, is_admin = ?, updated_at = ? WHERE id = ?"
-      ).bind(category, title, content, author, isAdmin ? 1 : 0, updatedAt, id).run();
+      ).bind(savedCategory, title, content, author, isAdmin ? 1 : 0, updatedAt, id).run();
       const updated = await env.DB.prepare(
-        "SELECT id, category, title, content, author, is_admin, view_count, comment_count, created_at, updated_at " +
+        "SELECT id, category, title, content, author, is_admin, view_count, comment_count, created_at, updated_at, user_sub, origin, media_url, media_type, shorts_job_id " +
         "FROM board_posts WHERE id = ?"
       ).bind(id).first<BoardPostRow>();
       return json(request, { post: updated ? boardPublicPost(updated) : null });
@@ -910,9 +920,9 @@ export default {
         : isAdmin || await verifyBoardPassword(env, row, password);
       if (!authorized) return json(request, { error: identity ? "not_owner" : "wrong_password" }, 403);
       const statements = [] as any[];
+      const now = new Date().toISOString();
       const reward = Math.max(0, Number(row.reward_builds || 0));
       if (row.user_sub && reward > 0) {
-        const now = new Date().toISOString();
         statements.push(
           env.DB.prepare(
             "UPDATE lounge_users SET build_balance = build_balance - ?, updated_at = ? WHERE google_sub = ?"
@@ -925,13 +935,28 @@ export default {
           ).bind(crypto.randomUUID(), row.user_sub, -reward, id, now, row.user_sub),
         );
       }
+      const shortsPost = row.origin === "shorts" && Boolean(row.shorts_job_id);
+      if (shortsPost) {
+        statements.push(
+          env.DB.prepare(
+            `UPDATE lounge_shorts_publish_requests
+                SET status = 'deleted', deleted_at = ?
+              WHERE job_id = ? AND post_id = ? AND status = 'active'`,
+          ).bind(now, row.shorts_job_id, id),
+          env.DB.prepare(
+            `UPDATE lounge_shorts_jobs
+                SET published_post_id = '', publish_request_id = '', updated_at = ?
+              WHERE job_id = ? AND published_post_id = ?`,
+          ).bind(now, row.shorts_job_id, id),
+        );
+      }
       statements.push(
         env.DB.prepare("DELETE FROM board_comments WHERE post_id = ?").bind(id),
         env.DB.prepare("DELETE FROM board_post_daily_views WHERE post_id = ?").bind(id),
         env.DB.prepare("DELETE FROM board_posts WHERE id = ?").bind(id),
       );
       await env.DB.batch(statements);
-      return json(request, { ok: true, postId: id });
+      return json(request, { ok: true, postId: id, ...(shortsPost ? { publishStatus: "deleted" } : {}) });
     }
 
     const boardViewId = url.pathname.match(/^\/board\/posts\/([0-9a-f-]{36})\/views$/i)?.[1];
@@ -1566,5 +1591,9 @@ export default {
       return json(request, { error: "method_not_allowed" }, 405);
     }
     return json(request, { error: "not_found" }, 404);
+  },
+
+  async scheduled(_controller: ScheduledController, env: Env): Promise<void> {
+    await sweepExpiredShortsReservations(env);
   },
 };
