@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1",
+  "id": "260821-anthropic-claude-certification-education",
+  "slug": "anthropic-claude-certification-education",
+  "title": "2026년 Anthropic Claude 공식 자격증 및 교육과정 조사 보고서",
+  "category": "AI",
+  "tags": [
+    "Anthropic",
+    "Claude",
+    "AI 자격증",
+    "AI 교육"
+  ],
+  "summary": "비개발자 AI 교육자와 소규모 교육 사업자를 위해 Anthropic Claude 공식 자격, Claude Academy, Partner Network와 Google 공인 트레이너 경로를 비교한 실행 가이드",
+  "createdAt": "2026-08-21T15:45:00+09:00",
+  "updatedAt": "2026-08-21T15:45:00+09:00",
+  "status": "published",
+  "sourceName": "index.html",
+  "sourceCount": 22,
+  "entry": "index.html"
+}

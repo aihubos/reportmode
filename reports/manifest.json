@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23T06:22:59.607Z",
+  "generatedAt": "2026-08-24T07:07:54.110Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
     {
@@ -23,6 +23,28 @@
       ],
       "coverImage": "reports/260823-playworkgrow-site-analysis/assets/group-tea.webp",
       "coverAlt": "놀일 PLAY WORK GROW 참여자들이 차를 마시며 대화하는 모습"
+    },
+    {
+      "id": "260821-anthropic-claude-certification-education",
+      "slug": "anthropic-claude-certification-education",
+      "title": "2026년 Anthropic Claude 공식 자격증 및 교육과정 조사 보고서",
+      "category": "AI",
+      "summary": "비개발자 AI 교육자와 소규모 교육 사업자를 위해 Anthropic Claude 공식 자격, Claude Academy, Partner Network와 Google 공인 트레이너 경로를 비교한 실행 가이드",
+      "createdAt": "2026-08-21T15:45:00+09:00",
+      "updatedAt": "2026-08-21T15:45:00+09:00",
+      "status": "published",
+      "path": "reports/260821-anthropic-claude-certification-education/",
+      "url": "https://aihubos.github.io/reportmode/reports/260821-anthropic-claude-certification-education/",
+      "displayDate": "260821",
+      "sourceCount": 22,
+      "tags": [
+        "Anthropic",
+        "Claude",
+        "AI 자격증",
+        "AI 교육"
+      ],
+      "coverImage": "reports/260821-anthropic-claude-certification-education/assets/claude-icon-square.png",
+      "coverAlt": "Anthropic 공식 Claude 아이콘"
     },
     {
       "id": "260821-grok-buzz-hermes-youtube-summary",
