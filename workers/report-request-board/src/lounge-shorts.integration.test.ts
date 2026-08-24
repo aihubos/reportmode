@@ -114,6 +114,7 @@ const GOOGLE_CLIENT_ID = "builders-lounge-test.apps.googleusercontent.com";
 const CONFIG_KEY = "builders-lounge-shorts-integration-test";
 const OPENROUTER_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
 const SERVER_API_KEY = "server-only-test-key";
+const VALID_WEBM_BASE64 = "GkXfo59ChoEBQveBAULygQRC84EIQoKEd2VibUKHgQJChYECGFOAZwEAAAAAAAHpEU2bdLpNu4tTq4QVSalmU6yBoU27i1OrhBZUrmtTrIHYTbuMU6uEElTDZ1OsggElTbuMU6uEHFO7a1OsggHT7AEAAAAAAABZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVSalmsirXsYMPQkBNgI1MYXZmNjIuMTIuMTAxV0GNTGF2ZjYyLjEyLjEwMUSJiECPQAAAAAAAFlSua8iuAQAAAAAAAD/XgQFzxYjGb5sj+r5DUpyBACK1nIN1bmSIgQCGhVZfVlA4g4EBI+ODhDuaygDgkLCBELqBEJqBAlWwhFW5gQESVMNn/HNzoGPAgGfImkWjh0VOQ09ERVJEh41MYXZmNjIuMTIuMTAxc3PWY8CLY8WIxm+bI/q+Q1JnyKFFo4dFTkNPREVSRIeUTGF2YzYyLjI4LjEwMSBsaWJ2cHhnyKFFo4hEVVJBVElPTkSHkzAwOjAwOjAxLjAwMDAwMDAwMAAfQ7Z1qOeBAKOjgQAAgBACAJ0BKhAAEAAARwiFhYiZhIgCAgAMDWAA/v+rUIAcU7trkbuPs4EAt4r3gQHxggGm8IED";
 const nativeFetch = globalThis.fetch;
 const { publicKey, privateKey } = await generateKeyPair("RS256");
 const publicJwk = await exportJWK(publicKey);
@@ -248,8 +249,33 @@ function uuid() {
   return crypto.randomUUID();
 }
 
+function validWebmBytes() {
+  return new Uint8Array(Buffer.from(VALID_WEBM_BASE64, "base64"));
+}
+
 function validWebm() {
-  return new Blob([new Uint8Array([0x1a, 0x45, 0xdf, 0xa3, 0x42, 0x86, 0x81, 0x01])], { type: "video/webm" });
+  return new Blob([validWebmBytes()], { type: "video/webm" });
+}
+
+async function runScheduled(env: any) {
+  const pending: Promise<unknown>[] = [];
+  const handler = (worker as any).scheduled;
+  assert.equal(typeof handler, "function");
+  await handler(
+    { scheduledTime: Date.now(), cron: "* * * * *", noRetry() {} },
+    env,
+    {
+      waitUntil(value: Promise<unknown>) { pending.push(Promise.resolve(value)); },
+      passThroughOnException() {},
+    },
+  );
+  await Promise.all(pending);
+}
+
+function shortsLedgerEventCount(env: any, jobId: string, eventType: string) {
+  return Number(env.DB.database.prepare(
+    "SELECT COUNT(*) AS count FROM lounge_shorts_ledger_events WHERE job_id = ? AND event_type = ?",
+  ).get(jobId, eventType).count || 0);
 }
 
 async function prepare(env: any, token: string, requestId = uuid()) {
@@ -387,6 +413,117 @@ test("invalid WebM releases the reservation once and preserves the balance on re
   assert.equal(second.json.balance, 20);
   assert.equal(env.DB.value<{ count: number }>("SELECT COUNT(*) AS count FROM lounge_shorts_ledger_events WHERE event_type = 'release'").count, 1);
   assert.equal(env.PRIVATE_REPORTS.objects.size, 0);
+});
+
+test("browser upload preflight allows every required header before the WebM POST", async () => {
+  const env = await environment();
+  const token = await fundedUser(env, "cors-user", "cors@example.com", "브라우저 업로드 사용자");
+  const planned = await prepare(env, token);
+  const response = await worker.fetch(new Request(`https://board.test/lounge/shorts/${planned.jobId}/upload`, {
+    method: "OPTIONS",
+    headers: {
+      Origin: "https://aihubos.github.io",
+      "Access-Control-Request-Method": "POST",
+      "Access-Control-Request-Headers": "authorization, content-type, x-file-size, x-request-id",
+    },
+  }), env);
+  assert.equal(response.status, 204);
+  const allowed = new Set((response.headers.get("Access-Control-Allow-Headers") || "")
+    .split(",")
+    .map((value) => value.trim().toLowerCase())
+    .filter(Boolean));
+  for (const header of ["authorization", "content-type", "x-file-size", "x-request-id"]) {
+    assert.ok(allowed.has(header), `preflight header missing: ${header}`);
+  }
+
+  const video = validWebm();
+  const uploaded = await call(env, `/lounge/shorts/${planned.jobId}/upload`, "POST", video, token, {
+    "Content-Type": "video/webm",
+    "X-File-Size": String(video.size),
+    "X-Request-Id": planned.requestId,
+  });
+  assert.equal(uploaded.response.status, 200);
+  assert.equal(uploaded.json.status, "completed");
+});
+
+test("scheduled sweep releases expired reservations once without a status request", async () => {
+  const env = await environment();
+  const token = await fundedUser(env, "scheduled-user", "scheduled@example.com", "자동 만료 사용자");
+  const planned = await prepare(env, token);
+  env.DB.database.prepare("UPDATE lounge_shorts_jobs SET expires_at = ? WHERE job_id = ?")
+    .run("2000-01-01T00:00:00.000Z", planned.jobId);
+
+  await runScheduled(env);
+  await runScheduled(env);
+
+  const job = env.DB.database.prepare(
+    "SELECT reservation_status, tool_error_code FROM lounge_shorts_jobs WHERE job_id = ?",
+  ).get(planned.jobId) as { reservation_status: string; tool_error_code: string };
+  assert.equal(job.reservation_status, "released");
+  assert.equal(job.tool_error_code, "reservation_expired");
+  assert.equal(env.DB.value<{ balance: number }>("SELECT build_balance AS balance FROM lounge_users WHERE google_sub = 'scheduled-user'").balance, 20);
+  assert.equal(shortsLedgerEventCount(env, planned.jobId, "reservation"), 1);
+  assert.equal(shortsLedgerEventCount(env, planned.jobId, "release"), 1);
+});
+
+test("recent recovery returns only the authenticated user's latest live reservation", async () => {
+  const env = await environment();
+  const owner = await fundedUser(env, "recent-owner", "recent-owner@example.com", "복구 사용자");
+  const other = await fundedUser(env, "recent-other", "recent-other@example.com", "다른 복구 사용자");
+  const planned = await prepare(env, owner);
+
+  const ownerRecent = await call(env, "/lounge/shorts/recent", "GET", undefined, owner);
+  assert.equal(ownerRecent.response.status, 200);
+  assert.equal(ownerRecent.json.found, true);
+  assert.equal(ownerRecent.json.jobId, planned.jobId);
+  assert.equal(ownerRecent.json.requestId, planned.requestId);
+  assert.equal(ownerRecent.json.reservationStatus, "reserved");
+
+  const otherRecent = await call(env, "/lounge/shorts/recent", "GET", undefined, other);
+  assert.equal(otherRecent.response.status, 200);
+  assert.deepEqual(otherRecent.json, { found: false });
+
+  env.DB.database.prepare("UPDATE lounge_shorts_jobs SET expires_at = ? WHERE job_id = ?")
+    .run("2000-01-01T00:00:00.000Z", planned.jobId);
+  const expiredRecent = await call(env, "/lounge/shorts/recent", "GET", undefined, owner);
+  assert.equal(expiredRecent.response.status, 200);
+  assert.deepEqual(expiredRecent.json, { found: false });
+  assert.equal(env.DB.value<{ balance: number }>("SELECT build_balance AS balance FROM lounge_users WHERE google_sub = 'recent-owner'").balance, 20);
+  assert.equal(shortsLedgerEventCount(env, planned.jobId, "release"), 1);
+});
+
+test("magic-only, truncated, and wrong-DocType WebM files release Build exactly once", async () => {
+  const playable = validWebmBytes();
+  const wrongDocType = playable.slice();
+  const docTypeIndex = Buffer.from(wrongDocType).indexOf(Buffer.from("webm"));
+  assert.ok(docTypeIndex >= 0);
+  wrongDocType.set(new TextEncoder().encode("matr"), docTypeIndex);
+
+  const cases = [
+    ["magic-only", new Uint8Array([0x1a, 0x45, 0xdf, 0xa3])],
+    ["truncated", playable.slice(0, 300)],
+    ["wrong-doctype", wrongDocType],
+  ] as const;
+  for (const [label, bytes] of cases) {
+    const env = await environment();
+    const sub = `invalid-${label}`;
+    const token = await fundedUser(env, sub, `${sub}@example.com`, label);
+    const planned = await prepare(env, token);
+    const video = new Blob([bytes], { type: "video/webm" });
+    const uploaded = await call(env, `/lounge/shorts/${planned.jobId}/upload`, "POST", video, token, {
+      "Content-Type": "video/webm",
+      "X-File-Size": String(video.size),
+      "X-Request-Id": planned.requestId,
+    });
+    assert.equal(uploaded.response.status, 415, label);
+    assert.match(String(uploaded.json.error || ""), /^shorts_webm_/, label);
+
+    const status = await call(env, `/lounge/shorts/${planned.jobId}`, "GET", undefined, token);
+    assert.equal(status.json.reservationStatus, "released", label);
+    assert.equal(status.json.balance, 20, label);
+    assert.equal(shortsLedgerEventCount(env, planned.jobId, "release"), 1, label);
+    assert.equal(env.PRIVATE_REPORTS.objects.size, 0, label);
+  }
 });
 
 test("expired reservations are released once and the same request never reserves Build again", async () => {
