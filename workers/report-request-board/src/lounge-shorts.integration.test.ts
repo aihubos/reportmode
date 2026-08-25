@@ -124,6 +124,7 @@ const CONFIG_KEY = "builders-lounge-shorts-integration-test";
 const OPENROUTER_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
 const OPENAI_IMAGE_ENDPOINT = "https://api.openai.com/v1/images/generations";
 const SERVER_API_KEY = "server-only-test-key";
+const OPENROUTER_API_KEY = "sk-or-v1-server-only-test-key";
 const RENDERER_ORIGIN = "https://renderer.local.test";
 const RENDERER_TOKEN = "renderer-only-test-token";
 const VALID_WEBM_BASE64 = "GkXfo59ChoEBQveBAULygQRC84EIQoKEd2VibUKHgQJChYECGFOAZwEAAAAAAAHpEU2bdLpNu4tTq4QVSalmU6yBoU27i1OrhBZUrmtTrIHYTbuMU6uEElTDZ1OsggElTbuMU6uEHFO7a1OsggHT7AEAAAAAAABZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVSalmsirXsYMPQkBNgI1MYXZmNjIuMTIuMTAxV0GNTGF2ZjYyLjEyLjEwMUSJiECPQAAAAAAAFlSua8iuAQAAAAAAAD/XgQFzxYjGb5sj+r5DUpyBACK1nIN1bmSIgQCGhVZfVlA4g4EBI+ODhDuaygDgkLCBELqBEJqBAlWwhFW5gQESVMNn/HNzoGPAgGfImkWjh0VOQ09ERVJEh41MYXZmNjIuMTIuMTAxc3PWY8CLY8WIxm+bI/q+Q1JnyKFFo4dFTkNPREVSRIeUTGF2YzYyLjI4LjEwMSBsaWJ2cHhnyKFFo4hEVVJBVElPTkSHkzAwOjAwOjAxLjAwMDAwMDAwMAAfQ7Z1qOeBAKOjgQAAgBACAJ0BKhAAEAAARwiFhYiZhIgCAgAMDWAA/v+rUIAcU7trkbuPs4EAt4r3gQHxggGm8IED";
@@ -143,6 +144,7 @@ type RendererCall = {
 const rendererTasks = new Map<string, RendererTestTask>();
 const rendererCalls: RendererCall[] = [];
 const openAIImageCalls: Record<string, any>[] = [];
+const openRouterCalls: Record<string, any>[] = [];
 
 function rendererPayload(taskId: string, task: RendererTestTask) {
   return {
@@ -223,7 +225,16 @@ globalThis.fetch = async (input, init) => {
     });
   }
   if (url === OPENROUTER_ENDPOINT) {
-    assert.equal(new Headers(init?.headers).get("Authorization"), `Bearer ${SERVER_API_KEY}`);
+    const authorization = new Headers(init?.headers).get("Authorization");
+    assert.ok(authorization === `Bearer ${SERVER_API_KEY}` || authorization === `Bearer ${OPENROUTER_API_KEY}`);
+    const payload = JSON.parse(String(init?.body || "{}"));
+    openRouterCalls.push(payload);
+    if (Array.isArray(payload.modalities) && payload.modalities.includes("image")) {
+      return new Response(JSON.stringify({
+        id: "openrouter-image-response",
+        choices: [{ message: { content: "", images: [{ image_url: { url: "data:image/png;base64,b3BlbnJvdXRlci1pbWFnZQ==" } }] } }],
+      }), { headers: { "Content-Type": "application/json" } });
+    }
     return new Response(JSON.stringify({
       id: "provider-test-response",
       choices: [{
@@ -284,6 +295,7 @@ async function environment({ matchingEndpoint = true } = {}) {
   rendererTasks.clear();
   rendererCalls.length = 0;
   openAIImageCalls.length = 0;
+  openRouterCalls.length = 0;
   const DB = new SqliteD1();
   for (const name of [
     "0013_create_community_board.sql",
@@ -599,6 +611,32 @@ test("masterpiece uses the OpenAI image endpoint and an image model instead of r
   assert.equal(openAIImageCalls[0].model, "gpt-image-1.5");
   assert.equal(openAIImageCalls[0].size, "1024x1536");
   assert.match(openAIImageCalls[0].prompt, /고전 명화/);
+});
+
+test("masterpiece recognizes a saved OpenRouter key and selects an image-capable model", async () => {
+  const env = await environment();
+  const encrypted = await encryptApiKey(OPENROUTER_API_KEY);
+  env.DB.database.prepare(
+    `UPDATE lounge_tool_settings
+        SET enabled = 1, build_cost = 5, provider = 'openai', endpoint_url = ?, model = 'gpt-5.6',
+            api_key_ciphertext = ?, api_key_iv = ?
+      WHERE tool_id = 'masterpiece'`,
+  ).run("https://api.openai.com/v1/chat/completions", encrypted.ciphertext, encrypted.iv);
+  const token = await fundedUser(env, "masterpiece-openrouter-user", "masterpiece-openrouter@example.com", "명화 OR 사용자");
+  const requestId = uuid();
+  const generated = await call(env, "/lounge/tools/masterpiece/generate", "POST", {
+    requestId,
+    input: { prompt: "명화 구도를 유지한 따뜻한 일러스트" },
+  }, token, { "X-Request-Id": requestId });
+
+  assert.equal(generated.response.status, 200);
+  assert.equal(generated.json.balance, 15);
+  assert.equal(generated.json.result.model, "google/gemini-3.1-flash-image");
+  assert.equal(generated.json.result.imageDataUrl, "data:image/png;base64,b3BlbnJvdXRlci1pbWFnZQ==");
+  assert.equal(openAIImageCalls.length, 0);
+  assert.equal(openRouterCalls.length, 1);
+  assert.equal(openRouterCalls[0].model, "google/gemini-3.1-flash-image");
+  assert.deepEqual(openRouterCalls[0].modalities, ["image", "text"]);
 });
 
 test("MPT render stores a valid MP4 before confirming Build and publishes only on the explicit button request", async () => {

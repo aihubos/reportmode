@@ -114,6 +114,8 @@ const SHORTS_RENDERER_PREFIX = "mpt";
 const SHORTS_RENDERER_MAX_RESPONSE_BYTES = 64 * 1024;
 const SHORTS_RENDERER_FIXED_ORIGIN = "https://lounge-mpt.ai-hub-os.com";
 const DEFAULT_OPENAI_IMAGE_MODEL = "gpt-image-1.5";
+const DEFAULT_OPENROUTER_IMAGE_MODEL = "google/gemini-3.1-flash-image";
+const OPENROUTER_CHAT_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
 
 const ALLOWED_ORIGINS = new Set([
   "https://aihubos.github.io",
@@ -640,6 +642,20 @@ async function callConfiguredProvider(setting: ToolSetting, apiKey: string, inpu
     : setting.provider;
   let endpointUrl = setting.endpoint_url;
   let model = setting.model;
+  const wantsImage = setting.tool_id === "masterpiece";
+  const hasOpenRouterKey = /^sk-or-/i.test(apiKey.trim());
+  if (wantsImage && provider === "openai" && hasOpenRouterKey) {
+    provider = "openrouter";
+    endpointUrl = OPENROUTER_CHAT_ENDPOINT;
+  }
+  if (wantsImage && provider === "openrouter") {
+    const normalizedImageModel = model.includes("/")
+      ? model
+      : model.startsWith("kimi") || model.startsWith("moonshot") ? `moonshotai/${model}` : `openai/${model}`;
+    model = /image|banana/i.test(normalizedImageModel) || /^openrouter\/auto(?:-beta)?$/i.test(normalizedImageModel)
+      ? normalizedImageModel
+      : DEFAULT_OPENROUTER_IMAGE_MODEL;
+  }
   if (provider === "openrouter" && model && !model.includes("/")) {
     model = model.startsWith("kimi") || model.startsWith("moonshot") ? `moonshotai/${model}` : `openai/${model}`;
   }
@@ -648,7 +664,6 @@ async function callConfiguredProvider(setting: ToolSetting, apiKey: string, inpu
 
   let response: Response;
 
-  const wantsImage = setting.tool_id === "masterpiece";
   if (wantsImage && provider === "openai") {
     const imageModel = /^gpt-image-/i.test(model) ? model : DEFAULT_OPENAI_IMAGE_MODEL;
     const imageEndpoint = openAIImageEndpoint(endpointUrl);
