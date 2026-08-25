@@ -644,7 +644,7 @@ async function callConfiguredProvider(setting: ToolSetting, apiKey: string, inpu
   let model = setting.model;
   const wantsImage = setting.tool_id === "masterpiece";
   const hasOpenRouterKey = /^sk-or-/i.test(apiKey.trim());
-  if (wantsImage && provider === "openai" && hasOpenRouterKey) {
+  if (provider === "openai" && hasOpenRouterKey) {
     provider = "openrouter";
     endpointUrl = OPENROUTER_CHAT_ENDPOINT;
   }

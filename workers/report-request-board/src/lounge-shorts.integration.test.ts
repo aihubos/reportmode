@@ -639,6 +639,31 @@ test("masterpiece recognizes a saved OpenRouter key and selects an image-capable
   assert.deepEqual(openRouterCalls[0].modalities, ["image", "text"]);
 });
 
+test("webtoon recognizes a saved OpenRouter key when the legacy provider label remains OpenAI", async () => {
+  const env = await environment();
+  const encrypted = await encryptApiKey(OPENROUTER_API_KEY);
+  env.DB.database.prepare(
+    `UPDATE lounge_tool_settings
+        SET enabled = 1, build_cost = 5, provider = 'openai', endpoint_url = ?, model = 'gpt-5.6',
+            api_key_ciphertext = ?, api_key_iv = ?
+      WHERE tool_id = 'webtoon'`,
+  ).run("https://api.openai.com/v1/chat/completions", encrypted.ciphertext, encrypted.iv);
+  const token = await fundedUser(env, "webtoon-openrouter-user", "webtoon-openrouter@example.com", "웹툰 OR 사용자");
+  const requestId = uuid();
+  const generated = await call(env, "/lounge/tools/webtoon/generate", "POST", {
+    requestId,
+    input: { prompt: "직장인의 월요일을 다룬 네 컷 공감 웹툰 JSON" },
+  }, token, { "X-Request-Id": requestId });
+
+  assert.equal(generated.response.status, 200);
+  assert.equal(generated.json.balance, 15);
+  assert.match(generated.json.result.text, /detailedPrompt/);
+  assert.equal(openAIImageCalls.length, 0);
+  assert.equal(openRouterCalls.length, 1);
+  assert.equal(openRouterCalls[0].model, "openai/gpt-5.6");
+  assert.equal(openRouterCalls[0].modalities, undefined);
+});
+
 test("MPT render stores a valid MP4 before confirming Build and publishes only on the explicit button request", async () => {
   const env = await environment();
   const token = await fundedUser(env, "renderer-success", "renderer-success@example.com", "렌더 성공 사용자");
