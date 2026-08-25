@@ -113,6 +113,7 @@ const SHORTS_RESERVATION_TTL_MS = 30 * 60 * 1000;
 const SHORTS_RENDERER_PREFIX = "mpt";
 const SHORTS_RENDERER_MAX_RESPONSE_BYTES = 64 * 1024;
 const SHORTS_RENDERER_FIXED_ORIGIN = "https://lounge-mpt.ai-hub-os.com";
+const DEFAULT_OPENAI_IMAGE_MODEL = "gpt-image-1.5";
 
 const ALLOWED_ORIGINS = new Set([
   "https://aihubos.github.io",
@@ -569,6 +570,18 @@ function openaiCompatiblePayload(setting: ToolSetting, prompt: string) {
   };
 }
 
+function openAIImageEndpoint(endpoint: string) {
+  const url = new URL(endpoint);
+  if (url.hostname === "api.openai.com") {
+    url.pathname = "/v1/images/generations";
+  } else if (/\/(chat\/completions|responses)\/?$/i.test(url.pathname)) {
+    url.pathname = url.pathname.replace(/\/(chat\/completions|responses)\/?$/i, "/images/generations");
+  }
+  url.search = "";
+  url.hash = "";
+  return url.toString();
+}
+
 function firstOpenAIText(body: any) {
   const choice = body?.choices?.[0];
   const message = choice?.message;
@@ -626,10 +639,6 @@ async function callConfiguredProvider(setting: ToolSetting, apiKey: string, inpu
     : setting.endpoint_url.includes("moonshot.ai") || setting.endpoint_url.includes("moonshot.cn") ? "moonshot"
     : setting.provider;
   let endpointUrl = setting.endpoint_url;
-  if ((setting.tool_id === "webtoon" || setting.tool_id === "masterpiece") && (provider === "openai" || provider === "openrouter")) {
-    provider = "openrouter";
-    endpointUrl = endpointUrl.includes("openrouter.ai") ? endpointUrl : "https://openrouter.ai/api/v1/chat/completions";
-  }
   let model = setting.model;
   if (provider === "openrouter" && model && !model.includes("/")) {
     model = model.startsWith("kimi") || model.startsWith("moonshot") ? `moonshotai/${model}` : `openai/${model}`;
@@ -639,8 +648,37 @@ async function callConfiguredProvider(setting: ToolSetting, apiKey: string, inpu
 
   let response: Response;
 
+  const wantsImage = setting.tool_id === "masterpiece";
+  if (wantsImage && provider === "openai") {
+    const imageModel = /^gpt-image-/i.test(model) ? model : DEFAULT_OPENAI_IMAGE_MODEL;
+    const imageEndpoint = openAIImageEndpoint(endpointUrl);
+    try {
+      response = await fetch(imageEndpoint, {
+        method: "POST",
+        headers: openaiCompatibleHeaders("openai", apiKey),
+        body: JSON.stringify({
+          model: imageModel,
+          prompt: [setting.system_prompt, prompt].filter(Boolean).join("\n\n"),
+          size: "1024x1536",
+          quality: "medium",
+          output_format: "png",
+        }),
+      });
+    } catch {
+      throw new LoungeError("provider_request_failed", 504, "OpenAI 이미지 생성 서버와 연결하지 못했습니다.");
+    }
+    const { body } = await parseProviderResponse(response);
+    const imageDataUrl = firstOpenAIImage(body);
+    if (!imageDataUrl) throw new LoungeError("empty_provider_response", 502);
+    return {
+      imageDataUrl,
+      text: "",
+      model: imageModel,
+      providerRef: clean(body?.id || body?.created || imageModel, 200),
+    };
+  }
+
   if (provider === "openai" || provider === "openrouter" || provider === "moonshot") {
-    const wantsImage = setting.tool_id === "masterpiece";
     const payload = openaiCompatiblePayload({ ...setting, model, provider, endpoint_url: endpointUrl }, prompt);
     if (wantsImage && provider === "openrouter") {
       (payload as Record<string, unknown>).modalities = ["image", "text"];
@@ -658,7 +696,7 @@ async function callConfiguredProvider(setting: ToolSetting, apiKey: string, inpu
     if (wantsImage) {
       const imageDataUrl = firstOpenAIImage(body);
       if (!imageDataUrl) throw new LoungeError("empty_provider_response", 502);
-      return { imageDataUrl, text: cleanMultiline(firstOpenAIText(body), 160_000), providerRef: clean(body?.id, 200) };
+      return { imageDataUrl, text: cleanMultiline(firstOpenAIText(body), 160_000), model, providerRef: clean(body?.id, 200) };
     }
     const text = cleanMultiline(firstOpenAIText(body), 160_000);
     if (!text) throw new LoungeError("empty_provider_response", 502);

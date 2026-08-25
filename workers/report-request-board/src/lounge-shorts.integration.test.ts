@@ -122,6 +122,7 @@ class MemoryBucket {
 const GOOGLE_CLIENT_ID = "builders-lounge-test.apps.googleusercontent.com";
 const CONFIG_KEY = "builders-lounge-shorts-integration-test";
 const OPENROUTER_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
+const OPENAI_IMAGE_ENDPOINT = "https://api.openai.com/v1/images/generations";
 const SERVER_API_KEY = "server-only-test-key";
 const RENDERER_ORIGIN = "https://renderer.local.test";
 const RENDERER_TOKEN = "renderer-only-test-token";
@@ -141,6 +142,7 @@ type RendererCall = {
 
 const rendererTasks = new Map<string, RendererTestTask>();
 const rendererCalls: RendererCall[] = [];
+const openAIImageCalls: Record<string, any>[] = [];
 
 function rendererPayload(taskId: string, task: RendererTestTask) {
   return {
@@ -237,6 +239,15 @@ globalThis.fetch = async (input, init) => {
       }],
     }), { headers: { "Content-Type": "application/json" } });
   }
+  if (url === OPENAI_IMAGE_ENDPOINT) {
+    assert.equal(new Headers(init?.headers).get("Authorization"), `Bearer ${SERVER_API_KEY}`);
+    const payload = JSON.parse(String(init?.body || "{}"));
+    openAIImageCalls.push(payload);
+    return new Response(JSON.stringify({
+      created: 1787616000,
+      data: [{ b64_json: "aW1hZ2UtYnl0ZXM=" }],
+    }), { headers: { "Content-Type": "application/json" } });
+  }
   return nativeFetch(input, init);
 };
 
@@ -272,6 +283,7 @@ async function encryptApiKey(value: string) {
 async function environment({ matchingEndpoint = true } = {}) {
   rendererTasks.clear();
   rendererCalls.length = 0;
+  openAIImageCalls.length = 0;
   const DB = new SqliteD1();
   for (const name of [
     "0013_create_community_board.sql",
@@ -561,6 +573,32 @@ test("shorts reserves once, confirms on R2 storage, and publishes only after an 
   assert.equal(env.DB.value<{ count: number }>("SELECT COUNT(*) AS count FROM board_posts").count, 1);
   assert.equal(env.DB.value<{ balance: number }>("SELECT build_balance AS balance FROM lounge_users WHERE google_sub = 'owner-one'").balance, 15);
   assert.equal(env.DB.value<{ count: number }>("SELECT COUNT(*) AS count FROM lounge_build_ledger WHERE user_sub = 'owner-one'").count, 1);
+});
+
+test("masterpiece uses the OpenAI image endpoint and an image model instead of rerouting the key", async () => {
+  const env = await environment();
+  const encrypted = await encryptApiKey(SERVER_API_KEY);
+  env.DB.database.prepare(
+    `UPDATE lounge_tool_settings
+        SET enabled = 1, build_cost = 5, provider = 'openai', endpoint_url = ?, model = 'gpt-5.6',
+            api_key_ciphertext = ?, api_key_iv = ?
+      WHERE tool_id = 'masterpiece'`,
+  ).run("https://api.openai.com/v1/chat/completions", encrypted.ciphertext, encrypted.iv);
+  const token = await fundedUser(env, "masterpiece-user", "masterpiece@example.com", "명화 사용자");
+  const requestId = uuid();
+  const generated = await call(env, "/lounge/tools/masterpiece/generate", "POST", {
+    requestId,
+    input: { prompt: "고전 명화를 따뜻한 현대 일러스트로 재해석" },
+  }, token, { "X-Request-Id": requestId });
+
+  assert.equal(generated.response.status, 200);
+  assert.equal(generated.json.balance, 15);
+  assert.equal(generated.json.result.model, "gpt-image-1.5");
+  assert.equal(generated.json.result.imageDataUrl, "data:image/png;base64,aW1hZ2UtYnl0ZXM=");
+  assert.equal(openAIImageCalls.length, 1);
+  assert.equal(openAIImageCalls[0].model, "gpt-image-1.5");
+  assert.equal(openAIImageCalls[0].size, "1024x1536");
+  assert.match(openAIImageCalls[0].prompt, /고전 명화/);
 });
 
 test("MPT render stores a valid MP4 before confirming Build and publishes only on the explicit button request", async () => {
