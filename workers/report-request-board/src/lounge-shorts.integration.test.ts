@@ -433,6 +433,8 @@ test("lounge health reports dependency readiness without exposing configuration 
       login: true,
       encryption: true,
       rendererConfigured: true,
+      rendererReachable: true,
+      rendererAuthorized: true,
     },
   });
   const publicHealth = JSON.stringify(healthy.json);
@@ -446,6 +448,8 @@ test("lounge health reports dependency readiness without exposing configuration 
   assert.equal(degraded.json.status, "degraded");
   assert.equal(degraded.json.ready, false);
   assert.equal(degraded.json.checks.rendererConfigured, false);
+  assert.equal(degraded.json.checks.rendererReachable, false);
+  assert.equal(degraded.json.checks.rendererAuthorized, false);
 
   const unavailable = await call({ ...env, PRIVATE_REPORTS: undefined }, "/lounge/health");
   assert.equal(unavailable.response.status, 503);

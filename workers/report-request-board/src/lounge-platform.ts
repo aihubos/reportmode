@@ -112,6 +112,7 @@ const SHORTS_RIGHTS_VERSION = "shorts-rights-v1";
 const SHORTS_RESERVATION_TTL_MS = 30 * 60 * 1000;
 const SHORTS_RENDERER_PREFIX = "mpt";
 const SHORTS_RENDERER_MAX_RESPONSE_BYTES = 64 * 1024;
+const SHORTS_RENDERER_FIXED_ORIGIN = "https://lounge-mpt.ai-hub-os.com";
 
 const ALLOWED_ORIGINS = new Set([
   "https://aihubos.github.io",
@@ -375,6 +376,18 @@ type ShortsRendererTask = {
   mediaType: "video/mp4" | "";
 };
 
+type ShortsRendererHealth = {
+  configured: boolean;
+  reachable: boolean;
+  authorized: boolean;
+};
+
+const rendererHealthCache = new WeakMap<object, {
+  expiresAt: number;
+  value: ShortsRendererHealth;
+  renderer: ShortsRendererConfig | null;
+}>();
+
 function shortsRendererConfig(env: LoungeEnv): ShortsRendererConfig | null {
   const endpointValue = String(env.SHORTS_RENDERER_URL || "").trim();
   const token = String(env.SHORTS_RENDERER_TOKEN || "").trim();
@@ -397,6 +410,17 @@ function requireShortsRenderer(env: LoungeEnv) {
   const renderer = shortsRendererConfig(env);
   if (!renderer) throw new LoungeError("shorts_renderer_not_configured", 503);
   return renderer;
+}
+
+function shortsRendererCandidates(env: LoungeEnv) {
+  const configured = shortsRendererConfig(env);
+  if (!configured) return [];
+  const candidates = [configured];
+  const fixedEndpoint = new URL(SHORTS_RENDERER_FIXED_ORIGIN);
+  if (configured.endpoint.origin !== fixedEndpoint.origin) {
+    candidates.push({ endpoint: fixedEndpoint, token: configured.token });
+  }
+  return candidates;
 }
 
 function rendererProviderRef(jobId: string, progress: number) {
@@ -1359,18 +1383,70 @@ function rendererApiUrl(renderer: ShortsRendererConfig, path: string) {
   return new URL(path.replace(/^\/+/, ""), base);
 }
 
+async function shortsRendererHealth(env: LoungeEnv): Promise<ShortsRendererHealth> {
+  const candidates = shortsRendererCandidates(env);
+  if (!candidates.length) return { configured: false, reachable: false, authorized: false };
+  const cached = rendererHealthCache.get(env as object);
+  if (cached && cached.expiresAt > Date.now()) {
+    return cached.value;
+  }
+  let reachable = false;
+  for (const renderer of candidates) {
+    try {
+      const response = await fetch(
+        rendererApiUrl(renderer, "/api/v1/builders-lounge/tasks/00000000-0000-4000-8000-000000000000"),
+        {
+          method: "GET",
+          redirect: "manual",
+          headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${renderer.token}`,
+          },
+        },
+      );
+      reachable = true;
+      if (response.ok || response.status === 404) {
+        const value = { configured: true, reachable: true, authorized: true };
+        rendererHealthCache.set(env as object, {
+          expiresAt: Date.now() + 15_000,
+          value,
+          renderer,
+        });
+        return value;
+      }
+    } catch {
+      // Try the fixed public renderer when the stored endpoint is stale or local-only.
+    }
+  }
+  const value = { configured: true, reachable, authorized: false };
+  rendererHealthCache.set(env as object, {
+    expiresAt: Date.now() + 15_000,
+    value,
+    renderer: null,
+  });
+  return value;
+}
+
+async function operationalShortsRenderer(env: LoungeEnv) {
+  const health = await shortsRendererHealth(env);
+  const cached = rendererHealthCache.get(env as object);
+  if (health.authorized && cached?.renderer) return cached.renderer;
+  if (health.reachable) throw new LoungeError("shorts_renderer_unauthorized", 503);
+  throw new LoungeError("shorts_renderer_unreachable", 503);
+}
+
 async function requestShortsRenderer(
   env: LoungeEnv,
   path: string,
   expectedJobId: string,
   body?: Record<string, unknown>,
 ) {
-  const renderer = requireShortsRenderer(env);
+  const renderer = await operationalShortsRenderer(env);
   let response: Response;
   try {
     response = await fetch(rendererApiUrl(renderer, path), {
       method: body ? "POST" : "GET",
-      redirect: "error",
+      redirect: "manual",
       headers: {
         Accept: "application/json",
         Authorization: `Bearer ${renderer.token}`,
@@ -1388,6 +1464,13 @@ async function requestShortsRenderer(
   if (response.status === 404 && path.startsWith("/api/v1/builders-lounge/tasks/")) {
     throw new LoungeError("shorts_renderer_task_missing", 409);
   }
+  if (response.status === 401 || response.status === 403) {
+    throw new LoungeError("shorts_renderer_unauthorized", 503);
+  }
+  if (response.status === 429) throw new LoungeError("shorts_renderer_busy", 503);
+  if (response.status === 400 || response.status === 422) {
+    throw new LoungeError("shorts_renderer_plan_invalid", 400);
+  }
   if (!response.ok) throw new LoungeError("shorts_renderer_request_failed", 502);
   try {
     return parseRendererTask(JSON.parse(text), expectedJobId);
@@ -1398,7 +1481,7 @@ async function requestShortsRenderer(
 }
 
 async function fetchRenderedMp4(env: LoungeEnv, videoUrl: string, expectedJobId: string) {
-  const renderer = requireShortsRenderer(env);
+  const renderer = await operationalShortsRenderer(env);
   const url = new URL(videoUrl, renderer.endpoint);
   const expectedPath = `/api/v1/builders-lounge/tasks/${encodeURIComponent(expectedJobId)}/video`;
   if (url.origin !== renderer.endpoint.origin || url.pathname !== expectedPath || url.search || url.hash) {
@@ -1408,7 +1491,7 @@ async function fetchRenderedMp4(env: LoungeEnv, videoUrl: string, expectedJobId:
   try {
     response = await fetch(url, {
       method: "GET",
-      redirect: "error",
+      redirect: "manual",
       headers: {
         Accept: "video/mp4",
         Authorization: `Bearer ${renderer.token}`,
@@ -1935,6 +2018,7 @@ async function loungeHealth(request: Request, env: LoungeEnv) {
   const shorts = await env.DB.prepare(
     "SELECT enabled, build_cost FROM lounge_tool_settings WHERE tool_id = 'shorts'",
   ).first<{ enabled: number; build_cost: number }>();
+  const renderer = await shortsRendererHealth(env);
 
   const checks = {
     database: Number(schema?.count || 0) === 3,
@@ -1942,10 +2026,12 @@ async function loungeHealth(request: Request, env: LoungeEnv) {
     storage: Boolean(env.PRIVATE_REPORTS),
     login: Boolean(env.GOOGLE_CLIENT_ID),
     encryption: Boolean(env.LOUNGE_CONFIG_KEY),
-    rendererConfigured: Boolean(shortsRendererConfig(env)),
+    rendererConfigured: renderer.configured,
+    rendererReachable: renderer.reachable,
+    rendererAuthorized: renderer.authorized,
   };
   const coreReady = checks.database && checks.shortsTool && checks.storage;
-  const ready = coreReady && checks.login && checks.encryption && checks.rendererConfigured;
+  const ready = coreReady && checks.login && checks.encryption && checks.rendererAuthorized;
 
   return loungeJson(request, {
     ok: coreReady,
@@ -1968,10 +2054,11 @@ export async function handleLoungeRequest(request: Request, env: LoungeEnv): Pro
     }
     if (url.pathname === "/lounge/config" && request.method === "GET") {
       const tools = await toolSettings(env);
+      const renderer = await shortsRendererHealth(env);
       return loungeJson(request, {
         googleClientId: env.GOOGLE_CLIENT_ID || "",
         loginReady: Boolean(env.GOOGLE_CLIENT_ID),
-        shortsRendererReady: Boolean(shortsRendererConfig(env)),
+        shortsRendererReady: renderer.authorized,
         tools: tools.map((tool) => toolPublic(tool, tools)),
       });
     }
