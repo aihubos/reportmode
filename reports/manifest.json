@@ -1,7 +1,30 @@
 {
-  "generatedAt": "2026-08-25T03:45:41.069Z",
+  "generatedAt": "2026-08-26T08:09:34.755Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260826-ppt-html-presentation-youtube",
+      "slug": "ppt-html-presentation-youtube",
+      "title": "[Youtube] PPT 8년차, 요즘 발표 자료는 HTML로 만듭니다",
+      "category": "AI",
+      "summary": "YouTube 영상 내용을 바탕으로 Claude와 Notion을 활용해 HTML 발표 자료를 만드는 흐름, 장점, 한계와 실무 검수 기준을 정리한 핵심 요약",
+      "createdAt": "2026-08-26T09:00:00+09:00",
+      "updatedAt": "2026-08-26T09:00:00+09:00",
+      "status": "published",
+      "path": "reports/260826-ppt-html-presentation-youtube/",
+      "url": "https://aihubos.github.io/reportmode/reports/260826-ppt-html-presentation-youtube/",
+      "displayDate": "260826",
+      "sourceCount": 1,
+      "tags": [
+        "YouTube",
+        "HTML 발표",
+        "프레젠테이션",
+        "Claude",
+        "Notion"
+      ],
+      "coverImage": "reports/260826-ppt-html-presentation-youtube/assets/thumbnail.png",
+      "coverAlt": "PPT를 HTML 발표 자료로 전환하는 YouTube 영상 썸네일"
+    },
     {
       "id": "260824-ccao-f-step-by-step-guide",
       "slug": "ccao-f-step-by-step-guide",

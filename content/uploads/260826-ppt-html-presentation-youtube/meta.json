@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1",
+  "id": "260826-ppt-html-presentation-youtube",
+  "slug": "ppt-html-presentation-youtube",
+  "title": "[Youtube] PPT 8년차, 요즘 발표 자료는 HTML로 만듭니다",
+  "category": "AI",
+  "tags": [
+    "YouTube",
+    "HTML 발표",
+    "프레젠테이션",
+    "Claude",
+    "Notion"
+  ],
+  "summary": "YouTube 영상 내용을 바탕으로 Claude와 Notion을 활용해 HTML 발표 자료를 만드는 흐름, 장점, 한계와 실무 검수 기준을 정리한 핵심 요약",
+  "createdAt": "2026-08-26T09:00:00+09:00",
+  "updatedAt": "2026-08-26T09:00:00+09:00",
+  "status": "published",
+  "sourceName": "index (5).html",
+  "sourceCount": 1,
+  "entry": "index.html"
+}
