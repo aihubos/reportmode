@@ -1,7 +1,30 @@
 {
-  "generatedAt": "2026-08-26T08:09:34.755Z",
+  "generatedAt": "2026-08-27T01:17:45.917Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260827-hunter-hunter-universe-guide",
+      "slug": "hunter-hunter-universe-guide",
+      "title": "HUNTER×HUNTER 세계관·캐릭터·스토리 설정 대전집",
+      "category": "엔터테인먼트",
+      "summary": "제1화부터 제418화까지의 세계관, 넨, 캐릭터, 세력과 최신 왕위계승전 판세를 정리한 설정 대전집입니다.",
+      "createdAt": "2026-08-27T09:00:00+09:00",
+      "updatedAt": "2026-08-27T09:00:00+09:00",
+      "status": "published",
+      "path": "reports/260827-hunter-hunter-universe-guide/",
+      "url": "https://aihubos.github.io/reportmode/reports/260827-hunter-hunter-universe-guide/",
+      "displayDate": "260827",
+      "sourceCount": 17,
+      "tags": [
+        "HUNTER×HUNTER",
+        "헌터헌터",
+        "세계관",
+        "캐릭터",
+        "스토리"
+      ],
+      "coverImage": "reports/260827-hunter-hunter-universe-guide/assets/thumbnail.png",
+      "coverAlt": "HUNTER×HUNTER 로고"
+    },
     {
       "id": "260826-ppt-html-presentation-youtube",
       "slug": "ppt-html-presentation-youtube",
