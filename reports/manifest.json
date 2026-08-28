@@ -1,7 +1,30 @@
 {
-  "generatedAt": "2026-08-27T01:17:45.917Z",
+  "generatedAt": "2026-08-28T05:04:27.050Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260828-personal-business-card-design-benchmark",
+      "slug": "personal-business-card-design-benchmark",
+      "title": "개인 명함 디자인 벤치마크와 시안",
+      "category": "디자인",
+      "summary": "실물 명함 10종의 재질·후가공·가격을 비교하고 AI Builders Lab용 개인 명함 3개 시안을 제안합니다.",
+      "createdAt": "2026-08-28T13:00:00+09:00",
+      "updatedAt": "2026-08-28T13:00:00+09:00",
+      "status": "published",
+      "path": "reports/260828-personal-business-card-design-benchmark/",
+      "url": "https://aihubos.github.io/reportmode/reports/260828-personal-business-card-design-benchmark/",
+      "displayDate": "260828",
+      "sourceCount": 15,
+      "tags": [
+        "개인 명함",
+        "브랜딩",
+        "디자인",
+        "AI Builders Lab",
+        "NFC"
+      ],
+      "coverImage": "reports/260828-personal-business-card-design-benchmark/assets/thumbnail.jpg",
+      "coverAlt": "파란색 컬러 심이 보이는 흰색 명함 사례"
+    },
     {
       "id": "260827-hunter-hunter-universe-guide",
       "slug": "hunter-hunter-universe-guide",

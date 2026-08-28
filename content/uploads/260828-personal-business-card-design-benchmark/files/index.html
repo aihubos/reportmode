@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="개성 있는 실물 명함 10종의 사진·재질·가공·가격을 비교하고, AI Builders Lab용 개인 명함 3개 시안을 제안하는 슬라이드형 보고서" />
+  <meta name="theme-color" content="#ffffff" />
+  <meta property="og:title" content="개인 명함 디자인 벤치마크와 시안" />
+  <meta property="og:description" content="실물 명함 10종을 비교하고 AI Builders Lab용 개인 명함 3개 시안을 제안합니다." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="assets/thumbnail.jpg" />
+  <title>개인 명함 디자인 벤치마크와 시안 · v1.0.0</title>
+  <style>
+    :root {
+      --blue:#3182F6; --blue-strong:#1B64DA; --blue-soft:#E8F3FF;
+      --ink:#191F28; --ink-2:#333D4B; --muted:#6B7684; --muted-2:#8B95A1;
+      --line:#E5E8EB; --surface:#F7F8FA; --surface-2:#F2F4F6; --white:#fff;
+      --highlight:#DFFF6A; --yellow:#FFF184; --mint:#DFFBF2; --violet:#EEE9FF;
+      --shadow-sm:0 8px 30px rgba(25,31,40,.07); --shadow-md:0 28px 80px rgba(25,31,40,.14);
+      --radius-sm:18px; --radius-md:28px; --radius-lg:40px; --max:1180px;
+      --hero-max:55px; --section-max:41px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-snap-type:y mandatory}
+    body{margin:0;color:var(--ink);background:#fff;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Segoe UI",sans-serif;line-height:1.55;letter-spacing:-.02em;overflow-x:hidden}
+    a{color:inherit;text-decoration:none} button{font:inherit} img,svg{display:block;max-width:100%} h1,h2,h3,p,figure{margin-top:0}
+    :focus-visible{outline:3px solid rgba(49,130,246,.45);outline-offset:3px;border-radius:10px}
+    .progress{position:fixed;left:0;top:0;height:3px;width:0;background:linear-gradient(90deg,var(--blue),#7bb2ff);z-index:1200;transition:width .18s ease}
+    .topbar{position:fixed;z-index:1100;top:12px;left:50%;transform:translateX(-50%);width:min(1240px,calc(100% - 28px));height:58px;padding:8px 10px 8px 16px;display:flex;align-items:center;gap:14px;border:1px solid rgba(229,232,235,.88);border-radius:21px;background:rgba(255,255,255,.84);backdrop-filter:blur(18px) saturate(160%);box-shadow:0 10px 38px rgba(25,31,40,.07)}
+    .brand{display:flex;align-items:center;gap:10px;min-width:0;font-size:13px;font-weight:850;white-space:nowrap}
+    .brand-mark{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;color:#fff;background:linear-gradient(145deg,#5ca2ff,var(--blue-strong));box-shadow:0 8px 18px rgba(49,130,246,.25)}
+    .brand-mark svg{width:18px}
+    .brand span:last-child{overflow:hidden;text-overflow:ellipsis}
+    .topbar-center{margin-left:auto;display:flex;align-items:center;gap:10px;color:var(--muted);font-size:12px;font-weight:800}
+    .slide-counter{min-width:66px;text-align:center;font-variant-numeric:tabular-nums}
+    .top-actions{display:flex;gap:6px}
+    .icon-btn,.nav-btn{appearance:none;border:0;cursor:pointer;display:grid;place-items:center;color:var(--ink-2);background:var(--surface);transition:.2s ease}
+    .icon-btn{width:40px;height:40px;border-radius:13px}
+    .icon-btn:hover,.nav-btn:hover{transform:translateY(-1px);background:var(--blue-soft);color:var(--blue)}
+    .icon-btn svg,.nav-btn svg{width:19px;height:19px}
+    .slide{position:relative;max-width:100%;min-height:100svh;padding:94px 0 36px;display:grid;align-items:center;scroll-snap-align:start;scroll-snap-stop:always;overflow:hidden}
+    .slide::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 88% 10%,rgba(49,130,246,.09),transparent 25rem),radial-gradient(circle at 4% 85%,rgba(223,255,106,.10),transparent 22rem)}
+    .slide-inner{position:relative;z-index:2;width:min(var(--max),calc(100% - 40px));max-width:calc(100% - 40px);min-width:0;margin:0 auto}
+    .tone-soft{background:var(--surface)}
+    .tone-dark{color:#fff;background:radial-gradient(circle at 12% 20%,rgba(49,130,246,.28),transparent 28rem),linear-gradient(145deg,#202630,#10141a)}
+    .tone-dark::before{background:radial-gradient(circle at 90% 10%,rgba(49,130,246,.25),transparent 24rem)}
+    .eyebrow,.section-kicker{display:inline-flex;align-items:center;gap:8px;color:var(--blue-strong);font-size:13px;font-weight:900;letter-spacing:.03em}
+    .eyebrow{padding:7px 12px;border-radius:999px;background:var(--blue-soft)}
+    .eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 5px rgba(49,130,246,.12)}
+    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+    .hero h1{max-width:720px;margin:19px 0 22px;font-size:clamp(38px,4.3vw,var(--hero-max));line-height:1.08;letter-spacing:-.055em;font-weight:900;text-wrap:balance;overflow-wrap:anywhere}
+    .hero h1 .blue{color:var(--blue)}
+    .marker{position:relative;z-index:0;white-space:nowrap}
+    .marker::after{content:"";position:absolute;left:-.03em;right:-.03em;bottom:.08em;height:.34em;border-radius:.12em;background:var(--highlight);transform:rotate(-1deg);z-index:-1}
+    .hero-lead{max-width:690px;margin-bottom:22px;color:var(--muted);font-size:clamp(17px,1.6vw,21px);font-weight:620}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:8px 13px;align-items:center;color:var(--muted-2);font-size:12px;font-weight:800}
+    .version-badge{padding:6px 10px;border-radius:999px;color:var(--blue-strong);background:var(--blue-soft);border:1px solid rgba(49,130,246,.18)}
+    .summary-panel{padding:22px;border:1px solid var(--line);border-radius:36px;background:rgba(255,255,255,.94);box-shadow:var(--shadow-md)}
+    .summary-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+    .summary-top strong{font-size:13px} .summary-top span{padding:5px 8px;border-radius:999px;color:#277157;background:var(--mint);font-size:10px;font-weight:900}
+    .summary-thesis{padding:22px;border-radius:25px;color:#fff;background:linear-gradient(145deg,#216ddd,#3182f6 60%,#5a9cff)}
+    .summary-thesis span{display:block;margin-bottom:8px;color:rgba(255,255,255,.72);font-size:10px;font-weight:900;letter-spacing:.06em}
+    .summary-thesis strong{display:block;font-size:22px;line-height:1.4;letter-spacing:-.04em}
+    .summary-choices{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px}
+    .choice{min-height:127px;padding:15px;border:1px solid var(--line);border-radius:19px;background:var(--surface)}
+    .choice b{display:inline-grid;place-items:center;width:28px;height:28px;margin-bottom:12px;border-radius:9px;color:var(--blue);background:var(--blue-soft);font-size:11px}
+    .choice strong{display:block;margin-bottom:5px;font-size:14px} .choice p{margin:0;color:var(--muted);font-size:11px;font-weight:650;line-height:1.5}
+    .summary-bottom{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:18px}
+    .summary-stat{padding:16px 18px;border:1px solid var(--line);border-radius:19px;background:#fff}
+    .summary-stat strong{display:block;color:var(--blue);font-size:22px} .summary-stat span{color:var(--muted);font-size:12px;font-weight:750}
+    .case-grid{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(360px,.94fr);gap:42px;align-items:center}
+    .photo-card{margin:0;min-width:0}
+    .photo-frame{position:relative;aspect-ratio:4/3;overflow:hidden;border:1px solid rgba(229,232,235,.7);border-radius:34px;background:var(--surface-2);box-shadow:var(--shadow-md)}
+    .photo-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;transition:transform .55s ease}
+    .photo-frame:hover img{transform:scale(1.018)}
+    .photo-fallback{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;background:linear-gradient(145deg,#e8f3ff,#fff)}
+    .photo-fallback span{font-size:74px;font-weight:950;line-height:1;color:rgba(49,130,246,.15)} .photo-fallback strong{font-size:21px;color:var(--blue-strong)}
+    .fallback-letterpress .photo-fallback,.fallback-metal .photo-fallback{color:#fff;background:linear-gradient(145deg,#2b323d,#0e1116)}
+    .fallback-holo .photo-fallback{background:linear-gradient(135deg,#dffbf2,#eee9ff 40%,#fff184 72%,#e8f3ff)}
+    .fallback-transparent .photo-fallback{background:linear-gradient(145deg,rgba(255,255,255,.55),rgba(232,243,255,.75)),repeating-linear-gradient(45deg,#e8f3ff 0 10px,#fff 10px 20px)}
+    .fallback-diecut .photo-fallback{background:radial-gradient(circle at 90% 42%,#fff 0 46px,transparent 47px),linear-gradient(145deg,#fff,#e8f3ff)}
+    .fallback-cotton .photo-fallback{background:linear-gradient(145deg,#faf9f4,#fff)}
+    .photo-card figcaption{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:11px;color:var(--muted-2);font-size:11px;font-weight:700}
+    .photo-card figcaption a{color:var(--blue-strong);font-weight:850}
+    .tone-dark .photo-card figcaption{color:rgba(255,255,255,.56)} .tone-dark .photo-card figcaption a{color:#9bc6ff}
+    .case-copy{min-width:0}
+    .case-topline{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:10px;color:var(--blue);font-size:11px;font-weight:900;letter-spacing:.07em}
+    .case-topline b{color:var(--muted-2);font-variant-numeric:tabular-nums}
+    .tone-dark .case-topline{color:#83b8ff} .tone-dark .case-topline b{color:rgba(255,255,255,.48)}
+    .case-copy h2{max-width:620px;margin-bottom:12px;font-size:clamp(29px,3vw,var(--section-max));line-height:1.17;letter-spacing:-.05em;font-weight:900;text-wrap:balance}
+    .case-lead{margin-bottom:17px;color:var(--muted);font-size:15px;font-weight:620}
+    .tone-dark .case-lead{color:rgba(255,255,255,.66)}
+    .spec-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+    .spec-row>div{min-height:78px;padding:12px 13px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.86)}
+    .spec-row span{display:block;margin-bottom:5px;color:var(--muted-2);font-size:9px;font-weight:900;letter-spacing:.05em}
+    .spec-row strong{display:block;color:var(--ink-2);font-size:12px;line-height:1.45}
+    .tone-dark .spec-row>div{border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.07)} .tone-dark .spec-row span{color:rgba(255,255,255,.48)} .tone-dark .spec-row strong{color:#fff}
+    .price-card{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 16px;border:1px solid rgba(49,130,246,.22);border-radius:18px;background:var(--blue-soft);transition:.2s ease}
+    .price-card:hover{transform:translateY(-2px);box-shadow:0 12px 25px rgba(49,130,246,.12)}
+    .price-card span,.price-card small{display:block;color:var(--muted);font-size:9px;font-weight:750} .price-card strong{display:block;margin:2px 0;color:var(--blue-strong);font-size:20px} .price-card em{font-style:normal;color:var(--blue-strong);font-size:11px;font-weight:900;white-space:nowrap}
+    .tone-dark .price-card{border-color:rgba(125,181,255,.3);background:rgba(49,130,246,.16)} .tone-dark .price-card span,.tone-dark .price-card small{color:rgba(255,255,255,.54)} .tone-dark .price-card strong,.tone-dark .price-card em{color:#a9d0ff}
+    .mini-compare{display:grid;grid-template-columns:1.1fr .9fr .9fr;gap:8px;margin-top:10px}
+    .mini-compare article{padding:12px;border:1px solid var(--line);border-radius:15px;background:rgba(255,255,255,.84)}
+    .mini-compare article span{display:block;margin-bottom:5px;color:var(--blue);font-size:9px;font-weight:900} .mini-compare article p{margin:0;color:var(--ink-2);font-size:11px;font-weight:650;line-height:1.45}
+    .mini-compare article.watch span{color:#9b6b00}
+    .tone-dark .mini-compare article{border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.06)} .tone-dark .mini-compare article p{color:rgba(255,255,255,.75)}
+    .fit-note{display:grid;grid-template-columns:105px 1fr;gap:12px;align-items:start;margin-top:10px;padding:12px 14px;border-radius:16px;background:rgba(223,255,106,.34)}
+    .fit-note span{color:#526500;font-size:10px;font-weight:950} .fit-note p{margin:0;color:var(--ink-2);font-size:12px;font-weight:750}
+    .tone-dark .fit-note{background:rgba(223,255,106,.15)} .tone-dark .fit-note span{color:#eaff9d} .tone-dark .fit-note p{color:#fff}
+    .score-row{display:flex;align-items:center;gap:16px;margin-top:10px;color:var(--muted-2)}
+    .score-row>div{display:flex;align-items:center;gap:6px} .score-row span{font-size:9px;font-weight:850} .score-row small{margin-left:auto;font-size:9px}
+    .score-dots{display:flex;gap:3px} .score-dots i{width:6px;height:6px;border-radius:50%;background:var(--line)} .score-dots i.on{background:var(--blue)}
+    .tone-dark .score-row{color:rgba(255,255,255,.48)} .tone-dark .score-dots i{background:rgba(255,255,255,.16)} .tone-dark .score-dots i.on{background:#83b8ff}
+    .concept-grid{display:grid;grid-template-columns:.98fr 1.02fr;gap:56px;align-items:center}
+    .concept-copy .section-kicker{margin-bottom:12px} .concept-copy h2{max-width:610px;margin-bottom:14px;font-size:clamp(31px,3.3vw,var(--section-max));line-height:1.16;letter-spacing:-.05em;font-weight:900;text-wrap:balance}
+    .concept-copy>p{max-width:650px;margin-bottom:22px;color:var(--muted);font-size:17px;font-weight:620}
+    .concept-tag{display:inline-flex;padding:6px 10px;margin-bottom:10px;border-radius:999px;color:var(--blue-strong);background:var(--blue-soft);font-size:11px;font-weight:900}
+    .concept-specs{display:grid;gap:9px}
+    .concept-specs div{display:grid;grid-template-columns:88px 1fr;gap:14px;padding:12px 14px;border:1px solid var(--line);border-radius:15px;background:#fff}
+    .concept-specs span{color:var(--muted-2);font-size:11px;font-weight:850} .concept-specs strong{font-size:13px;color:var(--ink-2)}
+    .decision{margin-top:12px;padding:15px 17px;border-radius:17px;background:var(--yellow);color:#5c5100;font-size:13px;font-weight:800}
+    .mock-stage{position:relative;min-height:520px;display:grid;place-items:center;perspective:1200px}
+    .mock-stage::before{content:"";position:absolute;width:460px;height:460px;border:1px dashed rgba(49,130,246,.22);border-radius:50%}
+    .business-card{position:absolute;width:min(470px,85vw);aspect-ratio:1.8/1;padding:34px;border-radius:22px;box-shadow:0 36px 80px rgba(25,31,40,.24);overflow:hidden}
+    .card-front{transform:rotate(-7deg) translate(-18px,-48px)} .card-back{transform:rotate(6deg) translate(32px,74px)}
+    .blue-edge{color:var(--ink);background:#fff;border:1px solid #e8eaed;box-shadow:0 8px 0 #3182f6,0 38px 80px rgba(25,31,40,.22)}
+    .blue-edge::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 20%,rgba(49,130,246,.09),transparent 32%)}
+    .card-logo{position:relative;z-index:2;display:flex;align-items:center;gap:10px;font-size:12px;font-weight:950;letter-spacing:.06em}
+    .card-logo i{width:23px;height:23px;border-radius:8px;background:linear-gradient(145deg,#5ca2ff,#1b64da)}
+    .card-name{position:relative;z-index:2;margin-top:70px;font-size:30px;font-weight:950;letter-spacing:-.045em} .card-role{position:relative;z-index:2;color:var(--muted);font-size:13px;font-weight:750}
+    .back-blue{color:#fff;background:linear-gradient(145deg,#216ddd,#3182f6 60%,#5a9cff)}
+    .back-blue .card-quote{max-width:300px;margin:34px 0 18px;font-size:23px;line-height:1.38;font-weight:900;letter-spacing:-.04em}
+    .back-blue small{color:rgba(255,255,255,.72);font-weight:750}
+    .back-blue .qr{position:absolute;right:30px;bottom:28px;width:78px}
+    .black-card{color:#fff;background:#15191f;border:1px solid rgba(255,255,255,.08)}
+    .black-card::before{content:"";position:absolute;inset:-20%;background:repeating-radial-gradient(ellipse at 20% 40%,transparent 0 14px,rgba(255,255,255,.06) 15px 17px,transparent 18px 30px);transform:rotate(-12deg)}
+    .black-card .card-logo,.black-card .card-name,.black-card .card-role{position:relative;z-index:2} .black-card .card-role{color:rgba(255,255,255,.55)}
+    .foil{color:#e8edf4;text-shadow:0 1px 0 #fff,0 -1px 0 #858f9b}
+    .black-back{background:#15191f;color:#fff;border:1px solid rgba(255,255,255,.08)} .black-back .card-quote{margin-top:56px;font-size:24px;font-weight:850;line-height:1.4} .black-back .qr{position:absolute;right:30px;bottom:28px;width:75px;filter:invert(1)}
+    .glass-card{color:var(--ink);background:linear-gradient(145deg,rgba(255,255,255,.68),rgba(232,243,255,.38));border:1px solid rgba(255,255,255,.82);backdrop-filter:blur(14px);box-shadow:0 30px 80px rgba(49,130,246,.22)}
+    .glass-card::before{content:"";position:absolute;inset:-20%;background:conic-gradient(from 90deg,rgba(49,130,246,.08),rgba(223,255,106,.24),rgba(238,233,255,.45),rgba(49,130,246,.08));filter:blur(24px)}
+    .glass-card .node{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 6px rgba(49,130,246,.12)}
+    .glass-card .node.n1{right:64px;top:44px} .glass-card .node.n2{right:142px;top:108px} .glass-card .node.n3{right:76px;bottom:68px}
+    .glass-card .line{position:absolute;height:2px;background:rgba(49,130,246,.38);transform-origin:left center} .glass-card .line.l1{right:70px;top:50px;width:105px;transform:rotate(141deg)} .glass-card .line.l2{right:137px;top:114px;width:93px;transform:rotate(48deg)}
+    .glass-back{color:#fff;background:linear-gradient(135deg,rgba(49,130,246,.88),rgba(27,100,218,.84));backdrop-filter:blur(14px)} .glass-back .card-quote{max-width:290px;margin-top:42px;font-size:23px;font-weight:900;line-height:1.35} .glass-back .qr{position:absolute;right:30px;bottom:28px;width:76px}
+    .order-layout{display:grid;grid-template-columns:.82fr 1.18fr;gap:34px;align-items:stretch}
+    .order-summary{padding:34px;border-radius:34px;color:#fff;background:linear-gradient(145deg,#216ddd,#3182f6 58%,#5a9cff);box-shadow:var(--shadow-md)}
+    .order-summary .section-kicker{color:rgba(255,255,255,.7)} .order-summary h2{margin:12px 0 18px;font-size:clamp(31px,3vw,var(--section-max));line-height:1.18;letter-spacing:-.05em}
+    .order-summary>p{color:rgba(255,255,255,.74);font-weight:650}
+    .bundle{display:grid;gap:10px;margin-top:24px}
+    .bundle div{display:grid;grid-template-columns:44px 1fr;gap:12px;padding:14px;border:1px solid rgba(255,255,255,.18);border-radius:16px;background:rgba(255,255,255,.1)}
+    .bundle b{width:44px;height:44px;display:grid;place-items:center;border-radius:13px;color:var(--blue-strong);background:#fff;font-size:12px} .bundle strong{display:block;color:#fff;font-size:15px} .bundle span{display:block;color:rgba(255,255,255,.65);font-size:12px}
+    .brief-card{padding:30px;border:1px solid var(--line);border-radius:34px;background:#fff;box-shadow:var(--shadow-sm)}
+    .brief-card h3{margin-bottom:18px;font-size:24px;letter-spacing:-.04em}
+    .brief-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .brief-item{padding:14px;border-radius:16px;background:var(--surface)} .brief-item span{display:block;margin-bottom:5px;color:var(--muted-2);font-size:10px;font-weight:900} .brief-item strong{display:block;font-size:13px;color:var(--ink-2)}
+    .brief-message{margin-top:12px;padding:16px;border:1px solid rgba(49,130,246,.2);border-radius:17px;background:var(--blue-soft);font-size:12px;font-weight:750;color:var(--ink-2)}
+    .brief-message code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--blue-strong)}
+    .source-slide .slide-inner{width:min(1080px,calc(100% - 40px));max-width:calc(100% - 40px);min-width:0}
+    .source-head{min-width:0;display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:22px} .source-head h2{margin:8px 0 0;font-size:clamp(30px,3vw,var(--section-max));letter-spacing:-.05em} .source-head p{width:min(480px,100%);max-width:100%;margin:0;color:var(--muted);font-size:13px;font-weight:650}
+    .source-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .source-link{padding:15px 17px;border:1px solid var(--line);border-radius:17px;background:#fff;transition:.2s ease} .source-link:hover{transform:translateY(-2px);border-color:rgba(49,130,246,.28);background:var(--blue-soft)}
+    .source-link span{display:block;margin-bottom:4px;color:var(--muted-2);font-size:9px;font-weight:900;letter-spacing:.04em} .source-link strong{display:block;font-size:13px} .source-link small{display:block;margin-top:3px;color:var(--muted);font-size:10px}
+    .history-wrap{width:100%;max-width:100%;overflow-x:auto;border:1px solid var(--line);border-radius:20px;background:#fff}
+    .history-table{width:100%;min-width:760px;border-collapse:collapse;font-size:12px} .history-table th,.history-table td{padding:14px 15px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)} .history-table th{color:var(--muted);background:var(--surface);font-size:10px;white-space:nowrap} .history-table tr:last-child td{border-bottom:0}
+    .method-note{margin-top:14px;padding:16px 18px;border-radius:17px;background:#fff8ce;border:1px solid #f4e28e;color:#635300;font-size:12px;font-weight:750}
+    .nav-controls{position:fixed;z-index:1050;right:18px;bottom:18px;display:flex;gap:8px}
+    .nav-btn{width:48px;height:48px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.9);box-shadow:var(--shadow-sm);backdrop-filter:blur(12px)}
+    .slide-label{position:absolute;left:26px;bottom:18px;z-index:3;color:var(--muted-2);font-size:10px;font-weight:800;letter-spacing:.06em}
+    .tone-dark .slide-label{color:rgba(255,255,255,.35)}
+    .reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease} .reveal.visible{opacity:1;transform:none}
+    @media(max-width:1040px){
+      .slide{align-items:start;padding-top:92px;overflow:visible}
+      .hero-grid,.case-grid,.concept-grid,.order-layout{grid-template-columns:1fr;gap:26px}
+      .hero h1{max-width:880px} .hero-grid{padding-bottom:24px}
+      .summary-panel{max-width:720px}
+      .photo-frame{max-height:480px} .case-copy{padding-bottom:18px}
+      .concept-grid{padding-bottom:20px} .mock-stage{order:-1;min-height:470px}
+      .business-card{width:min(430px,82vw)}
+    }
+    @media(max-width:720px){
+      html{scroll-snap-type:y proximity}
+      .topbar{top:8px;width:calc(100% - 16px);height:54px;padding-left:10px;border-radius:18px}
+      .brand span:last-child{max-width:146px} .topbar-center>span:not(.slide-counter){display:none} .icon-btn#printBtn{display:none}
+      .slide{min-height:100svh;padding:82px 0 72px}
+      .slide-inner{width:calc(100% - 26px);max-width:calc(100% - 26px);min-width:0}
+      .hero h1{font-size:38px} .hero-lead{font-size:17px}
+      .summary-choices,.summary-bottom{grid-template-columns:1fr 1fr} .summary-bottom .summary-stat:last-child{grid-column:1/-1}
+      .case-grid{gap:20px} .photo-frame{border-radius:25px} .photo-card figcaption{align-items:flex-start;flex-direction:column;gap:4px}
+      .case-copy h2{font-size:32px} .case-lead{font-size:14px}
+      .spec-row{grid-template-columns:1fr 1fr} .spec-row>div:last-child{grid-column:1/-1}
+      .mini-compare{grid-template-columns:1fr} .fit-note{grid-template-columns:1fr;gap:4px}
+      .score-row{flex-wrap:wrap;gap:8px 12px} .score-row small{width:100%;margin-left:0}
+      .mock-stage{min-height:400px;overflow:clip} .mock-stage::before{width:300px;height:300px} .business-card{width:min(310px,82vw);padding:24px;border-radius:18px}
+      .card-front{transform:rotate(-6deg) translate(-8px,-40px)} .card-back{transform:rotate(5deg) translate(16px,58px)} .card-name{margin-top:44px;font-size:24px} .back-blue .card-quote,.black-back .card-quote,.glass-back .card-quote{font-size:18px}
+      .back-blue .qr,.black-back .qr,.glass-back .qr{width:58px;right:20px;bottom:18px}
+      .concept-copy h2,.order-summary h2,.source-head h2{font-size:32px}
+      .concept-copy>p{font-size:16px} .concept-specs div{grid-template-columns:74px 1fr}
+      .brief-list,.source-grid{grid-template-columns:1fr}
+      .source-head{align-items:flex-start;flex-direction:column}
+      .nav-controls{right:10px;bottom:10px} .nav-btn{width:44px;height:44px}
+      .slide-label{left:14px;bottom:18px}
+    }
+    @media(max-height:760px) and (min-width:1041px){
+      .slide{padding-top:80px;padding-bottom:22px}
+      .photo-frame{max-height:510px} .case-copy h2{font-size:34px} .case-lead{font-size:14px;margin-bottom:12px}
+      .spec-row>div{min-height:70px;padding:10px 12px} .price-card{padding:11px 14px} .mini-compare article{padding:10px} .fit-note{padding:10px 12px}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+    @media print{
+      @page{size:A4 landscape;margin:9mm}
+      html{scroll-snap-type:none} body{background:#fff;color:#000}
+      .topbar,.progress,.nav-controls{display:none!important}
+      .slide{min-height:0;height:185mm;padding:8mm 0;display:block;overflow:hidden;page-break-after:always;break-after:page}
+      .slide:last-of-type{page-break-after:auto}
+      .slide-inner{width:100%;max-width:none}
+      .tone-dark{color:#000!important;background:#fff!important;border-top:2px solid var(--blue)}
+      .tone-dark .case-lead,.tone-dark .photo-card figcaption,.tone-dark .score-row{color:#555!important}
+      .tone-dark .case-topline,.tone-dark .price-card strong,.tone-dark .price-card em{color:var(--blue-strong)!important}
+      .tone-dark .spec-row>div,.tone-dark .mini-compare article{border:1px solid #ddd;background:#fff!important}
+      .tone-dark .spec-row strong,.tone-dark .mini-compare article p,.tone-dark .fit-note p{color:#111!important}
+      .photo-frame,.summary-panel,.business-card,.order-summary{box-shadow:none!important}
+      .reveal{opacity:1!important;transform:none!important}
+      a{text-decoration:none}
+    }
+  </style>
+</head>
+<body data-report-cover="assets/thumbnail.jpg" data-report-cover-alt="파란색 컬러 심이 보이는 흰색 명함 사례">
+  <div class="progress" id="progress"></div>
+  <header class="topbar" aria-label="슬라이드 도구 모음">
+    <a class="brand" href="#summary" aria-label="첫 슬라이드로 이동">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="6" width="16" height="12" rx="2.5" stroke="currentColor" stroke-width="2"/><path d="M8 10h5M8 14h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      <span>개인 명함 디자인 벤치마크와 시안</span>
+    </a>
+    <div class="topbar-center"><span>← → 키로 이동</span><span class="slide-counter" id="slideCounter">01 / 18</span></div>
+    <div class="top-actions">
+      <button class="icon-btn" id="printBtn" type="button" aria-label="PDF로 저장"><svg viewBox="0 0 24 24" fill="none"><path d="M7 9V4h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-width="1.8"/><path d="M7 14h10v6H7z" stroke="currentColor" stroke-width="1.8"/></svg></button>
+      <button class="icon-btn" id="fullBtn" type="button" aria-label="전체 화면 전환"><svg viewBox="0 0 24 24" fill="none"><path d="M8 4H4v4M16 4h4v4M20 16v4h-4M4 16v4h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </header>
+
+  <main id="deck">
+    <section class="slide hero" id="summary" aria-labelledby="hero-title">
+      <div class="slide-inner">
+        <div class="hero-grid">
+          <div class="hero-copy reveal">
+            <div class="eyebrow"><i></i>개인 명함 구매·디자인 의사결정</div>
+            <h1 id="hero-title">나의 첫 명함은<br><span class="blue">화이트 + 블루 엣지</span>,<br>중요한 만남에는 <span class="marker">NFC 1장</span></h1>
+            <p class="hero-lead">실물 명함 10종을 사진·재질·가공·가격으로 비교했습니다. AI Builders Lab에는 과한 모양보다 <strong>표준 규격, 촉각, 브랜드 블루, 디지털 연결</strong>의 조합이 가장 오래 갑니다.</p>
+            <div class="hero-meta" aria-label="보고서 메타데이터"><span class="version-badge" id="reportVersion">v1.0.0</span><span id="reportUpdated">Updated 2026.08.28</span><span id="reportGeneration">AI-assisted · Human review recommended</span></div>
+            <div class="summary-bottom" aria-label="보고서 범위">
+              <div class="summary-stat"><strong>10종</strong><span>실물 사례·대표 가격</span></div>
+              <div class="summary-stat"><strong>3안</strong><span>개인 맞춤 시안</span></div>
+              <div class="summary-stat"><strong>2단</strong><span>종이 100장 + NFC 1장</span></div>
+            </div>
+          </div>
+          <aside class="summary-panel reveal" aria-label="한 페이지 핵심 요약">
+            <div class="summary-top"><strong>EXECUTIVE SNAPSHOT</strong><span>DECISION READY</span></div>
+            <div class="summary-thesis"><span>ONE-LINE RECOMMENDATION</span><strong>배포용은 ‘Builder Blue Edge’, 프리미엄 미팅은 금속 NFC를 보조 카드로 사용합니다.</strong></div>
+            <div class="summary-choices">
+              <article class="choice"><b>01</b><strong>가장 균형 좋음</strong><p>표준형 화이트 합지 + Toss Blue 엣지 + 후면 QR</p></article>
+              <article class="choice"><b>02</b><strong>가장 고급스러움</strong><p>검정 쿠션지 + 블라인드 압인 + 은박</p></article>
+              <article class="choice"><b>03</b><strong>가장 AI답게 보임</strong><p>반투명 PET + 백색 네트워크 그래픽</p></article>
+              <article class="choice"><b>04</b><strong>가장 디지털 친화적</strong><p>금속 NFC 1장 + QR 백업</p></article>
+            </div>
+          </aside>
+        </div>
+      </div>
+      <div class="slide-label">01 · ONE-PAGE SUMMARY</div>
+    </section>
+
+
+<section class="slide case-slide tone-light" id="case-01" aria-labelledby="case-01-title">
+  <div class="slide-inner case-grid">
+    <figure class="photo-card reveal">
+      <div class="photo-frame fallback-edge">
+        <div class="photo-fallback" aria-hidden="true"><span>01</span><strong>LUXE PAPER</strong></div>
+        <img src="https://mlyx2uz0zaat.i.optimole.com/cb%3AtThl.5002c/w%3A1176/h%3A540/q%3A90/rt%3Afill/g%3Ace/f%3Abest/https%3A//www.moo.com/blog/wp-content/uploads/sites/2/2022/01/melanie-martin-luxe-business-card-designs-hero.jpg" alt="파란색 컬러 심이 보이는 두꺼운 흰색 명함 여러 장" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+      </div>
+      <figcaption><span>Photo · MOO / Melanie Martin case</span><a href="https://www.moo.com/blog/inspiration/luxe-business-card-designs" target="_blank" rel="noopener noreferrer">사진 출처 보기 ↗</a></figcaption>
+    </figure>
+    <div class="case-copy reveal">
+      <div class="case-topline"><span>LUXE PAPER · COLOR SEAM</span><b>01 / 10</b></div>
+      <h2 id="case-01-title">색 한 줄만으로도 브랜드가 기억되는 4겹 합지</h2>
+      <p class="case-lead">독일의 아트디렉터 Melanie Martin 사례처럼, 정보는 절제하고 카드 옆면의 컬러를 브랜드 서명처럼 쓰는 방식입니다.</p>
+      <div class="spec-row" aria-label="재질과 사양">
+        <div><span>재질</span><strong>32pt · 4겹 Mohawk Superfine</strong></div>
+        <div><span>가공</span><strong>8가지 컬러 심 · 비코팅</strong></div>
+        <div><span>규격</span><strong>표준 지갑 규격</strong></div>
+      </div>
+      <a class="price-card" href="https://www.moo.com/us/business-cards/luxe" target="_blank" rel="noopener noreferrer">
+        <div><span>대표 가격 · 2026.08.28 확인</span><strong>50장 US$43부터</strong><small>미국 MOO 표시가 · 배송·세금 별도 가능</small></div><em>공식 사양 ↗</em>
+      </a>
+      <div class="mini-compare">
+        <article><span>왜 기억되는가</span><p>색을 면 전체에 쓰지 않고 옆면에만 숨겨 두어, 꺼내는 순간 작은 반전이 생깁니다.</p></article>
+        <article><span>장점</span><p>정돈된 전문성, 필기 가능, 휴대성 우수</p></article>
+        <article class="watch"><span>주의</span><p>두꺼운 종이 특성상 일반 명함보다 부피가 큼</p></article>
+      </div>
+      <div class="fit-note"><span>나에게 적용하면</span><p>가장 추천. Toss Blue 컬러 심과 최소 정보만으로 AI Builders Lab의 신뢰감과 개성을 동시에 만들 수 있습니다.</p></div>
+      <div class="score-row" aria-label="보고서 평가 점수">
+        <div><span>기억성</span><b class="score-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></b></div>
+        <div><span>실용성</span><b class="score-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></b></div>
+        <div><span>가격 효율</span><b class="score-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></b></div>
+        <small>보고서 판단 · 5점 척도</small>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="slide case-slide tone-dark" id="case-02" aria-labelledby="case-02-title">
+  <div class="slide-inner case-grid">
+    <figure class="photo-card reveal">
+      <div class="photo-frame fallback-letterpress">
+        <div class="photo-fallback" aria-hidden="true"><span>02</span><strong>LETTERPRESS</strong></div>
+        <img src="https://cdn.imweb.me/thumbnail/20200107/e674f6a2f8cb5.jpg" alt="검정 종이에 물결무늬가 깊게 눌리고 은색 글자가 인쇄된 명함" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+      </div>
+      <figcaption><span>Photo · PRINT89 / Kim Jung Hoon card</span><a href="https://www.print89.com/ChandlerPrice10x15Foilinfo" target="_blank" rel="noopener noreferrer">사진 출처 보기 ↗</a></figcaption>
+    </figure>
+    <div class="case-copy reveal">
+      <div class="case-topline"><span>LETTERPRESS · BLACK STOCK</span><b>02 / 10</b></div>
+      <h2 id="case-02-title">손끝에서 먼저 느껴지는 검정 레터프레스</h2>
+      <p class="case-lead">검정 쿠션지에 파형을 깊게 누르고 은박 텍스트를 얹은 국내 포트폴리오 사례입니다. 화면에서는 재현하기 어려운 물성이 핵심입니다.</p>
+      <div class="spec-row" aria-label="재질과 사양">
+        <div><span>재질</span><strong>쿠션지 490g / 600g</strong></div>
+        <div><span>가공</span><strong>깊은 눌림 · 은박 또는 금박</strong></div>
+        <div><span>규격</span><strong>주문 제작</strong></div>
+      </div>
+      <a class="price-card" href="https://woderdesign.com/product/%EC%BF%A0%EC%85%98%EC%A7%80-%EB%A0%88%ED%84%B0%ED%94%84%EB%A0%88%EC%8A%A4-%EB%AA%85%ED%95%A8-100%EB%A7%A4/809/" target="_blank" rel="noopener noreferrer">
+        <div><span>대표 가격 · 2026.08.28 확인</span><strong>100장 ₩145,000부터</strong><small>우더디자인 기준 · 박 후가공 선택 시 추가</small></div><em>공식 사양 ↗</em>
+      </a>
+      <div class="mini-compare">
+        <article><span>왜 기억되는가</span><p>검정과 음각의 조합은 빛보다 그림자로 읽힙니다. 상대가 명함을 만져 보게 만드는 디자인입니다.</p></article>
+        <article><span>장점</span><p>고급감 최고, 강의·컨설팅 계약 미팅에 강함</p></article>
+        <article class="watch"><span>주의</span><p>작은 글자는 뭉개질 수 있고 제작 기간이 길며 단가가 높음</p></article>
+      </div>
+      <div class="fit-note"><span>나에게 적용하면</span><p>프리미엄 코칭·컨설팅 전용 세컨드 명함으로 적합합니다. 일상 배포용보다는 VIP 미팅용이 좋습니다.</p></div>
+      <div class="score-row" aria-label="보고서 평가 점수">
+        <div><span>기억성</span><b class="score-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></b></div>
+        <div><span>실용성</span><b class="score-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></b></div>
+        <div><span>가격 효율</span><b class="score-dots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></b></div>
+        <small>보고서 판단 · 5점 척도</small>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="slide case-slide tone-light" id="case-03" aria-labelledby="case-03-title">
+  <div class="slide-inner case-grid">
+    <figure class="photo-card reveal">
+      <div class="photo-frame fallback-emboss">
+        <div class="photo-fallback" aria-hidden="true"><span>03</span><strong>BLIND EMBOSS</strong></div>
+        <img src="https://www.rockdesign.com/cache/upload/template/e/c/675-450/crop/emboss-business-card-1.jpg" alt="흰색 종이에 큰 영문 글자가 잉크 없이 입체적으로 압인된 명함" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+      </div>
+      <figcaption><span>Photo · RockDesign blind emboss template</span><a href="https://www.rockdesign.com/business-card-templates/minimalist-blind-emboss-premium-white-business-card-the-canary" target="_blank" rel="noopener noreferrer">사진 출처 보기 ↗</a></figcaption>
+    </figure>
+    <div class="case-copy reveal">
+      <div class="case-topline"><span>BLIND EMBOSS · NO INK</span><b>03 / 10</b></div>
+      <h2 id="case-03-title">잉크 없이 빛과 그림자만 남기는 블라인드 엠보싱</h2>
+      <p class="case-lead">흰 종이 위에 색을 더하지 않고 글자 자체를 입체화합니다. “조용하지만 비싼” 인상을 주는 대표적인 미니멀 방식입니다.</p>
+      <div class="spec-row" aria-label="재질과 사양">
+        <div><span>재질</span><strong>두꺼운 비코팅 백색지</strong></div>
+        <div><span>가공</span><strong>무잉크 압인 · 음각/양각</strong></div>
+        <div><span>규격</span><strong>표준 또는 세로형</strong></div>
+      </div>
+      <a class="price-card" href="https://www.moo.com/us/business-cards/letterpress" target="_blank" rel="noopener noreferrer">
+        <div><span>대표 가격 · 2026.08.28 확인</span><strong>50장 US$60부터</strong><small>MOO 32pt 레터프레스 비교가 · 완전 커스텀은 견적형</small></div><em>공식 사양 ↗</em>
+      </a>
+      <div class="mini-compare">
+        <article><span>왜 기억되는가</span><p>정면에서는 절제돼 보이고, 기울이면 글자가 나타납니다. 관찰을 유도하는 느린 인상입니다.</p></article>
+        <article><span>장점</span><p>세련됨, 촉각 경험, 흰색 브랜드와 궁합</p></article>
+        <article class="watch"><span>주의</span><p>저조도에서는 연락처 가독성이 떨어질 수 있어 검정 인쇄를 일부 병행하는 편이 안전</p></article>
+      </div>
+      <div class="fit-note"><span>나에게 적용하면</span><p>앞면에는 JEREMY LEE만 압인하고, 뒷면에 검정 텍스트와 QR을 두면 미니멀함과 실용성을 함께 잡을 수 있습니다.</p></div>
+      <div class="score-row" aria-label="보고서 평가 점수">
+        <div><span>기억성</span><b class="score-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></b></div>
+        <div><span>실용성</span><b class="score-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></b></div>
+        <div><span>가격 효율</span><b class="score-dots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></b></div>
+        <small>보고서 판단 · 5점 척도</small>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="slide case-slide tone-soft" id="case-04" aria-labelledby="case-04-title">
+  <div class="slide-inner case-grid">
+    <figure class="photo-card reveal">
+      <div class="photo-frame fallback-transparent">
+        <div class="photo-fallback" aria-hidden="true"><span>04</span><strong>TRANSPARENT HYBRID</strong></div>
+        <img src="https://ecimg.cafe24img.com/pg1428b35391874055/mhseeadm/file_data/9ef45f57679d7481d17a37f155f53933.jpg" alt="파란 배경 위에 놓인 반투명 플라스틱 명함 세 장" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+      </div>
+      <figcaption><span>Photo · 명함씨 transparent hybrid portfolio</span><a href="https://mhsee.com/product/%ED%88%AC%EB%AA%85%ED%95%98%EC%9D%B4%EB%B8%8C%EB%A6%AC%EB%93%9C-m/838/category/1/display/10/?icid=MAIN.product_listmain_9" target="_blank" rel="noopener noreferrer">사진 출처 보기 ↗</a></figcaption>
+    </figure>
+    <div class="case-copy reveal">
+      <div class="case-topline"><span>TRANSPARENT HYBRID · PET</span><b>04 / 10</b></div>
+      <h2 id="case-04-title">배경과 겹쳐 보이는 투명 하이브리드 카드</h2>
+      <p class="case-lead">투명·반투명·백색 인쇄를 겹쳐, 카드 자체를 하나의 레이어처럼 보이게 합니다. 기술·뷰티·크리에이터 브랜드에 특히 잘 맞습니다.</p>
+      <div class="spec-row" aria-label="재질과 사양">
+        <div><span>재질</span><strong>투명·반투명 카드 원단</strong></div>
+        <div><span>가공</span><strong>컬러·백색·부분 UV 인쇄</strong></div>
+        <div><span>규격</span><strong>90×50mm · 3R</strong></div>
+      </div>
+      <a class="price-card" href="https://mhsee.com/product/%ED%88%AC%EB%AA%85%ED%95%98%EC%9D%B4%EB%B8%8C%EB%A6%AC%EB%93%9C-m/838/category/1/display/10/?icid=MAIN.product_listmain_9" target="_blank" rel="noopener noreferrer">
+        <div><span>대표 가격 · 2026.08.28 확인</span><strong>100장 ₩33,000</strong><small>명함씨 표시가 · 배송비 ₩3,000 · 옵션별 변동</small></div><em>공식 사양 ↗</em>
+      </a>
+      <div class="mini-compare">
+        <article><span>왜 기억되는가</span><p>손과 테이블, 화면 위에 올려둘 때마다 배경이 디자인 일부가 됩니다.</p></article>
+        <article><span>장점</span><p>가격 대비 독창성, 방습성, AI의 ‘레이어’ 비유와 잘 맞음</p></article>
+        <article class="watch"><span>주의</span><p>표면 스크래치가 생길 수 있고 작은 글자는 배경에 따라 흐려짐</p></article>
+      </div>
+      <div class="fit-note"><span>나에게 적용하면</span><p>AI Builders Lab의 네트워크 그래픽을 백색 인쇄로 넣으면 “보이지 않던 연결을 드러내는 사람”이라는 메시지를 만들 수 있습니다.</p></div>
+      <div class="score-row" aria-label="보고서 평가 점수">
+        <div><span>기억성</span><b class="score-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></b></div>
+        <div><span>실용성</span><b class="score-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></b></div>
+        <div><span>가격 효율</span><b class="score-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></b></div>
+        <small>보고서 판단 · 5점 척도</small>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="slide case-slide tone-light" id="case-05" aria-labelledby="case-05-title">
+  <div class="slide-inner case-grid">
+    <figure class="photo-card reveal">
+      <div class="photo-frame fallback-edge">
+        <div class="photo-fallback" aria-hidden="true"><span>05</span><strong>PAINTED EDGE</strong></div>
+        <img src="https://res.cloudinary.com/dbtcocjdk/image/fetch/f_auto%2Cdpr_auto%2Cw_1600/https%3A//storage.jukeboxprint.com/s/images/Cobalt-Turquoise.jpg" alt="청록색으로 가장자리가 칠해진 두꺼운 흰색 명함 묶음" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+      </div>
+      <figcaption><span>Photo · Jukebox Print painted edge</span><a href="https://www.jukeboxprint.com/business-cards/painted-edge" target="_blank" rel="noopener noreferrer">사진 출처 보기 ↗</a></figcaption>
+    </figure>
+    <div class="case-copy reveal">
+      <div class="case-topline"><span>PAINTED EDGE · BRAND COLOR</span><b>05 / 10</b></div>
+      <h2 id="case-05-title">지갑 친화적인 표준형에 강한 컬러 엣지</h2>
+      <p class="case-lead">형태는 평범하게 유지하고 가장자리만 선명하게 칠합니다. 개성과 실용성의 균형이 가장 좋은 방식입니다.</p>
+      <div class="spec-row" aria-label="재질과 사양">
+        <div><span>재질</span><strong>20pt~36pt 프리미엄지</strong></div>
+        <div><span>가공</span><strong>32색 또는 커스텀 HEX/Pantone 엣지</strong></div>
+        <div><span>규격</span><strong>3.5×2in 등</strong></div>
+      </div>
+      <a class="price-card" href="https://www.jukeboxprint.com/business-cards/painted-edge" target="_blank" rel="noopener noreferrer">
+        <div><span>대표 가격 · 2026.08.28 확인</span><strong>50장 US$107</strong><small>Jukebox 기본 구성 표시가 · 배송·세금 별도 가능</small></div><em>공식 사양 ↗</em>
+      </a>
+      <div class="mini-compare">
+        <article><span>왜 기억되는가</span><p>카드 묶음일 때 브랜드 색이 가장 강하게 보이고, 한 장만 놓여도 모서리에서 색이 살아납니다.</p></article>
+        <article><span>장점</span><p>표준 규격, 높은 가독성, 브랜드 컬러 재현</p></article>
+        <article class="watch"><span>주의</span><p>엣지 색상은 종이별로 미세하게 달라질 수 있어 실물 샘플 확인 필요</p></article>
+      </div>
+      <div class="fit-note"><span>나에게 적용하면</span><p>최종 1순위. 흰색 바탕 + Toss Blue #3182F6 엣지 + 검정 타이포 + 후면 QR의 조합을 권합니다.</p></div>
+      <div class="score-row" aria-label="보고서 평가 점수">
+        <div><span>기억성</span><b class="score-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></b></div>
+        <div><span>실용성</span><b class="score-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></b></div>
+        <div><span>가격 효율</span><b class="score-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></b></div>
+        <small>보고서 판단 · 5점 척도</small>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="slide case-slide tone-soft" id="case-06" aria-labelledby="case-06-title">
+  <div class="slide-inner case-grid">
+    <figure class="photo-card reveal">
+      <div class="photo-frame fallback-diecut">
+        <div class="photo-fallback" aria-hidden="true"><span>06</span><strong>DIE CUT</strong></div>
+        <img src="https://res.cloudinary.com/dbtcocjdk/image/fetch/f_auto%2Cdpr_auto%2Cw_1600/https%3A//storage.jukeboxprint.com/images/10791211-bite-mark-business-cards.jpg" alt="한쪽 가장자리가 베어 물린 자국처럼 잘린 흰색 명함" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+      </div>
+      <figcaption><span>Photo · Jukebox Print bite-mark card</span><a href="https://www.jukeboxprint.com/business-cards/custom-shaped" target="_blank" rel="noopener noreferrer">사진 출처 보기 ↗</a></figcaption>
+    </figure>
+    <div class="case-copy reveal">
+      <div class="case-topline"><span>DIE CUT · BITE MARK</span><b>06 / 10</b></div>
+      <h2 id="case-06-title">한쪽이 베어 물린 듯한 다이컷 명함</h2>
+      <p class="case-lead">형태 자체가 대화의 시작점이 됩니다. 음식·치과·콘텐츠처럼 ‘한입’의 의미가 브랜드와 직접 연결될 때 강력합니다.</p>
+      <div class="spec-row" aria-label="재질과 사양">
+        <div><span>재질</span><strong>프리미엄지 · Soft Touch 등</strong></div>
+        <div><span>가공</span><strong>9가지 기성 다이컷 또는 완전 커스텀</strong></div>
+        <div><span>규격</span><strong>Bite Mark 3.5×2in</strong></div>
+      </div>
+      <a class="price-card" href="https://www.jukeboxprint.com/business-cards/custom-shaped" target="_blank" rel="noopener noreferrer">
+        <div><span>대표 가격 · 2026.08.28 확인</span><strong>50장 US$125</strong><small>Jukebox Bite Mark 기본 표시가 · 배송·세금 별도 가능</small></div><em>공식 사양 ↗</em>
+      </a>
+      <div class="mini-compare">
+        <article><span>왜 기억되는가</span><p>받는 순간 “왜 이렇게 잘렸지?”라는 질문이 생겨, 디자인이 소개 멘트 역할까지 합니다.</p></article>
+        <article><span>장점</span><p>기억성 최고, 사진·SNS 확산성 높음</p></article>
+        <article class="watch"><span>주의</span><p>브랜드와 형태의 이유가 약하면 장난감처럼 보이고 카드 지갑 적합성도 낮아짐</p></article>
+      </div>
+      <div class="fit-note"><span>나에게 적용하면</span><p>AI 교육 명함에는 과한 편입니다. 다만 ‘프롬프트 한입 카드’처럼 행사 한정 굿즈로 쓰면 효과적입니다.</p></div>
+      <div class="score-row" aria-label="보고서 평가 점수">
+        <div><span>기억성</span><b class="score-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></b></div>
+        <div><span>실용성</span><b class="score-dots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></b></div>
+        <div><span>가격 효율</span><b class="score-dots"><i class="on"></i><i></i><i></i><i></i><i></i></b></div>
+        <small>보고서 판단 · 5점 척도</small>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="slide case-slide tone-light" id="case-07" aria-labelledby="case-07-title">
+  <div class="slide-inner case-grid">
+    <figure class="photo-card reveal">
+      <div class="photo-frame fallback-cotton">
+        <div class="photo-fallback" aria-hidden="true"><span>07</span><strong>COTTON</strong></div>
+        <img src="https://www.moo.com/dam/jcr%3A0dee7d5c-8dbb-47a9-9ad9-59a4c908cb54/0443WF-BIWT-1216x912-cotton-business-cards.jpg" alt="파란 배경 위에 놓인 밝은 흰색 코튼 명함 여러 장" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+      </div>
+      <figcaption><span>Photo · MOO Cotton Business Cards</span><a href="https://www.moo.com/us/business-cards/cotton" target="_blank" rel="noopener noreferrer">사진 출처 보기 ↗</a></figcaption>
+    </figure>
+    <div class="case-copy reveal">
+      <div class="case-topline"><span>COTTON · TREE-FREE</span><b>07 / 10</b></div>
+      <h2 id="case-07-title">친환경 메시지를 손으로 느끼게 하는 코튼지</h2>
+      <p class="case-lead">면화 씨앗 주변의 짧은 섬유를 활용한 종이로, 자연스러운 백색과 미세한 질감이 특징입니다.</p>
+      <div class="spec-row" aria-label="재질과 사양">
+        <div><span>재질</span><strong>17pt 코튼 린터 종이</strong></div>
+        <div><span>가공</span><strong>비코팅 · 필기 가능</strong></div>
+        <div><span>규격</span><strong>표준 / MOO / 정사각</strong></div>
+      </div>
+      <a class="price-card" href="https://www.moo.com/us/business-cards/cotton" target="_blank" rel="noopener noreferrer">
+        <div><span>대표 가격 · 2026.08.28 확인</span><strong>50장 US$33부터</strong><small>MOO 미국 표시가 · 배송·세금 별도 가능</small></div><em>공식 사양 ↗</em>
+      </a>
+      <div class="mini-compare">
+        <article><span>왜 기억되는가</span><p>광택 대신 자연스러운 섬유감이 남아 “덜 만든 것 같은 고급스러움”을 줍니다.</p></article>
+        <article><span>장점</span><p>100% 재활용 가능, 나무를 쓰지 않은 소재, 따뜻한 인상</p></article>
+        <article class="watch"><span>주의</span><p>강한 사진·진한 색면보다 미니멀 타이포와 선 그래픽에 더 적합</p></article>
+      </div>
+      <div class="fit-note"><span>나에게 적용하면</span><p>교육자 정체성과 지속가능성을 강조하는 워크숍·공공기관 강의용 버전으로 좋습니다.</p></div>
+      <div class="score-row" aria-label="보고서 평가 점수">
+        <div><span>기억성</span><b class="score-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></b></div>
+        <div><span>실용성</span><b class="score-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></b></div>
+        <div><span>가격 효율</span><b class="score-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></b></div>
+        <small>보고서 판단 · 5점 척도</small>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="slide case-slide tone-dark" id="case-08" aria-labelledby="case-08-title">
+  <div class="slide-inner case-grid">
+    <figure class="photo-card reveal">
+      <div class="photo-frame fallback-holo">
+        <div class="photo-fallback" aria-hidden="true"><span>08</span><strong>HOLOGRAPHIC PET</strong></div>
+        <img src="https://ecimg.cafe24img.com/pg1428b35391874055/mhseeadm/web/product/big/20250114/cc9a34d9a2a6721614c9968b99c9087f.jpg" alt="홀로그램 광택과 투명 영역이 섞인 플라스틱 명함" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+      </div>
+      <figcaption><span>Photo · 명함씨 holographic PET card</span><a href="https://mhsee.com/product/%ED%88%AC%EB%AA%85%ED%99%80%EB%A1%9C%EA%B7%B8%EB%9E%A8%EC%B9%B4%EB%93%9C-190g/185/category/1/display/10/?icid=MAIN.product_listmain_9" target="_blank" rel="noopener noreferrer">사진 출처 보기 ↗</a></figcaption>
+    </figure>
+    <div class="case-copy reveal">
+      <div class="case-topline"><span>HOLOGRAPHIC PET · FOIL</span><b>08 / 10</b></div>
+      <h2 id="case-08-title">각도마다 색이 바뀌는 투명 홀로그램 PET</h2>
+      <p class="case-lead">투명 PET 위에 홀로그램박·동박·백색 인쇄를 조합해, 디지털 인터페이스 같은 움직임을 만듭니다.</p>
+      <div class="spec-row" aria-label="재질과 사양">
+        <div><span>재질</span><strong>투명 PET 190g</strong></div>
+        <div><span>가공</span><strong>홀로그램박·동박·백색 인쇄 · 단면</strong></div>
+        <div><span>규격</span><strong>86×54mm · 3R</strong></div>
+      </div>
+      <a class="price-card" href="https://mhsee.com/product/%ED%88%AC%EB%AA%85%ED%99%80%EB%A1%9C%EA%B7%B8%EB%9E%A8%EC%B9%B4%EB%93%9C-190g/185/category/1/display/10/?icid=MAIN.product_listmain_9" target="_blank" rel="noopener noreferrer">
+        <div><span>대표 가격 · 2026.08.28 확인</span><strong>₩90,000 표시가</strong><small>명함씨 기본 표시가 · 용지/수량 옵션 확인 · 약 1주 제작</small></div><em>공식 사양 ↗</em>
+      </a>
+      <div class="mini-compare">
+        <article><span>왜 기억되는가</span><p>스마트폰을 기울이는 행동과 비슷한 움직임을 유도해 테크 브랜드의 분위기를 즉각 전달합니다.</p></article>
+        <article><span>장점</span><p>행사 현장 주목도, 촬영 효과, 미래지향 이미지</p></article>
+        <article class="watch"><span>주의</span><p>양면 인쇄 불가, 스크래치 가능, 과도한 박 면적은 가독성을 해침</p></article>
+      </div>
+      <div class="fit-note"><span>나에게 적용하면</span><p>정규 명함보다 AI 컨퍼런스·런칭 행사 한정판에 적합합니다. 로고 한 부분에만 홀로그램을 제한하는 편이 좋습니다.</p></div>
+      <div class="score-row" aria-label="보고서 평가 점수">
+        <div><span>기억성</span><b class="score-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></b></div>
+        <div><span>실용성</span><b class="score-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></b></div>
+        <div><span>가격 효율</span><b class="score-dots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></b></div>
+        <small>보고서 판단 · 5점 척도</small>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="slide case-slide tone-dark" id="case-09" aria-labelledby="case-09-title">
+  <div class="slide-inner case-grid">
+    <figure class="photo-card reveal">
+      <div class="photo-frame fallback-metal">
+        <div class="photo-fallback" aria-hidden="true"><span>09</span><strong>METAL</strong></div>
+        <img src="https://v1ce.co/_next/image?q=100&amp;url=https%3A%2F%2Fcdn.shopify.com%2Fs%2Ffiles%2F1%2F0263%2F6156%2F1168%2Ffiles%2FBlack_Metal_Silver.png%3Fv%3D1778670979&amp;w=1920" alt="검정 금속판에 은색으로 각인된 NFC 명함" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+      </div>
+      <figcaption><span>Photo · V1CE The Metal</span><a href="https://v1ce.co/product/metal-nfc-business-cards" target="_blank" rel="noopener noreferrer">사진 출처 보기 ↗</a></figcaption>
+    </figure>
+    <div class="case-copy reveal">
+      <div class="case-topline"><span>METAL · NFC</span><b>09 / 10</b></div>
+      <h2 id="case-09-title">한 번 탭하면 연락처가 저장되는 금속 NFC 카드</h2>
+      <p class="case-lead">명함을 건네고 끝나는 대신, NFC 탭과 QR로 디지털 프로필·연락처 저장까지 연결합니다.</p>
+      <div class="spec-row" aria-label="재질과 사양">
+        <div><span>재질</span><strong>904L 스테인리스 · 1.2mm · 25g</strong></div>
+        <div><span>가공</span><strong>레이저 각인 · 11개 컬러웨이</strong></div>
+        <div><span>규격</span><strong>카드형 · NFC+QR</strong></div>
+      </div>
+      <a class="price-card" href="https://v1ce.co/blog/best-nfc-business-cards" target="_blank" rel="noopener noreferrer">
+        <div><span>대표 가격 · 2026.08.28 확인</span><strong>금속 카드 £110</strong><small>V1CE 공식 가격 안내 · 고급 자동화 기능은 별도 요금제 가능</small></div><em>공식 사양 ↗</em>
+      </a>
+      <div class="mini-compare">
+        <article><span>왜 기억되는가</span><p>무게와 금속감이 첫인상을 만들고, 물리 명함을 디지털 팔로업의 시작점으로 바꿉니다.</p></article>
+        <article><span>장점</span><p>무제한 재사용, 정보 변경 가능, 중요한 만남에서 강한 존재감</p></article>
+        <article class="watch"><span>주의</span><p>여러 사람에게 나눠 줄 수 없고, NFC 위치를 설명해야 할 때가 있음</p></article>
+      </div>
+      <div class="fit-note"><span>나에게 적용하면</span><p>종이 명함을 대체하지 말고 “대표 1장”으로 휴대하세요. 고가치 미팅에서는 탭하고, 일반 행사에서는 종이 명함을 배포하는 이중 전략이 좋습니다.</p></div>
+      <div class="score-row" aria-label="보고서 평가 점수">
+        <div><span>기억성</span><b class="score-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></b></div>
+        <div><span>실용성</span><b class="score-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></b></div>
+        <div><span>가격 효율</span><b class="score-dots"><i class="on"></i><i></i><i></i><i></i><i></i></b></div>
+        <small>보고서 판단 · 5점 척도</small>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="slide case-slide tone-soft" id="case-10" aria-labelledby="case-10-title">
+  <div class="slide-inner case-grid">
+    <figure class="photo-card reveal">
+      <div class="photo-frame fallback-portfolio">
+        <div class="photo-fallback" aria-hidden="true"><span>10</span><strong>SQUARE</strong></div>
+        <img src="https://www.moo.com/dam/jcr%3A08b78026-3aeb-4866-9755-d3d69edfedb3/0818WF-RM-608x456-Event-Marketing-and-Trade-Show-BC.jpg" alt="다양한 그래픽이 인쇄된 여러 장의 정사각형 및 직사각형 명함" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+      </div>
+      <figcaption><span>Photo · MOO event cards / Printfinity example</span><a href="https://www.moo.com/us/business-cards/finishes" target="_blank" rel="noopener noreferrer">사진 출처 보기 ↗</a></figcaption>
+    </figure>
+    <div class="case-copy reveal">
+      <div class="case-topline"><span>SQUARE · PRINTFINITY</span><b>10 / 10</b></div>
+      <h2 id="case-10-title">각 장의 뒷면을 다르게 만드는 미니 포트폴리오 명함</h2>
+      <p class="case-lead">정사각 카드와 Printfinity를 조합하면 강의 주제·프로젝트·후기·작품을 장마다 바꿔 보여줄 수 있습니다.</p>
+      <div class="spec-row" aria-label="재질과 사양">
+        <div><span>재질</span><strong>18pt Super Soft Touch</strong></div>
+        <div><span>가공</span><strong>금·은박 / Spot Gloss / Raised Gloss</strong></div>
+        <div><span>규격</span><strong>2.56×2.56in 정사각</strong></div>
+      </div>
+      <a class="price-card" href="https://www.moo.com/us/business-cards/finishes" target="_blank" rel="noopener noreferrer">
+        <div><span>대표 가격 · 2026.08.28 확인</span><strong>정사각 50장 US$62부터</strong><small>MOO 특별 후가공 기준 · 뒷면 최대 50종 Printfinity 가능</small></div><em>공식 사양 ↗</em>
+      </a>
+      <div class="mini-compare">
+        <article><span>왜 기억되는가</span><p>명함이 하나의 고정 정보가 아니라, 상대에게 맞춰 고르는 작은 콘텐츠 카드가 됩니다.</p></article>
+        <article><span>장점</span><p>강사 포트폴리오, 대화 시작, 수집 욕구</p></article>
+        <article class="watch"><span>주의</span><p>표준 카드 지갑과 맞지 않을 수 있고, 전달할 카드를 고르는 시간이 필요</p></article>
+      </div>
+      <div class="fit-note"><span>나에게 적용하면</span><p>“Claude Code”, “AI Agent”, “업무 자동화” 등 강의 주제별 3종을 만들어 상대 관심사에 맞춰 건네는 방식이 좋습니다.</p></div>
+      <div class="score-row" aria-label="보고서 평가 점수">
+        <div><span>기억성</span><b class="score-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></b></div>
+        <div><span>실용성</span><b class="score-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></b></div>
+        <div><span>가격 효율</span><b class="score-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></b></div>
+        <small>보고서 판단 · 5점 척도</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <section class="slide tone-soft" id="concept-a" aria-labelledby="concept-a-title">
+      <div class="slide-inner concept-grid">
+        <div class="concept-copy reveal">
+          <span class="concept-tag">추천 1안 · MAIN CARD</span>
+          <div class="section-kicker">A · BUILDER BLUE EDGE</div>
+          <h2 id="concept-a-title">가장 오래 쓰기 좋은<br>‘빌더 블루 엣지’</h2>
+          <p>신뢰가 필요한 교육·컨설팅 명함은 형태보다 재질과 여백이 중요합니다. 앞면은 이름과 역할만, 뒷면은 한 문장과 QR만 남깁니다.</p>
+          <div class="concept-specs">
+            <div><span>권장 사양</span><strong>90×50mm · 4겹/600gsm급 비코팅 화이트 · 3R</strong></div>
+            <div><span>포인트</span><strong>엣지 컬러 #3182F6 · 전면 검정 1도 중심</strong></div>
+            <div><span>정보 구조</span><strong>JEREMY LEE / AI BUILDERS LAB / QR 연락처 저장</strong></div>
+            <div><span>비용 기준</span><strong>해외 도색 엣지 50장 US$107 · 국내는 최종 견적 필요</strong></div>
+          </div>
+          <div class="decision">추천 이유: 행사에서 많이 나눠도 부담이 적고, 지갑에 들어가며, 브랜드 블루가 가장 자연스럽게 남습니다.</div>
+        </div>
+        <div class="mock-stage reveal" aria-label="빌더 블루 엣지 명함 앞뒷면 시안">
+          <article class="business-card card-front blue-edge">
+            <div class="card-logo"><i></i>AI BUILDERS LAB</div>
+            <div class="card-name">JEREMY LEE</div>
+            <div class="card-role">AI Educator · Builder · Automation</div>
+          </article>
+          <article class="business-card card-back back-blue">
+            <div class="card-logo"><i></i>AI BUILDERS LAB</div>
+            <div class="card-quote">AI를 도구가 아니라<br>업무 시스템으로.</div>
+            <small>QR로 프로필과 연락처 저장</small>
+            <svg class="qr" viewBox="0 0 90 90" role="img" aria-label="QR 코드 자리 표시">
+<rect width="90" height="90" rx="8" fill="#fff"/><g fill="#191f28">
+<path d="M8 8h24v24H8zm5 5v14h14V13zM58 8h24v24H58zm5 5v14h14V13zM8 58h24v24H8zm5 5v14h14V63z"/>
+<rect x="39" y="8" width="7" height="7"/><rect x="47" y="17" width="7" height="7"/><rect x="37" y="27" width="8" height="8"/>
+<rect x="40" y="40" width="8" height="8"/><rect x="50" y="38" width="7" height="7"/><rect x="60" y="42" width="8" height="8"/>
+<rect x="72" y="38" width="8" height="8"/><rect x="37" y="52" width="7" height="7"/><rect x="48" y="56" width="8" height="8"/>
+<rect x="58" y="58" width="7" height="7"/><rect x="68" y="54" width="7" height="7"/><rect x="76" y="64" width="7" height="7"/>
+<rect x="39" y="70" width="8" height="8"/><rect x="51" y="72" width="7" height="7"/><rect x="61" y="72" width="7" height="7"/>
+</g></svg>
+          </article>
+        </div>
+      </div>
+      <div class="slide-label">12 · PERSONAL CONCEPT A</div>
+    </section>
+
+    <section class="slide" id="concept-b" aria-labelledby="concept-b-title">
+      <div class="slide-inner concept-grid">
+        <div class="concept-copy reveal">
+          <span class="concept-tag">추천 2안 · PREMIUM CARD</span>
+          <div class="section-kicker">B · BLACK SIGNAL</div>
+          <h2 id="concept-b-title">계약 미팅에서 강한<br>‘블랙 시그널’</h2>
+          <p>검정 쿠션지의 파형은 AI 신호·음성·데이터 흐름을 추상화합니다. 앞면은 블라인드 압인, 이름만 은박으로 처리해 과장 없이 고급스럽게 만듭니다.</p>
+          <div class="concept-specs">
+            <div><span>권장 사양</span><strong>90×50mm · 검정 쿠션지 490g 또는 600g</strong></div>
+            <div><span>포인트</span><strong>파형 블라인드 압인 + 이름 은박 · 무광</strong></div>
+            <div><span>사용 장면</span><strong>기업 강의 계약 · 파트너십 · 프리미엄 코칭</strong></div>
+            <div><span>비용 기준</span><strong>국내 100장 ₩145,000부터 · 박 추가 비용 가능</strong></div>
+          </div>
+          <div class="decision">운영 제안: 메인 명함을 대체하지 말고 20~50장만 별도로 제작해, 중요한 만남에 선택적으로 사용합니다.</div>
+        </div>
+        <div class="mock-stage reveal" aria-label="검정 레터프레스 명함 앞뒷면 시안">
+          <article class="business-card card-front black-card">
+            <div class="card-logo"><i></i>AI BUILDERS LAB</div>
+            <div class="card-name foil">JEREMY LEE</div>
+            <div class="card-role">Founder · AI Practice Educator</div>
+          </article>
+          <article class="business-card card-back black-back">
+            <div class="card-logo"><i></i>AI BUILDERS LAB</div>
+            <div class="card-quote foil">BUILD · TEST · AUTOMATE</div>
+            <small>AI 실습 교육 · 에이전트 · 업무 자동화</small>
+            <svg class="qr" viewBox="0 0 90 90" role="img" aria-label="QR 코드 자리 표시">
+<rect width="90" height="90" rx="8" fill="#fff"/><g fill="#191f28">
+<path d="M8 8h24v24H8zm5 5v14h14V13zM58 8h24v24H58zm5 5v14h14V13zM8 58h24v24H8zm5 5v14h14V63z"/>
+<rect x="39" y="8" width="7" height="7"/><rect x="47" y="17" width="7" height="7"/><rect x="37" y="27" width="8" height="8"/>
+<rect x="40" y="40" width="8" height="8"/><rect x="50" y="38" width="7" height="7"/><rect x="60" y="42" width="8" height="8"/>
+<rect x="72" y="38" width="8" height="8"/><rect x="37" y="52" width="7" height="7"/><rect x="48" y="56" width="8" height="8"/>
+<rect x="58" y="58" width="7" height="7"/><rect x="68" y="54" width="7" height="7"/><rect x="76" y="64" width="7" height="7"/>
+<rect x="39" y="70" width="8" height="8"/><rect x="51" y="72" width="7" height="7"/><rect x="61" y="72" width="7" height="7"/>
+</g></svg>
+          </article>
+        </div>
+      </div>
+      <div class="slide-label">13 · PERSONAL CONCEPT B</div>
+    </section>
+
+    <section class="slide tone-soft" id="concept-c" aria-labelledby="concept-c-title">
+      <div class="slide-inner concept-grid">
+        <div class="concept-copy reveal">
+          <span class="concept-tag">추천 3안 · EVENT CARD</span>
+          <div class="section-kicker">C · TRANSPARENT AI LAYER</div>
+          <h2 id="concept-c-title">AI의 연결 구조를 보여주는<br>‘투명 AI 레이어’</h2>
+          <p>반투명 카드에 노드와 연결선을 백색·블루로 인쇄합니다. 배경에 따라 모습이 달라져, “사람과 도구를 연결하는 빌더”라는 역할을 시각화합니다.</p>
+          <div class="concept-specs">
+            <div><span>권장 사양</span><strong>90×50mm · 반투명 PET · 3R</strong></div>
+            <div><span>포인트</span><strong>백색 언더프린트 + Toss Blue 네트워크 · 부분 UV 선택</strong></div>
+            <div><span>사용 장면</span><strong>AI 컨퍼런스 · 오픈클래스 · 콘텐츠 촬영</strong></div>
+            <div><span>비용 기준</span><strong>100장 ₩33,000 기본 · 홀로그램 가공은 ₩90,000 표시가</strong></div>
+          </div>
+          <div class="decision">주의: 연락처는 작은 투명 글자보다 흰색 패널 위에 올리고, QR은 반드시 여러 배경에서 스캔 테스트합니다.</div>
+        </div>
+        <div class="mock-stage reveal" aria-label="투명 AI 레이어 명함 앞뒷면 시안">
+          <article class="business-card card-front glass-card">
+            <span class="node n1"></span><span class="node n2"></span><span class="node n3"></span><span class="line l1"></span><span class="line l2"></span>
+            <div class="card-logo"><i></i>AI BUILDERS LAB</div>
+            <div class="card-name">JEREMY LEE</div>
+            <div class="card-role">Connecting people, tools and workflows.</div>
+          </article>
+          <article class="business-card card-back glass-back">
+            <div class="card-logo"><i></i>AI BUILDERS LAB</div>
+            <div class="card-quote">보이지 않던 연결을<br>일하는 시스템으로.</div>
+            <small>프로필 · 강의 · 프로젝트</small>
+            <svg class="qr" viewBox="0 0 90 90" role="img" aria-label="QR 코드 자리 표시">
+<rect width="90" height="90" rx="8" fill="#fff"/><g fill="#191f28">
+<path d="M8 8h24v24H8zm5 5v14h14V13zM58 8h24v24H58zm5 5v14h14V13zM8 58h24v24H8zm5 5v14h14V63z"/>
+<rect x="39" y="8" width="7" height="7"/><rect x="47" y="17" width="7" height="7"/><rect x="37" y="27" width="8" height="8"/>
+<rect x="40" y="40" width="8" height="8"/><rect x="50" y="38" width="7" height="7"/><rect x="60" y="42" width="8" height="8"/>
+<rect x="72" y="38" width="8" height="8"/><rect x="37" y="52" width="7" height="7"/><rect x="48" y="56" width="8" height="8"/>
+<rect x="58" y="58" width="7" height="7"/><rect x="68" y="54" width="7" height="7"/><rect x="76" y="64" width="7" height="7"/>
+<rect x="39" y="70" width="8" height="8"/><rect x="51" y="72" width="7" height="7"/><rect x="61" y="72" width="7" height="7"/>
+</g></svg>
+          </article>
+        </div>
+      </div>
+      <div class="slide-label">14 · PERSONAL CONCEPT C</div>
+    </section>
+
+    <section class="slide" id="order" aria-labelledby="order-title">
+      <div class="slide-inner order-layout">
+        <article class="order-summary reveal">
+          <div class="section-kicker">FINAL RECOMMENDATION</div>
+          <h2 id="order-title">100장 + 1장으로<br>실용성과 인상을 분리합니다</h2>
+          <p>명함 하나에 모든 기능을 넣지 않습니다. 배포용과 프리미엄용을 분리하면 비용을 통제하면서도 중요한 순간의 인상을 강화할 수 있습니다.</p>
+          <div class="bundle">
+            <div><b>100</b><p><strong>Builder Blue Edge</strong><span>일반 강의·네트워킹·소개용</span></p></div>
+            <div><b>1</b><p><strong>Metal NFC</strong><span>대표 미팅·파트너십·해외 행사</span></p></div>
+            <div><b>QR</b><p><strong>하나의 디지털 프로필</strong><span>연락처·강의·예약 링크를 한곳에서 갱신</span></p></div>
+          </div>
+        </article>
+        <article class="brief-card reveal">
+          <h3>인쇄소에 그대로 보낼 발주 브리프</h3>
+          <div class="brief-list">
+            <div class="brief-item"><span>완성 사이즈</span><strong>90×50mm · 3R 라운딩</strong></div>
+            <div class="brief-item"><span>용지</span><strong>600gsm급 합지 또는 4겹 비코팅 백색지</strong></div>
+            <div class="brief-item"><span>앞면</span><strong>검정 타이포 · 이름/브랜드만</strong></div>
+            <div class="brief-item"><span>뒷면</span><strong>Toss Blue 면 + 한 문장 + QR</strong></div>
+            <div class="brief-item"><span>엣지</span><strong>#3182F6에 가장 가까운 별색/조색</strong></div>
+            <div class="brief-item"><span>QR</span><strong>최소 15mm · 사방 여백 · 실물 스캔 교정</strong></div>
+            <div class="brief-item"><span>수량</span><strong>1차 100장 · 샘플/본교정 우선</strong></div>
+            <div class="brief-item"><span>납기 질문</span><strong>시안 확정 후 제작·배송 영업일 확인</strong></div>
+          </div>
+          <div class="brief-message"><strong>견적 요청 문구</strong><br><code>“600gsm급 비코팅 합지, 90×50mm, 3R, 양면 컬러, 엣지 #3182F6, 100장 기준으로 샘플·본교정 포함 견적과 납기를 부탁드립니다.”</code></div>
+          <div class="method-note">제작 전 확인: 실제 종이 샘플 → 엣지 색상 → 작은 글자 가독성 → QR 스캔 → 10장 테스트 또는 본교정 순서로 검증합니다.</div>
+        </article>
+      </div>
+      <div class="slide-label">15 · ORDER BRIEF</div>
+    </section>
+
+    <section class="slide tone-soft source-slide" id="sources-1" aria-labelledby="sources-1-title">
+      <div class="slide-inner">
+        <div class="source-head reveal"><div><div class="section-kicker">SOURCES · 1/2</div><h2 id="sources-1-title">실물 사례와 종이·후가공</h2></div><p>가격은 2026년 8월 28일 각 판매 페이지의 대표 수량·기본 옵션을 확인했습니다. 환율 환산 없이 원 표시 통화를 유지했습니다.</p></div>
+        <div class="source-grid reveal">
+          <a class="source-link" href="https://www.moo.com/blog/inspiration/luxe-business-card-designs" target="_blank" rel="noopener noreferrer"><span>CASE · MOO</span><strong>Melanie Martin Luxe Business Card Design</strong><small>컬러 심 실제 사례 이미지</small></a>
+          <a class="source-link" href="https://www.moo.com/us/business-cards/luxe" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · MOO</span><strong>Luxe Business Cards</strong><small>32pt · 4겹 · 50장 US$43부터</small></a>
+          <a class="source-link" href="https://www.moo.com/us/business-cards/letterpress" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · MOO</span><strong>Letterpress Business Cards</strong><small>32pt · deboss · 50장 US$60부터</small></a>
+          <a class="source-link" href="https://woderdesign.com/product/%EC%BF%A0%EC%85%98%EC%A7%80-%EB%A0%88%ED%84%B0%ED%94%84%EB%A0%88%EC%8A%A4-%EB%AA%85%ED%95%A8-100%EB%A7%A4/809/" target="_blank" rel="noopener noreferrer"><span>PRICE · KOREA</span><strong>우더디자인 쿠션지 레터프레스 100매</strong><small>490g/600g · ₩145,000 · 박 추가 옵션</small></a>
+          <a class="source-link" href="https://mhsee.com/product/%ED%88%AC%EB%AA%85%ED%95%98%EC%9D%B4%EB%B8%8C%EB%A6%AC%EB%93%9C-m/838/category/1/display/10/?icid=MAIN.product_listmain_9" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · KOREA</span><strong>명함씨 투명하이브리드 M</strong><small>100매 ₩33,000 · 90×50mm · 백색/UV 인쇄</small></a>
+          <a class="source-link" href="https://www.jukeboxprint.com/business-cards/painted-edge" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · JUKEBOX</span><strong>Painted Edge Business Cards</strong><small>32색 · 50장 US$107</small></a>
+          <a class="source-link" href="https://www.jukeboxprint.com/business-cards/custom-shaped" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · JUKEBOX</span><strong>Custom Shaped Business Cards</strong><small>Bite Mark 등 · 50장 US$125</small></a>
+          <a class="source-link" href="https://www.rockdesign.com/business-card-templates/minimalist-blind-emboss-premium-white-business-card-the-canary" target="_blank" rel="noopener noreferrer"><span>PHOTO · ROCKDESIGN</span><strong>Blind Emboss Premium White Card</strong><small>블라인드 엠보싱 참고 이미지</small></a>
+        </div>
+      </div>
+      <div class="slide-label">16 · SOURCES 1/2</div>
+    </section>
+
+    <section class="slide source-slide" id="sources-2" aria-labelledby="sources-2-title">
+      <div class="slide-inner">
+        <div class="source-head reveal"><div><div class="section-kicker">SOURCES · 2/2</div><h2 id="sources-2-title">코튼·홀로그램·NFC·정사각</h2></div><p>사진은 각 제작사·포트폴리오 페이지의 제품 또는 실제 제작 사례입니다. 보고서 안에서만 벤치마킹 목적으로 표시하고 출처를 연결했습니다.</p></div>
+        <div class="source-grid reveal">
+          <a class="source-link" href="https://www.moo.com/us/business-cards/cotton" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · MOO</span><strong>Cotton Business Cards</strong><small>17pt · 코튼 린터 · 50장 US$33부터</small></a>
+          <a class="source-link" href="https://mhsee.com/product/%ED%88%AC%EB%AA%85%ED%99%80%EB%A1%9C%EA%B7%B8%EB%9E%A8%EC%B9%B4%EB%93%9C-190g/185/category/1/display/10/?icid=MAIN.product_listmain_9" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · KOREA</span><strong>명함씨 투명홀로그램카드 190g</strong><small>₩90,000 표시가 · 약 1주 · 단면</small></a>
+          <a class="source-link" href="https://v1ce.co/product/metal-nfc-business-cards" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · V1CE</span><strong>The Metal NFC Business Card</strong><small>904L 스틸 · 1.2mm · 25g · NFC+QR</small></a>
+          <a class="source-link" href="https://v1ce.co/blog/best-nfc-business-cards" target="_blank" rel="noopener noreferrer"><span>PRICE · V1CE</span><strong>V1CE NFC Card Pricing Guide</strong><small>금속 £110 · Original £60 · Bamboo £83</small></a>
+          <a class="source-link" href="https://www.moo.com/us/business-cards/finishes" target="_blank" rel="noopener noreferrer"><span>OFFICIAL · MOO</span><strong>Special Finish & Square Business Cards</strong><small>정사각 50장 US$62 · 특별 후가공 US$51부터</small></a>
+          <a class="source-link" href="https://www.print89.com/ChandlerPrice10x15Foilinfo" target="_blank" rel="noopener noreferrer"><span>PORTFOLIO · KOREA</span><strong>PRINT89 Letterpress & Foil Card</strong><small>검정 파형 레터프레스 사진 출처</small></a>
+          <a class="source-link" href="https://www.jukeboxprint.com/embossed-business-cards" target="_blank" rel="noopener noreferrer"><span>REFERENCE · JUKEBOX</span><strong>Embossed Business Cards</strong><small>엠보싱의 촉각 효과 참고</small></a>
+          <a class="source-link" href="#history"><span>REPORT METHOD</span><strong>가격·이미지 사용 원칙</strong><small>기본 옵션 비교 · 배송/세금 별도 · 구매 전 재확인</small></a>
+        </div>
+        <div class="method-note reveal">가격은 고정 시세가 아닙니다. 수량, 용지, 인쇄 면수, 박·압인 면적, 디자인비, 배송 국가, 세금에 따라 달라지므로 실제 주문 직전에 판매 페이지와 견적서를 다시 확인해야 합니다.</div>
+      </div>
+      <div class="slide-label">17 · SOURCES 2/2</div>
+    </section>
+
+    <section class="slide tone-soft source-slide" id="history" aria-labelledby="history-title">
+      <div class="slide-inner">
+        <div class="source-head reveal"><div><div class="section-kicker">VERSION & HISTORY</div><h2 id="history-title">버전 및 업데이트 히스토리</h2></div><p>화면의 버전 배지와 아래 표는 HTML 내부의 <code>report-metadata</code> JSON에서 렌더링됩니다.</p></div>
+        <div class="history-wrap reveal">
+          <table class="history-table">
+            <thead><tr><th>버전</th><th>업데이트일</th><th>변경 구분</th><th>주요 변경 내용</th><th>작성·검토 상태</th></tr></thead>
+            <tbody id="historyBody"><tr><td colspan="5">변경 이력을 불러오는 중입니다.</td></tr></tbody>
+          </table>
+        </div>
+        <div class="method-note reveal"><strong>검토 상태:</strong> 인쇄 사양과 가격은 공개 페이지 기준으로 교차 확인했으나, 실제 색상·두께·QR 가독성은 종이 샘플과 본교정에서 사람이 최종 승인해야 합니다. 개인 연락처는 시안에서 의도적으로 제외했습니다.</div>
+      </div>
+      <div class="slide-label">18 · VERSION HISTORY</div>
+    </section>
+  </main>
+
+  <div class="nav-controls" aria-label="슬라이드 이동">
+    <button class="nav-btn" id="prevBtn" type="button" aria-label="이전 슬라이드"><svg viewBox="0 0 24 24" fill="none"><path d="m14 6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="nav-btn" id="nextBtn" type="button" aria-label="다음 슬라이드"><svg viewBox="0 0 24 24" fill="none"><path d="m10 6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+
+  <script id="report-metadata" type="application/json">
+  {
+    "schemaVersion":"1.0",
+    "reportId":"260828-personal-business-card-benchmark",
+    "title":"개인 명함 디자인 벤치마크와 시안",
+    "version":"1.0.0",
+    "status":"Published",
+    "createdAt":"2026-08-28",
+    "updatedAt":"2026-08-28",
+    "language":"ko-KR",
+    "author":"Jeremy Lee",
+    "generation":"AI-assisted",
+    "reviewStatus":"Human review recommended",
+    "history":[
+      {
+        "version":"1.0.0",
+        "date":"2026-08-28",
+        "type":"신규 작성",
+        "summary":"개성 있는 실물 명함 10종을 사진·재질·후가공·대표 가격으로 비교하고, AI Builders Lab용 개인 명함 3개 시안과 100장+NFC 1장 발주 전략을 추가함.",
+        "sections":["전체","실물 사례 10종","개인 시안 A~C","발주 브리프","출처"],
+        "updatedBy":"AI-assisted",
+        "reviewStatus":"인쇄 전 실물 교정 권장"
+      }
+    ]
+  }
+  </script>
+
+  <script>
+    const slides = [...document.querySelectorAll('.slide')];
+    const progress = document.getElementById('progress');
+    const counter = document.getElementById('slideCounter');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let current = 0;
+
+    function setCurrent(index) {
+      current = Math.max(0, Math.min(slides.length - 1, index));
+      const pct = slides.length > 1 ? (current / (slides.length - 1)) * 100 : 0;
+      progress.style.width = pct + '%';
+      counter.textContent = String(current + 1).padStart(2,'0') + ' / ' + String(slides.length).padStart(2,'0');
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current === slides.length - 1;
+    }
+    function goTo(index) {
+      const next = Math.max(0, Math.min(slides.length - 1, index));
+      slides[next].scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'start'});
+      setCurrent(next);
+    }
+    prevBtn.addEventListener('click', () => goTo(current - 1));
+    nextBtn.addEventListener('click', () => goTo(current + 1));
+    document.getElementById('printBtn').addEventListener('click', () => window.print());
+    document.getElementById('fullBtn').addEventListener('click', async () => {
+      try {
+        if (!document.fullscreenElement) await document.documentElement.requestFullscreen();
+        else await document.exitFullscreen();
+      } catch (e) { console.warn('Fullscreen unavailable', e); }
+    });
+    window.addEventListener('keydown', (event) => {
+      if (event.target.closest('a,button,input,textarea,select')) return;
+      if (['ArrowRight','ArrowDown','PageDown',' '].includes(event.key)) {event.preventDefault();goTo(current+1)}
+      if (['ArrowLeft','ArrowUp','PageUp'].includes(event.key)) {event.preventDefault();goTo(current-1)}
+      if (event.key === 'Home') {event.preventDefault();goTo(0)}
+      if (event.key === 'End') {event.preventDefault();goTo(slides.length-1)}
+    });
+
+    if ('IntersectionObserver' in window) {
+      const slideObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => { if (entry.isIntersecting && entry.intersectionRatio > .5) setCurrent(slides.indexOf(entry.target)); });
+      }, {threshold:[.5,.72]});
+      slides.forEach(s => slideObserver.observe(s));
+      const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => { if (entry.isIntersecting) {entry.target.classList.add('visible'); revealObserver.unobserve(entry.target);} });
+      }, {threshold:.08});
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    } else { document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible')); }
+
+    document.querySelectorAll('.photo-frame img').forEach(img => {
+      img.addEventListener('error', () => { img.hidden = true; img.parentElement.classList.add('fallback-active'); });
+    });
+
+    function renderMetadata() {
+      try {
+        const meta = JSON.parse(document.getElementById('report-metadata').textContent);
+        const version = 'v' + meta.version;
+        const date = String(meta.updatedAt).replaceAll('-','.');
+        document.getElementById('reportVersion').textContent = version;
+        document.getElementById('reportUpdated').textContent = 'Updated ' + date;
+        document.getElementById('reportGeneration').textContent = meta.generation + ' · ' + meta.reviewStatus;
+        document.title = meta.title + ' · ' + version;
+        const body = document.getElementById('historyBody');
+        body.innerHTML = '';
+        (meta.history || []).forEach(item => {
+          const tr = document.createElement('tr');
+          const values = ['v'+item.version, String(item.date).replaceAll('-','.'), item.type, item.summary, [item.updatedBy,item.reviewStatus].filter(Boolean).join(' · ')];
+          values.forEach(v => {const td=document.createElement('td');td.textContent=v;tr.appendChild(td)});
+          body.appendChild(tr);
+        });
+      } catch (error) { console.error('Invalid report metadata', error); }
+    }
+    renderMetadata(); setCurrent(0);
+  </script>
+</body>
+</html>

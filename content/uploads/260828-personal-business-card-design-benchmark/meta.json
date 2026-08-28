@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1",
+  "id": "260828-personal-business-card-design-benchmark",
+  "slug": "personal-business-card-design-benchmark",
+  "title": "개인 명함 디자인 벤치마크와 시안",
+  "category": "디자인",
+  "tags": [
+    "개인 명함",
+    "브랜딩",
+    "디자인",
+    "AI Builders Lab",
+    "NFC"
+  ],
+  "summary": "실물 명함 10종의 재질·후가공·가격을 비교하고 AI Builders Lab용 개인 명함 3개 시안을 제안합니다.",
+  "createdAt": "2026-08-28T13:00:00+09:00",
+  "updatedAt": "2026-08-28T13:00:00+09:00",
+  "status": "published",
+  "sourceName": "개인 명함 디자인 벤치마크와 시안.zip",
+  "sourceCount": 15,
+  "entry": "index.html"
+}
