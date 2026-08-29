@@ -1,7 +1,30 @@
 {
-  "generatedAt": "2026-08-28T05:04:27.050Z",
+  "generatedAt": "2026-08-29T07:13:15.719Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260829-curious-business-analysis",
+      "slug": "curious-business-analysis",
+      "title": "큐리어스 조사·분석 보고서",
+      "category": "비즈니스",
+      "summary": "4060 중장년 경험 수익화 플랫폼 큐리어스의 서비스 구조, 수익모델, 성장 신호, 경쟁 구도와 리스크를 분석합니다.",
+      "createdAt": "2026-08-29T13:00:00+09:00",
+      "updatedAt": "2026-08-29T13:00:00+09:00",
+      "status": "published",
+      "path": "reports/260829-curious-business-analysis/",
+      "url": "https://aihubos.github.io/reportmode/reports/260829-curious-business-analysis/",
+      "displayDate": "260829",
+      "sourceCount": 19,
+      "tags": [
+        "큐리어스",
+        "중장년",
+        "경험 수익화",
+        "커뮤니티",
+        "플랫폼"
+      ],
+      "coverImage": "reports/260829-curious-business-analysis/assets/thumbnail.png",
+      "coverAlt": "큐리어스 로고와 캐릭터"
+    },
     {
       "id": "260828-personal-business-card-design-benchmark",
       "slug": "personal-business-card-design-benchmark",

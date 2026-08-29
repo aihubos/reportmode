@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">큐리어스 서비스 생태계 재구성 도식</title>
+  <desc id="desc">학습자가 리더가 되고, 어울림·디지털 콘텐츠·멤버십·커뮤니티를 통해 다시 참여자를 모으는 순환 구조를 표현한 도식</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F8FBFF"/>
+      <stop offset="1" stop-color="#E8F3FF"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5A9CFF"/>
+      <stop offset="1" stop-color="#1B64DA"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="20" stdDeviation="22" flood-color="#191F28" flood-opacity=".14"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#3182F6"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="900" rx="64" fill="url(#bg)"/>
+  <circle cx="930" cy="110" r="150" fill="#DFFF6A" opacity=".28"/>
+  <circle cx="160" cy="720" r="180" fill="#3182F6" opacity=".08"/>
+
+  <g filter="url(#shadow)">
+    <rect x="390" y="105" width="420" height="690" rx="62" fill="#191F28"/>
+    <rect x="411" y="128" width="378" height="644" rx="46" fill="#FFFFFF"/>
+    <rect x="525" y="145" width="150" height="21" rx="11" fill="#191F28"/>
+    <text x="450" y="220" font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif" font-size="25" font-weight="800" fill="#191F28">큐리어스</text>
+    <rect x="450" y="245" width="300" height="126" rx="26" fill="url(#blue)"/>
+    <text x="478" y="286" font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif" font-size="14" font-weight="700" fill="#CDE3FF">EXPERIENCE → INCOME</text>
+    <text x="478" y="321" font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif" font-size="24" font-weight="800" fill="#FFFFFF">경험을 콘텐츠로,</text>
+    <text x="478" y="351" font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif" font-size="24" font-weight="800" fill="#FFFFFF">학습자를 리더로</text>
+
+    <g font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif">
+      <rect x="450" y="397" width="142" height="132" rx="24" fill="#F7F8FA" stroke="#E5E8EB"/>
+      <circle cx="486" cy="433" r="19" fill="#E8F3FF"/>
+      <path d="M478 433h16M486 425v16" stroke="#3182F6" stroke-width="3" stroke-linecap="round"/>
+      <text x="468" y="477" font-size="19" font-weight="800" fill="#191F28">어울림</text>
+      <text x="468" y="503" font-size="12" font-weight="600" fill="#6B7684">강의·모임·챌린지</text>
+
+      <rect x="608" y="397" width="142" height="132" rx="24" fill="#F7F8FA" stroke="#E5E8EB"/>
+      <circle cx="644" cy="433" r="19" fill="#EEE9FF"/>
+      <path d="M637 425h12l7 7v13h-19zM649 425v8h7" fill="none" stroke="#7356CC" stroke-width="2.5" stroke-linejoin="round"/>
+      <text x="626" y="477" font-size="19" font-weight="800" fill="#191F28">디지털</text>
+      <text x="626" y="503" font-size="12" font-weight="600" fill="#6B7684">PDF·링크 콘텐츠</text>
+
+      <rect x="450" y="545" width="142" height="132" rx="24" fill="#F7F8FA" stroke="#E5E8EB"/>
+      <circle cx="486" cy="581" r="19" fill="#DFFBF2"/>
+      <path d="M476 583c5-10 15-10 20 0M480 575a6 6 0 1 1 12 0" fill="none" stroke="#15876D" stroke-width="2.5" stroke-linecap="round"/>
+      <text x="468" y="625" font-size="19" font-weight="800" fill="#191F28">멤버십</text>
+      <text x="468" y="651" font-size="12" font-weight="600" fill="#6B7684">정기 구독·라운지</text>
+
+      <rect x="608" y="545" width="142" height="132" rx="24" fill="#F7F8FA" stroke="#E5E8EB"/>
+      <circle cx="644" cy="581" r="19" fill="#FFF5CF"/>
+      <path d="M636 574h16v11h-7l-5 5v-5h-4z" fill="none" stroke="#B78200" stroke-width="2.5" stroke-linejoin="round"/>
+      <text x="626" y="625" font-size="19" font-weight="800" fill="#191F28">커뮤니티</text>
+      <text x="626" y="651" font-size="12" font-weight="600" fill="#6B7684">후기·팁·관계</text>
+    </g>
+
+    <rect x="450" y="706" width="300" height="38" rx="19" fill="#DFFF6A"/>
+    <text x="600" y="731" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif" font-size="14" font-weight="900" fill="#344400">배우기 → 만들기 → 가르치기 → 수익화</text>
+  </g>
+
+  <g font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif">
+    <rect x="74" y="166" width="238" height="118" rx="28" fill="#FFFFFF" stroke="#E5E8EB" filter="url(#shadow)"/>
+    <circle cx="116" cy="208" r="22" fill="#E8F3FF"/>
+    <path d="M107 213c2-12 16-12 18 0M111 202a5 5 0 1 1 10 0" fill="none" stroke="#3182F6" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="151" y="207" font-size="14" font-weight="700" fill="#6B7684">ENTRY</text>
+    <text x="151" y="235" font-size="23" font-weight="850" fill="#191F28">학습자</text>
+    <text x="102" y="263" font-size="13" font-weight="650" fill="#6B7684">무료·저가 경험으로 진입</text>
+
+    <rect x="70" y="604" width="250" height="126" rx="28" fill="#FFFFFF" stroke="#E5E8EB" filter="url(#shadow)"/>
+    <circle cx="116" cy="648" r="22" fill="#DFFBF2"/>
+    <path d="M106 649h20M116 639v20" stroke="#15876D" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="151" y="647" font-size="14" font-weight="700" fill="#6B7684">UPGRADE</text>
+    <text x="151" y="675" font-size="23" font-weight="850" fill="#191F28">리더</text>
+    <text x="102" y="705" font-size="13" font-weight="650" fill="#6B7684">경험을 상품과 모임으로 전환</text>
+
+    <rect x="888" y="166" width="238" height="118" rx="28" fill="#FFFFFF" stroke="#E5E8EB" filter="url(#shadow)"/>
+    <circle cx="930" cy="208" r="22" fill="#FFF5CF"/>
+    <path d="M919 206h22M922 199h16M925 213h10" stroke="#B78200" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="965" y="207" font-size="14" font-weight="700" fill="#6B7684">PROOF</text>
+    <text x="965" y="235" font-size="23" font-weight="850" fill="#191F28">후기·신뢰</text>
+    <text x="916" y="263" font-size="13" font-weight="650" fill="#6B7684">관계가 다음 구매를 만듦</text>
+
+    <rect x="880" y="604" width="266" height="126" rx="28" fill="#FFFFFF" stroke="#E5E8EB" filter="url(#shadow)"/>
+    <circle cx="926" cy="648" r="22" fill="#EEE9FF"/>
+    <path d="M916 653c4-13 16-13 20 0M920 641a6 6 0 1 1 12 0" fill="none" stroke="#7356CC" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="961" y="647" font-size="14" font-weight="700" fill="#6B7684">DISTRIBUTION</text>
+    <text x="961" y="675" font-size="23" font-weight="850" fill="#191F28">추천 유입</text>
+    <text x="908" y="705" font-size="13" font-weight="650" fill="#6B7684">리더가 고객 획득 채널이 됨</text>
+  </g>
+
+  <path d="M312 225 C360 225, 350 225, 390 250" fill="none" stroke="#3182F6" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow)" opacity=".75"/>
+  <path d="M810 250 C855 225, 845 225, 888 225" fill="none" stroke="#3182F6" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow)" opacity=".75"/>
+  <path d="M1008 284 C1055 360, 1050 520, 1012 604" fill="none" stroke="#3182F6" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow)" opacity=".75"/>
+  <path d="M880 667 C840 667, 850 667, 810 650" fill="none" stroke="#3182F6" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow)" opacity=".75"/>
+  <path d="M390 650 C352 667, 360 667, 320 667" fill="none" stroke="#3182F6" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow)" opacity=".75"/>
+  <path d="M190 604 C135 530, 135 360, 190 284" fill="none" stroke="#3182F6" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow)" opacity=".75"/>
+</svg>

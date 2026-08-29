@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">큐리어스 앱 화면 재구성</title>
+  <desc id="desc">강의, 챌린지, 모임 어울림과 인기 프로그램을 탐색하는 모바일 화면을 큐리어스 공식 공개 화면을 참고해 단순화한 재구성 이미지</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F7FFF4"/><stop offset="1" stop-color="#E8F3FF"/></linearGradient>
+    <linearGradient id="hero" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#DFFF6A"/><stop offset="1" stop-color="#B7F7CD"/></linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#191F28" flood-opacity=".16"/></filter>
+  </defs>
+  <rect width="1200" height="760" rx="56" fill="url(#bg)"/>
+  <circle cx="190" cy="145" r="110" fill="#DFFF6A" opacity=".35"/>
+  <circle cx="1035" cy="640" r="170" fill="#3182F6" opacity=".08"/>
+  <g filter="url(#shadow)">
+    <rect x="370" y="52" width="460" height="656" rx="64" fill="#191F28"/>
+    <rect x="391" y="73" width="418" height="614" rx="46" fill="#FFFFFF"/>
+    <rect x="518" y="86" width="164" height="18" rx="9" fill="#191F28"/>
+  </g>
+  <text x="430" y="146" font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif" font-size="31" font-weight="900" fill="#11B94B">큐리어스</text>
+  <rect x="430" y="175" width="340" height="52" rx="16" fill="#F2F4F6"/>
+  <circle cx="744" cy="201" r="14" fill="none" stroke="#6B7684" stroke-width="3"/><path d="M754 211l10 10" stroke="#6B7684" stroke-width="3" stroke-linecap="round"/>
+  <text x="452" y="208" font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif" font-size="16" font-weight="650" fill="#8B95A1">원하는 어울림을 검색하세요</text>
+  <rect x="430" y="247" width="340" height="128" rx="24" fill="url(#hero)"/>
+  <text x="454" y="282" font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif" font-size="14" font-weight="800" fill="#333D4B">중장년의 즐거운 놀이터</text>
+  <text x="454" y="318" font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif" font-size="26" font-weight="900" fill="#191F28">배우고, 만나고,</text>
+  <text x="454" y="349" font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif" font-size="26" font-weight="900" fill="#191F28">나의 경험을 나누세요</text>
+  <g transform="translate(665 274)"><path d="M0 40 56 8v58z" fill="#11B94B"/><rect x="52" y="16" width="16" height="44" rx="8" fill="#078F36"/><path d="M14 59c14 18 24 25 34 28" fill="none" stroke="#11B94B" stroke-width="12" stroke-linecap="round"/></g>
+  <g font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif">
+    <rect x="430" y="397" width="102" height="92" rx="21" fill="#E8F9EE"/><circle cx="481" cy="427" r="17" fill="#11B94B"/><path d="M481 416v22M472 430c4 9 14 9 18 0" stroke="#fff" stroke-width="3" stroke-linecap="round"/><text x="481" y="469" text-anchor="middle" font-size="14" font-weight="800" fill="#333D4B">강의</text>
+    <rect x="549" y="397" width="102" height="92" rx="21" fill="#E8F9EE"/><circle cx="600" cy="427" r="17" fill="#11B94B"/><path d="m590 425 7 7 13-15" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><text x="600" y="469" text-anchor="middle" font-size="14" font-weight="800" fill="#333D4B">챌린지</text>
+    <rect x="668" y="397" width="102" height="92" rx="21" fill="#E8F9EE"/><circle cx="719" cy="427" r="17" fill="#11B94B"/><circle cx="713" cy="424" r="5" fill="#fff"/><circle cx="725" cy="424" r="5" fill="#fff"/><path d="M704 438c3-8 10-10 15-5 5-5 12-3 15 5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/><text x="719" y="469" text-anchor="middle" font-size="14" font-weight="800" fill="#333D4B">모임</text>
+  </g>
+  <text x="430" y="535" font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif" font-size="22" font-weight="900" fill="#191F28">실시간 인기 어울림</text>
+  <rect x="430" y="558" width="158" height="82" rx="19" fill="#F7F8FA" stroke="#E5E8EB"/><rect x="444" y="573" width="54" height="50" rx="13" fill="#E8F3FF"/><text x="512" y="588" font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif" font-size="12" font-weight="900" fill="#3182F6">AI 시작</text><text x="512" y="610" font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif" font-size="12" font-weight="700" fill="#6B7684">처음부터 함께</text>
+  <rect x="608" y="558" width="162" height="82" rx="19" fill="#F7F8FA" stroke="#E5E8EB"/><rect x="622" y="573" width="54" height="50" rx="13" fill="#FFF5CF"/><text x="690" y="588" font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif" font-size="12" font-weight="900" fill="#B78200">글쓰기</text><text x="690" y="610" font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif" font-size="12" font-weight="700" fill="#6B7684">경험을 콘텐츠로</text>
+  <rect x="408" y="651" width="384" height="22" rx="11" fill="#F2F4F6"/>
+  <text x="600" y="722" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif" font-size="15" font-weight="800" fill="#6B7684">공식 공개 화면을 참고한 보고서용 재구성</text>
+</svg>

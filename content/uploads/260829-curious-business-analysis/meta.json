@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1",
+  "id": "260829-curious-business-analysis",
+  "slug": "curious-business-analysis",
+  "title": "큐리어스 조사·분석 보고서",
+  "category": "비즈니스",
+  "tags": [
+    "큐리어스",
+    "중장년",
+    "경험 수익화",
+    "커뮤니티",
+    "플랫폼"
+  ],
+  "summary": "4060 중장년 경험 수익화 플랫폼 큐리어스의 서비스 구조, 수익모델, 성장 신호, 경쟁 구도와 리스크를 분석합니다.",
+  "createdAt": "2026-08-29T13:00:00+09:00",
+  "updatedAt": "2026-08-29T13:00:00+09:00",
+  "status": "published",
+  "sourceName": "큐리어스 조사·분석 보고서.zip",
+  "sourceCount": 19,
+  "entry": "index.html"
+}
