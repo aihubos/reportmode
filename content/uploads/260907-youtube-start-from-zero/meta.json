@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1",
+  "id": "260907-youtube-start-from-zero",
+  "slug": "youtube-start-from-zero",
+  "title": "유튜브 0부터 다시 시작한다면",
+  "category": "교육",
+  "tags": [
+    "유튜브",
+    "콘텐츠 제작",
+    "채널 운영"
+  ],
+  "summary": "사용자 제공 자막으로 정리한 유튜브 시작 전략. 편집보다 주제와 형식, 선결제보다 학습, 첫 20개 영상의 목적과 통계의 한계를 한눈에 살펴봅니다.",
+  "createdAt": "2026-09-07T21:46:03+09:00",
+  "updatedAt": "2026-09-07T21:46:03+09:00",
+  "status": "published",
+  "sourceName": "유튜브 0부터 다시 시작한다면.zip",
+  "sourceCount": 1,
+  "entry": "index.html"
+}
