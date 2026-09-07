@@ -1,7 +1,27 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-29T16:13:14+09:00",
+  "updatedAt": "2026-09-07T15:43:47+09:00",
   "reports": [
+    {
+      "schemaVersion": "1",
+      "id": "260907-shopping-shorts-guide",
+      "slug": "shopping-shorts-guide",
+      "title": "쇼핑 쇼츠 가이드",
+      "category": "교육",
+      "tags": [
+        "쇼핑 쇼츠",
+        "유튜브",
+        "콘텐츠 제작",
+        "가이드"
+      ],
+      "summary": "주제 선정부터 대본·편집·음성·업로드·반응 확인까지, 처음 시작하는 쇼핑 쇼츠 제작을 6단계로 정리한 웹 가이드입니다.",
+      "createdAt": "2026-09-07T15:43:47.143857+09:00",
+      "updatedAt": "2026-09-07T15:43:47.143857+09:00",
+      "status": "published",
+      "sourceName": "https://aihubos.github.io/shorts-tuber/",
+      "sourceCount": 1,
+      "entry": "index.html"
+    },
     {
       "schemaVersion": "1",
       "id": "260829-curious-business-analysis",
