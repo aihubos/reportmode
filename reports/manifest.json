@@ -1,7 +1,29 @@
 {
-  "generatedAt": "2026-09-07T12:46:14.718Z",
+  "generatedAt": "2026-09-13T04:22:46.618Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260913-buzz-detailed-analysis",
+      "slug": "buzz-detailed-analysis",
+      "title": "Buzz 상세 분석",
+      "category": "AI",
+      "summary": "사람과 AI가 함께 일하는 Buzz의 제품 구조·활용 업무·비용·운영 위험과 4주/6주 도입안을 통합 분석합니다.",
+      "createdAt": "2026-09-13T18:00:00+09:00",
+      "updatedAt": "2026-09-13T18:00:00+09:00",
+      "status": "published",
+      "path": "reports/260913-buzz-detailed-analysis/",
+      "url": "https://aihubos.github.io/reportmode/reports/260913-buzz-detailed-analysis/",
+      "displayDate": "260913",
+      "sourceCount": 22,
+      "tags": [
+        "Buzz",
+        "Block",
+        "AI 협업",
+        "임원 브리핑"
+      ],
+      "coverImage": "reports/260913-buzz-detailed-analysis/buzz-thumbnail.svg",
+      "coverAlt": "Buzz 공식 벌 로고 — Buzz 상세 분석"
+    },
     {
       "id": "260907-youtube-start-from-zero",
       "slug": "youtube-start-from-zero",

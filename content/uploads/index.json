@@ -1,7 +1,27 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-07T21:46:03+09:00",
+  "updatedAt": "2026-09-13T13:22:46+09:00",
   "reports": [
+    {
+      "schemaVersion": "1",
+      "id": "260913-buzz-detailed-analysis",
+      "slug": "buzz-detailed-analysis",
+      "title": "Buzz 상세 분석",
+      "category": "AI",
+      "tags": [
+        "Buzz",
+        "Block",
+        "AI 협업",
+        "임원 브리핑"
+      ],
+      "summary": "사람과 AI가 함께 일하는 Buzz의 제품 구조·활용 업무·비용·운영 위험과 4주/6주 도입안을 통합 분석합니다.",
+      "createdAt": "2026-09-13T18:00:00+09:00",
+      "updatedAt": "2026-09-13T18:00:00+09:00",
+      "status": "published",
+      "sourceName": "Buzz 상세 분석 — HTML·Word 통합 편집본",
+      "sourceCount": 22,
+      "entry": "index.html"
+    },
     {
       "schemaVersion": "1",
       "id": "260907-youtube-start-from-zero",
