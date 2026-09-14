@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1",
+  "id": "260915-llm-wiki-seminar-briefing",
+  "slug": "llm-wiki-seminar-briefing",
+  "title": "LLM Wiki 올인원 세미나 · 임원 브리핑",
+  "category": "AI",
+  "tags": [
+    "LLM Wiki",
+    "세미나",
+    "임원 브리핑"
+  ],
+  "summary": "2026.09.14 LLM Wiki 올인원 세미나. 원본 보고서의 16개 장을 그대로 유지하고, 지식 관리와 에이전트 운영을 토스·원티드 스타일의 반응형 화면으로 편집했습니다.",
+  "createdAt": "2026-09-15T00:19:48+09:00",
+  "updatedAt": "2026-09-15T00:19:48+09:00",
+  "status": "published",
+  "sourceName": "LLM-Wiki-세미나-임원브리핑.html",
+  "sourceCount": 1,
+  "entry": "index.html"
+}

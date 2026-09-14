@@ -1,27 +1,27 @@
 {
-  "generatedAt": "2026-09-14T15:12:02.028Z",
+  "generatedAt": "2026-09-14T15:20:45.177Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
     {
-      "id": "260915-llm-wiki-integrated-briefing",
-      "slug": "llm-wiki-integrated-briefing",
-      "title": "LLM Wiki 통합 보고서 · 기록에서 일하는 지식으로",
+      "id": "260915-llm-wiki-seminar-briefing",
+      "slug": "llm-wiki-seminar-briefing",
+      "title": "LLM Wiki 올인원 세미나 · 임원 브리핑",
       "category": "AI",
-      "summary": "LLM Wiki 세미나의 두 문서를 통합한 임원 보고서. 지식 순환, 에이전트 운영, 근거의 한계와 4주 도입 제안을 시각화했습니다.",
-      "createdAt": "2026-09-15T00:09:21+09:00",
-      "updatedAt": "2026-09-15T00:09:21+09:00",
+      "summary": "2026.09.14 LLM Wiki 올인원 세미나. 원본 보고서의 16개 장을 그대로 유지하고, 지식 관리와 에이전트 운영을 토스·원티드 스타일의 반응형 화면으로 편집했습니다.",
+      "createdAt": "2026-09-15T00:19:48+09:00",
+      "updatedAt": "2026-09-15T00:19:48+09:00",
       "status": "published",
-      "path": "reports/260915-llm-wiki-integrated-briefing/",
-      "url": "https://aihubos.github.io/reportmode/reports/260915-llm-wiki-integrated-briefing/",
+      "path": "reports/260915-llm-wiki-seminar-briefing/",
+      "url": "https://aihubos.github.io/reportmode/reports/260915-llm-wiki-seminar-briefing/",
       "displayDate": "260915",
-      "sourceCount": 2,
+      "sourceCount": 1,
       "tags": [
         "LLM Wiki",
-        "지식관리",
+        "세미나",
         "임원 브리핑"
       ],
-      "coverImage": "reports/260915-llm-wiki-integrated-briefing/thumbnail.svg",
-      "coverAlt": "LLM Wiki 통합 보고서"
+      "coverImage": "reports/260915-llm-wiki-seminar-briefing/thumbnail.svg",
+      "coverAlt": "LLM Wiki 올인원 세미나 임원 브리핑"
     },
     {
       "id": "260913-buzz-detailed-analysis",
