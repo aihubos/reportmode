@@ -1,7 +1,26 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-13T13:22:46+09:00",
+  "updatedAt": "2026-09-15T00:09:21+09:00",
   "reports": [
+    {
+      "schemaVersion": "1",
+      "id": "260915-llm-wiki-integrated-briefing",
+      "slug": "llm-wiki-integrated-briefing",
+      "title": "LLM Wiki 통합 보고서 · 기록에서 일하는 지식으로",
+      "category": "AI",
+      "tags": [
+        "LLM Wiki",
+        "지식관리",
+        "임원 브리핑"
+      ],
+      "summary": "LLM Wiki 세미나의 두 문서를 통합한 임원 보고서. 지식 순환, 에이전트 운영, 근거의 한계와 4주 도입 제안을 시각화했습니다.",
+      "createdAt": "2026-09-15T00:09:21+09:00",
+      "updatedAt": "2026-09-15T00:09:21+09:00",
+      "status": "published",
+      "sourceName": "LLM-Wiki-통합보고서.html",
+      "sourceCount": 2,
+      "entry": "index.html"
+    },
     {
       "schemaVersion": "1",
       "id": "260913-buzz-detailed-analysis",
