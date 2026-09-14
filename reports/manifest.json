@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-14T15:10:49.502Z",
+  "generatedAt": "2026-09-14T15:12:02.028Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
     {
@@ -19,7 +19,9 @@
         "LLM Wiki",
         "지식관리",
         "임원 브리핑"
-      ]
+      ],
+      "coverImage": "reports/260915-llm-wiki-integrated-briefing/thumbnail.svg",
+      "coverAlt": "LLM Wiki 통합 보고서"
     },
     {
       "id": "260913-buzz-detailed-analysis",
