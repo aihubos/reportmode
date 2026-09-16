@@ -1,0 +1,57 @@
+{
+  "checked": "2026-09-17",
+  "range": [
+    "2024-09-17",
+    "2026-09-17"
+  ],
+  "sources": [
+    {
+      "file": "assets-2026/koriyo-contest-2026.png",
+      "source": "https://aihscity.com/assets/koriyo-BXxPPCNo.png",
+      "page": "https://aihscity.com/ko",
+      "date_basis": "2026 공모전 현행 사용; 최초 제작일 미공개",
+      "role": "외형 기준"
+    },
+    {
+      "file": "assets-2026/contest-hero-2026.jpg",
+      "source": "https://aihscity.com/assets/hero-wide-Dn8v9A-4.jpg",
+      "page": "https://aihscity.com/ko",
+      "date_basis": "2026 공모전 현행 사용",
+      "role": "배경 분위기 참고"
+    },
+    {
+      "file": "assets-2026/video-20250103-at-02s.jpg",
+      "source": "https://www.hscity.go.kr/component/file/ND_fileDownload.do?q_fileSn=765696&q_fileId=7fde695c-96bd-499d-9308-a7635634f75f",
+      "page": "https://www.hscity.go.kr/specialcity/user/bbs/BD_selectBbs.do?q_bbsCode=1158&q_bbscttSn=20250103174638292",
+      "date_basis": "2025-01-03 게시",
+      "role": "00:02 영상 원본 프레임"
+    },
+    {
+      "file": "assets-2026/video-20250103-at-05s.jpg",
+      "source": "https://www.hscity.go.kr/component/file/ND_fileDownload.do?q_fileSn=765696&q_fileId=7fde695c-96bd-499d-9308-a7635634f75f",
+      "page": "https://www.hscity.go.kr/specialcity/user/bbs/BD_selectBbs.do?q_bbsCode=1158&q_bbscttSn=20250103174638292",
+      "date_basis": "2025-01-03 게시",
+      "role": "00:05 영상 원본 프레임"
+    },
+    {
+      "file": "assets-2026/city-20260526.jpg",
+      "page": "https://www.hscity.go.kr/www/user/bbs/BD_selectBbs.do?q_bbsCode=1051&q_bbscttSn=20260526180220138",
+      "date_basis": "2026-05-26 게시",
+      "role": "시청 활용 사례"
+    }
+  ],
+  "youtube": [
+    {
+      "url": "https://www.youtube.com/watch?v=AdrWB0eaIEg",
+      "uploadDate": "2025-11-16T05:13:58-08:00",
+      "title": "우린 빛나, 화성 (We Shine, Hwaseong)",
+      "basis": "YouTube videoMicroformatRenderer uploadDate"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=izk_DTz3-zQ",
+      "uploadDate": "2025-11-16T04:56:38-08:00",
+      "title": "화성시 슈퍼레이스 : 매력이 이어지는 길",
+      "basis": "YouTube videoMicroformatRenderer uploadDate"
+    }
+  ]
+}
