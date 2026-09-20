@@ -1,7 +1,26 @@
 {
-  "generatedAt": "2026-09-14T15:20:45.177Z",
+  "generatedAt": "2026-09-20T06:34:53.243Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "260920-jev-executive-briefing",
+      "slug": "jev-executive-briefing",
+      "title": "Jev | 임원 브리핑 · 2026.09.20",
+      "category": "AI",
+      "summary": "TypeSafe AI Jev 임원 브리핑: 핵심 기능, 비용 시나리오, 성능 주장 해석, 한국어 한계, 보안과 4주 도입 검증안. 2026년 9월 20일 기준.",
+      "createdAt": "2026-09-20T15:34:20+09:00",
+      "updatedAt": "2026-09-20T15:34:20+09:00",
+      "status": "published",
+      "path": "reports/260920-jev-executive-briefing/",
+      "url": "https://aihubos.github.io/reportmode/reports/260920-jev-executive-briefing/",
+      "displayDate": "260920",
+      "sourceCount": 20,
+      "tags": [
+        "Jev",
+        "TypeSafe AI",
+        "임원 브리핑"
+      ]
+    },
     {
       "id": "260915-llm-wiki-seminar-briefing",
       "slug": "llm-wiki-seminar-briefing",
