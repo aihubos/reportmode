@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1",
+  "id": "261018-ai-automation-three-stage-strategy",
+  "slug": "ai-automation-three-stage-strategy",
+  "title": "AI 자동화 3단계 도입 전략",
+  "category": "AI",
+  "tags": [
+    "AI 자동화",
+    "업무 자동화",
+    "도입 전략"
+  ],
+  "summary": "오빠두엑셀 영상과 제공 요약을 바탕으로 정리한 AI 자동화 3단계 임원 브리핑. 모으기·말하기·위임하기, 위임 레벨, 검증 한계와 4주 파일럿 제안.",
+  "createdAt": "2026-10-18T12:00:00+09:00",
+  "updatedAt": "2026-10-18T12:00:00+09:00",
+  "status": "published",
+  "sourceName": "AI 자동화 3단계 도입 전략.html",
+  "sourceCount": 11,
+  "entry": "index.html"
+}
