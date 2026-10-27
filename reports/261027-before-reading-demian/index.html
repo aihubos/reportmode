@@ -1,0 +1,564 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>  <link rel="icon" type="image/svg+xml" sizes="any" href="../../assets/favicon.svg?v=20260812-report-hub-logo2">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png?v=20260812-report-hub-logo2">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png?v=20260812-report-hub-logo2">
+  <link rel="manifest" href="../../site.webmanifest?v=20260812-report-hub-logo2">
+  <meta name="application-name" content="Report Hub">
+  <meta property="og:site_name" content="Report Hub">
+  <link rel="stylesheet" href="../../assets/report-page-layout.css?v=20260815-responsive-only1">
+  <link rel="stylesheet" href="../../assets/report-hub-brand.css?v=20260812-report-hub-logo2">
+  <link rel="stylesheet" href="../../assets/report-comments.css?v=20260816-comments-width1">
+</head><body data-report-view="detail" data-report-layout="responsive">
+  <a class="report-home-button" href="https://aireport.ai-hub-os.com/" aria-label="Report Hub 메인으로 이동"><span class="report-hub-brand-copy"><span class="report-hub-logo-mark-shimmer" aria-hidden="true"></span><img class="report-hub-logo-image" src="../../assets/report-hub-logo.png?v=20260812-report-hub-logo2" alt="Report Hub"></span></a>
+<title>데미안 읽기 전에 | Report Hub</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&family=Nanum+Myeongjo:wght@700;800&display=swap">
+<style>
+/* Layout: mobile-first single column of rounded cards on a soft grey ground (Toss-like), widening to 2-col grids on desktop; sticky chip nav */
+:root{
+  --bg:#F2F4F6; --card:#FFFFFF; --card2:#F9FAFB;
+  --fg:#191F28; --fg2:#4E5968; --fg3:#8B95A1; --line:#E5E8EB;
+  --blue:#3182F6; --blue-weak:#E8F3FF; --blue-strong:#1B64DA;
+  --amber:#FF9F0A; --amber-weak:#FFF4E0; --red:#F04452; --red-weak:#FFEEEE; --green:#03B26C; --green-weak:#E5F8EF;
+  --violet:#7C5CFA; --violet-weak:#F1EDFF;
+  --sans:"Noto Sans KR",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --serif:"Nanum Myeongjo","AppleMyungjo","Batang",serif;
+  --r-lg:24px; --r-md:16px; --r-sm:10px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#101013; --card:#1C1C21; --card2:#26262C; --fg:#F2F4F6; --fg2:#B0B8C1; --fg3:#7E8691; --line:#2E2E36;
+  --blue:#4C9AFF; --blue-weak:#162843; --blue-strong:#8AB9FF;
+  --amber:#FFB340; --amber-weak:#3A2A10; --red:#FF6B76; --red-weak:#3A1A1E; --green:#2FD08C; --green-weak:#10301F;
+  --violet:#A28BFF; --violet-weak:#251E44; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#101013; --card:#1C1C21; --card2:#26262C; --fg:#F2F4F6; --fg2:#B0B8C1; --fg3:#7E8691; --line:#2E2E36;
+  --blue:#4C9AFF; --blue-weak:#162843; --blue-strong:#8AB9FF;
+  --amber:#FFB340; --amber-weak:#3A2A10; --red:#FF6B76; --red-weak:#3A1A1E; --green:#2FD08C; --green-weak:#10301F;
+  --violet:#A28BFF; --violet-weak:#251E44; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.65;word-break:keep-all;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--card)}
+a{color:var(--blue)}
+button{font-family:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:8px}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{text-wrap:balance;margin:0;letter-spacing:-.02em}
+p{margin:0}
+
+/* top bar + nav */
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--card);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;gap:12px;padding-block:10px}
+.brand{font-weight:800;font-size:15px;white-space:nowrap;display:flex;align-items:center;gap:8px}
+.brand i{width:22px;height:22px;border-radius:7px;background:var(--blue);display:inline-grid;place-items:center;color:#fff;font-style:normal;font-size:12px;font-family:var(--serif)}
+.nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;min-width:0;flex:1}
+.nav::-webkit-scrollbar{display:none}
+.nav a{flex:none;text-decoration:none;color:var(--fg2);font-size:14px;font-weight:500;padding:7px 12px;border-radius:999px;transition:background .15s,color .15s}
+.nav a:hover{background:var(--card2)}
+.nav a.on{background:var(--fg);color:var(--card)}
+
+/* hero */
+.hero{padding-block:28px 8px}
+.hero-card{background:var(--card);border-radius:var(--r-lg);display:grid;grid-template-columns:1fr;overflow:hidden}
+.hero-txt{padding:28px 24px;display:flex;flex-direction:column;gap:18px;min-width:0}
+.eyebrow{font-size:13px;font-weight:700;color:var(--blue);letter-spacing:.02em}
+.hero h1{font-size:clamp(30px,6.4vw,46px);line-height:1.22;font-weight:800}
+.hero h1 em{font-style:normal;font-family:var(--serif);color:var(--blue)}
+.lede{color:var(--fg2);font-size:17px;max-width:34em}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.stat{background:var(--card2);border-radius:var(--r-md);padding:14px 16px}
+.stat b{display:block;font-size:22px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.stat span{font-size:13px;color:var(--fg3)}
+.hero-img{position:relative;min-height:240px;max-height:360px}
+.hero-img img{width:100%;height:100%;object-fit:cover;display:block;max-width:100%}
+.hero-img figcaption{position:absolute;left:12px;bottom:12px;right:12px;font-size:12px;color:#fff;background:rgba(0,0,0,.45);padding:6px 10px;border-radius:8px;backdrop-filter:blur(4px)}
+.notice{display:flex;gap:10px;align-items:flex-start;background:var(--blue-weak);color:var(--fg);border-radius:var(--r-md);padding:12px 14px;font-size:14px}
+.notice b{color:var(--blue-strong)}
+@media(min-width:820px){.hero-card{grid-template-columns:1.25fr .75fr}.hero-img{max-height:none}.hero-txt{padding:40px}.stats{grid-template-columns:repeat(4,1fr)}}
+
+/* sections */
+section.sec{padding-block:36px 8px}
+.sec-head{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
+.sec-head .eyebrow{font-size:13px}
+.sec-head h2{font-size:clamp(24px,4.6vw,30px);font-weight:800;line-height:1.3}
+.sec-head p{color:var(--fg2);max-width:40em}
+.card{background:var(--card);border-radius:var(--r-lg);padding:24px}
+.grid{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:720px){.grid.g2{grid-template-columns:1fr 1fr}.grid.g3{grid-template-columns:repeat(3,1fr)}}
+.grid>*{min-width:0}
+
+.why .card h3{font-size:18px;font-weight:700;margin-bottom:8px}
+.why .card p{color:var(--fg2);font-size:15px}
+.ico{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;margin-bottom:14px;font-weight:800;font-size:18px;font-family:var(--serif)}
+.ico.b{background:var(--blue-weak);color:var(--blue)}.ico.v{background:var(--violet-weak);color:var(--violet)}.ico.a{background:var(--amber-weak);color:var(--amber)}
+
+/* timeline */
+.tl-wrap{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:880px){.tl-wrap{grid-template-columns:1.2fr .8fr;align-items:start}}
+.tl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.tl li{display:grid;grid-template-columns:64px 18px 1fr;gap:12px;align-items:start}
+.tl .yr{font-weight:800;font-variant-numeric:tabular-nums;font-size:15px;padding-top:12px;text-align:right}
+.tl .rail{position:relative;align-self:stretch}
+.tl .rail::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--line)}
+.tl li:first-child .rail::before{top:18px}.tl li:last-child .rail::before{bottom:calc(100% - 18px)}
+.tl .dot{position:absolute;left:3px;top:14px;width:12px;height:12px;border-radius:50%;background:var(--card);border:3px solid var(--fg3)}
+.tl li.key .dot{border-color:var(--blue);background:var(--blue)}
+.tl .body{padding:10px 0 16px;min-width:0}
+.tl .body b{display:block;font-size:16px;font-weight:700}
+.tl .body p{color:var(--fg2);font-size:14.5px;margin-top:2px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:6px;margin-left:6px;vertical-align:2px}
+.tag.b{background:var(--blue-weak);color:var(--blue)}.tag.r{background:var(--red-weak);color:var(--red)}.tag.g{background:var(--green-weak);color:var(--green)}.tag.v{background:var(--violet-weak);color:var(--violet)}.tag.a{background:var(--amber-weak);color:var(--amber)}
+
+.photo{background:var(--card);border-radius:var(--r-lg);overflow:hidden;margin:0}
+.photo img{display:block;width:100%;max-width:100%;height:auto}
+.photo figcaption{padding:14px 18px 16px;font-size:14px;color:var(--fg2)}
+.photo figcaption b{color:var(--fg);display:block;font-size:15px;margin-bottom:2px}
+.photo .credit{display:block;font-size:12px;color:var(--fg3);margin-top:6px}
+.side{display:flex;flex-direction:column;gap:12px}
+
+.mood{display:grid;gap:12px;grid-template-columns:1fr;margin-top:12px}
+@media(min-width:720px){.mood{grid-template-columns:repeat(3,1fr)}}
+.mood .card{padding:20px}
+.mood h3{font-size:16px;font-weight:700;margin-bottom:6px}
+.mood p{font-size:14.5px;color:var(--fg2)}
+.mood .k{font-size:12px;font-weight:700;color:var(--fg3);margin-bottom:8px;display:block}
+
+/* author */
+.author-photos{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+.author-photos .photo img{aspect-ratio:4/3;object-fit:cover}
+@media(max-width:520px){.author-photos{grid-template-columns:1fr}}
+.callout{background:var(--card);border-radius:var(--r-lg);padding:22px 24px;display:flex;gap:16px;align-items:flex-start}
+.callout .big{font-family:var(--serif);font-size:40px;line-height:1;color:var(--blue);flex:none}
+.callout h3{font-size:17px;margin-bottom:6px}
+.callout p{color:var(--fg2);font-size:15px}
+
+/* dictionary */
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.chip{border:1px solid var(--line);background:var(--card);padding:8px 14px;border-radius:999px;font-size:14px;font-weight:500;cursor:pointer;color:var(--fg2)}
+.chip[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.dict{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:720px){.dict{grid-template-columns:1fr 1fr}}
+.term{background:var(--card);border-radius:var(--r-lg);overflow:hidden;display:flex;flex-direction:column}
+.term img{width:100%;max-width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:var(--card2)}
+.term .in{padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px}
+.term .top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.term h3{font-size:19px;font-weight:800}
+.term .orig{font-size:13px;color:var(--fg3)}
+.term p{font-size:15px;color:var(--fg2)}
+.term .hint{margin-top:4px;background:var(--card2);border-radius:var(--r-sm);padding:10px 12px;font-size:14px;color:var(--fg)}
+.term .hint b{color:var(--blue)}
+.term .credit{font-size:11.5px;color:var(--fg3)}
+
+/* characters */
+.rel{background:var(--card);border-radius:var(--r-lg);padding:12px;overflow-x:auto}
+.rel svg{display:block;width:100%;min-width:560px;height:auto;max-width:100%}
+.rel svg text{font-family:var(--sans)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--fg2);padding:6px 12px 8px}
+.legend span{display:flex;align-items:center;gap:6px}
+.legend i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.people{display:grid;gap:10px;grid-template-columns:1fr;margin-top:12px}
+@media(min-width:720px){.people{grid-template-columns:1fr 1fr}}
+.person{background:var(--card);border-radius:var(--r-md);padding:16px 18px;display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start}
+.av{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:17px}
+.person h3{font-size:16px;font-weight:700}
+.person .meta{font-size:12.5px;color:var(--fg3);margin:1px 0 4px}
+.person p{font-size:14.5px;color:var(--fg2)}
+.person>div{min-width:0}
+
+/* chapters */
+.tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;margin-bottom:12px}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;border:0;background:var(--card);padding:10px 14px;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;color:var(--fg2);display:flex;align-items:center;gap:6px;font-variant-numeric:tabular-nums}
+.tab[aria-selected="true"]{background:var(--blue);color:#fff}
+.tab .ck{width:16px;height:16px;border-radius:50%;background:var(--green);color:#fff;font-size:10px;display:inline-grid;place-items:center}
+.panel{background:var(--card);border-radius:var(--r-lg);padding:26px 24px;display:flex;flex-direction:column;gap:18px}
+.ph{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
+.ph .no{font-size:13px;font-weight:700;color:var(--blue)}
+.ph h3{font-family:var(--serif);font-size:clamp(22px,4.4vw,28px);font-weight:800;line-height:1.35;margin-top:4px}
+.ph .de{font-size:13px;color:var(--fg3);margin-top:4px}
+.pills{display:flex;gap:6px;flex-wrap:wrap}
+.pill{font-size:12.5px;font-weight:700;background:var(--card2);color:var(--fg2);padding:5px 10px;border-radius:8px}
+.pblock h4{margin:0 0 8px;font-size:14px;color:var(--fg3);font-weight:700}
+.pblock p,.pblock li{font-size:15.5px;color:var(--fg)}
+.pblock ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+.qs{display:flex;flex-direction:column;gap:8px;list-style:none;padding:0!important}
+.qs li{background:var(--blue-weak);border-radius:12px;padding:12px 14px;display:flex;gap:10px}
+.qs li b{color:var(--blue);flex:none}
+.readbtn{align-self:flex-start;border:0;background:var(--card2);padding:12px 18px;border-radius:12px;font-weight:700;font-size:15px;cursor:pointer}
+.readbtn.done{background:var(--green-weak);color:var(--green)}
+.progress{display:flex;align-items:center;gap:12px;background:var(--card);border-radius:var(--r-md);padding:14px 18px;margin-bottom:12px}
+.bar{flex:1;height:8px;border-radius:999px;background:var(--card2);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--blue);border-radius:999px;transition:width .3s}
+.progress b{font-size:14px;font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* talk */
+.talk{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:720px){.talk{grid-template-columns:1fr 1fr}}
+.talk .card h3{font-size:17px;margin-bottom:12px}
+.olist{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;counter-reset:q}
+.olist li{display:grid;grid-template-columns:28px 1fr;gap:10px;font-size:15px;color:var(--fg)}
+.olist li::before{counter-increment:q;content:counter(q);width:24px;height:24px;border-radius:8px;background:var(--fg);color:var(--card);font-weight:800;font-size:13px;display:grid;place-items:center;margin-top:1px}
+
+footer{padding-block:40px 48px;color:var(--fg3);font-size:13px}
+footer h3{font-size:15px;color:var(--fg2);margin-bottom:10px}
+.credits{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.credits a{color:var(--fg2)}
+</style>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand"><i>D</i>데미안 읽기 전에</div>
+    <nav class="nav" id="nav" aria-label="섹션 이동">
+      <a href="#era">시대배경</a>
+      <a href="#author">작가</a>
+      <a href="#dict">상징 사전</a>
+      <a href="#people">인물</a>
+      <a href="#chapters">장별 가이드</a>
+      <a href="#talk">모임 질문</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="wrap hero">
+  <div class="hero-card">
+    <div class="hero-txt">
+      <span class="eyebrow">독서모임 사전 가이드 · 스포일러 없음</span>
+      <h1>『데미안』을 펴기 전<br>알아두면 좋은 <em>열 가지 배경</em></h1>
+      <p class="lede">1919년, 무명의 신인이 쓴 것처럼 출간된 이 소설은 전쟁이 끝난 독일 청년들의 필독서가 되었습니다. 어떤 시대, 어떤 작가, 어떤 상징 위에서 쓰였는지 알고 읽으면 문장이 훨씬 또렷하게 들어옵니다.</p>
+      <div class="stats">
+        <div class="stat"><b>1919</b><span>출간 연도</span></div>
+        <div class="stat"><b>8장</b><span>구성</span></div>
+        <div class="stat"><b>40세</b><span>집필 당시 헤세 나이</span></div>
+        <div class="stat"><b>가명</b><span>에밀 싱클레어</span></div>
+      </div>
+      <div class="notice"><span>💡</span><span><b>스포일러 걱정 없이</b> 읽기 전에 봐도 되는 내용만 담았어요. 결말과 주요 사건은 다루지 않습니다.</span></div>
+    </div>
+    <figure class="hero-img" style="margin:0">
+      <img src="img/calw.jpg" alt="독일 칼프의 나골트 강 위 니콜라우스 다리와 작은 예배당" loading="eager">
+      <figcaption>헤세가 태어난 칼프의 니콜라우스 다리 · Frank Vincentz, CC BY-SA 3.0</figcaption>
+    </figure>
+  </div>
+</div>
+
+<!-- WHY -->
+<section class="sec why"><div class="wrap">
+  <div class="sec-head"><span class="eyebrow">왜 배경지식이 필요할까</span><h2>데미안이 처음엔 어렵게 느껴지는 이유</h2></div>
+  <div class="grid g3">
+    <div class="card"><div class="ico b">史</div><h3>시대의 공기를 전제해요</h3><p>엄격한 시민계층 가정, 경건주의 신앙, 1914년의 전쟁 열광. 당시 독자에겐 설명이 필요 없던 분위기라 소설이 따로 풀어주지 않습니다.</p></div>
+    <div class="card"><div class="ico v">象</div><h3>상징이 이야기를 끌고 가요</h3><p>카인, 새와 알, 아브락사스, 야곱의 씨름. 성경과 신화, 융 심리학의 이미지가 사건만큼 중요한 역할을 합니다.</p></div>
+    <div class="card"><div class="ico a">我</div><h3>작가의 위기에서 나온 책이에요</h3><p>전쟁과 가족의 불행 속에서 정신분석을 받던 헤세가 몇 주 만에 써 내려간 소설입니다. 헤세의 삶을 알면 싱클레어가 더 가깝게 보입니다.</p></div>
+  </div>
+</div></section>
+
+<!-- ERA -->
+<section class="sec" id="era"><div class="wrap">
+  <div class="sec-head"><span class="eyebrow">01 · 시대배경</span><h2>제국의 질서에서 전쟁의 폐허까지</h2><p>소설 속 싱클레어의 성장기는 대략 1900년대에서 1914년까지와 겹칩니다. 그 사이 독일 사회가 지나온 길입니다.</p></div>
+  <div class="tl-wrap">
+    <div class="card" style="padding:16px 20px 8px">
+      <ol class="tl">
+        <li><span class="yr">1871</span><span class="rail"><i class="dot"></i></span><div class="body"><b>독일 제국 수립<span class="tag b">정치</span></b><p>프로이센 중심의 통일. 군대식 위계와 질서, 근면을 미덕으로 여기는 시민계층 문화가 자리 잡습니다.</p></div></li>
+        <li><span class="yr">1888</span><span class="rail"><i class="dot"></i></span><div class="body"><b>빌헬름 2세 즉위<span class="tag b">정치</span></b><p>‘빌헬름 시대’의 시작. 학교와 가정 모두 권위와 복종을 가르쳤고, 싱클레어의 ‘밝은 세계’가 바로 이 질서입니다.</p></div></li>
+        <li><span class="yr">1900</span><span class="rail"><i class="dot"></i></span><div class="body"><b>니체 사망, 프로이트 『꿈의 해석』<span class="tag v">사상</span></b><p>기독교 도덕을 의심한 니체가 청년들 사이에서 유행하고, 무의식이라는 새로운 언어가 등장합니다.</p></div></li>
+        <li><span class="yr">1901</span><span class="rail"><i class="dot"></i></span><div class="body"><b>청년운동 ‘반더포겔’ 결성<span class="tag g">사회</span></b><p>도시와 학교의 규율을 벗어나 숲과 들로 떠나려는 청년들의 움직임. ‘어른들의 세계’에 대한 반항이 세대 감각이 됩니다.</p></div></li>
+        <li class="key"><span class="yr">1914</span><span class="rail"><i class="dot"></i></span><div class="body"><b>제1차 세계대전 발발<span class="tag r">전쟁</span></b><p>8월 총동원령. 많은 지식인과 학생이 전쟁을 낡은 세계를 씻어낼 ‘정화’로 여기며 환호했습니다.</p></div></li>
+        <li><span class="yr">1916</span><span class="rail"><i class="dot"></i></span><div class="body"><b>베르됭·솜 전투<span class="tag r">전쟁</span></b><p>수십만 명이 몇 달 만에 희생된 참호전. 전쟁 열광은 환멸로 바뀝니다.</p></div></li>
+        <li><span class="yr">1918</span><span class="rail"><i class="dot"></i></span><div class="body"><b>독일 혁명과 휴전<span class="tag r">전쟁</span></b><p>11월 황제 퇴위, 제국 붕괴. 아버지 세대의 가치가 한꺼번에 무너집니다.</p></div></li>
+        <li class="key"><span class="yr">1919</span><span class="rail"><i class="dot"></i></span><div class="body"><b>『데미안』 출간, 바이마르 공화국<span class="tag a">출간</span></b><p>패전 직후, 방향을 잃은 청년들이 이 소설에서 자기 이야기를 발견합니다.</p></div></li>
+      </ol>
+    </div>
+    <div class="side">
+      <figure class="photo">
+        <img src="img/war1914.jpg" alt="1914년 베를린 거리에서 동원령 소식을 듣는 군중" loading="lazy">
+        <figcaption><b>1914년 8월, 베를린의 동원령</b>거리에 모인 군중이 동원 소식을 듣고 있습니다. 소설의 마지막 장은 바로 이 여름의 공기와 맞닿아 있어요.<span class="credit">Bundesarchiv Bild 183-R22572 · CC BY-SA 3.0 DE</span></figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="mood">
+    <div class="card"><span class="k">키워드 1</span><h3>경건주의 가정</h3><p>성경 읽기와 기도, 엄격한 도덕을 중시한 개신교 신앙 전통. 헤세 자신이 이런 집안에서 자랐고, 소설 첫 장의 ‘밝은 세계’가 그 모습입니다.</p></div>
+    <div class="card"><span class="k">키워드 2</span><h3>김나지움과 기숙학교</h3><p>라틴어·그리스어 중심의 엘리트 중등교육. 학생 술집 문화, 선후배 위계가 함께 있었습니다. 소설 중반의 무대입니다.</p></div>
+    <div class="card"><span class="k">키워드 3</span><h3>견진성사</h3><p>개신교 소년소녀가 열네다섯 살 무렵 받는 신앙고백 의식. 어린이에서 공동체의 일원으로 넘어가는 문턱이라, 소설에서도 중요한 시점으로 나옵니다.</p></div>
+  </div>
+</div></section>
+
+<!-- AUTHOR -->
+<section class="sec" id="author"><div class="wrap">
+  <div class="sec-head"><span class="eyebrow">02 · 작가</span><h2>헤르만 헤세, 『데미안』 이전과 이후</h2><p>싱클레어의 방황에는 헤세 자신의 이력이 곳곳에 겹쳐 있습니다.</p></div>
+  <div class="tl-wrap">
+    <div class="card" style="padding:16px 20px 8px">
+      <ol class="tl">
+        <li><span class="yr">1877</span><span class="rail"><i class="dot"></i></span><div class="body"><b>독일 남서부 칼프 출생</b><p>아버지는 선교사, 외할아버지는 인도학자인 경건주의 집안. 신학자가 되는 것이 정해진 길이었습니다.</p></div></li>
+        <li><span class="yr">1891</span><span class="rail"><i class="dot"></i></span><div class="body"><b>마울브론 신학교 입학, 이듬해 도망<span class="tag r">위기</span></b><p>명문 신학교에서 몇 달 만에 뛰쳐나온 뒤 깊은 정신적 위기를 겪고 학업을 접습니다. 『수레바퀴 아래서』의 바탕이 된 경험입니다.</p></div></li>
+        <li><span class="yr">1904</span><span class="rail"><i class="dot"></i></span><div class="body"><b>『페터 카멘친트』로 성공</b><p>서점 견습생에서 인기 작가로. 결혼해 보덴호 근처 시골에 정착합니다.</p></div></li>
+        <li class="key"><span class="yr">1914</span><span class="rail"><i class="dot"></i></span><div class="body"><b>반전 칼럼으로 ‘배신자’ 낙인<span class="tag r">전쟁</span></b><p>스위스 신문에 “친구들이여, 이런 어조는 그만두자”는 취지의 글을 실었다가 독일 언론의 공격을 받습니다. 이후 전쟁포로를 위한 도서 지원 활동을 합니다.</p></div></li>
+        <li class="key"><span class="yr">1916</span><span class="rail"><i class="dot"></i></span><div class="body"><b>겹친 불행, 정신분석을 받다<span class="tag v">심리</span></b><p>아버지의 죽음, 아내의 병, 아이의 투병. 융의 제자 요제프 베른하르트 랑에게 상담을 받으며 꿈과 무의식에 몰두합니다.</p></div></li>
+        <li class="key"><span class="yr">1917</span><span class="rail"><i class="dot"></i></span><div class="body"><b>몇 주 만에 『데미안』 집필<span class="tag a">집필</span></b><p>상담에서 다룬 꿈, 상징, 그림들이 소설에 고스란히 들어갑니다.</p></div></li>
+        <li><span class="yr">1919</span><span class="rail"><i class="dot"></i></span><div class="body"><b>가명 ‘에밀 싱클레어’로 출간</b><p>신인 작가에게 주는 폰타네상을 받았지만, 실제 작가가 헤세라는 사실이 알려지자 상을 돌려줍니다. 같은 해 스위스 몬타뇰라로 이주합니다.</p></div></li>
+        <li><span class="yr">1946</span><span class="rail"><i class="dot"></i></span><div class="body"><b>노벨문학상</b><p>『싯다르타』, 『황야의 이리』, 『유리알 유희』를 거쳐 수상. 1962년 몬타뇰라에서 세상을 떠납니다.</p></div></li>
+      </ol>
+    </div>
+    <div class="side">
+      <div class="author-photos">
+        <figure class="photo"><img src="img/maulbronn.jpg" alt="마울브론 수도원 전경" loading="lazy"><figcaption><b>마울브론 수도원</b>열네 살 헤세가 다닌 신학교.<span class="credit">Elke Wetzig · CC BY-SA 3.0</span></figcaption></figure>
+        <figure class="photo"><img src="img/montagnola.jpg" alt="스위스 몬타뇰라의 카사 카무치" loading="lazy"><figcaption><b>몬타뇰라 카사 카무치</b>『데미안』 출간 해에 옮겨 간 집.<span class="credit">Rilba · CC BY-SA 3.0</span></figcaption></figure>
+      </div>
+      <div class="callout"><span class="big">S</span><div><h3>왜 ‘싱클레어’였을까</h3><p>헤세가 존경한 시인 횔덜린의 절친한 친구 이름이 이자크 폰 싱클레어였습니다. 헤세는 기성 작가의 이름을 지우고, 젊은 독자가 동년배의 고백으로 읽기를 바랐습니다.</p></div></div>
+      <div class="callout"><span class="big">BTS</span><div><h3>한국에서 다시 읽히는 이유</h3><p>2016년 방탄소년단 앨범 〈WINGS〉가 『데미안』에서 영감을 받았다고 알려지며 국내 청년 독자층이 크게 늘었습니다.</p></div></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- DICT -->
+<section class="sec" id="dict"><div class="wrap">
+  <div class="sec-head"><span class="eyebrow">03 · 핵심 개념·상징 사전</span><h2>책에서 마주칠 낯선 단어들</h2><p>뜻만 미리 알아두고, 소설이 이 상징을 어떻게 쓰는지는 직접 확인해 보세요.</p></div>
+  <div class="chips" role="group" aria-label="분류 필터">
+    <button class="chip" id="f-all" data-f="all" aria-pressed="true">전체</button>
+    <button class="chip" id="f-rel" data-f="rel" aria-pressed="false">성경·신화</button>
+    <button class="chip" id="f-psy" data-f="psy" aria-pressed="false">융 심리학</button>
+    <button class="chip" id="f-phi" data-f="phi" aria-pressed="false">철학</button>
+    <button class="chip" id="f-lit" data-f="lit" aria-pressed="false">문학</button>
+  </div>
+  <div class="dict" id="dictList"></div>
+</div></section>
+
+<!-- PEOPLE -->
+<section class="sec" id="people"><div class="wrap">
+  <div class="sec-head"><span class="eyebrow">04 · 인물 관계도</span><h2>싱클레어 곁을 지나가는 사람들</h2><p>첫 등장 시점의 모습만 정리했어요. 관계가 어떻게 변하는지는 읽으며 채워 보세요.</p></div>
+  <div class="rel">
+    <svg viewBox="0 0 760 430" role="img" aria-label="에밀 싱클레어를 중심으로 한 인물 관계도">
+      <defs>
+        <style>
+          .ln{stroke:var(--line);stroke-width:2;fill:none}
+          .ln.s{stroke:var(--blue);stroke-width:2.5}
+          .ln.d{stroke-dasharray:5 5}
+          .lb{font-size:12px;fill:var(--fg3);font-weight:500}
+          .nm{font-size:15px;font-weight:700;fill:var(--fg)}
+          .sb{font-size:12px;fill:var(--fg3)}
+        </style>
+      </defs>
+      <!-- lines -->
+      <path class="ln" d="M380 215 L140 90"/>
+      <path class="ln" d="M380 215 L120 300"/>
+      <path class="ln s" d="M380 215 L610 90"/>
+      <path class="ln" d="M380 215 L380 370"/>
+      <path class="ln" d="M380 215 L200 395"/>
+      <path class="ln s" d="M380 215 L640 260"/>
+      <path class="ln" d="M380 215 L560 385"/>
+      <path class="ln s d" d="M610 90 L700 175"/>
+      <path class="ln s" d="M380 215 L700 175"/>
+      <text class="lb" x="235" y="140">보호받던 세계</text>
+      <text class="lb" x="210" y="275">위협 · 1장</text>
+      <text class="lb" x="480" y="135">이끄는 친구 · 2장</text>
+      <text class="lb" x="508" y="230">스승 · 5장</text>
+      <text class="lb" x="660" y="122">어머니와 아들</text>
+      <text class="lb" x="390" y="315">이상 · 4장</text>
+      <text class="lb" x="246" y="345">선배 · 4장</text>
+      <text class="lb" x="470" y="330">동급생 · 6장</text>
+      <!-- center -->
+      <circle cx="380" cy="215" r="48" fill="var(--blue)"/>
+      <text x="380" y="211" text-anchor="middle" style="font-size:16px;font-weight:800;fill:#fff">싱클레어</text>
+      <text x="380" y="230" text-anchor="middle" style="font-size:11.5px;fill:#fff;opacity:.85">화자 · 나</text>
+      <!-- nodes -->
+      <g><circle cx="140" cy="90" r="30" fill="var(--green-weak)"/><text x="140" y="95" text-anchor="middle" class="nm">부모</text><text x="140" y="138" text-anchor="middle" class="sb">밝은 세계</text></g>
+      <g><circle cx="120" cy="300" r="30" fill="var(--red-weak)"/><text x="120" y="305" text-anchor="middle" class="nm">크로머</text><text x="120" y="348" text-anchor="middle" class="sb">동네 불량소년</text></g>
+      <g><circle cx="610" cy="90" r="36" fill="var(--violet-weak)" stroke="var(--violet)" stroke-width="2"/><text x="610" y="95" text-anchor="middle" class="nm">데미안</text><text x="610" y="42" text-anchor="middle" class="sb">전학 온 상급생</text></g>
+      <g><circle cx="700" cy="175" r="30" fill="var(--violet-weak)"/><text x="700" y="180" text-anchor="middle" class="nm">에바 부인</text><text x="700" y="222" text-anchor="middle" class="sb">7장</text></g>
+      <g><circle cx="640" cy="260" r="30" fill="var(--violet-weak)"/><text x="640" y="265" text-anchor="middle" class="nm">피스토리우스</text><text x="640" y="306" text-anchor="middle" class="sb">오르간 연주자</text></g>
+      <g><circle cx="380" cy="370" r="28" fill="var(--amber-weak)"/><text x="380" y="375" text-anchor="middle" class="nm">베아트리체</text></g>
+      <g><circle cx="200" cy="395" r="26" fill="var(--card2)"/><text x="200" y="400" text-anchor="middle" class="nm">알폰스 벡</text></g>
+      <g><circle cx="560" cy="385" r="26" fill="var(--card2)"/><text x="560" y="390" text-anchor="middle" class="nm">크나우어</text></g>
+    </svg>
+    <div class="legend">
+      <span><i style="background:var(--violet)"></i>안내자</span>
+      <span><i style="background:var(--green)"></i>밝은 세계</span>
+      <span><i style="background:var(--red)"></i>어두운 세계</span>
+      <span><i style="background:var(--amber)"></i>이상화된 대상</span>
+      <span><i style="background:var(--fg3)"></i>또래</span>
+    </div>
+  </div>
+  <div class="people" id="peopleList"></div>
+</div></section>
+
+<!-- CHAPTERS -->
+<section class="sec" id="chapters"><div class="wrap">
+  <div class="sec-head"><span class="eyebrow">05 · 장별 읽기 가이드</span><h2>한 장씩, 무엇을 알고 들어가면 좋을까</h2><p>각 장을 펼치기 전에 확인할 배경과, 다 읽은 뒤 나눌 질문입니다. 다 읽은 장은 체크해 두세요. 체크 기록은 이 기기에만 저장돼요.</p></div>
+  <div class="progress"><div class="bar"><i id="bar" style="width:0%"></i></div><b id="prog">0 / 8장 읽음</b></div>
+  <div class="tabs" role="tablist" id="tabs" aria-label="장 선택"></div>
+  <div class="panel" role="tabpanel" id="panel" aria-live="polite"></div>
+</div></section>
+
+<!-- TALK -->
+<section class="sec" id="talk"><div class="wrap">
+  <div class="sec-head"><span class="eyebrow">06 · 독서모임</span><h2>다 읽고 나서 나눌 이야기</h2></div>
+  <div class="talk">
+    <div class="card"><h3>전체 토론 질문</h3>
+      <ol class="olist">
+        <li>‘밝은 세계’와 ‘어두운 세계’ 중 어느 한쪽만 고를 수 있다면 우리는 더 행복할까요?</li>
+        <li>싱클레어에게 데미안은 실제 친구일까요, 그의 내면이 만든 존재일까요? 어느 쪽으로 읽었나요?</li>
+        <li>‘카인의 표’를 가진 사람들. 남다르다는 것은 특권일까요, 부담일까요?</li>
+        <li>내 인생에서 데미안, 피스토리우스 같은 안내자는 누구였나요?</li>
+        <li>1919년 패전국 독일의 청년들과 지금 한국의 청년들이 이 책에 끌리는 이유는 같을까요?</li>
+      </ol>
+    </div>
+    <div class="card"><h3>모임 진행 팁</h3>
+      <ol class="olist">
+        <li>첫 모임 전에 창세기 4장(카인과 아벨)과 32장(야곱의 씨름)만 짧게 읽어 오면 대화가 훨씬 깊어집니다.</li>
+        <li>번역본마다 장 제목과 문장이 달라요. 어떤 번역본으로 읽었는지 서로 먼저 확인하세요.</li>
+        <li>‘상징 사전’ 카드 하나씩을 맡아, 그 상징이 나오는 장면을 찾아오는 숙제를 내 보세요.</li>
+        <li>4·5장(베아트리체, 새와 알)에서 한 번 쉬어 가면 분량이 고르게 나뉩니다.</li>
+      </ol>
+    </div>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <h3>이미지 출처 (Wikimedia Commons)</h3>
+  <ul class="credits">
+    <li><a href="https://commons.wikimedia.org/wiki/File:Calw_-_Nikolausbr%C3%BCcke_%2B_Nikolauskapelle_01_ies.jpg" target="_blank" rel="noopener">칼프 니콜라우스 다리</a> · Frank Vincentz · CC BY-SA 3.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File:Bundesarchiv_Bild_183-R22572,_Berlin,_Mobilmachung.jpg" target="_blank" rel="noopener">1914 베를린 동원령</a> · Bundesarchiv · CC BY-SA 3.0 DE</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File:Kloster_Maulbronn_2009.jpg" target="_blank" rel="noopener">마울브론 수도원</a> · Elke Wetzig (Elya) · CC BY-SA 3.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File:Casa_camuzzi3.jpg" target="_blank" rel="noopener">카사 카무치</a> · Rilba · CC BY-SA 3.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File:Abraxas_I1679.jpg" target="_blank" rel="noopener">아브락사스 보석</a> · Thorvaldsens Museum, Jakob Faurvig · CC0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File:Brown_egg_hatching.jpg" target="_blank" rel="noopener">부화하는 알</a> · Linsenhejhej · CC BY-SA 3.0</li>
+    <li><a href="https://commons.wikimedia.org/wiki/File:Rembrandt_-_Jacob_Wrestling_with_the_Angel_-_Google_Art_Project.jpg" target="_blank" rel="noopener">렘브란트, 〈천사와 씨름하는 야곱〉</a> · 퍼블릭 도메인</li>
+  </ul>
+  <p style="margin-top:16px">내용 참고: 위키백과 Demian·Abraxas 항목, 헤세 연보. 작품 인용은 하지 않았습니다.</p>
+</div></footer>
+
+<script>
+(function(){
+  /* ---------- dictionary ---------- */
+  const terms=[
+    {f:'rel',t:'아브락사스',o:'Abraxas · 고대 그노시스',img:'img/abraxas.jpg',alt:'수탉 머리에 뱀 다리를 한 아브락사스가 새겨진 고대 보석',cr:'Thorvaldsens Museum · CC0',
+     d:'2세기 무렵 그노시스파가 숭배한 신의 이름. 고대 보석 부적에 수탉 머리, 갑옷 입은 몸, 뱀 다리를 가진 모습으로 새겨졌습니다. 그리스 문자의 숫자값을 더하면 365가 되어 한 해 전체를 다스린다고 여겨졌어요.',
+     h:'선과 악을 둘 다 품은 신이라는 점이 핵심입니다. 융도 1916년 비공개 글에서 이 이름을 썼습니다.'},
+    {f:'rel',t:'카인의 표',o:'창세기 4장',
+     d:'동생 아벨을 죽인 카인에게 신이 이마에 표를 줍니다. 흔히 ‘죄인의 낙인’으로 알려져 있지만, 원문에서는 누구도 카인을 해치지 못하게 하는 보호의 표식이었어요.',
+     h:'익숙한 이야기를 정반대로 읽는 순간이 2장의 출발점입니다. 미리 창세기 4장을 읽어 두세요.'},
+    {f:'lit',t:'두 세계',o:'1장 제목',
+     d:'부모와 기도, 정돈된 집으로 상징되는 밝은 세계와, 하녀의 이야기·골목·싸움이 있는 어두운 세계. 헤세가 자란 경건주의 가정의 이분법 그대로입니다.',
+     h:'둘 중 하나를 고르는 이야기인지, 둘을 다 껴안는 이야기인지 생각하며 읽어 보세요.'},
+    {f:'rel',t:'새와 알',o:'5장 제목',img:'img/egg.jpg',alt:'껍질을 깨고 나오는 병아리',cr:'Linsenhejhej · CC BY-SA 3.0',
+     d:'태어나려면 자기를 감싼 껍질을 깨야 한다는 이미지. 소설에서 가장 유명한 상징으로, 5장 제목 자체가 이 문장에서 나왔습니다.',
+     h:'여기서 ‘알’은 무엇이고 ‘깨뜨린다’는 건 무엇을 잃는 일인지 짚어 보세요.'},
+    {f:'rel',t:'야곱의 씨름',o:'창세기 32장 · 6장 제목',img:'img/jacob.jpg',alt:'렘브란트의 천사와 씨름하는 야곱',cr:'Rembrandt, 1659 · 퍼블릭 도메인',
+     d:'야곱이 얍복 강가에서 밤새 낯선 존재와 씨름하고, 축복을 받기 전에는 놓아주지 않겠다고 버팁니다. 씨름 끝에 ‘이스라엘’이라는 새 이름을 얻어요.',
+     h:'싸워서 이기는 것보다 놓지 않는 것이 중요한 장면입니다. 6장의 관계와 겹쳐 보세요.'},
+    {f:'rel',t:'에바 · 하와',o:'창세기 3장 20절',
+     d:'독일어로 하와는 에바(Eva). 성경은 그녀를 모든 산 자의 어머니라 부릅니다. 7장 제목의 인물 이름과 그대로 이어집니다.',
+     h:'한 사람이 동시에 어머니, 연인, 이상으로 겹쳐 보이는 서술에 주목하세요.'},
+    {f:'psy',t:'개성화',o:'Individuation · 칼 융',
+     d:'무의식의 여러 면을 받아들여 온전한 자기(Self)가 되어 가는 과정. 헤세는 이 소설을 이런 내면 여정의 이야기로 여겼습니다.',
+     h:'사건보다 싱클레어의 꿈과 그림이 줄거리를 움직인다는 점을 의식하면 읽기 쉬워집니다.'},
+    {f:'psy',t:'그림자',o:'Shadow · 칼 융',
+     d:'스스로 인정하고 싶지 않은 자기의 어두운 면. 밖에 있는 누군가에게 투사되어 나타나기도 합니다.',
+     h:'싱클레어를 괴롭히는 인물이 그의 바깥에만 있는지 생각해 보세요.'},
+    {f:'psy',t:'아니마',o:'Anima · 칼 융',
+     d:'남성의 무의식 속 여성적 이미지. 꿈속 인물이나 이상화된 여인의 모습으로 나타나며, 내면으로 가는 안내자 역할을 한다고 봤습니다.',
+     h:'소설 속 여성 인물들은 실제 사람이라기보다 상징처럼 그려집니다. 4장과 7장에서 확인해 보세요.'},
+    {f:'phi',t:'데몬 · 다이몬',o:'Daimon · 고대 그리스',
+     d:'소크라테스가 말한 내면의 수호령. 무엇을 하지 말라고 속삭이는 마음속 목소리입니다. ‘데미안’이라는 이름이 이 말에서 왔다는 해석이 널리 알려져 있어요.',
+     h:'데미안이 외부의 친구인지 내면의 목소리인지, 그 경계를 느끼며 읽어 보세요.'},
+    {f:'phi',t:'니체',o:'『차라투스트라는 이렇게 말했다』 1883',
+     d:'기독교 도덕을 ‘무리의 도덕’이라 비판하고, 스스로 가치를 만드는 인간을 꿈꾼 철학자. 1900년대 독일 청년들에게 큰 인기였습니다.',
+     h:'싱클레어가 언제 니체를 읽게 되는지, 그 직전에 어떤 상태였는지 눈여겨보세요.'},
+    {f:'lit',t:'베아트리체',o:'단테 『신곡』 · 4장 제목',
+     d:'단테가 평생 이상으로 그린 여인. 『신곡』에서 단테를 천국으로 이끄는 안내자입니다. 실제 이름이 아니라 싱클레어가 붙인 이름이라는 점이 중요해요.',
+     h:'누군가를 이상화하는 일이 그 사람이 아니라 나를 바꾸는 과정이 됩니다.'},
+    {f:'lit',t:'교양소설',o:'Bildungsroman',
+     d:'한 사람이 유년에서 성인으로 자라며 자기를 형성해 가는 과정을 그린 독일 소설 전통. 괴테의 『빌헬름 마이스터』가 대표작입니다.',
+     h:'『데미안』은 이 전통을 따르면서도 사회 적응이 아니라 내면 발견을 성장의 목표로 삼습니다.'}
+  ];
+  const dl=document.getElementById('dictList');
+  dl.innerHTML=terms.map(x=>`<article class="term" data-f="${x.f}">${x.img?`<img src="${x.img}" alt="${x.alt}" loading="lazy">`:''}<div class="in"><div class="top"><h3>${x.t}</h3><span class="tag ${({rel:'a',psy:'v',phi:'g',lit:'b'})[x.f]}">${({rel:'성경·신화',psy:'융 심리학',phi:'철학',lit:'문학'})[x.f]}</span></div><span class="orig">${x.o}</span><p>${x.d}</p><div class="hint"><b>읽을 때 포인트</b> ${x.h}</div>${x.cr?`<span class="credit">${x.cr}</span>`:''}</div></article>`).join('');
+  document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{
+    document.querySelectorAll('.chip').forEach(o=>o.setAttribute('aria-pressed',o===c));
+    const f=c.dataset.f; dl.querySelectorAll('.term').forEach(t=>t.hidden=!(f==='all'||t.dataset.f===f));
+  }));
+
+  /* ---------- people ---------- */
+  const people=[
+    ['에밀 싱클레어','화자 · 1장','var(--blue-weak)','var(--blue)','이 이야기를 들려주는 ‘나’. 경건한 시민 가정에서 자란 소년으로, 두 세계 사이에서 흔들립니다.'],
+    ['부모와 누나들','1장','var(--green-weak)','var(--green)','안전하고 정돈된 밝은 세계 그 자체. 싱클레어가 돌아가 숨고 싶은 곳입니다.'],
+    ['프란츠 크로머','1장','var(--red-weak)','var(--red)','재단사의 아들로 공립학교에 다니는 거친 소년. 싱클레어에게 어두운 세계가 실제로 들이닥치는 계기입니다.'],
+    ['막스 데미안','2장','var(--violet-weak)','var(--violet)','새로 전학 온 상급생. 어른스럽고 어딘가 낯선 분위기로, 학교에서 늘 눈에 띄는 존재입니다.'],
+    ['알폰스 벡','4장','var(--card2)','var(--fg2)','기숙사에서 가장 나이 많은 학생. 싱클레어를 학생 술집의 세계로 이끄는 선배입니다.'],
+    ['베아트리체','4장','var(--amber-weak)','var(--amber)','공원에서 스쳐 지나간 소녀. 한마디도 나누지 않았지만 싱클레어가 단테의 이름을 붙여 부릅니다.'],
+    ['피스토리우스','5장','var(--violet-weak)','var(--violet)','교회에서 오르간을 연주하는 신학 중퇴생. 오래된 신화와 상징에 밝은 사람입니다.'],
+    ['크나우어','6장','var(--card2)','var(--fg2)','깊은 고민을 안고 싱클레어를 찾아오는 동급생. 처음으로 싱클레어가 누군가를 이끄는 입장이 됩니다.'],
+    ['에바 부인','7장','var(--violet-weak)','var(--violet)','데미안의 어머니. 이름 자체가 성경의 하와를 떠올리게 합니다.']
+  ];
+  document.getElementById('peopleList').innerHTML=people.map(p=>`<div class="person"><span class="av" style="background:${p[2]};color:${p[3]}">${p[0][0]}</span><div><h3>${p[0]}</h3><div class="meta">첫 등장 ${p[1]}</div><p>${p[4]}</p></div></div>`).join('');
+
+  /* ---------- chapters ---------- */
+  const ch=[
+    {t:'두 세계',de:'Zwei Welten',age:'열 살 무렵',place:'고향 소도시',
+     bg:['경건주의 가정의 하루: 아침저녁 기도, 성경 구절, 엄격한 예절','라틴어 학교와 공립학교 아이들 사이의 계층 차이'],
+     pt:'아주 작은 거짓말 하나가 왜 이렇게 무겁게 그려지는지에 집중해 보세요. 어린 시절의 죄책감을 다루는 방식이 이 책 전체의 톤을 정합니다.',
+     q:['어릴 때 ‘우리 집 밖의 세계’를 처음 느낀 순간이 있나요?','싱클레어는 왜 부모에게 말하지 못했을까요?']},
+    {t:'카인',de:'Kain',age:'열 살 무렵',place:'학교',
+     bg:['창세기 4장 카인과 아벨 이야기','카인의 표는 원래 보호의 표식이었다는 점'],
+     pt:'모두가 아는 이야기를 전혀 다르게 해석하는 대화가 나옵니다. 그 해석이 옳은지보다, 그런 해석이 가능하다는 사실이 싱클레어를 어떻게 흔드는지 보세요.',
+     q:['권위 있는 설명을 처음으로 의심해 본 경험이 있나요?','‘표가 있는 사람’이라는 말에서 무엇이 떠오르나요?']},
+    {t:'예수 옆의 도둑',de:'Der Schächer',age:'열네다섯 살',place:'견진성사 수업',
+     bg:['누가복음 23장, 예수와 함께 십자가에 달린 두 죄수','견진성사: 신앙고백으로 어른 신자가 되는 의식'],
+     pt:'종교 수업 시간이라는 배경이 중요합니다. 정해진 정답과 다른 질문을 품은 채 의식을 치르는 소년의 마음을 따라가 보세요.',
+     q:['회개한 쪽과 끝까지 회개하지 않은 쪽, 누가 더 정직하다고 생각하나요?','무언가를 믿는 척해 본 적이 있나요?']},
+    {t:'베아트리체',de:'Beatrice',age:'열여섯~열일곱 살',place:'다른 도시의 기숙학교',
+     bg:['단테의 베아트리체: 평생의 이상이자 천국으로 가는 안내자','당시 김나지움 학생들의 술집 문화'],
+     pt:'방황하던 생활이 한 이미지로 인해 바뀌는 장입니다. 싱클레어가 그리는 그림이 누구의 얼굴인지 계속 질문하며 읽어 보세요.',
+     q:['누군가를 이상화했던 경험이 나를 어떻게 바꿨나요?','바닥까지 떨어져 봐야 방향이 보인다는 말에 동의하나요?']},
+    {t:'새는 알에서 나오려고 투쟁한다',de:'Der Vogel kämpft sich aus dem Ei',age:'열일곱~열여덟 살',place:'기숙학교',
+     bg:['아브락사스: 선과 악을 함께 품은 그노시스의 신','상징 사전의 ‘새와 알’ 카드'],
+     pt:'이 책에서 가장 많이 인용되는 장입니다. 유명한 문장 자체보다 그 문장이 어떤 경로로 싱클레어에게 도착하는지가 더 흥미로운 지점이에요.',
+     q:['지금 내가 깨고 나와야 할 ‘알’은 무엇일까요?','선과 악을 함께 품은 신이라는 생각이 위로가 되나요, 불편한가요?']},
+    {t:'야곱의 씨름',de:'Jakobs Kampf',age:'열여덟 살 무렵',place:'교회와 난롯가',
+     bg:['창세기 32장 얍복 강의 씨름','교회 오르간 음악과 고대 신화에 대한 대화'],
+     pt:'배우는 관계가 어떻게 시작되고 어디서 한계에 부딪히는지 보세요. 같은 장에서 싱클레어가 처음으로 누군가에게 기대어지는 입장도 됩니다.',
+     q:['좋은 스승에게서 ‘떠나는 것’도 배움일까요?','남을 이끌어 줄 때 나에 대해 새로 알게 된 것이 있나요?']},
+    {t:'에바 부인',de:'Frau Eva',age:'대학 시절',place:'대학 도시',
+     bg:['창세기 3장 20절, 모든 산 자의 어머니 하와','융의 아니마와 태모(Great Mother) 개념'],
+     pt:'꿈과 현실, 그림 속 얼굴과 실제 얼굴이 겹쳐지는 서술이 많아집니다. 사실 관계를 따지기보다 상징의 흐름으로 읽으면 편해요.',
+     q:['‘운명처럼 느껴진 만남’이 있었나요?','이 장의 공동체는 이상적인 모습일까요, 위험한 모습일까요?']},
+    {t:'종말의 시작',de:'Anfang vom Ende',age:'청년기',place:'1914년 무렵',
+     bg:['위 시대배경 타임라인의 1914년 항목','전쟁을 ‘낡은 세계의 끝’으로 받아들인 당시 청년들의 분위기'],
+     pt:'개인의 내면 이야기가 갑자기 시대의 사건과 만납니다. 장 제목의 ‘종말’과 ‘시작’이 각각 무엇을 가리키는지 생각하며 읽어 보세요.',
+     q:['한 사람의 깨어남과 한 시대의 붕괴는 어떻게 연결될 수 있을까요?','다 읽은 뒤, 첫 장의 ‘두 세계’는 어떻게 달라 보이나요?']}
+  ];
+  let read=[];try{read=JSON.parse(localStorage.getItem('demian-read')||'[]')}catch(e){}
+  const save=()=>{try{localStorage.setItem('demian-read',JSON.stringify(read))}catch(e){}};
+  const tabs=document.getElementById('tabs'),panel=document.getElementById('panel');
+  let cur=0;
+  function drawTabs(){tabs.innerHTML=ch.map((c,i)=>`<button class="tab" role="tab" id="tab-${i}" aria-selected="${i===cur}" aria-controls="panel">${read.includes(i)?'<span class="ck">✓</span>':''}${i+1}장</button>`).join('');
+    tabs.querySelectorAll('.tab').forEach((b,i)=>b.onclick=()=>{cur=i;render()});
+    const n=read.length;document.getElementById('bar').style.width=(n/8*100)+'%';document.getElementById('prog').textContent=`${n} / 8장 읽음`;}
+  function render(){const c=ch[cur],done=read.includes(cur);drawTabs();
+    panel.innerHTML=`<div class="ph"><div><div class="no">${cur+1}장</div><h3>${c.t}</h3><div class="de">${c.de}</div></div><div class="pills"><span class="pill">싱클레어 ${c.age}</span><span class="pill">${c.place}</span></div></div>
+    <div class="pblock"><h4>펼치기 전 확인할 배경</h4><ul>${c.bg.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+    <div class="pblock"><h4>읽기 포인트</h4><p>${c.pt}</p></div>
+    <div class="pblock"><h4>읽고 나서 나눌 질문</h4><ul class="qs">${c.q.map((x,i)=>`<li><b>Q${i+1}</b><span>${x}</span></li>`).join('')}</ul></div>
+    <button class="readbtn ${done?'done':''}" id="readbtn">${done?'✓ 다 읽었어요':'이 장 다 읽음으로 표시'}</button>`;
+    document.getElementById('readbtn').onclick=()=>{read=done?read.filter(x=>x!==cur):[...read,cur];save();render();};}
+  render();
+
+  /* ---------- nav highlight ---------- */
+  const links=[...document.querySelectorAll('.nav a')];
+  const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+  function onScroll(){let k=-1;secs.forEach((s,i)=>{if(s.getBoundingClientRect().top<120)k=i});
+    links.forEach((a,i)=>a.classList.toggle('on',i===k));
+    if(k>=0){const a=links[k];const n=a.parentElement;const l=a.offsetLeft-n.clientWidth/2+a.clientWidth/2;if(Math.abs(n.scrollLeft-l)>40)n.scrollTo({left:l,behavior:'smooth'});}}
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+})();
+</script>
+
+  <script src="../../assets/report-hub-brand.js?v=20260812-report-hub-logo2"></script>
+  <script src="../../assets/report-page-layout.js?v=20260815-responsive-only1"></script>
+  <script src="../../assets/report-view-counter.js?v=20260810-counter-d1-1" data-report-id="261027-before-reading-demian"></script>
+  <script src="../../assets/report-comments.js?v=20260816-comments-width1" data-report-id="261027-before-reading-demian"></script>
+  <script src="../../assets/report-history.js?v=20260809-history2" data-report-id="261027-before-reading-demian"></script>
+  <script src="../../assets/report-entry-tracker.js?v=20260811-entry1" data-report-id="261027-before-reading-demian"></script>
+</body></html>

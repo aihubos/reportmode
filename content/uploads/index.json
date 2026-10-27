@@ -1,7 +1,26 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-18T10:36:57+09:00",
+  "updatedAt": "2026-10-27T15:10:02+09:00",
   "reports": [
+    {
+      "schemaVersion": "1",
+      "id": "261027-before-reading-demian",
+      "slug": "before-reading-demian",
+      "title": "데미안 읽기 전에",
+      "category": "인문·독서",
+      "tags": [
+        "데미안",
+        "헤르만 헤세",
+        "독서"
+      ],
+      "summary": "『데미안』을 읽기 전에 알아두면 좋은 시대 배경, 헤르만 헤세의 생애, 주요 개념과 등장인물, 장별 읽기 안내.",
+      "createdAt": "2026-10-27T15:10:02+09:00",
+      "updatedAt": "2026-10-27T15:10:02+09:00",
+      "status": "published",
+      "sourceName": "데미안 읽기 전에.zip",
+      "sourceCount": 10,
+      "entry": "index.html"
+    },
     {
       "schemaVersion": "1",
       "id": "261018-ai-automation-three-stage-strategy",

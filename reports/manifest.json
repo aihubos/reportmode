@@ -1,7 +1,28 @@
 {
-  "generatedAt": "2026-10-18T01:36:57.347Z",
+  "generatedAt": "2026-10-27T06:10:03.109Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "261027-before-reading-demian",
+      "slug": "before-reading-demian",
+      "title": "데미안 읽기 전에",
+      "category": "인문·독서",
+      "summary": "『데미안』을 읽기 전에 알아두면 좋은 시대 배경, 헤르만 헤세의 생애, 주요 개념과 등장인물, 장별 읽기 안내.",
+      "createdAt": "2026-10-27T15:10:02+09:00",
+      "updatedAt": "2026-10-27T15:10:02+09:00",
+      "status": "published",
+      "path": "reports/261027-before-reading-demian/",
+      "url": "https://aihubos.github.io/reportmode/reports/261027-before-reading-demian/",
+      "displayDate": "261027",
+      "sourceCount": 10,
+      "tags": [
+        "데미안",
+        "헤르만 헤세",
+        "독서"
+      ],
+      "coverImage": "reports/261027-before-reading-demian/img/calw.jpg",
+      "coverAlt": "독일 칼프의 나골트 강 위 니콜라우스 다리와 작은 예배당"
+    },
     {
       "id": "261018-ai-automation-three-stage-strategy",
       "slug": "ai-automation-three-stage-strategy",
