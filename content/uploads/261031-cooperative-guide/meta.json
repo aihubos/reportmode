@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1",
+  "id": "261031-cooperative-guide",
+  "slug": "cooperative-guide",
+  "title": "협동조합이란? 쉽게 정리한 가이드",
+  "category": "비즈니스",
+  "tags": [
+    "협동조합",
+    "사회적협동조합",
+    "법인 설립"
+  ],
+  "summary": "협동조합이 무엇인지, 일반·사회적협동조합의 차이, 주식회사·개인사업자와의 비교, 설립 절차와 공식 링크를 협동조합기본법 기준으로 정리.",
+  "createdAt": "2026-10-31T14:44:41+09:00",
+  "updatedAt": "2026-10-31T14:44:41+09:00",
+  "status": "published",
+  "sourceName": "https://aihubos.github.io/hyeopdong-johap-guide/",
+  "sourceCount": 25,
+  "entry": "index.html"
+}

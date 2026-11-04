@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1",
+  "id": "261104-jangbak-camping-list",
+  "slug": "jangbak-camping-list",
+  "title": "장박지 리스트 · 동탄 1시간 이내",
+  "category": "라이프",
+  "tags": [
+    "장박",
+    "캠핑",
+    "키즈캠핑장",
+    "동탄"
+  ],
+  "summary": "동탄에서 1시간 이내 장박 가능 캠핑장 20곳을 키즈 겸용·신설·타프·전기 기준으로 비교한 리스트. 올겨울 모집이 확인된 곳과 전화 확인이 필요한 곳을 구분했어요.",
+  "createdAt": "2026-11-04T09:07:39+09:00",
+  "updatedAt": "2026-11-04T09:07:39+09:00",
+  "status": "published",
+  "sourceName": "https://aihubos.github.io/jangbak-camping/",
+  "sourceCount": 20,
+  "entry": "index.html"
+}

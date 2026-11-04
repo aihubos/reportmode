@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1",
+  "id": "261031-sole-proprietor-registration-guide",
+  "slug": "sole-proprietor-registration-guide",
+  "title": "개인사업자 등록 7단계 가이드",
+  "category": "비즈니스",
+  "tags": [
+    "개인사업자",
+    "사업자등록",
+    "홈택스",
+    "정부24"
+  ],
+  "summary": "상호·업종 정하기부터 사업자등록 신청까지 7단계. 홈택스·정부24 신청, 필요 서류, 일반·간이과세, 세무서 방문을 공식 출처 링크와 함께 정리.",
+  "createdAt": "2026-10-31T06:33:57+09:00",
+  "updatedAt": "2026-10-31T06:33:57+09:00",
+  "status": "published",
+  "sourceName": "https://aihubos.github.io/gaein-saeopja-guide/",
+  "sourceCount": 19,
+  "entry": "index.html"
+}

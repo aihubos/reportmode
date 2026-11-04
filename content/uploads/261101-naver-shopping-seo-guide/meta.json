@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1",
+  "id": "261101-naver-shopping-seo-guide",
+  "slug": "naver-shopping-seo-guide",
+  "title": "네이버쇼핑 SEO 가이드 · 이해에서 실행까지",
+  "category": "비즈니스",
+  "tags": [
+    "네이버쇼핑",
+    "SEO",
+    "상위노출",
+    "커머스"
+  ],
+  "summary": "네이버쇼핑 상위노출 로직을 공식 근거로 리서치하고, 상품명 점검기·13항목 자가진단·광고 성과 계산기까지 한곳에 담은 실행 가이드.",
+  "createdAt": "2026-11-01T07:54:34+09:00",
+  "updatedAt": "2026-11-01T07:54:34+09:00",
+  "status": "published",
+  "sourceName": "https://aihubos.github.io/naver-shopping-seo/",
+  "sourceCount": 39,
+  "entry": "index.html"
+}

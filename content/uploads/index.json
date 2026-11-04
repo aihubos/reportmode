@@ -1,7 +1,126 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-27T15:10:02+09:00",
+  "updatedAt": "2026-11-04T09:18:27+09:00",
   "reports": [
+    {
+      "schemaVersion": "1",
+      "id": "261104-jangbak-camping-list",
+      "slug": "jangbak-camping-list",
+      "title": "장박지 리스트 · 동탄 1시간 이내",
+      "category": "라이프",
+      "tags": [
+        "장박",
+        "캠핑",
+        "키즈캠핑장",
+        "동탄"
+      ],
+      "summary": "동탄에서 1시간 이내 장박 가능 캠핑장 20곳을 키즈 겸용·신설·타프·전기 기준으로 비교한 리스트. 올겨울 모집이 확인된 곳과 전화 확인이 필요한 곳을 구분했어요.",
+      "createdAt": "2026-11-04T09:07:39+09:00",
+      "updatedAt": "2026-11-04T09:07:39+09:00",
+      "status": "published",
+      "sourceName": "https://aihubos.github.io/jangbak-camping/",
+      "sourceCount": 20,
+      "entry": "index.html"
+    },
+    {
+      "schemaVersion": "1",
+      "id": "261101-naver-shopping-seo-guide",
+      "slug": "naver-shopping-seo-guide",
+      "title": "네이버쇼핑 SEO 가이드 · 이해에서 실행까지",
+      "category": "비즈니스",
+      "tags": [
+        "네이버쇼핑",
+        "SEO",
+        "상위노출",
+        "커머스"
+      ],
+      "summary": "네이버쇼핑 상위노출 로직을 공식 근거로 리서치하고, 상품명 점검기·13항목 자가진단·광고 성과 계산기까지 한곳에 담은 실행 가이드.",
+      "createdAt": "2026-11-01T07:54:34+09:00",
+      "updatedAt": "2026-11-01T07:54:34+09:00",
+      "status": "published",
+      "sourceName": "https://aihubos.github.io/naver-shopping-seo/",
+      "sourceCount": 39,
+      "entry": "index.html"
+    },
+    {
+      "schemaVersion": "1",
+      "id": "261031-lego-education-cs-11-training",
+      "slug": "lego-education-cs-11-training",
+      "title": "레고 에듀케이션 컴퓨터 사이언스 11+ 교사 연수 정리",
+      "category": "교육",
+      "tags": [
+        "레고 에듀케이션",
+        "컴퓨터 사이언스",
+        "교사 연수",
+        "AI 스마트 안경"
+      ],
+      "summary": "2026년 10월 31일 교사 연수와 AI 스마트 안경 시연 녹취 4건을 한 장으로 정리. 하드웨어·페어링·수업 구조·코딩 캔버스·AI 포즈 분류·운영 팁.",
+      "createdAt": "2026-10-31T18:30:28+09:00",
+      "updatedAt": "2026-10-31T18:30:28+09:00",
+      "status": "published",
+      "sourceName": "https://aihubos.github.io/lego-guide/",
+      "sourceCount": 4,
+      "entry": "index.html"
+    },
+    {
+      "schemaVersion": "1",
+      "id": "261031-cooperative-guide",
+      "slug": "cooperative-guide",
+      "title": "협동조합이란? 쉽게 정리한 가이드",
+      "category": "비즈니스",
+      "tags": [
+        "협동조합",
+        "사회적협동조합",
+        "법인 설립"
+      ],
+      "summary": "협동조합이 무엇인지, 일반·사회적협동조합의 차이, 주식회사·개인사업자와의 비교, 설립 절차와 공식 링크를 협동조합기본법 기준으로 정리.",
+      "createdAt": "2026-10-31T14:44:41+09:00",
+      "updatedAt": "2026-10-31T14:44:41+09:00",
+      "status": "published",
+      "sourceName": "https://aihubos.github.io/hyeopdong-johap-guide/",
+      "sourceCount": 25,
+      "entry": "index.html"
+    },
+    {
+      "schemaVersion": "1",
+      "id": "261031-sole-proprietor-registration-guide",
+      "slug": "sole-proprietor-registration-guide",
+      "title": "개인사업자 등록 7단계 가이드",
+      "category": "비즈니스",
+      "tags": [
+        "개인사업자",
+        "사업자등록",
+        "홈택스",
+        "정부24"
+      ],
+      "summary": "상호·업종 정하기부터 사업자등록 신청까지 7단계. 홈택스·정부24 신청, 필요 서류, 일반·간이과세, 세무서 방문을 공식 출처 링크와 함께 정리.",
+      "createdAt": "2026-10-31T06:33:57+09:00",
+      "updatedAt": "2026-10-31T06:33:57+09:00",
+      "status": "published",
+      "sourceName": "https://aihubos.github.io/gaein-saeopja-guide/",
+      "sourceCount": 19,
+      "entry": "index.html"
+    },
+    {
+      "schemaVersion": "1",
+      "id": "261030-aibl-corporation-setup-guide",
+      "slug": "aibl-corporation-setup-guide",
+      "title": "AI빌더스랩 법인 설립 가이드",
+      "category": "비즈니스",
+      "tags": [
+        "법인 설립",
+        "세금",
+        "정부지원금",
+        "벤처기업"
+      ],
+      "summary": "설립 절차, 비용 비교, 업종·정관 목적, 1·3년차 세금, 정부지원금, 벤처기업 인증까지 법인 설립 리서치를 한 장으로 요약.",
+      "createdAt": "2026-10-30T17:16:34+09:00",
+      "updatedAt": "2026-10-30T17:16:34+09:00",
+      "status": "published",
+      "sourceName": "https://aihubos.github.io/aibl-corp-guide/",
+      "sourceCount": 62,
+      "entry": "index.html"
+    },
     {
       "schemaVersion": "1",
       "id": "261027-before-reading-demian",

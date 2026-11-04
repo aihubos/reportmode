@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1",
+  "id": "261031-lego-education-cs-11-training",
+  "slug": "lego-education-cs-11-training",
+  "title": "레고 에듀케이션 컴퓨터 사이언스 11+ 교사 연수 정리",
+  "category": "교육",
+  "tags": [
+    "레고 에듀케이션",
+    "컴퓨터 사이언스",
+    "교사 연수",
+    "AI 스마트 안경"
+  ],
+  "summary": "2026년 10월 31일 교사 연수와 AI 스마트 안경 시연 녹취 4건을 한 장으로 정리. 하드웨어·페어링·수업 구조·코딩 캔버스·AI 포즈 분류·운영 팁.",
+  "createdAt": "2026-10-31T18:30:28+09:00",
+  "updatedAt": "2026-10-31T18:30:28+09:00",
+  "status": "published",
+  "sourceName": "https://aihubos.github.io/lego-guide/",
+  "sourceCount": 4,
+  "entry": "index.html"
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1",
+  "id": "261030-aibl-corporation-setup-guide",
+  "slug": "aibl-corporation-setup-guide",
+  "title": "AI빌더스랩 법인 설립 가이드",
+  "category": "비즈니스",
+  "tags": [
+    "법인 설립",
+    "세금",
+    "정부지원금",
+    "벤처기업"
+  ],
+  "summary": "설립 절차, 비용 비교, 업종·정관 목적, 1·3년차 세금, 정부지원금, 벤처기업 인증까지 법인 설립 리서치를 한 장으로 요약.",
+  "createdAt": "2026-10-30T17:16:34+09:00",
+  "updatedAt": "2026-10-30T17:16:34+09:00",
+  "status": "published",
+  "sourceName": "https://aihubos.github.io/aibl-corp-guide/",
+  "sourceCount": 62,
+  "entry": "index.html"
+}
