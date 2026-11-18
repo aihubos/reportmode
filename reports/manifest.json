@@ -1,7 +1,28 @@
 {
-  "generatedAt": "2026-11-04T00:18:36.438Z",
+  "generatedAt": "2026-11-18T10:53:07.942Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "261118-ai-marketing-content-automation-prompts",
+      "slug": "ai-marketing-content-automation-prompts",
+      "title": "실무 마케터의 AI 콘텐츠 자동화 프롬프트 모음",
+      "category": "AI",
+      "summary": "세모 마케터 장호연의 실무 AI 자동화 프롬프트 모음. 콘텐츠 작성·검수 규칙 8개, 릴스 4단계, 클로드 코드 캡컷 편집, 스레드 활동, 랜딩페이지 디자인 순서를 원문과 바로 쓰는 버전으로 정리.",
+      "createdAt": "2026-11-18T12:00:00+09:00",
+      "updatedAt": "2026-11-18T12:00:00+09:00",
+      "status": "published",
+      "path": "reports/261118-ai-marketing-content-automation-prompts/",
+      "url": "https://aihubos.github.io/reportmode/reports/261118-ai-marketing-content-automation-prompts/",
+      "displayDate": "261118",
+      "sourceCount": 3,
+      "tags": [
+        "AI 마케팅",
+        "콘텐츠 자동화",
+        "프롬프트"
+      ],
+      "coverImage": "reports/261118-ai-marketing-content-automation-prompts/assets/youtube-thumbnail.jpg",
+      "coverAlt": "실무 마케터의 AI 콘텐츠 자동화 프롬프트 모음 원본 유튜브 썸네일"
+    },
     {
       "id": "261104-jangbak-camping-list",
       "slug": "jangbak-camping-list",
