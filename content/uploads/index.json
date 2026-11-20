@@ -1,7 +1,26 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-20T10:53:27+09:00",
+  "updatedAt": "2026-11-20T18:00:00+09:00",
   "reports": [
+    {
+      "schemaVersion": "1",
+      "id": "261120-let-money-flow-through-you",
+      "slug": "let-money-flow-through-you",
+      "title": "돈이 나를 통해 흐르게 하는 방법",
+      "category": "라이프",
+      "tags": [
+        "돈",
+        "풍요",
+        "부자마인드"
+      ],
+      "summary": "와이즈 아카이브 영상. 쓸 때의 수축감이 돈과 멀어지는 단서라고 보고, 돈이 먼저 흐르는 구조와 소비라는 마지막 엔진, 갈릴리와 사해의 비유, 오늘부터 해 볼 두 가지 연습을 화면 원문과 함께 정리.",
+      "createdAt": "2026-11-20T18:00:00+09:00",
+      "updatedAt": "2026-11-20T18:00:00+09:00",
+      "status": "published",
+      "sourceName": "왜 나만 돈의 흐름에서 소외될까? 풍요를 막고 있던 진짜 이유",
+      "sourceCount": 3,
+      "entry": "index.html"
+    },
     {
       "schemaVersion": "1",
       "id": "261120-grok-bot-first-ai-intern-prompts",

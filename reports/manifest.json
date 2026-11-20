@@ -1,7 +1,28 @@
 {
-  "generatedAt": "2026-11-20T01:53:27Z",
+  "generatedAt": "2026-11-20T06:17:34.364Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "261120-let-money-flow-through-you",
+      "slug": "let-money-flow-through-you",
+      "title": "돈이 나를 통해 흐르게 하는 방법",
+      "category": "라이프",
+      "summary": "와이즈 아카이브 영상. 쓸 때의 수축감이 돈과 멀어지는 단서라고 보고, 돈이 먼저 흐르는 구조와 소비라는 마지막 엔진, 갈릴리와 사해의 비유, 오늘부터 해 볼 두 가지 연습을 화면 원문과 함께 정리.",
+      "createdAt": "2026-11-20T18:00:00+09:00",
+      "updatedAt": "2026-11-20T18:00:00+09:00",
+      "status": "published",
+      "path": "reports/261120-let-money-flow-through-you/",
+      "url": "https://aihubos.github.io/reportmode/reports/261120-let-money-flow-through-you/",
+      "displayDate": "261120",
+      "sourceCount": 3,
+      "tags": [
+        "돈",
+        "풍요",
+        "부자마인드"
+      ],
+      "coverImage": "reports/261120-let-money-flow-through-you/assets/youtube-thumbnail.jpg",
+      "coverAlt": "돈이 나를 통해 흐르게 하는 방법 원본 유튜브 썸네일"
+    },
     {
       "id": "261120-grok-bot-first-ai-intern-prompts",
       "slug": "grok-bot-first-ai-intern-prompts",
