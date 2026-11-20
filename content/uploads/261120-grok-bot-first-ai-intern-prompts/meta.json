@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1",
+  "id": "261120-grok-bot-first-ai-intern-prompts",
+  "slug": "grok-bot-first-ai-intern-prompts",
+  "title": "그록봇 첫 사용 프롬프트 모음",
+  "category": "AI",
+  "tags": [
+    "AI 에이전트",
+    "그록봇",
+    "프롬프트"
+  ],
+  "summary": "그록봇(Grok Bot) 튜토리얼 영상의 프롬프트 모음. 역할·규칙·할 일 세 줄 공식, 코치 봇 첫 질문, 내 스타일 조정, 매일 아침 8시 루틴, 실전 업무 3가지를 원문과 바로 쓰는 버전으로 정리.",
+  "createdAt": "2026-11-20T12:00:00+09:00",
+  "updatedAt": "2026-11-20T12:00:00+09:00",
+  "status": "published",
+  "sourceName": "내 노트북 꺼도 일하는 AI 직원 | 그록봇(Grok Bot) 사용법, 이 영상 하나로 끝",
+  "sourceCount": 2,
+  "entry": "index.html"
+}
