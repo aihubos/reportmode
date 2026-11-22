@@ -313,6 +313,7 @@ test("Draft reports use a separate category and stay out of the default total", 
   assert.match(html, /data-report-id="draft-one"[^>]*data-report-draft="true"/);
   assert.match(html, /!isDraft \|\| isPromoted/);
   assert.match(html, /data-category-filter="all"><span>전체<\/span><b>1<\/b>/);
+  assert.match(html, /id="archiveResultCount">총 1개의 글</);
 });
 
 test("keeps the management ID while attaching the path-based public ID", () => {

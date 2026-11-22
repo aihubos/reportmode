@@ -1,7 +1,29 @@
 {
-  "generatedAt": "2026-11-20T06:17:34.364Z",
+  "generatedAt": "2026-11-22T08:46:01.584Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "261122-unicity-bios-life-e-energy",
+      "slug": "unicity-bios-life-e-energy",
+      "title": "바이오스 라이프 이 에너지 성분과 카페인 정리",
+      "category": "라이프",
+      "summary": "유니시티 바이오스 라이프 이 에너지(1포 9g)의 식약처 신고 성분·기능성 문구와 1일 영양성분 기준치 대비 %, 카페인 권고량 비교를 공식 출처 중심으로 정리. 카페인 80mg·식후·오후 4시 안내는 공식 신고서·공식 제품 페이지에서 확인하지 못해 미검증으로 표시.",
+      "createdAt": "2026-11-22T09:00:00+09:00",
+      "updatedAt": "2026-11-22T09:00:00+09:00",
+      "status": "published",
+      "path": "reports/261122-unicity-bios-life-e-energy/",
+      "url": "https://aihubos.github.io/reportmode/reports/261122-unicity-bios-life-e-energy/",
+      "displayDate": "261122",
+      "sourceCount": 20,
+      "tags": [
+        "유니시티",
+        "건강기능식품",
+        "멀티비타민",
+        "카페인"
+      ],
+      "coverImage": "reports/261122-unicity-bios-life-e-energy/assets/product-official.jpg",
+      "coverAlt": "유니시티 바이오스 라이프 이 에너지 상자(30포, 1회 9g, 총 270g)와 스틱 포 두 개"
+    },
     {
       "id": "261120-let-money-flow-through-you",
       "slug": "let-money-flow-through-you",
