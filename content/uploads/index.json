@@ -1,7 +1,27 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-20T18:00:00+09:00",
+  "updatedAt": "2026-11-22T09:00:00+09:00",
   "reports": [
+    {
+      "schemaVersion": "1",
+      "id": "261122-unicity-bios-life-e-energy",
+      "slug": "unicity-bios-life-e-energy",
+      "title": "바이오스 라이프 이 에너지 성분과 카페인 정리",
+      "category": "라이프",
+      "tags": [
+        "유니시티",
+        "건강기능식품",
+        "멀티비타민",
+        "카페인"
+      ],
+      "summary": "유니시티 바이오스 라이프 이 에너지(1포 9g)의 식약처 신고 성분·기능성 문구와 1일 영양성분 기준치 대비 %, 카페인 권고량 비교를 공식 출처 중심으로 정리. 카페인 80mg·식후·오후 4시 안내는 공식 신고서·공식 제품 페이지에서 확인하지 못해 미검증으로 표시.",
+      "createdAt": "2026-11-22T09:00:00+09:00",
+      "updatedAt": "2026-11-22T09:00:00+09:00",
+      "status": "published",
+      "sourceName": "유니시티 공식 제품 페이지 · 식품안전나라 신고 2015000612713",
+      "sourceCount": 20,
+      "entry": "index.html"
+    },
     {
       "schemaVersion": "1",
       "id": "261120-let-money-flow-through-you",

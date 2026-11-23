@@ -675,7 +675,7 @@ ${tagLinks}
           <div>
             <div class="archive-side-label">ALL REPORTS</div>
             <h2 id="board-title">전체 보고서</h2>
-            <p id="archiveResultCount">총 ${archiveItems.length}개의 글</p>
+            <p id="archiveResultCount">총 ${archiveItems.filter((item) => categoryFor(item) !== "Draft").length}개의 글</p>
           </div>
           <div class="archive-board-controls">
             <label class="archive-search">
