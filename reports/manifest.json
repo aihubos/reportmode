@@ -1,7 +1,30 @@
 {
-  "generatedAt": "2026-11-22T08:46:01.584Z",
+  "generatedAt": "2026-11-24T09:21:05.629Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "261124-ai-riemann-hypothesis-proof",
+      "slug": "ai-riemann-hypothesis-proof",
+      "title": "리만 가설이란? AI와 함께 나온 증명, 어디까지 확인됐나",
+      "category": "AI",
+      "summary": "리만 가설(제타 함수의 비자명한 영점이 모두 실수부 1/2 위에 있다)을 비전공자용으로 설명하고, 2026-11-20 Anthropic 수학자 레벤트 알푀게가 Claude와 함께 발표한 Lean 형식 증명의 타임라인·검증 상태·수학계 반응을 정리. Lean·Mathlib 공동체는 증명이 옳다고 성명했지만, 사람이 읽는 논문·동료 심사·클레이 상 결정은 아직.",
+      "createdAt": "2026-11-24T09:00:00+09:00",
+      "updatedAt": "2026-11-24T09:00:00+09:00",
+      "status": "published",
+      "path": "reports/261124-ai-riemann-hypothesis-proof/",
+      "url": "https://aihubos.github.io/reportmode/reports/261124-ai-riemann-hypothesis-proof/",
+      "displayDate": "261124",
+      "sourceCount": 16,
+      "tags": [
+        "리만가설",
+        "수학",
+        "Claude",
+        "Lean",
+        "형식검증"
+      ],
+      "coverImage": "reports/261124-ai-riemann-hypothesis-proof/assets/critical-line.png",
+      "coverAlt": "복소평면 도식: 실수부 0~1 임계띠와 실수부 1/2 임계선, 그 위의 처음 다섯 개 비자명한 영점(빨간 점)과 자명한 영점 -2, -4, -6(회색 X)"
+    },
     {
       "id": "261122-unicity-bios-life-e-energy",
       "slug": "unicity-bios-life-e-energy",
@@ -38,7 +61,6 @@
       "displayDate": "261120",
       "sourceCount": 3,
       "tags": [
-        "돈",
         "풍요",
         "부자마인드"
       ],

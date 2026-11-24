@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1",
+  "id": "261124-ai-riemann-hypothesis-proof",
+  "slug": "ai-riemann-hypothesis-proof",
+  "title": "리만 가설이란? AI와 함께 나온 증명, 어디까지 확인됐나",
+  "category": "AI",
+  "tags": [
+    "리만가설",
+    "수학",
+    "Claude",
+    "Lean",
+    "형식검증"
+  ],
+  "summary": "리만 가설(제타 함수의 비자명한 영점이 모두 실수부 1/2 위에 있다)을 비전공자용으로 설명하고, 2026-11-20 Anthropic 수학자 레벤트 알푀게가 Claude와 함께 발표한 Lean 형식 증명의 타임라인·검증 상태·수학계 반응을 정리. Lean·Mathlib 공동체는 증명이 옳다고 성명했지만, 사람이 읽는 논문·동료 심사·클레이 상 결정은 아직.",
+  "createdAt": "2026-11-24T09:00:00+09:00",
+  "updatedAt": "2026-11-24T09:00:00+09:00",
+  "status": "published",
+  "sourceName": "Levent Alpöge, remark.pdf · Lean FRO·Mathlib 공동 성명",
+  "sourceCount": 16,
+  "entry": "index.html"
+}
