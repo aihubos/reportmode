@@ -346,6 +346,7 @@ export function renderHomeHtml(
   const archiveItems = items.map((item) => ({ ...item, tags: sanitizeTags(item.tags) }));
   const categoryOrder = ["AI", "게임", "자동차", "IT 기기", "비즈니스", "라이프", "기타", "Draft"];
   const categoryFor = (item: ManifestItem) => {
+    if (item.id === "261126-bookclub-ai-intelligence-amplifier-presentation") return "AI 실습 · 교육";
     const selectedCategory = String(item.category || "").trim();
     if (categoryOrder.includes(selectedCategory)) return selectedCategory;
     const text = [item.title, item.subtitle, item.category, ...(item.tags || [])]
@@ -369,6 +370,13 @@ export function renderHomeHtml(
   const categories = categoryOrder.filter((category) =>
     archiveItems.some((item) => categoryFor(item) === category),
   );
+  if (
+    archiveItems.some((item) => categoryFor(item) === "AI 실습 · 교육") &&
+    !categories.includes("AI 실습 · 교육")
+  ) {
+    const draftIndex = categories.indexOf("Draft");
+    categories.splice(draftIndex === -1 ? categories.length : draftIndex, 0, "AI 실습 · 교육");
+  }
   const categoryButtons = ["전체", ...categories]
     .map(
       (category) => {

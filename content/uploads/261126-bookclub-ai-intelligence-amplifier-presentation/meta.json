@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1",
+  "id": "261126-bookclub-ai-intelligence-amplifier-presentation",
+  "slug": "bookclub-ai-intelligence-amplifier-presentation",
+  "title": "AI 지능 증폭기: 독서모임 발표 자료 (AI빌더스랩 제레미)",
+  "category": "AI 실습 · 교육",
+  "tags": [
+    "독서모임",
+    "AI빌더스랩",
+    "프롬프트",
+    "STIC",
+    "데미안",
+    "발표자료"
+  ],
+  "summary": "가끔은, 책방 독서모임에서 발표한 ‘AI 지능 증폭기’ 슬라이드 63장. AI는 코끼리·계왕권·자전거라는 비유, 프롬프트를 주문서로 쓰는 네 칸(역할·목표·상황·형식), 마크다운, STIC(상황·과제·의도·제약) 질문법, 『데미안』으로 해 본 실제 Claude 답변과 생성 이미지 실습, AI빌더스랩 2기 안내까지. PDF로도 내려받을 수 있습니다.",
+  "createdAt": "2026-11-26T22:40:00+09:00",
+  "updatedAt": "2026-11-26T22:40:00+09:00",
+  "status": "published",
+  "sourceName": "제레미 독서모임 발표 원본(PPTX/SVG)",
+  "sourceCount": 1,
+  "entry": "index.html"
+}
