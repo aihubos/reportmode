@@ -68,7 +68,7 @@
   }
 
   function isPublicReport() {
-    return window.location.hostname === "aihubos.github.io" || window.location.hostname === "aireport.ai-hub-os.com";
+    return window.location.hostname === "aihubos.github.io" || window.location.hostname === "aireport.ai-hub-os.com" || window.location.hostname === "aibuilderslab.kr";
   }
 
   function loadLiveCount() {

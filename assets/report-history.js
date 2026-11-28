@@ -61,9 +61,10 @@
   }
 
   function fallbackPreviousUrl(pathname, snapshotId) {
-    var marker = "/reportmode/reports/";
-    if (pathname.indexOf(marker) === -1) return pathname;
-    return pathname.replace(marker, "/reportmode/versions/" + snapshotId + "/reports/");
+    // Works under any site base path (/reportmode/ on GitHub Pages, /reporthub/ on aibuilderslab.kr).
+    var match = /^(.*?)\/reports\//.exec(pathname);
+    if (!match) return pathname;
+    return match[1] + "/versions/" + snapshotId + "/reports/" + pathname.slice(match[0].length);
   }
 
   function updateVisibleMetadata(doc, record) {

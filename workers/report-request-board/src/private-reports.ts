@@ -9,6 +9,7 @@ const MAX_COVER_BYTES = 1024 * 1024;
 const PRIVATE_ORIGINS = new Set([
   "https://aihubos.github.io",
   "https://aireport.ai-hub-os.com",
+  "https://aibuilderslab.kr",
   "http://127.0.0.1:8799",
   "http://localhost:8799",
 ]);

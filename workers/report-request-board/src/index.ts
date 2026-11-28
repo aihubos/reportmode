@@ -144,6 +144,7 @@ const BOARD_UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9
 const ALLOWED_ORIGINS = new Set([
   "https://aihubos.github.io",
   "https://aireport.ai-hub-os.com",
+  "https://aibuilderslab.kr",
   "http://127.0.0.1:8799",
   "http://localhost:8799",
 ]);
