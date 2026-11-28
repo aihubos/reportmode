@@ -167,9 +167,11 @@ export function discoverCoverImage(root: string, item: ManifestItem): ManifestIt
       bodyTag.match(/\bdata-report-cover=["']([^"']+)["']/i)?.[1] ||
       imageTag?.match(/\bsrc=["']([^"']+)["']/i)?.[1];
     if (!source) return item;
-    const alt =
-      bodyTag.match(/\bdata-report-cover-alt=["']([^"']*)["']/i)?.[1] ||
-      imageTag?.match(/\balt=["']([^"']*)["']/i)?.[1];
+    const quotedAttribute = (tag: string, name: string) =>
+      tag.match(new RegExp(`\\b${name}="([^"]*)"`, "i"))?.[1] ||
+      tag.match(new RegExp(`\\b${name}='([^']*)'`, "i"))?.[1];
+    const alt = quotedAttribute(bodyTag, "data-report-cover-alt") ||
+      (imageTag ? quotedAttribute(imageTag, "alt") : undefined);
     const coverImage = /^(?:https?:|data:)/i.test(source)
       ? source
       : path.posix.normalize(path.posix.join(path.posix.dirname(pagePath), source));

@@ -136,6 +136,8 @@ export const ManifestItemSchema = z.object({
   url: z.string(),
   displayDate: z.string(),
   sourceCount: z.number(),
+  sourceName: z.string().optional(),
+  entry: z.string().optional(),
   tags: z.array(z.string()).default([]),
   coverImage: z.string().optional(),
   coverAlt: z.string().optional(),
