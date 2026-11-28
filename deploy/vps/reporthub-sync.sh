@@ -56,10 +56,9 @@ cd "$BASE"
 if [ ! -d "$SRC/.git" ]; then
   log "initial shallow clone"
   git clone --depth 1 --quiet "$REPO_URL" "$SRC"
-else
-  git -C "$SRC" fetch --depth 1 --quiet origin main
 fi
-NEW=$(git -C "$SRC" rev-parse FETCH_HEAD 2>/dev/null || git -C "$SRC" rev-parse HEAD)
+git -C "$SRC" fetch --depth 1 --quiet origin main
+NEW=$(git -C "$SRC" rev-parse --verify -q 'FETCH_HEAD^{commit}')
 OLD=$(cat "$STATE" 2>/dev/null || true)
 
 if [ "$FULL" = 0 ] && [ -n "$OLD" ] && [ "$OLD" = "$NEW" ]; then exit 0; fi
