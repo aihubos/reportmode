@@ -4,7 +4,7 @@ Report Hub moved from GitHub Pages (`https://aihubos.github.io/reportmode/`) to 
 
 ## How it is served
 - Files: `/opt/reporthub/current` (read-only bind mount at `/srv/reporthub` in the `aibuilderslab-web` nginx container).
-- nginx: see `nginx-reporthub.conf` (`/reporthub` -> 301 `/reporthub/`, `location ^~ /reporthub/`).
+- nginx: see `nginx-reporthub.conf` (`/reporthub` -> 301 `/reporthub/` via `rewrite ... permanent` so the redirect stays relative behind the Cloudflare tunnel, `location ^~ /reporthub/`). Config file: `/opt/aibuilderslab/nginx.conf`; mount added in `/opt/aibuilderslab/docker-compose.yml`.
 - The repo is not changed for the new base path. `reporthub-sync.sh` rewrites, **only in the served copy**:
   - `https://aihubos.github.io/reportmode` -> `https://aibuilderslab.kr/reporthub`
   - root-absolute `/reportmode/` -> `/reporthub/`
