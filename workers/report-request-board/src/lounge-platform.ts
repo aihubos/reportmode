@@ -120,6 +120,7 @@ const OPENROUTER_CHAT_ENDPOINT = "https://openrouter.ai/api/v1/chat/completions"
 const ALLOWED_ORIGINS = new Set([
   "https://aihubos.github.io",
   "https://aireport.ai-hub-os.com",
+  "https://aibuilderslab.kr",
   "https://builderslab.ai-hub-os.com",
   "http://127.0.0.1:8799",
   "http://localhost:8799",

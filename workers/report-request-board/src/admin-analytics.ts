@@ -25,7 +25,7 @@ export type NormalizedEntryPayload = {
 
 const ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._-]{0,119}$/;
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-const OWN_HOSTS = new Set(["aihubos.github.io", "aireport.ai-hub-os.com"]);
+const OWN_HOSTS = new Set(["aihubos.github.io", "aireport.ai-hub-os.com", "aibuilderslab.kr"]);
 
 function compact(value: unknown, limit: number) {
   return typeof value === "string"
