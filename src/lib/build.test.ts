@@ -40,6 +40,37 @@ test("archive thumbnail ignores the shared RH home logo", () => {
   }
 });
 
+test("cover alt keeps apostrophes inside a double-quoted attribute", () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "report-hub-cover-quote-"));
+  try {
+    const reportDirectory = path.join(root, "reports", "quoted");
+    fs.mkdirSync(reportDirectory, { recursive: true });
+    fs.writeFileSync(
+      path.join(reportDirectory, "index.html"),
+      `<body data-report-cover="assets/cover.jpg" data-report-cover-alt="분석좌 유튜브 영상 'AI 컨닝사태 이후, 한국에 벌어질 일들' 원본 썸네일"><img src="assets/cover.jpg" alt="분석좌 유튜브 영상 'AI 컨닝사태 이후, 한국에 벌어질 일들' 원본 썸네일"></body>`,
+    );
+    const item: ManifestItem = {
+      id: "quoted",
+      slug: "quoted",
+      title: "따옴표 표지",
+      category: "AI",
+      summary: "표지",
+      createdAt: "2026-11-28T10:30:00+09:00",
+      updatedAt: "2026-11-28T10:30:00+09:00",
+      status: "published",
+      path: "reports/quoted/",
+      url: "https://example.com/reports/quoted/",
+      displayDate: "261128",
+      sourceCount: 0,
+      tags: [],
+    };
+    const result = discoverCoverImage(root, item);
+    assert.equal(result.coverAlt, "분석좌 유튜브 영상 'AI 컨닝사태 이후, 한국에 벌어질 일들' 원본 썸네일");
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test("manifest marks redirect-only pages as external links", () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), "report-hub-external-link-"));
   try {

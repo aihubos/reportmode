@@ -1,7 +1,30 @@
 {
-  "generatedAt": "2026-11-26T13:57:34.365Z",
+  "generatedAt": "2026-11-28T00:26:48.137Z",
   "siteBase": "https://aihubos.github.io/reportmode",
   "reports": [
+    {
+      "id": "261128-korea-ai-cheating-value-points-lines-planes",
+      "slug": "korea-ai-cheating-value-points-lines-planes",
+      "title": "AI 컨닝 사태 이후: 점·선·면으로 보는 AI 시대 인간의 가치",
+      "category": "AI",
+      "summary": "분석좌의 31분 영상 정리. AI 시대에는 전문성(선)만으로 가치를 인정받기 어렵고 '면'과 '의미'가 중요하다는 주장, 점·선·면 도해와 앱 화면 예시, 후반 대담(묘수)의 한국 낙관 시나리오를 타임스탬프와 화면 원문으로 정리. 컨닝 사건·AI 사용률·고래 논문·리만 가설 언급은 따로 확인하고 미검증 주장은 표시했습니다.",
+      "createdAt": "2026-11-28T10:30:00+09:00",
+      "updatedAt": "2026-11-28T10:30:00+09:00",
+      "status": "published",
+      "path": "reports/261128-korea-ai-cheating-value-points-lines-planes/",
+      "url": "https://aihubos.github.io/reportmode/reports/261128-korea-ai-cheating-value-points-lines-planes/",
+      "displayDate": "261128",
+      "sourceCount": 12,
+      "tags": [
+        "AI컨닝사태",
+        "AI시대",
+        "인간의가치",
+        "분석좌",
+        "유튜브요약"
+      ],
+      "coverImage": "reports/261128-korea-ai-cheating-value-points-lines-planes/assets/youtube-thumbnail.jpg",
+      "coverAlt": "분석좌 유튜브 영상 'AI 컨닝사태 이후, 한국에 벌어질 일들' 원본 썸네일"
+    },
     {
       "id": "261126-bookclub-ai-intelligence-amplifier-presentation",
       "slug": "bookclub-ai-intelligence-amplifier-presentation",
@@ -14,9 +37,7 @@
       "path": "reports/261126-bookclub-ai-intelligence-amplifier-presentation/",
       "url": "https://aihubos.github.io/reportmode/reports/261126-bookclub-ai-intelligence-amplifier-presentation/",
       "displayDate": "261126",
-      "sourceName": "제레미 독서모임 발표 원본(PPTX/SVG)",
       "sourceCount": 1,
-      "entry": "index.html",
       "tags": [
         "독서모임",
         "AI빌더스랩",
@@ -26,7 +47,9 @@
         "발표자료"
       ],
       "coverImage": "reports/261126-bookclub-ai-intelligence-amplifier-presentation/assets/cover.webp",
-      "coverAlt": "AI 지능 증폭기 독서모임 발표 표지 슬라이드"
+      "coverAlt": "AI 지능 증폭기 독서모임 발표 표지 슬라이드",
+      "sourceName": "제레미 독서모임 발표 원본(PPTX/SVG)",
+      "entry": "index.html"
     },
     {
       "id": "261124-bernie-sanders-diary-of-a-ceo-interview",
